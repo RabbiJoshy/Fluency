@@ -1,4 +1,4 @@
-// Setup panel UI: language tabs, CEFR level selector, range/set buttons.
+// Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
 import './state.js';
 
@@ -322,21 +322,21 @@ function updateStep5Tooltip() {
     if (activeArtist) {
         const name = activeArtist.name;
         tooltip.innerHTML = `
-            <p>Each set contains words ranked by frequency in ${name}'s lyrics (e.g., 1-25 = most common words).</p>
-            <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
-            <p><strong>Example sentences</strong> are designed to use words from nearby ranks, so practicing set 1-25 means sentences mostly use words from that same group.</p>
+            <p>Each level is divided into stable sets of about 20 frequency positions in ${name}'s lyrics. The first unfinished set is selected automatically.</p>
+            <p>Settings may shorten a set, but they never move a card into a different level or set.</p>
+            <p><strong>Example sentences</strong> favour nearby-frequency words, helping the cards in a set reinforce one another.</p>
         `;
     } else {
         tooltip.innerHTML = `
-            <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
-            <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
-            <p><strong>Set size toggle (25/50)</strong> controls how many cards per set.</p>
+            <p>Each level is divided into stable sets of about 20 frequency positions. The first unfinished set is selected automatically.</p>
+            <p>Settings may shorten a set, but they never move a card into a different level or set.</p>
+            <p><strong>Subtitle examples</strong> already favour nearby-frequency words, so each small set forms a useful learning neighbourhood.</p>
         `;
     }
 }
 
 // Returns the first .level-btn whose level isn't fully completed, using the
-// same per-word "known" check the range buttons use (rank inside the user's
+// same per-word "known" check the stable sets use (rank inside the user's
 // level estimate OR ≥1 correct attempt). Returns the LAST button if every
 // level is complete (you've maxed out — land on the most-advanced level so
 // you don't bounce off into nothing). Returns null on data-load failure;
@@ -363,7 +363,7 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
             [minWord, maxWord] = lv.wordCount.split('-').map(Number);
         }
         const wordsInLevel = filteredVocab.filter(it => {
-            const rank = rankBasis === 'display' ? it.displayRank : it.rank;
+            const rank = _levelRankAccessor(rankBasis)(it);
             return rank >= minWord && rank < maxWord;
         });
         if (wordsInLevel.length === 0) continue;
@@ -389,8 +389,8 @@ async function renderLevelSelector(language) {
     // The level buttons are still rendered (hidden) because renderRangeSelector
     // and other code paths read .level-btn.selected for startRank/endRank.
     if (percentageMode && ppmData && ppmData.length > 0) {
-        // Smart segment boundaries (both modes): pick snap points that
-        // target ~equal cards-per-segment with frequency-cliff labels
+        // Smart segment boundaries (both modes): pick stable baseline snap
+        // points that target ~equal cards-per-segment with frequency-cliff labels
         // where the cliffs exist in the data. Algorithm auto-scales —
         // artist mode (raw counts 2–500) gets cliffs like ≥50/≥20/…/≥2;
         // normal mode (occurrences_ppm 1–50000) gets cliffs in the
@@ -400,8 +400,19 @@ async function renderLevelSelector(language) {
         await _loadLevelSliderSamples(selectedLanguage);
         const _raw = _levelSliderRawCache[selectedLanguage];
         if (_raw) {
-            const { vocab: filtered } = buildFilteredVocab(_raw);
-            _smartLevelRangesCache = computeSmartLevelRanges(filtered);
+            // Level boundaries are built from the stable baseline before any
+            // optional filters. Filters change the eligible card count inside
+            // a level, never the level's identity or rank span.
+            const stableBaseline = assignStableVocabularyRanks(_raw);
+            _smartLevelRangesCache = computeSmartLevelRanges(stableBaseline);
+            const { vocab: eligible } = buildFilteredVocab(_raw);
+            const lastEligibleRank = eligible.reduce((maxRank, item) =>
+                Math.max(maxRank, Number(item.stableRank) || 0), 0);
+            // Hide only empty trailing levels (most notably the reserved 1×
+            // tail while single-occurrence words are hidden). Re-enabling a
+            // filter appends those levels without changing any earlier cut.
+            _smartLevelRangesCache = _smartLevelRangesCache.filter(range =>
+                range.startRank <= lastEligibleRank);
         }
         const percentageRanges = getActiveLevelRanges();
         console.log('Using percentage levels:', percentageRanges);
@@ -431,12 +442,9 @@ async function renderLevelSelector(language) {
         let savedIdx = selectedLevel
             ? percentageRanges.findIndex(r => r.level === selectedLevel)
             : -1;
-        // Filter toggles (lemma / cognate) change the card counts, so the
-        // level id `c<cardCount>` shifts and the exact match fails. Fall
-        // back to the segment with the nearest card count so the scrubber
-        // holds its place instead of jumping to the far right — and adopt
-        // that level id so the toggle handler's re-select + renderRangeSelector
-        // read a button that actually exists.
+        // Older saved selections may use a level id from the pre-stable
+        // partition. Adopt the nearest baseline boundary once; current filter
+        // toggles keep the exact stable id thereafter.
         if (savedIdx < 0 && selectedLevel && /^c\d+$/.test(selectedLevel)) {
             const targetCards = parseInt(selectedLevel.slice(1), 10);
             let bestD = Infinity;
@@ -499,7 +507,7 @@ async function renderLevelSelector(language) {
             // Show coverage info line with word count and frequency threshold
             updateLevelInfoLine(this);
 
-            // Show steps 3 (lemma), 3b (cognate if available), 4 (cards per set), and 5 (range) with staggered timing
+            // Reveal optional filters and the automatic next-set panel.
             document.getElementById('lemmaToggleContainer').style.display = 'block';
 
             // Show cognate toggle after lemma toggle (if available)
@@ -545,7 +553,7 @@ async function renderLevelSelector(language) {
     // Auto-select first time only (preserves manual picks across re-renders).
     // Pick the first level that isn't fully completed so the user lands on
     // actionable work — finishing the 70% level should auto-open 80%, not
-    // sit on a maxed-out set with all-100% range buttons. Falls back to the
+    // sit on a level whose sets are already complete. Falls back to the
     // first button on data-load failure or if there are no buttons.
     if (!selectedLevel) {
         const buttons = Array.from(document.querySelectorAll('.level-btn'));
@@ -562,30 +570,29 @@ async function renderLevelSelector(language) {
     }
 }
 
-// Smart-range cache: computed snap points for the active language under
-// the active filter set. Cleared on every renderLevelSelector run so it
-// always reflects current filters (re-render is the natural invalidator).
+// Smart-range cache: computed snap points for the active source baseline.
+// Filters can change the eligible count shown inside each cached range but
+// cannot change these boundaries.
 let _smartLevelRangesCache = null;
 
 // Build an adaptive number of finishable study bands: roughly one per 200
 // cards, with ten bands for small decks and a ceiling of 80 for very large
-// ones. At the normal 25/50-card set sizes, a level is usually 8/4 sets.
+// ones. Each level is subdivided into stable 20-position study sets.
 // Each boundary starts at an equal-card quantile, then snaps to a genuine
 // frequency cliff when one is nearby.
 // If no cliff is close, keeping the quantile deliberately subdivides a
 // large tied tail (2x/3x in artist decks) instead of collapsing it into one
 // enormous final band.
 //
-// In lemma mode the effective frequency is the corrected unique-example
-// pool. Form mode uses corpus_count. buildFilteredVocab() has already sorted
-// and assigned displayRank on that same basis, so smart ranges must retain
-// displayRank all the way through selection and deck loading.
+// Boundaries always use the form-level corpus frequency baseline. Merge
+// Lemmas anchors a merged card to its highest-frequency form, and every
+// optional exclusion simply leaves a hole inside the fixed region.
 function computeSmartLevelRanges(filteredVocab) {
     if (!filteredVocab || filteredVocab.length === 0) return [];
     const items = filteredVocab;
     const total = items.length;
     const frequencyOf = (item) => {
-        const raw = useLemmaMode ? item.pooled_frequency : item.corpus_count;
+        const raw = item.corpus_count;
         const value = Number(raw);
         return Number.isFinite(value) ? Math.max(0, value) : 0;
     };
@@ -607,7 +614,7 @@ function computeSmartLevelRanges(filteredVocab) {
 
     // A cliff count is the number of cards included immediately before the
     // effective frequency drops. Counts are exclusive endpoints, matching
-    // the range loader's displayRank >= start && displayRank < end contract.
+    // the range loader's stableRank >= start && stableRank < end contract.
     const cliffCounts = [];
     for (let count = 1; count < total; count++) {
         if (frequencyOf(items[count - 1]) !== frequencyOf(items[count])) {
@@ -659,7 +666,7 @@ function computeSmartLevelRanges(filteredVocab) {
         const tickLabel = splitTier
             ? `${fmtCompact(freqMin)}× · ${fmtCompact(cardCount)}`
             : `≥${fmtCompact(freqMin)}`;
-        const basisDescription = useLemmaMode ? 'unique pooled example lines' : 'corpus occurrences';
+        const basisDescription = 'baseline corpus occurrences';
         const rankDescription = `Ranks ${startRank.toLocaleString()}–${cardCount.toLocaleString()} · ${bandCardCount.toLocaleString()} cards`;
         const description = splitTier
             ? `${rankDescription} · cutoff partway through the ${fmtCompact(freqMin)}× tier · ${(coverage * 100).toFixed(1)}% cumulative coverage by ${basisDescription}`
@@ -669,7 +676,7 @@ function computeSmartLevelRanges(filteredVocab) {
             level,
             startRank,
             endRank,
-            rankBasis: 'display',
+            rankBasis: 'stable',
             cardCount,
             bandCardCount,
             threshold: coverage,
@@ -704,6 +711,7 @@ function _samplesFromRaw(rawVocab) {
     return filtered.map(item => ({
         rank: item.rank,
         displayRank: item.displayRank,
+        stableRank: item.stableRank,
         word: item.lemma || item.targetWord || item.word || ''
     })).filter(s => s.word);
 }
@@ -754,19 +762,24 @@ function _levelBandMetrics(level, samples = null) {
     const start = Math.max(1, Number(level?.startRank) || 1);
     const endExclusive = Math.max(start + 1, Number(level?.endRank) || start + 1);
     const end = endExclusive - 1;
-    let count = Number(level?.bandCardCount);
-    if (!Number.isFinite(count)) {
-        if (samples) {
-            const rankOf = level?.rankBasis === 'display' ? s => s.displayRank : s => s.rank;
-            count = samples.filter(sample => {
-                const rank = rankOf(sample);
-                return rank >= start && rank < endExclusive;
-            }).length;
-        } else {
-            count = endExclusive - start;
-        }
+    let count;
+    if (samples) {
+        const rankOf = _levelRankAccessor(level?.rankBasis);
+        count = samples.filter(sample => {
+            const rank = rankOf(sample);
+            return rank >= start && rank < endExclusive;
+        }).length;
+    } else {
+        count = Number(level?.bandCardCount);
+        if (!Number.isFinite(count)) count = endExclusive - start;
     }
     return { start, end, count: Math.max(0, count) };
+}
+
+function _levelRankAccessor(rankBasis) {
+    if (rankBasis === 'stable') return item => item.stableRank;
+    if (rankBasis === 'display') return item => item.displayRank;
+    return item => item.rank;
 }
 
 // Patch the rank readout + tick labels with post-filter counts. Called
@@ -959,7 +972,7 @@ function updateLevelSliderReadout(i) {
         // Pick 5 words from the upper portion of this level's range — the
         // ones that just qualified at this coverage threshold are the most
         // illustrative of "what you'll be learning here".
-        const rankOf = lv.rankBasis === 'display' ? s => s.displayRank : s => s.rank;
+        const rankOf = _levelRankAccessor(lv.rankBasis);
         const start = Math.max(1, Math.floor(lv.startRank + (lv.endRank - lv.startRank) * 0.6));
         const inRange = samples.filter(s => rankOf(s) >= start && rankOf(s) < lv.endRank);
         const pick = (inRange.length ? inRange : samples.filter(s => rankOf(s) < lv.endRank))
@@ -1028,27 +1041,6 @@ function _refreshAfterCognateChange() {
         renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
     }
     updateExclusionBars();
-}
-
-function setupGroupSizeSelector() {
-    document.querySelectorAll('.group-size-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Reset all buttons to short text
-            document.querySelectorAll('.group-size-btn').forEach(b => {
-                b.classList.remove('selected');
-                b.textContent = b.dataset.short;
-            });
-            // Set selected button to full text
-            this.classList.add('selected');
-            this.textContent = this.dataset.full;
-            groupSize = parseInt(this.dataset.size);
-
-            // Re-render range selector if a level is selected
-            if (selectedLevel) {
-                renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
-            }
-        });
-    });
 }
 
 function setupLemmaToggle() {
@@ -1251,259 +1243,196 @@ function applyLanguageColorTheme() {
 // Returns { vocab: filteredArray, counts: { english, cognates, singleOcc, lemma } }
 
 
+const STABLE_SET_SLOT_COUNT = 20;
+
 async function renderRangeSelector() {
     const langConfig = config.languages[selectedLanguage];
     const container = document.getElementById('rangeSelector');
-
     let minWord, maxWord;
     let rankBasis = 'source';
 
-    // Get min/max based on mode
     if (percentageMode && ppmData && ppmData.length > 0) {
-        // In percentage mode, get ranks from selected level button's data attributes
         const selectedBtn = document.querySelector('.level-btn.selected');
         if (!selectedBtn) return;
         minWord = parseInt(selectedBtn.dataset.startRank);
         maxWord = parseInt(selectedBtn.dataset.endRank);
         rankBasis = selectedBtn.dataset.rankBasis || 'source';
     } else {
-        const cefrLevels = getCefrLevels(selectedLanguage);
-        const level = cefrLevels.find(l => l.level === selectedLevel);
+        const level = getCefrLevels(selectedLanguage).find(item => item.level === selectedLevel);
         if (!level) return;
-        // Parse the wordCount range for this level (e.g., "1-800" -> 1, 800)
         [minWord, maxWord] = level.wordCount.split('-').map(Number);
     }
-
-    // Defensive guard — if the dataset values failed to parse (selected
-    // button rewritten with stale/missing attrs after a smart-range
-    // recompute, etc.) bail with an empty container rather than emitting
-    // "1 to NaN" range buttons that break the deck loader downstream.
     if (!Number.isFinite(minWord) || !Number.isFinite(maxWord)) {
-        console.warn('renderRangeSelector: bad min/max from selected level button', { minWord, maxWord, selectedLevel });
+        console.warn('renderRangeSelector: bad level boundary', { minWord, maxWord, selectedLevel });
         container.innerHTML = '';
         return;
     }
 
-    // Load vocabulary data, joined with master if needed
     let vocabularyData = [];
     try {
         vocabularyData = await fetchActiveVocabularyData(langConfig);
     } catch (error) {
         console.error('Failed to load vocabulary data:', error);
     }
+    const { vocab: filteredVocab, counts: filterCounts } = buildFilteredVocab(vocabularyData);
 
-    const { vocab: lemmaFilteredVocab, counts: filterCounts } = buildFilteredVocab(vocabularyData);
-
-    // Per-step exclusion counts. Cognates and lemma are SEPARATE filter
-    // stages — cognate runs first, items it excludes don't count toward
-    // the lemma filter, so each info-line reports only its own stage's
-    // exclusions instead of an aggregated total.
     const lemmaInfo = document.getElementById('lemmaInfoLine');
     if (lemmaInfo) {
-        if (filterCounts.lemma > 0) {
-            lemmaInfo.textContent = filterCounts.lemma.toLocaleString() + ' flashcards excluded';
-            lemmaInfo.style.display = '';
-        } else {
-            lemmaInfo.style.display = 'none';
-        }
+        lemmaInfo.textContent = `${filterCounts.lemma.toLocaleString()} flashcards merged`;
+        lemmaInfo.style.display = filterCounts.lemma > 0 ? '' : 'none';
     }
     const cognateInfo = document.getElementById('cognateInfoLine');
     if (cognateInfo) {
-        if (filterCounts.cognates > 0) {
-            cognateInfo.textContent = filterCounts.cognates.toLocaleString() + ' flashcards excluded';
-            cognateInfo.style.display = '';
-        } else {
-            cognateInfo.style.display = 'none';
-        }
+        cognateInfo.textContent = `${filterCounts.cognates.toLocaleString()} flashcards excluded`;
+        cognateInfo.style.display = filterCounts.cognates > 0 ? '' : 'none';
     }
 
-    // Smart frequency bands are built from the post-filter order and use
-    // displayRank. Legacy coverage/CEFR levels continue to use source rank.
-    const wordsInLevel = lemmaFilteredVocab.filter(item => {
-        const rank = rankBasis === 'display' ? item.displayRank : item.rank;
+    const rankOf = _levelRankAccessor(rankBasis);
+    const wordsInLevel = filteredVocab.filter(item => {
+        const rank = rankOf(item);
         return rank >= minWord && rank < maxWord;
     });
-
     if (wordsInLevel.length === 0) {
-        container.innerHTML = '';
+        container.innerHTML = '<div class="study-set-empty">No cards remain in this level with the current settings.</div>';
+        document.getElementById('step4').style.display = 'block';
         return;
     }
 
-    const minDisplayRank = wordsInLevel[0].displayRank;
-    const maxDisplayRank = wordsInLevel[wordsInLevel.length - 1].displayRank;
-    if (!Number.isFinite(minDisplayRank) || !Number.isFinite(maxDisplayRank)) {
-        console.warn('renderRangeSelector: bad displayRank on filtered items', { minDisplayRank, maxDisplayRank });
-        container.innerHTML = '';
-        return;
-    }
-
-    // Generate range buttons using corpus-wide display ranks.
-    // Mastery checks must use the same displayRank-based selection that
-    // loadVocabularyData() uses when the button is clicked.
-    const ranges = [];
-    for (let i = minDisplayRank; i <= maxDisplayRank; i += groupSize) {
-        const rangeEnd = Math.min(i + groupSize, maxDisplayRank + 1);
-        const wordsInRange = lemmaFilteredVocab.filter(item => item.displayRank >= i && item.displayRank < rangeEnd);
-        const hasData = wordsInRange.length > 0;
-
-        // Per-word "completed" criterion (same as the old isMastered check):
-        // a word is completed if its rank sits inside the user's level
-        // estimate OR has been answered correctly at least once. The
-        // resulting percentage drives the partial-fill bar on the button.
-        let pct = 0;
-        if (hasData && currentUser && !currentUser.isGuest && progressData) {
-            const estimate = levelEstimates[selectedLanguage] || 0;
-            const knownCount = wordsInRange.filter(item => {
-                if (item.rank <= estimate) return true;
-                return isWordKnown(getWordId(item));
-            }).length;
-            pct = Math.round(100 * knownCount / wordsInRange.length);
+    const estimate = levelEstimates[selectedLanguage] || 0;
+    const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
+        ? await buildEstimatedKnownIds(estimate)
+        : null;
+    const isKnown = item => {
+        if (!currentUser || currentUser.isGuest || !progressData) return false;
+        if (activeArtist) {
+            if (item.id && estimatedIds?.has(item.id)) return true;
+        } else if (item.rank <= estimate) {
+            return true;
         }
+        return isWordKnown(getWordId(item));
+    };
 
+    // Sets use fixed baseline slots. Filters can make a set shorter, but
+    // never refill it from its neighbour; this preserves membership, progress,
+    // and the nearby-rank example neighbourhood across setting changes.
+    const ranges = [];
+    for (let start = minWord; start < maxWord; start += STABLE_SET_SLOT_COUNT) {
+        const end = Math.min(start + STABLE_SET_SLOT_COUNT, maxWord);
+        const words = wordsInLevel.filter(item => {
+            const rank = rankOf(item);
+            return rank >= start && rank < end;
+        });
+        const knownCount = words.filter(isKnown).length;
         ranges.push({
-            range: `${i}-${rangeEnd}`,
-            label: `${i}-${rangeEnd - 1}`,
-            available: hasData,
-            pct: pct
+            range: `${start}-${end}`,
+            start,
+            end,
+            available: words.length > 0,
+            cardCount: words.length,
+            pct: words.length > 0 ? Math.round(100 * knownCount / words.length) : 100
         });
     }
+    const firstIncomplete = ranges.findIndex(range => range.available && range.pct < 100);
+    const lastAvailable = ranges.reduce((last, range, index) => range.available ? index : last, -1);
+    const initialIndex = firstIncomplete >= 0 ? firstIncomplete : Math.max(0, lastAvailable);
+    const completedCount = ranges.filter(range => range.available && range.pct === 100).length;
+    const availableCount = ranges.filter(range => range.available).length;
 
-    // Generate HTML — partial-fill bar based on completion percentage. The
-    // button bg is a left-to-right gradient with a hard transition at
-    // var(--rb-pct); the inner span uses the same gradient on its text via
-    // background-clip:text so the label colour switches at the same X. See
-    // .range-btn-new and .rb-label CSS for the trick.
-    const rangesHTML = ranges.map(r => {
-        const disabledAttr = !r.available ? 'disabled' : '';
-        const disabledClass = !r.available ? 'disabled' : '';
-        const progressClass = r.pct > 0 ? 'has-progress' : '';
-        let title = 'Load ' + r.label;
-        if (!r.available) {
-            title = 'Greyed out because no vocabulary data exists for this range yet';
-        } else if (r.pct === 100) {
-            title = 'All words in this set answered correctly at least once';
-        } else if (r.pct > 0) {
-            title = `${r.pct}% complete — keep going`;
-        }
-        return `
-            <button class="range-btn-new ${disabledClass} ${progressClass}"
-                    data-range="${r.range}"
-                    style="--rb-pct: ${r.pct}%"
-                    ${disabledAttr}
-                    title="${title}">
-                ${r.label}
-            </button>
-        `;
+    const dotsHTML = ranges.map((range, index) => {
+        const classes = [
+            'study-set-dot',
+            range.pct === 100 && range.available ? 'is-complete' : '',
+            index === initialIndex ? 'is-current' : '',
+            !range.available ? 'is-empty' : ''
+        ].filter(Boolean).join(' ');
+        return `<button type="button" class="${classes}"
+                    data-index="${index}" data-range="${range.range}"
+                    data-rank-basis="${rankBasis}" data-pct="${range.pct}"
+                    role="radio" aria-checked="${index === initialIndex ? 'true' : 'false'}"
+                    aria-label="Set ${index + 1}, ${range.pct}% complete"
+                    ${range.available ? '' : 'disabled'}>${index + 1}</button>`;
     }).join('');
 
-    // Add "Next Level" button at the end
-    let nextLevelHTML = '';
-    let levels, currentLevelIndex, nextLevel;
-
-    if (percentageMode && ppmData && ppmData.length > 0) {
-        levels = getActiveLevelRanges();
-        currentLevelIndex = levels.findIndex(l => l.level === selectedLevel);
-        nextLevel = currentLevelIndex < levels.length - 1 ? levels[currentLevelIndex + 1] : null;
-    } else {
-        levels = getCefrLevels(selectedLanguage);
-        currentLevelIndex = levels.findIndex(l => l.level === selectedLevel);
-        nextLevel = currentLevelIndex < levels.length - 1 ? levels[currentLevelIndex + 1] : null;
-    }
-
-    if (nextLevel) {
-        nextLevelHTML = `
-            <button class="range-btn-new next-level-btn"
-                    data-next-level="${nextLevel.level}"
-                    title="Go to ${nextLevel.level}">
-                Next Level
-            </button>
-        `;
-    } else {
-        // At the last level, show placeholder box
-        nextLevelHTML = `
-            <button class="range-btn-new disabled"
-                    disabled
-                    title="Completed all levels">
-                ${selectedLevel}
-            </button>
-        `;
-    }
-
-    // Add "Incorrect" button if user has incorrect words
     let incorrectHTML = '';
     if (currentUser && !currentUser.isGuest && progressData) {
         const incorrectCount = Object.values(progressData).filter(
             data => data.wrong > 0 && data.language === selectedLanguage
         ).length;
         if (incorrectCount > 0) {
-            incorrectHTML = `
-                <button class="range-btn-new incorrect-range-btn"
-                        data-incorrect="true"
-                        title="Study words you've previously marked incorrect">
-                    Incorrect (${incorrectCount})
-                </button>
-            `;
+            incorrectHTML = `<button class="study-set-review-incorrect" type="button">
+                Review ${incorrectCount} incorrect
+            </button>`;
         }
     }
 
-    container.innerHTML = rangesHTML + incorrectHTML + nextLevelHTML;
+    container.innerHTML = `
+        <div class="study-set-panel">
+            <div class="study-set-overview">
+                <strong>${completedCount} of ${availableCount} sets complete</strong>
+                <span>Sets stay in the same level when settings change</span>
+            </div>
+            <div class="study-set-dots" role="radiogroup" aria-label="Sets in this level">${dotsHTML}</div>
+            <div class="study-set-current-copy">
+                <strong id="studySetCurrentTitle"></strong>
+                <span id="studySetCurrentMeta"></span>
+            </div>
+            <button class="range-btn-new study-set-start" id="studySetStartBtn" type="button"></button>
+            ${incorrectHTML}
+        </div>`;
     document.getElementById('step4').style.display = 'block';
     setActiveSetupStep('step4');
 
-    // Add click handlers to ALL buttons
-    document.querySelectorAll('.range-btn-new').forEach(btn => {
-        btn.addEventListener('click', async function(e) {
-            // Handle "Incorrect" button
-            if (this.classList.contains('incorrect-range-btn')) {
-                loadIncorrectWordsSet();
-                return;
-            }
+    const selectSet = index => {
+        const range = ranges[index];
+        if (!range?.available) return;
+        container.querySelectorAll('.study-set-dot').forEach(dot => {
+            const selected = Number(dot.dataset.index) === index;
+            dot.classList.toggle('is-current', selected);
+            dot.setAttribute('aria-checked', selected ? 'true' : 'false');
+        });
+        document.getElementById('studySetCurrentTitle').textContent = `Set ${index + 1} of ${ranges.length}`;
+        document.getElementById('studySetCurrentMeta').textContent =
+            `Ranks ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()} · ${range.cardCount} cards with current settings · ${range.pct}% complete`;
+        const startBtn = document.getElementById('studySetStartBtn');
+        startBtn.textContent = range.pct === 100 ? `Review Set ${index + 1}` : `Start Set ${index + 1}`;
+        startBtn.dataset.range = range.range;
+        startBtn.dataset.rankBasis = rankBasis;
+        startBtn.dataset.setNumber = String(index + 1);
+        startBtn.dataset.levelSetCount = String(ranges.length);
+    };
+    container.querySelectorAll('.study-set-dot').forEach(dot => {
+        dot.addEventListener('click', () => selectSet(Number(dot.dataset.index)));
+    });
+    selectSet(initialIndex);
 
-            // Handle "Next Level" button
-            if (this.classList.contains('next-level-btn')) {
-                const nextLevelValue = this.dataset.nextLevel;
-                if (nextLevelValue) {
-                    selectedLevel = nextLevelValue;
-                    // Update level selector UI - reset all buttons and select the next one
-                    document.querySelectorAll('.level-btn').forEach(b => {
-                        b.classList.remove('selected');
-                        b.textContent = b.dataset.short;
-                    });
-                    const nextLevelBtn = document.querySelector(`.level-btn[data-level="${nextLevelValue}"]`);
-                    if (nextLevelBtn) {
-                        nextLevelBtn.classList.add('selected');
-                        nextLevelBtn.textContent = nextLevelBtn.dataset.full;
-                    }
-                    // Re-render range selector for the new level
-                    await renderRangeSelector();
-                }
-                return;
-            }
-
-            // Prevent disabled buttons from being clicked
-            if (this.disabled || this.classList.contains('disabled')) {
-                e.preventDefault();
-                e.stopPropagation();
-                // Show tooltip message for unavailable datasets
-                const loadingMsg = document.getElementById('loadingMessage');
-                loadingMsg.style.display = 'block';
-                loadingMsg.style.color = 'var(--warning)';
-                loadingMsg.textContent = 'Data not available, pick another set';
-                setTimeout(() => {
-                    loadingMsg.style.display = 'none';
-                    loadingMsg.style.color = 'var(--accent-green)';
-                }, 2000);
-                return;
-            }
-
-            const selectedRange = this.dataset.range;
-
-            document.getElementById('loadingMessage').style.display = 'block';
-            document.getElementById('loadingMessage').textContent = `Loading ${selectedRange}...`;
-
-            await loadVocabularyData(selectedRange);
+    document.getElementById('studySetStartBtn').addEventListener('click', async function() {
+        const selectedRange = this.dataset.range;
+        const loadingMessage = document.getElementById('loadingMessage');
+        loadingMessage.style.display = 'block';
+        loadingMessage.textContent = `Loading Set ${this.dataset.setNumber}...`;
+        await loadVocabularyData(selectedRange, {
+            rankBasis: this.dataset.rankBasis,
+            setNumber: Number(this.dataset.setNumber),
+            levelSetCount: Number(this.dataset.levelSetCount)
         });
     });
+    container.querySelector('.study-set-review-incorrect')?.addEventListener('click', loadIncorrectWordsSet);
+}
+
+function getNextStudySetMeta(rangeString) {
+    const dots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
+    const currentIndex = dots.findIndex(dot => dot.dataset.range === rangeString);
+    if (currentIndex < 0) return null;
+    const searchOrder = dots.slice(currentIndex + 1).concat(dots.slice(0, currentIndex));
+    const next = searchOrder.find(dot =>
+        !dot.disabled && Number(dot.dataset.pct) < 100);
+    if (!next) return null;
+    return {
+        range: next.dataset.range,
+        rankBasis: next.dataset.rankBasis || 'stable',
+        setNumber: Number(next.dataset.index) + 1,
+        levelSetCount: dots.length
+    };
 }
 
 
@@ -1953,7 +1882,6 @@ window.updateStep2Tooltip = updateStep2Tooltip;
 window.updateStep5Tooltip = updateStep5Tooltip;
 window.renderLevelSelector = renderLevelSelector;
 window.setupCognateToggle = setupCognateToggle;
-window.setupGroupSizeSelector = setupGroupSizeSelector;
 // Open the help modal — always reset to About tab, update content for mode
 function openHelpModal() {
     const modal = document.getElementById('helpModal');
@@ -1992,7 +1920,7 @@ function getArtistHelpContent() {
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level, then a set. Merge Lemmas can combine related forms into one card; Cognates are included by default. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a numbered level and the app selects its first unfinished small set. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -2004,7 +1932,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level, then a set. Merge Lemmas can combine related forms into one card; Cognates are included by default. Every card includes real examples from subtitle and language corpora, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a numbered level and the app selects its first unfinished small set. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -2036,6 +1964,7 @@ window.updateLemmaToggleVisibility = updateLemmaToggleVisibility;
 window.updateCognateToggleVisibility = updateCognateToggleVisibility;
 window.applyLanguageColorTheme = applyLanguageColorTheme;
 window.renderRangeSelector = renderRangeSelector;
+window.getNextStudySetMeta = getNextStudySetMeta;
 window.showStatsModal = showStatsModal;
 window.hideStatsModal = hideStatsModal;
 window.showSettingsModal = showSettingsModal;

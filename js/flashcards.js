@@ -347,10 +347,15 @@ let _cachedDeckWords = null;
 let _cachedDeckId = null;  // track which deck set we computed for
 
 function getDeckWords() {
-    // Cache per deck load — flashcards array identity changes on each loadVocabularyData
-    const deckId = flashcards.length > 0 ? flashcards[0].fullId : null;
+    // Cache per exact small set. A first-card-only key could stay unchanged
+    // after a filter toggle even though the rest of the stable set changed.
+    const deckId = flashcards.map(card => card.fullId).join('|');
     if (_cachedDeckId === deckId && _cachedDeckWords) return _cachedDeckWords;
-    _cachedDeckWords = new Set(flashcards.map(c => c.targetWord.toLowerCase()));
+    _cachedDeckWords = new Set();
+    flashcards.forEach(card => {
+        if (card.targetWord) _cachedDeckWords.add(card.targetWord.toLowerCase());
+        if (card.lemma) _cachedDeckWords.add(card.lemma.toLowerCase());
+    });
     _cachedDeckId = deckId;
     return _cachedDeckWords;
 }
@@ -386,7 +391,8 @@ function sortExamplesByRelevance(examples) {
     const LEN_MIN = 6, LEN_MAX = 14;
     const scored = examples.map(ex => {
         const spanishText = ex.spanish || ex.target || '';
-        const tokens = spanishText.toLowerCase().split(/\s+/);
+        const tokens = spanishText.toLowerCase()
+            .match(/[\p{L}\p{N}]+(?:['’][\p{L}\p{N}]+)*/gu) || [];
         let deckHits = 0, wrongHits = 0;
         for (const t of tokens) {
             if (wrongWords.has(t)) wrongHits++;
@@ -411,15 +417,21 @@ function sortExamplesByRelevance(examples) {
             : (ex.easiness || 999999);
         return { ex, wrongScore, deckScore, lenPenalty, hasEnglish, easiness };
     });
-    // Priority: translated first → contains a recently-missed word → good
-    // length → deck overlap (capped) → easiest. Replaces the old
-    // wrongHits/deckHits-desc sort that leaked sentence length as the key.
-    scored.sort((a, b) =>
-        (Number(b.hasEnglish) - Number(a.hasEnglish)) ||
-        (b.wrongScore - a.wrongScore) ||
-        (a.lenPenalty - b.lenPenalty) ||
-        (b.deckScore - a.deckScore) ||
-        (a.easiness - b.easiness)
+    // Speech examples were generated with a nearby-rank co-study score. The
+    // stable 20-position set now gives that score an exact UI counterpart:
+    // after translation and recent mistakes, prefer sentences containing
+    // another card from this set. Lyrics retain the prior length-first order.
+    scored.sort((a, b) => activeArtist
+        ? ((Number(b.hasEnglish) - Number(a.hasEnglish))
+            || (b.wrongScore - a.wrongScore)
+            || (a.lenPenalty - b.lenPenalty)
+            || (b.deckScore - a.deckScore)
+            || (a.easiness - b.easiness))
+        : ((Number(b.hasEnglish) - Number(a.hasEnglish))
+            || (b.wrongScore - a.wrongScore)
+            || (b.deckScore - a.deckScore)
+            || (a.lenPenalty - b.lenPenalty)
+            || (a.easiness - b.easiness))
     );
     return scored.map(s => s.ex);
 }
@@ -778,10 +790,27 @@ function initializeApp() {
         }
     });
 
-    document.getElementById('markCompleteBtn').addEventListener('click', function() {
+    document.getElementById('markCompleteBtn').addEventListener('click', async function() {
+        const nextRange = stats.nextRange;
+        const nextRankBasis = stats.nextRankBasis || stats.rangeBasis || 'stable';
+        const nextSetNumber = stats.nextSetNumber;
+        const levelSetCount = stats.levelSetCount;
+        const setHasUnresolvedMistakes = (window.currentIncorrectCards || []).length > 0;
         hideDeckCompleteModal();
-        // For now, just go back to setup (data storage not implemented)
-        goBackToSetup();
+        if (nextRange) {
+            await loadVocabularyData(nextRange, {
+                rankBasis: nextRankBasis,
+                setNumber: nextSetNumber,
+                levelSetCount
+            });
+        } else {
+            const levelButtons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn, #levelSelector > .level-btn'));
+            const levelIndex = levelButtons.findIndex(button => button.dataset.level === selectedLevel);
+            if (!setHasUnresolvedMistakes && levelIndex >= 0 && levelButtons[levelIndex + 1]) {
+                selectedLevel = levelButtons[levelIndex + 1].dataset.level;
+            }
+            goBackToSetup();
+        }
     });
 
     // Click outside deck complete modal to close
@@ -1307,7 +1336,7 @@ async function goBackToSetup() {
     document.getElementById('step2').style.display = 'block';
     document.getElementById('step4').style.display = 'none';
 
-    // Reset only the range/set selections, not the level
+    // Reset only the active set selection, not the level
     document.querySelectorAll('.range-btn').forEach(btn => {
         btn.classList.remove('selected');
     });
@@ -1343,7 +1372,7 @@ async function goBackToSetup() {
             if (cognateFieldAvailable) {
                 document.getElementById('cognateToggleContainer').style.display = 'block';
             }
-            // Re-render range selector so "Choose Set" reappears
+            // Re-render the automatic stable-set panel
             renderRangeSelector();
         } else {
             // Level no longer exists (e.g., switched from CEFR to percentage mode)
@@ -3351,7 +3380,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725n';
+const ASSET_VERSION = '20260725o';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

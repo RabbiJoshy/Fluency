@@ -3,6 +3,18 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Levels now contain stable, rewarding small study sets",
+      "details": [
+        "Assigns a filter-independent frequency position before optional settings, so Cognate exclusions leave holes and merged lemmas stay with their highest-frequency form instead of moving between levels",
+        "Divides each level into fixed 20-position sets, automatically selects the first unfinished set, and replaces the old range grid and 25/50 preference with discrete completion cells plus one clear start action",
+        "A completed set offers the next unfinished set directly, while exact-session resume retains legacy rank-basis metadata for backwards compatibility",
+        "Speech example sorting now recognises punctuation-safe set-word and lemma overlap and gives this nearby-vocabulary signal priority after translation and recent mistakes",
+        "Updates setup and help copy for the stable-set model; cache v69→v70, assets 20260725n→20260725o"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "def2f94",
       "summary": "Frequency levels are shorter, finishable bands with accurate ranks",
       "details": [

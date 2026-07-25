@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725n">
-    <link rel="modulepreload" href="js/state.js?v=20260725n">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725n">
-    <link rel="modulepreload" href="js/speech.js?v=20260725n">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725n">
-    <link rel="modulepreload" href="js/auth.js?v=20260725n">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725n">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725n">
-    <link rel="modulepreload" href="js/config.js?v=20260725n">
-    <link rel="modulepreload" href="js/progress.js?v=20260725n">
-    <link rel="modulepreload" href="js/ui.js?v=20260725n">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725n">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725n">
+    <link rel="modulepreload" href="js/main.js?v=20260725o">
+    <link rel="modulepreload" href="js/state.js?v=20260725o">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725o">
+    <link rel="modulepreload" href="js/speech.js?v=20260725o">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725o">
+    <link rel="modulepreload" href="js/auth.js?v=20260725o">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725o">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725o">
+    <link rel="modulepreload" href="js/config.js?v=20260725o">
+    <link rel="modulepreload" href="js/progress.js?v=20260725o">
+    <link rel="modulepreload" href="js/ui.js?v=20260725o">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725o">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725o">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -345,16 +345,16 @@
                 </div>
             </div>
 
-            <!-- Step 3: Range Selection (Choose Set) -->
+            <!-- Step 3: automatically selected next stable set -->
             <div id="step4" class="setup-step" style="display: none;">
                 <div class="step-header step-header-with-help">
                     <span class="step-number" id="rangeStepNumber">3</span>
-                    <span class="step-title">Choose Set</span>
+                    <span class="step-title">Continue Level</span>
                     <button class="step-help-btn" data-tooltip="step5Tooltip" title="Help">?</button>
                     <div id="step5Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
-                        <p>Each set contains words ranked by frequency (e.g., 1-25 = most common words).</p>
-                        <p>Set size (25 or 50 cards) can be changed in Settings.</p>
-                        <p><strong>Example sentences</strong> are designed to use words from nearby ranks (within ~20 positions), so practicing set 1-25 means sentences mostly use words from that same group.</p>
+                        <p>Each level is divided into small, stable sets of about 20 frequency positions. The first unfinished set is selected automatically.</p>
+                        <p>Merge Lemmas and Cognate exclusions can shorten a set, but cards never move into a different level or set.</p>
+                        <p><strong>Example sentences</strong> prefer nearby-frequency vocabulary, so words within a set reinforce one another.</p>
                     </div></div>
                 </div>
                 <div id="rangeSelector" class="range-selector"></div>
@@ -585,7 +585,7 @@
         <div class="modal-content deck-complete-content">
             <div class="deck-complete-header">
                 <div class="deck-complete-icon">🎉</div>
-                <h3>Deck Complete!</h3>
+                <h3 id="deckCompleteTitle">Set Complete!</h3>
                 <div id="completeAccuracy" class="deck-complete-accuracy"></div>
             </div>
             <div class="deck-complete-body">
@@ -605,7 +605,7 @@
                 <div class="deck-complete-actions">
                     <button class="deck-complete-btn restart-btn" id="restartAllBtn">
                         <span class="btn-icon">🔄</span>
-                        <span>Restart All</span>
+                        <span>Restart Set</span>
                     </button>
                     <button class="deck-complete-btn continue-btn" id="continueIncorrectBtn">
                         <span class="btn-icon">📝</span>
@@ -613,8 +613,8 @@
                     </button>
                 </div>
                 <button class="deck-complete-btn exit-btn" id="markCompleteBtn">
-                    <span class="btn-icon">↩</span>
-                    <span>Back to Menu</span>
+                    <span class="btn-icon" id="markCompleteIcon">↩</span>
+                    <span id="markCompleteLabel">Back to Menu</span>
                 </button>
             </div>
         </div>
@@ -886,13 +886,6 @@
             </div>
             <!-- Settings tab content -->
             <div class="settings-tab-content" id="settingsTabContent">
-                <div class="stat-row" style="cursor: pointer;" id="groupSizeToggle">
-                    <span>Cards per set</span>
-                    <div id="groupSizeSelector" class="group-size-selector settings-toggle">
-                        <button class="group-size-btn selected" data-size="25" data-short="25" data-full="25">25</button>
-                        <button class="group-size-btn" data-size="50" data-short="50" data-full="50">50</button>
-                    </div>
-                </div>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="hideSingleOccToggle">
                     <span>Hide single-occurrence words</span>
                     <span id="hideSingleOccStatus" style="color: var(--accent-primary);">ON</span>
@@ -1046,6 +1039,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725n"></script>
+    <script type="module" src="js/main.js?v=20260725o"></script>
 </body>
 </html>

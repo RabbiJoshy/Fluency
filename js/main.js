@@ -1,15 +1,15 @@
-import './state.js?v=20260725n';
-import './sync-queue.js?v=20260725n';
-import './speech.js?v=20260725n';
-import './artist-ui.js?v=20260725n';
-import './auth.js?v=20260725n';
-import './spotify.js?v=20260725n';
-import './estimation.js?v=20260725n';
-import './config.js?v=20260725n';
-import './progress.js?v=20260725n';
-import './ui.js?v=20260725n';
-import './vocab.js?v=20260725n';
-import './flashcards.js?v=20260725n';
+import './state.js?v=20260725o';
+import './sync-queue.js?v=20260725o';
+import './speech.js?v=20260725o';
+import './artist-ui.js?v=20260725o';
+import './auth.js?v=20260725o';
+import './spotify.js?v=20260725o';
+import './estimation.js?v=20260725o';
+import './config.js?v=20260725o';
+import './progress.js?v=20260725o';
+import './ui.js?v=20260725o';
+import './vocab.js?v=20260725o';
+import './flashcards.js?v=20260725o';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -115,7 +115,6 @@ loadConfig().then(async () => {
         if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
     }
     applyLanguageColorTheme();
-    setupGroupSizeSelector();
     setupLemmaToggle();
     setupCognateToggle();
     setupPercentModeButton();
@@ -210,7 +209,7 @@ loadConfig().then(async () => {
             // Hide step 1 entirely (language auto-selected)
             document.getElementById('step1').style.display = 'none';
             // Renumber steps: in artist mode the language step is hidden,
-            // so Choose Level becomes step 1 and Choose Set becomes step 2.
+            // so Choose Level becomes step 1 and Continue Level becomes step 2.
             // Lemma/cognate are sub-settings inside Choose Level — they
             // no longer carry their own numbers.
             document.querySelector('#step2 .step-number').textContent = '1';

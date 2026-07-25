@@ -853,13 +853,35 @@ function showEndOfDeckOptions() {
     const totalAttempts = stats.correct + stats.incorrect;
     const accuracy = totalAttempts > 0 ? Math.round((stats.correct / totalAttempts) * 100) : 0;
 
-    // Update modal content
+    // Update modal content. Ordinary decks are intentionally small stable
+    // sets, so completion is a frequent reward inside the larger level.
+    const titleEl = document.getElementById('deckCompleteTitle');
+    if (titleEl) {
+        titleEl.textContent = stats.setNumber
+            ? `Set ${stats.setNumber} Complete!`
+            : 'Set Complete!';
+    }
     document.getElementById('completeCorrect').textContent = stats.correct;
     document.getElementById('completeIncorrect').textContent = stats.incorrect;
     document.getElementById('completeAccuracy').textContent = `Accuracy: ${accuracy}%`;
 
     const continueBtn = document.getElementById('continueIncorrectBtn');
     const messageEl = document.getElementById('completeMessage');
+    const finishBtn = document.getElementById('markCompleteBtn');
+    const finishLabel = document.getElementById('markCompleteLabel');
+    const finishIcon = document.getElementById('markCompleteIcon');
+
+    if (finishBtn && finishLabel && finishIcon) {
+        if (stats.nextRange) {
+            finishLabel.textContent = `Start Set ${stats.nextSetNumber}`;
+            finishIcon.textContent = '→';
+            finishBtn.classList.add('has-next-set');
+        } else {
+            finishLabel.textContent = 'Back to Menu';
+            finishIcon.textContent = '↩';
+            finishBtn.classList.remove('has-next-set');
+        }
+    }
 
     if (incorrectCards.length > 0) {
         messageEl.textContent = `${incorrectCards.length} card${incorrectCards.length > 1 ? 's' : ''} to review`;

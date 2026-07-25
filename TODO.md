@@ -72,6 +72,11 @@
      merged lemmas retaining duplicate representatives. Frequency now uses the uncapped unique
      line pool, senses merge by master index, and merged lemmas get one combined representative.
      Full findings: `docs/lemma_pooling_audit.md`.
+  9. **(M) [shared] Stable levels with small, rewarding sets** — DONE 2026-07-25 (`pending`):
+     level membership is assigned on a pre-filter frequency baseline, merged lemmas anchor to
+     their highest-frequency form, and exclusions leave holes rather than shifting later cards.
+     Each level now has stable 20-position sets, automatic first-unfinished selection, discrete
+     progress, direct next-set continuation, and stronger nearby-set example preference in Speech.
 
 - **[now] Notes-app backlog — EARLIER dump, captured 2026-07-24 [was only categorized in-chat, never committed until now]**
   From Josh's notes (~2026-07-13). Already resolved: offline save-on-reconnect (SHIPPED,

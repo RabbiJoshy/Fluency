@@ -29,6 +29,7 @@ function renderResumeLastSetCard() {
     }
     const source = snapshot.mode === 'lyrics' ? 'Lyrics' : 'Speech';
     const level = snapshot.levelNumber ? `Level ${snapshot.levelNumber}` : 'Saved level';
+    const set = snapshot.setNumber ? `Set ${snapshot.setNumber}` : 'Saved set';
     const forms = snapshot.useLemmaMode ? 'Merged lemmas' : 'Forms';
     const cognates = snapshot.excludeCognates ? 'Cognates excluded' : 'Cognates included';
     const title = snapshot.mode === 'lyrics'
@@ -38,10 +39,10 @@ function renderResumeLastSetCard() {
         <button type="button" class="resume-set-button" id="resumeLastSetBtn">
             <span class="resume-set-eyebrow">Continue last set</span>
             <strong>${title}</strong>
-            <span>${source} · ${level} · ${forms} · ${cognates}</span>
+            <span>${source} · ${level} · ${set} · ${forms} · ${cognates}</span>
             <small>Last card: ${snapshot.currentWord || 'saved card'}</small>
         </button>
-        <span class="resume-set-alternative">Or choose another set below</span>
+        <span class="resume-set-alternative">Or continue the next unfinished set below</span>
     `;
     document.getElementById('resumeLastSetBtn')?.addEventListener('click', resumeLastStudySession);
 }
@@ -66,6 +67,9 @@ function saveStudySessionSnapshot() {
         selectedLevel,
         levelNumber,
         range: stats.rangeString,
+        rangeBasis: stats.rangeBasis || 'display',
+        setNumber: stats.setNumber || null,
+        levelSetCount: stats.levelSetCount || null,
         groupSize,
         useLemmaMode,
         excludeCognates,
@@ -110,7 +114,7 @@ async function resumeLastStudySession() {
     selectedLanguage = snapshot.language;
     window.applyLanguageColorTheme?.();
     selectedLevel = snapshot.selectedLevel;
-    groupSize = snapshot.groupSize || 25;
+    groupSize = snapshot.groupSize || 20;
     useLemmaMode = !!snapshot.useLemmaMode;
     excludeCognates = !!snapshot.excludeCognates;
     hideSingleOccurrence = snapshot.hideSingleOccurrence !== false;
@@ -133,12 +137,15 @@ async function resumeLastStudySession() {
         button.classList.toggle('selected', (button.dataset.lemma === 'on') === useLemmaMode));
     document.querySelectorAll('.cognate-toggle-btn').forEach(button =>
         button.classList.toggle('selected', (button.dataset.cognate === 'exclude') === excludeCognates));
-    document.querySelectorAll('.group-size-btn').forEach(button =>
-        button.classList.toggle('selected', Number(button.dataset.size) === groupSize));
     const url = new URL(window.location.href);
     url.searchParams.delete('resume');
     history.replaceState(null, '', url);
-    await loadVocabularyData(snapshot.range, { resumeSnapshot: snapshot });
+    await loadVocabularyData(snapshot.range, {
+        resumeSnapshot: snapshot,
+        rankBasis: snapshot.rangeBasis || 'display',
+        setNumber: snapshot.setNumber || null,
+        levelSetCount: snapshot.levelSetCount || null
+    });
 }
 
 // ISO 639-1 codes for each language key used in config.json
@@ -521,15 +528,33 @@ async function ensureLemmaPoolingData(langConfig) {
     }
 }
 
-function buildFilteredVocab(vocabData) {
-    // Assign stable rank from array position (pipeline sort order)
+// Assign a filter-independent frequency position to every teachable source
+// entry. Optional settings may hide an entry or merge it into a lemma host,
+// but they must never cause the remaining cards to migrate between levels or
+// study sets. The source array position is the deterministic tie-breaker.
+function assignStableVocabularyRanks(vocabData) {
     vocabData.forEach((item, index) => {
         item.rank = index + 1;
-        // Backward compat: old boolean cognate flag → score
         if (item.cognate_score === undefined && item.is_transparent_cognate) {
             item.cognate_score = 1;
         }
     });
+    const candidates = vocabData.filter(item => {
+        if (!item.word || item.word.trim() === '' || item.duplicate || item.is_english) return false;
+        return Array.isArray(item.meanings)
+            && item.meanings.some(meaning => meaning.translation && meaning.translation.trim());
+    });
+    const hasCorpusFrequency = candidates.some(item => item.hasOwnProperty('corpus_count'));
+    candidates.sort((a, b) => hasCorpusFrequency
+        ? (((b.corpus_count || 0) - (a.corpus_count || 0)) || ((a.rank || 0) - (b.rank || 0)))
+        : ((a.rank || 0) - (b.rank || 0)));
+    candidates.forEach((item, index) => { item.stableRank = index + 1; });
+    return candidates;
+}
+
+function buildFilteredVocab(vocabData) {
+    // Assign stable rank from array position (pipeline sort order)
+    assignStableVocabularyRanks(vocabData);
 
     // Single-pass filter combining: basic validity → POS=X placeholder
     // strip → artist-mode flags → cognates → single-occurrence → lemma mode.
@@ -607,6 +632,17 @@ function buildFilteredVocab(vocabData) {
     // so the most common LEMMAS surface first — mirrors the example pooling in
     // poolLemmaSiblingExamples.
     if (useLemmaMode && lemmaFieldAvailable) {
+        // A merged lemma lives wherever its highest-frequency surface form
+        // lived in the baseline deck. This is the stable anchor that keeps
+        // Merge Lemmas from moving the card to a different level or set.
+        const lemmaStableRanks = new Map();
+        for (const entry of vocabData) {
+            if (!entry.lemma || !Number.isFinite(entry.stableRank)) continue;
+            const previous = lemmaStableRanks.get(entry.lemma);
+            if (previous === undefined || entry.stableRank < previous) {
+                lemmaStableRanks.set(entry.lemma, entry.stableRank);
+            }
+        }
         const lemmaTotals = new Map();
         for (const e of vocabData) {
             if (!e.lemma || e.is_english || e.is_noise || e.is_interjection || e.duplicate) continue;
@@ -614,6 +650,7 @@ function buildFilteredVocab(vocabData) {
         }
         const exampleBasis = computeLemmaExampleCounts(vocabData, window._cachedExamplesData);
         for (const item of result) {
+            item.stableRank = lemmaStableRanks.get(item.lemma) || item.stableRank;
             item.lemma_total_count = lemmaTotals.get(item.lemma) || item.corpus_count || 0;
             item.lemma_example_count = exampleBasis.counts.get(item.lemma) || 0;
             item.pooled_frequency = exampleBasis.hasExampleBasis
@@ -642,6 +679,24 @@ async function loadVocabularyData(rangeString, opts = {}) {
     const includeWordId = opts.includeWordId || null;
     // Completely clear all previous data and state
     flashcards = [];
+    stats = {
+        studied: new Set(),
+        correct: 0,
+        incorrect: 0,
+        total: 0,
+        cardStats: {},
+        setSize: 0,
+        previouslyKnown: 0,
+        setLabel: '',
+        rangeString: '',
+        rangeBasis: opts.rankBasis || opts.resumeSnapshot?.rangeBasis || 'display',
+        setNumber: opts.setNumber || opts.resumeSnapshot?.setNumber || null,
+        levelSetCount: opts.levelSetCount || opts.resumeSnapshot?.levelSetCount || null,
+        nextRange: null,
+        nextSetNumber: null,
+        nextRankBasis: 'display',
+        allWords: []
+    };
     currentIndex = 0;
     currentSentenceIndex = 0;
     currentMeaningIndex = 0;
@@ -658,6 +713,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
 
     const langConfig = config.languages[selectedLanguage];
     const [rangeStart, rangeEnd] = rangeString.split('-').map(Number);
+    const rangeBasis = opts.rankBasis || opts.resumeSnapshot?.rangeBasis || 'display';
 
     // Use lightweight index for filtering when available
     const indexPath = langConfig.indexPath || langConfig.dataPath;
@@ -710,10 +766,13 @@ async function loadVocabularyData(rangeString, opts = {}) {
             totalInRange = resumeSnapshot.setSize || filteredData.length;
             allInRange = filteredData.slice();
         } else {
-            // New set: filter by requested corpus-wide display ranks.
-            filteredData = filteredData.filter(item =>
-                item.displayRank >= rangeStart && item.displayRank < rangeEnd
-            );
+            // New stable sets slice on the pre-filter baseline rank. Legacy
+            // sessions retain display-rank slicing so saved sessions remain
+            // resumable across the UI migration.
+            filteredData = filteredData.filter(item => {
+                const rangeRank = rangeBasis === 'stable' ? item.stableRank : item.displayRank;
+                return rangeRank >= rangeStart && rangeRank < rangeEnd;
+            });
             totalInRange = filteredData.length;
             allInRange = filteredData.slice(); // preserve for "study anyway"
 
@@ -747,6 +806,26 @@ async function loadVocabularyData(rangeString, opts = {}) {
             if (excludedMastered > 0) {
                 console.log(`Filtered out ${excludedMastered} previously mastered words`);
             }
+            }
+        }
+
+        // Resolve an already-completed set before attaching examples and
+        // building cards. The old post-build check replaced filteredData too
+        // late, leaving flashcards empty when the user chose "study anyway".
+        if (filteredData.length === 0) {
+            if (currentUser && !currentUser.isGuest && progressData && allInRange.length > 0) {
+                const studyAnyway = confirm('You\'ve already mastered all words in this set! Press OK to study them again, or Cancel to continue another set.');
+                if (studyAnyway) {
+                    filteredData = allInRange;
+                    excludedMastered = 0;
+                } else {
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    return;
+                }
+            } else {
+                alert('No flashcards remain in this set with the current settings.');
+                document.getElementById('loadingMessage').style.display = 'none';
+                return;
             }
         }
 
@@ -1022,24 +1101,6 @@ async function loadVocabularyData(rangeString, opts = {}) {
             flashcards.push(card);
         }
 
-        if (filteredData.length === 0) {
-            // Check if this is because all words are mastered
-            if (currentUser && !currentUser.isGuest && progressData && allInRange.length > 0) {
-                const studyAnyway = confirm('You\'ve already mastered all words in this set! Press OK to study them again, or Cancel to choose another set.');
-                if (studyAnyway) {
-                    filteredData = allInRange;
-                    excludedMastered = 0;
-                } else {
-                    document.getElementById('loadingMessage').style.display = 'none';
-                    return;
-                }
-            } else {
-                alert('No flashcards found in this range. Please try another set.');
-                document.getElementById('loadingMessage').style.display = 'none';
-                return;
-            }
-        }
-
         // Stash set sizing on stats so the stats modal can show the full set
         // size and the previously-mastered count alongside the current session.
         stats.setSize = totalInRange;
@@ -1049,9 +1110,21 @@ async function loadVocabularyData(rangeString, opts = {}) {
             stats.previouslyKnown = resumeSnapshot.previouslyKnown || 0;
         }
         stats.rangeString = rangeString;
+        stats.rangeBasis = rangeBasis;
+        stats.setNumber = opts.setNumber || resumeSnapshot?.setNumber || null;
+        stats.levelSetCount = opts.levelSetCount || resumeSnapshot?.levelSetCount || null;
+        const nextSet = window.getNextStudySetMeta
+            ? window.getNextStudySetMeta(rangeString)
+            : null;
+        stats.nextRange = nextSet?.range || null;
+        stats.nextSetNumber = nextSet?.setNumber || null;
+        stats.nextRankBasis = nextSet?.rankBasis || rangeBasis;
         // Inclusive label for display, e.g. "475-499" for rangeString "475-500"
         // (rangeEnd is exclusive in the filter above).
-        stats.setLabel = `${rangeStart}-${rangeEnd - 1}`;
+        const rankLabel = `${rangeStart}-${rangeEnd - 1}`;
+        stats.setLabel = stats.setNumber
+            ? `Set ${stats.setNumber}${stats.levelSetCount ? `/${stats.levelSetCount}` : ''} · ranks ${rankLabel}`
+            : rankLabel;
         stats.allWords = allInRange.map(it => ({
             id: it.id,
             word: it.word,
@@ -1926,6 +1999,7 @@ window.isWordKnown = isWordKnown;
 window.buildEstimatedKnownIds = buildEstimatedKnownIds;
 window.LANG_CODES = LANG_CODES;
 window.buildFilteredVocab = buildFilteredVocab;
+window.assignStableVocabularyRanks = assignStableVocabularyRanks;
 window.loadVocabularyData = loadVocabularyData;
 window.renderResumeLastSetCard = renderResumeLastSetCard;
 window.resumeLastStudySession = resumeLastStudySession;

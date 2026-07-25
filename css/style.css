@@ -2558,7 +2558,7 @@
 
         /* Desktop two-column setup layout — at wider viewports the existing
            setup steps stay at their original width in a left column, and
-           "Choose Set" (#step4) gets its own narrower column on the right.
+           "Continue Level" (#step4) gets its own narrower column on the right.
            Container widens just enough to fit the new column; everything
            that already existed (top bar, language tabs, level slider,
            lemma/cognate toggles, progress bar) keeps its prior width.
@@ -2582,7 +2582,7 @@
                 grid-column: 1;
                 min-width: 0;
             }
-            /* Choose Set gets the new right column, top-aligned so it
+            /* The stable-set progress panel gets the right column, top-aligned so it
                appears as a sidebar alongside the steps. grid-row: 1 / -1
                lets it span the full height of the left stack. */
             #setupPanel.file-upload > #step4 {
@@ -2952,6 +2952,99 @@
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+        }
+
+        .study-set-panel {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--bg-tertiary) 82%, transparent);
+        }
+        .study-set-overview,
+        .study-set-current-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-family: var(--font-emphasis);
+        }
+        .study-set-overview strong,
+        .study-set-current-copy strong {
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        .study-set-overview span,
+        .study-set-current-copy span,
+        .study-set-empty {
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .study-set-dots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(34px, 1fr));
+            gap: 5px;
+        }
+        .study-set-dot {
+            min-width: 0;
+            height: 32px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            background: rgba(255, 255, 255, 0.045);
+            color: var(--text-muted);
+            font: 700 11px/1 var(--font-emphasis);
+            cursor: pointer;
+            transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
+        }
+        .study-set-dot:hover:not(:disabled) {
+            border-color: var(--accent-secondary);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .study-set-dot.is-complete {
+            border-color: var(--accent-secondary);
+            background: var(--accent-secondary);
+            color: var(--accent-secondary-text);
+        }
+        .study-set-dot.is-current {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(var(--accent-primary-rgb), 0.25);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .study-set-dot.is-empty {
+            opacity: 0.25;
+            cursor: default;
+        }
+        .range-btn-new.study-set-start {
+            width: 100%;
+            min-height: 46px;
+            font-size: 15px;
+            font-weight: 700;
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary-text);
+        }
+        .range-btn-new.study-set-start:hover {
+            background: color-mix(in srgb, var(--accent-primary) 88%, white);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary-text);
+        }
+        .study-set-review-incorrect {
+            align-self: center;
+            padding: 4px 8px;
+            border: 0;
+            background: transparent;
+            color: var(--text-muted);
+            font: 600 12px/1.3 var(--font-emphasis);
+            cursor: pointer;
+        }
+        .study-set-review-incorrect:hover {
+            color: var(--accent-primary);
         }
 
         /* Range buttons: completion % drives a left-to-right gradient on the
@@ -5288,6 +5381,18 @@
             background: var(--bg-tertiary);
             color: var(--text-secondary);
             border-color: var(--border-light);
+        }
+        .deck-complete-btn.exit-btn.has-next-set {
+            background: var(--accent-secondary);
+            color: var(--accent-secondary-text);
+            border-color: var(--accent-secondary);
+            font-weight: 700;
+        }
+        .deck-complete-btn.exit-btn.has-next-set:hover {
+            background: color-mix(in srgb, var(--accent-secondary) 88%, white);
+            color: var(--accent-secondary-text);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 4px 18px rgba(var(--accent-secondary-rgb), 0.35);
         }
 
         /* Coverage Progress Bar */

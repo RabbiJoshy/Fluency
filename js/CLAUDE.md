@@ -50,7 +50,7 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 ## Setup UI Flow
 
 ```
-Step 1: Radial language picker → Step 2: CEFR level → [inline toggles: lemma, cognate] → Step 3: Choose set
+Step 1: Radial language picker → Step 2: numbered level → [inline toggles: lemma, cognate] → Step 3: continue first unfinished stable set
 ```
 The standard-mode language button opens the shared radial picker in `main.js`.
 Hidden `.lang-tab` buttons remain as internal action targets so the existing
@@ -58,15 +58,15 @@ language loading/theme/progress handler in `ui.js` stays canonical.
 After selection, `mergeStandardProgressIntoLanguageStep()` moves the personal
 coverage wrapper into the step-1 header beside the language pill; artist mode
 keeps the standalone coverage card.
-Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the range selector. DOM `id="step4"` is the range/set selector (visual step 3).
+Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the set progress panel. DOM `id="step4"` is the automatic next-set panel (visual step 3).
 
 ## Main Call Flow
 
 ```
 loadConfig() → renderLanguageTabs()
   [click language] → loadPpmData() → renderLevelSelector()
-  [click level] → renderRangeSelector() → buildFilteredVocab()
-  [click set] → loadVocabularyData() → buildFilteredVocab() → initializeApp() → updateCard()
+  [click level] → renderRangeSelector() → buildFilteredVocab() → auto-select first unfinished set
+  [start set] → loadVocabularyData() → buildFilteredVocab() → initializeApp() → updateCard()
   [interaction] → flipCard() / nextCard() / handleSwipeAction() → saveWordProgress()
 ```
 
@@ -76,10 +76,13 @@ Filter order: blank/dupe removal → artist flags (is_english, is_noise/is_inter
 
 Note: `is_noise` is the schema_v2 flag name; `is_interjection` is the legacy alias kept for vocabularies built before the rename. Both fields carry identical truth values — read either, the filter checks both.
 
-Assigns `displayRank` (1-based, continuous). Percentage-mode form decks sort
-by `corpus_count`; lemma decks sort by `pooled_frequency`. Smart frequency
-bands slice on `displayRank`, while JSON `rank` remains the stable source
-identity/tie-breaker and legacy CEFR basis.
+`assignStableVocabularyRanks()` assigns `stableRank` before optional filters,
+using corpus frequency plus source rank as a deterministic tie-breaker. Smart
+levels and their fixed 20-position sets slice on `stableRank`; exclusions leave
+holes instead of pulling later cards forward. In lemma mode the surviving card
+is anchored to the best-ranked surface form in its lemma family. `displayRank`
+remains the active-configuration rank shown on cards, while JSON `rank` remains
+the source identity/tie-breaker and legacy CEFR basis.
 
 ## Flashcard Object Shape
 

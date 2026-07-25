@@ -33,6 +33,12 @@ export const state = {
         // stats modal title.
         setLabel: '',
         rangeString: '',
+        rangeBasis: 'display',
+        setNumber: null,
+        levelSetCount: null,
+        nextRange: null,
+        nextSetNumber: null,
+        nextRankBasis: 'display',
         // Snapshot of every word in the picked range (active + previously
         // mastered), so the stats modal can show the full list. Each entry:
         // { id, word, translation, displayRank }.
@@ -43,7 +49,9 @@ export const state = {
     selectedLanguage: 'spanish',
     selectedLevel: null,
     selectedRanges: [],
-    groupSize: 25,
+    // Legacy resume metadata. New study sets use fixed 20-position baseline
+    // chunks so membership does not change with a size preference.
+    groupSize: 20,
 
     // Feature flags
     useLemmaMode: false,
