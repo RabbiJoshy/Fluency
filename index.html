@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725ad">
-    <link rel="modulepreload" href="js/state.js?v=20260725ad">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ad">
-    <link rel="modulepreload" href="js/speech.js?v=20260725ad">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ad">
-    <link rel="modulepreload" href="js/auth.js?v=20260725ad">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725ad">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725ad">
-    <link rel="modulepreload" href="js/config.js?v=20260725ad">
-    <link rel="modulepreload" href="js/progress.js?v=20260725ad">
-    <link rel="modulepreload" href="js/ui.js?v=20260725ad">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725ad">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725ad">
+    <link rel="modulepreload" href="js/main.js?v=20260725ae">
+    <link rel="modulepreload" href="js/state.js?v=20260725ae">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725ae">
+    <link rel="modulepreload" href="js/speech.js?v=20260725ae">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725ae">
+    <link rel="modulepreload" href="js/auth.js?v=20260725ae">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725ae">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725ae">
+    <link rel="modulepreload" href="js/config.js?v=20260725ae">
+    <link rel="modulepreload" href="js/progress.js?v=20260725ae">
+    <link rel="modulepreload" href="js/ui.js?v=20260725ae">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725ae">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725ae">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -549,32 +549,40 @@
 
     <!-- Authentication Modal -->
     <div id="authModal" class="modal">
-        <div class="modal-content" style="max-width: 400px;">
-            <div class="modal-header" style="border-bottom: none; padding-bottom: 10px;">
-                <h3 style="width: 100%; text-align: center; color: white;">Welcome to Flashcards</h3>
+        <div class="modal-content auth-modal-content">
+            <div class="auth-welcome-mark" aria-hidden="true">F</div>
+            <div class="auth-welcome-copy">
+                <span class="auth-welcome-eyebrow">Welcome to Fluency</span>
+                <h3>Learn from language<br>you actually hear.</h3>
+                <p>Build useful vocabulary from speech and lyrics, one finishable set at a time.</p>
             </div>
             <div class="auth-body">
-                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 25px;">
-                    Choose how you'd like to use the app
-                </p>
-
-                <div class="auth-btn-row">
+                <div class="auth-btn-row" id="loginModeRow">
                     <button class="auth-btn login-btn" id="loginModeBtn">
+                        <span class="auth-choice-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.6-4 3-6 7-6s6.4 2 7 6"></path></svg>
+                        </span>
                         <div class="auth-btn-content">
-                            <span class="auth-btn-title">Login with Name</span>
-                            <span class="auth-btn-desc">Track progress across devices</span>
+                            <span class="auth-btn-title">Continue with initials</span>
+                            <span class="auth-btn-desc">Keep your progress across devices</span>
                         </div>
+                        <span class="auth-choice-arrow" aria-hidden="true">→</span>
                     </button>
-                    <button class="auth-info-btn" id="loginInfoBtn" type="button" aria-label="Why no password?" title="Why no password?">i</button>
+                    <button class="auth-info-btn" id="loginInfoBtn" type="button" aria-label="Why are initials used without a password?" title="Why no password?">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path></svg>
+                    </button>
                 </div>
                 <div id="loginInfoNote" class="auth-info-note hidden">
-                    Names are used instead of passwords. Progress is saved under whatever name you enter — pick something personal enough that nobody else would type it by accident. No email, no password, no account. The user base is small enough today that this is fine; passwords will come if that ever changes.
+                    This small beta uses initials instead of accounts. Pick something personal enough that another learner will not enter it by accident. There is no email or password yet.
                 </div>
 
                 <button class="auth-btn guest-btn" id="guestModeBtn">
+                    <span class="auth-choice-icon auth-choice-icon--guest" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="m14 6 6 6-6 6"></path></svg>
+                    </span>
                     <div class="auth-btn-content">
-                        <span class="auth-btn-title">Guest Mode</span>
-                        <span class="auth-btn-desc">Practice locally, no data saved</span>
+                        <span class="auth-btn-title">Explore as a guest</span>
+                        <span class="auth-btn-desc">Try the app without saving progress</span>
                     </div>
                 </button>
 
@@ -583,20 +591,24 @@
                 </button>
 
                 <div id="loginForm" class="login-form hidden">
-                    <label for="userInitials" style="display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 14px;">
-                        Enter your initials (2-4 letters)
-                    </label>
+                    <div class="auth-form-heading">
+                        <span class="auth-welcome-eyebrow">Your learning profile</span>
+                        <h4>Enter your initials</h4>
+                        <p>Use 2–4 letters you will remember.</p>
+                    </div>
+                    <label for="userInitials" class="auth-input-label">Initials</label>
                     <input
                         type="text"
                         id="userInitials"
                         class="initials-input"
-                        placeholder="e.g., JD"
+                        placeholder="JST"
                         maxlength="4"
                         autocomplete="off"
+                        autocapitalize="characters"
                     />
                     <div class="login-form-actions">
                         <button class="auth-submit-btn" id="submitInitialsBtn">Continue</button>
-                        <button class="auth-cancel-btn" id="cancelLoginBtn">Back</button>
+                        <button class="auth-cancel-btn" id="cancelLoginBtn">← Back</button>
                     </div>
                 </div>
             </div>
@@ -1094,6 +1106,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725ad"></script>
+    <script type="module" src="js/main.js?v=20260725ae"></script>
 </body>
 </html>

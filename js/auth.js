@@ -86,6 +86,7 @@ function checkAuthentication() {
 // Show authentication modal
 function showAuthModal() {
     const authModal = document.getElementById('authModal');
+    hideLoginForm();
     authModal.classList.remove('hidden');
     document.getElementById('setupPanel').style.display = 'none';
 }
@@ -123,7 +124,10 @@ function enterGuestMode() {
 // Show login form
 function showLoginForm() {
     document.getElementById('guestModeBtn').style.display = 'none';
-    document.getElementById('loginModeBtn').style.display = 'none';
+    document.getElementById('loginModeRow').style.display = 'none';
+    document.getElementById('aboutProjectBtn').style.display = 'none';
+    document.getElementById('loginInfoNote').classList.add('hidden');
+    document.querySelector('#authModal .auth-modal-content')?.classList.add('is-login-form');
     document.getElementById('loginForm').classList.remove('hidden');
     document.getElementById('userInitials').focus();
 }
@@ -131,7 +135,9 @@ function showLoginForm() {
 // Hide login form
 function hideLoginForm() {
     document.getElementById('guestModeBtn').style.display = 'flex';
-    document.getElementById('loginModeBtn').style.display = 'flex';
+    document.getElementById('loginModeRow').style.display = 'flex';
+    document.getElementById('aboutProjectBtn').style.display = '';
+    document.querySelector('#authModal .auth-modal-content')?.classList.remove('is-login-form');
     document.getElementById('loginForm').classList.add('hidden');
     document.getElementById('userInitials').value = '';
 }
