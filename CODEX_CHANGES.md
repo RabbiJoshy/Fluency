@@ -10,18 +10,21 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The normal setup and active-study flow share radial pickers and a discrete progress rail. Partial level progress is visible, and study sets are intended to feel independently completable.
 - Merge Lemmas is the user-facing name. It is off by default; Exclude Cognates is off by default.
 - Artist corpus frequency excludes exact repeated lyric lines within each song. Lemma-mode card frequency and examples use the same pooled sibling basis.
+- Artist rank ties use each word's full distinct-song spread, not the capped example sample. Artist lyric examples prefer an explicitly credited active artist, Spotify availability, and a standard release in that order before the teaching signals.
+- Desktop lyric autoplay is bounded to the displayed example's start and inferred end and advances through the card examples once; it is intentionally unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
 - Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
-
-## Open handoff notes
-
-Captured from Josh on 2026-07-25; these are not yet implemented unless a later history entry says otherwise.
-
-- Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
-- Ensure partial progress is shown on individual study-set choices as well as levels.
-- Make English TTS speak the displayed inflected translation rather than the underlying infinitive gloss.
+- Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
 
 ## Codex task history
+
+### 2026-07-25 — Artist metadata and timestamp rebuild
+
+- Commit `b185f23d`; no front-end files changed, so the current cache remains `flashcards-v83` / `20260725ab`.
+- Rebuilt Bad Bunny, Rosalía, and Young Miko using only steps 2, 3, 5, 7b, 8, and build. Translation scraping, routing, POS tagging, Gemini sense assignment, and lemma remapping were skipped; existing sense layers were read unchanged.
+- All 11,386 Bad Bunny, 3,392 Rosalía, and 4,692 Young Miko inventory entries now carry the corpus-wide song count. The shipped decks retain the same 45,510 song/sentence example multiset, reordered by the new preferences; 38,353 rendered example occurrences have exact end boundaries.
+- Eight uncached Bad Bunny LRCLIB lookups failed offline and were left uncached so a connected future run can retry them. Their examples safely remain without autoplay boundaries rather than using guessed end times.
+- Verification: six pipeline tests, Python and JavaScript syntax checks, all changed JSON files, cache lockstep, and `git diff --check` passed; no service-worker browser preview was used.
 
 ### 2026-07-25 — Sense–example flag reports with notes
 

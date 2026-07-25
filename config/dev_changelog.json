@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "b185f23d",
+      "summary": "Artist decks rebuilt with song spread, singer credits, and lyric end times",
+      "details": [
+        "Rebuilt Bad Bunny, Rosalía, and Young Miko through deterministic count, merge, inventory, ranking, timestamp, and assembly steps without rerunning Gemini or changing sense layers",
+        "Populates every artist inventory entry with its corpus-wide distinct-song count and carries vocalist, Spotify availability, release-variant, and line-end metadata into shipped examples",
+        "Preserves the complete existing 45,510 song/sentence example multiset while reordering examples by the new artist, Spotify, and standard-release preferences"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "64b10f8a",
       "summary": "Flags can now capture the visible sense–example pairing and a note",
       "details": [
