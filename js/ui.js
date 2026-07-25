@@ -448,9 +448,7 @@ async function renderLevelSelector(language) {
         }
         const initialIdx = savedIdx >= 0 ? savedIdx : lastIdx;
         const initial = percentageRanges[initialIdx];
-        // Headline value: post-filter card count for smart ranges, raw
-        // endRank for legacy ranges.
-        const initialHeadline = (initial.cardCount != null ? initial.cardCount : initial.endRank).toLocaleString();
+        const initialMetrics = _levelBandMetrics(initial, _levelSliderSamplesSync(selectedLanguage));
         // Coverage display: use threshold for smart ranges, level string for legacy.
         const initialCoverage = initial.threshold != null
             ? `${(initial.threshold * 100).toFixed(1)}%`
@@ -460,7 +458,7 @@ async function renderLevelSelector(language) {
             <div class="level-slider-wrap">
                 <div class="lsw-readout">
                     <span class="lsw-rank"><strong id="lswLevelVal">Level ${initialIdx + 1}</strong></span>
-                    <span class="lsw-range">Ranks 1–<strong id="lswRankVal">${initialHeadline}</strong> · <span id="lswCardCountVal">${initialHeadline}</span> cards</span>
+                    <span class="lsw-range">Ranks <strong id="lswRankVal">${initialMetrics.start.toLocaleString()}–${initialMetrics.end.toLocaleString()}</strong> · <span id="lswCardCountVal">${initialMetrics.count.toLocaleString()}</span> cards</span>
                     <span class="lsw-coverage">~<strong id="lswCovVal">${initialCoverage}</strong> ${coverageType}</span>
                 </div>
                 <div id="lswSlider" class="lsw-segments lsw-scrubber" role="radiogroup" aria-label="Level scrubber" data-value="${initialIdx}">
@@ -569,8 +567,11 @@ async function renderLevelSelector(language) {
 // always reflects current filters (re-render is the natural invalidator).
 let _smartLevelRangesCache = null;
 
-// Build ten usable study bands. Each boundary starts at an equal-card
-// quantile, then snaps to a genuine frequency cliff when one is nearby.
+// Build an adaptive number of finishable study bands: roughly one per 200
+// cards, with ten bands for small decks and a ceiling of 80 for very large
+// ones. At the normal 25/50-card set sizes, a level is usually 8/4 sets.
+// Each boundary starts at an equal-card quantile, then snaps to a genuine
+// frequency cliff when one is nearby.
 // If no cliff is close, keeping the quantile deliberately subdivides a
 // large tied tail (2x/3x in artist decks) instead of collapsing it into one
 // enormous final band.
@@ -592,7 +593,14 @@ function computeSmartLevelRanges(filteredVocab) {
         ? (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k'
         : String(Math.round(n));
 
-    const segmentCount = Math.min(10, total);
+    const targetCardsPerLevel = 200;
+    const minimumLevelCount = 10;
+    const maximumLevelCount = 80;
+    const segmentCount = Math.min(
+        total,
+        maximumLevelCount,
+        Math.max(minimumLevelCount, Math.ceil(total / targetCardsPerLevel))
+    );
     const idealBandSize = total / segmentCount;
     const snapWindow = Math.max(2, Math.round(idealBandSize * 0.25));
     const minBandSize = Math.max(1, Math.round(idealBandSize * 0.5));
@@ -643,6 +651,7 @@ function computeSmartLevelRanges(filteredVocab) {
         const splitTier = cardCount < total && frequencyOf(items[cardCount]) === freqMin;
         const startRank = previousBoundary + 1;
         const endRank = cardCount + 1;
+        const bandCardCount = cardCount - previousBoundary;
 
         // Level identifier — keyed by cardCount so selectedLevel round-trips
         // stably across re-renders even when several cuts share a frequency.
@@ -651,9 +660,10 @@ function computeSmartLevelRanges(filteredVocab) {
             ? `${fmtCompact(freqMin)}× · ${fmtCompact(cardCount)}`
             : `≥${fmtCompact(freqMin)}`;
         const basisDescription = useLemmaMode ? 'unique pooled example lines' : 'corpus occurrences';
+        const rankDescription = `Ranks ${startRank.toLocaleString()}–${cardCount.toLocaleString()} · ${bandCardCount.toLocaleString()} cards`;
         const description = splitTier
-            ? `Top ${cardCount.toLocaleString()} cards · cutoff partway through the ${fmtCompact(freqMin)}× tier · ${(coverage * 100).toFixed(1)}% coverage by ${basisDescription}`
-            : `Top ${cardCount.toLocaleString()} cards · frequency ≥${fmtCompact(freqMin)} · ${(coverage * 100).toFixed(1)}% coverage by ${basisDescription}`;
+            ? `${rankDescription} · cutoff partway through the ${fmtCompact(freqMin)}× tier · ${(coverage * 100).toFixed(1)}% cumulative coverage by ${basisDescription}`
+            : `${rankDescription} · frequency ≥${fmtCompact(freqMin)} · ${(coverage * 100).toFixed(1)}% cumulative coverage by ${basisDescription}`;
 
         ranges.push({
             level,
@@ -661,6 +671,7 @@ function computeSmartLevelRanges(filteredVocab) {
             endRank,
             rankBasis: 'display',
             cardCount,
+            bandCardCount,
             threshold: coverage,
             kind: splitTier ? 'tie-split' : 'freq-cliff',
             freqMin,
@@ -736,6 +747,28 @@ function _formatTickRank(n) {
     return String(n);
 }
 
+// The level loader treats endRank as an exclusive boundary. Keep the setup
+// readout on that same contract so every level reports its own real band
+// (for example 201–400), rather than presenting every band as Ranks 1–X.
+function _levelBandMetrics(level, samples = null) {
+    const start = Math.max(1, Number(level?.startRank) || 1);
+    const endExclusive = Math.max(start + 1, Number(level?.endRank) || start + 1);
+    const end = endExclusive - 1;
+    let count = Number(level?.bandCardCount);
+    if (!Number.isFinite(count)) {
+        if (samples) {
+            const rankOf = level?.rankBasis === 'display' ? s => s.displayRank : s => s.rank;
+            count = samples.filter(sample => {
+                const rank = rankOf(sample);
+                return rank >= start && rank < endExclusive;
+            }).length;
+        } else {
+            count = endExclusive - start;
+        }
+    }
+    return { start, end, count: Math.max(0, count) };
+}
+
 // Patch the rank readout + tick labels with post-filter counts. Called
 // both synchronously (with cached samples) and asynchronously after a
 // fresh load, so the rank counts stay accurate across filter toggles.
@@ -754,10 +787,9 @@ function _applyFilteredRankCounts(samples) {
         const i = parseInt(segBar.dataset.value || '0', 10);
         const lv = ranges[i];
         if (lv) {
-            const n = lv.cardCount != null ? lv.cardCount : _filteredCountUpTo(samples, lv.endRank);
-            const formatted = n.toLocaleString();
-            rankEl.textContent = formatted;
-            if (countEl) countEl.textContent = formatted;
+            const metrics = _levelBandMetrics(lv, samples);
+            rankEl.textContent = `${metrics.start.toLocaleString()}–${metrics.end.toLocaleString()}`;
+            if (countEl) countEl.textContent = metrics.count.toLocaleString();
         }
     }
     document.querySelectorAll('#levelSelector .lsw-ticks span').forEach((el) => {
@@ -865,19 +897,14 @@ function updateLevelSliderReadout(i) {
     const countEl = document.getElementById('lswCardCountVal');
     const covEl  = document.getElementById('lswCovVal');
     const exEl   = document.getElementById('lswExamples');
-    // Synchronous rank count: smart ranges already carry cardCount; for
-    // legacy ranges we count post-filter items at runtime if the raw
-    // vocab cache is warm. Cold cache → fall back to raw ppm rank; the
-    // .then() below replaces it once the load resolves.
+    // Synchronous range and card count for this level's own band. Smart
+    // ranges carry the exact band count; legacy ranges are counted against
+    // the filtered samples when available.
     const _syncSamples = _levelSliderSamplesSync(selectedLanguage);
     if (rankEl) {
-        let display;
-        if (lv.cardCount != null) display = lv.cardCount;
-        else if (_syncSamples) display = _filteredCountUpTo(_syncSamples, lv.endRank);
-        else display = lv.endRank;
-        const formatted = display.toLocaleString();
-        rankEl.textContent = formatted;
-        if (countEl) countEl.textContent = formatted;
+        const metrics = _levelBandMetrics(lv, _syncSamples);
+        rankEl.textContent = `${metrics.start.toLocaleString()}–${metrics.end.toLocaleString()}`;
+        if (countEl) countEl.textContent = metrics.count.toLocaleString();
     }
     if (covEl) {
         covEl.textContent = lv.threshold != null

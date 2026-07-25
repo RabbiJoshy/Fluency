@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Frequency levels are shorter, finishable bands with accurate ranks",
+      "details": [
+        "Targets roughly 200 configured cards per level, retaining a ten-level floor for small decks and allowing as many as 80 levels for very large vocabularies",
+        "Uses the same adaptive partition and frequency-cliff logic in Lyrics and Speech, deliberately splitting tied low-frequency tiers when no useful nearby cliff exists",
+        "Fixes every level claiming to cover Ranks 1–X: the readout and descriptions now show that level's actual start/end ranks and its own card count",
+        "Level labels remain Level 1 upward while cumulative coverage, frequency cutoff, and any tie split stay visible; cache v68→v69, assets 20260725m→20260725n"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "9a011a7",
       "summary": "Study setup, navigation, resume, and card metadata are now unified",
       "details": [
