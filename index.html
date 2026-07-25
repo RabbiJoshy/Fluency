@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260724l">
-    <link rel="modulepreload" href="js/state.js?v=20260724l">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260724l">
-    <link rel="modulepreload" href="js/speech.js?v=20260724l">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260724l">
-    <link rel="modulepreload" href="js/auth.js?v=20260724l">
-    <link rel="modulepreload" href="js/spotify.js?v=20260724l">
-    <link rel="modulepreload" href="js/estimation.js?v=20260724l">
-    <link rel="modulepreload" href="js/config.js?v=20260724l">
-    <link rel="modulepreload" href="js/progress.js?v=20260724l">
-    <link rel="modulepreload" href="js/ui.js?v=20260724l">
-    <link rel="modulepreload" href="js/vocab.js?v=20260724l">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260724l">
+    <link rel="modulepreload" href="js/main.js?v=20260725m">
+    <link rel="modulepreload" href="js/state.js?v=20260725m">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725m">
+    <link rel="modulepreload" href="js/speech.js?v=20260725m">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725m">
+    <link rel="modulepreload" href="js/auth.js?v=20260725m">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725m">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725m">
+    <link rel="modulepreload" href="js/config.js?v=20260725m">
+    <link rel="modulepreload" href="js/progress.js?v=20260725m">
+    <link rel="modulepreload" href="js/ui.js?v=20260725m">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725m">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725m">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -95,6 +95,13 @@
                     <line x1="14" y1="10" x2="14" y2="10"></line>
                     <line x1="18" y1="10" x2="18" y2="10"></line>
                     <line x1="7" y1="14" x2="17" y2="14"></line>
+                </svg>
+            </button>
+            <button class="gear-btn study-menu-btn" id="studyMenuBtn" title="Study options" aria-label="Open study options">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="5" cy="12" r="1.5"></circle>
+                    <circle cx="12" cy="12" r="1.5"></circle>
+                    <circle cx="19" cy="12" r="1.5"></circle>
                 </svg>
             </button>
         </div>
@@ -193,7 +200,7 @@
     </div>
 
     <div class="container">
-        <div class="file-upload" id="setupPanel"
+        <div class="file-upload" id="setupPanel">
             <!-- Top bar: How to start, Estimate Level, gear (shared by both modes) -->
             <div id="topBar" class="setup-step">
                 <div class="step-header top-bar-header">
@@ -242,13 +249,13 @@
             <div id="levelEstimateCTA" class="level-estimate-cta" style="display: none;">
                 <div class="level-estimate-cta-content">
                     <div class="level-estimate-cta-title">Not sure where to start?</div>
-                    <div class="level-estimate-cta-desc">Take a quick adaptive test (~30 words) to find your CEFR level.</div>
+                    <div class="level-estimate-cta-desc">Take a quick adaptive test (~30 words) to find a useful starting level.</div>
                 </div>
                 <button class="level-estimate-cta-btn" id="levelEstimateCTABtn" type="button">Estimate my level</button>
             </div>
 
             <!-- Personal Progress Bar (standalone, shown after language selection) -->
-            <div id="personalCoverageWrapper" class="coverage-bar-wrapper personal-coverage-wrapper" style="display: none;">
+            <div id="personalCoverageWrapper" class="coverage-bar-wrapper personal-coverage-wrapper" style="display: none;" role="button" tabindex="0" aria-label="Open detailed progress">
                 <div class="personal-progress-header">
                     <span class="personal-progress-title">Your progress</span>
                     <button class="step-help-btn" data-tooltip="personalProgressTooltip" title="Help">?</button>
@@ -271,7 +278,7 @@
                     <span class="step-title">Choose level</span>
                     <div class="step-header-actions">
                         <span id="levelInfoLine" class="level-info-line" style="display: none;"></span>
-                        <button type="button" id="levelModeToggle" class="level-mode-btn" title="Switch to CEFR levels (A1–C2). Off by default — % coverage is the standard mode.">CEFR</button>
+                        <button type="button" id="levelModeToggle" class="level-mode-btn" style="display: none;" aria-hidden="true" tabindex="-1">CEFR</button>
                         <button class="step-help-btn" data-tooltip="step2Tooltip" title="Help">?</button>
                     </div>
                     <div id="step2Tooltip" class="step-info-tooltip"><div class="step-info-tooltip-inner">
@@ -286,15 +293,13 @@
                             <button type="button" class="settings-tab" data-tab="step2Cognate">Cognates</button>
                         </div>
                         <div id="step2LevelTabContent" class="settings-tab-content active">
-                            <p><strong>Drag the bar</strong> to pick how many cards you want — segments fill from left to your chosen one.</p>
-                            <p><strong>Tick labels</strong> show the minimum word frequency at each segment (e.g. <em>≥10</em> = words appearing at least 10 times in the corpus).</p>
-                            <p>The headline above the bar reads "Top N cards · ~X% coverage" — N is the actual deck size at that segment given your filters, X is the cumulative comprehension you'd get from learning those words.</p>
-                            <p>Lower segments cover the most common words; higher segments add rarer vocabulary that contributes less to overall coverage.</p>
-                            <p><strong>CEFR button</strong> (top-right) — switches the bar to standard CEFR levels (A1–C2) instead of frequency segments. Off by default.</p>
+                            <p><strong>Choose a numbered level.</strong> Level 1 starts with the most frequent words; each later level extends the vocabulary further into rarer words.</p>
+                            <p>The line above the levels shows the vocabulary ranks and number of cards included under your current Merge Lemmas and Cognates settings.</p>
+                            <p>The coverage figure estimates how much speech or lyrics those words account for. The note below gives the frequency cutoff and a few example words.</p>
                         </div>
                         <div id="step2LemmaTabContent" class="settings-tab-content">
                             <p><strong>Lemma</strong> = the base/dictionary form of a word. For example, "correr" is the lemma for "corre", "corrí", "corriendo"; "casa" is the lemma for "casas".</p>
-                            <p><strong>On</strong> = Collapse to one card per lemma, skipping conjugations and declensions (e.g., "run" but not "runs", "ran", "running"). This reduces redundancy and focuses on learning root vocabulary.</p>
+                            <p><strong>On</strong> = Merge forms into one card per lemma (e.g., "run", "runs", "ran", and "running" share one card). Examples and frequency are pooled across those forms.</p>
                             <p><strong>Off</strong> = See all forms including conjugations and declensions (e.g., "run", "runs", "ran", "running"), which helps with recognition of different word forms in context.</p>
                         </div>
                         <div id="step2CognateTabContent" class="settings-tab-content">
@@ -317,7 +322,7 @@
                 <div class="substep-row">
                     <div id="lemmaToggleContainer" class="setup-substep" style="display: none;">
                         <div class="substep-header">
-                            <span class="substep-title">Collapse Lemmas</span>
+                            <span class="substep-title">Merge Lemmas</span>
                         </div>
                         <div id="lemmaToggleSelector" class="group-size-selector">
                             <button class="lemma-toggle-btn selected" data-lemma="off" data-short="Off" data-full="Off">Off</button>
@@ -332,8 +337,8 @@
                             <span class="substep-title">Cognates</span>
                         </div>
                         <div id="cognateToggleSelector" class="group-size-selector">
-                            <button class="cognate-toggle-btn selected" data-cognate="exclude" data-short="Exclude" data-full="Exclude">Exclude</button>
-                            <button class="cognate-toggle-btn" data-cognate="include" data-short="Include" data-full="Include">Include</button>
+                            <button class="cognate-toggle-btn" data-cognate="exclude" data-short="Exclude" data-full="Exclude">Exclude</button>
+                            <button class="cognate-toggle-btn selected" data-cognate="include" data-short="Include" data-full="Include">Include</button>
                         </div>
                         <span id="cognateInfoLine" class="level-info-line substep-info-below" style="display: none;"></span>
                     </div>
@@ -449,9 +454,11 @@
                     <button id="correctBtnOutside" class="hidden" aria-hidden="true"></button>
                     <button id="prevBtnFrontOutside" class="hidden" aria-hidden="true"></button>
                     <button id="nextBtnFrontOutside" class="hidden" aria-hidden="true"></button>
-                    <!-- Desktop: deck progress scrubber (desktop only via CSS) -->
-                    <div id="deckProgressTrack" class="deck-progress-track">
-                        <div id="deckProgressFill" class="deck-progress-fill"></div>
+                    <!-- Active-set rail: discrete progress with navigation folded into its ends. -->
+                    <div id="deckProgressTrack" class="deck-progress-track" aria-label="Study progress">
+                        <button type="button" id="deckProgressPrev" class="deck-progress-nav" aria-label="Previous card">‹</button>
+                        <div id="deckProgressSegments" class="deck-progress-segments" aria-hidden="true"></div>
+                        <button type="button" id="deckProgressNext" class="deck-progress-nav" aria-label="Next card">›</button>
                     </div>
                     <!-- Desktop: side navigation zones (click the gutter to go prev/next) -->
                     <button id="sideNavPrev" class="side-nav-zone side-nav-prev" aria-label="Previous card">
@@ -802,9 +809,6 @@
                 <h3>Your Progress<span id="statsSetLabel" style="margin-left: 8px; color: var(--text-muted); font-weight: normal;"></span></h3>
                 <button class="modal-close" id="closeStatsModal">✕</button>
             </div>
-            <div style="text-align: center; padding: 12px 16px 4px; font-size: 1.1em; font-weight: 600; color: var(--accent-primary);">
-                Card <span id="cardPosition">0</span> of <span id="totalCardsStats">0</span>
-            </div>
             <div class="stats-body">
                 <div class="stat-row" id="previouslyKnownRow" style="display: none;">
                     <span style="color: var(--text-muted);">Previously Mastered:</span>
@@ -1009,13 +1013,15 @@
             <!-- How to Study tab -->
             <div class="settings-tab-content" id="helpStudyTabContent">
                 <div class="help-content">
-                    <p><strong>Picking a set:</strong> The slider in <em>Choose Level</em> sets how much of real-world speech (or lyrics) you want to cover — sliding right adds rarer words. The numbered buttons in <em>Choose Set</em> below split that range into chunks of 25 cards. Start at the top, finish a set, and the next one's ready for you.</p>
+                    <p><strong>Picking a set:</strong> Choose a numbered level, then one of its rank ranges. Later levels extend further into rare vocabulary. Merge Lemmas and Cognates change the eligible vocabulary before ranks are assigned.</p>
+                    <p><strong>Continuing:</strong> The setup screen remembers the exact card, order, card side, and settings from your last session. Use <em>Continue last set</em> to resume it.</p>
                     <p><strong>Tap card</strong> to flip and see the translation</p>
                     <p><strong>Swipe right</strong> if you know the word &#10003;</p>
                     <p><strong>Swipe left</strong> if you don't know it &#10007;</p>
                     <p id="helpStudyLyricsLine"><strong>Tap example lyrics</strong> to cycle through different song examples</p>
-                    <p><strong>Words with multiple meanings:</strong> Swipe up/down on the back of the card to cycle through different definitions</p>
-                    <p><strong>Arrow buttons</strong> to navigate cards manually</p>
+                    <p><strong>Words with multiple meanings:</strong> Pick a colored sense row; its color links it to the matching example.</p>
+                    <p><strong>Progress rail:</strong> The discrete cells show movement through the active set, with previous and next controls built into the ends.</p>
+                    <p><strong>Study options:</strong> Open the radial hub for Change set, Shuffle, Direction, Audio, Progress, Settings, and Help.</p>
                     <p><strong>At the end of each set</strong>, you'll see your accuracy and can review incorrect cards or continue to the next set</p>
                 </div>
             </div>
@@ -1040,6 +1046,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260724l"></script>
+    <script type="module" src="js/main.js?v=20260725m"></script>
 </body>
 </html>

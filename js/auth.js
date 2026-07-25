@@ -1056,9 +1056,9 @@ function mountAboutDemos(root) {
     });
 }
 
-// Rewire the two mode-section <h3>s so they sit side by side on desktop.
+// Rewire the two source-section <h3>s so they sit side by side on desktop.
 // The Markdown source stays linear (easier to edit); we detect the
-// "Normal mode" / "Lyrics mode" pair after rendering and wrap each h3 +
+// "Speech" / "Lyrics" pair after rendering and wrap each h3 +
 // its following siblings (up to the next h2 or h3) into a column. The
 // "artist" alternative is matched for backward compatibility with any
 // older about.md copy.
@@ -1066,11 +1066,9 @@ function layoutAboutTwoModes(root) {
     if (root.querySelector('.about-modes-row')) return;  // already laid out
 
     const h3s = Array.from(root.querySelectorAll('h3'));
-    // Match "Standard mode" (new label) or "Normal mode" (legacy copy if the
-    // Markdown hasn't been updated yet). Keeping both prevents a broken
-    // side-by-side layout if the about.md heading drifts again.
-    const normal = h3s.find(h => /^(?:standard|normal) mode\b/i.test(h.textContent.trim()));
-    const lyrics = h3s.find(h => /^(?:lyrics|artist) mode\b/i.test(h.textContent.trim()));
+    // Match current copy plus prior headings for cached/older About content.
+    const normal = h3s.find(h => /^(?:speech\b|standard mode\b|normal mode\b)/i.test(h.textContent.trim()));
+    const lyrics = h3s.find(h => /^(?:lyrics\b|artist mode\b)/i.test(h.textContent.trim()));
     if (!normal || !lyrics) return;
 
     // Drop a comment placeholder at the Standard-mode h3's position BEFORE

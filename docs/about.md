@@ -4,15 +4,15 @@ They teach by theme (colours, at the airport, in the kitchen) and drill you on l
 
 This app takes the opposite approach: every word you study comes from material you already care about. Spotify lyrics, film subtitles, frequency-ranked sentences from real corpora. The word *mañana* (tomorrow) is paired with a real sentence where you'll actually meet it.
 
-### Standard mode (subtitles)
+### Speech
 
-![Standard mode: a flashcard flipping and cycling through senses](demo://normal)
+![Speech: a flashcard flipping and cycling through senses](demo://normal)
 
-Learn Spanish from the ground up, ordered by how common each word actually is across millions of sentences scraped from OpenSubtitles, Tatoeba and Wiktionary. Every flashcard is paired with real example sentences at your current level, so you don't get a rare word hidden inside an even rarer sentence.
+Learn from subtitle dialogue, ordered by how common each word actually is across millions of sentences from OpenSubtitles, Tatoeba and Wiktionary. Every flashcard is paired with real examples at your current level, so you don't get a rare word hidden inside an even rarer sentence.
 
-### Lyrics mode
+### Lyrics
 
-![Lyrics mode: a lyric card with the translated line](demo://artist)
+![Lyrics: a lyric card with the translated line](demo://artist)
 
 Pick an artist (Bad Bunny, say) and the app builds you a deck of every Spanish word they use across their entire discography, ranked by how often they use it. Each flashcard shows the actual song lyric the word came from, with the line translated underneath. Tap the lyric and it plays in your own Spotify at that exact moment, so you hear the word in context on the original track.
 
@@ -30,4 +30,3 @@ Because language follows a power law, knowing the top-ranked words covers most o
 
 The interesting engineering isn't the flashcard UI, it's everything behind it. Turning raw song lyrics into a ranked, lemmatised, sense-disambiguated vocabulary deck is a compact end-to-end data problem: scraping, cleaning, normalisation, corpus work, LLM-assisted classification, and delivery as static JSON. The app in front is there to prove the data is actually useful.
 -->
-

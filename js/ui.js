@@ -307,9 +307,9 @@ function updateStep2Tooltip() {
         const levelTab = document.getElementById('step2LevelTabContent');
         if (levelTab) {
             levelTab.innerHTML = `
-                <p><strong>Lyrics coverage</strong> — each segment is how much of ${name}'s lyrics you'd recognise at that level (e.g. ~80% coverage = you know ~80% of the words across the songs).</p>
-                <p><strong>Drag the scrubber</strong> to pick how many words you want; the centred segment is your level. Its label is the minimum frequency it includes (e.g. <em>≥10</em> = words appearing at least 10 times in the discography).</p>
-                <p>Lower segments are the most common words; higher segments add rarer vocabulary that adds less coverage.</p>
+                <p><strong>Choose a numbered level.</strong> Level 1 starts with ${name}'s most frequent words; each later level adds rarer vocabulary.</p>
+                <p>The summary shows the vocabulary ranks and card count under your current Merge Lemmas and Cognates settings, plus the share of the lyrics covered.</p>
+                <p>The note below gives the frequency cutoff and a few example words from that level.</p>
             `;
         }
     }
@@ -414,11 +414,11 @@ async function renderLevelSelector(language) {
             </button>
         `}).join('');
 
-        const fmtRank = n => n >= 1000 ? (n/1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k' : String(n);
-        // Tick labels: smart ranges supply their own (e.g. "≥10", "1.5k");
-        // legacy ranges fall back to formatted endRank.
+        // The partition remains frequency-aware, but its controls use stable,
+        // plain numbered levels. Frequency details live in the explanatory
+        // line below instead of competing with navigation labels.
         const ticksHTML = percentageRanges.map((lv, i) => {
-            const label = lv.tickLabel || fmtRank(lv.endRank);
+            const label = `Level ${i + 1}`;
             const tooltip = lv.description || `${lv.level} coverage → top ${lv.endRank.toLocaleString()} words`;
             return `<span data-i="${i}" title="${tooltip}">${label}</span>`;
         }).join('');
@@ -459,12 +459,13 @@ async function renderLevelSelector(language) {
         container.innerHTML = `
             <div class="level-slider-wrap">
                 <div class="lsw-readout">
-                    <span class="lsw-rank">Most common <strong id="lswRankVal">${initialHeadline}</strong> words</span>
+                    <span class="lsw-rank"><strong id="lswLevelVal">Level ${initialIdx + 1}</strong></span>
+                    <span class="lsw-range">Ranks 1–<strong id="lswRankVal">${initialHeadline}</strong> · <span id="lswCardCountVal">${initialHeadline}</span> cards</span>
                     <span class="lsw-coverage">~<strong id="lswCovVal">${initialCoverage}</strong> ${coverageType}</span>
                 </div>
                 <div id="lswSlider" class="lsw-segments lsw-scrubber" role="radiogroup" aria-label="Level scrubber" data-value="${initialIdx}">
                     ${percentageRanges.map((lv, i) => {
-                        const segLabel = lv.tickLabel || fmtRank(lv.endRank);
+                        const segLabel = `Level ${i + 1}`;
                         return `<button type="button" class="lsw-seg${i <= initialIdx ? ' filled' : ''}${i === initialIdx ? ' selected' : ''}" data-i="${i}" role="radio" aria-checked="${i === initialIdx}"><span class="lsw-seg-label">${segLabel}</span></button>`;
                     }).join('')}
                 </div>
@@ -748,12 +749,15 @@ function _applyFilteredRankCounts(samples) {
     const ranges = getActiveLevelRanges();
     const segBar = document.getElementById('lswSlider');
     const rankEl = document.getElementById('lswRankVal');
+    const countEl = document.getElementById('lswCardCountVal');
     if (segBar && rankEl && ranges.length > 0) {
         const i = parseInt(segBar.dataset.value || '0', 10);
         const lv = ranges[i];
         if (lv) {
             const n = lv.cardCount != null ? lv.cardCount : _filteredCountUpTo(samples, lv.endRank);
-            rankEl.textContent = n.toLocaleString();
+            const formatted = n.toLocaleString();
+            rankEl.textContent = formatted;
+            if (countEl) countEl.textContent = formatted;
         }
     }
     document.querySelectorAll('#levelSelector .lsw-ticks span').forEach((el) => {
@@ -782,6 +786,8 @@ function setLevelSegmentSelection(idx) {
         seg.classList.toggle('selected', i === idx);
         seg.setAttribute('aria-checked', i === idx ? 'true' : 'false');
     });
+    const levelEl = document.getElementById('lswLevelVal');
+    if (levelEl) levelEl.textContent = `Level ${idx + 1}`;
     updateLevelSliderReadout(idx);
 }
 
@@ -856,6 +862,7 @@ function updateLevelSliderReadout(i) {
     const lv = ranges[i];
     if (!lv) return;
     const rankEl = document.getElementById('lswRankVal');
+    const countEl = document.getElementById('lswCardCountVal');
     const covEl  = document.getElementById('lswCovVal');
     const exEl   = document.getElementById('lswExamples');
     // Synchronous rank count: smart ranges already carry cardCount; for
@@ -868,7 +875,9 @@ function updateLevelSliderReadout(i) {
         if (lv.cardCount != null) display = lv.cardCount;
         else if (_syncSamples) display = _filteredCountUpTo(_syncSamples, lv.endRank);
         else display = lv.endRank;
-        rankEl.textContent = display.toLocaleString();
+        const formatted = display.toLocaleString();
+        rankEl.textContent = formatted;
+        if (countEl) countEl.textContent = formatted;
     }
     if (covEl) {
         covEl.textContent = lv.threshold != null
@@ -1060,10 +1069,13 @@ function setupPercentModeButton() {
 
     // Hide the toggle entirely in artist mode — artist mode is always
     // % coverage of lyrics, so there's no choice to expose.
-    if (activeArtist) {
-        toggle.style.display = 'none';
-        return;
-    }
+    // CEFR is deliberately hidden in both modes for now. Keep the handler
+    // and data path intact so the mode can be restored later without a
+    // migration or reimplementation.
+    toggle.style.display = 'none';
+    toggle.setAttribute('aria-hidden', 'true');
+    toggle.tabIndex = -1;
+    return;
 
     toggle.addEventListener('click', async function() {
         // Tapping the CEFR button flips between "% coverage" (default, off)
@@ -1797,18 +1809,7 @@ function updateTotalStatsButtonVisibility() {
 }
 
 function updateStatsModal() {
-    // Set size = picked range (e.g. 25); previouslyKnown = filtered out as
-    // already mastered (e.g. 21); flashcards.length = active deck (e.g. 4).
-    const setSize = stats.setSize || flashcards.length;
     const previouslyKnown = stats.previouslyKnown || 0;
-
-    // Card position: 1-based index into the active deck. previouslyKnown
-    // cards were filtered out before the session, so they sit "before" card 1.
-    const cardPosition = flashcards.length > 0
-        ? previouslyKnown + Math.min(currentIndex + 1, flashcards.length)
-        : previouslyKnown;
-    document.getElementById('cardPosition').textContent = cardPosition;
-    document.getElementById('totalCardsStats').textContent = setSize;
 
     const labelEl = document.getElementById('statsSetLabel');
     if (labelEl) labelEl.textContent = stats.setLabel ? `· ${stats.setLabel}` : '';
@@ -1958,13 +1959,13 @@ function getArtistHelpContent() {
     const name = activeArtist.name || 'this artist';
     return `
         <p><strong>What is this?</strong></p>
-        <p>This app teaches you Spanish vocabulary from ${name}'s lyrics, starting with the most common words and working toward the least common.</p>
+        <p><strong>Lyrics</strong> teaches you Spanish vocabulary from ${name}'s lyrics, starting with the most frequent words.</p>
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of speech. By learning the most frequent words first, you understand more lyrics faster.</p>
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Each word is ranked by how many times it appears across the entire discography. The app groups these into sets of 25. You work through sets in order, and each card shows the word with real lyric examples from songs where it appears.</p>
+        <p>Choose a numbered level, then a set. Merge Lemmas can combine related forms into one card; Cognates are included by default. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -1972,11 +1973,11 @@ function getArtistHelpContent() {
 function getNormalHelpContent() {
     return `
         <p><strong>What is this?</strong></p>
-        <p>This app teaches you vocabulary by its frequency in speech.</p>
+        <p><strong>Speech</strong> teaches vocabulary from subtitle dialogue, ordered by how frequently each word occurs.</p>
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Words are ranked by how often they appear in real-world sources like movies, TV, and conversations. The app groups them into sets of 25 and each card includes example sentences to show the word in context.</p>
+        <p>Choose a numbered level, then a set. Merge Lemmas can combine related forms into one card; Cognates are included by default. Every card includes real examples from subtitle and language corpora, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

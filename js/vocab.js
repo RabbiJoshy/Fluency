@@ -3,6 +3,144 @@
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
 import './state.js';
 
+const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
+
+function getLastStudySession() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem(LAST_STUDY_SESSION_KEY) || 'null');
+        return parsed && parsed.range && Array.isArray(parsed.order) ? parsed : null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function renderResumeLastSetCard() {
+    const snapshot = getLastStudySession();
+    let card = document.getElementById('resumeLastSetCard');
+    if (!snapshot) {
+        if (card) card.remove();
+        return;
+    }
+    if (!card) {
+        card = document.createElement('section');
+        card.id = 'resumeLastSetCard';
+        card.className = 'resume-set-card';
+        document.getElementById('topBar')?.after(card);
+    }
+    const source = snapshot.mode === 'lyrics' ? 'Lyrics' : 'Speech';
+    const level = snapshot.levelNumber ? `Level ${snapshot.levelNumber}` : 'Saved level';
+    const forms = snapshot.useLemmaMode ? 'Merged lemmas' : 'Forms';
+    const cognates = snapshot.excludeCognates ? 'Cognates excluded' : 'Cognates included';
+    const title = snapshot.mode === 'lyrics'
+        ? (snapshot.artistName || 'Lyrics')
+        : `${snapshot.languageName || snapshot.language} speech`;
+    card.innerHTML = `
+        <button type="button" class="resume-set-button" id="resumeLastSetBtn">
+            <span class="resume-set-eyebrow">Continue last set</span>
+            <strong>${title}</strong>
+            <span>${source} · ${level} · ${forms} · ${cognates}</span>
+            <small>Last card: ${snapshot.currentWord || 'saved card'}</small>
+        </button>
+        <span class="resume-set-alternative">Or choose another set below</span>
+    `;
+    document.getElementById('resumeLastSetBtn')?.addEventListener('click', resumeLastStudySession);
+}
+
+function saveStudySessionSnapshot() {
+    if (!flashcards.length || cardNavStack.length > 0 || !stats.rangeString) return;
+    const appContent = document.getElementById('appContent');
+    if (!appContent || appContent.classList.contains('hidden')) return;
+    const card = flashcards[currentIndex];
+    if (!card) return;
+    const levelButtons = Array.from(document.querySelectorAll('.level-selector-buttons .level-btn, #levelSelector > .level-btn'));
+    const levelNumber = Math.max(0, levelButtons.findIndex(btn => btn.dataset.level === selectedLevel)) + 1;
+    const languageName = config?.languages?.[selectedLanguage]?.name?.replace(/\s*\(.*\)$/, '') || selectedLanguage;
+    const snapshot = {
+        savedAt: new Date().toISOString(),
+        mode: activeArtist ? 'lyrics' : 'speech',
+        artistSlug: window._urlArtistSlug || null,
+        artistSlugs: (window._selectedArtistSlugs || []).slice(),
+        artistName: activeArtist?.name || null,
+        language: selectedLanguage,
+        languageName,
+        selectedLevel,
+        levelNumber,
+        range: stats.rangeString,
+        groupSize,
+        useLemmaMode,
+        excludeCognates,
+        hideSingleOccurrence,
+        excludeProperNouns,
+        excludeNoise,
+        excludeEnglishLoanwords,
+        directionFlipped: isFlipped,
+        cardFaceFlipped: document.getElementById('flashcard')?.classList.contains('flipped') || false,
+        currentFullId: card.fullId,
+        currentVocabularyRank: card.vocabularyRank || card.rank || null,
+        currentWord: card.targetWord,
+        currentMeaningIndex,
+        currentExampleIndex,
+        currentMWEIndex,
+        setSize: stats.setSize,
+        previouslyKnown: stats.previouslyKnown,
+        order: flashcards.map(item => item.fullId)
+    };
+    try {
+        localStorage.setItem(LAST_STUDY_SESSION_KEY, JSON.stringify(snapshot));
+        renderResumeLastSetCard();
+    } catch (error) {
+        // Storage can be unavailable in hardened/private contexts.
+    }
+}
+
+async function resumeLastStudySession() {
+    const snapshot = getLastStudySession();
+    if (!snapshot) return;
+    const currentMode = activeArtist ? 'lyrics' : 'speech';
+    const currentArtist = window._urlArtistSlug || null;
+    if (snapshot.mode !== currentMode || (snapshot.mode === 'lyrics' && snapshot.artistSlug !== currentArtist)) {
+        const url = new URL(window.location.href);
+        url.search = '';
+        if (snapshot.mode === 'lyrics' && snapshot.artistSlug) url.searchParams.set('artist', snapshot.artistSlug);
+        url.searchParams.set('resume', '1');
+        window.location.href = url.toString();
+        return;
+    }
+
+    selectedLanguage = snapshot.language;
+    window.applyLanguageColorTheme?.();
+    selectedLevel = snapshot.selectedLevel;
+    groupSize = snapshot.groupSize || 25;
+    useLemmaMode = !!snapshot.useLemmaMode;
+    excludeCognates = !!snapshot.excludeCognates;
+    hideSingleOccurrence = snapshot.hideSingleOccurrence !== false;
+    excludeProperNouns = snapshot.excludeProperNouns !== false;
+    excludeNoise = snapshot.excludeNoise !== false;
+    excludeEnglishLoanwords = snapshot.excludeEnglishLoanwords !== false;
+    isFlipped = !!snapshot.directionFlipped;
+    if (snapshot.mode === 'lyrics' && snapshot.artistSlugs?.length) {
+        const oldKey = (window._selectedArtistSlugs || []).slice().sort().join(',');
+        const newKey = snapshot.artistSlugs.slice().sort().join(',');
+        if (oldKey !== newKey) {
+            window._cachedMergedIndex = null;
+            window._cachedMergedExamples = null;
+            window._cachedExamplesData = null;
+        }
+        window._selectedArtistSlugs = snapshot.artistSlugs.slice();
+        localStorage.setItem('selected_artists', JSON.stringify(snapshot.artistSlugs));
+    }
+    document.querySelectorAll('.lemma-toggle-btn').forEach(button =>
+        button.classList.toggle('selected', (button.dataset.lemma === 'on') === useLemmaMode));
+    document.querySelectorAll('.cognate-toggle-btn').forEach(button =>
+        button.classList.toggle('selected', (button.dataset.cognate === 'exclude') === excludeCognates));
+    document.querySelectorAll('.group-size-btn').forEach(button =>
+        button.classList.toggle('selected', Number(button.dataset.size) === groupSize));
+    const url = new URL(window.location.href);
+    url.searchParams.delete('resume');
+    history.replaceState(null, '', url);
+    await loadVocabularyData(snapshot.range, { resumeSnapshot: snapshot });
+}
+
 // ISO 639-1 codes for each language key used in config.json
 const LANG_CODES = {
     spanish: 'es', swedish: 'sv', italian: 'it',
@@ -528,6 +666,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
         // Single/multi-artist selection shares one source so setup ranges and
         // the committed deck see identical merged entries and examples.
         const vocabularyData = await fetchActiveVocabularyData(langConfig);
+        if (opts.resumeSnapshot) {
+            lemmaFieldAvailable = vocabularyData.some(item => item.hasOwnProperty('most_frequent_lemma_instance'));
+            cognateFieldAvailable = vocabularyData.some(item =>
+                (item.cognate_score > 0) || item.cognet_cognate || item.is_transparent_cognate
+            );
+        }
         if (useLemmaMode) await ensureLemmaPoolingData(langConfig);
         cachedVocabularyData = vocabularyData;
 
@@ -537,6 +681,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
         });
 
         const { vocab: _baseVocab, counts: exCounts } = buildFilteredVocab(vocabularyData);
+        // This is the complete vocabulary after the active source + filter
+        // configuration, before level, set, and mastery slicing. Card rank
+        // metadata must use this same basis so it remains stable when the
+        // active set is shuffled or previously-known cards are omitted.
+        const configurationVocabSize = _baseVocab.length;
         let filteredData = _baseVocab;
         const excludedEnglish = exCounts.english;
         const excludedCognates = exCounts.cognates;
@@ -544,19 +693,34 @@ async function loadVocabularyData(rangeString, opts = {}) {
         const excludedLemma = exCounts.lemma;
         let excludedMastered = 0;
 
-        // Filter by the requested range using corpus-wide display ranks
-        filteredData = filteredData.filter(item =>
-            item.displayRank >= rangeStart && item.displayRank < rangeEnd
-        );
+        // Exact resume owns deck membership and order. This deliberately
+        // bypasses the current mastery filter: a card answered just before
+        // closing must still exist when the same session is continued. Match
+        // IDs against the full configured vocabulary, not today's saved rank
+        // range, because a refreshed corpus may move those cards across a
+        // level boundary while their stable IDs remain valid.
+        const resumeSnapshot = opts.resumeSnapshot || null;
+        let totalInRange;
+        let allInRange;
+        if (resumeSnapshot?.order?.length) {
+            const orderIndex = new Map(resumeSnapshot.order.map((id, index) => [id, index]));
+            filteredData = filteredData
+                .filter(item => orderIndex.has(getWordId(item)))
+                .sort((a, b) => orderIndex.get(getWordId(a)) - orderIndex.get(getWordId(b)));
+            totalInRange = resumeSnapshot.setSize || filteredData.length;
+            allInRange = filteredData.slice();
+        } else {
+            // New set: filter by requested corpus-wide display ranks.
+            filteredData = filteredData.filter(item =>
+                item.displayRank >= rangeStart && item.displayRank < rangeEnd
+            );
+            totalInRange = filteredData.length;
+            allInRange = filteredData.slice(); // preserve for "study anyway"
 
-        // Count total in range before mastered filtering
-        const totalInRange = filteredData.length;
-        const allInRange = filteredData.slice(); // preserve for "study anyway"
-
-        // Filter out words the user has already got correct (for logged-in users),
-        // including words covered by the level estimate high-water mark.
-        // In artist mode, estimate maps to an ID set from normal-mode vocab (general frequency).
-        if (currentUser && !currentUser.isGuest && progressData) {
+            // Filter out words the user has already got correct (for logged-in users),
+            // including words covered by the level estimate high-water mark.
+            // In artist mode, estimate maps to an ID set from normal-mode vocab (general frequency).
+            if (currentUser && !currentUser.isGuest && progressData) {
             const beforeMastered = filteredData.length;
             const estimate = levelEstimates[selectedLanguage] || 0;
 
@@ -582,6 +746,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
             excludedMastered = beforeMastered - filteredData.length;
             if (excludedMastered > 0) {
                 console.log(`Filtered out ${excludedMastered} previously mastered words`);
+            }
             }
         }
 
@@ -828,6 +993,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 id: item.id,
                 fullId: getWordId(item),
                 rank: item.rank,
+                vocabularyRank: item.displayRank,
+                vocabularySize: configurationVocabSize,
                 // Lemma mode uses the same unique pooled example-line basis
                 // as the examples attached above. Raw token totals stay on
                 // item.lemma_total_count for diagnostics only.
@@ -877,6 +1044,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
         // size and the previously-mastered count alongside the current session.
         stats.setSize = totalInRange;
         stats.previouslyKnown = excludedMastered;
+        if (resumeSnapshot) {
+            stats.setSize = resumeSnapshot.setSize || resumeSnapshot.order.length;
+            stats.previouslyKnown = resumeSnapshot.previouslyKnown || 0;
+        }
+        stats.rangeString = rangeString;
         // Inclusive label for display, e.g. "475-499" for rangeString "475-500"
         // (rangeEnd is exclusive in the filter above).
         stats.setLabel = `${rangeStart}-${rangeEnd - 1}`;
@@ -909,8 +1081,32 @@ async function loadVocabularyData(rangeString, opts = {}) {
             // Show mobile floating buttons
             showFloatingBtns(true);
 
+            if (resumeSnapshot) {
+                let resumeIndex = flashcards.findIndex(card => card.fullId === resumeSnapshot.currentFullId);
+                if (resumeIndex < 0 && Number.isFinite(Number(resumeSnapshot.currentVocabularyRank))) {
+                    const targetRank = Number(resumeSnapshot.currentVocabularyRank);
+                    resumeIndex = flashcards.reduce((best, card, index) => {
+                        const distance = Math.abs(Number(card.vocabularyRank || card.rank) - targetRank);
+                        return distance < best.distance ? { index, distance } : best;
+                    }, { index: 0, distance: Infinity }).index;
+                }
+                currentIndex = Math.max(0, resumeIndex);
+                const resumedCard = flashcards[currentIndex];
+                const maxMeaningIndex = Math.max(0, (resumedCard?.meanings?.length || 1) - 1);
+                currentMeaningIndex = Math.min(
+                    maxMeaningIndex,
+                    Math.max(0, resumeSnapshot.currentMeaningIndex || 0)
+                );
+                currentExampleIndex = Math.max(0, resumeSnapshot.currentExampleIndex || 0);
+                currentMWEIndex = Math.max(0, resumeSnapshot.currentMWEIndex || 0);
+                isFlipped = !!resumeSnapshot.directionFlipped;
+            }
+
             // Initialize card display
             initializeApp();
+            if (resumeSnapshot?.cardFaceFlipped) flashcardEl?.classList.add('flipped');
+            else flashcardEl?.classList.remove('flipped');
+            saveStudySessionSnapshot();
             buildWordLookupMap();
         }, 800);
     } catch (error) {
@@ -1005,6 +1201,14 @@ async function loadIncorrectWordsSet() {
                 wordToVocab[item.id] = item;
             }
         });
+
+        if (useLemmaMode) await ensureLemmaPoolingData(langConfig);
+
+        // Compute the same configuration-relative rank used by ordinary
+        // sets, even though this special deck is selected from progress.
+        const { vocab: configuredVocab } = buildFilteredVocab(vocabularyData);
+        const configuredRankById = new Map(configuredVocab.map(item => [item.id, item.displayRank]));
+        const configurationVocabSize = configuredVocab.length;
 
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
@@ -1163,6 +1367,11 @@ async function loadIncorrectWordsSet() {
                 rank: item.rank,
                 id: item.id,
                 fullId: getWordId(item),
+                vocabularyRank: configuredRankById.get(item.id) || item.rank,
+                vocabularySize: configurationVocabSize,
+                corpusCount: useLemmaMode
+                    ? (item.pooled_frequency ?? item.lemma_example_count ?? null)
+                    : (item.corpus_count || null),
                 meanings: meanings,
                 translation: item.meanings[0].translation,
                 targetSentence: firstExample.targetSentence,
@@ -1718,6 +1927,9 @@ window.buildEstimatedKnownIds = buildEstimatedKnownIds;
 window.LANG_CODES = LANG_CODES;
 window.buildFilteredVocab = buildFilteredVocab;
 window.loadVocabularyData = loadVocabularyData;
+window.renderResumeLastSetCard = renderResumeLastSetCard;
+window.resumeLastStudySession = resumeLastStudySession;
+window.saveStudySessionSnapshot = saveStudySessionSnapshot;
 window.loadIncorrectWordsSet = loadIncorrectWordsSet;
 window.loadCSVFiles = loadCSVFiles;
 window.parseMultiMeaning = parseMultiMeaning;

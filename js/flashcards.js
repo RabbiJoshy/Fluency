@@ -447,6 +447,25 @@ function initializeApp() {
     }
     isAppInitialized = true;
 
+    const showStudyMenu = (event) => {
+        if (event) event.stopPropagation();
+        if (!window.showRadialPicker) return;
+        window.showRadialPicker({
+            id: 'studyRadialPicker',
+            ariaLabel: 'Study options',
+            hubHTML: 'Study<br>options',
+            entries: [
+                { label: 'Change set', fallbackText: '↩', accent: 'var(--accent-secondary)', onSelect: () => goBackToSetup() },
+                { label: 'Shuffle', fallbackText: '⇄', accent: 'var(--accent-primary)', onSelect: () => shuffleCards() },
+                { label: 'Direction', fallbackText: '⇆', accent: '#6366f1', onSelect: () => flipDirection() },
+                { label: speechEnabled ? 'Mute audio' : 'Enable audio', fallbackText: speechEnabled ? '🔊' : '🔇', accent: '#06b6d4', onSelect: () => toggleAutoSpeak() },
+                { label: 'Progress', fallbackText: '▥', accent: '#22c55e', onSelect: () => showTotalStatsModal() },
+                { label: 'Settings', fallbackText: '⚙', accent: '#a855f7', onSelect: () => showSettingsModal() },
+                { label: 'Help', fallbackText: '?', accent: '#f59e0b', onSelect: () => openHelpModal() }
+            ]
+        });
+    };
+
     // Event listeners
     // Flip button on front
     document.getElementById('flipBtn').addEventListener('click', function(e) {
@@ -541,11 +560,7 @@ function initializeApp() {
     const _popup = document.getElementById('cardActionsPopup');
     ['actionsGearFront', 'actionsGearBack'].forEach(gearId => {
         const gear = document.getElementById(gearId);
-        if (!gear || !_popup) return;
-        gear.addEventListener('click', function(e) {
-            e.stopPropagation();
-            _popup.classList.toggle('visible');
-        });
+        if (gear) gear.addEventListener('click', showStudyMenu);
     });
     if (_popup) {
         _popup.querySelectorAll('button').forEach(btn => {
@@ -562,6 +577,16 @@ function initializeApp() {
         if (gearFront && gearFront.contains(e.target)) return;
         if (gearBack  && gearBack.contains(e.target))  return;
         _popup.classList.remove('visible');
+    });
+
+    document.getElementById('studyMenuBtn')?.addEventListener('click', showStudyMenu);
+    document.getElementById('deckProgressPrev')?.addEventListener('click', function(e) {
+        e.stopPropagation();
+        previousCard();
+    });
+    document.getElementById('deckProgressNext')?.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nextCard();
     });
 
     // Floating buttons (desktop sidebar) + on-card mobile copies share handlers.
@@ -1509,13 +1534,23 @@ function updateCard() {
         const p = String(pos || '').toLowerCase();
         return p.includes('verb') || p === 'v' || p === 'vb';
     };
+    const posDisplayName = pos => {
+        const labels = {
+            NOUN: 'Noun', VERB: 'Verb', AUX: 'Auxiliary', ADJ: 'Adjective', ADV: 'Adverb',
+            PREP: 'Preposition', ADP: 'Preposition', CONJ: 'Conjunction', CCONJ: 'Conjunction',
+            SCONJ: 'Conjunction', PRON: 'Pronoun', DET: 'Determiner', INTJ: 'Interjection',
+            NUM: 'Number', PROPN: 'Proper noun'
+        };
+        return labels[String(pos || '').toUpperCase()]
+            || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
+    };
     const renderMorphTags = () => morphLabels.map(label =>
         `<span class="front-morph-tag">${label}</span>`
     ).join('');
     const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
         const hasMorph = includeMorph && morphLabels.length > 0 && isVerbPos(pos);
         return `<span class="front-pos-unit${hasMorph ? ' has-morph' : ''}">
-            <span class="${pillClass} ${getPosColorClass(pos)}">${pos}</span>
+            <span class="${pillClass} ${getPosColorClass(pos)}">${posDisplayName(pos)}</span>
             ${hasMorph ? `<span class="front-morph-list">${renderMorphTags()}</span>` : ''}
         </span>`;
     };
@@ -1604,27 +1639,33 @@ function updateCard() {
         frontMorphEl.style.display = 'none';
     }
 
-    // Store ranking as data attribute on card for console access
+    const vocabularyRank = card.vocabularyRank || card.rank;
+    const vocabularySize = card.vocabularySize || null;
+
+    // Store source + configuration-relative ranking for diagnostics.
     const flashcardEl = document.getElementById('flashcard');
     if (card.rank !== undefined) {
         flashcardEl.setAttribute('data-rank', card.rank);
     } else {
         flashcardEl.setAttribute('data-rank', '');
     }
+    flashcardEl.setAttribute('data-vocabulary-rank', vocabularyRank || '');
 
-    // Display rank (bottom-left) and frequency (bottom-right) on card front
+    // Display configuration-relative vocabulary rank (not position in the
+    // study set) and frequency on the card front.
     const frontRankingEl = document.getElementById('frontRanking');
-    if (card.rank !== undefined) {
+    if (vocabularyRank !== undefined) {
         let freqHtml = '';
         if (card.corpusCount) {
             if (activeArtist) {
-                freqHtml = `<span class="card-freq-label">Frequency: ${card.corpusCount}</span>`;
+                freqHtml = `<span class="card-freq-label">Lyric lines: ${Number(card.corpusCount).toLocaleString()}</span>`;
             } else {
-                freqHtml = `<button class="card-freq-btn" onclick="window.showFreqInfo(event, ${card.corpusCount})" aria-label="Spoken frequency info">Frequency: ${card.corpusCount}</button>`;
+                freqHtml = `<button class="card-freq-btn" onclick="window.showFreqInfo(event, ${card.corpusCount})" aria-label="Spoken frequency info">Frequency: ${Number(card.corpusCount).toLocaleString()}/million</button>`;
             }
         }
+        const denominator = vocabularySize ? ` / ${vocabularySize.toLocaleString()}` : '';
         frontRankingEl.innerHTML =
-            `<span class="card-rank-label">Rank: ${card.rank}</span>${freqHtml}`;
+            `<span class="card-rank-label">Vocabulary rank: ${Number(vocabularyRank).toLocaleString()}${denominator}</span>${freqHtml}`;
         frontRankingEl.style.display = 'flex';
     } else {
         frontRankingEl.style.display = 'none';
@@ -1670,13 +1711,20 @@ function updateCard() {
             if (!pos || seenPos.has(pos)) continue;
             seenPos.add(pos);
             posPills.push(
-                `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')">${pos}</button>`
+                `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
             );
         }
         if (posPills.length > 0) {
             backPosLegendHTML = `<div class="back-pos-legend" aria-label="Parts of speech">${posPills.join('')}</div>`;
         }
     }
+
+    const backVocabularyMetaHTML = vocabularyRank ? `
+        <div class="back-vocabulary-meta" aria-label="Vocabulary frequency information">
+            <span>Vocabulary rank <strong>${Number(vocabularyRank).toLocaleString()}${vocabularySize ? ` / ${vocabularySize.toLocaleString()}` : ''}</strong></span>
+            ${card.corpusCount ? `<span>${activeArtist ? 'Lyric lines' : 'Frequency'} <strong>${Number(card.corpusCount).toLocaleString()}${activeArtist ? '' : '/million'}</strong></span>` : ''}
+        </div>
+    ` : '';
 
     // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
     // on narrow viewports) so the header grows by a reasonable amount
@@ -1689,6 +1737,7 @@ function updateCard() {
                 <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
             </div>
             ${backPosLegendHTML}
+            ${backVocabularyMetaHTML}
             ${homographChipHTML}
         </div>
     `;
@@ -1846,7 +1895,9 @@ function updateCard() {
                 ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>')
                 : (getConjugatedEnglish(card, m.meaning) || m.meaning);
             if (isMWE) {
-                // MWE row: expression pill (left), translation (middle), counter (right).
+                // Expression row: plain bold expression (left), translation
+                // (middle), counter (right). The row tint already provides
+                // enough structure; an inner capsule only adds clutter.
                 // Two context tiers — renderer prefers real over heuristic:
                 //   1. ``context``           — structured data from the
                 //      SpanishDict phrase-page scrape (tool_5c_scrape_spanishdict_phrases).
@@ -1894,17 +1945,18 @@ function updateCard() {
                     : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
                 target.push(`
                 <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 12px; color: white; padding: 5px 8px; background: rgba(255,255,255,0.22); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; flex-shrink: 0;">${mweExpr}</span>
+                    <span class="mwe-expression">${mweExpr}</span>
                     ${bodyHTML}
                     ${mweCounter}
                 </div>
                 `);
             } else if (isClitic) {
-                // Clitic row: form pill (left), translation (middle), counter (right).
+                // Clitic row mirrors expressions: plain bold form, translation,
+                // counter. The outer row already supplies grouping and color.
                 const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
                 target.push(`
                 <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span style="font-size: 12px; color: white; padding: 2px 8px; background: rgba(255,255,255,0.2); border-radius: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; flex-shrink: 0;">${cliticForm}</span>
+                    <span class="mwe-expression clitic-form">${cliticForm}</span>
                     <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${cliticTrRaw}</span>
                     ${cliticCounter}
                 </div>
@@ -2574,6 +2626,7 @@ function updateCard() {
                 scroll.style.maxHeight = '';
                 const availableHeight = backEl.clientHeight;
                 let overhead = 0;
+                let flowChildCount = 0;
                 // The conjugation panel is the only known position:absolute
                 // direct child of #backContent; skip by class to avoid one
                 // getComputedStyle call per render on verb cards. Other
@@ -2584,10 +2637,14 @@ function updateCard() {
                     if (child.classList.contains('conjugation-panel')) continue;
                     const cs = getComputedStyle(child);
                     if (cs.position === 'absolute' || cs.position === 'fixed') continue;
+                    flowChildCount++;
                     overhead += child.offsetHeight
                         + (parseFloat(cs.marginTop) || 0)
                         + (parseFloat(cs.marginBottom) || 0);
                 }
+                const backStyle = getComputedStyle(backEl);
+                overhead += Math.max(0, flowChildCount - 1)
+                    * (parseFloat(backStyle.rowGap || backStyle.gap) || 0);
                 const availableForScroll = availableHeight - overhead;
                 // Cap meanings-scroll whenever its natural content overflows
                 // the remaining room. Floor the cap value (not the gate) at
@@ -2620,13 +2677,30 @@ function updateCard() {
     document.getElementById('prevBtnFrontMobile').disabled = isPrevDisabled;
     document.getElementById('nextBtnFrontMobile').disabled = isNextDisabled;
 
-    // Update desktop progress bar
-    const progressFill = document.getElementById('deckProgressFill');
-    if (progressFill) {
-        progressFill.style.width = (flashcards.length > 1
-            ? (currentIndex / (flashcards.length - 1)) * 100
-            : 100) + '%';
+    // Discrete progress rail. Ordinary sets get one cell per card; special
+    // decks are capped at 50 visual cells so the bar stays legible.
+    const progressSegments = document.getElementById('deckProgressSegments');
+    if (progressSegments) {
+        const segmentCount = Math.max(1, Math.min(50, flashcards.length));
+        if (progressSegments.childElementCount !== segmentCount) {
+            progressSegments.replaceChildren(...Array.from({ length: segmentCount }, () => {
+                const segment = document.createElement('span');
+                segment.className = 'deck-progress-segment';
+                return segment;
+            }));
+        }
+        const activeSegment = flashcards.length > 0
+            ? Math.min(segmentCount - 1, Math.floor(currentIndex * segmentCount / flashcards.length))
+            : 0;
+        Array.from(progressSegments.children).forEach((segment, i) => {
+            segment.classList.toggle('is-complete', i < activeSegment);
+            segment.classList.toggle('is-current', i === activeSegment);
+        });
     }
+    const railPrev = document.getElementById('deckProgressPrev');
+    const railNext = document.getElementById('deckProgressNext');
+    if (railPrev) railPrev.disabled = isPrevDisabled;
+    if (railNext) railNext.disabled = isNextDisabled;
 
     // Update desktop side nav zones
     const sideNavPrev = document.getElementById('sideNavPrev');
@@ -2685,6 +2759,7 @@ function updateCard() {
     if (typeof window.refreshCardMetaPopoverIfOpen === 'function') {
         window.refreshCardMetaPopoverIfOpen();
     }
+    window.saveStudySessionSnapshot?.();
 }
 
 function flipCard() {
@@ -2722,6 +2797,7 @@ function flipCard() {
             speakWord(card.targetWord, false);
         }
     }
+    window.saveStudySessionSnapshot?.();
 }
 
 function cycleExample(event) {
@@ -2907,8 +2983,8 @@ function _navCard(direction) {
         currentExampleIndex = 0;
         currentMWEIndex = 0;
         currentGroupSelection = null;
-        updateCard();
         cardEl.classList.remove('flipped');
+        updateCard();
         return true;
     }
 
@@ -2966,8 +3042,8 @@ function shuffleCards() {
 
 function flipDirection() {
     isFlipped = !isFlipped;
-    updateCard();
     document.getElementById('flashcard').classList.remove('flipped');
+    updateCard();
 }
 
 function getPosColorClass(pos) {
@@ -3275,7 +3351,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260724l';
+const ASSET_VERSION = '20260725m';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

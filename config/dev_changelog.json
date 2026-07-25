@@ -2,6 +2,21 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Study setup, navigation, resume, and card metadata are now unified",
+      "details": [
+        "Renames the visible modes to Lyrics and Speech, with subtitle dialogue identified as the source for Speech",
+        "Defaults Merge Lemmas to off and Cognates to included, and replaces the old Collapse Lemmas wording throughout setup help",
+        "Hides CEFR reversibly while retaining its code path and presents the frequency-aware partitions as Level 1 upward with ranks, card count, coverage, cutoff, and examples",
+        "Cards now show rank within the complete vocabulary under the active configuration plus lyric-line or spoken-per-million frequency on both faces",
+        "A discrete active-set rail folds previous and next into its ends, while one shared radial hub provides Change set, Shuffle, Direction, Audio, Progress, Settings, and Help",
+        "Continue last set restores source, artists, filters, deck order, exact card, sense/example, direction, and card side, with nearest-rank fallback after data changes",
+        "Removes the card-within-set counter, moves detailed progress into its modal, and refreshes setup, study, and About help copy",
+        "Card-back spacing now uses explicit gaps; expressions and clitics lose their inner capsules, while POS labels use quiet readable chips with colored dots; cache v67→v68, assets 20260724l→20260725m"
+      ]
+    },
+    {
       "date": "2026-07-24",
       "commit": "56f6a27",
       "summary": "Artist decks now use corrected counts and refreshed morphology",

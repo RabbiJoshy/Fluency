@@ -32,6 +32,7 @@ export const state = {
         // Display label of the picked range, e.g. "475-499". Shown as the
         // stats modal title.
         setLabel: '',
+        rangeString: '',
         // Snapshot of every word in the picked range (active + previously
         // mastered), so the stats modal can show the full list. Each entry:
         // { id, word, translation, displayRank }.
@@ -47,7 +48,7 @@ export const state = {
     // Feature flags
     useLemmaMode: false,
     lemmaFieldAvailable: false,
-    excludeCognates: true,
+    excludeCognates: false,
     cognateFieldAvailable: false,
     cognateThreshold: 0.85,
     percentageMode: true,

@@ -504,18 +504,18 @@
 
             /* Deck progress scrubber — sits above the card */
             .deck-progress-track {
-                display: block;
+                display: flex;
                 position: absolute;
-                top: 50px;
+                top: 34px;
                 left: 50%;
                 transform: translateX(-50%);
-                width: min(480px, calc(100% - 40px));
-                height: 4px;
-                background: rgba(255, 255, 255, 0.18);
-                border-radius: 2px;
-                overflow: hidden;
-                pointer-events: none;
+                width: min(540px, calc(100% - 32px));
+                height: 34px;
+                align-items: center;
+                gap: 8px;
+                pointer-events: auto;
                 transition: opacity 0.2s;
+                z-index: 8;
             }
             /* fill styles live in the global block below so mobile shares them */
             /* Hide progress + side zones while browsing an off-deck card */
@@ -527,6 +527,7 @@
 
             /* Side navigation zones — wide clickable gutters on either side of card */
             .side-nav-zone {
+                display: none;
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -534,7 +535,6 @@
                 background: transparent;
                 border: none;
                 cursor: pointer;
-                display: flex;
                 align-items: center;
                 z-index: 5;
                 padding: 0;
@@ -1164,11 +1164,13 @@
             flex: 1 1 auto;
             min-height: 0;
             width: 100%;
+            row-gap: 10px;
         }
 
         #backContent > .back-header {
             flex: 0 0 auto;
             width: 100%;
+            margin-bottom: 0 !important;
         }
 
         /* `flex: 0 1 auto` lets the scroll region take its natural height
@@ -1186,7 +1188,7 @@
             min-height: 0;           /* required for overflow in a flex child */
             width: 100%;
             overflow-y: auto;
-            margin-top: auto;
+            margin-top: 0;
             /* No bottom padding: the row's own margin-bottom (6px) is
                the only gap between the last sense and whatever follows
                (tray's divider line, or the example sentence). Matches
@@ -1212,7 +1214,7 @@
             flex: 0 0 auto;
             width: 100%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 6px;
+            padding-top: 10px;
             margin-top: 0;
             margin-bottom: 0;
         }
@@ -1232,12 +1234,44 @@
 
         .back-pos-legend .card-pos {
             margin: 0;
-            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 8px;
             min-width: 0;
-            font-size: 10px;
-            font-weight: 700;
+            font-family: var(--font-reading);
+            font-size: 11px;
+            font-weight: 600;
             line-height: 1;
+            text-transform: none;
+            background: rgba(255, 255, 255, 0.055);
+            border-color: rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
             cursor: pointer;
+        }
+        .back-pos-dot {
+            width: 6px;
+            height: 6px;
+            flex: 0 0 6px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 5px currentColor;
+        }
+
+        .back-vocabulary-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px 12px;
+            margin: 6px 0 2px;
+            font-family: var(--font-reading);
+            font-size: 12px;
+            line-height: 1.25;
+            color: rgba(255, 255, 255, 0.58);
+        }
+        .back-vocabulary-meta strong {
+            color: rgba(255, 255, 255, 0.88);
+            font-weight: 650;
         }
 
         .meaning-pos-rows > .meaning-row:last-child {
@@ -1287,9 +1321,23 @@
            links row, not a grow-to-fill hack. */
         #backContent > .links-section {
             flex: 0 0 auto;
-            margin-top: 4px;
-            margin-bottom: auto;
-            padding-top: 4px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 0;
+        }
+
+        .mwe-expression {
+            flex: 0 1 42%;
+            max-width: 170px;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: white;
+            font-family: var(--font-reading);
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: left;
         }
 
         /* Regular-row translation: let the row grow naturally with the
@@ -1434,6 +1482,24 @@
 
         .card-pos-list .card-pos {
             margin-bottom: 0;
+            padding: 5px 11px;
+            border-radius: 999px;
+            background: color-mix(in srgb, currentColor 14%, transparent);
+            border-color: color-mix(in srgb, currentColor 38%, transparent);
+            font-family: var(--font-reading);
+            font-size: 12px;
+            font-weight: 650;
+            text-transform: none;
+        }
+
+        .front-pos-unit .front-meaning-pos {
+            border-radius: 999px;
+            background: color-mix(in srgb, currentColor 14%, transparent);
+            border-color: color-mix(in srgb, currentColor 38%, transparent);
+            font-family: var(--font-reading);
+            font-size: 11px;
+            font-weight: 650;
+            text-transform: none;
         }
 
         .front-pos-unit {
@@ -1635,7 +1701,7 @@
         .card-rank-label,
         .card-freq-label {
             font-family: var(--font-reading);
-            font-size: 18px;
+            font-size: 15px;
             color: rgba(255, 255, 255, 0.55);
         }
         .card-freq-btn {
@@ -1653,16 +1719,44 @@
             color: rgba(255, 255, 255, 0.8);
         }
         /* Frequency info tooltip */
-        /* Shared by desktop and mobile progress bars */
-        .deck-progress-fill {
-            height: 100%;
-            width: 0%;
-            /* Brightened toward white + a soft accent glow so the in-study
-               progress reads clearly against the dark card area. */
-            background: color-mix(in srgb, var(--accent-primary) 78%, white);
+        /* Shared by desktop and mobile active-set progress rails. */
+        .deck-progress-segments {
+            display: flex;
+            flex: 1 1 auto;
+            min-width: 0;
+            gap: 2px;
+            height: 9px;
+        }
+        .deck-progress-segment {
+            flex: 1 1 0;
+            min-width: 2px;
             border-radius: 2px;
-            box-shadow: 0 0 6px color-mix(in srgb, var(--accent-primary) 65%, transparent);
-            transition: width 0.3s ease;
+            background: rgba(255, 255, 255, 0.16);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .deck-progress-segment.is-complete {
+            background: color-mix(in srgb, var(--accent-primary) 65%, white);
+        }
+        .deck-progress-segment.is-current {
+            background: white;
+            transform: scaleY(1.7);
+            box-shadow: 0 0 7px color-mix(in srgb, var(--accent-primary) 65%, transparent);
+        }
+        .deck-progress-nav {
+            flex: 0 0 34px;
+            width: 34px;
+            height: 34px;
+            padding: 0 0 2px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+            color: rgba(255, 255, 255, 0.86);
+            font: 500 27px/1 var(--font-reading);
+            cursor: pointer;
+        }
+        .deck-progress-nav:disabled {
+            opacity: 0.25;
+            cursor: default;
         }
 
         .freq-tooltip {
@@ -2317,6 +2411,67 @@
             margin-bottom: 8px;
         }
 
+        .resume-set-card {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-bottom: 10px;
+        }
+
+        .resume-set-button {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            width: 100%;
+            padding: 15px 17px;
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 55%, var(--border-color));
+            border-radius: 13px;
+            background: linear-gradient(135deg,
+                color-mix(in srgb, var(--accent-primary) 17%, var(--bg-card)),
+                var(--bg-card));
+            color: var(--text-primary);
+            font-family: var(--font-reading);
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .resume-set-button:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+
+        .resume-set-button strong {
+            font-family: var(--font-emphasis);
+            font-size: 18px;
+        }
+
+        .resume-set-button > span:not(.resume-set-eyebrow) {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .resume-set-button small {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .resume-set-eyebrow {
+            color: var(--accent-primary);
+            font-family: var(--font-emphasis);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .resume-set-alternative {
+            color: var(--text-muted);
+            font-size: 11px;
+            text-align: center;
+        }
+
         /* Sub-settings inside a setup-step (lemma + cognate live inside
            Choose Level). No card chrome — they read as compact rows under
            the parent step's main control rather than as their own panels.
@@ -2629,8 +2784,10 @@
         }
         .lsw-readout {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px 12px;
             font-family: var(--font-emphasis);
             font-size: 14px;
             color: var(--text-muted);
@@ -2642,6 +2799,12 @@
         .lsw-readout .lsw-rank {
             font-size: 16px;
             color: var(--text-primary);
+        }
+        .lsw-readout .lsw-range {
+            color: var(--text-secondary);
+        }
+        .lsw-readout .lsw-coverage {
+            margin-left: auto;
         }
         /* Segmented level bar — replaces the old <input type="range">
            thumb-on-track. Each .lsw-seg is one snap point; clicking a
@@ -2695,7 +2858,7 @@
         .lsw-segments.lsw-scrubber::-webkit-scrollbar { display: none; }
         .lsw-segments.lsw-scrubber .lsw-seg {
             flex: 0 0 auto;
-            width: 58px;
+            width: 76px;
             height: 40px;
             padding: 0;
             background: transparent;
@@ -6512,6 +6675,32 @@
             display: flex !important;
         }
 
+        #floatingBtns > .gear-btn:not(#studyMenuBtn) {
+            display: none;
+        }
+
+        .study-menu-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 45%, var(--border-color));
+        }
+
+        .personal-progress-header > .personal-progress-title,
+        .personal-progress-header > .step-help-btn,
+        .personal-progress-header > .personal-progress-info {
+            display: none !important;
+        }
+
+        .personal-coverage-wrapper {
+            cursor: pointer;
+        }
+
+        .personal-coverage-wrapper:not(.personal-coverage-wrapper--merged) .personal-progress-header {
+            display: none;
+        }
+
         .gear-btn {
             background: transparent;
             border: none;
@@ -6631,21 +6820,22 @@
 
             /* Progress bar in the top padding area */
             .deck-progress-track {
-                display: block;
+                display: flex;
                 position: absolute;
-                top: 26px;
+                top: 14px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 32px);
-                height: 4px;
-                background: rgba(255, 255, 255, 0.18);
-                border-radius: 2px;
-                overflow: hidden;
-                pointer-events: none;
+                height: 38px;
+                align-items: center;
+                gap: 7px;
+                pointer-events: auto;
                 transition: opacity 0.2s;
+                z-index: 12;
             }
             .card-container:has(.card.is-stacked) .deck-progress-track {
                 opacity: 0;
+                pointer-events: none;
             }
 
             /* Hide prev/next arrows in mobile banner when on an off-deck card */
@@ -6665,6 +6855,11 @@
             /* Mobile card front layout adjustments */
             .mobile-nav-row {
                 display: flex !important;
+                justify-content: center !important;
+            }
+            .mobile-nav-row > .nav-btn-inline,
+            .mobile-nav-row .banner-center > [id^="backBtn"] {
+                display: none !important;
             }
             .desktop-nav-row {
                 display: none !important;

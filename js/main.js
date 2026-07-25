@@ -1,15 +1,15 @@
-import './state.js?v=20260724l';
-import './sync-queue.js?v=20260724l';
-import './speech.js?v=20260724l';
-import './artist-ui.js?v=20260724l';
-import './auth.js?v=20260724l';
-import './spotify.js?v=20260724l';
-import './estimation.js?v=20260724l';
-import './config.js?v=20260724l';
-import './progress.js?v=20260724l';
-import './ui.js?v=20260724l';
-import './vocab.js?v=20260724l';
-import './flashcards.js?v=20260724l';
+import './state.js?v=20260725m';
+import './sync-queue.js?v=20260725m';
+import './speech.js?v=20260725m';
+import './artist-ui.js?v=20260725m';
+import './auth.js?v=20260725m';
+import './spotify.js?v=20260725m';
+import './estimation.js?v=20260725m';
+import './config.js?v=20260725m';
+import './progress.js?v=20260725m';
+import './ui.js?v=20260725m';
+import './vocab.js?v=20260725m';
+import './flashcards.js?v=20260725m';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -129,6 +129,15 @@ loadConfig().then(async () => {
     // Level-estimate CTA (shown when user has no progress yet, in the slot
     // where the personal coverage bar will live once they do).
     document.getElementById('levelEstimateCTABtn').addEventListener('click', () => openEstimationModal());
+    const coverageWrapper = document.getElementById('personalCoverageWrapper');
+    const openCoverageDetails = (event) => {
+        if (event.target.closest('#selectedLanguageInline')) return;
+        if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
+        if (event.type === 'keydown') event.preventDefault();
+        showTotalStatsModal();
+    };
+    coverageWrapper?.addEventListener('click', openCoverageDetails);
+    coverageWrapper?.addEventListener('keydown', openCoverageDetails);
     setupFindWord();
     document.getElementById('topBarUserName').addEventListener('click', () => {
         if (currentUser && !currentUser.isGuest && selectedLanguage) {
@@ -229,6 +238,10 @@ loadConfig().then(async () => {
     if (dataChanged && selectedLanguage) {
         try { await renderRangeSelector(); } catch (e) { /* range selector may not be visible yet */ }
     }
+    window.renderResumeLastSetCard?.();
+    if (new URLSearchParams(window.location.search).get('resume') === '1') {
+        await window.resumeLastStudySession?.();
+    }
     perfMark('boot complete');
     perfSummary();
 });
@@ -239,8 +252,9 @@ async function setupModeSwitchButton() {
     if (!btn) return;
 
     if (activeArtist) {
-        // In artist mode → offer switch to standard
-        btn.textContent = 'Standard Mode';
+        // In Lyrics mode → offer Speech mode.
+        btn.textContent = 'Speech';
+        btn.title = 'Learn from subtitle dialogue';
         btn.style.display = '';
         btn.addEventListener('click', () => {
             window.location.href = window.location.pathname;
@@ -254,13 +268,15 @@ async function setupModeSwitchButton() {
             if (slugs.length === 0) return;
 
             if (slugs.length === 1) {
-                btn.textContent = `${artists[slugs[0]].name} Lyrics`;
+                btn.textContent = 'Lyrics';
+                btn.title = `Learn from ${artists[slugs[0]].name}'s lyrics`;
                 btn.style.display = '';
                 btn.addEventListener('click', () => {
                     window.location.href = `${window.location.pathname}?artist=${slugs[0]}`;
                 });
             } else {
-                btn.textContent = 'Lyrics Mode';
+                btn.textContent = 'Lyrics';
+                btn.title = 'Learn from lyrics';
                 btn.style.display = '';
                 btn.addEventListener('click', () => {
                     // Show a small picker dropdown
@@ -385,6 +401,8 @@ function closeRadialPicker(id) {
     overlay.classList.remove('is-open');
     setTimeout(() => overlay.remove(), 200);
 }
+
+window.showRadialPicker = showRadialPicker;
 
 // Artist adapter: album art around the shared radial component.
 function showArtistPicker(anchorBtn, artists) {
