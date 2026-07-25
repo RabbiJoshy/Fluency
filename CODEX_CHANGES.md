@@ -19,16 +19,21 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 
 - Add section-vocalist attribution to lyric examples, prefer examples sung by the selected artist, then prefer examples with Spotify tracks, and down-rank remix/version titles.
 - Extend LRCLIB timestamps with line end times and consider a sequential lyric-example autoplay mode.
-- Modernise the deck-complete modal and progress/stats modal; open progress details from a dedicated information control rather than making the bar itself the control.
 - Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
 - Move Speech versus Lyrics selection after language selection; Lyrics should then open the artist radial picker. Remove the landing-page top-bar mode switch.
 - Ensure partial progress is shown on individual study-set choices as well as levels.
-- Replace ambiguous `?` help controls with a consistent information/help icon treatment.
 - Confirm/order artist vocabulary ties by corpus count, general Spanish frequency, then distinct song count. Exact repeated lines are already excluded from corpus count and distinct-song count is already present in step 7b; see the audit accompanying the next implementation task.
 - Make English TTS speak the displayed inflected translation rather than the underlying infinitive gloss.
 - Add free-text flag notes and make the primary flag target a sense–example pairing.
 
 ## Codex task history
+
+### 2026-07-25 — Study feedback and progress surfaces
+
+- Commit `e23684b`; front-end cache `flashcards-v79` / `20260725x`.
+- Rebuilt the set-complete result around one contextual primary action plus restrained review and restart actions, with consistent typography and spacing.
+- Made landing and in-set progress details explicit information-button actions, clarified weighted coverage in the all-time modal, and replaced ambiguous literal question marks with accessible information icons.
+- Verification: JavaScript syntax checks, changelog JSON validation, cache-version search, and `git diff --check` passed; no browser preview was used because this repo's service worker makes it unreliable.
 
 ### 2026-07-25 — Account-first settings and persistent study defaults
 

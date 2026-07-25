@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "e23684b",
       "summary": "Progress and set completion now use cleaner, consistent controls",
       "details": [
         "Makes dedicated circle-information buttons open landing and active-set progress while the bars themselves are no longer clickable controls",

@@ -93,9 +93,9 @@
      boundary rows), use track duration for the last line, and carry it through step 8b. Autoplay
      then needs a front-end controller that starts at `timestamp_ms`, stops at `end_ms`, and advances;
      desktop connected Spotify is controllable, while mobile handoff needs a graceful limitation.
-  3. **(S) [shared] Modernise the end-of-set modal.** Bring typography, button hierarchy, spacing,
-     and success/mistake states into the current card/modal design language; keep next-set, review
-     mistakes, restart, and menu actions semantically consistent.
+  3. **(S) [shared] Modernise the end-of-set modal** — DONE 2026-07-25 (`e23684b`): the result
+     uses the current modal typography and spacing, makes next-set/menu the single primary action,
+     and presents review mistakes and study again as consistent secondary actions.
   4. **(M) [shared] Settings defaults and persistent study preferences** — DONE 2026-07-25
      (`1ab5eeb`): the gear now opens Account, while Advanced contains warned device-wide defaults
      for Merge Lemmas and Exclude Cognates. They apply immediately and to every new Speech/Lyrics
@@ -106,10 +106,10 @@
   6. **(S) [shared] Show partial progress on individual study-set buttons** — DONE 2026-07-25
      (`c118fdd`): 1–99% complete set cells now use a proportional accent fill, while the current
      set retains its independent focus ring and completed/unavailable states remain distinct.
-  7. **(M) [shared] Clean up progress/stats surfaces and help controls.** Restyle total progress for
-     clearer weighted coverage versus card counts. Make a dedicated information button open it;
-     the coverage bar itself should no longer be a button. Replace ambiguous literal `?` controls
-     with a consistent labelled information/help icon treatment.
+  7. **(M) [shared] Clean up progress/stats surfaces and help controls** — DONE 2026-07-25
+     (`e23684b`): all-time progress now explains weighted coverage in a focused summary and metric
+     grid; dedicated information controls open landing and active-set stats, bars are no longer
+     disguised buttons, and literal question marks are replaced by consistent accessible icons.
   8. **(S) [artist] Make distinct-song rank tiebreaker corpus-accurate.** Step 7b already sorts by
      lyric `corpus_count`, general Spanish frequency rank, then distinct-song count, but its song
      count is derived from the retained examples (default cap 10), not all corpus lines. Track an
