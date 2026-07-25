@@ -30,6 +30,12 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 
 ## Codex task history
 
+### 2026-07-25 — Audited follow-up backlog
+
+- Commit `cc0c8b0`.
+- Captured Josh's settings, study-flow, progress, completion, artist-example, autoplay, ranking, TTS, and flagging requests in `TODO.md` with the relevant current-code findings and dependencies.
+- No app behavior or deck data changed in this task.
+
 ### 2026-07-25 — Persistent Codex/Claude handoff
 
 - Commit `a58c930`.
