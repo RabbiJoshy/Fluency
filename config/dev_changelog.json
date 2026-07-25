@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Lyric examples now credit singers and favour the most useful recordings",
+      "details": [
+        "Carries explicitly named Genius section vocalists to each retained lyric without changing existing example IDs or sense indices, and shows the credit under the lyric",
+        "Prioritises examples sung by the active artist, then examples with a Spotify track, then standard releases over remixes/live/alternate versions before the existing teaching signals",
+        "Leaves unnamed sections unknown rather than guessing a vocalist; cache v80→v81, assets 20260725y→20260725z"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "a85e17f",
       "summary": "Artist rank ties now use each word's complete song spread",
       "details": [

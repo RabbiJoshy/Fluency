@@ -2039,6 +2039,31 @@
             gap: 2px;
         }
 
+        .example-song-credit {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            min-width: 0;
+            text-align: left;
+        }
+
+        .example-vocalist-credit {
+            color: rgba(255, 255, 255, 0.72);
+            font-style: normal;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 520px) {
+            .example-song-credit {
+                flex-direction: column;
+                gap: 1px;
+            }
+
+            .example-vocalist-credit {
+                white-space: normal;
+            }
+        }
+
         .example-cycle-btn,
         .mwe-cycle-btn {
             width: 22px;

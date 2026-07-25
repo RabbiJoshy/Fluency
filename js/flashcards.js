@@ -398,6 +398,24 @@ function contentTokenCount(spanishText) {
     return tokens.length;
 }
 
+function normalizeArtistCredit(value) {
+    return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+}
+
+function exampleSungByActiveArtist(example) {
+    if (!activeArtist || !Array.isArray(example.vocalists)) return false;
+    const activeName = normalizeArtistCredit(activeArtist.name);
+    return !!activeName && example.vocalists.some(credit => {
+        const singer = normalizeArtistCredit(credit);
+        return singer === activeName || singer.includes(activeName);
+    });
+}
+
 function sortExamplesByRelevance(examples) {
     const deckWords = getDeckWords();
     const wrongWords = getRecentWrongWords();
@@ -432,14 +450,27 @@ function sortExamplesByRelevance(examples) {
         const easiness = usePersonal
             ? computePersonalEasiness(spanishText)
             : (ex.easiness || 999999);
-        return { ex, wrongScore, deckScore, lenPenalty, hasEnglish, easiness };
+        return {
+            ex,
+            wrongScore,
+            deckScore,
+            lenPenalty,
+            hasEnglish,
+            easiness,
+            activeArtistSinger: exampleSungByActiveArtist(ex),
+            spotifyAvailable: ex.spotify_available === true,
+            standardVersion: ex.is_variant !== true,
+        };
     });
     // Speech examples were generated with a nearby-rank co-study score. The
     // stable 20-position set now gives that score an exact UI counterpart:
     // after translation and recent mistakes, prefer sentences containing
     // another card from this set. Lyrics retain the prior length-first order.
     scored.sort((a, b) => activeArtist
-        ? ((Number(b.hasEnglish) - Number(a.hasEnglish))
+        ? ((Number(b.activeArtistSinger) - Number(a.activeArtistSinger))
+            || (Number(b.spotifyAvailable) - Number(a.spotifyAvailable))
+            || (Number(b.standardVersion) - Number(a.standardVersion))
+            || (Number(b.hasEnglish) - Number(a.hasEnglish))
             || (b.wrongScore - a.wrongScore)
             || (a.lenPenalty - b.lenPenalty)
             || (b.deckScore - a.deckScore)
@@ -2380,6 +2411,7 @@ function updateCard() {
             let displayTargetSentence = currentMeaning.targetSentence;
             let displayEnglishSentence = currentMeaning.englishSentence;
             let songName = null;
+            let vocalistCredit = null;
             let currentExample = null;
 
             let spotifyUrl = null;
@@ -2396,6 +2428,9 @@ function updateCard() {
                     displayEnglishSentence = exEnglish;
                 }
                 songName = example.song_name || null;
+                vocalistCredit = Array.isArray(example.vocalists) && example.vocalists.length
+                    ? example.vocalists.join(' & ')
+                    : null;
                 positionMs = example.timestamp_ms || 60000;
 
                 // Look up Spotify track URL for this song
@@ -2516,7 +2551,7 @@ function updateCard() {
                 : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
             const songNameDisplay = songName ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
-                    <span style="display: flex; align-items: center; gap: 5px;">— ${songName}</span>
+                    <span class="example-song-credit">— ${songName}${vocalistCredit ? `<span class="example-vocalist-credit"> · ${vocalistCredit}</span>` : ''}</span>
                     <span style="display: flex; align-items: center; gap: 6px;">${spotifyBtn}${exampleCounter}</span>
                 </div>
             ` : (exampleCounter ? `
@@ -3473,7 +3508,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725x';
+const ASSET_VERSION = '20260725z';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -51,7 +51,7 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 5
+STEP_VERSION = 6
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
@@ -63,6 +63,7 @@ STEP_VERSION_NOTES = {
        "different song remains independent",
     5: "+ retain the complete set of corpus song IDs per word so distinct-song "
        "ranking is independent of the capped example selection",
+    6: "+ preserve named Genius section vocalists on retained lyric examples",
 }
 
 try:
@@ -180,7 +181,36 @@ def normalize_text(s: str) -> str:
     return s
 
 
-def clean_genius_lyrics(raw: str) -> str:
+_VOCALIST_SPLIT_RE = re.compile(
+    r"\s*(?:,|&|\+|/|\b(?:y|x)\b|\b(?:feat|ft)\.?)\s*",
+    re.IGNORECASE,
+)
+
+
+def parse_section_vocalists(section_line: str) -> List[str]:
+    """Return explicitly named performers from a Genius section header.
+
+    Generic headers such as ``[Coro]`` deliberately return an empty list; we
+    never infer a singer when Genius did not name one.
+    """
+    inner = section_line.strip()[1:-1].strip()
+    if ":" not in inner:
+        return []
+    names = inner.split(":", 1)[1].strip()
+    if not names:
+        return []
+    return [part.strip(" -–—()") for part in _VOCALIST_SPLIT_RE.split(names)
+            if part.strip(" -–—()")]
+
+
+def _normalized_artist_name(value: str) -> str:
+    import unicodedata
+    value = unicodedata.normalize("NFD", value or "")
+    value = "".join(ch for ch in value if unicodedata.category(ch) != "Mn")
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def clean_genius_lyrics(raw: str, with_sections: bool = False):
     """
     Removes Genius boilerplate:
     - skips placeholder lyrics ("yet to be transcribed", instrumentals)
@@ -189,12 +219,12 @@ def clean_genius_lyrics(raw: str) -> str:
     - cuts off common footer markers
     """
     if not raw:
-        return ""
+        return [] if with_sections else ""
 
     # Skip Genius placeholder pages (no real lyrics)
     if ("yet to be transcribed" in raw or "yet to be released" in raw
             or "This song is an instrumental" in raw):
-        return ""
+        return [] if with_sections else ""
     # "letra completa … disponible pronto" is a SOFT marker: it can sit on a page
     # that also carries a genuine leaked-track transcription (e.g. "No Prometo
     # Nada"). Defer the drop decision until after cleaning — only treat the page
@@ -247,20 +277,22 @@ def clean_genius_lyrics(raw: str) -> str:
     if cut_positions:
         text = text[:min(cut_positions)]
 
-    lines: List[str] = []
+    lines = []
+    current_vocalists: List[str] = []
     for line in text.split("\n"):
         s = line.strip()
         if not s:
             continue
         if SECTION_LINE_RE.match(s):
+            current_vocalists = parse_section_vocalists(s)
             continue
         if BOILERPLATE_LINE_RE.search(s):
             continue
-        lines.append(s)
+        lines.append((s, list(current_vocalists)) if with_sections else s)
 
     if _soft_placeholder and len(lines) < 8:
-        return ""
-    return "\n".join(lines).strip()
+        return [] if with_sections else ""
+    return lines if with_sections else "\n".join(lines).strip()
 
 
 def strip_adlibs(text):
@@ -509,6 +541,7 @@ def build_counts_and_candidates(
     lid_detector=None,
     mwe_map: Dict[str, List[str]] = None,
     elision_map: Dict[str, str] = None,
+    primary_artist: str = "",
 ) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int], Dict[str, Any], Dict[str, set]]:
     """
     Returns:
@@ -545,8 +578,8 @@ def build_counts_and_candidates(
         title = song.get("title") or ""
         batch_i = song.get("__batch", -1)
 
-        clean = clean_genius_lyrics(raw_lyrics)
-        if not clean:
+        clean_rows = clean_genius_lyrics(raw_lyrics, with_sections=True)
+        if not clean_rows:
             continue
 
         # Repeated chorus/refrain lines contribute once within this song.
@@ -554,11 +587,13 @@ def build_counts_and_candidates(
         # independent pieces of corpus evidence and must count twice.
         seen_count_lines: set = set()
 
-        # Each line element: (line_no, line_text, expanded_tokens, word_surfaces)
+        # Each line element: (line_no, line_text, expanded_tokens,
+        # word_surfaces, vocalists, sung_by_primary_artist)
         # where expanded_tokens is List[(word, source_surface)] and
         # word_surfaces: Dict[word, source_surface] (first occurrence wins).
-        lines: List[Tuple[int, str, List[Tuple[str, str]], Dict[str, str]]] = []
-        for line_no, line_text in enumerate(clean.split("\n"), start=1):
+        lines = []
+        primary_name = _normalized_artist_name(primary_artist)
+        for line_no, (line_text, vocalists) in enumerate(clean_rows, start=1):
             line_text = line_text.strip()
             if not line_text:
                 continue
@@ -587,7 +622,13 @@ def build_counts_and_candidates(
             for w, surface in expanded:
                 if w not in word_surfaces:
                     word_surfaces[w] = surface
-            lines.append((line_no, line_text, expanded, word_surfaces))
+            normalized_vocalists = {_normalized_artist_name(name) for name in vocalists}
+            sung_by_primary = bool(primary_name and any(
+                primary_name == singer or primary_name in singer
+                for singer in normalized_vocalists
+            ))
+            lines.append((line_no, line_text, expanded, word_surfaces,
+                          vocalists, sung_by_primary))
 
             # Use the normalized tokens that actually feed the counter as the
             # exact-line key. This makes capitalization, punctuation, and
@@ -627,15 +668,17 @@ def build_counts_and_candidates(
         # Two lines are "the same" if their tokenized text matches after
         # stripping adlibs — catches chorus repetitions with minor variations.
         MAX_PER_WORD_PER_SONG = 3
-        # top_for_word[word] = list of (score, line_no, line_text, norm, surface)
-        top_for_word = {}  # type: Dict[str, List[Tuple[int, int, str, str, str]]]
+        # top_for_word[word] = list of
+        # (score, line_no, line_text, norm, surface, vocalists, primary_singer)
+        top_for_word = {}
 
         # Pre-compute normalized forms once per line
         line_norms: List[str] = []
-        for _ln, lt, _exp, _ws in lines:
+        for _ln, lt, _exp, _ws, _vocalists, _primary in lines:
             line_norms.append(" ".join(tokenize(strip_adlibs(lt))))
 
-        for idx, (line_no, line_text, expanded, word_surfaces) in enumerate(lines):
+        for idx, (line_no, line_text, expanded, word_surfaces,
+                  vocalists, sung_by_primary) in enumerate(lines):
             norm_toks = [w for w, _ in expanded]
             if not is_good_context_line(norm_toks):
                 continue
@@ -645,33 +688,40 @@ def build_counts_and_candidates(
                 surface = word_surfaces[w]
                 entries = top_for_word.get(w)
                 if entries is None:
-                    top_for_word[w] = [(s, line_no, line_text, norm, surface)]
+                    top_for_word[w] = [(s, line_no, line_text, norm, surface,
+                                        vocalists, sung_by_primary)]
                     continue
-                if any(n == norm for _, _, _, n, _ in entries):
-                    for i, (es, eln, elt, en, esf) in enumerate(entries):
+                if any(entry[3] == norm for entry in entries):
+                    for i, (es, eln, elt, en, esf, ev, ep) in enumerate(entries):
                         if en == norm and s > es:
-                            entries[i] = (s, line_no, line_text, norm, surface)
+                            entries[i] = (s, line_no, line_text, norm, surface,
+                                          vocalists, sung_by_primary)
                             break
                     continue
                 if len(entries) < MAX_PER_WORD_PER_SONG:
-                    entries.append((s, line_no, line_text, norm, surface))
+                    entries.append((s, line_no, line_text, norm, surface,
+                                    vocalists, sung_by_primary))
                 else:
                     worst_i = min(range(len(entries)), key=lambda i: entries[i][0])
                     if s > entries[worst_i][0]:
-                        entries[worst_i] = (s, line_no, line_text, norm, surface)
+                        entries[worst_i] = (s, line_no, line_text, norm, surface,
+                                            vocalists, sung_by_primary)
 
         # Fallback: words with no good-quality candidate still get their best line
-        for idx, (line_no, line_text, expanded, word_surfaces) in enumerate(lines):
+        for idx, (line_no, line_text, expanded, word_surfaces,
+                  vocalists, sung_by_primary) in enumerate(lines):
             norm_toks = [w for w, _ in expanded]
             s = score_line(norm_toks)
             norm = line_norms[idx]
             for w, surface in word_surfaces.items():
                 if w not in top_for_word:
-                    top_for_word[w] = [(s, line_no, line_text, norm, surface)]
+                    top_for_word[w] = [(s, line_no, line_text, norm, surface,
+                                        vocalists, sung_by_primary)]
 
         for w, entries in top_for_word.items():
-            for s, line_no, line_text, _norm, surface in entries:
-                candidates[w].append({
+            for (s, line_no, line_text, _norm, surface,
+                 vocalists, sung_by_primary) in entries:
+                candidate = {
                     "score": s,
                     "batch": batch_i,
                     "song_id": song_id,
@@ -679,7 +729,11 @@ def build_counts_and_candidates(
                     "line_text": line_text,
                     "song_title": title,
                     "surface": surface,
-                })
+                }
+                if vocalists:
+                    candidate["vocalists"] = vocalists
+                    candidate["sung_by_primary_artist"] = sung_by_primary
+                candidates[w].append(candidate)
 
     ngram_data = {
         "unigrams": ngram_unigrams,
@@ -781,6 +835,9 @@ def to_evidence_json(
             surface = ex.get("surface")
             if surface and surface != word:
                 rec["surface"] = surface
+            if ex.get("vocalists"):
+                rec["vocalists"] = ex["vocalists"]
+                rec["sung_by_primary_artist"] = bool(ex.get("sung_by_primary_artist"))
             ex_list.append(rec)
         song_ids = sorted(word_songs.get(word, set()), key=str)
         out.append({
@@ -1105,7 +1162,7 @@ def main():
                   "Install with: pip install lingua-language-detector")
 
     # Load multi-word elisions curation so pa'l → para + el at tokenize time
-    from util_1a_artist_config import SHARED_DIR
+    from util_1a_artist_config import SHARED_DIR, load_artist_config
     mwe_map = load_multi_word_elisions(SHARED_DIR)
     if mwe_map:
         print(f"Loaded {len(mwe_map)} multi-word elision entries from {SHARED_DIR}/multi_word_elisions.json")
@@ -1116,8 +1173,10 @@ def main():
     if elision_map:
         print(f"Loaded {len(elision_map)} single-word elision targets for n-gram normalization")
 
+    artist_config = load_artist_config(args.artist_dir)
     counts, candidates, lid_stats, ngram_data, word_songs = build_counts_and_candidates(
         songs, lid_detector=lid_detector, mwe_map=mwe_map, elision_map=elision_map,
+        primary_artist=artist_config.get("name", ""),
     )
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
     out_list = to_evidence_json(counts, selected, word_songs)

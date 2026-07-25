@@ -42,9 +42,10 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
+    2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -56,6 +57,17 @@ if not os.path.exists(PYTHON):
 
 # Keyword-only threshold for unassigned flag (method priority at or below this = fallback)
 KEYWORD_PRIORITY_THRESHOLD = 15  # keyword and pos-keyword
+
+_EXAMPLE_PRIORITY_KEYS = (
+    "vocalists", "sung_by_primary_artist", "spotify_available", "is_variant",
+)
+
+
+def _copy_example_priority(raw_example, output_example):
+    """Copy presentation/ranking metadata without affecting sense indices."""
+    for key in _EXAMPLE_PRIORITY_KEYS:
+        if key in raw_example:
+            output_example[key] = raw_example[key]
 
 
 def _collect_sid_meta(raw_assignments, per_sense):
@@ -584,6 +596,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     "spanish": spanish,
                     "english": trans_info.get("english", ""),
                 }
+                _copy_example_priority(ex, ex_dict)
                 ts_entry = ts_map.get(ex.get("title", ""), {}).get(spanish)
                 if ts_entry:
                     ex_dict["timestamp_ms"] = ts_entry["ms"]
@@ -879,6 +892,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         score_entry = translation_scores.get(spanish, {})
                         if isinstance(score_entry, dict) and "score" in score_entry:
                             ex_dict["translation_quality"] = score_entry["score"]
+                        _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         if ts_entry:
                             ex_dict["timestamp_ms"] = ts_entry["ms"]
@@ -943,6 +957,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             "english": trans_info.get("english", ""),
                             "translation_source": trans_info.get("source", ""),
                         }
+                        _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         if ts_entry:
                             ex_dict["timestamp_ms"] = ts_entry["ms"]
@@ -1013,6 +1028,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "english": trans_info.get("english", ""),
                         "translation_source": trans_info.get("source", ""),
                     }
+                    _copy_example_priority(raw_ex, ex_dict)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                     if ts_entry:
                         ex_dict["timestamp_ms"] = ts_entry["ms"]
@@ -1120,6 +1136,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_method:
                             ex_dict["assignment_method"] = ex_method
                             methods_in_meaning.add(ex_method)
+                        _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         if ts_entry:
                             ex_dict["timestamp_ms"] = ts_entry["ms"]
@@ -1157,6 +1174,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "english": trans_info.get("english", ""),
                         "translation_source": trans_info.get("source", ""),
                     }
+                    _copy_example_priority(raw_ex, ex_dict)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                     if ts_entry:
                         ex_dict["timestamp_ms"] = ts_entry["ms"]
@@ -1291,6 +1309,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             if line and line not in line_info:
                 sid = ex["id"].split(":")[0] if ":" in ex["id"] else ex["id"]
                 line_info[line] = {"song_id": sid, "title": ex.get("title", "")}
+                for key in _EXAMPLE_PRIORITY_KEYS:
+                    if key in ex:
+                        line_info[line][key] = ex[key]
 
     # Unicode-aware word-boundary pattern: matches if character before/after
     # is NOT a Spanish letter (handles accented chars that \b misses)
@@ -1330,6 +1351,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "english": english,
                         "translation_source": trans_info.get("source", ""),
                     }
+                    _copy_example_priority(info, ex_dict)
                     ts_entry = ts_map.get(info["title"], {}).get(line)
                     if ts_entry:
                         ex_dict["timestamp_ms"] = ts_entry["ms"]

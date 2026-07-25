@@ -20,6 +20,7 @@ Outputs:
 
 import json
 import os
+import re
 import sys
 import argparse
 
@@ -33,11 +34,21 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when split-evidence logic or output schema changes.
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "split merged evidence into word_inventory + examples_raw, clitic orphan handling",
     2: "+ carry full-corpus distinct song_count into word_inventory",
+    3: "+ retain vocalist provenance and stamp Spotify/variant example priority metadata",
 }
+
+_VARIANT_TITLE_RE = re.compile(
+    r"\b(?:remix|remaster(?:ed)?|live|version|edit|acoustic|karaoke|sped\s+up|slowed)\b",
+    re.IGNORECASE,
+)
+_EXAMPLE_META_KEYS = (
+    "surface", "vocalists", "sung_by_primary_artist",
+    "spotify_available", "is_variant",
+)
 
 
 def main():
@@ -49,6 +60,12 @@ def main():
     merged_path = os.path.join(artist_dir, "data", "elision_merge", "vocab_evidence_merged.json")
     layers_dir = os.path.join(artist_dir, "data", "layers")
     os.makedirs(layers_dir, exist_ok=True)
+
+    spotify_tracks = {}
+    spotify_path = os.path.join(artist_dir, "data", "spotify_tracks.json")
+    if os.path.isfile(spotify_path):
+        with open(spotify_path, "r", encoding="utf-8") as f:
+            spotify_tracks = json.load(f)
 
     print(f"Loading {merged_path}...")
     with open(merged_path, "r", encoding="utf-8") as f:
@@ -88,6 +105,11 @@ def main():
         if not raw_examples:
             continue
 
+        for example in raw_examples:
+            title = example.get("title", "")
+            example["spotify_available"] = bool(spotify_tracks.get(title))
+            example["is_variant"] = bool(_VARIANT_TITLE_RE.search(title))
+
         new_by_id = {ex["id"]: ex for ex in raw_examples}
         prev_word_examples = prev_examples.get(word, [])
 
@@ -97,9 +119,14 @@ def main():
         for prev_ex in prev_word_examples:
             eid = prev_ex.get("id", "")
             if eid in new_by_id:
-                # Backfill surface form from new data if missing
-                if not prev_ex.get("surface") and new_by_id[eid].get("surface"):
-                    prev_ex["surface"] = new_by_id[eid]["surface"]
+                # Preserve index/order for sense assignments while refreshing
+                # non-semantic example metadata from the rebuilt corpus.
+                fresh = new_by_id[eid]
+                for key in _EXAMPLE_META_KEYS:
+                    if key in fresh:
+                        prev_ex[key] = fresh[key]
+                    else:
+                        prev_ex.pop(key, None)
                 kept.append(prev_ex)
                 seen_ids.add(eid)
 
@@ -111,8 +138,9 @@ def main():
                     "spanish": ex["line"],
                     "title": ex.get("title", ""),
                 }
-                if ex.get("surface"):
-                    entry_dict["surface"] = ex["surface"]
+                for key in _EXAMPLE_META_KEYS:
+                    if key in ex:
+                        entry_dict[key] = ex[key]
                 kept.append(entry_dict)
 
         if kept:
