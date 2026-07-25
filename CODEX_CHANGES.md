@@ -7,6 +7,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 ## Current architectural decisions from the Codex work
 
 - Study decks use finishable frequency levels and stable, discrete study sets. Set identity is rank-based so changing Merge Lemmas or Cognates does not reshuffle the underlying set boundaries.
+- Lyrics vocabulary has exactly two lemma-family scopes: Main for more than one distinct lyric line and Artist Extra for one. Extra is a learnable corpus scope, not a readiness quarantine; unclassified lyrics remain visible without pretending they match a sense.
 - The normal setup and active-study flow share radial pickers and a discrete progress rail. Partial level progress is visible, and study sets are intended to feel independently completable.
 - Merge Lemmas is the user-facing name. It is off by default; Exclude Cognates is off by default.
 - Artist corpus frequency excludes exact repeated lyric lines within each song. Lemma-mode card frequency and examples use the same pooled sibling basis.
@@ -17,6 +18,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
 
 ## Codex task history
+
+### 2026-07-25 — Main and Artist Extra vocabulary scopes
+
+- Commit `d0772972`; front-end cache `flashcards-v93` / `20260725al`.
+- Replaced the individual single-occurrence filter with exactly two artist vocabularies. Main contains lemma families found in more than one distinct lyric line; Artist Extra contains families found in one. Classification is fixed at the lemma-family level, so an inflected surface seen once stays in Main when its lemma recurs and Merge Lemmas cannot move cards between scopes.
+- Step 8b now stamps the pooled unique-line count, preserves the raw lyric for every Extra entry and every one-off Main surface, and packages a compact set of already-built Speech examples by lemma and sense. It does not invoke Gemini or manufacture a sense match: unclassified artist lyrics use the neutral linkage state, while inherited Speech examples retain their existing assignment evidence. Entries without a dictionary sense render as lyric-only cards with `No translation available yet`.
+- Artist setup exposes Main/Extra beside the artist source. Each scope feeds the existing finishable level/set partition and scope-restricted stats, search explains cross-scope exclusions, saved sessions and URLs retain the scope, and finishing the final Main level offers the first Extra set. Provisional Learn later/Flag/Skip controls remain deferred until the cross-mode learner-options design.
+- Rebuilt only deterministic assembly output for Bad Bunny, Rosalía, and Young Miko. The shipped split is Main/Extra `6,981/3,941`, `1,626/1,592`, and `2,361/2,102`; all Extra entries and all `3,384` one-off surface forms retained in Main have raw lyric evidence. Existing Speech support is available for `693`, `538`, and `533` Extra entries respectively.
+- Verification: all three artist index/example JSON pairs parse; every classified fallback passes the raw-lyric audit; Python compilation, JavaScriptCore module parsing, duplicate DOM-ID checks, cache lockstep, and `git diff --check` pass. No service-worker browser preview was used.
 
 ### 2026-07-25 — Track-aware Spotify lyric autoplay
 

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "d0772972",
+      "summary": "Lyrics now split cleanly into Main and Artist Extra",
+      "details": [
+        "Adds exactly two artist scopes: Main for lemma families evidenced in multiple distinct lyric lines and Extra for genuinely one-off families; one-off surface forms of recurring lemmas stay in Main",
+        "Artist Extra keeps every lyric, reuses existing dictionary senses and Speech examples without Gemini, and shows an explicit lyric-only state when no translation exists",
+        "Gives each scope its own finishable levels and progress, graduates the final Main level into Extra, and preserves Extra in saved sets, URLs, search, and stats; cache v92→v93, assets 20260725ak→20260725al"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "8ec0c3dd",
       "summary": "Spotify lyric autoplay now groups songs and reuses loaded tracks",
       "details": [

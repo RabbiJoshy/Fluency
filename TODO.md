@@ -121,8 +121,8 @@
       previewed together with optional note input. Pairing, sense-only, lemma, and whole-card reports
       save structured readable text in the existing FlaggedWords value column, avoiding a backend
       schema change or Apps Script deployment.
-  11. **(L) [artist/spanish] Split recurring vocabulary from Artist Extra** — IN PROGRESS
-      2026-07-25: artist setup gets exactly two scopes with separate progress: the main deck contains
+  11. **(L) [artist/spanish] Split recurring vocabulary from Artist Extra** — DONE 2026-07-25
+      (`d0772972`): artist setup gets exactly two scopes with separate progress: the main deck contains
       recurring lemma families and Artist Extra contains genuinely one-off lemma families. A surface
       form used once remains in the main deck whenever its pooled lemma appears in multiple distinct
       lyric lines, independent of the Merge Lemmas display preference. Extra reuses existing shared
