@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Started study sets now show their progress directly",
+      "details": [
+        "Gives every 1–99% complete set cell a proportional accent fill so partial work is visible before opening the set",
+        "Keeps the current-set focus ring independent from progress and preserves the existing solid completed and dim unavailable states",
+        "Uses the same per-set completion percentage already shown in accessible labels and set details; cache v76→v77, assets 20260725u→20260725v"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "b2672c5",
       "summary": "English speech now follows the card's inflected translation",
       "details": [

@@ -1380,12 +1380,14 @@ async function renderRangeSelector() {
         const classes = [
             'study-set-dot',
             range.pct === 100 && range.available ? 'is-complete' : '',
+            range.pct > 0 && range.pct < 100 && range.available ? 'is-partial' : '',
             index === initialIndex ? 'is-current' : '',
             !range.available ? 'is-empty' : ''
         ].filter(Boolean).join(' ');
         return `<button type="button" class="${classes}"
                     data-index="${index}" data-range="${range.range}"
                     data-rank-basis="${rankBasis}" data-pct="${range.pct}"
+                    style="--set-progress: ${range.pct}%"
                     role="radio" aria-checked="${index === initialIndex ? 'true' : 'false'}"
                     aria-label="Set ${index + 1}, ${range.pct}% complete"
                     ${range.available ? '' : 'disabled'}>${index + 1}</button>`;
