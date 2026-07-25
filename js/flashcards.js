@@ -1403,28 +1403,89 @@ async function goBackToSetup() {
     };
 }
 
-/**
- * Build "variant1 | variant2" display string from card.variants,
- * sorted by count descending (most frequent first).
- * Returns null if no variants (single-form word).
- *
- * Low-count variants (count < MIN_VARIANT_COUNT) are suppressed: they're
- * usually colloquial one-offs ("m'le" on the `le` card, "qu'le" on `le`,
- * phonetic slips on subtitled corpora) that add visual noise without
- * teaching value. The primary form always stays regardless of count.
- */
+/** Build the useful surface spellings recorded for this card. */
 const MIN_VARIANT_COUNT = 2;
-function buildVariantDisplay(card) {
+function getVariantForms(card) {
     if (!card.variants) return null;
+
+    // Clitic/conjugation layers sometimes provide a plain array rather than
+    // the counted object used by corpus variants. Preserve its source order.
+    if (Array.isArray(card.variants)) {
+        const forms = [...new Set(card.variants
+            .map(form => String(form || '').trim())
+            .filter(Boolean))];
+        return forms.length > 0 ? forms : null;
+    }
+
     const entries = Object.entries(card.variants);
-    if (entries.length < 2) return null;
-    entries.sort((a, b) => b[1] - a[1]);
+    if (entries.length === 0) return null;
+    entries.sort((a, b) => Number(b[1] || 0) - Number(a[1] || 0));
     // Keep the primary (highest-count) form unconditionally; drop lower
     // entries that fall under the min-count threshold.
     const [primary, ...rest] = entries;
-    const kept = [primary, ...rest.filter(([, c]) => c >= MIN_VARIANT_COUNT)];
-    if (kept.length < 2) return null;
-    return kept.map(e => e[0]).join('<span class="variant-sep">|</span>');
+    return [primary, ...rest.filter(([, count]) => Number(count || 0) >= MIN_VARIANT_COUNT)]
+        .map(([form]) => form);
+}
+
+function foldSurfaceForm(value) {
+    return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('es')
+        .trim();
+}
+
+function isTrivialPlural(surface, canonical) {
+    const form = foldSurfaceForm(surface);
+    const base = foldSurfaceForm(canonical);
+    if (!form || !base || form === base) return false;
+    return form === `${base}s`
+        || form === `${base}es`
+        || (base.endsWith('z') && form === `${base.slice(0, -1)}ces`);
+}
+
+function isTrivialElision(surface, canonical) {
+    const rawSurface = String(surface || '').trim();
+    if (!/[’']$/.test(rawSurface)) return false;
+    const shortened = foldSurfaceForm(rawSurface.slice(0, -1));
+    const full = foldSurfaceForm(canonical);
+    // Covers transparent final-letter drops such as vamos -> vamo' and
+    // después -> despué'. More substantial forms such as para -> pa' and
+    // todo -> to' remain visible because they are worth learning.
+    return shortened.length > 0
+        && full.startsWith(shortened)
+        && full.length - shortened.length === 1;
+}
+
+function isTrivialCanonicalRelation(surface, canonical) {
+    return isTrivialPlural(surface, canonical)
+        || isTrivialElision(surface, canonical);
+}
+
+/**
+ * Build "variant1 | variant2" for the card face. On the back, lead with the
+ * canonical card word and retain only forms whose relationship is not an
+ * obvious plural or one-letter elision.
+ */
+function buildVariantDisplay(card, { back = false } = {}) {
+    const forms = getVariantForms(card);
+    if (!forms || forms.length === 0) return null;
+
+    let displayForms = forms;
+    if (back) {
+        const canonical = String(card.targetWord || '').trim();
+        const canonicalFolded = foldSurfaceForm(canonical);
+        const informative = forms.filter(form =>
+            foldSurfaceForm(form) !== canonicalFolded
+            && !isTrivialCanonicalRelation(form, canonical)
+        );
+        if (informative.length === 0) return null;
+        displayForms = [canonical, ...informative];
+    }
+
+    displayForms = [...new Set(displayForms.filter(Boolean))];
+    if (displayForms.length < 2) return null;
+    return displayForms.join('<span class="variant-sep">|</span>');
 }
 
 function updateCard() {
@@ -1544,6 +1605,7 @@ function updateCard() {
 
     // Build variant display if available (e.g. "la'o | lado")
     const variantDisplay = buildVariantDisplay(card);
+    const backVariantDisplay = buildVariantDisplay(card, { back: true });
     if (variantDisplay && !isFlipped) {
         frontText = variantDisplay;
     }
@@ -1700,12 +1762,17 @@ function updateCard() {
         frontRankingEl.style.display = 'none';
     }
 
-    // Build back content with variant display and lemma
-    let backWordText = variantDisplay || backWord;
+    // Keep the back focused on forms that teach a non-obvious relationship.
+    // Routine plurals and transparent one-letter elisions add no useful cue.
+    let backWordText = backVariantDisplay || backWord;
     let wordDisplay = backWordText;
-    if (card.isMultiMeaning && card.lemma && card.lemma !== card.targetWord) {
+    if (card.isMultiMeaning
+        && card.lemma
+        && card.lemma !== card.targetWord
+        && !isTrivialCanonicalRelation(card.targetWord, card.lemma)) {
         wordDisplay = `${backWordText} <span class="back-lemma">(${card.lemma})</span>`;
     }
+    const backWordLength = backWordText.replace(/<[^>]+>/g, '').length;
 
     // Build homograph chip HTML if siblings exist
     let homographChipHTML = '';
@@ -1748,13 +1815,6 @@ function updateCard() {
         }
     }
 
-    const backVocabularyMetaHTML = vocabularyRank ? `
-        <div class="back-vocabulary-meta" aria-label="Vocabulary frequency information">
-            <span>Vocabulary rank <strong>${Number(vocabularyRank).toLocaleString()}${vocabularySize ? ` / ${vocabularySize.toLocaleString()}` : ''}</strong></span>
-            ${card.corpusCount ? `<span>${activeArtist ? 'Lyric lines' : 'Frequency'} <strong>${Number(card.corpusCount).toLocaleString()}${activeArtist ? '' : '/million'}</strong></span>` : ''}
-        </div>
-    ` : '';
-
     // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
     // on narrow viewports) so the header grows by a reasonable amount
     // rather than adding a full line of whitespace each wrap. Single-line
@@ -1763,10 +1823,9 @@ function updateCard() {
     let backHTML = `
         <div class="back-header" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div style="font-size: ${variantDisplay && variantDisplay.length > 16 ? Math.max(26, 42 - (variantDisplay.length - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                <div style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
             </div>
             ${backPosLegendHTML}
-            ${backVocabularyMetaHTML}
             ${homographChipHTML}
         </div>
     `;
@@ -3380,7 +3439,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725o';
+const ASSET_VERSION = '20260725p';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -1258,22 +1258,6 @@
             box-shadow: 0 0 5px currentColor;
         }
 
-        .back-vocabulary-meta {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 4px 12px;
-            margin: 6px 0 2px;
-            font-family: var(--font-reading);
-            font-size: 12px;
-            line-height: 1.25;
-            color: rgba(255, 255, 255, 0.58);
-        }
-        .back-vocabulary-meta strong {
-            color: rgba(255, 255, 255, 0.88);
-            font-weight: 650;
-        }
-
         .meaning-pos-rows > .meaning-row:last-child {
             margin-bottom: 0 !important;
         }

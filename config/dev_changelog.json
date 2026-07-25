@@ -4,6 +4,16 @@
     {
       "date": "2026-07-25",
       "commit": "pending",
+      "summary": "Card backs now reserve metadata for useful word-form relationships",
+      "details": [
+        "Removes vocabulary rank and corpus occurrence/frequency statistics from the card back while retaining them on the front",
+        "Suppresses routine plural lemmas and transparent final-letter elisions on the back, but keeps non-obvious colloquial, clitic, and conjugated surface forms",
+        "Handles array-backed morphology variants as real spellings instead of numeric array indexes; cache v70→v71, assets 20260725o→20260725p"
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "commit": "21768e7",
       "summary": "Levels now contain stable, rewarding small study sets",
       "details": [
         "Assigns a filter-independent frequency position before optional settings, so Cognate exclusions leave holes and merged lemmas stay with their highest-frequency form instead of moving between levels",
