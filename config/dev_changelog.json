@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "7237b94",
       "summary": "Language selection now leads into a Speech or Lyrics choice",
       "details": [
         "Removes the separate landing-page mode switch and asks for the learning source only after the language is known",

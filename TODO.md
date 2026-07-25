@@ -100,9 +100,10 @@
      (`1ab5eeb`): the gear now opens Account, while Advanced contains warned device-wide defaults
      for Merge Lemmas and Exclude Cognates. They apply immediately and to every new Speech/Lyrics
      setup; exact saved-set resume intentionally restores that set's original configuration.
-  5. **(M) [shared] Put Speech/Lyrics choice after language.** Remove the landing top-bar mode
-     switch. After language selection, ask whether to learn from Speech or Lyrics; Lyrics then opens
-     the existing artist radial picker. Preserve direct `?artist=` URLs and resume links.
+  5. **(M) [shared] Put Speech/Lyrics choice after language** — DONE 2026-07-25 (`7237b94`):
+     the landing top-bar mode switch is gone; language selection opens a shared radial source clock,
+     Speech continues subtitle setup, and Lyrics opens the artist clock filtered by language. Direct
+     `?artist=` URLs and exact saved-set resume links continue to bypass setup.
   6. **(S) [shared] Show partial progress on individual study-set buttons** — DONE 2026-07-25
      (`c118fdd`): 1–99% complete set cells now use a proportional accent fill, while the current
      set retains its independent focus ring and completed/unavailable states remain distinct.

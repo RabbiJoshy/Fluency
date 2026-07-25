@@ -20,13 +20,19 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 - Add section-vocalist attribution to lyric examples, prefer examples sung by the selected artist, then prefer examples with Spotify tracks, and down-rank remix/version titles.
 - Extend LRCLIB timestamps with line end times and consider a sequential lyric-example autoplay mode.
 - Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
-- Move Speech versus Lyrics selection after language selection; Lyrics should then open the artist radial picker. Remove the landing-page top-bar mode switch.
 - Ensure partial progress is shown on individual study-set choices as well as levels.
 - Confirm/order artist vocabulary ties by corpus count, general Spanish frequency, then distinct song count. Exact repeated lines are already excluded from corpus count and distinct-song count is already present in step 7b; see the audit accompanying the next implementation task.
 - Make English TTS speak the displayed inflected translation rather than the underlying infinitive gloss.
 - Add free-text flag notes and make the primary flag target a sense–example pairing.
 
 ## Codex task history
+
+### 2026-07-25 — Language-first learning source
+
+- Commit `7237b94`; front-end cache `flashcards-v80` / `20260725y`.
+- Removed the landing top-bar mode switch. Choosing a language now opens a radial Speech/Lyrics decision; Speech continues subtitle setup and Lyrics opens the existing artist clock filtered to that language.
+- Preserved direct artist URLs and exact saved-set resume routes, and refreshed the stale setup/help copy to describe stable small sets and the new source choice.
+- Verification: JavaScript syntax checks, changelog JSON validation, cache lockstep assertions, and `git diff --check` passed; no service-worker browser preview was used.
 
 ### 2026-07-25 — Study feedback and progress surfaces
 
