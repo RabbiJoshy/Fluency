@@ -72,6 +72,15 @@ function getConjugatedEnglish(card, translation) {
     return form;
 }
 
+// Keep spoken English identical to the gloss rendered on the card. The
+// underlying sense translation is infinitive-shaped ("to deserve"), while a
+// conjugated surface such as "merezco" is displayed as "I deserve".
+function getSpokenEnglish(card, meaning) {
+    const translation = meaning && (meaning.meaning || meaning.translation);
+    if (!translation) return '';
+    return getConjugatedEnglish(card, translation) || translation;
+}
+
 function formatMorphMood(mood) {
     const moodMap = {
         indicativo: 'indicative',
@@ -1036,7 +1045,7 @@ function setupSwipeGestures() {
                         speakWord(currentCard.targetWord, false);
                     } else {
                         // Target → English mode: back shows English, speak English
-                        speakWord(meaning.meaning, true);
+                        speakWord(getSpokenEnglish(currentCard, meaning), true);
                     }
                 }
             } else if (currentCard && currentCard.sentences) {
@@ -2890,7 +2899,7 @@ function flipCard() {
             // Target → English mode: back shows English, speak English meaning
             const meaning = card.meanings[currentMeaningIndex];
             if (meaning && meaning.meaning) {
-                speakWord(meaning.meaning, true);
+                speakWord(getSpokenEnglish(card, meaning), true);
             }
         }
     } else {
@@ -2899,7 +2908,7 @@ function flipCard() {
             // English → Target mode: front shows English, speak English
             const meaning = card.meanings[currentMeaningIndex];
             if (meaning && meaning.meaning) {
-                speakWord(meaning.meaning, true);
+                speakWord(getSpokenEnglish(card, meaning), true);
             }
         } else {
             // Target → English mode: front shows target word, speak target
@@ -3032,7 +3041,7 @@ function selectMeaning(index) {
             speakWord(card.targetWord, false);
         } else {
             // Target → English mode: back shows English, speak English
-            speakWord(meaning.meaning, true);
+            speakWord(getSpokenEnglish(card, meaning), true);
         }
     }
 }
@@ -3073,7 +3082,7 @@ function selectGroup(axis, anchorIdx) {
     updateCard();
     // Auto-speak the shared aspect.
     if (axis === 'translation') {
-        speakWord(anchor.meaning, true);
+        speakWord(getSpokenEnglish(card, anchor), true);
     } else {
         speakWord(card.targetWord, false);
     }
@@ -3460,7 +3469,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725t';
+const ASSET_VERSION = '20260725u';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

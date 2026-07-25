@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "English speech now follows the card's inflected translation",
+      "details": [
+        "Routes every English card utterance through the same conjugation-aware helper used for the visible gloss, so merezco speaks I deserve rather than to deserve",
+        "Applies consistently when flipping, swiping between senses, selecting a sense, and selecting a grouped translation",
+        "Leaves target-language pronunciation and senses without conjugated-English data unchanged; cache v75→v76, assets 20260725t→20260725u"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "16955dc",
       "summary": "Spanish verb forms can no longer inherit reverse-dictionary translations",
       "details": [
