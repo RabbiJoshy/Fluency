@@ -8,6 +8,7 @@ let _player = null;
 let _deviceId = null;
 let _playerReady = false;
 let _playerInitStarted = false;
+let _sdkPlaybackActivated = false;
 let _currentTrackId = null;
 let _isPlaying = false;
 let _snippetTimer = null;
@@ -268,6 +269,7 @@ function spotifyLogout() {
         _deviceId = null;
         _playerReady = false;
         _playerInitStarted = false;
+        _sdkPlaybackActivated = false;
     }
 }
 
@@ -298,6 +300,7 @@ async function initSpotifyPlayer() {
     _player.addListener('not_ready', ({ device_id }) => {
         console.log('Spotify player not ready:', device_id);
         _playerReady = false;
+        _sdkPlaybackActivated = false;
     });
 
     _player.addListener('initialization_error', ({ message }) => {
@@ -501,15 +504,18 @@ async function _playViaSdk(trackId, positionMs, token) {
     }
 
     try {
-        // Transfer playback to the browser device first
-        await fetch('https://api.spotify.com/v1/me/player', {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ device_ids: [_deviceId] })
-        });
+        // Transfer only once per SDK device session. Repeating this before
+        // every lyric line adds a full Spotify Connect handoff delay.
+        if (!_sdkPlaybackActivated) {
+            await fetch('https://api.spotify.com/v1/me/player', {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ device_ids: [_deviceId] })
+            });
+        }
 
         const resp = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${_deviceId}`, {
             method: 'PUT',
@@ -527,6 +533,7 @@ async function _playViaSdk(trackId, positionMs, token) {
             console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms in browser`);
             _currentTrackId = trackId;
             _isPlaying = true;
+            _sdkPlaybackActivated = true;
             return true;
         }
 
@@ -549,6 +556,7 @@ async function _playViaSdk(trackId, positionMs, token) {
                 console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms (after refresh)`);
                 _currentTrackId = trackId;
                 _isPlaying = true;
+                _sdkPlaybackActivated = true;
                 return true;
             }
         }
@@ -601,11 +609,51 @@ function spotifySnippetSupported() {
     return !_isMobile;
 }
 
-async function cancelSpotifySnippet(pause = true) {
+async function cancelSpotifySnippet(pause = true, clearTrack = true) {
     _snippetRunId++;
     if (_snippetTimer) clearTimeout(_snippetTimer);
     _snippetTimer = null;
-    if (pause) await spotifyPausePlayback(true);
+    if (pause) {
+        await spotifyPausePlayback(clearTrack);
+    } else if (clearTrack) {
+        _currentTrackId = null;
+        _isPlaying = false;
+    }
+}
+
+async function _resumeCurrentSdkTrackAt(positionMs) {
+    if (!_player || !_playerReady) return false;
+    try {
+        await _player.seek(positionMs);
+        await _player.resume();
+        _isPlaying = true;
+        _debugLog('SDK: reused current track @' + positionMs + 'ms');
+        return true;
+    } catch (error) {
+        _debugLog('SDK seek/resume failed: ' + error.message);
+        return false;
+    }
+}
+
+async function _waitForSdkSnippetStart(trackId, startMs, runId) {
+    if (!_player || !_playerReady) return startMs;
+    const deadline = Date.now() + 3000;
+    while (Date.now() < deadline && runId === _snippetRunId) {
+        try {
+            const state = await _player.getCurrentState();
+            const activeTrackId = state?.track_window?.current_track?.id || '';
+            const position = Number(state?.position);
+            if (activeTrackId === trackId && !state.paused && Number.isFinite(position)
+                    && position >= startMs - 1000 && position <= startMs + 3000) {
+                return position;
+            }
+        } catch (error) {
+            _debugLog('SDK state check failed: ' + error.message);
+            break;
+        }
+        await new Promise(resolve => setTimeout(resolve, 80));
+    }
+    return runId === _snippetRunId ? startMs : null;
 }
 
 async function spotifyPlaySnippet(trackId, startMs, endMs, onEnded) {
@@ -617,25 +665,40 @@ async function spotifyPlaySnippet(trackId, startMs, endMs, onEnded) {
         return false;
     }
 
-    await cancelSpotifySnippet(true);
+    const canReuseCurrentTrack = !_isMobile && _playerReady
+        && _currentTrackId === trackId;
+    await cancelSpotifySnippet(true, !canReuseCurrentTrack);
     const runId = ++_snippetRunId;
-    const started = await spotifyPlayTrack(trackId, start, {
-        forceStart: true,
-        fromSnippet: true,
-    });
+    let started = canReuseCurrentTrack
+        ? await _resumeCurrentSdkTrackAt(start)
+        : false;
+    if (!started) {
+        // If local seek/resume lost its SDK state, fall back to the full play
+        // command instead of aborting the rest of the autoplay queue.
+        _currentTrackId = null;
+        started = await spotifyPlayTrack(trackId, start, {
+            forceStart: true,
+            fromSnippet: true,
+        });
+    }
     if (!started) return false;
     if (runId !== _snippetRunId) {
         await spotifyPausePlayback(true);
         return false;
     }
 
-    // Stop a fraction early to absorb API/player scheduling latency: the
-    // invariant is never to intentionally run into the next lyric line.
-    const stopAfterMs = Math.max(100, duration - 120);
+    // A Web API 204 means the command was accepted, not that audio has begun.
+    // Start the boundary timer from confirmed SDK playback position so a slow
+    // song load does not consume the lyric's listening time.
+    const confirmedPosition = await _waitForSdkSnippetStart(trackId, start, runId);
+    if (confirmedPosition === null || runId !== _snippetRunId) return false;
+    const stopAfterMs = Math.max(100, end - confirmedPosition - 120);
     _snippetTimer = setTimeout(async () => {
         if (runId !== _snippetRunId) return;
         _snippetTimer = null;
-        await spotifyPausePlayback(true);
+        // Preserve the track identity: the next queued example may seek within
+        // this same song without another transfer/reload.
+        await spotifyPausePlayback(false);
         if (runId === _snippetRunId && typeof onEnded === 'function') onEnded();
     }, stopAfterMs);
     return true;

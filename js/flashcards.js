@@ -438,13 +438,35 @@ function isExampleSnippetEligible(example) {
 }
 
 let _exampleAutoplayActive = false;
-let _exampleAutoplayAttemptsLeft = 0;
 let _exampleAutoplayRunId = 0;
+let _exampleAutoplayQueue = [];
+let _exampleAutoplayQueuePos = 0;
+
+function buildExampleAutoplayOrder(examples) {
+    if (!Array.isArray(examples) || examples.length === 0) return [];
+    const startIndex = ((currentExampleIndex % examples.length) + examples.length) % examples.length;
+    const byTrack = new Map();
+
+    // Rotate from the visible example, then group by track in first-seen
+    // order. Each song is visited once instead of A → B → A; lines from
+    // the same song can use the SDK's quick seek/resume path.
+    for (let offset = 0; offset < examples.length; offset++) {
+        const index = (startIndex + offset) % examples.length;
+        const example = examples[index];
+        if (!isExampleSnippetEligible(example)) continue;
+        const trackId = getSpotifyTrackIdForExample(example);
+        if (!trackId) continue;
+        if (!byTrack.has(trackId)) byTrack.set(trackId, []);
+        byTrack.get(trackId).push(index);
+    }
+    return Array.from(byTrack.values()).flat();
+}
 
 function stopExampleAutoplay(pause = true) {
     const wasActive = _exampleAutoplayActive;
     _exampleAutoplayActive = false;
-    _exampleAutoplayAttemptsLeft = 0;
+    _exampleAutoplayQueue = [];
+    _exampleAutoplayQueuePos = 0;
     _exampleAutoplayRunId++;
     if (wasActive) window.cancelSpotifySnippet?.(pause);
     const button = document.getElementById('exampleAutoplayBtn');
@@ -459,14 +481,23 @@ function stopExampleAutoplay(pause = true) {
 
 function advanceExampleAutoplay(runId) {
     if (!_exampleAutoplayActive || runId !== _exampleAutoplayRunId) return;
-    _exampleAutoplayAttemptsLeft--;
-    if (_exampleAutoplayAttemptsLeft <= 0) {
+    _exampleAutoplayQueuePos++;
+    if (_exampleAutoplayQueuePos >= _exampleAutoplayQueue.length) {
         stopExampleAutoplay(false);
         return;
     }
-    currentExampleIndex++;
+    currentExampleIndex = _exampleAutoplayQueue[_exampleAutoplayQueuePos];
     updateCard();
     setTimeout(() => playDisplayedExampleSnippet(runId), 0);
+}
+
+function setExampleAutoplayLoading(isLoading) {
+    const button = document.getElementById('exampleAutoplayBtn');
+    if (!button || !_exampleAutoplayActive) return;
+    button.classList.toggle('is-loading', isLoading);
+    button.title = isLoading ? 'Loading lyric…' : 'Stop lyric autoplay';
+    const icon = button.querySelector('.example-autoplay-icon');
+    if (icon) icon.textContent = isLoading ? '…' : '■';
 }
 
 async function playDisplayedExampleSnippet(runId) {
@@ -483,23 +514,35 @@ async function playDisplayedExampleSnippet(runId) {
         advanceExampleAutoplay(runId);
         return;
     }
+    setExampleAutoplayLoading(true);
     const started = await window.spotifyPlaySnippet?.(trackId, startMs, endMs, () => {
         advanceExampleAutoplay(runId);
     });
+    if (_exampleAutoplayActive && runId === _exampleAutoplayRunId) {
+        setExampleAutoplayLoading(false);
+    }
     if (!started && _exampleAutoplayActive && runId === _exampleAutoplayRunId) {
         stopExampleAutoplay(true);
     }
 }
 
-function toggleExampleAutoplay(event, exampleCount) {
+function toggleExampleAutoplay(event) {
     event?.stopPropagation();
     if (_exampleAutoplayActive) {
         stopExampleAutoplay(true);
         return;
     }
     if (!window.spotifySnippetSupported?.()) return;
+    const button = event?.currentTarget || document.getElementById('exampleAutoplayBtn');
+    const queue = (button?.dataset.autoplayOrder || '')
+        .split(',')
+        .map(value => Number(value))
+        .filter(Number.isInteger);
+    if (queue.length === 0) return;
     _exampleAutoplayActive = true;
-    _exampleAutoplayAttemptsLeft = Math.max(1, Number(exampleCount) || 1);
+    _exampleAutoplayQueue = queue;
+    _exampleAutoplayQueuePos = 0;
+    currentExampleIndex = queue[0];
     const runId = ++_exampleAutoplayRunId;
     updateCard();
     setTimeout(() => playDisplayedExampleSnippet(runId), 0);
@@ -2504,7 +2547,8 @@ function updateCard({ announceHeadword = false } = {}) {
 
             const hasMultipleExamples = activeExamples.length > 1;
             const exampleCount = activeExamples.length;
-            const autoplayEligibleCount = activeExamples.filter(isExampleSnippetEligible).length;
+            const autoplayOrder = buildExampleAutoplayOrder(activeExamples);
+            const autoplayEligibleCount = autoplayOrder.length;
 
             // Get current example (for cycling through multiple examples)
             let displayTargetSentence = currentMeaning.targetSentence;
@@ -2628,7 +2672,13 @@ function updateCard({ announceHeadword = false } = {}) {
             let exampleCounter = '';
             if (hasMultipleExamples) {
                 const exIdx = currentExampleIndex % exampleCount;
-                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${exIdx + 1}/${exampleCount}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
+                const counterIndex = _exampleAutoplayActive && _exampleAutoplayQueue.length
+                    ? _exampleAutoplayQueuePos + 1
+                    : exIdx + 1;
+                const counterTotal = _exampleAutoplayActive && _exampleAutoplayQueue.length
+                    ? _exampleAutoplayQueue.length
+                    : exampleCount;
+                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${counterIndex}/${counterTotal}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
             }
             // Breakdown button removed — English translation is now clickable instead
             const spotifySvg = `<svg width="44" height="44" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
@@ -2641,7 +2691,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 && currentSnippetDuration >= 350
                 && currentSnippetDuration <= 30000;
             const autoplayBtn = autoplayEligibleCount > 0 && window.spotifySnippetSupported?.()
-                ? `<button type="button" id="exampleAutoplayBtn" class="example-autoplay-btn${_exampleAutoplayActive ? ' is-active' : ''}" aria-label="${_exampleAutoplayActive ? 'Stop lyric example autoplay' : 'Play lyric examples'}" aria-pressed="${_exampleAutoplayActive ? 'true' : 'false'}" title="${_exampleAutoplayActive ? 'Stop lyric autoplay' : 'Play lyric examples'}" data-track-id="${currentSnippetValid ? spotifyTrackId : ''}" data-start-ms="${currentSnippetValid ? positionMs : ''}" data-end-ms="${currentSnippetValid ? endPositionMs : ''}" onclick="toggleExampleAutoplay(event, ${exampleCount})"><span class="example-autoplay-icon" aria-hidden="true">${_exampleAutoplayActive ? '■' : '▶'}</span></button>`
+                ? `<button type="button" id="exampleAutoplayBtn" class="example-autoplay-btn${_exampleAutoplayActive ? ' is-active' : ''}" aria-label="${_exampleAutoplayActive ? 'Stop lyric example autoplay' : 'Play lyric examples'}" aria-pressed="${_exampleAutoplayActive ? 'true' : 'false'}" title="${_exampleAutoplayActive ? 'Stop lyric autoplay' : 'Play lyric examples'}" data-autoplay-order="${autoplayOrder.join(',')}" data-track-id="${currentSnippetValid ? spotifyTrackId : ''}" data-start-ms="${currentSnippetValid ? positionMs : ''}" data-end-ms="${currentSnippetValid ? endPositionMs : ''}" onclick="toggleExampleAutoplay(event)"><span class="example-autoplay-icon" aria-hidden="true">${_exampleAutoplayActive ? '■' : '▶'}</span></button>`
                 : '';
             const songNameDisplay = songName ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
@@ -3597,7 +3647,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725aj';
+const ASSET_VERSION = '20260725ak';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
