@@ -6066,6 +6066,12 @@
             text-shadow: none;
         }
 
+        .learning-source-radial-disc {
+            font-size: clamp(30px, 8vw, 50px);
+            letter-spacing: 0;
+            text-shadow: none;
+        }
+
         .artist-radial-label {
             font-family: var(--font-emphasis);
             font-weight: 600;

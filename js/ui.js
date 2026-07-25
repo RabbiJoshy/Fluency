@@ -248,6 +248,8 @@ function setupLanguageTabs() {
 
     // Click handler for the inline language pill (to re-expand tabs)
     inlinePill.addEventListener('click', function() {
+        window.closeRadialPicker?.('learningSourceRadialPicker');
+        window.closeRadialPicker?.('artistRadialPicker');
         unmergeStandardProgressFromLanguageStep();
         this.style.display = 'none';
         document.getElementById('languageTabs').style.display = 'flex';
@@ -308,44 +310,43 @@ function setupLanguageTabs() {
             document.getElementById('step4').style.display = 'none';
             hideAllSelectionPills();
 
-            // Show loading indicator
-            const loadingIndicator = document.getElementById('dataLoadingIndicator');
-            loadingIndicator.classList.add('visible');
+            // Source is the next decision. Speech continues this setup;
+            // Lyrics navigates through the existing artist clock instead.
+            window.showLearningSourcePicker?.(newLanguage, async () => {
+                if (selectedLanguage !== newLanguage) return;
+                const loadingIndicator = document.getElementById('dataLoadingIndicator');
+                loadingIndicator.classList.add('visible');
 
-            // Start refreshing progress from Sheets (cache loads synchronously inside)
-            let progressRefresh = Promise.resolve(false);
-            if (currentUser && !currentUser.isGuest) {
-                progressRefresh = loadUserProgressFromSheet();
-            }
+                // Start refreshing progress from Sheets (cache loads synchronously inside).
+                let progressRefresh = Promise.resolve(false);
+                if (currentUser && !currentUser.isGuest) {
+                    progressRefresh = loadUserProgressFromSheet();
+                }
 
-            // Always load PPM data if available (needed for coverage bar even in CEFR mode)
-            const langPpmPath = config.languages[selectedLanguage] && config.languages[selectedLanguage].ppmDataPath;
-            if (!ppmData && langPpmPath) {
-                await loadPpmData(selectedLanguage);
-            }
+                // Always load PPM data if available (needed for coverage bar even in CEFR mode).
+                const langPpmPath = config.languages[selectedLanguage] && config.languages[selectedLanguage].ppmDataPath;
+                if (!ppmData && langPpmPath) {
+                    await loadPpmData(selectedLanguage);
+                }
 
-            // Hide loading indicator and show step 2 immediately (using cached progress)
-            loadingIndicator.classList.remove('visible');
-            document.getElementById('step2').style.display = 'block';
-            setActiveSetupStep('step2');
-            // Step 2 title is fixed ("Choose level"); refresh the toggle's
-            // active pill + tooltip in case the language switch implies a
-            // different mode (e.g. artist mode forces % mode).
-            updatePercentModeButton();
-            updateStep2Tooltip();
-            updateStep5Tooltip();
+                loadingIndicator.classList.remove('visible');
+                document.getElementById('step2').style.display = 'block';
+                setActiveSetupStep('step2');
+                updatePercentModeButton();
+                updateStep2Tooltip();
+                updateStep5Tooltip();
 
-            renderLevelSelector(selectedLanguage);
-            updateLemmaToggleVisibility();
-            updateCognateToggleVisibility();
-            updateExclusionBars();
-            updateIncorrectButtonVisibility();
+                renderLevelSelector(selectedLanguage);
+                updateLemmaToggleVisibility();
+                updateCognateToggleVisibility();
+                updateExclusionBars();
+                updateIncorrectButtonVisibility();
 
-            // When Sheets refresh completes, re-render set badges if data changed
-            progressRefresh.then(changed => {
-                if (changed) renderRangeSelector();
-            }).catch(() => {});
-            updateTotalStatsButtonVisibility();
+                progressRefresh.then(changed => {
+                    if (changed) renderRangeSelector();
+                }).catch(() => {});
+                updateTotalStatsButtonVisibility();
+            });
         });
     });
 }
@@ -2045,7 +2046,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level and the app selects its first unfinished small set. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first unfinished small set. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

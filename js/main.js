@@ -1,15 +1,15 @@
-import './state.js?v=20260725x';
-import './sync-queue.js?v=20260725x';
-import './speech.js?v=20260725x';
-import './artist-ui.js?v=20260725x';
-import './auth.js?v=20260725x';
-import './spotify.js?v=20260725x';
-import './estimation.js?v=20260725x';
-import './config.js?v=20260725x';
-import './progress.js?v=20260725x';
-import './ui.js?v=20260725x';
-import './vocab.js?v=20260725x';
-import './flashcards.js?v=20260725x';
+import './state.js?v=20260725y';
+import './sync-queue.js?v=20260725y';
+import './speech.js?v=20260725y';
+import './artist-ui.js?v=20260725y';
+import './auth.js?v=20260725y';
+import './spotify.js?v=20260725y';
+import './estimation.js?v=20260725y';
+import './config.js?v=20260725y';
+import './progress.js?v=20260725y';
+import './ui.js?v=20260725y';
+import './vocab.js?v=20260725y';
+import './flashcards.js?v=20260725y';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -123,7 +123,7 @@ loadConfig().then(async () => {
     setupTooltipHandlers();
     setupAuthEventListeners();
 
-    // Wire shared top bar buttons (How to start, Estimate Level, mode switch, gear)
+    // Wire shared top bar buttons (How to start, Estimate Level, gear)
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
     // Level-estimate CTA (shown when user has no progress yet, in the slot
@@ -145,7 +145,6 @@ loadConfig().then(async () => {
             }
         }
     });
-    setupModeSwitchButton();
     document.getElementById('closeHelpModal').addEventListener('click', () => {
         document.getElementById('helpModal').classList.add('hidden');
     });
@@ -240,50 +239,6 @@ loadConfig().then(async () => {
     perfMark('boot complete');
     perfSummary();
 });
-
-// Mode switch button: toggle between normal and artist modes
-async function setupModeSwitchButton() {
-    const btn = document.getElementById('modeSwitchBtn');
-    if (!btn) return;
-
-    if (activeArtist) {
-        // In Lyrics mode → offer Speech mode.
-        btn.textContent = 'Speech';
-        btn.title = 'Learn from subtitle dialogue';
-        btn.style.display = '';
-        btn.addEventListener('click', () => {
-            window.location.href = window.location.pathname;
-        });
-    } else {
-        // In normal mode → offer switch to artist mode
-        // Load artists.json to discover available artists
-        try {
-            const artists = allArtistsConfig || await fetch('config/artists.json').then(r => r.json());
-            const slugs = Object.keys(artists);
-            if (slugs.length === 0) return;
-
-            if (slugs.length === 1) {
-                btn.textContent = 'Lyrics';
-                btn.title = `Learn from ${artists[slugs[0]].name}'s lyrics`;
-                btn.style.display = '';
-                btn.addEventListener('click', () => {
-                    window.location.href = `${window.location.pathname}?artist=${slugs[0]}`;
-                });
-            } else {
-                btn.textContent = 'Lyrics';
-                btn.title = 'Learn from lyrics';
-                btn.style.display = '';
-                btn.addEventListener('click', () => {
-                    // Show a small picker dropdown
-                    showArtistPicker(btn, artists);
-                });
-            }
-        } catch (e) {
-            // No artists.json or fetch failed — hide button
-            console.warn('Could not load artists for mode switch:', e);
-        }
-    }
-}
 
 // Build the initials shown on the color fallback (no image) — up to 2 letters.
 function artistInitials(name) {
@@ -398,6 +353,7 @@ function closeRadialPicker(id) {
 }
 
 window.showRadialPicker = showRadialPicker;
+window.closeRadialPicker = closeRadialPicker;
 
 // Artist adapter: album art around the shared radial component.
 function showArtistPicker(anchorBtn, artists) {
@@ -417,6 +373,50 @@ function showArtistPicker(anchorBtn, artists) {
         entries
     });
 }
+
+// Language is deliberately chosen first so Lyrics can offer only artists
+// whose material matches it. Speech continues the existing standard setup.
+async function showLearningSourcePicker(language, onSpeech) {
+    let artists = allArtistsConfig;
+    try {
+        if (!artists) {
+            artists = await fetch('config/artists.json').then(response => response.json());
+            allArtistsConfig = artists;
+            window._allArtistsConfig = artists;
+        }
+    } catch (error) {
+        console.warn('Could not load lyric artists:', error);
+        artists = {};
+    }
+
+    const matchingArtists = Object.fromEntries(Object.entries(artists || {}).filter(([, cfg]) =>
+        (cfg.language || 'spanish') === language));
+    const hasLyrics = Object.keys(matchingArtists).length > 0;
+    showRadialPicker({
+        id: 'learningSourceRadialPicker',
+        ariaLabel: 'Choose speech or lyrics',
+        hubHTML: 'Learn from<br>…',
+        entries: [
+            {
+                label: 'Speech',
+                fallbackText: '💬',
+                discClass: 'learning-source-radial-disc',
+                accent: 'var(--accent-secondary)',
+                onSelect: onSpeech
+            },
+            {
+                label: 'Lyrics',
+                fallbackText: '♫',
+                discClass: 'learning-source-radial-disc',
+                accent: 'var(--accent-primary)',
+                disabled: !hasLyrics,
+                onSelect: () => showArtistPicker(null, matchingArtists)
+            }
+        ]
+    });
+}
+
+window.showLearningSourcePicker = showLearningSourcePicker;
 
 // Standard-mode language adapter: flag pictures + existing hidden language
 // buttons, so all loading/theme/progress behavior stays in ui.js.

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Language selection now leads into a Speech or Lyrics choice",
+      "details": [
+        "Removes the separate landing-page mode switch and asks for the learning source only after the language is known",
+        "Uses the shared radial clock for Speech and Lyrics; Lyrics opens a second artist clock filtered to artists available in that language, and the setup help now describes the current flow",
+        "Keeps direct artist URLs and exact saved-set resume links on their existing fast paths; cache v79→v80, assets 20260725x→20260725y"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "e23684b",
       "summary": "Progress and set completion now use cleaner, consistent controls",
       "details": [

@@ -24,19 +24,19 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260725x">
-    <link rel="modulepreload" href="js/state.js?v=20260725x">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260725x">
-    <link rel="modulepreload" href="js/speech.js?v=20260725x">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260725x">
-    <link rel="modulepreload" href="js/auth.js?v=20260725x">
-    <link rel="modulepreload" href="js/spotify.js?v=20260725x">
-    <link rel="modulepreload" href="js/estimation.js?v=20260725x">
-    <link rel="modulepreload" href="js/config.js?v=20260725x">
-    <link rel="modulepreload" href="js/progress.js?v=20260725x">
-    <link rel="modulepreload" href="js/ui.js?v=20260725x">
-    <link rel="modulepreload" href="js/vocab.js?v=20260725x">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260725x">
+    <link rel="modulepreload" href="js/main.js?v=20260725y">
+    <link rel="modulepreload" href="js/state.js?v=20260725y">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260725y">
+    <link rel="modulepreload" href="js/speech.js?v=20260725y">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260725y">
+    <link rel="modulepreload" href="js/auth.js?v=20260725y">
+    <link rel="modulepreload" href="js/spotify.js?v=20260725y">
+    <link rel="modulepreload" href="js/estimation.js?v=20260725y">
+    <link rel="modulepreload" href="js/config.js?v=20260725y">
+    <link rel="modulepreload" href="js/progress.js?v=20260725y">
+    <link rel="modulepreload" href="js/ui.js?v=20260725y">
+    <link rel="modulepreload" href="js/vocab.js?v=20260725y">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260725y">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -206,7 +206,6 @@
                 <div class="step-header top-bar-header">
                     <span id="topBarUserName" class="top-bar-user-name"></span>
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
-                    <button id="modeSwitchBtn" class="top-bar-text-btn" style="display: none;"></button>
                     <!-- Offline / sync-pending status pill. Hidden when online with an empty queue. -->
                     <span id="syncStatusIndicator" class="sync-status hidden" role="status" aria-live="polite"></span>
                     <button class="gear-btn top-bar-find" id="findWordBtn" title="Find a word">
@@ -1013,13 +1012,13 @@
             <div class="settings-tab-content active" id="helpAboutTabContent">
                 <div class="help-content">
                     <p><strong>What is this?</strong></p>
-                    <p>This app teaches you Spanish vocabulary from Bad Bunny's lyrics, starting with the most common words and working toward the least common.</p>
+                    <p>This app teaches vocabulary from either subtitle speech or an artist's lyrics, starting with the most useful words.</p>
                     <p><strong>Why frequency order?</strong></p>
                     <p>Language follows a power law: a small number of words make up the vast majority of speech. By learning the most frequent words first, you understand more lyrics faster.</p>
                     <p><strong>How are percentages calculated?</strong></p>
                     <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. The remaining 30% are rarer words that appear less often.</p>
                     <p><strong>How does it work?</strong></p>
-                    <p>Each word is ranked by how many times it appears across the entire discography. The app groups these into sets of 25. You work through sets in order, and each card shows the word with real lyric examples from songs where it appears.</p>
+                    <p>Choose a language, then Speech or Lyrics. Pick a numbered frequency level and continue its first unfinished small set; each card uses a real subtitle or lyric example.</p>
                     <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
                     <p style="margin-top: 18px;">
                         <button class="help-more-info-btn" id="helpMoreInfoBtn" type="button">More about this project →</button>
@@ -1029,7 +1028,7 @@
             <!-- How to Study tab -->
             <div class="settings-tab-content" id="helpStudyTabContent">
                 <div class="help-content">
-                    <p><strong>Picking a set:</strong> Choose a numbered level, then one of its rank ranges. Later levels extend further into rare vocabulary. Merge Lemmas and Cognates change the eligible vocabulary before ranks are assigned.</p>
+                    <p><strong>Picking a set:</strong> Choose a language, then Speech or Lyrics. Choose a numbered level and the first unfinished small set is selected for you. Later levels extend further into rarer vocabulary; Merge Lemmas and Cognates can shorten a set without moving cards between sets.</p>
                     <p><strong>Continuing:</strong> The setup screen remembers the exact card, order, card side, and settings from your last session. Use <em>Continue last set</em> to resume it.</p>
                     <p><strong>Tap card</strong> to flip and see the translation</p>
                     <p><strong>Swipe right</strong> if you know the word &#10003;</p>
@@ -1062,6 +1061,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260725x"></script>
+    <script type="module" src="js/main.js?v=20260725y"></script>
 </body>
 </html>
