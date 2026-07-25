@@ -116,11 +116,11 @@
      (`b2672c5`): every English speech path now uses `getConjugatedEnglish()` just like the visible
      card, so `merezco` speaks “I deserve” rather than the underlying “to deserve”; target-language
      speech and senses without conjugated-English data retain their existing fallback.
-  10. **(M) [shared] Flag a sense–example pairing with a free-text note.** The current menu has
-      separate “Wrong meaning” and “Wrong example” targets; make the visible selected sense plus
-      current example the primary pairing target, include both texts in the saved record, and add
-      an optional note field. Decide whether to encode the note in the existing FlaggedWords row or
-      deploy a ninth backend column before implementation.
+  10. **(M) [shared] Flag a sense–example pairing with a free-text note** — DONE 2026-07-25
+      (`64b10f8a`): the visible sense and exact rendered example are the default combined target,
+      previewed together with optional note input. Pairing, sense-only, lemma, and whole-card reports
+      save structured readable text in the existing FlaggedWords value column, avoiding a backend
+      schema change or Apps Script deployment.
 
 - **[now] Notes-app backlog — EARLIER dump, captured 2026-07-24 [was only categorized in-chat, never committed until now]**
   From Josh's notes (~2026-07-13). Already resolved: offline save-on-reconnect (SHIPPED,

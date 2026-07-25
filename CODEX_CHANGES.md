@@ -20,9 +20,15 @@ Captured from Josh on 2026-07-25; these are not yet implemented unless a later h
 - Make the settings gear open Account by default. Add clearly warned, persistent global defaults for Merge Lemmas and Exclude Cognates under Advanced.
 - Ensure partial progress is shown on individual study-set choices as well as levels.
 - Make English TTS speak the displayed inflected translation rather than the underlying infinitive gloss.
-- Add free-text flag notes and make the primary flag target a sense–example pairing.
 
 ## Codex task history
+
+### 2026-07-25 — Sense–example flag reports with notes
+
+- Commit `64b10f8a`; front-end cache `flashcards-v83` / `20260725ab`.
+- The flag menu now defaults to the exact selected sense and rendered example, previews them together, and accepts an optional 600-character note. Alternatives are sense only, lemma, and whole card.
+- Reports include word, lemma, sense/POS/context, Spanish example, English translation, source song, and note as applicable. They use a stable pairing path and store structured readable text in the existing FlaggedWords `word` value column, so no ninth column or Apps Script deployment is needed.
+- Verification: JavaScript syntax checks, cache lockstep assertions, changelog JSON validation, and `git diff --check` passed; no service-worker browser preview was used.
 
 ### 2026-07-25 — Strict line-bounded lyric autoplay
 

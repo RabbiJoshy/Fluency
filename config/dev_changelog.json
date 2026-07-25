@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "64b10f8a",
       "summary": "Flags can now capture the visible sense–example pairing and a note",
       "details": [
         "Makes the selected sense plus currently displayed example the default flag target, with a combined preview and optional 600-character free-text note",
