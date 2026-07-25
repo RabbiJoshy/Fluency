@@ -18,6 +18,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Filter-aware, examples-safe vocabulary search
+
+- Commit `6fb3ed91`; front-end cache `flashcards-v87` / `20260725af`.
+- Search now indexes a clone of the full source vocabulary, so applying the current deck filter cannot strip meanings from the cached entries it later opens.
+- Results and popup fronts identify current exclusions such as cognate, proper noun, single occurrence, English loanword, noise/interjection, or merged lemma form instead of displaying a misleading configuration rank.
+- Entries with no usable translation or positive artist sense are guaranteed a safe examples-only meaning. All available sense/MWE/remainder examples are flattened and deduplicated; if none exist, the card shows an explicit unavailable message rather than throwing on an empty meaning array.
+- Corrected the result-list gloss lookup from the nonexistent `meaning` field to `translation`. A data audit found 577 Spanish Speech source entries with examples but no usable sense, confirming this is a material path rather than a hypothetical edge case.
+- Verification: JavaScript syntax, cache lockstep, and `git diff --check` passed; no service-worker browser preview was used.
+
 ### 2026-07-25 — Modern first-login surface
 
 - Commit `4d8dc90a`; front-end cache `flashcards-v86` / `20260725ae`.

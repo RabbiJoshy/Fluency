@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "6fb3ed91",
+      "summary": "Vocabulary search now opens excluded and examples-only words reliably",
+      "details": [
+        "Keeps search indexed against the complete source vocabulary without mutating it through the active deck filter",
+        "Labels excluded results and popup cards with the current reason, including cognate, proper noun, single occurrence, English loanword, and merged lemma form",
+        "Builds a deduplicated examples-only card when no usable translation or artist-matched sense exists, and fixes blank result glosses; cache v86→v87, assets 20260725ae→20260725af"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "4d8dc90a",
       "summary": "The first-login screen now matches the app's modern visual system",
       "details": [
