@@ -18,6 +18,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Modern first-login surface
+
+- Commit `4d8dc90a`; front-end cache `flashcards-v86` / `20260725ae`.
+- Replaced the old generic Welcome to Flashcards dialog with a responsive Fluency welcome surface, modern entry cards for initials and guest use, and a restrained password-free beta explanation.
+- Initials entry now has a dedicated form state and resets cleanly whenever the auth surface is reopened. The existing local/session storage and Google Sheets login contracts are unchanged.
+- Verification: JavaScript syntax, required auth element IDs, cache lockstep, and `git diff --check` passed; no service-worker browser preview was used.
+
 ### 2026-07-25 — Persistent artist/source setup card
 
 - Commit `9a26780e`; front-end cache `flashcards-v85` / `20260725ad`.

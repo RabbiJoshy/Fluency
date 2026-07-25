@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "4d8dc90a",
+      "summary": "The first-login screen now matches the app's modern visual system",
+      "details": [
+        "Replaces the old generic Flashcards dialog with a compact Fluency welcome surface and clearer speech-and-lyrics positioning",
+        "Separates Continue with initials and Explore as a guest into clean entry cards, with a calmer inline explanation of the password-free beta",
+        "Gives initials entry its own focused state while preserving the existing authentication and storage behavior; cache v85→v86, assets 20260725ad→20260725ae"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "9a26780e",
       "summary": "Lyrics setup now keeps the artist and source easy to change",
       "details": [
