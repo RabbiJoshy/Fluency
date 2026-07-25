@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "496e9b4e",
+      "summary": "In-card navigation now has an explicit no-speech contract",
+      "details": [
+        "Replaces the insufficient card-object identity heuristic with silent-by-default card rendering",
+        "Limits headword announcements to explicit deck entry and real card navigation while examples, senses, expressions, autoplay, and display changes cancel queued TTS",
+        "Prevents delayed browser utterances from leaking into lyric playback; cache v90→v91, assets 20260725ai→20260725aj"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "569fd2e0",
       "summary": "Active-study options now live beside the set progress rail",
       "details": [

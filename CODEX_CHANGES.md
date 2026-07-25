@@ -18,6 +18,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Explicitly silent in-card rendering
+
+- Commit `496e9b4e`; front-end cache `flashcards-v91` / `20260725aj`.
+- The earlier object-identity guard in `updateCard()` did not prove strong enough in the running app. Replaced it with an explicit `announceHeadword` option that defaults to false.
+- Only initial deck entry, next/previous navigation, answer/flag advancement, and shuffle-to-first-card opt into the Spanish headword. Autoplay, example/sense/expression cycling, row selection, grouped selection, and card-order changes remain on the silent default.
+- Every silent rerender also cancels any queued Web Speech utterance, preventing a delayed headword from starting during the next Spotify lyric snippet.
+- Verification: every `updateCard()` caller in `flashcards.js` was classified as entry or in-card rendering, opt-in calls are limited to six genuine navigation paths, cache versions are in lockstep, and `git diff --check` passes. No service-worker browser preview was used.
+
 ### 2026-07-25 — Progress-rail Study options
 
 - Commit `569fd2e0`; front-end cache `flashcards-v90` / `20260725ai`.
