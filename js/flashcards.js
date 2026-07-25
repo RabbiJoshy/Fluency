@@ -1678,7 +1678,7 @@ function updateCard() {
 
     if (card.isMultiMeaning) {
         // Multi-meaning format
-        if (isFlipped) {
+        if (isFlipped && !card.searchExamplesOnly) {
             // English → Target language: build structured front with POS badges
             const normalMeanings = card.meanings.filter(m =>
                 m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
@@ -1842,7 +1842,8 @@ function updateCard() {
         // beneath VERB so it reads as a property of that POS, not the word as
         // a whole. Expressions/clitics are self-evident rows, not POS badges.
         const allPOS = [...new Set(card.meanings
-            .filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE')
+            .filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC'
+                && m.pos !== 'SENSE_CYCLE' && m.pos !== 'EXAMPLE_ONLY')
             .map(m => m.pos))];
         frontPOSEl.innerHTML = allPOS.map(pos =>
             renderFrontPosUnit(pos, isVerbPos(pos))
@@ -1894,7 +1895,13 @@ function updateCard() {
     // Display configuration-relative vocabulary rank (not position in the
     // study set) and frequency on the card front.
     const frontRankingEl = document.getElementById('frontRanking');
-    if (vocabularyRank !== undefined) {
+    if (card.searchExclusionReason) {
+        frontRankingEl.innerHTML = `<span class="card-exclusion-label">Excluded: ${card.searchExclusionReason}</span>`;
+        frontRankingEl.style.display = 'flex';
+    } else if (card.searchExamplesOnly) {
+        frontRankingEl.innerHTML = '<span class="card-exclusion-label card-exclusion-label--examples">Examples only · no matched sense</span>';
+        frontRankingEl.style.display = 'flex';
+    } else if (vocabularyRank !== undefined) {
         let freqHtml = '';
         if (card.corpusCount) {
             if (activeArtist) {
@@ -1952,7 +1959,7 @@ function updateCard() {
             const pos = meaning.pos === 'SENSE_CYCLE'
                 ? (meaning.cycle_pos || 'X')
                 : meaning.pos;
-            if (pos === 'MWE' || pos === 'CLITIC') continue;
+            if (pos === 'MWE' || pos === 'CLITIC' || pos === 'EXAMPLE_ONLY') continue;
             if (!pos || seenPos.has(pos)) continue;
             seenPos.add(pos);
             posPills.push(
@@ -2101,6 +2108,7 @@ function updateCard() {
         }
 
         card.meanings.forEach((m, idx) => {
+            if (m.exampleOnly) return;
             const isSelected = idx === currentMeaningIndex;
             const rowStateClasses = isSelected ? ' is-current-sense' : '';
             const bgColor = 'rgba(var(--sense-match-rgb), 0.08)';
@@ -2405,7 +2413,9 @@ function updateCard() {
         });
         // Emit the scroll region first, then the pinned tray underneath
         // (MWE/CLITIC rows that stay visible when the user scrolls).
-        backHTML += `<div class="meanings-scroll">${renderSections(scrollSections)}</div>`;
+        if (scrollSections.size > 0) {
+            backHTML += `<div class="meanings-scroll">${renderSections(scrollSections)}</div>`;
+        }
         if (traySections.size > 0) {
             backHTML += `<div class="meanings-tray">${renderSections(traySections)}</div>`;
         }
@@ -2698,6 +2708,8 @@ function updateCard() {
                     </div>
                 `;
             }
+        } else if (currentMeaning?.exampleOnly) {
+            backHTML += `<div class="sentence search-example-empty">No example is available for this source entry yet.</div>`;
         }
     } else {
         // Legacy format

@@ -1,15 +1,15 @@
-import './state.js?v=20260725ae';
-import './sync-queue.js?v=20260725ae';
-import './speech.js?v=20260725ae';
-import './artist-ui.js?v=20260725ae';
-import './auth.js?v=20260725ae';
-import './spotify.js?v=20260725ae';
-import './estimation.js?v=20260725ae';
-import './config.js?v=20260725ae';
-import './progress.js?v=20260725ae';
-import './ui.js?v=20260725ae';
-import './vocab.js?v=20260725ae';
-import './flashcards.js?v=20260725ae';
+import './state.js?v=20260725af';
+import './sync-queue.js?v=20260725af';
+import './speech.js?v=20260725af';
+import './artist-ui.js?v=20260725af';
+import './auth.js?v=20260725af';
+import './spotify.js?v=20260725af';
+import './estimation.js?v=20260725af';
+import './config.js?v=20260725af';
+import './progress.js?v=20260725af';
+import './ui.js?v=20260725af';
+import './vocab.js?v=20260725af';
+import './flashcards.js?v=20260725af';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -506,7 +506,10 @@ function findWordCacheKey() {
         slugs,
         useLemmaMode ? '1' : '0',
         excludeCognates ? '1' : '0',
-        hideSingleOccurrence ? '1' : '0'
+        hideSingleOccurrence ? '1' : '0',
+        excludeProperNouns ? '1' : '0',
+        excludeNoise ? '1' : '0',
+        excludeEnglishLoanwords ? '1' : '0'
     ].join('|');
 }
 
@@ -524,20 +527,33 @@ async function buildFindWordIndex() {
         vocabularyData = await window.fetchAndJoinIndex(langConfig);
     }
     vocabularyData.forEach((item, idx) => { if (!item.rank) item.rank = idx + 1; });
-    // Build displayRank via the normal filter pipeline so ranks line up with the set buttons
-    const { vocab: filtered } = window.buildFilteredVocab(vocabularyData);
+    // Build displayRank via the normal filter pipeline so ranks line up with
+    // the set buttons. Clone each entry because the deck filter intentionally
+    // strips empty meanings; search must not mutate its full source index.
+    const filterInput = vocabularyData.map(item => ({
+        ...item,
+        meanings: Array.isArray(item.meanings) ? [...item.meanings] : []
+    }));
+    const { vocab: filtered } = window.buildFilteredVocab(filterInput);
     const byRank = new Map();
     filtered.forEach(it => byRank.set(it.rank, it.displayRank));
     const idx = vocabularyData.map(item => {
         const meanings = item.meanings || [];
-        const firstMeaning = meanings.find(m => m && m.meaning && m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
+        const matchedMeanings = meanings.filter(meaning =>
+            meaning
+            && String(meaning.translation || '').trim()
+            && (!activeArtist || Number(meaning.frequency || 0) > 0));
+        const firstMeaning = matchedMeanings.find(m =>
+            m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
         return {
             targetWord: item.word || item.targetWord || '',
             lemma: item.lemma || '',
             rank: item.rank,
             displayRank: byRank.get(item.rank) || null,
             id: item.id || window.getWordId(item),
-            firstMeaning: firstMeaning ? firstMeaning.meaning : ''
+            firstMeaning: firstMeaning ? firstMeaning.translation : '',
+            exclusionReason: window.getVocabularyExclusionReason?.(item) || null,
+            examplesOnly: matchedMeanings.length === 0
         };
     });
     _findWordIndex = idx;
@@ -580,12 +596,16 @@ function renderFindResults(query) {
         btn.className = 'find-word-result';
         const lemmaHTML = (entry.lemma && entry.lemma !== entry.targetWord)
             ? `<span class="fw-lemma">${entry.lemma}</span>` : '';
-        const rankHTML = entry.displayRank ? `<span class="fw-rank">#${entry.displayRank}</span>` : '';
+        const statusHTML = entry.exclusionReason
+            ? `<span class="fw-status fw-status--excluded">Excluded · ${entry.exclusionReason}</span>`
+            : (entry.examplesOnly
+                ? '<span class="fw-status">Examples only</span>'
+                : (entry.displayRank ? `<span class="fw-rank">#${entry.displayRank}</span>` : ''));
         btn.innerHTML = `
             <span class="fw-word">${entry.targetWord}</span>
             ${lemmaHTML}
             <span class="fw-meaning">${(entry.firstMeaning || '').replace(/</g, '&lt;')}</span>
-            ${rankHTML}`;
+            ${statusHTML}`;
         btn.addEventListener('click', () => jumpToFoundWord(entry));
         resultsEl.appendChild(btn);
     }

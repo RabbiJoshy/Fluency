@@ -603,7 +603,10 @@ async function popupFoundWord(entry, opts) {
         const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
         const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
 
-        const meanings = (vocabEntry.meanings || []).map(m => {
+        const sourceMeanings = (vocabEntry.meanings || []).filter(m =>
+            String(m?.translation || '').trim()
+            && (!activeArtist || Number(m.frequency || 0) > 0));
+        const meanings = sourceMeanings.map(m => {
             const ex = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
             const meaning = {
                 pos: m.pos,
@@ -621,6 +624,50 @@ async function popupFoundWord(entry, opts) {
             if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
             return meaning;
         });
+
+        // A searchable source entry can legitimately have corpus examples but
+        // no usable translation or artist-matched sense. Keep it inspectable:
+        // collapse every examples payload (sense/MWE/remainder) into one
+        // deduplicated examples-only meaning instead of handing updateCard an
+        // empty meanings array.
+        if (meanings.length === 0) {
+            const gathered = [];
+            const gatherExamples = value => {
+                if (Array.isArray(value)) {
+                    value.forEach(gatherExamples);
+                    return;
+                }
+                if (!value || typeof value !== 'object') return;
+                if (value.target || value.spanish || value.swedish || value.dutch
+                    || value.italian || value.polish) {
+                    gathered.push(value);
+                    return;
+                }
+                Object.values(value).forEach(gatherExamples);
+            };
+            gatherExamples(examplesData && examplesData[vocabEntry.id]);
+            const seen = new Set();
+            const examples = gathered.filter(example => {
+                const target = example.target || example.spanish || example.swedish
+                    || example.dutch || example.italian || example.polish || '';
+                const key = example.id || `${example.song || ''}\u0000${target}`;
+                if (!target || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+            const first = examples[0] || {};
+            meanings.push({
+                pos: 'EXAMPLE_ONLY',
+                meaning: '',
+                percentage: 1,
+                targetSentence: first.target || first.spanish || first.swedish
+                    || first.dutch || first.italian || first.polish || '',
+                englishSentence: first.english || '',
+                allExamples: examples,
+                exampleOnly: true,
+                unassigned: true
+            });
+        }
 
         // Synthesize MWE / CLITIC / SENSE_CYCLE meanings — without this the
         // popup would show only sense pills, hiding all MWEs (including
@@ -649,7 +696,9 @@ async function popupFoundWord(entry, opts) {
             variants: vocabEntry.variants || null,
             homographIds: vocabEntry.homograph_ids || null,
             morphology: vocabEntry.morphology || null,
-            relatedLemma: vocabEntry.related_lemma || null
+            relatedLemma: vocabEntry.related_lemma || null,
+            searchExclusionReason: entry.exclusionReason || null,
+            searchExamplesOnly: entry.examplesOnly || meanings[0]?.exampleOnly || false
         };
 
         // Hide the search modal while the card is being viewed.

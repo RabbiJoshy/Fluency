@@ -1799,6 +1799,30 @@
             font-size: 15px;
             color: rgba(255, 255, 255, 0.55);
         }
+        .card-exclusion-label {
+            max-width: 100%;
+            padding: 5px 9px;
+            border: 1px solid color-mix(in srgb, var(--accent-secondary) 42%, transparent);
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--accent-secondary) 14%, transparent);
+            color: color-mix(in srgb, var(--accent-secondary) 78%, white);
+            font-family: var(--font-emphasis);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: capitalize;
+        }
+        .card-exclusion-label--examples {
+            border-color: rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.72);
+            text-transform: none;
+        }
+        .search-example-empty {
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
         .card-freq-btn {
             font-family: var(--font-reading);
             font-size: 18px;
@@ -8045,6 +8069,21 @@
             font-size: 12px;
             font-family: var(--font-mono, monospace);
             flex-shrink: 0;
+        }
+        .find-word-result .fw-status {
+            flex-shrink: 0;
+            padding: 3px 7px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            color: var(--text-muted);
+            font-family: var(--font-emphasis);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .find-word-result .fw-status--excluded {
+            border-color: color-mix(in srgb, var(--accent-secondary) 34%, var(--border-color));
+            color: var(--accent-secondary);
         }
 
 /* Data-freshness footer at the bottom of the settings modal (see

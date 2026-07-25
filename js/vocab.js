@@ -552,6 +552,37 @@ function assignStableVocabularyRanks(vocabData) {
     return candidates;
 }
 
+function getVocabularyExclusionReason(item) {
+    if (!item || !item.word || item.duplicate) return 'unavailable entry';
+    const meanings = Array.isArray(item.meanings)
+        ? item.meanings.filter(meaning => String(meaning?.translation || '').trim())
+        : [];
+    if (activeArtist) {
+        if (item.is_english) return 'English-language item';
+        if (excludeNoise && (item.is_noise || item.is_interjection)) return 'noise or interjection';
+        if (excludeEnglishLoanwords && item.is_english_loanword) return 'English loanword';
+        if (excludeProperNouns) {
+            const allProperNoun = meanings.length > 0
+                && meanings.every(meaning => meaning.pos === 'PROPN');
+            if (item.is_propernoun || item.is_propernoun_corpus || allProperNoun) {
+                return 'proper noun';
+            }
+        }
+    }
+    if (excludeCognates && Number(item.cognate_score || 0) >= cognateThreshold) {
+        return 'cognate';
+    }
+    if (hideSingleOccurrence
+        && Object.prototype.hasOwnProperty.call(item, 'corpus_count')
+        && !(Number(item.corpus_count) > 1)) {
+        return 'single occurrence';
+    }
+    if (useLemmaMode && lemmaFieldAvailable && item.most_frequent_lemma_instance !== true) {
+        return 'merged lemma form';
+    }
+    return null;
+}
+
 function buildFilteredVocab(vocabData) {
     // Assign stable rank from array position (pipeline sort order)
     assignStableVocabularyRanks(vocabData);
@@ -2011,4 +2042,5 @@ window.truncateText = truncateText;
 window.cleanValue = cleanValue;
 window.generateLinks = generateLinks;
 window.getExampleFromMeaning = getExampleFromMeaning;
+window.getVocabularyExclusionReason = getVocabularyExclusionReason;
 window.buildWordLookupMap = buildWordLookupMap;
