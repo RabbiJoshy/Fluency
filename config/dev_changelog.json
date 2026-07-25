@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "pending",
+      "summary": "Flags can now capture the visible sense–example pairing and a note",
+      "details": [
+        "Makes the selected sense plus currently displayed example the default flag target, with a combined preview and optional 600-character free-text note",
+        "Replaces separate wrong-meaning/wrong-example choices with pairing, sense-only, lemma, and whole-card targets and routes the card-info flag action through the same menu",
+        "Stores a structured human-readable report in the existing FlaggedWords value column, so no backend sheet or Apps Script deployment is required; cache v82→v83, assets 20260725aa→20260725ab"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "49ea0b88",
       "summary": "Desktop lyric autoplay now plays one example line at a time",
       "details": [

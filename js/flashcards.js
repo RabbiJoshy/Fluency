@@ -1634,6 +1634,7 @@ function buildVariantDisplay(card, { back = false } = {}) {
 function updateCard() {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
+    window._currentDisplayedExample = null;
 
     // Update artist album artwork background
     updateArtistBackground();
@@ -2514,6 +2515,7 @@ function updateCard() {
                 const exIdx = currentExampleIndex % activeExamples.length;
                 const example = activeExamples[exIdx];
                 currentExample = example;
+                window._currentDisplayedExample = example;
                 const exTarget = example.target || example.spanish || '';
                 const exEnglish = example.english || '';
                 if (exTarget) {
@@ -3606,7 +3608,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725aa';
+const ASSET_VERSION = '20260725ab';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

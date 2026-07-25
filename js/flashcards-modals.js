@@ -1079,9 +1079,8 @@ function refreshCardMetaPopoverIfOpen() {
     if (flagBtn) {
         flagBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const card = (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
-            if (card && typeof flagWord === 'function') flagWord(card);
             hideCardMetaPopover();
+            showFlagMenu();
         });
     }
     document.addEventListener('click', (e) => {
@@ -1092,25 +1091,41 @@ function refreshCardMetaPopoverIfOpen() {
 })();
 
 // ---------------------------------------------------------------------------
-// Sense-level flag menu — flag a specific WORD→MEANING pairing (not just the
-// whole word), with up/down navigation through the card's senses.
+// Sense/example flag menu — the visible pairing is the primary report target,
+// with up/down navigation through the card's senses and an optional note.
 //
 // Reuses flagWord(card, fieldPath, fieldValue) from auth.js: the payload is
-// backward-compatible — a whole-word flag passes no path (identical to the
-// old behavior); a sense flag passes path `sense:{i}` + the gloss text so the
-// row is human-resolvable in the FlaggedWords sheet even without a stable id.
+// backward-compatible with the existing eight-column FlaggedWords sheet: a
+// structured text report is stored in its existing `word` value column.
 // ---------------------------------------------------------------------------
 let _flagSelIdx = 0;      // which sense row is highlighted
-let _flagIssue = 'meaning'; // issue type: meaning | lemma | example | word
+let _flagIssue = 'pairing'; // issue type: pairing | sense | lemma | word
 const FLAG_ISSUES = [
-    { key: 'meaning', label: 'Wrong meaning' },
-    { key: 'lemma', label: 'Wrong lemma' },
-    { key: 'example', label: 'Wrong example' },
-    { key: 'word', label: 'Whole word' }
+    { key: 'pairing', label: 'Sense ↔ example' },
+    { key: 'sense', label: 'Sense only' },
+    { key: 'lemma', label: 'Lemma' },
+    { key: 'word', label: 'Whole card' }
 ];
 
 function _flagMenuCard() {
     return (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
+}
+
+function _flagMenuExample(meaning) {
+    if (window._currentDisplayedExample) return window._currentDisplayedExample;
+    const examples = (meaning && meaning.allExamples) || [];
+    if (!examples.length) return null;
+    const index = (typeof currentExampleIndex === 'number')
+        ? currentExampleIndex % examples.length : 0;
+    return examples[index] || examples[0];
+}
+
+function _flagTextHash(value) {
+    let hash = 5381;
+    for (const char of String(value || '')) {
+        hash = ((hash << 5) + hash) ^ char.codePointAt(0);
+    }
+    return (hash >>> 0).toString(16).padStart(8, '0');
 }
 
 function _renderFlagMenu() {
@@ -1119,6 +1134,7 @@ function _renderFlagMenu() {
     const issuesEl = document.getElementById('flagMenuIssues');
     const titleEl = document.getElementById('flagMenuTitle');
     const confirmEl = document.getElementById('flagMenuConfirm');
+    const previewEl = document.getElementById('flagMenuPairingPreview');
     if (!card || !sensesEl || !issuesEl) return;
 
     const word = card.targetWord || card.word || 'card';
@@ -1153,8 +1169,30 @@ function _renderFlagMenu() {
         return `<button type="button" class="flag-menu-issue${sel}" data-issue="${it.key}">${it.label}</button>`;
     }).join('');
 
+    const selectedMeaning = meanings[_flagSelIdx] || null;
+    const selectedExample = _flagMenuExample(selectedMeaning);
+    if (previewEl) {
+        const gloss = selectedMeaning
+            ? (selectedMeaning.meaning || selectedMeaning.translation || '') : '';
+        const spanish = selectedExample
+            ? (selectedExample.spanish || selectedExample.target || selectedExample.original || '') : '';
+        const english = selectedExample?.english || '';
+        previewEl.classList.toggle('is-secondary', _flagIssue !== 'pairing');
+        previewEl.innerHTML = `
+            <div class="flag-pairing-sense"><span>${_escapeHtml(selectedMeaning?.pos || '?')}</span>${_escapeHtml(gloss || 'No sense text')}</div>
+            <div class="flag-pairing-arrow" aria-hidden="true">↕</div>
+            <div class="flag-pairing-example">${_escapeHtml(spanish || 'No visible example')}${english ? `<small>${_escapeHtml(english)}</small>` : ''}</div>
+        `;
+    }
+
     if (confirmEl) {
-        confirmEl.textContent = wholeWord ? 'Flag whole word' : 'Flag this pairing';
+        const labels = {
+            pairing: 'Flag this pairing',
+            sense: 'Flag this sense',
+            lemma: 'Flag this lemma',
+            word: 'Flag whole card',
+        };
+        confirmEl.textContent = labels[_flagIssue] || labels.pairing;
     }
 
     // Wire row + issue clicks (innerHTML wiped the previous listeners).
@@ -1163,7 +1201,7 @@ function _renderFlagMenu() {
             const idx = parseInt(li.dataset.idx, 10);
             if (!isNaN(idx)) {
                 // Clicking a sense while in whole-word mode implies you meant a pairing.
-                if (_flagIssue === 'word') _flagIssue = 'meaning';
+                if (_flagIssue === 'word') _flagIssue = 'pairing';
                 flagMenuSelect(idx);
             }
         });
@@ -1195,7 +1233,7 @@ function flagMenuNav(delta) {
     const n = (card && card.meanings) ? card.meanings.length : 0;
     if (n <= 1) return;
     // Navigating implies you're targeting a specific pairing.
-    if (_flagIssue === 'word') { _flagIssue = 'meaning'; }
+    if (_flagIssue === 'word') { _flagIssue = 'pairing'; }
     let next = _flagSelIdx + delta;
     if (next < 0) next = 0;
     if (next > n - 1) next = n - 1;
@@ -1208,7 +1246,9 @@ function showFlagMenu() {
     const card = _flagMenuCard();
     if (!pop || !card) return;
     _flagSelIdx = (typeof currentMeaningIndex === 'number') ? currentMeaningIndex : 0;
-    _flagIssue = 'meaning';
+    _flagIssue = 'pairing';
+    const note = document.getElementById('flagMenuNote');
+    if (note) note.value = '';
     _renderFlagMenu();
     pop.hidden = false;
     pop.setAttribute('aria-hidden', 'false');
@@ -1227,40 +1267,52 @@ function flagMenuConfirm() {
     const meanings = card.meanings || [];
     const m = meanings[_flagSelIdx] || null;
     const gloss = m ? (m.meaning || m.translation || '') : '';
+    const example = _flagMenuExample(m);
+    const spanish = example
+        ? (example.spanish || example.target || example.original || '') : '';
+    const english = example?.english || '';
+    const song = example?.song_name || '';
+    const note = (document.getElementById('flagMenuNote')?.value || '').trim().slice(0, 600);
+    const word = card.targetWord || card.word || '';
+    const lemma = card.lemma || word;
 
-    let path = null;
-    let value;
+    let path;
     switch (_flagIssue) {
         case 'lemma':
             path = 'lemma';
-            value = card.lemma || card.targetWord;
             break;
-        case 'example': {
-            let ex = '';
-            if (m && m.allExamples && m.allExamples.length) {
-                const exi = (typeof currentExampleIndex === 'number')
-                    ? (currentExampleIndex % m.allExamples.length) : 0;
-                const e0 = m.allExamples[exi] || m.allExamples[0];
-                ex = e0.spanish || e0.targetSentence || e0.original || '';
-            }
-            path = `example:${_flagSelIdx}`;
-            value = ex || gloss;
-            break;
-        }
-        case 'word':
-            path = null; // whole-word fallback — identical payload to the old flag
-            value = undefined;
-            break;
-        case 'meaning':
-        default:
+        case 'sense':
             path = `sense:${_flagSelIdx}`;
-            value = gloss;
+            break;
+        case 'word':
+            path = 'card';
+            break;
+        case 'pairing':
+        default:
+            path = `pairing:${_flagSelIdx}:${_flagTextHash(spanish)}`;
             break;
     }
 
+    const issueLabel = FLAG_ISSUES.find(issue => issue.key === _flagIssue)?.label || _flagIssue;
+    const reportLines = [
+        `[${issueLabel}]`,
+        `Word: ${word}`,
+        `Lemma: ${lemma}`,
+    ];
+    if (_flagIssue !== 'word' && _flagIssue !== 'lemma') {
+        reportLines.push(`Sense ${_flagSelIdx + 1}: ${m?.pos || '?'} · ${gloss || '(empty)'}`);
+        if (m?.context) reportLines.push(`Context: ${m.context}`);
+    }
+    if (_flagIssue === 'pairing') {
+        reportLines.push(`Example: ${spanish || '(none visible)'}`);
+        if (english) reportLines.push(`Translation: ${english}`);
+        if (song) reportLines.push(`Source: ${song}`);
+    }
+    if (note) reportLines.push(`Note: ${note}`);
+    const report = reportLines.join('\n');
+
     if (typeof flagWord === 'function') {
-        if (path) flagWord(card, path, value);
-        else flagWord(card);
+        flagWord(card, path, report);
     }
     hideFlagMenu();
     // Hand back to core flashcards.js for the flag animation + advance.
@@ -1288,6 +1340,7 @@ function flagMenuConfirm() {
     });
     document.addEventListener('keydown', (e) => {
         if (pop.hidden) return;
+        if (e.target?.id === 'flagMenuNote' && e.key !== 'Escape') return;
         if (e.key === 'ArrowUp') { e.preventDefault(); flagMenuNav(-1); }
         else if (e.key === 'ArrowDown') { e.preventDefault(); flagMenuNav(1); }
         else if (e.key === 'Enter') { e.preventDefault(); flagMenuConfirm(); }
