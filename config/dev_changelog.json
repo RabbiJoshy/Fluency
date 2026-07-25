@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-25",
-      "commit": "pending",
+      "commit": "9a011a7",
       "summary": "Study setup, navigation, resume, and card metadata are now unified",
       "details": [
         "Renames the visible modes to Lyrics and Speech, with subtitle dialogue identified as the source for Speech",
