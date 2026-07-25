@@ -18,6 +18,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-25 — Progress-rail Study options
+
+- Commit `569fd2e0`; front-end cache `flashcards-v90` / `20260725ai`.
+- Moved the single Study options trigger from the detached floating toolbar to the final position in the active-set progress rail, replacing the old direct set-progress info button on desktop and mobile.
+- The radial menu now contains `Set progress`, which opens the current-set stats modal. Removed its former all-time/global Progress action; global coverage remains available from setup rather than competing with set progress during study.
+- Replaced the abstract `Direction` action with the destination wording `English first` or `<selected language> first`, calculated from the current card order.
+- Mobile no longer displays the old toolbar inside the top of each card face; navigation and Study options remain together in the rail above the card.
+- Verification: one unique `studyMenuBtn` remains, no `deckProgressInfo` references remain, cache versions are in lockstep, and `git diff --check` passes. No service-worker browser preview was used.
+
 ### 2026-07-25 — Transforming language and source setup
 
 - Commit `b470516c`; front-end cache `flashcards-v89` / `20260725ah`.

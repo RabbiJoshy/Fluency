@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-25",
+      "commit": "569fd2e0",
+      "summary": "Active-study options now live beside the set progress rail",
+      "details": [
+        "Replaces the rail's separate set-progress info button with the shared radial Study options control on desktop and mobile",
+        "Moves Set progress into the radial menu, removes the redundant all-time progress action, and keeps the mobile control above rather than inside the card face",
+        "Replaces Direction with the actionable English first or selected-language first label; cache v89→v90, assets 20260725ah→20260725ai"
+      ]
+    },
+    {
+      "date": "2026-07-25",
       "commit": "b470516c",
       "summary": "Language setup is now one transforming choice with a reachable source switch",
       "details": [
