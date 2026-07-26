@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "127ea212",
+      "summary": "Mobile Spotify can activate the open phone app",
+      "details": [
+        "Mobile playback now discovers available Spotify Connect devices, favours the phone, transfers playback when it is inactive, and targets that device explicitly",
+        "Stale devices are rediscovered once, while clearer guidance remains when Spotify does not expose any controllable device",
+        "Spotify and card-reference icons are larger, more balanced tap targets; cache v107→v108, assets 20260727b→20260727c"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "895fec61",
       "summary": "Levels, unfinished sets, and Artist Extra now have clearer progression",
       "details": [

@@ -23,6 +23,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Explicit mobile Spotify Connect handoff
+
+- Commit `127ea212`; front-end cache `flashcards-v108` / `20260727c`.
+- Mobile playback now asks Spotify for available Connect devices, favours an unrestricted phone even if another desktop is active, transfers playback to an inactive phone, and sends play/pause commands with that device ID. A stale device triggers one fresh discovery before the existing Premium/no-device guidance appears.
+- Spotify controls and the conjugation, synonym, dictionary, and card-info links now use larger, consistent tap targets and artwork.
+- Verification: JavaScriptCore parsing, static discovery→transfer→targeted-play assertions, cache-version lockstep, and `git diff --check`. No service-worker browser preview was used.
+
 ### 2026-07-27 — Clearer level progression, resume, and Artist Extra unlock
 
 - Commit `895fec61`; front-end cache `flashcards-v107` / `20260727b`.
