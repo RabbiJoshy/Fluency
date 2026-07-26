@@ -21,13 +21,21 @@
   Design requirements:
   - **Tags persist end-to-end** and are the audit surface (largely a front-end concern too:
     Main vs Extra vs loanword/PN grouping reads them). Fine-grained meanings allowed.
+  - **Multi-evidence, never collapsed:** a word can hold MANY tag assertions from different
+    sources at once (word + tag + source + evidence) — cheap to store, keep them all as the
+    audit trail (e.g. "english (en-list)" AND "spanish-word (Gemini)" can coexist). A separate
+    **configurable evidence hierarchy** resolves conflicts into the effective bucket. Same
+    shape as `util_6a_method_priority.py` (assignments coexist additively; priority decides
+    the winner, never overwrites) — a trusted pattern, applied to routing tags.
   - **Over-tag > under-tag** — a false tag lands in Extra, not oblivion (the architecture
     change that makes aggressive detection safe now; the old routing was de-tuned precisely
     because false positives HID cards — that tradeoff is gone).
-  - **Cheap incremental reruns:** changing a tag/rule marks only the AFFECTED words as
-    `needs_gemini` for a targeted rerun; everything else keeps its cached Gemini result
-    (store the Extra ones so they're never re-paid). Late-stage tag edits (even post-Gemini)
-    just re-flag the minimal set.
+  - **Tag-based-rerun store, minimal + targeted:** a tag/rule change queues a word ONLY if
+    the resolved routing now FLIPS it into a needs-Gemini state (exclude→classifier /
+    sense_discovery) it has no cached result for. Moving a word TO an exclude bucket, or
+    between states it's already been classified in, queues nothing. Queued words go into an
+    explicit `tag_based_reruns` list that Josh runs as a targeted pass — never an automatic
+    Gemini call. Cached Gemini results (incl. Extra ones) are kept and never re-paid.
   - **Absorbs per-use loanword tagging** (the lean class): a word can have SOME occurrences
     tagged loanword and others target-language. Feasible without violating the counts rule
     because homographs are a small set → classify ALL their occurrences (not a capped
