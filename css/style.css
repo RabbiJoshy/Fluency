@@ -5712,6 +5712,57 @@
             margin-bottom: 15px;
         }
 
+        .settings-modal-content {
+            box-sizing: border-box;
+            width: min(94vw, 620px);
+            max-width: 620px;
+            max-height: min(88dvh, 760px);
+            padding: 0 26px 26px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-gutter: stable;
+        }
+        .settings-modal-content > .settings-tabs-header {
+            position: sticky;
+            top: 0;
+            z-index: 3;
+            margin: 0 -26px 18px;
+            padding: 8px 16px 0 26px;
+            background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .settings-modal-content .settings-tabs {
+            min-width: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .settings-modal-content .settings-tabs::-webkit-scrollbar { display: none; }
+        .settings-modal-content .settings-tab {
+            flex: 0 0 auto;
+            padding: 13px 16px;
+        }
+        .settings-data-intro {
+            margin: 3px 0 14px;
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+        .settings-row-action {
+            flex: 0 0 auto;
+            padding: 4px 9px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font: 600 10px/1 var(--font-emphasis);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .settings-row-action--warning {
+            border-color: color-mix(in srgb, var(--warning) 50%, var(--border-color));
+            color: var(--warning);
+        }
+
         .settings-tabs {
             display: flex;
             gap: 0;
@@ -5788,12 +5839,53 @@
             flex: 0 0 auto;
         }
 
+        #helpModal .modal-content,
+        .progress-modal-content {
+            box-sizing: border-box;
+            max-height: 86dvh;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
         .settings-tab-content {
             display: none;
         }
 
         .settings-tab-content.active {
             display: block;
+        }
+
+        @media (max-width: 600px) {
+            #settingsModal {
+                align-items: flex-end;
+            }
+            .settings-modal-content {
+                width: 100%;
+                max-height: 92dvh;
+                margin: 0;
+                padding: 0 18px max(22px, env(safe-area-inset-bottom));
+                border-radius: 22px 22px 0 0;
+            }
+            .settings-modal-content > .settings-tabs-header {
+                margin: 0 -18px 16px;
+                padding: 7px 10px 0 18px;
+            }
+            .settings-modal-content .settings-tab {
+                padding: 13px 12px;
+                font-size: 13px;
+            }
+            .settings-default-row {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px 0;
+            }
+            .settings-default-row .settings-toggle {
+                width: 100%;
+            }
+            .settings-default-row .settings-toggle .group-size-btn {
+                flex: 1;
+            }
         }
 
         /* Section labels in the Artists settings tab — "Main artist" /
@@ -6772,6 +6864,62 @@
             font-size: clamp(30px, 8vw, 50px);
             letter-spacing: 0;
             text-shadow: none;
+        }
+
+        /* Study options reuse the radial interaction without borrowing the
+           loud picture-picker palette. Neutral icon discs make seven actions
+           readable as one control family on both desktop and mobile. */
+        .study-radial-picker {
+            background: rgba(7, 9, 14, 0.76);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .study-radial-picker .artist-radial-stage {
+            width: min(90vw, 82vh, 500px);
+            height: min(90vw, 82vh, 500px);
+        }
+        .study-radial-picker .artist-radial-hub {
+            width: 27%;
+            height: 27%;
+            background: color-mix(in srgb, var(--bg-secondary) 92%, black);
+            border-color: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.42);
+        }
+        .study-radial-picker .artist-radial-thumb {
+            width: 25%;
+            gap: 7px;
+        }
+        .study-radial-picker .artist-radial-disc {
+            width: min(17vw, 17vh, 82px);
+            height: min(17vw, 17vh, 82px);
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            background: color-mix(in srgb, var(--bg-tertiary) 90%, black);
+            color: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+            text-shadow: none;
+        }
+        .artist-radial-disc--icon svg {
+            width: 42%;
+            height: 42%;
+            pointer-events: none;
+        }
+        .study-radial-picker .artist-radial-thumb:hover .artist-radial-disc,
+        .study-radial-picker .artist-radial-thumb:focus-visible .artist-radial-disc {
+            transform: translateY(-2px);
+            border-color: color-mix(in srgb, var(--accent-primary) 58%, white);
+            background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
+            box-shadow: 0 9px 22px rgba(0, 0, 0, 0.38);
+        }
+        .study-radial-picker .artist-radial-label {
+            max-width: 112px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: clamp(10px, 2.5vw, 13px);
+            font-weight: 550;
+            line-height: 1.15;
+            overflow: visible;
+            text-overflow: clip;
+            white-space: normal;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.72);
         }
 
         .artist-radial-label {

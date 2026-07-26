@@ -17,6 +17,8 @@ function applyGlobalStudyDefaults() {
     const saved = readGlobalStudyDefaults();
     useLemmaMode = saved.mergeLemmas === true;
     excludeCognates = saved.excludeCognates === true;
+    isFlipped = saved.directionFlipped === true;
+    speechEnabled = saved.speechEnabled !== false;
     syncStudyPreferenceControls();
 }
 
@@ -27,14 +29,30 @@ function syncStudyPreferenceControls() {
         button.classList.toggle('selected', (button.dataset.cognate === 'exclude') === excludeCognates));
 
     const saved = readGlobalStudyDefaults();
+    const effective = {
+        mergeLemmas: saved.mergeLemmas === true,
+        excludeCognates: saved.excludeCognates === true,
+        directionFlipped: saved.directionFlipped === true,
+        speechEnabled: saved.speechEnabled !== false
+    };
     document.querySelectorAll('.global-study-default-btn').forEach(button => {
         const value = button.dataset.value === 'on';
-        const selected = button.dataset.setting === 'mergeLemmas'
-            ? value === (saved.mergeLemmas === true)
-            : value === (saved.excludeCognates === true);
+        const selected = value === effective[button.dataset.setting];
         button.classList.toggle('selected', selected);
         button.setAttribute('aria-pressed', selected ? 'true' : 'false');
     });
+}
+
+function saveGlobalStudyPreference(setting, value) {
+    const saved = readGlobalStudyDefaults();
+    saved[setting] = !!value;
+    try {
+        localStorage.setItem(GLOBAL_STUDY_DEFAULTS_KEY, JSON.stringify(saved));
+    } catch (_) {
+        return false;
+    }
+    syncStudyPreferenceControls();
+    return true;
 }
 
 async function refreshAfterGlobalStudyDefaultChange() {
@@ -56,15 +74,17 @@ function setupGlobalStudyDefaults() {
     syncStudyPreferenceControls();
     document.querySelectorAll('.global-study-default-btn').forEach(button => {
         button.addEventListener('click', async function() {
-            const saved = readGlobalStudyDefaults();
-            saved[this.dataset.setting] = this.dataset.value === 'on';
-            try {
-                localStorage.setItem(GLOBAL_STUDY_DEFAULTS_KEY, JSON.stringify(saved));
-            } catch (_) {
-                return;
-            }
+            const setting = this.dataset.setting;
+            const enabled = this.dataset.value === 'on';
+            if (!saveGlobalStudyPreference(setting, enabled)) return;
             applyGlobalStudyDefaults();
-            await refreshAfterGlobalStudyDefaultChange();
+            if (setting === 'mergeLemmas' || setting === 'excludeCognates') {
+                await refreshAfterGlobalStudyDefaultChange();
+            } else {
+                document.getElementById('flashcard')?.classList.remove('flipped');
+                window.updateSpeakIcons?.();
+                if (flashcards.length > 0) window.updateCard?.();
+            }
         });
     });
 }
@@ -1900,11 +1920,13 @@ function showSettingsModalWithTab(tabName) {
     }
 
     // Switch to specified tab
-    document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
-    document.querySelector(`.settings-tab[data-tab="${tabName}"]`).classList.add('active');
-    document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+    const settingsModal = document.getElementById('settingsModal');
+    settingsModal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+    settingsModal.querySelector(`.settings-tab[data-tab="${tabName}"]`)?.classList.add('active');
+    settingsModal.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
     const tabContentId = tabName === 'settings' ? 'settingsTabContent' :
                          tabName === 'artists' ? 'artistsTabContent' :
+                         tabName === 'data' ? 'dataTabContent' :
                          tabName === 'stats' ? 'statsTabContent' : 'accountTabContent';
     document.getElementById(tabContentId).classList.add('active');
 
@@ -1932,7 +1954,7 @@ function showSettingsModalWithTab(tabName) {
         }
     }
 
-    document.getElementById('settingsModal').classList.remove('hidden');
+    settingsModal.classList.remove('hidden');
 }
 
 // Verbose data-provenance block for the JST (dev) account only: per-file
@@ -2368,6 +2390,8 @@ window.showStatsModal = showStatsModal;
 window.hideStatsModal = hideStatsModal;
 window.showSettingsModal = showSettingsModal;
 window.showSettingsModalWithTab = showSettingsModalWithTab;
+window.applyGlobalStudyDefaults = applyGlobalStudyDefaults;
+window.saveGlobalStudyPreference = saveGlobalStudyPreference;
 window.hideSettingsModal = hideSettingsModal;
 window.showTotalStatsModal = showTotalStatsModal;
 window.hideTotalStatsModal = hideTotalStatsModal;

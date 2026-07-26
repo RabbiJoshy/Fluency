@@ -872,18 +872,22 @@ function initializeApp() {
         if (!window.showRadialPicker) return;
         const targetLanguage = config.languages[selectedLanguage]?.name || selectedLanguage || 'Target language';
         const switchOrderLabel = isFlipped ? `${targetLanguage} first` : 'English first';
+        const icon = body => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
         window.showRadialPicker({
             id: 'studyRadialPicker',
             ariaLabel: 'Study options',
             hubHTML: 'Study<br>options',
+            className: 'study-radial-picker',
             entries: [
-                { label: 'Change set', fallbackText: '↩', accent: 'var(--accent-secondary)', onSelect: () => goBackToSetup() },
-                { label: 'Shuffle', fallbackText: '⇄', accent: 'var(--accent-primary)', onSelect: () => shuffleCards() },
-                { label: switchOrderLabel, fallbackText: '⇆', accent: '#6366f1', onSelect: () => flipDirection() },
-                { label: speechEnabled ? 'Mute audio' : 'Enable audio', fallbackText: speechEnabled ? '🔊' : '🔇', accent: '#06b6d4', onSelect: () => toggleAutoSpeak() },
-                { label: 'Set progress', fallbackText: '▥', accent: '#22c55e', onSelect: () => showStatsModal() },
-                { label: 'Settings', fallbackText: '⚙', accent: '#a855f7', onSelect: () => showSettingsModal() },
-                { label: 'Help', fallbackText: 'ⓘ', accent: '#f59e0b', onSelect: () => openHelpModal() }
+                { label: 'Change set', iconHTML: icon('<path d="M9 7H5v12h12v-4"></path><path d="m9 11-4-4 4-4"></path><path d="M5 7h9a5 5 0 0 1 5 5"></path>'), onSelect: () => goBackToSetup() },
+                { label: 'Shuffle', iconHTML: icon('<path d="M3 6h3c4 0 5 12 9 12h6"></path><path d="m18 15 3 3-3 3"></path><path d="M3 18h3c1.7 0 2.9-2.1 4-4.6"></path><path d="M14 6h7"></path><path d="m18 3 3 3-3 3"></path>'), onSelect: () => shuffleCards() },
+                { label: switchOrderLabel, iconHTML: icon('<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>'), onSelect: () => flipDirection() },
+                { label: speechEnabled ? 'Mute speech' : 'Enable speech', iconHTML: speechEnabled
+                    ? icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path>')
+                    : icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 10 5 5"></path><path d="m21 10-5 5"></path>'), onSelect: () => toggleAutoSpeak() },
+                { label: 'Set progress', iconHTML: icon('<path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path>'), onSelect: () => showStatsModal() },
+                { label: 'Preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModal() },
+                { label: 'Help', iconHTML: icon('<circle cx="12" cy="12" r="9"></circle><path d="M9.8 9a2.4 2.4 0 1 1 3.5 2.1c-.9.5-1.3 1.1-1.3 2"></path><path d="M12 17h.01"></path>'), onSelect: () => openHelpModal() }
             ]
         });
     };
@@ -1447,7 +1451,9 @@ function pressAnswerBtn(id) {
 
 function toggleAutoSpeak() {
     speechEnabled = !speechEnabled;
+    window.saveGlobalStudyPreference?.('speechEnabled', speechEnabled);
     updateSpeakIcons();
+    window.saveStudySessionSnapshot?.();
 }
 
 function updateSpeakIcons() {
@@ -1742,7 +1748,6 @@ async function goBackToSetup() {
     currentMeaningIndex = 0;
     currentExampleIndex = 0;
     currentMWEIndex = 0;
-    isFlipped = false;
 
     // Always load PPM data if available (needed for coverage bar even in CEFR mode)
     if (!ppmData || ppmData.length === 0) {
@@ -3580,6 +3585,7 @@ function shuffleCards() {
 
 function flipDirection() {
     isFlipped = !isFlipped;
+    window.saveGlobalStudyPreference?.('directionFlipped', isFlipped);
     document.getElementById('flashcard').classList.remove('flipped');
     updateCard();
 }
@@ -3797,6 +3803,8 @@ window.showFreqInfo = function showFreqInfo(event, count) {
     }, 2200);
 };
 window.flipDirection = flipDirection;
+window.toggleAutoSpeak = toggleAutoSpeak;
+window.updateSpeakIcons = updateSpeakIcons;
 window.getPosColorClass = getPosColorClass;
 window.updateReverseButton = updateReverseButton;
 window.updateStats = updateStats;
@@ -3891,7 +3899,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260726l';
+const ASSET_VERSION = '20260727a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

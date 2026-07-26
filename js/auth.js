@@ -1230,16 +1230,17 @@ function setupAuthEventListeners() {
     });
 
     // Settings modal tabs
-    document.querySelectorAll('.settings-tab').forEach(tab => {
+    const settingsModal = document.getElementById('settingsModal');
+    settingsModal.querySelectorAll('.settings-tab').forEach(tab => {
         tab.addEventListener('click', function() {
             const tabName = this.dataset.tab;
 
             // Update active tab button
-            document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+            settingsModal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
 
             // Update active tab content
-            document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+            settingsModal.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
             document.getElementById(tabName + 'TabContent').classList.add('active');
         });
     });
@@ -1248,7 +1249,7 @@ function setupAuthEventListeners() {
     document.getElementById('closeSettingsModal').addEventListener('click', hideSettingsModal);
 
     // Click outside settings modal to close
-    document.getElementById('settingsModal').addEventListener('click', function(e) {
+    settingsModal.addEventListener('click', function(e) {
         if (e.target === this) {
             hideSettingsModal();
         }

@@ -81,6 +81,7 @@ function saveStudySessionSnapshot() {
         excludeNoise,
         excludeEnglishLoanwords,
         directionFlipped: isFlipped,
+        speechEnabled,
         cardFaceFlipped: document.getElementById('flashcard')?.classList.contains('flipped') || false,
         currentFullId: card.fullId,
         currentVocabularyRank: card.vocabularyRank || card.rank || null,
@@ -131,6 +132,7 @@ async function resumeLastStudySession() {
     excludeNoise = snapshot.excludeNoise !== false;
     excludeEnglishLoanwords = snapshot.excludeEnglishLoanwords !== false;
     isFlipped = !!snapshot.directionFlipped;
+    if (typeof snapshot.speechEnabled === 'boolean') speechEnabled = snapshot.speechEnabled;
     window.renderArtistSourceSummary?.();
     if (snapshot.mode === 'lyrics' && snapshot.artistSlugs?.length) {
         const oldKey = (window._selectedArtistSlugs || []).slice().sort().join(',');
@@ -1571,10 +1573,14 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 currentExampleIndex = Math.max(0, resumeSnapshot.currentExampleIndex || 0);
                 currentMWEIndex = Math.max(0, resumeSnapshot.currentMWEIndex || 0);
                 isFlipped = !!resumeSnapshot.directionFlipped;
+                if (typeof resumeSnapshot.speechEnabled === 'boolean') {
+                    speechEnabled = resumeSnapshot.speechEnabled;
+                }
             }
 
             // Initialize card display
             initializeApp();
+            window.updateSpeakIcons?.();
             if (resumeSnapshot?.cardFaceFlipped) flashcardEl?.classList.add('flipped');
             else flashcardEl?.classList.remove('flipped');
             saveStudySessionSnapshot();

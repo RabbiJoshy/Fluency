@@ -1,16 +1,16 @@
-import './state.js?v=20260726l';
-import './sync-queue.js?v=20260726l';
-import './speech.js?v=20260726l';
-import './artist-ui.js?v=20260726l';
-import './auth.js?v=20260726l';
-import './spotify.js?v=20260726l';
-import './estimation.js?v=20260726l';
-import './config.js?v=20260726l';
-import './progress.js?v=20260726l';
-import './knowledge.js?v=20260726l';
-import './ui.js?v=20260726l';
-import './vocab.js?v=20260726l';
-import './flashcards.js?v=20260726l';
+import './state.js?v=20260727a';
+import './sync-queue.js?v=20260727a';
+import './speech.js?v=20260727a';
+import './artist-ui.js?v=20260727a';
+import './auth.js?v=20260727a';
+import './spotify.js?v=20260727a';
+import './estimation.js?v=20260727a';
+import './config.js?v=20260727a';
+import './progress.js?v=20260727a';
+import './knowledge.js?v=20260727a';
+import './ui.js?v=20260727a';
+import './vocab.js?v=20260727a';
+import './flashcards.js?v=20260727a';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -400,7 +400,7 @@ function wireExtraScopeModal() {
 window.openExtraScopeModal = openExtraScopeModal;
 
 // Shared radial "clock of pictures" picker used by artists and languages.
-function showRadialPicker({ id, ariaLabel, hubHTML, entries }) {
+function showRadialPicker({ id, ariaLabel, hubHTML, entries, className = '' }) {
     const existing = document.getElementById(id);
     if (existing) { closeRadialPicker(id); return; }
 
@@ -409,6 +409,7 @@ function showRadialPicker({ id, ariaLabel, hubHTML, entries }) {
     const overlay = document.createElement('div');
     overlay.id = id;
     overlay.className = 'artist-radial-overlay';
+    if (className) overlay.classList.add(...className.split(/\s+/).filter(Boolean));
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', ariaLabel);
@@ -446,7 +447,10 @@ function showRadialPicker({ id, ariaLabel, hubHTML, entries }) {
 
         const disc = document.createElement('span');
         disc.className = 'artist-radial-disc';
-        if (entry.image) {
+        if (entry.iconHTML) {
+            disc.classList.add('artist-radial-disc--icon');
+            disc.innerHTML = entry.iconHTML;
+        } else if (entry.image) {
             disc.style.backgroundImage = `url('${entry.image}')`;
         } else {
             disc.classList.add('artist-radial-disc--fallback');
