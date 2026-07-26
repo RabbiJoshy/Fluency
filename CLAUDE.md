@@ -71,6 +71,8 @@ Fluency/
 
 ## Working with the Human
 
+**Name pipeline steps canonically.** Josh does NOT track the numeric step labels. Whenever you mention a step, give its canonical filename **and** a one-phrase purpose — e.g. "`step_4a_filter_known_vocab` (word routing)", "`step_6c_assign_senses_gemini` (the Gemini classifier)", "`step_8b_assemble_artist_vocabulary` (deck assembly)" — never just "step 4a" or "step 6" on its own.
+
 **Long-running commands:** Pipeline steps and other slow processes (>30s) should NOT be run inline. Print the command for Josh to run in his terminal — saves tokens and shows real-time progress.
 
 **No browser previews:** Do NOT use preview tools or Claude-in-Chrome. Service worker caching makes previews unreliable. Josh tests in his own browser.
