@@ -1,5 +1,6 @@
 # Fluency — AI Reference
 
+> **Multi-agent:** Two agents work this repo concurrently — see `COLLABORATION.md`. Claude owns the **pipeline/data engine** (`pipeline/`, `Data/`, `Artists/`, `docs/`, backlog in `TODO_PIPELINE.md`); Codex owns the **app surface** (`js/`, `css/`, `index.html`, `service-worker.js`, `dev_changelog.json`, `TODO.md`) and cache-version bumps. Stay on the engine side unless a cross-boundary task is explicitly agreed.
 > **Don't bulk-read layer JSON files** (`vocabulary_master.json`, `sense_assignments/*.json`, etc.) — Grep them for the keys you need.
 > **For deep reference** (file formats, builder flags, step internals, pipeline behaviors), read the linked `docs/reference/` files on demand.
 

@@ -1,6 +1,12 @@
 # Fluency — Codex Instructions
 
-Read `CLAUDE.md` first. It is the repository-wide architecture and workflow reference even when the active coding agent is Codex. Then read the nearest scoped `CLAUDE.md` for the files being changed (`js/CLAUDE.md`, `pipeline/CLAUDE.md`, `Artists/CLAUDE.md`, and so on).
+**Read `COLLABORATION.md` first.** Two agents work this repo concurrently. Codex owns the
+**product/app surface** (`js/`, `css/`, `index.html`, `service-worker.js`,
+`config/dev_changelog.json`, `CODEX_CHANGES.md`, `TODO.md`) and the cache-version bumps;
+Claude owns the **pipeline/data engine** (`pipeline/`, `Data/`, `Artists/`, `docs/`,
+`TODO_PIPELINE.md`). Stay on Codex's side unless a cross-boundary task is explicitly agreed.
+
+Read `CLAUDE.md` next. It is the repository-wide architecture and workflow reference even when the active coding agent is Codex. Then read the nearest scoped `CLAUDE.md` for the files being changed (`js/CLAUDE.md`, `pipeline/CLAUDE.md`, `Artists/CLAUDE.md`, and so on).
 
 Before continuing work previously touched by Codex, read `CODEX_CHANGES.md`. After every completed Codex task:
 
