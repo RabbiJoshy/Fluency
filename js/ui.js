@@ -524,6 +524,12 @@ async function renderLevelSelector(language) {
     }
     if (!selectedLevel) setActiveSetupStep('step2');
 
+    // Artist Extra replaces frequency levels with category groups.
+    if (activeArtist && artistVocabularyScope === 'extra') {
+        await renderExtraCategorySelector(container, language);
+        return;
+    }
+
     // Debug logging
     console.log('renderLevelSelector called:', { percentageMode, ppmDataLength: ppmData ? ppmData.length : 0, language });
 
@@ -719,6 +725,107 @@ async function renderLevelSelector(language) {
         levelProgressPromise.catch(err =>
             console.warn('Level progress indicators unavailable', err));
     }
+}
+
+function _escapeAttr(value) {
+    return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+// Artist Extra category picker. Replaces the frequency slider with one pickable
+// group per distinct `extra_category` value. Each category is backed by a
+// hidden `.level-btn` carrying its category rank block, so the existing
+// renderRangeSelector()/study-set machinery pages through it unchanged. If the
+// data has no categories yet, buildFilteredVocab() returns a single "All Extra"
+// group and this renders one chip.
+async function renderExtraCategorySelector(container, language) {
+    const langConfig = config.languages[language];
+    let vocabularyData = [];
+    try {
+        vocabularyData = await fetchActiveVocabularyData(langConfig);
+    } catch (error) {
+        console.error('Failed to load vocabulary data for Extra categories:', error);
+    }
+    // Populate categoryRank + the ordered group metadata.
+    buildFilteredVocab(vocabularyData);
+    const groups = (window.getExtraCategoryGroups?.() || []);
+
+    container.classList.remove('level-selector--slider');
+
+    if (groups.length === 0) {
+        container.innerHTML = '<div class="study-set-empty">No Extra vocabulary is available with the current settings.</div>';
+        return;
+    }
+
+    const chipsHTML = groups.map((group, index) => `
+        <button type="button" class="extra-category-chip" data-cat-index="${index}"
+                role="radio" aria-checked="false"
+                aria-label="${_escapeAttr(group.label)}, ${group.count} word${group.count === 1 ? '' : 's'}">
+            <span class="extra-category-chip-label">${_escapeAttr(group.label)}</span>
+            <span class="extra-category-chip-count">${group.count.toLocaleString()}</span>
+        </button>
+    `).join('');
+
+    const hiddenButtonsHTML = groups.map(group => `
+        <button class="level-btn" data-level="cat:${_escapeAttr(group.key)}"
+                data-short="${_escapeAttr(group.label)}" data-full="${_escapeAttr(group.label)}"
+                data-start-rank="${group.startRank}" data-end-rank="${group.endRank}"
+                data-rank-basis="category" title="${_escapeAttr(group.label)}">
+            ${_escapeAttr(group.label)}
+        </button>
+    `).join('');
+
+    container.innerHTML = `
+        <div class="extra-category-selector">
+            <p class="extra-category-intro">Extra vocabulary is grouped by kind, not by how often it appears. Pick a group to study.</p>
+            <div class="extra-category-chips" role="radiogroup" aria-label="Extra vocabulary categories">
+                ${chipsHTML}
+            </div>
+        </div>
+        <div class="level-selector-buttons" style="display:none">${hiddenButtonsHTML}</div>
+    `;
+
+    const hiddenButtons = Array.from(container.querySelectorAll('.level-selector-buttons .level-btn'));
+    const chips = Array.from(container.querySelectorAll('.extra-category-chip'));
+
+    const selectCategory = index => {
+        hiddenButtons.forEach((btn, i) => btn.classList.toggle('selected', i === index));
+        chips.forEach((chip, i) => {
+            const selected = i === index;
+            chip.classList.toggle('selected', selected);
+            chip.setAttribute('aria-checked', selected ? 'true' : 'false');
+        });
+        selectedLevel = hiddenButtons[index].dataset.level;
+        // Extra keeps the same optional filters as Main.
+        document.getElementById('lemmaToggleContainer').style.display = 'block';
+        setTimeout(() => {
+            if (cognateFieldAvailable) {
+                document.getElementById('cognateToggleContainer').style.display = 'block';
+            }
+        }, 75);
+        renderRangeSelector().catch(err => console.error('Error rendering Extra ranges:', err));
+    };
+
+    // Wire hidden buttons so getNextStudyLevelMeta()/startNextStudyLevelFirstSet()
+    // (which .click() the next .level-btn) reuse this exact selection path.
+    hiddenButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => selectCategory(index));
+    });
+    chips.forEach((chip, index) => {
+        chip.addEventListener('click', () => hiddenButtons[index].click());
+    });
+
+    // Preserve a still-valid saved category selection, else pick the first.
+    let initialIndex = 0;
+    if (selectedLevel) {
+        const saved = hiddenButtons.findIndex(btn => btn.dataset.level === selectedLevel);
+        if (saved >= 0) initialIndex = saved;
+        else selectedLevel = null;
+    }
+    hiddenButtons[initialIndex].click();
 }
 
 // Smart-range cache: computed snap points for the active source baseline.
@@ -928,6 +1035,7 @@ function _levelBandMetrics(level, samples = null) {
 }
 
 function _levelRankAccessor(rankBasis) {
+    if (rankBasis === 'category') return item => item.categoryRank;
     if (rankBasis === 'stable') return item => item.stableRank;
     if (rankBasis === 'display') return item => item.displayRank;
     return item => item.rank;
@@ -1404,8 +1512,15 @@ async function renderRangeSelector() {
     let minWord, maxWord;
     let rankBasis = 'source';
 
-    if (percentageMode && ppmData && ppmData.length > 0) {
-        const selectedBtn = document.querySelector('.level-btn.selected');
+    const selectedLevelBtn = document.querySelector('.level-btn.selected');
+    // Artist Extra category groups carry their own rank block on the selected
+    // level button and are independent of percentage/CEFR mode.
+    if (selectedLevelBtn?.dataset.rankBasis === 'category') {
+        minWord = parseInt(selectedLevelBtn.dataset.startRank);
+        maxWord = parseInt(selectedLevelBtn.dataset.endRank);
+        rankBasis = 'category';
+    } else if (percentageMode && ppmData && ppmData.length > 0) {
+        const selectedBtn = selectedLevelBtn;
         if (!selectedBtn) return;
         minWord = parseInt(selectedBtn.dataset.startRank);
         maxWord = parseInt(selectedBtn.dataset.endRank);
@@ -1563,8 +1678,13 @@ async function renderRangeSelector() {
             dot.setAttribute('aria-checked', selected ? 'true' : 'false');
         });
         document.getElementById('studySetCurrentTitle').textContent = `Set ${index + 1} of ${ranges.length}`;
+        // Extra sets page within a category, so position labels read as "Words"
+        // rather than frequency "Ranks".
+        const positionLabel = rankBasis === 'category'
+            ? `Words ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()} in this group`
+            : `Ranks ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()}`;
         document.getElementById('studySetCurrentMeta').textContent =
-            `Ranks ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()} · ${range.unseenCount} new · ${range.reviewCount} to review · ${range.pct}% seen`;
+            `${positionLabel} · ${range.unseenCount} new · ${range.reviewCount} to review · ${range.pct}% seen`;
         const startBtn = document.getElementById('studySetStartBtn');
         startBtn.textContent = range.unseenCount > 0
             ? `Learn ${range.unseenCount} new card${range.unseenCount === 1 ? '' : 's'}`
@@ -1640,7 +1760,12 @@ function getNextStudyLevelMeta() {
     }
     return {
         level: next.dataset.level,
-        levelNumber: currentIndex + 2
+        levelNumber: currentIndex + 2,
+        // In Extra scope the next "level" is another category — carry its label
+        // so the finish button can name the group instead of a level number.
+        label: activeArtist && artistVocabularyScope === 'extra'
+            ? (next.dataset.full || null)
+            : null
     };
 }
 

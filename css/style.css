@@ -3738,15 +3738,38 @@
         }
         .artist-vocabulary-scope {
             grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr);
-            align-items: center;
-            gap: 10px;
-            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 10px 10px 4px;
             border-top: 1px solid var(--border-color);
             color: var(--text-muted);
             font-family: var(--font-reading);
             font-size: 11px;
+        }
+        .artist-vocabulary-scope-title {
+            font-family: var(--font-emphasis);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        /* The static explainer now carries the Main/Extra description, so the
+           dynamic one-line hint is redundant on the setup page. */
+        #artistVocabularyScopeHint {
+            display: none;
+        }
+        .artist-vocabulary-scope-explainer {
+            margin: 0;
+            line-height: 1.5;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .artist-vocabulary-scope-explainer strong {
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
         }
         .artist-vocabulary-scope-buttons {
             display: inline-grid;
@@ -3804,6 +3827,124 @@
             font-size: 12px;
             line-height: 1.35;
             text-align: center;
+        }
+
+        /* --- Extra scope confirm modal --- */
+        .extra-scope-body {
+            padding: 4px 4px 0;
+            color: var(--text-secondary);
+            font-family: var(--font-reading);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+        .extra-scope-body p {
+            margin: 0 0 12px;
+        }
+        .extra-scope-lead strong,
+        .extra-scope-note strong {
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
+        }
+        .extra-scope-points {
+            margin: 0 0 14px;
+            padding-left: 20px;
+            display: grid;
+            gap: 6px;
+        }
+        .extra-scope-points li {
+            list-style: disc;
+        }
+        .extra-scope-note {
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: color-mix(in srgb, var(--accent-secondary) 8%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent-secondary) 30%, var(--border-color));
+            font-size: 13px;
+        }
+        .extra-scope-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .extra-scope-cancel {
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-emphasis);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .extra-scope-cancel:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-primary);
+        }
+        .extra-scope-confirm.range-btn-new {
+            width: auto;
+            min-width: 180px;
+            margin: 0;
+            padding: 11px 18px;
+        }
+
+        /* --- Extra category (level replacement) selector --- */
+        .extra-category-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .extra-category-intro {
+            margin: 0;
+            color: var(--text-muted);
+            font-family: var(--font-reading);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .extra-category-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .extra-category-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-family: var(--font-emphasis);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: border-color 0.15s ease, background 0.15s ease;
+        }
+        .extra-category-chip:hover {
+            background: var(--bg-card-hover);
+            border-color: color-mix(in srgb, var(--accent-primary) 55%, var(--border-color));
+        }
+        .extra-category-chip.selected {
+            background: color-mix(in srgb, var(--accent-primary) 20%, var(--bg-tertiary));
+            color: var(--text-primary);
+            border-color: color-mix(in srgb, var(--accent-primary) 60%, transparent);
+            box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent-primary) 45%, transparent);
+        }
+        .extra-category-chip-count {
+            padding: 1px 8px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--border-color) 60%, transparent);
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .extra-category-chip.selected .extra-category-chip-count {
+            background: color-mix(in srgb, var(--accent-primary) 30%, transparent);
+            color: var(--text-primary);
         }
 
         .lang-tab {

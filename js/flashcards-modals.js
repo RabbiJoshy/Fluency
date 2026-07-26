@@ -935,7 +935,7 @@ function showEndOfDeckOptions() {
             finishBtn.classList.add('has-next-set');
             finishBtn.style.display = '';
         } else if (nextLevel) {
-            finishLabel.textContent = nextLevel.scope === 'extra'
+            finishLabel.textContent = (nextLevel.scope === 'extra' || nextLevel.label)
                 ? `Start ${nextLevel.label}`
                 : `Start Level ${nextLevel.levelNumber}, Set 1`;
             finishIcon.textContent = '→';

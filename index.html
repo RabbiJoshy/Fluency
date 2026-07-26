@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260726d">
-    <link rel="modulepreload" href="js/state.js?v=20260726d">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260726d">
-    <link rel="modulepreload" href="js/speech.js?v=20260726d">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260726d">
-    <link rel="modulepreload" href="js/auth.js?v=20260726d">
-    <link rel="modulepreload" href="js/spotify.js?v=20260726d">
-    <link rel="modulepreload" href="js/estimation.js?v=20260726d">
-    <link rel="modulepreload" href="js/config.js?v=20260726d">
-    <link rel="modulepreload" href="js/progress.js?v=20260726d">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260726d">
-    <link rel="modulepreload" href="js/ui.js?v=20260726d">
-    <link rel="modulepreload" href="js/vocab.js?v=20260726d">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260726d">
+    <link rel="modulepreload" href="js/main.js?v=20260726e">
+    <link rel="modulepreload" href="js/state.js?v=20260726e">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260726e">
+    <link rel="modulepreload" href="js/speech.js?v=20260726e">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260726e">
+    <link rel="modulepreload" href="js/auth.js?v=20260726e">
+    <link rel="modulepreload" href="js/spotify.js?v=20260726e">
+    <link rel="modulepreload" href="js/estimation.js?v=20260726e">
+    <link rel="modulepreload" href="js/config.js?v=20260726e">
+    <link rel="modulepreload" href="js/progress.js?v=20260726e">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260726e">
+    <link rel="modulepreload" href="js/ui.js?v=20260726e">
+    <link rel="modulepreload" href="js/vocab.js?v=20260726e">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260726e">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -258,11 +258,17 @@
                         Switch to Speech
                     </button>
                     <div class="artist-vocabulary-scope" id="artistVocabularyScope" role="group" aria-label="Artist vocabulary">
+                        <span class="artist-vocabulary-scope-title">Vocabulary set</span>
                         <div class="artist-vocabulary-scope-buttons">
                             <button type="button" class="artist-vocabulary-scope-btn selected" data-artist-scope="main" aria-pressed="true">Main</button>
                             <button type="button" class="artist-vocabulary-scope-btn" data-artist-scope="extra" aria-pressed="false">Extra</button>
                         </div>
                         <span id="artistVocabularyScopeHint">Recurring lemma families</span>
+                        <p class="artist-vocabulary-scope-explainer">
+                            <strong>Main</strong> is the core, most useful vocabulary — words that come up again and again across the lyrics. Start here.
+                            <br>
+                            <strong>Extra</strong> is supplementary: words that appear only once, plus loanwords, names, and slang. Worth learning once you've mostly finished Main.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -862,6 +868,30 @@
         </div>
     </div>
 
+    <!-- Extra vocabulary explainer / confirm modal -->
+    <div id="extraScopeModal" class="modal hidden">
+        <div class="modal-content extra-scope-modal-content" style="max-width: 520px;">
+            <div class="modal-header">
+                <h3>Switch to Extra vocabulary?</h3>
+                <button class="modal-close" id="closeExtraScopeModal" aria-label="Close">✕</button>
+            </div>
+            <div class="extra-scope-body">
+                <p class="extra-scope-lead"><strong id="extraScopeArtistName">Extra</strong> is a second, supplementary set of vocabulary — separate from the Main deck you've been studying.</p>
+                <p>It collects the words that don't recur across the lyrics:</p>
+                <ul class="extra-scope-points">
+                    <li>Words that appear only once</li>
+                    <li>Loanwords and English code-switches</li>
+                    <li>Names, places, and slang</li>
+                </ul>
+                <p class="extra-scope-note">It's grouped by kind rather than by frequency, and it's best tackled once you've mostly finished Main. Your Main progress stays exactly where it is — you can switch back any time.</p>
+            </div>
+            <div class="extra-scope-actions">
+                <button type="button" class="extra-scope-cancel" id="cancelExtraScopeBtn">Stay on Main</button>
+                <button type="button" class="range-btn-new extra-scope-confirm" id="confirmExtraScopeBtn">Switch to Extra mode</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Stats Modal -->
     <div id="statsModal" class="modal hidden">
         <div class="modal-content progress-modal-content">
@@ -1118,6 +1148,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260726d"></script>
+    <script type="module" src="js/main.js?v=20260726e"></script>
 </body>
 </html>

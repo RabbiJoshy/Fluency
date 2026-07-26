@@ -21,6 +21,16 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-26 — Extra explainer, confirm gate, and category grouping (Claude front-end task)
+
+- Commit `e87fc61f`; front-end cache `flashcards-v98` / `20260726e`. Authored by Claude under an explicit front-end task; recorded here so the app-owner agent sees the change.
+- Setup now states plainly that Main is the core recurring vocabulary and Extra is supplementary (one-off words, loanwords, names, slang) best after mostly finishing Main. The dynamic one-line scope hint is hidden in favour of the static two-part explainer.
+- Extra is no longer a plain toggle: the Extra scope button opens `#extraScopeModal`, a modal matching the app aesthetic, with an explicit `Switch to Extra mode` confirm plus a `Stay on Main` cancel and backdrop/✕ dismissal. Main still switches directly. `openExtraScopeModal()`/`wireExtraScopeModal()` live in `main.js`.
+- Extra replaces frequency levels with category groups read from a per-entry `extra_category` string. `buildFilteredVocab()` (vocab.js) stamps a contiguous, category-blocked `categoryRank` on each Extra entry and exposes ordered group metadata via `window.getExtraCategoryGroups()`. `renderExtraCategorySelector()` (ui.js) renders one chip per distinct value backed by a hidden `.level-btn` with `data-rank-basis="category"`, so the existing study-set paging, next-set/next-level, resume, and stats machinery work unchanged. `_levelRankAccessor`, `renderRangeSelector`, and `loadVocabularyData`'s slice all learned the `category` basis.
+- Fallback: the category list is NOT hardcoded. Distinct present values are rendered with a label map (`loanword`→Loanwords, `english`→English words, `cognate`→Cognates, `proper_noun`→Names & places, `slang`→Slang & informal, `single_occurrence`→One-off words, plus a few more) and a title-cased default for unknown values. If NO entry carries `extra_category`, everything collapses into one `All Extra` group so nothing breaks before the pipeline populates the field.
+- Boundaries assumed for the app-owner to double-check: (1) `extra_category` is read case-insensitively off the joined per-entry object (the same object `joinWithMaster`/`buildFilteredVocab` produce) — if the pipeline emits it under a nested key or on senses rather than the entry, the join step must surface it onto the entry. (2) Extra category grouping applies only when `activeArtist && artistVocabularyScope === 'extra'`. (3) Category order is by descending count then label; group set membership pages the incoming frequency/pooled order in 20-card slots.
+- Verification: JavaScriptCore module parsing of `vocab.js`, `ui.js`, `main.js`, `flashcards-modals.js`; cache-version lockstep (SW `CACHE_NAME`+`ASSET_VERSION`, every `?v=` tag in `main.js`/`index.html`). No service-worker browser preview was used (project policy).
+
 ### 2026-07-26 — Granular sense and Expression knowledge
 
 - Commit `2de025d7`; front-end cache `flashcards-v97` / `20260726d`.

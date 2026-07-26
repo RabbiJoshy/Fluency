@@ -651,6 +651,112 @@ function artistItemMatchesScope(item) {
     return artistVocabularyScope === 'extra' ? isExtra : !isExtra;
 }
 
+// --- Artist Extra category grouping ---------------------------------------
+// Extra vocabulary is supplementary and has no meaningful frequency ranking,
+// so it is grouped by the pipeline-supplied `extra_category` string instead of
+// frequency levels. The list of possible categories is intentionally NOT
+// hardcoded: whatever distinct values the data carries are rendered, mapped to
+// a readable label where known and title-cased otherwise. If no entry carries
+// an `extra_category` yet, everything falls back to one "All Extra" group so
+// the UI keeps working before the pipeline populates the field.
+const EXTRA_CATEGORY_LABELS = {
+    loanword: 'Loanwords',
+    english: 'English words',
+    cognate: 'Cognates',
+    proper_noun: 'Names & places',
+    propernoun: 'Names & places',
+    proper_nouns: 'Names & places',
+    slang: 'Slang & informal',
+    single_occurrence: 'One-off words',
+    interjection: 'Interjections',
+    noise: 'Interjections & filler',
+    onomatopoeia: 'Sound words',
+    abbreviation: 'Abbreviations',
+    name: 'Names',
+};
+const EXTRA_CATEGORY_ALL_KEY = '__all_extra__';
+
+function extraCategoryKeyOf(item) {
+    const raw = item && typeof item.extra_category === 'string'
+        ? item.extra_category.trim().toLowerCase()
+        : '';
+    return raw;
+}
+
+function extraCategoryLabelFor(key) {
+    if (!key || key === EXTRA_CATEGORY_ALL_KEY) return 'All Extra';
+    if (EXTRA_CATEGORY_LABELS[key]) return EXTRA_CATEGORY_LABELS[key];
+    // Default: title-case the raw key, turning separators into spaces.
+    return key
+        .replace(/[_-]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\b\w/g, ch => ch.toUpperCase());
+}
+
+// Stamp a contiguous, category-blocked `categoryRank` on every Extra entry and
+// return ordered group metadata the setup UI can turn into pickable groups.
+// Each category occupies one continuous rank block; sets page through a block
+// with the same STABLE_SET_SLOT machinery the frequency levels use. Order of
+// items WITHIN a block is preserved from the incoming (frequency/pooled) sort
+// so set membership is deterministic.
+function assignExtraCategoryRanks(orderedVocab) {
+    const groupsByKey = new Map();
+    let anyCategory = false;
+    for (const item of orderedVocab) {
+        const key = extraCategoryKeyOf(item);
+        if (key) anyCategory = true;
+        const bucketKey = key || EXTRA_CATEGORY_ALL_KEY;
+        if (!groupsByKey.has(bucketKey)) groupsByKey.set(bucketKey, []);
+        groupsByKey.get(bucketKey).push(item);
+    }
+
+    // No entry carries a category yet → single "All Extra" group.
+    let bucketEntries = Array.from(groupsByKey.entries());
+    if (!anyCategory) {
+        bucketEntries = [[EXTRA_CATEGORY_ALL_KEY, orderedVocab.slice()]];
+    }
+
+    // Deterministic group order: larger categories first, then by label. The
+    // "All Extra" fallback always sits last if it somehow coexists with real
+    // categories (e.g. some entries missing the field).
+    bucketEntries.sort((a, b) => {
+        const aAll = a[0] === EXTRA_CATEGORY_ALL_KEY;
+        const bAll = b[0] === EXTRA_CATEGORY_ALL_KEY;
+        if (aAll !== bAll) return aAll ? 1 : -1;
+        const sizeDiff = b[1].length - a[1].length;
+        if (sizeDiff !== 0) return sizeDiff;
+        return extraCategoryLabelFor(a[0]).localeCompare(extraCategoryLabelFor(b[0]));
+    });
+
+    const groups = [];
+    let cursor = 0;
+    for (const [key, items] of bucketEntries) {
+        if (items.length === 0) continue;
+        const startRank = cursor + 1;
+        for (const item of items) {
+            cursor += 1;
+            item.categoryRank = cursor;
+            item.extraCategoryKey = key;
+        }
+        groups.push({
+            key,
+            label: extraCategoryLabelFor(key),
+            startRank,
+            endRank: cursor + 1, // exclusive, matches range-loader contract
+            count: items.length,
+        });
+    }
+    return groups;
+}
+
+// Ordered group metadata from the most recent Extra-scope buildFilteredVocab().
+let _extraCategoryGroups = [];
+function getExtraCategoryGroups() {
+    return _extraCategoryGroups.map(group => ({ ...group }));
+}
+window.getExtraCategoryGroups = getExtraCategoryGroups;
+
 function assignStableVocabularyRanks(vocabData) {
     vocabData.forEach((item, index) => {
         item.rank = index + 1;
@@ -851,6 +957,15 @@ function buildFilteredVocab(vocabData) {
     // Assign corpus-wide display ranks so set numbering is continuous across levels
     result.forEach((item, idx) => { item.displayRank = idx + 1; });
 
+    // Artist Extra is grouped by category rather than frequency levels. Stamp
+    // the contiguous per-category rank now so setup and deck-build slice on the
+    // same basis. Main scope (and normal mode) leave categoryRank untouched.
+    if (activeArtist && artistVocabularyScope === 'extra') {
+        _extraCategoryGroups = assignExtraCategoryRanks(result);
+    } else {
+        _extraCategoryGroups = [];
+    }
+
     return { vocab: result, counts };
 }
 
@@ -952,7 +1067,9 @@ async function loadVocabularyData(rangeString, opts = {}) {
             // sessions retain display-rank slicing so saved sessions remain
             // resumable across the UI migration.
             filteredData = filteredData.filter(item => {
-                const rangeRank = rangeBasis === 'stable' ? item.stableRank : item.displayRank;
+                const rangeRank = rangeBasis === 'category' ? item.categoryRank
+                    : rangeBasis === 'stable' ? item.stableRank
+                    : item.displayRank;
                 return rangeRank >= rangeStart && rangeRank < rangeEnd;
             });
             totalInRange = filteredData.length;

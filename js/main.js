@@ -1,16 +1,16 @@
-import './state.js?v=20260726d';
-import './sync-queue.js?v=20260726d';
-import './speech.js?v=20260726d';
-import './artist-ui.js?v=20260726d';
-import './auth.js?v=20260726d';
-import './spotify.js?v=20260726d';
-import './estimation.js?v=20260726d';
-import './config.js?v=20260726d';
-import './progress.js?v=20260726d';
-import './knowledge.js?v=20260726d';
-import './ui.js?v=20260726d';
-import './vocab.js?v=20260726d';
-import './flashcards.js?v=20260726d';
+import './state.js?v=20260726e';
+import './sync-queue.js?v=20260726e';
+import './speech.js?v=20260726e';
+import './artist-ui.js?v=20260726e';
+import './auth.js?v=20260726e';
+import './spotify.js?v=20260726e';
+import './estimation.js?v=20260726e';
+import './config.js?v=20260726e';
+import './progress.js?v=20260726e';
+import './knowledge.js?v=20260726e';
+import './ui.js?v=20260726e';
+import './vocab.js?v=20260726e';
+import './flashcards.js?v=20260726e';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -150,6 +150,7 @@ loadConfig().then(async () => {
     document.getElementById('closeHelpModal').addEventListener('click', () => {
         document.getElementById('helpModal').classList.add('hidden');
     });
+    wireExtraScopeModal();
     setupTabSwitching(document.getElementById('helpModal'));
     // Welcome tab → "More about this project" link opens the standalone
     // project explainer modal (the same one the Account tab uses), so
@@ -285,7 +286,16 @@ function renderArtistSourceSummary() {
         const selected = button.dataset.artistScope === artistVocabularyScope;
         button.classList.toggle('selected', selected);
         button.setAttribute('aria-pressed', selected ? 'true' : 'false');
-        button.onclick = () => setArtistVocabularyScope(button.dataset.artistScope);
+        button.onclick = () => {
+            const scope = button.dataset.artistScope;
+            // Extra is deliberately not a plain toggle — confirm via explainer
+            // so it can't be switched on by accident. Main switches directly.
+            if (scope === 'extra' && artistVocabularyScope !== 'extra') {
+                openExtraScopeModal();
+            } else {
+                setArtistVocabularyScope(scope);
+            }
+        };
     });
     if (scopeHint) {
         scopeHint.textContent = artistVocabularyScope === 'extra'
@@ -352,6 +362,42 @@ async function setArtistVocabularyScope(scope, { autoStart = false } = {}) {
 }
 
 window.setArtistVocabularyScope = setArtistVocabularyScope;
+
+// Extra explainer/confirm modal. Extra is supplementary and reorganises the
+// study interface, so entering it requires an explicit confirmation rather than
+// a one-tap toggle.
+function openExtraScopeModal() {
+    const modal = document.getElementById('extraScopeModal');
+    if (!modal) { setArtistVocabularyScope('extra'); return; }
+    const nameEl = document.getElementById('extraScopeArtistName');
+    if (nameEl) {
+        nameEl.textContent = activeArtist?.name
+            ? `${activeArtist.name} Extra`
+            : 'Extra';
+    }
+    modal.classList.remove('hidden');
+}
+
+function closeExtraScopeModal() {
+    document.getElementById('extraScopeModal')?.classList.add('hidden');
+}
+
+function wireExtraScopeModal() {
+    const modal = document.getElementById('extraScopeModal');
+    if (!modal) return;
+    document.getElementById('closeExtraScopeModal')?.addEventListener('click', closeExtraScopeModal);
+    document.getElementById('cancelExtraScopeBtn')?.addEventListener('click', closeExtraScopeModal);
+    document.getElementById('confirmExtraScopeBtn')?.addEventListener('click', () => {
+        closeExtraScopeModal();
+        setArtistVocabularyScope('extra');
+    });
+    // Dismiss when tapping the backdrop.
+    modal.addEventListener('click', event => {
+        if (event.target === modal) closeExtraScopeModal();
+    });
+}
+
+window.openExtraScopeModal = openExtraScopeModal;
 
 // Shared radial "clock of pictures" picker used by artists and languages.
 function showRadialPicker({ id, ariaLabel, hubHTML, entries }) {
