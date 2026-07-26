@@ -83,8 +83,11 @@ canonical backward-compatible interpretation, including legacy count-only rows.
 explicitly marks an individual sense, Expression, or clitic form. For an item,
 `knowledge.js` merges the parent card record and item record and lets the newest
 timestamp win. Thus a later whole-card correct resolves older item mistakes, while
-a later item mistake reopens only that row. The selected level's review deck is
-synthesized from unresolved rows; ordinary learning cards remain word/lemma cards.
+a later item mistake reopens only that row. A partial card remains in Review and
+its focused card includes explicit mistakes plus never-marked sibling items, while
+known items stay hidden. Explicitly knowing every item promotes the parent card to
+Known. The selected level's review deck is synthesized from unresolved rows;
+ordinary learning cards remain word/lemma cards.
 
 Knowledge IDs are `${parentFullId}~k1:<type>:<hash>`. The hash prefers the durable
 pipeline `sense_id`/`id` now retained by both standard meanings and the artist

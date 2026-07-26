@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "324d48ec",
+      "summary": "Partly learned cards now stay in Review until every item is resolved",
+      "details": [
+        "Knowing one meaning keeps the word in Review and hides that known meaning while presenting its incorrect or untouched siblings",
+        "Knowing every sense or Expression promotes the whole card to Known; later item mistakes and later whole-card corrections still override at the right granularity",
+        "The level action now says Review cards rather than Review mistakes; cache v102→v103, assets 20260726i→20260726j"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "fcb431d1",
       "summary": "Per-sense progress now has stable identity across deck rebuilds",
       "details": [

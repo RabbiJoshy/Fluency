@@ -457,7 +457,8 @@
   or item timestamp wins, so a later card correct clears older row mistakes without dense writes.
   Cross-device item rows use an auto-created `ItemProgress` sheet and require redeploying the
   current `backend/GoogleAppsScript.js` version. Stable sense IDs and backward-compatible
-  aliases shipped in `fcb431d1`; remaining work is the partial-card completion semantics and SRS.
+  aliases shipped in `fcb431d1`; correct partial-card completion semantics shipped in
+  `324d48ec`. Remaining work in this strand is SRS v1.
 
 - **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared] [spanish]**
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would

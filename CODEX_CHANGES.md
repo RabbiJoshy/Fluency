@@ -22,6 +22,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-26 — Partial cards remain reviewable until resolved
+
+- Commit `324d48ec`; front-end cache `flashcards-v103` / `20260726j`.
+- Knowing one item no longer makes the whole word appear Known. The card moves to level-scoped Review and its focused version contains both explicit mistakes and untouched sibling senses/Expressions, while already-known items are hidden.
+- Explicitly knowing every learnable item promotes the parent card to Known, so setup/coverage can recognise completion without loading the deck schema. A later item mistake still reopens only that item, and a later whole-card correct still resolves all items.
+- Renamed the queue from “Review mistakes” to “Review cards,” since a partial card can need attention without every unresolved sibling being an incorrect answer.
+- Verification covered 1/3 and 3/3 completion, targeted reopening, whole-card reset, module parsing, cache lockstep, and `git diff --check`.
+
 ### 2026-07-26 — Stable sense identity and progress migration
 
 - Commit `fcb431d1`; front-end cache `flashcards-v102` / `20260726i`.
