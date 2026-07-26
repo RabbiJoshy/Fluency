@@ -45,16 +45,20 @@
     Gemini.
 
   **AUDIT FINDINGS (2026-07-26, routing subagent) — two high-leverage fixes:**
-  1. **Lemma-representative selector is evidence-blind (architecture bug, all 3 languages).**
-     `step_8b:1456-1460` (artist) and `step_8a:1015-1025` (normal) both pick the display form
-     by `max(corpus_count)` = raw *homographic* surface count. That's why the `leer` card shows
-     `lean` (surface count 24, but 9/10 examples are the English drug noun; only 1 is "read",
-     while `leer` itself has 3 assigned). Fix = pick representative by **lemma-assigned example
-     evidence** (builder already computes `assigned_weights`/`group_counts` at `step_8b:850-859`).
-     Land the fix in **both `step_8a` and `step_8b`** so FR/NL inherit it (French already shows
-     the same failure mode: 777/2533 multi-surface lemmas have a non-lemma representative).
-     PAIRED front-end fix = `js/vocab.js:2139-2149` re-stamps the flag with the same flawed rule
-     on multi-artist merge → **Codex's** (flag to him; only bites when merging 2+ artists).
+  1. **`lean`/`leer` is a ROUTING bug, not a representative-selector bug (confirmed 2026-07-26).**
+     The `leer` card displays `lean` because the representative selector (`step_8b:1456`,
+     `step_8a:1015`) picks `max(corpus_count)`, and `lean`=24 (9/10 lines are the English drug
+     noun; only 1 is "read", vs `leer`=3 assigned). **Tried and REVERTED** ranking by assigned-
+     example evidence: assigned counts are capped per sense, so it can't tell `lean` (off-lemma)
+     from `hacer` (legit high-freq, low-assignment) — sandbox-tested on the live BB deck, it
+     flipped 84 lemmas incl. clear regressions (`hacer`→`hago`, `igual`→`iguales`). Both have a
+     ~24:1 count:evidence ratio; only routing/sense knows `lean`'s occurrences are a different
+     word. **Correct fix = route the drug-`lean` occurrences to a separate English-loanword noun
+     entry so they never inflate `leer`'s group — then the plain `max(corpus_count)` rule is
+     right.** So this folds into the loanword-routing work below (fix #2). Note: `lean` is NOT in
+     `english_loanwords.json`, and it collides with a valid Spanish inflection, so catching it
+     is the hard residue — likely needs the per-example evidence check or a small targeted Gemini
+     pass on the ambiguous surface. No front-end change needed once routing is fixed.
   2. **`english_loanwords.json` exists (1,606 Wiktionary-etymology entries) but is UNUSED in
      routing** — it's only a post-hoc UI stamp behind a toggle. Wiring it into `step_4a` routing
      is the generalizable loanword lever (worse in FR: week-end/parking/shopping/cool). Root
