@@ -3237,6 +3237,32 @@
             grid-template-columns: repeat(auto-fit, minmax(34px, 1fr));
             gap: 5px;
         }
+        .study-set-legend {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            color: var(--text-muted);
+            font: 600 9px/1 var(--font-emphasis);
+        }
+        .study-set-legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .study-set-legend i {
+            width: 7px;
+            height: 7px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+        }
+        .study-set-legend i.is-known {
+            background: color-mix(in srgb, var(--success) 58%, var(--bg-card));
+        }
+        .study-set-legend i.is-review {
+            background: color-mix(in srgb, var(--warning) 66%, var(--bg-card));
+        }
         .study-set-dot {
             position: relative;
             display: inline-flex;
@@ -3247,20 +3273,19 @@
             padding: 0;
             border: 1px solid var(--border-color);
             border-radius: 7px;
-            background: rgba(255, 255, 255, 0.045);
-            color: var(--text-muted);
+            background: linear-gradient(
+                to right,
+                color-mix(in srgb, var(--success) 58%, var(--bg-card)) 0 var(--set-known-end),
+                color-mix(in srgb, var(--warning) 66%, var(--bg-card)) var(--set-known-end) var(--set-review-end),
+                rgba(255, 255, 255, 0.045) var(--set-review-end) 100%
+            );
+            color: var(--text-primary);
             font: 700 11px/1 var(--font-emphasis);
             cursor: pointer;
             transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease, color 0.16s ease;
         }
         .study-set-dot.is-partial {
             border-color: rgba(var(--accent-secondary-rgb), 0.48);
-            background: linear-gradient(
-                to right,
-                rgba(var(--accent-secondary-rgb), 0.3) 0 var(--set-progress),
-                rgba(255, 255, 255, 0.045) var(--set-progress) 100%
-            );
-            color: var(--text-primary);
         }
         .study-set-dot:hover:not(:disabled) {
             border-color: var(--accent-secondary);
@@ -3269,8 +3294,6 @@
         }
         .study-set-dot.is-complete {
             border-color: var(--accent-secondary);
-            background: var(--accent-secondary);
-            color: var(--accent-secondary-text);
         }
         .study-set-dot.is-current {
             border-color: var(--accent-primary);
@@ -3281,20 +3304,6 @@
         .study-set-dot.is-empty {
             opacity: 0.25;
             cursor: default;
-        }
-        .study-set-dot-review {
-            position: absolute;
-            top: -5px;
-            right: -4px;
-            min-width: 15px;
-            height: 15px;
-            padding: 0 3px;
-            border: 2px solid var(--bg-tertiary);
-            border-radius: 999px;
-            background: var(--error);
-            color: white;
-            font: 700 8px/11px var(--font-emphasis);
-            box-sizing: border-box;
         }
         .range-btn-new.study-set-start {
             width: 100%;

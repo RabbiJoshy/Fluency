@@ -1605,6 +1605,8 @@ async function renderRangeSelector() {
         const states = words.map(getLearningState);
         const seenCount = states.filter(state => state?.seen).length;
         const reviewCount = states.filter(state => state?.needsReview).length;
+        const knownCount = Math.max(0, seenCount - reviewCount);
+        const unseenCount = words.length - seenCount;
         ranges.push({
             range: `${start}-${end}`,
             start,
@@ -1612,9 +1614,12 @@ async function renderRangeSelector() {
             available: words.length > 0,
             cardCount: words.length,
             seenCount,
-            unseenCount: words.length - seenCount,
+            knownCount,
+            unseenCount,
             reviewCount,
-            pct: words.length > 0 ? Math.round(100 * seenCount / words.length) : 100
+            pct: words.length > 0 ? Math.round(100 * seenCount / words.length) : 100,
+            knownPct: words.length > 0 ? 100 * knownCount / words.length : 100,
+            reviewEndPct: words.length > 0 ? 100 * (knownCount + reviewCount) / words.length : 100
         });
     }
     const firstIncomplete = ranges.findIndex(range => range.available && range.pct < 100);
@@ -1628,19 +1633,16 @@ async function renderRangeSelector() {
             'study-set-dot',
             range.pct === 100 && range.available ? 'is-complete' : '',
             range.pct > 0 && range.pct < 100 && range.available ? 'is-partial' : '',
-            range.reviewCount > 0 && range.available ? 'has-review' : '',
             index === initialIndex ? 'is-current' : '',
             !range.available ? 'is-empty' : ''
         ].filter(Boolean).join(' ');
         return `<button type="button" class="${classes}"
                     data-index="${index}" data-range="${range.range}"
                     data-rank-basis="${rankBasis}" data-pct="${range.pct}"
-                    style="--set-progress: ${range.pct}%"
+                    style="--set-known-end: ${range.knownPct}%; --set-review-end: ${range.reviewEndPct}%"
                     role="radio" aria-checked="${index === initialIndex ? 'true' : 'false'}"
-                    aria-label="Set ${index + 1}, ${range.pct}% seen${range.reviewCount ? `, ${range.reviewCount} to review` : ''}"
-                    ${range.available ? '' : 'disabled'}><span>${index + 1}</span>${range.reviewCount
-                        ? `<small class="study-set-dot-review" aria-hidden="true">${range.reviewCount}</small>`
-                        : ''}</button>`;
+                    aria-label="Set ${index + 1}: ${range.knownCount} known, ${range.reviewCount} to review, ${range.unseenCount} unseen"
+                    ${range.available ? '' : 'disabled'}><span>${index + 1}</span></button>`;
     }).join('');
 
     const levelReviewCount = ranges.reduce((sum, range) => sum + range.reviewCount, 0);
@@ -1657,6 +1659,11 @@ async function renderRangeSelector() {
             <div class="study-set-overview">
                 <strong>${completedCount} of ${availableCount} sets seen</strong>
                 <span>New cards and unresolved mistakes are kept on separate tracks</span>
+            </div>
+            <div class="study-set-legend" aria-label="Set progress colours">
+                <span><i class="is-known"></i>Known</span>
+                <span><i class="is-review"></i>Review</span>
+                <span><i class="is-unseen"></i>Unseen</span>
             </div>
             <div class="study-set-dots" role="radiogroup" aria-label="Sets in this level">${dotsHTML}</div>
             <div class="study-set-current-copy">
@@ -1684,7 +1691,7 @@ async function renderRangeSelector() {
             ? `Words ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()} in this group`
             : `Ranks ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()}`;
         document.getElementById('studySetCurrentMeta').textContent =
-            `${positionLabel} · ${range.unseenCount} new · ${range.reviewCount} to review · ${range.pct}% seen`;
+            `${positionLabel} · ${range.knownCount} known · ${range.reviewCount} review · ${range.unseenCount} unseen`;
         const startBtn = document.getElementById('studySetStartBtn');
         startBtn.textContent = range.unseenCount > 0
             ? `Learn ${range.unseenCount} new card${range.unseenCount === 1 ? '' : 's'}`
