@@ -51,7 +51,7 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 7
+STEP_VERSION = 8
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
@@ -66,6 +66,8 @@ STEP_VERSION_NOTES = {
     6: "+ preserve named Genius section vocalists on retained lyric examples",
     7: "+ pool curated morphological expression families on unique lyric-line evidence "
        "and retain exact MWE matches for deterministic artist assembly",
+    8: "+ match translated phrase lexicons and explicit lemma/construction templates; "
+       "keep untranslated PMI/pattern discovery out of learner-facing rows",
 }
 
 try:
@@ -960,6 +962,15 @@ FUNCTION_WORDS = frozenset({
 MIN_PMI = 15.0
 MIN_PMI_COUNT = 4
 MIN_PMI_SONGS = 3
+_PMI_BOILERPLATE_FRAGMENTS = (
+    "letra completa estará disponible",
+    "lyrics will be available",
+    "you might also like",
+)
+_PMI_ENGLISH_TAG_WORDS = frozenset({
+    "available", "baby", "carbon", "fiber", "full", "hear", "lyrics",
+    "music", "soon", "this",
+})
 
 
 def _load_step_json(filename):
@@ -982,6 +993,24 @@ def _is_all_function_words(ngram):
 def _is_repetition(ngram):
     words = ngram.split()
     return len(set(words)) == 1
+
+
+def _is_pmi_noise(ngram):
+    lowered = str(ngram or "").lower()
+    tokens = set(lowered.split())
+    if any(fragment in lowered for fragment in _PMI_BOILERPLATE_FRAGMENTS):
+        return True
+    if "letra" in tokens and ({"completa", "disponible", "pronto"} & tokens):
+        return True
+    if {"completa", "disponible"}.issubset(tokens):
+        return True
+    if "disponible" in tokens and ({"pronto", "momento"} & tokens):
+        return True
+    if len(tokens & _PMI_ENGLISH_TAG_WORDS) >= 2:
+        return True
+    # Initialisms and tokenisation debris such as ``en p r`` are not useful
+    # learner expressions, even when repeated across releases.
+    return any(len(token) == 1 for token in lowered.split())
 
 
 def _pool_construction_families(confirmed, families, ngram_data):
@@ -1061,6 +1090,193 @@ def _pool_construction_families(confirmed, families, ngram_data):
     return no_family + pooled
 
 
+def _has_lemma(form: str, lemma: str, conjugation_reverse: Dict[str, Any]) -> bool:
+    return any(
+        str(analysis.get("lemma") or "").lower() == lemma
+        for analysis in conjugation_reverse.get(form, [])
+        if isinstance(analysis, dict)
+    )
+
+
+def _has_nonfinite_form(form: str, requested: str,
+                        conjugation_reverse: Dict[str, Any]) -> bool:
+    requested = str(requested or "").lower()
+    analyses = list(conjugation_reverse.get(form, []))
+    # Caribbean lyrics frequently drop the infinitive's final r: ``caga'``
+    # for ``cagar``, ``bebe'`` for ``beber``. This inference is safe here
+    # because it only runs in a template slot that explicitly requires a
+    # non-finite verb and the reconstructed form must exist in morphology.
+    if requested == "infinitivo" and str(form).endswith(("'", "’")):
+        analyses.extend(conjugation_reverse.get(str(form)[:-1] + "r", []))
+    return any(
+        requested in {
+            str(analysis.get("mood") or "").lower(),
+            str(analysis.get("tense") or "").lower(),
+        }
+        for analysis in analyses
+        if isinstance(analysis, dict)
+    )
+
+
+def _detect_construction_templates(ngram_data, templates,
+                                   conjugation_reverse, exact_examples):
+    """Match explicit grammatical constructions against morphology.
+
+    This is deliberately template-driven rather than a blanket lemmatisation
+    of every high-PMI n-gram. In particular, ``ir + a`` is accepted only when
+    the following token is an actual infinitive, preventing location phrases
+    such as ``voy a casa`` from inflating the future construction.
+    """
+    ng_counts = ngram_data.get("counts", {})
+    ng_lines = ngram_data.get("lines", {})
+    ng_songs = ngram_data.get("songs", {})
+    constructions = []
+    covered_keys = set()
+
+    for template in templates or []:
+        if not isinstance(template, dict):
+            continue
+        kind = template.get("kind")
+        lemma = str(template.get("lemma") or "").lower()
+        link = str(template.get("link") or "").lower()
+        family = str(template.get("family") or "").strip()
+        translation = str(template.get("translation") or "").strip()
+        if not (kind and lemma and link and family and translation):
+            continue
+
+        n = 3 if kind == "verb_link_nonfinite" else 2
+        members = []
+        for expression, occurrence_count in ng_counts.get(n, {}).items():
+            tokens = expression.split()
+            if len(tokens) != n or tokens[1] != link:
+                continue
+            if not _has_lemma(tokens[0], lemma, conjugation_reverse):
+                continue
+            if kind == "verb_link_nonfinite" and not _has_nonfinite_form(
+                    tokens[2], template.get("nonfinite"), conjugation_reverse):
+                continue
+            members.append({
+                "expression": expression,
+                "prefix": " ".join(tokens[:2]),
+                "occurrence_count": int(occurrence_count or 0),
+                "lines": set(ng_lines.get(expression, set())),
+                "songs": set(ng_songs.get(expression, set())),
+                "examples": exact_examples(expression),
+            })
+
+        if not members:
+            continue
+
+        family_lines = set()
+        family_songs = set()
+        variant_lines = defaultdict(set)
+        occurrence_count = 0
+        example_groups = []
+        for member in members:
+            covered_keys.add(member["expression"])
+            family_lines.update(member["lines"])
+            family_songs.update(member["songs"])
+            variant_lines[member["prefix"]].update(member["lines"])
+            occurrence_count += member["occurrence_count"]
+            if member["examples"]:
+                example_groups.append(member["examples"])
+
+        # Demonstrate different inflected prefixes before repeating one form.
+        examples = []
+        seen_examples = set()
+        max_group = max((len(group) for group in example_groups), default=0)
+        for example_index in range(max_group):
+            for group in example_groups:
+                if example_index >= len(group):
+                    continue
+                example = dict(group[example_index])
+                key = (example.get("id"), example.get("line"))
+                if key in seen_examples:
+                    continue
+                seen_examples.add(key)
+                examples.append(example)
+                if len(examples) >= 5:
+                    break
+            if len(examples) >= 5:
+                break
+
+        variants = sorted(
+            variant_lines,
+            key=lambda variant: (-len(variant_lines[variant]), variant),
+        )
+        covered_keys.update(variants)
+        constructions.append({
+            "expression": family,
+            "translation": translation,
+            "family": family,
+            "variants": variants,
+            "variant_counts": {
+                variant: len(variant_lines[variant]) for variant in variants
+            },
+            "count": len(family_lines),
+            "occurrence_count": occurrence_count,
+            "num_songs": len({song for song in family_songs if song is not None}),
+            "examples": examples,
+            "source": "artist-construction",
+            "_line_keys": family_lines,
+            "_verb_lemma": lemma,
+            "_shadow_standalone": bool(template.get("shadow_standalone")),
+        })
+
+    constructions.sort(key=lambda item: -item["count"])
+    return constructions, covered_keys
+
+
+def _remove_construction_shadowed_hits(items, constructions, ngram_data,
+                                       conjugation_reverse, mwe_map):
+    """Remove standalone-verb evidence that is really a longer construction.
+
+    ``me voy`` is a valid expression, but a line containing ``me voy a beber``
+    should teach ``ir a + infinitive`` rather than inflate “I'm leaving”. The
+    same conservative subtraction applies to any shorter expression whose
+    final verb belongs to one of the explicit construction templates.
+    """
+    ng_lines = ngram_data.get("lines", {})
+
+    def example_line_key(example):
+        song_id = str(example.get("id") or "").split(":", 1)[0]
+        tokens = tokenize(strip_adlibs(example.get("line") or ""))
+        if mwe_map:
+            tokens = [word for word, _surface in expand_tokens(tokens, mwe_map)]
+        return song_id, " ".join(tokens)
+
+    filtered = []
+    for item in items:
+        expression = item.get("expression", "")
+        tokens = expression.split()
+        if not tokens:
+            continue
+        blocked = set()
+        for construction in constructions:
+            if not construction.get("_shadow_standalone"):
+                continue
+            lemma = construction.get("_verb_lemma")
+            if lemma and _has_lemma(tokens[-1], lemma, conjugation_reverse):
+                blocked.update(construction.get("_line_keys", set()))
+        if not blocked:
+            filtered.append(item)
+            continue
+
+        remaining = set(ng_lines.get(expression, set())) - blocked
+        if not remaining:
+            continue
+        result = dict(item)
+        result["count"] = len(remaining)
+        result["occurrence_count"] = len(remaining)
+        result["num_songs"] = len({song for song, _line in remaining if song})
+        result["examples"] = [
+            example for example in item.get("examples", [])
+            if example_line_key(example) in remaining
+        ]
+        filtered.append(result)
+    return filtered
+
+
 def _canonicalize_phrase(expr: str, mwe_map: Dict[str, List[str]],
                          elision_map: Dict[str, str]) -> str:
     """Return the n-gram counter key the given phrase will match against.
@@ -1079,16 +1295,41 @@ def _canonicalize_phrase(expr: str, mwe_map: Dict[str, List[str]],
 
 def detect_mwes(ngram_data, wiktionary_exprs=None,
                 mwe_map: Dict[str, List[str]] = None,
-                elision_map: Dict[str, str] = None):
+                elision_map: Dict[str, str] = None,
+                fallback_translations=None,
+                conjugation_reverse=None):
     """Detect MWEs using curated matching + PMI on n-gram data from the counting pass.
     wiktionary_exprs: frozenset of Wiktionary MWE expressions to exclude (already covered).
     """
     curated_mwes_raw = _load_step_json("curated_mwes.json")
     skip_mwes_raw = _load_step_json("skip_mwes.json")
     conjugation_families_raw = _load_step_json("conjugation_families.json")
+    construction_templates = _load_step_json("construction_templates.json")
     wiktionary_exprs = wiktionary_exprs or frozenset()
     mwe_map = mwe_map or {}
     elision_map = elision_map or {}
+    fallback_translations = fallback_translations or {}
+    conjugation_reverse = conjugation_reverse or {}
+
+    def normalize_payload_map(raw_map):
+        normalized = {}
+        for raw_expression, raw_payload in raw_map.items():
+            expression = _canonicalize_phrase(raw_expression, mwe_map, elision_map)
+            if not expression:
+                continue
+            payload = raw_payload if isinstance(raw_payload, dict) else {
+                "translation": raw_payload,
+            }
+            translation = str(payload.get("translation") or "").strip()
+            if not translation:
+                continue
+            normalized.setdefault(expression, {
+                "translation": translation,
+                "source": payload.get("source") or "",
+            })
+        return normalized
+
+    fallback_translations = normalize_payload_map(fallback_translations)
 
     # Normalize curated keys with the same pipeline as n-gram counting so
     # elided-form curations ("pa' que") match the canonical bucket
@@ -1149,12 +1390,7 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
     confirmed = []
     matched_keys = set()
     for expression, translation in curated_mwes.items():
-        # Wiktionary-coverage check uses the original surface forms; if every
-        # alias of this canonical form is already in Wiktionary AND none had
-        # an apostrophe, skip.
         aliases = curated_aliases.get(expression, {expression})
-        if all(a in wiktionary_exprs and "'" not in a for a in aliases):
-            continue
         count = all_counts.get(expression, 0)
         tokens = expression.split()
         if count > 0 or len(tokens) >= 4:
@@ -1166,6 +1402,7 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
                 "occurrence_count": count,
                 "num_songs": len({song for song in ng_songs.get(expression, set()) if song is not None}),
                 "examples": exact_examples(expression),
+                "source": "artist-curated",
             }
             # Track the original surface variants this entry came from when
             # they differ from the canonical form (e.g. "pa' que" → "para que").
@@ -1174,6 +1411,10 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
                 entry["variants"] = variants
             confirmed.append(entry)
             matched_keys.add(expression)
+
+    constructions, construction_keys = _detect_construction_templates(
+        ngram_data, construction_templates, conjugation_reverse, exact_examples)
+    matched_keys.update(construction_keys)
 
     # PMI-based detection
     total_tokens = sum(unigrams.values())
@@ -1185,7 +1426,7 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
         for ng, count in counts.items():
             if count < MIN_PMI_COUNT:
                 continue
-            if ng in matched_keys or ng in skip_mwes or ng in wiktionary_exprs:
+            if ng in matched_keys or ng in skip_mwes:
                 continue
             num_songs = len(ng_songs.get(ng, set()))
             if num_songs < MIN_PMI_SONGS:
@@ -1193,6 +1434,8 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
             if _is_all_function_words(ng):
                 continue
             if _is_repetition(ng):
+                continue
+            if _is_pmi_noise(ng):
                 continue
             p_ngram = count / total_ngrams
             p_independent = 1.0
@@ -1203,18 +1446,24 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
             pmi = math.log2(p_ngram / p_independent)
             if pmi < MIN_PMI:
                 continue
+            translated = fallback_translations.get(ng, {})
             pmi_detected.append({
                 "expression": ng,
-                "translation": None,
+                "translation": translated.get("translation"),
                 "count": len(ng_lines.get(ng, set())),
                 "occurrence_count": count,
                 "pmi": round(pmi, 1),
                 "num_songs": num_songs,
                 "examples": exact_examples(ng),
+                "source": "artist-pmi-lexicon" if translated else "artist-pmi-candidate",
             })
 
     # Dedup overlapping n-grams: drop shorter if substring of longer with >= PMI
-    pmi_detected.sort(key=lambda x: (-len(x["expression"].split()), -x["pmi"]))
+    pmi_detected.sort(key=lambda x: (
+        0 if x.get("translation") else 1,
+        -len(x["expression"].split()),
+        -x["pmi"],
+    ))
     kept = []
     kept_exprs = []
     for r in pmi_detected:
@@ -1222,11 +1471,25 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
             kept.append(r)
             kept_exprs.append(r["expression"])
     pmi_detected = sorted(kept, key=lambda x: -x["pmi"])
+    translated_pmi = [item for item in pmi_detected if item.get("translation")]
+    pmi_candidates = [item for item in pmi_detected if not item.get("translation")]
 
     # Post-process curated
     confirmed = [m for m in confirmed if m["expression"] not in skip_mwes]
+    confirmed = _remove_construction_shadowed_hits(
+        confirmed, constructions, ngram_data, conjugation_reverse, mwe_map)
     confirmed = _pool_construction_families(
         confirmed, conjugation_families, ngram_data)
+    # Explicit morphology-constrained templates supersede shorter/manual
+    # variants. This is what removes the old unconstrained ``voy a`` count.
+    def covered_by_construction(item):
+        expression = item.get("expression", "")
+        return any(
+            expression == prefix or expression.endswith(" " + prefix)
+            for prefix in construction_keys
+        )
+    confirmed = [item for item in confirmed if not covered_by_construction(item)]
+    confirmed.extend(constructions)
     confirmed.sort(key=lambda x: -x["count"])
 
     # Pattern detection: collapse object/reflexive clitics into a placeholder
@@ -1238,7 +1501,7 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
         ng_counts, ng_songs, matched_keys, skip_mwes, wiktionary_exprs,
         ngram_lines=ng_lines, ngram_examples=ng_examples)
 
-    return confirmed, pmi_detected, patterns
+    return confirmed, translated_pmi, patterns, pmi_candidates
 
 
 _CLITIC_PRONOUNS = frozenset({
@@ -1416,6 +1679,7 @@ def main():
     wikt_mwe_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
         os.path.abspath(__file__)))), "Data", "Spanish", "layers", "mwe_phrases.json")
     wiktionary_exprs = frozenset()
+    known_mwes = {}
     if os.path.isfile(wikt_mwe_path):
         with open(wikt_mwe_path, "r", encoding="utf-8") as f:
             wikt_data = json.load(f)
@@ -1424,12 +1688,53 @@ def main():
             for mwes in wikt_data.values()
             for mwe in mwes
         )
-        print(f"  Wiktionary MWE filter: {len(wiktionary_exprs)} expressions loaded")
+        for mwes in wikt_data.values():
+            for mwe in mwes:
+                expression = str(mwe.get("expression") or "").lower().strip()
+                translation = str(mwe.get("translation") or "").strip()
+                if expression and translation:
+                    known_mwes.setdefault(expression, {
+                        "translation": translation,
+                        "source": mwe.get("source") or "shared",
+                    })
+        print(f"  Shared MWE lexicon: {len(wiktionary_exprs)} expressions, "
+              f"{len(known_mwes)} translated")
+
+    # SpanishDict's broader phrase cache is not trusted as an automatic seed:
+    # it is used only when an independently strong PMI candidate exactly
+    # matches a translated phrase. This avoids importing its long noisy tail.
+    fallback_translations = dict(known_mwes)
+    spanishdict_phrases_path = os.path.join(
+        PROJECT_ROOT, "Data", "Spanish", "Senses", "spanishdict", "phrases_cache.json")
+    if os.path.isfile(spanishdict_phrases_path):
+        with open(spanishdict_phrases_path, "r", encoding="utf-8") as f:
+            spanishdict_phrases = json.load(f)
+        for phrases in spanishdict_phrases.values():
+            for phrase in phrases:
+                expression = str(phrase.get("expression") or "").lower().strip()
+                translation = str(phrase.get("translation") or "").strip()
+                if expression and translation:
+                    fallback_translations.setdefault(expression, {
+                        "translation": translation,
+                        "source": "spanishdict",
+                    })
+        print(f"  SpanishDict PMI translation fallback: "
+              f"{len(fallback_translations)} expressions")
+
+    conjugation_reverse = {}
+    conjugation_reverse_path = os.path.join(
+        PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
+    if os.path.isfile(conjugation_reverse_path):
+        with open(conjugation_reverse_path, "r", encoding="utf-8") as f:
+            conjugation_reverse = json.load(f)
+        print(f"  Construction morphology: {len(conjugation_reverse)} forms")
 
     # MWE detection
-    confirmed, pmi_detected, patterns = detect_mwes(
+    confirmed, pmi_detected, patterns, pmi_candidates = detect_mwes(
         ngram_data, wiktionary_exprs,
         mwe_map=mwe_map, elision_map=elision_map,
+        fallback_translations=fallback_translations,
+        conjugation_reverse=conjugation_reverse,
     )
     mwe_out_path = args.mwe_out or os.path.join(os.path.dirname(args.out), "mwe_detected.json")
     def _confirmed_to_out(m):
@@ -1447,40 +1752,52 @@ def main():
             rec["variant_counts"] = m["variant_counts"]
         if m.get("family"):
             rec["family"] = m["family"]
+        if m.get("source"):
+            rec["source"] = m["source"]
         return rec
 
     pmi_output = [
-            {"expression": m["expression"], "translation": None, "count": m["count"],
+            {"expression": m["expression"], "translation": m.get("translation"), "count": m["count"],
+             "occurrence_count": m.get("occurrence_count", m["count"]),
+             "pmi": m["pmi"], "num_songs": m["num_songs"],
+             "examples": m.get("examples", []), "source": m.get("source", "artist-pmi-lexicon")}
+            for m in pmi_detected
+        ]
+    candidate_output = [
+            {"expression": m["expression"], "count": m["count"],
              "occurrence_count": m.get("occurrence_count", m["count"]),
              "pmi": m["pmi"], "num_songs": m["num_songs"],
              "examples": m.get("examples", [])}
-            for m in pmi_detected
+            for m in pmi_candidates
         ]
     mwe_output = {
         "mwes": [_confirmed_to_out(m) for m in confirmed],
         "pmi_detected": pmi_output,
         "patterns": patterns,
-        "candidates": [],  # Legacy field, no longer used
+        "candidates": candidate_output,
         "stats": {
             "confirmed_count": len(confirmed),
             "pmi_detected_count": len(pmi_detected),
             "patterns_count": len(patterns),
+            "candidate_count": len(pmi_candidates),
         },
     }
     os.makedirs(os.path.dirname(mwe_out_path), exist_ok=True)
     with open(mwe_out_path, "w", encoding="utf-8") as f:
         json.dump(mwe_output, f, ensure_ascii=False, indent=2)
-    print(f"  MWE: {len(confirmed)} curated, {len(pmi_detected)} PMI-detected, "
-          f"{len(patterns)} clitic-patterns -> {mwe_out_path}")
+    print(f"  MWE: {len(confirmed)} translated/constructed, "
+          f"{len(pmi_detected)} translated PMI, {len(pmi_candidates)} review candidates, "
+          f"{len(patterns)} clitic diagnostics -> {mwe_out_path}")
 
     if confirmed:
-        print("\n  Top 10 curated MWEs:")
+        print("\n  Top 10 study-ready expressions:")
         for m in confirmed[:10]:
             print(f"    {m['count']:4d}  {m['expression']:<25s}  {m['translation']}")
     if pmi_detected:
-        print(f"\n  Top 10 PMI-detected (no translation):")
+        print(f"\n  Translated PMI expressions:")
         for m in pmi_detected[:10]:
-            print(f"    {m['count']:4d}  PMI={m['pmi']:5.1f}  songs={m['num_songs']:2d}  {m['expression']}")
+            print(f"    {m['count']:4d}  PMI={m['pmi']:5.1f}  songs={m['num_songs']:2d}  "
+                  f"{m['expression']} — {m['translation']}")
 
     if args.preview and args.preview > 0:
         print("\n=== PREVIEW ===")

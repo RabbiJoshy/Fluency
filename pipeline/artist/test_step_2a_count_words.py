@@ -1,7 +1,10 @@
 import unittest
+from collections import Counter
 
 from pipeline.artist.step_2a_count_words import (
+    _detect_construction_templates,
     _pool_construction_families,
+    _remove_construction_shadowed_hits,
     build_counts_and_candidates,
     parse_section_vocalists,
 )
@@ -149,6 +152,102 @@ class CountWordsDedupTests(unittest.TestCase):
         self.assertEqual(family["occurrence_count"], 4)
         self.assertEqual(set(family["variants"]), {"sé que", "yo sé que"})
         self.assertEqual(len(family["examples"]), 2)
+
+    def test_ir_a_template_requires_a_following_infinitive(self):
+        ngram_data = {
+            "counts": {
+                3: Counter({
+                    "voy a comer": 3,
+                    "voy a casa": 9,
+                    "vas a bailar": 2,
+                    "voy a caga'": 1,
+                }),
+            },
+            "lines": {
+                "voy a comer": {("a", "voy a comer")},
+                "voy a casa": {("x", "voy a casa")},
+                "vas a bailar": {
+                    ("b", "vas a bailar"),
+                    ("c", "vas a bailar mañana"),
+                },
+                "voy a caga'": {("d", "voy a caga'")},
+            },
+            "songs": {
+                "voy a comer": {"a"},
+                "voy a casa": {"x"},
+                "vas a bailar": {"b", "c"},
+                "voy a caga'": {"d"},
+            },
+        }
+        morphology = {
+            "voy": [{"lemma": "ir", "mood": "indicativo"}],
+            "vas": [{"lemma": "ir", "mood": "indicativo"}],
+            "comer": [{"lemma": "comer", "mood": "infinitivo"}],
+            "bailar": [{"lemma": "bailar", "mood": "infinitivo"}],
+            "casa": [{"lemma": "casar", "mood": "indicativo"}],
+            "cagar": [{"lemma": "cagar", "mood": "infinitivo"}],
+        }
+        templates = [{
+            "family": "ir a + infinitive",
+            "kind": "verb_link_nonfinite",
+            "lemma": "ir",
+            "link": "a",
+            "nonfinite": "infinitivo",
+            "translation": "go or be going to + verb",
+        }]
+
+        constructions, covered = _detect_construction_templates(
+            ngram_data,
+            templates,
+            morphology,
+            lambda expression: [{
+                "id": expression,
+                "line": expression,
+                "matched_variant": expression,
+                "matched_surface": expression,
+            }],
+        )
+
+        self.assertEqual(len(constructions), 1)
+        construction = constructions[0]
+        self.assertEqual(construction["count"], 4)
+        self.assertEqual(construction["num_songs"], 4)
+        self.assertEqual(
+            construction["variant_counts"], {"voy a": 2, "vas a": 2})
+        self.assertNotIn("voy a casa", covered)
+        self.assertIn("voy a comer", covered)
+
+    def test_longer_construction_does_not_inflate_standalone_expression(self):
+        future_key = ("a", "me voy a beber")
+        leaving_key = ("b", "me voy mañana")
+        items = [{
+            "expression": "me voy",
+            "translation": "I'm leaving",
+            "count": 2,
+            "occurrence_count": 2,
+            "num_songs": 2,
+            "examples": [
+                {"id": "a:1", "line": "Me voy a beber"},
+                {"id": "b:1", "line": "Me voy mañana"},
+            ],
+        }]
+        constructions = [{
+            "_verb_lemma": "ir",
+            "_line_keys": {future_key},
+            "_shadow_standalone": True,
+        }]
+        ngram_data = {"lines": {"me voy": {future_key, leaving_key}}}
+        morphology = {
+            "voy": [{"lemma": "ir", "mood": "indicativo"}],
+        }
+
+        filtered = _remove_construction_shadowed_hits(
+            items, constructions, ngram_data, morphology, {})
+
+        self.assertEqual(len(filtered), 1)
+        self.assertEqual(filtered[0]["count"], 1)
+        self.assertEqual(filtered[0]["num_songs"], 1)
+        self.assertEqual(filtered[0]["examples"][0]["id"], "b:1")
 
 
 if __name__ == "__main__":

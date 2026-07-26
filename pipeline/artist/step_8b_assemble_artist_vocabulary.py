@@ -42,13 +42,15 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 5
+STEP_VERSION = 6
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
     3: "+ carry LRCLIB end_ms into final examples as end_timestamp_ms",
     4: "+ stamp pooled lemma evidence and package Gemini-free Speech fallbacks for Artist Extra",
     5: "+ carry exact artist MWE family counts, morphological variants, and source evidence",
+    6: "+ assemble only translated/study-ready artist expressions; retain PMI and clitic "
+       "discovery as upstream diagnostics",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -477,11 +479,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
     # Artist-specific MWEs from the lyric counting pass (step_2a → mwe_detected.json).
     # Merged in-memory, not written back to the shared layer — these are per-artist
-    # by construction (PMI collocations + elision-preserving curated hits).
-    # Curated entries already have translations; PMI-detected entries ship blank
-    # until a future Gemini translation step fills them in. Both are tagged
-    # ``source: "artist-curated"`` / ``"artist-pmi"`` so the UI can treat them
-    # as artist-sourced.
+    # by construction (translated lexicon hits, morphology-constrained
+    # constructions, and the small set of PMI candidates with an exact
+    # dictionary translation). Untranslated PMI and clitic templates stay in
+    # mwe_detected.json for review; they are not learner-facing rows.
     # layers_dir == {artist_dir}/data/layers; word_counts/ is its sibling.
     artist_detected_path = os.path.join(os.path.dirname(layers_dir), "word_counts", "mwe_detected.json")
     artist_mwes_added = 0
@@ -491,24 +492,20 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         buckets = [
             ("artist-curated", detected.get("mwes") or []),
             ("artist-pmi",     detected.get("pmi_detected") or []),
-            # Clitic-placeholder patterns: e.g. "no [PRON] hagas" surfaces a
-            # template family ({no te hagas, no me hagas, no lo hagas, ...})
-            # on each component word's card. The [PRON] token is skipped at
-            # attachment time so it doesn't get added as a fake vocab word.
-            ("artist-pattern", detected.get("patterns") or []),
         ]
         for source, items in buckets:
             for m in items:
                 expr = (m.get("expression") or "").strip()
-                if not expr:
+                translation = m.get("translation", "") or ""
+                if not expr or not translation:
                     continue
                 entry = {
                     "expression": expr,
-                    "translation": m.get("translation", "") or "",
+                    "translation": translation,
                     "count": m.get("count", 0) or 0,
                     "occurrence_count": m.get("occurrence_count", m.get("count", 0)) or 0,
                     "num_songs": m.get("num_songs", 0) or 0,
-                    "source": source,
+                    "source": m.get("source") or source,
                 }
                 if m.get("family"):
                     entry["family"] = m["family"]
@@ -537,7 +534,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         continue
                     existing = mwe_by_word.setdefault(token, [])
                     if any((e.get("expression") or "").lower() == expr.lower()
-                           and e.get("source") == source
+                           and e.get("source") == entry["source"]
                            for e in existing):
                         continue
                     existing.append(entry)
@@ -1436,6 +1433,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             if len(found) >= max_examples:
                 return found
 
+        # Artist detection already supplied exact, full-corpus evidence. Do
+        # not pad it with a looser component-word scan: that can turn a valid
+        # dictionary phrase into the wrong construction (e.g. standalone
+        # ``qué va`` versus ``qué va a pasar``).
+        if found:
+            return found
+
         for line, info in line_info.items():
             matched = next((form for form, pattern in patterns if pattern.search(line)), None)
             if matched:
@@ -1643,6 +1647,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 expr = mwe["expression"]
                 if expr.lower() in seen_exprs:
                     continue
+
+                # Expression rows are learner-facing teaching material. Raw
+                # discovery candidates with no translation remain available
+                # upstream, but do not consume one of the ten card slots.
+                trans = mwe.get("translation") or ""
+                if not trans:
+                    continue
                 seen_exprs.add(expr.lower())
 
                 # Find lyric examples
@@ -1654,7 +1665,6 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     )
 
                 # Truncate long translations
-                trans = mwe.get("translation") or ""
                 if len(trans) > MAX_TRANSLATION_LEN:
                     parts = re.split(r'[;,]\s*', trans)
                     result = parts[0]

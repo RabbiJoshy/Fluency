@@ -134,6 +134,20 @@ variant, including inconsistently spaced apostrophe elisions such as `vo' a` /
 `vo'a`. High-signal `[PRON]` templates are supported; broad fragments ending at
 the pronoun slot are rejected upstream.
 
+The completed deterministic second pass is configured by
+`Artists/curations/construction_templates.json`. Step 2a uses the shared
+`conjugation_reverse.json` morphology to recognise inflected verb prefixes and
+requires the configured complement shape: e.g. `ir + a` counts only when an
+actual infinitive follows, including dropped-r lyric spellings such as `caga'`.
+It also subtracts those longer hits from genuinely different standalone rows
+such as `me voy`. Only translated curated/construction expressions and PMI
+collocations with an exact existing dictionary translation reach assembly.
+Untranslated PMI and `[PRON]` discoveries remain in `mwe_detected.json` as
+diagnostics; step 8b never turns them into card rows or pads exact artist
+evidence with looser fallback matches. Do not auto-promote the full dictionary
+phrase list merely because its words are adjacent (`qué va` inside
+`qué va a pasar` demonstrates why).
+
 Card-back senses are grouped into POS sections. `updateCard()` emits one compact
 `.back-pos-legend` beneath the word/lemma, then colour-codes each section's rows;
 duplicate translation/context groups remain constrained to one POS. MWE and

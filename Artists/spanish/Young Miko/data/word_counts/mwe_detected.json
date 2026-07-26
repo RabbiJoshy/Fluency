@@ -1,18 +1,18 @@
 {
   "mwes": [
     {
-      "expression": "voy a",
-      "translation": "I'm going to",
-      "count": 90,
-      "occurrence_count": 94,
-      "num_songs": 44,
+      "expression": "ir a + infinitive",
+      "translation": "go or be going to + verb",
+      "count": 88,
+      "occurrence_count": 93,
+      "num_songs": 49,
       "examples": [
         {
           "id": "9614105:24",
           "line": "Yo voy a ser tu baby mother como YOVNGCHIMI (Prr)",
           "title": "FINA",
-          "matched_variant": "voy a",
-          "matched_surface": "voy a",
+          "matched_variant": "voy a ser",
+          "matched_surface": "voy a ser",
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -20,22 +20,176 @@
           "sung_by_primary_artist": true
         },
         {
-          "id": "9614105:48",
-          "line": "Vamo' a hacerlo hoy porque nadie sabe lo que va a pasar mañana",
+          "id": "9614105:27",
+          "line": "Eso no es na', déjate ver, ¿te va' a hacer? Sí (Oye)",
           "title": "FINA",
-          "matched_variant": "va a",
-          "matched_surface": "va a",
+          "matched_variant": "vas a hacer",
+          "matched_surface": "va' a hacer",
+          "vocalists": [
+            "Young Miko",
+            "Tego Calderón"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10529783:37",
+          "line": "Tal ve' no entienden, pichea a la gente y vamo' a empezar de cero",
+          "title": "Sucia",
+          "matched_variant": "vamos a empezar",
+          "matched_surface": "vamo' a empezar",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9216707:34",
+          "line": "Me lleva pa' lo oscuro, qué lo que me va a decir (Ah, uhm, ah; dile, Toki)",
+          "title": "Chulo pt.2",
+          "matched_variant": "va a decir",
+          "matched_surface": "va a decir",
+          "vocalists": [
+            "Tokischa",
+            "Bad Gyal",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8970064:11",
+          "line": "Sigue cucándome, que yo no vo'a fantasmear, te voy a cobrar la multa (Yeah)",
+          "title": "Classy 101",
+          "matched_variant": "voy a fantasmear",
+          "matched_surface": "vo'a fantasmear",
+          "vocalists": [
+            "Young Miko",
+            "Feid"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "voy a",
+        "vamos a",
+        "va a",
+        "vas a",
+        "iba a",
+        "van a",
+        "vayas a"
+      ],
+      "variant_counts": {
+        "voy a": 32,
+        "vamos a": 23,
+        "va a": 16,
+        "vas a": 13,
+        "iba a": 3,
+        "van a": 1,
+        "vayas a": 1
+      },
+      "family": "ir a + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "saber que",
+      "translation": "know that",
+      "count": 74,
+      "occurrence_count": 75,
+      "num_songs": 40,
+      "examples": [
+        {
+          "id": "9614105:69",
+          "line": "Mera, tú sabe' que a nosotro' nos importa un bicho lo que ustede' piensen, ¿verdá'?",
+          "title": "FINA",
+          "matched_variant": "sabes que",
+          "matched_surface": "sabe' que",
           "vocalists": [
             "Bad Bunny"
           ],
           "sung_by_primary_artist": false
         },
         {
-          "id": "9614105:27",
-          "line": "Eso no es na', déjate ver, ¿te va' a hacer? Sí (Oye)",
+          "id": "11752402:14",
+          "line": "Yo sé que tu face card no declina",
+          "title": "WASSUP",
+          "matched_variant": "sé que",
+          "matched_surface": "sé que"
+        },
+        {
+          "id": "9110676:14",
+          "line": "Gistro fuera del jean, ella sabe que es una fashion killa (Killa)",
+          "title": "COLMILLO",
+          "matched_variant": "sabe que",
+          "matched_surface": "sabe que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220934:16",
+          "line": "Pa' saber que te gustaba, te tapaba' la cara",
+          "title": "offline",
+          "matched_variant": "saber que",
+          "matched_surface": "saber que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220921:45",
+          "line": "Saben que es Baby Mi, yes, it's me, ey",
+          "title": "rookie of the year",
+          "matched_variant": "saben que",
+          "matched_surface": "Saben que"
+        }
+      ],
+      "variants": [
+        "sé que",
+        "sabes que",
+        "sabe que",
+        "saber que",
+        "sabía que",
+        "saben que"
+      ],
+      "variant_counts": {
+        "sé que": 42,
+        "sabes que": 14,
+        "sabe que": 8,
+        "saber que": 5,
+        "sabía que": 3,
+        "saben que": 2
+      },
+      "family": "saber que",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "le gusta",
+      "translation": "he/she likes",
+      "count": 67,
+      "occurrence_count": 67,
+      "num_songs": 36,
+      "examples": [
+        {
+          "id": "11752402:25",
+          "line": "Me gusta la película, pero solo a vece'",
+          "title": "WASSUP",
+          "matched_variant": "me gusta",
+          "matched_surface": "Me gusta"
+        },
+        {
+          "id": "11752402:27",
+          "line": "A ti, mami, ¿qué te gusta? Rápido se crece",
+          "title": "WASSUP",
+          "matched_variant": "te gusta",
+          "matched_surface": "te gusta"
+        },
+        {
+          "id": "9614105:17",
+          "line": "Pero le gusta la calle 'e PR, diva",
           "title": "FINA",
-          "matched_variant": "vas a",
-          "matched_surface": "va' a",
+          "matched_variant": "le gusta",
+          "matched_surface": "le gusta",
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -43,41 +197,129 @@
           "sung_by_primary_artist": true
         },
         {
-          "id": "10220934:49",
-          "line": "Las cosa' que van a pasar",
-          "title": "offline",
-          "matched_variant": "van a",
-          "matched_surface": "van a",
+          "id": "9614105:20",
+          "line": "Me gustan las bitchie' y las yale', kinkie' y salvaje'",
+          "title": "FINA",
+          "matched_variant": "me gustan",
+          "matched_surface": "Me gustan",
           "vocalists": [
-            "Feid"
+            "Young Miko",
+            "Tego Calderón"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9216707:24",
+          "line": "Un chulo como tú, así es como me gusta",
+          "title": "Chulo pt.2",
+          "matched_variant": "me gusta",
+          "matched_surface": "me gusta",
+          "vocalists": [
+            "Tokischa",
+            "Bad Gyal",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "variants": [
+        "me gusta",
+        "te gusta",
+        "le gusta",
+        "me gustan"
+      ],
+      "variant_counts": {
+        "me gusta": 22,
+        "te gusta": 8,
+        "le gusta": 26,
+        "me gustan": 11
+      },
+      "family": "gustar",
+      "source": "artist-curated"
+    },
+    {
+      "expression": "decir que",
+      "translation": "say that",
+      "count": 48,
+      "occurrence_count": 48,
+      "num_songs": 34,
+      "examples": [
+        {
+          "id": "9614105:10",
+          "line": "Me dijo que nunca había esta'o con un cantante",
+          "title": "FINA",
+          "matched_variant": "dijo que",
+          "matched_surface": "dijo que",
+          "vocalists": [
+            "Young Miko",
+            "Tego Calderón"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9216707:21",
+          "line": "Dice que quiere tenerme a su lao'",
+          "title": "Chulo pt.2",
+          "matched_variant": "dice que",
+          "matched_surface": "Dice que",
+          "vocalists": [
+            "Tokischa",
+            "Bad Gyal",
+            "Ambas"
           ],
           "sung_by_primary_artist": false
         },
         {
-          "id": "9923845:6",
-          "line": "Le dije a mami que yo iba a volver",
+          "id": "9923845:20",
+          "line": "¿Dicen que debo favore'? Cabrón, sí, me imagino",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
-          "matched_variant": "iba a",
-          "matched_surface": "iba a"
+          "matched_variant": "dicen que",
+          "matched_surface": "Dicen que"
+        },
+        {
+          "id": "10220934:27",
+          "line": "Sé que me dijiste que será la última ve'",
+          "title": "offline",
+          "matched_variant": "dijiste que",
+          "matched_surface": "dijiste que",
+          "vocalists": [
+            "Young Miko",
+            "Feid"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10051011:4",
+          "line": "No me diga' que no, pa' despué' que sí",
+          "title": "Duro",
+          "matched_variant": "digas que",
+          "matched_surface": "diga' que"
         }
       ],
       "variants": [
-        "voy a",
-        "vo' a",
-        "va a",
-        "vas a",
-        "va' a",
-        "van a",
-        "iba a"
+        "dice que",
+        "dicen que",
+        "dijo que",
+        "dices que",
+        "digas que",
+        "decía que",
+        "diciendo que",
+        "dije que",
+        "dijiste que"
       ],
       "variant_counts": {
-        "voy a": 46,
-        "va a": 25,
-        "vas a": 14,
-        "van a": 3,
-        "iba a": 3
+        "dice que": 16,
+        "dicen que": 16,
+        "dijo que": 8,
+        "dices que": 2,
+        "digas que": 2,
+        "decía que": 1,
+        "diciendo que": 1,
+        "dije que": 1,
+        "dijiste que": 1
       },
-      "family": "ir a"
+      "family": "decir que",
+      "source": "artist-construction"
     },
     {
       "expression": "es que",
@@ -133,288 +375,8 @@
       ],
       "variants": [
         "e' que"
-      ]
-    },
-    {
-      "expression": "le gusta",
-      "translation": "he/she likes",
-      "count": 45,
-      "occurrence_count": 45,
-      "num_songs": 28,
-      "examples": [
-        {
-          "id": "11752402:27",
-          "line": "A ti, mami, ¿qué te gusta? Rápido se crece",
-          "title": "WASSUP",
-          "matched_variant": "te gusta",
-          "matched_surface": "te gusta"
-        },
-        {
-          "id": "9614105:17",
-          "line": "Pero le gusta la calle 'e PR, diva",
-          "title": "FINA",
-          "matched_variant": "le gusta",
-          "matched_surface": "le gusta",
-          "vocalists": [
-            "Young Miko",
-            "Tego Calderón"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9614105:20",
-          "line": "Me gustan las bitchie' y las yale', kinkie' y salvaje'",
-          "title": "FINA",
-          "matched_variant": "me gustan",
-          "matched_surface": "Me gustan",
-          "vocalists": [
-            "Young Miko",
-            "Tego Calderón"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8970064:8",
-          "line": "Tú tiene' cara de que te gusta freaky, nasty, nada 'e lo romantic",
-          "title": "Classy 101",
-          "matched_variant": "te gusta",
-          "matched_surface": "te gusta",
-          "vocalists": [
-            "Young Miko",
-            "Feid"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "10529783:38",
-          "line": "La muerdo y le dejo un tattoo, pregunto si le gusta ahí, mmm",
-          "title": "Sucia",
-          "matched_variant": "le gusta",
-          "matched_surface": "le gusta",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        }
       ],
-      "variants": [
-        "te gusta",
-        "le gusta",
-        "me gustan"
-      ],
-      "variant_counts": {
-        "te gusta": 8,
-        "le gusta": 26,
-        "me gustan": 11
-      },
-      "family": "gustar"
-    },
-    {
-      "expression": "sé que",
-      "translation": "I know that",
-      "count": 42,
-      "occurrence_count": 70,
-      "num_songs": 26,
-      "examples": [
-        {
-          "id": "11752402:14",
-          "line": "Yo sé que tu face card no declina",
-          "title": "WASSUP",
-          "matched_variant": "yo sé que",
-          "matched_surface": "Yo sé que"
-        },
-        {
-          "id": "8970064:23",
-          "line": "Yo sé que no es nada formal, pero dame el \"okey\", though",
-          "title": "Classy 101",
-          "matched_variant": "yo sé que",
-          "matched_surface": "Yo sé que",
-          "vocalists": [
-            "Feid"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "10220934:7",
-          "line": "Yo sé que me dijiste: \"Será la última vez\"",
-          "title": "offline",
-          "matched_variant": "yo sé que",
-          "matched_surface": "Yo sé que",
-          "vocalists": [
-            "Feid"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9110676:20",
-          "line": "Sé que estás bellaca, no sé si tú aguantes",
-          "title": "COLMILLO",
-          "matched_variant": "sé que",
-          "matched_surface": "Sé que",
-          "vocalists": [
-            "J Balvin",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "10220934:11",
-          "line": "Sí, yo sé que me quisiste",
-          "title": "offline",
-          "matched_variant": "yo sé que",
-          "matched_surface": "yo sé que",
-          "vocalists": [
-            "Feid"
-          ],
-          "sung_by_primary_artist": false
-        }
-      ],
-      "variants": [
-        "yo sé que",
-        "sé que"
-      ],
-      "variant_counts": {
-        "yo sé que": 28,
-        "sé que": 42
-      },
-      "family": "saber que"
-    },
-    {
-      "expression": "dice que",
-      "translation": "says that",
-      "count": 40,
-      "occurrence_count": 40,
-      "num_songs": 29,
-      "examples": [
-        {
-          "id": "9216707:21",
-          "line": "Dice que quiere tenerme a su lao'",
-          "title": "Chulo pt.2",
-          "matched_variant": "dice que",
-          "matched_surface": "Dice que",
-          "vocalists": [
-            "Tokischa",
-            "Bad Gyal",
-            "Ambas"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9923845:20",
-          "line": "¿Dicen que debo favore'? Cabrón, sí, me imagino",
-          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
-          "matched_variant": "dicen que",
-          "matched_surface": "Dicen que"
-        },
-        {
-          "id": "9614105:10",
-          "line": "Me dijo que nunca había esta'o con un cantante",
-          "title": "FINA",
-          "matched_variant": "dijo que",
-          "matched_surface": "dijo que",
-          "vocalists": [
-            "Young Miko",
-            "Tego Calderón"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8970064:17",
-          "line": "Pero mi corillo dice que es peligrosa",
-          "title": "Classy 101",
-          "matched_variant": "dice que",
-          "matched_surface": "dice que",
-          "vocalists": [
-            "Feid"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9923845:51",
-          "line": "Dicen que hablaste de mí, pero andas sin señal",
-          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
-          "matched_variant": "dicen que",
-          "matched_surface": "Dicen que"
-        }
-      ],
-      "variants": [
-        "dice que",
-        "dicen que",
-        "dijo que"
-      ],
-      "variant_counts": {
-        "dice que": 16,
-        "dicen que": 16,
-        "dijo que": 8
-      },
-      "family": "decir que"
-    },
-    {
-      "expression": "vamos a",
-      "translation": "let's",
-      "count": 32,
-      "occurrence_count": 33,
-      "num_songs": 24,
-      "examples": [
-        {
-          "id": "9614105:32",
-          "line": "Digan lo que digan, vamo' a gozarno' la vida",
-          "title": "FINA",
-          "matched_variant": "vamos a",
-          "matched_surface": "vamo' a",
-          "vocalists": [
-            "Tego Calderón"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9614105:48",
-          "line": "Vamo' a hacerlo hoy porque nadie sabe lo que va a pasar mañana",
-          "title": "FINA",
-          "matched_variant": "vamos a",
-          "matched_surface": "Vamo' a",
-          "vocalists": [
-            "Bad Bunny"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "10529783:37",
-          "line": "Tal ve' no entienden, pichea a la gente y vamo' a empezar de cero",
-          "title": "Sucia",
-          "matched_variant": "vamos a",
-          "matched_surface": "vamo' a",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8970064:6",
-          "line": "Vamo' a comerno', baby, aunque no sea formal",
-          "title": "Classy 101",
-          "matched_variant": "vamos a",
-          "matched_surface": "Vamo' a",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9237320:22",
-          "line": "Vamo' a pichear y bájale a esta bella crisis, yeah",
-          "title": "mañana",
-          "matched_variant": "vamos a",
-          "matched_surface": "Vamo' a",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        }
-      ],
-      "variants": [
-        "vamo' a"
-      ]
+      "source": "artist-curated"
     },
     {
       "expression": "no hay",
@@ -475,7 +437,147 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "no sé",
+      "translation": "I don't know",
+      "count": 26,
+      "occurrence_count": 26,
+      "num_songs": 18,
+      "examples": [
+        {
+          "id": "9614105:38",
+          "line": "No sé qué tú me hiciste, mami, que me tiene' loco",
+          "title": "FINA",
+          "matched_variant": "no sé",
+          "matched_surface": "No sé",
+          "vocalists": [
+            "Bad Bunny"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "9110676:20",
+          "line": "Sé que estás bellaca, no sé si tú aguantes",
+          "title": "COLMILLO",
+          "matched_variant": "no sé",
+          "matched_surface": "no sé",
+          "vocalists": [
+            "J Balvin",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9110676:32",
+          "line": "Sé-Sé que estás bellaca, no sé si tú aguantes",
+          "title": "COLMILLO",
+          "matched_variant": "no sé",
+          "matched_surface": "no sé",
+          "vocalists": [
+            "Young Miko",
+            "J Balvin"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9923845:2",
+          "line": "No sé a cuántos pies de altura",
+          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+          "matched_variant": "no sé",
+          "matched_surface": "No sé"
+        },
+        {
+          "id": "9923845:8",
+          "line": "No sé cuándo la vo'a ver",
+          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+          "matched_variant": "no sé",
+          "matched_surface": "No sé"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "querer que",
+      "translation": "want someone to",
+      "count": 26,
+      "occurrence_count": 26,
+      "num_songs": 19,
+      "examples": [
+        {
+          "id": "9110676:42",
+          "line": "Quiere que la azote, ese es el punto, mami, exacto",
+          "title": "COLMILLO",
+          "matched_variant": "quiere que",
+          "matched_surface": "Quiere que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9110676:56",
+          "line": "Quiero que la' que estén soltera' copa' y botella' suban (Suban)",
+          "title": "COLMILLO",
+          "matched_variant": "quiero que",
+          "matched_surface": "Quiero que",
+          "vocalists": [
+            "Randy",
+            "Jowell"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "12591719:23",
+          "line": "Con la cara tapada quería que yo la grabara",
+          "title": "Traviesa",
+          "matched_variant": "quería que",
+          "matched_surface": "quería que",
+          "vocalists": [
+            "Eladio Carrión",
+            "Young Miko",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12591721:37",
+          "line": "¿Quieres que siga? (Sí) ¿Cómo se dice? (Please)",
+          "title": "Piki",
+          "matched_variant": "quieres que",
+          "matched_surface": "Quieres que"
+        },
+        {
+          "id": "13170926:1",
+          "line": "Quise que supieras",
+          "title": "Te llevo tatuada",
+          "matched_variant": "quise que",
+          "matched_surface": "Quise que",
+          "vocalists": [
+            "Jorge Drexler",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "quiere que",
+        "quiero que",
+        "quieres que",
+        "quería que",
+        "quise que"
+      ],
+      "variant_counts": {
+        "quiere que": 13,
+        "quiero que": 8,
+        "quieres que": 3,
+        "quería que": 1,
+        "quise que": 1
+      },
+      "family": "querer que",
+      "source": "artist-construction"
     },
     {
       "expression": "para que",
@@ -531,85 +633,8 @@
       ],
       "variants": [
         "pa' que"
-      ]
-    },
-    {
-      "expression": "quiere que",
-      "translation": "wants (someone) to",
-      "count": 21,
-      "occurrence_count": 21,
-      "num_songs": 14,
-      "examples": [
-        {
-          "id": "9110676:56",
-          "line": "Quiero que la' que estén soltera' copa' y botella' suban (Suban)",
-          "title": "COLMILLO",
-          "matched_variant": "quiero que",
-          "matched_surface": "Quiero que",
-          "vocalists": [
-            "Randy",
-            "Jowell"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9110676:42",
-          "line": "Quiere que la azote, ese es el punto, mami, exacto",
-          "title": "COLMILLO",
-          "matched_variant": "quiere que",
-          "matched_surface": "Quiere que",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "7134347:51",
-          "line": "Quiero que las putas maten a su proxeneta",
-          "title": "Vendetta",
-          "matched_variant": "quiero que",
-          "matched_surface": "Quiero que",
-          "vocalists": [
-            "Villano Antillano",
-            "Young Miko",
-            "Ambas"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9110676:44",
-          "line": "Quiere que le dé impacto, yo cometo el acto bellaco",
-          "title": "COLMILLO",
-          "matched_variant": "quiere que",
-          "matched_surface": "Quiere que",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "7134347:52",
-          "line": "Quiero que las putas nos comamos el planeta",
-          "title": "Vendetta",
-          "matched_variant": "quiero que",
-          "matched_surface": "Quiero que",
-          "vocalists": [
-            "Villano Antillano",
-            "Young Miko",
-            "Ambas"
-          ],
-          "sung_by_primary_artist": true
-        }
       ],
-      "variants": [
-        "quiero que",
-        "quiere que"
-      ],
-      "variant_counts": {
-        "quiero que": 8,
-        "quiere que": 13
-      },
-      "family": "querer que"
+      "source": "artist-curated"
     },
     {
       "expression": "tú eres",
@@ -677,7 +702,8 @@
       ],
       "variants": [
         "tú ere'"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "tú sabes",
@@ -742,7 +768,8 @@
       ],
       "variants": [
         "tú sabe'"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "la disco",
@@ -805,28 +832,29 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
-      "expression": "se va",
-      "translation": "leaves, goes away",
-      "count": 15,
-      "occurrence_count": 15,
-      "num_songs": 14,
+      "expression": "te quiero",
+      "translation": "I love you / I want you",
+      "count": 16,
+      "occurrence_count": 16,
+      "num_songs": 10,
       "examples": [
         {
-          "id": "8209111:7",
-          "line": "Ella se va viral en IG cuando publica (Uh)",
-          "title": "Riri",
-          "matched_variant": "se va",
-          "matched_surface": "se va"
+          "id": "10220935:29",
+          "line": "Que te quiero con panty o sin",
+          "title": "princess peach",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero"
         },
         {
-          "id": "9077520:26",
-          "line": "Ella se va a arrepentir si me nombra",
+          "id": "9077520:29",
+          "line": "Baby, te quiero pa' mí (Baby, te quiero pa' mí)",
           "title": "8 AM",
-          "matched_variant": "se va",
-          "matched_surface": "se va",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero",
           "vocalists": [
             "NICKI NICOLE",
             "Young Miko"
@@ -834,42 +862,33 @@
           "sung_by_primary_artist": true
         },
         {
-          "id": "11581491:8",
-          "line": "Ese culo brincando de mi mente no se va",
-          "title": "WOAHH",
-          "matched_variant": "se va",
-          "matched_surface": "se va",
+          "id": "9077520:30",
+          "line": "Te quiero solo pa' mí, no comparto (Yeah, yeah; prr)",
+          "title": "8 AM",
+          "matched_variant": "te quiero",
+          "matched_surface": "Te quiero",
           "vocalists": [
-            "Omar Courtz",
+            "NICKI NICOLE",
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "11888474:37",
-          "line": "Se va pensando en cómo volver",
-          "title": "TOA",
-          "matched_variant": "se va",
-          "matched_surface": "Se va",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
+          "id": "12458903:16",
+          "line": "Viniste en gistro y te quiero ver comando, yeah",
+          "title": "Meiomi",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero"
         },
         {
-          "id": "9185102:38",
-          "line": "Te guillaste, porque ella no se va a ir sin na'",
-          "title": "ID",
-          "matched_variant": "se va",
-          "matched_surface": "se va",
-          "vocalists": [
-            "Randy",
-            "Young Miko",
-            "Jowell"
-          ],
-          "sung_by_primary_artist": true
+          "id": "10220928:30",
+          "line": "Yo te quiero preguntar: \"¿Tú no te vas todavía?\"",
+          "title": "arcoíris",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero"
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "todas las",
@@ -934,7 +953,8 @@
       ],
       "variants": [
         "toa' las"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "la nota",
@@ -996,7 +1016,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "de ti",
@@ -1057,7 +1078,8 @@
           "matched_variant": "de ti",
           "matched_surface": "de ti"
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "de mí",
@@ -1105,7 +1127,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "un par de",
@@ -1171,7 +1194,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "lo mismo",
@@ -1234,7 +1258,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "a mí me",
@@ -1294,7 +1319,8 @@
           "matched_variant": "a mí me",
           "matched_surface": "a mí me"
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "otra vez",
@@ -1366,65 +1392,80 @@
       "variant_counts": {
         "otra vez": 13
       },
-      "family": "otra vez"
+      "family": "otra vez",
+      "source": "artist-curated"
     },
     {
-      "expression": "hay que",
-      "translation": "one must, you have to",
+      "expression": "tener que + infinitive",
+      "translation": "have to + verb",
       "count": 12,
       "occurrence_count": 12,
-      "num_songs": 7,
+      "num_songs": 11,
       "examples": [
         {
-          "id": "10220934:15",
-          "line": "No hay que ser experto",
-          "title": "offline",
-          "matched_variant": "hay que",
-          "matched_surface": "hay que",
+          "id": "8209111:11",
+          "line": "Pa' ver su contenido tienes que pagar el prime (Ching)",
+          "title": "Riri",
+          "matched_variant": "tienes que pagar",
+          "matched_surface": "tienes que pagar"
+        },
+        {
+          "id": "10220921:44",
+          "line": "Yo no tengo que enseñar ID",
+          "title": "rookie of the year",
+          "matched_variant": "tengo que enseñar",
+          "matched_surface": "tengo que enseñar"
+        },
+        {
+          "id": "7134347:23",
+          "line": "No te tengo que decir",
+          "title": "Vendetta",
+          "matched_variant": "tengo que decir",
+          "matched_surface": "tengo que decir",
           "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "10220921:14",
-          "line": "Pa' vivir el sueño hay que estar despierto",
-          "title": "rookie of the year",
-          "matched_variant": "hay que",
-          "matched_surface": "hay que"
-        },
-        {
-          "id": "10055523:33",
-          "line": "Hay que aterrizar, pero está bueno el trip, ey",
-          "title": "curita",
-          "matched_variant": "hay que",
-          "matched_surface": "Hay que"
-        },
-        {
-          "id": "11690948:41",
-          "line": "Pa' darle hasta abajo no hay que pedir permiso, nah",
-          "title": "EN LA CITY",
-          "matched_variant": "hay que",
-          "matched_surface": "hay que",
+          "id": "11581491:15",
+          "line": "Cuando arrancamo' me sigue' y te sigo, no tenemo' que dar stop, nah (Nah)",
+          "title": "WOAHH",
+          "matched_variant": "tenemos que dar",
+          "matched_surface": "tenemo' que dar",
           "vocalists": [
-            "Young Miko",
-            "Trueno"
+            "Young Miko"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "11690948:42",
-          "line": "No hay que pedir permiso",
-          "title": "EN LA CITY",
-          "matched_variant": "hay que",
-          "matched_surface": "hay que",
+          "id": "10396585:8",
+          "line": "Ya sabes lo que tienes que hacer",
+          "title": "sorry es que soy bipolarrr",
+          "matched_variant": "tienes que hacer",
+          "matched_surface": "tienes que hacer",
           "vocalists": [
-            "Young Miko",
-            "Trueno"
+            "ROBI"
           ],
-          "sung_by_primary_artist": true
+          "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "variants": [
+        "tienes que",
+        "tengo que",
+        "tenemos que",
+        "tener que",
+        "tuve que"
+      ],
+      "variant_counts": {
+        "tienes que": 6,
+        "tengo que": 3,
+        "tenemos que": 1,
+        "tener que": 1,
+        "tuve que": 1
+      },
+      "family": "tener que + infinitive",
+      "source": "artist-construction"
     },
     {
       "expression": "me siento",
@@ -1484,7 +1525,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "a veces",
@@ -1554,7 +1596,8 @@
       "variant_counts": {
         "a veces": 11
       },
-      "family": "a veces"
+      "family": "a veces",
+      "source": "artist-curated"
     },
     {
       "expression": "desde que",
@@ -1620,7 +1663,48 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "se va",
+      "translation": "leaves, goes away",
+      "count": 10,
+      "occurrence_count": 10,
+      "num_songs": 10,
+      "examples": [
+        {
+          "id": "8209111:7",
+          "line": "Ella se va viral en IG cuando publica (Uh)",
+          "title": "Riri",
+          "matched_variant": "se va",
+          "matched_surface": "se va"
+        },
+        {
+          "id": "11581491:8",
+          "line": "Ese culo brincando de mi mente no se va",
+          "title": "WOAHH",
+          "matched_variant": "se va",
+          "matched_surface": "se va",
+          "vocalists": [
+            "Omar Courtz",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11888474:37",
+          "line": "Se va pensando en cómo volver",
+          "title": "TOA",
+          "matched_variant": "se va",
+          "matched_surface": "Se va",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "esta noche",
@@ -1677,7 +1761,126 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "haber que + infinitive",
+      "translation": "one must + verb",
+      "count": 10,
+      "occurrence_count": 10,
+      "num_songs": 7,
+      "examples": [
+        {
+          "id": "10220934:15",
+          "line": "No hay que ser experto",
+          "title": "offline",
+          "matched_variant": "hay que ser",
+          "matched_surface": "hay que ser",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220921:14",
+          "line": "Pa' vivir el sueño hay que estar despierto",
+          "title": "rookie of the year",
+          "matched_variant": "hay que estar",
+          "matched_surface": "hay que estar"
+        },
+        {
+          "id": "10055523:33",
+          "line": "Hay que aterrizar, pero está bueno el trip, ey",
+          "title": "curita",
+          "matched_variant": "hay que aterrizar",
+          "matched_surface": "Hay que aterrizar"
+        },
+        {
+          "id": "11690948:41",
+          "line": "Pa' darle hasta abajo no hay que pedir permiso, nah",
+          "title": "EN LA CITY",
+          "matched_variant": "hay que pedir",
+          "matched_surface": "hay que pedir",
+          "vocalists": [
+            "Young Miko",
+            "Trueno"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12556569:39",
+          "line": "No hay que hablar de amor, we don't talk about Bruno",
+          "title": "Gyoza",
+          "matched_variant": "hay que hablar",
+          "matched_surface": "hay que hablar",
+          "vocalists": [
+            "ELENA ROSE"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "variants": [
+        "hay que"
+      ],
+      "variant_counts": {
+        "hay que": 10
+      },
+      "family": "haber que + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "a ver",
+      "translation": "let's see",
+      "count": 9,
+      "occurrence_count": 9,
+      "num_songs": 9,
+      "examples": [
+        {
+          "id": "9923845:8",
+          "line": "No sé cuándo la vo'a ver",
+          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+          "matched_variant": "a ver",
+          "matched_surface": "vo'a ver"
+        },
+        {
+          "id": "9402498:30",
+          "line": "¿Qué tú crees, bebé? A ver, olvídate de él",
+          "title": "DISPO",
+          "matched_variant": "a ver",
+          "matched_surface": "A ver",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7134347:7",
+          "line": "’Toy activa, vamo’ a ver quien me reta (Yeah, uh)",
+          "title": "Vendetta",
+          "matched_variant": "a ver",
+          "matched_surface": "a ver",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12458903:43",
+          "line": "Tú vas a ver si me das el chance",
+          "title": "Meiomi",
+          "matched_variant": "a ver",
+          "matched_surface": "a ver"
+        },
+        {
+          "id": "12570921:37",
+          "line": "¿Quién va a ver? Si e' el piso má' alto, ey",
+          "title": "En el Ritz",
+          "matched_variant": "a ver",
+          "matched_surface": "a ver"
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "todo el mundo",
@@ -1740,7 +1943,8 @@
       ],
       "variants": [
         "to' el mundo"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "todo lo que",
@@ -1803,7 +2007,8 @@
       ],
       "variants": [
         "to' lo que"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "que se joda",
@@ -1872,7 +2077,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "no sé si",
@@ -1930,7 +2136,70 @@
           "matched_variant": "no sé si",
           "matched_surface": "No sé si"
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "como si",
+      "translation": "as if",
+      "count": 8,
+      "occurrence_count": 8,
+      "num_songs": 7,
+      "examples": [
+        {
+          "id": "8981516:6",
+          "line": "Y brinca, mami, como si esto fuese un putero",
+          "title": "Brinca",
+          "matched_variant": "como si",
+          "matched_surface": "como si",
+          "vocalists": [
+            "Cazzu"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "12591719:79",
+          "line": "Ese culo tiene un plug (Ew), como si capeara droga (Wuh)",
+          "title": "Traviesa",
+          "matched_variant": "como si",
+          "matched_surface": "como si",
+          "vocalists": [
+            "Eladio Carrión",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220946:15",
+          "line": "(Deliciosa y cotizada) Gasto Perc como si nada",
+          "title": "oye ma’",
+          "matched_variant": "como si",
+          "matched_surface": "como si",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8224313:23",
+          "line": "Miran como si yo fuese Mac Miller (Huh; uh)",
+          "title": "Pull Up",
+          "matched_variant": "como si",
+          "matched_surface": "como si"
+        },
+        {
+          "id": "12003129:8",
+          "line": "Se encojona y se le empieza a pichar, monta la presión como si fuera un fiscal",
+          "title": "Jetski",
+          "matched_variant": "como si",
+          "matched_surface": "como si",
+          "vocalists": [
+            "Randy"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "me dice",
@@ -1982,78 +2251,78 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
-      "expression": "te voy a",
-      "translation": "I'm going to (you)",
+      "expression": "creer que",
+      "translation": "think or believe that",
       "count": 8,
       "occurrence_count": 8,
-      "num_songs": 6,
+      "num_songs": 7,
       "examples": [
         {
-          "id": "8970064:11",
-          "line": "Sigue cucándome, que yo no vo'a fantasmear, te voy a cobrar la multa (Yeah)",
-          "title": "Classy 101",
-          "matched_variant": "te voy a",
-          "matched_surface": "te voy a",
-          "vocalists": [
-            "Young Miko",
-            "Feid"
-          ],
-          "sung_by_primary_artist": true
+          "id": "9923845:26",
+          "line": "Creen que pueden leerme porque me han visto en la portada",
+          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+          "matched_variant": "creen que",
+          "matched_surface": "Creen que"
         },
         {
-          "id": "8970064:29",
-          "line": "Sigue cucándome, que yo no vo'a fantasmear, te voy a cobrar la multa, wow (Brr)",
-          "title": "Classy 101",
-          "matched_variant": "te voy a",
-          "matched_surface": "te voy a",
-          "vocalists": [
-            "Feid",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
+          "id": "10220928:2",
+          "line": "Se cree que estoy pichando y yo que la quiero aquí",
+          "title": "arcoíris",
+          "matched_variant": "cree que",
+          "matched_surface": "cree que"
         },
         {
-          "id": "8970064:31",
-          "line": "Te vo'a cobrar esa miradita con impuesto' (Mmm)",
-          "title": "Classy 101",
-          "matched_variant": "te voy a",
-          "matched_surface": "Te vo'a",
+          "id": "9185102:24",
+          "line": "Yo creo que la nota ya le llegó a Plutón",
+          "title": "ID",
+          "matched_variant": "creo que",
+          "matched_surface": "creo que",
           "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9110676:61",
-          "line": "Te-Te voy a partir como el intro de Los Capo'",
-          "title": "COLMILLO",
-          "matched_variant": "te voy a",
-          "matched_surface": "Te voy a",
-          "vocalists": [
-            "Randy",
-            "Jowell"
+            "Randy"
           ],
           "sung_by_primary_artist": false
         },
         {
-          "id": "10051011:2",
-          "line": "Ba-Ba-Ba-Baby, yo te vo'a decir",
-          "title": "Duro",
-          "matched_variant": "te voy a",
-          "matched_surface": "te vo'a"
+          "id": "8602168:16",
+          "line": "Creían que no, así que yo los dejé",
+          "title": "Kilimanjaro",
+          "matched_variant": "creían que",
+          "matched_surface": "Creían que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11888474:30",
+          "line": "Mi loquita, una bandida, ella se cree que se la sabe",
+          "title": "TOA",
+          "matched_variant": "cree que",
+          "matched_surface": "cree que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
         }
       ],
       "variants": [
-        "te voy a",
-        "te vo'a"
+        "creo que",
+        "cree que",
+        "creen que",
+        "creían que"
       ],
       "variant_counts": {
-        "te voy a": 8
+        "creo que": 4,
+        "cree que": 2,
+        "creen que": 1,
+        "creían que": 1
       },
-      "family": "ir a + te"
+      "family": "creer que",
+      "source": "artist-construction"
     },
     {
       "expression": "por qué",
@@ -2105,7 +2374,8 @@
           "matched_variant": "por qué",
           "matched_surface": "por qué"
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "me llama",
@@ -2170,7 +2440,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "se ve",
@@ -2231,7 +2502,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "dime si",
@@ -2291,7 +2563,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "toda la",
@@ -2356,7 +2629,8 @@
       ],
       "variants": [
         "to'a la"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "no te hagas",
@@ -2415,7 +2689,8 @@
       ],
       "variants": [
         "no te haga'"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "por eso",
@@ -2469,7 +2744,207 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "cada vez que",
+      "translation": "every time that",
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "8621461:9",
+          "line": "¿Qué te pasó? ¿Qué nos hicieron que cada ve' que nos damo' un try se nos cae? Oh my",
+          "title": "Amandita",
+          "matched_variant": "cada vez que",
+          "matched_surface": "cada ve' que",
+          "vocalists": [
+            "Omar Courtz",
+            "Omar Courtz",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11690948:5",
+          "line": "Para abajo cada ve' que suena, suena, suena",
+          "title": "EN LA CITY",
+          "matched_variant": "cada vez que",
+          "matched_surface": "cada ve' que",
+          "vocalists": [
+            "Trueno"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "11690948:21",
+          "line": "Para abajo cada ve' que suena el pai, yes, yes",
+          "title": "EN LA CITY",
+          "matched_variant": "cada vez que",
+          "matched_surface": "cada ve' que",
+          "vocalists": [
+            "Trueno"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "11690948:24",
+          "line": "Para abajo cada ve' que suena el vibe, yes, yes (Yeah)",
+          "title": "EN LA CITY",
+          "matched_variant": "cada vez que",
+          "matched_surface": "cada ve' que",
+          "vocalists": [
+            "Trueno"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "11690948:56",
+          "line": "Para abajo cada ve' que suena, suena, suena, yes, yes",
+          "title": "EN LA CITY",
+          "matched_variant": "cada vez que",
+          "matched_surface": "cada ve' que",
+          "vocalists": [
+            "Young Miko",
+            "Trueno",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "hasta que",
+      "translation": "until",
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 6,
+      "examples": [
+        {
+          "id": "12570922:16",
+          "line": "Vamo' pa'l Riverside hasta que salga el sol",
+          "title": "Sexo de moteles",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que"
+        },
+        {
+          "id": "12556569:43",
+          "line": "Hasta que tenga que ponerme hielo",
+          "title": "Gyoza",
+          "matched_variant": "hasta que",
+          "matched_surface": "Hasta que",
+          "vocalists": [
+            "ELENA ROSE"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8361727:54",
+          "line": "Santa hasta que llega el jueve'",
+          "title": "Condado",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que",
+          "vocalists": [
+            "Lunay"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8618160:25",
+          "line": "Dándole a tu puta hasta que se me canse",
+          "title": "Katana",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que",
+          "vocalists": [
+            "Leebrian"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8693529:20",
+          "line": "Con los mismos hasta que muera: ¡Moto!",
+          "title": "Déjanos Pasar",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que",
+          "vocalists": [
+            "PJ Sin suela",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "así que",
+      "translation": "so, therefore",
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 6,
+      "examples": [
+        {
+          "id": "7134347:39",
+          "line": "Así que yo decido cuando es que los contra ataco",
+          "title": "Vendetta",
+          "matched_variant": "así que",
+          "matched_surface": "Así que",
+          "vocalists": [
+            "Villano Antillano",
+            "Young Miko",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8617423:28",
+          "line": "Así que este año el especial te dedico, yeah",
+          "title": "Sale el Sol",
+          "matched_variant": "así que",
+          "matched_surface": "Así que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11690948:43",
+          "line": "Así que wuh-wuh, todo el mundo pa'l piso",
+          "title": "EN LA CITY",
+          "matched_variant": "así que",
+          "matched_surface": "Así que",
+          "vocalists": [
+            "Young Miko",
+            "Trueno"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8602168:16",
+          "line": "Creían que no, así que yo los dejé",
+          "title": "Kilimanjaro",
+          "matched_variant": "así que",
+          "matched_surface": "así que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8156995:36",
+          "line": "Pero andamo' en el Tesla así que yo me dejo, yeh",
+          "title": "Castigada",
+          "matched_variant": "así que",
+          "matched_surface": "así que",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "to'as las",
@@ -2540,64 +3015,146 @@
       "variant_counts": {
         "to'as las": 6
       },
-      "family": "to' (elision)"
+      "family": "to' (elision)",
+      "source": "artist-curated"
     },
     {
-      "expression": "me voy",
-      "translation": "I'm leaving",
-      "count": 5,
-      "occurrence_count": 5,
+      "expression": "acabar de + infinitive",
+      "translation": "have just + verb",
+      "count": 6,
+      "occurrence_count": 6,
       "num_songs": 5,
       "examples": [
         {
-          "id": "12582445:1",
-          "line": "Si un día me voy (Voy)",
-          "title": "Ojalá",
-          "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "id": "8783598:55",
+          "line": "Acabo de cenar, pero te lo puedo comer",
+          "title": "Big Booty",
+          "matched_variant": "acabo de cenar",
+          "matched_surface": "Acabo de cenar",
+          "vocalists": [
+            "Hozwal"
+          ],
+          "sung_by_primary_artist": false
         },
         {
-          "id": "12591721:38",
-          "line": "Ma, agárrate de aquí, contigo me voy OT",
-          "title": "Piki",
-          "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "id": "12570921:20",
+          "line": "Acabo de aterrizar, ey (Mmm)",
+          "title": "En el Ritz",
+          "matched_variant": "acabo de aterrizar",
+          "matched_surface": "Acabo de aterrizar"
         },
         {
-          "id": "10220946:11",
-          "line": "Y, Mari, ciérrame el mall (Yeah), que me voy de shopping",
-          "title": "oye ma’",
-          "matched_variant": "me voy",
-          "matched_surface": "me voy",
+          "id": "7930766:8",
+          "line": "Acabo 'e cobrar, perdón si me luzco",
+          "title": "Standard",
+          "matched_variant": "acabo de cobrar",
+          "matched_surface": "Acabo 'e cobrar"
+        },
+        {
+          "id": "8361727:27",
+          "line": "Acaba 'e prender, ya va por el quinto (Ajá), prr",
+          "title": "Condado",
+          "matched_variant": "acaba de prender",
+          "matched_surface": "Acaba 'e prender",
           "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "9788043:17",
-          "line": "De ti hoy me voy a drogar (Prende)",
-          "title": "Señorita",
-          "matched_variant": "me voy",
-          "matched_surface": "me voy",
-          "vocalists": [
-            "Wisin",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8580461:22",
-          "line": "Prendo el Can-Am y me voy al putero, yeah",
-          "title": "De Pasajero",
-          "matched_variant": "me voy",
-          "matched_surface": "me voy",
+          "id": "8259338:1",
+          "line": "Acabo 'e llegar",
+          "title": "Stripper X",
+          "matched_variant": "acabo de llegar",
+          "matched_surface": "Acabo 'e llegar",
           "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "variants": [
+        "acabo de",
+        "acaba de"
+      ],
+      "variant_counts": {
+        "acabo de": 5,
+        "acaba de": 1
+      },
+      "family": "acabar de + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "pensar que",
+      "translation": "think that",
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "9614105:49",
+          "line": "Ey, por la forma en que me chinga, a veces pienso que me ama, ey",
+          "title": "FINA",
+          "matched_variant": "pienso que",
+          "matched_surface": "pienso que",
+          "vocalists": [
+            "Bad Bunny"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "10220934:13",
+          "line": "Pensaba que esta vez sería distinto",
+          "title": "offline",
+          "matched_variant": "pensaba que",
+          "matched_surface": "Pensaba que",
+          "vocalists": [
+            "Feid"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "10220935:3",
+          "line": "No sube' na' pa' que piense' que está' con alguien",
+          "title": "princess peach",
+          "matched_variant": "pienses que",
+          "matched_surface": "piense' que"
+        },
+        {
+          "id": "12582446:15",
+          "line": "Aquí pensando que vo' a hacerte un baby shower",
+          "title": "Sin pausa",
+          "matched_variant": "pensando que",
+          "matched_surface": "pensando que"
+        },
+        {
+          "id": "11660627:4",
+          "line": "Subo una foto 'e mi casa, piensan que es un Bnb (Damn)",
+          "title": "AMG",
+          "matched_variant": "piensan que",
+          "matched_surface": "piensan que",
+          "vocalists": [
+            "Eladio Carrión"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "variants": [
+        "piensan que",
+        "pensaba que",
+        "pensando que",
+        "pienses que",
+        "pienso que"
+      ],
+      "variant_counts": {
+        "piensan que": 2,
+        "pensaba que": 1,
+        "pensando que": 1,
+        "pienses que": 1,
+        "pienso que": 1
+      },
+      "family": "pensar que",
+      "source": "artist-construction"
     },
     {
       "expression": "me puse",
@@ -2657,7 +3214,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "se pone",
@@ -2717,73 +3275,64 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
-      "expression": "se va a",
-      "translation": "is going to",
-      "count": 5,
-      "occurrence_count": 5,
-      "num_songs": 4,
+      "expression": "por ahí",
+      "translation": "around there, out and about",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 3,
       "examples": [
         {
-          "id": "9077520:26",
-          "line": "Ella se va a arrepentir si me nombra",
-          "title": "8 AM",
-          "matched_variant": "se va a",
-          "matched_surface": "se va a",
+          "id": "9402498:42",
+          "line": "¿Qué le habrán hecho a esa bebé que anda por ahí rebelá'?",
+          "title": "DISPO",
+          "matched_variant": "por ahí",
+          "matched_surface": "por ahí",
           "vocalists": [
-            "NICKI NICOLE",
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "9185102:38",
-          "line": "Te guillaste, porque ella no se va a ir sin na'",
-          "title": "ID",
-          "matched_variant": "se va a",
-          "matched_surface": "se va a",
+          "id": "10396585:13",
+          "line": "Pregunta bien por ahí, 'toy con otra",
+          "title": "sorry es que soy bipolarrr",
+          "matched_variant": "por ahí",
+          "matched_surface": "por ahí",
           "vocalists": [
-            "Randy",
+            "ROBI"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "10220946:3",
+          "line": "Oye, ma, cuando salgo por ahí",
+          "title": "oye ma’",
+          "matched_variant": "por ahí",
+          "matched_surface": "por ahí",
+          "vocalists": [
             "Young Miko",
-            "Jowell"
+            "Alexis"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "10220937:37",
-          "line": "No puedo guiar, la nota se va a apoderar",
-          "title": "tres tristes tragos",
-          "matched_variant": "se va a",
-          "matched_surface": "se va a"
-        },
-        {
-          "id": "10220937:43",
-          "line": "No-No puedo guiar, la nota se va a apoderar",
-          "title": "tres tristes tragos",
-          "matched_variant": "se va a",
-          "matched_surface": "se va a"
-        },
-        {
-          "id": "10220944:1",
-          "line": "Si te vas, eso de creer en el amor se va a ir contigo (Se va ir)",
-          "title": "no quiero pelear",
-          "matched_variant": "se va a",
-          "matched_surface": "se va a",
+          "id": "10220946:7",
+          "line": "Diciendo: \"Oye, ma\" cuando salgo por ahí",
+          "title": "oye ma’",
+          "matched_variant": "por ahí",
+          "matched_surface": "por ahí",
           "vocalists": [
-            "ELENA ROSE"
+            "Young Miko",
+            "Alexis"
           ],
-          "sung_by_primary_artist": false
+          "sung_by_primary_artist": true
         }
       ],
-      "variants": [
-        "se va a"
-      ],
-      "variant_counts": {
-        "se va a": 5
-      },
-      "family": "ir a + se"
+      "source": "artist-curated"
     },
     {
       "expression": "por más que",
@@ -2828,7 +3377,61 @@
           "matched_variant": "por más que",
           "matched_surface": "Por má' que"
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "de nuevo",
+      "translation": "again",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "10396585:36",
+          "line": "Y si hoy no la cago de nuevo",
+          "title": "sorry es que soy bipolarrr",
+          "matched_variant": "de nuevo",
+          "matched_surface": "de nuevo",
+          "vocalists": [
+            "ROBI"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "10084300:37",
+          "line": "Yo sé que tú tienes un jevo, pero conmigo va' de nuevo",
+          "title": "En Esta Boca",
+          "matched_variant": "de nuevo",
+          "matched_surface": "de nuevo",
+          "vocalists": [
+            "Young Miko",
+            "Kany García",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220937:22",
+          "line": "Que se joda si me quemo, yo voy de nuevo",
+          "title": "tres tristes tragos",
+          "matched_variant": "de nuevo",
+          "matched_surface": "de nuevo"
+        },
+        {
+          "id": "8043163:58",
+          "line": "Martino (Ey, eh, Baby Miko), déjala caer de nuevo pa' que esta gente se orienten (Juanka, Martino, prr, Martino, prr; ah, ah , ey)",
+          "title": "2seater",
+          "matched_variant": "de nuevo",
+          "matched_surface": "de nuevo",
+          "vocalists": [
+            "Juanka",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "hace tiempo",
@@ -2879,61 +3482,193 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
-      "expression": "creo que",
-      "translation": "I think that, I believe that",
+      "expression": "después de",
+      "translation": "after",
       "count": 4,
       "occurrence_count": 4,
       "num_songs": 4,
       "examples": [
         {
-          "id": "9185102:24",
-          "line": "Yo creo que la nota ya le llegó a Plutón",
-          "title": "ID",
-          "matched_variant": "creo que",
-          "matched_surface": "creo que",
-          "vocalists": [
-            "Randy"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "11660627:12",
-          "line": "'Toy comiendo tanto, yo creo que esto es gula",
-          "title": "AMG",
-          "matched_variant": "creo que",
-          "matched_surface": "creo que",
-          "vocalists": [
-            "Eladio Carrión"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8602168:8",
-          "line": "Creo que es de Carolina",
-          "title": "Kilimanjaro",
-          "matched_variant": "creo que",
-          "matched_surface": "Creo que",
+          "id": "12591719:47",
+          "line": "Le mandé el carro pa' que le llegue despué' de Karma",
+          "title": "Traviesa",
+          "matched_variant": "después de",
+          "matched_surface": "despué' de",
           "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         },
         {
-          "id": "8503396:7",
-          "line": "Deseo el trofeo, pues creo que me lo merezco porque rapeo",
-          "title": "Kachipun",
-          "matched_variant": "creo que",
-          "matched_surface": "creo que",
+          "id": "12570923:12",
+          "line": "Después de un perreo anormal, no me digas que no, si (Yeah, yeah)",
+          "title": "Dosis",
+          "matched_variant": "después de",
+          "matched_surface": "Después de"
+        },
+        {
+          "id": "8621461:19",
+          "line": "Maybe después de esta no nos veamo'",
+          "title": "Amandita",
+          "matched_variant": "después de",
+          "matched_surface": "después de",
           "vocalists": [
-            "Akapellah",
+            "Omar Courtz",
+            "Omar Courtz",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9788043:41",
+          "line": "Sabes que despué' de las doce va a salir el vampiro",
+          "title": "Señorita",
+          "matched_variant": "después de",
+          "matched_surface": "despué' de",
+          "vocalists": [
+            "Wisin"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "encima de",
+      "translation": "on top of",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "8219794:3",
+          "line": "To'as las mujere' encima de mí",
+          "title": "Bi",
+          "matched_variant": "encima de",
+          "matched_surface": "encima de",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10051011:7",
+          "line": "Y tú encima 'e mí",
+          "title": "Duro",
+          "matched_variant": "encima de",
+          "matched_surface": "encima 'e"
+        },
+        {
+          "id": "10220933:9",
+          "line": "Ya que estamo' aquí, voy pa' encima 'e ti",
+          "title": "fuck TMZ",
+          "matched_variant": "encima de",
+          "matched_surface": "encima 'e"
+        },
+        {
+          "id": "9788043:28",
+          "line": "Ma, yo quiero verte guayar, guayar encima de mí (Bae)",
+          "title": "Señorita",
+          "matched_variant": "encima de",
+          "matched_surface": "encima de",
+          "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "me voy",
+      "translation": "I'm leaving",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "12582445:1",
+          "line": "Si un día me voy (Voy)",
+          "title": "Ojalá",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        },
+        {
+          "id": "12591721:38",
+          "line": "Ma, agárrate de aquí, contigo me voy OT",
+          "title": "Piki",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        },
+        {
+          "id": "10220946:11",
+          "line": "Y, Mari, ciérrame el mall (Yeah), que me voy de shopping",
+          "title": "oye ma’",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8580461:22",
+          "line": "Prendo el Can-Am y me voy al putero, yeah",
+          "title": "De Pasajero",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "a ver si",
+      "translation": "let's see if",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "12458903:43",
+          "line": "Tú vas a ver si me das el chance",
+          "title": "Meiomi",
+          "matched_variant": "a ver si",
+          "matched_surface": "a ver si"
+        },
+        {
+          "id": "10220946:28",
+          "line": "Pendiente al cel, a ver si de casualidad he contesta'o (Ja)",
+          "title": "oye ma’",
+          "matched_variant": "a ver si",
+          "matched_surface": "a ver si",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "13170926:20",
+          "line": "Un poco de suerte, y a ver si me olvido",
+          "title": "Te llevo tatuada",
+          "matched_variant": "a ver si",
+          "matched_surface": "a ver si",
+          "vocalists": [
+            "Jorge Drexler",
+            "Young Miko",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "dile que",
@@ -2971,52 +3706,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
-    },
-    {
-      "expression": "tú sabes que",
-      "translation": "you know that (elided)",
-      "count": 3,
-      "occurrence_count": 3,
-      "num_songs": 3,
-      "examples": [
-        {
-          "id": "9614105:69",
-          "line": "Mera, tú sabe' que a nosotro' nos importa un bicho lo que ustede' piensen, ¿verdá'?",
-          "title": "FINA",
-          "matched_variant": "tú sabes que",
-          "matched_surface": "tú sabe' que",
-          "vocalists": [
-            "Bad Bunny"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "10220932:27",
-          "line": "Tú sabe' que la' venía' conmigo eran diaria'",
-          "title": "ay mami",
-          "matched_variant": "tú sabes que",
-          "matched_surface": "Tú sabe' que",
-          "vocalists": [
-            "Dei V"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8721872:16",
-          "line": "Tú sabe' que te ve' bien",
-          "title": "Cuando Te Toca",
-          "matched_variant": "tú sabes que",
-          "matched_surface": "Tú sabe' que",
-          "vocalists": [
-            "Yandel"
-          ],
-          "sung_by_primary_artist": false
-        }
       ],
-      "variants": [
-        "tú sabe' que"
-      ]
+      "source": "artist-curated"
     },
     {
       "expression": "no sé qué",
@@ -3058,7 +3749,58 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "dejar de + infinitive",
+      "translation": "stop + verb",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "9110676:87",
+          "line": "Deje de llamar, que pa' su hija no hay hora (No, no)",
+          "title": "COLMILLO",
+          "matched_variant": "deje de llamar",
+          "matched_surface": "Deje de llamar",
+          "vocalists": [
+            "Jowell"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "9923845:45",
+          "line": "No, no significa que yo dejo de ser normal",
+          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+          "matched_variant": "dejo de ser",
+          "matched_surface": "dejo de ser"
+        },
+        {
+          "id": "8503396:29",
+          "line": "Cuando salgo no dejan de mirar (Ah-ah)",
+          "title": "Kachipun",
+          "matched_variant": "dejan de mirar",
+          "matched_surface": "dejan de mirar",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "dejan de",
+        "deje de",
+        "dejo de"
+      ],
+      "variant_counts": {
+        "dejan de": 1,
+        "deje de": 1,
+        "dejo de": 1
+      },
+      "family": "dejar de + infinitive",
+      "source": "artist-construction"
     },
     {
       "expression": "para qué",
@@ -3088,7 +3830,36 @@
       ],
       "variants": [
         "pa' qué"
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "lo que sea",
+      "translation": "whatever",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "11373471:39",
+          "line": "Esto no es por moda y tampoco es el clout, hacemo' lo que sea necesario",
+          "title": "Gata",
+          "matched_variant": "lo que sea",
+          "matched_surface": "lo que sea",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12458903:12",
+          "line": "Pide lo que sea, que de eso tengo de sobra",
+          "title": "Meiomi",
+          "matched_variant": "lo que sea",
+          "matched_surface": "lo que sea"
+        }
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "lo mío",
@@ -3115,7 +3886,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "ya no hay",
@@ -3138,7 +3910,8 @@
           "matched_variant": "ya no hay",
           "matched_surface": "ya no hay"
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "te juro",
@@ -3169,7 +3942,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "para el carajo",
@@ -3205,7 +3979,8 @@
       ],
       "variants": [
         "pa'l carajo"
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "un flow",
@@ -3238,7 +4013,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "yo hago lo que",
@@ -3270,7 +4046,127 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "volver a + infinitive",
+      "translation": "do + verb again",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "11581491:55",
+          "line": "A-Antes que salga el sol lo volvemo' a hacer",
+          "title": "WOAHH",
+          "matched_variant": "volvemos a hacer",
+          "matched_surface": "volvemo' a hacer",
+          "vocalists": [
+            "Clarent"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "12591720:3",
+          "line": "Qué mierda volver a empezar",
+          "title": "Algo casual",
+          "matched_variant": "volver a empezar",
+          "matched_surface": "volver a empezar"
+        }
+      ],
+      "variants": [
+        "volvemos a",
+        "volver a"
+      ],
+      "variant_counts": {
+        "volvemos a": 1,
+        "volver a": 1
+      },
+      "family": "volver a + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "empezar a + infinitive",
+      "translation": "start to + verb",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "10220934:48",
+          "line": "Yo sé que estamo' lejo', pero empecé a imaginar",
+          "title": "offline",
+          "matched_variant": "empecé a imaginar",
+          "matched_surface": "empecé a imaginar",
+          "vocalists": [
+            "Feid"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "12003129:8",
+          "line": "Se encojona y se le empieza a pichar, monta la presión como si fuera un fiscal",
+          "title": "Jetski",
+          "matched_variant": "empieza a pichar",
+          "matched_surface": "empieza a pichar",
+          "vocalists": [
+            "Randy"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "variants": [
+        "empecé a",
+        "empieza a"
+      ],
+      "variant_counts": {
+        "empecé a": 1,
+        "empieza a": 1
+      },
+      "family": "empezar a + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "parecer que",
+      "translation": "seem that",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "8602168:64",
+          "line": "Parece que vivo en el Everest",
+          "title": "Kilimanjaro",
+          "matched_variant": "parece que",
+          "matched_surface": "Parece que",
+          "vocalists": [
+            "Arcángel",
+            "Young Miko",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9788043:3",
+          "line": "La vi perreando y parece que anda sola (Que anda sola)",
+          "title": "Señorita",
+          "matched_variant": "parece que",
+          "matched_surface": "parece que",
+          "vocalists": [
+            "Wisin"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "variants": [
+        "parece que"
+      ],
+      "variant_counts": {
+        "parece que": 2
+      },
+      "family": "parecer que",
+      "source": "artist-construction"
     },
     {
       "expression": "a lo loco",
@@ -3290,7 +4186,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "lo nuestro",
@@ -3310,7 +4207,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "hace tiempo que",
@@ -3331,7 +4229,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "sin ti",
@@ -3351,7 +4250,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "antes que",
@@ -3371,7 +4271,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "a ti te",
@@ -3391,7 +4292,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "a mí no",
@@ -3413,27 +4315,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
-    },
-    {
-      "expression": "te juro que",
-      "translation": "I swear that",
-      "count": 1,
-      "occurrence_count": 1,
-      "num_songs": 1,
-      "examples": [
-        {
-          "id": "8617423:26",
-          "line": "Dame tu amor, te juro que lo cuido",
-          "title": "Sale el Sol",
-          "matched_variant": "te juro que",
-          "matched_surface": "te juro que",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "la movie",
@@ -3453,7 +4336,8 @@
           ],
           "sung_by_primary_artist": true
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "la gana",
@@ -3473,7 +4357,8 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
       "expression": "el bicho",
@@ -3493,220 +4378,42 @@
           ],
           "sung_by_primary_artist": false
         }
-      ]
+      ],
+      "source": "artist-curated"
     },
     {
-      "expression": "me voy a",
-      "translation": "I'm going to",
+      "expression": "jurar que",
+      "translation": "swear that",
       "count": 1,
       "occurrence_count": 1,
       "num_songs": 1,
       "examples": [
         {
-          "id": "9788043:17",
-          "line": "De ti hoy me voy a drogar (Prende)",
-          "title": "Señorita",
-          "matched_variant": "me voy a",
-          "matched_surface": "me voy a",
+          "id": "8617423:26",
+          "line": "Dame tu amor, te juro que lo cuido",
+          "title": "Sale el Sol",
+          "matched_variant": "juro que",
+          "matched_surface": "juro que",
           "vocalists": [
-            "Wisin",
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         }
       ],
       "variants": [
-        "me voy a"
+        "juro que"
       ],
       "variant_counts": {
-        "me voy a": 1
+        "juro que": 1
       },
-      "family": "ir a + me"
+      "family": "jurar que",
+      "source": "artist-construction"
     }
   ],
   "pmi_detected": [
     {
-      "expression": "se hizo las tetas",
-      "translation": null,
-      "count": 4,
-      "occurrence_count": 4,
-      "pmi": 25.4,
-      "num_songs": 3,
-      "examples": [
-        {
-          "id": "7134347:5",
-          "line": "Boujee bad bitch, se hizo la' teta'",
-          "title": "Vendetta",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "se hizo la' teta'",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "7134347:30",
-          "line": "Boujee bad bitch, se hizo las tetas",
-          "title": "Vendetta",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "se hizo las tetas",
-          "vocalists": [
-            "Young Miko",
-            "Villano Antillano",
-            "Ambas"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8422401:61",
-          "line": "En verdad no le hacía falta, pero por gusto se hizo las teta'",
-          "title": "SALVAJE",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "se hizo las teta'",
-          "vocalists": [
-            "Lyanno"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8259338:32",
-          "line": "Se hizo las tetas, le chupo las boobies",
-          "title": "Stripper X",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "Se hizo las tetas",
-          "vocalists": [
-            "Lil Joujou"
-          ],
-          "sung_by_primary_artist": false
-        }
-      ]
-    },
-    {
-      "expression": "y que se joda",
-      "translation": null,
-      "count": 4,
-      "occurrence_count": 4,
-      "pmi": 16.6,
-      "num_songs": 3,
-      "examples": [
-        {
-          "id": "9614105:60",
-          "line": "Mami, sé tú y que se joda",
-          "title": "FINA",
-          "matched_variant": "y que se joda",
-          "matched_surface": "y que se joda",
-          "vocalists": [
-            "Bad Bunny",
-            "Bad Bunny",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9614105:61",
-          "line": "Y que se joda",
-          "title": "FINA",
-          "matched_variant": "y que se joda",
-          "matched_surface": "Y que se joda",
-          "vocalists": [
-            "Bad Bunny",
-            "Bad Bunny",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9402498:32",
-          "line": "Una diablona (Uh), vamo' a pecar y que se joda",
-          "title": "DISPO",
-          "matched_variant": "y que se joda",
-          "matched_surface": "y que se joda",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "12570922:17",
-          "line": "Vamo' a toa' y que se joda to'",
-          "title": "Sexo de moteles",
-          "matched_variant": "y que se joda",
-          "matched_surface": "y que se joda"
-        }
-      ]
-    },
-    {
-      "expression": "it's baby miko",
-      "translation": null,
-      "count": 16,
-      "occurrence_count": 16,
-      "pmi": 16.6,
-      "num_songs": 16,
-      "examples": [
-        {
-          "id": "9614105:7",
-          "line": "It's Baby Miko",
-          "title": "FINA",
-          "matched_variant": "it's baby miko",
-          "matched_surface": "It's Baby Miko",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "11752402:49",
-          "line": "It's Baby Miko",
-          "title": "WASSUP",
-          "matched_variant": "it's baby miko",
-          "matched_surface": "It's Baby Miko",
-          "vocalists": [
-            "Young Miko",
-            "Lil Jon",
-            "Ambos"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8970064:51",
-          "line": "It's Baby Miko",
-          "title": "Classy 101",
-          "matched_variant": "it's baby miko",
-          "matched_surface": "It's Baby Miko",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "7134347:1",
-          "line": "Eyo, mua, it's Baby Miko, ja",
-          "title": "Vendetta",
-          "matched_variant": "it's baby miko",
-          "matched_surface": "it's Baby Miko",
-          "vocalists": [
-            "Young Miko",
-            "Villano Antillano"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "12591719:66",
-          "line": "It's Baby Miko",
-          "title": "Traviesa",
-          "matched_variant": "it's baby miko",
-          "matched_surface": "It's Baby Miko",
-          "vocalists": [
-            "Young Miko",
-            "Eladio Carrión"
-          ],
-          "sung_by_primary_artist": true
-        }
-      ]
-    },
-    {
       "expression": "te he visto",
-      "translation": null,
+      "translation": "I've seen you",
       "count": 5,
       "occurrence_count": 5,
       "pmi": 15.9,
@@ -3756,155 +4463,8 @@
           "matched_variant": "te he visto",
           "matched_surface": "te he visto"
         }
-      ]
-    },
-    {
-      "expression": "me dan ganas",
-      "translation": null,
-      "count": 4,
-      "occurrence_count": 4,
-      "pmi": 15.5,
-      "num_songs": 4,
-      "examples": [
-        {
-          "id": "10220932:51",
-          "line": "Baby, me pone' bellaco y me dan gana' de darte con el hammer",
-          "title": "ay mami",
-          "matched_variant": "me dan ganas",
-          "matched_surface": "me dan gana'",
-          "vocalists": [
-            "Dei V",
-            "Dei V",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "12582446:17",
-          "line": "Tan rico que parece un favor, me dan ganas de decirte \"mi amor\"",
-          "title": "Sin pausa",
-          "matched_variant": "me dan ganas",
-          "matched_surface": "me dan ganas"
-        },
-        {
-          "id": "12570920:17",
-          "line": "De eso' ojitos que me dan ganas de preguntarte",
-          "title": "What’s Ur Vibe?",
-          "matched_variant": "me dan ganas",
-          "matched_surface": "me dan ganas"
-        },
-        {
-          "id": "8621461:62",
-          "line": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
-          "title": "Amandita",
-          "matched_variant": "me dan ganas",
-          "matched_surface": "me dan gana'",
-          "vocalists": [
-            "Omar Courtz",
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        }
-      ]
-    },
-    {
-      "expression": "en la disco y",
-      "translation": null,
-      "count": 4,
-      "occurrence_count": 4,
-      "pmi": 15.4,
-      "num_songs": 3,
-      "examples": [
-        {
-          "id": "12570923:10",
-          "line": "Guayamo' en la disco y en la cama un par de posi",
-          "title": "Dosis",
-          "matched_variant": "en la disco y",
-          "matched_surface": "en la disco y"
-        },
-        {
-          "id": "12591722:1",
-          "line": "Empezamo' en la disco y terminamo' en el cuarto (Cuarto)",
-          "title": "Ni le cabe",
-          "matched_variant": "en la disco y",
-          "matched_surface": "en la disco y"
-        },
-        {
-          "id": "12591722:30",
-          "line": "Si empezamo' en la disco y terminamo' en el cuarto (Cuarto)",
-          "title": "Ni le cabe",
-          "matched_variant": "en la disco y",
-          "matched_surface": "en la disco y"
-        },
-        {
-          "id": "8618160:2",
-          "line": "Contigo en la disco y tu jevo un cebú",
-          "title": "Katana",
-          "matched_variant": "en la disco y",
-          "matched_surface": "en la disco y",
-          "vocalists": [
-            "Leebrian"
-          ],
-          "sung_by_primary_artist": false
-        }
-      ]
-    },
-    {
-      "expression": "todo los días",
-      "translation": null,
-      "count": 5,
-      "occurrence_count": 5,
-      "pmi": 15.1,
-      "num_songs": 4,
-      "examples": [
-        {
-          "id": "8970064:1",
-          "line": "To' los día' te imagino",
-          "title": "Classy 101",
-          "matched_variant": "todo los días",
-          "matched_surface": "To' los día'",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "9110676:15",
-          "line": "To' los día' en el gym (Gym), ese booty cada vez más bigger (Bigger)",
-          "title": "COLMILLO",
-          "matched_variant": "todo los días",
-          "matched_surface": "To' los día'",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "11660627:20",
-          "line": "To' los día' we pushin' P, ustede' pushin' P Diddy (Ja)",
-          "title": "AMG",
-          "matched_variant": "todo los días",
-          "matched_surface": "To' los día'",
-          "vocalists": [
-            "Eladio Carrión"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "10220930:8",
-          "line": "To' los día' de su cuerpo una dosi'",
-          "title": "tamagotchi",
-          "matched_variant": "todo los días",
-          "matched_surface": "To' los día'"
-        },
-        {
-          "id": "10220930:28",
-          "line": "To' los día' de tu cuerpo una dosi'",
-          "title": "tamagotchi",
-          "matched_variant": "todo los días",
-          "matched_surface": "To' los día'"
-        }
-      ]
+      ],
+      "source": "artist-pmi-lexicon"
     }
   ],
   "patterns": [
@@ -5225,10 +5785,239 @@
       ]
     }
   ],
-  "candidates": [],
+  "candidates": [
+    {
+      "expression": "se hizo las tetas",
+      "count": 4,
+      "occurrence_count": 4,
+      "pmi": 25.4,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "7134347:5",
+          "line": "Boujee bad bitch, se hizo la' teta'",
+          "title": "Vendetta",
+          "matched_variant": "se hizo las tetas",
+          "matched_surface": "se hizo la' teta'",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7134347:30",
+          "line": "Boujee bad bitch, se hizo las tetas",
+          "title": "Vendetta",
+          "matched_variant": "se hizo las tetas",
+          "matched_surface": "se hizo las tetas",
+          "vocalists": [
+            "Young Miko",
+            "Villano Antillano",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8422401:61",
+          "line": "En verdad no le hacía falta, pero por gusto se hizo las teta'",
+          "title": "SALVAJE",
+          "matched_variant": "se hizo las tetas",
+          "matched_surface": "se hizo las teta'",
+          "vocalists": [
+            "Lyanno"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8259338:32",
+          "line": "Se hizo las tetas, le chupo las boobies",
+          "title": "Stripper X",
+          "matched_variant": "se hizo las tetas",
+          "matched_surface": "Se hizo las tetas",
+          "vocalists": [
+            "Lil Joujou"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ]
+    },
+    {
+      "expression": "it's baby miko",
+      "count": 16,
+      "occurrence_count": 16,
+      "pmi": 16.6,
+      "num_songs": 16,
+      "examples": [
+        {
+          "id": "9614105:7",
+          "line": "It's Baby Miko",
+          "title": "FINA",
+          "matched_variant": "it's baby miko",
+          "matched_surface": "It's Baby Miko",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11752402:49",
+          "line": "It's Baby Miko",
+          "title": "WASSUP",
+          "matched_variant": "it's baby miko",
+          "matched_surface": "It's Baby Miko",
+          "vocalists": [
+            "Young Miko",
+            "Lil Jon",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8970064:51",
+          "line": "It's Baby Miko",
+          "title": "Classy 101",
+          "matched_variant": "it's baby miko",
+          "matched_surface": "It's Baby Miko",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7134347:1",
+          "line": "Eyo, mua, it's Baby Miko, ja",
+          "title": "Vendetta",
+          "matched_variant": "it's baby miko",
+          "matched_surface": "it's Baby Miko",
+          "vocalists": [
+            "Young Miko",
+            "Villano Antillano"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12591719:66",
+          "line": "It's Baby Miko",
+          "title": "Traviesa",
+          "matched_variant": "it's baby miko",
+          "matched_surface": "It's Baby Miko",
+          "vocalists": [
+            "Young Miko",
+            "Eladio Carrión"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
+    },
+    {
+      "expression": "me dan ganas",
+      "count": 4,
+      "occurrence_count": 4,
+      "pmi": 15.5,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "10220932:51",
+          "line": "Baby, me pone' bellaco y me dan gana' de darte con el hammer",
+          "title": "ay mami",
+          "matched_variant": "me dan ganas",
+          "matched_surface": "me dan gana'",
+          "vocalists": [
+            "Dei V",
+            "Dei V",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12582446:17",
+          "line": "Tan rico que parece un favor, me dan ganas de decirte \"mi amor\"",
+          "title": "Sin pausa",
+          "matched_variant": "me dan ganas",
+          "matched_surface": "me dan ganas"
+        },
+        {
+          "id": "12570920:17",
+          "line": "De eso' ojitos que me dan ganas de preguntarte",
+          "title": "What’s Ur Vibe?",
+          "matched_variant": "me dan ganas",
+          "matched_surface": "me dan ganas"
+        },
+        {
+          "id": "8621461:62",
+          "line": "Nada, nada. Te había dicho en ese voice que yo estaba ñoñita, que estaba puesta pa' decirte que estaba loca por llenarte esa carita de besito', darte un abrazo, morderte. Pero que con esa pichaera tuya que lo que me dan gana' es de mandarte pa' buen sitio, y que no sabía que iba hacer con usted, señorito.",
+          "title": "Amandita",
+          "matched_variant": "me dan ganas",
+          "matched_surface": "me dan gana'",
+          "vocalists": [
+            "Omar Courtz",
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
+    },
+    {
+      "expression": "todo los días",
+      "count": 5,
+      "occurrence_count": 5,
+      "pmi": 15.1,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "8970064:1",
+          "line": "To' los día' te imagino",
+          "title": "Classy 101",
+          "matched_variant": "todo los días",
+          "matched_surface": "To' los día'",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9110676:15",
+          "line": "To' los día' en el gym (Gym), ese booty cada vez más bigger (Bigger)",
+          "title": "COLMILLO",
+          "matched_variant": "todo los días",
+          "matched_surface": "To' los día'",
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11660627:20",
+          "line": "To' los día' we pushin' P, ustede' pushin' P Diddy (Ja)",
+          "title": "AMG",
+          "matched_variant": "todo los días",
+          "matched_surface": "To' los día'",
+          "vocalists": [
+            "Eladio Carrión"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "10220930:8",
+          "line": "To' los día' de su cuerpo una dosi'",
+          "title": "tamagotchi",
+          "matched_variant": "todo los días",
+          "matched_surface": "To' los día'"
+        },
+        {
+          "id": "10220930:28",
+          "line": "To' los día' de tu cuerpo una dosi'",
+          "title": "tamagotchi",
+          "matched_variant": "todo los días",
+          "matched_surface": "To' los día'"
+        }
+      ]
+    }
+  ],
   "stats": {
-    "confirmed_count": 69,
-    "pmi_detected_count": 7,
-    "patterns_count": 23
+    "confirmed_count": 84,
+    "pmi_detected_count": 1,
+    "patterns_count": 23,
+    "candidate_count": 4
   }
 }

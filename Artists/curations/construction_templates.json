@@ -1,0 +1,119 @@
+{
+  "_format": "Deterministic artist-expression templates. verb_link_nonfinite requires a conjugated lemma + link word + the requested non-finite verb form; verb_link matches the conjugated lemma + link word.",
+  "entries": [
+    {
+      "family": "ir a + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "ir",
+      "link": "a",
+      "nonfinite": "infinitivo",
+      "translation": "go or be going to + verb",
+      "shadow_standalone": true
+    },
+    {
+      "family": "tener que + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "tener",
+      "link": "que",
+      "nonfinite": "infinitivo",
+      "translation": "have to + verb"
+    },
+    {
+      "family": "haber que + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "haber",
+      "link": "que",
+      "nonfinite": "infinitivo",
+      "translation": "one must + verb"
+    },
+    {
+      "family": "acabar de + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "acabar",
+      "link": "de",
+      "nonfinite": "infinitivo",
+      "translation": "have just + verb"
+    },
+    {
+      "family": "volver a + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "volver",
+      "link": "a",
+      "nonfinite": "infinitivo",
+      "translation": "do + verb again"
+    },
+    {
+      "family": "dejar de + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "dejar",
+      "link": "de",
+      "nonfinite": "infinitivo",
+      "translation": "stop + verb"
+    },
+    {
+      "family": "empezar a + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "empezar",
+      "link": "a",
+      "nonfinite": "infinitivo",
+      "translation": "start to + verb"
+    },
+    {
+      "family": "tratar de + infinitive",
+      "kind": "verb_link_nonfinite",
+      "lemma": "tratar",
+      "link": "de",
+      "nonfinite": "infinitivo",
+      "translation": "try to + verb"
+    },
+    {
+      "family": "saber que",
+      "kind": "verb_link",
+      "lemma": "saber",
+      "link": "que",
+      "translation": "know that"
+    },
+    {
+      "family": "decir que",
+      "kind": "verb_link",
+      "lemma": "decir",
+      "link": "que",
+      "translation": "say that"
+    },
+    {
+      "family": "querer que",
+      "kind": "verb_link",
+      "lemma": "querer",
+      "link": "que",
+      "translation": "want someone to"
+    },
+    {
+      "family": "creer que",
+      "kind": "verb_link",
+      "lemma": "creer",
+      "link": "que",
+      "translation": "think or believe that"
+    },
+    {
+      "family": "pensar que",
+      "kind": "verb_link",
+      "lemma": "pensar",
+      "link": "que",
+      "translation": "think that"
+    },
+    {
+      "family": "jurar que",
+      "kind": "verb_link",
+      "lemma": "jurar",
+      "link": "que",
+      "translation": "swear that"
+    },
+    {
+      "family": "parecer que",
+      "kind": "verb_link",
+      "lemma": "parecer",
+      "link": "que",
+      "translation": "seem that"
+    }
+  ]
+}
