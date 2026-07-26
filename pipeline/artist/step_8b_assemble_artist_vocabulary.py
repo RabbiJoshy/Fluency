@@ -591,6 +591,20 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         print("  routing flags: %d english, %d propn, %d noise, %d cognate" %
               (len(skip_english), len(skip_propn), len(skip_noise), len(skip_cognate)))
 
+    # Unified tag store (word_tags.json, built by tool_4b_resolve_tags.py) —
+    # per-word resolved `category` used to group Extra in the front end. Sits
+    # in the same known_vocab dir as word_routing.json.
+    word_categories = {}
+    if skip_words_path:
+        _wt = os.path.join(os.path.dirname(skip_words_path), "word_tags.json")
+        if os.path.isfile(_wt):
+            with open(_wt, "r", encoding="utf-8") as f:
+                _tags = json.load(f)
+            for _w, _v in _tags.items():
+                if isinstance(_v, dict) and _v.get("category"):
+                    word_categories[_w.lower()] = _v["category"]
+            print("  word_tags: %d categorised" % len(word_categories))
+
     # Pre-process clitic merges: skip clitics from main deck, build separate
     # clitic data file (like MWEs). Base verb references clitic IDs; front-end
     # displays clitics as sub-entries.
@@ -1258,6 +1272,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "corpus_count": group_counts[g_idx] if g_idx < len(group_counts) else 0,
                 "_has_wikt_assignments": has_wikt,
             }
+            # Unified tag category → front-end groups Extra by this.
+            _cat = word_categories.get(wl)
+            if _cat:
+                entry["extra_category"] = _cat
             if display_form:
                 entry["display_form"] = display_form
             if variants:
