@@ -17,10 +17,18 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
-- Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Stable pipeline sense IDs are now a load-bearing future deck contract.
+- Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 
 ## Codex task history
+
+### 2026-07-26 — Stable sense identity and progress migration
+
+- Commit `fcb431d1`; front-end cache `flashcards-v102` / `20260726i`.
+- Standard assembly now retains every source-menu sense ID. Artist assembly carries IDs through ordinary meanings, unassigned sense cycles, and the shared master; equivalent collapsed rows retain alternate IDs in `sense_id_aliases`.
+- All 26,001 learnable standard meanings and all 16,995 learnable artist-master senses have durable IDs. The 3,397 legacy artist senses without a current menu row receive reproducible `generated:artist-master:*` IDs; a later authoritative source ID supersedes a generated ID while preserving it as an alias.
+- Existing `ItemProgress` is not abandoned: `knowledge.js` recognises old POS/gloss/context IDs and stable-ID aliases, uses the newest matching legacy row, and migrates its counts/timestamps to the canonical ID on the learner's next explicit answer.
+- Rebuilds used only deterministic assembly (no Gemini). Verification covered six identity unit tests, JavaScriptCore parsing and compatibility cases, 100% learnable-sense ID coverage, and proof that the committed deck JSON differs from the previous output only by `sense_id`/`sense_id_aliases` fields.
 
 ### 2026-07-26 — Extra fills its categories; setup declutter (Claude front-end follow-up)
 

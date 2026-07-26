@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "fcb431d1",
+      "summary": "Per-sense progress now has stable identity across deck rebuilds",
+      "details": [
+        "Standard and artist decks now retain durable sense IDs, including aliases when equivalent source senses collapse into one visible meaning",
+        "Legacy artist senses receive reproducible fallback IDs, while existing content-derived progress remains readable and migrates on the learner's next answer",
+        "Verified complete ID coverage for 26,001 standard meanings and 16,995 artist-master senses without a Gemini rerun; cache v101→v102, assets 20260726h→20260726i"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "53ffe425",
       "summary": "Extra vocabulary now fills its categories, with a cleaner setup page",
       "details": [

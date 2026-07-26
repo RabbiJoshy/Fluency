@@ -516,13 +516,17 @@ Shared across all artists. Id-keyed.
 }
 ```
 
-`sense_id` is the desired durable identity for per-sense learner progress. The
-current assembled master files predate that field, so `js/knowledge.js` falls
-back to a content signature of POS + translation + context. That fallback keeps
-today's decks usable but is not migration-safe when gloss text changes. Pipeline
-work that begins emitting IDs must preserve them across rebuilds; any intentional
-ID change requires a matching `ItemProgress` migration. This is a load-bearing
-front-end/data contract, not display metadata.
+`sense_id` is the durable identity for per-sense learner progress. Standard
+meanings and artist-master senses retain source-menu IDs through assembly.
+Equivalent senses that collapse into one display row keep one canonical ID and
+place the others in `sense_id_aliases`. Legacy artist-master senses with no
+source-menu row receive reproducible `generated:artist-master:*` IDs; if an
+authoritative source ID later appears it becomes canonical and the generated ID
+is retained as an alias. `js/knowledge.js` also recognises the old content
+signature of POS + translation + context and migrates it on the learner's next
+answer. Future rebuilds must preserve both canonical IDs and aliases; an
+intentional ID change requires a matching `ItemProgress` migration. This is a
+load-bearing front-end/data contract, not display metadata.
 
 ### Merge responsibility at load time
 `js/vocab.js` joins:

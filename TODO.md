@@ -456,8 +456,8 @@
   shows an `x/y known` summary. Whole-card progress is the inherited baseline and the newest parent
   or item timestamp wins, so a later card correct clears older row mistakes without dense writes.
   Cross-device item rows use an auto-created `ItemProgress` sheet and require redeploying the
-  current `backend/GoogleAppsScript.js` version. Current decks use content-derived fallback IDs;
-  future pipeline output should retain stable sense IDs or provide a migration.
+  current `backend/GoogleAppsScript.js` version. Stable sense IDs and backward-compatible
+  aliases shipped in `fcb431d1`; remaining work is the partial-card completion semantics and SRS.
 
 - **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared] [spanish]**
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would

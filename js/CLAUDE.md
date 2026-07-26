@@ -86,11 +86,13 @@ timestamp win. Thus a later whole-card correct resolves older item mistakes, whi
 a later item mistake reopens only that row. The selected level's review deck is
 synthesized from unresolved rows; ordinary learning cards remain word/lemma cards.
 
-Knowledge IDs are `${parentFullId}~k1:<type>:<hash>`. The hash prefers a durable
-pipeline `sense_id`/`id`; current deck outputs do not retain those IDs, so the
-fallback is normalized POS + translation + context (or Expression family/text).
-Changing fallback content can orphan saved rows. Preserve stable sense IDs in any
-future deck-schema work or ship an explicit ItemProgress migration.
+Knowledge IDs are `${parentFullId}~k1:<type>:<hash>`. The hash prefers the durable
+pipeline `sense_id`/`id` now retained by both standard meanings and the artist
+master. Legacy master-only senses receive deterministic `generated:artist-master:`
+IDs; source IDs supersede generated IDs without dropping the old alias. The
+front end still recognises pre-migration normalized POS + translation + context
+IDs and stored `sense_id_aliases`, then writes the canonical ID on the learner's
+next row answer. Preserve canonical IDs/aliases in future deck-schema work.
 
 ## buildFilteredVocab() — Central Filter
 
