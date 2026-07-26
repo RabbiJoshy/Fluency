@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-27",
+      "commit": "063493d7",
+      "summary": "Study options and settings now share a calmer, persistent design",
+      "details": [
+        "The in-study clock replaces coloured emoji discs with restrained line icons, shorter labels, and a real settings gear in the progress rail",
+        "Settings now has Account, Study, Data, and Artists tabs; data freshness and reset tools live together in a scrollable desktop/mobile modal",
+        "Card direction and automatic speech persist on this device and are restored by exact set resumes; cache v105→v106, assets 20260726l→20260727a"
+      ]
+    },
+    {
       "date": "2026-07-26",
       "commit": "a546cd76",
       "summary": "Due cards now return through level-scoped spaced repetition",

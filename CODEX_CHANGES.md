@@ -23,6 +23,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Modern, persistent study settings
+
+- Commit `063493d7`; front-end cache `flashcards-v106` / `20260727a`.
+- The active-study clock retains all seven actions but replaces garish per-action colours and emoji fallbacks with one neutral line-icon system. The progress-rail ellipsis is now a conventional settings gear.
+- The main modal now has Account, Study, Data, and Artists tabs. Freshness diagnostics, level-estimate clearing, and current-set reset live under Data; the modal is a bounded scroll surface on desktop and a bottom sheet on mobile.
+- Target/English card direction and automatic speech join Merge Lemmas/Cognates as device-level defaults. In-study changes persist immediately, and exact resume snapshots also retain speech state.
+- Verification: JavaScriptCore parsing of the changed modules, unique DOM IDs, cache-version lockstep, and `git diff --check`. No service-worker browser preview was used.
+
 ### 2026-07-26 — Level-scoped spaced repetition v1
 
 - Commit `a546cd76`; front-end cache `flashcards-v105` / `20260726l`.
