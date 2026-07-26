@@ -987,29 +987,6 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.5);
         }
-        .flag-menu-issues {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .flag-menu-issue {
-            padding: 5px 12px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 999px;
-            color: rgba(255, 255, 255, 0.8);
-            font-family: var(--font-data);
-            font-size: 11px;
-            cursor: pointer;
-            transition: background 0.12s, border-color 0.12s, color 0.12s;
-        }
-        .flag-menu-issue:hover { border-color: rgba(255, 255, 255, 0.4); }
-        .flag-menu-issue.selected {
-            background: rgba(255, 196, 0, 0.18);
-            border-color: rgba(255, 196, 0, 0.7);
-            color: rgba(255, 235, 170, 0.98);
-        }
-
         .flag-menu-pairing {
             padding: 10px;
             border: 1px solid rgba(255, 196, 0, 0.42);
@@ -1104,6 +1081,271 @@
 
         .flag-menu-note::placeholder {
             color: rgba(255, 255, 255, 0.32);
+        }
+
+        /* Audit reporter — modern, bounded, and intentionally calmer than
+           the legacy yellow debug popover it replaces. */
+        .flag-menu {
+            padding: 18px;
+            background: rgba(7, 9, 14, 0.76);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .flag-menu .card-meta-modal-content {
+            display: flex;
+            flex-direction: column;
+            width: min(100%, 620px);
+            max-width: 620px;
+            max-height: min(88dvh, 780px);
+            overflow: hidden;
+            border: 1px solid color-mix(in srgb, var(--accent-primary) 24%, var(--border-color));
+            border-radius: 18px;
+            background: color-mix(in srgb, var(--bg-secondary) 96%, #090b11);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.58);
+        }
+        .flag-menu .card-meta-header {
+            flex: none;
+            padding: 17px 19px 14px;
+            border-color: color-mix(in srgb, var(--border-color) 78%, transparent);
+        }
+        .flag-menu .card-meta-title {
+            color: var(--text-primary);
+            font: 700 18px/1.2 var(--font-emphasis);
+            letter-spacing: -0.01em;
+        }
+        .flag-menu .card-meta-close {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+        .flag-menu .card-meta-body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 14px 19px 19px;
+        }
+        .flag-menu .card-meta-footer {
+            flex: none;
+            padding: 13px 19px 17px;
+            border-color: color-mix(in srgb, var(--border-color) 78%, transparent);
+            background: color-mix(in srgb, var(--bg-secondary) 96%, transparent);
+        }
+        .flag-menu-hint {
+            margin: 0 0 16px;
+            color: var(--text-secondary);
+            font: 500 12px/1.5 var(--font-reading);
+        }
+        .flag-menu .card-meta-section {
+            margin-top: 17px;
+        }
+        .flag-menu .card-meta-section h4 {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font: 700 10px/1.2 var(--font-emphasis);
+            letter-spacing: 0.09em;
+        }
+        .flag-section-optional {
+            margin-left: 4px;
+            color: color-mix(in srgb, var(--text-muted) 65%, transparent);
+            font-weight: 500;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+        .flag-menu-targets {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+        .flag-menu-target {
+            min-width: 0;
+            padding: 11px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 11px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.15s, background 0.15s, transform 0.15s;
+        }
+        .flag-menu-target:hover {
+            border-color: color-mix(in srgb, var(--accent-primary) 48%, var(--border-color));
+            transform: translateY(-1px);
+        }
+        .flag-menu-target.selected {
+            border-color: color-mix(in srgb, var(--accent-primary) 72%, var(--border-color));
+            background: color-mix(in srgb, var(--accent-primary) 13%, var(--bg-tertiary));
+            box-shadow: inset 3px 0 0 var(--accent-primary);
+        }
+        .flag-menu-target strong,
+        .flag-menu-target span {
+            display: block;
+        }
+        .flag-menu-target strong {
+            font: 700 13px/1.25 var(--font-emphasis);
+        }
+        .flag-menu-target span {
+            margin-top: 3px;
+            color: var(--text-muted);
+            font: 500 10px/1.35 var(--font-reading);
+        }
+        .flag-menu-senses {
+            max-height: 190px;
+            overflow-y: auto;
+        }
+        .flag-menu-sense {
+            padding: 9px 11px;
+            border-color: var(--border-color);
+            border-radius: 9px;
+            background: var(--bg-tertiary);
+        }
+        .flag-menu-sense:hover {
+            background: color-mix(in srgb, var(--accent-primary) 7%, var(--bg-tertiary));
+        }
+        .flag-menu-sense.selected {
+            border-color: color-mix(in srgb, var(--accent-primary) 64%, var(--border-color));
+            background: color-mix(in srgb, var(--accent-primary) 12%, var(--bg-tertiary));
+        }
+        .flag-menu-sense .fm-pos,
+        .flag-menu-sense .fm-pct {
+            color: var(--text-muted);
+        }
+        .flag-menu-sense .fm-gloss {
+            color: var(--text-primary);
+            font-family: var(--font-reading);
+            font-size: 13px;
+        }
+        .flag-menu-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            transition: opacity 0.15s;
+        }
+        .flag-menu-categories.is-disabled {
+            opacity: 0.34;
+            pointer-events: none;
+        }
+        .flag-menu-category {
+            min-height: 34px;
+            padding: 6px 11px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text-secondary);
+            font: 650 10px/1 var(--font-emphasis);
+            cursor: pointer;
+        }
+        .flag-menu-category:hover {
+            border-color: color-mix(in srgb, var(--accent-primary) 46%, var(--border-color));
+            color: var(--text-primary);
+        }
+        .flag-menu-category.selected {
+            border-color: color-mix(in srgb, var(--accent-primary) 64%, var(--border-color));
+            background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
+            color: var(--text-primary);
+        }
+        .flag-menu-pairing {
+            padding: 12px 13px;
+            border-color: color-mix(in srgb, var(--accent-primary) 30%, var(--border-color));
+            border-radius: 11px;
+            background: color-mix(in srgb, var(--accent-primary) 7%, var(--bg-tertiary));
+        }
+        .flag-pairing-sense {
+            color: var(--text-primary);
+            font-family: var(--font-reading);
+        }
+        .flag-pairing-sense > span,
+        .flag-preview-object > span {
+            color: var(--accent-primary);
+        }
+        .flag-pairing-arrow {
+            color: var(--text-muted);
+            font: 600 9px/1.2 var(--font-emphasis);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .flag-pairing-example,
+        .flag-preview-context {
+            color: var(--text-secondary);
+            font-family: var(--font-reading);
+        }
+        .flag-preview-context {
+            margin-top: 5px;
+            font-size: 11px;
+        }
+        .flag-preview-object > span,
+        .flag-preview-object > strong,
+        .flag-preview-object > small {
+            display: block;
+        }
+        .flag-preview-object > span {
+            font: 700 9px/1.2 var(--font-emphasis);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .flag-preview-object > strong {
+            margin-top: 4px;
+            color: var(--text-primary);
+            font: 700 16px/1.25 var(--font-reading);
+        }
+        .flag-preview-object > small {
+            margin-top: 3px;
+            color: var(--text-muted);
+            font: 500 10px/1.4 var(--font-reading);
+        }
+        .flag-menu-note-label {
+            color: var(--text-muted);
+            font-family: var(--font-emphasis);
+        }
+        .flag-menu-note {
+            min-height: 88px;
+            padding: 11px 12px;
+            border-color: var(--border-color);
+            border-radius: 11px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+        .flag-menu-note:focus {
+            border-color: color-mix(in srgb, var(--accent-primary) 68%, var(--border-color));
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 12%, transparent);
+        }
+        .flag-menu .card-meta-flag-btn {
+            min-height: 45px;
+            padding: 11px 14px;
+            border: 1px solid var(--accent-primary);
+            border-radius: 11px;
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+            font: 700 12px/1.2 var(--font-emphasis);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+        .flag-menu .card-meta-flag-btn:hover {
+            border-color: var(--accent-primary);
+            background: color-mix(in srgb, var(--accent-primary) 88%, white);
+        }
+        .flag-menu .card-meta-flag-btn:disabled {
+            opacity: 0.42;
+            cursor: not-allowed;
+        }
+        @media (max-width: 560px) {
+            .flag-menu {
+                align-items: flex-end;
+                padding: 10px;
+            }
+            .flag-menu .card-meta-modal-content {
+                max-height: 92dvh;
+                border-radius: 18px 18px 12px 12px;
+            }
+            .flag-menu-targets {
+                grid-template-columns: 1fr;
+            }
+            .flag-menu-target {
+                padding: 10px 11px;
+            }
         }
 
         .kb-hint.correct {

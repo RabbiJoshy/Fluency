@@ -539,8 +539,9 @@ async function saveWordProgress(card, isCorrect) {
 
 // Flag a word as having erroneous translation/data — debugging-only path.
 // Routes to a separate FlaggedWords sheet (auto-created by GAS) so it doesn't
-// pollute UserProgress/Lyrics. Reuses lastWrong for the flag timestamp; pairing
-// and note reports remain compatible by using the existing `word` value column.
+// pollute UserProgress/Lyrics. Reuses lastWrong for the flag timestamp; the
+// structured audit target/category report remains compatible by using the
+// existing `word` value column.
 async function flagWord(card, fieldPath, fieldValue) {
     if (!currentUser) {
         console.warn('flagWord skipped: no user logged in');

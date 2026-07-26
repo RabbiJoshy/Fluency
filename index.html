@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260727c">
-    <link rel="modulepreload" href="js/state.js?v=20260727c">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260727c">
-    <link rel="modulepreload" href="js/speech.js?v=20260727c">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260727c">
-    <link rel="modulepreload" href="js/auth.js?v=20260727c">
-    <link rel="modulepreload" href="js/spotify.js?v=20260727c">
-    <link rel="modulepreload" href="js/estimation.js?v=20260727c">
-    <link rel="modulepreload" href="js/config.js?v=20260727c">
-    <link rel="modulepreload" href="js/progress.js?v=20260727c">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260727c">
-    <link rel="modulepreload" href="js/ui.js?v=20260727c">
-    <link rel="modulepreload" href="js/vocab.js?v=20260727c">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260727c">
+    <link rel="modulepreload" href="js/main.js?v=20260727d">
+    <link rel="modulepreload" href="js/state.js?v=20260727d">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260727d">
+    <link rel="modulepreload" href="js/speech.js?v=20260727d">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260727d">
+    <link rel="modulepreload" href="js/auth.js?v=20260727d">
+    <link rel="modulepreload" href="js/spotify.js?v=20260727d">
+    <link rel="modulepreload" href="js/estimation.js?v=20260727d">
+    <link rel="modulepreload" href="js/config.js?v=20260727d">
+    <link rel="modulepreload" href="js/progress.js?v=20260727d">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260727d">
+    <link rel="modulepreload" href="js/ui.js?v=20260727d">
+    <link rel="modulepreload" href="js/vocab.js?v=20260727d">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260727d">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -168,8 +168,8 @@
         </div>
     </div>
 
-    <!-- Sense/example flag menu: defaults to the visible pairing + optional note.
-         Opened by the F key / flag action; navigable with ↑/↓, Enter to submit. -->
+    <!-- Audit flag menu: target and problem type are separate so reports can
+         point at a pairing, sense, example, lemma, form, card, or just a note. -->
     <div id="flagMenu" class="card-meta-popover flag-menu" role="dialog" aria-hidden="true" aria-label="Flag a card" hidden>
         <div class="card-meta-modal-content" id="flagMenuContent">
             <div class="card-meta-header">
@@ -177,26 +177,30 @@
                 <button class="card-meta-close" id="flagMenuClose" aria-label="Close">×</button>
             </div>
             <div class="card-meta-body">
-                <div class="flag-menu-hint">The visible sense and example are selected together. ↑/↓ changes sense · Enter flags · Esc cancels.</div>
-                <div class="card-meta-section">
-                    <h4>Which sense?</h4>
+                <div class="flag-menu-hint">Tell the data audit exactly where to look. The visible sense and example start selected.</div>
+                <div class="card-meta-section flag-menu-target-section">
+                    <h4>What should I inspect?</h4>
+                    <div class="flag-menu-targets" id="flagMenuTargets"></div>
+                </div>
+                <div class="card-meta-section" id="flagMenuSenseSection">
+                    <h4>Which meaning?</h4>
                     <ul class="flag-menu-senses" id="flagMenuSenses" role="listbox" aria-label="Card senses"></ul>
                 </div>
                 <div class="card-meta-section">
-                    <h4>What's wrong?</h4>
-                    <div class="flag-menu-issues" id="flagMenuIssues"></div>
+                    <h4>What seems wrong? <span class="flag-section-optional">optional</span></h4>
+                    <div class="flag-menu-categories" id="flagMenuCategories"></div>
                 </div>
                 <div class="card-meta-section">
-                    <h4>Selected report</h4>
+                    <h4>Audit preview</h4>
                     <div class="flag-menu-pairing" id="flagMenuPairingPreview"></div>
                 </div>
                 <div class="card-meta-section">
                     <label class="flag-menu-note-label" for="flagMenuNote">Note <span>optional</span></label>
-                    <textarea id="flagMenuNote" class="flag-menu-note" rows="3" maxlength="600" placeholder="What should be corrected? Add context for Claude here."></textarea>
+                    <textarea id="flagMenuNote" class="flag-menu-note" rows="3" maxlength="600" placeholder="What did you notice? Include the correction or expected behaviour if you know it."></textarea>
                 </div>
             </div>
             <div class="card-meta-footer">
-                <button class="card-meta-flag-btn" id="flagMenuConfirm" type="button" title="Flag the selected sense pairing">Flag this pairing</button>
+                <button class="card-meta-flag-btn" id="flagMenuConfirm" type="button" title="Send this report to the data audit">Send audit flag</button>
             </div>
         </div>
     </div>
@@ -1152,6 +1156,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260727c"></script>
+    <script type="module" src="js/main.js?v=20260727d"></script>
 </body>
 </html>
