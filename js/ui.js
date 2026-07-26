@@ -441,8 +441,8 @@ function updateStep2Tooltip() {
         if (levelTab) {
             levelTab.innerHTML = `
                 <p><strong>Choose a numbered level.</strong> Level 1 starts with ${name}'s most frequent words; each later level adds rarer vocabulary.</p>
-                <p>The summary shows the vocabulary ranks and card count under your current Merge Lemmas and Cognates settings, plus the share of the lyrics covered.</p>
-                <p>The note below gives the frequency cutoff and a few example words from that level.</p>
+                <p>The summary shows the vocabulary ranks and share of the lyrics covered under your current settings.</p>
+                <p>The note below says how many words are in that level and how often its least frequent words appear, followed by a few examples.</p>
             `;
         }
     }
@@ -636,7 +636,7 @@ async function renderLevelSelector(language) {
             <div class="level-slider-wrap">
                 <div class="lsw-readout">
                     <span class="lsw-rank"><strong id="lswLevelVal">Level ${initialIdx + 1}</strong></span>
-                    <span class="lsw-range">Ranks <strong id="lswRankVal">${initialMetrics.start.toLocaleString()}–${initialMetrics.end.toLocaleString()}</strong> · <span id="lswCardCountVal">${initialMetrics.count.toLocaleString()}</span> cards</span>
+                    <span class="lsw-range">Ranks <strong id="lswRankVal">${initialMetrics.start.toLocaleString()}–${initialMetrics.end.toLocaleString()}</strong></span>
                     <span class="lsw-coverage">~<strong id="lswCovVal">${initialCoverage}</strong> ${coverageType}</span>
                 </div>
                 <div id="lswSlider" class="lsw-segments lsw-scrubber" role="radiogroup" aria-label="Level scrubber" data-value="${initialIdx}">
@@ -1071,14 +1071,12 @@ function _applyFilteredRankCounts(samples) {
     const ranges = getActiveLevelRanges();
     const segBar = document.getElementById('lswSlider');
     const rankEl = document.getElementById('lswRankVal');
-    const countEl = document.getElementById('lswCardCountVal');
     if (segBar && rankEl && ranges.length > 0) {
         const i = parseInt(segBar.dataset.value || '0', 10);
         const lv = ranges[i];
         if (lv) {
             const metrics = _levelBandMetrics(lv, samples);
             rankEl.textContent = `${metrics.start.toLocaleString()}–${metrics.end.toLocaleString()}`;
-            if (countEl) countEl.textContent = metrics.count.toLocaleString();
         }
     }
     document.querySelectorAll('#levelSelector .lsw-ticks span').forEach((el) => {
@@ -1183,7 +1181,6 @@ function updateLevelSliderReadout(i) {
     const lv = ranges[i];
     if (!lv) return;
     const rankEl = document.getElementById('lswRankVal');
-    const countEl = document.getElementById('lswCardCountVal');
     const covEl  = document.getElementById('lswCovVal');
     const exEl   = document.getElementById('lswExamples');
     // Synchronous range and card count for this level's own band. Smart
@@ -1193,7 +1190,6 @@ function updateLevelSliderReadout(i) {
     if (rankEl) {
         const metrics = _levelBandMetrics(lv, _syncSamples);
         rankEl.textContent = `${metrics.start.toLocaleString()}–${metrics.end.toLocaleString()}`;
-        if (countEl) countEl.textContent = metrics.count.toLocaleString();
     }
     if (covEl) {
         covEl.textContent = lv.threshold != null
@@ -1215,6 +1211,7 @@ function updateLevelSliderReadout(i) {
     // this level on their own line beneath it.
     let freqValue = null;
     let freqUnit = '';
+    let displayedWordCount = _levelBandMetrics(lv, _syncSamples).count;
     if (lv.freqMin != null) {
         freqValue = lv.freqMin;
         freqUnit = activeArtist ? 'times in the lyrics' : 'times per million words';
@@ -1230,10 +1227,9 @@ function updateLevelSliderReadout(i) {
         // Frequency as a full sentence on its own line, then the example
         // words for this level on a new line underneath (stacked via the
         // .lsw-examples column layout in CSS).
+        const wordLabel = `${displayedWordCount.toLocaleString()} word${displayedWordCount === 1 ? '' : 's'}`;
         const freqHTML = freqValue !== null
-            ? (lv.splitTier
-                ? `<div class="lsw-freq-sentence">Fine split within words appearing <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`
-                : `<div class="lsw-freq-sentence">Words appearing at least <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`)
+            ? `<div class="lsw-freq-sentence"><strong>${wordLabel}</strong> appear${displayedWordCount === 1 ? 's' : ''} <strong>${freqValue.toLocaleString()}</strong> ${freqUnit}</div>`
             : '';
         const egHTML = examplesText ? `<div class="lsw-egs">${examplesText}</div>` : '';
         exEl.innerHTML = freqHTML + egHTML;
@@ -1245,6 +1241,7 @@ function updateLevelSliderReadout(i) {
         // Replace any raw-rank fallback with the real filtered count now
         // that we've actually loaded the vocab.
         _applyFilteredRankCounts(samples);
+        displayedWordCount = _levelBandMetrics(lv, samples).count;
         // Pick 5 words from the upper portion of this level's range — the
         // ones that just qualified at this coverage threshold are the most
         // illustrative of "what you'll be learning here".
@@ -2338,7 +2335,7 @@ function getArtistHelpContent() {
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect, partly learned, and spaced-repetition-due cards collect in a separate review for that level. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect, partly learned, and spaced-repetition-due cards collect in a separate review for that level. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -2350,7 +2347,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while incorrect, partly learned, and spaced-repetition-due cards collect in that level's separate review. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while incorrect, partly learned, and spaced-repetition-due cards collect in that level's separate review. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

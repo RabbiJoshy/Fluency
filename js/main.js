@@ -1,16 +1,16 @@
-import './state.js?v=20260727a';
-import './sync-queue.js?v=20260727a';
-import './speech.js?v=20260727a';
-import './artist-ui.js?v=20260727a';
-import './auth.js?v=20260727a';
-import './spotify.js?v=20260727a';
-import './estimation.js?v=20260727a';
-import './config.js?v=20260727a';
-import './progress.js?v=20260727a';
-import './knowledge.js?v=20260727a';
-import './ui.js?v=20260727a';
-import './vocab.js?v=20260727a';
-import './flashcards.js?v=20260727a';
+import './state.js?v=20260727b';
+import './sync-queue.js?v=20260727b';
+import './speech.js?v=20260727b';
+import './artist-ui.js?v=20260727b';
+import './auth.js?v=20260727b';
+import './spotify.js?v=20260727b';
+import './estimation.js?v=20260727b';
+import './config.js?v=20260727b';
+import './progress.js?v=20260727b';
+import './knowledge.js?v=20260727b';
+import './ui.js?v=20260727b';
+import './vocab.js?v=20260727b';
+import './flashcards.js?v=20260727b';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -48,6 +48,37 @@ if ('serviceWorker' in navigator) {
 let allArtistsConfig = null;
 // Slugs of artists currently selected for multi-artist merge
 let selectedArtistSlugs = [];
+const ARTIST_EXTRA_UNLOCK_KEY = 'fluency_artist_extra_unlocked_v1';
+const ARTIST_EXTRA_UNLOCK_PCT = 60;
+
+function readArtistExtraUnlocks() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(ARTIST_EXTRA_UNLOCK_KEY) || '[]');
+        return new Set(Array.isArray(saved) ? saved : []);
+    } catch (_) {
+        return new Set();
+    }
+}
+
+function isArtistExtraUnlocked(slug = window._urlArtistSlug) {
+    return !!slug && readArtistExtraUnlocks().has(slug);
+}
+
+function updateArtistExtraUnlock(coveragePct) {
+    if (!activeArtist || artistVocabularyScope !== 'main') return;
+    const pct = Math.max(0, Number(coveragePct) || 0);
+    window._artistMainCoveragePct = pct;
+    const slug = window._urlArtistSlug;
+    if (slug && pct >= ARTIST_EXTRA_UNLOCK_PCT && !isArtistExtraUnlocked(slug)) {
+        const unlocks = readArtistExtraUnlocks();
+        unlocks.add(slug);
+        try { localStorage.setItem(ARTIST_EXTRA_UNLOCK_KEY, JSON.stringify(Array.from(unlocks))); } catch (_) {}
+    }
+    renderArtistSourceSummary();
+}
+
+window.isArtistExtraUnlocked = isArtistExtraUnlocked;
+window.updateArtistExtraUnlock = updateArtistExtraUnlock;
 
 // Resolve artist from URL params: ?artist=bad-bunny or ?mode=badbunny (legacy alias)
 async function resolveArtist() {
@@ -73,10 +104,17 @@ async function resolveArtist() {
         const artistConfig = allArtistsConfig[artistSlug];
         if (artistConfig) {
             activeArtist = artistConfig;
-            artistVocabularyScope = params.get('scope') === 'extra' ? 'extra' : 'main';
-
             // Store the URL artist slug — this is the immutable primary artist
             window._urlArtistSlug = artistSlug;
+            const requestedExtra = params.get('scope') === 'extra';
+            artistVocabularyScope = requestedExtra && isArtistExtraUnlocked(artistSlug)
+                ? 'extra'
+                : 'main';
+            if (requestedExtra && artistVocabularyScope === 'main') {
+                const url = new URL(window.location.href);
+                url.searchParams.delete('scope');
+                history.replaceState(null, '', url);
+            }
 
             // Start with the URL artist; user can add more via settings
             selectedArtistSlugs = [artistSlug];
@@ -282,10 +320,22 @@ function renderArtistSourceSummary() {
     step.style.display = 'block';
 
     const scopeHint = document.getElementById('artistVocabularyScopeHint');
+    const extraUnlocked = isArtistExtraUnlocked();
+    if (artistVocabularyScope === 'extra' && !extraUnlocked) {
+        artistVocabularyScope = 'main';
+        const url = new URL(window.location.href);
+        url.searchParams.delete('scope');
+        history.replaceState(null, '', url);
+    }
     document.querySelectorAll('.artist-vocabulary-scope-btn').forEach(button => {
         const selected = button.dataset.artistScope === artistVocabularyScope;
+        const locked = button.dataset.artistScope === 'extra' && !extraUnlocked;
         button.classList.toggle('selected', selected);
+        button.classList.toggle('is-locked', locked);
         button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+        button.disabled = locked;
+        button.textContent = locked ? 'Extra · 60%' : (button.dataset.artistScope === 'extra' ? 'Extra' : 'Main');
+        button.title = locked ? 'Unlocks at 60% lyrics understood' : '';
         button.onclick = () => {
             const scope = button.dataset.artistScope;
             // Extra is deliberately not a plain toggle — confirm via explainer
@@ -300,7 +350,9 @@ function renderArtistSourceSummary() {
     if (scopeHint) {
         scopeHint.textContent = artistVocabularyScope === 'extra'
             ? `One-off ${artistName} lemma families, supported by shared Speech examples where available`
-            : 'Recurring lemma families';
+            : extraUnlocked
+                ? 'Recurring lemma families · Extra unlocked'
+                : `Extra unlocks at 60% lyrics understood · ${Math.min(59.9, window._artistMainCoveragePct || 0).toFixed(1)}% now`;
     }
 
     picker.onclick = () => {
@@ -319,6 +371,7 @@ window.renderArtistSourceSummary = renderArtistSourceSummary;
 
 async function setArtistVocabularyScope(scope, { autoStart = false } = {}) {
     if (!activeArtist || !['main', 'extra'].includes(scope)) return;
+    if (scope === 'extra' && !isArtistExtraUnlocked()) return;
     const changed = artistVocabularyScope !== scope;
     artistVocabularyScope = scope;
     const url = new URL(window.location.href);

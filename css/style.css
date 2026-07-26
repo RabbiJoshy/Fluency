@@ -2695,6 +2695,64 @@
             text-align: center;
         }
 
+        .resume-entry-modal {
+            padding: 18px;
+            background: rgba(7, 9, 14, 0.74);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .resume-entry-content {
+            box-sizing: border-box;
+            width: min(92vw, 470px);
+            max-width: 470px;
+            padding: 26px;
+            border-color: color-mix(in srgb, var(--accent-primary) 32%, var(--border-color));
+        }
+        .resume-entry-content h3 {
+            margin: 7px 0 18px;
+            color: var(--text-primary);
+            font: 700 25px/1.15 var(--font-emphasis);
+            letter-spacing: -0.02em;
+        }
+        .resume-entry-content > strong {
+            display: block;
+            color: var(--text-primary);
+            font: 650 17px/1.3 var(--font-emphasis);
+        }
+        .resume-entry-content p {
+            margin: 5px 0 3px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .resume-entry-content small {
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+        .resume-entry-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 22px;
+        }
+        .resume-entry-actions button {
+            min-height: 46px;
+            padding: 11px 14px;
+            border-radius: 11px;
+            font: 650 13px/1.2 var(--font-emphasis);
+            cursor: pointer;
+        }
+        .resume-entry-secondary {
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
+        }
+        .resume-entry-primary {
+            border: 1px solid var(--accent-primary);
+            background: var(--accent-primary);
+            color: var(--accent-primary-text);
+        }
+
         /* Sub-settings inside a setup-step (lemma + cognate live inside
            Choose Level). No card chrome — they read as compact rows under
            the parent step's main control rather than as their own panels.
@@ -3801,6 +3859,11 @@
             background: color-mix(in srgb, var(--accent-primary) 20%, var(--bg-tertiary));
             color: var(--text-primary);
             box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent-primary) 52%, transparent);
+        }
+        .artist-vocabulary-scope-btn.is-locked {
+            opacity: 0.52;
+            border: 1px dashed color-mix(in srgb, var(--text-muted) 48%, transparent);
+            cursor: not-allowed;
         }
         #artistVocabularyScopeHint {
             line-height: 1.35;

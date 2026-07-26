@@ -230,6 +230,7 @@ function updatePersonalCoverage(filteredVocab) {
     };
 
     if (!progressData || !filteredVocab || filteredVocab.length === 0) {
+        if (activeArtist && artistVocabularyScope === 'main') window.updateArtistExtraUnlock?.(0);
         showEmptyStandardSummary();
         _toggleLevelEstimateCTA(false);
         return;
@@ -256,12 +257,16 @@ function updatePersonalCoverage(filteredVocab) {
     }
 
     if (coveredCount === 0) {
+        if (activeArtist && artistVocabularyScope === 'main') window.updateArtistExtraUnlock?.(0);
         showEmptyStandardSummary();
         _toggleLevelEstimateCTA(false);
         return;
     }
 
     const coveragePct = (coveredFreq / totalFreq) * 100;
+    if (activeArtist && artistVocabularyScope === 'main') {
+        window.updateArtistExtraUnlock?.(coveragePct);
+    }
 
     // Animate the bar
     _toggleLevelEstimateCTA(true);

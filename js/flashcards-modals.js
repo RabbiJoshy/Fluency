@@ -896,6 +896,9 @@ function peekHomograph(siblingId) {
 // ---------------------------------------------------------------------------
 
 function showEndOfDeckOptions() {
+    // A completed deck is no longer resumable. Starting a follow-up set or
+    // mistake review will create a fresh snapshot on its first rendered card.
+    window.clearStudySessionSnapshot?.();
     const incorrectCards = Object.keys(stats.cardStats)
         .filter(idx => stats.cardStats[idx].incorrect > stats.cardStats[idx].correct)
         .map(Number);

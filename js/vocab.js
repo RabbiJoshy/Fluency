@@ -21,12 +21,19 @@ function renderResumeLastSetCard() {
         if (card) card.remove();
         return;
     }
-    if (!card) {
-        card = document.createElement('section');
-        card.id = 'resumeLastSetCard';
-        card.className = 'resume-set-card';
-        document.getElementById('topBar')?.after(card);
-    }
+    // Resume is an entry decision, not a permanent setup-page advert. The
+    // explicit ?resume=1 hop is already committed to resuming and skips this.
+    if (new URLSearchParams(window.location.search).get('resume') === '1') return;
+    try {
+        if (sessionStorage.getItem('fluency_resume_prompt_seen_v1') === snapshot.savedAt) return;
+    } catch (_) {}
+    if (card) card.remove();
+    card = document.createElement('section');
+    card.id = 'resumeLastSetCard';
+    card.className = 'modal resume-entry-modal';
+    card.setAttribute('role', 'dialog');
+    card.setAttribute('aria-modal', 'true');
+    card.setAttribute('aria-labelledby', 'resumeEntryTitle');
     const source = snapshot.mode === 'lyrics' ? 'Lyrics' : 'Speech';
     const level = snapshot.levelNumber ? `Level ${snapshot.levelNumber}` : 'Saved level';
     const set = snapshot.setNumber ? `Set ${snapshot.setNumber}` : 'Saved set';
@@ -37,15 +44,35 @@ function renderResumeLastSetCard() {
         ? `${snapshot.artistName || 'Lyrics'}${snapshot.artistVocabularyScope === 'extra' ? ' Extra' : ''}`
         : `${snapshot.languageName || snapshot.language} speech`;
     card.innerHTML = `
-        <button type="button" class="resume-set-button" id="resumeLastSetBtn">
-            <span class="resume-set-eyebrow">Continue last set</span>
+        <div class="modal-content resume-entry-content">
+            <span class="resume-set-eyebrow">Welcome back</span>
+            <h3 id="resumeEntryTitle">Continue where you stopped?</h3>
             <strong>${title}</strong>
-            <span>${source} · ${level} · ${set} · ${track} · ${forms} · ${cognates}</span>
-            <small>Last card: ${snapshot.currentWord || 'saved card'}</small>
-        </button>
-        <span class="resume-set-alternative">Or learn the next unseen set below</span>
-    `;
-    document.getElementById('resumeLastSetBtn')?.addEventListener('click', resumeLastStudySession);
+            <p>${source} · ${level} · ${set} · ${track}</p>
+            <small>${forms} · ${cognates} · last card: ${snapshot.currentWord || 'saved card'}</small>
+            <div class="resume-entry-actions">
+                <button type="button" class="resume-entry-secondary" id="dismissResumeLastSetBtn">Choose a new set</button>
+                <button type="button" class="resume-entry-primary" id="resumeLastSetBtn">Continue set</button>
+            </div>
+        </div>`;
+    document.body.appendChild(card);
+    const markSeenAndClose = () => {
+        try { sessionStorage.setItem('fluency_resume_prompt_seen_v1', snapshot.savedAt); } catch (_) {}
+        card.remove();
+    };
+    document.getElementById('resumeLastSetBtn')?.addEventListener('click', () => {
+        markSeenAndClose();
+        resumeLastStudySession();
+    });
+    document.getElementById('dismissResumeLastSetBtn')?.addEventListener('click', markSeenAndClose);
+    card.addEventListener('click', event => {
+        if (event.target === card) markSeenAndClose();
+    });
+}
+
+function clearStudySessionSnapshot() {
+    try { localStorage.removeItem(LAST_STUDY_SESSION_KEY); } catch (_) {}
+    document.getElementById('resumeLastSetCard')?.remove();
 }
 
 function saveStudySessionSnapshot() {
@@ -95,7 +122,6 @@ function saveStudySessionSnapshot() {
     };
     try {
         localStorage.setItem(LAST_STUDY_SESSION_KEY, JSON.stringify(snapshot));
-        renderResumeLastSetCard();
     } catch (error) {
         // Storage can be unavailable in hardened/private contexts.
     }
@@ -104,6 +130,8 @@ function saveStudySessionSnapshot() {
 async function resumeLastStudySession() {
     const snapshot = getLastStudySession();
     if (!snapshot) return;
+    try { sessionStorage.setItem('fluency_resume_prompt_seen_v1', snapshot.savedAt); } catch (_) {}
+    document.getElementById('resumeLastSetCard')?.remove();
     const currentMode = activeArtist ? 'lyrics' : 'speech';
     const currentArtist = window._urlArtistSlug || null;
     if (snapshot.mode !== currentMode || (snapshot.mode === 'lyrics' && snapshot.artistSlug !== currentArtist)) {
@@ -118,6 +146,15 @@ async function resumeLastStudySession() {
         return;
     }
 
+    const requestedExtra = snapshot.mode === 'lyrics' && snapshot.artistVocabularyScope === 'extra';
+    if (requestedExtra && !window.isArtistExtraUnlocked?.(snapshot.artistSlug)) {
+        clearStudySessionSnapshot();
+        artistVocabularyScope = 'main';
+        window.renderArtistSourceSummary?.();
+        alert('Artist Extra unlocks after you understand 60% of this artist\'s main lyrics vocabulary.');
+        return;
+    }
+
     selectedLanguage = snapshot.language;
     window.applyLanguageColorTheme?.();
     selectedLevel = snapshot.selectedLevel;
@@ -125,9 +162,7 @@ async function resumeLastStudySession() {
     useLemmaMode = !!snapshot.useLemmaMode;
     excludeCognates = !!snapshot.excludeCognates;
     hideSingleOccurrence = snapshot.hideSingleOccurrence !== false;
-    artistVocabularyScope = snapshot.mode === 'lyrics' && snapshot.artistVocabularyScope === 'extra'
-        ? 'extra'
-        : 'main';
+    artistVocabularyScope = requestedExtra ? 'extra' : 'main';
     excludeProperNouns = snapshot.excludeProperNouns !== false;
     excludeNoise = snapshot.excludeNoise !== false;
     excludeEnglishLoanwords = snapshot.excludeEnglishLoanwords !== false;
@@ -2189,6 +2224,7 @@ window.loadVocabularyData = loadVocabularyData;
 window.renderResumeLastSetCard = renderResumeLastSetCard;
 window.resumeLastStudySession = resumeLastStudySession;
 window.saveStudySessionSnapshot = saveStudySessionSnapshot;
+window.clearStudySessionSnapshot = clearStudySessionSnapshot;
 window.loadLevelReviewSet = loadLevelReviewSet;
 window.loadCSVFiles = loadCSVFiles;
 window.parseMultiMeaning = parseMultiMeaning;
