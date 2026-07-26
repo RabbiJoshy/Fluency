@@ -44,6 +44,32 @@
   - Output: routing accuracy % + a short list of the residual cases that genuinely need
     Gemini.
 
+  **AUDIT FINDINGS (2026-07-26, routing subagent) — two high-leverage fixes:**
+  1. **Lemma-representative selector is evidence-blind (architecture bug, all 3 languages).**
+     `step_8b:1456-1460` (artist) and `step_8a:1015-1025` (normal) both pick the display form
+     by `max(corpus_count)` = raw *homographic* surface count. That's why the `leer` card shows
+     `lean` (surface count 24, but 9/10 examples are the English drug noun; only 1 is "read",
+     while `leer` itself has 3 assigned). Fix = pick representative by **lemma-assigned example
+     evidence** (builder already computes `assigned_weights`/`group_counts` at `step_8b:850-859`).
+     Land the fix in **both `step_8a` and `step_8b`** so FR/NL inherit it (French already shows
+     the same failure mode: 777/2533 multi-surface lemmas have a non-lemma representative).
+     PAIRED front-end fix = `js/vocab.js:2139-2149` re-stamps the flag with the same flawed rule
+     on multi-artist merge → **Codex's** (flag to him; only bites when merging 2+ artists).
+  2. **`english_loanwords.json` exists (1,606 Wiktionary-etymology entries) but is UNUSED in
+     routing** — it's only a post-hoc UI stamp behind a toggle. Wiring it into `step_4a` routing
+     is the generalizable loanword lever (worse in FR: week-end/parking/shopping/cool). Root
+     cause of the miss: `step_4a:599-612` Phase-4 English fallback only fires `if w in en_50k
+     and w NOT in spanish_forms`, so any English word Wiktionary also lists as a Spanish form
+     (or that collides with an inflection, like `lean`) bypasses it. Add: loanword-layer
+     membership + **translation-identity** (`word == translation`, ~free) + en_50k-with-freq-
+     thresholds. Hard residue (code-switched slang not in Wiktionary, e.g. `lean`) needs the
+     evidence check from fix #1 or Gemini.
+  - Proper-noun detection (`detected_proper_nouns.json`) over-fires on line-initial caps
+    (polluted with verb forms/interjections) → cheap fix: caps-RATE on non-line-initial tokens
+    + exclude `spanish_forms` verbs/adjs. Ground-truth file: `sd_insufficient_review.json`
+    (1,785 Gemini-typed items: 916 slang / 98 loanword / …; note `type=slang` on a normal word
+    is a proposed extra sense, NOT a mis-route).
+
 ## Sense-assignment quality (the other half of the gate)
 
 - **[now] Confirm sense-assignment prompt + model are locked (M) [spanish]**
