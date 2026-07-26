@@ -155,7 +155,11 @@ def gather(src, en50k):
             flags.append("homograph-en-es")
         if row["detected_pn"] and row["bucket"] != "exclude.proper_nouns":
             flags.append("propn-detected-unrouted")
-        if row["bucket"] == "exclude.proper_nouns" and row["spanish_form"]:
+        # Excluded as PN but is a CONTENT spanish_form (not a Wiktionary name)
+        # → genuinely maybe-wrong. `name` POS means it IS a proper noun, so
+        # don't flag those (miami/benito/york are correct exclusions).
+        if row["bucket"] == "exclude.proper_nouns" and row["spanish_form"] \
+                and "name" not in (row["sf_pos"] or ""):
             flags.append("propn-maybe-wrong")
         if is_excl and row["count"] >= 10:
             flags.append("high-count-excluded")
