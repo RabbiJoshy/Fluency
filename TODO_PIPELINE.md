@@ -59,6 +59,31 @@
 
 ## Bugs found
 
+- **[now] Sense-menu covers only 63% of the SD scrape → ~5,800 words bypass the classifier (L) [artist/spanish] TOP QUALITY LEVER**
+  Found 2026-07-27 auditing Josh's flags. Two SpanishDict inputs disagree: `surface_cache`
+  (the scrape, 15,752 words) is read at ASSEMBLY to attach senses, but `sense_menu/
+  spanishdict.json` (9,945 words) is what `step_6c` classify-or-propose reads. **5,807 scraped
+  words are missing from the menu**, so gemini-3.1 never classifies them — they get raw
+  first-sense SD glosses with no WSD and no slang proposal. The missing set is the artist's
+  distinctive vocab: elision forms (`na'`/`to'`/`mirá'`) AND clean slang (`charro`→"cowboy" not
+  "jerk", `trapero`→"junkman" not "trap rapper", `chilla`→"fox" not "girl", `tequi`→"kid" not
+  "tequila", `guagua`→"trinket" not "bus"). These have NO entry in `sense_assignments` at all
+  (not Gemini, not keyword). Fix: make the menu-build (`step_5c_build_senses`) cover the scraped
+  words (at least the clean, non-apostrophe ones) so the classifier actually processes them.
+  Highest-leverage fix in the deck — it's why gemini-3.1 "did well" but the deck is still wrong.
+
+- **[now] Homograph de-dup: deck links the wrong of two entries (M) [artist/spanish]**
+  The master holds BOTH a corrected entry and the old wrong one for a surface, and the artist
+  index links the WRONG one: `vine`→English "vid" (venir exists), `manín`→`maní` "peanut"
+  ("bro/buddy" exists), `tar`→`tar` (estar-contraction exists), `quiles`→`quilar` "to screw"
+  (PROPN "artist" exists). The right answer already exists in the data — assembly's
+  homograph/representative selection picks the wrong entry. Found 2026-07-27.
+
+- **[now] Syllable-repeat adlib non-words not caught as noise (S) [artist/spanish]**
+  `tera` (from `entera-tera`), `rrear` (from `perrear, -rrear`), `nio` (from `ni`) survive as
+  cards. Add a step_2a noise rule for trailing-syllable repeats. (Josh's flag note.)
+
+
 - **[now] Lemma-mapping misses leave inflected forms stranded (M) [artist/spanish]**
   Spotted 2026-07-26 in Bad Bunny Extra: `vengamos` (→ venir), `estuviésemos` (→ estar),
   `dolares` (→ dólar/dólares), `abaje` (→ abajar?) appear as standalone one-off cards instead
