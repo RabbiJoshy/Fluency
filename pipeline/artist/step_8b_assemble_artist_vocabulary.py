@@ -1449,6 +1449,24 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         return found
 
     # --- Mark most frequent lemma instance ---
+    # Pick the representative surface form by the EVIDENCE actually assigned
+    # to this lemma's senses, not the raw (homographic) corpus_count. Raw
+    # count inflates a surface whose occurrences mostly belong to an off-lemma
+    # homograph: e.g. `lean` has corpus_count 24 but 9/10 of its lines are the
+    # English drug noun (routed unassigned) and only 1 is the verb `leer`,
+    # while `leer` itself has 3 assigned examples — so the `leer` card used to
+    # display `lean`. Ranking by assigned examples fixes that while preserving
+    # legitimate cases where a conjugated form genuinely dominates (it also
+    # carries the most assigned evidence). corpus_count stays as the tiebreaker
+    # so behaviour is unchanged when there's no assignment signal to split on.
+    def _assigned_evidence(e):
+        total = 0
+        for m in e.get("meanings", []):
+            if m.get("pos") == "SENSE_CYCLE" or m.get("unassigned"):
+                continue
+            total += len(m.get("examples", []))
+        return total
+
     lemma_groups = {}
     for entry in entries:
         lemma = entry.get("lemma", entry["word"]).lower()
@@ -1456,7 +1474,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     for group in lemma_groups.values():
         for e in group:
             e["most_frequent_lemma_instance"] = False
-        best = max(group, key=lambda e: e.get("corpus_count", 0))
+        best = max(group, key=lambda e: (_assigned_evidence(e), e.get("corpus_count", 0)))
         best["most_frequent_lemma_instance"] = True
 
     # --- Master vocabulary integration ---

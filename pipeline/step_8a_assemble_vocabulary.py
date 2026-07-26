@@ -1012,17 +1012,29 @@ def main():
     # right after para|para (6145) because both inherited inventory order).
     all_entries.sort(key=lambda e: -e["corpus_count"])
 
-    # Compute most_frequent_lemma_instance: for each lemma, the word|lemma
-    # entry with the highest corpus_count gets True
-    lemma_best = {}  # lemma -> (best_count, best_idx)
+    # Compute most_frequent_lemma_instance: the representative surface for a
+    # lemma is the one with the most EVIDENCE assigned to that lemma's senses,
+    # NOT the raw (homographic) corpus_count — tiebroken by corpus_count. Raw
+    # count inflates a surface whose occurrences mostly belong to an off-lemma
+    # homograph (see the `lean`/`leer` case documented in step_8b). Mirrors
+    # step_8b so every language built by this normal-mode builder inherits it.
+    def _assigned_evidence(e):
+        total = 0
+        for m, exs in zip(e.get("meanings_lean", []), e.get("examples_by_meaning", [])):
+            if m.get("pos") == "SENSE_CYCLE" or m.get("unassigned"):
+                continue
+            total += len(exs or [])
+        return total
+
+    lemma_best = {}  # lemma -> ((evidence, corpus_count), best_idx)
     for idx, e in enumerate(all_entries):
         lem = e["lemma"]
-        cc = e["corpus_count"]
-        if lem not in lemma_best or cc > lemma_best[lem][0]:
-            lemma_best[lem] = (cc, idx)
+        key = (_assigned_evidence(e), e["corpus_count"])
+        if lem not in lemma_best or key > lemma_best[lem][0]:
+            lemma_best[lem] = (key, idx)
 
     for idx, e in enumerate(all_entries):
-        e["most_frequent_lemma_instance"] = (lemma_best.get(e["lemma"], (-1, -1))[1] == idx)
+        e["most_frequent_lemma_instance"] = (lemma_best.get(e["lemma"], (None, -1))[1] == idx)
 
     # Write clitic layer (now that we have hex IDs for base verbs)
     if clitic_data:
