@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "895fec61",
+      "summary": "Levels, unfinished sets, and Artist Extra now have clearer progression",
+      "details": [
+        "Level summaries drop the duplicate card count and state how many words appear at the selected lyric or speech frequency",
+        "An unfinished set produces one Welcome back decision on a later app entry, while reaching the end clears the saved resume point",
+        "Artist Extra stays locked until main-vocabulary lyric coverage reaches 60%, with the unlock retained per artist; cache v106→v107, assets 20260727a→20260727b"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "063493d7",
       "summary": "Study options and settings now share a calmer, persistent design",
       "details": [

@@ -23,6 +23,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Clearer level progression, resume, and Artist Extra unlock
+
+- Commit `895fec61`; front-end cache `flashcards-v107` / `20260727b`.
+- The level readout no longer repeats a card count above the slider. Its supporting sentence reports the level's filtered word count and corpus cutoff: “X words appear X times in the lyrics” in artist mode, with the equivalent per-million wording in Speech.
+- Resume is now a one-time Welcome back decision when entering with an unfinished set, rather than a persistent setup-page card. Completing a deck clears that snapshot; dismissing the prompt only suppresses it for the current app session, and continuing still restores the exact card and settings.
+- Artist Extra unlocks per artist when understood coverage in that artist's Main scope reaches 60%. The lock is durable once earned, blocked URL/resume paths cannot bypass it, and the disabled setup control explains the threshold.
+- Verification: JavaScriptCore parsing of all changed modules, unique DOM IDs, cache-version lockstep, valid changelog JSON, and `git diff --check`. No service-worker browser preview was used.
+
 ### 2026-07-27 — Modern, persistent study settings
 
 - Commit `063493d7`; front-end cache `flashcards-v106` / `20260727a`.
