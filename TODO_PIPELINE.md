@@ -57,6 +57,16 @@
   occurrences, and cut them over to true counts. (This is why the earlier evidence-based
   representative-selector attempt was wrong — it ranked by capped example counts.)
 
+## Bugs found
+
+- **[now] Lemma-mapping misses leave inflected forms stranded (M) [artist/spanish]**
+  Spotted 2026-07-26 in Bad Bunny Extra: `vengamos` (→ venir), `estuviésemos` (→ estar),
+  `dolares` (→ dólar/dólares), `abaje` (→ abajar?) appear as standalone one-off cards instead
+  of merging into their recurring lemma. These are conjugated/inflected forms `step_7a` (lemma
+  mapping) / `conjugation_reverse` coverage missed — accents (`estuviesemos`→`estuviésemos`,
+  `dolares`→`dólares`) and subjunctive/rare forms are the likely gaps. Fixing this also removes
+  them from the "one-off" longtail (they become part of a Main lemma). Distinct from tagging.
+
 ## The gate (do before scaling anything)
 
 - **[now] Routing / classification correctness — designed cross-language (L) [es+fr+nl]**
