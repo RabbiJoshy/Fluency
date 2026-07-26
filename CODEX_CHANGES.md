@@ -16,9 +16,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
-- Artist expressions remain rows on word/lemma cards. Curated morphological families pool deterministic unique-line evidence and preserve exact lyric surfaces; a future missed-row review queue may synthesize focused prompts without creating a second permanent expression-card taxonomy.
+- Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces; a future missed-row review queue may synthesize focused prompts without creating a second permanent expression-card taxonomy.
 
 ## Codex task history
+
+### 2026-07-26 — Deterministic artist expressions completed
+
+- Commit `1f649cfe`; front-end cache `flashcards-v95` / `20260726b`.
+- Added 15 explicit lemma/link templates backed by the shared Spanish conjugation reverse map. They pool observed inflections, require a genuine construction complement, and safely recognise lyric infinitives with a morphology-confirmed dropped `r`; location uses such as `voy a casa` are excluded from `ir a + infinitive`.
+- Construction lines can be removed from semantically different shorter expressions, so `me voy a beber` no longer inflates standalone `me voy`. Full phrase-dictionary contents are not auto-promoted: that audit caught the false match of `qué va` inside `qué va a pasar`.
+- Only translated curated/construction rows and independently strong translated PMI rows enter learner decks. Untranslated PMI and variable-pronoun patterns remain review diagnostics; assembled rows have exact artist evidence and preserve their source tags.
+- Rebuilt Bad Bunny, Rosalía, and Young Miko deterministically without Gemini. The decks contain 103, 69, and 85 study-ready artist expressions, including 42 construction families representing 229 observed inflected prefixes. Seven regression tests, Python compilation, JSON parsing, cache lockstep, and `git diff --check` pass. No service-worker browser preview was used.
 
 ### 2026-07-26 — Deterministic artist expression pooling
 

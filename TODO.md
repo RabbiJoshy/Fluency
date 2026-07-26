@@ -435,15 +435,15 @@
   gaps. Gemini fallback only for words Wiktionary doesn't have. See `docs/design/artist_sense_pipeline.md`.
   (Already the default for French — artist_sense_pipeline.md describes the Spanish version.)
 
-- **[now] Deterministic artist expression families (M) [artist] [spanish]** — FIRST PASS DONE
-  2026-07-26 (`44de7313`): curated inflected construction families now pool onto the union of
-  distinct lyric lines, retain each observed form and exact displayed surface, and carry those
-  counts/examples through assembly to the existing Expression rows. Repeated lines and overlapping
-  variants count once; noisy pronoun-ending fragments are rejected. Rebuilt Bad Bunny, Rosalía,
-  and Young Miko without Gemini. Remaining work: generalise beyond the curated family map to a
-  lemma/template matcher, add construction constraints (especially `ir + a + infinitive`, so
-  location uses of `ir a` do not enter the future-tense construction), and fill translation gaps
-  from existing dictionaries/curations before considering Gemini only for unresolved expressions.
+- **Deterministic artist expression families (M) [artist] [spanish]** — DONE 2026-07-26
+  (`44de7313`, completed `1f649cfe`): morphology-backed lemma templates now pool inflected
+  constructions onto distinct exact lyric lines, require their real complement (so `ir a casa`
+  cannot enter `ir a + infinitive`), recognise morphology-confirmed dropped-r lyric infinitives,
+  and keep shorter standalone expressions semantically separate. Existing curated/dictionary
+  translations are reused only after independent detection; untranslated PMI and variable-pronoun
+  discoveries remain diagnostics rather than blank learner rows. All three artist decks were rebuilt
+  without Gemini. Expressions remain rows on word/lemma cards; granular missed-row progress stays a
+  separate later design item below.
 
 - **[idea] Granular missed-sense / expression review (L) [shared] [cross-lang]**
   Keep normal study cards word/lemma-based, with their sense and Expression rows. Later add an

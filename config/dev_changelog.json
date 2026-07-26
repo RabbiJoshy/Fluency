@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "1f649cfe",
+      "summary": "Artist expressions now require the construction they claim to teach",
+      "details": [
+        "Recognises inflected construction families through shared Spanish morphology while requiring a real complement, so voy a casa is not treated as ir a + infinitive",
+        "Keeps shorter expressions semantically separate, reuses translations only after independent detection, and leaves untranslated candidates out of learner-facing rows",
+        "Rebuilds all three artist decks deterministically without Gemini and retains exact lyric surfaces for highlighting; cache v94→v95, assets 20260726a→20260726b"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "44de7313",
       "summary": "Artist expressions now pool inflected forms onto exact lyric evidence",
       "details": [
