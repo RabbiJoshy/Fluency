@@ -18,8 +18,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Stable pipeline sense IDs are now a load-bearing future deck contract.
+- Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 
 ## Codex task history
+
+### 2026-07-26 — Three-state study-set progress
+
+- Commit `3fb24b2d`; front-end cache `flashcards-v99` / `20260726f`.
+- Replaced the themed percentage-seen fill with fixed proportional segments for Known, Review, and Unseen. Exact counts now appear in the selected-set description and accessible set labels.
+- Removed the unexplained numeric review badge and added a compact colour key. Artist/language theming remains on set borders and the selected focus ring, while progress colours keep one meaning everywhere.
+- The amber state deliberately says Review rather than Wrong so the same visual model can later include successfully recalled cards that become due under spaced repetition.
+- Verification: JavaScriptCore parsing, three-state percentage invariants, cache lockstep, stale badge/style searches, and `git diff --check` pass. No service-worker browser preview was used.
 
 ### 2026-07-26 — Extra explainer, confirm gate, and category grouping (Claude front-end task)
 

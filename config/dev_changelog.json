@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "3fb24b2d",
+      "summary": "Study sets now show known, review, and unseen progress clearly",
+      "details": [
+        "Replaces the single artist/language-coloured seen fill with consistent green Known, amber Review, and neutral Unseen proportions on every set",
+        "Removes the unexplained numbered review badge and adds a compact colour key plus exact Known, Review, and Unseen counts for the selected set",
+        "Keeps artist and language identity in set borders and the selected-state ring, ready for Review to later mean spaced-repetition cards that are due; cache v98→v99, assets 20260726e→20260726f"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "9e7c0f0e",
       "summary": "Clearer Main vs Extra vocabulary, with Extra grouped by category",
       "details": [
