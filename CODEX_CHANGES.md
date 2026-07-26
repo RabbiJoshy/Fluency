@@ -15,13 +15,21 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Desktop lyric autoplay is line-bounded and card-wide: it announces each sense/sub-sense/Expression with distinguishing context, plays that item's eligible examples, and skips unplayable lines without changing full-list counters. It remains unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
 - Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
-- Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
+- Audit flags separate the target (pairing, meaning, example, lemma, word form, card, or note only) from the problem category. They default to the visible sense–example pairing and store structured evidence through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 - Spaced repetition is level-scoped and uses explicit stages with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Correct recalls advance one stage; a mistake resets only that card/sense. Due cards remain Known for vocabulary coverage but turn amber and join Review in their current source/configuration scope.
 
 ## Codex task history
+
+### 2026-07-27 — Audit-focused card flagging
+
+- Commit `98d45281`; front-end cache `flashcards-v109` / `20260727d`.
+- The flag dialog now exposes seven report targets: the visible sense–example match, meaning, example line, lemma, word form, whole card, or a note with no selected field. Problem category is a separate optional choice, so lemma and morphology reports no longer masquerade as pairing errors.
+- The report sent through the unchanged `FlaggedWords` contract includes stable card/sense/Expression IDs plus relevant assignment methods, translation source, song/artist, Spotify/timing data, morphology, rank/frequency, and the learner's note. Note-only requires text and receives a unique path so unrelated observations do not overwrite one another.
+- The dialog is a bounded, scrollable desktop sheet/mobile bottom sheet with explicit target cards, compact category chips, a contextual preview, and a fixed send action.
+- Verification: JavaScriptCore parsing, seven-target/report-field assertions, unique DOM IDs, cache-version lockstep, valid changelog JSON, and `git diff --check`. No service-worker browser preview was used.
 
 ### 2026-07-27 — Explicit mobile Spotify Connect handoff
 

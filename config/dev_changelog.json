@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "98d45281",
+      "summary": "Flagging now produces useful, targeted audit reports",
+      "details": [
+        "Choose a sense–example match, meaning, example line, lemma, word form, whole card, or a free-text-only note as the report target",
+        "Problem categories are separate, while reports automatically include stable IDs and relevant assignment, source, timing, morphology, or frequency evidence",
+        "The flag dialog is now a modern scrollable sheet with clear previews and a note-only safeguard; cache v108→v109, assets 20260727c→20260727d"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "127ea212",
       "summary": "Mobile Spotify can activate the open phone app",
       "details": [
