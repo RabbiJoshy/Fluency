@@ -24,7 +24,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ### 2026-07-26 — Extra fills its categories; setup declutter (Claude front-end follow-up)
 
-- Commit `PENDING_COMMIT`; front-end cache `flashcards-v100` / `20260726g`. Authored by Claude; recorded here for the app-owner agent. Depends on pipeline commit `0b4d96fd` which stamped `extra_category` on `Artists/spanish/vocabulary_master.json` (live values: `single_occurrence`, `core`, `english`, `proper_noun`, `loanword`, `cognate`, `noise`).
+- Commit `53ffe425`; front-end cache `flashcards-v100` / `20260726g`. Authored by Claude; recorded here for the app-owner agent. Depends on pipeline commit `0b4d96fd` which stamped `extra_category` on `Artists/spanish/vocabulary_master.json` (live values: `single_occurrence`, `core`, `english`, `proper_noun`, `loanword`, `cognate`, `noise`).
 - `joinWithMaster()` (vocab.js) now copies `extra_category` from the master onto each joined entry, so the Extra category selector actually receives it.
 - Removed the always-visible Main-vs-Extra explainer paragraph (and its CSS) from the setup page; the Extra confirm modal is now the sole explanation. Kept the small "Vocabulary set" label and the confirm gate.
 - In Extra scope only, `renderExtraCategorySelector()` hides `lemmaToggleContainer` and `cognateToggleContainer` (Merge Lemmas / Exclude Cognates are meaningless there). Main/normal mode still shows both.

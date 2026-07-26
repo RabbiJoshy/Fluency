@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-26",
-      "commit": "PENDING_COMMIT",
+      "commit": "53ffe425",
       "summary": "Extra vocabulary now fills its categories, with a cleaner setup page",
       "details": [
         "Removed the always-visible Main vs Extra description from setup; the confirm popup shown when you tap Extra is now the single explanation",
