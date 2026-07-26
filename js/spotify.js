@@ -9,6 +9,7 @@ let _deviceId = null;
 let _playerReady = false;
 let _playerInitStarted = false;
 let _sdkPlaybackActivated = false;
+let _connectDeviceId = null;
 let _currentTrackId = null;
 let _isPlaying = false;
 let _snippetTimer = null;
@@ -263,6 +264,7 @@ function spotifyLogout() {
     localStorage.removeItem('spotify_access_token');
     localStorage.removeItem('spotify_refresh_token');
     localStorage.removeItem('spotify_token_expiry');
+    _connectDeviceId = null;
     if (_player) {
         _player.disconnect();
         _player = null;
@@ -370,7 +372,8 @@ async function spotifyPlayTrack(trackId, positionMs, options = {}) {
         if (_isPlaying) {
             if (_isMobile) {
                 const t = await getSpotifyToken();
-                if (t) await fetch('https://api.spotify.com/v1/me/player/pause', {
+                const deviceQuery = _connectDeviceId ? `?device_id=${encodeURIComponent(_connectDeviceId)}` : '';
+                if (t) await fetch(`https://api.spotify.com/v1/me/player/pause${deviceQuery}`, {
                     method: 'PUT',
                     headers: { 'Authorization': `Bearer ${t}` }
                 });
@@ -382,7 +385,8 @@ async function spotifyPlayTrack(trackId, positionMs, options = {}) {
         } else {
             if (_isMobile) {
                 const t = await getSpotifyToken();
-                if (t) await fetch('https://api.spotify.com/v1/me/player/play', {
+                const deviceQuery = _connectDeviceId ? `?device_id=${encodeURIComponent(_connectDeviceId)}` : '';
+                if (t) await fetch(`https://api.spotify.com/v1/me/player/play${deviceQuery}`, {
                     method: 'PUT',
                     headers: { 'Authorization': `Bearer ${t}` }
                 });
@@ -421,7 +425,57 @@ async function spotifyPlayTrack(trackId, positionMs, options = {}) {
   }
 }
 
-async function _playViaConnect(trackId, positionMs, token) {
+function _isPhoneConnectDevice(device) {
+    const description = `${device?.type || ''} ${device?.name || ''}`.toLowerCase();
+    return description.includes('smartphone') || description.includes('iphone')
+        || description.includes('android') || description.includes('phone');
+}
+
+async function _findMobileConnectDevice(token) {
+    const response = await fetch('https://api.spotify.com/v1/me/player/devices', {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (response.status === 401) return { unauthorized: true, device: null };
+    if (!response.ok) {
+        const detail = await response.json().catch(() => ({}));
+        throw new Error(`Device lookup failed (${response.status}): ${JSON.stringify(detail)}`);
+    }
+
+    const payload = await response.json().catch(() => ({ devices: [] }));
+    const usable = (payload.devices || []).filter(device => device?.id && !device.is_restricted);
+    // This code runs on a phone, so prefer the open phone app even when an
+    // unrelated desktop/browser is Spotify's currently active device.
+    const device = usable.find(item => _isPhoneConnectDevice(item) && item.is_active)
+        || usable.find(item => _isPhoneConnectDevice(item) && item.id === _connectDeviceId)
+        || usable.find(item => _isPhoneConnectDevice(item))
+        || usable.find(item => item.is_active)
+        || usable.find(item => item.id === _connectDeviceId)
+        || usable[0]
+        || null;
+    if (device) _connectDeviceId = device.id;
+    return { unauthorized: false, device };
+}
+
+async function _activateConnectDevice(device, token) {
+    if (!device || device.is_active) return true;
+    _debugLog(`Connect: transferring playback to ${device.name || device.type || 'phone'}`);
+    const response = await fetch('https://api.spotify.com/v1/me/player', {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ device_ids: [device.id], play: false })
+    });
+    if (response.status !== 204 && response.status !== 202) return false;
+    // Spotify documents Connect commands as order-sensitive but not
+    // guaranteed to execute in order. Give the handoff a brief head start
+    // before issuing the seek/play command.
+    await new Promise(resolve => setTimeout(resolve, 350));
+    return true;
+}
+
+async function _playViaConnect(trackId, positionMs, token, retry = {}) {
     _debugLog('Connect: playing ' + trackId + ' @' + positionMs + 'ms');
     const body = JSON.stringify({
         uris: [`spotify:track:${trackId}`],
@@ -433,7 +487,24 @@ async function _playViaConnect(trackId, positionMs, token) {
     };
 
     try {
-        const resp = await fetch('https://api.spotify.com/v1/me/player/play', {
+        const lookup = await _findMobileConnectDevice(token);
+        if (lookup.unauthorized && !retry.refreshed) {
+            const refreshed = await refreshSpotifyToken();
+            return refreshed
+                ? _playViaConnect(trackId, positionMs, refreshed, { ...retry, refreshed: true })
+                : false;
+        }
+        if (!lookup.device) {
+            _debugLog('Connect: Spotify returned no usable devices');
+            alert('Spotify is open, but it is not advertising a controllable device yet. Play any song in Spotify once, then return here and try again.');
+            return false;
+        }
+        if (!await _activateConnectDevice(lookup.device, token)) {
+            _debugLog('Connect: device transfer was rejected');
+        }
+
+        const playUrl = `https://api.spotify.com/v1/me/player/play?device_id=${encodeURIComponent(lookup.device.id)}`;
+        const resp = await fetch(playUrl, {
             method: 'PUT', headers, body
         });
 
@@ -446,26 +517,22 @@ async function _playViaConnect(trackId, positionMs, token) {
             return true;
         }
 
-        if (resp.status === 401) {
+        if (resp.status === 401 && !retry.refreshed) {
             _debugLog('Connect: 401, refreshing token...');
-            token = await refreshSpotifyToken();
-            if (!token) { await spotifyLogin(trackId, positionMs); return false; }
-            const retry = await fetch('https://api.spotify.com/v1/me/player/play', {
-                method: 'PUT',
-                headers: { ...headers, 'Authorization': `Bearer ${token}` },
-                body
-            });
-            if (retry.status === 204 || retry.status === 202) {
-                _debugLog('Connect: playing OK (after refresh)');
-                _currentTrackId = trackId;
-                _isPlaying = true;
-                return true;
-            }
+            const refreshed = await refreshSpotifyToken();
+            return refreshed
+                ? _playViaConnect(trackId, positionMs, refreshed, { ...retry, refreshed: true })
+                : false;
+        }
+
+        if (resp.status === 404 && !retry.rediscovered) {
+            _debugLog('Connect: device went stale, discovering it again');
+            _connectDeviceId = null;
+            return _playViaConnect(trackId, positionMs, token, { ...retry, rediscovered: true });
         }
 
         if (resp.status === 404) {
-            _debugLog('Connect: 404 — no active device');
-            alert('No active Spotify device found. Open the Spotify app first, then try again.');
+            alert('Spotify could not activate the phone app. Play any song in Spotify once, then return here and try again.');
             return false;
         }
 
@@ -584,7 +651,8 @@ async function spotifyPausePlayback(clearTrack = false) {
         if (_isMobile) {
             const token = await getSpotifyToken();
             if (!token) return false;
-            const response = await fetch('https://api.spotify.com/v1/me/player/pause', {
+            const deviceQuery = _connectDeviceId ? `?device_id=${encodeURIComponent(_connectDeviceId)}` : '';
+            const response = await fetch(`https://api.spotify.com/v1/me/player/pause${deviceQuery}`, {
                 method: 'PUT',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

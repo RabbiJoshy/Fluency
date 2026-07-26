@@ -4986,6 +4986,9 @@
         .spotify-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
+            min-width: 54px;
+            min-height: 54px;
             padding: 6px;
             border: none;
             background: none;
@@ -4994,6 +4997,8 @@
             -webkit-tap-highlight-color: transparent;
         }
         .spotify-btn svg {
+            width: 48px;
+            height: 48px;
             pointer-events: none;
         }
         .spotify-btn:hover {
@@ -5017,6 +5022,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            min-width: 48px;
+            min-height: 48px;
             padding: 2px;
             border-radius: 8px;
             background: none;
@@ -5025,13 +5032,12 @@
             transition: all 0.2s;
             text-decoration: none;
         }
-        /* The inline width/height attributes on the favicon img (40px) set
-           by updateCard() read as the default, but CSS wins — scale them
-           down so the footer row is more compact. */
+        /* Keep every reference destination comfortably tappable and give
+           the icon artwork enough weight beside the larger Spotify action. */
         .ref-icon-btn img,
         .ref-icon-btn svg {
-            width: 37px;
-            height: 37px;
+            width: 42px;
+            height: 42px;
         }
         .ref-icon-btn:hover {
             opacity: 1;
