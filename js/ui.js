@@ -1214,12 +1214,16 @@ function updateLevelSliderReadout(i) {
     let displayedWordCount = _levelBandMetrics(lv, _syncSamples).count;
     if (lv.freqMin != null) {
         freqValue = lv.freqMin;
-        freqUnit = activeArtist ? 'times in the lyrics' : 'times per million words';
+        freqUnit = activeArtist
+            ? `time${freqValue === 1 ? '' : 's'} in the lyrics`
+            : `time${freqValue === 1 ? '' : 's'} per million words`;
     } else if (ppmData && ppmData.length > 0) {
         const _e = ppmData.find(p => p.rank === lv.endRank);
         if (_e) {
             freqValue = Math.round(_e.ppm);
-            freqUnit = activeArtist ? 'times in the lyrics' : 'times per million words';
+            freqUnit = activeArtist
+                ? `time${freqValue === 1 ? '' : 's'} in the lyrics`
+                : `time${freqValue === 1 ? '' : 's'} per million words`;
         }
     }
 
