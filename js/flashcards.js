@@ -105,13 +105,66 @@ function getConjugatedEnglish(card, translation) {
     return form;
 }
 
-// Keep spoken English identical to the gloss rendered on the card. The
-// underlying sense translation is infinitive-shaped ("to deserve"), while a
-// conjugated surface such as "merezco" is displayed as "I deserve".
+function joinSpokenGlossAndContext(gloss, context) {
+    const cleanGloss = String(gloss || '').trim().replace(/[.,;:\s]+$/u, '');
+    const cleanContext = String(context || '').trim().replace(/^[,;:\s]+/u, '');
+    if (!cleanGloss) return cleanContext;
+    if (!cleanContext) return cleanGloss;
+    if (cleanGloss.toLocaleLowerCase('en').includes(cleanContext.toLocaleLowerCase('en'))) {
+        return cleanGloss;
+    }
+    return `${cleanGloss}, ${cleanContext}`;
+}
+
+// Keep spoken English aligned with the full visible sense, including the
+// smaller disambiguating context. The underlying translation is
+// infinitive-shaped ("to deserve"), while a conjugated surface such as
+// "merezco" is displayed as "I deserve".
 function getSpokenEnglish(card, meaning) {
     const translation = meaning && (meaning.meaning || meaning.translation);
     if (!translation) return '';
-    return getConjugatedEnglish(card, translation) || translation;
+    const gloss = getConjugatedEnglish(card, translation) || translation;
+    return joinSpokenGlossAndContext(gloss, meaning.context);
+}
+
+function getAutoplaySpokenEnglish(card, meaning, cycleIndex = 0) {
+    if (!meaning) return '';
+    if (meaning.allMWEs?.length) {
+        const item = meaning.allMWEs[cycleIndex] || meaning.allMWEs[0];
+        if (!item) return '';
+        let gloss = String(item.translation || '').replace(/\s*\(elided\)/giu, '').trim();
+        let context = item.context || item.context_heuristic || '';
+        if (!context && gloss) {
+            const split = splitMWETranslation(gloss);
+            gloss = split.primary || gloss;
+            context = split.context || '';
+        }
+        return joinSpokenGlossAndContext(gloss, context);
+    }
+    if (meaning.allClitics?.length) {
+        const item = meaning.allClitics[cycleIndex] || meaning.allClitics[0];
+        return item?.translation || item?.form || '';
+    }
+    if (meaning.pos === 'SENSE_CYCLE' && meaning.allSenses?.length) {
+        const item = meaning.allSenses[cycleIndex] || meaning.allSenses[0];
+        return joinSpokenGlossAndContext(item?.translation || meaning.meaning, item?.context);
+    }
+    return getSpokenEnglish(card, meaning);
+}
+
+function getCurrentSpokenEnglish(card) {
+    const meaning = card?.meanings?.[currentMeaningIndex];
+    if (!meaning) return '';
+    if (!currentGroupSelection?.members?.length) return getSpokenEnglish(card, meaning);
+    if (currentGroupSelection.axis === 'translation') {
+        return getConjugatedEnglish(card, meaning.meaning) || meaning.meaning || '';
+    }
+    const glosses = currentGroupSelection.members
+        .map(index => card.meanings[index])
+        .filter(Boolean)
+        .map(member => getConjugatedEnglish(card, member.meaning) || member.meaning || '')
+        .filter((gloss, index, all) => gloss && all.indexOf(gloss) === index);
+    return joinSpokenGlossAndContext(glosses.join(', '), currentGroupSelection.groupKey);
 }
 
 function formatMorphMood(mood) {
@@ -477,10 +530,34 @@ let _exampleAutoplayActive = false;
 let _exampleAutoplayRunId = 0;
 let _exampleAutoplayQueue = [];
 let _exampleAutoplayQueuePos = 0;
+let _explicitMeaningSelectionKey = null;
 
-function buildExampleAutoplayOrder(examples) {
+function meaningSelectionKey(card, meaningIndex) {
+    return `${card?.fullId || card?.id || card?.targetWord || ''}:${meaningIndex}`;
+}
+
+function selectInitialMeaningGroup(card, grouping) {
+    if (_exampleAutoplayActive || currentGroupSelection || !card?.meanings?.[currentMeaningIndex]) return;
+    if (_explicitMeaningSelectionKey === meaningSelectionKey(card, currentMeaningIndex)) return;
+    const { axisOf, groupKeyOf, groupMembers } = grouping || {};
+    const axis = axisOf?.get(currentMeaningIndex);
+    if (axis !== 'translation' && axis !== 'context') return;
+    const groupKey = groupKeyOf.get(currentMeaningIndex);
+    const meaning = card.meanings[currentMeaningIndex];
+    const compKey = `${meaning.pos}\u0000${axis}\u0000${groupKey}`;
+    const members = groupMembers.get(compKey);
+    if (!members || members.length < 2) return;
+    currentGroupSelection = {
+        axis,
+        groupKey,
+        pos: meaning.pos,
+        members: [...members]
+    };
+}
+
+function buildExampleAutoplayOrder(examples, requestedStartIndex = currentExampleIndex) {
     if (!Array.isArray(examples) || examples.length === 0) return [];
-    const startIndex = ((currentExampleIndex % examples.length) + examples.length) % examples.length;
+    const startIndex = ((requestedStartIndex % examples.length) + examples.length) % examples.length;
     const byTrack = new Map();
 
     // Rotate from the visible example, then group by track in first-seen
@@ -498,13 +575,114 @@ function buildExampleAutoplayOrder(examples) {
     return Array.from(byTrack.values()).flat();
 }
 
+function getAutoplayExamplesForItem(meaning, cycleIndex = 0) {
+    if (!meaning) return [];
+    let examples;
+    if (meaning.allMWEs?.length) {
+        const item = meaning.allMWEs[cycleIndex] || meaning.allMWEs[0];
+        examples = dedupeExamples(item?.examples || []);
+        if (item?.expression) {
+            examples = examples.filter(example => _matchedMweForm(
+                item,
+                example.target || example.spanish || '',
+                example.matched_surface || example.matched_variant
+            ));
+        }
+    } else if (meaning.allClitics?.length) {
+        const item = meaning.allClitics[cycleIndex] || meaning.allClitics[0];
+        examples = dedupeExamples(item?.examples || []);
+        if (item?.form) {
+            const escaped = item.form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            try {
+                const re = _cachedRegex(`(?<![\\p{L}])${escaped}(?![\\p{L}])`, 'iu');
+                examples = examples.filter(example => re.test(example.target || example.spanish || ''));
+            } catch (_) {
+                // Older browsers without Unicode property escapes retain the
+                // unfiltered list, matching the ordinary renderer fallback.
+            }
+        }
+    } else if (meaning.pos === 'SENSE_CYCLE' && meaning.allSenses?.length) {
+        const item = meaning.allSenses[cycleIndex] || meaning.allSenses[0];
+        // Current decks generally pool unassigned evidence on the cycle row,
+        // rather than assigning it to each remainder gloss. Play that pooled
+        // evidence once, while still announcing every gloss.
+        const itemExamples = Array.isArray(item?.examples) && item.examples.length
+            ? item.examples
+            : (cycleIndex === 0 ? meaning.allExamples : []);
+        examples = dedupeExamples(itemExamples || []);
+    } else {
+        examples = dedupeExamples(meaning.allExamples || []);
+    }
+    return examples.length > 1 ? sortExamplesByRelevance(examples) : examples;
+}
+
+function buildCardAutoplayItems(card) {
+    if (!card?.meanings?.length) return [];
+    const items = [];
+    card.meanings.forEach((meaning, meaningIndex) => {
+        if (!meaning || meaning.exampleOnly) return;
+        const cycleCount = meaning.allMWEs?.length
+            || meaning.allClitics?.length
+            || (meaning.pos === 'SENSE_CYCLE' && meaning.allSenses?.length)
+            || 1;
+        for (let cycleIndex = 0; cycleIndex < cycleCount; cycleIndex++) {
+            items.push({
+                meaningIndex,
+                cycleIndex,
+                spokenText: getAutoplaySpokenEnglish(card, meaning, cycleIndex),
+                examples: getAutoplayExamplesForItem(meaning, cycleIndex)
+            });
+        }
+    });
+    return items;
+}
+
+function cardHasPlayableAutoplay(card) {
+    return buildCardAutoplayItems(card).some(item =>
+        item.examples.some(isExampleSnippetEligible));
+}
+
+function buildCardAutoplayQueue(card) {
+    const items = buildCardAutoplayItems(card);
+    if (items.length === 0) return [];
+    const requestedCycleIndex = currentGroupSelection ? 0 : currentMWEIndex;
+    let startItem = items.findIndex(item =>
+        item.meaningIndex === currentMeaningIndex && item.cycleIndex === requestedCycleIndex);
+    if (startItem < 0) startItem = 0;
+    const rotated = [...items.slice(startItem), ...items.slice(0, startItem)];
+    const queue = [];
+    rotated.forEach((item, itemOffset) => {
+        if (item.spokenText) {
+            queue.push({
+                type: 'sense',
+                meaningIndex: item.meaningIndex,
+                cycleIndex: item.cycleIndex,
+                spokenText: item.spokenText
+            });
+        }
+        const exampleStart = itemOffset === 0 ? currentExampleIndex : 0;
+        for (const exampleIndex of buildExampleAutoplayOrder(item.examples, exampleStart)) {
+            queue.push({
+                type: 'example',
+                meaningIndex: item.meaningIndex,
+                cycleIndex: item.cycleIndex,
+                exampleIndex
+            });
+        }
+    });
+    return queue;
+}
+
 function stopExampleAutoplay(pause = true) {
     const wasActive = _exampleAutoplayActive;
     _exampleAutoplayActive = false;
     _exampleAutoplayQueue = [];
     _exampleAutoplayQueuePos = 0;
     _exampleAutoplayRunId++;
-    if (wasActive) window.cancelSpotifySnippet?.(pause);
+    if (wasActive) {
+        window.cancelSpotifySnippet?.(pause);
+        window.speechSynthesis?.cancel();
+    }
     const button = document.getElementById('exampleAutoplayBtn');
     if (button) {
         button.classList.remove('is-active');
@@ -522,9 +700,7 @@ function advanceExampleAutoplay(runId) {
         stopExampleAutoplay(false);
         return;
     }
-    currentExampleIndex = _exampleAutoplayQueue[_exampleAutoplayQueuePos];
-    updateCard();
-    setTimeout(() => playDisplayedExampleSnippet(runId), 0);
+    playExampleAutoplayStep(runId);
 }
 
 function setExampleAutoplayLoading(isLoading) {
@@ -536,17 +712,39 @@ function setExampleAutoplayLoading(isLoading) {
     if (icon) icon.textContent = isLoading ? '…' : '■';
 }
 
-async function playDisplayedExampleSnippet(runId) {
+async function playExampleAutoplayStep(runId) {
     if (!_exampleAutoplayActive || runId !== _exampleAutoplayRunId) return;
-    const button = document.getElementById('exampleAutoplayBtn');
-    if (!button) {
-        stopExampleAutoplay(true);
+    const step = _exampleAutoplayQueue[_exampleAutoplayQueuePos];
+    const card = flashcards[currentIndex];
+    if (!step || !card?.meanings?.[step.meaningIndex]) {
+        advanceExampleAutoplay(runId);
         return;
     }
-    const trackId = button.dataset.trackId || '';
-    const startMs = Number(button.dataset.startMs);
-    const endMs = Number(button.dataset.endMs);
-    if (!trackId || !Number.isFinite(startMs) || !Number.isFinite(endMs)) {
+
+    currentGroupSelection = null;
+    currentMeaningIndex = step.meaningIndex;
+    currentMWEIndex = step.cycleIndex;
+    if (step.type === 'example') currentExampleIndex = step.exampleIndex;
+    else currentExampleIndex = 0;
+    updateCard();
+
+    if (step.type === 'sense') {
+        setExampleAutoplayLoading(true);
+        speakWord(step.spokenText, true, () => {
+            if (_exampleAutoplayActive && runId === _exampleAutoplayRunId) {
+                setExampleAutoplayLoading(false);
+                setTimeout(() => advanceExampleAutoplay(runId), 0);
+            }
+        });
+        return;
+    }
+
+    const example = window._currentDisplayedExample;
+    const trackId = getSpotifyTrackIdForExample(example);
+    const startMs = Number(example?.timestamp_ms);
+    const endMs = Number(example?.end_timestamp_ms);
+    if (!isExampleSnippetEligible(example) || !trackId
+            || !Number.isFinite(startMs) || !Number.isFinite(endMs)) {
         advanceExampleAutoplay(runId);
         return;
     }
@@ -569,19 +767,13 @@ function toggleExampleAutoplay(event) {
         return;
     }
     if (!window.spotifySnippetSupported?.()) return;
-    const button = event?.currentTarget || document.getElementById('exampleAutoplayBtn');
-    const queue = (button?.dataset.autoplayOrder || '')
-        .split(',')
-        .map(value => Number(value))
-        .filter(Number.isInteger);
+    const queue = buildCardAutoplayQueue(flashcards[currentIndex]);
     if (queue.length === 0) return;
     _exampleAutoplayActive = true;
     _exampleAutoplayQueue = queue;
     _exampleAutoplayQueuePos = 0;
-    currentExampleIndex = queue[0];
     const runId = ++_exampleAutoplayRunId;
-    updateCard();
-    setTimeout(() => playDisplayedExampleSnippet(runId), 0);
+    playExampleAutoplayStep(runId);
 }
 
 function sortExamplesByRelevance(examples) {
@@ -1693,6 +1885,10 @@ function updateCard({ announceHeadword = false } = {}) {
     const langConfig = config.languages[selectedLanguage];
     window._currentDisplayedExample = null;
 
+    // A card entry starts from its structural group selection. An explicit
+    // sub-sense choice lasts only while the learner remains on this card.
+    if (announceHeadword) _explicitMeaningSelectionKey = null;
+
     // Most updateCard() calls are in-card rerenders: cycling an example,
     // selecting a sense/expression, starting autoplay, or changing a display
     // option. They must be silent and must clear a delayed browser utterance.
@@ -2176,6 +2372,12 @@ function updateCard({ announceHeadword = false } = {}) {
             card._grouping = { axisOf, groupKeyOf, groupMembers, groupFirstIdx, groupPctSum };
         }
 
+        // When the current meaning is one member of a collapsed row, the
+        // initial state represents the overarching grouped sense. A learner
+        // can still click any sub-row to pin that narrower sense; autoplay
+        // deliberately opts out because it walks those sub-senses itself.
+        selectInitialMeaningGroup(card, card._grouping);
+
         card.meanings.forEach((m, idx) => {
             if (m.exampleOnly) return;
             const isSelected = idx === currentMeaningIndex;
@@ -2502,6 +2704,19 @@ function updateCard({ announceHeadword = false } = {}) {
             cycleHasExamples = (cycleList[cycleIdx].examples || []).length > 0;
         }
 
+        const cardAutoplayAvailable = window.spotifySnippetSupported?.()
+            && (_exampleAutoplayActive || cardHasPlayableAutoplay(card));
+        const cardAutoplayButton = cardAutoplayAvailable
+            ? `<button type="button" id="exampleAutoplayBtn" class="example-autoplay-btn${_exampleAutoplayActive ? ' is-active' : ''}" aria-label="${_exampleAutoplayActive ? 'Stop lyric example autoplay' : 'Play lyric examples'}" aria-pressed="${_exampleAutoplayActive ? 'true' : 'false'}" title="${_exampleAutoplayActive ? 'Stop lyric autoplay' : 'Play lyric examples'}" onclick="toggleExampleAutoplay(event)"><span class="example-autoplay-icon" aria-hidden="true">${_exampleAutoplayActive ? '■' : '▶'}</span></button>`
+            : '';
+
+        // Keep the card-wide control reachable while autoplay passes through
+        // a sense with no sentence box (or when the initially selected sense
+        // has none but a later sense has a playable lyric).
+        if ((!currentMeaning?.targetSentence || !cycleHasExamples) && cardAutoplayButton) {
+            backHTML += `<div class="example-autoplay-fallback">${cardAutoplayButton}</div>`;
+        }
+
         if (currentMeaning && currentMeaning.targetSentence && cycleHasExamples) {
             // For MWE senses, get examples from the current MWE expression's own array
             let activeExamples;
@@ -2577,8 +2792,6 @@ function updateCard({ announceHeadword = false } = {}) {
 
             const hasMultipleExamples = activeExamples.length > 1;
             const exampleCount = activeExamples.length;
-            const autoplayOrder = buildExampleAutoplayOrder(activeExamples);
-            const autoplayEligibleCount = autoplayOrder.length;
 
             // Get current example (for cycling through multiple examples)
             let displayTargetSentence = currentMeaning.targetSentence;
@@ -2711,33 +2924,22 @@ function updateCard({ announceHeadword = false } = {}) {
             let exampleCounter = '';
             if (hasMultipleExamples) {
                 const exIdx = currentExampleIndex % exampleCount;
-                const counterIndex = _exampleAutoplayActive && _exampleAutoplayQueue.length
-                    ? _exampleAutoplayQueuePos + 1
-                    : exIdx + 1;
-                const counterTotal = _exampleAutoplayActive && _exampleAutoplayQueue.length
-                    ? _exampleAutoplayQueue.length
-                    : exampleCount;
-                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${counterIndex}/${counterTotal}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
+                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${exIdx + 1}/${exampleCount}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
             }
             // Breakdown button removed — English translation is now clickable instead
             const spotifySvg = `<svg width="44" height="44" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
             const spotifyBtn = spotifyTrackId
                 ? `<button type="button" class="spotify-btn link-btn" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="Play in Spotify" style="cursor:pointer; background:none; border:none; margin:0; padding:6px; position:relative; z-index:999;" onclick="event.stopPropagation(); stopExampleAutoplay(true); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})" ontouchend="event.stopPropagation(); event.preventDefault(); stopExampleAutoplay(true); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})">${spotifySvg}</button>`
                 : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
-            const currentSnippetDuration = Number(endPositionMs) - Number(positionMs);
-            const currentSnippetValid = !!spotifyTrackId
-                && Number.isFinite(currentSnippetDuration)
-                && currentSnippetDuration >= 350
-                && currentSnippetDuration <= 30000;
-            const autoplayBtn = autoplayEligibleCount > 0 && window.spotifySnippetSupported?.()
-                ? `<button type="button" id="exampleAutoplayBtn" class="example-autoplay-btn${_exampleAutoplayActive ? ' is-active' : ''}" aria-label="${_exampleAutoplayActive ? 'Stop lyric example autoplay' : 'Play lyric examples'}" aria-pressed="${_exampleAutoplayActive ? 'true' : 'false'}" title="${_exampleAutoplayActive ? 'Stop lyric autoplay' : 'Play lyric examples'}" data-autoplay-order="${autoplayOrder.join(',')}" data-track-id="${currentSnippetValid ? spotifyTrackId : ''}" data-start-ms="${currentSnippetValid ? positionMs : ''}" data-end-ms="${currentSnippetValid ? endPositionMs : ''}" onclick="toggleExampleAutoplay(event)"><span class="example-autoplay-icon" aria-hidden="true">${_exampleAutoplayActive ? '■' : '▶'}</span></button>`
-                : '';
+            // Card-wide availability keeps this visible even when only a
+            // later sense has a playable clip.
+            const autoplayBtn = cardAutoplayButton;
             const songNameDisplay = songName ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
                     <span class="example-song-credit">— ${songName}${vocalistCredit ? `<span class="example-vocalist-credit"> · ${vocalistCredit}</span>` : ''}</span>
                     <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${spotifyBtn}${exampleCounter}</span>
                 </div>
-            ` : ((exampleSourceLabel || exampleCounter) ? `
+            ` : ((exampleSourceLabel || exampleCounter || autoplayBtn) ? `
                 <div style="display: flex; justify-content: flex-end; align-items: center; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
                     ${exampleSourceLabel ? `<span class="example-song-credit" style="margin-right:auto;">${exampleSourceLabel}</span>` : ''}
                     <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${exampleCounter}</span>
@@ -2793,6 +2995,11 @@ function updateCard({ announceHeadword = false } = {}) {
                         ${songNameDisplay}
                     </div>
                 `;
+            } else if (cardAutoplayButton) {
+                // Raw Expression/clitic evidence can all disappear after the
+                // exact-form filter. The ordinary sentence row is then hidden,
+                // but card-wide autoplay must remain startable/stoppable.
+                backHTML += `<div class="example-autoplay-fallback">${cardAutoplayButton}</div>`;
             }
         } else if (currentMeaning?.exampleOnly) {
             backHTML += `<div class="sentence search-example-empty">No example is available for this source entry yet.</div>`;
@@ -3122,19 +3329,15 @@ function flipCard() {
             speakWord(card.targetWord, false);
         } else {
             // Target → English mode: back shows English, speak English meaning
-            const meaning = card.meanings[currentMeaningIndex];
-            if (meaning && meaning.meaning) {
-                speakWord(getSpokenEnglish(card, meaning), true);
-            }
+            const spokenEnglish = getCurrentSpokenEnglish(card);
+            if (spokenEnglish) speakWord(spokenEnglish, true);
         }
     } else {
         // Just flipped to FRONT of card
         if (isFlipped) {
             // English → Target mode: front shows English, speak English
-            const meaning = card.meanings[currentMeaningIndex];
-            if (meaning && meaning.meaning) {
-                speakWord(getSpokenEnglish(card, meaning), true);
-            }
+            const spokenEnglish = getCurrentSpokenEnglish(card);
+            if (spokenEnglish) speakWord(spokenEnglish, true);
         } else {
             // Target → English mode: front shows target word, speak target
             speakWord(card.targetWord, false);
@@ -3261,17 +3464,16 @@ function selectMeaning(index) {
     // Clicking a sub-row exits group-selection mode and pins the chosen meaning.
     currentGroupSelection = null;
     currentMeaningIndex = index;
+    _explicitMeaningSelectionKey = meaningSelectionKey(flashcards[currentIndex], index);
     currentExampleIndex = 0;
     currentMWEIndex = 0;
     updateCard();
 }
 
-// Click handler for the shared field of a group card. Re-derives the member
-// set from `axis` + the anchor meaning so the inline onclick stays trivial
-// (no JSON-encoded payload in the attribute). The anchor index is the leader
-// of the group (firstIdx); we use it as a fallback for currentMeaning so
-// downstream code that reads `card.meanings[currentMeaningIndex]` still has
-// a valid object.
+// Click handler for the shared field of a group card. It uses the renderer's
+// effective member set (with a derivation fallback) so the inline onclick
+// stays trivial and overlapping duplicate groups do not absorb one another.
+// The anchor remains currentMeaning for downstream code that expects one.
 //
 // Group membership includes the anchor's POS so a grouped row never crosses
 // the section boundary rendered above it.
@@ -3284,18 +3486,20 @@ function selectGroup(axis, anchorIdx) {
     let members;
     if (axis === 'translation') {
         groupKey = anchor.meaning || '';
-        members = card.meanings
-            .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => mm.pos === anchor.pos && (mm.meaning || '') === groupKey)
-            .map(({ i }) => i);
     } else {
         groupKey = anchor.context || '';
+    }
+    const effectiveKey = `${anchor.pos}\u0000${axis}\u0000${groupKey}`;
+    members = card._grouping?.groupMembers?.get(effectiveKey);
+    if (!members) {
+        const field = axis === 'translation' ? 'meaning' : 'context';
         members = card.meanings
             .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => mm.pos === anchor.pos && (mm.context || '') === groupKey)
+            .filter(({ mm }) => mm.pos === anchor.pos && (mm[field] || '') === groupKey)
             .map(({ i }) => i);
     }
     if (members.length < 2) return;
+    _explicitMeaningSelectionKey = null;
     currentGroupSelection = { axis, groupKey, pos: anchor.pos, members };
     currentMeaningIndex = anchorIdx;
     currentExampleIndex = 0;
@@ -3687,7 +3891,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260726j';
+const ASSET_VERSION = '20260726k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

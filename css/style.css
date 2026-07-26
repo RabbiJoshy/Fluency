@@ -2171,6 +2171,12 @@
             gap: 2px;
         }
 
+        .example-autoplay-fallback {
+            display: flex;
+            justify-content: center;
+            margin: 8px 0 2px;
+        }
+
         .example-autoplay-btn {
             width: 28px;
             height: 28px;

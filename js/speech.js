@@ -1,13 +1,26 @@
 import './state.js';
 
-// Speak a word in the target language
-function speakWord(text, useEnglish = false) {
-    if (!speechEnabled || !text || !window.speechSynthesis) return;
+// Speak a word in the target language. The optional completion callback lets
+// lyric autoplay wait for the English sense label before starting its first
+// example; ordinary callers remain fire-and-forget.
+function speakWord(text, useEnglish = false, onComplete = null) {
+    if (!speechEnabled || !text || !window.speechSynthesis) {
+        if (typeof onComplete === 'function') onComplete();
+        return;
+    }
 
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
+    let completed = false;
+    const complete = () => {
+        if (completed) return;
+        completed = true;
+        if (typeof onComplete === 'function') onComplete();
+    };
+    utterance.onend = complete;
+    utterance.onerror = complete;
     const langCode = useEnglish ? 'en-US' : (speechLangCodes[selectedLanguage] || 'es-ES');
     utterance.lang = langCode;
     utterance.rate = 0.9;
