@@ -41,7 +41,7 @@ import os
 import re
 import sys
 from collections import Counter, defaultdict
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
@@ -51,7 +51,7 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 6
+STEP_VERSION = 7
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
@@ -64,6 +64,8 @@ STEP_VERSION_NOTES = {
     5: "+ retain the complete set of corpus song IDs per word so distinct-song "
        "ranking is independent of the capped example selection",
     6: "+ preserve named Genius section vocalists on retained lyric examples",
+    7: "+ pool curated morphological expression families on unique lyric-line evidence "
+       "and retain exact MWE matches for deterministic artist assembly",
 }
 
 try:
@@ -311,6 +313,49 @@ def tokenize(line: str) -> List[str]:
     line = _expand_leading_elisions(line)
     line = strip_hyphen_adlibs(line)
     return [m.group(0).lower() for m in WORD_RE.finditer(line)]
+
+
+def tokenize_with_surfaces(line: str) -> List[Tuple[str, str]]:
+    """Return canonical counting tokens alongside their displayed surfaces.
+
+    ``tokenize()`` intentionally expands leading aphesis before matching, but
+    expression evidence also needs the exact lyric spelling for highlighting.
+    Recover that spelling here while applying the same canonical identity.
+    """
+    line = strip_hyphen_adlibs(line)
+    out = []
+    for match in WORD_RE.finditer(line):
+        raw = match.group(0).lower()
+        canonical = raw
+        surface = raw
+        if match.start() > 0 and line[match.start() - 1] in "'’":
+            before = line[match.start() - 2] if match.start() > 1 else ""
+            if (not before or not re.match(r"[" + LETTER_CLASS + r"]", before)):
+                expanded = _LEADING_ELISIONS.get(raw)
+                if expanded:
+                    canonical = expanded
+                    surface = line[match.start() - 1] + raw
+        out.append((canonical, surface))
+    return out
+
+
+def extract_exact_surface(surface: str, line: str) -> Optional[str]:
+    """Return the literal displayed span, or ``None`` if punctuation split it."""
+    tokens = str(surface or "").split()
+    if not tokens:
+        return None
+    parts = []
+    for index, token in enumerate(tokens):
+        if index:
+            parts.append(r"\s*" if tokens[index - 1].endswith(("'", "’")) else r"\s+")
+        parts.append(re.escape(token).replace("'", "['’]"))
+    pattern = re.compile(
+        r"(?<![" + LETTER_CLASS + r"0-9])(" + "".join(parts) + r")(?![" +
+        LETTER_CLASS + r"0-9])",
+        re.IGNORECASE,
+    )
+    match = pattern.search(line)
+    return match.group(1) if match else None
 
 
 # ====== Multi-word elision expansion ======
@@ -569,6 +614,13 @@ def build_counts_and_candidates(
     ngram_unigrams: Counter = Counter()
     ngram_counts: Dict[int, Counter] = {n: Counter() for n in range(2, 6)}
     ngram_songs: Dict[str, set] = defaultdict(set)
+    # Full counts and retained teaching examples must share one evidence
+    # basis. Keep the unique (song, normalised full line) keys for every
+    # observed n-gram, plus a small exact-example sample that step 8b can use
+    # without hoping the expression survived a component word's example cap.
+    ngram_lines: Dict[str, set] = defaultdict(set)
+    ngram_examples: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
+    MAX_MWE_EXAMPLES = 8
     for song in songs:
         raw_lyrics = song.get("lyrics")
         if not raw_lyrics:
@@ -648,8 +700,19 @@ def build_counts_and_candidates(
             # phrases align with the canonical vocabulary that step 3a will
             # later produce ("otra ve'" + "otra vez" share counts here).
             for chunk in _PHRASE_SPLIT_RE.split(count_text):
-                chunk_raw = tokenize(chunk)
-                chunk_toks = [w for w, _ in expand_tokens(chunk_raw, mwe_map)] if mwe_map else chunk_raw
+                chunk_source_tokens = tokenize_with_surfaces(chunk)
+                # Preserve each canonical token's original surface and source
+                # token index. Multi-word elisions such as ``vo'a`` expand to
+                # two counting tokens but must collapse back to one displayed
+                # match for exact lyric highlighting downstream.
+                chunk_expanded = []
+                for raw_index, (raw_token, source_surface) in enumerate(chunk_source_tokens):
+                    expanded_words = mwe_map.get(raw_token, [raw_token]) if mwe_map else [raw_token]
+                    chunk_expanded.extend(
+                        (word, source_surface, raw_index)
+                        for word in expanded_words
+                    )
+                chunk_toks = [word for word, _surface, _raw_index in chunk_expanded]
                 if elision_map or _AMBIG_ELISIONS_NGRAM:
                     before = chunk_toks
                     chunk_toks = normalize_ngram_tokens(chunk_toks, elision_map)
@@ -663,6 +726,27 @@ def build_counts_and_candidates(
                         ng = " ".join(chunk_toks[i:i + n])
                         ngram_counts[n][ng] += 1
                         ngram_songs[ng].add(song_id)
+                        evidence_key = (str(song_id or ""), count_line_key)
+                        if evidence_key not in ngram_lines[ng]:
+                            ngram_lines[ng].add(evidence_key)
+                            if len(ngram_examples[ng]) < MAX_MWE_EXAMPLES:
+                                surface_parts = []
+                                last_raw_index = None
+                                for _word, surface, raw_index in chunk_expanded[i:i + n]:
+                                    if raw_index != last_raw_index:
+                                        surface_parts.append(surface)
+                                        last_raw_index = raw_index
+                                evidence = {
+                                    "id": f"{song_id}:{line_no}",
+                                    "line": line_text,
+                                    "title": title,
+                                    "matched_variant": ng,
+                                    "matched_surface": " ".join(surface_parts),
+                                }
+                                if vocalists:
+                                    evidence["vocalists"] = list(vocalists)
+                                    evidence["sung_by_primary_artist"] = sung_by_primary
+                                ngram_examples[ng].append(evidence)
 
         # Top 3 distinct lines per word per song (for single-song words).
         # Two lines are "the same" if their tokenized text matches after
@@ -739,6 +823,8 @@ def build_counts_and_candidates(
         "unigrams": ngram_unigrams,
         "counts": ngram_counts,
         "songs": ngram_songs,
+        "lines": ngram_lines,
+        "examples": ngram_examples,
     }
     return counts, candidates, lid_stats, ngram_data, word_songs
 
@@ -861,6 +947,9 @@ FUNCTION_WORDS = frozenset({
     "me", "te", "se", "nos", "le", "les", "lo",
     "mi", "tu", "su", "mis", "tus", "sus",
     "es", "no", "ya", "si",
+    "yo", "tú", "tu", "él", "ella", "ello", "ellos", "ellas",
+    "usted", "ustedes", "vos", "nosotros", "nosotras",
+    "esto", "eso", "aquello", "todo", "toda", "todos", "todas",
 })
 
 # PMI thresholds. Tuned permissively so small corpora (e.g. Young Miko ~90
@@ -895,17 +984,81 @@ def _is_repetition(ngram):
     return len(set(words)) == 1
 
 
-def _dedup_conjugation_families(confirmed, families):
-    family_best = {}
+def _pool_construction_families(confirmed, families, ngram_data):
+    """Collapse curated inflected variants on their exact line union.
+
+    The old implementation kept only the most frequent spelling in a family,
+    so ``voy a`` silently discarded evidence for ``va a``, ``vas a``, etc.
+    Keep one familiar surface label but carry every observed variant, the
+    unique lyric-line union, and the distinct-song union. Overlapping variants
+    such as ``sé que`` / ``yo sé que`` therefore count a lyric line once.
+    """
+    line_sets = ngram_data.get("lines", {})
+    song_sets = ngram_data.get("songs", {})
+    grouped = defaultdict(list)
     no_family = []
-    for m in confirmed:
-        family = families.get(m["expression"])
+    for item in confirmed:
+        family = families.get(item["expression"])
         if family is None:
-            no_family.append(m)
+            no_family.append(item)
         else:
-            if family not in family_best or m["count"] > family_best[family]["count"]:
-                family_best[family] = m
-    return no_family + list(family_best.values())
+            grouped[family].append(item)
+
+    pooled = []
+    for family, members in grouped.items():
+        representative = max(members, key=lambda item: item.get("count", 0))
+        result = dict(representative)
+        family_lines = set()
+        family_songs = set()
+        member_example_groups = []
+        variants = []
+        variant_counts = {}
+        occurrence_count = 0
+        for member in members:
+            expr = member["expression"]
+            if expr not in variants:
+                variants.append(expr)
+            for alias in member.get("variants", []):
+                if alias not in variants:
+                    variants.append(alias)
+            lines = set(line_sets.get(expr, set()))
+            family_lines.update(lines)
+            family_songs.update(song_sets.get(expr, set()))
+            variant_counts[expr] = len(lines)
+            occurrence_count += int(member.get("occurrence_count", member.get("count", 0)) or 0)
+            member_example_groups.append([dict(example) for example in member.get("examples", [])])
+
+        # Sample across variants before taking a second line from any one
+        # surface. Otherwise a frequent representative such as ``voy a``
+        # consumes the entire five-example cap and the pooled family never
+        # demonstrates that ``va a`` / ``vas a`` were recognised too.
+        family_examples = []
+        seen_examples = set()
+        max_group_size = max((len(group) for group in member_example_groups), default=0)
+        for example_index in range(max_group_size):
+            for group in member_example_groups:
+                if example_index >= len(group):
+                    continue
+                example = group[example_index]
+                key = (example.get("id"), example.get("line"))
+                if key in seen_examples:
+                    continue
+                seen_examples.add(key)
+                family_examples.append(example)
+                if len(family_examples) >= 5:
+                    break
+            if len(family_examples) >= 5:
+                break
+
+        result["family"] = family
+        result["variants"] = variants
+        result["variant_counts"] = variant_counts
+        result["count"] = len(family_lines)
+        result["occurrence_count"] = occurrence_count
+        result["num_songs"] = len({song for song in family_songs if song is not None})
+        result["examples"] = family_examples[:5]
+        pooled.append(result)
+    return no_family + pooled
 
 
 def _canonicalize_phrase(expr: str, mwe_map: Dict[str, List[str]],
@@ -968,6 +1121,22 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
     unigrams = ngram_data["unigrams"]
     ng_counts = ngram_data["counts"]
     ng_songs = ngram_data["songs"]
+    ng_lines = ngram_data.get("lines", {})
+    ng_examples = ngram_data.get("examples", {})
+
+    def exact_examples(expression):
+        exact = []
+        for raw in ng_examples.get(expression, []):
+            matched_surface = extract_exact_surface(
+                raw.get("matched_surface", ""), raw.get("line", ""))
+            if not matched_surface:
+                continue
+            example = dict(raw)
+            example["matched_surface"] = matched_surface
+            exact.append(example)
+            if len(exact) >= 5:
+                break
+        return exact
 
     # Build a flat lookup: expression -> count (across all n-gram sizes)
     all_counts = {}
@@ -989,10 +1158,14 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
         count = all_counts.get(expression, 0)
         tokens = expression.split()
         if count > 0 or len(tokens) >= 4:
+            line_count = len(ng_lines.get(expression, set()))
             entry = {
                 "expression": expression,
                 "translation": translation,
-                "count": count,
+                "count": line_count,
+                "occurrence_count": count,
+                "num_songs": len({song for song in ng_songs.get(expression, set()) if song is not None}),
+                "examples": exact_examples(expression),
             }
             # Track the original surface variants this entry came from when
             # they differ from the canonical form (e.g. "pa' que" → "para que").
@@ -1033,9 +1206,11 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
             pmi_detected.append({
                 "expression": ng,
                 "translation": None,
-                "count": count,
+                "count": len(ng_lines.get(ng, set())),
+                "occurrence_count": count,
                 "pmi": round(pmi, 1),
                 "num_songs": num_songs,
+                "examples": exact_examples(ng),
             })
 
     # Dedup overlapping n-grams: drop shorter if substring of longer with >= PMI
@@ -1050,16 +1225,18 @@ def detect_mwes(ngram_data, wiktionary_exprs=None,
 
     # Post-process curated
     confirmed = [m for m in confirmed if m["expression"] not in skip_mwes]
-    confirmed = _dedup_conjugation_families(confirmed, conjugation_families)
+    confirmed = _pool_construction_families(
+        confirmed, conjugation_families, ngram_data)
     confirmed.sort(key=lambda x: -x["count"])
 
     # Pattern detection: collapse object/reflexive clitics into a placeholder
     # so families like "no te hagas / no me hagas / no lo hagas" surface as
     # one "no [PRON] hagas" entry. These aren't fixed expressions — they're
     # grammatical templates with one variable slot. Useful pedagogically;
-    # downstream consumers (step_8b) currently ignore this bucket.
-    patterns = _detect_clitic_patterns(ng_counts, ng_songs, matched_keys,
-                                       skip_mwes, wiktionary_exprs)
+    # step 8b carries the retained high-signal templates into expression rows.
+    patterns = _detect_clitic_patterns(
+        ng_counts, ng_songs, matched_keys, skip_mwes, wiktionary_exprs,
+        ngram_lines=ng_lines, ngram_examples=ng_examples)
 
     return confirmed, pmi_detected, patterns
 
@@ -1070,7 +1247,8 @@ _CLITIC_PRONOUNS = frozenset({
 
 
 def _detect_clitic_patterns(ng_counts, ng_songs, matched_keys, skip_mwes,
-                            wiktionary_exprs):
+                            wiktionary_exprs, ngram_lines=None,
+                            ngram_examples=None):
     """Group n-grams into families differing only in their clitic-pronoun slot.
 
     Returns a list of pattern dicts, each with the placeholder-substituted
@@ -1081,6 +1259,8 @@ def _detect_clitic_patterns(ng_counts, ng_songs, matched_keys, skip_mwes,
     """
     families = defaultdict(lambda: Counter())
     family_songs: Dict[str, set] = defaultdict(set)
+    ngram_lines = ngram_lines or {}
+    ngram_examples = ngram_examples or {}
     for n in (3, 4):
         for ng, count in ng_counts[n].items():
             toks = ng.split()
@@ -1088,10 +1268,18 @@ def _detect_clitic_patterns(ng_counts, ng_songs, matched_keys, skip_mwes,
             if len(clitic_positions) != 1:
                 continue
             placeholder_toks = list(toks)
-            placeholder_toks[clitic_positions[0]] = "[PRON]"
+            slot_index = clitic_positions[0]
+            placeholder_toks[slot_index] = "[PRON]"
             # Skip if remaining content is all function words (low signal)
             content = [t for t in placeholder_toks if t != "[PRON]"]
             if all(w in FUNCTION_WORDS for w in content):
+                continue
+            # A pronoun-ending fragment such as ``que yo [PRON]`` is not a
+            # learnable construction. Require a lexical token after the slot;
+            # this retains useful families such as ``no [PRON] hagas`` while
+            # dropping the broad prefixes that dominated the old output.
+            if not any(token not in FUNCTION_WORDS
+                       for token in toks[slot_index + 1:]):
                 continue
             key = " ".join(placeholder_toks)
             families[key][ng] += count
@@ -1116,16 +1304,36 @@ def _detect_clitic_patterns(ng_counts, ng_songs, matched_keys, skip_mwes,
         )
         if all_variants_known:
             continue
+        family_lines = set()
+        examples = []
+        seen_examples = set()
+        for variant in members:
+            family_lines.update(ngram_lines.get(variant, set()))
+            for example in ngram_examples.get(variant, []):
+                matched_surface = extract_exact_surface(
+                    example.get("matched_surface", ""), example.get("line", ""))
+                if not matched_surface:
+                    continue
+                example_key = (example.get("id"), example.get("line"))
+                if example_key in seen_examples:
+                    continue
+                seen_examples.add(example_key)
+                tagged = dict(example)
+                tagged["matched_variant"] = variant
+                tagged["matched_surface"] = matched_surface
+                examples.append(tagged)
         patterns.append({
             # Use ``expression`` (not ``pattern``) so step_8b can iterate this
             # bucket alongside ``mwes`` / ``pmi_detected`` with one schema.
             # The placeholder string is the user-facing display ("no [PRON] hagas")
             # and the variants dict carries the surface forms that collapsed.
             "expression": key,
-            "count": total,
+            "count": len(family_lines),
+            "occurrence_count": total,
             "num_variants": len(members),
             "num_songs": len(family_songs[key]),
             "variants": dict(members.most_common()),
+            "examples": examples[:5],
         })
     patterns.sort(key=lambda p: -p["count"])
     return patterns
@@ -1229,17 +1437,28 @@ def main():
             "expression": m["expression"],
             "translation": m["translation"],
             "count": m["count"],
+            "occurrence_count": m.get("occurrence_count", m["count"]),
+            "num_songs": m.get("num_songs", 0),
+            "examples": m.get("examples", []),
         }
         if m.get("variants"):
             rec["variants"] = m["variants"]
+        if m.get("variant_counts"):
+            rec["variant_counts"] = m["variant_counts"]
+        if m.get("family"):
+            rec["family"] = m["family"]
         return rec
 
-    mwe_output = {
-        "mwes": [_confirmed_to_out(m) for m in confirmed] + [
+    pmi_output = [
             {"expression": m["expression"], "translation": None, "count": m["count"],
-             "pmi": m["pmi"], "num_songs": m["num_songs"]}
+             "occurrence_count": m.get("occurrence_count", m["count"]),
+             "pmi": m["pmi"], "num_songs": m["num_songs"],
+             "examples": m.get("examples", [])}
             for m in pmi_detected
-        ],
+        ]
+    mwe_output = {
+        "mwes": [_confirmed_to_out(m) for m in confirmed],
+        "pmi_detected": pmi_output,
         "patterns": patterns,
         "candidates": [],  # Legacy field, no longer used
         "stats": {

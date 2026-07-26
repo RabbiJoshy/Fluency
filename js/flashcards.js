@@ -40,6 +40,39 @@ function _cachedRegex(pattern, flags) {
     return re;
 }
 
+function _mweCandidateForms(mwe, preferred = '') {
+    const rawVariants = mwe?.variants || [];
+    const variants = Array.isArray(rawVariants) ? rawVariants : Object.keys(rawVariants);
+    const forms = [preferred, mwe?.expression, ...variants]
+        .map(value => String(value || '').trim())
+        .filter(Boolean);
+    return forms.filter((form, index) =>
+        forms.findIndex(candidate => candidate.toLocaleLowerCase('es') === form.toLocaleLowerCase('es')) === index);
+}
+
+function _mweRegex(form, flags = 'iu') {
+    const tokens = String(form || '').trim().split(/\s+/u).filter(Boolean);
+    const body = tokens.map((token, index) => {
+        const literal = /^\[pron\]$/iu.test(token)
+            ? '(?:me|te|se|le|les|nos|lo|la|los|las)'
+            : token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/['’]/gu, "['’]");
+        if (index === 0) return literal;
+        // Caribbean elisions are inconsistently spaced in source lyrics:
+        // the curated ``vo' a`` form must also match the displayed ``vo'a``.
+        const separator = /['’]$/u.test(tokens[index - 1]) ? '\\s*' : '\\s+';
+        return separator + literal;
+    }).join('');
+    return _cachedRegex(`(?<![\\p{L}\\p{N}])(${body})(?![\\p{L}\\p{N}])`, flags);
+}
+
+function _matchedMweForm(mwe, text, preferred = '') {
+    const plain = String(text || '').replace(/<[^>]*>/g, '');
+    for (const form of _mweCandidateForms(mwe, preferred)) {
+        if (_mweRegex(form, 'iu').test(plain)) return form;
+    }
+    return '';
+}
+
 function _extractUsedWith(context) {
     if (selectedLanguage !== 'spanish' || typeof context !== 'string') return '';
     const match = context.match(/\bused with\s+["“]([^"”]+)["”]/iu);
@@ -2494,13 +2527,12 @@ function updateCard({ announceHeadword = false } = {}) {
             // they keep their non-bordered fallback sentences per the
             // existing sense-cycle behaviour.
             if (currentMeaning.allMWEs) {
-                const expr = currentMeaning.allMWEs[activeMweIdx].expression;
-                if (expr) {
-                    const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    const re = _cachedRegex(escaped, 'i');
+                const activeMwe = currentMeaning.allMWEs[activeMweIdx];
+                if (activeMwe?.expression) {
                     activeExamples = activeExamples.filter(ex => {
                         const target = ex.target || ex.spanish || '';
-                        return re.test(target);
+                        return Boolean(_matchedMweForm(
+                            activeMwe, target, ex.matched_surface || ex.matched_variant));
                     });
                 }
             } else if (currentMeaning.allClitics) {
@@ -2587,12 +2619,18 @@ function updateCard({ announceHeadword = false } = {}) {
             // plus underline keeps the sentence readable; related deck words
             // use the quieter companion treatment below.
             if (currentMeaning.allMWEs) {
-                // MWE sense: highlight the current MWE expression
-                const expr = currentMeaning.allMWEs[activeMweIdx].expression;
-                const escaped = expr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
-                displayTargetSentence = displayTargetSentence.replace(regex,
-                    '<span class="example-word-highlight">$1</span>');
+                // Expression families keep their familiar canonical label,
+                // but the lyric may contain another observed morphological
+                // form. Highlight the form that this exact example carries.
+                const activeMwe = currentMeaning.allMWEs[activeMweIdx];
+                const matchedForm = _matchedMweForm(
+                    activeMwe, displayTargetSentence,
+                    currentExample?.matched_surface || currentExample?.matched_variant);
+                if (matchedForm) {
+                    displayTargetSentence = displayTargetSentence.replace(
+                        _mweRegex(matchedForm, 'giu'),
+                        '<span class="example-word-highlight">$1</span>');
+                }
             } else {
                 // In Merge Lemmas mode a pooled example may come from a
                 // sibling form (quieres on the quiero/querer card). Highlight
@@ -2706,10 +2744,10 @@ function updateCard({ announceHeadword = false } = {}) {
             // MWE: check if the expression appears in the example sentence
             if (currentMeaning && currentMeaning.allMWEs && displayTargetSentence) {
                 const activeMwe = currentMeaning.allMWEs[currentMWEIndex % currentMeaning.allMWEs.length];
-                if (activeMwe && activeMwe.expression) {
-                    const escaped = activeMwe.expression.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                    const re = _cachedRegex(escaped, 'i');
-                    exampleAssigned = re.test(displayTargetSentence.replace(/<[^>]*>/g, ''));
+                if (activeMwe?.expression) {
+                    exampleAssigned = Boolean(_matchedMweForm(
+                        activeMwe, displayTargetSentence,
+                        currentExample?.matched_surface || currentExample?.matched_variant));
                 }
             }
             // Clitic: check if the clitic form appears in the example sentence
@@ -3634,7 +3672,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260725al';
+const ASSET_VERSION = '20260726a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -121,6 +121,19 @@ Per-sense flags set by `joinWithMaster()`:
 - **English keyword highlight**: Only fires when `example.assignment_method` includes `'keyword'`. Highlights translation fragments ≥ 2 chars of `currentMeaning.meaning` in the English sentence.
 - **Sense selection treatment**: every row gets a subtle POS-coloured tint; the selected row gets a stronger tint, left rail, border, and elevation. Match assignment remains available for linking the selected sense to its example, but is not labelled with a redundant chip.
 
+**Artist expressions**: expressions remain pinned rows on the relevant word card;
+they are not a separate ordinary card type. Step 2a pools the forms named in
+`Artists/curations/conjugation_families.json` onto the union of distinct
+`(song_id, normalized lyric line)` evidence. The artist index carries `family`,
+`variants`, `variant_counts`, `count` (that unique-line union), `occurrence_count`
+(raw diagnostic hits), `num_songs`, and exact examples with `matched_variant`
+plus the original lyric `matched_surface`.
+`joinWithMaster()` must preserve these fields. `updateCard()` keeps the familiar
+representative expression label but filters and highlights against every observed
+variant, including inconsistently spaced apostrophe elisions such as `vo' a` /
+`vo'a`. High-signal `[PRON]` templates are supported; broad fragments ending at
+the pronoun slot are rejected upstream.
+
 Card-back senses are grouped into POS sections. `updateCard()` emits one compact
 `.back-pos-legend` beneath the word/lemma, then colour-codes each section's rows;
 duplicate translation/context groups remain constrained to one POS. MWE and

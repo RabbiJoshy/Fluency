@@ -1,30 +1,267 @@
 {
   "mwes": [
     {
+      "expression": "voy a",
+      "translation": "I'm going to",
+      "count": 45,
+      "occurrence_count": 46,
+      "num_songs": 29,
+      "examples": [
+        {
+          "id": "3750274:30",
+          "line": "Voy a salir pa' la calle, en la manita los aros brillando en mi piel",
+          "title": "MALAMENTE (Cap.1: Augurio)",
+          "matched_variant": "voy a",
+          "matched_surface": "Voy a"
+        },
+        {
+          "id": "7288792:10",
+          "line": "Es mala amante la fama, no va a quererte de verdad",
+          "title": "LA FAMA",
+          "matched_variant": "va a",
+          "matched_surface": "va a",
+          "vocalists": [
+            "The Weeknd"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "6367361:5",
+          "line": "¿Lo va' a olvidar? Can you let it go? Can you let it go?",
+          "title": "Lo Vas A Olvidar",
+          "matched_variant": "vas a",
+          "matched_surface": "va' a",
+          "vocalists": [
+            "ROSALÍA",
+            "Billie Eilish"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7659063:36",
+          "line": "Quién me lo iba a decir (Jura'o, como un G)",
+          "title": "COMO UN G",
+          "matched_variant": "iba a",
+          "matched_surface": "iba a"
+        },
+        {
+          "id": "3750274:33",
+          "line": "No voy a perder ni un minuto en volver a pensarte (Hmm)",
+          "title": "MALAMENTE (Cap.1: Augurio)",
+          "matched_variant": "voy a",
+          "matched_surface": "voy a"
+        }
+      ],
+      "variants": [
+        "voy a",
+        "vo' a",
+        "va a",
+        "vas a",
+        "va' a",
+        "iba a"
+      ],
+      "variant_counts": {
+        "voy a": 21,
+        "va a": 11,
+        "vas a": 12,
+        "iba a": 1
+      },
+      "family": "ir a"
+    },
+    {
       "expression": "tú eres",
       "translation": "you are (elided)",
-      "count": 22,
+      "count": 21,
+      "occurrence_count": 22,
+      "num_songs": 10,
+      "examples": [
+        {
+          "id": "8916306:19",
+          "line": "Tú ere' la exponente infinita, la equi', la suma",
+          "title": "BESO",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'",
+          "vocalists": [
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8916306:21",
+          "line": "Y aunque esté lejo', tú ere' la persona más cerca de mí",
+          "title": "BESO",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú ere'",
+          "vocalists": [
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "7515185:13",
+          "line": "¿Tú ere' el que pimpea o te pimpean a ti?",
+          "title": "BIZCOCHITO",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'"
+        },
+        {
+          "id": "7142770:12",
+          "line": "Tú ere' linda, yo 'toy rulin",
+          "title": "Linda",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'",
+          "vocalists": [
+            "Tokischa",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7142770:51",
+          "line": "Uh, Toki, tú eres de respeto",
+          "title": "Linda",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú eres",
+          "vocalists": [
+            "ROSALÍA",
+            "Tokischa"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
         "tú ere'"
       ]
     },
     {
-      "expression": "voy a",
-      "translation": "I'm going to",
-      "count": 21,
-      "variants": [
-        "vo' a"
-      ]
-    },
-    {
       "expression": "sé que",
       "translation": "I know that",
-      "count": 21
+      "count": 21,
+      "occurrence_count": 27,
+      "num_songs": 14,
+      "examples": [
+        {
+          "id": "6211010:1",
+          "line": "Yo sé que esto no volverá a pasar",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "yo sé que",
+          "matched_surface": "Yo sé que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12548052:16",
+          "line": "Sé que me funde el calor",
+          "title": "Berghain",
+          "matched_variant": "sé que",
+          "matched_surface": "Sé que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7288792:21",
+          "line": "Yo sé que será celosa, yo nunca le confiaré",
+          "title": "LA FAMA",
+          "matched_variant": "yo sé que",
+          "matched_surface": "Yo sé que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12581296:24",
+          "line": "Yo sé que tú eres pa' mí",
+          "title": "La Rumba Del Perdón",
+          "matched_variant": "yo sé que",
+          "matched_surface": "Yo sé que"
+        },
+        {
+          "id": "6211010:2",
+          "line": "Pero si volviera a pasar, sé que sería tu debilidad",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "sé que",
+          "matched_surface": "sé que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "yo sé que",
+        "sé que"
+      ],
+      "variant_counts": {
+        "yo sé que": 6,
+        "sé que": 21
+      },
+      "family": "saber que"
     },
     {
       "expression": "es que",
       "translation": "it's that (elided)",
-      "count": 20,
+      "count": 19,
+      "occurrence_count": 20,
+      "num_songs": 17,
+      "examples": [
+        {
+          "id": "4779329:40",
+          "line": "Y es que, ¿quién lo diría",
+          "title": "Yo x Ti, Tu x Mí",
+          "matched_variant": "es que",
+          "matched_surface": "es que",
+          "vocalists": [
+            "Ozuna"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "6211010:14",
+          "line": "Soñando que contigo e' que duermo (Duermo)",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "es que",
+          "matched_surface": "e' que",
+          "vocalists": [
+            "Bad Bunny",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4057969:40",
+          "line": "Y es que el de arriba nos ha señala'o (¡Eh!)",
+          "title": "Aute Cuture",
+          "matched_variant": "es que",
+          "matched_surface": "es que"
+        },
+        {
+          "id": "7288792:3",
+          "line": "Así es que se dio",
+          "title": "LA FAMA",
+          "matched_variant": "es que",
+          "matched_surface": "es que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916306:5",
+          "line": "Y es que amo siempre que llegas",
+          "title": "BESO",
+          "matched_variant": "es que",
+          "matched_surface": "es que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
         "e' que"
       ]
@@ -32,48 +269,522 @@
     {
       "expression": "no hay",
       "translation": "there isn't, there's no",
-      "count": 18
+      "count": 17,
+      "occurrence_count": 18,
+      "num_songs": 12,
+      "examples": [
+        {
+          "id": "7288792:23",
+          "line": "No hay manera",
+          "title": "LA FAMA",
+          "matched_variant": "no hay",
+          "matched_surface": "No hay",
+          "vocalists": [
+            "ROSALÍA",
+            "The Weeknd"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7288792:27",
+          "line": "No hay manera que desaparezca",
+          "title": "LA FAMA",
+          "matched_variant": "no hay",
+          "matched_surface": "No hay",
+          "vocalists": [
+            "ROSALÍA",
+            "The Weeknd"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3964062:3",
+          "line": "Ya no hay nadie más por ahí",
+          "title": "BAGDAD (Cap.7: Liturgia)",
+          "matched_variant": "no hay",
+          "matched_surface": "no hay"
+        },
+        {
+          "id": "3964062:4",
+          "line": "No hay nadie más, senta'ita dando palmas",
+          "title": "BAGDAD (Cap.7: Liturgia)",
+          "matched_variant": "no hay",
+          "matched_surface": "No hay"
+        },
+        {
+          "id": "3964062:8",
+          "line": "No hay nadie más, no hay nadie más",
+          "title": "BAGDAD (Cap.7: Liturgia)",
+          "matched_variant": "no hay",
+          "matched_surface": "No hay"
+        }
+      ]
     },
     {
       "expression": "para que",
       "translation": "so that, in order to",
       "count": 13,
+      "occurrence_count": 13,
+      "num_songs": 8,
+      "examples": [
+        {
+          "id": "4779329:18",
+          "line": "Porque a ti te canto pa' que tú me cante'",
+          "title": "Yo x Ti, Tu x Mí",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que",
+          "vocalists": [
+            "ROSALÍA",
+            "Ozuna",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6211010:24",
+          "line": "Tú te mojaste' pa' que yo me bautice",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que",
+          "vocalists": [
+            "Bad Bunny",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:6",
+          "line": "Esto es pa' que quede, lo que yo hago dura (Con altura)",
+          "title": "Con Altura",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que",
+          "vocalists": [
+            "El Guincho",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:55",
+          "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa' que quede (Con altura)",
+          "title": "Con Altura",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que",
+          "vocalists": [
+            "ROSALÍA",
+            "J Balvin",
+            "El Guincho"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:56",
+          "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa'-pa' que quede (Con altura)",
+          "title": "Con Altura",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que",
+          "vocalists": [
+            "ROSALÍA",
+            "J Balvin",
+            "El Guincho"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
         "pa' que"
       ]
     },
     {
-      "expression": "vamos a",
-      "translation": "let's",
-      "count": 12,
-      "variants": [
-        "vamo' a"
+      "expression": "de ti",
+      "translation": "about you, of you",
+      "count": 11,
+      "occurrence_count": 11,
+      "num_songs": 7,
+      "examples": [
+        {
+          "id": "4779329:37",
+          "line": "Muy diferente a lo que de ti me decían (Woh, oh)",
+          "title": "Yo x Ti, Tu x Mí",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti",
+          "vocalists": [
+            "Ozuna"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "6211010:10",
+          "line": "Tú encima de mí, yo encima de ti (Oh-oh)",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti",
+          "vocalists": [
+            "ROSALÍA",
+            "Bad Bunny",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6211010:40",
+          "line": "Yo encima de ti, tú encima de mí (Oh-oh)",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti",
+          "vocalists": [
+            "Bad Bunny",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916306:3",
+          "line": "Estar lejos de ti e' el infierno",
+          "title": "BESO",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916306:4",
+          "line": "Estar cerca de ti es mi paz",
+          "title": "BESO",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
       ]
     },
     {
       "expression": "de mí",
       "translation": "about me, of me",
-      "count": 12
-    },
-    {
-      "expression": "de ti",
-      "translation": "about you, of you",
-      "count": 11
+      "count": 11,
+      "occurrence_count": 12,
+      "num_songs": 10,
+      "examples": [
+        {
+          "id": "6211010:10",
+          "line": "Tú encima de mí, yo encima de ti (Oh-oh)",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "de mí",
+          "matched_surface": "de mí",
+          "vocalists": [
+            "ROSALÍA",
+            "Bad Bunny",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6211010:40",
+          "line": "Yo encima de ti, tú encima de mí (Oh-oh)",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "de mí",
+          "matched_surface": "de mí",
+          "vocalists": [
+            "Bad Bunny",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916306:21",
+          "line": "Y aunque esté lejo', tú ere' la persona más cerca de mí",
+          "title": "BESO",
+          "matched_variant": "de mí",
+          "matched_surface": "de mí",
+          "vocalists": [
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "12579326:6",
+          "line": "Coge un trozo de mí, quédatelo pa' cuando no esté",
+          "title": "Reliquia",
+          "matched_variant": "de mí",
+          "matched_surface": "de mí"
+        },
+        {
+          "id": "8916305:11",
+          "line": "Mi nena cerca de mí, mi nene cerca de mí",
+          "title": "VAMPIROS",
+          "matched_variant": "de mí",
+          "matched_surface": "de mí",
+          "vocalists": [
+            "Rauw Alejandro",
+            "ROSALÍA",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "esta noche",
       "translation": "tonight",
-      "count": 11
+      "count": 11,
+      "occurrence_count": 11,
+      "num_songs": 6,
+      "examples": [
+        {
+          "id": "8173139:6",
+          "line": "Ya decidí que esta noche se sale",
+          "title": "DESPECHÁ",
+          "matched_variant": "esta noche",
+          "matched_surface": "esta noche"
+        },
+        {
+          "id": "8916305:13",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete, eh",
+          "title": "VAMPIROS",
+          "matched_variant": "esta noche",
+          "matched_surface": "esta noche",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:15",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete, ey",
+          "title": "VAMPIROS",
+          "matched_variant": "esta noche",
+          "matched_surface": "esta noche",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:36",
+          "line": "Y tú sabe' que esta noche nos fuimo' algarete",
+          "title": "VAMPIROS",
+          "matched_variant": "esta noche",
+          "matched_surface": "esta noche",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:38",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete (¡Ah!)",
+          "title": "VAMPIROS",
+          "matched_variant": "esta noche",
+          "matched_surface": "esta noche",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "quiero que",
       "translation": "I want (someone) to",
-      "count": 9
+      "count": 9,
+      "occurrence_count": 9,
+      "num_songs": 8,
+      "examples": [
+        {
+          "id": "8916306:33",
+          "line": "Yo quiero que me de' otro beso",
+          "title": "BESO",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que",
+          "vocalists": [
+            "Rauw Alejandro",
+            "Rauw Alejandro",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7659063:3",
+          "line": "No reces por mí, quiero que sepas que estoy bien",
+          "title": "COMO UN G",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que"
+        },
+        {
+          "id": "7515169:6",
+          "line": "Brillas como mis prendas, quiero que tú me entiendas",
+          "title": "DIABLO",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8701915:2",
+          "line": "Como quiero que me quiera",
+          "title": "LLYLM",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que"
+        },
+        {
+          "id": "5384007:10",
+          "line": "Quiero que lo vea', no piense' en detenerme",
+          "title": "Dolerme",
+          "matched_variant": "quiero que",
+          "matched_surface": "Quiero que"
+        }
+      ],
+      "variants": [
+        "quiero que"
+      ],
+      "variant_counts": {
+        "quiero que": 9
+      },
+      "family": "querer que"
+    },
+    {
+      "expression": "vamos a",
+      "translation": "let's",
+      "count": 8,
+      "occurrence_count": 12,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "4425584:1",
+          "line": "Esto vamo' a arrancarlo con altura",
+          "title": "Con Altura",
+          "matched_variant": "vamos a",
+          "matched_surface": "vamo' a",
+          "vocalists": [
+            "ROSALÍA",
+            "Mariachi Budda"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:55",
+          "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa' que quede (Con altura)",
+          "title": "Con Altura",
+          "matched_variant": "vamos a",
+          "matched_surface": "vamo' a",
+          "vocalists": [
+            "ROSALÍA",
+            "J Balvin",
+            "El Guincho"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:56",
+          "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa'-pa' que quede (Con altura)",
+          "title": "Con Altura",
+          "matched_variant": "vamos a",
+          "matched_surface": "vamo' a",
+          "vocalists": [
+            "ROSALÍA",
+            "J Balvin",
+            "El Guincho"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:57",
+          "line": "Vamo', vamo' a-a, vamo' a perrearnos, pa'-pa'-pa' que quede (Con altura)",
+          "title": "Con Altura",
+          "matched_variant": "vamos a",
+          "matched_surface": "vamo' a",
+          "vocalists": [
+            "ROSALÍA",
+            "J Balvin",
+            "El Guincho"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:59",
+          "line": "Vamo', vamo' a-a, vamo' a perrearnos, lo que yo hago dura",
+          "title": "Con Altura",
+          "matched_variant": "vamos a",
+          "matched_surface": "vamo' a",
+          "vocalists": [
+            "ROSALÍA",
+            "J Balvin",
+            "El Guincho"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "vamo' a"
+      ]
     },
     {
       "expression": "todo lo que",
       "translation": "everything that",
       "count": 8,
+      "occurrence_count": 8,
+      "num_songs": 7,
+      "examples": [
+        {
+          "id": "10615838:28",
+          "line": "Por to' lo que soy, yo puedo frontear",
+          "title": "New Woman",
+          "matched_variant": "todo lo que",
+          "matched_surface": "to' lo que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6211010:22",
+          "line": "Con esa boquita suena rico to' lo que tú me dice'",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "todo lo que",
+          "matched_surface": "to' lo que",
+          "vocalists": [
+            "Bad Bunny",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4201752:19",
+          "line": "Ya tengo to' lo que quiero",
+          "title": "Barefoot in the Park",
+          "matched_variant": "todo lo que",
+          "matched_surface": "to' lo que",
+          "vocalists": [
+            "ROSALÍA",
+            "Both"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7515185:2",
+          "line": "Pero tengo to' lo que tiene delito",
+          "title": "BIZCOCHITO",
+          "matched_variant": "todo lo que",
+          "matched_surface": "to' lo que"
+        },
+        {
+          "id": "7515185:33",
+          "line": "Habla bullshit, to' lo que dice fasea",
+          "title": "BIZCOCHITO",
+          "matched_variant": "todo lo que",
+          "matched_surface": "to' lo que"
+        }
+      ],
       "variants": [
         "to' lo que"
       ]
@@ -82,6 +793,60 @@
       "expression": "tú sabes",
       "translation": "you know (elided)",
       "count": 8,
+      "occurrence_count": 8,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "7528115:28",
+          "line": "Que tú sabes que yo te canto al siete por medio",
+          "title": "BULERÍAS",
+          "matched_variant": "tú sabes",
+          "matched_surface": "tú sabes"
+        },
+        {
+          "id": "7528115:31",
+          "line": "Ay, que tú sabes que yo te canto al siete por medio",
+          "title": "BULERÍAS",
+          "matched_variant": "tú sabes",
+          "matched_surface": "tú sabes"
+        },
+        {
+          "id": "8916305:13",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete, eh",
+          "title": "VAMPIROS",
+          "matched_variant": "tú sabes",
+          "matched_surface": "Tú sabe'",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:15",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete, ey",
+          "title": "VAMPIROS",
+          "matched_variant": "tú sabes",
+          "matched_surface": "Tú sabe'",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:36",
+          "line": "Y tú sabe' que esta noche nos fuimo' algarete",
+          "title": "VAMPIROS",
+          "matched_variant": "tú sabes",
+          "matched_surface": "tú sabe'",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
         "tú sabe'"
       ]
@@ -89,74 +854,476 @@
     {
       "expression": "por qué",
       "translation": "why",
-      "count": 7
+      "count": 6,
+      "occurrence_count": 7,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "7515069:4",
+          "line": "¿Por qué será? ¿Por qué será?",
+          "title": "SAKURA",
+          "matched_variant": "por qué",
+          "matched_surface": "Por qué"
+        },
+        {
+          "id": "5384007:8",
+          "line": "Yo ya no sé por qué no quiere dolerme",
+          "title": "Dolerme",
+          "matched_variant": "por qué",
+          "matched_surface": "por qué"
+        },
+        {
+          "id": "5384007:12",
+          "line": "¿O por qué no pones tú también de tu parte?",
+          "title": "Dolerme",
+          "matched_variant": "por qué",
+          "matched_surface": "por qué"
+        },
+        {
+          "id": "8416396:48",
+          "line": "¿Por qué será que contigo me da?",
+          "title": "Besos Moja2",
+          "matched_variant": "por qué",
+          "matched_surface": "Por qué",
+          "vocalists": [
+            "Yandel",
+            "Wisin"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "3066994:7",
+          "line": "¿Por qué no te despiertas tú, hermanito?",
+          "title": "Nos Quedamos Solitos",
+          "matched_variant": "por qué",
+          "matched_surface": "Por qué"
+        }
+      ]
     },
     {
       "expression": "a ti te",
       "translation": "to you (emphatic)",
-      "count": 6
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 6,
+      "examples": [
+        {
+          "id": "4779329:18",
+          "line": "Porque a ti te canto pa' que tú me cante'",
+          "title": "Yo x Ti, Tu x Mí",
+          "matched_variant": "a ti te",
+          "matched_surface": "a ti te",
+          "vocalists": [
+            "ROSALÍA",
+            "Ozuna",
+            "Ambos"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7288792:1",
+          "line": "Lo que pasó a ti te lo cuento",
+          "title": "LA FAMA",
+          "matched_variant": "a ti te",
+          "matched_surface": "a ti te",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12581288:29",
+          "line": "Pero a ti te sobra equipaje",
+          "title": "Porcelana",
+          "matched_variant": "a ti te",
+          "matched_surface": "a ti te",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916306:44",
+          "line": "Y nadie a ti, a ti te tuvo que enseñar",
+          "title": "BESO",
+          "matched_variant": "a ti te",
+          "matched_surface": "a ti te",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3964043:5",
+          "line": "De lo que a ti te está doliendo",
+          "title": "DE AQUÍ NO SALES (Cap.4: Disputa)",
+          "matched_variant": "a ti te",
+          "matched_surface": "a ti te"
+        }
+      ]
     },
     {
       "expression": "tú sabes que",
       "translation": "you know that (elided)",
       "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "7528115:28",
+          "line": "Que tú sabes que yo te canto al siete por medio",
+          "title": "BULERÍAS",
+          "matched_variant": "tú sabes que",
+          "matched_surface": "tú sabes que"
+        },
+        {
+          "id": "7528115:31",
+          "line": "Ay, que tú sabes que yo te canto al siete por medio",
+          "title": "BULERÍAS",
+          "matched_variant": "tú sabes que",
+          "matched_surface": "tú sabes que"
+        },
+        {
+          "id": "8916305:13",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete, eh",
+          "title": "VAMPIROS",
+          "matched_variant": "tú sabes que",
+          "matched_surface": "Tú sabe' que",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:15",
+          "line": "Tú sabe' que esta noche nos fuimo' algarete, ey",
+          "title": "VAMPIROS",
+          "matched_variant": "tú sabes que",
+          "matched_surface": "Tú sabe' que",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:36",
+          "line": "Y tú sabe' que esta noche nos fuimo' algarete",
+          "title": "VAMPIROS",
+          "matched_variant": "tú sabes que",
+          "matched_surface": "tú sabe' que",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
         "tú sabe' que"
       ]
     },
     {
-      "expression": "se siente",
-      "translation": "feels, it feels",
-      "count": 5
-    },
-    {
       "expression": "toda la",
       "translation": "all the (fem. sg., elided)",
       "count": 5,
+      "occurrence_count": 5,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "7515186:12",
+          "line": "Quiero una cadena que me arruine to'a la cuenta",
+          "title": "CHICKEN TERIYAKI",
+          "matched_variant": "toda la",
+          "matched_surface": "to'a la"
+        },
+        {
+          "id": "3065897:34",
+          "line": "No hay niña que la' tenga por toda la España",
+          "title": "Si Tú Supieras Compañero",
+          "matched_variant": "toda la",
+          "matched_surface": "toda la"
+        },
+        {
+          "id": "3814307:16",
+          "line": "Y recordarlo to'a la ví'a",
+          "title": "A NINGÚN HOMBRE (Cap.11: Poder)",
+          "matched_variant": "toda la",
+          "matched_surface": "to'a la"
+        },
+        {
+          "id": "8916305:32",
+          "line": "Este junte paga to'a la Ferrari",
+          "title": "VAMPIROS",
+          "matched_variant": "toda la",
+          "matched_surface": "to'a la",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "2966663:14",
+          "line": "Y es gritar toda la noche en la ventana abierta",
+          "title": "Llámame Más Tarde",
+          "matched_variant": "toda la",
+          "matched_surface": "toda la",
+          "vocalists": [
+            "C. Tangana"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
       "variants": [
         "to'a la"
       ]
     },
     {
-      "expression": "otra vez",
-      "translation": "again",
+      "expression": "dice que",
+      "translation": "says that",
       "count": 5,
+      "occurrence_count": 5,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "7515279:21",
+          "line": "Frank me dice que abra el mundo como una nue'",
+          "title": "SAOKO",
+          "matched_variant": "dice que",
+          "matched_surface": "dice que"
+        },
+        {
+          "id": "12581298:1",
+          "line": "Dicen que si vieras pasar",
+          "title": "Magnolias",
+          "matched_variant": "dicen que",
+          "matched_surface": "Dicen que"
+        },
+        {
+          "id": "12581301:28",
+          "line": "Y él dice que",
+          "title": "Novia Robot",
+          "matched_variant": "dice que",
+          "matched_surface": "dice que"
+        },
+        {
+          "id": "3646825:19",
+          "line": "Siempre me dice que no va a esperarme",
+          "title": "Brillo",
+          "matched_variant": "dice que",
+          "matched_surface": "dice que",
+          "vocalists": [
+            "J Balvin",
+            "ROSALÍA",
+            "J Balvin"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:49",
+          "line": "Se dice que hay que romper",
+          "title": "VAMPIROS",
+          "matched_variant": "dice que",
+          "matched_surface": "dice que",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
-        "otra ve'"
-      ]
-    },
-    {
-      "expression": "para qué",
-      "translation": "what for",
-      "count": 4,
-      "variants": [
-        "pa' qué"
-      ]
-    },
-    {
-      "expression": "lo mismo",
-      "translation": "the same thing",
-      "count": 4
+        "dice que",
+        "dicen que"
+      ],
+      "variant_counts": {
+        "dice que": 4,
+        "dicen que": 1
+      },
+      "family": "decir que"
     },
     {
       "expression": "a mí me",
       "translation": "to me (emphatic)",
-      "count": 4
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "12581298:29",
+          "line": "Ella a mí me desarmó y yo le estoy agradecida",
+          "title": "Magnolias",
+          "matched_variant": "a mí me",
+          "matched_surface": "a mí me"
+        },
+        {
+          "id": "7528115:14",
+          "line": "Y aunque a mí me maldigan a mis espalda'",
+          "title": "BULERÍAS",
+          "matched_variant": "a mí me",
+          "matched_surface": "a mí me"
+        },
+        {
+          "id": "3964043:4",
+          "line": "Mucho más a mí me duele",
+          "title": "DE AQUÍ NO SALES (Cap.4: Disputa)",
+          "matched_variant": "a mí me",
+          "matched_surface": "a mí me"
+        },
+        {
+          "id": "9176102:23",
+          "line": "Tú a mí me encanta', tú ere' una hermosura",
+          "title": "TUYA",
+          "matched_variant": "a mí me",
+          "matched_surface": "a mí me"
+        }
+      ]
     },
     {
       "expression": "me voy",
       "translation": "I'm leaving",
-      "count": 4
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "12548052:18",
+          "line": "Cuando tú vienes es cuando me voy",
+          "title": "Berghain",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916306:7",
+          "line": "Yo me voy contigo a matar",
+          "title": "BESO",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3065090:12",
+          "line": "Y a Alemania me voy, y no a divertirme",
+          "title": "Catalina",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        },
+        {
+          "id": "3065897:37",
+          "line": "Y a la vez me voy quemando",
+          "title": "Si Tú Supieras Compañero",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        }
+      ]
     },
     {
       "expression": "dime si",
       "translation": "tell me if",
-      "count": 4
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "6367361:1",
+          "line": "Dime si me echas de meno' aún",
+          "title": "Lo Vas A Olvidar",
+          "matched_variant": "dime si",
+          "matched_surface": "Dime si",
+          "vocalists": [
+            "ROSALÍA",
+            "Billie Eilish",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6367361:2",
+          "line": "Dime si no me perdonas aún",
+          "title": "Lo Vas A Olvidar",
+          "matched_variant": "dime si",
+          "matched_surface": "Dime si",
+          "vocalists": [
+            "ROSALÍA",
+            "Billie Eilish",
+            "Ambas"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6367361:14",
+          "line": "Dime si aún queda algo en común",
+          "title": "Lo Vas A Olvidar",
+          "matched_variant": "dime si",
+          "matched_surface": "Dime si",
+          "vocalists": [
+            "Billie Eilish",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9077775:33",
+          "line": "Dime si todo el mundo lo sabe",
+          "title": "Choices",
+          "matched_variant": "dime si",
+          "matched_surface": "Dime si",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "todo el mundo",
       "translation": "everybody",
       "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "7515161:1",
+          "line": "To' el mundo quiere fortuna, dinero y libertad",
+          "title": "CHIRI",
+          "matched_variant": "todo el mundo",
+          "matched_surface": "To' el mundo"
+        },
+        {
+          "id": "12660487:16",
+          "line": "Todo el mundo me quiere de su la'o, tengo el buzón explota'o",
+          "title": "Dios Es Un Stalker (Versión Física)",
+          "matched_variant": "todo el mundo",
+          "matched_surface": "Todo el mundo"
+        },
+        {
+          "id": "4151176:22",
+          "line": "To' el mundo te tiene por un santo, pero nah",
+          "title": "Lo Presiento",
+          "matched_variant": "todo el mundo",
+          "matched_surface": "To' el mundo"
+        },
+        {
+          "id": "9077775:33",
+          "line": "Dime si todo el mundo lo sabe",
+          "title": "Choices",
+          "matched_variant": "todo el mundo",
+          "matched_surface": "todo el mundo",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
       "variants": [
         "to' el mundo"
       ]
@@ -165,6 +1332,42 @@
       "expression": "todas las",
       "translation": "all the (fem., elided)",
       "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "12581301:36",
+          "line": "Con él abriré todas las puertas",
+          "title": "Novia Robot",
+          "matched_variant": "todas las",
+          "matched_surface": "todas las"
+        },
+        {
+          "id": "7515069:5",
+          "line": "Y todas las chicas son tan bonitas, tan plásticas",
+          "title": "SAKURA",
+          "matched_variant": "todas las",
+          "matched_surface": "todas las"
+        },
+        {
+          "id": "8916307:19",
+          "line": "Quiero comer cerezas contigo y subir todas las montañas",
+          "title": "PROMESA",
+          "matched_variant": "todas las",
+          "matched_surface": "todas las",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "12660487:30",
+          "line": "Doblo contigo todas las esquinas",
+          "title": "Dios Es Un Stalker (Versión Física)",
+          "matched_variant": "todas las",
+          "matched_surface": "todas las"
+        }
+      ],
       "variants": [
         "toa' las"
       ]
@@ -173,172 +1376,797 @@
       "expression": "te voy a",
       "translation": "I'm going to (you)",
       "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "6387245:5",
+          "line": "Te voy a hacer santería, uh",
+          "title": "Tagliatelle Santeria",
+          "matched_variant": "te voy a",
+          "matched_surface": "Te voy a",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6387245:9",
+          "line": "Te voy a hacer santería",
+          "title": "Tagliatelle Santeria",
+          "matched_variant": "te voy a",
+          "matched_surface": "Te voy a",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4153830:1",
+          "line": "Te voy a hacer santería, tu boca contra la mía",
+          "title": "SANTERÍA",
+          "matched_variant": "te voy a",
+          "matched_surface": "Te voy a"
+        },
+        {
+          "id": "4153830:3",
+          "line": "Te voy a hacer santería, santería, santería",
+          "title": "SANTERÍA",
+          "matched_variant": "te voy a",
+          "matched_surface": "Te voy a"
+        }
+      ],
       "variants": [
+        "te voy a",
         "te vo'a"
+      ],
+      "variant_counts": {
+        "te voy a": 4
+      },
+      "family": "ir a + te"
+    },
+    {
+      "expression": "otra vez",
+      "translation": "again",
+      "count": 4,
+      "occurrence_count": 5,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "6211010:41",
+          "line": "Que yo me iría otra vez pa' Japón (Hey)",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "otra vez",
+          "matched_surface": "otra vez",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "4425584:39",
+          "line": "No soy Sky, pero rompí el bajo otra vez (Wuh; mira)",
+          "title": "Con Altura",
+          "matched_variant": "otra vez",
+          "matched_surface": "otra vez",
+          "vocalists": [
+            "J Balvin",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "7659063:26",
+          "line": "Otra vez, otra vez",
+          "title": "COMO UN G",
+          "matched_variant": "otra vez",
+          "matched_surface": "Otra vez"
+        },
+        {
+          "id": "12581298:31",
+          "line": "Y quedaros despiertos hasta que vuelva otra vez la luz",
+          "title": "Magnolias",
+          "matched_variant": "otra vez",
+          "matched_surface": "otra vez"
+        }
+      ],
+      "variants": [
+        "otra vez",
+        "otra ve'"
+      ],
+      "variant_counts": {
+        "otra vez": 4
+      },
+      "family": "otra vez"
+    },
+    {
+      "expression": "para qué",
+      "translation": "what for",
+      "count": 3,
+      "occurrence_count": 4,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "3856338:18",
+          "line": "(Que no salga la luna que no tiene pa' qué",
+          "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
+          "matched_variant": "para qué",
+          "matched_surface": "pa' qué"
+        },
+        {
+          "id": "3856338:19",
+          "line": "No tiene pa' qué, no tiene pa' qué)",
+          "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
+          "matched_variant": "para qué",
+          "matched_surface": "pa' qué"
+        },
+        {
+          "id": "7515161:5",
+          "line": "Y mentiste, ¿pa' qué?, hice un salto de fe",
+          "title": "CHIRI",
+          "matched_variant": "para qué",
+          "matched_surface": "pa' qué"
+        }
+      ],
+      "variants": [
+        "pa' qué"
       ]
     },
     {
-      "expression": "dice que",
-      "translation": "says that",
-      "count": 4
+      "expression": "lo mismo",
+      "translation": "the same thing",
+      "count": 3,
+      "occurrence_count": 4,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "12581301:8",
+          "line": "Quema el manual para lo mismo, pa’ lo mismo",
+          "title": "Novia Robot",
+          "matched_variant": "lo mismo",
+          "matched_surface": "lo mismo"
+        },
+        {
+          "id": "7515161:17",
+          "line": "Lo mismo yo te lo canto, que te lo canta Jaliyo",
+          "title": "CHIRI",
+          "matched_variant": "lo mismo",
+          "matched_surface": "Lo mismo"
+        },
+        {
+          "id": "8324985:41",
+          "line": "Es evidente que pasamo' por lo mismo",
+          "title": "El Pañuelo",
+          "matched_variant": "lo mismo",
+          "matched_surface": "lo mismo",
+          "vocalists": [
+            "ROSALÍA",
+            "Romeo Santos"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "me siento",
       "translation": "I feel",
-      "count": 3
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8682586:3",
+          "line": "Me siento renovado",
+          "title": "Es Por Ti",
+          "matched_variant": "me siento",
+          "matched_surface": "Me siento"
+        },
+        {
+          "id": "8682586:4",
+          "line": "Y me siento aniquilado",
+          "title": "Es Por Ti",
+          "matched_variant": "me siento",
+          "matched_surface": "me siento"
+        },
+        {
+          "id": "8682586:21",
+          "line": "Me siento un vagabundo",
+          "title": "Es Por Ti",
+          "matched_variant": "me siento",
+          "matched_surface": "Me siento"
+        }
+      ]
+    },
+    {
+      "expression": "se siente",
+      "translation": "feels, it feels",
+      "count": 3,
+      "occurrence_count": 5,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "7515371:20",
+          "line": "Se siente heavy",
+          "title": "LAX",
+          "matched_variant": "se siente",
+          "matched_surface": "Se siente"
+        },
+        {
+          "id": "7515371:21",
+          "line": "Se siente heavy, se siente heavy",
+          "title": "LAX",
+          "matched_variant": "se siente",
+          "matched_surface": "Se siente"
+        },
+        {
+          "id": "4470734:22",
+          "line": "Se siente bien, se siente real (Ah)",
+          "title": "Como Alí",
+          "matched_variant": "se siente",
+          "matched_surface": "Se siente"
+        }
+      ]
     },
     {
       "expression": "se va",
       "translation": "leaves, goes away",
-      "count": 3
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "8916306:22",
+          "line": "Si mi cel se va a apagar, solo te aviso a ti",
+          "title": "BESO",
+          "matched_variant": "se va",
+          "matched_surface": "se va",
+          "vocalists": [
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "3964062:1",
+          "line": "Y se va a quemar, si sigue ahí",
+          "title": "BAGDAD (Cap.7: Liturgia)",
+          "matched_variant": "se va",
+          "matched_surface": "se va"
+        },
+        {
+          "id": "9176102:15",
+          "line": "Se va calentando mi piel, eso va a tu favor",
+          "title": "TUYA",
+          "matched_variant": "se va",
+          "matched_surface": "Se va"
+        }
+      ]
     },
     {
       "expression": "hay que",
       "translation": "one must, you have to",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8916305:49",
+          "line": "Se dice que hay que romper",
+          "title": "VAMPIROS",
+          "matched_variant": "hay que",
+          "matched_surface": "hay que",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8916305:50",
+          "line": "Que el tiempo no hay que perder",
+          "title": "VAMPIROS",
+          "matched_variant": "hay que",
+          "matched_surface": "hay que",
+          "vocalists": [
+            "ROSALÍA",
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "ya no hay",
       "translation": "there's no longer",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "3964062:3",
+          "line": "Ya no hay nadie más por ahí",
+          "title": "BAGDAD (Cap.7: Liturgia)",
+          "matched_variant": "ya no hay",
+          "matched_surface": "Ya no hay"
+        },
+        {
+          "id": "4151176:9",
+          "line": "Tú a solas en el battle, ya no hay quién saque",
+          "title": "Lo Presiento",
+          "matched_variant": "ya no hay",
+          "matched_surface": "ya no hay"
+        }
+      ]
     },
     {
       "expression": "sin ti",
       "translation": "without you",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "8365376:12",
+          "line": "Y como tú, me acostumbré a los días sin ti",
+          "title": "CANDY (Remix)",
+          "matched_variant": "sin ti",
+          "matched_surface": "sin ti",
+          "vocalists": [
+            "Chencho Corleone"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "3345402:18",
+          "line": "Sin ti, mi alma ¿pa que la quiero?",
+          "title": "Por Mi Puerta No Lo Pasen",
+          "matched_variant": "sin ti",
+          "matched_surface": "Sin ti"
+        }
+      ]
     },
     {
       "expression": "antes que",
       "translation": "before",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "12581296:42",
+          "line": "El que me dejó a mí antes que dejar su botella",
+          "title": "La Rumba Del Perdón",
+          "matched_variant": "antes que",
+          "matched_surface": "antes que"
+        },
+        {
+          "id": "7515371:27",
+          "line": "Antes que quemen, me dejen salir",
+          "title": "LAX",
+          "matched_variant": "antes que",
+          "matched_surface": "Antes que"
+        }
+      ]
     },
     {
       "expression": "me dice",
       "translation": "tells me",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "7515279:21",
+          "line": "Frank me dice que abra el mundo como una nue'",
+          "title": "SAOKO",
+          "matched_variant": "me dice",
+          "matched_surface": "me dice"
+        },
+        {
+          "id": "3646825:19",
+          "line": "Siempre me dice que no va a esperarme",
+          "title": "Brillo",
+          "matched_variant": "me dice",
+          "matched_surface": "me dice",
+          "vocalists": [
+            "J Balvin",
+            "ROSALÍA",
+            "J Balvin"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "la disco",
       "translation": "the club",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8173139:11",
+          "line": "Hoy salgo con mi baby de la disco coroná'",
+          "title": "DESPECHÁ",
+          "matched_variant": "la disco",
+          "matched_surface": "la disco"
+        },
+        {
+          "id": "8173139:15",
+          "line": "Hoy salgo con mi baby de la disco coroná', coroná', yeah",
+          "title": "DESPECHÁ",
+          "matched_variant": "la disco",
+          "matched_surface": "la disco"
+        }
+      ]
     },
     {
       "expression": "un flow",
       "translation": "a style, a vibe",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "8173139:9",
+          "line": "Bajé con un flow nuevo 'e caja, baby, hackeá'",
+          "title": "DESPECHÁ",
+          "matched_variant": "un flow",
+          "matched_surface": "un flow"
+        },
+        {
+          "id": "7515113:53",
+          "line": "Me doy un flow de paca, me veo original",
+          "title": "LA COMBI VERSACE",
+          "matched_variant": "un flow",
+          "matched_surface": "un flow",
+          "vocalists": [
+            "ROSALÍA",
+            "Tokischa"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "se va a",
       "translation": "is going to",
-      "count": 2
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "8916306:22",
+          "line": "Si mi cel se va a apagar, solo te aviso a ti",
+          "title": "BESO",
+          "matched_variant": "se va a",
+          "matched_surface": "se va a",
+          "vocalists": [
+            "Rauw Alejandro"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "3964062:1",
+          "line": "Y se va a quemar, si sigue ahí",
+          "title": "BAGDAD (Cap.7: Liturgia)",
+          "matched_variant": "se va a",
+          "matched_surface": "se va a"
+        }
+      ],
+      "variants": [
+        "se va a"
+      ],
+      "variant_counts": {
+        "se va a": 2
+      },
+      "family": "ir a + se"
     },
     {
       "expression": "por eso",
       "translation": "that's why, for that reason",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6387245:18",
+          "line": "Tus ojo' lo saben, por eso me tientan",
+          "title": "Tagliatelle Santeria",
+          "matched_variant": "por eso",
+          "matched_surface": "por eso",
+          "vocalists": [
+            "Bad Bunny"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ]
     },
     {
       "expression": "lo nuestro",
       "translation": "our thing, what we have",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6211010:28",
+          "line": "Pero al final na' 'e lo nuestro fue en serio",
+          "title": "LA NOCHE DE ANOCHE",
+          "matched_variant": "lo nuestro",
+          "matched_surface": "lo nuestro",
+          "vocalists": [
+            "Bad Bunny",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "lo mío",
       "translation": "my thing, what's mine",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5384007:2",
+          "line": "Y yo cambié lo mío por lo que tú querías",
+          "title": "Dolerme",
+          "matched_variant": "lo mío",
+          "matched_surface": "lo mío"
+        }
+      ]
     },
     {
       "expression": "hace tiempo",
       "translation": "a while ago",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8416396:2",
+          "line": "Hace tiempo que no sé nada de ti (Eh-eh)",
+          "title": "Besos Moja2",
+          "matched_variant": "hace tiempo",
+          "matched_surface": "Hace tiempo",
+          "vocalists": [
+            "Yandel",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "hace tiempo que",
       "translation": "it's been a while since",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8416396:2",
+          "line": "Hace tiempo que no sé nada de ti (Eh-eh)",
+          "title": "Besos Moja2",
+          "matched_variant": "hace tiempo que",
+          "matched_surface": "Hace tiempo que",
+          "vocalists": [
+            "Yandel",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "a mí no",
       "translation": "not me (emphatic)",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "12650523:12",
+          "line": "Con uno solo a mí no me basta",
+          "title": "Fire, Fire",
+          "matched_variant": "a mí no",
+          "matched_surface": "a mí no"
+        }
+      ]
     },
     {
       "expression": "mí no me",
       "translation": "don't (emphatic negation)",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "12650523:12",
+          "line": "Con uno solo a mí no me basta",
+          "title": "Fire, Fire",
+          "matched_variant": "mí no me",
+          "matched_surface": "mí no me"
+        }
+      ]
     },
     {
       "expression": "me puse",
       "translation": "I put on / I got",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5384007:1",
+          "line": "Por toda' esas veces que me puse detrá'",
+          "title": "Dolerme",
+          "matched_variant": "me puse",
+          "matched_surface": "me puse"
+        }
+      ]
     },
     {
       "expression": "se ve",
       "translation": "looks, appears",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "4425584:38",
+          "line": "Desde acá qué rico se ve (Wow)",
+          "title": "Con Altura",
+          "matched_variant": "se ve",
+          "matched_surface": "se ve",
+          "vocalists": [
+            "J Balvin",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "dile que",
       "translation": "tell him/her that",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "3345402:7",
+          "line": "Corre y dile que se calle",
+          "title": "Por Mi Puerta No Lo Pasen",
+          "matched_variant": "dile que",
+          "matched_surface": "dile que"
+        }
+      ]
     },
     {
       "expression": "la gana",
       "translation": "the desire, the urge",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8402908:14",
+          "line": "Haz lo que te de la gana",
+          "title": "Always On My Mind*",
+          "matched_variant": "la gana",
+          "matched_surface": "la gana",
+          "vocalists": [
+            "Rosalia"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "no sé si",
       "translation": "I don't know if",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "9176102:2",
+          "line": "Bebé, tú ten cuida'o, no sé si tú estás listo",
+          "title": "TUYA",
+          "matched_variant": "no sé si",
+          "matched_surface": "no sé si"
+        }
+      ]
     },
     {
       "expression": "creo que",
       "translation": "I think that, I believe that",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "7515176:27",
+          "line": "Me creo que el mundo es mío",
+          "title": "AISLAMIENTO",
+          "matched_variant": "creo que",
+          "matched_surface": "creo que"
+        }
+      ]
     },
     {
       "expression": "le gusta",
       "translation": "he/she likes",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "8324985:37",
+          "line": "¿Y le gusta mi bachata, amiguita?",
+          "title": "El Pañuelo",
+          "matched_variant": "le gusta",
+          "matched_surface": "le gusta",
+          "vocalists": [
+            "Romeo Santos",
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "le gusta"
+      ],
+      "variant_counts": {
+        "le gusta": 1
+      },
+      "family": "gustar"
     },
     {
       "expression": "tienen que",
       "translation": "they have to",
-      "count": 1
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5461781:1",
+          "line": "Cosa' de familia, no la' tienen que escucha'",
+          "title": "TKN",
+          "matched_variant": "tienen que",
+          "matched_surface": "tienen que",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "tienen que"
+      ],
+      "variant_counts": {
+        "tienen que": 1
+      },
+      "family": "tener que"
     },
     {
       "expression": "yo hago lo que",
       "translation": "I do what(ever)",
-      "count": 0
+      "count": 0,
+      "occurrence_count": 0,
+      "num_songs": 0,
+      "examples": []
     }
   ],
+  "pmi_detected": [],
   "patterns": [
-    {
-      "expression": "que yo [PRON]",
-      "count": 13,
-      "num_variants": 4,
-      "num_songs": 10,
-      "variants": {
-        "que yo te": 8,
-        "que yo me": 3,
-        "que yo le": 1,
-        "que yo lo": 1
-      }
-    },
-    {
-      "expression": "que tú [PRON]",
-      "count": 11,
-      "num_variants": 2,
-      "num_songs": 9,
-      "variants": {
-        "que tú me": 8,
-        "que tú te": 3
-      }
-    },
     {
       "expression": "[PRON] voy a",
       "count": 10,
+      "occurrence_count": 10,
       "num_variants": 4,
       "num_songs": 7,
       "variants": {
@@ -346,157 +2174,270 @@
         "te voy a": 4,
         "la voy a": 1,
         "los voy a": 1
-      }
+      },
+      "examples": [
+        {
+          "id": "7288792:22",
+          "line": "Si quiero, duermo con ella, pero nunca me la voy a casar",
+          "title": "LA FAMA",
+          "matched_variant": "la voy a",
+          "matched_surface": "la voy a",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8173139:24",
+          "line": "Mira qué fácil te lo voy a decir",
+          "title": "DESPECHÁ",
+          "matched_variant": "lo voy a",
+          "matched_surface": "lo voy a"
+        },
+        {
+          "id": "12660487:12",
+          "line": "Pero a mi baby hoy lo voy a stalkear",
+          "title": "Dios Es Un Stalker (Versión Física)",
+          "matched_variant": "lo voy a",
+          "matched_surface": "lo voy a"
+        },
+        {
+          "id": "12660487:45",
+          "line": "Pero su corazón lo voy a secuestrar",
+          "title": "Dios Es Un Stalker (Versión Física)",
+          "matched_variant": "lo voy a",
+          "matched_surface": "lo voy a"
+        },
+        {
+          "id": "5187929:2",
+          "line": "Pero no sé cómo te lo vo' a decir",
+          "title": "Te Estoy Amando Locamente (Cover)",
+          "matched_variant": "lo voy a",
+          "matched_surface": "lo vo' a"
+        }
+      ]
     },
     {
       "expression": "no [PRON] ves",
       "count": 8,
+      "occurrence_count": 8,
       "num_variants": 2,
       "num_songs": 3,
       "variants": {
         "no lo ves": 7,
         "no me ves": 1
-      }
+      },
+      "examples": [
+        {
+          "id": "3646825:1",
+          "line": "Estoy brillando con highlighter, ¿no lo ves?",
+          "title": "Brillo",
+          "matched_variant": "no lo ves",
+          "matched_surface": "no lo ves",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3646825:2",
+          "line": "Un clavel en mi melena, ¿no lo ves?",
+          "title": "Brillo",
+          "matched_variant": "no lo ves",
+          "matched_surface": "no lo ves",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3646825:3",
+          "line": "He subi'o quince stories, ¿no lo ves?",
+          "title": "Brillo",
+          "matched_variant": "no lo ves",
+          "matched_surface": "no lo ves",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3646825:4",
+          "line": "Mira que quiero ser buena, ¿no lo ves?",
+          "title": "Brillo",
+          "matched_variant": "no lo ves",
+          "matched_surface": "no lo ves",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3646825:5",
+          "line": "Oh, no, no lo ves (¡Niño!)",
+          "title": "Brillo",
+          "matched_variant": "no lo ves",
+          "matched_surface": "no lo ves",
+          "vocalists": [
+            "ROSALÍA"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ]
     },
     {
       "expression": "[PRON] vas a",
-      "count": 7,
+      "count": 6,
+      "occurrence_count": 7,
       "num_variants": 2,
       "num_songs": 4,
       "variants": {
         "lo vas a": 6,
         "te vas a": 1
-      }
-    },
-    {
-      "expression": "[PRON] que yo",
-      "count": 6,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "lo que yo": 3,
-        "la que yo": 3
-      }
-    },
-    {
-      "expression": "esta noche [PRON]",
-      "count": 6,
-      "num_variants": 2,
-      "num_songs": 3,
-      "variants": {
-        "esta noche nos": 5,
-        "esta noche se": 1
-      }
-    },
-    {
-      "expression": "y yo [PRON]",
-      "count": 6,
-      "num_variants": 3,
-      "num_songs": 5,
-      "variants": {
-        "y yo le": 3,
-        "y yo te": 2,
-        "y yo nos": 1
-      }
-    },
-    {
-      "expression": "sé que [PRON]",
-      "count": 5,
-      "num_variants": 3,
-      "num_songs": 4,
-      "variants": {
-        "sé que me": 2,
-        "sé que te": 2,
-        "sé que se": 1
-      }
+      },
+      "examples": [
+        {
+          "id": "6367361:5",
+          "line": "¿Lo va' a olvidar? Can you let it go? Can you let it go?",
+          "title": "Lo Vas A Olvidar",
+          "matched_variant": "lo vas a",
+          "matched_surface": "Lo va' a",
+          "vocalists": [
+            "ROSALÍA",
+            "Billie Eilish"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "6367361:6",
+          "line": "¿Lo va' a olvidar? Can you let it go? ¿Lo va' a olvidar?",
+          "title": "Lo Vas A Olvidar",
+          "matched_variant": "lo vas a",
+          "matched_surface": "Lo va' a",
+          "vocalists": [
+            "ROSALÍA",
+            "Billie Eilish"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "3065897:8",
+          "line": "Que me lo vas a apa-pagar",
+          "title": "Si Tú Supieras Compañero",
+          "matched_variant": "lo vas a",
+          "matched_surface": "lo vas a"
+        },
+        {
+          "id": "3065897:23",
+          "line": "Ay, que me lo va' a apagar",
+          "title": "Si Tú Supieras Compañero",
+          "matched_variant": "lo vas a",
+          "matched_surface": "lo va' a"
+        },
+        {
+          "id": "5197781:18",
+          "line": "El primer día de permiso lo va' a pasar conmigo (Dale, olé)",
+          "title": "Juro Que",
+          "matched_variant": "lo vas a",
+          "matched_surface": "lo va' a"
+        }
+      ]
     },
     {
       "expression": "que [PRON] quiero",
       "count": 5,
+      "occurrence_count": 5,
       "num_variants": 3,
       "num_songs": 4,
       "variants": {
         "que te quiero": 3,
         "que me quiero": 1,
         "que la quiero": 1
-      }
-    },
-    {
-      "expression": "quiero que [PRON]",
-      "count": 5,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "quiero que lo": 3,
-        "quiero que me": 2
-      }
-    },
-    {
-      "expression": "que esta noche [PRON]",
-      "count": 5,
-      "num_variants": 2,
-      "num_songs": 2,
-      "variants": {
-        "que esta noche nos": 4,
-        "que esta noche se": 1
-      }
-    },
-    {
-      "expression": "yo no [PRON]",
-      "count": 4,
-      "num_variants": 2,
-      "num_songs": 4,
-      "variants": {
-        "yo no me": 2,
-        "yo no lo": 2
-      }
-    },
-    {
-      "expression": "el mundo [PRON]",
-      "count": 4,
-      "num_variants": 3,
-      "num_songs": 4,
-      "variants": {
-        "el mundo me": 2,
-        "el mundo te": 1,
-        "el mundo lo": 1
-      }
-    },
-    {
-      "expression": "tú eres [PRON]",
-      "count": 4,
-      "num_variants": 2,
-      "num_songs": 3,
-      "variants": {
-        "tú eres la": 3,
-        "tú eres lo": 1
-      }
+      },
+      "examples": [
+        {
+          "id": "12581294:26",
+          "line": "La nieve en la que me quiero hundir",
+          "title": "La Yugular",
+          "matched_variant": "que me quiero",
+          "matched_surface": "que me quiero"
+        },
+        {
+          "id": "3964070:24",
+          "line": "Que te dije que te quiero",
+          "title": "MALDICIÓN (Cap.10: Cordura)",
+          "matched_variant": "que te quiero",
+          "matched_surface": "que te quiero"
+        },
+        {
+          "id": "3065897:38",
+          "line": "Por lo mucho que te quiero",
+          "title": "Si Tú Supieras Compañero",
+          "matched_variant": "que te quiero",
+          "matched_surface": "que te quiero"
+        },
+        {
+          "id": "3345402:15",
+          "line": "Ay, que te quiero",
+          "title": "Por Mi Puerta No Lo Pasen",
+          "matched_variant": "que te quiero",
+          "matched_surface": "que te quiero"
+        },
+        {
+          "id": "3345402:18",
+          "line": "Sin ti, mi alma ¿pa que la quiero?",
+          "title": "Por Mi Puerta No Lo Pasen",
+          "matched_variant": "que la quiero",
+          "matched_surface": "que la quiero"
+        }
+      ]
     },
     {
       "expression": "no [PRON] puedes",
       "count": 4,
+      "occurrence_count": 4,
       "num_variants": 2,
       "num_songs": 3,
       "variants": {
         "no lo puedes": 3,
         "no me puedes": 1
-      }
-    },
-    {
-      "expression": "para que tú [PRON]",
-      "count": 4,
-      "num_variants": 2,
-      "num_songs": 3,
-      "variants": {
-        "para que tú te": 3,
-        "para que tú me": 1
-      }
+      },
+      "examples": [
+        {
+          "id": "7659063:1",
+          "line": "Si no lo puedes tener lo tendrás que soltar",
+          "title": "COMO UN G",
+          "matched_variant": "no lo puedes",
+          "matched_surface": "no lo puedes"
+        },
+        {
+          "id": "7659063:13",
+          "line": "Si no lo puedes tener, mejor déjalo ir",
+          "title": "COMO UN G",
+          "matched_variant": "no lo puedes",
+          "matched_surface": "no lo puedes"
+        },
+        {
+          "id": "4496591:52",
+          "line": "Que no lo puedes conseguir",
+          "title": "Un Millón de Veces",
+          "matched_variant": "no lo puedes",
+          "matched_surface": "no lo puedes"
+        },
+        {
+          "id": "4151176:21",
+          "line": "Pero no me puede' engañar",
+          "title": "Lo Presiento",
+          "matched_variant": "no me puedes",
+          "matched_surface": "no me puede'"
+        }
+      ]
     }
   ],
   "candidates": [],
   "stats": {
     "confirmed_count": 54,
     "pmi_detected_count": 0,
-    "patterns_count": 17
+    "patterns_count": 5
   }
 }

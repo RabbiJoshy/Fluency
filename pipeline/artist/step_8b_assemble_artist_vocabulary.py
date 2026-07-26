@@ -42,12 +42,13 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 4
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
     3: "+ carry LRCLIB end_ms into final examples as end_timestamp_ms",
     4: "+ stamp pooled lemma evidence and package Gemini-free Speech fallbacks for Artist Extra",
+    5: "+ carry exact artist MWE family counts, morphological variants, and source evidence",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -505,12 +506,33 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     "expression": expr,
                     "translation": m.get("translation", "") or "",
                     "count": m.get("count", 0) or 0,
+                    "occurrence_count": m.get("occurrence_count", m.get("count", 0)) or 0,
+                    "num_songs": m.get("num_songs", 0) or 0,
                     "source": source,
                 }
+                if m.get("family"):
+                    entry["family"] = m["family"]
+                if m.get("variants"):
+                    entry["variants"] = m["variants"]
+                if m.get("variant_counts"):
+                    entry["variant_counts"] = m["variant_counts"]
+                if m.get("examples"):
+                    entry["detected_examples"] = m["examples"]
                 # Attach to every component token. If the token isn't in the
                 # artist's vocab, the attachment is a no-op at annotation
                 # time. If it is, the MWE shows up on that card.
-                for token in expr.lower().split():
+                attachment_phrases = [expr]
+                variants = m.get("variants") or []
+                attachment_phrases.extend(
+                    variants.keys() if isinstance(variants, dict) else variants)
+                if m.get("family"):
+                    attachment_phrases.append(m["family"])
+                attachment_tokens = {
+                    token
+                    for phrase in attachment_phrases
+                    for token in str(phrase).lower().split()
+                }
+                for token in attachment_tokens:
                     if not token or token == "[pron]":
                         continue
                     existing = mwe_by_word.setdefault(token, [])
@@ -1330,38 +1352,96 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     _PRON_PLACEHOLDER_RE = re.compile(r'\[pron\]', re.IGNORECASE)
     _PRON_CLITIC_ALT = r'(?:me|te|se|le|les|nos|lo|la|los|las)'
 
-    def find_mwe_examples(expression, max_examples=3):
-        """Find lyric lines containing an MWE expression (word-boundary match)."""
-        expr_lower = expression.lower()
-        if '[pron]' in expr_lower:
-            parts = _PRON_PLACEHOLDER_RE.split(expr_lower)
-            body = _PRON_CLITIC_ALT.join(re.escape(p) for p in parts)
-        else:
-            body = re.escape(expr_lower)
-        pattern = re.compile(
+    def _mwe_pattern(expression):
+        tokens = str(expression or '').lower().split()
+        body_parts = []
+        for index, token in enumerate(tokens):
+            if index:
+                # Curated Caribbean forms often contain ``vo' a`` while the
+                # original lyric displays ``vo'a``. Treat that one elision
+                # boundary as optional whitespace; ordinary word boundaries
+                # still require at least one space.
+                separator = r'\s*' if tokens[index - 1].endswith(("'", "’")) else r'\s+'
+                body_parts.append(separator)
+            if _PRON_PLACEHOLDER_RE.fullmatch(token):
+                body_parts.append(_PRON_CLITIC_ALT)
+            else:
+                body_parts.append(re.escape(token).replace("'", "['’]"))
+        body = ''.join(body_parts)
+        return re.compile(
             r'(?<![' + _SPANISH_LETTER + r'])' + body +
             r'(?![' + _SPANISH_LETTER + r'])',
             re.IGNORECASE,
         )
+
+    def find_mwe_examples(expression, variants=None, detected_examples=None,
+                          max_examples=3):
+        """Return exact lyric evidence for a literal or morphological family."""
+        variant_values = list((variants or {}).keys()) if isinstance(variants, dict) else list(variants or [])
+        candidate_forms = []
+        for value in [expression] + variant_values:
+            value = str(value or '').strip()
+            if value and value.lower() not in {form.lower() for form in candidate_forms}:
+                candidate_forms.append(value)
+        patterns = [(form, _mwe_pattern(form)) for form in candidate_forms]
         found = []
-        for line, info in line_info.items():
-            if pattern.search(line):
-                trans_info = translations.get(line, {})
+        seen = set()
+
+        def append_example(line, info, matched_variant=None, matched_surface=None):
+            key = line.strip().lower()
+            if not key or key in seen:
+                return
+            seen.add(key)
+            trans_info = translations.get(line, {})
+            if isinstance(trans_info, str):
+                english = trans_info
+                translation_source = ""
+            else:
                 english = trans_info.get("english", "")
-                if english:
-                    ex_dict = {
-                        "song": info["song_id"],
-                        "song_name": info["title"],
-                        "spanish": line,
-                        "english": english,
-                        "translation_source": trans_info.get("source", ""),
-                    }
-                    _copy_example_priority(info, ex_dict)
-                    ts_entry = ts_map.get(info["title"], {}).get(line)
-                    _copy_timestamp(ts_entry, ex_dict)
-                    found.append(ex_dict)
-                    if len(found) >= max_examples:
-                        break
+                translation_source = trans_info.get("source", "")
+            ex_dict = {
+                "song": info.get("song_id", ""),
+                "song_name": info.get("title", ""),
+                "spanish": line,
+                "english": english,
+            }
+            if matched_variant:
+                ex_dict["matched_variant"] = matched_variant
+            if matched_surface:
+                ex_dict["matched_surface"] = matched_surface
+            if translation_source:
+                ex_dict["translation_source"] = translation_source
+            _copy_example_priority(info, ex_dict)
+            ts_entry = ts_map.get(info.get("title", ""), {}).get(line)
+            _copy_timestamp(ts_entry, ex_dict)
+            found.append(ex_dict)
+
+        # Artist detection now carries exact full-corpus evidence. Prefer it
+        # over the old component-word sample, which could miss a valid phrase
+        # merely because none of its words retained that particular line.
+        for raw in detected_examples or []:
+            line = raw.get("line") or raw.get("spanish") or ""
+            if not line:
+                continue
+            raw_id = str(raw.get("id") or "")
+            info = {
+                "song_id": raw_id.split(":")[0] if ":" in raw_id else raw_id,
+                "title": raw.get("title", ""),
+            }
+            for key in _EXAMPLE_PRIORITY_KEYS:
+                if key in raw:
+                    info[key] = raw[key]
+            append_example(
+                line, info, raw.get("matched_variant"), raw.get("matched_surface"))
+            if len(found) >= max_examples:
+                return found
+
+        for line, info in line_info.items():
+            matched = next((form for form, pattern in patterns if pattern.search(line)), None)
+            if matched:
+                append_example(line, info, matched)
+                if len(found) >= max_examples:
+                    break
         return found
 
     # --- Mark most frequent lemma instance ---
@@ -1567,7 +1647,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
                 # Find lyric examples
                 if expr not in mwe_examples_cache:
-                    mwe_examples_cache[expr] = find_mwe_examples(expr)
+                    mwe_examples_cache[expr] = find_mwe_examples(
+                        expr,
+                        variants=mwe.get("variants"),
+                        detected_examples=mwe.get("detected_examples"),
+                    )
 
                 # Truncate long translations
                 trans = mwe.get("translation") or ""
@@ -1592,6 +1676,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     "examples": examples,
                     "source": mwe.get("source", "wiktionary"),
                 }
+                for key in ("family", "variants", "variant_counts", "count",
+                            "occurrence_count", "num_songs"):
+                    if mwe.get(key) not in (None, "", [], {}):
+                        membership[key] = mwe[key]
                 # Two context tiers (see step_8a_assemble_vocabulary for the
                 # canonical comment). ``context`` is real/scraped,
                 # ``context_heuristic`` is regex-split from the quickdef.
@@ -1867,6 +1955,9 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
                 {**{"expression": mwe["expression"],
                     "translation": mwe.get("translation", ""),
                     "source": mwe.get("source", "artist")},
+                 **{key: mwe[key] for key in (
+                     "family", "variants", "variant_counts", "count",
+                     "occurrence_count", "num_songs") if mwe.get(key) not in (None, "", [], {})},
                  **({"context": mwe["context"]} if mwe.get("context") else {}),
                  **({"context_heuristic": mwe["context_heuristic"]} if mwe.get("context_heuristic") else {})}
                 for mwe in entry_mwes

@@ -282,6 +282,15 @@ function joinWithMaster(indexData, master) {
         const mwe_memberships = (idx.mwe_memberships || []).map(mwe => ({
             expression: mwe.expression,
             translation: mwe.translation || '',
+            family: mwe.family || '',
+            variants: mwe.variants || null,
+            variant_counts: mwe.variant_counts || null,
+            count: Number(mwe.count) || 0,
+            occurrence_count: Number(mwe.occurrence_count) || 0,
+            num_songs: Number(mwe.num_songs) || 0,
+            source: mwe.source || '',
+            context: mwe.context || '',
+            context_heuristic: mwe.context_heuristic || '',
             examples: []
         }));
 
@@ -1188,6 +1197,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     allMWEs.push({
                         expression: mwe.expression,
                         translation: mwe.translation || '',
+                        family: mwe.family || '',
+                        variants: mwe.variants || null,
+                        variantCounts: mwe.variant_counts || null,
+                        corpusCount: Number(mwe.count) || 0,
+                        occurrenceCount: Number(mwe.occurrence_count) || 0,
+                        songCount: Number(mwe.num_songs) || 0,
                         // Two context tiers:
                         //   context           — real/scraped (authoritative)
                         //   context_heuristic — regex-split from quickdef
@@ -1612,6 +1627,12 @@ async function loadIncorrectWordsSet() {
                     allMWEs.push({
                         expression: mwe.expression,
                         translation: mwe.translation || '',
+                        family: mwe.family || '',
+                        variants: mwe.variants || null,
+                        variantCounts: mwe.variant_counts || null,
+                        corpusCount: Number(mwe.count) || 0,
+                        occurrenceCount: Number(mwe.occurrence_count) || 0,
+                        songCount: Number(mwe.num_songs) || 0,
                         // Two context tiers:
                         //   context           — real/scraped (authoritative)
                         //   context_heuristic — regex-split from quickdef
@@ -2172,6 +2193,12 @@ function synthesizeSpecialMeanings(item, meanings) {
             return {
                 expression: mwe.expression,
                 translation: mwe.translation || '',
+                family: mwe.family || '',
+                variants: mwe.variants || null,
+                variantCounts: mwe.variant_counts || null,
+                corpusCount: Number(mwe.count) || 0,
+                occurrenceCount: Number(mwe.occurrence_count) || 0,
+                songCount: Number(mwe.num_songs) || 0,
                 context: mwe.context || '',
                 context_heuristic: mwe.context_heuristic || '',
                 examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }],
