@@ -44,7 +44,7 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 | `flashcards` | Array | Current deck of flashcard objects |
 | `currentIndex` | number | Visible card index |
 | `activeArtist` | object\|null | null = normal mode, object = artist config |
-| `progressData` | object | `fullId -> { correct, wrong, lastCorrect, lastWrong, lastSeen, word, language }` |
+| `progressData` | object | `fullId -> { correct, wrong, lastCorrect, lastWrong, lastSeen, srsStage, word, language }` |
 | `itemProgressData` | object | Sparse `itemId ->` explicit sense/expression/clitic answers; whole-card progress remains the inherited baseline |
 | `selectedLanguage` | string | Key into `config.languages` |
 | `isFlipped` | boolean | Flip **direction** (target->English vs English->target), NOT card flip state |
@@ -75,9 +75,17 @@ loadConfig() → renderLanguageTabs()
 
 ## Progress and granular knowledge
 
-`progressData` stores the word/card history. Set completion means seen; review
-means the most recently dated answer is wrong. `getProgressState()` is the
-canonical backward-compatible interpretation, including legacy count-only rows.
+`progressData` stores the word/card history. `getProgressState()` is the canonical
+backward-compatible interpretation, including legacy count-only rows. Review
+contains incorrect, partial, and due cards from the selected level; Learn new
+contains only unseen cards. Due cards remain `known` for vocabulary coverage but
+are not `learned`/current, so their set segment turns amber.
+
+SRS v1 persists `srsStage` and uses intervals of 1, 3, 7, 14, 30, 60, and 120
+days. A correct answer advances one stage and a wrong answer resets to zero.
+Legacy rows without a stage derive a conservative initial stage from their counts;
+undated legacy correct rows remain current rather than becoming instantly due.
+The review queue is intentionally level- and current-source/configuration-scoped.
 
 `itemProgressData` is deliberately sparse: it stores a row only after the learner
 explicitly marks an individual sense, Expression, or clitic form. For an item,
@@ -96,6 +104,12 @@ IDs; source IDs supersede generated IDs without dropping the old alias. The
 front end still recognises pre-migration normalized POS + translation + context
 IDs and stored `sense_id_aliases`, then writes the canonical ID on the learner's
 next row answer. Preserve canonical IDs/aliases in future deck-schema work.
+
+Google Apps Script schema v3 adds `SrsStage` and `LastSeen` as columns 9–10 of
+`UserProgress`/`Lyrics`, plus `SrsStage` as column 13 of `ItemProgress`. Existing
+sheets add these headers automatically on the first v3 request without rewriting
+old rows. Copy `backend/GoogleAppsScript.js` and deploy a new Apps Script version
+whenever this persistence contract changes.
 
 ## buildFilteredVocab() — Central Filter
 

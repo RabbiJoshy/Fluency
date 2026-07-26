@@ -461,7 +461,10 @@
   Cross-device item rows use an auto-created `ItemProgress` sheet and require redeploying the
   current `backend/GoogleAppsScript.js` version. Stable sense IDs and backward-compatible
   aliases shipped in `fcb431d1`; correct partial-card completion semantics shipped in
-  `324d48ec`. Remaining work in this strand is SRS v1.
+  `324d48ec`. Level-scoped SRS v1 shipped in `a546cd76`: correct recalls advance through
+  1/3/7/14/30/60/120-day stages, mistakes reset the affected card/sense, and due cards
+  remain in coverage while returning to the selected level's Review queue. Apps Script
+  schema v3 must be redeployed to persist the new stage and whole-card `LastSeen` columns.
 
 - **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared] [spanish]**
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would

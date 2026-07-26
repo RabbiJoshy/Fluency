@@ -19,8 +19,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
+- Spaced repetition is level-scoped and uses explicit stages with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Correct recalls advance one stage; a mistake resets only that card/sense. Due cards remain Known for vocabulary coverage but turn amber and join Review in their current source/configuration scope.
 
 ## Codex task history
+
+### 2026-07-26 — Level-scoped spaced repetition v1
+
+- Commit `a546cd76`; front-end cache `flashcards-v105` / `20260726l`.
+- Correct whole-card and granular sense/Expression recalls now advance through explicit 1, 3, 7, 14, 30, 60, and 120-day stages. A mistake resets that answer source to stage zero; legacy count-only rows receive a conservative derived starting stage.
+- Due cards collect in the selected level's Review queue alongside incorrect and partial cards, ordered by the oldest review time. They remain Known for corpus coverage, while the set fill turns amber until reviewed; Learn new still contains only unseen cards.
+- Apps Script schema v3 migrates existing tabs in place: `UserProgress`/`Lyrics` gain `SrsStage` and `LastSeen`, and `ItemProgress` gains `SrsStage`. The updated `backend/GoogleAppsScript.js` must be copied and deployed as a new version.
+- Verification covered SRS transitions and stage caps, legacy migration, due/incorrect/partial aggregation, mocked Apps Script schema migration and card/item round trips, JavaScriptCore parsing, cache lockstep, and `git diff --check`. No service-worker browser preview was used.
 
 ### 2026-07-26 — Sense-aware, card-wide lyric autoplay
 
