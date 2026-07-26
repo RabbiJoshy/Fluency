@@ -92,10 +92,10 @@ def main():
     for r in rows:
         w = r["word"]
         tags, base = _source_from_dashboard_row(r)
-        # single-occurrence overlay (core words that appear once → Extra too)
-        if base == "core" and r.get("count", 0) <= 1:
-            base = "single_occurrence"
-            tags.append({"tag": "single_occurrence", "source": "corpus_count<=1"})
+        # NOTE: membership is by TAG, not frequency. A one-off real Spanish
+        # word (alguna, adelante) is still `core` → Main. "appears once" is not
+        # an Extra criterion — many one-offs are standard vocab or lemma-mapping
+        # misses that should merge to a recurring lemma.
         # manual override wins
         ov = overrides.get(w) or overrides.get(w.lower())
         if ov and ov.get("should_be"):

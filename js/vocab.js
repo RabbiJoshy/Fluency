@@ -266,6 +266,7 @@ function joinWithMaster(indexData, master) {
                 examples: []  // Attached later from examples file
             };
             if (sense.id || sense.sense_id) meaning.sense_id = sense.id || sense.sense_id;
+            if (sense.sense_id_aliases?.length) meaning.sense_id_aliases = sense.sense_id_aliases;
             if (freq <= 0) {
                 meaning.shared_fallback = true;
                 meaning.unassigned = true;
@@ -649,9 +650,20 @@ function artistLemmaEvidenceCount(item) {
     return Number.isFinite(fallback) ? Math.max(0, fallback) : 0;
 }
 
+// Extra membership is by TAG, not frequency. Extra = anything the tagger
+// classified as not-core-Spanish (loanword / English / proper noun / cognate /
+// noise). Everything else — including one-off real Spanish words like `alguna`
+// / `adelante` — is core → Main. `single_occurrence` and the old
+// `lemma_example_count <= 1` frequency rule are retired (a rare word is still
+// real vocab; frequent loanwords like `baby` belong in Extra regardless of count).
+const ARTIST_EXTRA_CATEGORIES = new Set(
+    ['loanword', 'english', 'proper_noun', 'cognate', 'noise']);
 function artistItemMatchesScope(item) {
     if (!activeArtist) return true;
-    const isExtra = artistLemmaEvidenceCount(item) <= 1;
+    const cat = String(item?.extra_category || '').toLowerCase();
+    // Fallback for entries not yet stamped: treat as core (Main), so nothing
+    // real is hidden before the tag store is fully carried through.
+    const isExtra = ARTIST_EXTRA_CATEGORIES.has(cat);
     return artistVocabularyScope === 'extra' ? isExtra : !isExtra;
 }
 
@@ -1262,6 +1274,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.source) meaning.source = m.source;
                 if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
+                if (m.sense_id_aliases?.length) meaning.senseIdAliases = m.sense_id_aliases;
                 if (m.context) meaning.context = m.context;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
