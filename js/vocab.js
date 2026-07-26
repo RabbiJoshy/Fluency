@@ -265,6 +265,7 @@ function joinWithMaster(indexData, master) {
                 frequency: String(freq),
                 examples: []  // Attached later from examples file
             };
+            if (sense.id || sense.sense_id) meaning.sense_id = sense.id || sense.sense_id;
             if (freq <= 0) {
                 meaning.shared_fallback = true;
                 meaning.unassigned = true;
@@ -283,6 +284,7 @@ function joinWithMaster(indexData, master) {
 
         // Build mwe_memberships from index entry (per-artist, not master)
         const mwe_memberships = (idx.mwe_memberships || []).map(mwe => ({
+            id: mwe.id || null,
             expression: mwe.expression,
             translation: mwe.translation || '',
             family: mwe.family || '',
@@ -977,13 +979,15 @@ async function loadVocabularyData(rangeString, opts = {}) {
                         return true;
                     }
                     const progressState = getWordProgressState(itemId);
-                    if (studyMode === 'review') return progressState.needsReview;
+                    if (studyMode === 'review') return wordNeedsKnowledgeReview(itemId);
                     if (studyMode === 'all') return true;
 
                     const coveredByEstimate = !progressState.seen && (activeArtist
                         ? (item.id && estimatedIds?.has(item.id))
                         : item.rank <= estimate);
-                    return !coveredByEstimate && !progressState.seen;
+                    return !coveredByEstimate
+                        && !progressState.seen
+                        && !wordHasKnowledgeProgress(itemId);
                 });
                 excludedMastered = beforeFiltered - filteredData.length;
                 if (studyMode === 'review') {
@@ -1127,6 +1131,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.unassigned) meaning.unassigned = true;
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.source) meaning.source = m.source;
+                if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
                 if (m.context) meaning.context = m.context;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
@@ -1204,6 +1209,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                         }
                     }
                     allMWEs.push({
+                        id: mwe.id || null,
                         expression: mwe.expression,
                         translation: mwe.translation || '',
                         family: mwe.family || '',
@@ -1332,7 +1338,16 @@ async function loadVocabularyData(rangeString, opts = {}) {
             };
             card.translationUnavailable = meanings.every(meaning => !String(meaning.meaning || '').trim());
             card.artistVocabularyScope = activeArtist ? artistVocabularyScope : null;
-            flashcards.push(card);
+            const deckCard = studyMode === 'review' ? buildFocusedReviewCard(card) : card;
+            if (deckCard) flashcards.push(deckCard);
+        }
+
+        if (flashcards.length === 0) {
+            alert(studyMode === 'review'
+                ? 'No current meanings or expressions remain in this review.'
+                : 'No flashcards could be built for this set.');
+            document.getElementById('loadingMessage').style.display = 'none';
+            return;
         }
 
         // New-card decks report how many cards in the stable set were already
@@ -1931,6 +1946,7 @@ function synthesizeSpecialMeanings(item, meanings) {
         const allMWEs = sortedMWEs.map(mwe => {
             const matched = mwe.examples || [];
             return {
+                id: mwe.id || null,
                 expression: mwe.expression,
                 translation: mwe.translation || '',
                 family: mwe.family || '',

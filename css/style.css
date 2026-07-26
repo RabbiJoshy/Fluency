@@ -3336,6 +3336,78 @@
             transform: translateY(-1px);
         }
 
+        .knowledge-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 8px 0 10px;
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.035);
+            font-family: var(--font-emphasis);
+        }
+        .knowledge-summary {
+            min-width: max-content;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            color: var(--text-muted);
+            font-size: 10px;
+            line-height: 1.2;
+        }
+        .knowledge-summary strong {
+            color: var(--text-primary);
+            font-size: 12px;
+        }
+        .knowledge-summary-review {
+            color: color-mix(in srgb, var(--error) 82%, white);
+        }
+        .knowledge-actions {
+            display: flex;
+            gap: 6px;
+            min-width: 0;
+        }
+        .knowledge-action {
+            min-height: 30px;
+            padding: 5px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-muted);
+            font: 650 10px/1.2 var(--font-emphasis);
+            cursor: pointer;
+            transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+        }
+        .knowledge-action:hover,
+        .knowledge-known.is-active {
+            border-color: var(--accent-green);
+            background: color-mix(in srgb, var(--accent-green) 12%, transparent);
+            color: var(--accent-green);
+        }
+        .knowledge-review:hover,
+        .knowledge-review.is-active {
+            border-color: var(--error);
+            background: color-mix(in srgb, var(--error) 12%, transparent);
+            color: color-mix(in srgb, var(--error) 82%, white);
+        }
+
+        @media (max-width: 560px) {
+            .knowledge-control {
+                align-items: stretch;
+                flex-direction: column;
+            }
+            .knowledge-summary {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .knowledge-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         /* Range buttons: completion % drives a left-to-right gradient on the
            button bg — yellow on the filled portion, transparent on the rest
            so the page bg shows through and the yellow visibly IS the fill.

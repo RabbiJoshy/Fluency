@@ -15,7 +15,8 @@ Vanilla JS with native ES modules. No framework, no bundler, no build step.
 | `ui.js` | Setup panel: language tabs, level selector, sets | `renderLanguageTabs()`, `renderLevelSelector()`, `renderRangeSelector()` |
 | `config.js` | Config loading, CEFR helpers | `loadConfig()`, `loadPpmData()` |
 | `auth.js` | Login, Google Sheets sync | `submitLogin()`, `saveWordProgress()`, `loadUserProgressFromSheet()` |
-| `progress.js` | Coverage bars | `calculateCoveragePercent()` |
+| `progress.js` | Card progress state + coverage bars | `getProgressState()`, `calculateCoveragePercent()` |
+| `knowledge.js` | Sparse per-sense/expression knowledge layered over card progress | `getKnowledgeItemState()`, `buildFocusedReviewCard()`, `saveKnowledgeProgress()` |
 | `estimation.js` | Level estimation — adaptive staircase | `startEstimation()`, `handleAnswer()`, `showEstimationResult()`, `revealTranslation()` |
 | `speech.js` | Text-to-speech | `speakWord()` |
 | `artist-ui.js` | Album art, artist backgrounds | `updateArtistBackground()` |
@@ -44,6 +45,7 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 | `currentIndex` | number | Visible card index |
 | `activeArtist` | object\|null | null = normal mode, object = artist config |
 | `progressData` | object | `fullId -> { correct, wrong, lastCorrect, lastWrong, lastSeen, word, language }` |
+| `itemProgressData` | object | Sparse `itemId ->` explicit sense/expression/clitic answers; whole-card progress remains the inherited baseline |
 | `selectedLanguage` | string | Key into `config.languages` |
 | `isFlipped` | boolean | Flip **direction** (target->English vs English->target), NOT card flip state |
 
@@ -67,8 +69,28 @@ loadConfig() → renderLanguageTabs()
   [click language] → loadPpmData() → renderLevelSelector()
   [click level] → renderRangeSelector() → buildFilteredVocab() → auto-select first set with unseen cards
   [start set] → loadVocabularyData() → buildFilteredVocab() → initializeApp() → updateCard()
-  [interaction] → flipCard() / nextCard() / handleSwipeAction() → saveWordProgress()
+  [whole-card interaction] → flipCard() / nextCard() / handleSwipeAction() → saveWordProgress()
+  [row knowledge action] → markCurrentKnowledge() → saveKnowledgeProgress()
 ```
+
+## Progress and granular knowledge
+
+`progressData` stores the word/card history. Set completion means seen; review
+means the most recently dated answer is wrong. `getProgressState()` is the
+canonical backward-compatible interpretation, including legacy count-only rows.
+
+`itemProgressData` is deliberately sparse: it stores a row only after the learner
+explicitly marks an individual sense, Expression, or clitic form. For an item,
+`knowledge.js` merges the parent card record and item record and lets the newest
+timestamp win. Thus a later whole-card correct resolves older item mistakes, while
+a later item mistake reopens only that row. The selected level's review deck is
+synthesized from unresolved rows; ordinary learning cards remain word/lemma cards.
+
+Knowledge IDs are `${parentFullId}~k1:<type>:<hash>`. The hash prefers a durable
+pipeline `sense_id`/`id`; current deck outputs do not retain those IDs, so the
+fallback is normalized POS + translation + context (or Expression family/text).
+Changing fallback content can orphan saved rows. Preserve stable sense IDs in any
+future deck-schema work or ship an explicit ItemProgress migration.
 
 ## buildFilteredVocab() — Central Filter
 
@@ -105,7 +127,8 @@ the source identity/tie-breaker and legacy CEFR basis.
   saved-session state and is not an artist-deck filter.
 - Album artwork backgrounds (`updateArtistBackground()` in `artist-ui.js`)
 - Multiple lyric examples per card; tap to cycle
-- Google Sheets tab: `'Lyrics'`
+- Google Sheets tab: `'Lyrics'`; sparse item overrides for both modes live in the
+  shared `'ItemProgress'` tab and remain mode-separated through the parent fullId.
 
 ## Artist Index Format + joinWithMaster()
 

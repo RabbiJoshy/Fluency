@@ -23,17 +23,17 @@
 4. Click **Deploy**
 5. **Copy the Web App URL** (looks like: `https://script.google.com/macros/s/...`)
 
+For an existing Fluency deployment, use **Deploy → Manage deployments → Edit →
+New version → Deploy** after replacing the code. This retains the existing Web
+App URL. The current script automatically creates the `ItemProgress` sheet the
+first time granular meaning/expression progress is loaded or saved; do not create
+that tab or its headers manually.
+
 ### Step 4: Update Your App
-1. Open `index.html`
-2. Find line ~2182:
-   ```javascript
-   const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
-   ```
-3. Replace with your URL:
-   ```javascript
-   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/XXXXX/exec';
-   ```
-4. Save the file
+1. Copy `backend/secrets.template.json` to `backend/secrets.json` if it does not
+   already exist.
+2. Set `googleScriptUrl` to the deployed `/exec` URL.
+3. The app loads that configuration at runtime.
 
 ### Step 5: Test!
 1. Open `index.html` in your browser
@@ -60,7 +60,7 @@
 - Clear browser cache and reload
 
 **Data not saving to Google Sheets?**
-- Check the URL is correct in index.html (line ~2182)
+- Check `googleScriptUrl` in `backend/secrets.json`
 - Make sure deployment is set to "Anyone"
 - Check browser console (F12) for errors
 
@@ -74,7 +74,7 @@
 
 ✅ Startup modal (Guest or Login)
 ✅ User badge showing initials or "GUEST"
-✅ Automatic progress tracking per word
+✅ Automatic progress tracking per word and optional individual meaning/expression
 ✅ Google Sheets backend
 ✅ Logout functionality
 ✅ Progress persists across sessions (Login mode)

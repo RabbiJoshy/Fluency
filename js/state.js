@@ -90,6 +90,7 @@ export const state = {
     GOOGLE_SCRIPT_URL: '',
     currentUser: null,
     progressData: {},
+    itemProgressData: {},
     levelEstimates: {},
 
     // Artist / lyrics mode

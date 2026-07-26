@@ -123,12 +123,38 @@ progressData[fullId] = {
 }
 ```
 
-Mastered: `correct > 0` for the selected language. Mastered words filtered out of sets.
+Current state is timestamp-based: the latest dated correct resolves the card and
+the latest dated wrong puts it in review. Lifetime `correct`/`wrong` counts are
+history, not current mastery. Legacy count-only rows with both outcomes are treated
+as resolved because their ordering cannot be recovered. New-card sets contain only
+unseen cards; set completion measures exposure.
+
+Explicit row-level knowledge is stored separately and sparsely:
+
+```js
+itemProgressData[itemId] = {
+  itemId: "es1abc123~k1:sense:89abcdef",
+  parentWordId: "es1abc123",
+  itemType: "sense", // or expression / clitic
+  label: "to deserve",
+  correct: 1, wrong: 0,
+  lastCorrect: "ISO timestamp", lastWrong: null, lastSeen: "ISO timestamp",
+  language: "Spanish", schemaVersion: 1
+}
+```
+
+The whole-card record is the inherited baseline for every row. The newer of the
+parent and item timestamps wins, so no dense per-sense snapshot is needed.
 
 ## Google Sheets Integration
 
-Sheets: `UserProgress` (normal) and `Lyrics` (artist mode). Columns: User | Word | WordId | Language | Correct | Wrong | LastCorrect | LastWrong.
+Sheets: `UserProgress` (normal), `Lyrics` (artist mode), and `ItemProgress`
+(sparse sense/expression/clitic overrides for both modes). `ItemProgress` is
+created automatically by the current Apps Script on first item save/load.
 
 `secrets.json` (not in git): `{ "googleScriptUrl": "..." }`. If missing, sync silently disabled.
 
 `GoogleAppsScript.js` is the Apps Script source — must be copy-pasted and redeployed manually.
+Granular knowledge requires the schema-v2 deployment with `saveItem`, `loadItems`,
+and `deleteItems`; the existing web-app URL can be retained when publishing a new
+version through Manage deployments.

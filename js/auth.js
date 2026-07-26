@@ -2,9 +2,13 @@
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
 import './state.js';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
-// enqueues to localStorage when offline/failed; applyPendingProgressOverlay()
-// keeps un-synced local answers visible after a Sheets reload.
-import { sendOrQueue, applyPendingProgressOverlay } from './sync-queue.js';
+// enqueues to localStorage when offline/failed. The two overlay helpers keep
+// un-synced card and granular knowledge answers visible after a Sheets reload.
+import {
+    sendOrQueue,
+    applyPendingProgressOverlay,
+    applyPendingItemProgressOverlay
+} from './sync-queue.js';
 
 async function loadSecrets() {
     try {
@@ -176,6 +180,7 @@ function logout() {
     sessionStorage.removeItem('flashcardGuestSession');
     currentUser = null;
     progressData = {};
+    itemProgressData = {};
     document.getElementById('userInfo').classList.add('hidden');
 
     // Reset app state
@@ -319,12 +324,13 @@ async function loadUserProgressFromSheet() {
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
         try {
-            const { progress, estimates } = JSON.parse(cached);
+            const { progress, itemProgress, estimates } = JSON.parse(cached);
             progressData = progress || {};
+            itemProgressData = itemProgress || {};
             levelEstimates = estimates || {};
             updateIncorrectButtonVisibility();
             updateTotalStatsButtonVisibility();
-            console.log(`Loaded ${Object.keys(progressData).length} cached progress entries`);
+            console.log(`Loaded ${Object.keys(progressData).length} cached card entries and ${Object.keys(itemProgressData).length} knowledge items`);
         } catch (e) {
             console.warn('Failed to parse progress cache:', e);
         }
@@ -341,9 +347,13 @@ async function loadUserProgressFromSheet() {
         }).then(r => r.json()).catch(() => null);
 
     try {
-        const [primaryResult, secondaryResult] = await Promise.all([
+        const [primaryResult, secondaryResult, itemResult] = await Promise.all([
             fetchSheet(primarySheet),
-            fetchSheet(secondarySheet)
+            fetchSheet(secondarySheet),
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'loadItems', user: currentUser.initials })
+            }).then(r => r.json()).catch(() => null)
         ]);
 
         // Both sheet fetches failed (offline, or endpoint unreachable). Keep the
@@ -352,12 +362,14 @@ async function loadUserProgressFromSheet() {
         // offline cards remain visible. Returning false leaves the UI on cache.
         if (!primaryResult && !secondaryResult) {
             applyPendingProgressOverlay(progressData);
+            applyPendingItemProgressOverlay(itemProgressData);
             updateIncorrectButtonVisibility();
             updateTotalStatsButtonVisibility();
             return false;
         }
 
         const prevCount = Object.keys(progressData).length;
+        const prevItemCount = Object.keys(itemProgressData).length;
         progressData = {};
 
         // Load secondary sheet first so primary overwrites on conflict
@@ -381,6 +393,26 @@ async function loadUserProgressFromSheet() {
         const primaryCount = mergeProgress(primaryResult, primarySheet);
         console.log(`Loaded progress: ${primaryCount} from ${primarySheet}, ${secondaryCount} from ${secondarySheet}`);
 
+        if (itemResult?.success && Array.isArray(itemResult.data?.items)) {
+            itemProgressData = {};
+            itemResult.data.items.forEach(item => {
+                itemProgressData[item.itemId] = {
+                    itemId: item.itemId,
+                    parentWordId: item.parentWordId,
+                    itemType: item.itemType,
+                    label: item.label,
+                    language: item.language,
+                    correct: item.correct,
+                    wrong: item.wrong,
+                    lastCorrect: item.lastCorrect,
+                    lastWrong: item.lastWrong,
+                    lastSeen: item.lastSeen,
+                    schemaVersion: item.schemaVersion || 1
+                };
+            });
+            console.log(`Loaded ${Object.keys(itemProgressData).length} granular knowledge items`);
+        }
+
         if (primaryResult?.success && primaryResult.data?.levelEstimates) {
             levelEstimates = primaryResult.data.levelEstimates;
         }
@@ -395,6 +427,7 @@ async function loadUserProgressFromSheet() {
         // freshly-loaded sheet data — those answers are newer than what Sheets
         // knows, so a reconnect reload must not visually regress them.
         applyPendingProgressOverlay(progressData);
+        applyPendingItemProgressOverlay(itemProgressData);
 
         updateIncorrectButtonVisibility();
         updateTotalStatsButtonVisibility();
@@ -402,12 +435,14 @@ async function loadUserProgressFromSheet() {
         // 3. Update cache
         localStorage.setItem(cacheKey, JSON.stringify({
             progress: progressData,
+            itemProgress: itemProgressData,
             estimates: levelEstimates
         }));
 
         // Return whether data changed (different count = something changed)
         const newCount = Object.keys(progressData).length;
-        return newCount !== prevCount || !cached;
+        const newItemCount = Object.keys(itemProgressData).length;
+        return newCount !== prevCount || newItemCount !== prevItemCount || !cached;
     } catch (error) {
         console.error('Failed to load progress from Google Sheets:', error);
         // Continue with cached data if available
@@ -472,6 +507,7 @@ async function saveWordProgress(card, isCorrect) {
     try {
         localStorage.setItem(`progress_cache_${currentUser.initials}`, JSON.stringify({
             progress: progressData,
+            itemProgress: itemProgressData,
             estimates: levelEstimates
         }));
     } catch (e) { /* cache is best-effort */ }

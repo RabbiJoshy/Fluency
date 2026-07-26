@@ -20,6 +20,12 @@ function doPost(e) {
       return dumpSheet(params);
     } else if (action === 'bulkSave') {
       return bulkSave(params);
+    } else if (action === 'saveItem') {
+      return saveItemProgress(params);
+    } else if (action === 'loadItems') {
+      return loadItemProgress(params);
+    } else if (action === 'deleteItems') {
+      return deleteItemProgress(params);
     } else {
       return createResponse(false, 'Invalid action');
     }
@@ -35,8 +41,125 @@ function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify({
     status: 'success',
     message: 'Flashcard API is running',
+    schemaVersion: 2,
     timestamp: new Date().toISOString()
   })).setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Save one explicit sense / expression / clitic result. Whole-card progress
+ * remains in UserProgress/Lyrics; this sparse sheet stores only granular
+ * overrides, with the newest parent-level or item-level timestamp winning in
+ * the app.
+ */
+function saveItemProgress(params) {
+  const {
+    user, itemId, parentWordId, itemType, label, language,
+    correct, wrong, lastCorrect, lastWrong, lastSeen, schemaVersion
+  } = params;
+  if (!user || !itemId || !parentWordId) {
+    return createResponse(false, 'Missing required fields: user, itemId, parentWordId');
+  }
+
+  const sheetObj = getOrCreateItemProgressSheet();
+  const data = sheetObj.getDataRange().getValues();
+  let rowIndex = -1;
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === user && data[i][1] === itemId) {
+      rowIndex = i + 1;
+      break;
+    }
+  }
+
+  const timestamp = lastSeen || new Date().toISOString();
+  const values = [
+    user,
+    itemId,
+    parentWordId,
+    itemType || '',
+    label || '',
+    language || '',
+    correct || 0,
+    wrong || 0,
+    lastCorrect || '',
+    lastWrong || '',
+    timestamp,
+    schemaVersion || 1
+  ];
+  if (rowIndex > 0) {
+    sheetObj.getRange(rowIndex, 1, 1, values.length).setValues([values]);
+  } else {
+    sheetObj.appendRow(values);
+  }
+  return createResponse(true, 'Item progress saved successfully');
+}
+
+/** Load every sparse knowledge override for one user. */
+function loadItemProgress(params) {
+  const { user } = params;
+  if (!user) return createResponse(false, 'Missing required field: user');
+
+  const sheetObj = getOrCreateItemProgressSheet();
+  const data = sheetObj.getDataRange().getValues();
+  const items = [];
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] !== user) continue;
+    items.push({
+      itemId: data[i][1],
+      parentWordId: data[i][2],
+      itemType: data[i][3],
+      label: data[i][4],
+      language: data[i][5],
+      correct: data[i][6],
+      wrong: data[i][7],
+      lastCorrect: data[i][8],
+      lastWrong: data[i][9],
+      lastSeen: data[i][10],
+      schemaVersion: data[i][11] || 1
+    });
+  }
+  return createResponse(true, 'Item progress loaded successfully', { items: items });
+}
+
+/** Delete granular rows belonging to one or more parent cards. */
+function deleteItemProgress(params) {
+  const { user, parentWordId, parentWordIds } = params;
+  if (!user) return createResponse(false, 'Missing required field: user');
+  const parents = Array.isArray(parentWordIds)
+    ? parentWordIds
+    : (parentWordId ? [parentWordId] : []);
+  if (parents.length === 0) {
+    return createResponse(false, 'Missing parentWordId or parentWordIds');
+  }
+  const parentSet = {};
+  parents.forEach(function(id) { parentSet[id] = true; });
+
+  const sheetObj = getOrCreateItemProgressSheet();
+  const data = sheetObj.getDataRange().getValues();
+  let deleted = 0;
+  for (let i = data.length - 1; i >= 1; i--) {
+    if (data[i][0] === user && parentSet[data[i][2]]) {
+      sheetObj.deleteRow(i + 1);
+      deleted++;
+    }
+  }
+  return createResponse(true, 'Deleted ' + deleted + ' item progress rows');
+}
+
+function getOrCreateItemProgressSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName('ItemProgress');
+  if (!sheet) {
+    sheet = ss.insertSheet('ItemProgress');
+    sheet.appendRow([
+      'User', 'ItemId', 'ParentWordId', 'ItemType', 'Label', 'Language',
+      'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen', 'SchemaVersion'
+    ]);
+    sheet.getRange(1, 1, 1, 12).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+    sheet.autoResizeColumns(1, 12);
+  }
+  return sheet;
 }
 
 /**

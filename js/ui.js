@@ -1460,7 +1460,13 @@ async function renderRangeSelector() {
         const recorded = getWordProgressState(getWordId(item));
         // A real answer is more specific than the estimated starting level;
         // in particular, a later wrong must remain reviewable.
+        if (wordNeedsKnowledgeReview(getWordId(item))) {
+            return { ...recorded, seen: true, needsReview: true, learned: false };
+        }
         if (recorded.seen) return recorded;
+        if (wordHasKnowledgeProgress(getWordId(item))) {
+            return { ...recorded, seen: true };
+        }
         if (activeArtist) {
             if (item.id && estimatedIds?.has(item.id)) {
                 return { seen: true, needsReview: false, learned: true, estimated: true };

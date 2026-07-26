@@ -196,6 +196,32 @@ export function applyPendingProgressOverlay(progress) {
     return progress;
 }
 
+// Item-level sense/expression writes use the same full-state semantics as
+// card progress. Overlay queued writes after a Sheets refresh so offline
+// granular choices cannot visually roll back.
+export function applyPendingItemProgressOverlay(items) {
+    if (!items) return items;
+    const q = loadQueue();
+    for (const e of q) {
+        const p = e && e.payload;
+        if (!p || p.action !== 'saveItem' || !p.itemId) continue;
+        items[p.itemId] = {
+            itemId: p.itemId,
+            parentWordId: p.parentWordId,
+            itemType: p.itemType,
+            label: p.label,
+            language: p.language,
+            correct: p.correct,
+            wrong: p.wrong,
+            lastCorrect: p.lastCorrect,
+            lastWrong: p.lastWrong,
+            lastSeen: p.lastSeen,
+            schemaVersion: p.schemaVersion || 1
+        };
+    }
+    return items;
+}
+
 // ---- Indicator ------------------------------------------------------------
 
 // Small status pill in the top bar. Three visible states:
@@ -258,5 +284,6 @@ window.sendOrQueue = sendOrQueue;
 window.flushQueue = flushQueue;
 window.getPendingCount = getPendingCount;
 window.applyPendingProgressOverlay = applyPendingProgressOverlay;
+window.applyPendingItemProgressOverlay = applyPendingItemProgressOverlay;
 window.updateSyncIndicator = updateIndicator;
 window.initSync = initSync;

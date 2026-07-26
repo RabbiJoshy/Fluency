@@ -955,6 +955,20 @@ function initializeApp() {
                 });
             }
 
+            const parentWordIds = wordsInSet.map(word => word.fullId);
+            for (const [itemId, item] of Object.entries(itemProgressData || {})) {
+                if (parentWordIds.includes(item.parentWordId)) delete itemProgressData[itemId];
+            }
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'deleteItems',
+                    user: currentUser.initials,
+                    parentWordIds
+                })
+            });
+            cacheItemProgress();
+
             alert(`Progress reset for ${wordsInSet.length} words. Go back to the menu and re-select this set to study the refreshed words.`);
             hideSettingsModal();
         } catch (error) {
@@ -2474,6 +2488,7 @@ function updateCard({ announceHeadword = false } = {}) {
         if (traySections.size > 0) {
             backHTML += `<div class="meanings-tray">${renderSections(traySections)}</div>`;
         }
+        backHTML += renderKnowledgeControl(card);
 
         // Show current sentence
         // For MWE/Clitic senses, suppress the sentence block entirely when the
@@ -3672,7 +3687,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260726c';
+const ASSET_VERSION = '20260726d';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

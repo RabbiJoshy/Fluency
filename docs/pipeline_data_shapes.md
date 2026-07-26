@@ -503,9 +503,9 @@ Shared across all artists. Id-keyed.
     "word":   "que",
     "lemma":  "que",
     "senses": [
-      { "pos": "CCONJ", "translation": "that" },
-      { "pos": "CCONJ", "translation": "than" },
-      { "pos": "CCONJ", "translation": "to" }
+      { "pos": "CCONJ", "translation": "that", "sense_id": "64a" },
+      { "pos": "CCONJ", "translation": "than", "sense_id": "807" },
+      { "pos": "CCONJ", "translation": "to", "sense_id": "bf0" }
     ],
     "is_english":             false,
     "is_interjection":        false,
@@ -515,6 +515,14 @@ Shared across all artists. Id-keyed.
   }
 }
 ```
+
+`sense_id` is the desired durable identity for per-sense learner progress. The
+current assembled master files predate that field, so `js/knowledge.js` falls
+back to a content signature of POS + translation + context. That fallback keeps
+today's decks usable but is not migration-safe when gloss text changes. Pipeline
+work that begins emitting IDs must preserve them across rebuilds; any intentional
+ID change requires a matching `ItemProgress` migration. This is a load-bearing
+front-end/data contract, not display metadata.
 
 ### Merge responsibility at load time
 `js/vocab.js` joins:
