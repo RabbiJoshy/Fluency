@@ -395,6 +395,15 @@ def main():
     english_loanwords = load_english_loanwords(ENGLISH_LOANWORDS_PATH)
     print(f"  english_loanwords: {len(english_loanwords)} words")
 
+    # Load per-word capitalization stats (built by tool_2a_caps_stats.py) for
+    # the Phase 1g proper-noun detector.
+    caps_stats = {}
+    _caps_path = os.path.join(artist_dir, "data", "layers", "caps_stats.json")
+    if os.path.isfile(_caps_path):
+        with open(_caps_path, encoding="utf-8") as f:
+            caps_stats = json.load(f)
+        print(f"  caps_stats: {len(caps_stats)} words")
+
     # Load verbecc form→lemma map for clitic base resolution. Without it,
     # `párame` strips to `para` which is the ambiguous imperative/preposition;
     # with it, resolves to infinitive `parar`.
@@ -535,6 +544,41 @@ def main():
         trail[w]["bucket"] = "english"
         trail[w]["source"] = "en_not_es"
     print(f"  en_50k not in es_50k:    {len(matched)}")
+
+    # ------------------------------------------------------------------
+    # Phase 1g — Caps-rate proper nouns (name/word homograph disambiguation)
+    #   A word capitalized in the MAJORITY of its MID-SENTENCE occurrences is
+    #   used as a proper noun (Puerto/PR/San/María/Mercedes/Conejo → ~1.0)
+    #   while common words stay low (sol 0.05, amor 0.00). Line-initial caps
+    #   are excluded upstream (sentence starts). Pure verbs are skipped
+    #   (imperatives get capitalized in song titles but aren't names), and
+    #   always_teach overrides. Over-tag safe (→ Extra). Genuine name/word
+    #   homographs (rico ~0.42) fall below threshold and stay teachable for
+    #   the later per-use pass.
+    # ------------------------------------------------------------------
+    print("\n--- Phase 1g: Caps-rate proper nouns ---")
+    CAP_RATE_MIN = 0.65
+    CAP_MID_MIN = 3
+    matched = set()
+    for w in list(remaining):
+        s = caps_stats.get(w)
+        if not s:
+            continue
+        mid_total = s.get("total", 0) - s.get("firstcap", 0)
+        if s.get("cap_rate", 0) < CAP_RATE_MIN or mid_total < CAP_MID_MIN:
+            continue
+        if w in always_teach:
+            continue
+        pos = spanish_forms.get(w)
+        if pos == {"verb"}:
+            continue  # pure verb (e.g. díselo) — song-title caps, not a name
+        matched.add(w)
+    buckets["proper_nouns"] |= matched
+    remaining -= matched
+    for w in matched:
+        trail[w]["bucket"] = "proper_nouns"
+        trail[w]["source"] = "caps_rate"
+    print(f"  Caps-rate proper nouns: {len(matched)}")
 
     # ------------------------------------------------------------------
     # Phase 2 — Known Spanish, split into cognate (loanword, exclude) vs
