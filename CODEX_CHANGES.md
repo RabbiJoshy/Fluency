@@ -22,6 +22,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-26 — Extra fills its categories; setup declutter (Claude front-end follow-up)
+
+- Commit `PENDING_COMMIT`; front-end cache `flashcards-v100` / `20260726g`. Authored by Claude; recorded here for the app-owner agent. Depends on pipeline commit `0b4d96fd` which stamped `extra_category` on `Artists/spanish/vocabulary_master.json` (live values: `single_occurrence`, `core`, `english`, `proper_noun`, `loanword`, `cognate`, `noise`).
+- `joinWithMaster()` (vocab.js) now copies `extra_category` from the master onto each joined entry, so the Extra category selector actually receives it.
+- Removed the always-visible Main-vs-Extra explainer paragraph (and its CSS) from the setup page; the Extra confirm modal is now the sole explanation. Kept the small "Vocabulary set" label and the confirm gate.
+- In Extra scope only, `renderExtraCategorySelector()` hides `lemmaToggleContainer` and `cognateToggleContainer` (Merge Lemmas / Exclude Cognates are meaningless there). Main/normal mode still shows both.
+- Filter policy: `buildFilteredVocab()` now KEEPS the over-tagged words in the EXTRA scope only — the `is_english`, noise, `is_english_loanword`, and proper-noun drops (and the cognate drop) are gated behind `artistVocabularyScope !== 'extra'`. Main scope is unchanged, so it stays clean; Extra retains these words and groups them by `extra_category`. Verified against the live Bad Bunny index: Extra scope (3,941 entries) now surfaces One-off words 2,720, English words 663, Names & places 260, Core words 107, Loanwords 90, Cognates 36, Interjections 26, plus ~39 still-untagged residual in "All Extra". These categories were previously empty because the words were dropped from both scopes.
+- Added a `core` → "Core words" label to the map. Untagged entries still fall back to the single "All Extra" group; a mixed residual (some tagged, some not) lands in an "All Extra" bucket sorted last until the next assembly rebuild stamps the rest.
+- Boundaries the app-owner may want to confirm: (1) scope membership is still frequency-based (`lemma_example_count <= 1`); this task only changed which flagged words survive the filter within Extra, not the Main/Extra split itself. (2) Merge Lemmas can still functionally apply in Extra if it was toggled on in Main (only the control is hidden); Exclude Cognates is now inert in Extra by the filter gate regardless of toggle state.
+- Verification: JavaScriptCore module parse of `vocab.js`/`ui.js`/`main.js`; live-data simulation of the Extra grouping against `BadBunnyvocabulary.index.json` + `vocabulary_master.json`; cache-version lockstep (SW + every `?v=` tag). No service-worker browser preview (project policy).
+
 ### 2026-07-26 — Three-state study-set progress
 
 - Commit `3fb24b2d`; front-end cache `flashcards-v99` / `20260726f`.

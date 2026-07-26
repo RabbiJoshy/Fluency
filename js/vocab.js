@@ -340,6 +340,10 @@ function joinWithMaster(indexData, master) {
             // English loanword flag (tool_8a_stamp_loanword_flag.py --master),
             // from the Wiktionary-etymology layer. Toggleable filter.
             is_english_loanword: m.is_english_loanword || false,
+            // Pipeline-assigned Extra grouping key (core / single_occurrence /
+            // english / loanword / proper_noun / cognate / noise / …). Drives
+            // the Artist Extra category selector; absent → "All Extra" fallback.
+            extra_category: m.extra_category || null,
             cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
             cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
             corpus_count: idx.corpus_count || 0,
@@ -660,6 +664,7 @@ function artistItemMatchesScope(item) {
 // an `extra_category` yet, everything falls back to one "All Extra" group so
 // the UI keeps working before the pipeline populates the field.
 const EXTRA_CATEGORY_LABELS = {
+    core: 'Core words',
     loanword: 'Loanwords',
     english: 'English words',
     cognate: 'Cognates',
@@ -857,7 +862,12 @@ function buildFilteredVocab(vocabData) {
         // but an empty gloss). Mutates the item, matching prior behavior.
         item.meanings = (item.meanings || []).filter(m => m.translation && m.translation.trim());
         if (item.meanings.length === 0 && !allowsRawArtistCard) continue;
-        if (activeArtist) {
+        // Artist Extra deliberately KEEPS the over-tagged words (English,
+        // loanwords, proper nouns, noise) instead of dropping them, so they
+        // surface grouped by their `extra_category` rather than vanishing.
+        // Main scope is unchanged — it still drops them so it stays clean.
+        const isExtraScope = activeArtist && artistVocabularyScope === 'extra';
+        if (activeArtist && !isExtraScope) {
             // English borrowings — always filtered (no toggle; they're not
             // Spanish words at all and have no Spanish meaning to teach).
             if (item.is_english) {
@@ -895,7 +905,10 @@ function buildFilteredVocab(vocabData) {
                 }
             }
         }
-        if (excludeCognates && cognateFieldAvailable && item.cognate_score >= cognateThreshold) {
+        // Cognates: dropped in Main/normal per the toggle, but KEPT in Extra so
+        // they populate the Cognates category (the toggle is hidden there and
+        // only decides which group cognates land in, not deck inclusion).
+        if (!isExtraScope && excludeCognates && cognateFieldAvailable && item.cognate_score >= cognateThreshold) {
             counts.cognates++;
             continue;
         }

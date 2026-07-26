@@ -3770,16 +3770,6 @@
         #artistVocabularyScopeHint {
             display: none;
         }
-        .artist-vocabulary-scope-explainer {
-            margin: 0;
-            line-height: 1.5;
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-        .artist-vocabulary-scope-explainer strong {
-            color: var(--text-primary);
-            font-family: var(--font-emphasis);
-        }
         .artist-vocabulary-scope-buttons {
             display: inline-grid;
             grid-template-columns: 1fr 1fr;

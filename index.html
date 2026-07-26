@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260726f">
-    <link rel="modulepreload" href="js/state.js?v=20260726f">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260726f">
-    <link rel="modulepreload" href="js/speech.js?v=20260726f">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260726f">
-    <link rel="modulepreload" href="js/auth.js?v=20260726f">
-    <link rel="modulepreload" href="js/spotify.js?v=20260726f">
-    <link rel="modulepreload" href="js/estimation.js?v=20260726f">
-    <link rel="modulepreload" href="js/config.js?v=20260726f">
-    <link rel="modulepreload" href="js/progress.js?v=20260726f">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260726f">
-    <link rel="modulepreload" href="js/ui.js?v=20260726f">
-    <link rel="modulepreload" href="js/vocab.js?v=20260726f">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260726f">
+    <link rel="modulepreload" href="js/main.js?v=20260726g">
+    <link rel="modulepreload" href="js/state.js?v=20260726g">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260726g">
+    <link rel="modulepreload" href="js/speech.js?v=20260726g">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260726g">
+    <link rel="modulepreload" href="js/auth.js?v=20260726g">
+    <link rel="modulepreload" href="js/spotify.js?v=20260726g">
+    <link rel="modulepreload" href="js/estimation.js?v=20260726g">
+    <link rel="modulepreload" href="js/config.js?v=20260726g">
+    <link rel="modulepreload" href="js/progress.js?v=20260726g">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260726g">
+    <link rel="modulepreload" href="js/ui.js?v=20260726g">
+    <link rel="modulepreload" href="js/vocab.js?v=20260726g">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260726g">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -264,11 +264,6 @@
                             <button type="button" class="artist-vocabulary-scope-btn" data-artist-scope="extra" aria-pressed="false">Extra</button>
                         </div>
                         <span id="artistVocabularyScopeHint">Recurring lemma families</span>
-                        <p class="artist-vocabulary-scope-explainer">
-                            <strong>Main</strong> is the core, most useful vocabulary — words that come up again and again across the lyrics. Start here.
-                            <br>
-                            <strong>Extra</strong> is supplementary: words that appear only once, plus loanwords, names, and slang. Worth learning once you've mostly finished Main.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -1148,6 +1143,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260726f"></script>
+    <script type="module" src="js/main.js?v=20260726g"></script>
 </body>
 </html>

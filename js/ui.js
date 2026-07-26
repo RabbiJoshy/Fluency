@@ -799,13 +799,10 @@ async function renderExtraCategorySelector(container, language) {
             chip.setAttribute('aria-checked', selected ? 'true' : 'false');
         });
         selectedLevel = hiddenButtons[index].dataset.level;
-        // Extra keeps the same optional filters as Main.
-        document.getElementById('lemmaToggleContainer').style.display = 'block';
-        setTimeout(() => {
-            if (cognateFieldAvailable) {
-                document.getElementById('cognateToggleContainer').style.display = 'block';
-            }
-        }, 75);
+        // Merge Lemmas and Exclude Cognates are meaningless in Extra (Exclude
+        // Cognates only changes which category cognates land in), so hide both.
+        document.getElementById('lemmaToggleContainer').style.display = 'none';
+        document.getElementById('cognateToggleContainer').style.display = 'none';
         renderRangeSelector().catch(err => console.error('Error rendering Extra ranges:', err));
     };
 

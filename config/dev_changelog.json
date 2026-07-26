@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "PENDING_COMMIT",
+      "summary": "Extra vocabulary now fills its categories, with a cleaner setup page",
+      "details": [
+        "Removed the always-visible Main vs Extra description from setup; the confirm popup shown when you tap Extra is now the single explanation",
+        "Merge Lemmas and Exclude Cognates are hidden in Extra mode since they don't meaningfully apply there",
+        "Extra now keeps English words, loanwords, names, cognates, and interjections instead of dropping them so each groups under its category (Main stays clean); Bad Bunny Extra shows One-off words, English words, Names & places, Loanwords, Cognates and more; cache v99->v100, assets 20260726f->20260726g"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "3fb24b2d",
       "summary": "Study sets now show known, review, and unseen progress clearly",
       "details": [
