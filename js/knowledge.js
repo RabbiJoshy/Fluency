@@ -28,10 +28,24 @@ function hashKnowledgeSignature(value) {
     return (hash >>> 0).toString(16).padStart(8, '0');
 }
 
-function makeKnowledgeItem(card, type, signature, label, meaningIndex, cycleIndex = 0) {
+function makeKnowledgeItem(
+    card,
+    type,
+    signature,
+    label,
+    meaningIndex,
+    cycleIndex = 0,
+    legacySignatures = []
+) {
     const itemKey = `k${KNOWLEDGE_SCHEMA_VERSION}:${type}:${hashKnowledgeSignature(signature)}`;
+    const legacyItemIds = legacySignatures
+        .filter(Boolean)
+        .map(legacySignature =>
+            `${card.fullId}~k${KNOWLEDGE_SCHEMA_VERSION}:${type}:${hashKnowledgeSignature(legacySignature)}`)
+        .filter(itemId => itemId !== `${card.fullId}~${itemKey}`);
     return {
         itemId: `${card.fullId}~${itemKey}`,
+        legacyItemIds: Array.from(new Set(legacyItemIds)),
         itemKey,
         parentWordId: card.fullId,
         type,
@@ -73,15 +87,20 @@ function knowledgeItemsForMeaning(card, meaning, meaningIndex) {
             const translation = sense.translation || meaning.meaning || '';
             const context = sense.context || '';
             const stableSenseId = sense.senseId || sense.sense_id || sense.id || '';
+            const stableAliases = sense.senseIdAliases || sense.sense_id_aliases || [];
+            const fallbackSignature = `sense|${normalizeKnowledgeText(pos)}|${normalizeKnowledgeText(translation)}|${normalizeKnowledgeText(context)}`;
             return makeKnowledgeItem(
                 card,
                 'sense',
                 stableSenseId
                     ? `sense-id|${normalizeKnowledgeText(stableSenseId)}`
-                    : `sense|${normalizeKnowledgeText(pos)}|${normalizeKnowledgeText(translation)}|${normalizeKnowledgeText(context)}`,
+                    : fallbackSignature,
                 translation,
                 meaningIndex,
-                cycleIndex
+                cycleIndex,
+                stableSenseId
+                    ? [fallbackSignature, ...stableAliases.map(id => `sense-id|${normalizeKnowledgeText(id)}`)]
+                    : []
             );
         });
     }
@@ -90,15 +109,20 @@ function knowledgeItemsForMeaning(card, meaning, meaningIndex) {
     const translation = meaning.meaning || meaning.translation || '';
     const context = meaning.context || '';
     const stableSenseId = meaning.senseId || meaning.sense_id || meaning.id || '';
+    const stableAliases = meaning.senseIdAliases || meaning.sense_id_aliases || [];
+    const fallbackSignature = `sense|${normalizeKnowledgeText(pos)}|${normalizeKnowledgeText(translation)}|${normalizeKnowledgeText(context)}`;
     return [makeKnowledgeItem(
         card,
         'sense',
         stableSenseId
             ? `sense-id|${normalizeKnowledgeText(stableSenseId)}`
-            : `sense|${normalizeKnowledgeText(pos)}|${normalizeKnowledgeText(translation)}|${normalizeKnowledgeText(context)}`,
+            : fallbackSignature,
         translation || pos,
         meaningIndex,
-        0
+        0,
+        stableSenseId
+            ? [fallbackSignature, ...stableAliases.map(id => `sense-id|${normalizeKnowledgeText(id)}`)]
+            : []
     )];
 }
 
@@ -146,9 +170,31 @@ function mergeKnowledgeProgress(parent, item) {
     };
 }
 
+function getSpecificItemProgress(item) {
+    const primary = itemProgressData?.[item?.itemId];
+    if (primary) return primary;
+    const legacy = (item?.legacyItemIds || [])
+        .map(itemId => itemProgressData?.[itemId])
+        .filter(Boolean);
+    if (legacy.length === 0) return null;
+    return legacy.reduce((latest, candidate) => {
+        const latestTime = Math.max(
+            parseProgressTimestamp(latest?.lastSeen),
+            parseProgressTimestamp(latest?.lastCorrect),
+            parseProgressTimestamp(latest?.lastWrong)
+        );
+        const candidateTime = Math.max(
+            parseProgressTimestamp(candidate?.lastSeen),
+            parseProgressTimestamp(candidate?.lastCorrect),
+            parseProgressTimestamp(candidate?.lastWrong)
+        );
+        return candidateTime > latestTime ? candidate : latest;
+    });
+}
+
 function getKnowledgeItemState(card, item) {
     const parent = progressData?.[card?.fullId || item?.parentWordId];
-    const specific = itemProgressData?.[item?.itemId];
+    const specific = getSpecificItemProgress(item);
     return getProgressState(mergeKnowledgeProgress(parent, specific));
 }
 
@@ -257,7 +303,15 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
     if (!currentUser || currentUser.isGuest || !card?.fullId || !items?.length) return;
     const timestamp = new Date().toISOString();
     for (const item of items) {
-        const existing = itemProgressData[item.itemId] || {
+        const previous = getSpecificItemProgress(item);
+        const existing = itemProgressData[item.itemId] || (previous ? {
+            ...previous,
+            itemId: item.itemId,
+            parentWordId: card.fullId,
+            itemType: item.type,
+            label: item.label,
+            schemaVersion: KNOWLEDGE_SCHEMA_VERSION
+        } : {
             itemId: item.itemId,
             parentWordId: card.fullId,
             itemType: item.type,
@@ -269,7 +323,7 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
             lastWrong: null,
             lastSeen: null,
             schemaVersion: KNOWLEDGE_SCHEMA_VERSION
-        };
+        });
         if (isCorrect) {
             existing.correct = (Number(existing.correct) || 0) + 1;
             existing.lastCorrect = timestamp;

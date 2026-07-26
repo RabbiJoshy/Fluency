@@ -33,11 +33,17 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.util_sense_ids import (  # noqa: E402
+    carry_sense_identity,
+    make_generated_sense_id,
+    merge_sense_identity,
+)
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "merge artist monoliths into shared master, hex IDs, sense merge by (pos, translation)",
     2: "sense merge key includes context; context + source preserved on master senses",
+    3: "preserve canonical sense IDs and aliases while merging equivalent artist senses",
 }
 
 # ---------------------------------------------------------------------------
@@ -323,6 +329,7 @@ def build_master(artists):
                         existing_sense = s
                         break
                 if existing_sense:
+                    merge_sense_identity(existing_sense, meaning)
                     # Track candidate translations for later canonical selection
                     existing_sense.setdefault("_candidates", [existing_sense["translation"]])
                     if translation not in existing_sense["_candidates"]:
@@ -339,6 +346,11 @@ def build_master(artists):
                         existing_sense["source"] = source
                 else:
                     new_sense = {"pos": pos, "translation": translation}
+                    carry_sense_identity(
+                        new_sense,
+                        meaning.get("sense_id"),
+                        meaning.get("sense_id_aliases") or [],
+                    )
                     if context:
                         new_sense["context"] = context
                     if source:
@@ -373,6 +385,22 @@ def build_master(artists):
                     merged_count += 1
     if merged_count:
         print("\nCanonical translations updated for %d senses" % merged_count)
+
+    for entry in master.values():
+        for sense in entry.get("senses", []):
+            if sense.get("pos") in ("X", "SENSE_CYCLE") or sense.get("sense_id"):
+                continue
+            carry_sense_identity(
+                sense,
+                make_generated_sense_id(
+                    "artist-master",
+                    entry.get("word"),
+                    entry.get("lemma"),
+                    sense.get("pos"),
+                    sense.get("translation"),
+                    sense.get("context"),
+                ),
+            )
 
     return master, per_artist_data, stats
 

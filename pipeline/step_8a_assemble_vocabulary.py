@@ -56,14 +56,16 @@ from util_6a_method_priority import METHOD_PRIORITY
 from util_8a_assembly_helpers import make_stable_id, split_count_proportionally
 from util_pipeline_config import get_default_min_priority
 from util_pipeline_meta import make_meta, write_sidecar
+from util_sense_ids import carry_sense_identity, merge_sense_identity
 
 # Default language; overridden by --language at runtime.
 NORMAL_MODE_LANGUAGE = "spanish"
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples split, hex IDs, lemma-proportional counts",
     2: "group per-sense assignments by sense_idx so foreign-sid fallbacks don't duplicate meanings",
+    3: "carry stable sense-menu IDs and aliases into learner-facing meanings",
 }
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -737,6 +739,8 @@ def main():
                     "translation": cleaned,
                     "frequency": "1.00",
                 }
+                if id_list:
+                    carry_sense_identity(meaning_lean, id_list[0])
                 if cleaned != senses[0]["translation"]:
                     meaning_lean["detail"] = senses[0]["translation"]
                 src = senses[0].get("source")
@@ -792,6 +796,8 @@ def main():
                         "translation": cleaned,
                         "frequency": f"{freq:.2f}",
                     }
+                    if sense_idx < len(id_list):
+                        carry_sense_identity(meaning_lean, id_list[sense_idx])
                     detail = sense.get("detail", "")
                     if not detail and cleaned != sense["translation"]:
                         detail = sense["translation"]
@@ -846,6 +852,8 @@ def main():
                         merged_full[key2] = {**m_full, "examples": list(exs)}
                         merged_exs[key2] = list(exs)
                     else:
+                        merge_sense_identity(merged_lean[key2], m_lean)
+                        merge_sense_identity(merged_full[key2], m_full)
                         # Accumulate frequency; extend examples
                         try:
                             f1 = float(merged_lean[key2].get("frequency", 0))

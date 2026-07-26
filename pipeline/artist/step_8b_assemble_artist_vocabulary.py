@@ -37,12 +37,17 @@ from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
 from pipeline.util_7a_lemma_split import _is_phrase_only_self_analysis  # noqa: E402
 from pipeline.util_pipeline_config import get_default_min_priority  # noqa: E402
+from pipeline.util_sense_ids import (  # noqa: E402
+    carry_sense_identity,
+    make_generated_sense_id,
+    merge_sense_identity,
+)
 from pipeline.util_5c_spanishdict import (  # noqa: E402
     SPANISHDICT_SURFACE_CACHE,
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 6
+STEP_VERSION = 7
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
@@ -51,6 +56,8 @@ STEP_VERSION_NOTES = {
     5: "+ carry exact artist MWE family counts, morphological variants, and source evidence",
     6: "+ assemble only translated/study-ready artist expressions; retain PMI and clitic "
        "discovery as upstream diagnostics",
+    7: "+ preserve stable sense-menu IDs through meanings, sense cycles, and shared master; "
+       "mint durable fallback IDs for legacy master-only senses",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -879,6 +886,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             sense_by_id = group.get("sense_by_id")
             word_senses = group.get("word_senses")
             word_assignments = group.get("assignments", [])
+            sense_ids = list(sense_by_id.keys()) if isinstance(sense_by_id, dict) else []
 
             # Build meanings
             meanings = []
@@ -950,6 +958,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "frequency": freq,
                         "examples": meaning_examples,
                     }
+                    carry_sense_identity(
+                        meaning,
+                        assignment.get("sense") or (
+                            sense_ids[sense_idx] if sense_idx < len(sense_ids) else None
+                        ),
+                    )
                     src = sense.get("source")
                     if src:
                         meaning["source"] = src
@@ -1014,10 +1028,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     # route_unassigned_examples_to_groups).  Deduplicate by
                     # (pos, translation) for display.
                     all_word_senses_deduped = {}
-                    for s in word_senses:
+                    for sense_idx, s in enumerate(word_senses):
                         key = (s.get("pos", ""), s.get("translation", ""))
                         if key not in all_word_senses_deduped:
-                            all_word_senses_deduped[key] = s
+                            sense_copy = dict(s)
+                            if sense_idx < len(sense_ids):
+                                carry_sense_identity(sense_copy, sense_ids[sense_idx])
+                            all_word_senses_deduped[key] = sense_copy
 
                     for pos_key in sorted(pos_to_unassigned.keys()):
                         cycle_ex = pos_to_unassigned[pos_key]
@@ -1035,8 +1052,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                 senses_for_pos = list(all_word_senses_deduped.values())
                             cycle_pos_label = pos_key
 
-                        all_senses = [{"pos": s["pos"], "translation": s["translation"]}
-                                      for s in senses_for_pos]
+                        all_senses = []
+                        for s in senses_for_pos:
+                            sense_out = {"pos": s["pos"], "translation": s["translation"]}
+                            carry_sense_identity(
+                                sense_out, s.get("sense_id"), s.get("sense_id_aliases") or [])
+                            all_senses.append(sense_out)
 
                         # Always use SENSE_CYCLE pos so the master update
                         # (which skips SENSE_CYCLE) doesn't end up with a
@@ -1085,6 +1106,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "frequency": "1.00",
                         "examples": all_examples,
                     }
+                    if sense_ids:
+                        carry_sense_identity(single_meaning, sense_ids[0])
                     src = word_senses[0].get("source")
                     if src:
                         single_meaning["source"] = src
@@ -1095,11 +1118,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     # Deduplicate senses by (pos, translation)
                     seen = set()
                     unique_senses = []
-                    for s in word_senses:
+                    for sense_idx, s in enumerate(word_senses):
                         key = (s.get("pos", ""), s.get("translation", ""))
                         if key not in seen:
                             seen.add(key)
-                            unique_senses.append(s)
+                            sense_copy = dict(s)
+                            if sense_idx < len(sense_ids):
+                                carry_sense_identity(sense_copy, sense_ids[sense_idx])
+                            unique_senses.append(sense_copy)
 
                     # Group by POS
                     from collections import defaultdict as _defaultdict
@@ -1125,22 +1151,35 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                 "examples": cycle_examples,
                                 "unassigned": True,
                             }
+                            carry_sense_identity(
+                                single_row,
+                                senses_for_pos[0].get("sense_id"),
+                                senses_for_pos[0].get("sense_id_aliases") or [],
+                            )
                             src = senses_for_pos[0].get("source")
                             if src:
                                 single_row["source"] = src
                             meanings.append(single_row)
                         else:
                             # Multiple senses for this POS — SENSE_CYCLE row
-                            meanings.append({
+                            cycle_row = {
                                 "pos": "SENSE_CYCLE",
                                 "translation": senses_for_pos[0]["translation"],
                                 "frequency": "%.2f" % (1.0 / len(pos_list)),
                                 "examples": cycle_examples,
                                 "unassigned": True,
                                 "cycle_pos": pos_key,
-                                "allSenses": [{"pos": s["pos"], "translation": s["translation"]}
-                                              for s in senses_for_pos],
-                        })
+                                "allSenses": [],
+                            }
+                            for s in senses_for_pos:
+                                sense_out = {"pos": s["pos"], "translation": s["translation"]}
+                                carry_sense_identity(
+                                    sense_out,
+                                    s.get("sense_id"),
+                                    s.get("sense_id_aliases") or [],
+                                )
+                                cycle_row["allSenses"].append(sense_out)
+                            meanings.append(cycle_row)
             elif word_assignments and any(a.get("translation") for a in word_assignments):
                 total_assigned = sum(len(a.get("examples", [])) for a in word_assignments) or 1
                 for assignment in word_assignments:
@@ -1187,6 +1226,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "frequency": freq,
                         "examples": meaning_examples,
                     }
+                    carry_sense_identity(meaning, assignment.get("sense"))
                     src = assignment.get("source")
                     if src:
                         meaning["source"] = src
@@ -1625,8 +1665,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             context = meaning.get("context")
             key = (pos, normalize_translation(translation), (context or "").strip().lower())
             if key in existing_keys:
+                existing_sense = next(
+                    s for s in m["senses"]
+                    if (s["pos"], normalize_translation(s.get("translation", "")), _ctx_key(s)) == key
+                )
+                merge_sense_identity(existing_sense, meaning)
                 continue
             s_entry = {"pos": pos, "translation": translation}
+            carry_sense_identity(
+                s_entry,
+                meaning.get("sense_id"),
+                meaning.get("sense_id_aliases") or [],
+            )
             if context:
                 s_entry["context"] = context
             src = meaning.get("source")
@@ -1636,7 +1686,31 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             existing_keys.add(key)
             new_senses += 1
 
-    print("  Master: %d entries (+%d new), %d new senses" % (len(master), new_master, new_senses))
+    # Some legacy union senses exist only in the shared master and therefore
+    # have no current source-menu row to donate an ID. Mint a deterministic
+    # fallback so every learnable artist sense has durable identity. If a
+    # source ID becomes available in a future build, carry_sense_identity()
+    # promotes it and retains this generated ID as a migration alias.
+    generated_sense_ids = 0
+    for master_entry in master.values():
+        for sense in master_entry.get("senses", []):
+            if sense.get("pos") in ("X", "SENSE_CYCLE") or sense.get("sense_id"):
+                continue
+            carry_sense_identity(
+                sense,
+                make_generated_sense_id(
+                    "artist-master",
+                    master_entry.get("word"),
+                    master_entry.get("lemma"),
+                    sense.get("pos"),
+                    sense.get("translation"),
+                    sense.get("context"),
+                ),
+            )
+            generated_sense_ids += 1
+
+    print("  Master: %d entries (+%d new), %d new senses, %d fallback IDs" % (
+        len(master), new_master, new_senses, generated_sense_ids))
 
     # --- MWE annotation from shared layer (after IDs are assigned) ---
     MAX_MWES_PER_ENTRY = 10
