@@ -9,6 +9,46 @@
 
 ---
 
+## Architecture: persistent, audited tag pipeline (Josh's reframe, 2026-07-26)
+
+- **[now] Turn routing from a one-shot gate into a persistent tag layer (L) [cross-lang]**
+  The recurring pain is routing being an imperative one-shot decision with no oversight —
+  every tweak means a rerun and Josh can't see what changed. Reframe: **every word carries
+  a set of TAGS with provenance/evidence, accumulated across steps** (word_routing bucket,
+  english_loanwords, cognates, detected_proper_nouns, spanish_forms, en_50k, corpus_count,
+  word==translation, and later Gemini-added tags). Any step may add/adjust a tag or attach
+  evidence; the final routing bucket is a RESOLVER over the tag set, not a hard-coded call.
+  Design requirements:
+  - **Tags persist end-to-end** and are the audit surface (largely a front-end concern too:
+    Main vs Extra vs loanword/PN grouping reads them). Fine-grained meanings allowed.
+  - **Over-tag > under-tag** — a false tag lands in Extra, not oblivion (the architecture
+    change that makes aggressive detection safe now; the old routing was de-tuned precisely
+    because false positives HID cards — that tradeoff is gone).
+  - **Cheap incremental reruns:** changing a tag/rule marks only the AFFECTED words as
+    `needs_gemini` for a targeted rerun; everything else keeps its cached Gemini result
+    (store the Extra ones so they're never re-paid). Late-stage tag edits (even post-Gemini)
+    just re-flag the minimal set.
+  - **Absorbs per-use loanword tagging** (the lean class): a word can have SOME occurrences
+    tagged loanword and others target-language. Feasible without violating the counts rule
+    because homographs are a small set → classify ALL their occurrences (not a capped
+    sample). This lives in the tag layer, not a step_8b hack.
+  - **Oversight dashboard (v1 SHIPPED 2026-07-26):** `pipeline/artist/tool_4a_tag_dashboard.py`
+    → `Artists/<artist>/data/reports/routing_tags_dashboard.html`. Sortable/filterable table
+    of every routed word + its tags + conflict flags; mark rows wrong + pick corrected bucket
+    → exports `routing_corrections.json` that feeds the next routing-rule audit. First run
+    (Bad Bunny): 619 flagged — homograph-en-es 315, missed-loanword 292, propn-maybe-wrong
+    205, loanword-layer-unrouted 198, high-count-excluded 103. This IS the "what needs work"
+    list, now interactive.
+
+- **[now] Counts must be corpus-derived, never example-cap-gated (M) [cross-lang]**
+  The example cap exists only to avoid translating `para` 800× through Gemini — it must NOT
+  affect any count/frequency/rank anywhere, steps 1–9, any language. Known leak: `step_8b`
+  splits a word's `corpus_count` across lemma-groups **proportionally to assigned example
+  weights** (capped) — so multi-lemma count splits are example-gated today. Audit every step
+  for counts derived from the sampled/assigned example set instead of step-2 corpus
+  occurrences, and cut them over to true counts. (This is why the earlier evidence-based
+  representative-selector attempt was wrong — it ranked by capped example counts.)
+
 ## The gate (do before scaling anything)
 
 - **[now] Routing / classification correctness — designed cross-language (L) [es+fr+nl]**
