@@ -96,7 +96,10 @@
      (`49ea0b88`): end boundaries come from the next raw LRC timestamp (including empty rows) or
      final track duration and reach final examples. Desktop autoplay starts exactly at the example,
      pauses just before its end, advances through valid examples once, and skips unreliable ranges;
-     mobile is withheld because handoff timers cannot enforce the boundary.
+     mobile is withheld because handoff timers cannot enforce the boundary. Refined 2026-07-26
+     (`e3d87c5b`): autoplay now announces and traverses every sense/sub-sense/Expression on the card,
+     retains full-list counters while skipping unplayable lines, and defaults collapsed rows to their
+     overarching sense rather than an arbitrary first sub-sense.
   3. **(S) [shared] Modernise the end-of-set modal** — DONE 2026-07-25 (`e23684b`): the result
      uses the current modal typography and spacing, makes next-set/menu the single primary action,
      and presents review mistakes and study again as consistent secondary actions.

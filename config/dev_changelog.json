@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "e3d87c5b",
+      "summary": "Lyric autoplay now teaches the whole card sense by sense",
+      "details": [
+        "Collapsed meaning rows initially select the overarching sense; clicking a sub-sense still narrows the examples explicitly",
+        "Autoplay announces each sense, sub-sense, Expression, or clitic with its English context, plays its eligible lyric clips, and then moves through the rest of the card without repeating the Spanish headword",
+        "Skipped Spotify lines no longer shrink the visible example total, and the play/stop control remains reachable on items without a sentence box; cache v103→v104, assets 20260726j→20260726k"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "324d48ec",
       "summary": "Partly learned cards now stay in Review until every item is resolved",
       "details": [

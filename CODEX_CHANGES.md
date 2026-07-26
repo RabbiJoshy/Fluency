@@ -12,7 +12,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Merge Lemmas is the user-facing name. It is off by default; Exclude Cognates is off by default.
 - Artist corpus frequency excludes exact repeated lyric lines within each song. Lemma-mode card frequency and examples use the same pooled sibling basis.
 - Artist rank ties use each word's full distinct-song spread, not the capped example sample. Artist lyric examples prefer an explicitly credited active artist, Spotify availability, and a standard release in that order before the teaching signals.
-- Desktop lyric autoplay is bounded to the displayed example's start and inferred end and advances through the card examples once; it is intentionally unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
+- Desktop lyric autoplay is line-bounded and card-wide: it announces each sense/sub-sense/Expression with distinguishing context, plays that item's eligible examples, and skips unplayable lines without changing full-list counters. It remains unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
 - Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
@@ -21,6 +21,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 
 ## Codex task history
+
+### 2026-07-26 — Sense-aware, card-wide lyric autoplay
+
+- Commit `e3d87c5b`; front-end cache `flashcards-v104` / `20260726k`.
+- Collapsed rows now enter on their overarching grouped sense instead of silently selecting the first sub-sense. Explicit sub-row clicks still pin the narrower meaning.
+- Autoplay creates an ordered card-wide queue across ordinary senses, sub-senses, Expressions, clitics, and remainder senses. It announces the conjugated English gloss plus context (for example “own, related to property”), plays that item's line-bounded Spotify clips, then advances to the next item without repeating the Spanish headword.
+- Non-playable lyrics are skipped while counters remain tied to the full displayed example list (for example 6/8). A fallback control remains visible when the current item has no renderable sentence but another item on the card is playable.
+- `speech.js` gained an optional completion callback with once-only end/error handling. Verification covered grouped defaults, card-wide ordering, current-unplayable/later-playable eligibility, exact single-button rendering across empty/filtered sentence paths, callback de-duplication, module parsing, cache lockstep, and `git diff --check`.
 
 ### 2026-07-26 — Partial cards remain reviewable until resolved
 

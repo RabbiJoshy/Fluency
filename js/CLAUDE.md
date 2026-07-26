@@ -180,6 +180,18 @@ Card-back senses are grouped into POS sections. `updateCard()` emits one compact
 `.back-pos-legend` beneath the word/lemma, then colour-codes each section's rows;
 duplicate translation/context groups remain constrained to one POS. MWE and
 CLITIC stay out of the legend because their pinned rows are self-explanatory.
+The initial selection for a collapsed translation/context group is the
+overarching group, not its first sub-sense; an explicit sub-row click pins that
+narrower sense for the rest of the card visit.
+
+Desktop lyric autoplay builds one card-wide queue of ordinary senses,
+sub-senses, Expressions, clitics, and remainder senses. It speaks each English
+gloss plus disambiguating context, then plays that item's eligible line-bounded
+Spotify examples. Non-playable lyrics are skipped but `currentExampleIndex`
+remains an index into the complete displayed list, so counters stay `6/8` rather
+than becoming `6/6`. The control has a fallback slot when the active item has no
+renderable sentence; mobile remains unsupported because exact stop boundaries
+cannot be guaranteed after Spotify handoff.
 
 On the card front, `.card-pos-list` renders one pill per grammatical POS rather
 than a comma-separated combined pill. Morphology is nested under the VERB pill
