@@ -20,6 +20,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-26 — Artist Expression vertical closed and handed back
+
+- Commit `f53c82d8`; tests/documentation only, so no front-end cache bump or deck rebuild.
+- Extended the multi-word contraction regression to prove that `vo'a` credits both `voy` and `a`, removes the fused token from word counts, preserves `vo'a` as each component's source surface, and preserves `me vo'a` as the exact Expression match.
+- Added explicit final-consonant regression coverage: `lu'` restores to `luz` only when that restoration is unique, while ambiguous candidates remain untouched.
+- Re-audited the shipped Bad Bunny, Rosalía, and Young Miko decks: 103/69/85 detected study rows, 669/318/367 card memberships, zero blank Expression translations, zero membership/example mismatches, and zero Expression rows without examples. No Gemini or pipeline rebuild was needed.
+- Formally handed future pipeline-side MWE/clitic maintenance back to Claude under `COLLABORATION.md`; Codex retains Expression UI and the later granular-progress work. Six blank attached-clitic rows were deliberately not papered over because the audit found routing errors such as `prendaste → prenderse` where the lyric actually uses `prendarse`; those belong in Claude's routing gate.
+
 ### 2026-07-26 — Deterministic artist expressions completed
 
 - Commit `1f649cfe`; front-end cache `flashcards-v95` / `20260726b`.

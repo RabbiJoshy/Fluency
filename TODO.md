@@ -380,21 +380,18 @@
   accented MWE parent fails to match, surface as a warning rather than
   silently accent-stripping.
 
-- **[I think this is done] Wire multi-word elision split into tokenization (M) [artist] [spanish]**
-  Config exists at `Artists/curations/multi_word_elisions.json` mapping contracted
-  surface forms to expanded Spanish (e.g. `"pal'" -> "para el"`). Step 2a
-  (count_words) needs to consume this config and do pre-tokenization substitution
-  so counts go to each expanded word. The original contracted form should stay
-  visible in example sentences (not replaced in display), and the `surface` field
-  on each expanded word should retain the original contracted form. After wiring,
-  add entries for common Caribbean two-word contractions beyond `pal'` / `pa'l`.
+- **Wire multi-word elision split into tokenization (M) [artist] [spanish]** — DONE
+  2026-07-26 (`696791a1`; regression closeout `f53c82d8`): step 2a expands the shared
+  contraction table before word and n-gram counting, credits every component word,
+  and preserves the literal contracted lyric surface on each component and the exact
+  Expression match. The table covers common `pa'…`, `vo'a`, and `to'…` forms; regression
+  coverage proves both component counts and surface retention.
 
-- **[this might be done] Generic s/z elision handling (S) [artist] [spanish]**
-  Currently `lu' -> luz` is a manual override in the elision mapping because the
-  automatic merger only handles s-elisions (word-final s replaced by `'`).
-  Generalise to also match z-elisions (`luz -> lu'`, `cruz -> cru'`, etc.) and any
-  other systematic patterns. Watch for false positives — not every `x'` is an
-  elision of `xz` or `xs`.
+- **Generic s/z elision handling (S) [artist] [spanish]** — DONE 2026-07-26
+  (`696791a1`; regression closeout `f53c82d8`): the trailing-apostrophe resolver tries
+  `s/d/z/r/l/n` against known Spanish vocabulary and merges only when exactly one
+  restoration is valid. A dedicated regression proves `lu' → luz` and rejects an
+  ambiguous two-candidate restoration.
 
 - **[dumb] Map remaining SpanishDict POS labels instead of dropping to X (S) [shared] [spanish]**
   `normalize_pos()` in `pipeline/util_5c_spanishdict.py` falls through to `"X"` for

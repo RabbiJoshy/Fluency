@@ -151,7 +151,7 @@ Artists/{lang}/{Name}/
 | File | Purpose |
 |------|---------|
 | `elision_mapping.json` | Per-word elision merge rules. `action: merge` with `elision_pair`/`elided_only`/`same_word_dup` types routes elided forms to canonical targets. `action: skip` leaves a word unmerged. Manual overrides for non-s-elisions (e.g. `pa' → para`, `lu' → luz`) go here. |
-| `multi_word_elisions.json` | Contractions that should split into multiple Spanish words at tokenization (`pal' → para el`). **Not yet wired into step 2a** — see TODO. |
+| `multi_word_elisions.json` | Contractions split into multiple Spanish words by artist step 2a (`pal' → para el`, `vo'a → voy a`). Counts reach every component while exact lyric surfaces remain available for examples and Expression highlighting. |
 | `extra_english.json` | English words (and English contractions like `goin'`, `fuckin'`) that leak into lyrics via code-switching. Step 4 uses this to route them to the `english` exclusion bucket. |
 | `noise.json`, `proper_nouns.json`, `cognates.json` | Sectioned `{drop, keep}` curations used by step 4. drop = filter into the named bucket; keep = override (e.g. function words `a`/`o`/`y` in `noise.json.keep` survive the noise filter; false friends like `embarazada` in `cognates.json.keep` survive cognate exclusion). Loader: `load_curation_section()` in `util_1a_artist_config.py`. |
 | `conjugation_families.json`, `curated_mwes.json`, `skip_mwes.json` | MWE and conjugation curation. |

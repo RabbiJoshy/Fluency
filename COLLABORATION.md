@@ -22,11 +22,10 @@ keys**, and long-running jobs, so it lives with whichever agent's environment ha
 ### Codex — the product / app surface
 - **Files:** `js/`, `css/`, `index.html`, `service-worker.js`, `config/dev_changelog.json`,
   `CODEX_CHANGES.md`, `TODO.md`.
-- **Owns:** all UI/UX, artist-mode presentation, the multi-word-expression (MWE)
-  overhaul **including its pipeline detection in `step_2a`** (it's a vertical Codex is
-  mid-flight on — Claude stays out of MWE detection until Codex hands it back),
-  per-sense progress (app + Google Apps Script), Extra-mode **presentation/grouping**,
-  settings-menu cleanup.
+- **Owns:** all UI/UX, artist-mode presentation, per-sense progress (app + Google Apps
+  Script), Extra-mode **presentation/grouping**, settings-menu cleanup, and the app-side
+  rendering of Expressions. Codex's temporary artist-MWE pipeline vertical was completed
+  and handed back on 2026-07-26 (`1f649cfe`, regression closeout `f53c82d8`).
 - **Owns the cache-version bump** (`CACHE_NAME` + `ASSET_VERSION` + every `?v=` tag).
   Only Codex bumps these, because all the front-end files live on its side.
 - **Backlog:** `TODO.md`.
@@ -36,7 +35,8 @@ keys**, and long-running jobs, so it lives with whichever agent's environment ha
 - **Owns:** pipeline correctness, sense-assignment quality, word routing
   (cognate / proper-noun / English / loanword / slang detection), scalability &
   parsimony (minimal Gemini), new-language onboarding (French, Dutch), new-artist
-  onboarding, the normal-mode Spanish rerun, and tagging / per-morphology experiments.
+  onboarding, the normal-mode Spanish rerun, tagging / per-morphology experiments,
+  and future MWE/clitic detection or data-quality work after the completed Codex handoff.
 - **Backlog:** `TODO_PIPELINE.md` (Claude edits only this; not `TODO.md`).
 
 ## The interface: the deck-JSON contract
