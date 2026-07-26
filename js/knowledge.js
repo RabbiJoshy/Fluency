@@ -233,9 +233,18 @@ function wordHasKnowledgeProgress(parentWordId) {
 
 function wordNeedsKnowledgeReview(parentWordId) {
     const parent = progressData?.[parentWordId] || null;
-    if (getProgressState(parent).needsReview) return true;
-    return getItemProgressForParent(parentWordId).some(item =>
-        getProgressState(mergeKnowledgeProgress(parent, item)).needsReview);
+    const parentState = getProgressState(parent);
+    const itemRows = getItemProgressForParent(parentWordId);
+    if (parentState.needsReview) return true;
+    if (itemRows.some(item =>
+        getProgressState(mergeKnowledgeProgress(parent, item)).needsReview)) {
+        return true;
+    }
+    // A sparse item answer makes the card seen, but it does not silently make
+    // the whole word known. Until every item is resolved (which promotes the
+    // parent below), its never-marked siblings belong in Review, not Learn new.
+    return !parentState.seen
+        && itemRows.some(item => getProgressState(item).seen);
 }
 
 function buildFocusedReviewCard(card) {
@@ -244,7 +253,11 @@ function buildFocusedReviewCard(card) {
     for (let meaningIndex = 0; meaningIndex < card.meanings.length; meaningIndex++) {
         const meaning = card.meanings[meaningIndex];
         const items = knowledgeItemsForMeaning(card, meaning, meaningIndex);
-        const unresolved = items.filter(item => getKnowledgeItemState(card, item).needsReview);
+        // A partially answered card reviews every item that is not currently
+        // known: explicit mistakes plus untouched sibling senses/expressions.
+        // A newer whole-card correct is inherited by every item, so it still
+        // resolves the complete card in one action.
+        const unresolved = items.filter(item => !getKnowledgeItemState(card, item).learned);
         if (unresolved.length === 0) continue;
 
         if (meaning.allMWEs?.length) {
@@ -301,6 +314,7 @@ function cacheItemProgress() {
 
 async function saveKnowledgeProgress(card, items, isCorrect) {
     if (!currentUser || currentUser.isGuest || !card?.fullId || !items?.length) return;
+    const parentWasLearned = getProgressState(progressData?.[card.fullId]).learned;
     const timestamp = new Date().toISOString();
     for (const item of items) {
         const previous = getSpecificItemProgress(item);
@@ -352,6 +366,15 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
         }, `saveItem|${existing.itemId}`);
     }
     cacheItemProgress();
+
+    // Completing every sense/expression explicitly is equivalent to knowing
+    // the card. Persist one parent correct so setup progress, coverage, and
+    // future review filtering can recognise completion without downloading
+    // the card schema merely to count its sparse ItemProgress rows.
+    const summary = getCardKnowledgeSummary(card);
+    if (!parentWasLearned && summary.total > 0 && summary.learned === summary.total) {
+        await window.saveWordProgress?.(card, true);
+    }
 }
 
 function renderKnowledgeControl(card) {

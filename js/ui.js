@@ -1646,8 +1646,8 @@ async function renderRangeSelector() {
     let reviewHTML = '';
     if (currentUser && !currentUser.isGuest && levelReviewCount > 0) {
         reviewHTML = `<button class="study-set-review" type="button">
-                <span>Review mistakes</span>
-                <small>${levelReviewCount} unresolved in this level</small>
+                <span>Review cards</span>
+                <small>${levelReviewCount} need attention in this level</small>
             </button>`;
     }
 
@@ -2298,7 +2298,7 @@ function getArtistHelpContent() {
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Mistakes collect in a separate review for that level. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect or partly learned cards collect in a separate review for that level. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

@@ -1101,9 +1101,9 @@ async function loadVocabularyData(rangeString, opts = {}) {
             allInRange = filteredData.slice(); // preserve for "study anyway"
 
             // Ordinary set study contains genuinely unseen cards only. A
-            // wrong answer therefore advances the new-card track and enters
-            // the separate review queue instead of trapping this set as
-            // unfinished. Review is current-source/current-settings and
+            // wrong or partial answer therefore advances the new-card track
+            // and enters the separate review queue instead of trapping this
+            // set as unfinished. Review is current-source/current-settings and
             // current-level scoped because _baseVocab and the range slice
             // have already established those boundaries.
             if (currentUser && !currentUser.isGuest && progressData) {
@@ -1151,7 +1151,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
         // path never silently mixes old cards into a completed set.
         if (filteredData.length === 0) {
             const emptyMessage = studyMode === 'review'
-                ? 'No unresolved mistakes remain in this level with the current settings.'
+                ? 'No cards need review in this level with the current settings.'
                 : 'No unseen flashcards remain in this set with the current settings.';
             alert(emptyMessage);
             document.getElementById('loadingMessage').style.display = 'none';
