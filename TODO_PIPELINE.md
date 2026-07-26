@@ -11,11 +11,22 @@
 
 ## The gate (do before scaling anything)
 
-- **[now] Routing / classification correctness audit (L) [spanish first, language-agnostic]**
+- **[now] Routing / classification correctness — designed cross-language (L) [es+fr+nl]**
   Josh is not yet convinced the pipe is ~99% correct at routing every word to the right
   bucket: cognate vs proper-noun vs real-word vs English/loanword vs slang. Goal: a
   **measured** accuracy number, not a vibe, and cheap heuristics carrying the confident
   majority so Gemini use stays minimal.
+  **Design cross-language from the start — do NOT perfect on Spanish then port.** The
+  routing scaffold (`word_routing.json`, `cognates.json`, `english_loanwords.json`,
+  homograph) currently exists for **Spanish only**, and leans on **SpanishDict**; French
+  and Dutch are **Wiktionary-only** with a messier dict backbone and none of those layers.
+  So treat the **dictionary backbone as a pluggable per-language component**, and lean
+  harder on the dict-agnostic heuristics (caps-rate, translation-identity) which is exactly
+  what carries FR/NL where the dictionary signal is weaker.
+  Roles: **Spanish = accuracy oracle** (only language with flags/curations ground truth);
+  **French = concurrent real-data stress test** (12k entries, Wiktionary-backed — keeps
+  Spanish assumptions from leaking in); **Dutch = bootstrap check** (100-word stub — prove
+  the scaffold stands up from scratch, don't chase deck quality yet).
   - Build a routing-accuracy harness scored against ground truth we already have:
     in-app FlaggedWords + `shared/curated_translations.json` (regression set) + known
     homograph/proper-noun overrides.
@@ -46,8 +57,13 @@
 
 - **[soon] Parsimony pass — cheap reruns (M)** so new artists/languages don't require
   painful full reruns (cache reuse, skip flags, ID stability).
-- **[soon] French + Dutch onboarding (L)** — validate the language-agnostic routing +
-  sense engine generalises. This is the generalisation TEST of the gate work above.
+- **[now, concurrent with routing] French + Dutch onto the new architecture (L)** — NOT
+  after the gate; developed *alongside* routing so it's designed cross-language (see gate
+  item). French is far along (12k entries, sense assignments done) and mostly needs
+  architecture alignment + a routing layer; Dutch is a 100-word stub and is closer to
+  greenfield. Both are Wiktionary-only — the open structural question is the dict backbone
+  (cf. the `prompts/french_dict_equivalent.md` design doc). Spanish stays the accuracy
+  oracle; FR/NL accumulate their own flags/ground truth over time.
 - **[soon] New artist / Spanish playlist onboarding (M)** — bring in more artists once
   the pipe is parsimonious + confirmed correct.
 - **[now-ish, not secondary] Normal-mode Spanish full pipeline regeneration (L)** — the
