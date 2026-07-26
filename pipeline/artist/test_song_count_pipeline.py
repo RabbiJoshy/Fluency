@@ -1,6 +1,6 @@
 import unittest
 
-from pipeline.artist.step_3a_merge_elisions import merge_evidence
+from pipeline.artist.step_3a_merge_elisions import merge_evidence, trailing_apos_restore
 from pipeline.artist.step_7b_rerank import sort_key
 
 
@@ -41,6 +41,10 @@ class SongCountPipelineTests(unittest.TestCase):
         entries.sort(key=lambda entry: sort_key(entry, word_to_rank, {}))
 
         self.assertEqual([entry["word"] for entry in entries], ["bravo", "alpha"])
+
+    def test_trailing_apostrophe_restores_z_only_when_unambiguous(self):
+        self.assertEqual(trailing_apos_restore("lu'", {"luz"}), ("luz", "lu'"))
+        self.assertIsNone(trailing_apos_restore("cru'", {"cruz", "crus"}))
 
 
 if __name__ == "__main__":

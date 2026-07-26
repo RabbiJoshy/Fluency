@@ -87,9 +87,15 @@ class CountWordsDedupTests(unittest.TestCase):
             "lyrics": "Lyrics\nYo me vo'a quedar aquí siempre\n",
         }]
 
-        _counts, _candidates, _stats, ngrams, _songs = build_counts_and_candidates(
+        counts, candidates, stats, ngrams, _songs = build_counts_and_candidates(
             songs, mwe_map={"vo'a": ["voy", "a"]})
 
+        self.assertEqual(counts["voy"], 1)
+        self.assertEqual(counts["a"], 1)
+        self.assertNotIn("vo'a", counts)
+        self.assertEqual(stats["multi_word_splits"], 1)
+        self.assertEqual(candidates["voy"][0]["surface"], "vo'a")
+        self.assertEqual(candidates["a"][0]["surface"], "vo'a")
         example = ngrams["examples"]["me voy a"][0]
         self.assertEqual(example["matched_variant"], "me voy a")
         self.assertEqual(example["matched_surface"], "me vo'a")
