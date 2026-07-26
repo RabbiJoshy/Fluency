@@ -383,7 +383,8 @@ async function loadUserProgressFromSheet() {
                     wrong: item.wrong,
                     lastCorrect: item.lastCorrect,
                     lastWrong: item.lastWrong,
-                    lastSeen: item.lastSeen
+                    lastSeen: item.lastSeen,
+                    srsStage: item.srsStage
                 };
             });
             return result.data.progress.length;
@@ -407,7 +408,8 @@ async function loadUserProgressFromSheet() {
                     lastCorrect: item.lastCorrect,
                     lastWrong: item.lastWrong,
                     lastSeen: item.lastSeen,
-                    schemaVersion: item.schemaVersion || 1
+                    schemaVersion: item.schemaVersion || 1,
+                    srsStage: item.srsStage
                 };
             });
             console.log(`Loaded ${Object.keys(itemProgressData).length} granular knowledge items`);
@@ -486,10 +488,12 @@ async function saveWordProgress(card, isCorrect) {
             wrong: 0,
             lastCorrect: null,
             lastWrong: null,
-            lastSeen: null
+            lastSeen: null,
+            srsStage: 0
         };
     }
 
+    progressData[wordId].srsStage = advanceSrsStage(progressData[wordId], isCorrect);
     if (isCorrect) {
         progressData[wordId].correct++;
         progressData[wordId].lastCorrect = timestamp;
@@ -528,6 +532,7 @@ async function saveWordProgress(card, isCorrect) {
         lastCorrect: progressData[wordId].lastCorrect,
         lastWrong: progressData[wordId].lastWrong,
         lastSeen: progressData[wordId].lastSeen,
+        srsStage: progressData[wordId].srsStage,
         sheet: sheet
     }, `save|${sheet}|${wordId}`);
 }

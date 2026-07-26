@@ -1,16 +1,44 @@
 import './state.js';
 
+const SRS_DAY_MS = 24 * 60 * 60 * 1000;
+const SRS_INTERVAL_DAYS = [1, 3, 7, 14, 30, 60, 120];
+
 function parseProgressTimestamp(value) {
     if (!value) return 0;
     const timestamp = new Date(value).getTime();
     return Number.isFinite(timestamp) ? timestamp : 0;
 }
 
+// A compact, transparent v1 schedule: successful recalls graduate through
+// 1, 3, 7, 14, 30, 60, and 120 days. New writes persist an explicit stage;
+// legacy rows derive a conservative initial stage from their lifetime totals.
+function getSrsStage(progress) {
+    const explicit = Number(progress?.srsStage);
+    if (progress?.srsStage !== null && progress?.srsStage !== ''
+            && Number.isFinite(explicit) && explicit >= 0) {
+        return Math.min(Math.floor(explicit), SRS_INTERVAL_DAYS.length);
+    }
+    const correct = Math.max(0, Number(progress?.correct) || 0);
+    const wrong = Math.max(0, Number(progress?.wrong) || 0);
+    if (correct === 0) return 0;
+    return Math.min(Math.max(1, correct - wrong), SRS_INTERVAL_DAYS.length);
+}
+
+function getSrsIntervalDays(progress) {
+    const stage = getSrsStage(progress);
+    return stage > 0 ? SRS_INTERVAL_DAYS[stage - 1] : null;
+}
+
+function advanceSrsStage(progress, isCorrect) {
+    if (!isCorrect) return 0;
+    return Math.min(getSrsStage(progress) + 1, SRS_INTERVAL_DAYS.length);
+}
+
 // The learner's current relationship with a card. Counts preserve history;
-// timestamps decide the latest outcome. Older rows can lack timestamps, so a
-// recorded correct is treated as resolved unless a dated later wrong proves
-// otherwise.
-function getProgressState(progress) {
+// timestamps decide the latest outcome and whether a resolved card is due.
+// Older rows can lack timestamps, so a recorded correct is treated as current
+// until a dated answer establishes a review schedule.
+function getProgressState(progress, now = Date.now()) {
     const correct = Math.max(0, Number(progress?.correct) || 0);
     const wrong = Math.max(0, Number(progress?.wrong) || 0);
     const lastCorrect = parseProgressTimestamp(progress?.lastCorrect);
@@ -19,7 +47,11 @@ function getProgressState(progress) {
     const seen = correct > 0 || wrong > 0 || lastCorrect > 0 || lastWrong > 0 || lastSeen > 0;
 
     if (!seen) {
-        return { status: 'unseen', seen: false, needsReview: false, learned: false, lastCorrect, lastWrong, lastSeen };
+        return {
+            status: 'unseen', seen: false, needsReview: false, learned: false,
+            known: false, isDue: false, reviewReason: null, intervalDays: null,
+            nextReviewAt: 0, reviewAt: 0, lastCorrect, lastWrong, lastSeen
+        };
     }
 
     let needsReview = false;
@@ -34,11 +66,28 @@ function getProgressState(progress) {
         }
     }
 
+    const unresolved = needsReview;
+    const intervalDays = !unresolved && lastCorrect > 0
+        ? getSrsIntervalDays(progress)
+        : null;
+    const nextReviewAt = intervalDays ? lastCorrect + intervalDays * SRS_DAY_MS : 0;
+    const nowTime = Number.isFinite(Number(now)) ? Number(now) : Date.now();
+    const isDue = !unresolved && nextReviewAt > 0 && nowTime >= nextReviewAt;
+    needsReview = unresolved || isDue;
+
     return {
         status: needsReview ? 'review' : 'learned',
         seen: true,
         needsReview,
         learned: !needsReview,
+        // `known` preserves coverage after a card becomes due; `learned`
+        // means currently up to date and drives the green/amber set state.
+        known: !unresolved && correct > 0,
+        isDue,
+        reviewReason: unresolved ? 'incorrect' : (isDue ? 'due' : null),
+        intervalDays,
+        nextReviewAt,
+        reviewAt: unresolved ? (lastWrong || lastSeen) : (isDue ? nextReviewAt : 0),
         lastCorrect,
         lastWrong,
         lastSeen
@@ -72,7 +121,7 @@ function calculateCoveragePercent() {
     let wordsCovered = 0;
     const coveredIds = new Set(); // track already-counted IDs to avoid double-counting cross-mode
     for (const [wordId, data] of Object.entries(progressData)) {
-        if (data.language === selectedLanguage && getProgressState(data).learned) {
+        if (data.language === selectedLanguage && getProgressState(data).known) {
             // Check direct match first, then cross-mode match
             let ppmEntry = idToPpm[wordId];
             let matchedId = wordId;
@@ -247,6 +296,9 @@ function updatePersonalCoverage(filteredVocab) {
 
 window.calculateCoveragePercent = calculateCoveragePercent;
 window.parseProgressTimestamp = parseProgressTimestamp;
+window.getSrsStage = getSrsStage;
+window.getSrsIntervalDays = getSrsIntervalDays;
+window.advanceSrsStage = advanceSrsStage;
 window.getProgressState = getProgressState;
 window.getWordProgressState = getWordProgressState;
 window.updateExclusionBars = updateExclusionBars;

@@ -1569,14 +1569,23 @@ async function renderRangeSelector() {
         : null;
     const getLearningState = item => {
         if (!currentUser || currentUser.isGuest || !progressData) return false;
-        const recorded = getWordProgressState(getWordId(item));
+        const wordId = getWordId(item);
+        const recorded = getWordProgressState(wordId);
+        const reviewInfo = getWordKnowledgeReviewInfo(wordId);
         // A real answer is more specific than the estimated starting level;
         // in particular, a later wrong must remain reviewable.
-        if (wordNeedsKnowledgeReview(getWordId(item))) {
-            return { ...recorded, seen: true, needsReview: true, learned: false };
+        if (reviewInfo.needsReview) {
+            return {
+                ...recorded,
+                seen: true,
+                needsReview: true,
+                learned: false,
+                reviewReason: reviewInfo.reason,
+                reviewAt: reviewInfo.reviewAt
+            };
         }
         if (recorded.seen) return recorded;
-        if (wordHasKnowledgeProgress(getWordId(item))) {
+        if (wordHasKnowledgeProgress(wordId)) {
             return { ...recorded, seen: true };
         }
         if (activeArtist) {
@@ -1602,6 +1611,7 @@ async function renderRangeSelector() {
         const states = words.map(getLearningState);
         const seenCount = states.filter(state => state?.seen).length;
         const reviewCount = states.filter(state => state?.needsReview).length;
+        const dueCount = states.filter(state => state?.reviewReason === 'due').length;
         const knownCount = Math.max(0, seenCount - reviewCount);
         const unseenCount = words.length - seenCount;
         ranges.push({
@@ -1614,6 +1624,7 @@ async function renderRangeSelector() {
             knownCount,
             unseenCount,
             reviewCount,
+            dueCount,
             pct: words.length > 0 ? Math.round(100 * seenCount / words.length) : 100,
             knownPct: words.length > 0 ? 100 * knownCount / words.length : 100,
             reviewEndPct: words.length > 0 ? 100 * (knownCount + reviewCount) / words.length : 100
@@ -1643,11 +1654,18 @@ async function renderRangeSelector() {
     }).join('');
 
     const levelReviewCount = ranges.reduce((sum, range) => sum + range.reviewCount, 0);
+    const levelDueCount = ranges.reduce((sum, range) => sum + range.dueCount, 0);
+    const levelUnfinishedCount = Math.max(0, levelReviewCount - levelDueCount);
     let reviewHTML = '';
     if (currentUser && !currentUser.isGuest && levelReviewCount > 0) {
+        const reviewMeta = levelDueCount > 0 && levelUnfinishedCount > 0
+            ? `${levelDueCount} due · ${levelUnfinishedCount} unfinished`
+            : levelDueCount > 0
+                ? `${levelDueCount} due in this level`
+                : `${levelUnfinishedCount} unfinished in this level`;
         reviewHTML = `<button class="study-set-review" type="button">
                 <span>Review cards</span>
-                <small>${levelReviewCount} need attention in this level</small>
+                <small>${reviewMeta}</small>
             </button>`;
     }
 
@@ -1655,7 +1673,7 @@ async function renderRangeSelector() {
         <div class="study-set-panel">
             <div class="study-set-overview">
                 <strong>${completedCount} of ${availableCount} sets seen</strong>
-                <span>New cards and unresolved mistakes are kept on separate tracks</span>
+                <span>New cards stay separate from due and unfinished review</span>
             </div>
             <div class="study-set-legend" aria-label="Set progress colours">
                 <span><i class="is-known"></i>Known</span>
@@ -2298,7 +2316,7 @@ function getArtistHelpContent() {
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect or partly learned cards collect in a separate review for that level. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect, partly learned, and spaced-repetition-due cards collect in a separate review for that level. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -2310,7 +2328,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while mistakes collect in that level's separate review. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while incorrect, partly learned, and spaced-repetition-due cards collect in that level's separate review. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

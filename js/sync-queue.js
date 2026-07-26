@@ -190,7 +190,8 @@ export function applyPendingProgressOverlay(progress) {
             wrong: p.wrong,
             lastCorrect: p.lastCorrect,
             lastWrong: p.lastWrong,
-            lastSeen: p.lastSeen
+            lastSeen: p.lastSeen,
+            srsStage: p.srsStage
         };
     }
     return progress;
@@ -216,7 +217,8 @@ export function applyPendingItemProgressOverlay(items) {
             lastCorrect: p.lastCorrect,
             lastWrong: p.lastWrong,
             lastSeen: p.lastSeen,
-            schemaVersion: p.schemaVersion || 1
+            schemaVersion: p.schemaVersion || 1,
+            srsStage: p.srsStage
         };
     }
     return items;

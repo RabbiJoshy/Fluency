@@ -161,12 +161,26 @@ function newestIso(first, second) {
 
 function mergeKnowledgeProgress(parent, item) {
     if (!parent && !item) return null;
+    const parentTime = Math.max(
+        parseProgressTimestamp(parent?.lastSeen),
+        parseProgressTimestamp(parent?.lastCorrect),
+        parseProgressTimestamp(parent?.lastWrong)
+    );
+    const itemTime = Math.max(
+        parseProgressTimestamp(item?.lastSeen),
+        parseProgressTimestamp(item?.lastCorrect),
+        parseProgressTimestamp(item?.lastWrong)
+    );
+    const newest = itemTime > parentTime ? item : parent;
     return {
         correct: (Number(parent?.correct) || 0) + (Number(item?.correct) || 0),
         wrong: (Number(parent?.wrong) || 0) + (Number(item?.wrong) || 0),
         lastCorrect: newestIso(parent?.lastCorrect, item?.lastCorrect),
         lastWrong: newestIso(parent?.lastWrong, item?.lastWrong),
-        lastSeen: newestIso(parent?.lastSeen, item?.lastSeen)
+        lastSeen: newestIso(parent?.lastSeen, item?.lastSeen),
+        // The schedule belongs to the newest answer source. Combined lifetime
+        // counts are retained for history but must not inflate its interval.
+        srsStage: newest ? getSrsStage(newest) : undefined
     };
 }
 
@@ -231,20 +245,50 @@ function wordHasKnowledgeProgress(parentWordId) {
     return getItemProgressForParent(parentWordId).some(item => getProgressState(item).seen);
 }
 
-function wordNeedsKnowledgeReview(parentWordId) {
+function getWordKnowledgeReviewInfo(parentWordId) {
     const parent = progressData?.[parentWordId] || null;
     const parentState = getProgressState(parent);
     const itemRows = getItemProgressForParent(parentWordId);
-    if (parentState.needsReview) return true;
-    if (itemRows.some(item =>
-        getProgressState(mergeKnowledgeProgress(parent, item)).needsReview)) {
-        return true;
-    }
+    const itemStates = itemRows.map(item => ({
+        row: item,
+        state: getProgressState(mergeKnowledgeProgress(parent, item))
+    }));
+    const allStates = [parentState, ...itemStates.map(item => item.state)];
+    const hasIncorrect = allStates.some(state =>
+        state.needsReview && state.reviewReason === 'incorrect');
+    const hasDue = allStates.some(state => state.isDue);
     // A sparse item answer makes the card seen, but it does not silently make
     // the whole word known. Until every item is resolved (which promotes the
     // parent below), its never-marked siblings belong in Review, not Learn new.
-    return !parentState.seen
+    const isPartial = !parentState.seen
         && itemRows.some(item => getProgressState(item).seen);
+    const needsReview = hasIncorrect || isPartial || hasDue;
+    const relevantTimes = [];
+    if (hasIncorrect) {
+        allStates.forEach(state => {
+            if (state.reviewReason === 'incorrect' && state.reviewAt) {
+                relevantTimes.push(state.reviewAt);
+            }
+        });
+    } else if (hasDue) {
+        allStates.forEach(state => {
+            if (state.isDue && state.nextReviewAt) relevantTimes.push(state.nextReviewAt);
+        });
+    } else if (isPartial) {
+        itemRows.forEach(item => {
+            const state = getProgressState(item);
+            if (state.lastSeen) relevantTimes.push(state.lastSeen);
+        });
+    }
+    return {
+        needsReview,
+        reason: hasIncorrect ? 'incorrect' : (hasDue ? 'due' : (isPartial ? 'partial' : null)),
+        reviewAt: relevantTimes.length ? Math.min(...relevantTimes) : 0
+    };
+}
+
+function wordNeedsKnowledgeReview(parentWordId) {
+    return getWordKnowledgeReviewInfo(parentWordId).needsReview;
 }
 
 function buildFocusedReviewCard(card) {
@@ -336,8 +380,10 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
             lastCorrect: null,
             lastWrong: null,
             lastSeen: null,
+            srsStage: 0,
             schemaVersion: KNOWLEDGE_SCHEMA_VERSION
         });
+        existing.srsStage = advanceSrsStage(existing, isCorrect);
         if (isCorrect) {
             existing.correct = (Number(existing.correct) || 0) + 1;
             existing.lastCorrect = timestamp;
@@ -362,6 +408,7 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
             lastCorrect: existing.lastCorrect,
             lastWrong: existing.lastWrong,
             lastSeen: existing.lastSeen,
+            srsStage: existing.srsStage,
             schemaVersion: existing.schemaVersion
         }, `saveItem|${existing.itemId}`);
     }
@@ -427,6 +474,7 @@ window.getKnowledgeItemState = getKnowledgeItemState;
 window.getCardKnowledgeSummary = getCardKnowledgeSummary;
 window.wordHasKnowledgeProgress = wordHasKnowledgeProgress;
 window.wordNeedsKnowledgeReview = wordNeedsKnowledgeReview;
+window.getWordKnowledgeReviewInfo = getWordKnowledgeReviewInfo;
 window.buildFocusedReviewCard = buildFocusedReviewCard;
 window.saveKnowledgeProgress = saveKnowledgeProgress;
 window.renderKnowledgeControl = renderKnowledgeControl;

@@ -41,7 +41,7 @@ function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify({
     status: 'success',
     message: 'Flashcard API is running',
-    schemaVersion: 2,
+    schemaVersion: 3,
     timestamp: new Date().toISOString()
   })).setMimeType(ContentService.MimeType.JSON);
 }
@@ -55,7 +55,7 @@ function doGet(e) {
 function saveItemProgress(params) {
   const {
     user, itemId, parentWordId, itemType, label, language,
-    correct, wrong, lastCorrect, lastWrong, lastSeen, schemaVersion
+    correct, wrong, lastCorrect, lastWrong, lastSeen, schemaVersion, srsStage
   } = params;
   if (!user || !itemId || !parentWordId) {
     return createResponse(false, 'Missing required fields: user, itemId, parentWordId');
@@ -84,7 +84,10 @@ function saveItemProgress(params) {
     lastCorrect || '',
     lastWrong || '',
     timestamp,
-    schemaVersion || 1
+    schemaVersion || 1,
+    srsStage === undefined && rowIndex > 0
+      ? data[rowIndex - 1][12]
+      : normalizeSrsStage(srsStage)
   ];
   if (rowIndex > 0) {
     sheetObj.getRange(rowIndex, 1, 1, values.length).setValues([values]);
@@ -115,7 +118,8 @@ function loadItemProgress(params) {
       lastCorrect: data[i][8],
       lastWrong: data[i][9],
       lastSeen: data[i][10],
-      schemaVersion: data[i][11] || 1
+      schemaVersion: data[i][11] || 1,
+      srsStage: data[i][12]
     });
   }
   return createResponse(true, 'Item progress loaded successfully', { items: items });
@@ -153,11 +157,15 @@ function getOrCreateItemProgressSheet() {
     sheet = ss.insertSheet('ItemProgress');
     sheet.appendRow([
       'User', 'ItemId', 'ParentWordId', 'ItemType', 'Label', 'Language',
-      'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen', 'SchemaVersion'
+      'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen', 'SchemaVersion',
+      'SrsStage'
     ]);
-    sheet.getRange(1, 1, 1, 12).setFontWeight('bold');
+    sheet.getRange(1, 1, 1, 13).setFontWeight('bold');
     sheet.setFrozenRows(1);
-    sheet.autoResizeColumns(1, 12);
+    sheet.autoResizeColumns(1, 13);
+  } else if (sheet.getRange(1, 13).getValue() !== 'SrsStage') {
+    sheet.getRange(1, 13).setValue('SrsStage').setFontWeight('bold');
+    sheet.autoResizeColumn(13);
   }
   return sheet;
 }
@@ -166,7 +174,10 @@ function getOrCreateItemProgressSheet() {
  * Save user progress to the sheet
  */
 function saveProgress(params) {
-  const { user, word, language, wordId, correct, wrong, lastCorrect, lastWrong, lastSeen, sheet } = params;
+  const {
+    user, word, language, wordId, correct, wrong,
+    lastCorrect, lastWrong, lastSeen, srsStage, sheet
+  } = params;
   const sheetName = sheet || 'UserProgress';
 
   if (!user || wordId === undefined) {
@@ -197,7 +208,7 @@ function saveProgress(params) {
   const wrongCount = wrong || 0;
 
   if (rowIndex > 0) {
-    sheetObj.getRange(rowIndex, 1, 1, 8).setValues([[
+    sheetObj.getRange(rowIndex, 1, 1, 10).setValues([[
       user,
       word || data[rowIndex - 1][1],
       wordId,
@@ -205,7 +216,9 @@ function saveProgress(params) {
       correctCount,
       wrongCount,
       lastCorrect || data[rowIndex - 1][6],
-      lastWrong || data[rowIndex - 1][7]
+      lastWrong || data[rowIndex - 1][7],
+      srsStage === undefined ? data[rowIndex - 1][8] : normalizeSrsStage(srsStage),
+      timestamp
     ]]);
   } else {
     sheetObj.appendRow([
@@ -216,7 +229,9 @@ function saveProgress(params) {
       correctCount,
       wrongCount,
       lastCorrect || '',
-      lastWrong || ''
+      lastWrong || '',
+      normalizeSrsStage(srsStage),
+      timestamp
     ]);
   }
 
@@ -251,7 +266,9 @@ function loadProgress(params) {
           correct: data[i][4],
           wrong: data[i][5],
           lastCorrect: data[i][6],
-          lastWrong: data[i][7]
+          lastWrong: data[i][7],
+          srsStage: data[i][8],
+          lastSeen: data[i][9]
         });
       }
     }
@@ -315,14 +332,28 @@ function getOrCreateSheet(sheetName) {
       var oldSheet = ss.getSheetByName('BadBunny');
       if (oldSheet) {
         oldSheet.setName('Lyrics');
-        return oldSheet;
+        sheet = oldSheet;
       }
     }
-    sheet = ss.insertSheet(sheetName);
-    sheet.appendRow(['User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong']);
-    sheet.getRange(1, 1, 1, 8).setFontWeight('bold');
-    sheet.setFrozenRows(1);
-    sheet.autoResizeColumns(1, 8);
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+      sheet.appendRow([
+        'User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong',
+        'LastCorrect', 'LastWrong', 'SrsStage', 'LastSeen'
+      ]);
+      sheet.getRange(1, 1, 1, 10).setFontWeight('bold');
+      sheet.setFrozenRows(1);
+      sheet.autoResizeColumns(1, 10);
+    }
+  }
+
+  if (sheet.getRange(1, 9).getValue() !== 'SrsStage') {
+    sheet.getRange(1, 9).setValue('SrsStage').setFontWeight('bold');
+    sheet.autoResizeColumn(9);
+  }
+  if (sheet.getRange(1, 10).getValue() !== 'LastSeen') {
+    sheet.getRange(1, 10).setValue('LastSeen').setFontWeight('bold');
+    sheet.autoResizeColumn(10);
   }
 
   return sheet;
@@ -353,10 +384,14 @@ function bulkSave(params) {
   let inserted = 0;
 
   for (const row of rows) {
-    const { user, word, wordId, language, correct, wrong, lastCorrect, lastWrong } = row;
+    const {
+      user, word, wordId, language, correct, wrong,
+      lastCorrect, lastWrong, lastSeen, srsStage
+    } = row;
     if (!user || wordId === undefined) continue;
 
     const key = user + '|' + wordId;
+    const existing = lookup[key] ? data[lookup[key] - 1] : [];
     const values = [
       user,
       word || '',
@@ -365,11 +400,15 @@ function bulkSave(params) {
       correct || 0,
       wrong || 0,
       lastCorrect || '',
-      lastWrong || ''
+      lastWrong || '',
+      srsStage === undefined && existing.length > 8
+        ? existing[8]
+        : normalizeSrsStage(srsStage),
+      lastSeen === undefined && existing.length > 9 ? existing[9] : (lastSeen || '')
     ];
 
     if (lookup[key]) {
-      sheetObj.getRange(lookup[key], 1, 1, 8).setValues([values]);
+      sheetObj.getRange(lookup[key], 1, 1, 10).setValues([values]);
       updated++;
     } else {
       sheetObj.appendRow(values);
@@ -378,6 +417,14 @@ function bulkSave(params) {
   }
 
   return createResponse(true, 'Bulk save complete: ' + updated + ' updated, ' + inserted + ' inserted');
+}
+
+/** Preserve a real zero while leaving legacy/migration rows blank. */
+function normalizeSrsStage(value) {
+  if (value === undefined || value === null || value === '') return '';
+  const numeric = Number(value);
+  if (!isFinite(numeric)) return '';
+  return Math.max(0, Math.min(7, Math.floor(numeric)));
 }
 
 /**

@@ -1134,9 +1134,9 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 excludedMastered = beforeFiltered - filteredData.length;
                 if (studyMode === 'review') {
                     filteredData.sort((a, b) => {
-                        const aState = getWordProgressState(getWordId(a));
-                        const bState = getWordProgressState(getWordId(b));
-                        return (aState.lastWrong - bState.lastWrong)
+                        const aReview = getWordKnowledgeReviewInfo(getWordId(a));
+                        const bReview = getWordKnowledgeReviewInfo(getWordId(b));
+                        return (aReview.reviewAt - bReview.reviewAt)
                             || ((a.displayRank || a.rank || 0) - (b.displayRank || b.rank || 0));
                     });
                 }

@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260726k">
-    <link rel="modulepreload" href="js/state.js?v=20260726k">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260726k">
-    <link rel="modulepreload" href="js/speech.js?v=20260726k">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260726k">
-    <link rel="modulepreload" href="js/auth.js?v=20260726k">
-    <link rel="modulepreload" href="js/spotify.js?v=20260726k">
-    <link rel="modulepreload" href="js/estimation.js?v=20260726k">
-    <link rel="modulepreload" href="js/config.js?v=20260726k">
-    <link rel="modulepreload" href="js/progress.js?v=20260726k">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260726k">
-    <link rel="modulepreload" href="js/ui.js?v=20260726k">
-    <link rel="modulepreload" href="js/vocab.js?v=20260726k">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260726k">
+    <link rel="modulepreload" href="js/main.js?v=20260726l">
+    <link rel="modulepreload" href="js/state.js?v=20260726l">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260726l">
+    <link rel="modulepreload" href="js/speech.js?v=20260726l">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260726l">
+    <link rel="modulepreload" href="js/auth.js?v=20260726l">
+    <link rel="modulepreload" href="js/spotify.js?v=20260726l">
+    <link rel="modulepreload" href="js/estimation.js?v=20260726l">
+    <link rel="modulepreload" href="js/config.js?v=20260726l">
+    <link rel="modulepreload" href="js/progress.js?v=20260726l">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260726l">
+    <link rel="modulepreload" href="js/ui.js?v=20260726l">
+    <link rel="modulepreload" href="js/vocab.js?v=20260726l">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260726l">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -1099,7 +1099,7 @@
                     <p><strong>How are percentages calculated?</strong></p>
                     <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. The remaining 30% are rarer words that appear less often.</p>
                     <p><strong>How does it work?</strong></p>
-                    <p>Choose a language, then Speech or Lyrics. Pick a numbered frequency level and learn the first small set with unseen cards; each card uses a real subtitle or lyric example.</p>
+                    <p>Choose a language, then Speech or Lyrics. Pick a numbered frequency level and learn the first small set with unseen cards; due and unfinished cards stay in that level's separate review.</p>
                     <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
                     <p style="margin-top: 18px;">
                         <button class="help-more-info-btn" id="helpMoreInfoBtn" type="button">More about this project →</button>
@@ -1110,13 +1110,13 @@
             <div class="settings-tab-content" id="helpStudyTabContent">
                 <div class="help-content">
                     <p><strong>Picking a set:</strong> Choose a language, then Speech or Lyrics. Choose a numbered level and the first small set containing unseen cards is selected for you. Later levels extend further into rarer vocabulary; Merge Lemmas and Cognates can shorten a set without moving cards between sets.</p>
-                    <p><strong>Learning and review:</strong> Learn new contains only cards you have not attempted. A wrong answer moves that card into the selected level's separate Review mistakes queue; a later correct answer resolves it.</p>
+                    <p><strong>Learning and review:</strong> Learn new contains only cards you have not attempted. Incorrect or partly learned cards move into the selected level's separate Review queue. Correct recalls return after 1, 3, 7, 14, 30, 60, and 120 days; mistakes reset the schedule.</p>
                     <p><strong>Continuing:</strong> The setup screen remembers the exact card, order, card side, and settings from your last session. Use <em>Continue last set</em> to resume it.</p>
                     <p><strong>Tap card</strong> to flip and see the translation</p>
                     <p><strong>Swipe right</strong> if you know the word &#10003;</p>
                     <p><strong>Swipe left</strong> if you don't know it &#10007;</p>
-                    <p id="helpStudyLyricsLine"><strong>Lyric examples:</strong> tap the sentence to cycle manually, or use the small play control on desktop to play each timestamped lyric line and stop before advancing.</p>
-                    <p><strong>Words with multiple meanings:</strong> Pick a colored sense row; its color links it to the matching example.</p>
+                    <p id="helpStudyLyricsLine"><strong>Lyric examples:</strong> tap the sentence to cycle manually, or use the small desktop play control to hear each sense label and its timestamped lyric lines in order.</p>
+                    <p><strong>Words with multiple meanings:</strong> A grouped row starts on its shared meaning; pick a colored sub-sense to narrow the examples. Its color links it to the matching example.</p>
                     <p><strong>Progress rail:</strong> The discrete cells show movement through the active set, with previous and next controls built into the ends.</p>
                     <p><strong>Study options:</strong> Use the button at the end of the progress rail for Change set, Shuffle, card language order, Audio, Set progress, Settings, and Help.</p>
                     <p><strong>At the end of each set</strong>, you'll see your accuracy and can repeat mistakes from that session or continue to the next unseen set.</p>
@@ -1143,6 +1143,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260726k"></script>
+    <script type="module" src="js/main.js?v=20260726l"></script>
 </body>
 </html>
