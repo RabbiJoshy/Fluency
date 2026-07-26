@@ -23,7 +23,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ### 2026-07-26 — Extra explainer, confirm gate, and category grouping (Claude front-end task)
 
-- Commit `e87fc61f`; front-end cache `flashcards-v98` / `20260726e`. Authored by Claude under an explicit front-end task; recorded here so the app-owner agent sees the change.
+- Commit `9e7c0f0e`; front-end cache `flashcards-v98` / `20260726e`. Authored by Claude under an explicit front-end task; recorded here so the app-owner agent sees the change.
 - Setup now states plainly that Main is the core recurring vocabulary and Extra is supplementary (one-off words, loanwords, names, slang) best after mostly finishing Main. The dynamic one-line scope hint is hidden in favour of the static two-part explainer.
 - Extra is no longer a plain toggle: the Extra scope button opens `#extraScopeModal`, a modal matching the app aesthetic, with an explicit `Switch to Extra mode` confirm plus a `Stay on Main` cancel and backdrop/✕ dismissal. Main still switches directly. `openExtraScopeModal()`/`wireExtraScopeModal()` live in `main.js`.
 - Extra replaces frequency levels with category groups read from a per-entry `extra_category` string. `buildFilteredVocab()` (vocab.js) stamps a contiguous, category-blocked `categoryRank` on each Extra entry and exposes ordered group metadata via `window.getExtraCategoryGroups()`. `renderExtraCategorySelector()` (ui.js) renders one chip per distinct value backed by a hidden `.level-btn` with `data-rank-basis="category"`, so the existing study-set paging, next-set/next-level, resume, and stats machinery work unchanged. `_levelRankAccessor`, `renderRangeSelector`, and `loadVocabularyData`'s slice all learned the `category` basis.
