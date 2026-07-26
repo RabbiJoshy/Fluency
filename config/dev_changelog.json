@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "e4fb3abb",
+      "summary": "Low-frequency level wording now stays grammatical",
+      "details": [
+        "Levels whose cutoff is one occurrence now say “1 time in the lyrics” rather than “1 times”",
+        "Plural lyric and speech frequency descriptions are unchanged; cache v109→v110, assets 20260727d→20260727e"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "98d45281",
       "summary": "Flagging now produces useful, targeted audit reports",
       "details": [

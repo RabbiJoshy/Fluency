@@ -23,6 +23,11 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Singular level-frequency wording
+
+- Commit `e4fb3abb`; front-end cache `flashcards-v110` / `20260727e`.
+- Follow-up to `895fec61`: a one-occurrence band now says “1 time in the lyrics” (or per million words), while all plural cutoffs retain “times.” Verified by JavaScriptCore parsing, cache lockstep, and `git diff --check`.
+
 ### 2026-07-27 — Audit-focused card flagging
 
 - Commit `98d45281`; front-end cache `flashcards-v109` / `20260727d`.
