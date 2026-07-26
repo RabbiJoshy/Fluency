@@ -97,6 +97,19 @@ SCHEMA_VERSION = 2
 SPANISH_FORMS_PATH = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers", "spanish_forms.json")
 EN_50K_PATH = os.path.join(_PROJECT_ROOT, "Data", "English", "en_50k_wordlist.txt")
 ES_50K_PATH = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "es_50k_wordlist.txt")
+ENGLISH_LOANWORDS_PATH = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers", "english_loanwords.json")
+
+
+def load_english_loanwords(path):
+    """Set of Spanish words flagged as English loanwords (built by
+    tool_4a_build_english_loanwords.py from Wiktionary etymology). Previously
+    only stamped for the UI; now consulted by routing (Phase 1f)."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            d = json.load(f)
+        return set(d.keys()) if isinstance(d, dict) else set(d)
+    except Exception:
+        return set()
 ELISION_MAPPING_PATH = os.path.join(SHARED_DIR, "elision_mapping.json")
 
 
@@ -373,9 +386,14 @@ def main():
     en_50k = load_en_50k(EN_50K_PATH)
     print(f"  en_50k: {len(en_50k)} words")
 
-    # Load es_50k frequency for clitic multi-lemma tie-breaks (sentar/sentir).
+    # Load es_50k frequency for clitic multi-lemma tie-breaks (sentar/sentir)
+    # AND for the Phase 1f "in English, not in Spanish frequency" detector.
     lemma_freq = load_es_50k_freq(ES_50K_PATH)
     print(f"  es_50k freq: {len(lemma_freq)} lemmas")
+
+    # Load the English-loanword layer (Wiktionary etymology) for Phase 1f.
+    english_loanwords = load_english_loanwords(ENGLISH_LOANWORDS_PATH)
+    print(f"  english_loanwords: {len(english_loanwords)} words")
 
     # Load verbecc form→lemma map for clitic base resolution. Without it,
     # `párame` strips to `para` which is the ambiguous imperative/preposition;
@@ -483,6 +501,40 @@ def main():
         trail[w]["bucket"] = "proper_nouns"
         trail[w]["source"] = "wikt_all_propn"
     print(f"  Wikt all-PROPN:        {len(matched)}")
+
+    # ------------------------------------------------------------------
+    # Phase 1f — Loanword / English over-tag (Extra-safe)
+    #   Two non-Gemini detectors the old conservative routing deliberately
+    #   skipped ("Parsimony > false-positive", because a false English tag used
+    #   to HIDE a card). With the Main/Extra scope split an over-tagged word
+    #   just lands in Extra, so aggressive tagging is safe now:
+    #     (i)  english_loanwords.json — the built-but-previously-unused
+    #          Wiktionary-etymology layer (dj, vip, motel, dembow, panty, …).
+    #     (ii) in en_50k but ABSENT from es_50k (lemma_freq) — common English,
+    #          not among Spanish frequency → English/slang (panty, crush,
+    #          feedback, speaker, rookie, freestyle, …).
+    #   always_teach (cognates.json keep) overrides both, so Josh keeps an
+    #   escape hatch for anything he wants to teach anyway.
+    #   Runs BEFORE Phase 2 so it wins over Spanish-form routing for homograph
+    #   loanwords (video, club) that are also valid Spanish forms.
+    # ------------------------------------------------------------------
+    print("\n--- Phase 1f: Loanword / English over-tag (Extra-safe) ---")
+    matched = (remaining & english_loanwords) - always_teach
+    buckets["english"] |= matched
+    remaining -= matched
+    for w in matched:
+        trail[w]["bucket"] = "english"
+        trail[w]["source"] = "english_loanwords"
+    print(f"  english_loanwords layer: {len(matched)}")
+
+    matched = {w for w in remaining
+               if w in en_50k and w not in lemma_freq and w not in always_teach}
+    buckets["english"] |= matched
+    remaining -= matched
+    for w in matched:
+        trail[w]["bucket"] = "english"
+        trail[w]["source"] = "en_not_es"
+    print(f"  en_50k not in es_50k:    {len(matched)}")
 
     # ------------------------------------------------------------------
     # Phase 2 — Known Spanish, split into cognate (loanword, exclude) vs
