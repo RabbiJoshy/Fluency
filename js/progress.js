@@ -1,5 +1,54 @@
 import './state.js';
 
+function parseProgressTimestamp(value) {
+    if (!value) return 0;
+    const timestamp = new Date(value).getTime();
+    return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
+// The learner's current relationship with a card. Counts preserve history;
+// timestamps decide the latest outcome. Older rows can lack timestamps, so a
+// recorded correct is treated as resolved unless a dated later wrong proves
+// otherwise.
+function getProgressState(progress) {
+    const correct = Math.max(0, Number(progress?.correct) || 0);
+    const wrong = Math.max(0, Number(progress?.wrong) || 0);
+    const lastCorrect = parseProgressTimestamp(progress?.lastCorrect);
+    const lastWrong = parseProgressTimestamp(progress?.lastWrong);
+    const lastSeen = parseProgressTimestamp(progress?.lastSeen);
+    const seen = correct > 0 || wrong > 0 || lastCorrect > 0 || lastWrong > 0 || lastSeen > 0;
+
+    if (!seen) {
+        return { status: 'unseen', seen: false, needsReview: false, learned: false, lastCorrect, lastWrong, lastSeen };
+    }
+
+    let needsReview = false;
+    if (wrong > 0 || lastWrong > 0) {
+        if (lastWrong > 0 || lastCorrect > 0) {
+            needsReview = lastWrong > lastCorrect;
+        } else {
+            // Legacy count-only rows cannot reveal answer order. A card that
+            // was never correct is unresolved; any recorded correct resolves
+            // it until a newer dated wrong arrives.
+            needsReview = correct === 0;
+        }
+    }
+
+    return {
+        status: needsReview ? 'review' : 'learned',
+        seen: true,
+        needsReview,
+        learned: !needsReview,
+        lastCorrect,
+        lastWrong,
+        lastSeen
+    };
+}
+
+function getWordProgressState(fullId) {
+    return getProgressState(progressData?.[fullId]);
+}
+
 function calculateCoveragePercent() {
     if (!ppmData || ppmData.length === 0 || !progressData) return { pct: 0, wordsCovered: 0, totalWords: 0 };
 
@@ -23,7 +72,7 @@ function calculateCoveragePercent() {
     let wordsCovered = 0;
     const coveredIds = new Set(); // track already-counted IDs to avoid double-counting cross-mode
     for (const [wordId, data] of Object.entries(progressData)) {
-        if (data.language === selectedLanguage && data.correct > 0) {
+        if (data.language === selectedLanguage && getProgressState(data).learned) {
             // Check direct match first, then cross-mode match
             let ppmEntry = idToPpm[wordId];
             let matchedId = wordId;
@@ -197,5 +246,8 @@ function updatePersonalCoverage(filteredVocab) {
 // Setup tooltip handlers (needs to run early, before any set is picked)
 
 window.calculateCoveragePercent = calculateCoveragePercent;
+window.parseProgressTimestamp = parseProgressTimestamp;
+window.getProgressState = getProgressState;
+window.getWordProgressState = getWordProgressState;
 window.updateExclusionBars = updateExclusionBars;
 window.updatePersonalCoverage = updatePersonalCoverage;

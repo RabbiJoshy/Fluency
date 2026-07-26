@@ -50,7 +50,7 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 ## Setup UI Flow
 
 ```
-Step 1: Radial language picker → Step 2: numbered level → [inline toggles: lemma, cognate] → Step 3: continue first unfinished stable set
+Step 1: Radial language picker → Step 2: numbered level → [inline toggles: lemma, cognate] → Step 3: learn first stable set with unseen cards or review the level
 ```
 The standard-mode language button opens the shared radial picker in `main.js`.
 Hidden `.lang-tab` buttons remain as internal action targets so the existing
@@ -65,7 +65,7 @@ Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cogna
 ```
 loadConfig() → renderLanguageTabs()
   [click language] → loadPpmData() → renderLevelSelector()
-  [click level] → renderRangeSelector() → buildFilteredVocab() → auto-select first unfinished set
+  [click level] → renderRangeSelector() → buildFilteredVocab() → auto-select first set with unseen cards
   [start set] → loadVocabularyData() → buildFilteredVocab() → initializeApp() → updateCard()
   [interaction] → flipCard() / nextCard() / handleSwipeAction() → saveWordProgress()
 ```

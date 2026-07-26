@@ -24,8 +24,8 @@ export const state = {
         total: 0,
         cardStats: {},
         // Set sizing: how many words the user picked vs. how many are in the
-        // active deck after filtering out previously-mastered words. Lets the
-        // stats modal show "3 of 4 correct (21 previously mastered)" instead
+        // active deck after filtering out previously-seen words. Lets the
+        // stats modal show "3 of 4 correct (21 already seen)" instead
         // of an isolated 3/4 that hides the larger set the user chose.
         setSize: 0,
         previouslyKnown: 0,
@@ -39,6 +39,8 @@ export const state = {
         nextRange: null,
         nextSetNumber: null,
         nextRankBasis: 'display',
+        studyMode: 'new',
+        levelNumber: null,
         // Snapshot of every word in the picked range (active + previously
         // mastered), so the stats modal can show the full list. Each entry:
         // { id, word, translation, displayRank }.

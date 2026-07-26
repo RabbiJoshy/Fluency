@@ -435,13 +435,13 @@ function updateStep5Tooltip() {
     if (activeArtist) {
         const name = activeArtist.name;
         tooltip.innerHTML = `
-            <p>Each level is divided into stable sets of about 20 frequency positions in ${name}'s lyrics. The first unfinished set is selected automatically.</p>
+            <p>Each level is divided into stable sets of about 20 frequency positions in ${name}'s lyrics. The first set with unseen cards is selected automatically.</p>
             <p>Settings may shorten a set, but they never move a card into a different level or set.</p>
             <p><strong>Example sentences</strong> favour nearby-frequency words, helping the cards in a set reinforce one another.</p>
         `;
     } else {
         tooltip.innerHTML = `
-            <p>Each level is divided into stable sets of about 20 frequency positions. The first unfinished set is selected automatically.</p>
+            <p>Each level is divided into stable sets of about 20 frequency positions. The first set with unseen cards is selected automatically.</p>
             <p>Settings may shorten a set, but they never move a card into a different level or set.</p>
             <p><strong>Subtitle examples</strong> already favour nearby-frequency words, so each small set forms a useful learning neighbourhood.</p>
         `;
@@ -1455,14 +1455,20 @@ async function renderRangeSelector() {
     const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
         ? await buildEstimatedKnownIds(estimate)
         : null;
-    const isKnown = item => {
+    const getLearningState = item => {
         if (!currentUser || currentUser.isGuest || !progressData) return false;
+        const recorded = getWordProgressState(getWordId(item));
+        // A real answer is more specific than the estimated starting level;
+        // in particular, a later wrong must remain reviewable.
+        if (recorded.seen) return recorded;
         if (activeArtist) {
-            if (item.id && estimatedIds?.has(item.id)) return true;
+            if (item.id && estimatedIds?.has(item.id)) {
+                return { seen: true, needsReview: false, learned: true, estimated: true };
+            }
         } else if (item.rank <= estimate) {
-            return true;
+            return { seen: true, needsReview: false, learned: true, estimated: true };
         }
-        return isWordKnown(getWordId(item));
+        return recorded;
     };
 
     // Sets use fixed baseline slots. Filters can make a set shorter, but
@@ -1475,14 +1481,19 @@ async function renderRangeSelector() {
             const rank = rankOf(item);
             return rank >= start && rank < end;
         });
-        const knownCount = words.filter(isKnown).length;
+        const states = words.map(getLearningState);
+        const seenCount = states.filter(state => state?.seen).length;
+        const reviewCount = states.filter(state => state?.needsReview).length;
         ranges.push({
             range: `${start}-${end}`,
             start,
             end,
             available: words.length > 0,
             cardCount: words.length,
-            pct: words.length > 0 ? Math.round(100 * knownCount / words.length) : 100
+            seenCount,
+            unseenCount: words.length - seenCount,
+            reviewCount,
+            pct: words.length > 0 ? Math.round(100 * seenCount / words.length) : 100
         });
     }
     const firstIncomplete = ranges.findIndex(range => range.available && range.pct < 100);
@@ -1496,6 +1507,7 @@ async function renderRangeSelector() {
             'study-set-dot',
             range.pct === 100 && range.available ? 'is-complete' : '',
             range.pct > 0 && range.pct < 100 && range.available ? 'is-partial' : '',
+            range.reviewCount > 0 && range.available ? 'has-review' : '',
             index === initialIndex ? 'is-current' : '',
             !range.available ? 'is-empty' : ''
         ].filter(Boolean).join(' ');
@@ -1504,27 +1516,26 @@ async function renderRangeSelector() {
                     data-rank-basis="${rankBasis}" data-pct="${range.pct}"
                     style="--set-progress: ${range.pct}%"
                     role="radio" aria-checked="${index === initialIndex ? 'true' : 'false'}"
-                    aria-label="Set ${index + 1}, ${range.pct}% complete"
-                    ${range.available ? '' : 'disabled'}>${index + 1}</button>`;
+                    aria-label="Set ${index + 1}, ${range.pct}% seen${range.reviewCount ? `, ${range.reviewCount} to review` : ''}"
+                    ${range.available ? '' : 'disabled'}><span>${index + 1}</span>${range.reviewCount
+                        ? `<small class="study-set-dot-review" aria-hidden="true">${range.reviewCount}</small>`
+                        : ''}</button>`;
     }).join('');
 
-    let incorrectHTML = '';
-    if (currentUser && !currentUser.isGuest && progressData) {
-        const incorrectCount = Object.values(progressData).filter(
-            data => data.wrong > 0 && data.language === selectedLanguage
-        ).length;
-        if (incorrectCount > 0) {
-            incorrectHTML = `<button class="study-set-review-incorrect" type="button">
-                Review ${incorrectCount} incorrect
+    const levelReviewCount = ranges.reduce((sum, range) => sum + range.reviewCount, 0);
+    let reviewHTML = '';
+    if (currentUser && !currentUser.isGuest && levelReviewCount > 0) {
+        reviewHTML = `<button class="study-set-review" type="button">
+                <span>Review mistakes</span>
+                <small>${levelReviewCount} unresolved in this level</small>
             </button>`;
-        }
     }
 
     container.innerHTML = `
         <div class="study-set-panel">
             <div class="study-set-overview">
-                <strong>${completedCount} of ${availableCount} sets complete</strong>
-                <span>Sets stay in the same level when settings change</span>
+                <strong>${completedCount} of ${availableCount} sets seen</strong>
+                <span>New cards and unresolved mistakes are kept on separate tracks</span>
             </div>
             <div class="study-set-dots" role="radiogroup" aria-label="Sets in this level">${dotsHTML}</div>
             <div class="study-set-current-copy">
@@ -1532,7 +1543,7 @@ async function renderRangeSelector() {
                 <span id="studySetCurrentMeta"></span>
             </div>
             <button class="range-btn-new study-set-start" id="studySetStartBtn" type="button"></button>
-            ${incorrectHTML}
+            ${reviewHTML}
         </div>`;
     document.getElementById('step4').style.display = 'block';
     setActiveSetupStep('step4');
@@ -1547,13 +1558,16 @@ async function renderRangeSelector() {
         });
         document.getElementById('studySetCurrentTitle').textContent = `Set ${index + 1} of ${ranges.length}`;
         document.getElementById('studySetCurrentMeta').textContent =
-            `Ranks ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()} · ${range.cardCount} cards with current settings · ${range.pct}% complete`;
+            `Ranks ${range.start.toLocaleString()}–${(range.end - 1).toLocaleString()} · ${range.unseenCount} new · ${range.reviewCount} to review · ${range.pct}% seen`;
         const startBtn = document.getElementById('studySetStartBtn');
-        startBtn.textContent = range.pct === 100 ? `Review Set ${index + 1}` : `Start Set ${index + 1}`;
+        startBtn.textContent = range.unseenCount > 0
+            ? `Learn ${range.unseenCount} new card${range.unseenCount === 1 ? '' : 's'}`
+            : `Study Set ${index + 1} Again`;
         startBtn.dataset.range = range.range;
         startBtn.dataset.rankBasis = rankBasis;
         startBtn.dataset.setNumber = String(index + 1);
         startBtn.dataset.levelSetCount = String(ranges.length);
+        startBtn.dataset.studyMode = range.unseenCount > 0 ? 'new' : 'all';
     };
     container.querySelectorAll('.study-set-dot').forEach(dot => {
         dot.addEventListener('click', () => selectSet(Number(dot.dataset.index)));
@@ -1568,10 +1582,23 @@ async function renderRangeSelector() {
         await loadVocabularyData(selectedRange, {
             rankBasis: this.dataset.rankBasis,
             setNumber: Number(this.dataset.setNumber),
-            levelSetCount: Number(this.dataset.levelSetCount)
+            levelSetCount: Number(this.dataset.levelSetCount),
+            studyMode: this.dataset.studyMode
         });
     });
-    container.querySelector('.study-set-review-incorrect')?.addEventListener('click', loadIncorrectWordsSet);
+    container.querySelector('.study-set-review')?.addEventListener('click', async () => {
+        const loadingMessage = document.getElementById('loadingMessage');
+        loadingMessage.style.display = 'block';
+        loadingMessage.textContent = `Loading ${levelReviewCount} review card${levelReviewCount === 1 ? '' : 's'}...`;
+        const levelButtons = Array.from(document.querySelectorAll(
+            '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
+        ));
+        const levelNumber = levelButtons.findIndex(button => button.dataset.level === selectedLevel) + 1;
+        await loadLevelReviewSet(`${minWord}-${maxWord}`, {
+            rankBasis,
+            levelNumber
+        });
+    });
 }
 
 function getNextStudySetMeta(rangeString) {
@@ -2136,7 +2163,7 @@ function getArtistHelpContent() {
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level and the app selects its first unfinished small set. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Mistakes collect in a separate review for that level. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -2148,7 +2175,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first unfinished small set. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
+        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while mistakes collect in that level's separate review. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary, and Continue last set restores the exact card and settings.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

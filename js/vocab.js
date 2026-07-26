@@ -30,6 +30,7 @@ function renderResumeLastSetCard() {
     const source = snapshot.mode === 'lyrics' ? 'Lyrics' : 'Speech';
     const level = snapshot.levelNumber ? `Level ${snapshot.levelNumber}` : 'Saved level';
     const set = snapshot.setNumber ? `Set ${snapshot.setNumber}` : 'Saved set';
+    const track = snapshot.studyMode === 'review' ? 'Review' : 'Learn new';
     const forms = snapshot.useLemmaMode ? 'Merged lemmas' : 'Forms';
     const cognates = snapshot.excludeCognates ? 'Cognates excluded' : 'Cognates included';
     const title = snapshot.mode === 'lyrics'
@@ -39,10 +40,10 @@ function renderResumeLastSetCard() {
         <button type="button" class="resume-set-button" id="resumeLastSetBtn">
             <span class="resume-set-eyebrow">Continue last set</span>
             <strong>${title}</strong>
-            <span>${source} · ${level} · ${set} · ${forms} · ${cognates}</span>
+            <span>${source} · ${level} · ${set} · ${track} · ${forms} · ${cognates}</span>
             <small>Last card: ${snapshot.currentWord || 'saved card'}</small>
         </button>
-        <span class="resume-set-alternative">Or continue the next unfinished set below</span>
+        <span class="resume-set-alternative">Or learn the next unseen set below</span>
     `;
     document.getElementById('resumeLastSetBtn')?.addEventListener('click', resumeLastStudySession);
 }
@@ -71,6 +72,7 @@ function saveStudySessionSnapshot() {
         rangeBasis: stats.rangeBasis || 'display',
         setNumber: stats.setNumber || null,
         levelSetCount: stats.levelSetCount || null,
+        studyMode: stats.studyMode || 'new',
         groupSize,
         useLemmaMode,
         excludeCognates,
@@ -193,12 +195,13 @@ function getCrossModeId(fullId) {
 }
 
 /**
- * Check if a word is known in either mode (correct > 0, matching language).
+ * Check if a word is currently resolved in either mode. Historical wrong
+ * counts remain available, but a newer wrong moves the card back to review.
  */
 function isWordKnown(fullId) {
     const check = (id) => {
         const p = progressData?.[id];
-        return p && Number(p.correct) > 0 && p.language === selectedLanguage;
+        return p && p.language === selectedLanguage && getProgressState(p).learned;
     };
     if (check(fullId)) return true;
     const crossId = getCrossModeId(fullId);
@@ -851,6 +854,7 @@ function buildFilteredVocab(vocabData) {
 
 async function loadVocabularyData(rangeString, opts = {}) {
     const includeWordId = opts.includeWordId || null;
+    const studyMode = opts.resumeSnapshot ? 'resume' : (opts.studyMode || 'new');
     // Completely clear all previous data and state
     flashcards = [];
     stats = {
@@ -869,6 +873,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
         nextRange: null,
         nextSetNumber: null,
         nextRankBasis: 'display',
+        studyMode,
+        levelNumber: opts.levelNumber || opts.resumeSnapshot?.levelNumber || null,
         allWords: []
     };
     currentIndex = 0;
@@ -950,57 +956,60 @@ async function loadVocabularyData(rangeString, opts = {}) {
             totalInRange = filteredData.length;
             allInRange = filteredData.slice(); // preserve for "study anyway"
 
-            // Filter out words the user has already got correct (for logged-in users),
-            // including words covered by the level estimate high-water mark.
-            // In artist mode, estimate maps to an ID set from normal-mode vocab (general frequency).
+            // Ordinary set study contains genuinely unseen cards only. A
+            // wrong answer therefore advances the new-card track and enters
+            // the separate review queue instead of trapping this set as
+            // unfinished. Review is current-source/current-settings and
+            // current-level scoped because _baseVocab and the range slice
+            // have already established those boundaries.
             if (currentUser && !currentUser.isGuest && progressData) {
-            const beforeMastered = filteredData.length;
-            const estimate = levelEstimates[selectedLanguage] || 0;
+                const beforeFiltered = filteredData.length;
+                const estimate = levelEstimates[selectedLanguage] || 0;
+                const estimatedIds = activeArtist && studyMode === 'new'
+                    ? await buildEstimatedKnownIds(estimate)
+                    : null;
 
-            // In artist mode, use ID set from normal-mode vocab for level estimate filtering
-            const estimatedIds = activeArtist ? await buildEstimatedKnownIds(estimate) : null;
+                filteredData = filteredData.filter(item => {
+                    // Never filter out a word the caller explicitly asked to
+                    // include (for example a search jump target).
+                    const itemId = getWordId(item);
+                    if (includeWordId && (itemId === includeWordId || item.id === includeWordId)) {
+                        return true;
+                    }
+                    const progressState = getWordProgressState(itemId);
+                    if (studyMode === 'review') return progressState.needsReview;
+                    if (studyMode === 'all') return true;
 
-            filteredData = filteredData.filter(item => {
-                // Never filter out a word the caller explicitly asked to include
-                // (e.g. find-word jump target that the user already mastered).
-                const itemId = getWordId(item);
-                if (includeWordId && (itemId === includeWordId || item.id === includeWordId)) {
-                    return true;
+                    const coveredByEstimate = !progressState.seen && (activeArtist
+                        ? (item.id && estimatedIds?.has(item.id))
+                        : item.rank <= estimate);
+                    return !coveredByEstimate && !progressState.seen;
+                });
+                excludedMastered = beforeFiltered - filteredData.length;
+                if (studyMode === 'review') {
+                    filteredData.sort((a, b) => {
+                        const aState = getWordProgressState(getWordId(a));
+                        const bState = getWordProgressState(getWordId(b));
+                        return (aState.lastWrong - bState.lastWrong)
+                            || ((a.displayRank || a.rank || 0) - (b.displayRank || b.rank || 0));
+                    });
                 }
-                // Level estimate filter: rank-based for normal mode, ID-based for artist mode
-                if (activeArtist) {
-                    if (item.id && estimatedIds.has(item.id)) return false;
-                } else {
-                    if (item.rank <= estimate) return false;
+                if (excludedMastered > 0) {
+                    console.log(`Filtered out ${excludedMastered} cards outside ${studyMode} mode`);
                 }
-                // Cross-mode progress check: known in either mode → skip
-                return !isWordKnown(itemId);
-            });
-            excludedMastered = beforeMastered - filteredData.length;
-            if (excludedMastered > 0) {
-                console.log(`Filtered out ${excludedMastered} previously mastered words`);
-            }
             }
         }
 
-        // Resolve an already-completed set before attaching examples and
-        // building cards. The old post-build check replaced filteredData too
-        // late, leaving flashcards empty when the user chose "study anyway".
+        // Resolve an empty selection before attaching examples and building
+        // cards. Explicit "study again" uses studyMode=all, so the new-card
+        // path never silently mixes old cards into a completed set.
         if (filteredData.length === 0) {
-            if (currentUser && !currentUser.isGuest && progressData && allInRange.length > 0) {
-                const studyAnyway = confirm('You\'ve already mastered all words in this set! Press OK to study them again, or Cancel to continue another set.');
-                if (studyAnyway) {
-                    filteredData = allInRange;
-                    excludedMastered = 0;
-                } else {
-                    document.getElementById('loadingMessage').style.display = 'none';
-                    return;
-                }
-            } else {
-                alert('No flashcards remain in this set with the current settings.');
-                document.getElementById('loadingMessage').style.display = 'none';
-                return;
-            }
+            const emptyMessage = studyMode === 'review'
+                ? 'No unresolved mistakes remain in this level with the current settings.'
+                : 'No unseen flashcards remain in this set with the current settings.';
+            alert(emptyMessage);
+            document.getElementById('loadingMessage').style.display = 'none';
+            return;
         }
 
         // Convert to flashcards format
@@ -1326,10 +1335,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
             flashcards.push(card);
         }
 
-        // Stash set sizing on stats so the stats modal can show the full set
-        // size and the previously-mastered count alongside the current session.
-        stats.setSize = totalInRange;
-        stats.previouslyKnown = excludedMastered;
+        // New-card decks report how many cards in the stable set were already
+        // seen. Review decks report the queue itself, not every card in the
+        // containing level.
+        stats.setSize = studyMode === 'review' ? flashcards.length : totalInRange;
+        stats.previouslyKnown = studyMode === 'new' ? excludedMastered : 0;
         if (resumeSnapshot) {
             stats.setSize = resumeSnapshot.setSize || resumeSnapshot.order.length;
             stats.previouslyKnown = resumeSnapshot.previouslyKnown || 0;
@@ -1338,7 +1348,9 @@ async function loadVocabularyData(rangeString, opts = {}) {
         stats.rangeBasis = rangeBasis;
         stats.setNumber = opts.setNumber || resumeSnapshot?.setNumber || null;
         stats.levelSetCount = opts.levelSetCount || resumeSnapshot?.levelSetCount || null;
-        const nextSet = window.getNextStudySetMeta
+        stats.studyMode = resumeSnapshot?.studyMode || studyMode;
+        stats.levelNumber = opts.levelNumber || resumeSnapshot?.levelNumber || stats.levelNumber || null;
+        const nextSet = stats.studyMode === 'new' && window.getNextStudySetMeta
             ? window.getNextStudySetMeta(rangeString)
             : null;
         stats.nextRange = nextSet?.range || null;
@@ -1347,10 +1359,13 @@ async function loadVocabularyData(rangeString, opts = {}) {
         // Inclusive label for display, e.g. "475-499" for rangeString "475-500"
         // (rangeEnd is exclusive in the filter above).
         const rankLabel = `${rangeStart}-${rangeEnd - 1}`;
-        stats.setLabel = stats.setNumber
+        stats.setLabel = stats.studyMode === 'review'
+            ? `Level ${stats.levelNumber || ''} review · ranks ${rankLabel}`.replace('Level  review', 'Level review')
+            : stats.setNumber
             ? `Set ${stats.setNumber}${stats.levelSetCount ? `/${stats.levelSetCount}` : ''} · ranks ${rankLabel}`
             : rankLabel;
-        stats.allWords = allInRange.map(it => ({
+        const statsWords = stats.studyMode === 'review' ? filteredData : allInRange;
+        stats.allWords = statsWords.map(it => ({
             id: it.id,
             word: it.word,
             translation: (it.meanings && it.meanings[0] && it.meanings[0].translation) || '',
@@ -1358,12 +1373,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
         }));
 
         // Build exclusion summary message (only report in-range exclusions)
-        const totalExcluded = excludedLemma + excludedMastered;
+        const totalExcluded = excludedLemma + (studyMode === 'new' ? excludedMastered : 0);
         const loadingMsg = document.getElementById('loadingMessage');
         if (totalExcluded > 0) {
             const parts = [];
             if (excludedLemma > 0) parts.push(`${excludedLemma} lemma dup${excludedLemma > 1 ? 's' : ''}`);
-            if (excludedMastered > 0) parts.push(`${excludedMastered} mastered`);
+            if (studyMode === 'new' && excludedMastered > 0) parts.push(`${excludedMastered} already seen`);
             loadingMsg.textContent = `✓ ${flashcards.length} cards from ${totalInRange} (${parts.join(', ')} excluded)`;
         } else {
             loadingMsg.textContent = `✓ ${flashcards.length} cards`;
@@ -1430,295 +1445,20 @@ function buildWordLookupMap() {
 }
 
 
-// Load study set of all-time incorrect words for the selected language
-async function loadIncorrectWordsSet() {
+// Build the unresolved-mistake queue from the active vocabulary and the
+// selected level. The ordinary loader owns source/settings filtering and card
+// construction, keeping review behavior identical to Learn new.
+async function loadLevelReviewSet(rangeString, opts = {}) {
     if (!currentUser || currentUser.isGuest) {
-        alert('Please log in to access your incorrect words history.');
+        alert('Please log in to review previous mistakes.');
         return;
     }
-
-    // Get incorrect words for the currently selected language
-    const incorrectWords = Object.entries(progressData)
-        .filter(([wordId, data]) =>
-            data.wrong > 0 &&
-            data.language === selectedLanguage
-        )
-        .map(([wordId, data]) => ({
-            wordId,
-            ...data
-        }))
-        // Sort by least recently correct (null lastCorrect = never correct, comes first)
-        // Then by least recently wrong as secondary sort
-        .sort((a, b) => {
-            // Never correct comes first
-            if (!a.lastCorrect && b.lastCorrect) return -1;
-            if (a.lastCorrect && !b.lastCorrect) return 1;
-            if (!a.lastCorrect && !b.lastCorrect) {
-                // Both never correct - sort by oldest wrong first
-                const aWrong = a.lastWrong ? new Date(a.lastWrong).getTime() : 0;
-                const bWrong = b.lastWrong ? new Date(b.lastWrong).getTime() : 0;
-                return aWrong - bWrong;
-            }
-            // Both have been correct - sort by oldest correct first
-            return new Date(a.lastCorrect).getTime() - new Date(b.lastCorrect).getTime();
-        });
-
-    if (incorrectWords.length === 0) {
-        alert(`No incorrect words found for ${selectedLanguage}. Start practicing to build your incorrect words list!`);
-        return;
-    }
-
-    document.getElementById('loadingMessage').style.display = 'block';
-    document.getElementById('loadingMessage').textContent = `Loading ${incorrectWords.length} incorrect words...`;
-
-    // Clear previous state
-    flashcards = [];
-    currentIndex = 0;
-    currentSentenceIndex = 0;
-    currentMeaningIndex = 0;
-    currentExampleIndex = 0;
-    currentMWEIndex = 0;
-    isFlipped = false;
-
-    const flashcardEl = document.getElementById('flashcard');
-    if (flashcardEl) {
-        flashcardEl.classList.remove('flipped');
-    }
-
-    const langConfig = config.languages[selectedLanguage];
-
-    try {
-        // Load the index (metadata) to get card details, joined with master if needed
-        const vocabularyData = await fetchAndJoinIndex(langConfig);
-
-        // Create a lookup map by stable hex ID
-        const wordToVocab = {};
-        vocabularyData.forEach((item, index) => {
-            if (item.word && item.word.trim() !== '' && item.meanings && item.meanings.length > 0) {
-                item.rank = index + 1; // assign dynamic rank from array position
-                wordToVocab[item.id] = item;
-            }
-        });
-
-        if (useLemmaMode) await ensureLemmaPoolingData(langConfig);
-
-        // Compute the same configuration-relative rank used by ordinary
-        // sets, even though this special deck is selected from progress.
-        const { vocab: configuredVocab } = buildFilteredVocab(vocabularyData);
-        const configuredRankById = new Map(configuredVocab.map(item => [item.id, item.displayRank]));
-        const configurationVocabSize = configuredVocab.length;
-
-        const exampleTargetField = langConfig.exampleTargetField || 'example_spanish';
-        const exampleEnglishField = langConfig.exampleEnglishField || 'example_english';
-
-        // Lazy-load examples for the incorrect words
-        let allCorpusExamples = [];
-        if (langConfig.examplesPath) {
-            if (!window._cachedExamplesData) {
-                const exResponse = await fetch(langConfig.examplesPath);
-                if (exResponse.ok) {
-                    trackDataFreshness(exResponse);
-                    window._cachedExamplesData = await exResponse.json();
-                }
-            }
-            const examplesData = window._cachedExamplesData;
-            if (examplesData) {
-                // Merge examples into the incorrect word entries
-                for (const incorrectWord of incorrectWords) {
-                    const item = wordToVocab[incorrectWord.wordId];
-                    if (!item) continue;
-                    const ex = examplesData[item.id];
-                    if (ex && ex.m) {
-                        item.meanings.forEach((m, i) => {
-                            const bucket = m._masterSenseIndex ?? i;
-                            m.examples = ex.m[bucket] || [];
-                        });
-                    }
-                    if (ex && ex.w && item.mwe_memberships) {
-                        item.mwe_memberships.forEach((mwe, i) => {
-                            mwe.examples = ex.w[i] || [];
-                        });
-                    }
-                    if (ex && ex.s && item.sense_cycles) {
-                        item.sense_cycles.forEach((sc, i) => {
-                            sc.examples = ex.s[i] || [];
-                        });
-                    }
-                }
-                // MWE examples are pre-computed by the pipeline ("w" field)
-            }
-        }
-
-        // Build flashcards from incorrect words
-        for (const incorrectWord of incorrectWords) {
-            // incorrectWord.wordId is a fullId (e.g., "es0ed68"); strip the 3-char prefix to get bare hex
-            const bareId = incorrectWord.wordId.slice(3);
-            const item = wordToVocab[bareId];
-            if (!item) continue; // Skip if word not found in vocabulary
-
-            const meanings = item.meanings.map(m => {
-                const { targetSentence, englishSentence, allExamples } = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
-                const meaning = {
-                    pos: m.pos,
-                    meaning: m.translation,
-                    percentage: parseFloat(m.frequency),
-                    targetSentence,
-                    englishSentence,
-                    allExamples
-                };
-                if (m.unassigned) meaning.unassigned = true;
-                if (m.assignment_method) meaning.assignment_method = m.assignment_method;
-                if (m.source) meaning.source = m.source;
-                if (m.context) meaning.context = m.context;
-                if (m.allSenses) meaning.allSenses = m.allSenses;
-                if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
-                return meaning;
-            });
-
-            // Normalize percentages
-            const totalPercentage = meanings.reduce((sum, m) => sum + (m.percentage || 0), 0);
-            if (totalPercentage === 0 || isNaN(totalPercentage)) {
-                const equalPercentage = 1.0 / meanings.length;
-                meanings.forEach(m => { m.percentage = equalPercentage; });
-            } else if (totalPercentage !== 1.0) {
-                meanings.forEach(m => { m.percentage = (m.percentage || 0) / totalPercentage; });
-            }
-
-            // Synthesize a single MWE meaning that cycles through all expressions
-            if (item.mwe_memberships && item.mwe_memberships.length > 0) {
-                const allMWEs = [];
-                // Sort artist-sourced MWEs first (including artist-curated /
-                // artist-pmi tags from step_2a lyric counting), then shared
-                // sources (spanishdict / wiktionary / legacy).
-                const sortedMWEs = [...item.mwe_memberships].sort((a, b) => {
-                    const aSrc = a.source || 'artist';
-                    const bSrc = b.source || 'artist';
-                    const aArtist = aSrc === 'artist' || aSrc.startsWith('artist-') ? 0 : 1;
-                    const bArtist = bSrc === 'artist' || bSrc.startsWith('artist-') ? 0 : 1;
-                    return aArtist - bArtist;
-                });
-                // Strip elision markers for fuzzy MWE matching
-                const stripElisions = (s) => s.replace(/['\u2019]/g, '').replace(/\s+/g, ' ');
-                for (const mwe of sortedMWEs) {
-                    // Use pre-attached examples if available (from examples.json "w" field),
-                    // only fall back to corpus scan when needed (artist mode)
-                    let matched = mwe.examples || [];
-                    if (matched.length === 0 && allCorpusExamples.length > 0) {
-                        const exprLower = mwe.expression.toLowerCase();
-                        const exprNorm = stripElisions(exprLower);
-                        // Word-boundary regex to avoid substring false positives
-                        // (e.g. "solo que" matching "solo quedan")
-                        const SP = 'a-zA-Z\u00e1\u00e9\u00ed\u00f3\u00fa\u00f1\u00fc\u00c1\u00c9\u00cd\u00d3\u00da\u00d1\u00dc';
-                        const escExpr = exprLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                        const escNorm = exprNorm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                        const exprRe = new RegExp('(?<![' + SP + '])' + escExpr + '(?![' + SP + '])', 'i');
-                        const normRe = new RegExp('(?<![' + SP + '])' + escNorm + '(?![' + SP + '])', 'i');
-                        matched = allCorpusExamples.filter(ex => {
-                            const text = (ex.spanish || ex.target || '').toLowerCase();
-                            return exprRe.test(text);
-                        });
-                        if (matched.length === 0) {
-                            matched = allCorpusExamples.filter(ex => {
-                                const text = stripElisions((ex.spanish || ex.target || '').toLowerCase());
-                                return normRe.test(text);
-                            });
-                        }
-                    }
-                    allMWEs.push({
-                        expression: mwe.expression,
-                        translation: mwe.translation || '',
-                        family: mwe.family || '',
-                        variants: mwe.variants || null,
-                        variantCounts: mwe.variant_counts || null,
-                        corpusCount: Number(mwe.count) || 0,
-                        occurrenceCount: Number(mwe.occurrence_count) || 0,
-                        songCount: Number(mwe.num_songs) || 0,
-                        // Two context tiers:
-                        //   context           — real/scraped (authoritative)
-                        //   context_heuristic — regex-split from quickdef
-                        // Renderer prefers real over heuristic.
-                        context: mwe.context || '',
-                        context_heuristic: mwe.context_heuristic || '',
-                        examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
-                    });
-                }
-                const firstEx = allMWEs[0].examples[0];
-                meanings.push({
-                    pos: 'MWE',
-                    meaning: allMWEs[0].translation,
-                    expression: allMWEs[0].expression,
-                    allMWEs: allMWEs,
-                    percentage: 0,
-                    targetSentence: firstEx.spanish || firstEx.target || '',
-                    englishSentence: firstEx.english || '',
-                    allExamples: allMWEs[0].examples
-                });
-            }
-
-            // Sort meanings: frequency senses first, then SENSE_CYCLE, CLITIC, MWE
-            const specialOrder2 = { 'SENSE_CYCLE': 1, 'CLITIC': 2, 'MWE': 3 };
-            meanings.sort((a, b) => {
-                const aOrder = specialOrder2[a.pos] || 0;
-                const bOrder = specialOrder2[b.pos] || 0;
-                if (aOrder !== bOrder) return aOrder - bOrder;
-                return (b.percentage || 0) - (a.percentage || 0);
-            });
-
-            const firstExample = getExampleFromMeaning(item.meanings[0], exampleTargetField, exampleEnglishField);
-            const card = {
-                targetWord: item.word,
-                lemma: item.lemma || '',
-                rank: item.rank,
-                id: item.id,
-                fullId: getWordId(item),
-                vocabularyRank: configuredRankById.get(item.id) || item.rank,
-                vocabularySize: configurationVocabSize,
-                corpusCount: useLemmaMode
-                    ? (item.pooled_frequency ?? item.lemma_example_count ?? null)
-                    : (item.corpus_count || null),
-                meanings: meanings,
-                translation: item.meanings[0].translation,
-                targetSentence: firstExample.targetSentence,
-                englishSentence: firstExample.englishSentence,
-                links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
-                isMultiMeaning: true,
-                variants: item.variants || null,
-                homographIds: item.homograph_ids || null,
-                morphology: item.morphology || null,
-                synonyms: item.synonyms || null,
-                antonyms: item.antonyms || null,
-                // SpanishDict's morphological pointer (e.g. hay → haber).
-                // Set when the word's semantic lemma is lexicalised but
-                // SD also flags it as a conjugation of some verb. The
-                // conjugation panel uses this as a fallback when the
-                // card's own lemma has no inline paradigm.
-                relatedLemma: item.related_lemma || null
-            };
-            flashcards.push(card);
-        }
-
-        if (flashcards.length === 0) {
-            alert('Could not load incorrect words. Please try again.');
-            document.getElementById('loadingMessage').style.display = 'none';
-            return;
-        }
-
-        // Successfully loaded - show cards and hide setup
-        document.getElementById('setupPanel').classList.add('hidden');
-        document.getElementById('appContent').classList.remove('hidden');
-        document.getElementById('loadingMessage').style.display = 'none';
-
-        // Show mobile floating buttons
-        showFloatingBtns(true);
-
-        // Initialize card display
-        initializeApp();
-        buildWordLookupMap();
-    } catch (error) {
-        console.error('Failed to load incorrect words set:', error);
-        document.getElementById('loadingMessage').style.display = 'none';
-        alert('Error loading incorrect words. Please try again.');
-    }
+    return loadVocabularyData(rangeString, {
+        ...opts,
+        studyMode: 'review',
+        setNumber: null,
+        levelSetCount: null
+    });
 }
 
 async function loadCSVFiles(ranges) {
@@ -2173,7 +1913,7 @@ async function mergeArtistVocabularies(artistConfigs, master) {
 
 // Synthesize MWE / CLITIC / SENSE_CYCLE meanings on a card's meanings array.
 // Mirrors the inline blocks in loadVocabularyData (line 484+) and
-// loadIncorrectWordsSet (line 846+), but assumes mwe_memberships[i].examples
+// Review and ordinary decks both consume the assembled membership examples.
 // (and the sense_cycles equivalents) are already populated by the caller —
 // no corpus-scan fallback. Used by the popup/temp-card paths in
 // flashcards.js (popupFoundWord, navigateToVocabCard) which previously
@@ -2284,7 +2024,7 @@ window.loadVocabularyData = loadVocabularyData;
 window.renderResumeLastSetCard = renderResumeLastSetCard;
 window.resumeLastStudySession = resumeLastStudySession;
 window.saveStudySessionSnapshot = saveStudySessionSnapshot;
-window.loadIncorrectWordsSet = loadIncorrectWordsSet;
+window.loadLevelReviewSet = loadLevelReviewSet;
 window.loadCSVFiles = loadCSVFiles;
 window.parseMultiMeaning = parseMultiMeaning;
 window.truncateText = truncateText;

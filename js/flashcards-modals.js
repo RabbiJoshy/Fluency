@@ -907,7 +907,9 @@ function showEndOfDeckOptions() {
     // sets, so completion is a frequent reward inside the larger level.
     const titleEl = document.getElementById('deckCompleteTitle');
     if (titleEl) {
-        titleEl.textContent = stats.setNumber
+        titleEl.textContent = stats.studyMode === 'review'
+            ? 'Review Complete!'
+            : stats.setNumber
             ? `Set ${stats.setNumber} Complete!`
             : 'Set Complete!';
     }
