@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "2de025d7",
+      "summary": "Individual meanings and expressions can now have their own review state",
+      "details": [
+        "The card back can mark the active meaning, Expression, or clitic form as known or needing review and shows how many items on the word are currently known",
+        "Whole-card answers remain the default; the newest card or item answer wins, so a later card correct clears older sense mistakes while a later sense mistake reopens only that row",
+        "Level review focuses cards onto unresolved rows and granular choices sync offline and across devices after redeploying the updated Apps Script; cache v96→v97, assets 20260726c→20260726d"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "78b33505",
       "summary": "New cards and level review now follow separate tracks",
       "details": [

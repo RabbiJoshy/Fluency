@@ -16,9 +16,19 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
-- Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces; a future missed-row review queue may synthesize focused prompts without creating a second permanent expression-card taxonomy.
+- Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
+- Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Stable pipeline sense IDs are now a load-bearing future deck contract.
 
 ## Codex task history
+
+### 2026-07-26 — Granular sense and Expression knowledge
+
+- Commit `2de025d7`; front-end cache `flashcards-v97` / `20260726d`.
+- Added optional back-card actions for the active sense, Expression, or clitic form plus an `x/y known` summary. Ordinary gestures still answer the whole word; item choices create only sparse overrides, and the newest whole-card/item timestamp determines current knowledge.
+- Level review now builds focused word cards containing only unresolved rows. A later whole-card correct resolves older row mistakes without writing every sense, while a later row mistake reopens that item. Identical rendered sense identities count once.
+- Added offline queue/cache overlay support and an Apps Script schema-v2 `ItemProgress` tab with save/load/delete actions. Existing deployments must copy the updated `backend/GoogleAppsScript.js` and publish a new version; the sheet and headers are created automatically.
+- Current assembled decks omit upstream sense IDs, so item identity temporarily falls back to normalized POS/gloss/context or Expression identity. Front-end loading already prefers future `sense_id`/`id` fields; pipeline changes must keep those IDs stable or migrate `ItemProgress`.
+- Verification: JavaScriptCore parsing, timestamp-inheritance and focused-review cases, mocked Apps Script CRUD, module-preload/cache lockstep, unique DOM IDs, and `git diff --check` pass. No service-worker browser preview was used.
 
 ### 2026-07-26 — Level-scoped new learning and mistake review
 

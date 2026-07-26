@@ -447,12 +447,15 @@
   without Gemini. Expressions remain rows on word/lemma cards; granular missed-row progress stays a
   separate later design item below.
 
-- **[idea] Granular missed-sense / expression review (L) [shared] [cross-lang]**
-  Keep normal study cards word/lemma-based, with their sense and Expression rows. Later add an
-  optional focused review queue synthesized from only the rows a learner missed, so a card can show
-  e.g. 2/3 senses mastered without forcing every expression into a permanent separate card type.
-  The default correct/wrong gesture should remain whole-card progress until the interaction and
-  cross-device progress schema are designed together.
+- **[idea] Granular missed-sense / expression review (L) [shared] [cross-lang]** — DONE
+  2026-07-26 (`2de025d7`): cards remain word/lemma-based and the normal swipe remains whole-card
+  progress, while explicit back-card actions sparsely mark the active sense, Expression, or clitic
+  form. The selected level's review queue synthesizes cards containing only unresolved rows and
+  shows an `x/y known` summary. Whole-card progress is the inherited baseline and the newest parent
+  or item timestamp wins, so a later card correct clears older row mistakes without dense writes.
+  Cross-device item rows use an auto-created `ItemProgress` sheet and require redeploying the
+  current `backend/GoogleAppsScript.js` version. Current decks use content-derived fallback IDs;
+  future pipeline output should retain stable sense IDs or provide a migration.
 
 - **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared] [spanish]**
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would
