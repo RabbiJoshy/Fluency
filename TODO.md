@@ -435,6 +435,23 @@
   gaps. Gemini fallback only for words Wiktionary doesn't have. See `docs/design/artist_sense_pipeline.md`.
   (Already the default for French — artist_sense_pipeline.md describes the Spanish version.)
 
+- **[now] Deterministic artist expression families (M) [artist] [spanish]** — FIRST PASS DONE
+  2026-07-26 (`44de7313`): curated inflected construction families now pool onto the union of
+  distinct lyric lines, retain each observed form and exact displayed surface, and carry those
+  counts/examples through assembly to the existing Expression rows. Repeated lines and overlapping
+  variants count once; noisy pronoun-ending fragments are rejected. Rebuilt Bad Bunny, Rosalía,
+  and Young Miko without Gemini. Remaining work: generalise beyond the curated family map to a
+  lemma/template matcher, add construction constraints (especially `ir + a + infinitive`, so
+  location uses of `ir a` do not enter the future-tense construction), and fill translation gaps
+  from existing dictionaries/curations before considering Gemini only for unresolved expressions.
+
+- **[idea] Granular missed-sense / expression review (L) [shared] [cross-lang]**
+  Keep normal study cards word/lemma-based, with their sense and Expression rows. Later add an
+  optional focused review queue synthesized from only the rows a learner missed, so a card can show
+  e.g. 2/3 senses mastered without forcing every expression into a permanent separate card type.
+  The default correct/wrong gesture should remain whole-card progress until the interaction and
+  cross-device progress schema are designed together.
+
 - **[idea] Run MWE corpus frequency on full OpenSubtitles (S) [shared] [spanish]**
   Currently using 10% sample (`SAMPLE_STRIDE=10` in `build_mwes.py`). Full corpus would
   give better granularity for ordering. Change `SAMPLE_STRIDE` to 1 and re-run:

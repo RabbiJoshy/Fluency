@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-26",
+      "commit": "44de7313",
+      "summary": "Artist expressions now pool inflected forms onto exact lyric evidence",
+      "details": [
+        "Counts curated morphological families from the union of distinct lyric lines instead of discarding every form except the most frequent spelling",
+        "Carries canonical variants and exact displayed surfaces into Expression rows, so elisions such as vo'a are recognised and highlighted without presenting punctuation-split false matches",
+        "Removes broad pronoun-ending fragments, rebuilds all three artist decks deterministically without Gemini, and keeps expressions on word cards; cache v93→v94, assets 20260725al→20260726a"
+      ]
+    },
+    {
       "date": "2026-07-25",
       "commit": "d0772972",
       "summary": "Lyrics now split cleanly into Main and Artist Extra",

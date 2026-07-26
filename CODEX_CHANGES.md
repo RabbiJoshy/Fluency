@@ -16,8 +16,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Flags default to the visible sense–example pairing, accept a free-text note, and store a structured report through the existing FlaggedWords backend contract.
+- Artist expressions remain rows on word/lemma cards. Curated morphological families pool deterministic unique-line evidence and preserve exact lyric surfaces; a future missed-row review queue may synthesize focused prompts without creating a second permanent expression-card taxonomy.
 
 ## Codex task history
+
+### 2026-07-26 — Deterministic artist expression pooling
+
+- Commit `44de7313`; front-end cache `flashcards-v94` / `20260726a`.
+- Replaced the old “keep the most frequent spelling” family dedupe with a distinct-line union across curated morphological variants. Overlapping forms count a lyric once, while raw occurrence and distinct-song diagnostics remain available.
+- Retained the canonical counting form, each variant, and the literal displayed lyric surface independently. This lets `voy a`, `va a`, `vas a`, `vo'a`, and similar forms share one construction while the card filters and highlights the spelling the learner actually sees. Samples split by punctuation/ad-libs are not presented as exact matches.
+- Tightened variable-pronoun detection to reject fragments ending at the pronoun slot, and corrected the emitted MWE schema so curated, PMI, and pattern sources stay distinct. Expressions remain pinned rows on their relevant word/lemma cards; no new ordinary card type was introduced.
+- Rebuilt deterministic step 2 and assembly output for Bad Bunny, Rosalía, and Young Miko without a Gemini step. Audit: 32 pooled families, no family without exact evidence, zero unmatched retained expression samples, and all family metadata reaches the artist indexes. Five Python regression tests, Python compilation, JavaScriptCore module parsing, JSON parsing, cache lockstep, and `git diff --check` pass. No service-worker browser preview was used.
 
 ### 2026-07-25 — Main and Artist Extra vocabulary scopes
 
