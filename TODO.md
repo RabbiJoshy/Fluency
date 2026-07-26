@@ -75,8 +75,13 @@
   9. **(M) [shared] Stable levels with small, rewarding sets** — DONE 2026-07-25 (`21768e7`):
      level membership is assigned on a pre-filter frequency baseline, merged lemmas anchor to
      their highest-frequency form, and exclusions leave holes rather than shifting later cards.
-     Each level now has stable 20-position sets, automatic first-unfinished selection, discrete
+     Each level now has stable 20-position sets, automatic first-unseen selection, discrete
      progress, direct next-set continuation, and stronger nearby-set example preference in Speech.
+  10. **(M) [shared] Separate unseen learning from unresolved review** — DONE 2026-07-26
+      (`78b33505`): stable-set completion now measures cards seen, Learn new loads only unseen
+      cards, and the selected level has a separate review queue for cards whose latest answer was
+      wrong. Review respects the current source and filter configuration; a newer correct resolves
+      the card without erasing its historical counts.
 
 - **[now] Codex follow-up batch — requested 2026-07-25 [shared unless noted]**
   Work as separate commits; data-dependent artist items should precede their front-end consumers.

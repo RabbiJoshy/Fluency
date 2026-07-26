@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-26",
+      "commit": "78b33505",
+      "summary": "New cards and level review now follow separate tracks",
+      "details": [
+        "Set progress now measures cards seen, so a wrong answer moves learning forward instead of trapping the learner in the same unfinished set",
+        "Each set shows its unresolved-mistake count and the selected level offers one Review mistakes queue that respects the current source, artist scope, Merge Lemmas, and Cognates settings",
+        "A newer correct answer resolves an earlier mistake while retaining lifetime counts; Learn new contains only unseen cards and exact saved-set resume remains available; cache v95→v96, assets 20260726b→20260726c"
+      ]
+    },
+    {
+      "date": "2026-07-26",
       "commit": "1f649cfe",
       "summary": "Artist expressions now require the construction they claim to teach",
       "details": [

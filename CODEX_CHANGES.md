@@ -20,6 +20,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-26 — Level-scoped new learning and mistake review
+
+- Commit `78b33505`; front-end cache `flashcards-v96` / `20260726c`.
+- Replaced the lifetime `wrong > 0` language-wide deck with two explicit tracks. Learn new selects the earliest stable set with unseen cards and loads only its unseen subset; unresolved mistakes are collected across every set in the selected level under the current source, artist scope, Merge Lemmas, and Cognates configuration.
+- Set fill now represents exposure rather than current mastery, and each set carries a small unresolved-review count. This means a wrong first answer advances the new-card sequence instead of holding the learner in that set. Continue last set remains an exact source/settings/order/card-position resume.
+- Centralized backward-compatible progress state: timestamps determine the latest outcome, a newer correct resolves a prior wrong, lifetime counts remain intact, and legacy count-only rows with both correct and wrong are treated as resolved because their ordering cannot be recovered. Speech and Lyrics remain separate progress namespaces for now; selected artists supply the eligible lyric vocabulary.
+- Verification: progress-state cases (`unseen`, unresolved wrong, legacy resolved, wrong-later, correct-later), JavaScriptCore parsing, unique DOM IDs, cache lockstep, stale-loader searches, and `git diff --check` pass. No service-worker browser preview was used.
+
 ### 2026-07-26 — Artist Expression vertical closed and handed back
 
 - Commit `f53c82d8`; tests/documentation only, so no front-end cache bump or deck rebuild.
