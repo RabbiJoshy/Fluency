@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Merged-lemma cards now teach the form used by each example",
+      "details": [
+        "The large Spanish headword follows the current example's exact pooled form while the shared lemma remains visible underneath and continues to own rank, set placement, and progress",
+        "Verb morphology and supported English conjugated glosses follow that exact form; English-to-Spanish keeps the unambiguous lemma answer and its existing in-example surface cue",
+        "Returning to a merged card advances its example cursor so large families do not always open on the same inflection; cache v121→v122, assets 20260727p→20260727q"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "e5a2d872",
       "summary": "The currently selected study set is now unmistakable",
       "details": [

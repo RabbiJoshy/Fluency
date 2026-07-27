@@ -81,11 +81,20 @@ function _extractUsedWith(context) {
 
 function getConjugatedEnglish(card, translation) {
     if (!_conjugatedEnglishData || !card || !translation) return null;
-    // A merged card prompts the dictionary lemma, so the English side must
-    // stay infinitival too. The host entry's morphology belongs only to its
-    // internal representative surface (e.g. está), not the displayed estar.
-    if (card.mergedLemma) return null;
-    const morph = card.morphology;
+    // Reverse-direction merged cards still prompt the dictionary lemma, so
+    // their English side stays infinitival. In the ordinary direction an
+    // explicit example-derived morphology is safe: the visible Spanish form
+    // and the English gloss describe the same evidence line.
+    if (card.mergedLemma && isFlipped) return null;
+    const rawMorph = card.mergedLemma
+        ? card._activeExampleMorphology
+        : card.morphology;
+    const morphCandidates = (Array.isArray(rawMorph) ? rawMorph : [rawMorph]).filter(Boolean);
+    // A surface such as `da` can be either indicative or imperative. Show
+    // both analyses visually, but do not choose one and manufacture a
+    // potentially wrong English conjugation for the sentence.
+    if (morphCandidates.length !== 1) return null;
+    const morph = morphCandidates[0];
     if (!morph || morph.mood !== "indicativo") return null;
     const tenseKey = _MORPH_TENSE_TO_CONJ_EN[morph.tense];
     const personIdx = _PERSON_TO_INDEX[morph.person];
@@ -2027,6 +2036,60 @@ function getActiveProductionAnswer(card, meaning = null) {
     return card.productionAnswer || card.targetWord || '';
 }
 
+// A merged lemma remains one stable progress/rank card, but its teaching
+// surface follows the currently displayed pooled example. Keep a lightweight
+// in-session cursor so returning to a card advances through its evidence
+// instead of always starting on the same inflection.
+const _mergedExampleCursorByCard = new Map();
+
+function getMergedLemmaExampleFocus(card, meaning, { advanceOnEntry = false } = {}) {
+    if (!card?.mergedLemma || !meaning || meaning.allMWEs || meaning.allClitics) return null;
+
+    let examples;
+    if (currentGroupSelection?.members?.length) {
+        const combined = [];
+        for (const index of currentGroupSelection.members) {
+            const member = card.meanings?.[index];
+            if (member?.allExamples) combined.push(...member.allExamples);
+        }
+        examples = dedupeExamples(combined);
+    } else {
+        examples = dedupeExamples(meaning.allExamples || []);
+    }
+    if (examples.length > 1) examples = sortExamplesByRelevance(examples);
+    if (examples.length === 0) return null;
+
+    const cursorKey = card.fullId || card.id || card.citationForm || card.targetWord;
+    if (advanceOnEntry && examples.length > 1) {
+        const previous = _mergedExampleCursorByCard.get(cursorKey);
+        if (previous !== undefined) currentExampleIndex = (previous + 1) % examples.length;
+    }
+    const exampleIndex = currentExampleIndex % examples.length;
+    const example = examples[exampleIndex];
+    _mergedExampleCursorByCard.set(cursorKey, exampleIndex);
+
+    const surface = String(
+        example?.pooledFrom
+        || card.representativeSurface
+        || card.targetWord
+        || card.displaySurface
+        || ''
+    ).trim();
+    const isRepresentative = foldSurfaceForm(surface)
+        === foldSurfaceForm(card.representativeSurface || card.targetWord);
+    const morphology = example?.pooledMorphology
+        || (isRepresentative ? card.morphology : null);
+    return { example, examples, surface, morphology };
+}
+
+function getDisplayedTargetHeadword(card) {
+    if (!card) return '';
+    if (!isFlipped && card.mergedLemma && card._activeExampleSurface) {
+        return card._activeExampleSurface;
+    }
+    return card.displaySurface || card.targetWord;
+}
+
 function isTrivialPlural(surface, canonical) {
     const form = foldSurfaceForm(surface);
     const base = foldSurfaceForm(canonical);
@@ -2142,6 +2205,12 @@ function updateCard({ announceHeadword = false } = {}) {
     // Get the current meaning for multi-meaning cards
     const currentMeaning = card.isMultiMeaning ? card.meanings[currentMeaningIndex] : null;
     const activeProductionAnswer = getActiveProductionAnswer(card, currentMeaning);
+    const mergedExampleFocus = getMergedLemmaExampleFocus(card, currentMeaning, {
+        advanceOnEntry: announceHeadword
+    });
+    card._activeExampleSurface = mergedExampleFocus?.surface || '';
+    card._activeExampleMorphology = mergedExampleFocus?.morphology || null;
+    const displayedTargetHeadword = getDisplayedTargetHeadword(card) || displaySurface;
 
     // Determine what to show on front and back based on flip direction
     let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
@@ -2206,8 +2275,8 @@ function updateCard({ announceHeadword = false } = {}) {
             exampleTranslation = currentMeaning.targetSentence;
         } else {
             // Target language → English (normal)
-            frontText = displaySurface;
-            backWord = displaySurface;
+            frontText = displayedTargetHeadword;
+            backWord = displayedTargetHeadword;
             backTranslation = currentMeaning.meaning;
             exampleSentence = currentMeaning.targetSentence;
             exampleTranslation = currentMeaning.englishSentence;
@@ -2248,10 +2317,11 @@ function updateCard({ announceHeadword = false } = {}) {
     // Morphology belongs to the verb POS rather than forming a separate
     // metadata strip. Build it once so both front directions can nest it
     // beneath the relevant verb badge.
-    const representativeMorphologyIsMisleading = card.mergedLemma
-        && foldSurfaceForm(card.representativeSurface || card.targetWord) !== foldSurfaceForm(displaySurface);
-    const morphLabels = card.morphology && !representativeMorphologyIsMisleading
-        ? [...new Map((Array.isArray(card.morphology) ? card.morphology : [card.morphology])
+    const displayedMorphology = card.mergedLemma
+        ? card._activeExampleMorphology
+        : card.morphology;
+    const morphLabels = displayedMorphology
+        ? [...new Map((Array.isArray(displayedMorphology) ? displayedMorphology : [displayedMorphology])
             .map(formatMorphLabel)
             .filter(Boolean)
             .map(label => [label.key, label])).values()]
@@ -2284,6 +2354,9 @@ function updateCard({ announceHeadword = false } = {}) {
             ${hasMorph ? `<span class="front-morph-list">${renderMorphTags()}</span>` : ''}
         </span>`;
     };
+    const backMorphologyHTML = !isFlipped && card.mergedLemma && morphLabels.length > 0
+        ? `<div class="front-morph-list back-morph-list" aria-label="Form used in this example">${renderMorphTags()}</div>`
+        : '';
 
     if (flippedFrontMeanings) {
         // EN→Target structured display: meanings with POS badges
@@ -2352,7 +2425,8 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Display lemma on front if different from target word
     const frontLemmaEl = document.getElementById('frontLemma');
-    if (!isFlipped && citationForm && citationForm !== displaySurface) {
+    if (!isFlipped && citationForm
+        && foldSurfaceForm(citationForm) !== foldSurfaceForm(displayedTargetHeadword)) {
         frontLemmaEl.textContent = citationForm;
         frontLemmaEl.dataset.formNote = formNote;
         frontLemmaEl.classList.toggle('has-form-note', Boolean(formNote));
@@ -2422,8 +2496,8 @@ function updateCard({ announceHeadword = false } = {}) {
     let backDerivationHTML = '';
     if (card.isMultiMeaning
         && citationForm
-        && citationForm !== displaySurface
-        && !isTrivialCanonicalRelation(displaySurface, citationForm)) {
+        && foldSurfaceForm(citationForm) !== foldSurfaceForm(backWordText)
+        && !isTrivialCanonicalRelation(backWordText, citationForm)) {
         if (!isFlipped) {
             backCitationHTML = `<div class="back-citation-line">
                 <span class="back-lemma">${escapeCardText(citationForm)}</span>
@@ -2497,6 +2571,7 @@ function updateCard({ announceHeadword = false } = {}) {
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 ${backCitationHTML}
+                ${backMorphologyHTML}
                 ${backDerivationHTML}
             </div>
             ${backPosLegendHTML}
@@ -3613,7 +3688,7 @@ function updateCard({ announceHeadword = false } = {}) {
     }
 
     if (announceHeadword && !isFlipped) {
-        speakWord(card.displaySurface || card.targetWord);
+        speakWord(getDisplayedTargetHeadword(card));
     }
 
     window.saveStudySessionSnapshot?.();
@@ -3648,7 +3723,7 @@ function flipCard() {
             if (spokenEnglish) speakWord(spokenEnglish, true);
         } else {
             // Target → English mode: front shows target word, speak target
-            speakWord(card.displaySurface || card.targetWord, false);
+            speakWord(getDisplayedTargetHeadword(card), false);
         }
     }
     window.saveStudySessionSnapshot?.();
@@ -4215,7 +4290,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727p';
+const ASSET_VERSION = '20260727q';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

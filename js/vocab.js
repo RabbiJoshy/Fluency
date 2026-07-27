@@ -541,7 +541,15 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
                 const key = exampleSentenceKey(e);
                 if (!key || seen.has(key)) continue;
                 seen.add(key);
-                target.examples.push({ ...e, pooledFrom: sib.word });
+                target.examples.push({
+                    ...e,
+                    pooledFrom: sib.word,
+                    // Keep the grammar of the exact sibling surface beside
+                    // its pooled example. Merged cards can then present the
+                    // evidenced form (dieron) while retaining the shared
+                    // lemma (dar) as their stable identity.
+                    pooledMorphology: e.pooledMorphology || sib.morphology || null
+                });
             }
         }
 
@@ -558,7 +566,11 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
                 const key = exampleSentenceKey(example);
                 if (!key || seen.has(key)) continue;
                 seen.add(key);
-                rawTarget.examples.push({ ...example, pooledFrom: example.pooledFrom || sib.word });
+                rawTarget.examples.push({
+                    ...example,
+                    pooledFrom: example.pooledFrom || sib.word,
+                    pooledMorphology: example.pooledMorphology || sib.morphology || null
+                });
             }
         }
     }

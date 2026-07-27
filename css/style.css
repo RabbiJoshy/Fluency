@@ -1905,6 +1905,10 @@
             background: rgba(0, 212, 170, 0.55);
         }
 
+        .back-morph-list {
+            margin: 5px auto 0;
+        }
+
         .front-morph-tag {
             font-family: var(--font-reading);
             font-size: 11.5px;
