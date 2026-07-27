@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Large merged-lemma cards now focus on one item and put detailed knowledge in an overview",
+      "details": [
+        "Merged-lemma cards with more than four learnable items show only the active meaning, Expression, or clitic form instead of filling the card with the complete inventory",
+        "The persistent Know/Review strip has moved into a scrollable meanings-and-expressions sheet opened from a bottom card icon with an explicit known/total count",
+        "Every item in the sheet can be focused on the card or independently marked Known or Review; cache v113→v114, assets 20260727h→20260727i"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "557f65f0",
       "summary": "Spanish cards now distinguish the encountered form from its dictionary form",
       "details": [

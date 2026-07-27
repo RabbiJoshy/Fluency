@@ -61,25 +61,33 @@ function knowledgeItemsForMeaning(card, meaning, meaningIndex) {
     if (meaning.allMWEs?.length) {
         return meaning.allMWEs.map((mwe, cycleIndex) => {
             const identity = normalizeKnowledgeText(mwe.id || mwe.family || mwe.expression);
-            return makeKnowledgeItem(
-                card,
-                'expression',
-                `expression|${identity}`,
-                mwe.expression || mwe.family || 'Expression',
-                meaningIndex,
-                cycleIndex
-            );
+            return {
+                ...makeKnowledgeItem(
+                    card,
+                    'expression',
+                    `expression|${identity}`,
+                    mwe.expression || mwe.family || 'Expression',
+                    meaningIndex,
+                    cycleIndex
+                ),
+                detail: mwe.translation || '',
+                pos: 'MWE'
+            };
         });
     }
     if (meaning.allClitics?.length) {
-        return meaning.allClitics.map((clitic, cycleIndex) => makeKnowledgeItem(
-            card,
-            'clitic',
-            `clitic|${normalizeKnowledgeText(clitic.form)}`,
-            clitic.form || 'Clitic form',
-            meaningIndex,
-            cycleIndex
-        ));
+        return meaning.allClitics.map((clitic, cycleIndex) => ({
+            ...makeKnowledgeItem(
+                card,
+                'clitic',
+                `clitic|${normalizeKnowledgeText(clitic.form)}`,
+                clitic.form || 'Clitic form',
+                meaningIndex,
+                cycleIndex
+            ),
+            detail: clitic.translation || '',
+            pos: 'CLITIC'
+        }));
     }
     if (meaning.pos === 'SENSE_CYCLE' && meaning.allSenses?.length) {
         return meaning.allSenses.map((sense, cycleIndex) => {
@@ -89,19 +97,23 @@ function knowledgeItemsForMeaning(card, meaning, meaningIndex) {
             const stableSenseId = sense.senseId || sense.sense_id || sense.id || '';
             const stableAliases = sense.senseIdAliases || sense.sense_id_aliases || [];
             const fallbackSignature = `sense|${normalizeKnowledgeText(pos)}|${normalizeKnowledgeText(translation)}|${normalizeKnowledgeText(context)}`;
-            return makeKnowledgeItem(
-                card,
-                'sense',
-                stableSenseId
-                    ? `sense-id|${normalizeKnowledgeText(stableSenseId)}`
-                    : fallbackSignature,
-                translation,
-                meaningIndex,
-                cycleIndex,
-                stableSenseId
-                    ? [fallbackSignature, ...stableAliases.map(id => `sense-id|${normalizeKnowledgeText(id)}`)]
-                    : []
-            );
+            return {
+                ...makeKnowledgeItem(
+                    card,
+                    'sense',
+                    stableSenseId
+                        ? `sense-id|${normalizeKnowledgeText(stableSenseId)}`
+                        : fallbackSignature,
+                    translation,
+                    meaningIndex,
+                    cycleIndex,
+                    stableSenseId
+                        ? [fallbackSignature, ...stableAliases.map(id => `sense-id|${normalizeKnowledgeText(id)}`)]
+                        : []
+                ),
+                detail: context,
+                pos
+            };
         });
     }
 
@@ -111,19 +123,23 @@ function knowledgeItemsForMeaning(card, meaning, meaningIndex) {
     const stableSenseId = meaning.senseId || meaning.sense_id || meaning.id || '';
     const stableAliases = meaning.senseIdAliases || meaning.sense_id_aliases || [];
     const fallbackSignature = `sense|${normalizeKnowledgeText(pos)}|${normalizeKnowledgeText(translation)}|${normalizeKnowledgeText(context)}`;
-    return [makeKnowledgeItem(
-        card,
-        'sense',
-        stableSenseId
-            ? `sense-id|${normalizeKnowledgeText(stableSenseId)}`
-            : fallbackSignature,
-        translation || pos,
-        meaningIndex,
-        0,
-        stableSenseId
-            ? [fallbackSignature, ...stableAliases.map(id => `sense-id|${normalizeKnowledgeText(id)}`)]
-            : []
-    )];
+    return [{
+        ...makeKnowledgeItem(
+            card,
+            'sense',
+            stableSenseId
+                ? `sense-id|${normalizeKnowledgeText(stableSenseId)}`
+                : fallbackSignature,
+            translation || pos,
+            meaningIndex,
+            0,
+            stableSenseId
+                ? [fallbackSignature, ...stableAliases.map(id => `sense-id|${normalizeKnowledgeText(id)}`)]
+                : []
+        ),
+        detail: context,
+        pos
+    }];
 }
 
 function getCardKnowledgeItems(card) {
@@ -424,39 +440,157 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
     }
 }
 
-function renderKnowledgeControl(card) {
+function escapeKnowledgeHTML(value) {
+    return String(value || '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[character]);
+}
+
+function knowledgeSectionLabel(type) {
+    if (type === 'expression') return 'Expressions';
+    if (type === 'clitic') return 'Attached forms';
+    return 'Meanings';
+}
+
+function renderKnowledgeOverviewButton(card) {
     if (!currentUser || currentUser.isGuest) return '';
     const summary = getCardKnowledgeSummary(card);
-    const activeItems = getActiveKnowledgeItems(card);
-    if (summary.total === 0 || activeItems.length === 0) return '';
+    if (summary.total === 0) return '';
+    const label = `${summary.learned} of ${summary.total} known`;
+    return `<button type="button" class="ref-icon-btn knowledge-overview-trigger" title="Meanings and expressions: ${label}" aria-label="Open meanings and expressions knowledge: ${label}" onclick="showKnowledgeOverview(event)">
+        <svg viewBox="0 0 42 42" aria-hidden="true">
+            <rect x="1" y="1" width="40" height="40" rx="7" class="knowledge-overview-icon-bg"/>
+            <path d="M12 13.5h18M12 21h18M12 28.5h11" class="knowledge-overview-icon-lines"/>
+            <path d="m27 29 2.4 2.4L34 26.8" class="knowledge-overview-icon-check"/>
+        </svg>
+        <span class="knowledge-overview-count" aria-hidden="true">${summary.learned}/${summary.total}</span>
+    </button>`;
+}
 
-    const activeStates = activeItems.map(item => getKnowledgeItemState(card, item));
-    const allKnown = activeStates.every(state => state.learned);
-    const allReview = activeStates.every(state => state.needsReview);
-    const noun = activeItems.length > 1
-        ? 'these meanings'
-        : activeItems[0].type === 'expression'
-            ? 'this expression'
-            : activeItems[0].type === 'clitic'
-                ? 'this form'
-                : 'this meaning';
-    const reviewCopy = summary.review > 0
-        ? `<span class="knowledge-summary-review">${summary.review} to review</span>`
-        : summary.unseen > 0
-            ? `<span>${summary.unseen} not marked</span>`
-            : '<span>All resolved</span>';
-
-    return `
-        <div class="knowledge-control" onclick="event.stopPropagation()">
-            <div class="knowledge-summary">
-                <strong>${summary.learned}/${summary.total} known</strong>
-                ${reviewCopy}
-            </div>
-            <div class="knowledge-actions" aria-label="Knowledge for ${noun}">
-                <button type="button" class="knowledge-action knowledge-known${allKnown ? ' is-active' : ''}" onclick="markCurrentKnowledge(event, true)">Know ${noun}</button>
-                <button type="button" class="knowledge-action knowledge-review${allReview ? ' is-active' : ''}" onclick="markCurrentKnowledge(event, false)">Review ${noun}</button>
-            </div>
+function ensureKnowledgeOverviewModal() {
+    let modal = document.getElementById('knowledgeOverviewModal');
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.id = 'knowledgeOverviewModal';
+    modal.className = 'knowledge-overview-modal';
+    modal.hidden = true;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'knowledgeOverviewTitle');
+    modal.innerHTML = `
+        <div class="knowledge-overview-sheet">
+            <header class="knowledge-overview-header">
+                <div>
+                    <span class="knowledge-overview-kicker">Card knowledge</span>
+                    <h2 id="knowledgeOverviewTitle">Meanings and expressions</h2>
+                </div>
+                <button type="button" class="knowledge-overview-close" aria-label="Close knowledge overview" onclick="closeKnowledgeOverview(event)">×</button>
+            </header>
+            <div id="knowledgeOverviewSummary" class="knowledge-overview-summary"></div>
+            <div id="knowledgeOverviewList" class="knowledge-overview-list"></div>
         </div>`;
+    modal.addEventListener('click', event => {
+        if (event.target === modal) closeKnowledgeOverview(event);
+    });
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function renderKnowledgeOverview(card) {
+    const modal = ensureKnowledgeOverviewModal();
+    const items = getCardKnowledgeItems(card);
+    const summary = getCardKnowledgeSummary(card);
+    const summaryEl = modal.querySelector('#knowledgeOverviewSummary');
+    const listEl = modal.querySelector('#knowledgeOverviewList');
+    const reviewLabel = summary.review === 1 ? '1 review' : `${summary.review} review`;
+    const unseenLabel = summary.unseen === 1 ? '1 unmarked' : `${summary.unseen} unmarked`;
+    summaryEl.innerHTML = `
+        <strong>${summary.learned}/${summary.total} known</strong>
+        <span class="knowledge-overview-summary-review">${reviewLabel}</span>
+        <span>${unseenLabel}</span>`;
+
+    const sections = new Map();
+    items.forEach((item, index) => {
+        const label = knowledgeSectionLabel(item.type);
+        if (!sections.has(label)) sections.set(label, []);
+        sections.get(label).push({ item, index });
+    });
+
+    listEl.innerHTML = Array.from(sections, ([label, rows]) => `
+        <section class="knowledge-overview-section">
+            <h3>${label}<span>${rows.length}</span></h3>
+            <div class="knowledge-overview-rows">
+                ${rows.map(({ item, index }) => {
+                    const state = getKnowledgeItemState(card, item);
+                    const status = state.learned ? 'known' : (state.needsReview ? 'review' : 'unseen');
+                    const statusText = status === 'known' ? 'Known' : (status === 'review' ? 'Review' : 'Unmarked');
+                    const pos = item.pos && item.type === 'sense'
+                        ? `<span class="knowledge-overview-pos">${escapeKnowledgeHTML(item.pos)}</span>`
+                        : '';
+                    const detail = item.detail
+                        ? `<small>${escapeKnowledgeHTML(item.detail)}</small>`
+                        : '';
+                    return `<div class="knowledge-overview-row is-${status}">
+                        <button type="button" class="knowledge-overview-focus" onclick="focusKnowledgeOverviewItem(event, ${index})" title="Show this item on the card">
+                            <span class="knowledge-overview-status" aria-label="${statusText}"></span>
+                            <span class="knowledge-overview-copy">${pos}<strong>${escapeKnowledgeHTML(item.label)}</strong>${detail}</span>
+                        </button>
+                        <div class="knowledge-overview-actions" aria-label="Knowledge for ${escapeKnowledgeHTML(item.label)}">
+                            <button type="button" class="knowledge-overview-mark mark-review${status === 'review' ? ' is-active' : ''}" onclick="markKnowledgeOverviewItem(event, ${index}, false)" aria-label="Mark for review" title="Mark for review">×</button>
+                            <button type="button" class="knowledge-overview-mark mark-known${status === 'known' ? ' is-active' : ''}" onclick="markKnowledgeOverviewItem(event, ${index}, true)" aria-label="Mark known" title="Mark known">✓</button>
+                        </div>
+                    </div>`;
+                }).join('')}
+            </div>
+        </section>`).join('');
+}
+
+function showKnowledgeOverview(event) {
+    event?.stopPropagation();
+    const card = flashcards[currentIndex];
+    if (!card) return;
+    const modal = ensureKnowledgeOverviewModal();
+    renderKnowledgeOverview(card);
+    modal.hidden = false;
+    document.body.classList.add('knowledge-overview-open');
+    modal.querySelector('.knowledge-overview-close')?.focus();
+}
+
+function closeKnowledgeOverview(event) {
+    event?.stopPropagation();
+    const modal = document.getElementById('knowledgeOverviewModal');
+    if (modal) modal.hidden = true;
+    document.body.classList.remove('knowledge-overview-open');
+}
+
+function focusKnowledgeOverviewItem(event, index) {
+    event?.stopPropagation();
+    const card = flashcards[currentIndex];
+    const item = getCardKnowledgeItems(card)[index];
+    if (!card || !item) return;
+    closeKnowledgeOverview();
+    window.focusKnowledgeCardItem?.(item.meaningIndex, item.cycleIndex || 0);
+}
+
+async function markKnowledgeOverviewItem(event, index, isCorrect) {
+    event?.stopPropagation();
+    const card = flashcards[currentIndex];
+    const item = getCardKnowledgeItems(card)[index];
+    if (!card || !item) return;
+    await saveKnowledgeProgress(card, [item], isCorrect);
+    updateCard();
+    renderKnowledgeOverview(card);
+}
+
+// Kept as an empty compatibility hook for cached flashcards.js versions.
+// Granular actions now live in the explicit overview instead of taking a
+// permanent strip of vertical space from every card.
+function renderKnowledgeControl() {
+    return '';
 }
 
 async function markCurrentKnowledge(event, isCorrect) {
@@ -478,5 +612,16 @@ window.getWordKnowledgeReviewInfo = getWordKnowledgeReviewInfo;
 window.buildFocusedReviewCard = buildFocusedReviewCard;
 window.saveKnowledgeProgress = saveKnowledgeProgress;
 window.renderKnowledgeControl = renderKnowledgeControl;
+window.renderKnowledgeOverviewButton = renderKnowledgeOverviewButton;
 window.markCurrentKnowledge = markCurrentKnowledge;
+window.showKnowledgeOverview = showKnowledgeOverview;
+window.closeKnowledgeOverview = closeKnowledgeOverview;
+window.focusKnowledgeOverviewItem = focusKnowledgeOverviewItem;
+window.markKnowledgeOverviewItem = markKnowledgeOverviewItem;
 window.cacheItemProgress = cacheItemProgress;
+
+document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    const modal = document.getElementById('knowledgeOverviewModal');
+    if (modal && !modal.hidden) closeKnowledgeOverview(event);
+});

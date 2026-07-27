@@ -2285,8 +2285,18 @@ function updateCard({ announceHeadword = false } = {}) {
         backHTML += `<div class="extra-translation-unavailable"><strong>No translation available yet.</strong><br>This one-off lyric remains available as corpus evidence.</div>`;
     }
 
-    // For multi-meaning cards, show all meanings on the back
+    // Multi-meaning cards keep a compact active-item view for large merged
+    // inventories; smaller and unmerged cards retain the full inline menu.
     if (card.isMultiMeaning) {
+        // Merged-lemma cards can carry a large learnable inventory (dictionary
+        // senses plus Expressions/clitics). Once that inventory grows beyond a
+        // small glanceable menu, keep the ordinary card focused on the active
+        // item. The bottom knowledge-map button remains the explicit route to
+        // the complete list and can focus any other item directly.
+        const knowledgeItemCount = getCardKnowledgeItems(card).length;
+        const compactKnowledgeView = useLemmaMode
+            && currentUser && !currentUser.isGuest
+            && knowledgeItemCount > 4;
 
         // Two POS-section maps:
         //   - scrollSections: regular meanings + SENSE_CYCLE (these scroll)
@@ -2445,6 +2455,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>')
                 : (getConjugatedEnglish(card, m.meaning) || m.meaning);
             if (isMWE) {
+                if (compactKnowledgeView && !isSelected) return;
                 // Expression row: plain bold expression (left), translation
                 // (middle), counter (right). The row tint already provides
                 // enough structure; an inner capsule only adds clutter.
@@ -2501,6 +2512,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 </div>
                 `);
             } else if (isClitic) {
+                if (compactKnowledgeView && !isSelected) return;
                 // Clitic row mirrors expressions: plain bold form, translation,
                 // counter. The outer row already supplies grouping and color.
                 const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
@@ -2512,6 +2524,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 </div>
                 `);
             } else if (isSenseCycle) {
+                if (compactKnowledgeView && !isSelected) return;
                 // Sense cycle row: all unassigned/remainder senses for this
                 // POS; the shared POS pill now lives in the header legend.
                 const rawTranslations = m.allSenses ? m.allSenses.map(s => s.translation) : [m.meaning];
@@ -2615,6 +2628,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     //   ctx-axis:   varying trans | shared ctx
                     const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
                     const groupIsCurrent = groupSelected || anyMemberSelected;
+                    if (compactKnowledgeView && !groupIsCurrent) return;
                     const groupStateClasses = groupIsCurrent ? ' is-current-sense' : '';
                     const cardBg = 'rgba(var(--sense-match-rgb), 0.08)';
                     const sharedBg = groupSelected
@@ -2690,6 +2704,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     </div>
                     `);
                 } else {
+                    if (compactKnowledgeView && !isSelected) return;
                     // Singleton: centred translation with optional inline
                     // context. POS is represented by the header legend and tint.
                     let contextInline = '';
@@ -2724,8 +2739,6 @@ function updateCard({ announceHeadword = false } = {}) {
         if (traySections.size > 0) {
             backHTML += `<div class="meanings-tray">${renderSections(traySections)}</div>`;
         }
-        backHTML += renderKnowledgeControl(card);
-
         // Show current sentence
         // For MWE/Clitic senses, suppress the sentence block entirely when the
         // current expression has no matching examples — otherwise the card
@@ -3125,6 +3138,12 @@ function updateCard({ announceHeadword = false } = {}) {
         </button>`;
     }
 
+    // Granular sense/expression knowledge belongs in one card-wide overview,
+    // not a persistent two-button strip under every meaning. The compact
+    // trigger keeps the full inventory reachable without stealing sentence
+    // space from the ordinary study flow.
+    backHTML += renderKnowledgeOverviewButton(card);
+
     for (const [key, url] of Object.entries(card.links)) {
         if (key === 'wordReference') continue; // Skip wordReference
         // Conjugation is handled by the unified in-app toggle above.
@@ -3504,6 +3523,22 @@ function selectMeaning(index) {
     updateCard();
 }
 
+// The card-wide knowledge overview can jump directly to any individual item,
+// including a later Expression/clitic in a shared cycling row. Stamp the same
+// explicit-selection key as a sub-row click so updateCard() does not
+// immediately expand that sense back into its overarching duplicate group.
+function focusKnowledgeCardItem(meaningIndex, cycleIndex = 0) {
+    stopExampleAutoplay(true);
+    const card = flashcards[currentIndex];
+    if (!card?.meanings?.[meaningIndex]) return;
+    currentGroupSelection = null;
+    currentMeaningIndex = meaningIndex;
+    currentMWEIndex = Math.max(0, Number(cycleIndex) || 0);
+    currentExampleIndex = 0;
+    _explicitMeaningSelectionKey = meaningSelectionKey(card, meaningIndex);
+    updateCard();
+}
+
 // Click handler for the shared field of a group card. It uses the renderer's
 // effective member set (with a derivation fallback) so the inline onclick
 // stays trivial and overlapping duplicate groups do not absorb one another.
@@ -3800,6 +3835,7 @@ window.stopExampleAutoplay = stopExampleAutoplay;
 window.cycleMWEForward = cycleMWEForward;
 window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
+window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
 window.nextCard = nextCard;
@@ -3928,7 +3964,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727f';
+const ASSET_VERSION = '20260727i';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

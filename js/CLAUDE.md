@@ -107,6 +107,13 @@ known items stay hidden. Explicitly knowing every item promotes the parent card 
 Known. The selected level's review deck is synthesized from unresolved rows;
 ordinary learning cards remain word/lemma cards.
 
+The ordinary card does not carry a persistent per-item Know/Review strip. A compact
+knowledge-map icon in the bottom link row opens the scrollable card inventory,
+grouped into Meanings, Expressions, and Attached forms. Each item can be focused on
+the card or marked Known/Review there. In Merge Lemmas mode, inventories above four
+items render only the active row on the card; the overview is the explicit route to
+the rest, avoiding an oversized sense/MWE menu in the normal study flow.
+
 Knowledge IDs are `${parentFullId}~k1:<type>:<hash>`. The hash prefers the durable
 pipeline `sense_id`/`id` now retained by both standard meanings and the artist
 master. Legacy master-only senses receive deterministic `generated:artist-master:`
