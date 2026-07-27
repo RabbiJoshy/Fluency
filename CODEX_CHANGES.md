@@ -30,6 +30,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Emphasize the selected study set
+
+- Commit `e5a2d872`; front-end cache `flashcards-v121` / `20260727p`.
+- Replaced the selected set number's subtle outline with a bright layered accent ring and a gentle lift, bounce, and halo pulse, while leaving its wrong/review/known/unseen segmented fill unobscured.
+- Added an equally clear static treatment for learners who request reduced motion.
+- Verification: valid changelog JSON, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-27 — Speed source setup and refine study controls
 
 - Commit `73f6741c`; front-end cache `flashcards-v120` / `20260727o`.
