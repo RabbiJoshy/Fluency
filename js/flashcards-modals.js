@@ -1037,7 +1037,8 @@ const FLAG_TARGETS = [
     { key: 'lemma', label: 'Lemma', detail: 'Wrong base word or merged family' },
     { key: 'surface', label: 'Word form', detail: 'Conjugation or displayed morphology' },
     { key: 'card', label: 'Whole card', detail: 'Rank, frequency, layout, or mixed issue' },
-    { key: 'note', label: 'Note only', detail: 'Describe something without choosing a field' }
+    { key: 'note', label: 'Note', detail: 'Describe something without choosing a field', quickOnly: true },
+    { key: 'routing', label: 'Classification tag', detail: 'English, loanword, or cognate', quickOnly: true }
 ];
 const FLAG_CATEGORIES = [
     { key: 'matching', label: 'Wrong match' },
@@ -1048,6 +1049,11 @@ const FLAG_CATEGORIES = [
     { key: 'expression', label: 'Expression / clitic' },
     { key: 'frequency', label: 'Frequency / rank' },
     { key: 'other', label: 'Other' }
+];
+const FLAG_ROUTING_TAGS = [
+    { key: 'english', label: 'English word', shortLabel: 'English', detail: 'English or code-switch vocabulary' },
+    { key: 'loanword', label: 'Loanword', shortLabel: 'Loanword', detail: 'A borrowed English word used in Spanish' },
+    { key: 'cognate', label: 'Cognate', shortLabel: 'Cognate', detail: 'Transparent enough to be filtered as a cognate' }
 ];
 const FLAG_SENSE_TARGETS = new Set(['pairing', 'sense', 'example']);
 const FLAG_DEFAULT_CATEGORY = {
@@ -1108,7 +1114,17 @@ function _flagTargetLabel() {
 }
 
 function _flagCategoryLabel() {
-    return FLAG_CATEGORIES.find(item => item.key === _flagCategory)?.label || 'Unspecified';
+    return [...FLAG_CATEGORIES, ...FLAG_ROUTING_TAGS]
+        .find(item => item.key === _flagCategory)?.label || 'Unspecified';
+}
+
+function _focusFlagNote() {
+    requestAnimationFrame(() => {
+        const note = document.getElementById('flagMenuNote');
+        if (!note) return;
+        note.focus();
+        note.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
 }
 
 function _updateFlagConfirmState() {
@@ -1116,22 +1132,34 @@ function _updateFlagConfirmState() {
     if (!confirmEl) return;
     const note = (document.getElementById('flagMenuNote')?.value || '').trim();
     const noteRequired = _flagTarget === 'note';
-    confirmEl.disabled = noteRequired && !note;
-    confirmEl.textContent = noteRequired ? 'Send audit note' : 'Send audit flag';
+    const routingRequired = _flagTarget === 'routing';
+    confirmEl.disabled = (noteRequired && !note) || (routingRequired && !_flagCategory);
+    confirmEl.textContent = noteRequired
+        ? 'Send note'
+        : routingRequired
+            ? `Tag as ${_flagCategoryLabel()}`
+            : 'Send audit flag';
     confirmEl.title = noteRequired && !note
-        ? 'Write a note before sending a note-only report'
-        : 'Send this report to the data audit';
+        ? 'Type the note before sending it'
+        : routingRequired
+            ? `Send the ${_flagCategoryLabel()} classification to the data audit`
+            : 'Send this report to the data audit';
 }
 
 function _renderFlagMenu() {
     const card = _flagMenuCard();
     const sensesEl = document.getElementById('flagMenuSenses');
     const targetsEl = document.getElementById('flagMenuTargets');
+    const quickActionsEl = document.getElementById('flagMenuQuickActions');
     const categoriesEl = document.getElementById('flagMenuCategories');
     const senseSectionEl = document.getElementById('flagMenuSenseSection');
+    const categorySectionEl = document.getElementById('flagMenuCategorySection');
+    const previewSectionEl = document.getElementById('flagMenuPreviewSection');
+    const noteSectionEl = document.getElementById('flagMenuNoteSection');
+    const noteLabelEl = noteSectionEl?.querySelector('.flag-menu-note-label');
     const titleEl = document.getElementById('flagMenuTitle');
     const previewEl = document.getElementById('flagMenuPairingPreview');
-    if (!card || !sensesEl || !targetsEl || !categoriesEl) return;
+    if (!card || !sensesEl || !targetsEl || !quickActionsEl || !categoriesEl) return;
 
     const word = card.targetWord || card.word || 'card';
     if (titleEl) titleEl.textContent = `Flag: ${word}`;
@@ -1141,8 +1169,18 @@ function _renderFlagMenu() {
     if (_flagSelIdx < 0) _flagSelIdx = 0;
     if (_flagSelIdx > meanings.length - 1) _flagSelIdx = Math.max(0, meanings.length - 1);
 
+    const noteMode = _flagTarget === 'note';
+    const routingMode = _flagTarget === 'routing';
     const needsSense = FLAG_SENSE_TARGETS.has(_flagTarget);
     if (senseSectionEl) senseSectionEl.hidden = !needsSense;
+    if (categorySectionEl) categorySectionEl.hidden = noteMode || routingMode;
+    if (previewSectionEl) previewSectionEl.hidden = noteMode;
+    if (noteSectionEl) noteSectionEl.hidden = routingMode;
+    if (noteLabelEl) {
+        noteLabelEl.innerHTML = noteMode
+            ? 'Write your note <span>required</span>'
+            : 'Add a note <span>optional</span>';
+    }
     if (!meanings.length) {
         sensesEl.innerHTML = '<li class="card-meta-empty">No senses on this card.</li>';
     } else {
@@ -1158,7 +1196,18 @@ function _renderFlagMenu() {
         }).join('');
     }
 
-    targetsEl.innerHTML = FLAG_TARGETS.map(item => {
+    quickActionsEl.innerHTML = `
+        <button type="button" class="flag-menu-quick-action flag-menu-quick-note${noteMode ? ' selected' : ''}" data-quick-target="note">
+            <strong>Write a note</strong><span>Type first, then send</span>
+        </button>
+        ${FLAG_ROUTING_TAGS.map(item => `
+            <button type="button" class="flag-menu-quick-action${routingMode && _flagCategory === item.key ? ' selected' : ''}" data-quick-target="routing" data-quick-category="${item.key}">
+                <strong>${item.shortLabel}</strong><span>${item.detail}</span>
+            </button>
+        `).join('')}
+    `;
+
+    targetsEl.innerHTML = FLAG_TARGETS.filter(item => !item.quickOnly).map(item => {
         const sel = item.key === _flagTarget ? ' selected' : '';
         return `<button type="button" class="flag-menu-target${sel}" data-target="${item.key}">
             <strong>${item.label}</strong><span>${item.detail}</span>
@@ -1192,7 +1241,8 @@ function _renderFlagMenu() {
             lemma: `<div class="flag-preview-object"><span>Lemma</span><strong>${_escapeHtml(lemma || 'Missing')}</strong><small>Current form: ${_escapeHtml(word || 'unknown')}</small></div>`,
             surface: `<div class="flag-preview-object"><span>Word form</span><strong>${_escapeHtml(word || 'Missing')}</strong><small>Lemma: ${_escapeHtml(lemma || 'unknown')}</small></div>`,
             card: `<div class="flag-preview-object"><span>Whole card</span><strong>${_escapeHtml(word || 'Unknown card')}</strong><small>${_escapeHtml(card.fullId || card.id || 'No card ID')}</small></div>`,
-            note: '<div class="flag-preview-object"><span>Note only</span><strong>No field selected</strong><small>Your note will still include the current card ID for audit context.</small></div>'
+            note: '<div class="flag-preview-object"><span>Note only</span><strong>No field selected</strong><small>Your note will still include the current card ID for audit context.</small></div>',
+            routing: `<div class="flag-preview-object"><span>Classification tag</span><strong>${_escapeHtml(_flagCategoryLabel())}</strong><small>${_escapeHtml(word || 'Unknown card')} · ${_escapeHtml(card.fullId || card.id || 'No card ID')}</small></div>`
         };
         previewEl.innerHTML = previews[_flagTarget] || previews.card;
     }
@@ -1204,6 +1254,14 @@ function _renderFlagMenu() {
             if (!isNaN(idx)) {
                 flagMenuSelect(idx);
             }
+        });
+    });
+    quickActionsEl.querySelectorAll('.flag-menu-quick-action').forEach(btn => {
+        btn.addEventListener('click', () => {
+            _flagTarget = btn.dataset.quickTarget;
+            _flagCategory = btn.dataset.quickCategory || '';
+            _renderFlagMenu();
+            if (_flagTarget === 'note') _focusFlagNote();
         });
     });
     targetsEl.querySelectorAll('.flag-menu-target').forEach(btn => {
@@ -1313,6 +1371,9 @@ function flagMenuConfirm() {
         case 'card':
             path = 'card';
             break;
+        case 'routing':
+            path = `routing:${_flagCategory || 'unspecified'}`;
+            break;
         case 'note':
             path = `note:${Date.now()}`;
             break;
@@ -1330,6 +1391,10 @@ function flagMenuConfirm() {
         `Lemma: ${lemma}`,
         `Card ID: ${cardId || '(missing)'}`,
     ];
+    const displayedSurface = card._activeExampleSurface || card.displaySurface || word;
+    if (displayedSurface && displayedSurface !== word) {
+        reportLines.push(`Displayed form: ${displayedSurface}`);
+    }
     if (FLAG_SENSE_TARGETS.has(_flagTarget)) {
         reportLines.push(`Sense ${_flagSelIdx + 1}: ${m?.pos || '?'} · ${gloss || '(empty)'}`);
         if (senseId) reportLines.push(`Sense ID: ${senseId}`);
@@ -1363,6 +1428,12 @@ function flagMenuConfirm() {
     if (_flagCategory === 'frequency') {
         reportLines.push(`Rank: ${card.vocabularyRank || card.rank || '(none)'}`);
         reportLines.push(`Corpus count: ${card.corpusCount ?? card.corpus_count ?? '(none)'}`);
+    }
+    if (_flagTarget === 'routing') {
+        reportLines.push(`Requested classification: ${_flagCategoryLabel()}`);
+        reportLines.push(`Current is_english: ${card.is_english ?? '(missing)'}`);
+        reportLines.push(`Current is_english_loanword: ${card.is_english_loanword ?? '(missing)'}`);
+        reportLines.push(`Current cognate score: ${card.cognate_score ?? '(missing)'}`);
     }
     if (note) reportLines.push(`Note: ${note}`);
     const report = reportLines.join('\n');

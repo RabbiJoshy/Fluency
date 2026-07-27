@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260727q">
-    <link rel="modulepreload" href="js/state.js?v=20260727q">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260727q">
-    <link rel="modulepreload" href="js/speech.js?v=20260727q">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260727q">
-    <link rel="modulepreload" href="js/auth.js?v=20260727q">
-    <link rel="modulepreload" href="js/spotify.js?v=20260727q">
-    <link rel="modulepreload" href="js/estimation.js?v=20260727q">
-    <link rel="modulepreload" href="js/config.js?v=20260727q">
-    <link rel="modulepreload" href="js/progress.js?v=20260727q">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260727q">
-    <link rel="modulepreload" href="js/ui.js?v=20260727q">
-    <link rel="modulepreload" href="js/vocab.js?v=20260727q">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260727q">
+    <link rel="modulepreload" href="js/main.js?v=20260728a">
+    <link rel="modulepreload" href="js/state.js?v=20260728a">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260728a">
+    <link rel="modulepreload" href="js/speech.js?v=20260728a">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260728a">
+    <link rel="modulepreload" href="js/auth.js?v=20260728a">
+    <link rel="modulepreload" href="js/spotify.js?v=20260728a">
+    <link rel="modulepreload" href="js/estimation.js?v=20260728a">
+    <link rel="modulepreload" href="js/config.js?v=20260728a">
+    <link rel="modulepreload" href="js/progress.js?v=20260728a">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260728a">
+    <link rel="modulepreload" href="js/ui.js?v=20260728a">
+    <link rel="modulepreload" href="js/vocab.js?v=20260728a">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260728a">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -175,25 +175,29 @@
             </div>
             <div class="card-meta-body">
                 <div class="flag-menu-hint">Tell the data audit exactly where to look. The visible sense and example start selected.</div>
+                <div class="card-meta-section flag-menu-quick-section">
+                    <h4>Quick report</h4>
+                    <div class="flag-menu-quick-actions" id="flagMenuQuickActions"></div>
+                </div>
+                <div class="card-meta-section" id="flagMenuNoteSection">
+                    <label class="flag-menu-note-label" for="flagMenuNote">Add a note <span>optional</span></label>
+                    <textarea id="flagMenuNote" class="flag-menu-note" rows="3" maxlength="600" placeholder="What did you notice? Include the correction or expected behaviour if you know it."></textarea>
+                </div>
                 <div class="card-meta-section flag-menu-target-section">
-                    <h4>What should I inspect?</h4>
+                    <h4>Detailed report</h4>
                     <div class="flag-menu-targets" id="flagMenuTargets"></div>
                 </div>
                 <div class="card-meta-section" id="flagMenuSenseSection">
                     <h4>Which meaning?</h4>
                     <ul class="flag-menu-senses" id="flagMenuSenses" role="listbox" aria-label="Card senses"></ul>
                 </div>
-                <div class="card-meta-section">
+                <div class="card-meta-section" id="flagMenuCategorySection">
                     <h4>What seems wrong? <span class="flag-section-optional">optional</span></h4>
                     <div class="flag-menu-categories" id="flagMenuCategories"></div>
                 </div>
-                <div class="card-meta-section">
+                <div class="card-meta-section" id="flagMenuPreviewSection">
                     <h4>Audit preview</h4>
                     <div class="flag-menu-pairing" id="flagMenuPairingPreview"></div>
-                </div>
-                <div class="card-meta-section">
-                    <label class="flag-menu-note-label" for="flagMenuNote">Note <span>optional</span></label>
-                    <textarea id="flagMenuNote" class="flag-menu-note" rows="3" maxlength="600" placeholder="What did you notice? Include the correction or expected behaviour if you know it."></textarea>
                 </div>
             </div>
             <div class="card-meta-footer">
@@ -1174,6 +1178,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260727q"></script>
+    <script type="module" src="js/main.js?v=20260728a"></script>
 </body>
 </html>

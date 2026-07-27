@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-28",
+      "commit": "pending",
+      "summary": "Card reports now make notes and classification tags quick and explicit",
+      "details": [
+        "Write a note now opens a focused required text field and cannot submit until something has actually been typed",
+        "English, Loanword, and Cognate are promoted to quick classification tags with a clear final action and routing diagnostics included in the audit report",
+        "Detailed sense, example, lemma, morphology, frequency, and whole-card reports remain available below; cache v122→v123, assets 20260727q→20260728a"
+      ]
+    },
+    {
       "date": "2026-07-27",
       "commit": "1987dfd1",
       "summary": "Merged-lemma cards now teach the form used by each example",

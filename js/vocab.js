@@ -1677,6 +1677,12 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 relatedLemma: item.related_lemma || null,
                 derivationRelation: item.derivation_relation || null
             };
+            // Retain routing diagnostics on the study card so a one-tap
+            // classification report can state both the requested correction
+            // and what the current pipeline actually stamped.
+            card.is_english = item.is_english ?? null;
+            card.is_english_loanword = item.is_english_loanword ?? null;
+            card.cognate_score = item.cognate_score ?? null;
             card.translationUnavailable = meanings.every(meaning => !String(meaning.meaning || '').trim());
             card.artistVocabularyScope = activeArtist ? artistVocabularyScope : null;
             const deckCard = studyMode === 'review' ? buildFocusedReviewCard(card) : card;
