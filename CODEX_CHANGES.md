@@ -25,8 +25,18 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Regular plural dictionary twins share their explicit singular lemma identity while preserving every source sense ID. Derivational families such as `besito` → `beso` remain separate cards/progress records and use a conservative, auditable relation layer rather than suffix-only collapsing.
 - Card reporting has one owner-facing route: both visible report controls open the structured audit sheet directly; the obsolete metadata/field-flag sheet is retired.
 - Artist clitic rows consume split-example `c` buckets in single- and multi-artist decks. They teach the exact attached form as an infinitive, gerund, or affirmative command plus the clitic's person/case and English role, rather than presenting only the base infinitive gloss.
+- Boot, source navigation, exact resume, and deck replacement share one app-level loading surface. It covers partial auth/setup/card DOM until the destination is coherent; it does not justify artificial waiting, and cached progress should remain usable while remote Sheets reconciliation runs in the background.
 
 ## Codex task history
+
+### 2026-07-27 — Make app transitions coherent and faster
+
+- Commit `8f29412e`; front-end cache `flashcards-v119` / `20260727n`.
+- Added a single branded loading surface above authentication, setup, and active study. It now covers initial hydration, Lyrics↔Speech navigation, artist selection, exact-session resume, review loading, and set/level replacement, with contextual rather than generic copy.
+- Removed the loader's unconditional 800 ms post-build delay. Decks swap on the next animation frame, and the completion modal is covered before the old final card can reappear, making warm next-set transitions both faster and visually atomic.
+- Exact resume now starts from synchronously restored local progress instead of waiting for the remote Google Sheets refresh. Sheets still reconcile in the background, but hidden setup controls are not expensively rebuilt underneath an active resumed deck.
+- Artist and Speech setup now await their asynchronous level/exclusion work before revealing the screen. A 12-second fail-open guard and `finally` cleanup prevent an initialization or data error from trapping the learner behind the loading surface.
+- Verification: bundled-Node syntax checks for every changed JavaScript/service-worker file, valid changelog JSON, one-value cache/version scan, removed-delay assertion, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Repair clitic cards and reporting flow
 

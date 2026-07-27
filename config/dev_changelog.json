@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "8f29412e",
       "summary": "Loading transitions now hide partial screens and sets open without the artificial pause",
       "details": [
         "One consistent Fluency loading screen covers authentication, Lyrics/Speech and artist navigation, exact-session resume, review loading, and set-to-set replacement",
