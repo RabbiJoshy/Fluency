@@ -60,6 +60,7 @@ updated: YYYY-MM-DD
 | `artist_sense_pipeline.md` | implemented | spanish | Artist sense pipeline: Wiktionary senses + Flash Lite classifier + method priority |
 | `sense_provenance.md` | research | cross-lang | Prompt registry + per-assignment provenance; resolution by capability tier, not file order |
 | `sheets_consolidation.md` | decided | cross-lang | Google Sheets 4→2 tab rollup (unified Progress + FlaggedWords); Codex executes; + flag triage |
+| `artist_pipeline_architecture_review.md` | research | cross-lang | Pre-scale-out weakness review: provenance gap, two divergent prompt paths, language seam, count/routing debt |
 | `prompts/translation_services.md` | prompt | spanish | Research: best translation API/model for Spanish lyrics → English |
 | `prompts/elision_resolution_refactor.md` | prompt | spanish | Move Spanish elision resolution before tokenization |
 | `prompts/french_dict_equivalent.md` | prompt | french | Whether to supplement or replace the enwiktionary French slice (Wiktionnaire dump, Le Robert scrape, paid APIs) |
