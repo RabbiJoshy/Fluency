@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260727e">
-    <link rel="modulepreload" href="js/state.js?v=20260727e">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260727e">
-    <link rel="modulepreload" href="js/speech.js?v=20260727e">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260727e">
-    <link rel="modulepreload" href="js/auth.js?v=20260727e">
-    <link rel="modulepreload" href="js/spotify.js?v=20260727e">
-    <link rel="modulepreload" href="js/estimation.js?v=20260727e">
-    <link rel="modulepreload" href="js/config.js?v=20260727e">
-    <link rel="modulepreload" href="js/progress.js?v=20260727e">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260727e">
-    <link rel="modulepreload" href="js/ui.js?v=20260727e">
-    <link rel="modulepreload" href="js/vocab.js?v=20260727e">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260727e">
+    <link rel="modulepreload" href="js/main.js?v=20260727f">
+    <link rel="modulepreload" href="js/state.js?v=20260727f">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260727f">
+    <link rel="modulepreload" href="js/speech.js?v=20260727f">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260727f">
+    <link rel="modulepreload" href="js/auth.js?v=20260727f">
+    <link rel="modulepreload" href="js/spotify.js?v=20260727f">
+    <link rel="modulepreload" href="js/estimation.js?v=20260727f">
+    <link rel="modulepreload" href="js/config.js?v=20260727f">
+    <link rel="modulepreload" href="js/progress.js?v=20260727f">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260727f">
+    <link rel="modulepreload" href="js/ui.js?v=20260727f">
+    <link rel="modulepreload" href="js/vocab.js?v=20260727f">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260727f">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -1006,6 +1006,13 @@
                             <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="speechEnabled" data-value="on" aria-pressed="true">On</button>
                         </div>
                     </div>
+                    <div class="settings-default-row settings-default-row-explained">
+                        <span>Spaced repetition <small>Off keeps due cards Known; mistakes still go to Review.</small></span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Spaced repetition setting">
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="spacedRepetitionEnabled" data-value="off" aria-pressed="true">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="spacedRepetitionEnabled" data-value="on" aria-pressed="false">On</button>
+                        </div>
+                    </div>
                 </section>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="hideSingleOccToggle">
                     <span>Hide single-occurrence words</span>
@@ -1156,6 +1163,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260727e"></script>
+    <script type="module" src="js/main.js?v=20260727f"></script>
 </body>
 </html>

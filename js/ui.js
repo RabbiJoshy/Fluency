@@ -19,6 +19,7 @@ function applyGlobalStudyDefaults() {
     excludeCognates = saved.excludeCognates === true;
     isFlipped = saved.directionFlipped === true;
     speechEnabled = saved.speechEnabled !== false;
+    spacedRepetitionEnabled = saved.spacedRepetitionEnabled === true;
     syncStudyPreferenceControls();
 }
 
@@ -33,7 +34,8 @@ function syncStudyPreferenceControls() {
         mergeLemmas: saved.mergeLemmas === true,
         excludeCognates: saved.excludeCognates === true,
         directionFlipped: saved.directionFlipped === true,
-        speechEnabled: saved.speechEnabled !== false
+        speechEnabled: saved.speechEnabled !== false,
+        spacedRepetitionEnabled: saved.spacedRepetitionEnabled === true
     };
     document.querySelectorAll('.global-study-default-btn').forEach(button => {
         const value = button.dataset.value === 'on';
@@ -80,6 +82,11 @@ function setupGlobalStudyDefaults() {
             applyGlobalStudyDefaults();
             if (setting === 'mergeLemmas' || setting === 'excludeCognates') {
                 await refreshAfterGlobalStudyDefaultChange();
+            } else if (setting === 'spacedRepetitionEnabled') {
+                const setupPanel = document.getElementById('setupPanel');
+                if (selectedLevel && setupPanel && !setupPanel.classList.contains('hidden')) {
+                    await renderRangeSelector();
+                }
             } else {
                 document.getElementById('flashcard')?.classList.remove('flipped');
                 window.updateSpeakIcons?.();
@@ -2339,7 +2346,7 @@ function getArtistHelpContent() {
         <p><strong>How are percentages calculated?</strong></p>
         <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. ${get70pctWordCount()} The remaining 30% are rarer words that appear less often.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect, partly learned, and spaced-repetition-due cards collect in a separate review for that level. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
+        <p>Choose a numbered level and the app selects its first small set containing unseen cards. Incorrect and partly learned cards collect in a separate review for that level. When Spaced repetition is enabled in Study settings, due cards join that review and correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Each card shows real lyric examples from the songs where the word appears. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }
@@ -2351,7 +2358,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while incorrect, partly learned, and spaced-repetition-due cards collect in that level's separate review. Correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
+        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while incorrect and partly learned cards collect in that level's separate review. When Spaced repetition is enabled in Study settings, due cards join that review and correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

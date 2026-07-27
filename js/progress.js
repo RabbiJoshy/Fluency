@@ -72,7 +72,14 @@ function getProgressState(progress, now = Date.now()) {
         : null;
     const nextReviewAt = intervalDays ? lastCorrect + intervalDays * SRS_DAY_MS : 0;
     const nowTime = Number.isFinite(Number(now)) ? Number(now) : Date.now();
-    const isDue = !unresolved && nextReviewAt > 0 && nowTime >= nextReviewAt;
+    // The schedule can be paused while the app/content are under active
+    // development. Pausing suppresses only time-based due status: explicit
+    // mistakes still need review, and stages/timestamps remain intact so the
+    // same schedule resumes when the learner turns it back on.
+    const scheduleEnabled = typeof spacedRepetitionEnabled === 'undefined'
+        ? true
+        : spacedRepetitionEnabled;
+    const isDue = scheduleEnabled && !unresolved && nextReviewAt > 0 && nowTime >= nextReviewAt;
     needsReview = unresolved || isDue;
 
     return {

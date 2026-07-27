@@ -6149,6 +6149,13 @@
         .settings-default-row .settings-toggle {
             flex: 0 0 auto;
         }
+        .settings-default-row-explained > span small {
+            display: block;
+            max-width: 300px;
+            margin-top: 3px;
+            color: var(--text-muted);
+            font: 500 10px/1.4 var(--font-reading);
+        }
 
         #helpModal .modal-content,
         .progress-modal-content {
