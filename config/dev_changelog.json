@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "English-to-Spanish cards now ask for and speak the intended form",
+      "details": [
+        "Unmerged cards answer with the encountered surface form, while Merge Lemmas cards answer with the shared citation lemma",
+        "Pronominal verbs safely answer with their complete -se citation and identify exact example forms such as se queja",
+        "Expression and attached-form answers now stay aligned across the prompt, revealed answer, active example, and TTS; cache v115→v116, assets 20260727j→20260727k"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "e340a4d4",
       "summary": "Merged cards now present the lemma instead of an arbitrary frequent form",
       "details": [

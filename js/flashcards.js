@@ -81,6 +81,10 @@ function _extractUsedWith(context) {
 
 function getConjugatedEnglish(card, translation) {
     if (!_conjugatedEnglishData || !card || !translation) return null;
+    // A merged card prompts the dictionary lemma, so the English side must
+    // stay infinitival too. The host entry's morphology belongs only to its
+    // internal representative surface (e.g. está), not the displayed estar.
+    if (card.mergedLemma) return null;
     const morph = card.morphology;
     if (!morph || morph.mood !== "indicativo") return null;
     const tenseKey = _MORPH_TENSE_TO_CONJ_EN[morph.tense];
@@ -1843,6 +1847,67 @@ function escapeCardText(value) {
     })[character]);
 }
 
+function getExampleProductionForm(card, meaning, example, targetSentence) {
+    const sentence = String(targetSentence || '').replace(/<[^>]*>/g, '');
+    if (!sentence || !card) return '';
+    if (meaning?.allMWEs?.length) {
+        const item = meaning.allMWEs[currentMWEIndex % meaning.allMWEs.length];
+        return _matchedMweForm(
+            item,
+            sentence,
+            example?.matched_surface || example?.matched_variant
+        );
+    }
+    if (meaning?.allClitics?.length) {
+        return meaning.allClitics[currentMWEIndex % meaning.allClitics.length]?.form || '';
+    }
+
+    const surface = String(
+        example?.pooledFrom
+        || card.representativeSurface
+        || card.targetWord
+        || ''
+    ).trim();
+    if (!surface) return '';
+    const escaped = surface.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (card.isPronominal) {
+        const withPronoun = _cachedRegex(
+            `(?<![\\p{L}\\p{N}])((?:me|te|se|nos|os)\\s+${escaped})(?![\\p{L}\\p{N}])`,
+            'iu'
+        );
+        const prefixed = sentence.match(withPronoun);
+        if (prefixed) return prefixed[1];
+        const enclitic = _cachedRegex(
+            `(?<![\\p{L}\\p{N}])(${escaped}(?:me|te|se|nos|os))(?![\\p{L}\\p{N}])`,
+            'iu'
+        );
+        const attached = sentence.match(enclitic);
+        if (attached) return attached[1];
+    }
+    const exact = sentence.match(_cachedRegex(
+        `(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`,
+        'iu'
+    ));
+    // The label says “In this example”, so do not invent a form when the
+    // supplied sentence does not actually contain it.
+    return exact ? exact[1] : '';
+}
+
+function getActiveProductionAnswer(card, meaning = null) {
+    if (!card) return '';
+    const activeMeaning = meaning
+        || (card.isMultiMeaning ? card.meanings?.[currentMeaningIndex] : null);
+    if (activeMeaning?.allMWEs?.length) {
+        const item = activeMeaning.allMWEs[currentMWEIndex % activeMeaning.allMWEs.length];
+        return item?.expression || card.productionAnswer || card.targetWord || '';
+    }
+    if (activeMeaning?.allClitics?.length) {
+        const item = activeMeaning.allClitics[currentMWEIndex % activeMeaning.allClitics.length];
+        return item?.form || card.productionAnswer || card.targetWord || '';
+    }
+    return card.productionAnswer || card.targetWord || '';
+}
+
 function isTrivialPlural(surface, canonical) {
     const form = foldSurfaceForm(surface);
     const base = foldSurfaceForm(canonical);
@@ -1951,6 +2016,7 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Get the current meaning for multi-meaning cards
     const currentMeaning = card.isMultiMeaning ? card.meanings[currentMeaningIndex] : null;
+    const activeProductionAnswer = getActiveProductionAnswer(card, currentMeaning);
 
     // Determine what to show on front and back based on flip direction
     let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
@@ -1960,8 +2026,25 @@ function updateCard({ announceHeadword = false } = {}) {
         // Multi-meaning format
         if (isFlipped && !card.searchExamplesOnly && !card.translationUnavailable) {
             // English → Target language: build structured front with POS badges
-            const normalMeanings = card.meanings.filter(m =>
-                m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
+            let normalMeanings;
+            if (currentMeaning?.allMWEs?.length) {
+                const activeExpression = currentMeaning.allMWEs[currentMWEIndex % currentMeaning.allMWEs.length];
+                normalMeanings = [{
+                    pos: 'MWE',
+                    meaning: activeExpression?.translation || currentMeaning.meaning || '',
+                    percentage: 1
+                }];
+            } else if (currentMeaning?.allClitics?.length) {
+                const activeClitic = currentMeaning.allClitics[currentMWEIndex % currentMeaning.allClitics.length];
+                normalMeanings = [{
+                    pos: 'CLITIC',
+                    meaning: activeClitic?.translation || currentMeaning.meaning || '',
+                    percentage: 1
+                }];
+            } else {
+                normalMeanings = card.meanings.filter(m =>
+                    m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
+            }
 
             // Pick meanings to show: those with frequency, else keyword-assigned, else top per POS
             let frontMeanings = normalMeanings.filter(m => (m.percentage || 0) > 0);
@@ -1992,9 +2075,7 @@ function updateCard({ announceHeadword = false } = {}) {
 
             flippedFrontMeanings = { meanings: frontMeanings, multiPOS };
             frontText = null; // will use structured display instead
-            backWord = card.mergedLemma
-                ? (card.productionAnswer || citationForm)
-                : card.targetWord;
+            backWord = activeProductionAnswer;
             backTranslation = currentMeaning.meaning;
             exampleSentence = currentMeaning.englishSentence;
             exampleTranslation = currentMeaning.targetSentence;
@@ -2015,7 +2096,7 @@ function updateCard({ announceHeadword = false } = {}) {
         if (isFlipped) {
             // English → Target language
             frontText = card.translation;
-            backWord = card.targetWord;
+            backWord = card.productionAnswer || card.targetWord;
             backTranslation = card.translation;
             exampleSentence = currentSentence.english;
             exampleTranslation = currentSentence.target;
@@ -2092,9 +2173,10 @@ function updateCard({ announceHeadword = false } = {}) {
                 ? renderFrontPosUnit(m.pos, attachMorph, 'front-meaning-pos')
                 : '';
             if (attachMorph) verbMorphShown = true;
+            const productionGloss = getConjugatedEnglish(card, m.meaning) || m.meaning;
             html += `<div class="front-meaning-row">
                 ${posBadge}
-                <span class="front-meaning-text" style="font-size: ${fontSize}px;">${m.meaning}</span>
+                <span class="front-meaning-text" style="font-size: ${fontSize}px;">${productionGloss}</span>
             </div>`;
         }
         frontMeaningsEl.innerHTML = html;
@@ -2221,9 +2303,9 @@ function updateCard({ announceHeadword = false } = {}) {
                 <span class="back-lemma">${escapeCardText(citationForm)}</span>
                 ${formNote ? `<span class="back-form-note">${escapeCardText(formNote)}</span>` : ''}
             </div>`;
-        } else {
-            // Keep English→target unchanged for this first direction-specific
-            // slice. Its answer form will move to `productionAnswer` next.
+        } else if (foldSurfaceForm(citationForm) !== foldSurfaceForm(backWordText)) {
+            // An unmerged surface-form card can still benefit from its
+            // dictionary citation beneath the exact production answer.
             wordDisplay = `${backWordText} <span class="back-lemma">(${escapeCardText(citationForm)})</span>`;
         }
     }
@@ -2890,6 +2972,23 @@ function updateCard({ announceHeadword = false } = {}) {
                 }
             }
 
+            // In production direction the answer may intentionally be the
+            // shared lemma (merged cards) or the complete pronominal citation
+            // (`quejarse`). Preserve the exact form evidenced by this example
+            // (`está`, `se queja`) as a compact secondary answer cue.
+            const exampleProductionForm = isFlipped
+                ? getExampleProductionForm(
+                    card,
+                    currentMeaning,
+                    currentExample,
+                    displayTargetSentence
+                )
+                : '';
+            const showExampleProductionForm = Boolean(
+                exampleProductionForm
+                && foldSurfaceForm(exampleProductionForm) !== foldSurfaceForm(activeProductionAnswer)
+            );
+
             // Truncate sentences longer than 20 words
             displayTargetSentence = truncateText(displayTargetSentence, 20);
             displayEnglishSentence = truncateText(displayEnglishSentence, 20);
@@ -3041,6 +3140,7 @@ function updateCard({ announceHeadword = false } = {}) {
             if (!suppressSentenceBlock) {
                 backHTML += `
                     <div class="sentence${exampleAssigned ? ' example-is-matched' : ''}" style="text-align: center; ${cursorStyle} ${sentenceStyle}" ${cycleHandler}>
+                        ${showExampleProductionForm ? `<div class="reverse-example-form"><span>In this example</span><strong>${escapeCardText(exampleProductionForm)}</strong></div>` : ''}
                         <div class="breakdown-trigger" style="margin-bottom: 8px; cursor: pointer;" onclick="showLyricBreakdown(event); event.stopPropagation();" title="Tap for word-by-word breakdown">${displayTargetSentence}</div>
                         <div class="translation">${displayEnglishSentence}</div>
                         ${songNameDisplay}
@@ -3068,6 +3168,13 @@ function updateCard({ announceHeadword = false } = {}) {
         const sentenceCount = card.sentences ? card.sentences.length : 1;
         if (sentenceCount > 0) {
             const showEmpty = !exampleSentence && !exampleTranslation;
+            const exampleProductionForm = isFlipped
+                ? getExampleProductionForm(card, null, null, exampleTranslation)
+                : '';
+            const showExampleProductionForm = Boolean(
+                exampleProductionForm
+                && foldSurfaceForm(exampleProductionForm) !== foldSurfaceForm(card.productionAnswer)
+            );
             const sentenceIndicator = sentenceCount > 1 ? `
                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px;">
                     <span style="color: var(--accent-primary); font-size: 18px;">↑</span>
@@ -3079,6 +3186,7 @@ function updateCard({ announceHeadword = false } = {}) {
             backHTML += `
                 ${sentenceIndicator}
                 <div class="sentence" style="min-height: 80px; text-align: center;">
+                    ${showExampleProductionForm ? `<div class="reverse-example-form"><span>In this example</span><strong>${escapeCardText(exampleProductionForm)}</strong></div>` : ''}
                     ${exampleSentence ? `<div style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
                     ${exampleTranslation ? `<div class="translation">${exampleTranslation}</div>` : ''}
                     ${showEmpty ? `<div style="color: var(--text-muted); text-align: center; padding: 20px;">(No example sentence)</div>` : ''}
@@ -3383,7 +3491,7 @@ function flipCard() {
         // Just flipped to BACK of card
         if (isFlipped) {
             // English → Target mode: back shows target word, speak target
-            speakWord(card.targetWord, false);
+            speakWord(getActiveProductionAnswer(card), false);
         } else {
             // Target → English mode: back shows English, speak English meaning
             const spokenEnglish = getCurrentSpokenEnglish(card);
@@ -3968,7 +4076,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727j';
+const ASSET_VERSION = '20260727k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -164,7 +164,12 @@ the source identity/tie-breaker and legacy CEFR basis.
 for direction-specific display. `buildCardFormModel()` in `vocab.js` adapts
 optional future pipeline fields but currently falls back to `word`/`lemma`:
 Spanish→English prompts use `displaySurface`, dictionary context uses
-`citationForm`, and English→Spanish will use `productionAnswer`. A Spanish verb
+`citationForm`, and English→Spanish uses `productionAnswer`. Unmerged cards ask
+for their encountered surface, merged cards ask for the shared lemma, and old
+pronominal entries without explicit production data safely ask for the complete
+`-se` citation. The answer side additionally labels the exact form found in the
+active example when it differs (for example `quejarse` / `se queja`). TTS speaks
+the same active answer, including Expressions and attached forms. A Spanish verb
 whose citation form ends in `se` is marked `isPronominal`; the front and back
 show that as plain “verb with se” context rather than another pill.
 

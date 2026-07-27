@@ -572,9 +572,8 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
  * Keep the three jobs historically performed by `targetWord` separate:
  * - displaySurface: the corpus form used for a target-language prompt;
  * - citationForm: the dictionary/lemma form that explains the lexeme;
- * - productionAnswer: the preferred target-language answer (used later by
- *   the English→target direction, but carried now so both directions share
- *   one stable card contract).
+ * - productionAnswer: the preferred target-language answer used by the
+ *   English→target direction.
  *
  * The snake_case aliases make this an adapter for future pipeline fields while
  * the lemma/word fallbacks preserve every currently shipped deck.
@@ -601,12 +600,6 @@ function buildCardFormModel(item, meanings = [], options = {}) {
     // retaining targetWord/representativeSurface for IDs and exact examples.
     const mergedLemma = options.mergedLemma === true && Boolean(citationForm);
     const displaySurface = mergedLemma ? citationForm : representativeSurface;
-    const productionAnswer = String(
-        item?.production_answer
-        || item?.productionAnswer
-        || citationForm
-        || displaySurface
-    ).trim();
     const hasVerbSense = meanings.some(meaning => {
         const pos = String(meaning?.pos || '').toLocaleLowerCase('en');
         return pos === 'v' || pos === 'vb' || pos.includes('verb');
@@ -617,6 +610,17 @@ function buildCardFormModel(item, meanings = [], options = {}) {
         : selectedLanguage === 'spanish'
             && hasVerbSense
             && /se$/iu.test(citationForm);
+    const productionAnswer = String(
+        item?.production_answer
+        || item?.productionAnswer
+        // A standalone surface-form card tests that surface. A merged card
+        // tests the shared lemma. Pronominal verbs fall back to their complete
+        // `-se` citation rather than presenting an incomplete bare form when
+        // old data lacks enough morphology to choose me/te/se/nos/os safely.
+        || (mergedLemma || isPronominal ? citationForm : representativeSurface)
+        || citationForm
+        || displaySurface
+    ).trim();
 
     return {
         displaySurface,
