@@ -155,6 +155,7 @@ Artists/{lang}/{Name}/
 | `extra_english.json` | English words (and English contractions like `goin'`, `fuckin'`) that leak into lyrics via code-switching. Step 4 uses this to route them to the `english` exclusion bucket. |
 | `noise.json`, `proper_nouns.json`, `cognates.json` | Sectioned `{drop, keep}` curations used by step 4. drop = filter into the named bucket; keep = override (e.g. function words `a`/`o`/`y` in `noise.json.keep` survive the noise filter; false friends like `embarazada` in `cognates.json.keep` survive cognate exclusion). Loader: `load_curation_section()` in `util_1a_artist_config.py`. |
 | `conjugation_families.json`, `curated_mwes.json`, `skip_mwes.json` | MWE and conjugation curation. |
+| `derivational_relations.json` | Reviewed include/exclude overrides for the shared derived-lemma relation layer; links lexemes but never merges cards. |
 
 ## Other Directories
 

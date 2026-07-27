@@ -35,7 +35,10 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
-from pipeline.util_7a_lemma_split import _is_phrase_only_self_analysis  # noqa: E402
+from pipeline.util_7a_lemma_split import (  # noqa: E402
+    _is_phrase_only_self_analysis,
+    plural_lemma_redirects,
+)
 from pipeline.util_pipeline_config import get_default_min_priority  # noqa: E402
 from pipeline.util_sense_ids import (  # noqa: E402
     carry_sense_identity,
@@ -47,7 +50,7 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 7
+STEP_VERSION = 8
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
@@ -58,6 +61,7 @@ STEP_VERSION_NOTES = {
        "discovery as upstream diagnostics",
     7: "+ preserve stable sense-menu IDs through meanings, sense cycles, and shared master; "
        "mint durable fallback IDs for legacy master-only senses",
+    8: "+ assemble regular plural twins under one lemma and carry derivational relation metadata",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -491,6 +495,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # runs without when the thesaurus cache hasn't been built yet.
     synonyms_path = os.path.join(project_root, "Data", "Spanish", "layers", "synonyms.json")
     synonyms_layer = load_layer(synonyms_path, "synonyms (spanishdict, shared)", required=False) or {}
+    derivation_path = os.path.join(
+        project_root, "Data", "Spanish", "layers", "derivational_relations.json")
+    derivation_layer = load_layer(
+        derivation_path, "derivational_relations (shared)", required=False) or {}
+    derivation_relations = derivation_layer.get("relations", {}) \
+        if isinstance(derivation_layer, dict) else {}
+    if derivation_relations:
+        print("  derivational relations available: %d lemmas" % len(derivation_relations))
     ranking = load_layer(os.path.join(layers_dir, "ranking.json"), "ranking", required=False)
     translation_scores = load_layer(os.path.join(layers_dir, "translation_scores.json"),
                                      "translation_scores", required=False) or {}
@@ -779,6 +791,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             grouped.append(group)
             for sid in group["sense_by_id"]:
                 sid_to_group[sid] = group
+
+        # Keep the builder's groups identical to step 7a's canonical keys.
+        # SpanishDict often supplies both besitos|besitos and
+        # besitos|besito; both retain their sense IDs but share lemma besito.
+        plural_redirect_map = plural_lemma_redirects(analyses)
+        if plural_redirect_map:
+            for g in grouped:
+                g["lemma"] = plural_redirect_map.get(g["lemma"], g["lemma"])
 
         # Collapse reflexive/pronominal lemmas into base form when both exist
         # in this word's analysis set (mirrors util_7a_lemma_split logic).
@@ -1395,6 +1415,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 entry["synonyms"] = syn_entry["synonyms"]
             if syn_entry.get("antonyms"):
                 entry["antonyms"] = syn_entry["antonyms"]
+            derivation_relation = derivation_relations.get(lemma_lower)
+            if derivation_relation:
+                entry["derivation_relation"] = derivation_relation
 
             # `related_lemma` — SpanishDict's morphological pointer when it
             # differs from the card's semantic lemma. Classic case: ``hay``
@@ -2126,6 +2149,8 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
         # the surface cache is loaded. Just pass it through here.
         if entry.get("related_lemma"):
             idx_entry["related_lemma"] = entry["related_lemma"]
+        if entry.get("derivation_relation"):
+            idx_entry["derivation_relation"] = entry["derivation_relation"]
         if entry_mwes:
             idx_entry["mwe_memberships"] = [
                 {**{"expression": mwe["expression"],

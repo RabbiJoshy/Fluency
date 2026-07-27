@@ -6655,6 +6655,25 @@
             content: "· ";
         }
 
+        .back-derivation-line {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 5px;
+            color: var(--text-muted);
+            font-family: var(--font-reading);
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        .back-derivation-line strong {
+            color: color-mix(in srgb, var(--accent-primary) 48%, white);
+            font-family: var(--font-display);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
         .reverse-example-form {
             display: flex;
             align-items: baseline;

@@ -157,7 +157,7 @@ the source identity/tie-breaker and legacy CEFR basis.
 ## Flashcard Object Shape
 
 ```js
-{ targetWord, lemma, displaySurface, representativeSurface, citationForm, productionAnswer, mergedLemma, isPronominal, id, fullId, rank, corpusCount, isMultiMeaning, meanings: [{ pos, meaning, percentage, targetSentence, englishSentence, allExamples }], translation, links }
+{ targetWord, lemma, displaySurface, representativeSurface, citationForm, productionAnswer, mergedLemma, isPronominal, derivationRelation, id, fullId, rank, corpusCount, isMultiMeaning, meanings: [{ pos, meaning, percentage, targetSentence, englishSentence, allExamples }], translation, links }
 ```
 
 `targetWord` remains the stable source/card identity and must not be repurposed
@@ -172,6 +172,10 @@ active example when it differs (for example `quejarse` / `se queja`). TTS speaks
 the same active answer, including Expressions and attached forms. A Spanish verb
 whose citation form ends in `se` is marked `isPronominal`; the front and back
 show that as plain “verb with se” context rather than another pill.
+
+`derivationRelation` is explanatory, not identity: `besito` remains its own
+lemma/card/progress record and the back quietly says “diminutive of beso”. Do
+not use it for Merge Lemmas grouping.
 
 In Merge Lemmas mode, `targetWord` and `representativeSurface` retain the
 highest-frequency surface host for stable IDs/ranks and exact example matching,

@@ -40,11 +40,12 @@ from util_5c_sense_paths import (sense_menu_path, sense_assignments_path,
 from util_6a_assignment_format import load_assignments, dump_assignments
 from util_pipeline_meta import make_meta, write_sidecar
 
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "split surface-word assignments onto word|lemma keys, multi-source merge",
     2: "route phrasebook self-analyses into inventory known_lemmas[0]",
     3: "unified normal/artist mode with POS-routed unassigned bucket",
+    4: "consolidate regular plural self-headwords onto an explicit singular analysis without changing sense IDs",
 }
 
 

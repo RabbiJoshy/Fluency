@@ -1,0 +1,1127 @@
+{
+  "_meta": {
+    "step_name": "build_derivational_relations",
+    "step_version": 1,
+    "generated_at": 1785188530
+  },
+  "relations": {
+    "abuelita": {
+      "base_lemma": "abuela",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "grandma",
+        "granny"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "agujerito": {
+      "base_lemma": "agujero",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little hole"
+      ],
+      "shared_gloss_tokens": [
+        "hole"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "ahorita": {
+      "base_lemma": "ahora",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "now"
+      ],
+      "pos": [
+        "ADV"
+      ]
+    },
+    "alguito": {
+      "base_lemma": "algo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "a little bit",
+        "a little something"
+      ],
+      "pos": [
+        "ADV",
+        "PRON"
+      ]
+    },
+    "amiguito": {
+      "base_lemma": "amigo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "boyfriend",
+        "girlfriend"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "amorcito": {
+      "base_lemma": "amor",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "love",
+        "sweetie"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "bajito": {
+      "base_lemma": "bajo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "low"
+      ],
+      "pos": [
+        "ADJ",
+        "ADV"
+      ]
+    },
+    "banderita": {
+      "base_lemma": "bandera",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little flag"
+      ],
+      "shared_gloss_tokens": [
+        "flag"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "baratillo": {
+      "base_lemma": "barato",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "cheap"
+      ],
+      "pos": [
+        "ADJ",
+        "NOUN"
+      ]
+    },
+    "bebecito": {
+      "base_lemma": "bebe",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little baby",
+        "little baby girl"
+      ],
+      "shared_gloss_tokens": [
+        "baby"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "besito": {
+      "base_lemma": "beso",
+      "relation": "diminutive",
+      "source": "curated"
+    },
+    "besitos": {
+      "base_lemma": "besos",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "kisses"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "blanquita": {
+      "base_lemma": "blanca",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "girl",
+        "white"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "blanquito": {
+      "base_lemma": "blanco",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little white boy",
+        "little white girl"
+      ],
+      "shared_gloss_tokens": [
+        "white"
+      ],
+      "pos": [
+        "ADJ",
+        "NOUN"
+      ]
+    },
+    "boquita": {
+      "base_lemma": "boca",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little mouth"
+      ],
+      "shared_gloss_tokens": [
+        "mouth"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "buenísimo": {
+      "base_lemma": "bueno",
+      "relation": "superlative",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "good"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
+    "cachorrito": {
+      "base_lemma": "cachorro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "puppy"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "cadenita": {
+      "base_lemma": "cadena",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small necklace"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "camita": {
+      "base_lemma": "cama",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "bed"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "carita": {
+      "base_lemma": "cara",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little face"
+      ],
+      "shared_gloss_tokens": [
+        "face"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "carrito": {
+      "base_lemma": "carro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "car",
+        "cart"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "cartita": {
+      "base_lemma": "carta",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "letter"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "casita": {
+      "base_lemma": "casa",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little house"
+      ],
+      "shared_gloss_tokens": [
+        "house"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "cerquita": {
+      "base_lemma": "cerca",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "close",
+        "near"
+      ],
+      "pos": [
+        "PHRASE"
+      ]
+    },
+    "chamaquito": {
+      "base_lemma": "chamaco",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "kid"
+      ],
+      "pos": [
+        "NOUN",
+        "X"
+      ]
+    },
+    "chiquitito": {
+      "base_lemma": "chiquito",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small",
+        "tiny"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
+    "chiquito": {
+      "base_lemma": "chico",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small",
+        "small glass of wine",
+        "tiny"
+      ],
+      "pos": [
+        "ADJ",
+        "NOUN"
+      ]
+    },
+    "cigarrillo": {
+      "base_lemma": "cigarro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "cigarette"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "clarito": {
+      "base_lemma": "claro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "light"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
+    "corillo": {
+      "base_lemma": "coro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "friends",
+        "group"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "cosita": {
+      "base_lemma": "cosa",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little thing"
+      ],
+      "shared_gloss_tokens": [
+        "thing"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "culito": {
+      "base_lemma": "culo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "ass"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "derechito": {
+      "base_lemma": "derecho",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "straight"
+      ],
+      "pos": [
+        "ADV"
+      ]
+    },
+    "diablillo": {
+      "base_lemma": "diablo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little devil"
+      ],
+      "shared_gloss_tokens": [
+        "devil"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "diablito": {
+      "base_lemma": "diablo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little devil"
+      ],
+      "shared_gloss_tokens": [
+        "devil"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "disquito": {
+      "base_lemma": "disco",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small record or album"
+      ],
+      "shared_gloss_tokens": [
+        "record"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "escuelita": {
+      "base_lemma": "escuela",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little school"
+      ],
+      "shared_gloss_tokens": [
+        "school"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "espadita": {
+      "base_lemma": "espada",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small sword"
+      ],
+      "shared_gloss_tokens": [
+        "sword"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "florcita": {
+      "base_lemma": "flor",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small flower"
+      ],
+      "shared_gloss_tokens": [
+        "flower"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "fueguito": {
+      "base_lemma": "fuego",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "fire"
+      ],
+      "pos": [
+        "NOUN",
+        "X"
+      ]
+    },
+    "gomita": {
+      "base_lemma": "goma",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "band",
+        "rubber"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "gorrito": {
+      "base_lemma": "gorro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small hat"
+      ],
+      "shared_gloss_tokens": [
+        "hat"
+      ],
+      "pos": [
+        "NOUN",
+        "PHRASE"
+      ]
+    },
+    "hermanita": {
+      "base_lemma": "hermana",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little sister"
+      ],
+      "shared_gloss_tokens": [
+        "sister"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "hermanito": {
+      "base_lemma": "hermano",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little brother"
+      ],
+      "shared_gloss_tokens": [
+        "brother"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "hermanitos": {
+      "base_lemma": "hermanos",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "siblings"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "hombrecito": {
+      "base_lemma": "hombre",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "man"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "humito": {
+      "base_lemma": "humo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little smoke"
+      ],
+      "shared_gloss_tokens": [
+        "smoke"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "igualito": {
+      "base_lemma": "igual",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "same"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
+    "jovencito": {
+      "base_lemma": "joven",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "man",
+        "young"
+      ],
+      "pos": [
+        "ADJ",
+        "NOUN"
+      ]
+    },
+    "loquito": {
+      "base_lemma": "loco",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "crazy"
+      ],
+      "pos": [
+        "ADJ",
+        "NOUN"
+      ]
+    },
+    "manito": {
+      "base_lemma": "mano",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "bro",
+        "hand"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "mismísimo": {
+      "base_lemma": "mismo",
+      "relation": "superlative",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "same"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
+    "muchísimo": {
+      "base_lemma": "mucho",
+      "relation": "superlative",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "lot",
+        "much"
+      ],
+      "pos": [
+        "ADJ",
+        "ADV",
+        "X"
+      ]
+    },
+    "negrito": {
+      "base_lemma": "negro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "black",
+        "dark"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "neverita": {
+      "base_lemma": "nevera",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "fridge"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "niñita": {
+      "base_lemma": "niña",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little girl"
+      ],
+      "shared_gloss_tokens": [
+        "girl"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "niñito": {
+      "base_lemma": "niño",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little boy",
+        "little child",
+        "little kid"
+      ],
+      "shared_gloss_tokens": [
+        "boy",
+        "child",
+        "kid"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "noviecito": {
+      "base_lemma": "novio",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "boyfriend (diminutive)"
+      ],
+      "shared_gloss_tokens": [
+        "boyfriend"
+      ],
+      "pos": [
+        "NOUN",
+        "X"
+      ]
+    },
+    "panita": {
+      "base_lemma": "pana",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "buddy"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "pasito": {
+      "base_lemma": "paso",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small step"
+      ],
+      "shared_gloss_tokens": [
+        "step"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "pelito": {
+      "base_lemma": "pelo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little hair"
+      ],
+      "shared_gloss_tokens": [
+        "hair"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "penita": {
+      "base_lemma": "pena",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "pity"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "perfumito": {
+      "base_lemma": "perfume",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "perfume (diminutive)"
+      ],
+      "shared_gloss_tokens": [
+        "perfume"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "perrita": {
+      "base_lemma": "perra",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "bitch"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "perrito": {
+      "base_lemma": "perro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little dog"
+      ],
+      "shared_gloss_tokens": [
+        "dog"
+      ],
+      "pos": [
+        "ADV",
+        "NOUN"
+      ]
+    },
+    "placita": {
+      "base_lemma": "plaza",
+      "relation": "diminutive",
+      "source": "curated"
+    },
+    "playita": {
+      "base_lemma": "playa",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small beach"
+      ],
+      "shared_gloss_tokens": [
+        "beach"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "pollito": {
+      "base_lemma": "pollo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "chick"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "poquito": {
+      "base_lemma": "poco",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "a little bit"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "pueblito": {
+      "base_lemma": "pueblo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little town"
+      ],
+      "shared_gloss_tokens": [
+        "town"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "putilla": {
+      "base_lemma": "puta",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "slut"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "ratito": {
+      "base_lemma": "rato",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little while"
+      ],
+      "shared_gloss_tokens": [
+        "while"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "ropita": {
+      "base_lemma": "ropa",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "clothes"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "rosita": {
+      "base_lemma": "rosa",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small pink item",
+        "small rose"
+      ],
+      "shared_gloss_tokens": [
+        "pink",
+        "rose"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "salita": {
+      "base_lemma": "sala",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small living room"
+      ],
+      "shared_gloss_tokens": [
+        "living",
+        "room",
+        "sitting"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "señorita": {
+      "base_lemma": "señora",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "lady",
+        "woman"
+      ],
+      "pos": [
+        "NOUN",
+        "X"
+      ]
+    },
+    "solito": {
+      "base_lemma": "solo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "alone"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
+    "tablilla": {
+      "base_lemma": "tabla",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "board"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "tempranito": {
+      "base_lemma": "temprano",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "early"
+      ],
+      "pos": [
+        "ADV",
+        "X"
+      ]
+    },
+    "toditas": {
+      "base_lemma": "todas",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "all"
+      ],
+      "pos": [
+        "ADJ",
+        "PRONOUN"
+      ]
+    },
+    "todito": {
+      "base_lemma": "todo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "everything"
+      ],
+      "pos": [
+        "ADV"
+      ]
+    },
+    "toditos": {
+      "base_lemma": "todos",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "everyone"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "torito": {
+      "base_lemma": "toro",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little bull"
+      ],
+      "shared_gloss_tokens": [
+        "bull"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "trajecito": {
+      "base_lemma": "traje",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little dress",
+        "little outfit"
+      ],
+      "shared_gloss_tokens": [
+        "dress"
+      ],
+      "pos": [
+        "NOUN",
+        "X"
+      ]
+    },
+    "velita": {
+      "base_lemma": "vela",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little candle"
+      ],
+      "shared_gloss_tokens": [
+        "candle"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "vestidito": {
+      "base_lemma": "vestido",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little dress"
+      ],
+      "shared_gloss_tokens": [
+        "dress"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "viejito": {
+      "base_lemma": "viejo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "old"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "virgencita": {
+      "base_lemma": "virgen",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "small picture of the Virgin Mary"
+      ],
+      "shared_gloss_tokens": [
+        "virgin"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "vueltita": {
+      "base_lemma": "vuelta",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "stroll"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    }
+  }
+}

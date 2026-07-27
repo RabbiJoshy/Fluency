@@ -5,6 +5,70 @@ artist-mode pipelines can share the same split logic.
 """
 
 from copy import deepcopy
+import unicodedata
+
+
+_PLURAL_POS = frozenset({"NOUN", "ADJ", "DET", "PRON", "PROPN"})
+
+
+def _fold_form(value):
+    text = unicodedata.normalize("NFD", (value or "").strip().lower())
+    return "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
+
+
+def is_regular_plural_form(plural, singular):
+    """Return True for an unambiguous regular Spanish plural relationship.
+
+    Accent changes are ignored (canción→canciones), while the fixed z→ces
+    alternation is handled explicitly. This only establishes morphology; the
+    caller must still require both headwords to be present in the same sense
+    menu before redirecting either identity.
+    """
+    plural_f = _fold_form(plural)
+    singular_f = _fold_form(singular)
+    if not plural_f or not singular_f or plural_f == singular_f:
+        return False
+    if singular_f.endswith("z"):
+        return plural_f == singular_f[:-1] + "ces"
+    if singular_f[-1] in "aeiou":
+        return plural_f == singular_f + "s"
+    return plural_f == singular_f + "es"
+
+
+def plural_lemma_redirects(analyses):
+    """Return {plural_headword: singular_headword} for one surface menu.
+
+    Requiring both analyses and nominal/adjectival POS on both sides avoids
+    guessing from a suffix alone. The analyses and their sense IDs remain
+    untouched; only their downstream lemma-group identity is consolidated.
+    """
+    candidates = []
+    for analysis in analyses or []:
+        if not isinstance(analysis, dict):
+            continue
+        headword = analysis.get("headword") or analysis.get("lemma")
+        if not isinstance(headword, str) or not headword.strip():
+            continue
+        senses = analysis.get("senses") or {}
+        sense_values = senses.values() if isinstance(senses, dict) else senses
+        poses = {
+            (sense.get("pos") or "").strip().upper()
+            for sense in sense_values or [] if isinstance(sense, dict)
+        }
+        if poses and poses <= _PLURAL_POS:
+            candidates.append(headword.strip())
+
+    redirects = {}
+    for plural in candidates:
+        singulars = [
+            singular for singular in candidates
+            if singular != plural and is_regular_plural_form(plural, singular)
+        ]
+        if singulars:
+            # A regular plural should have one base. Keep the choice stable if
+            # malformed source data happens to present more than one.
+            redirects[plural] = sorted(singulars, key=lambda value: (len(value), value))[0]
+    return redirects
 
 
 def normalize_assignment_methods(raw_value):
@@ -132,6 +196,27 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
         sense_map = a.get("senses", {})
         sense_ids = set(sense_map.keys()) if isinstance(sense_map, dict) else set()
         analysis_maps.append((analysis_key(word, a, known_lemmas=known_lemmas), sense_ids, a))
+
+    # SpanishDict can expose a plural as both a lexical self-headword and an
+    # explicit singular-headword inflection (`besitos|besitos` plus
+    # `besitos|besito`). Keep every sense ID, but consolidate both analysis
+    # branches onto the singular lemma identity. The same rule removes reverse
+    # duplicates on a singular query (`beso|besos` → `beso|beso`).
+    plural_redirects = plural_lemma_redirects(analyses)
+    if plural_redirects:
+        analysis_maps = [
+            (
+                "%s|%s" % (
+                    word,
+                    plural_redirects.get(
+                        key.split("|", 1)[1], key.split("|", 1)[1]
+                    ),
+                ),
+                sense_ids,
+                analysis,
+            )
+            for key, sense_ids, analysis in analysis_maps
+        ]
 
     # Collapse reflexive/pronominal analyses into base form when both exist.
     # E.g. fumar|fumarse -> fumar|fumar when fumar is also a lemma in this set.

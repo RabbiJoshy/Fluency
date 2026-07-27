@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Plural forms now keep one lemma identity and diminutives explain their base",
+      "details": [
+        "Regular SpanishDict plural twins such as besitos|besitos and besitos|besito consolidate under the singular lemma without changing sense IDs or rerunning Gemini",
+        "Diminutives remain independent cards, but a conservative auditable relation layer links examples such as besito to beso",
+        "On the next coordinated deck assembly, the card back labels the relation in plain text without merging senses or progress; cache v116→v117, assets 20260727k→20260727l"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "5bee518b",
       "summary": "English-to-Spanish cards now ask for and speak the intended form",
       "details": [

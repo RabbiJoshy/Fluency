@@ -2294,6 +2294,7 @@ function updateCard({ announceHeadword = false } = {}) {
     let backWordText = backVariantDisplay || backWord;
     let wordDisplay = backWordText;
     let backCitationHTML = '';
+    let backDerivationHTML = '';
     if (card.isMultiMeaning
         && citationForm
         && citationForm !== displaySurface
@@ -2308,6 +2309,15 @@ function updateCard({ announceHeadword = false } = {}) {
             // dictionary citation beneath the exact production answer.
             wordDisplay = `${backWordText} <span class="back-lemma">(${escapeCardText(citationForm)})</span>`;
         }
+    }
+    const derivation = card.derivationRelation;
+    if (derivation?.base_lemma) {
+        const relationLabel = derivation.relation === 'diminutive'
+            ? 'diminutive of'
+            : derivation.relation === 'superlative'
+                ? 'superlative of'
+                : 'derived from';
+        backDerivationHTML = `<div class="back-derivation-line"><span>${relationLabel}</span><strong>${escapeCardText(derivation.base_lemma)}</strong></div>`;
     }
     const backWordLength = backWordText.replace(/<[^>]+>/g, '').length;
 
@@ -2362,6 +2372,7 @@ function updateCard({ announceHeadword = false } = {}) {
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 ${backCitationHTML}
+                ${backDerivationHTML}
             </div>
             ${backPosLegendHTML}
             ${homographChipHTML}
@@ -4076,7 +4087,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727k';
+const ASSET_VERSION = '20260727l';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

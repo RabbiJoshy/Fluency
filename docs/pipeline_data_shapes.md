@@ -31,6 +31,7 @@ Most files have the **same shape** in normal mode (`Data/Spanish/layers/`) and a
 | `ranking.json` | artist-only |
 | `lyrics_timestamps.json` | artist-only |
 | `cognates.json`, `conjugations.json`, `conjugation_reverse.json`, `mwe_phrases.json` | normal-only (shared via `Data/Spanish/`) |
+| `derivational_relations.json` | shared Spanish layer, consumed by both modes |
 
 ## Sense-source branch
 
@@ -345,6 +346,28 @@ Ordered word list + per-word, per-sense easiness scores.
   "amor|amor": { "score": 1.0, "cognet": true }
 }
 ```
+
+## `derivational_relations.json` *(shared Spanish layer)*
+
+Distinct derived lexemes are linked, not collapsed. The builder copies the
+record to the card/index as `derivation_relation`.
+
+```jsonc
+{
+  "_meta": { ... },
+  "relations": {
+    "besito": {
+      "base_lemma": "beso",
+      "relation": "diminutive",
+      "source": "curated"
+    }
+  }
+}
+```
+
+Automatic records require both a recognized suffix pattern and compatible
+English gloss evidence. Curated overrides can include or exclude exact lemmas.
+The relation does not share IDs, progress, frequency, or senses with the base.
 
 ---
 

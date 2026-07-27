@@ -59,6 +59,15 @@
 
 ## Bugs found
 
+- **[implemented 2026-07-27; coordinated deck rebuild pending] Plural self-headwords and diminutive-family identity (M) [spanish]**
+  SpanishDict explicitly exposed `besitos` as an inflection of `besito`, but its
+  parallel self-headword analysis also created `besitos|besitos`. Step 7a and
+  both builders now consolidate regular nominal/adjectival plural twins under
+  the singular lemma while preserving all existing sense IDs, so no Gemini
+  rerun is required. Diminutives are deliberately not collapsed into their
+  semantic base: a conservative audited relation layer links `besito` to
+  `beso`, and the app labels that relationship without sharing card progress.
+
 - **[~mostly fixed] Gemini-3.1 slang proposals were being dropped before the deck (L) [artist/spanish]**
   CORRECTED 2026-07-27 (supersedes the earlier "5,807 words bypass the classifier / 63% menu
   coverage / TOP QUALITY LEVER" writeup, which was WRONG). That number measured the *shared*

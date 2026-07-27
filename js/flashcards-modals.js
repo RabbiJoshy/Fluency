@@ -700,6 +700,7 @@ async function popupFoundWord(entry, opts) {
             homographIds: vocabEntry.homograph_ids || null,
             morphology: vocabEntry.morphology || null,
             relatedLemma: vocabEntry.related_lemma || null,
+            derivationRelation: vocabEntry.derivation_relation || null,
             searchExclusionReason: entry.exclusionReason || null,
             searchExamplesOnly: entry.examplesOnly || meanings[0]?.exampleOnly || false
         };

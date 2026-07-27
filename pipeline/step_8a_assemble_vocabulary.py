@@ -48,6 +48,7 @@ from util_5c_spanishdict import (
     conjugation_lemma_from_possible_results,
 )
 from util_6a_assignment_format import load_assignments, resolve_best_per_example
+from util_7a_lemma_split import plural_lemma_redirects
 
 # Keyword-tier priority ceiling for meaning-level assignment_method stamping.
 # Mirrors pipeline/artist/step_8b_assemble_artist_vocabulary.py.
@@ -61,11 +62,12 @@ from util_sense_ids import carry_sense_identity, merge_sense_identity
 # Default language; overridden by --language at runtime.
 NORMAL_MODE_LANGUAGE = "spanish"
 
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples split, hex IDs, lemma-proportional counts",
     2: "group per-sense assignments by sense_idx so foreign-sid fallbacks don't duplicate meanings",
     3: "carry stable sense-menu IDs and aliases into learner-facing meanings",
+    4: "assemble regular plural twins under one lemma and carry derivational relation metadata",
 }
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -257,12 +259,17 @@ def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
     """
     if is_analysis_format:
         analyses = senses_data.get(word, [])
+        redirects = plural_lemma_redirects(analyses)
+        merged = {}
         for analysis in analyses:
             headword = analysis.get("headword", word)
-            if headword == lemma:
+            canonical_headword = redirects.get(headword, headword)
+            if canonical_headword == lemma:
                 sense_map = analysis.get("senses", {})
-                flat = list(sense_map.values())
-                return flat, sense_map
+                if isinstance(sense_map, dict):
+                    merged.update(sense_map)
+        if merged:
+            return list(merged.values()), merged
         # No matching analysis. Don't fall back to analyses[0] when
         # lemma == word — that path would conflate distinct lemmas of the
         # same surface (e.g. a|a inheriting avoir's senses because the only
@@ -506,6 +513,16 @@ def main():
     else:
         synonyms_layer = {}
         print("  synonyms (spanishdict): (not found, skipping)")
+
+    derivation_path = LAYERS / "derivational_relations.json"
+    if derivation_path.exists():
+        with open(derivation_path, encoding="utf-8") as f:
+            derivation_layer = json.load(f)
+        derivation_relations = derivation_layer.get("relations", {})
+        print(f"  derivational_relations: {len(derivation_relations)} lemmas")
+    else:
+        derivation_relations = {}
+        print("  derivational_relations: (not found, skipping)")
 
     # SpanishDict surface cache — needed for `related_lemma`, the
     # morphological pointer SpanishDict attaches to words whose
@@ -947,6 +964,7 @@ def main():
             syn_entry = synonyms_layer.get(lemma.lower()) or {}
             synonyms_list = syn_entry.get("synonyms") or None
             antonyms_list = syn_entry.get("antonyms") or None
+            derivation_relation = derivation_relations.get(lemma.lower())
 
             # Cognate signals (keyed by word|lemma)
             cognate_obj = cognates.get(key)
@@ -1009,6 +1027,7 @@ def main():
                 "antonyms": antonyms_list,
                 "variants": inv_entry.get("variants"),
                 "related_lemma": related_lemma,
+                "derivation_relation": derivation_relation,
             })
             if morphology:
                 stats["with_morphology"] += 1
@@ -1110,6 +1129,8 @@ def main():
             mono_entry["antonyms"] = e["antonyms"]
         if e.get("related_lemma"):
             mono_entry["related_lemma"] = e["related_lemma"]
+        if e.get("derivation_relation"):
+            mono_entry["derivation_relation"] = e["derivation_relation"]
         if e.get("variants"):
             mono_entry["variants"] = e["variants"]
             merged_ids = merged_ids_by_base.get(word_id)
@@ -1139,6 +1160,8 @@ def main():
             idx_entry["antonyms"] = e["antonyms"]
         if e.get("related_lemma"):
             idx_entry["related_lemma"] = e["related_lemma"]
+        if e.get("derivation_relation"):
+            idx_entry["derivation_relation"] = e["derivation_relation"]
         index.append(idx_entry)
 
         ex_entry = {}

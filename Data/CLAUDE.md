@@ -57,6 +57,11 @@ In `joinWithMaster()`: if `sense_methods[i]` is non-null, the meaning gets `assi
 
 The normal-mode pipeline uses a simpler legacy index with `word`, `lemma`, `rank`, and `meanings` inline — not master-aligned.
 
+Either index shape may also carry
+`derivation_relation: {base_lemma, relation, source, evidence_*?}`. This is an
+explanatory link only (for example `besito` → `beso`); it never changes the
+entry's ID, lemma family, frequency, senses, or learner progress.
+
 ### Examples Entry Schema (`vocabulary.examples.json`)
 
 ```json

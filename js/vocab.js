@@ -394,6 +394,8 @@ function joinWithMaster(indexData, master) {
             morphology: idx.morphology || null,
             synonyms: idx.synonyms || null,
             antonyms: idx.antonyms || null,
+            related_lemma: idx.related_lemma || m.related_lemma || null,
+            derivation_relation: idx.derivation_relation || m.derivation_relation || null,
         });
     }
     return result;
@@ -1586,7 +1588,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 // SD also flags it as a conjugation of some verb. The
                 // conjugation panel uses this as a fallback when the
                 // card's own lemma has no inline paradigm.
-                relatedLemma: item.related_lemma || null
+                relatedLemma: item.related_lemma || null,
+                derivationRelation: item.derivation_relation || null
             };
             card.translationUnavailable = meanings.every(meaning => !String(meaning.meaning || '').trim());
             card.artistVocabularyScope = activeArtist ? artistVocabularyScope : null;

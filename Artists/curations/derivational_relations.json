@@ -1,0 +1,16 @@
+{
+  "_comment": "Explicit lemma-family relations that must survive even when automatic English-gloss evidence is missing. These link distinct lexemes; they never merge cards or progress.",
+  "include": {
+    "besito": {
+      "base_lemma": "beso",
+      "relation": "diminutive"
+    },
+    "placita": {
+      "base_lemma": "plaza",
+      "relation": "diminutive"
+    }
+  },
+  "exclude": [
+    "mariquita"
+  ]
+}

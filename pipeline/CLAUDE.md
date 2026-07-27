@@ -50,6 +50,7 @@ Current main steps:
 - `step_6c_assign_senses_gemini.py` (shared; Gemini Flash Lite classifier + gap-fill)
 - `step_7a_map_senses_to_lemmas.py` — **must run after any step_6 change**; maps `sense_assignments/` → `sense_assignments_lemma/`; step_8a reads the lemma-keyed file, not `sense_assignments/` directly
 - `step_7c_flag_cognates.py`
+- `tool_7d_build_derivational_relations.py` — conservative suffix + English-gloss relation layer; diminutives remain distinct lemmas/cards
 - `step_8a_assemble_vocabulary.py`
 
 Supporting tools/utils:
@@ -63,6 +64,11 @@ Supporting tools/utils:
 - `util_5c_sense_menu_format.py` (shared analysis/sense-menu helpers; used by both modes)
 - `util_6a_method_priority.py`
 - `util_6a_pos_menu_filter.py`
+
+Step 7a canonicalises regular plural analysis twins without changing their
+sense IDs: when SpanishDict exposes both `besitos|besitos` and
+`besitos|besito`, both assignment branches consolidate under `besitos|besito`.
+This is deterministic lemma routing and does not require a Gemini rerun.
 
 ## Artist Mode
 

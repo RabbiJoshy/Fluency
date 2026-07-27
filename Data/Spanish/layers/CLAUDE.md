@@ -29,6 +29,7 @@ This also applies to the artist pipeline layers in `Artists/{lang}/{Name}/data/l
 | `sense_assignments_lemma/spanishdict.json` | `word\|lemma` | same format — **this is what step_8a reads** | `step_7a_map_senses_to_lemmas.py` |
 | `sense_assignments_lemma/wiktionary.json` | same | same | `step_7a_map_senses_to_lemmas.py` |
 | `cognates.json` | `word\|lemma` | `{score: float, cognet: bool, gemini?: bool}` | `step_7c_flag_cognates.py` |
+| `derivational_relations.json` | lemma | `{base_lemma, relation, source, evidence_*?}` inside `relations` | `tool_7d_build_derivational_relations.py` |
 | `homograph_overrides.json` | surface form | `{lemma: ratio}` pairs summing to 1.0 | Manual |
 
 ## Artist Pipeline Layers
@@ -57,3 +58,9 @@ Artist layers live at `Artists/{lang}/{Name}/data/layers/` and follow the same p
 The artist builder also loads the **shared cognates layer** from `Data/Spanish/layers/cognates.json` — there is no per-artist cognate detection step.
 
 The front-end loads `vocabulary.index.json` + `vocabulary.examples.json` (or the monolith `vocabulary.json`); it never reads layer files directly.
+
+`derivational_relations.json` links but never merges lexemes. A diminutive such
+as `besito` therefore keeps its own senses/card/progress while the assembled
+entry can explain that it is a diminutive of `beso`. Automatic candidates need
+both a suffix resolution and compatible English gloss evidence; reviewed
+include/exclude overrides live in `Artists/curations/derivational_relations.json`.
