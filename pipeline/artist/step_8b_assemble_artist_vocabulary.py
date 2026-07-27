@@ -34,7 +34,8 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
-from pipeline.util_6a_assignment_format import load_assignments, resolve_best_per_example  # noqa: E402
+from pipeline.util_6a_assignment_format import (load_assignments, resolve_best_per_example,  # noqa: E402
+                                                is_proper_noun_gloss)
 from pipeline.util_7a_lemma_split import (  # noqa: E402
     _is_phrase_only_self_analysis,
     plural_lemma_redirects,
@@ -1051,6 +1052,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     src = sense.get("source")
                     if src:
                         meaning["source"] = src
+                    # Carry the off-menu register tag (slang/regional/… and, from
+                    # the next-run prompt, proper_noun) so the proper-noun guard
+                    # below can route by an explicit type, not just gloss text.
+                    stype = sense.get("type")
+                    if stype:
+                        meaning["type"] = stype
                     # Preserve the sub-sense context from the menu (e.g.
                     # SpanishDict's "to move fast" for correr→to run). The
                     # front end renders this as a subtitle/tag under the
@@ -1376,6 +1383,26 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 if has_verb:
                     morphology = {"mood": "infinitivo"}
 
+            # Proper-noun guard. Gemini sometimes recognises a name but, having
+            # no tag slot, writes the category into the gloss ("proper noun",
+            # "Name of a social media app") or (next-run prompt) stamps
+            # type=proper_noun with a real description. Such a meaning is not a
+            # teachable translation:
+            #   - if the word also has real meanings, drop the proper-noun one;
+            #   - if it's ONLY that, route the whole entry to Extra as a proper
+            #     noun (keeping the description text) instead of the main deck.
+            def _is_propn_meaning(m):
+                return (m.get("type") == "proper_noun"
+                        or is_proper_noun_gloss(m.get("translation")))
+            _propn_meanings = [m for m in meanings if _is_propn_meaning(m)]
+            _force_propn = False
+            if _propn_meanings:
+                _real_meanings = [m for m in meanings if not _is_propn_meaning(m)]
+                if _real_meanings:
+                    meanings = _real_meanings          # keep real senses, drop the label
+                else:
+                    _force_propn = True                # pure proper noun → Extra
+
             has_wikt = bool(word_senses and word_assignments and isinstance(raw_assignments, dict))
             wl = word.lower()
             entry = {
@@ -1391,14 +1418,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 # Both fields carry identical truth values.
                 "is_noise": wl in skip_noise,
                 "is_interjection": wl in skip_noise,
-                "is_propernoun": wl in skip_propn,
+                "is_propernoun": (wl in skip_propn) or _force_propn,
                 "is_transparent_cognate": wl in skip_cognate,
                 "corpus_count": group_counts[g_idx] if g_idx < len(group_counts) else 0,
                 "_has_wikt_assignments": has_wikt,
             }
             # Unified tag category → front-end groups Extra by this.
             _cat = word_categories.get(wl)
-            if _cat:
+            if _force_propn:
+                # A Gemini-recognised proper noun with no routing tag yet — send
+                # it to the Extra proper_noun group rather than the main deck.
+                entry["extra_category"] = "proper_noun"
+            elif _cat:
                 entry["extra_category"] = _cat
             if display_form:
                 entry["display_form"] = display_form

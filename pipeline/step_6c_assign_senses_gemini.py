@@ -531,6 +531,11 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
 
     # LOCKED prompt — validated on real Bad Bunny data (scratchpad/eval30.py,
     # suff_eval*.py). Do not reword without re-running the sufficiency evals.
+    # Deliberate additive extension 2026-07-27: a proper_noun type + PROPN pos +
+    # "describe, don't translate" instruction. Gemini was already recognising
+    # names but, lacking a slot, wrote "proper noun" into the gloss; this gives
+    # it the slot and asks for a short description instead. Re-run the sufficiency
+    # evals if you touch the classification wording above this addition.
     header = (
         "You are building a Spanish vocabulary flashcard app from song lyrics"
         " (%s). Expect regional slang and figurative usage.\n"
@@ -552,12 +557,19 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
         " menu sense fits the contextual meaning (usually regional"
         " slang/figurative the dictionary lacks) set \"sense\": null,"
         " \"proposed\": a 2-5 word gloss, \"type\":"
-        " slang|regional|figurative|vulgar|loanword|other, and \"pos\": the part"
-        " of speech of the proposed meaning (one of NOUN, VERB, ADJ, ADV, INTJ)."
+        " slang|regional|figurative|vulgar|loanword|proper_noun|other, and"
+        " \"pos\": the part of speech of the proposed meaning (one of NOUN,"
+        " VERB, ADJ, ADV, INTJ, PROPN)."
         " Else proposed/type/pos null.\n"
+        "If the word is a PROPER NOUN (a person, place, brand, song, or title),"
+        " set \"type\": proper_noun and \"pos\": PROPN, and make \"proposed\" a"
+        " SHORT description of who/what it refers to (e.g. \"Brazilian"
+        " footballer\", \"Snapchat, a messaging app\", \"a district in San"
+        " Juan\") — NEVER the literal words \"proper noun\"/\"proper name\" and"
+        " NEVER a translation.\n"
         "Return ONLY JSON: [{\"word\":\"x\",\"calls\":[{\"example\":1,"
         "\"sense\":\"<id|null>\",\"proposed\":\"<gloss|null>\","
-        "\"type\":\"<tag|null>\",\"pos\":\"<NOUN|VERB|ADJ|ADV|INTJ|null>\","
+        "\"type\":\"<tag|null>\",\"pos\":\"<NOUN|VERB|ADJ|ADV|INTJ|PROPN|null>\","
         "\"construction\":\"<phrase|null>\"}]}]"
     ) % artist_context
 
@@ -1468,7 +1480,7 @@ def main():
                         # meaning ("attractive" -> ADJ); fall back to the word's
                         # dominant menu POS only when it's missing/invalid.
                         fallback_pos = _dominant_pos(r["senses"]) or "NOUN"
-                        _valid_pos = {"NOUN", "VERB", "ADJ", "ADV", "INTJ"}
+                        _valid_pos = {"NOUN", "VERB", "ADJ", "ADV", "INTJ", "PROPN"}
                         for gloss, pm in proposed_map.items():
                             prop_pos = str(pm.get("pos") or "").strip().upper()
                             pos = prop_pos if prop_pos in _valid_pos else fallback_pos

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "fd2e7edd",
+      "summary": "Proper nouns no longer show up as a card meaning called \"proper noun\"",
+      "details": [
+        "Gemini recognised names (montana, esperanza, pelé, Snapchat) but, lacking a tag slot, wrote \"proper noun\" into the translation — those junk meanings were surfacing as main-deck cards",
+        "Assembly now drops that label when the word has a real sense (pelé keeps \"to peel\", iris keeps \"rainbow\") and routes pure proper nouns to the Extra proper-noun group instead of the main deck — 85 moved",
+        "The classify-or-propose prompt now gives Gemini a proper_noun slot and asks it to briefly describe who/what the name is (e.g. \"Brazilian footballer\") rather than translate it, on the next run"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "c0ade7a3",
       "summary": "Clitic forms now show their lyrics and grammar, with one clean report menu",
       "details": [

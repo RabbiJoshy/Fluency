@@ -25,9 +25,37 @@ Buckets:
 """
 
 import json
+import re
 from pathlib import Path
 
 from util_6a_method_priority import METHOD_PRIORITY
+
+
+# A proposed gloss is a proper-noun *label* — not a translation — when Gemini
+# recognises the word is a name/place/brand but has no tag slot to say so, and
+# writes the category into the translation field ("proper noun", "proper name",
+# "proper noun (name of soccer player)", "Name of a social media app"). These
+# should route to Extra as proper nouns, not render as main-deck translations.
+# Deliberately narrow: a real gloss that merely CONTAINS "name" (nombre→"name")
+# must NOT match, so we anchor on the "proper …" prefix and the "name of …" lead.
+_PROPER_NOUN_GLOSS_RE = re.compile(
+    r"^\s*(?:a |an |the )?proper[\s-]*(?:noun|name)\b"
+    r"|^\s*(?:the )?name of\b",
+    re.I,
+)
+
+
+def is_proper_noun_gloss(translation):
+    """True if a proposed translation is really a proper-noun label.
+
+    Catches the ``proper noun`` / ``proper name`` / ``Name of …`` family that
+    Gemini emits for names it can't translate. A ``type == "proper_noun"`` stamp
+    (from the next-run prompt) is a separate, stronger signal the caller may also
+    check; this handles the legacy translation-field form.
+    """
+    if not translation or not isinstance(translation, str):
+        return False
+    return bool(_PROPER_NOUN_GLOSS_RE.match(translation.strip()))
 
 
 # Methods that discover senses absent from the menu. Items written by these
