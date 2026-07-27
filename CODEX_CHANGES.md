@@ -19,9 +19,16 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
-- Spaced repetition is level-scoped and uses explicit stages with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Correct recalls advance one stage; a mistake resets only that card/sense. Due cards remain Known for vocabulary coverage but turn amber and join Review in their current source/configuration scope.
+- Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
 
 ## Codex task history
+
+### 2026-07-27 — Pausable spaced repetition
+
+- Commit `457b14ca`; front-end cache `flashcards-v111` / `20260727f`.
+- Study settings now exposes a persistent Spaced repetition Off/On control. It defaults Off where no choice has been saved, so unfinished app/content work does not turn the historical vocabulary into an immediate due backlog.
+- Off suppresses only time-based `due` classification: correct cards render Known, while newer mistakes and partially completed sense/Expression cards remain in Review. Answer counts, timestamps, and SRS stages continue to be stored, so turning it back On resumes rather than resets the schedule.
+- Verification: direct off/on/incorrect state cases, JavaScriptCore parsing, unique DOM IDs, cache-version lockstep, valid changelog JSON, and `git diff --check`. No service-worker browser preview was used.
 
 ### 2026-07-27 — Singular level-frequency wording
 

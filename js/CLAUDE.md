@@ -86,7 +86,10 @@ loadConfig() → renderLanguageTabs()
 backward-compatible interpretation, including legacy count-only rows. Review
 contains incorrect, partial, and due cards from the selected level; Learn new
 contains only unseen cards. Due cards remain `known` for vocabulary coverage but
-are not `learned`/current, so their set segment turns amber.
+are not `learned`/current, so their set segment turns amber. The device-persistent
+`spacedRepetitionEnabled` Study preference defaults false; while false,
+`getProgressState()` suppresses only due status, so correct cards remain green
+without hiding explicit mistakes or partial cards. Stages/timestamps still save.
 
 SRS v1 persists `srsStage` and uses intervals of 1, 3, 7, 14, 30, 60, and 120
 days. A correct answer advances one stage and a wrong answer resets to zero.

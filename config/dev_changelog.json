@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "457b14ca",
+      "summary": "Spaced repetition can now be paused while the app is developed",
+      "details": [
+        "Study settings now has a persistent Spaced repetition Off/On control, defaulting to Off on devices that have not chosen yet",
+        "Off suppresses time-based due cards so they remain Known, while genuine mistakes and partly learned cards still collect in Review",
+        "Review stages and timestamps are preserved for later re-enabling; cache v110→v111, assets 20260727e→20260727f"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "e4fb3abb",
       "summary": "Low-frequency level wording now stays grammatical",
       "details": [
