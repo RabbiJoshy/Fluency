@@ -26,8 +26,19 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Card reporting has one owner-facing route: both visible report controls open the structured audit sheet directly; the obsolete metadata/field-flag sheet is retired.
 - Artist clitic rows consume split-example `c` buckets in single- and multi-artist decks. They teach the exact attached form as an infinitive, gerund, or affirmative command plus the clitic's person/case and English role, rather than presenting only the base infinitive gloss.
 - Boot, source navigation, exact resume, and deck replacement share one app-level loading surface. It covers partial auth/setup/card DOM until the destination is coherent; it does not justify artificial waiting, and cached progress should remain usable while remote Sheets reconciliation runs in the background.
+- Source setup keeps parsed indexes by data path and shares one source/settings/examples-keyed filtered vocabulary across level, progress, exclusion, and set UI. Artist frequency extraction must use that same canonical loader rather than parsing the index independently.
 
 ## Codex task history
+
+### 2026-07-27 — Speed source setup and refine study controls
+
+- Commit `73f6741c`; front-end cache `flashcards-v120` / `20260727o`.
+- Removed the largest repeated Lyrics setup work: artist frequency extraction now reuses the canonical parsed/joined index, parsed source indexes are retained by path, and the slider, level-progress annotation, exclusion summary, and set picker share one prepared filter pass until source/settings/examples change. Deck construction invalidates the prepared view before mutating entries.
+- Replaced Speech's compact pill cluster with the same structured source-card language used in Lyrics: selected language with a direct language picker, an explicit “Switch to Lyrics” action, and progress underneath.
+- Tapping an already-selected numbered set starts it, while the existing full-width start button remains. Expression and attached-form rows now centre the Spanish form above the English explanation instead of pulling the two languages to opposite edges.
+- Study options now say Main menu, explicit `English → Spanish`/`Spanish → English`, and Mute/Enable automatic speech; Study preferences opens the Study tab and the redundant in-deck Help item is gone.
+- Autoplay is rendered and activated only when the card contains at least one timestamp-bounded, mapped Spotify example; sense announcements alone cannot create an empty autoplay run.
+- Verification: bundled-Node syntax checks for all changed modules, unique static HTML IDs, valid changelog JSON, cache lockstep assertions, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Make app transitions coherent and faster
 

@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "73f6741c",
       "summary": "Lyrics and Speech setup does less repeated work, with cleaner source and study controls",
       "details": [
         "Artist frequency and level setup now share one parsed index, source indexes remain cached by path, and slider/progress/set summaries reuse one prepared filter pass instead of repeatedly cloning the vocabulary",
