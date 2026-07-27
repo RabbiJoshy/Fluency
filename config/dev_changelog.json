@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Loading transitions now hide partial screens and sets open without the artificial pause",
+      "details": [
+        "One consistent Fluency loading screen covers authentication, Lyrics/Speech and artist navigation, exact-session resume, review loading, and set-to-set replacement",
+        "The login and previous-card layers no longer flash while a destination is still being prepared, and failures safely reveal the underlying app instead of trapping the loader",
+        "Decks now render on the next frame rather than waiting 800 ms, while exact resume uses cached progress immediately and reconciles Google Sheets in the background; cache v118→v119, assets 20260727m→20260727n"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "fd2e7edd",
       "summary": "Proper nouns no longer show up as a card meaning called \"proper noun\"",
       "details": [

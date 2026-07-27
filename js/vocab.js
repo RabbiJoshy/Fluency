@@ -129,7 +129,11 @@ function saveStudySessionSnapshot() {
 
 async function resumeLastStudySession() {
     const snapshot = getLastStudySession();
-    if (!snapshot) return;
+    if (!snapshot) {
+        window.hideAppLoading?.();
+        return;
+    }
+    window.showAppLoading?.('Continuing Your Set', 'Returning to the card where you stopped…', true);
     try { sessionStorage.setItem('fluency_resume_prompt_seen_v1', snapshot.savedAt); } catch (_) {}
     document.getElementById('resumeLastSetCard')?.remove();
     const currentMode = activeArtist ? 'lyrics' : 'speech';
@@ -151,6 +155,7 @@ async function resumeLastStudySession() {
         clearStudySessionSnapshot();
         artistVocabularyScope = 'main';
         window.renderArtistSourceSummary?.();
+        window.hideAppLoading?.();
         alert('Artist Extra unlocks after you understand 60% of this artist\'s main lyrics vocabulary.');
         return;
     }
@@ -192,12 +197,16 @@ async function resumeLastStudySession() {
         url.searchParams.delete('scope');
     }
     history.replaceState(null, '', url);
-    await loadVocabularyData(snapshot.range, {
-        resumeSnapshot: snapshot,
-        rankBasis: snapshot.rangeBasis || 'display',
-        setNumber: snapshot.setNumber || null,
-        levelSetCount: snapshot.levelSetCount || null
-    });
+    try {
+        await loadVocabularyData(snapshot.range, {
+            resumeSnapshot: snapshot,
+            rankBasis: snapshot.rangeBasis || 'display',
+            setNumber: snapshot.setNumber || null,
+            levelSetCount: snapshot.levelSetCount || null
+        });
+    } finally {
+        window.hideAppLoading?.();
+    }
 }
 
 // ISO 639-1 codes for each language key used in config.json
@@ -1702,47 +1711,48 @@ async function loadVocabularyData(rangeString, opts = {}) {
         }
         loadingMsg.style.display = 'block';
 
-        // Successfully loaded data - show message briefly, then transition to cards
-        setTimeout(() => {
-            document.getElementById('setupPanel').classList.add('hidden');
-            document.getElementById('appContent').classList.remove('hidden');
-            loadingMsg.style.display = 'none';
+        // Swap the completed deck into view immediately. Callers that need a
+        // transition keep the app-level loading screen above this atomic DOM
+        // update, so the previous card never flashes between sets.
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        document.getElementById('setupPanel').classList.add('hidden');
+        document.getElementById('appContent').classList.remove('hidden');
+        loadingMsg.style.display = 'none';
 
-            // Show mobile floating buttons
-            showFloatingBtns(true);
+        // Show mobile floating buttons
+        showFloatingBtns(true);
 
-            if (resumeSnapshot) {
-                let resumeIndex = flashcards.findIndex(card => card.fullId === resumeSnapshot.currentFullId);
-                if (resumeIndex < 0 && Number.isFinite(Number(resumeSnapshot.currentVocabularyRank))) {
-                    const targetRank = Number(resumeSnapshot.currentVocabularyRank);
-                    resumeIndex = flashcards.reduce((best, card, index) => {
-                        const distance = Math.abs(Number(card.vocabularyRank || card.rank) - targetRank);
-                        return distance < best.distance ? { index, distance } : best;
-                    }, { index: 0, distance: Infinity }).index;
-                }
-                currentIndex = Math.max(0, resumeIndex);
-                const resumedCard = flashcards[currentIndex];
-                const maxMeaningIndex = Math.max(0, (resumedCard?.meanings?.length || 1) - 1);
-                currentMeaningIndex = Math.min(
-                    maxMeaningIndex,
-                    Math.max(0, resumeSnapshot.currentMeaningIndex || 0)
-                );
-                currentExampleIndex = Math.max(0, resumeSnapshot.currentExampleIndex || 0);
-                currentMWEIndex = Math.max(0, resumeSnapshot.currentMWEIndex || 0);
-                isFlipped = !!resumeSnapshot.directionFlipped;
-                if (typeof resumeSnapshot.speechEnabled === 'boolean') {
-                    speechEnabled = resumeSnapshot.speechEnabled;
-                }
+        if (resumeSnapshot) {
+            let resumeIndex = flashcards.findIndex(card => card.fullId === resumeSnapshot.currentFullId);
+            if (resumeIndex < 0 && Number.isFinite(Number(resumeSnapshot.currentVocabularyRank))) {
+                const targetRank = Number(resumeSnapshot.currentVocabularyRank);
+                resumeIndex = flashcards.reduce((best, card, index) => {
+                    const distance = Math.abs(Number(card.vocabularyRank || card.rank) - targetRank);
+                    return distance < best.distance ? { index, distance } : best;
+                }, { index: 0, distance: Infinity }).index;
             }
+            currentIndex = Math.max(0, resumeIndex);
+            const resumedCard = flashcards[currentIndex];
+            const maxMeaningIndex = Math.max(0, (resumedCard?.meanings?.length || 1) - 1);
+            currentMeaningIndex = Math.min(
+                maxMeaningIndex,
+                Math.max(0, resumeSnapshot.currentMeaningIndex || 0)
+            );
+            currentExampleIndex = Math.max(0, resumeSnapshot.currentExampleIndex || 0);
+            currentMWEIndex = Math.max(0, resumeSnapshot.currentMWEIndex || 0);
+            isFlipped = !!resumeSnapshot.directionFlipped;
+            if (typeof resumeSnapshot.speechEnabled === 'boolean') {
+                speechEnabled = resumeSnapshot.speechEnabled;
+            }
+        }
 
-            // Initialize card display
-            initializeApp();
-            window.updateSpeakIcons?.();
-            if (resumeSnapshot?.cardFaceFlipped) flashcardEl?.classList.add('flipped');
-            else flashcardEl?.classList.remove('flipped');
-            saveStudySessionSnapshot();
-            buildWordLookupMap();
-        }, 800);
+        // Initialize card display
+        initializeApp();
+        window.updateSpeakIcons?.();
+        if (resumeSnapshot?.cardFaceFlipped) flashcardEl?.classList.add('flipped');
+        else flashcardEl?.classList.remove('flipped');
+        saveStudySessionSnapshot();
+        buildWordLookupMap();
     } catch (error) {
         console.error(`Failed to load vocabulary data:`, error);
         document.getElementById('loadingMessage').style.display = 'none';

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="app-booting">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -24,34 +24,41 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260727m">
-    <link rel="modulepreload" href="js/state.js?v=20260727m">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260727m">
-    <link rel="modulepreload" href="js/speech.js?v=20260727m">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260727m">
-    <link rel="modulepreload" href="js/auth.js?v=20260727m">
-    <link rel="modulepreload" href="js/spotify.js?v=20260727m">
-    <link rel="modulepreload" href="js/estimation.js?v=20260727m">
-    <link rel="modulepreload" href="js/config.js?v=20260727m">
-    <link rel="modulepreload" href="js/progress.js?v=20260727m">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260727m">
-    <link rel="modulepreload" href="js/ui.js?v=20260727m">
-    <link rel="modulepreload" href="js/vocab.js?v=20260727m">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260727m">
+    <link rel="modulepreload" href="js/main.js?v=20260727n">
+    <link rel="modulepreload" href="js/state.js?v=20260727n">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260727n">
+    <link rel="modulepreload" href="js/speech.js?v=20260727n">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260727n">
+    <link rel="modulepreload" href="js/auth.js?v=20260727n">
+    <link rel="modulepreload" href="js/spotify.js?v=20260727n">
+    <link rel="modulepreload" href="js/estimation.js?v=20260727n">
+    <link rel="modulepreload" href="js/config.js?v=20260727n">
+    <link rel="modulepreload" href="js/progress.js?v=20260727n">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260727n">
+    <link rel="modulepreload" href="js/ui.js?v=20260727n">
+    <link rel="modulepreload" href="js/vocab.js?v=20260727n">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260727n">
     <script>
-        // Hide body instantly in artist mode to prevent flash of normal-mode UI
-        if (new URLSearchParams(window.location.search).get('artist') ||
-            new URLSearchParams(window.location.search).get('mode') === 'badbunny') {
-            document.documentElement.classList.add('artist-loading');
-            // Safety: always reveal after 4s even if init hangs
-            setTimeout(function() { document.documentElement.classList.remove('artist-loading'); }, 4000);
-        }
+        // Fail open if a boot-time script error prevents main.js from taking
+        // ownership of the loading screen. Normal boot removes this class as
+        // soon as authentication and the selected source are coherent.
+        setTimeout(function() {
+            if (!document.documentElement.classList.contains('app-booting')) return;
+            document.documentElement.classList.remove('app-booting');
+            document.getElementById('appLoadingScreen')?.classList.add('is-hidden');
+        }, 12000);
     </script>
-    <style>
-        .artist-loading body { visibility: hidden; }
-    </style>
 </head>
 <body>
+    <div id="appLoadingScreen" class="app-loading-screen" role="status" aria-live="polite" aria-busy="true">
+        <div class="app-loading-card">
+            <div class="app-loading-mark" aria-hidden="true">F</div>
+            <div class="app-loading-spinner" aria-hidden="true"></div>
+            <strong id="appLoadingTitle">Getting things ready</strong>
+            <span id="appLoadingDetail">Loading your language and progress…</span>
+        </div>
+    </div>
+
     <!-- User Info Display -->
     <div id="userInfo" class="user-info hidden">
         <!-- Floating buttons (shown only during flashcard view) -->
@@ -1153,6 +1160,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260727m"></script>
+    <script type="module" src="js/main.js?v=20260727n"></script>
 </body>
 </html>

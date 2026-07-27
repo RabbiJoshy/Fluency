@@ -1,16 +1,16 @@
-import './state.js?v=20260727m';
-import './sync-queue.js?v=20260727m';
-import './speech.js?v=20260727m';
-import './artist-ui.js?v=20260727m';
-import './auth.js?v=20260727m';
-import './spotify.js?v=20260727m';
-import './estimation.js?v=20260727m';
-import './config.js?v=20260727m';
-import './progress.js?v=20260727m';
-import './knowledge.js?v=20260727m';
-import './ui.js?v=20260727m';
-import './vocab.js?v=20260727m';
-import './flashcards.js?v=20260727m';
+import './state.js?v=20260727n';
+import './sync-queue.js?v=20260727n';
+import './speech.js?v=20260727n';
+import './artist-ui.js?v=20260727n';
+import './auth.js?v=20260727n';
+import './spotify.js?v=20260727n';
+import './estimation.js?v=20260727n';
+import './config.js?v=20260727n';
+import './progress.js?v=20260727n';
+import './knowledge.js?v=20260727n';
+import './ui.js?v=20260727n';
+import './vocab.js?v=20260727n';
+import './flashcards.js?v=20260727n';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -34,6 +34,38 @@ function perfSummary() {
 window.perfMark = perfMark;
 window.perfSummary = perfSummary;
 perfMark('main.js top — module imports done');
+
+const APP_LOADING_MESSAGE_KEY = 'fluency_loading_message_v1';
+
+function showAppLoading(title = 'Getting things ready', detail = 'Loading your language and progress…', persist = false) {
+    const screen = document.getElementById('appLoadingScreen');
+    if (!screen) return;
+    document.getElementById('appLoadingTitle').textContent = title;
+    document.getElementById('appLoadingDetail').textContent = detail;
+    screen.classList.remove('is-hidden');
+    screen.setAttribute('aria-busy', 'true');
+    if (persist) {
+        try { sessionStorage.setItem(APP_LOADING_MESSAGE_KEY, JSON.stringify({ title, detail })); } catch (_) {}
+    }
+}
+
+function hideAppLoading() {
+    const screen = document.getElementById('appLoadingScreen');
+    document.documentElement.classList.remove('app-booting');
+    screen?.classList.add('is-hidden');
+    screen?.setAttribute('aria-busy', 'false');
+    try { sessionStorage.removeItem(APP_LOADING_MESSAGE_KEY); } catch (_) {}
+}
+
+try {
+    const pendingLoadingMessage = JSON.parse(sessionStorage.getItem(APP_LOADING_MESSAGE_KEY) || 'null');
+    if (pendingLoadingMessage?.title) {
+        showAppLoading(pendingLoadingMessage.title, pendingLoadingMessage.detail || 'Preparing the next screen…');
+    }
+} catch (_) {}
+
+window.showAppLoading = showAppLoading;
+window.hideAppLoading = hideAppLoading;
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -140,6 +172,7 @@ if (activeArtist) {
 }
 
 loadConfig().then(async () => {
+    const isResumeNavigation = new URLSearchParams(window.location.search).get('resume') === '1';
     perfMark('after loadConfig');
     renderLanguageTabs();
     // Set first language with data as default (but don't auto-select it)
@@ -259,12 +292,11 @@ loadConfig().then(async () => {
             updateStep5Tooltip();
             await updateLemmaToggleVisibility();
             await updateCognateToggleVisibility();
-            renderLevelSelector(activeArtist.language || 'spanish');
+            await renderLevelSelector(activeArtist.language || 'spanish');
             await updateExclusionBars();
             setupArtistSelection();
         } finally {
-            // Always reveal body, even if something above threw
-            document.documentElement.classList.remove('artist-loading');
+            if (!isResumeNavigation) hideAppLoading();
         }
         perfMark('after artist init');
     } else {
@@ -273,19 +305,28 @@ loadConfig().then(async () => {
             ? document.querySelector(`.lang-tab[data-lang="${pendingSpeechLanguage}"]`)
             : null;
         if (pendingTab && !pendingTab.disabled) pendingTab.click();
+        else if (!isResumeNavigation) hideAppLoading();
     }
 
-    // Wait for Sheets refresh to complete; re-render set badges if data changed
-    const dataChanged = await progressPromise;
-    if (dataChanged && selectedLanguage) {
-        try { await renderRangeSelector(); } catch (e) { /* range selector may not be visible yet */ }
-    }
+    // Cached progress is already loaded synchronously by
+    // loadUserProgressFromSheet(). Do not hold boot or exact-session resume
+    // behind the remote Sheets round trip.
     window.renderResumeLastSetCard?.();
-    if (new URLSearchParams(window.location.search).get('resume') === '1') {
+    if (isResumeNavigation) {
         await window.resumeLastStudySession?.();
+    }
+
+    // Reconcile the setup badges once the background Sheets refresh finishes.
+    const dataChanged = await progressPromise;
+    const setupIsVisible = !document.getElementById('setupPanel')?.classList.contains('hidden');
+    if (dataChanged && selectedLanguage && setupIsVisible) {
+        try { await renderRangeSelector(); } catch (e) { /* range selector may not be visible yet */ }
     }
     perfMark('boot complete');
     perfSummary();
+}).catch(error => {
+    console.error('App initialization failed:', error);
+    hideAppLoading();
 });
 
 // Build the initials shown on the color fallback (no image) — up to 2 letters.
@@ -362,6 +403,7 @@ function renderArtistSourceSummary() {
         showArtistPicker(picker, matchingArtists);
     };
     speechBtn.onclick = () => {
+        showAppLoading('Switching to Speech', 'Preparing your language and progress…', true);
         sessionStorage.setItem('fluencyPendingSpeechLanguage', activeArtist.language || 'spanish');
         window.location.href = window.location.pathname;
     };
@@ -565,6 +607,7 @@ function showArtistPicker(anchorBtn, artists) {
         fallbackText: artistInitials(cfg.name),
         accent: (cfg.colorTheme && cfg.colorTheme.primary) || 'var(--accent-primary)',
         onSelect: () => {
+            showAppLoading(`Loading ${cfg.name}`, 'Preparing lyrics, levels and progress…', true);
             window.location.href = `${window.location.pathname}?artist=${slug}`;
         }
     }));

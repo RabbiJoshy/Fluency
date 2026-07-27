@@ -1309,15 +1309,23 @@ function initializeApp() {
         const nextRankBasis = stats.nextRankBasis || stats.rangeBasis || 'stable';
         const nextSetNumber = stats.nextSetNumber;
         const levelSetCount = stats.levelSetCount;
+        const loadingTitle = action === 'next-set' && nextSetNumber
+            ? `Loading Set ${nextSetNumber}`
+            : 'Loading the Next Level';
+        window.showAppLoading?.(loadingTitle, 'Preparing your next cards…');
         hideDeckCompleteModal();
-        if (action === 'next-set' && nextRange) {
-            await loadVocabularyData(nextRange, {
-                rankBasis: nextRankBasis,
-                setNumber: nextSetNumber,
-                levelSetCount
-            });
-        } else if (action === 'next-level') {
-            await window.startNextStudyLevelFirstSet?.();
+        try {
+            if (action === 'next-set' && nextRange) {
+                await loadVocabularyData(nextRange, {
+                    rankBasis: nextRankBasis,
+                    setNumber: nextSetNumber,
+                    levelSetCount
+                });
+            } else if (action === 'next-level') {
+                await window.startNextStudyLevelFirstSet?.();
+            }
+        } finally {
+            window.hideAppLoading?.();
         }
     });
 
@@ -4203,7 +4211,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727m';
+const ASSET_VERSION = '20260727n';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

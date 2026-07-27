@@ -364,40 +364,46 @@ function setupLanguageTabs() {
 
             const continueToSpeech = async () => {
                 if (selectedLanguage !== newLanguage) return;
-                sourceLabel.textContent = 'Speech';
-                sourcePill.classList.remove('source-pill-inline--pending');
-                const loadingIndicator = document.getElementById('dataLoadingIndicator');
-                loadingIndicator.classList.add('visible');
+                window.showAppLoading?.('Preparing Speech', 'Loading levels and your progress…');
+                try {
+                    sourceLabel.textContent = 'Speech';
+                    sourcePill.classList.remove('source-pill-inline--pending');
+                    const loadingIndicator = document.getElementById('dataLoadingIndicator');
+                    loadingIndicator.classList.add('visible');
 
-                // Start refreshing progress from Sheets (cache loads synchronously inside).
-                let progressRefresh = Promise.resolve(false);
-                if (currentUser && !currentUser.isGuest) {
-                    progressRefresh = loadUserProgressFromSheet();
+                    // Start refreshing progress from Sheets (cache loads synchronously inside).
+                    let progressRefresh = Promise.resolve(false);
+                    if (currentUser && !currentUser.isGuest) {
+                        progressRefresh = loadUserProgressFromSheet();
+                    }
+
+                    // Always load PPM data if available (needed for coverage bar even in CEFR mode).
+                    const langPpmPath = config.languages[selectedLanguage] && config.languages[selectedLanguage].ppmDataPath;
+                    if (!ppmData && langPpmPath) {
+                        await loadPpmData(selectedLanguage);
+                    }
+
+                    loadingIndicator.classList.remove('visible');
+                    document.getElementById('step2').style.display = 'block';
+                    setActiveSetupStep('step2');
+                    updatePercentModeButton();
+                    updateStep2Tooltip();
+                    updateStep5Tooltip();
+
+                    await renderLevelSelector(selectedLanguage);
+                    await updateLemmaToggleVisibility();
+                    await updateCognateToggleVisibility();
+                    await updateExclusionBars();
+                    updateIncorrectButtonVisibility();
+
+                    progressRefresh.then(changed => {
+                        if (changed) renderRangeSelector();
+                    }).catch(() => {});
+                    updateTotalStatsButtonVisibility();
+                } finally {
+                    document.getElementById('dataLoadingIndicator')?.classList.remove('visible');
+                    window.hideAppLoading?.();
                 }
-
-                // Always load PPM data if available (needed for coverage bar even in CEFR mode).
-                const langPpmPath = config.languages[selectedLanguage] && config.languages[selectedLanguage].ppmDataPath;
-                if (!ppmData && langPpmPath) {
-                    await loadPpmData(selectedLanguage);
-                }
-
-                loadingIndicator.classList.remove('visible');
-                document.getElementById('step2').style.display = 'block';
-                setActiveSetupStep('step2');
-                updatePercentModeButton();
-                updateStep2Tooltip();
-                updateStep5Tooltip();
-
-                renderLevelSelector(selectedLanguage);
-                updateLemmaToggleVisibility();
-                updateCognateToggleVisibility();
-                updateExclusionBars();
-                updateIncorrectButtonVisibility();
-
-                progressRefresh.then(changed => {
-                    if (changed) renderRangeSelector();
-                }).catch(() => {});
-                updateTotalStatsButtonVisibility();
             };
 
             // Speech setup keeps the source choice reachable. Choosing Lyrics
@@ -1755,12 +1761,17 @@ async function renderRangeSelector() {
         const loadingMessage = document.getElementById('loadingMessage');
         loadingMessage.style.display = 'block';
         loadingMessage.textContent = `Loading Set ${this.dataset.setNumber}...`;
-        await loadVocabularyData(selectedRange, {
-            rankBasis: this.dataset.rankBasis,
-            setNumber: Number(this.dataset.setNumber),
-            levelSetCount: Number(this.dataset.levelSetCount),
-            studyMode: this.dataset.studyMode
-        });
+        window.showAppLoading?.(`Loading Set ${this.dataset.setNumber}`, 'Preparing your next cards…');
+        try {
+            await loadVocabularyData(selectedRange, {
+                rankBasis: this.dataset.rankBasis,
+                setNumber: Number(this.dataset.setNumber),
+                levelSetCount: Number(this.dataset.levelSetCount),
+                studyMode: this.dataset.studyMode
+            });
+        } finally {
+            window.hideAppLoading?.();
+        }
     });
     container.querySelector('.study-set-review')?.addEventListener('click', async () => {
         const loadingMessage = document.getElementById('loadingMessage');
@@ -1770,10 +1781,15 @@ async function renderRangeSelector() {
             '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
         ));
         const levelNumber = levelButtons.findIndex(button => button.dataset.level === selectedLevel) + 1;
-        await loadLevelReviewSet(`${minWord}-${maxWord}`, {
-            rankBasis,
-            levelNumber
-        });
+        window.showAppLoading?.('Loading Review', 'Collecting the cards that need another look…');
+        try {
+            await loadLevelReviewSet(`${minWord}-${maxWord}`, {
+                rankBasis,
+                levelNumber
+            });
+        } finally {
+            window.hideAppLoading?.();
+        }
     });
 }
 
