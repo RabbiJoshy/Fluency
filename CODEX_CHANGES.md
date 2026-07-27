@@ -30,6 +30,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Make merged-lemma cards follow their examples
+
+- Commit `1987dfd1`; front-end cache `flashcards-v122` / `20260727q`.
+- Merged cards remain one stable lemma-owned rank/progress record, but Spanish→English now presents the exact surface carried by the current pooled example. The citation lemma remains directly underneath on both faces when it differs.
+- Pooled sibling examples retain their source entry's morphology. The front and back grammar display follows that form, and the existing conjugated-English table supplies a matching gloss only for a single unambiguous supported analysis. Ambiguous forms such as `da` retain all visual analyses without guessing an English conjugation.
+- English→Spanish continues to ask for the shared lemma and uses the existing “In this example” cue for its surface form. An in-session per-card cursor advances the starting example when a merged card is revisited.
+- Verification: bundled-Node syntax checks, valid changelog JSON, cache-version lockstep, real `dar` family morphology and `dieron`→“they gave” data assertions, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-27 — Emphasize the selected study set
 
 - Commit `e5a2d872`; front-end cache `flashcards-v121` / `20260727p`.
