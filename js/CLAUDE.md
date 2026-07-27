@@ -17,7 +17,7 @@ Vanilla JS with native ES modules. No framework, no bundler, no build step.
 | `auth.js` | Login, Google Sheets sync | `submitLogin()`, `saveWordProgress()`, `loadUserProgressFromSheet()` |
 | `progress.js` | Card progress state + coverage bars | `getProgressState()`, `calculateCoveragePercent()` |
 | `knowledge.js` | Sparse per-sense/expression knowledge layered over card progress | `getKnowledgeItemState()`, `buildFocusedReviewCard()`, `saveKnowledgeProgress()` |
-| `estimation.js` | Level estimation — adaptive staircase | `startEstimation()`, `handleAnswer()`, `showEstimationResult()`, `revealTranslation()` |
+| `estimation.js` | Receptive level estimation — adaptive frequency bands | `startEstimation()`, `handleAnswer()`, `showEstimationResult()`, `revealTranslation()` |
 | `speech.js` | Text-to-speech | `speakWord()` |
 | `artist-ui.js` | Album art, artist backgrounds | `updateArtistBackground()` |
 
@@ -114,6 +114,18 @@ IDs; source IDs supersede generated IDs without dropping the old alias. The
 front end still recognises pre-migration normalized POS + translation + context
 IDs and stored `sense_id_aliases`, then writes the canonical ID on the learner's
 next row answer. Preserve canonical IDs/aliases in future deck-schema work.
+
+## Level estimation
+
+`estimation.js` runs a 30-item receptive check against the normal Speech
+frequency list even when opened from Lyrics. It samples every equal-sized
+frequency band before adaptively concentrating around the uncertain boundary,
+avoids repeating a lemma, monotonically fits band knowledge rates, and reports
+an approximate 90% range. The curve's point estimate is still persisted as one
+rank for backward compatibility with level selection, artist known-word
+projection, and the current Apps Script schema. The learner must reveal the
+meaning before self-scoring whether it was known beforehand. This is not a
+calibrated IRT test and must not be presented as exact or as productive ability.
 
 Google Apps Script schema v3 adds `SrsStage` and `LastSeen` as columns 9–10 of
 `UserProgress`/`Lyrics`, plus `SrsStage` as column 13 of `ItemProgress`. Existing

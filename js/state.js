@@ -109,18 +109,20 @@ export const state = {
     // Level estimation
     estimationState: {
         active: false,
-        currentLevel: 500,
-        minStride: 100,
-        wordIndex: 0,
-        correct: 0,
-        wrong: 0,
-        checkpointCorrect: 0,
-        checkpointWrong: 0,
-        currentWords: [],
-        estimatedLevel: null,
         vocabularyData: null,
-        history: [],
-        maxLevel: 8500
+        validWords: [],
+        bands: [],
+        coverageOrder: [],
+        maxLevel: 0,
+        wordsTestedCount: 0,
+        shownWordIds: new Set(),
+        shownLemmaKeys: new Set(),
+        currentWord: null,
+        currentBandIndex: null,
+        translationRevealed: false,
+        estimatedLevel: null,
+        estimateInterval: null,
+        autoAdvanceTimer: null
     },
 };
 

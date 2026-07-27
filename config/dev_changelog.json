@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "The level check now estimates a range across the vocabulary",
+      "details": [
+        "The old single-rank staircase is replaced by sampling across ten frequency bands, then concentrating later questions around the uncertain knowledge boundary",
+        "Responses are fitted into a frequency-consistent knowledge curve and reported as a receptive-vocabulary range rather than a falsely exact score",
+        "Each meaning must be revealed before self-scoring, repeated lemmas are avoided, and artist mode still uses the unbiased Speech frequency list; cache v111→v112, assets 20260727f→20260727g"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "457b14ca",
       "summary": "Spaced repetition can now be paused while the app is developed",
       "details": [
