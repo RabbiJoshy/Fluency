@@ -3729,9 +3729,41 @@
         }
         .study-set-dot.is-current {
             border-color: var(--accent-primary);
-            box-shadow: 0 0 0 2px rgba(var(--accent-primary-rgb), 0.25);
+            box-shadow:
+                0 0 0 3px var(--bg-card),
+                0 0 0 6px rgba(var(--accent-primary-rgb), 0.72),
+                0 8px 18px rgba(var(--accent-primary-rgb), 0.28);
             color: var(--text-primary);
-            transform: translateY(-1px);
+            z-index: 2;
+            animation: current-study-set-pulse 1.65s ease-in-out infinite;
+        }
+        @keyframes current-study-set-pulse {
+            0%, 100% {
+                transform: translateY(-1px) scale(1);
+                filter: brightness(1);
+                box-shadow:
+                    0 0 0 3px var(--bg-card),
+                    0 0 0 6px rgba(var(--accent-primary-rgb), 0.72),
+                    0 8px 18px rgba(var(--accent-primary-rgb), 0.28);
+            }
+            45% {
+                transform: translateY(-4px) scale(1.09);
+                filter: brightness(1.12);
+                box-shadow:
+                    0 0 0 3px var(--bg-card),
+                    0 0 0 8px rgba(var(--accent-primary-rgb), 0.42),
+                    0 11px 24px rgba(var(--accent-primary-rgb), 0.36);
+            }
+            62% {
+                transform: translateY(-1px) scale(1.03);
+                filter: brightness(1.04);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .study-set-dot.is-current {
+                animation: none;
+                transform: translateY(-1px) scale(1.04);
+            }
         }
         .study-set-dot.is-empty {
             opacity: 0.25;

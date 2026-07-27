@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "The currently selected study set is now unmistakable",
+      "details": [
+        "The active set number has a bright layered ring and a gentle bounce-and-pulse animation while preserving its wrong, review, known, and unseen progress colours",
+        "Reduced-motion users get the same strong static selection treatment without animation; cache v120→v121, assets 20260727o→20260727p"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "73f6741c",
       "summary": "Lyrics and Speech setup does less repeated work, with cleaner source and study controls",
       "details": [
