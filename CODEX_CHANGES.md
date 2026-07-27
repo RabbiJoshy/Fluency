@@ -21,8 +21,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 - Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
+- A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English currently uses the first two and labels pronominal lemmas in plain language; English→Spanish has not yet switched to the production answer.
 
 ## Codex task history
+
+### 2026-07-27 — Spanish card surface and citation forms
+
+- Commit `557f65f0`; front-end cache `flashcards-v113` / `20260727h`.
+- Added an app-side form adapter that separates the stable card/source word from the surface prompt, dictionary citation form, and future production answer. It consumes optional snake_case pipeline fields when available but needs no deck rebuild and falls back to the existing word/lemma pair.
+- Spanish→English now displays the encountered surface as its prompt and puts a non-trivial citation form on a separate, quieter line. A verb such as `queja|quejarse` is explicitly described as “verb with se” without adding another pill; target-language TTS follows the displayed surface.
+- Search, homograph-peek, ordinary, review, and legacy temporary cards all receive the same form contract. English→Spanish intentionally retains its old answer rendering until the next direction-specific slice can use `productionAnswer` deliberately.
+- Verification: JavaScriptCore compilation of all changed modules, direct `queja|quejarse` and noun-homograph adapter cases, optional future-field compatibility, cache-version lockstep, valid changelog JSON, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Adaptive frequency-band level estimate
 

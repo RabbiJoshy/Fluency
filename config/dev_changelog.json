@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "557f65f0",
       "summary": "Spanish cards now distinguish the encountered form from its dictionary form",
       "details": [
         "The card model now keeps display surface, citation form, and future production answer separate instead of making targetWord perform all three jobs",
