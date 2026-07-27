@@ -1992,7 +1992,9 @@ function updateCard({ announceHeadword = false } = {}) {
 
             flippedFrontMeanings = { meanings: frontMeanings, multiPOS };
             frontText = null; // will use structured display instead
-            backWord = card.targetWord;
+            backWord = card.mergedLemma
+                ? (card.productionAnswer || citationForm)
+                : card.targetWord;
             backTranslation = currentMeaning.meaning;
             exampleSentence = currentMeaning.englishSentence;
             exampleTranslation = currentMeaning.targetSentence;
@@ -2028,8 +2030,8 @@ function updateCard({ announceHeadword = false } = {}) {
     }
 
     // Build variant display if available (e.g. "la'o | lado")
-    const variantDisplay = buildVariantDisplay(card);
-    const backVariantDisplay = buildVariantDisplay(card, { back: true });
+    const variantDisplay = card.mergedLemma ? null : buildVariantDisplay(card);
+    const backVariantDisplay = card.mergedLemma ? null : buildVariantDisplay(card, { back: true });
     if (variantDisplay && !isFlipped) {
         frontText = variantDisplay;
     }
@@ -2040,7 +2042,9 @@ function updateCard({ announceHeadword = false } = {}) {
     // Morphology belongs to the verb POS rather than forming a separate
     // metadata strip. Build it once so both front directions can nest it
     // beneath the relevant verb badge.
-    const morphLabels = card.morphology
+    const representativeMorphologyIsMisleading = card.mergedLemma
+        && foldSurfaceForm(card.representativeSurface || card.targetWord) !== foldSurfaceForm(displaySurface);
+    const morphLabels = card.morphology && !representativeMorphologyIsMisleading
         ? [...new Map((Array.isArray(card.morphology) ? card.morphology : [card.morphology])
             .map(formatMorphLabel)
             .filter(Boolean)
@@ -3964,7 +3968,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727i';
+const ASSET_VERSION = '20260727j';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

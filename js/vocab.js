@@ -579,8 +579,8 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
  * The snake_case aliases make this an adapter for future pipeline fields while
  * the lemma/word fallbacks preserve every currently shipped deck.
  */
-function buildCardFormModel(item, meanings = []) {
-    const displaySurface = String(
+function buildCardFormModel(item, meanings = [], options = {}) {
+    const representativeSurface = String(
         item?.dominant_surface
         || item?.dominantSurface
         || item?.display_surface
@@ -593,8 +593,14 @@ function buildCardFormModel(item, meanings = []) {
         item?.citation_form
         || item?.citationForm
         || item?.lemma
-        || displaySurface
+        || representativeSurface
     ).trim();
+    // Merge Lemmas still uses the most frequent surface entry as its stable
+    // rank/progress host, but the learner is studying the lexeme, not that
+    // accidental representative inflection. Present the citation form while
+    // retaining targetWord/representativeSurface for IDs and exact examples.
+    const mergedLemma = options.mergedLemma === true && Boolean(citationForm);
+    const displaySurface = mergedLemma ? citationForm : representativeSurface;
     const productionAnswer = String(
         item?.production_answer
         || item?.productionAnswer
@@ -614,9 +620,11 @@ function buildCardFormModel(item, meanings = []) {
 
     return {
         displaySurface,
+        representativeSurface,
         citationForm,
         productionAnswer,
-        isPronominal
+        isPronominal,
+        mergedLemma
     };
 }
 
@@ -1534,10 +1542,13 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     englishSentence: meanings[0].englishSentence || '',
                 }
                 : { targetSentence: '', englishSentence: '' };
+            const cardForm = buildCardFormModel(item, meanings, {
+                mergedLemma: useLemmaMode && lemmaFieldAvailable
+            });
             const card = {
                 targetWord: item.word,
                 lemma: item.lemma || '',
-                ...buildCardFormModel(item, meanings),
+                ...cardForm,
                 id: item.id,
                 fullId: getWordId(item),
                 rank: item.rank,
@@ -1555,7 +1566,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 translation: meanings[0]?.meaning || '',
                 targetSentence: firstExample.targetSentence,
                 englishSentence: firstExample.englishSentence,
-                links: generateLinks(item.word, item.lemma || item.word, langConfig.referenceLinks),
+                links: generateLinks(
+                    cardForm.displaySurface || item.word,
+                    cardForm.citationForm || item.lemma || item.word,
+                    langConfig.referenceLinks
+                ),
                 isMultiMeaning: true,
                 variants: item.variants || null,
                 homographIds: item.homograph_ids || null,

@@ -157,7 +157,7 @@ the source identity/tie-breaker and legacy CEFR basis.
 ## Flashcard Object Shape
 
 ```js
-{ targetWord, lemma, displaySurface, citationForm, productionAnswer, isPronominal, id, fullId, rank, corpusCount, isMultiMeaning, meanings: [{ pos, meaning, percentage, targetSentence, englishSentence, allExamples }], translation, links }
+{ targetWord, lemma, displaySurface, representativeSurface, citationForm, productionAnswer, mergedLemma, isPronominal, id, fullId, rank, corpusCount, isMultiMeaning, meanings: [{ pos, meaning, percentage, targetSentence, englishSentence, allExamples }], translation, links }
 ```
 
 `targetWord` remains the stable source/card identity and must not be repurposed
@@ -167,6 +167,13 @@ Spanish→English prompts use `displaySurface`, dictionary context uses
 `citationForm`, and English→Spanish will use `productionAnswer`. A Spanish verb
 whose citation form ends in `se` is marked `isPronominal`; the front and back
 show that as plain “verb with se” context rather than another pill.
+
+In Merge Lemmas mode, `targetWord` and `representativeSurface` retain the
+highest-frequency surface host for stable IDs/ranks and exact example matching,
+but `displaySurface` becomes the citation lemma. Thus the merged `estar` card is
+headed/spoken as `estar` even when `está` is its internal host. Morphology from
+that representative inflection is suppressed when it would describe the lemma
+incorrectly; each example still highlights its actual pooled surface form.
 
 ## Artist / Lyrics Mode Differences
 

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Merged cards now present the lemma instead of an arbitrary frequent form",
+      "details": [
+        "A merged estar family is headed and spoken as estar even when está remains its internal frequency/rank host",
+        "Examples still highlight the exact evidenced form such as está or estemos, while misleading host-form morphology is hidden from the lemma heading",
+        "Stable card IDs, progress, levels, ranks, and pooled frequency remain attached to the existing representative entry; cache v114→v115, assets 20260727i→20260727j"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "2b9ec48f",
       "summary": "Large merged-lemma cards now focus on one item and put detailed knowledge in an overview",
       "details": [
