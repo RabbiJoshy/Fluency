@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "a30a6250",
       "summary": "Slang and regional meanings Gemini discovered are no longer dropped",
       "details": [
         "Off-menu meanings the classifier proposed (guagua=car/van/truck, charro=scrub/jerk/loser, chilla=side chick, manín=my man) were being discarded three times over — at lemma consolidation, at the priority tie-break, and at deck assembly — so cards showed a wrong dictionary sense instead",

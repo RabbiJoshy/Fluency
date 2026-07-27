@@ -58,6 +58,7 @@ updated: YYYY-MM-DD
 | `verse_filtering.md` | decided | cross-lang | Per-artist verse filtering — decided against |
 | `alternative_translation_sources.md` | decided | spanish | Lyrics translation sources — Genius + Gemini chosen |
 | `artist_sense_pipeline.md` | implemented | spanish | Artist sense pipeline: Wiktionary senses + Flash Lite classifier + method priority |
+| `sense_provenance.md` | research | cross-lang | Prompt registry + per-assignment provenance; resolution by capability tier, not file order |
 | `prompts/translation_services.md` | prompt | spanish | Research: best translation API/model for Spanish lyrics → English |
 | `prompts/elision_resolution_refactor.md` | prompt | spanish | Move Spanish elision resolution before tokenization |
 | `prompts/french_dict_equivalent.md` | prompt | french | Whether to supplement or replace the enwiktionary French slice (Wiktionnaire dump, Le Robert scrape, paid APIs) |
