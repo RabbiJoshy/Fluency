@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "c0ade7a3",
       "summary": "Clitic forms now show their lyrics and grammar, with one clean report menu",
       "details": [
         "The report icons now open the modern audit sheet directly instead of routing through the obsolete metadata-and-flag screen",

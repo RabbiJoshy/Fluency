@@ -23,8 +23,19 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
 - A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English uses the first two and labels pronominal lemmas in plain language. English→Spanish uses the production answer: exact surface when unmerged, lemma when merged, and the complete `-se` citation for older pronominal data, with the evidenced example form shown separately.
 - Regular plural dictionary twins share their explicit singular lemma identity while preserving every source sense ID. Derivational families such as `besito` → `beso` remain separate cards/progress records and use a conservative, auditable relation layer rather than suffix-only collapsing.
+- Card reporting has one owner-facing route: both visible report controls open the structured audit sheet directly; the obsolete metadata/field-flag sheet is retired.
+- Artist clitic rows consume split-example `c` buckets in single- and multi-artist decks. They teach the exact attached form as an infinitive, gerund, or affirmative command plus the clitic's person/case and English role, rather than presenting only the base infinitive gloss.
 
 ## Codex task history
+
+### 2026-07-27 — Repair clitic cards and reporting flow
+
+- Commit `c0ade7a3`; front-end cache `flashcards-v118` / `20260727m`.
+- Removed the obsolete metadata-and-inline-flag modal. The desktop shortcut and card-back flag icon now open the modern target/category/note audit sheet directly, leaving one reporting flow.
+- Fixed the single-artist loader's missing `c`-bucket attachment and taught multi-artist merging to combine, artist-tag, dedupe, and re-emit clitic examples. The current artist decks contain aligned real lyric evidence for all 905 shipped clitic forms; fake blank examples are no longer synthesized.
+- Clitic rows now distinguish infinitive, gerund, and affirmative-command forms, show the attached pronoun's person/case and English role, speak that distinction during autoplay, and highlight the complete attached form in its lyric. Examples include `darte` (“to give · you/yourself”), `dándole` (gerund + indirect object), and `hazme` (command + first-person object).
+- Added a conservative live-deck guard for stale self-infinitive duplicates: `quité|quité` is suppressed only because a same-surface authoritative `quité|quitar` conjugation exists; the correct card retains “1st singular · preterite” and its conjugated English gloss.
+- Verification: bundled-Node syntax checks, representative clitic grammar assertions, exhaustive parsing of all 905 live forms, 905/905 split-example alignment across three artists, a synthetic two-artist clitic merge, live `quité` rejection/retention, unique HTML IDs, valid changelog JSON, cache lockstep, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Normalize plural lemmas and link diminutives
 
