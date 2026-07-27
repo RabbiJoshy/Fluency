@@ -485,6 +485,7 @@ function navigateToVocabCard(tokenIndex) {
     const tempCard = {
         targetWord: vocabEntry.word,
         lemma: vocabEntry.lemma || '',
+        ...(window.buildCardFormModel?.(vocabEntry, meanings) || {}),
         id: vocabEntry.id || '0000',
         fullId: getWordId(vocabEntry),
         rank: vocabEntry.rank || 0,
@@ -684,6 +685,7 @@ async function popupFoundWord(entry, opts) {
         const tempCard = {
             targetWord: vocabEntry.word,
             lemma: vocabEntry.lemma || '',
+            ...(window.buildCardFormModel?.(vocabEntry, meanings) || {}),
             id: vocabEntry.id || '0000',
             fullId: getWordId(vocabEntry),
             rank: vocabEntry.rank || 0,
@@ -855,6 +857,7 @@ function peekHomograph(siblingId) {
     const tempCard = {
         targetWord: vocabEntry.word,
         lemma: vocabEntry.lemma || '',
+        ...(window.buildCardFormModel?.(vocabEntry, meanings) || {}),
         id: vocabEntry.id || '0000',
         fullId: getWordId(vocabEntry),
         rank: vocabEntry.rank || 0,

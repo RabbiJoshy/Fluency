@@ -1748,6 +1748,23 @@
             opacity: 0.85;
         }
 
+        .card-lemma.has-form-note {
+            display: flex !important;
+            align-items: baseline;
+            justify-content: center;
+            flex-wrap: wrap;
+            column-gap: 7px;
+        }
+
+        .card-lemma.has-form-note::after {
+            content: "· " attr(data-form-note);
+            font-family: var(--font-reading);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            color: var(--text-muted);
+        }
+
         .card-meanings-front {
             display: none;
             flex-direction: column;
@@ -6398,6 +6415,31 @@
             font-weight: 600;
             color: color-mix(in srgb, var(--accent-primary) 55%, white);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        }
+
+        .back-citation-line {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px 8px;
+            margin-top: 3px;
+            line-height: 1.15;
+        }
+
+        .back-citation-line .back-lemma {
+            font-size: 21px;
+        }
+
+        .back-form-note {
+            font-family: var(--font-reading);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .back-form-note::before {
+            content: "· ";
         }
 
         /* Deck Complete Modal Styles */

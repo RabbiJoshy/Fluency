@@ -459,8 +459,9 @@ function getDeckWords() {
     if (_cachedDeckId === deckId && _cachedDeckWords) return _cachedDeckWords;
     _cachedDeckWords = new Set();
     flashcards.forEach(card => {
-        if (card.targetWord) _cachedDeckWords.add(card.targetWord.toLowerCase());
-        if (card.lemma) _cachedDeckWords.add(card.lemma.toLowerCase());
+        [card.targetWord, card.lemma, card.displaySurface, card.citationForm, card.productionAnswer]
+            .filter(Boolean)
+            .forEach(form => _cachedDeckWords.add(String(form).toLowerCase()));
     });
     _cachedDeckId = deckId;
     return _cachedDeckWords;
@@ -1832,6 +1833,16 @@ function foldSurfaceForm(value) {
         .trim();
 }
 
+function escapeCardText(value) {
+    return String(value || '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[character]);
+}
+
 function isTrivialPlural(surface, canonical) {
     const form = foldSurfaceForm(surface);
     const base = foldSurfaceForm(canonical);
@@ -1870,7 +1881,7 @@ function buildVariantDisplay(card, { back = false } = {}) {
 
     let displayForms = forms;
     if (back) {
-        const canonical = String(card.targetWord || '').trim();
+        const canonical = String(card.displaySurface || card.targetWord || '').trim();
         const canonicalFolded = foldSurfaceForm(canonical);
         const informative = forms.filter(form =>
             foldSurfaceForm(form) !== canonicalFolded
@@ -1888,6 +1899,9 @@ function buildVariantDisplay(card, { back = false } = {}) {
 function updateCard({ announceHeadword = false } = {}) {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
+    const displaySurface = card.displaySurface || card.targetWord;
+    const citationForm = card.citationForm || card.lemma || displaySurface;
+    const formNote = card.isPronominal ? 'verb with se' : '';
     window._currentDisplayedExample = null;
 
     // A card entry starts from its structural group selection. An explicit
@@ -1984,8 +1998,8 @@ function updateCard({ announceHeadword = false } = {}) {
             exampleTranslation = currentMeaning.targetSentence;
         } else {
             // Target language → English (normal)
-            frontText = card.targetWord;
-            backWord = card.targetWord;
+            frontText = displaySurface;
+            backWord = displaySurface;
             backTranslation = currentMeaning.meaning;
             exampleSentence = currentMeaning.targetSentence;
             exampleTranslation = currentMeaning.englishSentence;
@@ -2005,8 +2019,8 @@ function updateCard({ announceHeadword = false } = {}) {
             exampleTranslation = currentSentence.target;
         } else {
             // Target language → English (normal)
-            frontText = card.targetWord;
-            backWord = card.targetWord;
+            frontText = displaySurface;
+            backWord = displaySurface;
             backTranslation = card.translation;
             exampleSentence = currentSentence.target;
             exampleTranslation = currentSentence.english;
@@ -2127,14 +2141,18 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Display lemma on front if different from target word
     const frontLemmaEl = document.getElementById('frontLemma');
-    if (!isFlipped && card.lemma && card.lemma !== card.targetWord) {
-        frontLemmaEl.textContent = card.lemma;
+    if (!isFlipped && citationForm && citationForm !== displaySurface) {
+        frontLemmaEl.textContent = citationForm;
+        frontLemmaEl.dataset.formNote = formNote;
+        frontLemmaEl.classList.toggle('has-form-note', Boolean(formNote));
         frontLemmaEl.style.display = 'block';
         // Same measured shrink as the main word — rare, but e.g. the lemma
         // of a long derived form can exceed the card width at 32px.
         shrinkToFit(frontLemmaEl, 18);
     } else {
         frontLemmaEl.textContent = '';
+        frontLemmaEl.dataset.formNote = '';
+        frontLemmaEl.classList.remove('has-form-note');
         frontLemmaEl.style.display = 'none';
     }
 
@@ -2189,11 +2207,21 @@ function updateCard({ announceHeadword = false } = {}) {
     // Routine plurals and transparent one-letter elisions add no useful cue.
     let backWordText = backVariantDisplay || backWord;
     let wordDisplay = backWordText;
+    let backCitationHTML = '';
     if (card.isMultiMeaning
-        && card.lemma
-        && card.lemma !== card.targetWord
-        && !isTrivialCanonicalRelation(card.targetWord, card.lemma)) {
-        wordDisplay = `${backWordText} <span class="back-lemma">(${card.lemma})</span>`;
+        && citationForm
+        && citationForm !== displaySurface
+        && !isTrivialCanonicalRelation(displaySurface, citationForm)) {
+        if (!isFlipped) {
+            backCitationHTML = `<div class="back-citation-line">
+                <span class="back-lemma">${escapeCardText(citationForm)}</span>
+                ${formNote ? `<span class="back-form-note">${escapeCardText(formNote)}</span>` : ''}
+            </div>`;
+        } else {
+            // Keep English→target unchanged for this first direction-specific
+            // slice. Its answer form will move to `productionAnswer` next.
+            wordDisplay = `${backWordText} <span class="back-lemma">(${escapeCardText(citationForm)})</span>`;
+        }
     }
     const backWordLength = backWordText.replace(/<[^>]+>/g, '').length;
 
@@ -2247,6 +2275,7 @@ function updateCard({ announceHeadword = false } = {}) {
         <div class="back-header" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                ${backCitationHTML}
             </div>
             ${backPosLegendHTML}
             ${homographChipHTML}
@@ -3306,7 +3335,7 @@ function updateCard({ announceHeadword = false } = {}) {
     }
 
     if (announceHeadword && !isFlipped) {
-        speakWord(card.targetWord);
+        speakWord(card.displaySurface || card.targetWord);
     }
 
     // Keep the debug metadata popover in sync with the visible card.
@@ -3345,7 +3374,7 @@ function flipCard() {
             if (spokenEnglish) speakWord(spokenEnglish, true);
         } else {
             // Target → English mode: front shows target word, speak target
-            speakWord(card.targetWord, false);
+            speakWord(card.displaySurface || card.targetWord, false);
         }
     }
     window.saveStudySessionSnapshot?.();

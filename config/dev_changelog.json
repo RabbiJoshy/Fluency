@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Spanish cards now distinguish the encountered form from its dictionary form",
+      "details": [
+        "The card model now keeps display surface, citation form, and future production answer separate instead of making targetWord perform all three jobs",
+        "Spanish→English cards show a non-trivial lemma on its own line and explicitly identify forms such as queja → quejarse as a verb with se",
+        "Current word/lemma data remains the fallback while optional future pipeline fields are accepted without a schema dependency; cache v112→v113, assets 20260727g→20260727h"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "a30a6250",
       "summary": "Slang and regional meanings Gemini discovered are no longer dropped",
       "details": [

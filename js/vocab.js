@@ -569,6 +569,58 @@ function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
 }
 
 /**
+ * Keep the three jobs historically performed by `targetWord` separate:
+ * - displaySurface: the corpus form used for a target-language prompt;
+ * - citationForm: the dictionary/lemma form that explains the lexeme;
+ * - productionAnswer: the preferred target-language answer (used later by
+ *   the English→target direction, but carried now so both directions share
+ *   one stable card contract).
+ *
+ * The snake_case aliases make this an adapter for future pipeline fields while
+ * the lemma/word fallbacks preserve every currently shipped deck.
+ */
+function buildCardFormModel(item, meanings = []) {
+    const displaySurface = String(
+        item?.dominant_surface
+        || item?.dominantSurface
+        || item?.display_surface
+        || item?.displaySurface
+        || item?.word
+        || item?.targetWord
+        || ''
+    ).trim();
+    const citationForm = String(
+        item?.citation_form
+        || item?.citationForm
+        || item?.lemma
+        || displaySurface
+    ).trim();
+    const productionAnswer = String(
+        item?.production_answer
+        || item?.productionAnswer
+        || citationForm
+        || displaySurface
+    ).trim();
+    const hasVerbSense = meanings.some(meaning => {
+        const pos = String(meaning?.pos || '').toLocaleLowerCase('en');
+        return pos === 'v' || pos === 'vb' || pos.includes('verb');
+    });
+    const explicitPronominal = item?.is_pronominal ?? item?.isPronominal;
+    const isPronominal = explicitPronominal !== undefined
+        ? Boolean(explicitPronominal)
+        : selectedLanguage === 'spanish'
+            && hasVerbSense
+            && /se$/iu.test(citationForm);
+
+    return {
+        displaySurface,
+        citationForm,
+        productionAnswer,
+        isPronominal
+    };
+}
+
+/**
  * Fetch the artist/language index and join with master vocabulary if needed.
  * Caches the master and the joined result. Returns denormalized entries with all fields
  * (word, lemma, meanings, flags) that buildFilteredVocab() and other consumers expect.
@@ -1485,6 +1537,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
             const card = {
                 targetWord: item.word,
                 lemma: item.lemma || '',
+                ...buildCardFormModel(item, meanings),
                 id: item.id,
                 fullId: getWordId(item),
                 rank: item.rank,
@@ -1780,6 +1833,7 @@ function parseMultiMeaning(text, langConfig, rangeStart, rangeEnd) {
             const card = {
                 targetWord: group.word,
                 lemma: group.lemma,
+                ...buildCardFormModel(group, group.meanings),
                 rank: group.rank,
                 meanings: group.meanings,
                 // For compatibility, set primary translation to most common meaning
@@ -2208,6 +2262,7 @@ function synthesizeSpecialMeanings(item, meanings) {
 }
 
 window.synthesizeSpecialMeanings = synthesizeSpecialMeanings;
+window.buildCardFormModel = buildCardFormModel;
 window.mergeArtistVocabularies = mergeArtistVocabularies;
 window.joinWithMaster = joinWithMaster;
 window.fetchAndJoinIndex = fetchAndJoinIndex;

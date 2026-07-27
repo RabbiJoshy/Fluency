@@ -150,8 +150,16 @@ the source identity/tie-breaker and legacy CEFR basis.
 ## Flashcard Object Shape
 
 ```js
-{ targetWord, lemma, id, fullId, rank, corpusCount, isMultiMeaning, meanings: [{ pos, meaning, percentage, targetSentence, englishSentence, allExamples }], translation, links }
+{ targetWord, lemma, displaySurface, citationForm, productionAnswer, isPronominal, id, fullId, rank, corpusCount, isMultiMeaning, meanings: [{ pos, meaning, percentage, targetSentence, englishSentence, allExamples }], translation, links }
 ```
+
+`targetWord` remains the stable source/card identity and must not be repurposed
+for direction-specific display. `buildCardFormModel()` in `vocab.js` adapts
+optional future pipeline fields but currently falls back to `word`/`lemma`:
+Spanish→English prompts use `displaySurface`, dictionary context uses
+`citationForm`, and English→Spanish will use `productionAnswer`. A Spanish verb
+whose citation form ends in `se` is marked `isPronominal`; the front and back
+show that as plain “verb with se” context rather than another pill.
 
 ## Artist / Lyrics Mode Differences
 
