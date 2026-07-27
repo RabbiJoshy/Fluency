@@ -80,6 +80,16 @@ loadConfig() → renderLanguageTabs()
   [row knowledge action] → markCurrentKnowledge() → saveKnowledgeProgress()
 ```
 
+Setup performance is intentionally cached at two levels. `fetchAndJoinIndex()`
+retains parsed indexes by data path, so a Speech lookup for artist-level
+estimation cannot evict the active Lyrics index. `getPreparedSetupVocabulary()`
+in `ui.js` owns the source/settings/examples-keyed filtered result shared by the
+level slider, progress annotation, exclusion summary, and set picker. Deck
+construction invalidates that prepared view before mutating entries to attach
+examples and prune artist senses. Artist `loadPpmData()` must reuse
+`fetchActiveVocabularyData()`; fetching its index independently recreates the
+largest mode-switch delay.
+
 ## Progress and granular knowledge
 
 `progressData` stores the word/card history. `getProgressState()` is the canonical

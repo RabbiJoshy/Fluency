@@ -196,10 +196,20 @@ function mergeStandardProgressIntoLanguageStep() {
     const progressHeader = wrapper && wrapper.querySelector('.personal-progress-header');
     const inlinePill = document.getElementById('selectedLanguageInline');
     const sourcePill = document.getElementById('selectedSourceInline');
-    if (!step || !header || !title || !wrapper || !progressHeader || !inlinePill || !sourcePill) return;
+    const sourceCard = document.getElementById('standardSourceCard');
+    const progressSlot = document.getElementById('standardSourceProgress');
+    const languageName = document.getElementById('standardSourceLanguageName');
+    const languageIcon = document.getElementById('standardSourceLanguageIcon');
+    if (!step || !header || !title || !wrapper || !progressHeader || !inlinePill || !sourcePill
+        || !sourceCard || !progressSlot || !languageName || !languageIcon) return;
 
-    progressHeader.prepend(inlinePill);
-    header.appendChild(wrapper);
+    const flagMap = {
+        spanish: '🇪🇸', swedish: '🇸🇪', italian: '🇮🇹', dutch: '🇳🇱',
+        polish: '🇵🇱', french: '🇫🇷', russian: '🇷🇺'
+    };
+    languageName.textContent = config.languages[selectedLanguage]?.name || selectedLanguage;
+    languageIcon.textContent = flagMap[selectedLanguage] || selectedLanguage.slice(0, 2).toUpperCase();
+    progressSlot.appendChild(wrapper);
     title.textContent = 'Language';
     step.classList.add('language-summary-active');
     header.removeAttribute('role');
@@ -207,7 +217,9 @@ function mergeStandardProgressIntoLanguageStep() {
     header.removeAttribute('aria-haspopup');
     wrapper.classList.add('personal-coverage-wrapper--merged', 'personal-coverage-wrapper--empty', 'visible');
     wrapper.style.display = 'block';
-    sourcePill.style.display = 'inline-flex';
+    inlinePill.style.display = 'none';
+    sourcePill.style.display = 'none';
+    sourceCard.style.display = 'grid';
 }
 
 function unmergeStandardProgressFromLanguageStep() {
@@ -219,7 +231,8 @@ function unmergeStandardProgressFromLanguageStep() {
     const inlinePill = document.getElementById('selectedLanguageInline');
     const sourcePill = document.getElementById('selectedSourceInline');
     const cta = document.getElementById('levelEstimateCTA');
-    if (!step || !header || !title || !wrapper || !inlinePill || !sourcePill || !cta) return;
+    const sourceCard = document.getElementById('standardSourceCard');
+    if (!step || !header || !title || !wrapper || !inlinePill || !sourcePill || !cta || !sourceCard) return;
 
     title.after(inlinePill);
     cta.after(wrapper);
@@ -231,6 +244,7 @@ function unmergeStandardProgressFromLanguageStep() {
     wrapper.classList.remove('personal-coverage-wrapper--merged', 'personal-coverage-wrapper--empty', 'visible');
     wrapper.style.display = 'none';
     sourcePill.style.display = 'none';
+    sourceCard.style.display = 'none';
 }
 
 function renderLanguageTabs() {
@@ -293,14 +307,16 @@ function setupLanguageTabs() {
     const inlinePill = document.getElementById('selectedLanguageInline');
     const sourcePill = document.getElementById('selectedSourceInline');
     const sourceLabel = document.getElementById('selectedSourceInlineLabel');
+    const languageCardButton = document.getElementById('standardSourceLanguageBtn');
+    const sourceCardButton = document.getElementById('standardSourcePickerBtn');
 
     // The compact language summary reopens the radial picker directly.
-    inlinePill.onclick = function(event) {
+    const reopenLanguagePicker = function(event) {
         event.stopPropagation();
         window.closeRadialPicker?.('learningSourceRadialPicker');
         window.closeRadialPicker?.('artistRadialPicker');
         unmergeStandardProgressFromLanguageStep();
-        this.style.display = 'none';
+        inlinePill.style.display = 'none';
         document.getElementById('languageTabs').style.display = 'flex';
         // Hide subsequent steps
         document.getElementById('step2').style.display = 'none';
@@ -311,6 +327,8 @@ function setupLanguageTabs() {
         setActiveSetupStep('step1');
         window.showLanguagePicker?.(config.languages);
     };
+    inlinePill.onclick = reopenLanguagePicker;
+    languageCardButton.onclick = reopenLanguagePicker;
 
     document.querySelectorAll('.lang-tab').forEach(tab => {
         tab.addEventListener('click', async function() {
@@ -412,6 +430,7 @@ function setupLanguageTabs() {
                 event.stopPropagation();
                 window.showLearningSourcePicker?.(newLanguage, continueToSpeech);
             };
+            sourceCardButton.onclick = sourcePill.onclick;
 
             // Source is the next decision. A deliberate return from an artist
             // card skips the clock and resumes Speech in the same language.
@@ -489,7 +508,7 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
     const langConfig = config.languages[language];
     if (!langConfig) return null;
     const vocabularyData = await fetchActiveVocabularyData(langConfig);
-    const { vocab: filteredVocab } = buildFilteredVocab(vocabularyData);
+    const filteredVocab = getPreparedSetupVocabulary(language, vocabularyData)?.vocab || [];
     const estimate = levelEstimates[language] || 0;
     const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
         ? await buildEstimatedKnownIds(estimate)
@@ -580,7 +599,7 @@ async function renderLevelSelector(language) {
         // thousands. Falls back to the legacy coverage-threshold ranges
         // if the vocab cache isn't available yet.
         _smartLevelRangesCache = null;
-        await _loadLevelSliderSamples(selectedLanguage);
+        const preparedSamples = await _loadLevelSliderSamples(selectedLanguage);
         const _raw = _levelSliderRawCache[selectedLanguage];
         if (_raw) {
             // Level boundaries are built from the stable baseline before any
@@ -588,7 +607,7 @@ async function renderLevelSelector(language) {
             // a level, never the level's identity or rank span.
             const stableBaseline = assignStableVocabularyRanks(_raw);
             _smartLevelRangesCache = computeSmartLevelRanges(stableBaseline);
-            const { vocab: eligible } = buildFilteredVocab(_raw);
+            const eligible = getPreparedSetupVocabulary(selectedLanguage, _raw)?.vocab || [];
             const lastEligibleRank = eligible.reduce((maxRank, item) =>
                 Math.max(maxRank, Number(item.stableRank) || 0), 0);
             // Hide only empty trailing levels (most notably the reserved 1×
@@ -639,7 +658,7 @@ async function renderLevelSelector(language) {
         }
         const initialIdx = savedIdx >= 0 ? savedIdx : lastIdx;
         const initial = percentageRanges[initialIdx];
-        const initialMetrics = _levelBandMetrics(initial, _levelSliderSamplesSync(selectedLanguage));
+        const initialMetrics = _levelBandMetrics(initial, preparedSamples);
         // Coverage display: use threshold for smart ranges, level string for legacy.
         const initialCoverage = initial.threshold != null
             ? `${(initial.threshold * 100).toFixed(1)}%`
@@ -994,14 +1013,64 @@ function getActiveLevelRanges() {
 // rank counts and tick labels — no stale cache shows pre-toggle numbers.
 const _levelSliderRawCache = {};
 
-function _samplesFromRaw(rawVocab) {
-    const { vocab: filtered } = buildFilteredVocab(rawVocab);
-    return filtered.map(item => ({
+// Filtering restores/clones sense menus, assigns stable ranks and (in lemma
+// mode) scans the examples corpus. Setup previously repeated that full pass in
+// the slider, progress annotation, range selector and exclusion summary. Keep
+// one prepared result until the source/settings/examples identity changes.
+let _preparedSetupVocabulary = null;
+
+function _setupVocabularySignature(language) {
+    const langConfig = config.languages[language] || {};
+    return [
+        language,
+        langConfig.indexPath || langConfig.dataPath || '',
+        (window._selectedArtistSlugs || []).slice().sort().join(','),
+        activeArtist ? artistVocabularyScope : 'speech',
+        percentageMode,
+        useLemmaMode,
+        excludeCognates,
+        cognateThreshold,
+        hideSingleOccurrence,
+        excludeProperNouns,
+        excludeNoise,
+        excludeEnglishLoanwords,
+    ].join('|');
+}
+
+function getPreparedSetupVocabulary(language, rawVocab) {
+    if (!rawVocab) return null;
+    const signature = _setupVocabularySignature(language);
+    if (_preparedSetupVocabulary
+        && _preparedSetupVocabulary.raw === rawVocab
+        && _preparedSetupVocabulary.signature === signature
+        && _preparedSetupVocabulary.examples === window._cachedExamplesData) {
+        return _preparedSetupVocabulary.result;
+    }
+    const result = buildFilteredVocab(rawVocab);
+    result.samples = result.vocab.map(item => ({
         rank: item.rank,
         displayRank: item.displayRank,
         stableRank: item.stableRank,
         word: item.lemma || item.targetWord || item.word || ''
-    })).filter(s => s.word);
+    })).filter(sample => sample.word);
+    _preparedSetupVocabulary = {
+        raw: rawVocab,
+        signature,
+        examples: window._cachedExamplesData,
+        result,
+    };
+    return result;
+}
+
+function invalidatePreparedSetupVocabulary() {
+    _preparedSetupVocabulary = null;
+}
+
+window.getPreparedSetupVocabulary = getPreparedSetupVocabulary;
+window.invalidatePreparedSetupVocabulary = invalidatePreparedSetupVocabulary;
+
+function _samplesFromRaw(rawVocab, language = selectedLanguage) {
+    return getPreparedSetupVocabulary(language, rawVocab)?.samples || [];
 }
 
 // Synchronous fast path used by the slider readout/tick labels — returns
@@ -1010,7 +1079,7 @@ function _samplesFromRaw(rawVocab) {
 // resolves.
 function _levelSliderSamplesSync(language) {
     const raw = _levelSliderRawCache[language];
-    return raw ? _samplesFromRaw(raw) : null;
+    return raw ? _samplesFromRaw(raw, language) : null;
 }
 
 async function _loadLevelSliderSamples(language) {
@@ -1026,7 +1095,7 @@ async function _loadLevelSliderSamples(language) {
             return null;
         }
     }
-    return _samplesFromRaw(raw);
+    return _samplesFromRaw(raw, language);
 }
 
 // Count post-filter items whose original rank is ≤ endRank — i.e. how
@@ -1573,7 +1642,9 @@ async function renderRangeSelector() {
     } catch (error) {
         console.error('Failed to load vocabulary data:', error);
     }
-    const { vocab: filteredVocab, counts: filterCounts } = buildFilteredVocab(vocabularyData);
+    const preparedVocabulary = getPreparedSetupVocabulary(selectedLanguage, vocabularyData);
+    const filteredVocab = preparedVocabulary?.vocab || [];
+    const filterCounts = preparedVocabulary?.counts || { lemma: 0, cognates: 0 };
 
     const lemmaInfo = document.getElementById('lemmaInfoLine');
     if (lemmaInfo) {
@@ -1752,7 +1823,16 @@ async function renderRangeSelector() {
         startBtn.dataset.studyMode = range.unseenCount > 0 ? 'new' : 'all';
     };
     container.querySelectorAll('.study-set-dot').forEach(dot => {
-        dot.addEventListener('click', () => selectSet(Number(dot.dataset.index)));
+        dot.addEventListener('click', () => {
+            // First tap selects and explains a set. Tapping that already
+            // selected set again is the compact start action, useful when the
+            // full-width button sits just below the mobile viewport.
+            if (dot.classList.contains('is-current')) {
+                document.getElementById('studySetStartBtn')?.click();
+                return;
+            }
+            selectSet(Number(dot.dataset.index));
+        });
     });
     selectSet(initialIndex);
 

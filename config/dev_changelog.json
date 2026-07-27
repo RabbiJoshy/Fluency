@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Lyrics and Speech setup does less repeated work, with cleaner source and study controls",
+      "details": [
+        "Artist frequency and level setup now share one parsed index, source indexes remain cached by path, and slider/progress/set summaries reuse one prepared filter pass instead of repeatedly cloning the vocabulary",
+        "The selected Speech language now uses the same source-card layout as Lyrics, and tapping an already-selected set number starts it without requiring the lower button",
+        "Expression and attached-form rows now centre the Spanish form above its English explanation; study options use explicit direction and automatic-speech labels, open Study preferences, return to Main menu, and omit redundant Help",
+        "Lyric autoplay is hidden and cannot activate unless at least one bounded Spotify example can actually play; cache v119→v120, assets 20260727n→20260727o"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "8f29412e",
       "summary": "Loading transitions now hide partial screens and sets open without the artificial pause",
       "details": [

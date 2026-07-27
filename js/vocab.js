@@ -672,12 +672,25 @@ function trackDataFreshness(resp) {
 }
 window.trackDataFreshness = trackDataFreshness;
 
+// Keep parsed/joined indexes per path. A level-estimate lookup may need the
+// Speech index while the learner is in Lyrics mode; the old single-slot cache
+// evicted the artist index and forced another multi-megabyte parse immediately
+// afterwards.
+const joinedIndexCacheByPath = new Map();
+
 async function fetchAndJoinIndex(langConfig) {
     const indexPath = langConfig.indexPath || langConfig.dataPath;
 
-    // Return cached result if available (cleared when language/artist changes)
+    // Preserve the legacy active-source pointers for search/modal consumers,
+    // while retaining other sources in the path-keyed cache.
     if (window._cachedJoinedIndex && window._cachedJoinedIndexPath === indexPath) {
         return window._cachedJoinedIndex;
+    }
+    if (joinedIndexCacheByPath.has(indexPath)) {
+        const cached = joinedIndexCacheByPath.get(indexPath);
+        window._cachedJoinedIndex = cached;
+        window._cachedJoinedIndexPath = indexPath;
+        return cached;
     }
 
     const response = await fetch(indexPath);
@@ -705,6 +718,7 @@ async function fetchAndJoinIndex(langConfig) {
 
     window._cachedJoinedIndex = data;
     window._cachedJoinedIndexPath = indexPath;
+    joinedIndexCacheByPath.set(indexPath, data);
     return data;
 }
 
@@ -1149,6 +1163,10 @@ function buildFilteredVocab(vocabData) {
 }
 
 async function loadVocabularyData(rangeString, opts = {}) {
+    // Deck construction mutates the selected entries while attaching examples
+    // and trimming artist senses. Force setup to rebuild its immutable view
+    // when the learner returns to the menu.
+    window.invalidatePreparedSetupVocabulary?.();
     const includeWordId = opts.includeWordId || null;
     const studyMode = opts.resumeSnapshot ? 'resume' : (opts.studyMode || 'new');
     // Completely clear all previous data and state

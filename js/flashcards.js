@@ -878,7 +878,9 @@ function toggleExampleAutoplay(event) {
     }
     if (!window.spotifySnippetSupported?.()) return;
     const queue = buildCardAutoplayQueue(flashcards[currentIndex]);
-    if (queue.length === 0) return;
+    // Sense announcements alone are not autoplay. Refuse to enter an active
+    // state unless at least one bounded Spotify lyric can actually play.
+    if (!queue.some(step => step.type === 'example')) return;
     _exampleAutoplayActive = true;
     _exampleAutoplayQueue = queue;
     _exampleAutoplayQueuePos = 0;
@@ -980,8 +982,13 @@ function initializeApp() {
     const showStudyMenu = (event) => {
         if (event) event.stopPropagation();
         if (!window.showRadialPicker) return;
-        const targetLanguage = config.languages[selectedLanguage]?.name || selectedLanguage || 'Target language';
-        const switchOrderLabel = isFlipped ? `${targetLanguage} first` : 'English first';
+        const targetLanguage = (config.languages[selectedLanguage]?.name || selectedLanguage || 'Target language')
+            .replace(/\s*\(.*\)$/, '');
+        // Label the direction this action will switch TO, rather than the
+        // ambiguous language that will merely appear "first".
+        const switchOrderLabel = isFlipped
+            ? `${targetLanguage} → English`
+            : `English → ${targetLanguage}`;
         const icon = body => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
         window.showRadialPicker({
             id: 'studyRadialPicker',
@@ -989,15 +996,14 @@ function initializeApp() {
             hubHTML: 'Study<br>options',
             className: 'study-radial-picker',
             entries: [
-                { label: 'Change set', iconHTML: icon('<path d="M9 7H5v12h12v-4"></path><path d="m9 11-4-4 4-4"></path><path d="M5 7h9a5 5 0 0 1 5 5"></path>'), onSelect: () => goBackToSetup() },
+                { label: 'Main menu', iconHTML: icon('<path d="M9 7H5v12h12v-4"></path><path d="m9 11-4-4 4-4"></path><path d="M5 7h9a5 5 0 0 1 5 5"></path>'), onSelect: () => goBackToSetup() },
                 { label: 'Shuffle', iconHTML: icon('<path d="M3 6h3c4 0 5 12 9 12h6"></path><path d="m18 15 3 3-3 3"></path><path d="M3 18h3c1.7 0 2.9-2.1 4-4.6"></path><path d="M14 6h7"></path><path d="m18 3 3 3-3 3"></path>'), onSelect: () => shuffleCards() },
                 { label: switchOrderLabel, iconHTML: icon('<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>'), onSelect: () => flipDirection() },
-                { label: speechEnabled ? 'Mute speech' : 'Enable speech', iconHTML: speechEnabled
+                { label: speechEnabled ? 'Mute automatic speech' : 'Enable automatic speech', iconHTML: speechEnabled
                     ? icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path>')
                     : icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 10 5 5"></path><path d="m21 10-5 5"></path>'), onSelect: () => toggleAutoSpeak() },
                 { label: 'Set progress', iconHTML: icon('<path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path>'), onSelect: () => showStatsModal() },
-                { label: 'Preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModal() },
-                { label: 'Help', iconHTML: icon('<circle cx="12" cy="12" r="9"></circle><path d="M9.8 9a2.4 2.4 0 1 1 3.5 2.1c-.9.5-1.3 1.1-1.3 2"></path><path d="M12 17h.01"></path>'), onSelect: () => openHelpModal() }
+                { label: 'Study preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModalWithTab('settings') }
             ]
         });
     };
@@ -2714,16 +2720,14 @@ function updateCard({ announceHeadword = false } = {}) {
                 // context — the text is legitimate, only its structural
                 // guarantee differs. No visual distinction is exposed to the
                 // reader (a subtle one could be added later if needed).
-                const bodyHTML = mweContext
-                    ? `<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.2;">
-                           <span style="font-size: 14px; font-weight: 600; color: white;">${primaryDisplay}</span>
-                           <span style="font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.55); line-height: 1.25; margin-top: 1px;">${mweContext}</span>
-                       </div>`
-                    : `<span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${primaryDisplay}</span>`;
+                const contextHTML = mweContext ? `<small>${mweContext}</small>` : '';
                 target.push(`
                 <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span class="mwe-expression">${mweExpr}</span>
-                    ${bodyHTML}
+                    <span class="special-meaning-copy">
+                        <span class="mwe-expression">${mweExpr}</span>
+                        <strong>${primaryDisplay}</strong>
+                        ${contextHTML}
+                    </span>
                     ${mweCounter}
                 </div>
                 `);
@@ -2736,8 +2740,8 @@ function updateCard({ announceHeadword = false } = {}) {
                 const cliticDetail = describeCliticForm(activeClitic, card);
                 target.push(`
                 <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span class="mwe-expression clitic-form">${cliticForm}</span>
-                    <span class="clitic-meaning">
+                    <span class="special-meaning-copy clitic-meaning">
+                        <span class="mwe-expression clitic-form">${cliticForm}</span>
                         <strong>${escapeCardText(cliticDetail.displayTranslation || cliticTrRaw || 'Translation unavailable')}</strong>
                         <small>${escapeCardText(cliticDetail.visualDetail)}</small>
                     </span>
@@ -2973,7 +2977,7 @@ function updateCard({ announceHeadword = false } = {}) {
         }
 
         const cardAutoplayAvailable = window.spotifySnippetSupported?.()
-            && (_exampleAutoplayActive || cardHasPlayableAutoplay(card));
+            && cardHasPlayableAutoplay(card);
         const cardAutoplayButton = cardAutoplayAvailable
             ? `<button type="button" id="exampleAutoplayBtn" class="example-autoplay-btn${_exampleAutoplayActive ? ' is-active' : ''}" aria-label="${_exampleAutoplayActive ? 'Stop lyric example autoplay' : 'Play lyric examples'}" aria-pressed="${_exampleAutoplayActive ? 'true' : 'false'}" title="${_exampleAutoplayActive ? 'Stop lyric autoplay' : 'Play lyric examples'}" onclick="toggleExampleAutoplay(event)"><span class="example-autoplay-icon" aria-hidden="true">${_exampleAutoplayActive ? '■' : '▶'}</span></button>`
             : '';
@@ -4211,7 +4215,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727n';
+const ASSET_VERSION = '20260727o';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -96,9 +96,18 @@ async function loadPpmData(language) {
     const vocabJsonPath = langConfig.indexPath || langConfig.dataPath;
     if (langConfig && vocabJsonPath && vocabJsonPath.endsWith('.json')) {
         try {
-            const response = await fetch(vocabJsonPath);
-            if (response.ok) {
-                const vocabData = await response.json();
+            // Artist boot used to fetch + parse the large index here, then do
+            // the exact same work again in renderLevelSelector(). Reuse the
+            // canonical joined vocabulary loader so frequency extraction,
+            // level construction and deck setup share one in-memory parse.
+            let vocabData = null;
+            if (window.fetchActiveVocabularyData) {
+                vocabData = await window.fetchActiveVocabularyData(langConfig);
+            } else {
+                const response = await fetch(vocabJsonPath);
+                if (response.ok) vocabData = await response.json();
+            }
+            if (vocabData) {
                 // Check if vocab has corpus_count (preferred) or occurrences_ppm (legacy)
                 const hasCorpusCount = vocabData.length > 0 && vocabData[0].hasOwnProperty('corpus_count');
                 const hasOccPpm = vocabData.length > 0 && vocabData[0].hasOwnProperty('occurrences_ppm');

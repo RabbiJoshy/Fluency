@@ -160,7 +160,7 @@ async function updateExclusionBars() {
     let vocabularyData = cachedVocabularyData;
     if (!vocabularyData) {
         try {
-            vocabularyData = await fetchAndJoinIndex(langConfig);
+            vocabularyData = await fetchActiveVocabularyData(langConfig);
         } catch (error) {
             console.error('Failed to load vocabulary for exclusion info:', error);
             return;
@@ -170,7 +170,8 @@ async function updateExclusionBars() {
     // Assign ranks if needed
     vocabularyData.forEach((item, index) => { if (!item.rank) item.rank = index + 1; });
 
-    const { vocab: afterCognate, counts } = buildFilteredVocab(vocabularyData);
+    const prepared = window.getPreparedSetupVocabulary?.(selectedLanguage, vocabularyData);
+    const { vocab: afterCognate, counts } = prepared || buildFilteredVocab(vocabularyData);
 
     // Update lemma info line
     const lemmaInfo = document.getElementById('lemmaInfoLine');
