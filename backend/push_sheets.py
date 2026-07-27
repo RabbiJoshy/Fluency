@@ -24,7 +24,13 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRETS_PATH = os.path.join(SCRIPT_DIR, 'secrets.json')
 LOCAL_DIR = os.path.join(SCRIPT_DIR, 'local')
 BACKUP_DIR = os.path.join(LOCAL_DIR, 'backups')
+# Default "push everything" set — progress sheets only, so a bare invocation
+# never touches the flags sheet.
 SHEETS = ['UserProgress', 'Lyrics']
+# FlaggedWords shares the same 8-column schema (HEADER_KEYS) but is opt-in via
+# an explicit --sheet FlaggedWords, since pushing it is a curation action, not
+# routine progress sync. --replace deletes remote flags absent from local.
+PUSHABLE_SHEETS = SHEETS + ['FlaggedWords']
 HEADER_KEYS = ['user', 'word', 'wordId', 'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong']
 
 
@@ -151,7 +157,9 @@ def print_changeset(sheet_name, to_upsert, to_delete, remote_count, local_count)
 
 def main():
     parser = argparse.ArgumentParser(description='Push local JSON data back to Google Sheets')
-    parser.add_argument('--sheet', choices=SHEETS, help='Push only this sheet (default: both)')
+    parser.add_argument('--sheet', choices=PUSHABLE_SHEETS,
+                        help='Push only this sheet (default: the progress sheets). '
+                             'FlaggedWords is opt-in and only via this flag.')
     parser.add_argument('--confirm', action='store_true', help='Actually push (default: dry-run)')
     parser.add_argument('--replace', action='store_true',
                         help='Replace entire sheet with local data (deletes remote-only rows)')
@@ -218,15 +226,27 @@ def main():
                 print(f"    Error: {result.get('message')}")
 
         if to_delete:
-            print(f"  Deleting {len(to_delete)} rows from {sheet_name}...")
-            for row in to_delete:
-                post_json(script_url, {
+            print(f"  Deleting {len(to_delete)} rows from {sheet_name} "
+                  f"(one API call each — this can take a minute)...")
+            ok = 0
+            failures = []
+            for i, row in enumerate(to_delete, 1):
+                result = post_json(script_url, {
                     'action': 'delete',
                     'user': row['user'],
                     'wordId': row['wordId'],
                     'sheet': sheet_name
                 })
-            print(f"    Deleted {len(to_delete)} rows")
+                if result.get('success'):
+                    ok += 1
+                else:
+                    failures.append((row.get('wordId', ''), result.get('message')))
+                if i % 25 == 0:
+                    print(f"    ... {i}/{len(to_delete)}")
+            print(f"    Deleted {ok}/{len(to_delete)} rows"
+                  + (f"; {len(failures)} failed" if failures else ""))
+            for wid, msg in failures[:10]:
+                print(f"      FAILED {wid}: {msg}")
 
     print("\nDone.")
 
