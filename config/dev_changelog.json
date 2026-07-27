@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "ad8f67d1",
       "summary": "The level check now estimates a range across the vocabulary",
       "details": [
         "The old single-rank staircase is replaced by sampling across ten frequency bands, then concentrating later questions around the uncertain knowledge boundary",

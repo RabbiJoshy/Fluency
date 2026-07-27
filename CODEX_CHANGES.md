@@ -20,8 +20,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 - Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
+- Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
 
 ## Codex task history
+
+### 2026-07-27 — Adaptive frequency-band level estimate
+
+- Commit `ad8f67d1`; front-end cache `flashcards-v112` / `20260727g`.
+- Replaced the reversal-sensitive one-rank staircase with a ten-band receptive estimator. It samples every frequency region, then allocates remaining questions around the inferred known/unknown boundary while avoiding duplicate lemmas.
+- Band response rates are monotonically fitted and integrated into a vocabulary-size point estimate with an approximate 90% interval. Only the point estimate is saved, preserving the current Apps Script, progress, artist projection, and level-selection contracts; Lyrics still tests against the general Speech list.
+- The learner now thinks of a meaning, reveals it, and only then reports whether it was known beforehand. The result is explicitly a receptive range rather than an exact rank or productive-language score.
+- Verification: JavaScriptCore compilation, synthetic all-known/all-unknown/50%-boundary/contradictory-response cases, first-pass ten-band coverage and adaptive-boundary selection, valid changelog JSON, cache-version lockstep, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Pausable spaced repetition
 
