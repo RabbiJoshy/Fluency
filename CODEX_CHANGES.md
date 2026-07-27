@@ -25,6 +25,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Lemma-first merged cards
+
+- Commit `e340a4d4`; front-end cache `flashcards-v115` / `20260727j`.
+- Merge Lemmas cards now present and speak the citation lemma instead of exposing whichever high-frequency surface entry hosts the family: `está|estar` displays as `estar`, while the host remains `está` internally.
+- Kept `targetWord` and new `representativeSurface` separate from `displaySurface`, preserving stable progress IDs, levels, ranks, pooled frequency, links, and exact host/sibling example highlighting.
+- Suppressed representative-form morphology when it would misdescribe the displayed lemma, and used the lemma/production answer on the reverse-direction card back as well. Search previews remain surface-specific because they do not opt into merged presentation.
+- Verification: JavaScript syntax, direct normal/merged `está|estar` form-contract cases, merged `queja|quejarse` pronominal case, cache-version lockstep, valid changelog JSON, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-27 — Compact merged-lemma knowledge inventory
 
 - Commit `2b9ec48f`; front-end cache `flashcards-v114` / `20260727i`.
