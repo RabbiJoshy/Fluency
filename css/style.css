@@ -8781,11 +8781,31 @@
             font-family: var(--font-emphasis);
         }
 
-        /* Meanings list — one .meaning-row per sense. Matches the look of
-           updateCard()-generated rows at line 1453: 3-column grid with POS
-           pill pinned to the left column, translation centred in the middle
-           column, and a spacer on the right so the body stays visually
-           centred and can never overlap the pill. */
+        .about-demo-pos-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 7px;
+        }
+
+        .about-demo-pos-legend .card-pos {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            min-width: 0;
+            margin: 0;
+            padding: 4px 8px;
+            font-family: var(--font-reading);
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            text-transform: none;
+            background: rgba(255, 255, 255, 0.055);
+            border-color: rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+        }
+
+        /* Meanings list — part of speech sits once beneath the headword, while
+           each row carries only its meaning and optional catalogue share. */
         .about-demo-card-inner .meanings-scroll {
             display: flex;
             flex-direction: column;
@@ -8796,7 +8816,7 @@
 
         .about-demo-card-inner .meaning-row-regular {
             display: grid;
-            grid-template-columns: 80px 1fr 80px;
+            grid-template-columns: 1fr;
             align-items: center;
             padding: 9px 14px;
             background: rgba(15, 20, 28, 0.75);
@@ -8806,18 +8826,18 @@
             transition: background 0.25s, border-color 0.25s;
         }
 
+        .about-demo-card-inner .meaning-row-regular.has-share {
+            grid-template-columns: 52px 1fr 52px;
+        }
+
+        .about-demo-card-inner .meaning-row-regular.has-share .meaning-row-body {
+            grid-column: 2;
+        }
+
         .about-demo-card-inner .meaning-row-regular.is-selected {
             background: rgba(var(--accent-primary-rgb), 0.5);
             border: 2px solid var(--accent-primary);
             padding: 8px 13px;  /* compensate for the thicker border */
-        }
-
-        .about-demo-card-inner .meaning-row-pos-pill {
-            justify-self: start;
-            font-size: 10px;
-            padding: 3px 9px;
-            margin: 0;
-            white-space: nowrap;
         }
 
         .about-demo-card-inner .meaning-row-body {
@@ -8826,6 +8846,16 @@
             align-items: center;
             justify-content: center;
             min-width: 0;
+        }
+
+        .about-demo-meaning-share {
+            grid-column: 3;
+            justify-self: end;
+            font-family: var(--font-data);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            white-space: nowrap;
         }
 
         .about-demo-card-inner .meaning-row-translation {

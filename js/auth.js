@@ -702,7 +702,8 @@ function _appendAboutFootnotes(body) {
         + '</p>'
         + '<p class="about-references">'
         + '<strong>Sources:</strong> lyrics from Genius, synced timestamps via LRCLIB and Spotify, '
-        + 'word senses from Wiktionary and SpanishDict, frequency corpora from OpenSubtitles and Tatoeba, '
+        + 'word meanings from Wiktionary and SpanishDict, subtitle frequency from OpenSubtitles, '
+        + 'examples from OpenSubtitles and Tatoeba, '
         + 'Spanish conjugations from Jehle, cognate detection via CogNet.'
         + '</p>';
     body.appendChild(notes);
@@ -806,23 +807,15 @@ function hideAboutProjectModal() {
 // a tiny sequential animation instead of user input. Each demo runs in its own
 // async loop that exits when its container leaves the DOM (modal closes).
 
-// Demo data mirrors the real vocab entry shape from Data/Spanish/vocabulary.json:
-//   { word, lemma, pos, rank, meanings: [{ pos, translation, target, english }] }
-// The content is copy-pasted from actual entries so the demo shows what real
-// cards say, not made-up examples. Rendering uses the same classes the main
-// app's updateCard() produces (.card-word, .card-pos, .meaning-row.meaning-row-regular,
-// .meanings-scroll, .sentence, .translation) so the look is 1:1 with the real card.
-// `rank` and `corpusCount` mirror what real flashcards carry. Ranks are the
-// position within the word's host deck (Spanish normal vocab / Bad Bunny
-// artist vocab), so they look the same as the "Rank: X · Frequency: Y" line
-// on a live card. Tweak as needed — the only hard requirement is that the
-// numbers look plausible together.
+// Demo data is deliberately small but uses real Speech examples and genuine
+// lyrics from the artist catalogue. `share` is an indicative meaning split,
+// matching the percentages shown by the live artist cards.
 const _ABOUT_DEMO_DECKS = {
     normal: [
         {
             word: 'pasar',
             pos: 'VERB',
-            rank: 311,
+            rank: 316,
             corpusCount: 313,
             meanings: [
                 { pos: 'VERB', translation: 'to spend',
@@ -839,7 +832,7 @@ const _ABOUT_DEMO_DECKS = {
         {
             word: 'decir',
             pos: 'VERB',
-            rank: 80,
+            rank: 79,
             corpusCount: 1519,
             meanings: [
                 { pos: 'VERB', translation: 'to say',
@@ -855,8 +848,8 @@ const _ABOUT_DEMO_DECKS = {
         {
             word: 'corazón',
             pos: 'NOUN',
-            rank: 192,
-            corpusCount: 83,
+            rank: 171,
+            corpusCount: 68,
             song: 'CALLAÍTA · Bad Bunny',
             meanings: [
                 { pos: 'NOUN', translation: 'heart',
@@ -867,20 +860,21 @@ const _ABOUT_DEMO_DECKS = {
         {
             word: 'fuego',
             pos: 'NOUN',
-            rank: 203,
-            corpusCount: 80,
-            song: 'ME PORTO BONITO · Bad Bunny',
-            // Hand-curated sense examples — the demo cards are few enough that
-            // we can hold this to a higher bar than the pipeline's automatic
-            // assignments. Each example should unambiguously read as the sense
-            // it's attached to.
+            rank: 363,
+            corpusCount: 32,
             meanings: [
-                { pos: 'NOUN', translation: 'fire',
-                  target: 'La calle está en fuego, la calle tiene fuego',
-                  english: 'The street is on fire, the street has fire' },
-                { pos: 'NOUN', translation: 'passion',
-                  target: 'Contigo siento un fuego que no se apaga',
-                  english: "With you I feel a passion that doesn't fade" },
+                { pos: 'NOUN', translation: 'fire', share: '≈70%',
+                  target: 'Donde hubo fuego, cenizas quedan',
+                  english: 'Where there was fire, ashes remain',
+                  song: 'X ÚLTIMA VEZ · Bad Bunny' },
+                { pos: 'NOUN', translation: 'light', share: '≈20%',
+                  target: "Pasa el fuego que voy a prende'lo",
+                  english: "Pass the lighter — I'm going to light it",
+                  song: 'TREPATE · Bad Bunny' },
+                { pos: 'NOUN', translation: 'passion', share: '≈10%',
+                  target: "Vamo' a quemarnos en el fuego de la pasión",
+                  english: "Let's burn in the fire of passion",
+                  song: 'DIABLA (REMIX) · Bad Bunny' },
             ],
         },
     ],
@@ -923,6 +917,7 @@ function _buildAboutDemoCard(mode) {
                 <div class="card-details">
                     <div class="back-header">
                         <div class="about-demo-back-word"></div>
+                        <div class="about-demo-pos-legend"></div>
                     </div>
                     <div class="meanings-scroll"></div>
                     <div class="about-demo-example">
@@ -943,19 +938,19 @@ function _buildAboutDemoCard(mode) {
     return wrap;
 }
 
-// Build the inner HTML of .meanings-scroll — one .meaning-row.meaning-row-regular
-// per sense, with the selected one carrying .is-selected. Matches the inline
-// structure produced by updateCard() at pipeline/flashcards.js:1453.
+// Build one compact row per meaning. Part of speech is shown once beneath the
+// headword, as it is on current live cards; artist rows may also carry an
+// indicative usage share.
 function _renderDemoMeaningRows(meanings, selectedIdx) {
     return meanings.map((m, idx) => {
         const selected = idx === selectedIdx ? ' is-selected' : '';
-        const posClass = _posColorClass(m.pos);
+        const hasShare = m.share ? ' has-share' : '';
         return `
-            <div class="meaning-row meaning-row-regular${selected}">
-                <span class="card-pos meaning-row-pos-pill ${posClass}">${m.pos}</span>
+            <div class="meaning-row meaning-row-regular${selected}${hasShare}">
                 <div class="meaning-row-body">
                     <span class="meaning-row-translation">${m.translation}</span>
                 </div>
+                ${m.share ? `<span class="about-demo-meaning-share" aria-label="Approximately ${m.share.replace('≈', '')} of matched examples">${m.share}</span>` : ''}
             </div>`;
     }).join('');
 }
@@ -970,6 +965,18 @@ const _POS_CLASS_MAP = {
 function _posColorClass(pos) {
     const key = (pos || '').trim().toUpperCase().split(/[\s·]+/)[0];
     return _POS_CLASS_MAP[key] || '';
+}
+
+function _posDisplayName(pos) {
+    const key = (pos || '').trim().toUpperCase().split(/[\s·]+/)[0];
+    const names = {
+        VERB: 'verb', NOUN: 'noun', ADJ: 'adjective', ADV: 'adverb',
+        PREP: 'preposition', ADP: 'preposition', CONJ: 'conjunction',
+        CCONJ: 'conjunction', SCONJ: 'conjunction', PRON: 'pronoun',
+        DET: 'determiner', INT: 'interjection', INTJ: 'interjection',
+        NUM: 'number', MWE: 'expression',
+    };
+    return names[key] || String(pos || '').toLowerCase();
 }
 
 function _sleep(ms) {
@@ -1003,6 +1010,7 @@ async function _runAboutDemo(container, mode) {
     const posEl = container.querySelector('.card-pos');
     const rankEl = container.querySelector('.card-ranking');
     const backWordEl = container.querySelector('.about-demo-back-word');
+    const backPosLegendEl = container.querySelector('.about-demo-pos-legend');
     const meaningsEl = container.querySelector('.meanings-scroll');
     const exampleTargetEl = container.querySelector('.about-demo-example-target');
     const exampleEnglishEl = container.querySelector('.about-demo-example-english');
@@ -1016,7 +1024,13 @@ async function _runAboutDemo(container, mode) {
         posEl.className = 'card-pos';
         const cls = _posColorClass(pos);
         if (cls) posEl.classList.add(cls);
-        posEl.textContent = pos;
+        posEl.textContent = _posDisplayName(pos);
+    };
+
+    const setBackPos = (pos) => {
+        if (!backPosLegendEl) return;
+        const cls = _posColorClass(pos);
+        backPosLegendEl.innerHTML = `<span class="card-pos ${cls}"><span class="back-pos-dot" aria-hidden="true"></span>${_posDisplayName(pos)}</span>`;
     };
 
     while (stillMounted()) {
@@ -1027,12 +1041,14 @@ async function _runAboutDemo(container, mode) {
             card.classList.remove('flipped');
             wordEl.textContent = entry.word;
             setFrontPos(entry.pos);
-            // Mirror the live flashcard: "Rank: X · Frequency: Y" when both
-            // are present; falls back to just the rank otherwise.
+            setBackPos(entry.pos);
+            // Mirror the live labels while keeping this small demo on one line.
             if (entry.rank && entry.corpusCount) {
-                rankEl.textContent = `Rank: ${entry.rank} · Frequency: ${entry.corpusCount}`;
+                rankEl.textContent = mode === 'artist'
+                    ? `Vocabulary rank: ${entry.rank} · Lyric lines: ${entry.corpusCount}`
+                    : `Vocabulary rank: ${entry.rank} · Frequency: ${entry.corpusCount}/million`;
             } else if (entry.rank) {
-                rankEl.textContent = `Rank: ${entry.rank}`;
+                rankEl.textContent = `Vocabulary rank: ${entry.rank}`;
             } else {
                 rankEl.textContent = '';
             }
@@ -1057,6 +1073,10 @@ async function _runAboutDemo(container, mode) {
                 if (!stillMounted()) return;
                 const m = entry.meanings[i];
                 meaningsEl.innerHTML = _renderDemoMeaningRows(entry.meanings, i);
+                if (songBackEl && spotifyRowEl && (m.song || entry.song)) {
+                    songBackEl.textContent = m.song || entry.song;
+                    spotifyRowEl.style.display = '';
+                }
                 // Target sentence is HTML (with the target word wrapped in a
                 // highlight span); the helper escapes the rest first so raw
                 // data can't inject markup.
