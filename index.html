@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260727l">
-    <link rel="modulepreload" href="js/state.js?v=20260727l">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260727l">
-    <link rel="modulepreload" href="js/speech.js?v=20260727l">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260727l">
-    <link rel="modulepreload" href="js/auth.js?v=20260727l">
-    <link rel="modulepreload" href="js/spotify.js?v=20260727l">
-    <link rel="modulepreload" href="js/estimation.js?v=20260727l">
-    <link rel="modulepreload" href="js/config.js?v=20260727l">
-    <link rel="modulepreload" href="js/progress.js?v=20260727l">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260727l">
-    <link rel="modulepreload" href="js/ui.js?v=20260727l">
-    <link rel="modulepreload" href="js/vocab.js?v=20260727l">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260727l">
+    <link rel="modulepreload" href="js/main.js?v=20260727m">
+    <link rel="modulepreload" href="js/state.js?v=20260727m">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260727m">
+    <link rel="modulepreload" href="js/speech.js?v=20260727m">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260727m">
+    <link rel="modulepreload" href="js/auth.js?v=20260727m">
+    <link rel="modulepreload" href="js/spotify.js?v=20260727m">
+    <link rel="modulepreload" href="js/estimation.js?v=20260727m">
+    <link rel="modulepreload" href="js/config.js?v=20260727m">
+    <link rel="modulepreload" href="js/progress.js?v=20260727m">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260727m">
+    <link rel="modulepreload" href="js/ui.js?v=20260727m">
+    <link rel="modulepreload" href="js/vocab.js?v=20260727m">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260727m">
     <script>
         // Hide body instantly in artist mode to prevent flash of normal-mode UI
         if (new URLSearchParams(window.location.search).get('artist') ||
@@ -149,25 +149,15 @@
                 <span class="kb-hint">menu</span>
             </div>
             <div class="kb-section">
-                <button id="cardMetaBtn" class="kb-key kb-info-btn" title="Show card metadata" aria-label="Show card metadata">i</button>
-                <span class="kb-hint">info</span>
+                <button id="cardMetaBtn" class="kb-key kb-info-btn" title="Report a card issue" aria-label="Report a card issue">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 21V4"></path><path d="M5 5h11l-2 4 2 4H5"></path>
+                    </svg>
+                </button>
+                <span class="kb-hint">report</span>
             </div>
         </div>
     </div>
-    <!-- Card metadata modal (backdrop + centered frame) -->
-    <div id="cardMetaPopover" class="card-meta-popover" role="dialog" aria-hidden="true" hidden>
-        <div class="card-meta-modal-content" id="cardMetaContent">
-            <div class="card-meta-header">
-                <span class="card-meta-title" id="cardMetaTitle">Card info</span>
-                <button class="card-meta-close" id="cardMetaClose" aria-label="Close">×</button>
-            </div>
-            <div class="card-meta-body" id="cardMetaBody"></div>
-            <div class="card-meta-footer" id="cardMetaFooter" style="display: none;">
-                <button class="card-meta-flag-btn" id="cardMetaFlagBtn" type="button" title="Flag this card for review">Flag this card</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Audit flag menu: target and problem type are separate so reports can
          point at a pairing, sense, example, lemma, form, card, or just a note. -->
     <div id="flagMenu" class="card-meta-popover flag-menu" role="dialog" aria-hidden="true" aria-label="Flag a card" hidden>
@@ -1163,6 +1153,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260727l"></script>
+    <script type="module" src="js/main.js?v=20260727m"></script>
 </body>
 </html>

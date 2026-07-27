@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Clitic forms now show their lyrics and grammar, with one clean report menu",
+      "details": [
+        "The report icons now open the modern audit sheet directly instead of routing through the obsolete metadata-and-flag screen",
+        "Artist clitic example buckets are attached and preserved across single- and multi-artist decks, so every currently shipped clitic form can reach its real lyric evidence",
+        "Attached forms explain infinitive, gerund, or command shape plus the clitic person and role; impossible self-infinitive duplicates such as quité|quité are suppressed when the correct conjugation exists; cache v117→v118, assets 20260727l→20260727m"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "a116d533",
       "summary": "Plural forms now keep one lemma identity and diminutives explain their base",
       "details": [

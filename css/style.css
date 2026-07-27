@@ -761,15 +761,13 @@
             letter-spacing: 0.7px;
         }
 
-        /* Info button (matches .kb-key look but is clickable) */
+        /* Report button (matches .kb-key look but is clickable) */
         .kb-info-btn {
             cursor: pointer;
-            font-family: var(--font-data);
-            font-weight: 700;
-            font-style: italic;
             background: rgba(255, 255, 255, 0.08);
             color: rgba(255, 255, 255, 0.7);
         }
+        .kb-info-btn svg { display: block; }
         .kb-info-btn:hover {
             background: rgba(255, 255, 255, 0.18);
             color: #fff;
@@ -1660,6 +1658,33 @@
             font-weight: 700;
             line-height: 1.2;
             text-align: left;
+        }
+
+        .clitic-meaning {
+            display: flex;
+            flex: 1;
+            min-width: 0;
+            flex-direction: column;
+            align-items: center;
+            padding-inline: 6px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .clitic-meaning strong {
+            color: var(--text-primary);
+            font-family: var(--font-reading);
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .clitic-meaning small {
+            margin-top: 2px;
+            color: var(--text-muted);
+            font-family: var(--font-reading);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.25;
         }
 
         /* Regular-row translation: let the row grow naturally with the

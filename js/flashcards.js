@@ -147,7 +147,9 @@ function getAutoplaySpokenEnglish(card, meaning, cycleIndex = 0) {
     }
     if (meaning.allClitics?.length) {
         const item = meaning.allClitics[cycleIndex] || meaning.allClitics[0];
-        return item?.translation || item?.form || '';
+        const detail = describeCliticForm(item, card);
+        return [detail.displayTranslation || item?.form || '', detail.spokenDetail]
+            .filter(Boolean).join(', ');
     }
     if (meaning.pos === 'SENSE_CYCLE' && meaning.allSenses?.length) {
         const item = meaning.allSenses[cycleIndex] || meaning.allSenses[0];
@@ -233,6 +235,109 @@ function formatMorphLabel(m) {
         key: `${person}|${grammar}`,
         person,
         grammar,
+    };
+}
+
+const CLITIC_ROLES = {
+    me: 'me / myself',
+    te: 'you / yourself',
+    se: 'himself / herself / yourself / themselves',
+    nos: 'us / ourselves',
+    os: 'you / yourselves',
+    lo: 'him / it / you',
+    la: 'her / it / you',
+    los: 'them / you',
+    las: 'them / you',
+    le: 'to him / her / you',
+    les: 'to them / you',
+};
+
+const CLITIC_GRAMMAR = {
+    me: '1st singular object / reflexive',
+    te: '2nd singular object / reflexive',
+    se: '3rd person reflexive / indirect object',
+    nos: '1st plural object / reflexive',
+    os: '2nd plural object / reflexive',
+    lo: '3rd singular masculine direct object',
+    la: '3rd singular feminine direct object',
+    los: '3rd plural masculine direct object',
+    las: '3rd plural feminine direct object',
+    le: '3rd singular indirect object',
+    les: '3rd plural indirect object',
+};
+
+const CLITIC_ROLE_PATTERNS = {
+    me: /\b(?:me|myself)\b/iu,
+    te: /\b(?:you|yourself)\b/iu,
+    se: /\b(?:himself|herself|itself|yourself|themselves)\b/iu,
+    nos: /\b(?:us|ourselves)\b/iu,
+    os: /\b(?:you|yourselves)\b/iu,
+    lo: /\b(?:him|it|you)\b/iu,
+    la: /\b(?:her|it|you)\b/iu,
+    los: /\b(?:them|you)\b/iu,
+    las: /\b(?:them|you)\b/iu,
+    le: /\b(?:him|her|you)\b/iu,
+    les: /\b(?:them|you)\b/iu,
+};
+
+function splitAttachedClitics(form) {
+    let stem = String(form || '').trim().toLocaleLowerCase('es');
+    if (!stem) return { stem: '', clitics: [] };
+    const clitics = [];
+    const direct = ['los', 'las', 'lo', 'la'].find(value => stem.endsWith(value));
+    if (direct) {
+        clitics.unshift(direct);
+        stem = stem.slice(0, -direct.length);
+        const indirect = ['nos', 'les', 'me', 'te', 'se', 'os', 'le']
+            .find(value => stem.endsWith(value));
+        if (indirect) {
+            clitics.unshift(indirect);
+            stem = stem.slice(0, -indirect.length);
+        }
+    } else {
+        const single = ['nos', 'les', 'los', 'las', 'me', 'te', 'se', 'os', 'lo', 'la', 'le']
+            .find(value => stem.endsWith(value));
+        if (single) {
+            clitics.push(single);
+            stem = stem.slice(0, -single.length);
+        }
+    }
+    return { stem, clitics };
+}
+
+function describeCliticForm(item, card) {
+    const form = item?.form || '';
+    const { stem, clitics } = splitAttachedClitics(form);
+    const lemma = String(card?.lemma || card?.citationForm || '')
+        .toLocaleLowerCase('es').replace(/((?:ar|er|ir))se$/u, '$1');
+    const foldedStem = foldSurfaceForm(stem);
+    const foldedLemma = foldSurfaceForm(lemma);
+    let formType = 'attached pronoun';
+    if (foldedStem && foldedLemma && foldedStem === foldedLemma) {
+        formType = 'infinitive';
+    } else if (/(?:ando|iendo|yendo)$/u.test(foldedStem)) {
+        formType = 'gerund';
+    } else if (clitics.length) {
+        // In modern Spanish, an attached pronoun on a finite verb is an
+        // affirmative command. Infinitives and gerunds were handled above.
+        formType = 'command';
+    }
+    const pronounText = clitics.map(value => `${value}, ${CLITIC_GRAMMAR[value] || 'attached pronoun'}, ${CLITIC_ROLES[value] || ''}`)
+        .join(' + ');
+    const pronounDetail = clitics.map(value => CLITIC_GRAMMAR[value]).filter(Boolean).join(' + ');
+    const baseTranslation = String(item?.translation || '').trim();
+    const missingRoles = clitics.filter(value => !CLITIC_ROLE_PATTERNS[value]?.test(baseTranslation))
+        .map(value => CLITIC_ROLES[value]).filter(Boolean);
+    const displayTranslation = [baseTranslation, ...missingRoles]
+        .filter(Boolean).join(' · ');
+    return {
+        formType,
+        pronounText,
+        displayTranslation,
+        visualDetail: [clitics.length ? `${formType} + ${clitics.join(' + ')}` : formType,
+            pronounDetail]
+            .filter(Boolean).join(' · '),
+        spokenDetail: pronounText ? `${formType}; ${pronounText}` : formType,
     };
 }
 
@@ -1968,6 +2073,12 @@ function updateCard({ announceHeadword = false } = {}) {
     const citationForm = card.citationForm || card.lemma || displaySurface;
     const formNote = card.isPronominal ? 'verb with se' : '';
     window._currentDisplayedExample = null;
+    const reportShortcut = document.getElementById('cardMetaBtn');
+    if (reportShortcut) {
+        const canReport = Boolean(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
+        const section = reportShortcut.closest('.kb-section');
+        if (section) section.style.display = canReport ? '' : 'none';
+    }
 
     // A card entry starts from its structural group selection. An explicit
     // sub-sense choice lasts only while the learner remains on this card.
@@ -2612,11 +2723,16 @@ function updateCard({ announceHeadword = false } = {}) {
                 if (compactKnowledgeView && !isSelected) return;
                 // Clitic row mirrors expressions: plain bold form, translation,
                 // counter. The outer row already supplies grouping and color.
-                const cliticTrRaw = m.allClitics ? m.allClitics[cliticIdx].translation : '';
+                const activeClitic = m.allClitics ? m.allClitics[cliticIdx] : null;
+                const cliticTrRaw = activeClitic?.translation || '';
+                const cliticDetail = describeCliticForm(activeClitic, card);
                 target.push(`
                 <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
                     <span class="mwe-expression clitic-form">${cliticForm}</span>
-                    <span style="font-size: 14px; font-weight: 600; color: white; flex: 1; text-align: center; min-width: 0;">${cliticTrRaw}</span>
+                    <span class="clitic-meaning">
+                        <strong>${escapeCardText(cliticDetail.displayTranslation || cliticTrRaw || 'Translation unavailable')}</strong>
+                        <small>${escapeCardText(cliticDetail.visualDetail)}</small>
+                    </span>
                     ${cliticCounter}
                 </div>
                 `);
@@ -3020,6 +3136,15 @@ function updateCard({ announceHeadword = false } = {}) {
                         _mweRegex(matchedForm, 'giu'),
                         '<span class="example-word-highlight">$1</span>');
                 }
+            } else if (currentMeaning.allClitics) {
+                const activeClitic = currentMeaning.allClitics[activeMweIdx];
+                if (activeClitic?.form) {
+                    const escaped = activeClitic.form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const regex = _cachedRegex(
+                        `(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
+                    displayTargetSentence = displayTargetSentence.replace(
+                        regex, '<span class="example-word-highlight">$1</span>');
+                }
             } else {
                 // In Merge Lemmas mode a pooled example may come from a
                 // sibling form (quieres on the quiero/querer card). Highlight
@@ -3280,13 +3405,12 @@ function updateCard({ announceHeadword = false } = {}) {
         }
     }
 
-    // Card-info button (opens the same metadata popover as the desktop `i` key).
-    // JST-gated for now while we shake out the mobile flagging flow.
+    // One report route everywhere: this opens the modern audit sheet directly.
+    // JST-gated because the FlaggedWords backend is currently an owner tool.
     if (currentUser && currentUser.initials === 'JST') {
-        backHTML += `<button class="ref-icon-btn ref-meta-btn" title="Card info" onclick="event.stopPropagation(); toggleCardMetaPopover();">
-            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
-                <text x="16" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#000000">i</text>
+        backHTML += `<button class="ref-icon-btn ref-meta-btn" title="Report a card issue" aria-label="Report a card issue" onclick="event.stopPropagation(); showFlagMenu();">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 27V6"></path><path d="M8 7h15l-3 6 3 6H8"></path>
             </svg>
         </button>`;
     }
@@ -3480,10 +3604,6 @@ function updateCard({ announceHeadword = false } = {}) {
         speakWord(card.displaySurface || card.targetWord);
     }
 
-    // Keep the debug metadata popover in sync with the visible card.
-    if (typeof window.refreshCardMetaPopoverIfOpen === 'function') {
-        window.refreshCardMetaPopoverIfOpen();
-    }
     window.saveStudySessionSnapshot?.();
 }
 
@@ -3999,13 +4119,8 @@ window.updateStats = updateStats;
 window.dedupeExamples = dedupeExamples;
 
 // ---------------------------------------------------------------------------
-// Card metadata popover button wiring — eager, button is in DOM from boot.
-// The popover implementation lives in flashcards-modals.js; the lazy stub
-// for window.toggleCardMetaPopover triggers the dynamic import on first
-// click. Other popover handlers (close, outside-click, flag button) wire
-// themselves at module-load time inside flashcards-modals.js — they only
-// need to fire when the popover is open, which can only happen after the
-// modals module has loaded.
+// Report button wiring — eager, button is in the desktop guide from boot.
+// The modern audit sheet itself remains lazily loaded with the other modals.
 // ---------------------------------------------------------------------------
 (function _initCardMetaButton() {
     function attach() {
@@ -4013,7 +4128,8 @@ window.dedupeExamples = dedupeExamples;
         if (!btn) return;
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            window.toggleCardMetaPopover();
+            if (!currentUser || currentUser.isGuest || currentUser.initials !== 'JST') return;
+            window.showFlagMenu();
         });
     }
     if (document.readyState === 'loading') {
@@ -4072,7 +4188,7 @@ document.addEventListener('click', (e) => {
 // Lazy-load stubs for extras modules
 // ===========================================================================
 //
-// flashcards-modals.js holds card-meta popover, lyric breakdown, POS popup,
+// flashcards-modals.js holds the audit sheet, lyric breakdown, POS popup,
 // nav stack, homograph peek, and end-of-deck modal — all event-driven, none
 // needed at boot. These stubs install on boot; the dynamic import resolves
 // on first user interaction; the loaded module's top-level `window.X = X`
@@ -4081,13 +4197,13 @@ document.addEventListener('click', (e) => {
 //
 // On rejection (e.g. transient network failure) the cached promise is nulled
 // so the next click retries — a flaky cellular connection shouldn't lock
-// the user out of card-meta for the session.
+// the user out of reporting or other modal actions for the session.
 //
 // The STUB symbol marker + post-resolve assertion catches the case where a
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260727l';
+const ASSET_VERSION = '20260727m';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
@@ -4118,8 +4234,7 @@ const stubFor = (name, loader) => {
     window[name] = fn;
 };
 
-['toggleCardMetaPopover', 'showCardMetaPopover', 'hideCardMetaPopover',
- 'showFlagMenu', 'hideFlagMenu',
+['showFlagMenu', 'hideFlagMenu',
  'showPOSInfo',
  'showLyricBreakdown', 'hideLyricBreakdown',
  'showWordPopup', 'hideWordPopup',
@@ -4132,11 +4247,4 @@ const stubFor = (name, loader) => {
 ['toggleConjugationTable', 'switchConjMood', 'switchConjTense']
     .forEach(name => stubFor(name, lazyConj));
 
-// Special: refreshCardMetaPopoverIfOpen runs on every updateCard(). If we
-// triggered the lazy load on every card flip we'd defeat the lazy pattern.
-// Instead, no-op when modals isn't loaded — the popover can't be open.
-window.refreshCardMetaPopoverIfOpen = () => {
-    if (_modalsModulePromise) {
-        _modalsModulePromise.then(() => window.refreshCardMetaPopoverIfOpen());
-    }
-};
+window.describeCliticForm = describeCliticForm;

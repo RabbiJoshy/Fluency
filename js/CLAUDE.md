@@ -114,6 +114,10 @@ the card or marked Known/Review there. In Merge Lemmas mode, inventories above f
 items render only the active row on the card; the overview is the explicit route to
 the rest, avoiding an oversized sense/MWE menu in the normal study flow.
 
+The owner-only report icon and desktop report shortcut open the modern audit
+sheet directly. The old metadata sheet is no longer an intermediate flagging
+route; the audit target/category/note controls are the single reporting system.
+
 Knowledge IDs are `${parentFullId}~k1:<type>:<hash>`. The hash prefers the durable
 pipeline `sense_id`/`id` now retained by both standard meanings and the artist
 master. Legacy master-only senses receive deterministic `generated:artist-master:`
@@ -228,6 +232,13 @@ representative expression label but filters and highlights against every observe
 variant, including inconsistently spaced apostrophe elisions such as `vo' a` /
 `vo'a`. High-signal `[PRON]` templates are supported; broad fragments ending at
 the pronoun slot are rejected upstream.
+
+Artist clitic evidence lives in the split examples `c` buckets, parallel to
+meaning `m` and Expression `w` buckets. Both single-artist loading and
+`mergeArtistVocabularies()` must attach, merge, dedupe, and re-emit those
+buckets. A clitic row explains the verb shape (infinitive, gerund, or affirmative
+command) separately from the attached pronoun's person/case and English role;
+the exact attached form is highlighted in its lyric.
 
 The completed deterministic second pass is configured by
 `Artists/curations/construction_templates.json`. Step 2a uses the shared

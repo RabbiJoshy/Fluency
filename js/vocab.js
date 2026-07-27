@@ -877,7 +877,46 @@ function getExtraCategoryGroups() {
 }
 window.getExtraCategoryGroups = getExtraCategoryGroups;
 
-function assignStableVocabularyRanks(vocabData) {
+function _morphologyRows(item) {
+    if (!item?.morphology) return [];
+    return Array.isArray(item.morphology) ? item.morphology : [item.morphology];
+}
+
+function _foldSpanishForm(value) {
+    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/gu, '')
+        .toLocaleLowerCase('es').trim();
+}
+
+function findSpuriousSelfInfinitives(vocabData) {
+    const validConjugations = new Set();
+    for (const item of vocabData) {
+        const word = _foldSpanishForm(item?.word);
+        const lemma = _foldSpanishForm(item?.lemma);
+        if (!word || !lemma || word === lemma) continue;
+        if (_morphologyRows(item).some(row => row?.mood && row.mood !== 'infinitivo')) {
+            validConjugations.add(word);
+        }
+    }
+    const rejected = new Set();
+    for (const item of vocabData) {
+        const word = _foldSpanishForm(item?.word);
+        const lemma = _foldSpanishForm(item?.lemma);
+        const hasVerb = (item?.meanings || []).some(meaning => meaning?.pos === 'VERB');
+        const claimsInfinitive = _morphologyRows(item).some(row => row?.mood === 'infinitivo');
+        const looksInfinitive = /(?:ar|er|ir)(?:se)?$/u.test(word);
+        // Gap-fill senses can accidentally mint `quité|quité` beside the
+        // authoritative `quité|quitar` analysis. Assembly then used to stamp
+        // the self-lemma as an infinitive purely because word === lemma.
+        // Suppress only when a valid same-surface conjugation is present.
+        if (word && word === lemma && hasVerb && claimsInfinitive
+            && !looksInfinitive && validConjugations.has(word)) {
+            rejected.add(item);
+        }
+    }
+    return rejected;
+}
+
+function assignStableVocabularyRanks(vocabData, spuriousSelfInfinitives = new Set()) {
     vocabData.forEach((item, index) => {
         item.rank = index + 1;
         if (item.cognate_score === undefined && item.is_transparent_cognate) {
@@ -885,7 +924,8 @@ function assignStableVocabularyRanks(vocabData) {
         }
     });
     const candidates = vocabData.filter(item => {
-        if (!item.word || item.word.trim() === '' || item.duplicate || item.is_english) return false;
+        if (!item.word || item.word.trim() === '' || item.duplicate || item.is_english
+            || spuriousSelfInfinitives.has(item)) return false;
         if (!artistItemMatchesScope(item)) return false;
         const hasTranslation = Array.isArray(item.meanings)
             && item.meanings.some(meaning => meaning.translation && meaning.translation.trim());
@@ -950,8 +990,9 @@ function buildFilteredVocab(vocabData) {
             }
         }
     }
+    const spuriousSelfInfinitives = findSpuriousSelfInfinitives(vocabData);
     // Assign stable rank from array position (pipeline sort order)
-    assignStableVocabularyRanks(vocabData);
+    assignStableVocabularyRanks(vocabData, spuriousSelfInfinitives);
 
     // Single-pass filter combining: basic validity → POS=X placeholder
     // strip → artist scope → artist-mode flags → cognates → lemma mode.
@@ -963,7 +1004,8 @@ function buildFilteredVocab(vocabData) {
         && vocabData[0].hasOwnProperty('corpus_count');
     const result = [];
     for (const item of vocabData) {
-        if (!item.word || item.word.trim() === '' || item.duplicate) continue;
+        if (!item.word || item.word.trim() === '' || item.duplicate
+            || spuriousSelfInfinitives.has(item)) continue;
         if (!artistItemMatchesScope(item)) {
             counts.singleOcc++;
             continue;
@@ -1301,6 +1343,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                             mwe.examples = ex.w[i] || [];
                         });
                     }
+                    if (ex && ex.c && item.clitic_memberships) {
+                        item.clitic_memberships.forEach((clitic, i) => {
+                            clitic.examples = ex.c[i] || [];
+                        });
+                    }
                     if (ex && ex.s && item.sense_cycles) {
                         item.sense_cycles.forEach((sc, i) => {
                             sc.examples = ex.s[i] || [];
@@ -1495,11 +1542,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                         form: cl.form,
                         translation: cl.translation || '',
                         corpus_count: cl.corpus_count || 0,
-                        examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
+                        examples: matched
                     });
                 }
                 allClitics.sort((a, b) => b.corpus_count - a.corpus_count);
-                const firstEx = allClitics[0].examples[0];
+                const firstEx = allClitics[0].examples[0] || { spanish: '', english: '' };
                 meanings.push({
                     pos: 'CLITIC',
                     meaning: allClitics[0].form,
@@ -2087,6 +2134,26 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                     existing.extra_raw_examples = (existing.extra_raw_examples || [])
                         .concat(tagExamples(entry.extra_raw_examples));
                 }
+                if (entry.clitic_memberships?.length) {
+                    const existingByForm = new Map((existing.clitic_memberships || [])
+                        .map(clitic => [String(clitic.form || '').toLocaleLowerCase('es'), clitic]));
+                    for (const incoming of entry.clitic_memberships) {
+                        const key = String(incoming.form || '').toLocaleLowerCase('es');
+                        const current = existingByForm.get(key);
+                        if (current) {
+                            current.corpus_count = Number(current.corpus_count || 0)
+                                + Number(incoming.corpus_count || 0);
+                            current.examples = (current.examples || [])
+                                .concat(tagExamples(incoming.examples || []));
+                        } else {
+                            const added = structuredClone(incoming);
+                            added.examples = tagExamples(added.examples || []);
+                            if (!existing.clitic_memberships) existing.clitic_memberships = [];
+                            existing.clitic_memberships.push(added);
+                            existingByForm.set(key, added);
+                        }
+                    }
+                }
             } else {
                 // First time seeing this word — clone and tag.
                 // structuredClone is the native deep-clone primitive; ~2-3×
@@ -2100,6 +2167,9 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 }
                 if (clone.extra_raw_examples) {
                     clone.extra_raw_examples = tagExamples(clone.extra_raw_examples);
+                }
+                for (const clitic of (clone.clitic_memberships || [])) {
+                    clitic.examples = tagExamples(clitic.examples || []);
                 }
                 byId.set(id, clone);
             }
@@ -2126,6 +2196,15 @@ async function mergeArtistVocabularies(artistConfigs, master) {
         if (entry.extra_raw_examples?.length) {
             const seen = new Set();
             entry.extra_raw_examples = entry.extra_raw_examples.filter(example => {
+                const key = exampleSentenceKey(example);
+                if (!key || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
+        for (const clitic of (entry.clitic_memberships || [])) {
+            const seen = new Set();
+            clitic.examples = (clitic.examples || []).filter(example => {
                 const key = exampleSentenceKey(example);
                 if (!key || seen.has(key)) return false;
                 seen.add(key);
@@ -2176,6 +2255,12 @@ async function mergeArtistVocabularies(artistConfigs, master) {
             mergedExamples[id].w = [];
             merged.mwe_memberships.forEach((mwe, i) => {
                 mergedExamples[id].w[i] = mwe.examples || [];
+            });
+        }
+        if (merged.clitic_memberships) {
+            mergedExamples[id].c = [];
+            merged.clitic_memberships.forEach((clitic, i) => {
+                mergedExamples[id].c[i] = clitic.examples || [];
             });
         }
     }
@@ -2239,11 +2324,11 @@ function synthesizeSpecialMeanings(item, meanings) {
                 form: cl.form,
                 translation: cl.translation || '',
                 corpus_count: cl.corpus_count || 0,
-                examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }],
+                examples: matched,
             };
         });
         allClitics.sort((a, b) => b.corpus_count - a.corpus_count);
-        const firstEx = allClitics[0].examples[0];
+        const firstEx = allClitics[0].examples[0] || { spanish: '', english: '' };
         meanings.push({
             pos: 'CLITIC',
             meaning: allClitics[0].form,
@@ -2297,6 +2382,7 @@ window.buildEstimatedKnownIds = buildEstimatedKnownIds;
 window.LANG_CODES = LANG_CODES;
 window.buildFilteredVocab = buildFilteredVocab;
 window.assignStableVocabularyRanks = assignStableVocabularyRanks;
+window.findSpuriousSelfInfinitives = findSpuriousSelfInfinitives;
 window.loadVocabularyData = loadVocabularyData;
 window.renderResumeLastSetCard = renderResumeLastSetCard;
 window.resumeLastStudySession = resumeLastStudySession;
