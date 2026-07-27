@@ -20,7 +20,12 @@ METHOD_PRIORITY = {
     "pos-flash-lite-wiktionary": 52,  # POS-refined Gemini Flash Lite
     "flash-lite-wiktionary": 50,      # Gemini Flash Lite classifier (artist)
     "spanishdict-flash-lite": 50,     # Gemini Flash Lite classifier (artist, SpanishDict menu)
-    "gap-fill": 50,                   # Gemini gap-fill for words not in Wiktionary
+    # gap-fill sits one tick ABOVE the flash-lite menu-pick. It is the
+    # classify-or-propose "menu is insufficient — here is the real meaning"
+    # verdict (the 3.1 off-menu signature: carries type/construction). When a
+    # proposal and a stale menu-pick both claim the same example, the proposal
+    # wins instead of losing the old equal-priority tie on file order.
+    "gap-fill": 51,                   # Gemini gap-fill / off-menu proposal
     "pos-gemini": 45,                 # POS-refined Gemini classifier
     "gemini": 40,                     # Gemini classifier (normal mode)
     "pos-biencoder": 35,              # POS-refined bi-encoder

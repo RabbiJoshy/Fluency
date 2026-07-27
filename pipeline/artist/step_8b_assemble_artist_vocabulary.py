@@ -119,6 +119,37 @@ def _collect_sid_meta(raw_assignments, per_sense):
     return {sid: meta for sid, (_, meta) in sid_meta.items()}
 
 
+def _ensure_sense_in_group(group, sid, meta):
+    """Ensure a resolved sense id has a renderable slot in ``group``.
+
+    Menu senses already live in ``group["sense_by_id"]``. Off-menu discoveries
+    (gap-fill proposals — the classify-or-propose "menu is insufficient" verdict)
+    do not, so their sense would be silently skipped at assembly even after
+    winning per-example resolution. Synthesize a sense from the inline metadata
+    (``translation``/``pos`` plus optional ``type``/``construction``) and append
+    it to BOTH ``sense_by_id`` and ``word_senses`` in lockstep so the downstream
+    ``sense_idx = keys().index(sid)`` lookup into ``word_senses`` stays aligned.
+
+    Returns True if the sid is renderable (already present, or just synthesized),
+    False when there is no inline gloss to render.
+    """
+    sense_by_id = group.get("sense_by_id")
+    if not isinstance(sense_by_id, dict):
+        return False
+    if sid in sense_by_id:
+        return True
+    translation = (meta.get("translation") or "").strip() if meta else ""
+    if not translation:
+        return False
+    synth = {"pos": (meta.get("pos") or "X"), "translation": meta.get("translation")}
+    for k in ("type", "construction", "source", "lemma"):
+        if meta.get(k):
+            synth[k] = meta[k]
+    sense_by_id[sid] = synth
+    group.setdefault("word_senses", []).append(synth)
+    return True
+
+
 # ---------------------------------------------------------------------------
 # ID assignment (same logic as 6_llm_analyze.py)
 # ---------------------------------------------------------------------------
@@ -784,6 +815,39 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             for sid in g["sense_by_id"]:
                 sid_to_group[sid] = g
 
+        # Surface off-menu discoveries whose inline lemma has no menu group.
+        # gap-fill can invent a lemma the SpanishDict menu doesn't carry (e.g.
+        # manín|manín, "my man", when the menu only knows the wrong manín|maní,
+        # "peanut"). Without a group the proposal is orphaned. Create a bare
+        # discovery group per uncovered word|lemma key so the resolution loop
+        # below + _ensure_sense_in_group can synthesize and render the sense.
+        # Gated on `grouped` (word HAS a menu): pure sense-discovery words keep
+        # their existing fallback path unchanged.
+        if lemma_assignments and grouped:
+            _word_prefix = word + "|"
+            for _lkey, _lval in lemma_assignments.items():
+                if _lkey in lemma_key_to_group or not _lkey.startswith(_word_prefix):
+                    continue
+                if not isinstance(_lval, dict) or not _lval:
+                    continue
+                if not any(
+                    (it.get("translation") or "").strip()
+                    for items in _lval.values() for it in (items or [])
+                    if isinstance(it, dict)
+                ):
+                    continue
+                _orphan_group = {
+                    "lemma": _lkey.split("|", 1)[1],
+                    "sense_by_id": {},
+                    "word_senses": [],
+                    "assignments": [],
+                    "_analysis": {},
+                }
+                lemma_key_to_group[_lkey] = _orphan_group
+                # active_groups is built from `grouped`; add the orphan there
+                # too (same object) so its emitted card isn't dropped.
+                grouped.append(_orphan_group)
+
         if lemma_assignments and lemma_key_to_group:
             for lemma_key, group in lemma_key_to_group.items():
                 raw_group_assignments = lemma_assignments.get(lemma_key, {})
@@ -798,7 +862,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 else:
                     continue
                 for sid, ex_list in per_sense.items():
-                    if sid not in group["sense_by_id"]:
+                    if not _ensure_sense_in_group(group, sid, sid_meta.get(sid)):
                         continue
                     entry = {
                         "sense_idx": list(group["sense_by_id"].keys()).index(sid),

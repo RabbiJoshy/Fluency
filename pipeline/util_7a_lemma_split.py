@@ -179,6 +179,38 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
             else:
                 split[target_key] = target_methods
 
+    # Off-menu discoveries (gap-fill / sense-discovery) invent senses that live
+    # in no analysis's sense_ids, so the menu-based split above skips them. They
+    # carry their own inline definition (translation, pos, lemma, type, ...) and
+    # must survive consolidation or step_8b can never surface them — route each
+    # to word|<inline lemma> (or word|word), preserving all inline fields.
+    #
+    # Gate on a non-empty inline translation: a genuine discovery always carries
+    # one. A stale menu-pick whose sense left the menu has no inline gloss, so it
+    # would render blank — leave those dropped, as before.
+    placed_sense_ids = set()
+    for _, sense_ids, _ in analysis_maps:
+        placed_sense_ids |= sense_ids
+    for method, items in methods.items():
+        leftover_by_key = {}
+        for item in items:
+            sid = item.get("sense")
+            if not sid or sid in placed_sense_ids:
+                continue
+            if not (item.get("translation") or "").strip():
+                continue
+            item_lemma = item.get("lemma")
+            lemma = (item_lemma.strip()
+                     if isinstance(item_lemma, str) and item_lemma.strip() else word)
+            kept = dict(item)
+            kept["examples"] = sorted(set(item.get("examples", [])))
+            leftover_by_key.setdefault("%s|%s" % (word, lemma), []).append(kept)
+        for target_key, kept_items in leftover_by_key.items():
+            if target_key in split:
+                split[target_key] = merge_method_maps(split[target_key], {method: kept_items})
+            else:
+                split[target_key] = {method: kept_items}
+
     if split:
         return split
 

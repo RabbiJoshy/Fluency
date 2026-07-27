@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-27",
+      "commit": "pending",
+      "summary": "Slang and regional meanings Gemini discovered are no longer dropped",
+      "details": [
+        "Off-menu meanings the classifier proposed (guagua=car/van/truck, charro=scrub/jerk/loser, chilla=side chick, manín=my man) were being discarded three times over — at lemma consolidation, at the priority tie-break, and at deck assembly — so cards showed a wrong dictionary sense instead",
+        "These proposed meanings now survive consolidation, outrank a stale menu pick on the same line, and get a rendered card even when the dictionary menu never had that lemma",
+        "Bad Bunny deck rebuilt: ~600 previously-hidden slang/regional meanings surface across the deck (some words gain a second card alongside a stale one pending the separate lemma-mapping fix)"
+      ]
+    },
+    {
+      "date": "2026-07-27",
       "commit": "ad8f67d1",
       "summary": "The level check now estimates a range across the vocabulary",
       "details": [
