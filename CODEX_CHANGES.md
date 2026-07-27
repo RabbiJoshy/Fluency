@@ -22,8 +22,17 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
 - A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English uses the first two and labels pronominal lemmas in plain language. English→Spanish uses the production answer: exact surface when unmerged, lemma when merged, and the complete `-se` citation for older pronominal data, with the evidenced example form shown separately.
+- Regular plural dictionary twins share their explicit singular lemma identity while preserving every source sense ID. Derivational families such as `besito` → `beso` remain separate cards/progress records and use a conservative, auditable relation layer rather than suffix-only collapsing.
 
 ## Codex task history
+
+### 2026-07-27 — Normalize plural lemmas and link diminutives
+
+- Commit `a116d533`; front-end cache `flashcards-v117` / `20260727l`.
+- SpanishDict analysis twins such as `besitos|besitos` and `besitos|besito` now assemble under the singular lemma key while retaining the original sense identities. The rule requires both dictionary analyses and compatible nominal/adjectival parts of speech, so it does not blindly strip plural-looking verb forms.
+- Added a shared, reviewable derivational-relation layer. Diminutives and superlatives stay independent cards, but supported entries can label their base lemma in quiet card-back text; curated overrides handle orthographic changes such as `placita` → `plaza`, and risky suffix lookalikes remain excludable.
+- The relation builder currently records 89 evidence-backed or curated relations. A validation rebuild proved the plural merge in real Bad Bunny data, but its broad unrelated output drift was deliberately restored; the live deck files should receive this metadata in Claude's next coordinated assembly. No Gemini rerun is required.
+- Verification: 11 focused Python tests, Python compilation, bundled-Node syntax checks, valid JSON, real-data `besitos` routing, cache-version lockstep, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Complete English-to-Spanish card forms
 

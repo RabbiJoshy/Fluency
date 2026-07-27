@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "a116d533",
       "summary": "Plural forms now keep one lemma identity and diminutives explain their base",
       "details": [
         "Regular SpanishDict plural twins such as besitos|besitos and besitos|besito consolidate under the singular lemma without changing sense IDs or rerunning Gemini",
