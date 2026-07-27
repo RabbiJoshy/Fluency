@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "80f07792",
+      "summary": "The About page now explains Fluency more clearly and accurately",
+      "details": [
+        "A concise opening now explains that Fluency turns speech and lyrics into frequency-ranked cards with the meaning that fits each sentence",
+        "The overlooked but useful word aunque replaces mañana, while the fuego demo shows genuine catalogue lines and an indicative 70% fire, 20% light, 10% passion split",
+        "Stale catalogue and source claims were tightened in plain language, and the demo now matches the app's current POS and frequency presentation; cache v123→v124, assets 20260728a→20260728b"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "4b28d948",
       "summary": "Card reports now make notes and classification tags quick and explicit",
       "details": [

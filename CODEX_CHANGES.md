@@ -30,6 +30,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-28 — Tighten the employer-facing About page
+
+- Commit `80f07792`; front-end cache `flashcards-v124` / `20260728b`.
+- Added one plain-language product sentence, replaced the arbitrary *mañana* example with *aunque* as an often-overlooked connecting word, and removed jargon from the explanation of ranking and meaning selection.
+- Corrected the claim that the Lyrics deck contains every word in a complete discography and separated subtitle frequency, example, and dictionary source roles. The technical section remains brief rather than becoming a longer portfolio essay.
+- Replaced the invented *fuego* demo copy with genuine catalogue lines, exposed its complete indicative split (fire ≈70%, light ≈20%, passion ≈10%), updated current ranks/counts and labels, and moved part of speech into the same single legend used by live cards.
+- Verification: JavaScriptCore module parsing, valid changelog JSON, cache-version lockstep, percentage-total/data assertions, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-28 — Streamline audit notes and classification tags
 
 - Commit `4b28d948`; front-end cache `flashcards-v123` / `20260728a`.
