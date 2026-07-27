@@ -25,6 +25,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-27 — Compact merged-lemma knowledge inventory
+
+- Commit `2b9ec48f`; front-end cache `flashcards-v114` / `20260727i`.
+- Large Merge Lemmas cards now keep only the active meaning, Expression, or attached form in the ordinary card flow once their learnable inventory exceeds four items. Small and unmerged cards retain the full inline menu.
+- Removed the persistent per-item Know/Review strip. A bottom knowledge-map icon carries the explicit known/total count and opens a responsive, scrollable inventory grouped into Meanings, Expressions, and Attached forms; each row can be focused on the card or independently marked Known/Review.
+- Focusing an Expression/clitic preserves its exact cycle index, while focusing a grouped sense remains pinned to that sub-sense instead of immediately reverting to the overarching group.
+- Verification: JavaScript syntax checks, a synthetic sense/Expression identity and cycle-index case, actual Spanish inventory assertions (`decir` 11 items, merged `está` 4, non-representative `estemos` 11), valid changelog JSON, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-27 — Spanish card surface and citation forms
 
 - Commit `557f65f0`; front-end cache `flashcards-v113` / `20260727h`.

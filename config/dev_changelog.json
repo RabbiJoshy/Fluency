@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "2b9ec48f",
       "summary": "Large merged-lemma cards now focus on one item and put detailed knowledge in an overview",
       "details": [
         "Merged-lemma cards with more than four learnable items show only the active meaning, Expression, or clitic form instead of filling the card with the complete inventory",
