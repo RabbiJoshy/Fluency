@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-27",
-      "commit": "pending",
+      "commit": "5bee518b",
       "summary": "English-to-Spanish cards now ask for and speak the intended form",
       "details": [
         "Unmerged cards answer with the encountered surface form, while Merge Lemmas cards answer with the shared citation lemma",

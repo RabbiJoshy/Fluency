@@ -21,9 +21,16 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Progress-fill colours are semantic across every language and artist: green means Known/current, amber means Review/due, and neutral means Unseen. Source identity remains in surrounding accents and selection borders rather than competing with progress meaning.
 - Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
-- A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English currently uses the first two and labels pronominal lemmas in plain language; English→Spanish has not yet switched to the production answer.
+- A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English uses the first two and labels pronominal lemmas in plain language. English→Spanish uses the production answer: exact surface when unmerged, lemma when merged, and the complete `-se` citation for older pronominal data, with the evidenced example form shown separately.
 
 ## Codex task history
+
+### 2026-07-27 — Complete English-to-Spanish card forms
+
+- Commit `5bee518b`; front-end cache `flashcards-v116` / `20260727k`.
+- Unmerged cards now reveal and speak the encountered surface form, while Merge Lemmas cards reveal and speak the shared citation lemma. Merged prompts retain infinitival English rather than inheriting the representative host form's conjugated gloss.
+- Pronominal cards whose old deck data lacks explicit production morphology safely use the complete `-se` citation (`quejarse`) and label an exact form found in the active example (`se queja`). Expressions and attached forms use their own active answer and translation rather than falling back to the parent word.
+- Verification: JavaScript syntax, direct form-contract assertions for unmerged `está`, merged `estar`, and pronominal `quejarse`, valid changelog JSON, cache-version lockstep, and `git diff --check`. No browser preview was used.
 
 ### 2026-07-27 — Lemma-first merged cards
 
