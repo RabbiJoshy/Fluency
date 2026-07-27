@@ -59,25 +59,40 @@
 
 ## Bugs found
 
-- **[now] Sense-menu covers only 63% of the SD scrape → ~5,800 words bypass the classifier (L) [artist/spanish] TOP QUALITY LEVER**
-  Found 2026-07-27 auditing Josh's flags. Two SpanishDict inputs disagree: `surface_cache`
-  (the scrape, 15,752 words) is read at ASSEMBLY to attach senses, but `sense_menu/
-  spanishdict.json` (9,945 words) is what `step_6c` classify-or-propose reads. **5,807 scraped
-  words are missing from the menu**, so gemini-3.1 never classifies them — they get raw
-  first-sense SD glosses with no WSD and no slang proposal. The missing set is the artist's
-  distinctive vocab: elision forms (`na'`/`to'`/`mirá'`) AND clean slang (`charro`→"cowboy" not
-  "jerk", `trapero`→"junkman" not "trap rapper", `chilla`→"fox" not "girl", `tequi`→"kid" not
-  "tequila", `guagua`→"trinket" not "bus"). These have NO entry in `sense_assignments` at all
-  (not Gemini, not keyword). Fix: make the menu-build (`step_5c_build_senses`) cover the scraped
-  words (at least the clean, non-apostrophe ones) so the classifier actually processes them.
-  Highest-leverage fix in the deck — it's why gemini-3.1 "did well" but the deck is still wrong.
+- **[~mostly fixed] Gemini-3.1 slang proposals were being dropped before the deck (L) [artist/spanish]**
+  CORRECTED 2026-07-27 (supersedes the earlier "5,807 words bypass the classifier / 63% menu
+  coverage / TOP QUALITY LEVER" writeup, which was WRONG). That number measured the *shared*
+  normal-mode menu (`Data/Spanish/layers/sense_menu`, 9,945). The **per-artist** menu
+  (`Artists/.../data/layers/sense_menu/spanishdict.json`, 8,915) DOES cover the slang, and
+  gemini-3.1 DID classify it: `guagua`/`charro`/`chilla` each had a correct gap-fill proposal
+  (car/van/truck, scrub/jerk/loser, side chick) sitting in `sense_assignments`. The bug was that
+  those off-menu proposals were dropped three times over (step_7a split, priority tie-break,
+  step_8b assembly). Fixed + deck rebuilt in commit `a30a6250` — those words now render right.
+  REMAINING (smaller, real): words with no correct proposal to salvage —
+  `trapero` (spanishdict-flash-lite menu-pick only, 3.1 accepted a wrong menu sense, no proposal
+  → needs a re-classify to get "trap rapper") and `tequi` (spanishdict-auto single-sense default,
+  priority 0, never really classified). Plus apostrophe/elision forms (`na'`/`to'`/`mirá'`) that
+  `step_6c` skips by design. These need a targeted Gemini rerun (or, for elisions, routing work),
+  NOT a menu rebuild.
 
-- **[now] Homograph de-dup: deck links the wrong of two entries (M) [artist/spanish]**
-  The master holds BOTH a corrected entry and the old wrong one for a surface, and the artist
-  index links the WRONG one: `vine`→English "vid" (venir exists), `manín`→`maní` "peanut"
-  ("bro/buddy" exists), `tar`→`tar` (estar-contraction exists), `quiles`→`quilar` "to screw"
-  (PROPN "artist" exists). The right answer already exists in the data — assembly's
-  homograph/representative selection picks the wrong entry. Found 2026-07-27.
+- **[now] SpanishDict fuzzy-spelling matches create a wrong-lemma card (M) [artist/spanish] — needs curation, NOT auto-fixable**
+  When SD has no exact entry for a surface word it returns a spell-corrected neighbour with no
+  morphological link: `manín`→`maní` "peanut", `beibe`→`bebe`, `celu`→`celo`, `chulito`→`culito`,
+  `foke`→`fake`. Post-`a30a6250` the correct gap-fill meaning now renders (`manín`→"my man"), but
+  the fuzzy menu card still shows alongside it. Signal explored 2026-07-27: `surface_cache.json`
+  has `possible_results` (per surface, with `heuristic:conjugation/inflection` justifying a real
+  lemma, e.g. `cantamos`→`cantar`); a fuzzy match like `manín`→`maní` has `possible_results: []`.
+  BUT this is NOT a safe auto-rule: empty `possible_results` also covers legit clitic/reflexive
+  forms (`darnos`→`dar`, `mamar`→`mamarse`), and prefix/edit-distance relatedness misfires in
+  BOTH directions — it wrongly ties `manín`~`maní` (shared "mani" prefix) yet misses `luces`~`luz`
+  (real plural, no shared prefix). Every automatic signal reintroduces wrong cards. RECOMMEND: a
+  curated suppression layer (surface|bad_headword pairs the menu-build/step_8b drops). A
+  high-precision candidate list (~111 gap-fill words × fuzzy menu headword, with the real meaning
+  shown) is regenerable from `surface_cache` + `sense_assignments` (script logic in this session's
+  history; scratchpad `fuzzy_menu_candidates.json`). Watch the false positives in it: `asi`→`así`
+  and `cash`→`efectivo` are actually CORRECT and must not be suppressed.
+  (Was filed as "homograph de-dup / assembly picks wrong entry"; the real cause is SD fuzzy
+  matching, not homograph selection. Related surfaces: `vine`→"vid", `tar`, `quiles`.)
 
 - **[now] Syllable-repeat adlib non-words not caught as noise (S) [artist/spanish]**
   `tera` (from `entera-tera`), `rrear` (from `perrear, -rrear`), `nio` (from `ni`) survive as
