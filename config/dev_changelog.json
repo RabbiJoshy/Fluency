@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-28",
-      "commit": "pending",
+      "commit": "4b28d948",
       "summary": "Card reports now make notes and classification tags quick and explicit",
       "details": [
         "Write a note now opens a focused required text field and cannot submit until something has actually been typed",

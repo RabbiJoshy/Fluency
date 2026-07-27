@@ -30,6 +30,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-28 — Streamline audit notes and classification tags
+
+- Commit `4b28d948`; front-end cache `flashcards-v123` / `20260728a`.
+- Promoted the most frequent owner audit actions into a Quick report area: Write a note, English, Loanword, and Cognate. Classification choices retain their current pipeline stamps in the card model and include those values in the structured FlaggedWords report.
+- Write a note is now an explicit entry mode: it focuses and scrolls to a required textarea, keeps Enter available for normal multiline writing, and disables the final Send note action until non-whitespace text exists. Selecting the action itself cannot submit a blank report.
+- The detailed sense/example/lemma/form/card categories remain available, and routing tags use distinct stable paths such as `routing:cognate`. The existing FlaggedWords payload contract is unchanged, so no Apps Script redeployment is required.
+- Verification: bundled-Node syntax checks for changed modules, valid changelog JSON, unique HTML IDs, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-27 — Make merged-lemma cards follow their examples
 
 - Commit `1987dfd1`; front-end cache `flashcards-v122` / `20260727q`.
