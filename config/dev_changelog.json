@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "d3b3a844",
+      "summary": "Card reporting is easier to use on a phone",
+      "details": [
+        "The report sheet now has a reliably bounded mobile viewport with native touch scrolling, safe-area spacing, and a fixed send action",
+        "Send a note opens a focused composer and the keyboard Send/Enter action submits immediately; Shift+Enter still makes a new line and the visible button remains as a fallback",
+        "Optional notes on detailed reports are collapsed under Add details until needed, leaving more room for meanings and issue choices; cache v127→v128, assets 20260728e→20260728f"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "417175a6",
       "summary": "Study-set counts now stay aligned with refreshed progress",
       "details": [

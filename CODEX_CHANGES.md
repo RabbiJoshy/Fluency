@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-28 — Mobile-first card reporting and direct notes
+
+- Commit `d3b3a844`; front-end cache `flashcards-v128` / `20260728f`.
+- Gave the mobile audit bottom sheet a definite visual-viewport height, safe-area padding, momentum/touch scrolling, and an independently fixed footer. This removes the ambiguous clipped state where lower report controls existed but could not reliably be reached on a phone.
+- “Send a note” now opens a focused note-only composer rather than selecting an option beside an already-visible textarea. The mobile keyboard's Send/Enter action submits the note immediately; Shift+Enter preserves multiline input, the visible Send button remains an accessible fallback, and a back action returns to structured report choices.
+- Detailed reports retain free text through a collapsed “Add details” disclosure, so the capability remains available without consuming the main sheet's limited height.
+- Verification: bundled-Node parsing, unique DOM-ID parsing, balanced CSS-block assertion, focused-note/keyboard-send/mobile-scroll static regressions, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-28 — Keep setup set counts synchronized
 
 - Commit `417175a6`; front-end cache `flashcards-v127` / `20260728e`.
