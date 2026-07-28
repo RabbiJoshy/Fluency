@@ -27,8 +27,19 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Artist clitic rows consume split-example `c` buckets in single- and multi-artist decks. They teach the exact attached form as an infinitive, gerund, or affirmative command plus the clitic's person/case and English role, rather than presenting only the base infinitive gloss.
 - Boot, source navigation, exact resume, and deck replacement share one app-level loading surface. It covers partial auth/setup/card DOM until the destination is coherent; it does not justify artificial waiting, and cached progress should remain usable while remote Sheets reconciliation runs in the background.
 - Source setup keeps parsed indexes by data path and shares one source/settings/examples-keyed filtered vocabulary across level, progress, exclusion, and set UI. Artist frequency extraction must use that same canonical loader rather than parsing the index independently.
+- Google Sheets schema v4 has one discriminated `Progress` tab for word, sense, MWE, clitic, and metadata rows, plus the separate `FlaggedWords` tab. Speech/Lyrics are a `Mode`, item rows use `ParentWordId`, and artist-specific routing metadata carries a `Source`; the automatic migration retains the old three progress tabs as `*_legacy` backups and accepts cached v3 clients during rollout.
+- A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-07-28 — Consolidate progress storage and streamline level completion
+
+- Commit `24149b26`; front-end cache `flashcards-v125` / `20260728c`.
+- Replaced the three progress tabs with schema-v4 `Progress` rows discriminated by item type and mode. Metadata rows retain level estimates and add artist/language/mode-scoped level-routing flags; `FlaggedWords` remains independent. The guarded first POST migrates and deduplicates old rows, renames source tabs `*_legacy`, recovers from a stray pre-v4 `Progress` tab, and keeps old cached action/sheet names compatible during deployment.
+- Added a reversible “Skip this level in suggestions” control below the set picker. Setup auto-pick, estimated placement, resume prompting, next-set routing, and cross-level completion skip it; explicit selection still works and all true card/item answers continue unchanged.
+- Compact morphology groups shared tense/mood analyses such as “1st/3rd singular · present subjunctive.” The end-of-set modal now owns keyboard interaction and advances to the next genuinely unfinished set/level even when later physical dots were completed earlier.
+- Updated the pull/push tools for the unified schema, including exact typed-row deletion, and added a dependency-free in-memory Apps Script migration/round-trip regression test. Verification: all changed JS parsed with bundled Node, Python tools compiled, migration/legacy compatibility/word-item-meta CRUD/artist isolation/idempotence tests passed, morphology and scope-isolation assertions passed, JSON/cache lockstep and `git diff --check` passed. No browser preview was used.
+- Deployment note: copy `backend/GoogleAppsScript.js` into Apps Script and publish a new version. The app probes capabilities and safely keeps using the legacy route until v4 is live; the first v4 progress request performs the migration.
 
 ### 2026-07-28 — Tighten the employer-facing About page
 

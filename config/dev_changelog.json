@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "24149b26",
+      "summary": "Progress storage is simpler, and completed levels can leave the suggestion path",
+      "details": [
+        "Card, sense, Expression, clitic, estimate, and level-routing records now share one typed Progress tab while FlaggedWords remains separate; the first v4 request safely migrates the three old progress tabs to retained *_legacy backups",
+        "Each level has a reversible Skip this level in suggestions switch scoped to Speech or the exact artist/language selection; it never fabricates Known cards or changes answer history",
+        "Ambiguous verb forms now combine repeated grammar labels, and the finished-set screen blocks background keyboard actions and finds the next unfinished set even across levels; cache v124→v125, assets 20260728b→20260728c"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "80f07792",
       "summary": "The About page now explains Fluency more clearly and accurately",
       "details": [
