@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "417175a6",
+      "summary": "Study-set counts now stay aligned with refreshed progress",
+      "details": [
+        "Background Sheets refreshes now compare changed card, sense, estimate, and level-routing values instead of checking only whether the number of rows changed",
+        "A set can no longer keep saying Learn 1 new card after that existing card has become seen, only to reject it as complete when opened",
+        "The same correction covers the unified Progress backend and its legacy fallback; cache v126→v127, assets 20260728d→20260728e"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "780eb56f",
       "summary": "The About page now leads with the learning problem and demonstrates its claims directly",
       "details": [

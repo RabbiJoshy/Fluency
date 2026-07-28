@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-28 — Keep setup set counts synchronized
+
+- Commit `417175a6`; front-end cache `flashcards-v127` / `20260728e`.
+- Replaced progress refresh's row-count-only change test with a comparison of the actual UI-driving card, granular-item, level-estimate, and marked-level state. Existing rows changing from unseen/review to known now trigger the same setup re-render as newly added rows.
+- Applied the rule to both schema-v4 `Progress` loading and the legacy fallback. This fixes stale “Learn 1 new card” actions that were rejected as already complete when deck construction consulted the newer in-memory state; no progress records or Apps Script schema changed.
+- Verification: bundled-Node syntax checks, a same-row-count status-transition regression assertion, unchanged-state assertion, valid changelog JSON, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-28 — Make the About page demonstrate its argument
 
 - Commit `780eb56f`; front-end cache `flashcards-v126` / `20260728d`.
