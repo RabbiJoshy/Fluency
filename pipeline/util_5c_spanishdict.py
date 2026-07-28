@@ -407,23 +407,31 @@ def _is_reverse_conjugation(s, h):
     return False
 
 
+def _noun_stem(x):
+    """Reduce a deaccented noun/adjective form to its stem by removing a regular
+    plural suffix (-s/-es) and then a gender vowel (-a/-o). So finas→fin, fino→
+    fin, canciones→cancion, buena→buen — any number/gender combo lands on one
+    stem, while manín→manin and maní→mani stay distinct."""
+    if x.endswith("es") and len(x) > 3:
+        x = x[:-2]
+    elif x.endswith("s") and len(x) > 2:
+        x = x[:-1]
+    if len(x) > 2 and x[-1] in "ao":
+        x = x[:-1]
+    return x
+
+
 def _is_regular_noun_variant(s, h):
     """True if deaccented ``s`` and ``h`` are a regular Spanish plural/gender
-    pair (canción↔canciones, buena↔bueno) — a real morphological relation, not
-    a mere shared prefix (which wrongly kept manín↔maní)."""
-    if s in {h + "s", h + "es"} or h in {s + "s", s + "es"}:
-        return True
+    pair across any number/gender (finas↔fino, canción↔canciones, buena↔bueno) —
+    a real morphological relation, not a mere shared prefix (which wrongly kept
+    manín↔maní)."""
     if h.endswith("z") and s == h[:-1] + "ces":
         return True
     if s.endswith("z") and h == s[:-1] + "ces":
         return True
-    # gender: identical but for a final a/o
-    if len(s) == len(h) > 1 and s[:-1] == h[:-1] and s[-1] in "ao" and h[-1] in "ao":
-        return True
-    # gender plural: -as ↔ -os
-    if len(s) > 2 and s[:-2] == h[:-2] and s.endswith(("as", "os")) and h.endswith(("as", "os")):
-        return True
-    return False
+    ss, hs = _noun_stem(s), _noun_stem(h)
+    return len(ss) >= 3 and ss == hs and s != h
 
 
 def _surface_conjugation_lemmas(possible_results):
