@@ -997,54 +997,28 @@ function hideAboutProjectModal() {
 
 // Demo data is deliberately small but uses real Speech examples and genuine
 // lyrics from the artist catalogue. `share` is an indicative meaning split,
-// matching the percentages shown by the live artist cards.
+// matching the percentages shown by live multi-meaning cards.
 const _ABOUT_DEMO_DECKS = {
     normal: [
         {
-            word: 'pasar',
-            pos: 'VERB',
-            rank: 316,
-            corpusCount: 313,
+            word: 'aunque',
+            pos: 'CCONJ',
+            rank: 429,
+            corpusCount: 229,
             meanings: [
-                { pos: 'VERB', translation: 'to spend',
-                  target: 'Él va a pasar el fin de semana con su tío.',
-                  english: "He's going to spend the weekend with his uncle." },
-                { pos: 'VERB', translation: 'to happen',
-                  target: '¿Puede volver a pasar algo así?',
-                  english: 'Could something like this happen again?' },
-                { pos: 'VERB', translation: 'to pass',
-                  target: 'Voy a tener que pasar de eso.',
-                  english: "I'm going to have to pass on that." },
-            ],
-        },
-        {
-            word: 'decir',
-            pos: 'VERB',
-            rank: 79,
-            corpusCount: 1519,
-            meanings: [
-                { pos: 'VERB', translation: 'to say',
-                  target: 'Cuando estés enfadado, cuenta hasta diez antes de decir nada.',
-                  english: 'When angry, count to ten before saying anything.' },
-                { pos: 'VERB', translation: 'to tell',
-                  target: 'Hay algo que te necesito decir antes de que te vayas.',
-                  english: 'There is something I need to tell you before you leave.' },
+                { pos: 'CCONJ', translation: 'even though', share: '≈50%',
+                  target: 'Ella le escucha, aunque nadie más lo haga.',
+                  english: 'She listens to him even though no one else does.' },
+                { pos: 'CCONJ', translation: 'although', share: '≈30%',
+                  target: 'Estaré allí, aunque puede que llegue tarde.',
+                  english: "I'll be there, although I may be late." },
+                { pos: 'CCONJ', translation: 'even if', share: '≈20%',
+                  target: 'Aunque no lo hagas, yo lo haré.',
+                  english: "Even if you don't do that, I will." },
             ],
         },
     ],
     artist: [
-        {
-            word: 'corazón',
-            pos: 'NOUN',
-            rank: 171,
-            corpusCount: 68,
-            song: 'CALLAÍTA · Bad Bunny',
-            meanings: [
-                { pos: 'NOUN', translation: 'heart',
-                  target: 'Tú eres la dueña de mi corazón',
-                  english: "You're the owner of my heart" },
-            ],
-        },
         {
             word: 'fuego',
             pos: 'NOUN',

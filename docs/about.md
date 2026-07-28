@@ -1,10 +1,10 @@
 ## The problem with most vocabulary apps
 
-Fluency turns speech and song lyrics into flashcards, ordered by how often words are actually used and showing the right meaning for each sentence.
+Most vocabulary apps teach by theme (colours, at the airport, in the kitchen) and drill you on lists of words you have no reason to care about yet. You learn *la cuchara* (spoon) and forget it before you ever hear or use it in the wild.
 
-They teach by theme (colours, at the airport, in the kitchen) and drill you on lists of words you have no reason to care about yet. You learn *la cuchara* (spoon) and forget it before you ever hear or use it in the wild.
+This app takes the opposite approach: it turns speech and song lyrics into flashcards, starts with the words that occur most often, and teaches them through material you already care about.
 
-This app takes the opposite approach: every word you study comes from material you already care about — song lyrics, film subtitles and real sentences. It also prioritises small but essential words that topic-based lessons can overlook: *aunque* appears often in real Spanish and can mean *although*, *even though* or *even if*, depending on the sentence.
+That brings small linking words to the front instead of burying them behind themed vocabulary. Words like *aunque* are essential for following how ideas fit together, but are easy to overlook in a lesson about food or travel. The app separates its uses — about 50% *even though*, 30% *although* and 20% *even if* in the Speech examples — and shows each one with a sentence where that meaning fits.
 
 ### Speech
 
