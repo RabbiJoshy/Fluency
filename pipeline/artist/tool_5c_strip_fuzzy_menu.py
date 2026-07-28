@@ -27,88 +27,24 @@ import argparse
 import json
 import os
 import shutil
-import unicodedata
+import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SURFACE_CACHE = PROJECT_ROOT / "Data" / "Spanish" / "Senses" / "spanishdict" / "surface_cache.json"
-# Complete form→lemma reverse map built by step_5b_build_conjugations (~143k forms).
-CONJ_REVERSE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
 
-_CLITICS = ["selos", "selas", "melo", "mela", "telo", "tela", "selo", "sela",
-            "noslo", "nosla", "me", "te", "se", "lo", "la", "le", "nos", "os",
-            "los", "las", "les"]
-
-
-def fold(s):
-    s = unicodedata.normalize("NFD", (s or "").lower().rstrip("'’"))
-    return "".join(c for c in s if unicodedata.category(c) != "Mn")
+# Single source of truth for fuzzy detection: the same plausibility guard
+# step_5c runs at menu-build time. This tool strips fuzzy matches from an
+# ALREADY-built menu (no full rebuild); the guard prevents them at build time.
+sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
+from util_5c_spanishdict import is_plausible_headword, _surface_conjugation_lemmas  # noqa: E402
 
 
-def load_conjugations():
-    """Return {folded_form: set(lemmas)} from the pipeline's complete reverse map."""
-    forms = {}
-    if not CONJ_REVERSE.exists():
-        return forms
-    with open(CONJ_REVERSE, encoding="utf-8") as f:
-        rev = json.load(f)
-    for form, entries in rev.items():
-        ff = fold(form)
-        for e in entries:
-            lem = (e.get("lemma") or "").lower() if isinstance(e, dict) else str(e).lower()
-            if lem:
-                forms.setdefault(ff, set()).add(lem)
-    return forms
-
-
-def _surface_variants(fW):
-    """Folded morphological variants of a surface to look up in the reverse map:
-    the form itself, elision (+s), each clitic stripped, and participle
-    gender/number normalised to the -o base."""
-    variants = {fW, fW + "s"}
-    for c in _CLITICS:
-        if fW.endswith(c) and len(fW) > len(c) + 1:
-            variants.add(fW[:-len(c)])
-            variants.add(fW[:-len(c)] + "s")
-    for v in list(variants):
-        if v.endswith("as") or v.endswith("os"):
-            variants.add(v[:-2] + "o")
-        elif v.endswith("a"):
-            variants.add(v[:-1] + "o")
-        if v.endswith("s"):
-            variants.add(v[:-1])
-    return variants
-
-
-def is_justified(surface, headword, possible_results, conj_forms):
-    """True if the analysis is a legit form of the headword (keep), False if fuzzy.
-
-    Keeps self/exact matches, SpanishDict-tagged conjugations (possible_results),
-    any form in the complete reverse conjugation map (incl. clitic/elision/
-    participle variants), and regular plural/gender pairs. Everything else — a
-    headword the surface is not a real form of — is a fuzzy spelling match.
-    """
-    W, H = surface.lower(), (headword or "").lower()
-    if not H or H == W:
-        return True
-    for p in possible_results:
-        if (str(p.get("result", "")).lower() == W
-                and str(p.get("headword", "")).lower() == H):
-            return True
-    fW, fH = fold(surface), fold(headword)
-    if fW == fH:
-        return True
-    base = fH[:-2] if fH.endswith("se") else fH   # reflexive lemma → base
-    for cand in _surface_variants(fW):
-        lemmas = conj_forms.get(cand, set())
-        if H in lemmas or base in lemmas or cand == fH or cand == base:
-            return True
-    # regular plural / gender pair
-    if fW in {fH + "s", fH + "es", (fH[:-1] + "ces" if fH.endswith("z") else "")}:
-        return True
-    if fH in {fW + "s", fW + "es"}:
-        return True
-    return False
+def is_justified(surface, headword, possible_results, _unused=None):
+    """Keep vs fuzzy, delegating to step_5c's plausibility guard so the tool and
+    the menu builder can never disagree."""
+    conj_lemmas = _surface_conjugation_lemmas(possible_results)
+    return is_plausible_headword(surface, headword, conj_lemmas=conj_lemmas)
 
 
 def main():
@@ -132,8 +68,7 @@ def main():
         menu = json.load(f)
     with open(SURFACE_CACHE, encoding="utf-8") as f:
         surface_cache = json.load(f)
-    conj_forms = load_conjugations()
-    print("Loaded %d menu surfaces, %d conjugation-reverse forms" % (len(menu), len(conj_forms)))
+    print("Loaded %d menu surfaces (guard-backed fuzzy detection)" % len(menu))
 
     stripped = {}   # word -> [removed headwords]
     new_menu = {}
@@ -145,7 +80,7 @@ def main():
         kept, removed = [], []
         for a in analyses:
             hw = a.get("headword") if isinstance(a, dict) else None
-            if is_justified(word, hw, pr, conj_forms):
+            if is_justified(word, hw, pr):
                 kept.append(a)
             else:
                 removed.append(hw)

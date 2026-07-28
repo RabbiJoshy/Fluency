@@ -228,11 +228,15 @@ _guard_data_loaded = False       # False until a load attempt succeeds
 
 
 def _deaccent(text):
-    """Lowercase and strip combining accents (NFD → drop Mn)."""
+    """Lowercase, strip combining accents (NFD → drop Mn), and drop elision
+    apostrophes. Reggaeton spelling elides freely (adictivo', na', pa'); the
+    apostrophe is orthographic noise, not a lexical distinction, so ``adictivo'``
+    must compare equal to its headword ``adictivo``."""
     if not text:
         return ""
     decomposed = unicodedata.normalize("NFD", text.lower())
-    return "".join(c for c in decomposed if unicodedata.category(c) != "Mn")
+    return "".join(c for c in decomposed
+                   if unicodedata.category(c) != "Mn" and c not in "'’")
 
 
 def _load_guard_data(spanish_forms_path=None, conj_reverse_path=None):
@@ -361,6 +365,67 @@ def _common_prefix_len(a, b):
     return n
 
 
+# Clitic pronouns that attach to infinitives/gerunds/imperatives (deaccented),
+# longest first so the greedy strip removes the full cluster.
+_CLITIC_SUFFIXES = ("selos", "selas", "melos", "melas", "noslo", "nosla",
+                    "telos", "telas", "selo", "sela", "melo", "mela", "telo",
+                    "tela", "nos", "los", "las", "les", "me", "te", "se", "lo",
+                    "la", "le", "os")
+
+
+def _conj_variants(form):
+    """Deaccented morphological variants of a surface to look up in the reverse
+    conjugation table: the form itself, an elision that dropped a final -s, each
+    clitic pronoun stripped, and participle gender/number folded to the -o base.
+    Lets ``venimo'``→venir, ``admítelo``→admitir, ``acostada``→acostar match a
+    table keyed on the canonical form."""
+    f = form.replace("'", "").replace("’", "")
+    variants = {f, f + "s"}
+    for c in _CLITIC_SUFFIXES:
+        if f.endswith(c) and len(f) > len(c) + 1:
+            variants.add(f[:-len(c)])
+            variants.add(f[:-len(c)] + "s")
+    for v in list(variants):
+        if v.endswith(("as", "os")):
+            variants.add(v[:-2] + "o")
+        elif v.endswith("a"):
+            variants.add(v[:-1] + "o")
+        if v.endswith("s"):
+            variants.add(v[:-1])
+    return variants
+
+
+def _is_reverse_conjugation(s, h):
+    """True if deaccented surface ``s`` is a form of headword ``h`` per the
+    reverse conjugation table, allowing for clitic/elision/participle variants
+    and the reflexive (-se) lemma extension."""
+    base = h[:-2] if h.endswith("se") else h
+    for variant in _conj_variants(s):
+        lemmas = _conj_reverse_deac.get(variant) or ()
+        if h in lemmas or base in lemmas:
+            return True
+    return False
+
+
+def _is_regular_noun_variant(s, h):
+    """True if deaccented ``s`` and ``h`` are a regular Spanish plural/gender
+    pair (canción↔canciones, buena↔bueno) — a real morphological relation, not
+    a mere shared prefix (which wrongly kept manín↔maní)."""
+    if s in {h + "s", h + "es"} or h in {s + "s", s + "es"}:
+        return True
+    if h.endswith("z") and s == h[:-1] + "ces":
+        return True
+    if s.endswith("z") and h == s[:-1] + "ces":
+        return True
+    # gender: identical but for a final a/o
+    if len(s) == len(h) > 1 and s[:-1] == h[:-1] and s[-1] in "ao" and h[-1] in "ao":
+        return True
+    # gender plural: -as ↔ -os
+    if len(s) > 2 and s[:-2] == h[:-2] and s.endswith(("as", "os")) and h.endswith(("as", "os")):
+        return True
+    return False
+
+
 def _surface_conjugation_lemmas(possible_results):
     """Deaccented lemma set that SpanishDict flags this surface as a
     conjugation/inflection of (from ``possible_results`` heuristics)."""
@@ -424,23 +489,19 @@ def is_plausible_headword(surface, headword, surface_relation="", conj_lemmas=No
         if h == lemma or h.startswith(lemma) or lemma.startswith(h):
             return True
 
-    # 3. Reverse conjugation table backstop.
-    if h in (_conj_reverse_deac.get(s) or ()):
+    # 3. Reverse conjugation table backstop — with clitic/elision/participle
+    # normalisation and the reflexive lemma extension, so real verb forms with
+    # no SD pointer (venimo'→venir, admítelo→admitir, acostada→acostar) survive.
+    if _is_reverse_conjugation(s, h):
         return True
 
-    # 3b. Spanish z→ces orthographic plural (luz→luces, voz→voces, pez→peces,
-    # vez→veces). These share only a 2-char prefix so the prefix check below
-    # would wrongly reject them; the alternation is a fixed, unambiguous rule.
-    # SpanishDict usually flags them with an ``inflection`` pointer (caught by
-    # #2), but legacy cache entries without one land here.
-    if h.endswith("z") and s == h[:-1] + "ces":
+    # 4. Real Spanish word AND a genuine plural/gender relationship. This
+    # replaces the old "real word + shared prefix" rule, whose prefix fallback
+    # wrongly kept fuzzy neighbours that merely share leading characters
+    # (manín↔maní, chulito↔culito). A shared prefix is not a morphological
+    # relation; a regular plural/gender pair is.
+    if h in _spanish_forms_deac and _is_regular_noun_variant(s, h):
         return True
-
-    # 4. Real Spanish word AND a meaningful shared prefix.
-    if h in _spanish_forms_deac:
-        threshold = min(_MIN_PREFIX, len(s), len(h))
-        if threshold and _common_prefix_len(s, h) >= threshold:
-            return True
 
     return False
 
