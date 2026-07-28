@@ -430,8 +430,31 @@ def _is_regular_noun_variant(s, h):
         return True
     if s.endswith("z") and h == s[:-1] + "ces":
         return True
+    # Direct plural (diente↔dientes, papel↔papeles) — precise, checked first so
+    # vowel-ending -e nouns aren't mangled by the stem heuristic.
+    if s in {h + "s", h + "es"} or h in {s + "s", s + "es"}:
+        return True
     ss, hs = _noun_stem(s), _noun_stem(h)
     return len(ss) >= 3 and ss == hs and s != h
+
+
+def _clitic_strip_equals_headword(s, h):
+    """True if the deaccented surface is the headword with one enclitic pronoun
+    attached (grítale→grita, definirlo→definir, dile→di). SpanishDict sometimes
+    returns the bare imperative/infinitive as the headword for a clitic form.
+
+    The base must be a genuine verb — a known conjugated form or an infinitive —
+    so a coincidental ending (lambos→lamb via 'os', popola→popó via 'la') is not
+    mistaken for a clitic form."""
+    base = h[:-2] if h.endswith("se") else h
+    if not (h in _conj_reverse_deac or base in _conj_reverse_deac
+            or h.endswith(("ar", "er", "ir")) or base.endswith(("ar", "er", "ir"))):
+        return False
+    for c in _CLITIC_SUFFIXES:
+        if s.endswith(c) and len(s) > len(c) + 1:
+            if s[:-len(c)] in (h, base):
+                return True
+    return False
 
 
 def _surface_conjugation_lemmas(possible_results):
@@ -501,6 +524,11 @@ def is_plausible_headword(surface, headword, surface_relation="", conj_lemmas=No
     # normalisation and the reflexive lemma extension, so real verb forms with
     # no SD pointer (venimo'→venir, admítelo→admitir, acostada→acostar) survive.
     if _is_reverse_conjugation(s, h):
+        return True
+
+    # 3c. Enclitic attached directly to the headword form (SD returned the bare
+    # imperative/infinitive as headword): grítale→grita, definirlo→definir.
+    if _clitic_strip_equals_headword(s, h):
         return True
 
     # 4. Real Spanish word AND a genuine plural/gender relationship. This
