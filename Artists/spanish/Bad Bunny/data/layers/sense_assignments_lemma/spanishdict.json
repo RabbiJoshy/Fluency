@@ -889,7 +889,7 @@
       }
     ]
   },
-  "las|las": {
+  "las|la": {
     "spanishdict-keyword": [
       {
         "sense": "d64",
@@ -2716,7 +2716,7 @@
       }
     ]
   },
-  "vo'a|VOA": {
+  "vo'a|vo'a": {
     "spanishdict-auto": [
       {
         "sense": "882",
@@ -2731,7 +2731,8 @@
           7,
           8,
           9
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -4221,7 +4222,7 @@
       }
     ]
   },
-  "pa'l|pal": {
+  "pa'l|pa'l": {
     "spanishdict-keyword": [
       {
         "sense": "2f6",
@@ -4236,7 +4237,8 @@
           7,
           8,
           9
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -5277,19 +5279,26 @@
       }
     ]
   },
-  "dale|¡Dale!": {
+  "dale|dale": {
     "spanishdict-keyword": [
       {
         "sense": "05b",
         "examples": [
           5,
           6
+        ],
+        "example_ids": [
+          "3888528:53",
+          "2919428:9"
         ]
       },
       {
         "sense": "9e4",
         "examples": [
           7
+        ],
+        "example_ids": [
+          "7967957:28"
         ]
       },
       {
@@ -5299,12 +5308,21 @@
           4,
           8,
           9
+        ],
+        "example_ids": [
+          "4662273:36",
+          "5113455:22",
+          "2976947:20",
+          "3590909:41"
         ]
       },
       {
         "sense": "823",
         "examples": [
           3
+        ],
+        "example_ids": [
+          "4662262:84"
         ]
       }
     ],
@@ -5321,12 +5339,92 @@
           7,
           8,
           9
+        ],
+        "example_ids": [
+          "4662273:36",
+          "4178994:23",
+          "4662257:17",
+          "5113455:22",
+          "3888528:53",
+          "7967957:28",
+          "3590909:41",
+          "3115965:24",
+          "3626034:42"
         ]
       },
       {
         "sense": "823",
         "examples": [
           3
+        ],
+        "example_ids": [
+          "4662262:84"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "ec9",
+        "pos": "INTJ",
+        "translation": "come on",
+        "lemma": "dale",
+        "examples": [
+          0,
+          4,
+          9
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4662273:36",
+          "5113455:22",
+          "2976947:20"
+        ]
+      },
+      {
+        "sense": "4c8",
+        "pos": "VERB",
+        "translation": "give",
+        "lemma": "dale",
+        "examples": [
+          1,
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4178994:23",
+          "4662257:17"
+        ]
+      },
+      {
+        "sense": "962",
+        "pos": "INTJ",
+        "translation": "go on",
+        "lemma": "dale",
+        "examples": [
+          3,
+          6
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4662262:84",
+          "3115965:24"
+        ]
+      },
+      {
+        "sense": "09a",
+        "pos": "INTJ",
+        "translation": "go ahead",
+        "lemma": "dale",
+        "examples": [
+          5,
+          7,
+          8
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3888528:53",
+          "3626034:42",
+          "2919428:9"
         ]
       }
     ]
@@ -5735,7 +5833,7 @@
       }
     ]
   },
-  "ustedes|ustedes": {
+  "ustedes|usted": {
     "spanishdict-keyword": [
       {
         "sense": "051",
@@ -6156,7 +6254,7 @@
       }
     ]
   },
-  "to'a|toa": {
+  "to'a|to'a": {
     "spanishdict-keyword": [
       {
         "sense": "7db",
@@ -6171,7 +6269,8 @@
           7,
           8,
           9
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -11185,7 +11284,7 @@
       }
     ]
   },
-  "cojones|cojones": {
+  "cojones|cojón": {
     "spanishdict-keyword": [
       {
         "sense": "a16",
@@ -11207,8 +11306,16 @@
           8,
           9
         ]
+      },
+      {
+        "sense": "692",
+        "examples": [
+          6
+        ]
       }
-    ],
+    ]
+  },
+  "cojones|cojones": {
     "gap-fill": [
       {
         "sense": "c24",
@@ -11232,16 +11339,6 @@
           "3080797:32",
           "9614088:21",
           "5305009:39"
-        ]
-      }
-    ]
-  },
-  "cojones|cojón": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "692",
-        "examples": [
-          6
         ]
       }
     ]
@@ -11896,7 +11993,7 @@
       }
     ]
   },
-  "to'as|toa": {
+  "to'as|to'as": {
     "spanishdict-keyword": [
       {
         "sense": "7db",
@@ -11911,6 +12008,18 @@
           7,
           8,
           9
+        ],
+        "example_ids": [
+          "3410963:43",
+          "2976947:12",
+          "3015945:3",
+          "3100770:30",
+          "3022353:21",
+          "4641326:50",
+          "3253426:46",
+          "5629827:53",
+          "4763027:74",
+          "5614024:29"
         ]
       }
     ],
@@ -11920,6 +12029,10 @@
         "examples": [
           6,
           9
+        ],
+        "example_ids": [
+          "3253426:46",
+          "5614024:29"
         ]
       },
       {
@@ -11932,12 +12045,24 @@
           5,
           7,
           8
+        ],
+        "example_ids": [
+          "3410963:43",
+          "2976947:12",
+          "3100770:30",
+          "3022353:21",
+          "4641326:50",
+          "5629827:53",
+          "4763027:74"
         ]
       },
       {
         "sense": "30d",
         "examples": [
           2
+        ],
+        "example_ids": [
+          "3015945:3"
         ]
       }
     ]
@@ -12369,7 +12494,7 @@
       }
     ]
   },
-  "cosas|cosas": {
+  "cosas|cosa": {
     "spanishdict-keyword": [
       {
         "sense": "33c",
@@ -12395,11 +12520,7 @@
           4,
           7
         ]
-      }
-    ]
-  },
-  "cosas|cosa": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "4f1",
         "examples": [
@@ -12494,6 +12615,13 @@
           7,
           9
         ]
+      },
+      {
+        "sense": "68a",
+        "examples": [
+          2,
+          5
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -12540,17 +12668,6 @@
           "2959823:105",
           "4759404:42",
           "4763027:43"
-        ]
-      }
-    ]
-  },
-  "hijo|hijos": {
-    "spanishdict-keyword": [
-      {
-        "sense": "68a",
-        "examples": [
-          2,
-          5
         ]
       }
     ]
@@ -15266,7 +15383,7 @@
       }
     ]
   },
-  "esas|esas": {
+  "esas|esa": {
     "spanishdict-keyword": [
       {
         "sense": "41d",
@@ -16600,7 +16717,7 @@
       }
     ]
   },
-  "to's|tos": {
+  "to's|to's": {
     "spanishdict-auto": [
       {
         "sense": "8f0",
@@ -16615,6 +16732,18 @@
           7,
           8,
           9
+        ],
+        "example_ids": [
+          "7967944:11",
+          "7967934:46",
+          "9237319:23",
+          "3115965:22",
+          "9592355:12",
+          "4133643:20",
+          "5305051:25",
+          "9614083:16",
+          "9614087:18",
+          "5305018:9"
         ]
       }
     ]
@@ -16915,7 +17044,7 @@
       }
     ]
   },
-  "ganas|ganas": {
+  "ganas|gana": {
     "spanishdict-keyword": [
       {
         "sense": "b17",
@@ -17506,7 +17635,7 @@
       }
     ]
   },
-  "ellos|ellos": {
+  "ellos|ello": {
     "spanishdict-keyword": [
       {
         "sense": "711",
@@ -17812,7 +17941,7 @@
       }
     ]
   },
-  "estas|estas": {
+  "estas|esta": {
     "spanishdict-keyword": [
       {
         "sense": "406",
@@ -17822,11 +17951,7 @@
           7,
           8
         ]
-      }
-    ]
-  },
-  "estas|esta": {
-    "spanishdict-keyword": [
+      },
       {
         "sense": "253",
         "examples": [
@@ -17864,7 +17989,7 @@
       }
     ]
   },
-  "besos|besos": {
+  "besos|beso": {
     "spanishdict-keyword": [
       {
         "sense": "8b3",
@@ -18038,7 +18163,7 @@
       }
     ]
   },
-  "gana|ganas": {
+  "gana|gana": {
     "spanishdict-flash-lite": [
       {
         "sense": "b17",
@@ -18046,34 +18171,7 @@
           6
         ]
       }
-    ]
-  },
-  "gana|ganar": {
-    "spanishdict-keyword": [
-      {
-        "sense": "b36",
-        "examples": [
-          0,
-          8
-        ]
-      }
     ],
-    "spanishdict-flash-lite": [
-      {
-        "sense": "281",
-        "examples": [
-          5
-        ]
-      },
-      {
-        "sense": "b36b",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "gana|gana": {
     "gap-fill": [
       {
         "sense": "047",
@@ -18099,6 +18197,31 @@
           "7967975:10",
           "5305039:75",
           "9614079:3"
+        ]
+      }
+    ]
+  },
+  "gana|ganar": {
+    "spanishdict-keyword": [
+      {
+        "sense": "b36",
+        "examples": [
+          0,
+          8
+        ]
+      }
+    ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "281",
+        "examples": [
+          5
+        ]
+      },
+      {
+        "sense": "b36b",
+        "examples": [
+          0
         ]
       }
     ]
@@ -18433,13 +18556,16 @@
       }
     ]
   },
-  "bla|b": {
+  "bla|bla": {
     "spanishdict-keyword": [
       {
         "sense": "6df",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5305013:1"
         ]
       }
     ],
@@ -18449,11 +18575,12 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5305013:1"
         ]
       }
-    ]
-  },
-  "bla|bla": {
+    ],
     "gap-fill": [
       {
         "sense": "38b",
@@ -18464,7 +18591,7 @@
           0,
           1
         ],
-        "type": "other",
+        "type": "figurative",
         "example_ids": [
           "5305013:1",
           "7182590:8"
@@ -21100,6 +21227,13 @@
         "examples": [
           3
         ]
+      },
+      {
+        "sense": "33c",
+        "examples": [
+          1,
+          9
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -21121,17 +21255,6 @@
         "sense": "783",
         "examples": [
           1
-        ]
-      }
-    ]
-  },
-  "cosa|cosas": {
-    "spanishdict-keyword": [
-      {
-        "sense": "33c",
-        "examples": [
-          1,
-          9
         ]
       }
     ]
@@ -21388,14 +21511,15 @@
       }
     ]
   },
-  "verda'|verdad": {
+  "verda'|verda'": {
     "spanishdict-keyword": [
       {
         "sense": "d9e",
         "examples": [
           2,
           7
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -21946,6 +22070,12 @@
           8,
           9
         ]
+      },
+      {
+        "sense": "86d",
+        "examples": [
+          0
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -21960,19 +22090,7 @@
           8,
           9
         ]
-      }
-    ]
-  },
-  "respeto|respetos": {
-    "spanishdict-keyword": [
-      {
-        "sense": "86d",
-        "examples": [
-          0
-        ]
-      }
-    ],
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "86d",
         "examples": [
@@ -23322,7 +23440,7 @@
       }
     ]
   },
-  "totito|torito": {
+  "totito|totito": {
     "spanishdict-keyword": [
       {
         "sense": "9e3",
@@ -23334,6 +23452,15 @@
           6,
           7,
           8
+        ],
+        "example_ids": [
+          "3100770:40",
+          "7934367:26",
+          "7967960:25",
+          "9614092:13",
+          "9614103:27",
+          "9123229:28",
+          "7967959:61"
         ]
       }
     ],
@@ -23351,11 +23478,21 @@
           7,
           8,
           9
+        ],
+        "example_ids": [
+          "3100770:40",
+          "5553950:21",
+          "7934367:26",
+          "7967960:25",
+          "9614092:13",
+          "3176704:21",
+          "9614103:27",
+          "9123229:28",
+          "7967959:61",
+          "9614090:7"
         ]
       }
-    ]
-  },
-  "totito|totito": {
+    ],
     "gap-fill": [
       {
         "sense": "ed5",
@@ -23376,16 +23513,16 @@
         ],
         "type": "vulgar",
         "example_ids": [
-          "3100770:40",
           "5553950:21",
           "7934367:26",
           "7967960:25",
           "9614092:13",
           "3176704:21",
-          "9614103:27",
           "9123229:28",
           "7967959:61",
-          "3048221:64"
+          "3048221:64",
+          "9614090:7",
+          "2959823:74"
         ]
       }
     ]
@@ -26431,6 +26568,15 @@
         "examples": [
           3
         ]
+      },
+      {
+        "sense": "d9b",
+        "examples": [
+          1,
+          2,
+          5,
+          8
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -26452,19 +26598,6 @@
           7,
           8,
           9
-        ]
-      }
-    ]
-  },
-  "calor|calores": {
-    "spanishdict-keyword": [
-      {
-        "sense": "d9b",
-        "examples": [
-          1,
-          2,
-          5,
-          8
         ]
       }
     ]
@@ -28165,6 +28298,12 @@
           4,
           7
         ]
+      },
+      {
+        "sense": "796",
+        "examples": [
+          5
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -28185,19 +28324,7 @@
           4,
           7
         ]
-      }
-    ]
-  },
-  "mirada|miradas": {
-    "spanishdict-keyword": [
-      {
-        "sense": "796",
-        "examples": [
-          5
-        ]
-      }
-    ],
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "796",
         "examples": [
@@ -28705,7 +28832,7 @@
       }
     ]
   },
-  "nalgas|nalgas": {
+  "nalgas|nalga": {
     "spanishdict-keyword": [
       {
         "sense": "230",
@@ -29664,6 +29791,12 @@
           8,
           9
         ]
+      },
+      {
+        "sense": "e0a",
+        "examples": [
+          5
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -29680,16 +29813,6 @@
           7,
           8,
           9
-        ]
-      }
-    ]
-  },
-  "rey|reyes": {
-    "spanishdict-keyword": [
-      {
-        "sense": "e0a",
-        "examples": [
-          5
         ]
       }
     ]
@@ -35517,7 +35640,7 @@
       }
     ]
   },
-  "palos|palos": {
+  "palos|palo": {
     "spanishdict-keyword": [
       {
         "sense": "c35",
@@ -35534,9 +35657,7 @@
           9
         ]
       }
-    ]
-  },
-  "palos|palo": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "0c6",
@@ -36186,7 +36307,7 @@
       }
     ]
   },
-  "perco|perca": {
+  "perco|perco": {
     "spanishdict-auto": [
       {
         "sense": "e2e",
@@ -36197,6 +36318,14 @@
           3,
           4,
           5
+        ],
+        "example_ids": [
+          "3122516:6",
+          "7420852:31",
+          "3431731:18",
+          "9614087:43",
+          "3256611:6",
+          "3753517:103"
         ]
       }
     ]
@@ -37772,7 +37901,7 @@
       }
     ]
   },
-  "dí|di-": {
+  "dí|dí": {
     "spanishdict-auto": [
       {
         "sense": "cea",
@@ -37783,6 +37912,14 @@
           3,
           4,
           5
+        ],
+        "example_ids": [
+          "6717116:67",
+          "3590909:13",
+          "3098225:62",
+          "3048221:125",
+          "2935271:117",
+          "3288015:70"
         ]
       }
     ]
@@ -41776,7 +41913,7 @@
       }
     ]
   },
-  "hijos|hijos": {
+  "hijos|hijo": {
     "spanishdict-keyword": [
       {
         "sense": "280",
@@ -43688,7 +43825,7 @@
       }
     ]
   },
-  "sentimientos|sentimientos": {
+  "sentimientos|sentimiento": {
     "spanishdict-keyword": [
       {
         "sense": "e23",
@@ -44063,7 +44200,7 @@
       }
     ]
   },
-  "reyes|reyes": {
+  "reyes|rey": {
     "spanishdict-keyword": [
       {
         "sense": "e0a",
@@ -44073,6 +44210,20 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "43c",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  },
+  "reyes|reyes": {
     "gap-fill": [
       {
         "sense": "57d",
@@ -44086,20 +44237,6 @@
         "construction": "dar tus reyes",
         "example_ids": [
           "2924481:16"
-        ]
-      }
-    ]
-  },
-  "reyes|rey": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "43c",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4
         ]
       }
     ]
@@ -44305,12 +44442,15 @@
       }
     ]
   },
-  "algún|alguno": {
+  "algún|algún": {
     "spanishdict-keyword": [
       {
         "sense": "ad8",
         "examples": [
           2
+        ],
+        "example_ids": [
+          "4969980:32"
         ]
       },
       {
@@ -44320,6 +44460,12 @@
           1,
           4,
           5
+        ],
+        "example_ids": [
+          "11300220:18",
+          "5305007:9",
+          "2959823:16",
+          "3059630:83"
         ]
       }
     ],
@@ -44334,6 +44480,41 @@
           4,
           5,
           6
+        ],
+        "example_ids": [
+          "11300220:18",
+          "5305007:9",
+          "4969980:32",
+          "5629886:47",
+          "2959823:16",
+          "3059630:83",
+          "3334750:43"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "7c3",
+        "pos": "ADJ",
+        "translation": "some / any",
+        "lemma": "algún",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "example_ids": [
+          "11300220:18",
+          "5305007:9",
+          "4969980:32",
+          "5629886:47",
+          "2959823:16",
+          "3059630:83",
+          "3334750:43"
         ]
       }
     ]
@@ -45603,14 +45784,15 @@
       }
     ]
   },
-  "pe|p": {
+  "pe|pe": {
     "spanishdict-auto": [
       {
         "sense": "fe3",
         "examples": [
           0,
           1
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -46571,7 +46753,7 @@
       }
     ]
   },
-  "buenas|buenas noches": {
+  "buenas|buenas": {
     "spanishdict-keyword": [
       {
         "sense": "6ce",
@@ -46583,12 +46765,24 @@
           6,
           7,
           8
+        ],
+        "example_ids": [
+          "5305010:11",
+          "5529098:35",
+          "2919428:14",
+          "4763027:6",
+          "7909727:7",
+          "4558062:26",
+          "4179002:19"
         ]
       },
       {
         "sense": "f0a",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "5305004:50"
         ]
       }
     ],
@@ -46598,11 +46792,13 @@
         "examples": [
           1,
           2
+        ],
+        "example_ids": [
+          "5305004:50",
+          "7967954:24"
         ]
       }
-    ]
-  },
-  "buenas|buenas": {
+    ],
     "gap-fill": [
       {
         "sense": "a00",
@@ -46618,58 +46814,28 @@
         ]
       },
       {
-        "sense": "7fa",
-        "pos": "NOUN",
-        "translation": "good vibes",
-        "lemma": "buenas",
-        "examples": [
-          3
-        ],
-        "type": "slang",
-        "example_ids": [
-          "5529098:35"
-        ]
-      },
-      {
         "sense": "d97",
         "pos": "ADJ",
         "translation": "good",
         "lemma": "buenas",
         "examples": [
+          1,
+          2,
+          3,
           4,
+          5,
           6,
-          7
-        ],
-        "example_ids": [
-          "2919428:14",
-          "7909727:7",
-          "4558062:26"
-        ]
-      },
-      {
-        "sense": "2c7",
-        "pos": "ADJ",
-        "translation": "good/skilled",
-        "lemma": "buenas",
-        "examples": [
-          5
-        ],
-        "type": "slang",
-        "example_ids": [
-          "4763027:6"
-        ]
-      },
-      {
-        "sense": "d2b",
-        "pos": "NOUN",
-        "translation": "good times",
-        "lemma": "buenas",
-        "examples": [
+          7,
           8
         ],
-        "type": "figurative",
-        "construction": "en las buenas",
         "example_ids": [
+          "5305004:50",
+          "7967954:24",
+          "5529098:35",
+          "2919428:14",
+          "4763027:6",
+          "7909727:7",
+          "4558062:26",
           "4179002:17"
         ]
       }
@@ -46699,7 +46865,7 @@
       }
     ]
   },
-  "manos|manos": {
+  "manos|mano": {
     "spanishdict-keyword": [
       {
         "sense": "e32",
@@ -46715,6 +46881,21 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "89b",
+        "examples": [
+          0,
+          1,
+          3,
+          4,
+          6,
+          7
+        ]
+      }
+    ]
+  },
+  "manos|manos": {
     "gap-fill": [
       {
         "sense": "414",
@@ -46741,21 +46922,6 @@
         "construction": "tener manos",
         "example_ids": [
           "3006211:71"
-        ]
-      }
-    ]
-  },
-  "manos|mano": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "89b",
-        "examples": [
-          0,
-          1,
-          3,
-          4,
-          6,
-          7
         ]
       }
     ]
@@ -47520,19 +47686,21 @@
       }
     ]
   },
-  "de'o|de": {
+  "de'o|de'o": {
     "spanishdict-keyword": [
       {
         "sense": "cc8",
         "examples": [
           3
-        ]
+        ],
+        "example_ids": []
       },
       {
         "sense": "65a",
         "examples": [
           7
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -48561,9 +48729,7 @@
           1
         ]
       }
-    ]
-  },
-  "novias|novios": {
+    ],
     "spanishdict-keyword": [
       {
         "sense": "602",
@@ -49751,7 +49917,7 @@
       }
     ]
   },
-  "tiros|tiros": {
+  "tiros|tiro": {
     "spanishdict-keyword": [
       {
         "sense": "a9e",
@@ -49759,21 +49925,7 @@
           3,
           5
         ]
-      }
-    ],
-    "spanishdict-flash-lite": [
-      {
-        "sense": "a9e",
-        "examples": [
-          3,
-          5,
-          6
-        ]
-      }
-    ]
-  },
-  "tiros|tiro": {
-    "spanishdict-keyword": [
+      },
       {
         "sense": "e82",
         "examples": [
@@ -49789,6 +49941,14 @@
       }
     ],
     "spanishdict-flash-lite": [
+      {
+        "sense": "a9e",
+        "examples": [
+          3,
+          5,
+          6
+        ]
+      },
       {
         "sense": "e82",
         "examples": [
@@ -50288,7 +50448,7 @@
       }
     ]
   },
-  "trucos|trucos": {
+  "trucos|truco": {
     "spanishdict-keyword": [
       {
         "sense": "4a8",
@@ -50300,9 +50460,7 @@
           4
         ]
       }
-    ]
-  },
-  "trucos|truco": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "4f5",
@@ -50870,6 +51028,13 @@
           4,
           6
         ]
+      },
+      {
+        "sense": "3bc",
+        "examples": [
+          3,
+          5
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -50888,17 +51053,6 @@
         "examples": [
           1,
           2
-        ]
-      }
-    ]
-  },
-  "color|colores": {
-    "spanishdict-keyword": [
-      {
-        "sense": "3bc",
-        "examples": [
-          3,
-          5
         ]
       }
     ]
@@ -52514,7 +52668,7 @@
       }
     ]
   },
-  "novios|novios": {
+  "novios|novio": {
     "spanishdict-keyword": [
       {
         "sense": "602",
@@ -52522,9 +52676,7 @@
           0
         ]
       }
-    ]
-  },
-  "novios|novio": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "8c0",
@@ -53120,9 +53272,7 @@
           3
         ]
       }
-    ]
-  },
-  "saludo|Saludos": {
+    ],
     "spanishdict-keyword": [
       {
         "sense": "896",
@@ -54305,7 +54455,7 @@
       }
     ]
   },
-  "patas|patas": {
+  "patas|pata": {
     "spanishdict-keyword": [
       {
         "sense": "e12",
@@ -54317,6 +54467,16 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "41c3",
+        "examples": [
+          2
+        ]
+      }
+    ]
+  },
+  "patas|patas": {
     "gap-fill": [
       {
         "sense": "932",
@@ -54345,16 +54505,6 @@
         "type": "slang",
         "example_ids": [
           "3048221:7"
-        ]
-      }
-    ]
-  },
-  "patas|pata": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "41c3",
-        "examples": [
-          2
         ]
       }
     ]
@@ -56638,7 +56788,7 @@
       }
     ]
   },
-  "hermanos|hermanos": {
+  "hermanos|hermano": {
     "spanishdict-keyword": [
       {
         "sense": "49f",
@@ -56659,11 +56809,7 @@
           2,
           5
         ]
-      }
-    ]
-  },
-  "hermanos|hermano": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "f8c",
         "examples": [
@@ -56810,11 +56956,7 @@
         "examples": [
           4
         ]
-      }
-    ]
-  },
-  "interior|interiores": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "29c",
         "examples": [
@@ -58009,7 +58151,7 @@
       }
     ]
   },
-  "royce|roce": {
+  "royce|royce": {
     "spanishdict-keyword": [
       {
         "sense": "23b",
@@ -58017,6 +58159,11 @@
           2,
           3,
           4
+        ],
+        "example_ids": [
+          "8915218:16",
+          "4763027:92",
+          "3006211:86"
         ]
       }
     ]
@@ -58761,7 +58908,7 @@
       }
     ]
   },
-  "besitos|besitos": {
+  "besitos|besito": {
     "spanishdict-keyword": [
       {
         "sense": "274",
@@ -58898,7 +59045,7 @@
       }
     ]
   },
-  "diamantes|diamantes": {
+  "diamantes|diamante": {
     "spanishdict-keyword": [
       {
         "sense": "6c3",
@@ -58910,11 +59057,7 @@
           4,
           5
         ]
-      }
-    ]
-  },
-  "diamantes|diamante": {
-    "spanishdict-keyword": [
+      },
       {
         "sense": "693",
         "examples": [
@@ -60558,7 +60701,7 @@
       }
     ]
   },
-  "cristales|cristales": {
+  "cristales|cristal": {
     "spanishdict-keyword": [
       {
         "sense": "5b1",
@@ -60570,9 +60713,7 @@
           4
         ]
       }
-    ]
-  },
-  "cristales|cristal": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "46a",
@@ -60655,7 +60796,7 @@
       }
     ]
   },
-  "curva'|curvas": {
+  "curva'|curva": {
     "spanishdict-keyword": [
       {
         "sense": "a6f",
@@ -61982,13 +62123,14 @@
       }
     ]
   },
-  "lao'|la": {
+  "lao'|lao'": {
     "spanishdict-keyword": [
       {
         "sense": "04f",
         "examples": [
           4
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -62265,7 +62407,7 @@
       }
     ]
   },
-  "ma'i|mai": {
+  "ma'i|ma'i": {
     "spanishdict-keyword": [
       {
         "sense": "2c1",
@@ -62274,7 +62416,8 @@
           1,
           2,
           3
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -64331,7 +64474,7 @@
       }
     ]
   },
-  "to'l|tol": {
+  "to'l|to'l": {
     "spanishdict-auto": [
       {
         "sense": "d7b",
@@ -64340,7 +64483,8 @@
           1,
           2,
           3
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -64823,7 +64967,7 @@
       }
     ]
   },
-  "des|des-": {
+  "des|des": {
     "spanishdict-keyword": [
       {
         "sense": "8d4",
@@ -64834,6 +64978,14 @@
           3,
           4,
           5
+        ],
+        "example_ids": [
+          "5113818:50",
+          "3041103:7",
+          "4726686:79",
+          "9614081:75",
+          "2503547:73",
+          "6855744:40"
         ]
       }
     ],
@@ -64845,30 +64997,67 @@
           2,
           3,
           5
+        ],
+        "example_ids": [
+          "3041103:7",
+          "4726686:79",
+          "9614081:75",
+          "6855744:40"
         ]
       },
       {
         "sense": "ffe",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5113818:50"
         ]
       }
-    ]
-  },
-  "des|des": {
+    ],
     "gap-fill": [
       {
-        "sense": "8c1",
-        "pos": "VERB",
-        "translation": "to have sex",
+        "sense": "213",
+        "pos": "PROPN",
+        "translation": "French fashion brand",
         "lemma": "des",
         "examples": [
-          4
+          0
         ],
-        "type": "vulgar",
-        "construction": "darle a alguien",
+        "type": "proper_noun",
+        "construction": "Comme des Garçons",
         "example_ids": [
-          "2503547:73"
+          "5113818:50"
+        ]
+      },
+      {
+        "sense": "4c8",
+        "pos": "VERB",
+        "translation": "give",
+        "lemma": "des",
+        "examples": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "example_ids": [
+          "3041103:7",
+          "9614081:75",
+          "2503547:73",
+          "6855744:40"
+        ]
+      },
+      {
+        "sense": "eaf",
+        "pos": "VERB",
+        "translation": "give / hit",
+        "lemma": "des",
+        "examples": [
+          2
+        ],
+        "example_ids": [
+          "4726686:79"
         ]
       }
     ]
@@ -64949,7 +65138,7 @@
       }
     ]
   },
-  "percos|perro": {
+  "percos|percos": {
     "spanishdict-keyword": [
       {
         "sense": "a2e",
@@ -64960,6 +65149,14 @@
           3,
           4,
           5
+        ],
+        "example_ids": [
+          "2832039:18",
+          "3626034:21",
+          "2941576:20",
+          "2962706:61",
+          "3059630:18",
+          "3359025:29"
         ]
       }
     ]
@@ -65301,33 +65498,14 @@
       }
     ]
   },
-  "reales|reales": {
+  "reales|real": {
     "spanishdict-flash-lite": [
       {
         "sense": "989",
         "examples": [
           0
         ]
-      }
-    ]
-  },
-  "reales|real": {
-    "spanishdict-keyword": [
-      {
-        "sense": "068",
-        "examples": [
-          1,
-          4
-        ]
       },
-      {
-        "sense": "696",
-        "examples": [
-          3
-        ]
-      }
-    ],
-    "spanishdict-flash-lite": [
       {
         "sense": "068",
         "examples": [
@@ -65340,6 +65518,21 @@
         "sense": "a86",
         "examples": [
           2
+        ]
+      }
+    ],
+    "spanishdict-keyword": [
+      {
+        "sense": "068",
+        "examples": [
+          1,
+          4
+        ]
+      },
+      {
+        "sense": "696",
+        "examples": [
+          3
         ]
       }
     ]
@@ -65442,7 +65635,7 @@
       }
     ]
   },
-  "corazones|corazones": {
+  "corazones|corazón": {
     "spanishdict-keyword": [
       {
         "sense": "95a",
@@ -65456,6 +65649,21 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "2563",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      }
+    ]
+  },
+  "corazones|corazones": {
     "gap-fill": [
       {
         "sense": "e3e",
@@ -65468,21 +65676,6 @@
         "type": "figurative",
         "example_ids": [
           "5529070:37"
-        ]
-      }
-    ]
-  },
-  "corazones|corazón": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "2563",
-        "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          6
         ]
       }
     ]
@@ -66614,7 +66807,7 @@
       }
     ]
   },
-  "colores|colores": {
+  "colores|color": {
     "spanishdict-keyword": [
       {
         "sense": "48b",
@@ -66626,6 +66819,23 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a80",
+        "examples": [
+          0,
+          1
+        ]
+      },
+      {
+        "sense": "a8033",
+        "examples": [
+          2
+        ]
+      }
+    ]
+  },
+  "colores|colores": {
     "gap-fill": [
       {
         "sense": "68a",
@@ -66641,23 +66851,6 @@
         "example_ids": [
           "3016410:86",
           "3007462:26"
-        ]
-      }
-    ]
-  },
-  "colores|color": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "a80",
-        "examples": [
-          0,
-          1
-        ]
-      },
-      {
-        "sense": "a8033",
-        "examples": [
-          2
         ]
       }
     ]
@@ -70789,7 +70982,7 @@
       }
     ]
   },
-  "yao'|ya": {
+  "yao'|yao'": {
     "spanishdict-keyword": [
       {
         "sense": "103",
@@ -70799,6 +70992,12 @@
           2,
           3,
           4
+        ],
+        "example_ids": [
+          "3152684:75",
+          "4179009:98",
+          "3495715:122",
+          "3176687:130"
         ]
       }
     ],
@@ -70809,12 +71008,20 @@
           1,
           2,
           3
+        ],
+        "example_ids": [
+          "4179009:98",
+          "3495715:122",
+          "3176687:130"
         ]
       },
       {
         "sense": "602",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3152684:75"
         ]
       }
     ]
@@ -70969,16 +71176,27 @@
       }
     ]
   },
-  "fotitos|fotuto": {
-    "spanishdict-auto": [
+  "fotitos|fotitos": {
+    "gap-fill": [
       {
-        "sense": "5cc",
+        "sense": "2c0",
+        "pos": "NOUN",
+        "translation": "little photos or pictures",
+        "lemma": "fotitos",
         "examples": [
           0,
           1,
           2,
           3,
           4
+        ],
+        "type": "other",
+        "example_ids": [
+          "9614083:41",
+          "11289772:28",
+          "11292888:18",
+          "11304595:13",
+          "11290147:33"
         ]
       }
     ]
@@ -71225,7 +71443,7 @@
       }
     ]
   },
-  "señores|señores": {
+  "señores|señor": {
     "spanishdict-keyword": [
       {
         "sense": "c12",
@@ -71329,7 +71547,7 @@
       }
     ]
   },
-  "celos|celos": {
+  "celos|celo": {
     "spanishdict-keyword": [
       {
         "sense": "7c1",
@@ -71378,7 +71596,7 @@
       }
     ]
   },
-  "gotas|gotas": {
+  "gotas|gota": {
     "spanishdict-keyword": [
       {
         "sense": "a2f",
@@ -71396,8 +71614,23 @@
         "examples": [
           3
         ]
+      },
+      {
+        "sense": "00a",
+        "examples": [
+          4
+        ]
+      },
+      {
+        "sense": "1cb",
+        "examples": [
+          0,
+          1
+        ]
       }
-    ],
+    ]
+  },
+  "gotas|gotas": {
     "gap-fill": [
       {
         "sense": "8f4",
@@ -71411,23 +71644,6 @@
         "construction": "echarse gotas",
         "example_ids": [
           "5318195:19"
-        ]
-      }
-    ]
-  },
-  "gotas|gota": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "00a",
-        "examples": [
-          4
-        ]
-      },
-      {
-        "sense": "1cb",
-        "examples": [
-          0,
-          1
         ]
       }
     ]
@@ -72793,13 +73009,17 @@
       }
     ]
   },
-  "buen|bueno": {
+  "buen|buen": {
     "spanishdict-keyword": [
       {
         "sense": "0f5",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3108097:9",
+          "11180508:50"
         ]
       }
     ],
@@ -72808,12 +73028,34 @@
         "sense": "0f5",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "11180508:50"
         ]
       },
       {
         "sense": "0f5644",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3108097:9"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "d97",
+        "pos": "ADJ",
+        "translation": "good",
+        "lemma": "buen",
+        "examples": [
+          0,
+          1
+        ],
+        "example_ids": [
+          "3108097:9",
+          "11180508:50"
         ]
       }
     ]
@@ -73094,7 +73336,7 @@
       }
     ]
   },
-  "cenizas|cenizas": {
+  "cenizas|ceniza": {
     "spanishdict-keyword": [
       {
         "sense": "cc2",
@@ -73112,11 +73354,7 @@
           0,
           1
         ]
-      }
-    ]
-  },
-  "cenizas|ceniza": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "0d0",
         "examples": [
@@ -73125,7 +73363,7 @@
       }
     ]
   },
-  "chistes|chistes": {
+  "chistes|chiste": {
     "spanishdict-keyword": [
       {
         "sense": "6a5",
@@ -73136,9 +73374,7 @@
           3
         ]
       }
-    ]
-  },
-  "chistes|chiste": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "085",
@@ -73357,13 +73593,14 @@
       }
     ]
   },
-  "comprometí'a|comprometer": {
+  "comprometí'a|comprometí'a": {
     "spanishdict-keyword": [
       {
         "sense": "a38",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -74619,6 +74856,12 @@
           2,
           3
         ]
+      },
+      {
+        "sense": "bb7",
+        "examples": [
+          0
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -74657,16 +74900,6 @@
         "construction": "hasta la fecha",
         "example_ids": [
           "2990674:36"
-        ]
-      }
-    ]
-  },
-  "fecha|fechas": {
-    "spanishdict-keyword": [
-      {
-        "sense": "bb7",
-        "examples": [
-          0
         ]
       }
     ]
@@ -76577,7 +76810,7 @@
       }
     ]
   },
-  "oí'te|oír": {
+  "oí'te|oí'te": {
     "spanishdict-keyword": [
       {
         "sense": "8f9",
@@ -76585,7 +76818,8 @@
           0,
           1,
           2
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -77258,14 +77492,15 @@
       }
     ]
   },
-  "prendí'a|prender": {
+  "prendí'a|prendí'a": {
     "spanishdict-keyword": [
       {
         "sense": "3c6",
         "examples": [
           0,
           2
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -79694,7 +79929,7 @@
       }
     ]
   },
-  "bases|bases": {
+  "bases|base": {
     "spanishdict-keyword": [
       {
         "sense": "7ab",
@@ -79703,9 +79938,7 @@
           1
         ]
       }
-    ]
-  },
-  "bases|base": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "95e34",
@@ -79716,7 +79949,7 @@
       }
     ]
   },
-  "comentarios|comentarios": {
+  "comentarios|comentario": {
     "spanishdict-keyword": [
       {
         "sense": "cc0",
@@ -79727,9 +79960,7 @@
           3
         ]
       }
-    ]
-  },
-  "comentarios|comentario": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "3a3",
@@ -79742,12 +79973,18 @@
       }
     ]
   },
-  "compras|compras": {
+  "compras|compra": {
     "spanishdict-keyword": [
       {
         "sense": "8f1",
         "examples": [
           0
+        ]
+      },
+      {
+        "sense": "725",
+        "examples": [
+          2
         ]
       }
     ],
@@ -79756,16 +79993,6 @@
         "sense": "8f1",
         "examples": [
           0
-        ]
-      }
-    ]
-  },
-  "compras|compra": {
-    "spanishdict-keyword": [
-      {
-        "sense": "725",
-        "examples": [
-          2
         ]
       }
     ]
@@ -79869,7 +80096,7 @@
       }
     ]
   },
-  "estupideces|estupideces": {
+  "estupideces|estupidez": {
     "spanishdict-keyword": [
       {
         "sense": "e38",
@@ -79888,8 +80115,16 @@
           0,
           1
         ]
+      },
+      {
+        "sense": "2fe",
+        "examples": [
+          3
+        ]
       }
-    ],
+    ]
+  },
+  "estupideces|estupideces": {
     "gap-fill": [
       {
         "sense": "b00",
@@ -79903,16 +80138,6 @@
         "construction": "pichear",
         "example_ids": [
           "2976831:21"
-        ]
-      }
-    ]
-  },
-  "estupideces|estupidez": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "2fe",
-        "examples": [
-          3
         ]
       }
     ]
@@ -80636,7 +80861,7 @@
       }
     ]
   },
-  "personas|personas": {
+  "personas|persona": {
     "spanishdict-keyword": [
       {
         "sense": "6fe",
@@ -81509,12 +81734,15 @@
       }
     ]
   },
-  "atrevas|abrevar": {
+  "atrevas|atrevas": {
     "spanishdict-keyword": [
       {
         "sense": "527",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "3289205:21"
         ]
       }
     ],
@@ -81524,11 +81752,13 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "9614088:15",
+          "3289205:21"
         ]
       }
-    ]
-  },
-  "atrevas|atrevas": {
+    ],
     "gap-fill": [
       {
         "sense": "b76",
@@ -83240,11 +83470,7 @@
         "examples": [
           0
         ]
-      }
-    ]
-  },
-  "conexión|conexiones": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "a58",
         "examples": [
@@ -83922,7 +84148,7 @@
       }
     ]
   },
-  "damas|damas": {
+  "damas|dama": {
     "spanishdict-keyword": [
       {
         "sense": "ed9",
@@ -83932,9 +84158,7 @@
           2
         ]
       }
-    ]
-  },
-  "damas|dama": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "9de",
@@ -84482,7 +84706,7 @@
       }
     ]
   },
-  "ebay|embay": {
+  "ebay|ebay": {
     "spanishdict-keyword": [
       {
         "sense": "e33",
@@ -84490,6 +84714,11 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "2979218:15",
+          "3015945:12",
+          "5629919:67"
         ]
       }
     ]
@@ -84590,7 +84819,7 @@
       }
     ]
   },
-  "efectos|efectos": {
+  "efectos|efecto": {
     "spanishdict-keyword": [
       {
         "sense": "198",
@@ -84600,9 +84829,7 @@
           2
         ]
       }
-    ]
-  },
-  "efectos|efecto": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "986",
@@ -85368,19 +85595,7 @@
         "examples": [
           0
         ]
-      }
-    ],
-    "spanishdict-flash-lite": [
-      {
-        "sense": "994",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "fiesta|fiestas": {
-    "spanishdict-keyword": [
+      },
       {
         "sense": "8f1",
         "examples": [
@@ -85389,6 +85604,12 @@
       }
     ],
     "spanishdict-flash-lite": [
+      {
+        "sense": "994",
+        "examples": [
+          0
+        ]
+      },
       {
         "sense": "8f1",
         "examples": [
@@ -85464,7 +85685,7 @@
       }
     ]
   },
-  "frenos|frenos": {
+  "frenos|freno": {
     "spanishdict-keyword": [
       {
         "sense": "28c",
@@ -85473,9 +85694,7 @@
           1
         ]
       }
-    ]
-  },
-  "frenos|freno": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "c60",
@@ -86791,23 +87010,30 @@
       }
     ]
   },
-  "luka|luna": {
+  "luka|luka": {
     "spanishdict-keyword": [
       {
         "sense": "bc9",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "8915218:44",
+          "5305015:11"
         ]
       }
     ]
   },
-  "lunay|luna": {
+  "lunay|lunay": {
     "spanishdict-keyword": [
       {
         "sense": "bc9",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4506147:91"
         ]
       }
     ]
@@ -88053,7 +88279,7 @@
       }
     ]
   },
-  "pa'llá|pallar": {
+  "pa'llá|pa'llá": {
     "spanishdict-keyword": [
       {
         "sense": "af9",
@@ -88061,7 +88287,8 @@
           0,
           1,
           2
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -88238,12 +88465,18 @@
       }
     ]
   },
-  "partes|partes": {
+  "partes|parte": {
     "spanishdict-keyword": [
       {
         "sense": "30b",
         "examples": [
           2
+        ]
+      },
+      {
+        "sense": "964",
+        "examples": [
+          1
         ]
       }
     ],
@@ -88253,8 +88486,16 @@
         "examples": [
           2
         ]
+      },
+      {
+        "sense": "964",
+        "examples": [
+          1
+        ]
       }
-    ],
+    ]
+  },
+  "partes|partes": {
     "gap-fill": [
       {
         "sense": "b59",
@@ -88267,24 +88508,6 @@
         "type": "slang",
         "example_ids": [
           "6855744:22"
-        ]
-      }
-    ]
-  },
-  "partes|parte": {
-    "spanishdict-keyword": [
-      {
-        "sense": "964",
-        "examples": [
-          1
-        ]
-      }
-    ],
-    "spanishdict-flash-lite": [
-      {
-        "sense": "964",
-        "examples": [
-          1
         ]
       }
     ]
@@ -88866,12 +89089,19 @@
       }
     ]
   },
-  "piquito|poquito": {
-    "spanishdict-auto": [
+  "piquito|piquito": {
+    "gap-fill": [
       {
-        "sense": "25d",
+        "sense": "a4f",
+        "pos": "NOUN",
+        "translation": "a small kiss",
+        "lemma": "piquito",
         "examples": [
           0
+        ],
+        "type": "figurative",
+        "example_ids": [
+          "11292691:41"
         ]
       }
     ]
@@ -91473,7 +91703,7 @@
       }
     ]
   },
-  "ventas|ventas": {
+  "ventas|venta": {
     "spanishdict-keyword": [
       {
         "sense": "964",
@@ -92445,7 +92675,7 @@
       }
     ]
   },
-  "nietos|nietos": {
+  "nietos|nieto": {
     "spanishdict-keyword": [
       {
         "sense": "69c",
@@ -92526,7 +92756,7 @@
       }
     ]
   },
-  "noticias|noticias": {
+  "noticias|noticia": {
     "spanishdict-keyword": [
       {
         "sense": "b48",
@@ -92543,11 +92773,7 @@
         "examples": [
           0
         ]
-      }
-    ]
-  },
-  "noticias|noticia": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "60b",
         "examples": [
@@ -92606,7 +92832,7 @@
       }
     ]
   },
-  "pasos|pasos": {
+  "pasos|paso": {
     "spanishdict-keyword": [
       {
         "sense": "1fe",
@@ -92616,9 +92842,7 @@
           2
         ]
       }
-    ]
-  },
-  "pasos|paso": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "749",
@@ -92849,7 +93073,7 @@
       }
     ]
   },
-  "relaciones|relaciones": {
+  "relaciones|relación": {
     "spanishdict-keyword": [
       {
         "sense": "792",
@@ -93579,13 +93803,17 @@
       }
     ]
   },
-  "alexio|alexia": {
+  "alexio|alexio": {
     "spanishdict-auto": [
       {
         "sense": "d05",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3176687:133",
+          "3167974:167"
         ]
       }
     ]
@@ -93630,7 +93858,7 @@
       }
     ]
   },
-  "algunos|algunos": {
+  "algunos|alguno": {
     "spanishdict-keyword": [
       {
         "sense": "b8d",
@@ -93651,11 +93879,7 @@
         "examples": [
           0
         ]
-      }
-    ]
-  },
-  "algunos|alguno": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "994",
         "examples": [
@@ -94894,12 +95118,15 @@
       }
     ]
   },
-  "bulgari|Bulgaria": {
+  "bulgari|bulgari": {
     "spanishdict-auto": [
       {
         "sense": "0c6",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6100181:5"
         ]
       }
     ]
@@ -95450,13 +95677,17 @@
       }
     ]
   },
-  "casiano|casino": {
+  "casiano|casiano": {
     "spanishdict-keyword": [
       {
         "sense": "5af",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "6210873:20",
+          "9614084:60"
         ]
       }
     ]
@@ -95991,13 +96222,14 @@
       }
     ]
   },
-  "ciuda'|ciudad": {
+  "ciuda'|ciuda'": {
     "spanishdict-keyword": [
       {
         "sense": "ff7",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -96412,12 +96644,15 @@
       }
     ]
   },
-  "completita|completiva": {
+  "completita|completita": {
     "spanishdict-auto": [
       {
         "sense": "4ed",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3133285:71"
         ]
       }
     ]
@@ -96571,11 +96806,7 @@
         "examples": [
           0
         ]
-      }
-    ]
-  },
-  "condición|condiciones": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "bd0",
         "examples": [
@@ -96758,7 +96989,7 @@
       }
     ]
   },
-  "contactos|contactos": {
+  "contactos|contacto": {
     "spanishdict-keyword": [
       {
         "sense": "5b8",
@@ -96767,9 +96998,7 @@
           1
         ]
       }
-    ]
-  },
-  "contactos|contacto": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "a24fc",
@@ -97175,7 +97404,7 @@
       }
     ]
   },
-  "cuadros|cuadros": {
+  "cuadros|cuadro": {
     "spanishdict-keyword": [
       {
         "sense": "ad8",
@@ -97184,9 +97413,7 @@
           1
         ]
       }
-    ]
-  },
-  "cuadros|cuadro": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "2e2",
@@ -97551,12 +97778,15 @@
       }
     ]
   },
-  "deo'|de": {
+  "deo'|deo'": {
     "spanishdict-keyword": [
       {
         "sense": "65a",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614083:44"
         ]
       }
     ],
@@ -97565,12 +97795,18 @@
         "sense": "0cc",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "3176687:52"
         ]
       },
       {
         "sense": "cc82",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614083:44"
         ]
       }
     ]
@@ -98549,7 +98785,7 @@
       }
     ]
   },
-  "empleados|empleados": {
+  "empleados|empleado": {
     "spanishdict-keyword": [
       {
         "sense": "cdf",
@@ -99530,7 +99766,7 @@
       }
     ]
   },
-  "excusas|excusas": {
+  "excusas|excusa": {
     "spanishdict-keyword": [
       {
         "sense": "64f",
@@ -99539,9 +99775,7 @@
           1
         ]
       }
-    ]
-  },
-  "excusas|excusa": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "a54",
@@ -100052,12 +100286,15 @@
       }
     ]
   },
-  "fotito|fotuto": {
+  "fotito|fotito": {
     "spanishdict-auto": [
       {
         "sense": "5cc",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614092:2"
         ]
       }
     ]
@@ -101398,6 +101635,12 @@
         "examples": [
           0
         ]
+      },
+      {
+        "sense": "2b2",
+        "examples": [
+          1
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -101409,16 +101652,6 @@
       },
       {
         "sense": "f9e",
-        "examples": [
-          1
-        ]
-      }
-    ]
-  },
-  "intimidad|intimidades": {
-    "spanishdict-keyword": [
-      {
-        "sense": "2b2",
         "examples": [
           1
         ]
@@ -101817,13 +102050,21 @@
       }
     ]
   },
-  "lejitos|lejío": {
-    "spanishdict-auto": [
+  "lejitos|lejitos": {
+    "gap-fill": [
       {
-        "sense": "f17",
+        "sense": "a63",
+        "pos": "ADV",
+        "translation": "from a distance",
+        "lemma": "lejitos",
         "examples": [
           0,
           1
+        ],
+        "type": "regional",
+        "example_ids": [
+          "7967980:18",
+          "7967954:1"
         ]
       }
     ]
@@ -102545,7 +102786,7 @@
       }
     ]
   },
-  "medias|medias": {
+  "medias|media": {
     "spanishdict-keyword": [
       {
         "sense": "c82",
@@ -102555,6 +102796,16 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d03",
+        "examples": [
+          1
+        ]
+      }
+    ]
+  },
+  "medias|medias": {
     "gap-fill": [
       {
         "sense": "0ad",
@@ -102568,16 +102819,6 @@
         "construction": "a medias",
         "example_ids": [
           "5553966:31"
-        ]
-      }
-    ]
-  },
-  "medias|media": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "d03",
-        "examples": [
-          1
         ]
       }
     ]
@@ -103917,14 +104158,15 @@
       }
     ]
   },
-  "pa'cá|paca": {
+  "pa'cá|pa'cá": {
     "spanishdict-keyword": [
       {
         "sense": "1fe",
         "examples": [
           0,
           1
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -104520,13 +104762,14 @@
       }
     ]
   },
-  "pega'os|pegar": {
+  "pega'os|pega'os": {
     "spanishdict-keyword": [
       {
         "sense": "4aa",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -108627,13 +108870,17 @@
       }
     ]
   },
-  "to'ito|torito": {
+  "to'ito|to'ito": {
     "spanishdict-keyword": [
       {
         "sense": "9e3",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5320881:15",
+          "3006211:70"
         ]
       }
     ],
@@ -108643,6 +108890,10 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5320881:15",
+          "3006211:70"
         ]
       }
     ]
@@ -108872,13 +109123,17 @@
       }
     ]
   },
-  "tranquilita|tranquility": {
+  "tranquilita|tranquilita": {
     "spanishdict-keyword": [
       {
         "sense": "e70",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5529171:30",
+          "9123229:34"
         ]
       }
     ],
@@ -108888,21 +109143,23 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5529171:30",
+          "9123229:34"
         ]
       }
-    ]
-  },
-  "tranquilita|tranquilita": {
+    ],
     "gap-fill": [
       {
-        "sense": "5c5",
+        "sense": "796",
         "pos": "ADJ",
-        "translation": "chill person",
+        "translation": "calm or chill",
         "lemma": "tranquilita",
         "examples": [
           0
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "5529171:30"
         ]
@@ -108915,20 +109172,24 @@
         "examples": [
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "9123229:34"
         ]
       }
     ]
   },
-  "tranquilito|tranquility": {
+  "tranquilito|tranquilito": {
     "spanishdict-keyword": [
       {
         "sense": "e70",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "4969980:8",
+          "2915707:59"
         ]
       }
     ],
@@ -108938,16 +109199,18 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "4969980:8",
+          "2915707:59"
         ]
       }
-    ]
-  },
-  "tranquilito|tranquilito": {
+    ],
     "gap-fill": [
       {
-        "sense": "c4d",
+        "sense": "815",
         "pos": "ADJ",
-        "translation": "chilling",
+        "translation": "calm and unbothered",
         "lemma": "tranquilito",
         "examples": [
           0,
@@ -109038,7 +109301,7 @@
       }
     ]
   },
-  "tropas|tropas": {
+  "tropas|tropa": {
     "spanishdict-keyword": [
       {
         "sense": "8ea",
@@ -110147,7 +110410,7 @@
       }
     ]
   },
-  "bolas|bolas": {
+  "bolas|bola": {
     "spanishdict-keyword": [
       {
         "sense": "976",
@@ -110156,6 +110419,16 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a97",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "bolas|bolas": {
     "gap-fill": [
       {
         "sense": "15f",
@@ -110168,16 +110441,6 @@
         "type": "slang",
         "example_ids": [
           "2924481:13"
-        ]
-      }
-    ]
-  },
-  "bolas|bola": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "a97",
-        "examples": [
-          0
         ]
       }
     ]
@@ -111720,13 +111983,17 @@
       }
     ]
   },
-  "toditos|torito": {
+  "toditos|toditos": {
     "spanishdict-keyword": [
       {
         "sense": "9e3",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3100770:20",
+          "10901838:28"
         ]
       }
     ],
@@ -111736,11 +112003,13 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3100770:20",
+          "10901838:28"
         ]
       }
-    ]
-  },
-  "toditos|toditos": {
+    ],
     "gap-fill": [
       {
         "sense": "58f",
@@ -111751,7 +112020,7 @@
           0,
           1
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "3100770:20",
           "10901838:28"
@@ -111843,7 +112112,7 @@
       }
     ]
   },
-  "valores|valores": {
+  "valores|valor": {
     "spanishdict-keyword": [
       {
         "sense": "061",
@@ -112156,7 +112425,7 @@
       }
     ]
   },
-  "abuelos|abuelos": {
+  "abuelos|abuelo": {
     "spanishdict-keyword": [
       {
         "sense": "fc3",
@@ -113313,13 +113582,14 @@
       }
     ]
   },
-  "agarra'os|agarrar": {
+  "agarra'os|agarra'os": {
     "spanishdict-keyword": [
       {
         "sense": "847",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -113590,7 +113860,7 @@
       }
     ]
   },
-  "ahorros|ahorros": {
+  "ahorros|ahorro": {
     "spanishdict-keyword": [
       {
         "sense": "6f5",
@@ -113842,12 +114112,15 @@
       }
     ]
   },
-  "alexi'|alexia": {
+  "alexi'|alexi'": {
     "spanishdict-auto": [
       {
         "sense": "d05",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2953251:66"
         ]
       }
     ]
@@ -114239,7 +114512,7 @@
       }
     ]
   },
-  "ambos|ambos": {
+  "ambos|ambo": {
     "spanishdict-keyword": [
       {
         "sense": "46d",
@@ -114608,13 +114881,14 @@
       }
     ]
   },
-  "ansieda'|ansiedad": {
+  "ansieda'|ansieda'": {
     "spanishdict-keyword": [
       {
         "sense": "fdb",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -114673,13 +114947,14 @@
       }
     ]
   },
-  "anteriore'|anterior": {
+  "anteriore'|anteriore'": {
     "spanishdict-keyword": [
       {
         "sense": "139",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -115016,7 +115291,7 @@
       }
     ]
   },
-  "apuestas|apuestas": {
+  "apuestas|apuesta": {
     "spanishdict-keyword": [
       {
         "sense": "d8c",
@@ -115024,9 +115299,7 @@
           0
         ]
       }
-    ]
-  },
-  "apuestas|apuesta": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "953",
@@ -115356,13 +115629,14 @@
       }
     ]
   },
-  "arrebata'os|arrebatar": {
+  "arrebata'os|arrebata'os": {
     "spanishdict-keyword": [
       {
         "sense": "ddd",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -115636,13 +115910,14 @@
       }
     ]
   },
-  "asusta'os|asustar": {
+  "asusta'os|asusta'os": {
     "spanishdict-keyword": [
       {
         "sense": "8f6",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -115862,12 +116137,15 @@
       }
     ]
   },
-  "atragantá'|atragantar": {
+  "atragantá'|atragantá'": {
     "spanishdict-keyword": [
       {
         "sense": "059",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3523266:21"
         ]
       }
     ]
@@ -116435,12 +116713,15 @@
       }
     ]
   },
-  "bakin'|baking": {
+  "bakin'|bakin'": {
     "spanishdict-keyword": [
       {
         "sense": "989",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211036:41"
         ]
       }
     ]
@@ -116719,13 +117000,14 @@
       }
     ]
   },
-  "bendecí'a|bendecir": {
+  "bendecí'a|bendecí'a": {
     "spanishdict-keyword": [
       {
         "sense": "3bf",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -117091,7 +117373,7 @@
       }
     ]
   },
-  "bolsas|bolsas": {
+  "bolsas|bolsa": {
     "spanishdict-keyword": [
       {
         "sense": "ec6",
@@ -117100,6 +117382,16 @@
         ]
       }
     ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "bcd",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "bolsas|bolsas": {
     "gap-fill": [
       {
         "sense": "bce",
@@ -117112,16 +117404,6 @@
         "type": "slang",
         "example_ids": [
           "3334750:46"
-        ]
-      }
-    ]
-  },
-  "bolsas|bolsa": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "bcd",
-        "examples": [
-          0
         ]
       }
     ]
@@ -117198,7 +117480,7 @@
       }
     ]
   },
-  "bomberos|bomberos": {
+  "bomberos|bombero": {
     "spanishdict-keyword": [
       {
         "sense": "715",
@@ -117206,9 +117488,7 @@
           0
         ]
       }
-    ]
-  },
-  "bomberos|bombero": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "065",
@@ -117718,12 +117998,15 @@
       }
     ]
   },
-  "cadenita|cadeneta": {
+  "cadenita|cadenita": {
     "spanishdict-keyword": [
       {
         "sense": "68c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292700:7"
         ]
       }
     ],
@@ -117732,11 +118015,12 @@
         "sense": "68c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292700:7"
         ]
       }
-    ]
-  },
-  "cadenita|cadenita": {
+    ],
     "gap-fill": [
       {
         "sense": "5ea",
@@ -118637,7 +118921,7 @@
       }
     ]
   },
-  "carrera'|carreras": {
+  "carrera'|carrera": {
     "spanishdict-keyword": [
       {
         "sense": "da0",
@@ -119240,17 +119524,20 @@
       }
     ]
   },
-  "chichito|chuchito": {
+  "chichito|chichito": {
     "spanishdict-auto": [
       {
         "sense": "ec2",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4726686:51"
         ]
       }
     ]
   },
-  "chicos|chicos": {
+  "chicos|chico": {
     "spanishdict-flash-lite": [
       {
         "sense": "104",
@@ -119259,6 +119546,16 @@
         ]
       }
     ],
+    "spanishdict-keyword": [
+      {
+        "sense": "577",
+        "examples": [
+          0
+        ]
+      }
+    ]
+  },
+  "chicos|chicos": {
     "gap-fill": [
       {
         "sense": "716",
@@ -119271,16 +119568,6 @@
         "type": "figurative",
         "example_ids": [
           "5305051:7"
-        ]
-      }
-    ]
-  },
-  "chicos|chico": {
-    "spanishdict-keyword": [
-      {
-        "sense": "577",
-        "examples": [
-          0
         ]
       }
     ]
@@ -119480,12 +119767,15 @@
       }
     ]
   },
-  "chulito|culito": {
+  "chulito|chulito": {
     "spanishdict-keyword": [
       {
         "sense": "9be",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3208907:39"
         ]
       }
     ],
@@ -119494,11 +119784,12 @@
         "sense": "1b9",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3208907:39"
         ]
       }
-    ]
-  },
-  "chulito|chulito": {
+    ],
     "gap-fill": [
       {
         "sense": "6f2",
@@ -119569,7 +119860,7 @@
       }
     ]
   },
-  "cientos|cientos": {
+  "cientos|ciento": {
     "spanishdict-keyword": [
       {
         "sense": "7b9",
@@ -119641,12 +119932,15 @@
       }
     ]
   },
-  "circulito|circuito": {
+  "circulito|circulito": {
     "spanishdict-keyword": [
       {
         "sense": "d84",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292695:23"
         ]
       }
     ],
@@ -119655,11 +119949,12 @@
         "sense": "d84",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292695:23"
         ]
       }
-    ]
-  },
-  "circulito|circulito": {
+    ],
     "gap-fill": [
       {
         "sense": "4b9",
@@ -119686,12 +119981,15 @@
       }
     ]
   },
-  "clarito|clarity": {
+  "clarito|clarito": {
     "spanishdict-keyword": [
       {
         "sense": "696",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292683:35"
         ]
       }
     ],
@@ -119700,11 +119998,12 @@
         "sense": "696",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292683:35"
         ]
       }
-    ]
-  },
-  "clarito|clarito": {
+    ],
     "gap-fill": [
       {
         "sense": "188",
@@ -120101,12 +120400,15 @@
       }
     ]
   },
-  "cojine'|cojín": {
+  "cojine'|cojine'": {
     "spanishdict-auto": [
       {
         "sense": "13d",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2976831:29"
         ]
       }
     ]
@@ -122362,7 +122664,7 @@
       }
     ]
   },
-  "cositas|cositas": {
+  "cositas|cosita": {
     "spanishdict-keyword": [
       {
         "sense": "0ee",
@@ -122370,9 +122672,7 @@
           0
         ]
       }
-    ]
-  },
-  "cositas|cosita": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "9d0",
@@ -123004,7 +123304,7 @@
       }
     ]
   },
-  "créditos|créditos": {
+  "créditos|crédito": {
     "spanishdict-keyword": [
       {
         "sense": "234",
@@ -124146,12 +124446,15 @@
       }
     ]
   },
-  "dentale'|dental": {
+  "dentale'|dentale'": {
     "spanishdict-keyword": [
       {
         "sense": "0cc",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2990674:78"
         ]
       }
     ]
@@ -124230,12 +124533,15 @@
       }
     ]
   },
-  "derrumbamo'|derrumbar": {
+  "derrumbamo'|derrumbamo'": {
     "spanishdict-keyword": [
       {
         "sense": "e5e",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7401420:40"
         ]
       }
     ]
@@ -124874,12 +125180,15 @@
       }
     ]
   },
-  "desquitarno'|desquitar": {
+  "desquitarno'|desquitarno'": {
     "spanishdict-keyword": [
       {
         "sense": "252",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4506147:8"
         ]
       }
     ]
@@ -125422,12 +125731,15 @@
       }
     ]
   },
-  "disquito|desquitar": {
+  "disquito|disquito": {
     "spanishdict-keyword": [
       {
         "sense": "252",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5557738:14"
         ]
       }
     ],
@@ -125436,11 +125748,12 @@
         "sense": "252",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5557738:14"
         ]
       }
-    ]
-  },
-  "disquito|disquito": {
+    ],
     "gap-fill": [
       {
         "sense": "11e",
@@ -125601,12 +125914,15 @@
       }
     ]
   },
-  "doctora|doctor": {
+  "doctora|doctora": {
     "spanishdict-keyword": [
       {
         "sense": "695",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6100181:31"
         ]
       }
     ],
@@ -125615,6 +125931,9 @@
         "sense": "695",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6100181:31"
         ]
       }
     ]
@@ -126727,12 +127046,15 @@
       }
     ]
   },
-  "endrogamo'|endrogar": {
+  "endrogamo'|endrogamo'": {
     "spanishdict-keyword": [
       {
         "sense": "b2b",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3753517:100"
         ]
       }
     ]
@@ -129621,13 +129943,14 @@
       }
     ]
   },
-  "extensione'|extensión": {
+  "extensione'|extensione'": {
     "spanishdict-keyword": [
       {
         "sense": "075",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -129828,12 +130151,15 @@
       }
     ]
   },
-  "faldita|faldeta": {
+  "faldita|faldita": {
     "spanishdict-auto": [
       {
         "sense": "e87",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3431731:54"
         ]
       }
     ]
@@ -130281,7 +130607,7 @@
       }
     ]
   },
-  "filas|filas": {
+  "filas|fila": {
     "spanishdict-keyword": [
       {
         "sense": "17a",
@@ -130289,9 +130615,7 @@
           0
         ]
       }
-    ]
-  },
-  "filas|fila": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "95c",
@@ -130503,7 +130827,7 @@
       }
     ]
   },
-  "fondos|fondos": {
+  "fondos|fondo": {
     "spanishdict-keyword": [
       {
         "sense": "0d1",
@@ -130871,7 +131195,7 @@
       }
     ]
   },
-  "funciones|funciones": {
+  "funciones|función": {
     "spanishdict-keyword": [
       {
         "sense": "d49",
@@ -130887,7 +131211,9 @@
           0
         ]
       }
-    ],
+    ]
+  },
+  "funciones|funciones": {
     "gap-fill": [
       {
         "sense": "d00",
@@ -131005,7 +131331,7 @@
       }
     ]
   },
-  "gafas|gafas": {
+  "gafas|gafa": {
     "spanishdict-keyword": [
       {
         "sense": "520",
@@ -132278,13 +132604,14 @@
       }
     ]
   },
-  "hackeá'|hackear": {
+  "hackeá'|hackeá'": {
     "spanishdict-keyword": [
       {
         "sense": "7e6",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -132680,12 +133007,15 @@
       }
     ]
   },
-  "hospeda'|hospedar": {
+  "hospeda'|hospeda'": {
     "spanishdict-keyword": [
       {
         "sense": "a4a",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3753517:126"
         ]
       }
     ]
@@ -132774,12 +133104,15 @@
       }
     ]
   },
-  "humito|humita": {
+  "humito|humito": {
     "spanishdict-keyword": [
       {
         "sense": "127",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211048:25"
         ]
       }
     ],
@@ -132788,11 +133121,12 @@
         "sense": "127",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211048:25"
         ]
       }
-    ]
-  },
-  "humito|humito": {
+    ],
     "gap-fill": [
       {
         "sense": "c92",
@@ -132991,12 +133325,15 @@
       }
     ]
   },
-  "ilumina'|iluminar": {
+  "ilumina'|ilumina'": {
     "spanishdict-keyword": [
       {
         "sense": "561",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7934367:59"
         ]
       }
     ]
@@ -134424,13 +134761,14 @@
       }
     ]
   },
-  "jodí'a|joder": {
+  "jodí'a|jodí'a": {
     "spanishdict-keyword": [
       {
         "sense": "239",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -134542,12 +134880,15 @@
       }
     ]
   },
-  "julito|julio": {
+  "julito|julito": {
     "spanishdict-keyword": [
       {
         "sense": "701",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11296557:13"
         ]
       }
     ],
@@ -134556,11 +134897,12 @@
         "sense": "701",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11296557:13"
         ]
       }
-    ]
-  },
-  "julito|julito": {
+    ],
     "gap-fill": [
       {
         "sense": "789",
@@ -134817,7 +135159,7 @@
       }
     ]
   },
-  "jóvenes|jóvenes": {
+  "jóvenes|joven": {
     "spanishdict-keyword": [
       {
         "sense": "653",
@@ -135039,7 +135381,7 @@
       }
     ]
   },
-  "lentes|lentes": {
+  "lentes|lente": {
     "spanishdict-keyword": [
       {
         "sense": "224",
@@ -135129,7 +135471,7 @@
       }
     ]
   },
-  "leyendas|leyendas": {
+  "leyendas|leyenda": {
     "spanishdict-keyword": [
       {
         "sense": "d75",
@@ -135137,9 +135479,7 @@
           0
         ]
       }
-    ]
-  },
-  "leyendas|leyenda": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "e70bc",
@@ -135782,12 +136122,15 @@
       }
     ]
   },
-  "lobillo|lomillo": {
+  "lobillo|lobillo": {
     "spanishdict-keyword": [
       {
         "sense": "392",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2990674:90"
         ]
       }
     ],
@@ -135796,11 +136139,12 @@
         "sense": "82e",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2990674:90"
         ]
       }
-    ]
-  },
-  "lobillo|lobillo": {
+    ],
     "gap-fill": [
       {
         "sense": "dc9",
@@ -136006,13 +136350,14 @@
       }
     ]
   },
-  "lucí'a|lucir": {
+  "lucí'a|lucí'a": {
     "spanishdict-keyword": [
       {
         "sense": "b1b",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -136127,13 +136472,14 @@
       }
     ]
   },
-  "lápi'|lápiz": {
+  "lápi'|lápi'": {
     "spanishdict-auto": [
       {
         "sense": "a1c",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -136531,12 +136877,15 @@
       }
     ]
   },
-  "mansita|manita": {
+  "mansita|mansita": {
     "spanishdict-keyword": [
       {
         "sense": "422",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2503547:39"
         ]
       }
     ],
@@ -136545,11 +136894,12 @@
         "sense": "422",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2503547:39"
         ]
       }
-    ]
-  },
-  "mansita|mansita": {
+    ],
     "gap-fill": [
       {
         "sense": "1e8",
@@ -136810,7 +137160,7 @@
       }
     ]
   },
-  "masas|masas": {
+  "masas|masa": {
     "spanishdict-keyword": [
       {
         "sense": "9b5",
@@ -137731,7 +138081,7 @@
       }
     ]
   },
-  "modales|modales": {
+  "modales|modal": {
     "spanishdict-keyword": [
       {
         "sense": "28a",
@@ -137795,13 +138145,14 @@
       }
     ]
   },
-  "moja'os|mojar": {
+  "moja'os|moja'os": {
     "spanishdict-keyword": [
       {
         "sense": "2aa",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -138970,7 +139321,7 @@
       }
     ]
   },
-  "navidades|Navidades": {
+  "navidades|Navidad": {
     "spanishdict-keyword": [
       {
         "sense": "757",
@@ -139060,7 +139411,7 @@
       }
     ]
   },
-  "negocios|negocios": {
+  "negocios|negocio": {
     "spanishdict-keyword": [
       {
         "sense": "8c9",
@@ -139129,17 +139480,20 @@
       }
     ]
   },
-  "neo|neo-": {
+  "neo|neo": {
     "spanishdict-auto": [
       {
         "sense": "b32",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305001:41"
         ]
       }
     ]
   },
-  "nervios|nervios": {
+  "nervios|nervio": {
     "spanishdict-keyword": [
       {
         "sense": "6ce",
@@ -139277,12 +139631,15 @@
       }
     ]
   },
-  "notificacione'|notificación": {
+  "notificacione'|notificacione'": {
     "spanishdict-keyword": [
       {
         "sense": "16c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4558062:58"
         ]
       }
     ]
@@ -139387,7 +139744,7 @@
       }
     ]
   },
-  "obras|obras": {
+  "obras|obra": {
     "spanishdict-keyword": [
       {
         "sense": "feb",
@@ -139395,9 +139752,7 @@
           0
         ]
       }
-    ]
-  },
-  "obras|obra": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "5fb",
@@ -139836,13 +140191,14 @@
       }
     ]
   },
-  "opcione'|opción": {
+  "opcione'|opcione'": {
     "spanishdict-keyword": [
       {
         "sense": "ef5",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -140095,12 +140451,15 @@
       }
     ]
   },
-  "pa'i|pai": {
+  "pa'i|pa'i": {
     "spanishdict-keyword": [
       {
         "sense": "a1b",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5629827:41"
         ]
       }
     ]
@@ -141117,7 +141476,7 @@
       }
     ]
   },
-  "pelas|pelas": {
+  "pelas|pela": {
     "spanishdict-keyword": [
       {
         "sense": "f32",
@@ -141133,7 +141492,9 @@
           0
         ]
       }
-    ],
+    ]
+  },
+  "pelas|pelas": {
     "gap-fill": [
       {
         "sense": "7f6",
@@ -141321,12 +141682,15 @@
       }
     ]
   },
-  "penita|pepita": {
+  "penita|penita": {
     "spanishdict-keyword": [
       {
         "sense": "1a2",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211010:42"
         ]
       }
     ],
@@ -141335,11 +141699,12 @@
         "sense": "1a2",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211010:42"
         ]
       }
-    ]
-  },
-  "penita|penita": {
+    ],
     "gap-fill": [
       {
         "sense": "8b0",
@@ -142379,12 +142744,15 @@
       }
     ]
   },
-  "po'te|pote": {
+  "po'te|po'te": {
     "spanishdict-keyword": [
       {
         "sense": "01f",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2832039:14"
         ]
       }
     ]
@@ -142575,12 +142943,15 @@
       }
     ]
   },
-  "polare'|polar": {
+  "polare'|polare'": {
     "spanishdict-keyword": [
       {
         "sense": "a07",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3059630:32"
         ]
       }
     ]
@@ -144020,13 +144391,14 @@
       }
     ]
   },
-  "quema'os|quemar": {
+  "quema'os|quema'os": {
     "spanishdict-keyword": [
       {
         "sense": "255",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -144512,13 +144884,14 @@
       }
     ]
   },
-  "realida'|realidad": {
+  "realida'|realida'": {
     "spanishdict-keyword": [
       {
         "sense": "084",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -144972,7 +145345,7 @@
       }
     ]
   },
-  "refuerzos|refuerzos": {
+  "refuerzos|refuerzo": {
     "spanishdict-keyword": [
       {
         "sense": "3aa",
@@ -144980,9 +145353,7 @@
           0
         ]
       }
-    ]
-  },
-  "refuerzos|refuerzo": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "088",
@@ -147403,12 +147774,15 @@
       }
     ]
   },
-  "santida'|santidad": {
+  "santida'|santida'": {
     "spanishdict-keyword": [
       {
         "sense": "293",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7934367:51"
         ]
       }
     ]
@@ -147692,13 +148066,14 @@
       }
     ]
   },
-  "senta'os|sentaos": {
+  "senta'os|senta'os": {
     "spanishdict-auto": [
       {
         "sense": "7af",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -148422,12 +148797,15 @@
       }
     ]
   },
-  "solare'|solar": {
+  "solare'|solare'": {
     "spanishdict-keyword": [
       {
         "sense": "8b0",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3059630:33"
         ]
       }
     ]
@@ -150276,12 +150654,15 @@
       }
     ]
   },
-  "todito|torito": {
+  "todito|todito": {
     "spanishdict-keyword": [
       {
         "sense": "9e3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6387245:23"
         ]
       }
     ],
@@ -150290,11 +150671,12 @@
         "sense": "9e3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6387245:23"
         ]
       }
-    ]
-  },
-  "todito|todito": {
+    ],
     "gap-fill": [
       {
         "sense": "03a",
@@ -150437,12 +150819,15 @@
       }
     ]
   },
-  "tonito|tonto": {
+  "tonito|tonito": {
     "spanishdict-keyword": [
       {
         "sense": "922",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292683:5"
         ]
       }
     ],
@@ -150451,11 +150836,12 @@
         "sense": "aa3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292683:5"
         ]
       }
-    ]
-  },
-  "tonito|tonito": {
+    ],
     "gap-fill": [
       {
         "sense": "789",
@@ -150603,12 +150989,15 @@
       }
     ]
   },
-  "totitos|torito": {
+  "totitos|totitos": {
     "spanishdict-keyword": [
       {
         "sense": "9e3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3104979:25"
         ]
       }
     ],
@@ -150617,11 +151006,12 @@
         "sense": "9e3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3104979:25"
         ]
       }
-    ]
-  },
-  "totitos|totitos": {
+    ],
     "gap-fill": [
       {
         "sense": "074",
@@ -151827,7 +152217,7 @@
       }
     ]
   },
-  "vaqueros|vaqueros": {
+  "vaqueros|vaquero": {
     "spanishdict-keyword": [
       {
         "sense": "b94",
@@ -151835,9 +152225,7 @@
           0
         ]
       }
-    ]
-  },
-  "vaqueros|vaquero": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "a11",
@@ -151893,7 +152281,7 @@
       }
     ]
   },
-  "varios|varios": {
+  "varios|vario": {
     "spanishdict-keyword": [
       {
         "sense": "9e1",
@@ -152240,22 +152628,26 @@
       }
     ]
   },
-  "vení'as|venir": {
+  "vení'as|vení'as": {
     "spanishdict-keyword": [
       {
         "sense": "5e7",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
-  "verdecitos|verdecer": {
+  "verdecitos|verdecitos": {
     "spanishdict-auto": [
       {
         "sense": "7e7",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305012:56"
         ]
       }
     ]
@@ -152566,12 +152958,15 @@
       }
     ]
   },
-  "virtude'|virtud": {
+  "virtude'|virtude'": {
     "spanishdict-keyword": [
       {
         "sense": "8c2",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2953251:73"
         ]
       }
     ]
@@ -153404,10 +153799,13 @@
       }
     ]
   },
-  "bellaquera|bellaquería": {
-    "spanishdict-auto": [
+  "bellaquera|bellaquera": {
+    "gap-fill": [
       {
-        "sense": "c2e",
+        "sense": "95c",
+        "pos": "NOUN",
+        "translation": "sexual arousal",
+        "lemma": "bellaquera",
         "examples": [
           0,
           1,
@@ -153416,17 +153814,44 @@
           4,
           5,
           6,
-          7,
           8,
           9
+        ],
+        "type": "regional",
+        "example_ids": [
+          "5474005:28",
+          "11036575:17",
+          "2964797:28",
+          "3968305:23",
+          "5305004:44",
+          "2941576:33",
+          "2976947:19",
+          "4641326:30",
+          "3044908:9"
+        ]
+      },
+      {
+        "sense": "832",
+        "pos": "NOUN",
+        "translation": "sexually suggestive content",
+        "lemma": "bellaquera",
+        "examples": [
+          7
+        ],
+        "type": "regional",
+        "example_ids": [
+          "5305009:51"
         ]
       }
     ]
   },
-  "cel|cal": {
-    "spanishdict-auto": [
+  "cel|cel": {
+    "gap-fill": [
       {
-        "sense": "c9e",
+        "sense": "3ad",
+        "pos": "NOUN",
+        "translation": "mobile phone",
+        "lemma": "cel",
         "examples": [
           0,
           1,
@@ -153438,6 +153863,19 @@
           7,
           8,
           9
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3424254:8",
+          "6211043:29",
+          "3022353:3",
+          "9123229:10",
+          "5305010:3",
+          "7824895:23",
+          "2829388:17",
+          "10901838:23",
+          "9614076:8",
+          "4558062:58"
         ]
       }
     ]
@@ -153480,7 +153918,7 @@
       }
     ]
   },
-  "dembow|dembo": {
+  "dembow|dembow": {
     "spanishdict-auto": [
       {
         "sense": "7cd",
@@ -153493,6 +153931,16 @@
           5,
           6,
           7
+        ],
+        "example_ids": [
+          "9614092:4",
+          "4082272:54",
+          "11292885:24",
+          "9123229:35",
+          "4726686:28",
+          "3022353:38",
+          "4558062:40",
+          "9592355:19"
         ]
       }
     ]
@@ -153647,16 +154095,49 @@
       }
     ]
   },
-  "capsuleando|capsular": {
-    "spanishdict-auto": [
+  "capsuleando|capsuleando": {
+    "gap-fill": [
       {
-        "sense": "7e2",
+        "sense": "33a",
+        "pos": "VERB",
+        "translation": "cruising in a car",
+        "lemma": "capsuleando",
         "examples": [
           0,
           1,
-          2,
-          3,
           4
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3015945:37",
+          "6866266:18",
+          "4763027:77"
+        ]
+      },
+      {
+        "sense": "c33",
+        "pos": "VERB",
+        "translation": "taking pills",
+        "lemma": "capsuleando",
+        "examples": [
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3044908:14"
+        ]
+      },
+      {
+        "sense": "976",
+        "pos": "VERB",
+        "translation": "chilling / relaxing",
+        "lemma": "capsuleando",
+        "examples": [
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5305036:23"
         ]
       }
     ]
@@ -153766,16 +154247,27 @@
       }
     ]
   },
-  "joseo|José": {
-    "spanishdict-auto": [
+  "joseo|joseo": {
+    "gap-fill": [
       {
-        "sense": "eb9",
+        "sense": "19b",
+        "pos": "NOUN",
+        "translation": "hustling or working hard",
+        "lemma": "joseo",
         "examples": [
           0,
           1,
           2,
           3,
           4
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6777704:28",
+          "9614068:37",
+          "3256611:67",
+          "3288015:6",
+          "3173788:12"
         ]
       }
     ]
@@ -153805,12 +154297,19 @@
       }
     ]
   },
-  "ejem|¡Ejem!": {
-    "spanishdict-auto": [
+  "ejem|ejem": {
+    "gap-fill": [
       {
-        "sense": "560",
+        "sense": "922",
+        "pos": "INTJ",
+        "translation": "ahem",
+        "lemma": "ejem",
         "examples": [
           0
+        ],
+        "type": "other",
+        "example_ids": [
+          "8598733:69"
         ]
       }
     ]
@@ -153827,23 +154326,34 @@
       }
     ]
   },
-  "josear|José": {
+  "josear|josear": {
     "spanishdict-auto": [
       {
         "sense": "eb9",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614100:3"
         ]
       }
     ]
   },
-  "posteado|postrado": {
-    "spanishdict-auto": [
+  "posteado|posteado": {
+    "gap-fill": [
       {
-        "sense": "0b9",
+        "sense": "230",
+        "pos": "ADJ",
+        "translation": "positioned or stationed",
+        "lemma": "posteado",
         "examples": [
           0,
           1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "9614084:8",
+          "3495715:47"
         ]
       }
     ]
@@ -153883,36 +154393,83 @@
       }
     ]
   },
-  "bellaqueras|bellaquería": {
-    "spanishdict-auto": [
+  "bellaqueras|bellaqueras": {
+    "gap-fill": [
       {
-        "sense": "c2e",
+        "sense": "554",
+        "pos": "NOUN",
+        "translation": "horniness or sexual desire",
+        "lemma": "bellaqueras",
         "examples": [
           0,
-          1,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3542120:31",
+          "7967957:34"
+        ]
+      },
+      {
+        "sense": "c94",
+        "pos": "NOUN",
+        "translation": "naughtiness or sexual playfulness",
+        "lemma": "bellaqueras",
+        "examples": [
           2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "7967942:22"
         ]
       }
     ]
   },
-  "fronteo|frontero": {
-    "spanishdict-auto": [
+  "fronteo|fronteo": {
+    "gap-fill": [
       {
-        "sense": "163",
+        "sense": "f64",
+        "pos": "NOUN",
+        "translation": "boasting or showing off",
+        "lemma": "fronteo",
         "examples": [
           0,
           1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6777704:33",
+          "3133285:49"
         ]
       }
     ]
   },
-  "fuletazo|fuetazo": {
-    "spanishdict-auto": [
+  "fuletazo|fuletazo": {
+    "gap-fill": [
       {
-        "sense": "62c",
+        "sense": "113",
+        "pos": "NOUN",
+        "translation": "a gunshot or violent attack",
+        "lemma": "fuletazo",
         "examples": [
-          0,
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "9614087:35"
+        ]
+      },
+      {
+        "sense": "37d",
+        "pos": "NOUN",
+        "translation": "a quick sexual encounter",
+        "lemma": "fuletazo",
+        "examples": [
           1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "9614098:39"
         ]
       }
     ]
@@ -153950,13 +154507,32 @@
       }
     ]
   },
-  "lambebicho|lambe bicho": {
-    "spanishdict-auto": [
+  "lambebicho|lambebicho": {
+    "gap-fill": [
       {
-        "sense": "552",
+        "sense": "d08",
+        "pos": "NOUN",
+        "translation": "suck-up or sycophant",
+        "lemma": "lambebicho",
         "examples": [
-          0,
+          0
+        ],
+        "type": "vulgar",
+        "example_ids": [
+          "5305018:3"
+        ]
+      },
+      {
+        "sense": "d1e",
+        "pos": "NOUN",
+        "translation": "insulting term for a pathetic person",
+        "lemma": "lambebicho",
+        "examples": [
           1
+        ],
+        "type": "vulgar",
+        "example_ids": [
+          "3006211:5"
         ]
       }
     ]
@@ -154039,24 +154615,31 @@
       }
     ]
   },
-  "aju|ajo": {
+  "aju|aju": {
     "spanishdict-auto": [
       {
         "sense": "42e",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5629827:59"
         ]
       }
     ]
   },
-  "anthon|Anthony": {
+  "anthon|anthon": {
     "spanishdict-auto": [
       {
         "sense": "9e2",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3046295:82",
+          "2976831:87"
         ]
       }
     ]
@@ -154114,23 +154697,49 @@
       }
     ]
   },
-  "champola|chapola": {
-    "spanishdict-auto": [
+  "champola|champola": {
+    "gap-fill": [
       {
-        "sense": "4f6",
+        "sense": "304",
+        "pos": "NOUN",
+        "translation": "champagne",
+        "lemma": "champola",
         "examples": [
           0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "2990674:49"
         ]
       }
     ]
   },
-  "chapi|chapo": {
-    "spanishdict-auto": [
+  "chapi|chapi": {
+    "gap-fill": [
       {
-        "sense": "a5a",
+        "sense": "d6a",
+        "pos": "NOUN",
+        "translation": "gold digger",
+        "lemma": "chapi",
         "examples": [
-          0,
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4035827:22"
+        ]
+      },
+      {
+        "sense": "a8f",
+        "pos": "ADJ",
+        "translation": "showing off",
+        "lemma": "chapi",
+        "examples": [
           1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "9614084:27"
         ]
       }
     ]
@@ -154350,12 +154959,15 @@
       }
     ]
   },
-  "oya|oy": {
+  "oya|oya": {
     "spanishdict-auto": [
       {
         "sense": "fa8",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4662273:44"
         ]
       }
     ]
@@ -154403,12 +155015,15 @@
       }
     ]
   },
-  "ripiao|ripia": {
+  "ripiao|ripiao": {
     "spanishdict-auto": [
       {
         "sense": "613",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614084:9"
         ]
       }
     ]
@@ -154423,13 +155038,21 @@
       }
     ]
   },
-  "tenqui|tequi": {
-    "spanishdict-auto": [
+  "tenqui|tenqui": {
+    "gap-fill": [
       {
-        "sense": "bff",
+        "sense": "0f9",
+        "pos": "NOUN",
+        "translation": "thanks",
+        "lemma": "tenqui",
         "examples": [
           0,
           1
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "3888528:22",
+          "6211036:40"
         ]
       }
     ]
@@ -154742,7 +155365,7 @@
       }
     ]
   },
-  "díselo|dímelo": {
+  "díselo|díselo": {
     "spanishdict-flash-lite": [
       {
         "sense": "b71",
@@ -154757,6 +155380,73 @@
           7,
           8,
           9
+        ],
+        "example_ids": [
+          "3103548:65",
+          "3100770:50",
+          "3377480:45",
+          "3171036:81",
+          "2978566:73",
+          "3104979:24",
+          "2871746:83",
+          "6717116:67",
+          "2990674:123",
+          "3297866:52"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "77e",
+        "pos": "VERB",
+        "translation": "tell them",
+        "lemma": "díselo",
+        "examples": [
+          0,
+          2,
+          4,
+          5,
+          6,
+          8,
+          9
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3100770:50",
+          "3171036:81",
+          "2990674:123",
+          "3297866:52",
+          "5305013:24",
+          "3039781:73",
+          "3253426:78"
+        ]
+      },
+      {
+        "sense": "5fd",
+        "pos": "VERB",
+        "translation": "tell him",
+        "lemma": "díselo",
+        "examples": [
+          1,
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3377480:45",
+          "3104979:24"
+        ]
+      },
+      {
+        "sense": "af0",
+        "pos": "VERB",
+        "translation": "say it",
+        "lemma": "díselo",
+        "examples": [
+          7
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3001094:99"
         ]
       }
     ]
@@ -154799,7 +155489,7 @@
       }
     ]
   },
-  "chavos|chavos": {
+  "chavos|chavo": {
     "spanishdict-flash-lite": [
       {
         "sense": "057",
@@ -155081,12 +155771,30 @@
       }
     ]
   },
-  "bellacoso|bellaco": {
+  "bellacoso|bellacoso": {
     "spanishdict-flash-lite": [
       {
         "sense": "c64",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4726686:33"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "5c3",
+        "pos": "ADJ",
+        "translation": "horny or sexually aggressive",
+        "lemma": "bellacoso",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4726686:33"
         ]
       }
     ]
@@ -155162,18 +155870,20 @@
       }
     ]
   },
-  "demaga|demás": {
+  "demaga|demaga": {
     "spanishdict-flash-lite": [
       {
         "sense": "d2b",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "4179009:90",
+          "2924481:31"
         ]
       }
-    ]
-  },
-  "demaga|demaga": {
+    ],
     "gap-fill": [
       {
         "sense": "32d",
@@ -155192,12 +155902,30 @@
       }
     ]
   },
-  "tera|ter": {
+  "tera|tera": {
     "spanishdict-flash-lite": [
       {
         "sense": "5fb",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3529948:14"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "513",
+        "pos": "ADV",
+        "translation": "suffix for emphasis",
+        "lemma": "tera",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3529948:14"
         ]
       }
     ]
@@ -155226,23 +155954,25 @@
       }
     ]
   },
-  "rolié|reliar": {
+  "rolié|rolié": {
     "spanishdict-flash-lite": [
       {
         "sense": "824",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3590909:9",
+          "3046295:18"
         ]
       }
-    ]
-  },
-  "rolié|rolié": {
+    ],
     "gap-fill": [
       {
-        "sense": "5a8",
+        "sense": "b86",
         "pos": "VERB",
-        "translation": "to be high/intoxicated",
+        "translation": "to be under the influence of drugs",
         "lemma": "rolié",
         "examples": [
           0,
@@ -155437,28 +156167,28 @@
       }
     ]
   },
-  "caile|calle": {
+  "caile|caile": {
     "spanishdict-flash-lite": [
       {
         "sense": "80c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2942055:48"
         ]
       }
-    ]
-  },
-  "caile|caile": {
+    ],
     "gap-fill": [
       {
-        "sense": "a10",
+        "sense": "3a7",
         "pos": "VERB",
-        "translation": "to come over",
+        "translation": "come over / show up",
         "lemma": "caile",
         "examples": [
           0
         ],
         "type": "slang",
-        "construction": "caerle",
         "example_ids": [
           "2942055:48"
         ]
@@ -155519,12 +156249,15 @@
       }
     ]
   },
-  "frontear|frontera": {
+  "frontear|frontear": {
     "spanishdict-flash-lite": [
       {
         "sense": "2b8",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211036:53"
         ]
       },
       {
@@ -155539,11 +156272,20 @@
           7,
           8,
           9
+        ],
+        "example_ids": [
+          "7909727:27",
+          "4589199:4",
+          "3626034:40",
+          "3015945:48",
+          "2976947:27",
+          "5305018:63",
+          "11292888:35",
+          "3288015:33",
+          "2871746:39"
         ]
       }
-    ]
-  },
-  "frontear|frontear": {
+    ],
     "gap-fill": [
       {
         "sense": "1b9",
@@ -155565,7 +156307,6 @@
         "type": "slang",
         "example_ids": [
           "6211036:53",
-          "7909727:27",
           "4589199:4",
           "3626034:40",
           "3015945:48",
@@ -155573,7 +156314,8 @@
           "11292888:35",
           "3288015:33",
           "2871746:39",
-          "5305015:50"
+          "3825550:1",
+          "5305018:63"
         ]
       }
     ]
@@ -156248,7 +156990,7 @@
       }
     ]
   },
-  "manín|maní": {
+  "manín|manín": {
     "spanishdict-flash-lite": [
       {
         "sense": "830",
@@ -156256,23 +156998,26 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "4179009:17",
+          "3640901:7",
+          "3167974:159"
         ]
       }
-    ]
-  },
-  "manín|manín": {
+    ],
     "gap-fill": [
       {
-        "sense": "ae4",
+        "sense": "5f1",
         "pos": "NOUN",
-        "translation": "my man",
+        "translation": "my man or bro",
         "lemma": "manín",
         "examples": [
           0,
           1,
           2
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "4179009:17",
           "3640901:7",
@@ -156281,84 +157026,125 @@
       }
     ]
   },
-  "metíos|metro": {
+  "metíos|metíos": {
     "spanishdict-flash-lite": [
       {
         "sense": "1d7",
         "examples": [
           4
+        ],
+        "example_ids": [
+          "3104973:32"
         ]
       },
       {
         "sense": "66a",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "6211037:23"
         ]
       },
       {
         "sense": "737",
         "examples": [
           5
+        ],
+        "example_ids": [
+          "9614087:53"
         ]
       },
       {
         "sense": "7f9",
         "examples": [
           3
+        ],
+        "example_ids": [
+          "5210444:10"
         ]
       },
       {
         "sense": "911",
         "examples": [
           6
+        ],
+        "example_ids": [
+          "8598733:24"
         ]
       },
       {
         "sense": "b1f",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4147689:22"
         ]
       },
       {
         "sense": "ea1",
         "examples": [
           2
+        ],
+        "example_ids": [
+          "5422982:18"
         ]
       }
-    ]
-  },
-  "metíos|metíos": {
+    ],
     "gap-fill": [
       {
-        "sense": "6ca",
+        "sense": "689",
         "pos": "ADJ",
-        "translation": "stuck",
+        "translation": "stuck / trapped",
         "lemma": "metíos",
         "examples": [
           0,
-          2,
-          4
+          2
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "4147689:22",
-          "5422982:18",
-          "3104973:32"
+          "5422982:18"
         ]
       },
       {
-        "sense": "ef0",
+        "sense": "ae7",
         "pos": "ADJ",
-        "translation": "involved",
+        "translation": "involved in",
         "lemma": "metíos",
         "examples": [
-          1,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6211037:23"
+        ]
+      },
+      {
+        "sense": "72c",
+        "pos": "ADJ",
+        "translation": "hidden / lost",
+        "lemma": "metíos",
+        "examples": [
           3
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
-          "6211037:23",
           "5210444:10"
+        ]
+      },
+      {
+        "sense": "9e7",
+        "pos": "ADJ",
+        "translation": "obsessed / fixated",
+        "lemma": "metíos",
+        "examples": [
+          4
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3104973:32"
         ]
       },
       {
@@ -156369,20 +157155,20 @@
         "examples": [
           5
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "9614087:53"
         ]
       },
       {
-        "sense": "16c",
+        "sense": "0f9",
         "pos": "ADJ",
-        "translation": "inside",
+        "translation": "inside / within",
         "lemma": "metíos",
         "examples": [
           6
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "8598733:24"
         ]
@@ -156434,7 +157220,7 @@
       }
     ]
   },
-  "revol|revolt": {
+  "revol|revol": {
     "spanishdict-flash-lite": [
       {
         "sense": "5f7",
@@ -156443,11 +157229,15 @@
           1,
           2,
           3
+        ],
+        "example_ids": [
+          "9614100:25",
+          "3208907:74",
+          "2942055:86",
+          "3176687:53"
         ]
       }
-    ]
-  },
-  "revol|revol": {
+    ],
     "gap-fill": [
       {
         "sense": "026",
@@ -156481,7 +157271,7 @@
       }
     ]
   },
-  "uy|¡Uy!": {
+  "uy|uy": {
     "spanishdict-flash-lite": [
       {
         "sense": "449",
@@ -156492,12 +157282,23 @@
           4,
           5,
           6
+        ],
+        "example_ids": [
+          "5529171:17",
+          "7967939:22",
+          "9614104:47",
+          "7967942:78",
+          "5091581:85",
+          "3048221:127"
         ]
       },
       {
         "sense": "b0c",
         "examples": [
           3
+        ],
+        "example_ids": [
+          "5305018:30"
         ]
       }
     ]
@@ -157316,12 +158117,30 @@
       }
     ]
   },
-  "exagerao|exagerado": {
+  "exagerao|exagerao": {
     "spanishdict-flash-lite": [
       {
         "sense": "617",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5629827:34"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "99e",
+        "pos": "ADJ",
+        "translation": "exaggerated or extreme",
+        "lemma": "exagerao",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5629827:34"
         ]
       }
     ]
@@ -157362,23 +158181,27 @@
       }
     ]
   },
-  "juquear|jaquear": {
+  "juquear|juquear": {
     "spanishdict-flash-lite": [
       {
         "sense": "2bd",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11304595:39"
         ]
       },
       {
         "sense": "bcc",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "3289205:16"
         ]
       }
-    ]
-  },
-  "juquear|juquear": {
+    ],
     "gap-fill": [
       {
         "sense": "1a0",
@@ -157394,9 +158217,9 @@
         ]
       },
       {
-        "sense": "c83",
+        "sense": "7b0",
         "pos": "VERB",
-        "translation": "to get hooked",
+        "translation": "to get hooked or addicted",
         "lemma": "juquear",
         "examples": [
           1
@@ -157747,12 +158570,15 @@
       }
     ]
   },
-  "atreva|abrevar": {
+  "atreva|atreva": {
     "spanishdict-flash-lite": [
       {
         "sense": "527",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4179012:19"
         ]
       },
       {
@@ -157760,23 +158586,24 @@
         "examples": [
           1,
           2
+        ],
+        "example_ids": [
+          "4589199:34",
+          "7967965:33"
         ]
       }
-    ]
-  },
-  "atreva|atreva": {
+    ],
     "gap-fill": [
       {
-        "sense": "b76",
+        "sense": "d23",
         "pos": "VERB",
-        "translation": "to dare",
+        "translation": "dare",
         "lemma": "atreva",
         "examples": [
           0,
           1,
           2
         ],
-        "type": "figurative",
         "construction": "atreverse",
         "example_ids": [
           "4179012:19",
@@ -158144,7 +158971,7 @@
       }
     ]
   },
-  "rodeos|rodeos": {
+  "rodeos|rodeo": {
     "spanishdict-flash-lite": [
       {
         "sense": "d0d",
@@ -158541,29 +159368,31 @@
       }
     ]
   },
-  "nio|ni": {
+  "nio|nio": {
     "spanishdict-flash-lite": [
       {
         "sense": "df0",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "6862415:2",
+          "3495715:83"
         ]
       }
-    ]
-  },
-  "nio|nio": {
+    ],
     "gap-fill": [
       {
-        "sense": "bb2",
-        "pos": "ADV",
-        "translation": "no",
+        "sense": "7b7",
+        "pos": "PROPN",
+        "translation": "producer tag for Nio Garcia",
         "lemma": "nio",
         "examples": [
           0,
           1
         ],
-        "type": "slang",
+        "type": "proper_noun",
         "example_ids": [
           "6862415:2",
           "3495715:83"
@@ -158687,47 +159516,40 @@
       }
     ]
   },
-  "sata|sala": {
+  "sata|sata": {
     "spanishdict-flash-lite": [
       {
         "sense": "f35",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3133285:78"
         ]
       },
       {
         "sense": "fa5",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "3048221:8"
         ]
       }
-    ]
-  },
-  "sata|sata": {
+    ],
     "gap-fill": [
       {
-        "sense": "2be",
-        "pos": "ADJ",
-        "translation": "devilish/promiscuous",
-        "lemma": "sata",
-        "examples": [
-          0
-        ],
-        "type": "slang",
-        "example_ids": [
-          "3133285:78"
-        ]
-      },
-      {
-        "sense": "846",
+        "sense": "d11",
         "pos": "NOUN",
-        "translation": "devil/promiscuous woman",
+        "translation": "promiscuous or wild woman",
         "lemma": "sata",
         "examples": [
+          0,
           1
         ],
         "type": "slang",
         "example_ids": [
+          "3133285:78",
           "3048221:8"
         ]
       }
@@ -158753,12 +159575,30 @@
       }
     ]
   },
-  "squirteé|squirt": {
+  "squirteé|squirteé": {
     "spanishdict-flash-lite": [
       {
         "sense": "105",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2503547:22"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "588",
+        "pos": "VERB",
+        "translation": "female ejaculation",
+        "lemma": "squirteé",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "2503547:22"
         ]
       }
     ]
@@ -159008,7 +159848,7 @@
       }
     ]
   },
-  "atrevo|atrezo": {
+  "atrevo|atrevo": {
     "spanishdict-flash-lite": [
       {
         "sense": "dff",
@@ -159017,6 +159857,33 @@
           1,
           2,
           3
+        ],
+        "example_ids": [
+          "4178994:25",
+          "6855744:21",
+          "7967968:5",
+          "9614100:23"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "d23",
+        "pos": "VERB",
+        "translation": "dare",
+        "lemma": "atrevo",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "construction": "atreverse",
+        "example_ids": [
+          "4178994:25",
+          "6855744:21",
+          "7967968:5",
+          "9614100:23"
         ]
       }
     ]
@@ -159067,13 +159934,14 @@
       }
     ]
   },
-  "chq|che": {
+  "chq|chq": {
     "spanishdict-flash-lite": [
       {
         "sense": "55b",
         "examples": [
           0
-        ]
+        ],
+        "example_ids": []
       }
     ]
   },
@@ -159098,17 +159966,18 @@
       }
     ]
   },
-  "encuerna|encuerar": {
+  "encuerna|encuerna": {
     "spanishdict-flash-lite": [
       {
         "sense": "e44",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3046295:8"
         ]
       }
-    ]
-  },
-  "encuerna|encuerna": {
+    ],
     "gap-fill": [
       {
         "sense": "663",
@@ -159125,7 +159994,7 @@
       }
     ]
   },
-  "feka|feo": {
+  "feka|feka": {
     "spanishdict-flash-lite": [
       {
         "sense": "ab0",
@@ -159135,47 +160004,75 @@
           2,
           3,
           4
-        ]
-      }
-    ]
-  },
-  "feka|feka": {
-    "gap-fill": [
-      {
-        "sense": "848",
-        "pos": "ADJ",
-        "translation": "fake",
-        "lemma": "feka",
-        "examples": [
-          0,
-          1,
-          2,
-          3
         ],
-        "type": "slang",
         "example_ids": [
           "6717116:20",
           "5553950:29",
           "6211036:49",
+          "3253426:57",
+          "3640901:64"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "b10",
+        "pos": "ADJ",
+        "translation": "fake or inauthentic",
+        "lemma": "feka",
+        "examples": [
+          0,
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6717116:20",
+          "6211036:49"
+        ]
+      },
+      {
+        "sense": "303",
+        "pos": "NOUN",
+        "translation": "a lie or fake situation",
+        "lemma": "feka",
+        "examples": [
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5553950:29"
+        ]
+      },
+      {
+        "sense": "76e",
+        "pos": "ADJ",
+        "translation": "fake or counterfeit",
+        "lemma": "feka",
+        "examples": [
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
           "3253426:57"
         ]
       },
       {
-        "sense": "c8f",
+        "sense": "f30",
         "pos": "NOUN",
-        "translation": "fakes",
+        "translation": "fake people or lies",
         "lemma": "feka",
         "examples": [
           4
         ],
         "type": "slang",
+        "construction": "capeamo' feka",
         "example_ids": [
           "3640901:64"
         ]
       }
     ]
   },
-  "felis|feliz": {
+  "felis|felis": {
     "spanishdict-flash-lite": [
       {
         "sense": "1fe",
@@ -159184,32 +160081,63 @@
           1,
           2,
           3
+        ],
+        "example_ids": [
+          "6211022:8",
+          "11180508:38",
+          "9614100:32",
+          "2914746:31"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "46f",
+        "pos": "ADJ",
+        "translation": "happy",
+        "lemma": "felis",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6211022:8",
+          "11180508:38",
+          "9614100:32",
+          "2914746:31"
         ]
       }
     ]
   },
-  "fulete|filete": {
+  "fulete|fulete": {
     "spanishdict-flash-lite": [
       {
         "sense": "28b",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2503547:29"
         ]
       },
       {
         "sense": "813",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "3006211:66"
         ]
       }
-    ]
-  },
-  "fulete|fulete": {
+    ],
     "gap-fill": [
       {
-        "sense": "df5",
+        "sense": "429",
         "pos": "NOUN",
-        "translation": "hustle",
+        "translation": "the hustle or street life",
         "lemma": "fulete",
         "examples": [
           0
@@ -159220,9 +160148,9 @@
         ]
       },
       {
-        "sense": "58e",
+        "sense": "a34",
         "pos": "NOUN",
-        "translation": "firearm",
+        "translation": "a firearm",
         "lemma": "fulete",
         "examples": [
           1
@@ -159234,22 +160162,23 @@
       }
     ]
   },
-  "fuletes|fletar": {
+  "fuletes|fuletes": {
     "spanishdict-flash-lite": [
       {
         "sense": "055",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3006211:26"
         ]
       }
-    ]
-  },
-  "fuletes|fuletes": {
+    ],
     "gap-fill": [
       {
-        "sense": "3d5",
-        "pos": "ADJ",
-        "translation": "loaded/full",
+        "sense": "455",
+        "pos": "NOUN",
+        "translation": "fully loaded firearms",
         "lemma": "fuletes",
         "examples": [
           0
@@ -159369,7 +160298,7 @@
       }
     ]
   },
-  "hermas|horma": {
+  "hermas|hermas": {
     "spanishdict-flash-lite": [
       {
         "sense": "021",
@@ -159377,16 +160306,19 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "3016410:77",
+          "2990674:73",
+          "3256611:94"
         ]
       }
-    ]
-  },
-  "hermas|hermas": {
+    ],
     "gap-fill": [
       {
-        "sense": "a9c",
+        "sense": "333",
         "pos": "NOUN",
-        "translation": "brother",
+        "translation": "brother or close friend",
         "lemma": "hermas",
         "examples": [
           0,
@@ -159419,7 +160351,7 @@
       }
     ]
   },
-  "maleanteo|maleante": {
+  "maleanteo|maleanteo": {
     "spanishdict-flash-lite": [
       {
         "sense": "10a",
@@ -159428,16 +160360,20 @@
           1,
           2,
           3
+        ],
+        "example_ids": [
+          "5305009:23",
+          "5305033:49",
+          "9614095:26",
+          "7967942:58"
         ]
       }
-    ]
-  },
-  "maleanteo|maleanteo": {
+    ],
     "gap-fill": [
       {
-        "sense": "ab7",
+        "sense": "af9",
         "pos": "NOUN",
-        "translation": "gangster lifestyle or vibe",
+        "translation": "gangster lifestyle or attitude",
         "lemma": "maleanteo",
         "examples": [
           0,
@@ -159678,23 +160614,25 @@
       }
     ]
   },
-  "yal|ya": {
+  "yal|yal": {
     "spanishdict-flash-lite": [
       {
         "sense": "103",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "7967962:19",
+          "7967978:46"
         ]
       }
-    ]
-  },
-  "yal|yal": {
+    ],
     "gap-fill": [
       {
-        "sense": "b35",
+        "sense": "b51",
         "pos": "NOUN",
-        "translation": "girl",
+        "translation": "girl or girlfriend",
         "lemma": "yal",
         "examples": [
           0,
@@ -160016,18 +160954,14 @@
       }
     ]
   },
-  "amistades|amistades": {
+  "amistades|amistad": {
     "spanishdict-flash-lite": [
       {
         "sense": "1ee",
         "examples": [
           1
         ]
-      }
-    ]
-  },
-  "amistades|amistad": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "25b",
         "examples": [
@@ -160053,7 +160987,7 @@
       }
     ]
   },
-  "buenota|bueno": {
+  "buenota|buenota": {
     "spanishdict-flash-lite": [
       {
         "sense": "68a",
@@ -160061,6 +160995,30 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "7967957:4",
+          "4726686:50",
+          "7967942:20"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "3f2",
+        "pos": "ADJ",
+        "translation": "very hot or attractive",
+        "lemma": "buenota",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "7967957:4",
+          "4726686:50",
+          "7967942:20"
         ]
       }
     ]
@@ -160437,7 +161395,7 @@
       }
     ]
   },
-  "frabian|Fabian": {
+  "frabian|frabian": {
     "spanishdict-flash-lite": [
       {
         "sense": "33c",
@@ -160445,6 +161403,11 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "3041034:85",
+          "5614024:83",
+          "7934367:85"
         ]
       }
     ]
@@ -160532,7 +161495,7 @@
       }
     ]
   },
-  "lary|lazy": {
+  "lary|lary": {
     "spanishdict-flash-lite": [
       {
         "sense": "608",
@@ -160540,11 +161503,14 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "3044908:83",
+          "3001094:92",
+          "3167974:164"
         ]
       }
-    ]
-  },
-  "lary|lary": {
+    ],
     "gap-fill": [
       {
         "sense": "789",
@@ -161665,21 +162631,22 @@
       }
     ]
   },
-  "cheki|cheli": {
+  "cheki|cheki": {
     "spanishdict-flash-lite": [
       {
         "sense": "611",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211036:34"
         ]
       }
-    ]
-  },
-  "cheki|cheki": {
+    ],
     "gap-fill": [
       {
-        "sense": "1c0",
-        "pos": "INTJ",
+        "sense": "9d4",
+        "pos": "VERB",
         "translation": "check it out",
         "lemma": "cheki",
         "examples": [
@@ -162107,17 +163074,18 @@
       }
     ]
   },
-  "esbocas|esbozar": {
+  "esbocas|esbocas": {
     "spanishdict-flash-lite": [
       {
         "sense": "23e",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3103548:12"
         ]
       }
-    ]
-  },
-  "esbocas|esbocas": {
+    ],
     "gap-fill": [
       {
         "sense": "90e",
@@ -162227,11 +163195,22 @@
     ]
   },
   "estilazo|estilazo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a96",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "9614092:19"
+        ]
+      }
+    ],
     "gap-fill": [
       {
-        "sense": "440",
+        "sense": "9a1",
         "pos": "NOUN",
-        "translation": "great style",
+        "translation": "great style or flair",
         "lemma": "estilazo",
         "examples": [
           0
@@ -162243,29 +163222,31 @@
       }
     ]
   },
-  "farrus|farra": {
+  "farrus|farrus": {
     "spanishdict-flash-lite": [
       {
         "sense": "3e6",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3152684:72",
+          "3080797:63"
         ]
       }
-    ]
-  },
-  "farrus|farrus": {
+    ],
     "gap-fill": [
       {
-        "sense": "909",
-        "pos": "NOUN",
-        "translation": "Farruko (artist name)",
+        "sense": "fdb",
+        "pos": "PROPN",
+        "translation": "Puerto Rican reggaeton artist Farruko",
         "lemma": "farrus",
         "examples": [
           0,
           1
         ],
-        "type": "regional",
+        "type": "proper_noun",
         "example_ids": [
           "3152684:72",
           "3080797:63"
@@ -162478,7 +163459,7 @@
       }
     ]
   },
-  "herma|horma": {
+  "herma|herma": {
     "spanishdict-flash-lite": [
       {
         "sense": "021",
@@ -162486,16 +163467,19 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "3640901:17",
+          "3334750:24",
+          "3007462:17"
         ]
       }
-    ]
-  },
-  "herma|herma": {
+    ],
     "gap-fill": [
       {
-        "sense": "499",
+        "sense": "333",
         "pos": "NOUN",
-        "translation": "brother/friend",
+        "translation": "brother or close friend",
         "lemma": "herma",
         "examples": [
           0,
@@ -162568,12 +163552,15 @@
       }
     ]
   },
-  "juquea|jaquear": {
+  "juquea|juquea": {
     "spanishdict-flash-lite": [
       {
         "sense": "2bd",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3167974:34"
         ]
       }
     ]
@@ -162588,7 +163575,7 @@
       }
     ]
   },
-  "maliantes|maleante": {
+  "maliantes|maliantes": {
     "pos-auto": [
       {
         "sense": "e62",
@@ -162602,6 +163589,26 @@
         "sense": "10a",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "5305039:9"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "36e",
+        "pos": "NOUN",
+        "translation": "gangsters or criminals",
+        "lemma": "maliantes",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5553950:45",
+          "5305039:9"
         ]
       }
     ]
@@ -162806,7 +163813,7 @@
       }
     ]
   },
-  "perse|purse": {
+  "perse|perse": {
     "spanishdict-flash-lite": [
       {
         "sense": "2c3",
@@ -162814,16 +163821,19 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "2959823:22",
+          "2503547:62",
+          "5239124:53"
         ]
       }
-    ]
-  },
-  "perse|perse": {
+    ],
     "gap-fill": [
       {
-        "sense": "80c",
+        "sense": "61b",
         "pos": "NOUN",
-        "translation": "escape",
+        "translation": "escape or way out",
         "lemma": "perse",
         "examples": [
           0
@@ -162834,9 +163844,9 @@
         ]
       },
       {
-        "sense": "150",
+        "sense": "c5e",
         "pos": "NOUN",
-        "translation": "problems",
+        "translation": "worry or problem",
         "lemma": "perse",
         "examples": [
           1
@@ -162847,9 +163857,9 @@
         ]
       },
       {
-        "sense": "cf0",
+        "sense": "ce7",
         "pos": "NOUN",
-        "translation": "chase",
+        "translation": "chase or pursuit",
         "lemma": "perse",
         "examples": [
           2
@@ -163252,7 +164262,7 @@
       }
     ]
   },
-  "tacones|tacones": {
+  "tacones|tacón": {
     "spanishdict-flash-lite": [
       {
         "sense": "336",
@@ -163347,12 +164357,15 @@
       }
     ]
   },
-  "ustes|ustedes": {
+  "ustes|ustes": {
     "spanishdict-flash-lite": [
       {
         "sense": "051",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7257949:20"
         ]
       }
     ]
@@ -163521,7 +164534,7 @@
       }
     ]
   },
-  "doscientas|doscientos": {
+  "doscientas|doscientas": {
     "spanishdict-flash-lite": [
       {
         "sense": "cae",
@@ -163529,6 +164542,29 @@
           0,
           1,
           2
+        ],
+        "example_ids": [
+          "6852775:59",
+          "7967938:40",
+          "9592355:42"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "b7c",
+        "pos": "ADJ",
+        "translation": "two hundred",
+        "lemma": "doscientas",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "example_ids": [
+          "6852775:59",
+          "7967938:40",
+          "9592355:42"
         ]
       }
     ]
@@ -163745,23 +164781,25 @@
       }
     ]
   },
-  "acape|acabar": {
+  "acape|acape": {
     "spanishdict-flash-lite": [
       {
         "sense": "482",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "9614090:42",
+          "3101741:28"
         ]
       }
-    ]
-  },
-  "acape|acape": {
+    ],
     "gap-fill": [
       {
-        "sense": "601",
-        "pos": "VERB",
-        "translation": "to escape",
+        "sense": "80c",
+        "pos": "NOUN",
+        "translation": "escape",
         "lemma": "acape",
         "examples": [
           0
@@ -163772,9 +164810,9 @@
         ]
       },
       {
-        "sense": "21b",
+        "sense": "ff5",
         "pos": "ADV",
-        "translation": "all out",
+        "translation": "without protection",
         "lemma": "acape",
         "examples": [
           1
@@ -163786,18 +164824,20 @@
       }
     ]
   },
-  "acapella|acapillar": {
+  "acapella|acapella": {
     "spanishdict-flash-lite": [
       {
         "sense": "ebd",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "7967939:22",
+          "5002336:45"
         ]
       }
-    ]
-  },
-  "acapella|acapella": {
+    ],
     "gap-fill": [
       {
         "sense": "7cb",
@@ -163805,12 +164845,22 @@
         "translation": "without musical accompaniment",
         "lemma": "acapella",
         "examples": [
-          0,
+          0
+        ],
+        "example_ids": [
+          "7967939:22"
+        ]
+      },
+      {
+        "sense": "195",
+        "pos": "ADV",
+        "translation": "bare",
+        "lemma": "acapella",
+        "examples": [
           1
         ],
         "type": "figurative",
         "example_ids": [
-          "7967939:22",
           "5002336:45"
         ]
       }
@@ -164178,23 +165228,25 @@
       }
     ]
   },
-  "bichota|bichito": {
+  "bichota|bichota": {
     "spanishdict-flash-lite": [
       {
         "sense": "c31",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "8659966:37",
+          "5305013:94"
         ]
       }
-    ]
-  },
-  "bichota|bichota": {
+    ],
     "gap-fill": [
       {
-        "sense": "af2",
+        "sense": "98b",
         "pos": "NOUN",
-        "translation": "boss bitch",
+        "translation": "powerful or boss woman",
         "lemma": "bichota",
         "examples": [
           0,
@@ -164806,23 +165858,25 @@
       }
     ]
   },
-  "celu|celos": {
+  "celu|celu": {
     "spanishdict-flash-lite": [
       {
         "sense": "7c1",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3268371:5",
+          "3133285:65"
         ]
       }
-    ]
-  },
-  "celu|celu": {
+    ],
     "gap-fill": [
       {
-        "sense": "40d",
+        "sense": "3ad",
         "pos": "NOUN",
-        "translation": "cell phone",
+        "translation": "mobile phone",
         "lemma": "celu",
         "examples": [
           0,
@@ -164879,23 +165933,25 @@
       }
     ]
   },
-  "chanteo|chante": {
+  "chanteo|chanteo": {
     "spanishdict-flash-lite": [
       {
         "sense": "ea2",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3256611:82",
+          "9614098:35"
         ]
       }
-    ]
-  },
-  "chanteo|chanteo": {
+    ],
     "gap-fill": [
       {
-        "sense": "44d",
+        "sense": "a5d",
         "pos": "NOUN",
-        "translation": "rap verse",
+        "translation": "rap verse or flow",
         "lemma": "chanteo",
         "examples": [
           0,
@@ -165042,22 +166098,23 @@
       }
     ]
   },
-  "chapis|chapa": {
+  "chapis|chapis": {
     "spanishdict-flash-lite": [
       {
         "sense": "515",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3359025:14"
         ]
       }
-    ]
-  },
-  "chapis|chapis": {
+    ],
     "gap-fill": [
       {
-        "sense": "f24",
+        "sense": "7f5",
         "pos": "ADJ",
-        "translation": "dolled up or dressed up",
+        "translation": "dolled up",
         "lemma": "chapis",
         "examples": [
           0
@@ -165154,18 +166211,20 @@
       }
     ]
   },
-  "chichar|chicha": {
+  "chichar|chichar": {
     "spanishdict-flash-lite": [
       {
         "sense": "c97",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3033848:19",
+          "6211036:17"
         ]
       }
-    ]
-  },
-  "chichar|chichar": {
+    ],
     "gap-fill": [
       {
         "sense": "8c1",
@@ -165463,23 +166522,25 @@
       }
     ]
   },
-  "conne|conde": {
+  "conne|conne": {
     "spanishdict-flash-lite": [
       {
         "sense": "e94",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3590909:17",
+          "5553950:21"
         ]
       }
-    ]
-  },
-  "conne|conne": {
+    ],
     "gap-fill": [
       {
-        "sense": "3ae",
+        "sense": "479",
         "pos": "NOUN",
-        "translation": "connection",
+        "translation": "drug connection",
         "lemma": "conne",
         "examples": [
           0,
@@ -165493,12 +166554,15 @@
       }
     ]
   },
-  "consciencia|conciencia": {
+  "consciencia|consciencia": {
     "spanishdict-flash-lite": [
       {
         "sense": "5b5",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5320909:4"
         ]
       }
     ]
@@ -165857,12 +166921,15 @@
       }
     ]
   },
-  "diablona|diablo": {
+  "diablona|diablona": {
     "spanishdict-flash-lite": [
       {
         "sense": "634e",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7967967:41"
         ]
       }
     ]
@@ -165915,18 +166982,20 @@
       }
     ]
   },
-  "durota|duro": {
+  "durota|durota": {
     "spanishdict-flash-lite": [
       {
         "sense": "ceb",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3182161:43",
+          "3140715:33"
         ]
       }
-    ]
-  },
-  "durota|durota": {
+    ],
     "gap-fill": [
       {
         "sense": "260",
@@ -165945,29 +167014,32 @@
       }
     ]
   },
-  "déj|DJ": {
+  "déj|déj": {
     "spanishdict-flash-lite": [
       {
         "sense": "f51",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "6387245:1",
+          "3640901:22"
         ]
       }
-    ]
-  },
-  "déj|déj": {
+    ],
     "gap-fill": [
       {
-        "sense": "3c6",
+        "sense": "0e8",
         "pos": "NOUN",
-        "translation": "part of déjà vu",
+        "translation": "feeling of having experienced something before",
         "lemma": "déj",
         "examples": [
           0,
           1
         ],
-        "type": "other",
+        "type": "loanword",
+        "construction": "déjà vu",
         "example_ids": [
           "6387245:1",
           "3640901:22"
@@ -166355,23 +167427,25 @@
       }
     ]
   },
-  "friza|freír": {
+  "friza|friza": {
     "spanishdict-flash-lite": [
       {
         "sense": "242",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "9614092:10",
+          "9614095:32"
         ]
       }
-    ]
-  },
-  "friza|friza": {
+    ],
     "gap-fill": [
       {
-        "sense": "ce7",
+        "sense": "468",
         "pos": "VERB",
-        "translation": "to freeze (digital)",
+        "translation": "to freeze",
         "lemma": "friza",
         "examples": [
           0,
@@ -166496,17 +167570,18 @@
       }
     ]
   },
-  "glizzy|glitzy": {
+  "glizzy|glizzy": {
     "spanishdict-flash-lite": [
       {
         "sense": "505",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614087:59"
         ]
       }
-    ]
-  },
-  "glizzy|glizzy": {
+    ],
     "gap-fill": [
       {
         "sense": "a3e",
@@ -166595,17 +167670,18 @@
       }
     ]
   },
-  "hijeputa|hijueputa": {
+  "hijeputa|hijeputa": {
     "spanishdict-flash-lite": [
       {
         "sense": "8db",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9246653:42"
         ]
       }
-    ]
-  },
-  "hijeputa|hijeputa": {
+    ],
     "gap-fill": [
       {
         "sense": "51b",
@@ -166735,17 +167811,18 @@
       }
     ]
   },
-  "jhay|jay": {
+  "jhay|jhay": {
     "spanishdict-flash-lite": [
       {
         "sense": "cbf",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4558062:78"
         ]
       }
-    ]
-  },
-  "jhay|jhay": {
+    ],
     "gap-fill": [
       {
         "sense": "789",
@@ -166762,45 +167839,48 @@
       }
     ]
   },
-  "jodien|joder": {
+  "jodien|jodien": {
     "spanishdict-flash-lite": [
       {
         "sense": "24f",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3256611:19"
         ]
       }
-    ]
-  },
-  "jodien|jodien": {
+    ],
     "gap-fill": [
       {
-        "sense": "47c",
-        "pos": "NOUN",
-        "translation": "the one who messes around",
+        "sense": "b66",
+        "pos": "PROPN",
+        "translation": "a specific artist or persona",
         "lemma": "jodien",
         "examples": [
           0
         ],
-        "type": "slang",
+        "type": "proper_noun",
         "example_ids": [
           "3256611:19"
         ]
       }
     ]
   },
-  "juqueado|jaquear": {
+  "juqueado|juqueado": {
     "spanishdict-flash-lite": [
       {
         "sense": "2bd",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "6100181:23",
+          "6211010:50"
         ]
       }
-    ]
-  },
-  "juqueado|juqueado": {
+    ],
     "gap-fill": [
       {
         "sense": "6a6",
@@ -166819,28 +167899,32 @@
       }
     ]
   },
-  "kiosko|kiosco": {
+  "kiosko|kiosko": {
     "spanishdict-flash-lite": [
       {
         "sense": "4de",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "3006211:117"
         ]
       },
       {
         "sense": "889",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4763027:16"
         ]
       }
-    ]
-  },
-  "kiosko|kiosko": {
+    ],
     "gap-fill": [
       {
-        "sense": "478",
+        "sense": "e9c",
         "pos": "NOUN",
-        "translation": "drug selling spot",
+        "translation": "drug selling point",
         "lemma": "kiosko",
         "examples": [
           0,
@@ -167058,12 +168142,15 @@
       }
     ]
   },
-  "mujere|mujer": {
+  "mujere|mujere": {
     "spanishdict-flash-lite": [
       {
         "sense": "2e9",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4662261:3"
         ]
       }
     ]
@@ -167079,17 +168166,18 @@
       }
     ]
   },
-  "murdaz|mordaz": {
+  "murdaz|murdaz": {
     "spanishdict-flash-lite": [
       {
         "sense": "5ec",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3006211:13"
         ]
       }
-    ]
-  },
-  "murdaz|murdaz": {
+    ],
     "gap-fill": [
       {
         "sense": "d7c",
@@ -167146,18 +168234,20 @@
       }
     ]
   },
-  "nacíos|nacho": {
+  "nacíos|nacíos": {
     "spanishdict-flash-lite": [
       {
         "sense": "a6b",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "4759404:38",
+          "3288015:55"
         ]
       }
-    ]
-  },
-  "nacíos|nacíos": {
+    ],
     "gap-fill": [
       {
         "sense": "04a",
@@ -167168,7 +168258,7 @@
           0,
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "4759404:38",
           "3288015:55"
@@ -167176,17 +168266,18 @@
       }
     ]
   },
-  "nkan|nan": {
+  "nkan|nkan": {
     "spanishdict-flash-lite": [
       {
         "sense": "0ab",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4662273:45"
         ]
       }
-    ]
-  },
-  "nkan|nkan": {
+    ],
     "gap-fill": [
       {
         "sense": "5a0",
@@ -167214,12 +168305,30 @@
       }
     ]
   },
-  "ojalái|ojalá": {
+  "ojalái|ojalái": {
     "spanishdict-flash-lite": [
       {
         "sense": "64c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4179009:11"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "670",
+        "pos": "INTJ",
+        "translation": "I wish or hopefully",
+        "lemma": "ojalái",
+        "examples": [
+          0
+        ],
+        "type": "regional",
+        "example_ids": [
+          "4179009:11"
         ]
       }
     ]
@@ -167355,7 +168464,7 @@
       }
     ]
   },
-  "patás|patas": {
+  "patás|pata": {
     "spanishdict-flash-lite": [
       {
         "sense": "e12",
@@ -167442,12 +168551,15 @@
       }
     ]
   },
-  "perriaba|perrear": {
+  "perriaba|perriaba": {
     "spanishdict-flash-lite": [
       {
         "sense": "880",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4179021:25"
         ]
       }
     ]
@@ -167575,23 +168687,25 @@
       }
     ]
   },
-  "piquetú|piquete": {
+  "piquetú|piquetú": {
     "spanishdict-flash-lite": [
       {
         "sense": "94d",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "7420852:42",
+          "9614068:59"
         ]
       }
-    ]
-  },
-  "piquetú|piquetú": {
+    ],
     "gap-fill": [
       {
-        "sense": "36a",
+        "sense": "09a",
         "pos": "ADJ",
-        "translation": "worked up",
+        "translation": "agitated or worked up",
         "lemma": "piquetú",
         "examples": [
           0
@@ -167602,9 +168716,9 @@
         ]
       },
       {
-        "sense": "051",
+        "sense": "ff4",
         "pos": "ADJ",
-        "translation": "stylish",
+        "translation": "flashy or stylish",
         "lemma": "piquetú",
         "examples": [
           1
@@ -167616,28 +168730,32 @@
       }
     ]
   },
-  "piquetúa|piqueta": {
+  "piquetúa|piquetúa": {
     "spanishdict-flash-lite": [
       {
         "sense": "45f",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "7967967:36"
         ]
       },
       {
         "sense": "6b2",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "12135998:17"
         ]
       }
-    ]
-  },
-  "piquetúa|piquetúa": {
+    ],
     "gap-fill": [
       {
-        "sense": "6ae",
-        "pos": "NOUN",
-        "translation": "nasty thing",
+        "sense": "2cc",
+        "pos": "ADJ",
+        "translation": "nasty or sexually aggressive",
         "lemma": "piquetúa",
         "examples": [
           0
@@ -167648,9 +168766,9 @@
         ]
       },
       {
-        "sense": "954",
+        "sense": "fd3",
         "pos": "ADJ",
-        "translation": "feisty",
+        "translation": "feisty or bold",
         "lemma": "piquetúa",
         "examples": [
           1
@@ -167961,22 +169079,23 @@
       }
     ]
   },
-  "safaera|zafar": {
+  "safaera|safaera": {
     "spanishdict-flash-lite": [
       {
         "sense": "6bb",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305013:6"
         ]
       }
-    ]
-  },
-  "safaera|safaera": {
+    ],
     "gap-fill": [
       {
-        "sense": "184",
+        "sense": "850",
         "pos": "NOUN",
-        "translation": "party girl",
+        "translation": "a woman who likes to party and act wild",
         "lemma": "safaera",
         "examples": [
           0
@@ -168138,17 +169257,18 @@
       }
     ]
   },
-  "sinfo|sino": {
+  "sinfo|sinfo": {
     "spanishdict-flash-lite": [
       {
         "sense": "485",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3006211:12"
         ]
       }
-    ]
-  },
-  "sinfo|sinfo": {
+    ],
     "gap-fill": [
       {
         "sense": "789",
@@ -168252,17 +169372,18 @@
       }
     ]
   },
-  "tatís|andar tantas": {
+  "tatís|tatís": {
     "spanishdict-flash-lite": [
       {
         "sense": "b0d",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7067014:20"
         ]
       }
-    ]
-  },
-  "tatís|tatís": {
+    ],
     "gap-fill": [
       {
         "sense": "6f4",
@@ -168362,75 +169483,70 @@
       }
     ]
   },
-  "toítas|torta": {
+  "toítas|toítas": {
     "spanishdict-flash-lite": [
       {
         "sense": "3cf",
         "examples": [
           1
+        ],
+        "example_ids": [
+          "4558062:29"
         ]
       },
       {
         "sense": "561",
         "examples": [
           0
-        ]
-      }
-    ]
-  },
-  "toítas|toítas": {
-    "gap-fill": [
-      {
-        "sense": "1b8",
-        "pos": "NOUN",
-        "translation": "all of them",
-        "lemma": "toítas",
-        "examples": [
-          0
         ],
-        "type": "slang",
         "example_ids": [
           "3122516:22"
         ]
-      },
+      }
+    ],
+    "gap-fill": [
       {
-        "sense": "b8a",
+        "sense": "1ad",
         "pos": "ADJ",
-        "translation": "all",
+        "translation": "all of them (feminine)",
         "lemma": "toítas",
         "examples": [
+          0,
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
+          "3122516:22",
           "4558062:29"
         ]
       }
     ]
   },
-  "toítos|tonto": {
+  "toítos|toítos": {
     "spanishdict-flash-lite": [
       {
         "sense": "922",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "6852775:47",
+          "5629886:23"
         ]
       }
-    ]
-  },
-  "toítos|toítos": {
+    ],
     "gap-fill": [
       {
-        "sense": "58f",
-        "pos": "NOUN",
-        "translation": "everyone",
+        "sense": "8cc",
+        "pos": "ADJ",
+        "translation": "all of them (masculine)",
         "lemma": "toítos",
         "examples": [
           0,
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "6852775:47",
           "5629886:23"
@@ -168518,23 +169634,25 @@
       }
     ]
   },
-  "trili|trill": {
+  "trili|trili": {
     "spanishdict-flash-lite": [
       {
         "sense": "92c",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "9614088:22",
+          "3041103:23"
         ]
       }
-    ]
-  },
-  "trili|trili": {
+    ],
     "gap-fill": [
       {
-        "sense": "b33",
+        "sense": "6c8",
         "pos": "NOUN",
-        "translation": "a nobody/scrub",
+        "translation": "a loser or nobody",
         "lemma": "trili",
         "examples": [
           0
@@ -168545,9 +169663,9 @@
         ]
       },
       {
-        "sense": "c1b",
+        "sense": "526",
         "pos": "NOUN",
-        "translation": "a snitch",
+        "translation": "a snitch or informant",
         "lemma": "trili",
         "examples": [
           1
@@ -168730,51 +169848,94 @@
       }
     ]
   },
-  "wey|güey": {
+  "wey|wey": {
     "spanishdict-flash-lite": [
       {
         "sense": "73c",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "5305051:27",
+          "4179009:16"
         ]
       }
-    ]
-  },
-  "yanyo|yayo": {
-    "spanishdict-flash-lite": [
+    ],
+    "gap-fill": [
       {
-        "sense": "999",
+        "sense": "e39",
+        "pos": "NOUN",
+        "translation": "dude or man",
+        "lemma": "wey",
         "examples": [
-          0
+          0,
+          1
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "5305051:27",
+          "4179009:16"
         ]
       }
     ]
   },
   "yanyo|yanyo": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "999",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2976947:62"
+        ]
+      }
+    ],
     "gap-fill": [
       {
-        "sense": "24e",
-        "pos": "NOUN",
-        "translation": "grandpa",
+        "sense": "e92",
+        "pos": "PROPN",
+        "translation": "a Puerto Rican music producer",
         "lemma": "yanyo",
         "examples": [
           0
         ],
-        "type": "regional",
+        "type": "proper_noun",
         "example_ids": [
           "2976947:62"
         ]
       }
     ]
   },
-  "yerba|hierba": {
+  "yerba|yerba": {
     "spanishdict-flash-lite": [
       {
         "sense": "24f2",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "11304595:56",
+          "5305013:92"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "9d2",
+        "pos": "NOUN",
+        "translation": "marijuana",
+        "lemma": "yerba",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "11304595:56",
+          "5305013:92"
         ]
       }
     ]
@@ -168871,18 +170032,20 @@
       }
     ]
   },
-  "caicos|chicos": {
+  "caicos|caicos": {
     "spanishdict-flash-lite": [
       {
         "sense": "104",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "9237319:33",
+          "5761512:26"
         ]
       }
-    ]
-  },
-  "caicos|caicos": {
+    ],
     "gap-fill": [
       {
         "sense": "a06",
@@ -169141,12 +170304,15 @@
       }
     ]
   },
-  "cógela|comer": {
+  "cógela|cógela": {
     "spanishdict-flash-lite": [
       {
         "sense": "22c2",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3256611:115"
         ]
       }
     ]
@@ -169258,7 +170424,7 @@
       }
     ]
   },
-  "reflejos|reflejos": {
+  "reflejos|reflejo": {
     "spanishdict-flash-lite": [
       {
         "sense": "cfa",
@@ -170131,7 +171297,7 @@
       }
     ]
   },
-  "cógelo|cómelo": {
+  "cógelo|cógelo": {
     "spanishdict-auto": [
       {
         "sense": "f23",
@@ -170140,6 +171306,12 @@
           1,
           2,
           3
+        ],
+        "example_ids": [
+          "3888528:53",
+          "2990674:45",
+          "3176687:31",
+          "5239124:64"
         ]
       }
     ]
@@ -170414,12 +171586,15 @@
       }
     ]
   },
-  "pásame|pasar": {
+  "pásame|pásame": {
     "biencoder": [
       {
         "sense": "0f1",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4179009:2"
         ]
       }
     ],
@@ -170428,6 +171603,9 @@
         "sense": "0f1",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4179009:2"
         ]
       }
     ]
@@ -172352,12 +173530,15 @@
       }
     ]
   },
-  "cántalo|cántaro": {
+  "cántalo|cántalo": {
     "biencoder": [
       {
         "sense": "115",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5002336:32"
         ]
       }
     ],
@@ -172366,6 +173547,9 @@
         "sense": "115",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5002336:32"
         ]
       }
     ]
@@ -174522,13 +175706,17 @@
       }
     ]
   },
-  "pasándola|parar": {
+  "pasándola|pasándola": {
     "biencoder": [
       {
         "sense": "b2c",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "11180508:3",
+          "9614069:83"
         ]
       }
     ],
@@ -174538,23 +175726,25 @@
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "11180508:3",
+          "9614069:83"
         ]
       }
-    ]
-  },
-  "pasándola|pasándola": {
+    ],
     "gap-fill": [
       {
-        "sense": "8bf",
+        "sense": "6ef",
         "pos": "VERB",
-        "translation": "to have a great time",
+        "translation": "having a great time",
         "lemma": "pasándola",
         "examples": [
           0,
           1
         ],
         "type": "slang",
-        "construction": "pasarla",
+        "construction": "pasándola",
         "example_ids": [
           "11180508:3",
           "9614069:83"
@@ -175493,12 +176683,15 @@
       }
     ]
   },
-  "infraganti|in fraganti": {
+  "infraganti|infraganti": {
     "spanishdict-auto": [
       {
         "sense": "7a3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2503547:27"
         ]
       }
     ]
@@ -175849,12 +177042,15 @@
       }
     ]
   },
-  "agárralo|amarrar": {
+  "agárralo|agárralo": {
     "biencoder": [
       {
         "sense": "c33",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305013:78"
         ]
       }
     ],
@@ -175863,6 +177059,9 @@
         "sense": "033",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305013:78"
         ]
       }
     ]
@@ -176743,12 +177942,15 @@
       }
     ]
   },
-  "caray|¡Caray!": {
+  "caray|caray": {
     "biencoder": [
       {
         "sense": "c59",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5318195:50"
         ]
       }
     ],
@@ -176757,11 +177959,14 @@
         "sense": "85e",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5318195:50"
         ]
       }
     ]
   },
-  "carreras|carreras": {
+  "carreras|carrera": {
     "biencoder": [
       {
         "sense": "da0",
@@ -176769,9 +177974,7 @@
           0
         ]
       }
-    ]
-  },
-  "carreras|carrera": {
+    ],
     "spanishdict-flash-lite": [
       {
         "sense": "366",
@@ -176909,12 +178112,15 @@
       }
     ]
   },
-  "chiqui|chicar": {
+  "chiqui|chiqui": {
     "biencoder": [
       {
         "sense": "5ad",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3167974:121"
         ]
       }
     ],
@@ -176923,11 +178129,12 @@
         "sense": "b9b",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3167974:121"
         ]
       }
-    ]
-  },
-  "chiqui|chiqui": {
+    ],
     "gap-fill": [
       {
         "sense": "16c",
@@ -178023,12 +179230,15 @@
       }
     ]
   },
-  "enchulo|enchufar": {
+  "enchulo|enchulo": {
     "biencoder": [
       {
         "sense": "1c7",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305010:16"
         ]
       }
     ],
@@ -178037,11 +179247,12 @@
         "sense": "cb5",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305010:16"
         ]
       }
-    ]
-  },
-  "enchulo|enchulo": {
+    ],
     "gap-fill": [
       {
         "sense": "beb",
@@ -178652,27 +179863,29 @@
       }
     ]
   },
-  "feca|fecha": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "621",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
-  "feca|fechas": {
+  "feca|feca": {
     "biencoder": [
       {
         "sense": "bb7",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3640901:96"
         ]
       }
-    ]
-  },
-  "feca|feca": {
+    ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "621",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3640901:96"
+        ]
+      }
+    ],
     "gap-fill": [
       {
         "sense": "caa",
@@ -179261,12 +180474,15 @@
       }
     ]
   },
-  "informarles|informal": {
+  "informarles|informarles": {
     "biencoder": [
       {
         "sense": "2ff",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11797961:2"
         ]
       }
     ],
@@ -179275,6 +180491,9 @@
         "sense": "79c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11797961:2"
         ]
       }
     ]
@@ -179832,12 +181051,15 @@
       }
     ]
   },
-  "matcha|match": {
+  "matcha|matcha": {
     "biencoder": [
       {
         "sense": "115",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292888:20"
         ]
       }
     ],
@@ -179846,11 +181068,12 @@
         "sense": "115",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "11292888:20"
         ]
       }
-    ]
-  },
-  "matcha|matcha": {
+    ],
     "gap-fill": [
       {
         "sense": "8f0",
@@ -180369,12 +181592,15 @@
       }
     ]
   },
-  "orándole|orear": {
+  "orándole|orándole": {
     "biencoder": [
       {
         "sense": "d6c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2871746:21"
         ]
       }
     ],
@@ -180383,6 +181609,9 @@
         "sense": "d6c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2871746:21"
         ]
       }
     ]
@@ -180495,12 +181724,15 @@
       }
     ]
   },
-  "pateándoles|palear": {
+  "pateándoles|pateándoles": {
     "biencoder": [
       {
         "sense": "9a0",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614068:7"
         ]
       }
     ],
@@ -180509,6 +181741,9 @@
         "sense": "c36",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614068:7"
         ]
       }
     ]
@@ -180531,12 +181766,15 @@
       }
     ]
   },
-  "peleándole|pelar": {
+  "peleándole|peleándole": {
     "biencoder": [
       {
         "sense": "b3f",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3359025:19"
         ]
       }
     ],
@@ -180545,6 +181783,9 @@
         "sense": "b54",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3359025:19"
         ]
       }
     ]
@@ -180945,20 +182186,26 @@
       }
     ]
   },
-  "pásate|pasar": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "0f1",
-        "examples": [
-          0
-        ]
-      }
-    ],
+  "pásate|pásate": {
     "biencoder": [
       {
         "sense": "bf8",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3212029:19"
+        ]
+      }
+    ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0f1",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3212029:19"
         ]
       }
     ]
@@ -181338,12 +182585,15 @@
       }
     ]
   },
-  "roleta|ruleta": {
+  "roleta|roleta": {
     "biencoder": [
       {
         "sense": "4481",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3059630:50"
         ]
       }
     ],
@@ -181352,11 +182602,12 @@
         "sense": "448",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3059630:50"
         ]
       }
-    ]
-  },
-  "roleta|roleta": {
+    ],
     "gap-fill": [
       {
         "sense": "64b",
@@ -181808,12 +183059,15 @@
       }
     ]
   },
-  "síguelo|signar": {
+  "síguelo|síguelo": {
     "biencoder": [
       {
         "sense": "6c6",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5037892:26"
         ]
       }
     ],
@@ -181822,6 +183076,9 @@
         "sense": "6c6",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5037892:26"
         ]
       }
     ]
@@ -183407,7 +184664,7 @@
       }
     ]
   },
-  "atreves|atreverse": {
+  "atreves|atreves": {
     "spanishdict-flash-lite": [
       {
         "sense": "27c",
@@ -183418,15 +184675,23 @@
           3,
           4,
           5
+        ],
+        "example_ids": [
+          "3377480:2",
+          "3289205:14",
+          "5305013:15",
+          "9614069:57",
+          "3048221:98",
+          "3092934:39"
         ]
       }
     ],
     "gap-fill": [
       {
-        "sense": "7fc",
+        "sense": "b76",
         "pos": "VERB",
-        "translation": "to dare or have the courage to do something",
-        "lemma": "atreverse",
+        "translation": "to dare",
+        "lemma": "atreves",
         "examples": [
           0,
           1,
@@ -183437,11 +184702,11 @@
         ],
         "example_ids": [
           "3377480:2",
-          "3092934:38",
           "3289205:14",
           "5305013:15",
           "9614069:57",
-          "3048221:98"
+          "3048221:98",
+          "3092934:39"
         ]
       }
     ]
@@ -184994,18 +186259,14 @@
       }
     ]
   },
-  "curvas|curvas": {
+  "curvas|curva": {
     "spanishdict-flash-lite": [
       {
         "sense": "a6f",
         "examples": [
           0
         ]
-      }
-    ]
-  },
-  "curvas|curva": {
-    "spanishdict-flash-lite": [
+      },
       {
         "sense": "02c",
         "examples": [
@@ -185341,30 +186602,19 @@
       }
     ]
   },
-  "selfie|selfi": {
-    "spanishdict-auto": [
-      {
-        "sense": "991",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
   "selfie|selfie": {
     "gap-fill": [
       {
-        "sense": "e9e",
+        "sense": "5e2",
         "pos": "NOUN",
-        "translation": "A self-taken photograph, typically with a smartphone.",
+        "translation": "self-portrait photograph",
         "lemma": "selfie",
         "examples": [
           0,
           1,
           2
         ],
+        "type": "loanword",
         "example_ids": [
           "7967957:10",
           "7967959:8",
@@ -185490,29 +186740,46 @@
       }
     ]
   },
-  "atreve|atreverse": {
+  "atreve|atreve": {
     "spanishdict-flash-lite": [
       {
         "sense": "27c",
         "examples": [
           0,
           1
+        ],
+        "example_ids": [
+          "3377480:30",
+          "7967942:34"
         ]
       }
-    ]
-  },
-  "atreve|atreve": {
+    ],
     "gap-fill": [
       {
-        "sense": "8c1",
+        "sense": "d23",
         "pos": "VERB",
-        "translation": "to have sex",
+        "translation": "dare",
+        "lemma": "atreve",
+        "examples": [
+          0,
+          1
+        ],
+        "construction": "atreverse",
+        "example_ids": [
+          "3377480:30",
+          "7967942:34"
+        ]
+      },
+      {
+        "sense": "4c9",
+        "pos": "VERB",
+        "translation": "dare to have sex",
         "lemma": "atreve",
         "examples": [
           2
         ],
         "type": "slang",
-        "construction": "atreverse a zumbar",
+        "construction": "atreverse",
         "example_ids": [
           "3016410:69"
         ]
@@ -185782,37 +187049,47 @@
       }
     ]
   },
-  "pre|pre-": {
-    "spanishdict-auto": [
-      {
-        "sense": "0ce",
-        "examples": [
-          0,
-          1,
-          2,
-          3
-        ]
-      }
-    ]
-  },
   "pre|pre": {
     "gap-fill": [
       {
-        "sense": "3f6",
-        "pos": "PREP",
-        "translation": "before, or a prefix indicating 'before'",
+        "sense": "0d0",
+        "pos": "VERB",
+        "translation": "short for prender",
         "lemma": "pre",
         "examples": [
           0,
-          1,
-          2,
           3
         ],
+        "type": "slang",
         "example_ids": [
           "5305001:35",
-          "5629827:4",
-          "6866266:30",
           "2915707:72"
+        ]
+      },
+      {
+        "sense": "74c",
+        "pos": "NOUN",
+        "translation": "the beginning or start",
+        "lemma": "pre",
+        "examples": [
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5629827:4"
+        ]
+      },
+      {
+        "sense": "970",
+        "pos": "ADV",
+        "translation": "phonetic spelling of 'pre' in 'siempre'",
+        "lemma": "pre",
+        "examples": [
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6866266:30"
         ]
       }
     ]
@@ -186072,18 +187349,6 @@
       }
     ]
   },
-  "yankee|yanqui": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "c92",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
   "yankee|Yankee": {
     "gap-fill": [
       {
@@ -186091,6 +187356,21 @@
         "pos": "PROPER_NOUN",
         "translation": "A nickname for an American, often used in a musical context.",
         "lemma": "Yankee",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "example_ids": [
+          "4133643:28",
+          "6211036:19",
+          "3253426:73"
+        ]
+      }
+    ],
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c92",
         "examples": [
           0,
           1,
@@ -186134,30 +187414,19 @@
       }
     ]
   },
-  "blunes|blues": {
-    "spanishdict-auto": [
-      {
-        "sense": "c18",
-        "examples": [
-          0,
-          1,
-          2
-        ]
-      }
-    ]
-  },
-  "blunes|blun": {
+  "blunes|blunes": {
     "gap-fill": [
       {
-        "sense": "8dc",
+        "sense": "17e",
         "pos": "NOUN",
-        "translation": "slang for marijuana cigarettes",
-        "lemma": "blun",
+        "translation": "blunts (marijuana cigars)",
+        "lemma": "blunes",
         "examples": [
           0,
           1,
           2
         ],
+        "type": "loanword",
         "example_ids": [
           "3749052:18",
           "9614095:27",
@@ -190095,26 +191364,17 @@
       }
     ]
   },
-  "nano|nano-": {
-    "spanishdict-auto": [
-      {
-        "sense": "f93",
-        "examples": [
-          0
-        ]
-      }
-    ]
-  },
   "nano|nano": {
     "gap-fill": [
       {
-        "sense": "9f3",
-        "pos": "SUFFIX",
-        "translation": "Diminutive suffix, often used informally or as a nickname.",
+        "sense": "a39",
+        "pos": "NOUN",
+        "translation": "bro or dude",
         "lemma": "nano",
         "examples": [
           0
         ],
+        "type": "slang",
         "example_ids": [
           "3021794:3"
         ]
@@ -190173,15 +191433,15 @@
   "ojeda|ojeda": {
     "gap-fill": [
       {
-        "sense": "0ef",
-        "pos": "NOUN",
-        "translation": "a specific person",
+        "sense": "767",
+        "pos": "PROPN",
+        "translation": "a person known for being a snitch or informant",
         "lemma": "ojeda",
         "examples": [
           0,
           1
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "9614095:24",
           "3289205:62"
@@ -192189,12 +193449,15 @@
       }
     ]
   },
-  "arcoíris|arco iris": {
+  "arcoíris|arcoíris": {
     "spanishdict-auto": [
       {
         "sense": "9df",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3524844:26"
         ]
       }
     ]
@@ -192479,12 +193742,15 @@
       }
     ]
   },
-  "co|co-": {
+  "co|co": {
     "spanishdict-auto": [
       {
         "sense": "a7d",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "10313440:22"
         ]
       }
     ]
@@ -192559,12 +193825,15 @@
       }
     ]
   },
-  "covid|COVID-19": {
+  "covid|covid": {
     "spanishdict-auto": [
       {
         "sense": "3bf",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5914252:19"
         ]
       }
     ]
@@ -192599,12 +193868,15 @@
       }
     ]
   },
-  "có|co-": {
+  "có|có": {
     "spanishdict-auto": [
       {
         "sense": "a7d",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "2935271:40"
         ]
       }
     ]
@@ -192759,22 +194031,28 @@
       }
     ]
   },
-  "espinela|espinel": {
+  "espinela|espinela": {
     "spanishdict-auto": [
       {
         "sense": "8c0",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "6211043:42"
         ]
       }
     ]
   },
-  "estamina|estaminal": {
+  "estamina|estamina": {
     "spanishdict-auto": [
       {
         "sense": "5d3",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3726733:32"
         ]
       }
     ]
@@ -192849,12 +194127,15 @@
       }
     ]
   },
-  "fido|FIDA": {
+  "fido|fido": {
     "spanishdict-auto": [
       {
         "sense": "e40",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3022353:66"
         ]
       }
     ]
@@ -193049,12 +194330,15 @@
       }
     ]
   },
-  "gángster|gánster": {
+  "gángster|gángster": {
     "spanishdict-auto": [
       {
         "sense": "618",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305039:53"
         ]
       }
     ]
@@ -193169,12 +194453,15 @@
       }
     ]
   },
-  "infarte|infarto": {
+  "infarte|infarte": {
     "spanishdict-auto": [
       {
         "sense": "5b5",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614098:125"
         ]
       }
     ]
@@ -193259,12 +194546,15 @@
       }
     ]
   },
-  "josea|José": {
+  "josea|josea": {
     "spanishdict-auto": [
       {
         "sense": "eb9",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614068:93"
         ]
       }
     ]
@@ -193429,12 +194719,15 @@
       }
     ]
   },
-  "mela|melar": {
+  "mela|mela": {
     "spanishdict-auto": [
       {
         "sense": "77f",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "8915218:15"
         ]
       }
     ]
@@ -193879,12 +195172,15 @@
       }
     ]
   },
-  "postear|póster": {
+  "postear|postear": {
     "spanishdict-auto": [
       {
         "sense": "54d",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "9614076:44"
         ]
       }
     ]
@@ -194309,12 +195605,15 @@
       }
     ]
   },
-  "tecato|tecito": {
+  "tecato|tecato": {
     "spanishdict-auto": [
       {
         "sense": "2cf",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3928253:22"
         ]
       }
     ]
@@ -194809,9 +196108,9 @@
   "chapéame|chapéame": {
     "gap-fill": [
       {
-        "sense": "b86",
+        "sense": "db1",
         "pos": "VERB",
-        "translation": "hit me up for money",
+        "translation": "ask for money",
         "lemma": "chapéame",
         "examples": [
           0,
@@ -196306,12 +197605,15 @@
       }
     ]
   },
-  "atreven|atreverse": {
+  "atreven|atreven": {
     "spanishdict-flash-lite": [
       {
         "sense": "27c",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305039:27"
         ]
       }
     ]
@@ -203430,7 +204732,7 @@
       }
     ]
   },
-  "lares|lares": {
+  "lares|lar": {
     "spanishdict-flash-lite": [
       {
         "sense": "b1e",
@@ -206624,12 +207926,15 @@
       }
     ]
   },
-  "qu|que": {
+  "qu|qu": {
     "spanishdict-flash-lite": [
       {
         "sense": "fe0",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "7967965:53"
         ]
       }
     ]
@@ -207136,12 +208441,15 @@
       }
     ]
   },
-  "revoltillo|revoltijo": {
+  "revoltillo|revoltillo": {
     "spanishdict-flash-lite": [
       {
         "sense": "c97",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "3176687:22"
         ]
       }
     ]
@@ -207256,7 +208564,7 @@
       }
     ]
   },
-  "riendas|riendas": {
+  "riendas|rienda": {
     "spanishdict-flash-lite": [
       {
         "sense": "1f0",
@@ -207566,12 +208874,15 @@
       }
     ]
   },
-  "seiscientas|seiscientos": {
+  "seiscientas|seiscientas": {
     "spanishdict-flash-lite": [
       {
         "sense": "cf5",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "4706730:26"
         ]
       }
     ]
@@ -208014,12 +209325,15 @@
       }
     ]
   },
-  "sub|sub-": {
+  "sub|sub": {
     "spanishdict-flash-lite": [
       {
         "sense": "27b",
         "examples": [
           0
+        ],
+        "example_ids": [
+          "5305036:38"
         ]
       }
     ]
@@ -208574,7 +209888,7 @@
       }
     ]
   },
-  "timbal|timbales": {
+  "timbal|timbal": {
     "spanishdict-flash-lite": [
       {
         "sense": "491",
@@ -208584,7 +209898,7 @@
       }
     ]
   },
-  "timbales|timbales": {
+  "timbales|timbal": {
     "spanishdict-flash-lite": [
       {
         "sense": "491",

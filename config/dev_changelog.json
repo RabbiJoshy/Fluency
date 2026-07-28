@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "bac6d265",
+      "summary": "SpanishDict fuzzy-spelling matches no longer produce wrong cards",
+      "details": [
+        "When SpanishDict has no entry for a word it spell-corrects to a neighbour (manín→maní \"peanut\", caile→calle, bichota→bichito); those wrong lemmas became junk cards",
+        "A new tool detects fuzzy matches against the full conjugation table (keeping real forms like fueron→ir and cargá'→cargar), strips them, and a targeted Gemini re-classify proposes the real meaning",
+        "Bad Bunny: manín is now \"my man\", caile \"come over\", bichota \"boss woman\", blunes \"blunts\"; caicos routed to Extra as a proper noun"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "e8fa8e6d",
       "summary": "Phantom artist cards and ambiguous note reporting are fixed at their source",
       "details": [

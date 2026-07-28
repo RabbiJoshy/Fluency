@@ -8183,6 +8183,72 @@
           "4662262:84"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "ec9",
+        "pos": "INTJ",
+        "translation": "come on",
+        "lemma": "dale",
+        "examples": [
+          0,
+          4,
+          9
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4662273:36",
+          "5113455:22",
+          "2976947:20"
+        ]
+      },
+      {
+        "sense": "4c8",
+        "pos": "VERB",
+        "translation": "give",
+        "lemma": "dale",
+        "examples": [
+          1,
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4178994:23",
+          "4662257:17"
+        ]
+      },
+      {
+        "sense": "962",
+        "pos": "INTJ",
+        "translation": "go on",
+        "lemma": "dale",
+        "examples": [
+          3,
+          6
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4662262:84",
+          "3115965:24"
+        ]
+      },
+      {
+        "sense": "09a",
+        "pos": "INTJ",
+        "translation": "go ahead",
+        "lemma": "dale",
+        "examples": [
+          5,
+          7,
+          8
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3888528:53",
+          "3626034:42",
+          "2919428:9"
+        ]
+      }
     ]
   },
   "les": {
@@ -27742,7 +27808,7 @@
           0,
           1
         ],
-        "type": "other",
+        "type": "figurative",
         "example_ids": [
           "5305013:1",
           "7182590:8"
@@ -34927,16 +34993,16 @@
         ],
         "type": "vulgar",
         "example_ids": [
-          "3100770:40",
           "5553950:21",
           "7934367:26",
           "7967960:25",
           "9614092:13",
           "3176704:21",
-          "9614103:27",
           "9123229:28",
           "7967959:61",
-          "3048221:64"
+          "3048221:64",
+          "9614090:7",
+          "2959823:74"
         ]
       }
     ]
@@ -65797,6 +65863,32 @@
           "3334750:43"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "7c3",
+        "pos": "ADJ",
+        "translation": "some / any",
+        "lemma": "algún",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "example_ids": [
+          "11300220:18",
+          "5305007:9",
+          "4969980:32",
+          "5629886:47",
+          "2959823:16",
+          "3059630:83",
+          "3334750:43"
+        ]
+      }
     ]
   },
   "amiguita": {
@@ -69112,58 +69204,28 @@
         ]
       },
       {
-        "sense": "7fa",
-        "pos": "NOUN",
-        "translation": "good vibes",
-        "lemma": "buenas",
-        "examples": [
-          3
-        ],
-        "type": "slang",
-        "example_ids": [
-          "5529098:35"
-        ]
-      },
-      {
         "sense": "d97",
         "pos": "ADJ",
         "translation": "good",
         "lemma": "buenas",
         "examples": [
+          1,
+          2,
+          3,
           4,
+          5,
           6,
-          7
-        ],
-        "example_ids": [
-          "2919428:14",
-          "7909727:7",
-          "4558062:26"
-        ]
-      },
-      {
-        "sense": "2c7",
-        "pos": "ADJ",
-        "translation": "good/skilled",
-        "lemma": "buenas",
-        "examples": [
-          5
-        ],
-        "type": "slang",
-        "example_ids": [
-          "4763027:6"
-        ]
-      },
-      {
-        "sense": "d2b",
-        "pos": "NOUN",
-        "translation": "good times",
-        "lemma": "buenas",
-        "examples": [
+          7,
           8
         ],
-        "type": "figurative",
-        "construction": "en las buenas",
         "example_ids": [
+          "5305004:50",
+          "7967954:24",
+          "5529098:35",
+          "2919428:14",
+          "4763027:6",
+          "7909727:7",
+          "4558062:26",
           "4179002:17"
         ]
       }
@@ -95043,17 +95105,47 @@
     ],
     "gap-fill": [
       {
-        "sense": "8c1",
-        "pos": "VERB",
-        "translation": "to have sex",
+        "sense": "213",
+        "pos": "PROPN",
+        "translation": "French fashion brand",
         "lemma": "des",
         "examples": [
-          4
+          0
         ],
-        "type": "vulgar",
-        "construction": "darle a alguien",
+        "type": "proper_noun",
+        "construction": "Comme des Garçons",
         "example_ids": [
-          "2503547:73"
+          "5113818:50"
+        ]
+      },
+      {
+        "sense": "4c8",
+        "pos": "VERB",
+        "translation": "give",
+        "lemma": "des",
+        "examples": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "example_ids": [
+          "3041103:7",
+          "9614081:75",
+          "2503547:73",
+          "6855744:40"
+        ]
+      },
+      {
+        "sense": "eaf",
+        "pos": "VERB",
+        "translation": "give / hit",
+        "lemma": "des",
+        "examples": [
+          2
+        ],
+        "example_ids": [
+          "4726686:79"
         ]
       }
     ]
@@ -103544,9 +103636,12 @@
     ]
   },
   "fotitos": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "5cc",
+        "sense": "2c0",
+        "pos": "NOUN",
+        "translation": "little photos or pictures",
+        "lemma": "fotitos",
         "examples": [
           0,
           1,
@@ -103554,6 +103649,7 @@
           3,
           4
         ],
+        "type": "other",
         "example_ids": [
           "9614083:41",
           "11289772:28",
@@ -106094,6 +106190,22 @@
         ],
         "example_ids": [
           "3108097:9"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "d97",
+        "pos": "ADJ",
+        "translation": "good",
+        "lemma": "buen",
+        "examples": [
+          0,
+          1
+        ],
+        "example_ids": [
+          "3108097:9",
+          "11180508:50"
         ]
       }
     ]
@@ -127938,12 +128050,16 @@
     ]
   },
   "piquito": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "25d",
+        "sense": "a4f",
+        "pos": "NOUN",
+        "translation": "a small kiss",
+        "lemma": "piquito",
         "examples": [
           0
         ],
+        "type": "figurative",
         "example_ids": [
           "11292691:41"
         ]
@@ -145264,13 +145380,17 @@
     ]
   },
   "lejitos": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "f17",
+        "sense": "a63",
+        "pos": "ADV",
+        "translation": "from a distance",
+        "lemma": "lejitos",
         "examples": [
           0,
           1
         ],
+        "type": "regional",
         "example_ids": [
           "7967980:18",
           "7967954:1"
@@ -154746,14 +154866,14 @@
     ],
     "gap-fill": [
       {
-        "sense": "5c5",
+        "sense": "796",
         "pos": "ADJ",
-        "translation": "chill person",
+        "translation": "calm or chill",
         "lemma": "tranquilita",
         "examples": [
           0
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "5529171:30"
         ]
@@ -154766,7 +154886,7 @@
         "examples": [
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "9123229:34"
         ]
@@ -154802,9 +154922,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "c4d",
+        "sense": "815",
         "pos": "ADJ",
-        "translation": "chilling",
+        "translation": "calm and unbothered",
         "lemma": "tranquilito",
         "examples": [
           0,
@@ -158441,7 +158561,7 @@
           0,
           1
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "3100770:20",
           "10901838:28"
@@ -212317,9 +212437,12 @@
     ]
   },
   "bellaquera": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "c2e",
+        "sense": "95c",
+        "pos": "NOUN",
+        "translation": "sexual arousal",
+        "lemma": "bellaquera",
         "examples": [
           0,
           1,
@@ -212328,10 +212451,10 @@
           4,
           5,
           6,
-          7,
           8,
           9
         ],
+        "type": "regional",
         "example_ids": [
           "5474005:28",
           "11036575:17",
@@ -212340,17 +212463,32 @@
           "5305004:44",
           "2941576:33",
           "2976947:19",
-          "5305009:51",
-          "5305012:41",
-          "4641326:30"
+          "4641326:30",
+          "3044908:9"
+        ]
+      },
+      {
+        "sense": "832",
+        "pos": "NOUN",
+        "translation": "sexually suggestive content",
+        "lemma": "bellaquera",
+        "examples": [
+          7
+        ],
+        "type": "regional",
+        "example_ids": [
+          "5305009:51"
         ]
       }
     ]
   },
   "cel": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "c9e",
+        "sense": "3ad",
+        "pos": "NOUN",
+        "translation": "mobile phone",
+        "lemma": "cel",
         "examples": [
           0,
           1,
@@ -212363,6 +212501,7 @@
           8,
           9
         ],
+        "type": "slang",
         "example_ids": [
           "3424254:8",
           "6211043:29",
@@ -212373,7 +212512,7 @@
           "2829388:17",
           "10901838:23",
           "9614076:8",
-          "5529101:15"
+          "4558062:58"
         ]
       }
     ]
@@ -212697,22 +212836,48 @@
     ]
   },
   "capsuleando": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "7e2",
+        "sense": "33a",
+        "pos": "VERB",
+        "translation": "cruising in a car",
+        "lemma": "capsuleando",
         "examples": [
           0,
           1,
-          2,
-          3,
           4
         ],
+        "type": "slang",
         "example_ids": [
           "3015945:37",
           "6866266:18",
-          "3044908:14",
-          "5305036:23",
           "4763027:77"
+        ]
+      },
+      {
+        "sense": "c33",
+        "pos": "VERB",
+        "translation": "taking pills",
+        "lemma": "capsuleando",
+        "examples": [
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3044908:14"
+        ]
+      },
+      {
+        "sense": "976",
+        "pos": "VERB",
+        "translation": "chilling / relaxing",
+        "lemma": "capsuleando",
+        "examples": [
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5305036:23"
         ]
       }
     ]
@@ -212872,9 +213037,12 @@
     ]
   },
   "joseo": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "eb9",
+        "sense": "19b",
+        "pos": "NOUN",
+        "translation": "hustling or working hard",
+        "lemma": "joseo",
         "examples": [
           0,
           1,
@@ -212882,6 +213050,7 @@
           3,
           4
         ],
+        "type": "slang",
         "example_ids": [
           "6777704:28",
           "9614068:37",
@@ -212929,12 +213098,16 @@
     ]
   },
   "ejem": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "560",
+        "sense": "922",
+        "pos": "INTJ",
+        "translation": "ahem",
+        "lemma": "ejem",
         "examples": [
           0
         ],
+        "type": "other",
         "example_ids": [
           "8598733:69"
         ]
@@ -212972,13 +213145,17 @@
     ]
   },
   "posteado": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "0b9",
+        "sense": "230",
+        "pos": "ADJ",
+        "translation": "positioned or stationed",
+        "lemma": "posteado",
         "examples": [
           0,
           1
         ],
+        "type": "slang",
         "example_ids": [
           "9614084:8",
           "3495715:47"
@@ -213036,30 +213213,49 @@
     ]
   },
   "bellaqueras": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "c2e",
+        "sense": "554",
+        "pos": "NOUN",
+        "translation": "horniness or sexual desire",
+        "lemma": "bellaqueras",
         "examples": [
           0,
-          1,
-          2
+          1
         ],
+        "type": "slang",
         "example_ids": [
           "3542120:31",
-          "7967957:34",
+          "7967957:34"
+        ]
+      },
+      {
+        "sense": "c94",
+        "pos": "NOUN",
+        "translation": "naughtiness or sexual playfulness",
+        "lemma": "bellaqueras",
+        "examples": [
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
           "7967942:22"
         ]
       }
     ]
   },
   "fronteo": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "163",
+        "sense": "f64",
+        "pos": "NOUN",
+        "translation": "boasting or showing off",
+        "lemma": "fronteo",
         "examples": [
           0,
           1
         ],
+        "type": "slang",
         "example_ids": [
           "6777704:33",
           "3133285:49"
@@ -213068,15 +213264,30 @@
     ]
   },
   "fuletazo": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "62c",
+        "sense": "113",
+        "pos": "NOUN",
+        "translation": "a gunshot or violent attack",
+        "lemma": "fuletazo",
         "examples": [
-          0,
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "9614087:35"
+        ]
+      },
+      {
+        "sense": "37d",
+        "pos": "NOUN",
+        "translation": "a quick sexual encounter",
+        "lemma": "fuletazo",
+        "examples": [
           1
         ],
+        "type": "slang",
         "example_ids": [
-          "9614087:35",
           "9614098:39"
         ]
       }
@@ -213128,15 +213339,30 @@
     ]
   },
   "lambebicho": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "552",
+        "sense": "d08",
+        "pos": "NOUN",
+        "translation": "suck-up or sycophant",
+        "lemma": "lambebicho",
         "examples": [
-          0,
+          0
+        ],
+        "type": "vulgar",
+        "example_ids": [
+          "5305018:3"
+        ]
+      },
+      {
+        "sense": "d1e",
+        "pos": "NOUN",
+        "translation": "insulting term for a pathetic person",
+        "lemma": "lambebicho",
+        "examples": [
           1
         ],
+        "type": "vulgar",
         "example_ids": [
-          "5305018:3",
           "3006211:5"
         ]
       }
@@ -213350,12 +213576,16 @@
     ]
   },
   "champola": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "4f6",
+        "sense": "304",
+        "pos": "NOUN",
+        "translation": "champagne",
+        "lemma": "champola",
         "examples": [
           0
         ],
+        "type": "slang",
         "example_ids": [
           "2990674:49"
         ]
@@ -213363,15 +213593,30 @@
     ]
   },
   "chapi": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "a5a",
+        "sense": "d6a",
+        "pos": "NOUN",
+        "translation": "gold digger",
+        "lemma": "chapi",
         "examples": [
-          0,
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4035827:22"
+        ]
+      },
+      {
+        "sense": "a8f",
+        "pos": "ADJ",
+        "translation": "showing off",
+        "lemma": "chapi",
+        "examples": [
           1
         ],
+        "type": "slang",
         "example_ids": [
-          "4035827:22",
           "9614084:27"
         ]
       }
@@ -213765,13 +214010,17 @@
     ]
   },
   "tenqui": {
-    "spanishdict-auto": [
+    "gap-fill": [
       {
-        "sense": "bff",
+        "sense": "0f9",
+        "pos": "NOUN",
+        "translation": "thanks",
+        "lemma": "tenqui",
         "examples": [
           0,
           1
         ],
+        "type": "loanword",
         "example_ids": [
           "3888528:22",
           "6211036:40"
@@ -214274,6 +214523,61 @@
           "3297866:52"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "77e",
+        "pos": "VERB",
+        "translation": "tell them",
+        "lemma": "díselo",
+        "examples": [
+          0,
+          2,
+          4,
+          5,
+          6,
+          8,
+          9
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3100770:50",
+          "3171036:81",
+          "2990674:123",
+          "3297866:52",
+          "5305013:24",
+          "3039781:73",
+          "3253426:78"
+        ]
+      },
+      {
+        "sense": "5fd",
+        "pos": "VERB",
+        "translation": "tell him",
+        "lemma": "díselo",
+        "examples": [
+          1,
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3377480:45",
+          "3104979:24"
+        ]
+      },
+      {
+        "sense": "af0",
+        "pos": "VERB",
+        "translation": "say it",
+        "lemma": "díselo",
+        "examples": [
+          7
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3001094:99"
+        ]
+      }
     ]
   },
   "picheo": {
@@ -214754,6 +215058,21 @@
           "4726686:33"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "5c3",
+        "pos": "ADJ",
+        "translation": "horny or sexually aggressive",
+        "lemma": "bellacoso",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4726686:33"
+        ]
+      }
     ]
   },
   "jeva": {
@@ -214911,6 +215230,21 @@
           "3529948:14"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "513",
+        "pos": "ADV",
+        "translation": "suffix for emphasis",
+        "lemma": "tera",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3529948:14"
+        ]
+      }
     ]
   },
   "chingamos": {
@@ -214967,9 +215301,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "5a8",
+        "sense": "b86",
         "pos": "VERB",
-        "translation": "to be high/intoxicated",
+        "translation": "to be under the influence of drugs",
         "lemma": "rolié",
         "examples": [
           0,
@@ -215222,15 +215556,14 @@
     ],
     "gap-fill": [
       {
-        "sense": "a10",
+        "sense": "3a7",
         "pos": "VERB",
-        "translation": "to come over",
+        "translation": "come over / show up",
         "lemma": "caile",
         "examples": [
           0
         ],
         "type": "slang",
-        "construction": "caerle",
         "example_ids": [
           "2942055:48"
         ]
@@ -215379,7 +215712,6 @@
         "type": "slang",
         "example_ids": [
           "6211036:53",
-          "7909727:27",
           "4589199:4",
           "3626034:40",
           "3015945:48",
@@ -215387,7 +215719,8 @@
           "11292888:35",
           "3288015:33",
           "2871746:39",
-          "5305015:50"
+          "3825550:1",
+          "5305018:63"
         ]
       }
     ]
@@ -216314,16 +216647,16 @@
     ],
     "gap-fill": [
       {
-        "sense": "ae4",
+        "sense": "5f1",
         "pos": "NOUN",
-        "translation": "my man",
+        "translation": "my man or bro",
         "lemma": "manín",
         "examples": [
           0,
           1,
           2
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "4179009:17",
           "3640901:7",
@@ -216400,35 +216733,57 @@
     ],
     "gap-fill": [
       {
-        "sense": "6ca",
+        "sense": "689",
         "pos": "ADJ",
-        "translation": "stuck",
+        "translation": "stuck / trapped",
         "lemma": "metíos",
         "examples": [
           0,
-          2,
-          4
+          2
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "4147689:22",
-          "5422982:18",
-          "3104973:32"
+          "5422982:18"
         ]
       },
       {
-        "sense": "ef0",
+        "sense": "ae7",
         "pos": "ADJ",
-        "translation": "involved",
+        "translation": "involved in",
         "lemma": "metíos",
         "examples": [
-          1,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6211037:23"
+        ]
+      },
+      {
+        "sense": "72c",
+        "pos": "ADJ",
+        "translation": "hidden / lost",
+        "lemma": "metíos",
+        "examples": [
           3
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
-          "6211037:23",
           "5210444:10"
+        ]
+      },
+      {
+        "sense": "9e7",
+        "pos": "ADJ",
+        "translation": "obsessed / fixated",
+        "lemma": "metíos",
+        "examples": [
+          4
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3104973:32"
         ]
       },
       {
@@ -216439,20 +216794,20 @@
         "examples": [
           5
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "9614087:53"
         ]
       },
       {
-        "sense": "16c",
+        "sense": "0f9",
         "pos": "ADJ",
-        "translation": "inside",
+        "translation": "inside / within",
         "lemma": "metíos",
         "examples": [
           6
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "8598733:24"
         ]
@@ -217712,6 +218067,21 @@
           "5629827:34"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "99e",
+        "pos": "ADJ",
+        "translation": "exaggerated or extreme",
+        "lemma": "exagerao",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5629827:34"
+        ]
+      }
     ]
   },
   "hacértelo": {
@@ -217805,9 +218175,9 @@
         ]
       },
       {
-        "sense": "c83",
+        "sense": "7b0",
         "pos": "VERB",
-        "translation": "to get hooked",
+        "translation": "to get hooked or addicted",
         "lemma": "juquear",
         "examples": [
           1
@@ -218277,16 +218647,15 @@
     ],
     "gap-fill": [
       {
-        "sense": "b76",
+        "sense": "d23",
         "pos": "VERB",
-        "translation": "to dare",
+        "translation": "dare",
         "lemma": "atreva",
         "examples": [
           0,
           1,
           2
         ],
-        "type": "figurative",
         "construction": "atreverse",
         "example_ids": [
           "4179012:19",
@@ -219271,15 +219640,15 @@
     ],
     "gap-fill": [
       {
-        "sense": "bb2",
-        "pos": "ADV",
-        "translation": "no",
+        "sense": "7b7",
+        "pos": "PROPN",
+        "translation": "producer tag for Nio Garcia",
         "lemma": "nio",
         "examples": [
           0,
           1
         ],
-        "type": "slang",
+        "type": "proper_noun",
         "example_ids": [
           "6862415:2",
           "3495715:83"
@@ -219455,28 +219824,17 @@
     ],
     "gap-fill": [
       {
-        "sense": "2be",
-        "pos": "ADJ",
-        "translation": "devilish/promiscuous",
-        "lemma": "sata",
-        "examples": [
-          0
-        ],
-        "type": "slang",
-        "example_ids": [
-          "3133285:78"
-        ]
-      },
-      {
-        "sense": "846",
+        "sense": "d11",
         "pos": "NOUN",
-        "translation": "devil/promiscuous woman",
+        "translation": "promiscuous or wild woman",
         "lemma": "sata",
         "examples": [
+          0,
           1
         ],
         "type": "slang",
         "example_ids": [
+          "3133285:78",
           "3048221:8"
         ]
       }
@@ -219515,6 +219873,21 @@
         "examples": [
           0
         ],
+        "example_ids": [
+          "2503547:22"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "588",
+        "pos": "VERB",
+        "translation": "female ejaculation",
+        "lemma": "squirteé",
+        "examples": [
+          0
+        ],
+        "type": "loanword",
         "example_ids": [
           "2503547:22"
         ]
@@ -219845,6 +220218,27 @@
           "9614100:23"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "d23",
+        "pos": "VERB",
+        "translation": "dare",
+        "lemma": "atrevo",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "construction": "atreverse",
+        "example_ids": [
+          "4178994:25",
+          "6855744:21",
+          "7967968:5",
+          "9614100:23"
+        ]
+      }
     ]
   },
   "caché": {
@@ -219988,33 +220382,56 @@
     ],
     "gap-fill": [
       {
-        "sense": "848",
+        "sense": "b10",
         "pos": "ADJ",
-        "translation": "fake",
+        "translation": "fake or inauthentic",
         "lemma": "feka",
         "examples": [
           0,
-          1,
-          2,
-          3
+          2
         ],
         "type": "slang",
         "example_ids": [
           "6717116:20",
-          "5553950:29",
-          "6211036:49",
+          "6211036:49"
+        ]
+      },
+      {
+        "sense": "303",
+        "pos": "NOUN",
+        "translation": "a lie or fake situation",
+        "lemma": "feka",
+        "examples": [
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5553950:29"
+        ]
+      },
+      {
+        "sense": "76e",
+        "pos": "ADJ",
+        "translation": "fake or counterfeit",
+        "lemma": "feka",
+        "examples": [
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
           "3253426:57"
         ]
       },
       {
-        "sense": "c8f",
+        "sense": "f30",
         "pos": "NOUN",
-        "translation": "fakes",
+        "translation": "fake people or lies",
         "lemma": "feka",
         "examples": [
           4
         ],
         "type": "slang",
+        "construction": "capeamo' feka",
         "example_ids": [
           "3640901:64"
         ]
@@ -220031,6 +220448,27 @@
           2,
           3
         ],
+        "example_ids": [
+          "6211022:8",
+          "11180508:38",
+          "9614100:32",
+          "2914746:31"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "46f",
+        "pos": "ADJ",
+        "translation": "happy",
+        "lemma": "felis",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "slang",
         "example_ids": [
           "6211022:8",
           "11180508:38",
@@ -220063,9 +220501,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "df5",
+        "sense": "429",
         "pos": "NOUN",
-        "translation": "hustle",
+        "translation": "the hustle or street life",
         "lemma": "fulete",
         "examples": [
           0
@@ -220076,9 +220514,9 @@
         ]
       },
       {
-        "sense": "58e",
+        "sense": "a34",
         "pos": "NOUN",
-        "translation": "firearm",
+        "translation": "a firearm",
         "lemma": "fulete",
         "examples": [
           1
@@ -220104,9 +220542,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "3d5",
-        "pos": "ADJ",
-        "translation": "loaded/full",
+        "sense": "455",
+        "pos": "NOUN",
+        "translation": "fully loaded firearms",
         "lemma": "fuletes",
         "examples": [
           0
@@ -220273,9 +220711,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "a9c",
+        "sense": "333",
         "pos": "NOUN",
-        "translation": "brother",
+        "translation": "brother or close friend",
         "lemma": "hermas",
         "examples": [
           0,
@@ -220335,9 +220773,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "ab7",
+        "sense": "af9",
         "pos": "NOUN",
-        "translation": "gangster lifestyle or vibe",
+        "translation": "gangster lifestyle or attitude",
         "lemma": "maleanteo",
         "examples": [
           0,
@@ -220641,9 +221079,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "b35",
+        "sense": "b51",
         "pos": "NOUN",
-        "translation": "girl",
+        "translation": "girl or girlfriend",
         "lemma": "yal",
         "examples": [
           0,
@@ -221081,6 +221519,25 @@
           1,
           2
         ],
+        "example_ids": [
+          "7967957:4",
+          "4726686:50",
+          "7967942:20"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "3f2",
+        "pos": "ADJ",
+        "translation": "very hot or attractive",
+        "lemma": "buenota",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "type": "slang",
         "example_ids": [
           "7967957:4",
           "4726686:50",
@@ -223048,8 +223505,8 @@
     ],
     "gap-fill": [
       {
-        "sense": "1c0",
-        "pos": "INTJ",
+        "sense": "9d4",
+        "pos": "VERB",
         "translation": "check it out",
         "lemma": "cheki",
         "examples": [
@@ -223732,9 +224189,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "440",
+        "sense": "9a1",
         "pos": "NOUN",
-        "translation": "great style",
+        "translation": "great style or flair",
         "lemma": "estilazo",
         "examples": [
           0
@@ -223762,15 +224219,15 @@
     ],
     "gap-fill": [
       {
-        "sense": "909",
-        "pos": "NOUN",
-        "translation": "Farruko (artist name)",
+        "sense": "fdb",
+        "pos": "PROPN",
+        "translation": "Puerto Rican reggaeton artist Farruko",
         "lemma": "farrus",
         "examples": [
           0,
           1
         ],
-        "type": "regional",
+        "type": "proper_noun",
         "example_ids": [
           "3152684:72",
           "3080797:63"
@@ -224033,9 +224490,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "499",
+        "sense": "333",
         "pos": "NOUN",
-        "translation": "brother/friend",
+        "translation": "brother or close friend",
         "lemma": "herma",
         "examples": [
           0,
@@ -224152,6 +224609,23 @@
           1
         ],
         "example_ids": [
+          "5305039:9"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "36e",
+        "pos": "NOUN",
+        "translation": "gangsters or criminals",
+        "lemma": "maliantes",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "slang",
+        "example_ids": [
+          "5553950:45",
           "5305039:9"
         ]
       }
@@ -224421,9 +224895,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "80c",
+        "sense": "61b",
         "pos": "NOUN",
-        "translation": "escape",
+        "translation": "escape or way out",
         "lemma": "perse",
         "examples": [
           0
@@ -224434,9 +224908,9 @@
         ]
       },
       {
-        "sense": "150",
+        "sense": "c5e",
         "pos": "NOUN",
-        "translation": "problems",
+        "translation": "worry or problem",
         "lemma": "perse",
         "examples": [
           1
@@ -224447,9 +224921,9 @@
         ]
       },
       {
-        "sense": "cf0",
+        "sense": "ce7",
         "pos": "NOUN",
-        "translation": "chase",
+        "translation": "chase or pursuit",
         "lemma": "perse",
         "examples": [
           2
@@ -225283,6 +225757,24 @@
           "9592355:42"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "b7c",
+        "pos": "ADJ",
+        "translation": "two hundred",
+        "lemma": "doscientas",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "example_ids": [
+          "6852775:59",
+          "7967938:40",
+          "9592355:42"
+        ]
+      }
     ]
   },
   "envidiosas": {
@@ -225581,9 +226073,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "601",
-        "pos": "VERB",
-        "translation": "to escape",
+        "sense": "80c",
+        "pos": "NOUN",
+        "translation": "escape",
         "lemma": "acape",
         "examples": [
           0
@@ -225594,9 +226086,9 @@
         ]
       },
       {
-        "sense": "21b",
+        "sense": "ff5",
         "pos": "ADV",
-        "translation": "all out",
+        "translation": "without protection",
         "lemma": "acape",
         "examples": [
           1
@@ -225629,12 +226121,22 @@
         "translation": "without musical accompaniment",
         "lemma": "acapella",
         "examples": [
-          0,
+          0
+        ],
+        "example_ids": [
+          "7967939:22"
+        ]
+      },
+      {
+        "sense": "195",
+        "pos": "ADV",
+        "translation": "bare",
+        "lemma": "acapella",
+        "examples": [
           1
         ],
         "type": "figurative",
         "example_ids": [
-          "7967939:22",
           "5002336:45"
         ]
       }
@@ -226105,9 +226607,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "af2",
+        "sense": "98b",
         "pos": "NOUN",
-        "translation": "boss bitch",
+        "translation": "powerful or boss woman",
         "lemma": "bichota",
         "examples": [
           0,
@@ -226866,9 +227368,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "40d",
+        "sense": "3ad",
         "pos": "NOUN",
-        "translation": "cell phone",
+        "translation": "mobile phone",
         "lemma": "celu",
         "examples": [
           0,
@@ -226950,9 +227452,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "44d",
+        "sense": "a5d",
         "pos": "NOUN",
-        "translation": "rap verse",
+        "translation": "rap verse or flow",
         "lemma": "chanteo",
         "examples": [
           0,
@@ -227123,9 +227625,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "f24",
+        "sense": "7f5",
         "pos": "ADJ",
-        "translation": "dolled up or dressed up",
+        "translation": "dolled up",
         "lemma": "chapis",
         "examples": [
           0
@@ -227609,9 +228111,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "3ae",
+        "sense": "479",
         "pos": "NOUN",
-        "translation": "connection",
+        "translation": "drug connection",
         "lemma": "conne",
         "examples": [
           0,
@@ -228188,15 +228690,16 @@
     ],
     "gap-fill": [
       {
-        "sense": "3c6",
+        "sense": "0e8",
         "pos": "NOUN",
-        "translation": "part of déjà vu",
+        "translation": "feeling of having experienced something before",
         "lemma": "déj",
         "examples": [
           0,
           1
         ],
-        "type": "other",
+        "type": "loanword",
+        "construction": "déjà vu",
         "example_ids": [
           "6387245:1",
           "3640901:22"
@@ -228693,9 +229196,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "ce7",
+        "sense": "468",
         "pos": "VERB",
-        "translation": "to freeze (digital)",
+        "translation": "to freeze",
         "lemma": "friza",
         "examples": [
           0,
@@ -229178,14 +229681,14 @@
     ],
     "gap-fill": [
       {
-        "sense": "47c",
-        "pos": "NOUN",
-        "translation": "the one who messes around",
+        "sense": "b66",
+        "pos": "PROPN",
+        "translation": "a specific artist or persona",
         "lemma": "jodien",
         "examples": [
           0
         ],
-        "type": "slang",
+        "type": "proper_noun",
         "example_ids": [
           "3256611:19"
         ]
@@ -229247,9 +229750,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "478",
+        "sense": "e9c",
         "pos": "NOUN",
-        "translation": "drug selling spot",
+        "translation": "drug selling point",
         "lemma": "kiosko",
         "examples": [
           0,
@@ -229645,7 +230148,7 @@
           0,
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "4759404:38",
           "3288015:55"
@@ -229703,6 +230206,21 @@
         "examples": [
           0
         ],
+        "example_ids": [
+          "4179009:11"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "670",
+        "pos": "INTJ",
+        "translation": "I wish or hopefully",
+        "lemma": "ojalái",
+        "examples": [
+          0
+        ],
+        "type": "regional",
         "example_ids": [
           "4179009:11"
         ]
@@ -230146,9 +230664,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "36a",
+        "sense": "09a",
         "pos": "ADJ",
-        "translation": "worked up",
+        "translation": "agitated or worked up",
         "lemma": "piquetú",
         "examples": [
           0
@@ -230159,9 +230677,9 @@
         ]
       },
       {
-        "sense": "051",
+        "sense": "ff4",
         "pos": "ADJ",
-        "translation": "stylish",
+        "translation": "flashy or stylish",
         "lemma": "piquetú",
         "examples": [
           1
@@ -230196,9 +230714,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "6ae",
-        "pos": "NOUN",
-        "translation": "nasty thing",
+        "sense": "2cc",
+        "pos": "ADJ",
+        "translation": "nasty or sexually aggressive",
         "lemma": "piquetúa",
         "examples": [
           0
@@ -230209,9 +230727,9 @@
         ]
       },
       {
-        "sense": "954",
+        "sense": "fd3",
         "pos": "ADJ",
-        "translation": "feisty",
+        "translation": "feisty or bold",
         "lemma": "piquetúa",
         "examples": [
           1
@@ -230607,9 +231125,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "184",
+        "sense": "850",
         "pos": "NOUN",
-        "translation": "party girl",
+        "translation": "a woman who likes to party and act wild",
         "lemma": "safaera",
         "examples": [
           0
@@ -231103,28 +231621,17 @@
     ],
     "gap-fill": [
       {
-        "sense": "1b8",
-        "pos": "NOUN",
-        "translation": "all of them",
-        "lemma": "toítas",
-        "examples": [
-          0
-        ],
-        "type": "slang",
-        "example_ids": [
-          "3122516:22"
-        ]
-      },
-      {
-        "sense": "b8a",
+        "sense": "1ad",
         "pos": "ADJ",
-        "translation": "all",
+        "translation": "all of them (feminine)",
         "lemma": "toítas",
         "examples": [
+          0,
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
+          "3122516:22",
           "4558062:29"
         ]
       }
@@ -231146,15 +231653,15 @@
     ],
     "gap-fill": [
       {
-        "sense": "58f",
-        "pos": "NOUN",
-        "translation": "everyone",
+        "sense": "8cc",
+        "pos": "ADJ",
+        "translation": "all of them (masculine)",
         "lemma": "toítos",
         "examples": [
           0,
           1
         ],
-        "type": "slang",
+        "type": "regional",
         "example_ids": [
           "6852775:47",
           "5629886:23"
@@ -231270,9 +231777,9 @@
     ],
     "gap-fill": [
       {
-        "sense": "b33",
+        "sense": "6c8",
         "pos": "NOUN",
-        "translation": "a nobody/scrub",
+        "translation": "a loser or nobody",
         "lemma": "trili",
         "examples": [
           0
@@ -231283,9 +231790,9 @@
         ]
       },
       {
-        "sense": "c1b",
+        "sense": "526",
         "pos": "NOUN",
-        "translation": "a snitch",
+        "translation": "a snitch or informant",
         "lemma": "trili",
         "examples": [
           1
@@ -231518,6 +232025,23 @@
           "4179009:16"
         ]
       }
+    ],
+    "gap-fill": [
+      {
+        "sense": "e39",
+        "pos": "NOUN",
+        "translation": "dude or man",
+        "lemma": "wey",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "loanword",
+        "example_ids": [
+          "5305051:27",
+          "4179009:16"
+        ]
+      }
     ]
   },
   "yanyo": {
@@ -231534,14 +232058,14 @@
     ],
     "gap-fill": [
       {
-        "sense": "24e",
-        "pos": "NOUN",
-        "translation": "grandpa",
+        "sense": "e92",
+        "pos": "PROPN",
+        "translation": "a Puerto Rican music producer",
         "lemma": "yanyo",
         "examples": [
           0
         ],
-        "type": "regional",
+        "type": "proper_noun",
         "example_ids": [
           "2976947:62"
         ]
@@ -231556,6 +232080,23 @@
           0,
           1
         ],
+        "example_ids": [
+          "11304595:56",
+          "5305013:92"
+        ]
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "9d2",
+        "pos": "NOUN",
+        "translation": "marijuana",
+        "lemma": "yerba",
+        "examples": [
+          0,
+          1
+        ],
+        "type": "slang",
         "example_ids": [
           "11304595:56",
           "5305013:92"
@@ -239549,16 +240090,16 @@
     ],
     "gap-fill": [
       {
-        "sense": "8bf",
+        "sense": "6ef",
         "pos": "VERB",
-        "translation": "to have a great time",
+        "translation": "having a great time",
         "lemma": "pasándola",
         "examples": [
           0,
           1
         ],
         "type": "slang",
-        "construction": "pasarla",
+        "construction": "pasándola",
         "example_ids": [
           "11180508:3",
           "9614069:83"
@@ -251027,12 +251568,9 @@
     ]
   },
   "atreves": {
-    "gap-fill": [
+    "spanishdict-flash-lite": [
       {
-        "sense": "7fc",
-        "pos": "VERB",
-        "translation": "to dare or have the courage to do something",
-        "lemma": "atreverse",
+        "sense": "27c",
         "examples": [
           0,
           1,
@@ -251043,17 +251581,20 @@
         ],
         "example_ids": [
           "3377480:2",
-          "3092934:38",
           "3289205:14",
           "5305013:15",
           "9614069:57",
-          "3048221:98"
+          "3048221:98",
+          "3092934:39"
         ]
       }
     ],
-    "spanishdict-flash-lite": [
+    "gap-fill": [
       {
-        "sense": "27c",
+        "sense": "b76",
+        "pos": "VERB",
+        "translation": "to dare",
+        "lemma": "atreves",
         "examples": [
           0,
           1,
@@ -253073,30 +253614,16 @@
   "selfie": {
     "gap-fill": [
       {
-        "sense": "e9e",
+        "sense": "5e2",
         "pos": "NOUN",
-        "translation": "A self-taken photograph, typically with a smartphone.",
+        "translation": "self-portrait photograph",
         "lemma": "selfie",
         "examples": [
           0,
           1,
           2
         ],
-        "example_ids": [
-          "7967957:10",
-          "7967959:8",
-          "5305013:96"
-        ]
-      }
-    ],
-    "spanishdict-auto": [
-      {
-        "sense": "991",
-        "examples": [
-          0,
-          1,
-          2
-        ],
+        "type": "loanword",
         "example_ids": [
           "7967957:10",
           "7967959:8",
@@ -253252,15 +253779,30 @@
     ],
     "gap-fill": [
       {
-        "sense": "8c1",
+        "sense": "d23",
         "pos": "VERB",
-        "translation": "to have sex",
+        "translation": "dare",
+        "lemma": "atreve",
+        "examples": [
+          0,
+          1
+        ],
+        "construction": "atreverse",
+        "example_ids": [
+          "3377480:30",
+          "7967942:34"
+        ]
+      },
+      {
+        "sense": "4c9",
+        "pos": "VERB",
+        "translation": "dare to have sex",
         "lemma": "atreve",
         "examples": [
           2
         ],
         "type": "slang",
-        "construction": "atreverse a zumbar",
+        "construction": "atreverse",
         "example_ids": [
           "3016410:69"
         ]
@@ -253560,38 +254102,44 @@
   "pre": {
     "gap-fill": [
       {
-        "sense": "3f6",
-        "pos": "PREP",
-        "translation": "before, or a prefix indicating 'before'",
+        "sense": "0d0",
+        "pos": "VERB",
+        "translation": "short for prender",
         "lemma": "pre",
         "examples": [
           0,
-          1,
-          2,
           3
         ],
+        "type": "slang",
         "example_ids": [
           "5305001:35",
-          "5629827:4",
-          "6866266:30",
           "2915707:72"
         ]
-      }
-    ],
-    "spanishdict-auto": [
+      },
       {
-        "sense": "0ce",
+        "sense": "74c",
+        "pos": "NOUN",
+        "translation": "the beginning or start",
+        "lemma": "pre",
         "examples": [
-          0,
-          1,
-          2,
-          3
+          1
         ],
+        "type": "slang",
         "example_ids": [
-          "5305001:35",
-          "5629827:4",
-          "6866266:30",
-          "2915707:72"
+          "5629827:4"
+        ]
+      },
+      {
+        "sense": "970",
+        "pos": "ADV",
+        "translation": "phonetic spelling of 'pre' in 'siempre'",
+        "lemma": "pre",
+        "examples": [
+          2
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6866266:30"
         ]
       }
     ]
@@ -253943,30 +254491,16 @@
   "blunes": {
     "gap-fill": [
       {
-        "sense": "8dc",
+        "sense": "17e",
         "pos": "NOUN",
-        "translation": "slang for marijuana cigarettes",
-        "lemma": "blun",
+        "translation": "blunts (marijuana cigars)",
+        "lemma": "blunes",
         "examples": [
           0,
           1,
           2
         ],
-        "example_ids": [
-          "3749052:18",
-          "9614095:27",
-          "3046295:37"
-        ]
-      }
-    ],
-    "spanishdict-auto": [
-      {
-        "sense": "c18",
-        "examples": [
-          0,
-          1,
-          2
-        ],
+        "type": "loanword",
         "example_ids": [
           "3749052:18",
           "9614095:27",
@@ -258092,24 +258626,14 @@
   "nano": {
     "gap-fill": [
       {
-        "sense": "9f3",
-        "pos": "SUFFIX",
-        "translation": "Diminutive suffix, often used informally or as a nickname.",
+        "sense": "a39",
+        "pos": "NOUN",
+        "translation": "bro or dude",
         "lemma": "nano",
         "examples": [
           0
         ],
-        "example_ids": [
-          "3021794:3"
-        ]
-      }
-    ],
-    "spanishdict-auto": [
-      {
-        "sense": "f93",
-        "examples": [
-          0
-        ],
+        "type": "slang",
         "example_ids": [
           "3021794:3"
         ]
@@ -258168,15 +258692,15 @@
   "ojeda": {
     "gap-fill": [
       {
-        "sense": "0ef",
-        "pos": "NOUN",
-        "translation": "a specific person",
+        "sense": "767",
+        "pos": "PROPN",
+        "translation": "a person known for being a snitch or informant",
         "lemma": "ojeda",
         "examples": [
           0,
           1
         ],
-        "type": "regional",
+        "type": "slang",
         "example_ids": [
           "9614095:24",
           "3289205:62"
@@ -263767,9 +264291,9 @@
   "chapéame": {
     "gap-fill": [
       {
-        "sense": "b86",
+        "sense": "db1",
         "pos": "VERB",
-        "translation": "hit me up for money",
+        "translation": "ask for money",
         "lemma": "chapéame",
         "examples": [
           0,
