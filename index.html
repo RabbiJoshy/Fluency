@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260728e">
-    <link rel="modulepreload" href="js/state.js?v=20260728e">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260728e">
-    <link rel="modulepreload" href="js/speech.js?v=20260728e">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260728e">
-    <link rel="modulepreload" href="js/auth.js?v=20260728e">
-    <link rel="modulepreload" href="js/spotify.js?v=20260728e">
-    <link rel="modulepreload" href="js/estimation.js?v=20260728e">
-    <link rel="modulepreload" href="js/config.js?v=20260728e">
-    <link rel="modulepreload" href="js/progress.js?v=20260728e">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260728e">
-    <link rel="modulepreload" href="js/ui.js?v=20260728e">
-    <link rel="modulepreload" href="js/vocab.js?v=20260728e">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260728e">
+    <link rel="modulepreload" href="js/main.js?v=20260728f">
+    <link rel="modulepreload" href="js/state.js?v=20260728f">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260728f">
+    <link rel="modulepreload" href="js/speech.js?v=20260728f">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260728f">
+    <link rel="modulepreload" href="js/auth.js?v=20260728f">
+    <link rel="modulepreload" href="js/spotify.js?v=20260728f">
+    <link rel="modulepreload" href="js/estimation.js?v=20260728f">
+    <link rel="modulepreload" href="js/config.js?v=20260728f">
+    <link rel="modulepreload" href="js/progress.js?v=20260728f">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260728f">
+    <link rel="modulepreload" href="js/ui.js?v=20260728f">
+    <link rel="modulepreload" href="js/vocab.js?v=20260728f">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260728f">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -174,16 +174,12 @@
                 <button class="card-meta-close" id="flagMenuClose" aria-label="Close">×</button>
             </div>
             <div class="card-meta-body">
-                <div class="flag-menu-hint">Tell the data audit exactly where to look. The visible sense and example start selected.</div>
-                <div class="card-meta-section flag-menu-quick-section">
+                <div class="flag-menu-hint" id="flagMenuHint">Tell the data audit exactly where to look. The visible sense and example start selected.</div>
+                <div class="card-meta-section flag-menu-quick-section" id="flagMenuQuickSection">
                     <h4>Quick report</h4>
                     <div class="flag-menu-quick-actions" id="flagMenuQuickActions"></div>
                 </div>
-                <div class="card-meta-section" id="flagMenuNoteSection">
-                    <label class="flag-menu-note-label" for="flagMenuNote">Add a note <span>optional</span></label>
-                    <textarea id="flagMenuNote" class="flag-menu-note" rows="3" maxlength="600" placeholder="What did you notice? Include the correction or expected behaviour if you know it."></textarea>
-                </div>
-                <div class="card-meta-section flag-menu-target-section">
+                <div class="card-meta-section flag-menu-target-section" id="flagMenuTargetSection">
                     <h4>Detailed report</h4>
                     <div class="flag-menu-targets" id="flagMenuTargets"></div>
                 </div>
@@ -199,6 +195,17 @@
                     <h4>Audit preview</h4>
                     <div class="flag-menu-pairing" id="flagMenuPairingPreview"></div>
                 </div>
+                <details class="card-meta-section flag-menu-note-section" id="flagMenuNoteSection">
+                    <summary class="flag-menu-note-summary">
+                        <span id="flagMenuNoteSummary">Add details</span><small>optional</small>
+                    </summary>
+                    <div class="flag-menu-note-composer">
+                        <button class="flag-menu-note-back" id="flagMenuNoteBack" type="button">← Report options</button>
+                        <label class="flag-menu-note-label" for="flagMenuNote">Your note</label>
+                        <textarea id="flagMenuNote" class="flag-menu-note" rows="4" maxlength="600" enterkeyhint="send" placeholder="What did you notice? Include the correction or expected behaviour if you know it."></textarea>
+                        <div class="flag-menu-note-help">Press Send on your keyboard to submit. Use Shift+Enter for a new line.</div>
+                    </div>
+                </details>
             </div>
             <div class="card-meta-footer">
                 <button class="card-meta-flag-btn" id="flagMenuConfirm" type="button" title="Send this report to the data audit">Send audit flag</button>
@@ -1178,6 +1185,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260728e"></script>
+    <script type="module" src="js/main.js?v=20260728f"></script>
 </body>
 </html>
