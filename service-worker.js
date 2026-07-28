@@ -1,20 +1,15 @@
-// Stale-while-revalidate: serve from cache instantly, fetch in background to
-// update for next time. The previous network-first strategy made every cold
-// start wait on a full round-trip per asset (HTML, CSS, JS modules, JSON),
-// which on a PWA is most of the perceived "startup" cost.
-//
-// Trade-off: a deploy takes one extra page load to roll out (visit N shows
-// stale assets but populates the cache; visit N+1 shows fresh). For an
-// install-grade PWA used daily, that's an acceptable price for instant boot.
+// Navigations use network-first so the HTML shell immediately receives new
+// module version tags after a deploy. Versioned assets and large data files
+// remain stale-while-revalidate for instant repeat loads and offline study.
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v128';
+const CACHE_NAME = 'flashcards-v129';
 
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260728f';
+const ASSET_VERSION = '20260728g';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -68,7 +63,27 @@ self.addEventListener('fetch', event => {
   // out of the SW entirely — those are handled by js/sync-queue.js instead.
   if (request.method !== 'GET') return;
 
-  // Stale-while-revalidate applies to ALL same-origin GETs, which by design
+  // The old cache-first navigation path meant the cached HTML continued to
+  // request yesterday's ?v= modules on the first visit after every deploy.
+  // Pay one small HTML request while online, cache it for offline fallback,
+  // and keep every heavier asset on the fast path below.
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request).then(response => {
+        if (response && response.status === 200 && response.type === 'basic') {
+          return caches.open(CACHE_NAME)
+            .then(cache => cache.put('/index.html', response.clone()))
+            .then(() => response);
+        }
+        return response;
+      }).catch(() => caches.open(CACHE_NAME).then(cache =>
+        cache.match(request).then(cached => cached || cache.match('/index.html') || cache.match('/'))
+      ))
+    );
+    return;
+  }
+
+  // Stale-while-revalidate applies to all remaining same-origin GETs, which
   // includes the deck DATA the app fetches to render a deck: the per-artist
   // *.index.json / *.examples.json, shared vocabulary_master.json, config/*.json,
   // and the Data/Spanish/* rank & conjugation files. Any of these fetched once

@@ -1130,26 +1130,31 @@ function _focusFlagNote() {
 
 function _updateFlagConfirmState() {
     const confirmEl = document.getElementById('flagMenuConfirm');
-    if (!confirmEl) return;
+    const noteSendEl = document.getElementById('flagMenuNoteSend');
+    if (!confirmEl && !noteSendEl) return;
     const note = (document.getElementById('flagMenuNote')?.value || '').trim();
     const noteRequired = _flagTarget === 'note';
     const routingRequired = _flagTarget === 'routing';
-    confirmEl.disabled = (noteRequired && !note) || (routingRequired && !_flagCategory);
-    confirmEl.textContent = noteRequired
-        ? 'Send note'
-        : routingRequired
-            ? `Tag as ${_flagCategoryLabel()}`
-            : 'Send audit flag';
-    confirmEl.title = noteRequired && !note
-        ? 'Type the note before sending it'
-        : routingRequired
-            ? `Send the ${_flagCategoryLabel()} classification to the data audit`
-            : 'Send this report to the data audit';
+    if (confirmEl) {
+        confirmEl.disabled = (noteRequired && !note) || (routingRequired && !_flagCategory);
+        confirmEl.textContent = noteRequired
+            ? 'Send note'
+            : routingRequired
+                ? `Tag as ${_flagCategoryLabel()}`
+                : 'Send audit flag';
+        confirmEl.title = noteRequired && !note
+            ? 'Type the note before sending it'
+            : routingRequired
+                ? `Send the ${_flagCategoryLabel()} classification to the data audit`
+                : 'Send this report to the data audit';
+    }
+    if (noteSendEl) noteSendEl.disabled = !note;
 }
 
 function _renderFlagMenu() {
     const card = _flagMenuCard();
     const bodyEl = document.querySelector('#flagMenu .card-meta-body');
+    const footerEl = document.querySelector('#flagMenu .card-meta-footer');
     const hintEl = document.getElementById('flagMenuHint');
     const quickSectionEl = document.getElementById('flagMenuQuickSection');
     const targetSectionEl = document.getElementById('flagMenuTargetSection');
@@ -1179,9 +1184,9 @@ function _renderFlagMenu() {
 
     bodyEl?.classList.toggle('is-note-mode', noteMode);
     if (hintEl) hintEl.textContent = noteMode
-        ? 'Write what you noticed. Press Send on your keyboard when you finish.'
+        ? 'Write what you noticed below. Nothing is sent until you tap Send note.'
         : 'Tell the data audit exactly where to look. The visible sense and example start selected.';
-    if (quickSectionEl) quickSectionEl.hidden = noteMode;
+    if (quickSectionEl) quickSectionEl.hidden = false;
     if (targetSectionEl) targetSectionEl.hidden = noteMode;
     if (senseSectionEl) senseSectionEl.hidden = noteMode || !needsSense;
     if (categorySectionEl) categorySectionEl.hidden = noteMode || routingMode;
@@ -1190,6 +1195,7 @@ function _renderFlagMenu() {
         noteSectionEl.hidden = false;
         if (noteMode) noteSectionEl.open = true;
     }
+    if (footerEl) footerEl.hidden = noteMode;
     if (noteSummaryEl) noteSummaryEl.textContent = noteMode ? 'Send a note' : 'Add details';
     if (!meanings.length) {
         sensesEl.innerHTML = '<li class="card-meta-empty">No senses on this card.</li>';
@@ -1208,7 +1214,7 @@ function _renderFlagMenu() {
 
     quickActionsEl.innerHTML = `
         <button type="button" class="flag-menu-quick-action flag-menu-quick-note${noteMode ? ' selected' : ''}" data-quick-target="note">
-            <strong>Send a note</strong><span>Open a focused message</span>
+            <strong>Add a note</strong><span>Write it here before sending</span>
         </button>
         ${FLAG_ROUTING_TAGS.map(item => `
             <button type="button" class="flag-menu-quick-action${routingMode && _flagCategory === item.key ? ' selected' : ''}" data-quick-target="routing" data-quick-category="${item.key}">
@@ -1268,8 +1274,16 @@ function _renderFlagMenu() {
     });
     quickActionsEl.querySelectorAll('.flag-menu-quick-action').forEach(btn => {
         btn.addEventListener('click', () => {
-            _flagTarget = btn.dataset.quickTarget;
-            _flagCategory = btn.dataset.quickCategory || '';
+            const requestedTarget = btn.dataset.quickTarget;
+            if (requestedTarget === 'note' && _flagTarget === 'note') {
+                _flagTarget = 'pairing';
+                _flagCategory = 'matching';
+                if (noteSectionEl) noteSectionEl.open = false;
+            } else {
+                _flagTarget = requestedTarget;
+                _flagCategory = btn.dataset.quickCategory || '';
+                if (_flagTarget !== 'note' && noteSectionEl) noteSectionEl.open = false;
+            }
             _renderFlagMenu();
             if (_flagTarget === 'note') _focusFlagNote();
         });
@@ -1469,6 +1483,7 @@ function flagMenuConfirm() {
     const content = document.getElementById('flagMenuContent');
     const note = document.getElementById('flagMenuNote');
     const noteBack = document.getElementById('flagMenuNoteBack');
+    const noteSend = document.getElementById('flagMenuNoteSend');
     if (closeBtn) closeBtn.addEventListener('click', hideFlagMenu);
     if (confirmBtn) confirmBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -1482,13 +1497,13 @@ function flagMenuConfirm() {
         _renderFlagMenu();
         document.getElementById('flagMenuQuickSection')?.scrollIntoView({ block: 'start' });
     });
+    if (noteSend) noteSend.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!note?.value.trim()) return;
+        flagMenuConfirm();
+    });
     if (note) {
         note.addEventListener('input', _updateFlagConfirmState);
-        note.addEventListener('keydown', (e) => {
-            if (_flagTarget !== 'note' || e.isComposing || e.key !== 'Enter' || e.shiftKey) return;
-            e.preventDefault();
-            if (note.value.trim()) flagMenuConfirm();
-        });
     }
     document.addEventListener('click', (e) => {
         if (pop.hidden) return;

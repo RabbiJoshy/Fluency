@@ -809,6 +809,7 @@ function artistLemmaEvidenceCount(item) {
 // real vocab; frequent loanwords like `baby` belong in Extra regardless of count).
 const ARTIST_EXTRA_CATEGORIES = new Set(
     ['loanword', 'english', 'proper_noun', 'cognate', 'noise']);
+const ARTIST_MIN_SENSE_FREQ = 0.05;
 function artistItemMatchesScope(item) {
     if (!activeArtist) return true;
     const cat = String(item?.extra_category || '').toLowerCase();
@@ -1109,6 +1110,16 @@ function buildFilteredVocab(vocabData) {
                     continue;
                 }
             }
+            // Setup and deck construction must agree on whether an artist
+            // card exists. Multi-occurrence rows with no assigned artist
+            // sense are discarded later after examples attach; discard them
+            // here too so they never appear as phantom new cards in a set.
+            const hasAssignedArtistSense = item.meanings.some(meaning =>
+                Number(meaning.frequency || 0) >= ARTIST_MIN_SENSE_FREQ);
+            if (Number(item.corpus_count) > 1 && !hasAssignedArtistSense) {
+                counts.singleOcc++;
+                continue;
+            }
         }
         // Cognates: dropped in Main/normal per the toggle, but KEPT in Extra so
         // they populate the Cognates category (the toggle is hidden there and
@@ -1193,7 +1204,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
     // when the learner returns to the menu.
     window.invalidatePreparedSetupVocabulary?.();
     const includeWordId = opts.includeWordId || null;
-    const studyMode = opts.resumeSnapshot ? 'resume' : (opts.studyMode || 'new');
+    let studyMode = opts.resumeSnapshot ? 'resume' : (opts.studyMode || 'new');
     // Completely clear all previous data and state
     flashcards = [];
     stats = {
@@ -1344,8 +1355,19 @@ async function loadVocabularyData(rangeString, opts = {}) {
         }
 
         // Resolve an empty selection before attaching examples and building
-        // cards. Explicit "study again" uses studyMode=all, so the new-card
-        // path never silently mixes old cards into a completed set.
+        // cards. A newly-completed advertised set falls back to the same deck
+        // as an explicit "Study Again" tap; genuinely empty ranges still stop.
+        if (filteredData.length === 0 && studyMode === 'new' && allInRange.length > 0) {
+            // A background progress refresh can finish after the set controls
+            // render. If every advertised "new" card became seen meanwhile,
+            // honour the learner's attempt to open the set by falling back to
+            // the existing Study Again behavior instead of showing a dead-end
+            // completion alert.
+            filteredData = allInRange.slice();
+            studyMode = 'all';
+            stats.studyMode = 'all';
+            excludedMastered = 0;
+        }
         if (filteredData.length === 0) {
             const emptyMessage = studyMode === 'review'
                 ? 'No cards need review in this level with the current settings.'
@@ -1424,11 +1446,10 @@ async function loadVocabularyData(rangeString, opts = {}) {
         // Must happen AFTER examples are attached (above) so positional indices are correct,
         // but BEFORE card building (below) so cards only show relevant senses.
         if (activeArtist) {
-            const MIN_SENSE_FREQ = 0.05;
             const MAX_SENSES = 6;
             for (const item of filteredData) {
                 const artistMeanings = item.meanings.filter(m =>
-                    !m.shared_fallback && parseFloat(m.frequency) >= MIN_SENSE_FREQ);
+                    !m.shared_fallback && parseFloat(m.frequency) >= ARTIST_MIN_SENSE_FREQ);
                 const supportedFallbacks = item.meanings.filter(m =>
                     m.shared_fallback && Array.isArray(m.examples) && m.examples.length > 0);
                 if (artistVocabularyScope === 'extra') {
