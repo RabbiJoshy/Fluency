@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "780eb56f",
+      "summary": "The About page now leads with the learning problem and demonstrates its claims directly",
+      "details": [
+        "The opening now begins with the weakness of themed vocabulary lists, refers to this app without pretending Fluency is a public product name, and introduces frequency order only as the response",
+        "The aunque explanation now says why small linking words matter and makes clear that the app separates their uses and pairs each one with a sentence where it fits",
+        "Speech now opens on the discussed aunque card with its real 50/30/20 split, while Lyrics opens directly on fuego at 70/20/10; both demos show percentages for every meaning and no longer cycle through unrelated starter words; cache v125→v126, assets 20260728c→20260728d"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "24149b26",
       "summary": "Progress storage is simpler, and completed levels can leave the suggestion path",
       "details": [

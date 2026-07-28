@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-28 — Make the About page demonstrate its argument
+
+- Commit `780eb56f`; front-end cache `flashcards-v126` / `20260728d`.
+- Removed the unsupported public product name from the About copy and restored the intended narrative order: the limitation of themed word lists first, then this app's frequency- and context-based response.
+- Explained why *aunque* matters as a small linking word and what the app does differently: its three uses are kept separate and shown with the sentence that calls for each meaning.
+- Reduced each animated demo to the word discussed beside it. Speech now starts and remains on the real `aunque` card (rank 429, 229/million, ≈50% even though / 30% although / 20% even if); Lyrics starts and remains on `fuego` (≈70% fire / 20% light / 10% passion). Every demonstrated meaning now carries its percentage instead of making a visitor wait through unrelated cards.
+- Verification: bundled-Node parsing, exact one-card-per-mode/word/percentage-total assertions, live Spanish-index rank/frequency/meaning-total checks, absence of the repo name in About copy, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-28 — Consolidate progress storage and streamline level completion
 
 - Commit `24149b26`; front-end cache `flashcards-v125` / `20260728c`.
