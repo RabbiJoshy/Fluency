@@ -372,6 +372,19 @@ function cacheProgressLocally() {
     }
 }
 
+// Setup renders immediately from the local cache while Sheets refreshes in
+// the background. Compare the actual UI-driving state after that refresh — a
+// row-count comparison misses the common case where an existing card changes
+// from unseen/review to known and leaves the set picker stale.
+function getProgressUiFingerprint() {
+    return JSON.stringify({
+        progress: progressData || {},
+        itemProgress: itemProgressData || {},
+        estimates: levelEstimates || {},
+        doneLevels: markedDoneLevels || {}
+    });
+}
+
 async function detectProgressBackendSchema() {
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
@@ -407,8 +420,7 @@ async function loadLegacyProgress(cacheKey, cached) {
         return false;
     }
 
-    const previousCount = Object.keys(progressData).length;
-    const previousItemCount = Object.keys(itemProgressData).length;
+    const previousUiState = getProgressUiFingerprint();
     progressData = {};
     const mergeWords = result => {
         if (!result?.success || !Array.isArray(result.data?.progress)) return;
@@ -443,9 +455,7 @@ async function loadLegacyProgress(cacheKey, cached) {
     updateIncorrectButtonVisibility();
     updateTotalStatsButtonVisibility();
     cacheProgressLocally();
-    return Object.keys(progressData).length !== previousCount
-        || Object.keys(itemProgressData).length !== previousItemCount
-        || !cached;
+    return getProgressUiFingerprint() !== previousUiState || !cached;
 }
 
 function markedDoneFromMeta(metaRows) {
@@ -561,9 +571,7 @@ async function loadUserProgressFromSheet() {
             return false;
         }
 
-        const prevCount = Object.keys(progressData).length;
-        const prevItemCount = Object.keys(itemProgressData).length;
-        const prevDone = JSON.stringify(markedDoneLevels || {});
+        const previousUiState = getProgressUiFingerprint();
         progressData = {};
 
         if (progressResult?.success && Array.isArray(progressResult.data?.progress)) {
@@ -623,11 +631,10 @@ async function loadUserProgressFromSheet() {
         // 3. Update cache
         cacheProgressLocally();
 
-        // Return whether data changed (different count = something changed)
-        const newCount = Object.keys(progressData).length;
-        const newItemCount = Object.keys(itemProgressData).length;
-        return newCount !== prevCount || newItemCount !== prevItemCount
-            || JSON.stringify(markedDoneLevels || {}) !== prevDone || !cached;
+        // Existing rows change far more often than rows are added. Returning
+        // the full state comparison lets setup refresh its Known/Review/Unseen
+        // segments before a learner opens a set that has become complete.
+        return getProgressUiFingerprint() !== previousUiState || !cached;
     } catch (error) {
         console.error('Failed to load progress from Google Sheets:', error);
         // Continue with cached data if available
