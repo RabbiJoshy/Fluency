@@ -365,7 +365,8 @@ function cacheItemProgress() {
             ...cached,
             progress: progressData,
             itemProgress: itemProgressData,
-            estimates: levelEstimates
+            estimates: levelEstimates,
+            doneLevels: markedDoneLevels
         }));
     } catch (_) {
         // Cache is best-effort; the durable sync queue still owns the write.
@@ -413,10 +414,12 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
 
         sendOrQueue({
             action: 'saveItem',
+            sheet: 'Progress',
+            mode: window.getProgressMode?.() || (activeArtist ? 'artist' : 'normal'),
             user: currentUser.initials,
             itemId: existing.itemId,
             parentWordId: existing.parentWordId,
-            itemType: existing.itemType,
+            itemType: existing.itemType === 'expression' ? 'mwe' : existing.itemType,
             label: existing.label,
             language: existing.language,
             correct: existing.correct,
@@ -426,7 +429,7 @@ async function saveKnowledgeProgress(card, items, isCorrect) {
             lastSeen: existing.lastSeen,
             srsStage: existing.srsStage,
             schemaVersion: existing.schemaVersion
-        }, `saveItem|${existing.itemId}`);
+        }, `saveItem|Progress|${existing.itemId}`);
     }
     cacheItemProgress();
 

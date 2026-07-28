@@ -46,6 +46,7 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 | `activeArtist` | object\|null | null = normal mode, object = artist config |
 | `progressData` | object | `fullId -> { correct, wrong, lastCorrect, lastWrong, lastSeen, srsStage, word, language }` |
 | `itemProgressData` | object | Sparse `itemId ->` explicit sense/expression/clitic answers; whole-card progress remains the inherited baseline |
+| `markedDoneLevels` | object | Suggestion-only `{ scopeKey: { levelId: true } }`; scope is mode + language + artist source and never fabricates card progress |
 | `selectedLanguage` | string | Key into `config.languages` |
 | `isFlipped` | boolean | Flip **direction** (target->English vs English->target), NOT card flip state |
 
@@ -148,11 +149,20 @@ projection, and the current Apps Script schema. The learner must reveal the
 meaning before self-scoring whether it was known beforehand. This is not a
 calibrated IRT test and must not be presented as exact or as productive ability.
 
-Google Apps Script schema v3 adds `SrsStage` and `LastSeen` as columns 9–10 of
-`UserProgress`/`Lyrics`, plus `SrsStage` as column 13 of `ItemProgress`. Existing
-sheets add these headers automatically on the first v3 request without rewriting
-old rows. Copy `backend/GoogleAppsScript.js` and deploy a new Apps Script version
-whenever this persistence contract changes.
+Google Apps Script schema v4 stores every progress grain in one `Progress` tab.
+`ItemType` discriminates `word`, `sense`, `mwe`, `clitic`, and app metadata;
+`Mode` keeps Speech and Lyrics separate; `ParentWordId` links granular items;
+`Source` scopes routing metadata such as a marked-done artist level. `FlaggedWords`
+remains separate. The first v4 POST migrates `UserProgress`, `Lyrics`, and
+`ItemProgress`, then renames them `*_legacy`; cached v3 clients remain compatible.
+The frontend probes the backend capability before addressing `Progress`, so deploy
+order is safe. Copy `backend/GoogleAppsScript.js` and deploy a new Apps Script
+version whenever this persistence contract changes.
+
+`markedDoneLevels` is a reversible suggestion-routing override persisted as
+`level-done` metadata. Setup auto-selection, estimated-level selection, resume
+suggestions, and end-of-set advancement skip marked levels, but explicitly opening
+one still works and all real correct/wrong history continues to record normally.
 
 ## buildFilteredVocab() — Central Filter
 
@@ -213,8 +223,8 @@ incorrectly; each example still highlights its actual pooled surface form.
   saved-session state and is not an artist-deck filter.
 - Album artwork backgrounds (`updateArtistBackground()` in `artist-ui.js`)
 - Multiple lyric examples per card; tap to cycle
-- Google Sheets tab: `'Lyrics'`; sparse item overrides for both modes live in the
-  shared `'ItemProgress'` tab and remain mode-separated through the parent fullId.
+- Google Sheets tab: unified `'Progress'`; artist word/item rows use `Mode=artist`,
+  while artist-specific routing metadata also carries the selected artist source.
 
 ## Artist Index Format + joinWithMaster()
 

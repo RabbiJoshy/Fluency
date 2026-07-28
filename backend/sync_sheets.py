@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Pull progress data from Google Sheets to local JSON files.
+"""Pull the unified Progress and FlaggedWords tabs to local JSON files.
 
 Usage:
     python3 backend/sync_sheets.py                    # pull both sheets
-    python3 backend/sync_sheets.py --sheet UserProgress  # pull one sheet
+    python3 backend/sync_sheets.py --sheet Progress  # pull one sheet
     python3 backend/sync_sheets.py --diff             # show changes since last pull
 """
 
@@ -18,8 +18,27 @@ from datetime import datetime
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRETS_PATH = os.path.join(SCRIPT_DIR, 'secrets.json')
 LOCAL_DIR = os.path.join(SCRIPT_DIR, 'local')
-SHEETS = ['UserProgress', 'Lyrics', 'FlaggedWords']
-HEADER_KEYS = ['user', 'word', 'wordId', 'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong']
+SHEETS = ['Progress', 'FlaggedWords']
+HEADER_KEYS = {
+    'user': 'user',
+    'itemid': 'itemId',
+    'itemtype': 'itemType',
+    'mode': 'mode',
+    'source': 'source',
+    'parentwordid': 'parentWordId',
+    'label': 'label',
+    'word': 'word',
+    'wordid': 'wordId',
+    'language': 'language',
+    'correct': 'correct',
+    'wrong': 'wrong',
+    'lastcorrect': 'lastCorrect',
+    'lastwrong': 'lastWrong',
+    'lastseen': 'lastSeen',
+    'schemaversion': 'schemaVersion',
+    'srsstage': 'srsStage',
+    'value': 'value',
+}
 
 
 def load_script_url():
@@ -59,14 +78,13 @@ def dump_sheet(script_url, sheet_name):
 
 
 def rows_to_objects(headers, rows):
-    keys = [k.lower() for k in headers] if headers else HEADER_KEYS
-    # Map sheet column names to our consistent keys
-    key_map = {h.lower(): k for h, k in zip(keys, HEADER_KEYS)} if len(keys) == len(HEADER_KEYS) else {}
+    keys = [HEADER_KEYS.get(str(header).lower(), f'col{i}')
+            for i, header in enumerate(headers or [])]
     result = []
     for row in rows:
         obj = {}
         for i, val in enumerate(row):
-            key = HEADER_KEYS[i] if i < len(HEADER_KEYS) else f'col{i}'
+            key = keys[i] if i < len(keys) else f'col{i}'
             obj[key] = val
         result.append(obj)
     return result
@@ -100,8 +118,23 @@ def show_diff(sheet_name, old_data, new_rows):
         print(f"  {sheet_name}: no previous pull to compare against")
         return
 
-    old_ids = {r['wordId'] for r in old_data.get('rows', []) if r.get('wordId')}
-    new_ids = {r['wordId'] for r in new_rows if r.get('wordId')}
+    def row_id(row):
+        if sheet_name != 'Progress':
+            return f"{row.get('user', '')}|{row.get('wordId', '')}"
+        item_type = str(row.get('itemType', 'sense')).lower()
+        if item_type == 'expression':
+            item_type = 'mwe'
+        mode = str(row.get('mode', 'normal'))
+        if item_type == 'meta':
+            return '|'.join((
+                str(row.get('user', '')), item_type, mode,
+                str(row.get('source', '')), str(row.get('language', '')),
+                str(row.get('label', '')), str(row.get('itemId', ''))
+            ))
+        return '|'.join((str(row.get('user', '')), item_type, mode,
+                         str(row.get('itemId', ''))))
+    old_ids = {row_id(r) for r in old_data.get('rows', []) if row_id(r)}
+    new_ids = {row_id(r) for r in new_rows if row_id(r)}
 
     added = new_ids - old_ids
     removed = old_ids - new_ids
@@ -115,10 +148,10 @@ def show_diff(sheet_name, old_data, new_rows):
         print(f"    Removed ({len(removed)}): {', '.join(sorted(removed)[:10])}{'...' if len(removed) > 10 else ''}")
     if not added and not removed:
         # Check for value changes
-        old_map = {r['wordId']: r for r in old_data.get('rows', []) if r.get('wordId')}
+        old_map = {row_id(r): r for r in old_data.get('rows', []) if row_id(r)}
         changed = 0
         for r in new_rows:
-            wid = r.get('wordId')
+            wid = row_id(r)
             if wid and wid in old_map and r != old_map[wid]:
                 changed += 1
         if changed:
@@ -143,7 +176,7 @@ def main():
         old_data = load_previous(sheet_name) if args.diff else None
 
         raw = dump_sheet(script_url, sheet_name)
-        headers = raw.get('headers', HEADER_KEYS)
+        headers = raw.get('headers', [])
         rows = raw.get('rows', [])
         new_rows = rows_to_objects(headers, rows)
 

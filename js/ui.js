@@ -525,6 +525,7 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
 
     let firstIncomplete = null;
     let lastAvailable = null;
+    let lastSuggestionLevel = null;
 
     for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
         const btn = buttons[buttonIndex];
@@ -546,26 +547,30 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
         });
         if (wordsInLevel.length === 0) continue;
         lastAvailable = btn;
+        const suggestionSkipped = window.isLevelMarkedDone?.(btn.dataset.level) || false;
+        if (!suggestionSkipped) lastSuggestionLevel = btn;
         const knownCount = wordsInLevel.filter(wordKnown).length;
         const completion = Math.round(100 * knownCount / wordsInLevel.length);
         const isPartial = completion > 0 && completion < 100;
         btn.dataset.progressPct = String(completion);
         btn.classList.toggle('has-partial-progress', isPartial);
+        btn.classList.toggle('is-suggestion-skipped', suggestionSkipped);
         btn.style.setProperty('--level-progress', `${completion}%`);
 
         const visibleSegment = document.querySelector(`#lswSlider .lsw-seg[data-i="${buttonIndex}"]`);
         if (visibleSegment) {
             visibleSegment.dataset.progressPct = String(completion);
             visibleSegment.classList.toggle('has-partial-progress', isPartial);
+            visibleSegment.classList.toggle('is-suggestion-skipped', suggestionSkipped);
             visibleSegment.style.setProperty('--level-progress', `${completion}%`);
             visibleSegment.setAttribute(
                 'aria-label',
-                `Level ${buttonIndex + 1}, ${completion}% complete`
+                `Level ${buttonIndex + 1}, ${completion}% complete${suggestionSkipped ? ', skipped in suggestions' : ''}`
             );
         }
-        if (!firstIncomplete && completion < 100) firstIncomplete = btn;
+        if (!firstIncomplete && completion < 100 && !suggestionSkipped) firstIncomplete = btn;
     }
-    return firstIncomplete || lastAvailable || buttons[buttons.length - 1];
+    return firstIncomplete || lastSuggestionLevel || lastAvailable || buttons[buttons.length - 1];
 }
 
 async function renderLevelSelector(language) {
@@ -719,7 +724,8 @@ async function renderLevelSelector(language) {
                 }
             }, 75);
 
-            renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
+            this._rangeRenderPromise = renderRangeSelector();
+            this._rangeRenderPromise.catch(err => console.error('Error rendering ranges:', err));
 
             // Keep the segmented bar in sync when a (hidden) level button
             // is chosen programmatically — e.g. auto-select on first load,
@@ -1774,6 +1780,20 @@ async function renderRangeSelector() {
             </button>`;
     }
 
+    const canPersistLevelRouting = currentUser && !currentUser.isGuest;
+    const levelSuggestionSkipped = canPersistLevelRouting
+        && (window.isLevelMarkedDone?.(selectedLevel) || false);
+    const levelDoneToggleHTML = canPersistLevelRouting ? `
+        <button class="level-suggestion-toggle${levelSuggestionSkipped ? ' is-on' : ''}"
+                id="levelSuggestionToggle" type="button"
+                aria-pressed="${levelSuggestionSkipped ? 'true' : 'false'}">
+            <span class="level-suggestion-toggle-copy">
+                <strong>${levelSuggestionSkipped ? 'Skipped in suggestions' : 'Skip this level in suggestions'}</strong>
+                <small>Your card history stays unchanged. You can still open this level yourself.</small>
+            </span>
+            <span class="level-suggestion-switch" aria-hidden="true"><i></i></span>
+        </button>` : '';
+
     container.innerHTML = `
         <div class="study-set-panel">
             <div class="study-set-overview">
@@ -1792,6 +1812,7 @@ async function renderRangeSelector() {
             </div>
             <button class="range-btn-new study-set-start" id="studySetStartBtn" type="button"></button>
             ${reviewHTML}
+            ${levelDoneToggleHTML}
         </div>`;
     document.getElementById('step4').style.display = 'block';
     setActiveSetupStep('step4');
@@ -1871,9 +1892,34 @@ async function renderRangeSelector() {
             window.hideAppLoading?.();
         }
     });
+
+    document.getElementById('levelSuggestionToggle')?.addEventListener('click', function() {
+        const next = this.getAttribute('aria-pressed') !== 'true';
+        this.setAttribute('aria-pressed', next ? 'true' : 'false');
+        this.classList.toggle('is-on', next);
+        const title = this.querySelector('strong');
+        if (title) title.textContent = next
+            ? 'Skipped in suggestions'
+            : 'Skip this level in suggestions';
+
+        const activeLevelButton = document.querySelector(`.level-btn[data-level="${CSS.escape(selectedLevel)}"]`);
+        activeLevelButton?.classList.toggle('is-suggestion-skipped', next);
+        const levelButtons = Array.from(document.querySelectorAll(
+            '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
+        ));
+        const levelIndex = levelButtons.indexOf(activeLevelButton);
+        if (levelIndex >= 0) {
+            document.querySelector(`#lswSlider .lsw-seg[data-i="${levelIndex}"]`)
+                ?.classList.toggle('is-suggestion-skipped', next);
+        }
+        window.saveMarkedLevelDone?.(selectedLevel, next).catch(error => {
+            console.error('Could not save level suggestion preference:', error);
+        });
+    });
 }
 
 function getNextStudySetMeta(rangeString) {
+    if (window.isLevelMarkedDone?.(selectedLevel)) return null;
     const dots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
     const currentIndex = dots.findIndex(dot => dot.dataset.range === rangeString);
     if (currentIndex < 0) return null;
@@ -1893,7 +1939,12 @@ function getNextStudyLevelMeta() {
         '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
     ));
     const currentIndex = buttons.findIndex(button => button.dataset.level === selectedLevel);
-    const next = currentIndex >= 0 ? buttons[currentIndex + 1] : null;
+    const remaining = currentIndex >= 0 ? buttons.slice(currentIndex + 1) : buttons;
+    const next = remaining.find(button => {
+        const skipped = window.isLevelMarkedDone?.(button.dataset.level) || false;
+        const completion = Number(button.dataset.progressPct || 0);
+        return !skipped && completion < 100;
+    }) || null;
     if (!next) {
         if (activeArtist && artistVocabularyScope === 'main') {
             return {
@@ -1904,9 +1955,10 @@ function getNextStudyLevelMeta() {
         }
         return null;
     }
+    const nextIndex = buttons.indexOf(next);
     return {
         level: next.dataset.level,
-        levelNumber: currentIndex + 2,
+        levelNumber: nextIndex + 1,
         // In Extra scope the next "level" is another category — carry its label
         // so the finish button can name the group instead of a level number.
         label: activeArtist && artistVocabularyScope === 'extra'
@@ -1922,20 +1974,18 @@ async function startNextStudyLevelFirstSet() {
         await window.setArtistVocabularyScope?.('extra', { autoStart: true });
         return;
     }
-    const currentLevel = selectedLevel;
     await window.goBackToSetup?.();
 
-    const buttons = Array.from(document.querySelectorAll(
-        '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
-    ));
-    const currentIndex = buttons.findIndex(button => button.dataset.level === currentLevel);
-    const next = currentIndex >= 0 ? buttons[currentIndex + 1] : null;
+    const next = nextMeta?.level
+        ? document.querySelector(`.level-btn[data-level="${CSS.escape(nextMeta.level)}"]`)
+        : null;
     if (!next) return;
 
     next.click();
-    await renderRangeSelector();
-    const firstSet = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'))
-        .find(dot => !dot.disabled);
+    await (next._rangeRenderPromise || Promise.resolve());
+    const setDots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
+    const firstSet = setDots.find(dot => !dot.disabled && Number(dot.dataset.pct || 0) < 100)
+        || setDots.find(dot => !dot.disabled);
     if (!firstSet) return;
     await loadVocabularyData(firstSet.dataset.range, {
         rankBasis: firstSet.dataset.rankBasis || 'stable',

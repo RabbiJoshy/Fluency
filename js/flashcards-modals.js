@@ -931,11 +931,12 @@ function showEndOfDeckOptions() {
     const finishIcon = document.getElementById('markCompleteIcon');
 
     if (finishBtn && finishLabel && finishIcon) {
-        const isFinalSet = stats.setNumber && stats.levelSetCount
-            && stats.setNumber >= stats.levelSetCount;
-        const nextLevel = isFinalSet ? window.getNextStudyLevelMeta?.() : null;
+        // A level can be exhausted before its final physical dot when every
+        // later set was completed previously. In that case advance directly
+        // to the next actionable level instead of hiding the continuation.
+        const nextLevel = !stats.nextRange ? window.getNextStudyLevelMeta?.() : null;
         finishBtn.dataset.action = '';
-        if (!isFinalSet && stats.nextRange) {
+        if (stats.nextRange) {
             finishLabel.textContent = `Start Set ${stats.nextSetNumber}`;
             finishIcon.textContent = '→';
             finishBtn.dataset.action = 'next-set';

@@ -23,7 +23,20 @@ function renderResumeLastSetCard() {
     }
     // Resume is an entry decision, not a permanent setup-page advert. The
     // explicit ?resume=1 hop is already committed to resuming and skips this.
-    if (new URLSearchParams(window.location.search).get('resume') === '1') return;
+    const explicitResume = new URLSearchParams(window.location.search).get('resume') === '1';
+    if (explicitResume) return;
+    const snapshotScope = window.getProgressScopeKey?.({
+        mode: snapshot.mode,
+        artistSlug: snapshot.artistSlug,
+        artistSlugs: snapshot.artistSlugs,
+        language: snapshot.language
+    });
+    if (snapshot.selectedLevel
+        && snapshotScope
+        && window.isLevelMarkedDone?.(snapshot.selectedLevel, snapshotScope)) {
+        if (card) card.remove();
+        return;
+    }
     try {
         if (sessionStorage.getItem('fluency_resume_prompt_seen_v1') === snapshot.savedAt) return;
     } catch (_) {}

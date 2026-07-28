@@ -238,13 +238,59 @@ function formatMorphLabel(m) {
     const grammar = [
         formatMorphTense(m.tense),
         formatMorphMood(m.mood),
-    ].filter(Boolean).join(' · ');
+    ].filter(Boolean).join(' ');
     if (!person && !grammar) return null;
     return {
         key: `${person}|${grammar}`,
+        personCode: m.person || '',
         person,
         grammar,
     };
+}
+
+function formatMorphPersonGroup(personCodes, fallbackLabels = []) {
+    const order = ['1s', '2s', '3s', '1p', '2p', '3p'];
+    const unique = [...new Set(personCodes.filter(Boolean))]
+        .sort((a, b) => order.indexOf(a) - order.indexOf(b));
+    const buckets = [
+        { suffix: 's', label: 'singular' },
+        { suffix: 'p', label: 'plural' }
+    ];
+    const parts = buckets.map(bucket => {
+        const people = unique
+            .filter(code => code.endsWith(bucket.suffix))
+            .map(code => ({ '1': '1st', '2': '2nd', '3': '3rd' })[code.charAt(0)])
+            .filter(Boolean);
+        return people.length ? `${people.join('/')} ${bucket.label}` : '';
+    }).filter(Boolean);
+    return parts.join(' / ') || fallbackLabels.filter(Boolean).join(' / ');
+}
+
+// One Spanish surface can legitimately represent several people in the same
+// tense/mood (sea = 1st and 3rd singular present subjunctive). State that once
+// rather than repeating the full grammar badge for every person.
+function compactMorphLabels(morphologyRows) {
+    const unique = [...new Map(morphologyRows
+        .map(formatMorphLabel)
+        .filter(Boolean)
+        .map(label => [label.key, label])).values()];
+    const groups = new Map();
+    for (const label of unique) {
+        const groupKey = label.grammar || `person:${label.person}`;
+        if (!groups.has(groupKey)) groups.set(groupKey, { grammar: label.grammar, labels: [] });
+        groups.get(groupKey).labels.push(label);
+    }
+    return [...groups.values()].map(group => {
+        const person = formatMorphPersonGroup(
+            group.labels.map(label => label.personCode),
+            group.labels.map(label => label.person)
+        );
+        return {
+            key: `${person}|${group.grammar}`,
+            person,
+            grammar: group.grammar
+        };
+    });
 }
 
 const CLITIC_ROLES = {
@@ -1271,7 +1317,9 @@ function initializeApp() {
                         action: 'delete',
                         user: currentUser.initials,
                         wordId: wordInfo.fullId,
-                        sheet: activeArtist ? 'Lyrics' : 'UserProgress'
+                        sheet: window.getProgressSheetName?.()
+                            || (activeArtist ? 'Lyrics' : 'UserProgress'),
+                        mode: window.getProgressMode?.() || (activeArtist ? 'artist' : 'normal')
                     })
                 });
             }
@@ -1284,6 +1332,7 @@ function initializeApp() {
                 method: 'POST',
                 body: JSON.stringify({
                     action: 'deleteItems',
+                    sheet: 'Progress',
                     user: currentUser.initials,
                     parentWordIds
                 })
@@ -1319,7 +1368,11 @@ function initializeApp() {
     });
 
     document.getElementById('markCompleteBtn').addEventListener('click', async function() {
+        if (this.dataset.loading === 'true') return;
         const action = this.dataset.action;
+        if (!action) return;
+        this.dataset.loading = 'true';
+        this.disabled = true;
         const nextRange = stats.nextRange;
         const nextRankBasis = stats.nextRankBasis || stats.rangeBasis || 'stable';
         const nextSetNumber = stats.nextSetNumber;
@@ -1340,6 +1393,8 @@ function initializeApp() {
                 await window.startNextStudyLevelFirstSet?.();
             }
         } finally {
+            this.dataset.loading = 'false';
+            this.disabled = false;
             window.hideAppLoading?.();
         }
     });
@@ -1607,6 +1662,16 @@ function setupKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
         // Ignore if typing in an input field
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            return;
+        }
+
+        // Completion owns the interaction layer. Without this guard, global
+        // card shortcuts continue changing the exhausted deck behind the
+        // modal, so dismissing it can reveal a different card/state.
+        const deckCompleteModal = document.getElementById('deckCompleteModal');
+        if (deckCompleteModal && !deckCompleteModal.classList.contains('hidden')) {
+            e.preventDefault();
+            if (e.key === 'Escape') hideDeckCompleteModal();
             return;
         }
 
@@ -2321,10 +2386,9 @@ function updateCard({ announceHeadword = false } = {}) {
         ? card._activeExampleMorphology
         : card.morphology;
     const morphLabels = displayedMorphology
-        ? [...new Map((Array.isArray(displayedMorphology) ? displayedMorphology : [displayedMorphology])
-            .map(formatMorphLabel)
-            .filter(Boolean)
-            .map(label => [label.key, label])).values()]
+        ? compactMorphLabels(Array.isArray(displayedMorphology)
+            ? displayedMorphology
+            : [displayedMorphology])
         : [];
     const isVerbPos = pos => {
         const p = String(pos || '').toLowerCase();
@@ -4290,7 +4354,7 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260728a';
+const ASSET_VERSION = '20260728c';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

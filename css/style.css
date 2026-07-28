@@ -1951,6 +1951,7 @@
 
         .back-morph-list {
             margin: 5px auto 0;
+            max-width: min(100%, 430px);
         }
 
         .front-morph-tag {
@@ -3618,6 +3619,11 @@
             border: none;
             box-shadow: none;
         }
+        .lsw-segments.lsw-scrubber .lsw-seg.is-suggestion-skipped:not(.selected) {
+            opacity: 0.28;
+            text-decoration: line-through;
+            text-decoration-thickness: 1px;
+        }
         .lsw-ticks.lsw-ticks--hidden { display: none !important; }
         .lsw-ticks {
             display: flex;
@@ -3855,6 +3861,70 @@
             border-color: var(--error);
             background: color-mix(in srgb, var(--error) 13%, transparent);
             transform: translateY(-1px);
+        }
+        .level-suggestion-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 10px 11px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.025);
+            color: var(--text-primary);
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 0.16s ease, background 0.16s ease;
+        }
+        .level-suggestion-toggle:hover {
+            border-color: color-mix(in srgb, var(--accent-primary) 48%, var(--border-color));
+            background: rgba(255, 255, 255, 0.045);
+        }
+        .level-suggestion-toggle-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+            font-family: var(--font-emphasis);
+        }
+        .level-suggestion-toggle-copy strong {
+            font-size: 12px;
+            font-weight: 650;
+        }
+        .level-suggestion-toggle-copy small {
+            color: var(--text-muted);
+            font: 500 10px/1.35 var(--font-reading);
+        }
+        .level-suggestion-switch {
+            flex: 0 0 36px;
+            width: 36px;
+            height: 20px;
+            padding: 2px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background: var(--bg-secondary);
+            transition: background 0.16s ease, border-color 0.16s ease;
+        }
+        .level-suggestion-switch i {
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: transform 0.16s ease, background 0.16s ease;
+        }
+        .level-suggestion-toggle.is-on {
+            border-color: color-mix(in srgb, var(--accent-primary) 42%, var(--border-color));
+            background: color-mix(in srgb, var(--accent-primary) 7%, transparent);
+        }
+        .level-suggestion-toggle.is-on .level-suggestion-switch {
+            border-color: var(--accent-primary);
+            background: var(--accent-primary);
+        }
+        .level-suggestion-toggle.is-on .level-suggestion-switch i {
+            background: var(--accent-primary-text);
+            transform: translateX(16px);
         }
 
         .knowledge-overview-trigger {

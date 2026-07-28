@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Push local JSON progress data back to Google Sheets.
+"""Push local unified Progress data or opt-in flags back to Google Sheets.
 
 Compares local JSON against a fresh pull from Sheets and pushes only the
 differences. Dry-run by default — requires --confirm AND interactive "yes"
 to actually modify anything.
 
 Usage:
-    python3 backend/push_sheets.py                          # dry-run both sheets
-    python3 backend/push_sheets.py --sheet UserProgress     # dry-run one sheet
+    python3 backend/push_sheets.py                          # dry-run Progress
+    python3 backend/push_sheets.py --sheet Progress         # dry-run progress
     python3 backend/push_sheets.py --confirm                # push changes (with prompt)
     python3 backend/push_sheets.py --replace --confirm      # also delete remote-only rows
 """
@@ -26,12 +26,29 @@ LOCAL_DIR = os.path.join(SCRIPT_DIR, 'local')
 BACKUP_DIR = os.path.join(LOCAL_DIR, 'backups')
 # Default "push everything" set — progress sheets only, so a bare invocation
 # never touches the flags sheet.
-SHEETS = ['UserProgress', 'Lyrics']
+SHEETS = ['Progress']
 # FlaggedWords shares the same 8-column schema (HEADER_KEYS) but is opt-in via
 # an explicit --sheet FlaggedWords, since pushing it is a curation action, not
 # routine progress sync. --replace deletes remote flags absent from local.
 PUSHABLE_SHEETS = SHEETS + ['FlaggedWords']
-HEADER_KEYS = ['user', 'word', 'wordId', 'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong']
+PROGRESS_KEYS = [
+    'user', 'itemId', 'itemType', 'mode', 'source', 'parentWordId', 'label',
+    'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong', 'lastSeen',
+    'schemaVersion', 'srsStage', 'value'
+]
+FLAG_KEYS = ['user', 'word', 'wordId', 'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong']
+HEADER_ALIASES = {
+    'user': 'user', 'itemid': 'itemId', 'itemtype': 'itemType', 'mode': 'mode',
+    'source': 'source', 'parentwordid': 'parentWordId', 'label': 'label',
+    'word': 'word', 'wordid': 'wordId', 'language': 'language',
+    'correct': 'correct', 'wrong': 'wrong', 'lastcorrect': 'lastCorrect',
+    'lastwrong': 'lastWrong', 'lastseen': 'lastSeen',
+    'schemaversion': 'schemaVersion', 'srsstage': 'srsStage', 'value': 'value'
+}
+
+
+def sheet_keys(sheet_name):
+    return PROGRESS_KEYS if sheet_name == 'Progress' else FLAG_KEYS
 
 
 def load_script_url():
@@ -78,11 +95,14 @@ def dump_remote(script_url, sheet_name):
     if not body.get('success'):
         print(f"API error: {body.get('message')}")
         sys.exit(1)
+    headers = body['data'].get('headers', [])
+    keys = [HEADER_ALIASES.get(str(header).lower(), f'col{i}')
+            for i, header in enumerate(headers)]
     rows = []
     for raw_row in body['data']['rows']:
         obj = {}
         for i, val in enumerate(raw_row):
-            key = HEADER_KEYS[i] if i < len(HEADER_KEYS) else f'col{i}'
+            key = keys[i] if i < len(keys) else f'col{i}'
             obj[key] = val
         rows.append(obj)
     return rows
@@ -105,12 +125,25 @@ def backup_remote(sheet_name, remote_rows):
     return path
 
 
-def row_key(row):
+def row_key(row, sheet_name):
+    if sheet_name == 'Progress':
+        item_type = str(row.get('itemType', 'sense')).lower()
+        if item_type == 'expression':
+            item_type = 'mwe'
+        mode = str(row.get('mode', 'normal'))
+        if item_type == 'meta':
+            return '|'.join((
+                str(row.get('user', '')), item_type, mode,
+                str(row.get('source', '')), str(row.get('language', '')),
+                str(row.get('label', '')), str(row.get('itemId', ''))
+            ))
+        return '|'.join((str(row.get('user', '')), item_type, mode,
+                         str(row.get('itemId', ''))))
     return f"{row.get('user', '')}|{row.get('wordId', '')}"
 
 
-def rows_differ(local_row, remote_row):
-    for k in HEADER_KEYS:
+def rows_differ(local_row, remote_row, sheet_name):
+    for k in sheet_keys(sheet_name):
         lv = local_row.get(k, '')
         rv = remote_row.get(k, '')
         if str(lv) != str(rv):
@@ -118,14 +151,14 @@ def rows_differ(local_row, remote_row):
     return False
 
 
-def compute_changeset(local_rows, remote_rows):
-    remote_map = {row_key(r): r for r in remote_rows}
-    local_map = {row_key(r): r for r in local_rows}
+def compute_changeset(local_rows, remote_rows, sheet_name):
+    remote_map = {row_key(r, sheet_name): r for r in remote_rows}
+    local_map = {row_key(r, sheet_name): r for r in local_rows}
 
     to_upsert = []
     for key, local_row in local_map.items():
         remote_row = remote_map.get(key)
-        if remote_row is None or rows_differ(local_row, remote_row):
+        if remote_row is None or rows_differ(local_row, remote_row, sheet_name):
             to_upsert.append(local_row)
 
     to_delete = []
@@ -141,14 +174,18 @@ def print_changeset(sheet_name, to_upsert, to_delete, remote_count, local_count)
     if to_upsert:
         print(f"    Upsert {len(to_upsert)} rows:")
         for r in to_upsert[:10]:
-            print(f"      {r.get('user', '?')}/{r.get('wordId', '?')} — {r.get('word', '?')}"
+            row_id = r.get('itemId') or r.get('wordId', '?')
+            label = r.get('label') or r.get('word', '?')
+            print(f"      {r.get('user', '?')}/{row_id} — {label}"
                   f" (correct={r.get('correct', 0)}, wrong={r.get('wrong', 0)})")
         if len(to_upsert) > 10:
             print(f"      ... and {len(to_upsert) - 10} more")
     if to_delete:
         print(f"    Delete {len(to_delete)} rows:")
         for r in to_delete[:10]:
-            print(f"      {r.get('user', '?')}/{r.get('wordId', '?')} — {r.get('word', '?')}")
+            row_id = r.get('itemId') or r.get('wordId', '?')
+            label = r.get('label') or r.get('word', '?')
+            print(f"      {r.get('user', '?')}/{row_id} — {label}")
         if len(to_delete) > 10:
             print(f"      ... and {len(to_delete) - 10} more")
     if not to_upsert and not to_delete:
@@ -177,7 +214,7 @@ def main():
         print(f"Fetching current {sheet_name} from Sheets...")
         remote_rows = dump_remote(script_url, sheet_name)
 
-        to_upsert, to_delete = compute_changeset(local_rows, remote_rows)
+        to_upsert, to_delete = compute_changeset(local_rows, remote_rows, sheet_name)
 
         if not args.replace:
             to_delete = []
@@ -231,16 +268,30 @@ def main():
             ok = 0
             failures = []
             for i, row in enumerate(to_delete, 1):
-                result = post_json(script_url, {
-                    'action': 'delete',
-                    'user': row['user'],
-                    'wordId': row['wordId'],
-                    'sheet': sheet_name
-                })
+                if sheet_name == 'Progress':
+                    result = post_json(script_url, {
+                        'action': 'deleteRow',
+                        'sheet': sheet_name,
+                        'user': row['user'],
+                        'itemId': row.get('itemId'),
+                        'itemType': row.get('itemType'),
+                        'mode': row.get('mode', 'normal'),
+                        'source': row.get('source', ''),
+                        'parentWordId': row.get('parentWordId', ''),
+                        'label': row.get('label', ''),
+                        'language': row.get('language', '')
+                    })
+                else:
+                    result = post_json(script_url, {
+                        'action': 'delete',
+                        'user': row['user'],
+                        'wordId': row.get('wordId'),
+                        'sheet': sheet_name
+                    })
                 if result.get('success'):
                     ok += 1
                 else:
-                    failures.append((row.get('wordId', ''), result.get('message')))
+                    failures.append((row.get('itemId') or row.get('wordId', ''), result.get('message')))
                 if i % 25 == 0:
                     print(f"    ... {i}/{len(to_delete)}")
             print(f"    Deleted {ok}/{len(to_delete)} rows"

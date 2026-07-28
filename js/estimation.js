@@ -477,13 +477,32 @@ function selectLevelForRank(rank) {
         targetLevel = levels[levels.length - 1];
     }
 
-    if (targetLevel) {
-        const levelBtn = document.querySelector(`.level-btn[data-level="${targetLevel.level}"]`);
-        if (levelBtn) {
-            levelBtn.click();
-            setTimeout(() => selectRangeForRank(rank), 100);
-        }
+    if (!targetLevel) return;
+
+    const buttons = Array.from(document.querySelectorAll(
+        '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
+    ));
+    let targetIndex = buttons.findIndex(button => button.dataset.level === targetLevel.level);
+    if (targetIndex < 0) {
+        targetIndex = buttons.findIndex(button => {
+            const start = Number(button.dataset.startRank);
+            const end = Number(button.dataset.endRank);
+            return Number.isFinite(start) && Number.isFinite(end) && rank >= start && rank < end;
+        });
     }
+    if (targetIndex < 0) return;
+
+    const originalButton = buttons[targetIndex];
+    const levelBtn = buttons.slice(targetIndex)
+        .find(button => !window.isLevelMarkedDone?.(button.dataset.level))
+        || buttons.slice().reverse()
+            .find(button => !window.isLevelMarkedDone?.(button.dataset.level))
+        || originalButton;
+    levelBtn.click();
+    // Only select the exact sub-range when the estimate's containing level
+    // remains eligible. If it was explicitly skipped, the chosen next level's
+    // normal first-unseen-set routing should take over.
+    if (levelBtn === originalButton) setTimeout(() => selectRangeForRank(rank), 100);
 }
 
 // Select the range containing a given rank

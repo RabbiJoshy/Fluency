@@ -7,7 +7,8 @@ import './state.js';
 import {
     sendOrQueue,
     applyPendingProgressOverlay,
-    applyPendingItemProgressOverlay
+    applyPendingItemProgressOverlay,
+    applyPendingMetaProgressOverlay
 } from './sync-queue.js';
 
 async function loadSecrets() {
@@ -181,6 +182,8 @@ function logout() {
     currentUser = null;
     progressData = {};
     itemProgressData = {};
+    levelEstimates = {};
+    markedDoneLevels = {};
     document.getElementById('userInfo').classList.add('hidden');
 
     // Reset app state
@@ -313,7 +316,181 @@ async function migrateLocalStorageIdsV2() {
 
 // ========== GOOGLE SHEETS INTEGRATION ==========
 
-// Load user progress from Google Sheets (both mode tabs for cross-mode sharing).
+function getProgressMode() {
+    return activeArtist ? 'artist' : 'normal';
+}
+
+function getProgressSheetName() {
+    if (progressBackendSchemaVersion >= 4) return 'Progress';
+    return activeArtist ? 'Lyrics' : 'UserProgress';
+}
+
+function getProgressSource(options = {}) {
+    const mode = options.mode || getProgressMode();
+    if (mode !== 'artist' && mode !== 'lyrics') return 'speech';
+    if (options.source) return String(options.source);
+    const slugs = (options.artistSlugs || window._selectedArtistSlugs || [])
+        .filter(Boolean)
+        .map(String)
+        .sort();
+    if (slugs.length > 0) return slugs.join('+');
+    if (options.artistSlug || window._urlArtistSlug) {
+        return String(options.artistSlug || window._urlArtistSlug);
+    }
+    return String(activeArtist?.name || 'artist')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+}
+
+// Stable suggestion scope. Word and sense progress remains shared across
+// artist catalogues as before; only routing metadata needs the source slug.
+function getProgressScopeKey(options = {}) {
+    const rawMode = options.mode || getProgressMode();
+    const mode = rawMode === 'lyrics' ? 'artist' : rawMode === 'speech' ? 'normal' : rawMode;
+    const language = options.language || selectedLanguage || 'unknown';
+    const source = mode === 'artist' ? getProgressSource({ ...options, mode }) : 'speech';
+    return `${mode}|${language}|${source}`;
+}
+
+function isLevelMarkedDone(levelId, scopeKey = getProgressScopeKey()) {
+    return !!(levelId && markedDoneLevels?.[scopeKey]?.[levelId]);
+}
+
+function cacheProgressLocally() {
+    if (!currentUser || currentUser.isGuest) return;
+    try {
+        localStorage.setItem(`progress_cache_${currentUser.initials}`, JSON.stringify({
+            progress: progressData,
+            itemProgress: itemProgressData,
+            estimates: levelEstimates,
+            doneLevels: markedDoneLevels,
+            backendSchema: progressBackendSchemaVersion >= 4 ? progressBackendSchemaVersion : 0
+        }));
+    } catch (_) {
+        // Cache is best-effort; the durable queue still owns remote writes.
+    }
+}
+
+async function detectProgressBackendSchema() {
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'capabilities' })
+        });
+        const result = await response.json();
+        const version = Number(result?.data?.schemaVersion) || 0;
+        progressBackendSchemaVersion = result?.success && version >= 4 ? version : 3;
+    } catch (_) {
+        progressBackendSchemaVersion = 3;
+    }
+    return progressBackendSchemaVersion;
+}
+
+async function loadLegacyProgress(cacheKey, cached) {
+    const fetchSheet = sheet => fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'load', user: currentUser.initials, sheet })
+    }).then(response => response.json()).catch(() => null);
+    const [normalResult, artistResult, itemResult] = await Promise.all([
+        fetchSheet('UserProgress'),
+        fetchSheet('Lyrics'),
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'loadItems', user: currentUser.initials })
+        }).then(response => response.json()).catch(() => null)
+    ]);
+    if (!normalResult?.success && !artistResult?.success) {
+        applyPendingProgressOverlay(progressData);
+        applyPendingItemProgressOverlay(itemProgressData);
+        applyPendingMetaProgressOverlay(levelEstimates, markedDoneLevels);
+        return false;
+    }
+
+    const previousCount = Object.keys(progressData).length;
+    const previousItemCount = Object.keys(itemProgressData).length;
+    progressData = {};
+    const mergeWords = result => {
+        if (!result?.success || !Array.isArray(result.data?.progress)) return;
+        result.data.progress.forEach(item => {
+            progressData[item.wordId] = {
+                word: item.word,
+                language: item.language,
+                correct: item.correct,
+                wrong: item.wrong,
+                lastCorrect: item.lastCorrect,
+                lastWrong: item.lastWrong,
+                lastSeen: item.lastSeen,
+                srsStage: item.srsStage
+            };
+        });
+    };
+    mergeWords(normalResult);
+    mergeWords(artistResult);
+    if (itemResult?.success && Array.isArray(itemResult.data?.items)) {
+        itemProgressData = {};
+        itemResult.data.items.forEach(item => {
+            itemProgressData[item.itemId] = { ...item };
+        });
+    }
+    levelEstimates = {
+        ...(artistResult?.data?.levelEstimates || {}),
+        ...(normalResult?.data?.levelEstimates || {})
+    };
+    applyPendingProgressOverlay(progressData);
+    applyPendingItemProgressOverlay(itemProgressData);
+    applyPendingMetaProgressOverlay(levelEstimates, markedDoneLevels);
+    updateIncorrectButtonVisibility();
+    updateTotalStatsButtonVisibility();
+    cacheProgressLocally();
+    return Object.keys(progressData).length !== previousCount
+        || Object.keys(itemProgressData).length !== previousItemCount
+        || !cached;
+}
+
+function markedDoneFromMeta(metaRows) {
+    const result = {};
+    for (const row of metaRows || []) {
+        if (row?.metaKey !== 'level-done') continue;
+        const scope = getProgressScopeKey({
+            mode: row.mode,
+            source: row.source,
+            language: row.language
+        });
+        if (!result[scope]) result[scope] = {};
+        const enabled = row.value === true || row.value === 1 || row.value === '1'
+            || String(row.value).toLowerCase() === 'true';
+        if (enabled) result[scope][row.metaId] = true;
+    }
+    return result;
+}
+
+async function saveMarkedLevelDone(levelId, done) {
+    if (!levelId || !currentUser || currentUser.isGuest) return false;
+    const mode = getProgressMode();
+    const source = getProgressSource({ mode });
+    const scopeKey = getProgressScopeKey({ mode, source, language: selectedLanguage });
+    const nextScope = { ...(markedDoneLevels?.[scopeKey] || {}) };
+    if (done) nextScope[levelId] = true;
+    else delete nextScope[levelId];
+    markedDoneLevels = { ...(markedDoneLevels || {}), [scopeKey]: nextScope };
+    cacheProgressLocally();
+    return sendOrQueue({
+        action: 'saveMeta',
+        sheet: 'Progress',
+        user: currentUser.initials,
+        metaKey: 'level-done',
+        metaId: levelId,
+        mode,
+        source,
+        scopeKey,
+        language: selectedLanguage,
+        value: done ? 1 : 0,
+        lastSeen: new Date().toISOString()
+    }, `meta|level-done|${currentUser.initials}|${scopeKey}|${levelId}`);
+}
+
+// Load unified Google Sheets progress while retaining cross-mode sharing.
 // Loads from localStorage cache first (instant), then refreshes from Sheets.
 // Returns true if the Sheets fetch brought different data than the cache.
 async function loadUserProgressFromSheet() {
@@ -324,10 +501,12 @@ async function loadUserProgressFromSheet() {
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
         try {
-            const { progress, itemProgress, estimates } = JSON.parse(cached);
+            const { progress, itemProgress, estimates, doneLevels, backendSchema } = JSON.parse(cached);
             progressData = progress || {};
             itemProgressData = itemProgress || {};
             levelEstimates = estimates || {};
+            markedDoneLevels = doneLevels || {};
+            progressBackendSchemaVersion = Number(backendSchema) >= 4 ? Number(backendSchema) : 0;
             updateIncorrectButtonVisibility();
             updateTotalStatsButtonVisibility();
             console.log(`Loaded ${Object.keys(progressData).length} cached card entries and ${Object.keys(itemProgressData).length} knowledge items`);
@@ -336,33 +515,47 @@ async function loadUserProgressFromSheet() {
         }
     }
 
-    // 2. Fetch fresh data from Google Sheets
-    const primarySheet = activeArtist ? 'Lyrics' : 'UserProgress';
-    const secondarySheet = activeArtist ? 'UserProgress' : 'Lyrics';
+    // Confirm v4 before addressing Progress directly. Cached/older clients
+    // continue through the legacy names, which v4 maps into Progress; this
+    // prevents a half-deployed frontend from creating a stray Progress tab on
+    // the still-live v3 backend.
+    await detectProgressBackendSchema();
+    if (progressBackendSchemaVersion < 4) {
+        return loadLegacyProgress(cacheKey, cached);
+    }
 
-    const fetchSheet = (sheet) =>
-        fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify({ action: 'load', user: currentUser.initials, sheet })
-        }).then(r => r.json()).catch(() => null);
-
+    // 2. Fetch fresh data from the single Progress tab. Word IDs still carry
+    // the normal/artist bit, so one all-mode load preserves the old sharing.
     try {
-        const [primaryResult, secondaryResult, itemResult] = await Promise.all([
-            fetchSheet(primarySheet),
-            fetchSheet(secondarySheet),
+        const [progressResult, itemResult] = await Promise.all([
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                body: JSON.stringify({ action: 'loadItems', user: currentUser.initials })
+                body: JSON.stringify({
+                    action: 'load',
+                    sheet: 'Progress',
+                    mode: 'all',
+                    user: currentUser.initials
+                })
+            }).then(r => r.json()).catch(() => null),
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'loadItems',
+                    sheet: 'Progress',
+                    mode: 'all',
+                    user: currentUser.initials
+                })
             }).then(r => r.json()).catch(() => null)
         ]);
 
-        // Both sheet fetches failed (offline, or endpoint unreachable). Keep the
+        // The unified load failed (offline, or endpoint unreachable). Keep the
         // cached progressData loaded in step 1 rather than wiping it to empty —
         // then overlay any writes still queued locally so freshly-answered
         // offline cards remain visible. Returning false leaves the UI on cache.
-        if (!primaryResult && !secondaryResult) {
+        if (!progressResult?.success) {
             applyPendingProgressOverlay(progressData);
             applyPendingItemProgressOverlay(itemProgressData);
+            applyPendingMetaProgressOverlay(levelEstimates, markedDoneLevels);
             updateIncorrectButtonVisibility();
             updateTotalStatsButtonVisibility();
             return false;
@@ -370,12 +563,11 @@ async function loadUserProgressFromSheet() {
 
         const prevCount = Object.keys(progressData).length;
         const prevItemCount = Object.keys(itemProgressData).length;
+        const prevDone = JSON.stringify(markedDoneLevels || {});
         progressData = {};
 
-        // Load secondary sheet first so primary overwrites on conflict
-        const mergeProgress = (result, label) => {
-            if (!result?.success || !result.data?.progress) return 0;
-            result.data.progress.forEach(item => {
+        if (progressResult?.success && Array.isArray(progressResult.data?.progress)) {
+            progressResult.data.progress.forEach(item => {
                 progressData[item.wordId] = {
                     word: item.word,
                     language: item.language,
@@ -387,12 +579,8 @@ async function loadUserProgressFromSheet() {
                     srsStage: item.srsStage
                 };
             });
-            return result.data.progress.length;
-        };
-
-        const secondaryCount = mergeProgress(secondaryResult, secondarySheet);
-        const primaryCount = mergeProgress(primaryResult, primarySheet);
-        console.log(`Loaded progress: ${primaryCount} from ${primarySheet}, ${secondaryCount} from ${secondarySheet}`);
+            console.log(`Loaded ${progressResult.data.progress.length} unified card progress rows`);
+        }
 
         if (itemResult?.success && Array.isArray(itemResult.data?.items)) {
             itemProgressData = {};
@@ -415,36 +603,31 @@ async function loadUserProgressFromSheet() {
             console.log(`Loaded ${Object.keys(itemProgressData).length} granular knowledge items`);
         }
 
-        if (primaryResult?.success && primaryResult.data?.levelEstimates) {
-            levelEstimates = primaryResult.data.levelEstimates;
-        }
-        // Also pick up level estimates from secondary sheet if primary had none
-        if (secondaryResult?.success && secondaryResult.data?.levelEstimates) {
-            for (const [lang, rank] of Object.entries(secondaryResult.data.levelEstimates)) {
-                if (!levelEstimates[lang]) levelEstimates[lang] = rank;
-            }
-        }
+        levelEstimates = progressResult?.success
+            ? (progressResult.data?.levelEstimates || {})
+            : levelEstimates;
+        markedDoneLevels = progressResult?.success
+            ? markedDoneFromMeta(progressResult.data?.meta)
+            : markedDoneLevels;
 
         // Overlay any still-queued (un-synced) local writes on top of the
         // freshly-loaded sheet data — those answers are newer than what Sheets
         // knows, so a reconnect reload must not visually regress them.
         applyPendingProgressOverlay(progressData);
         applyPendingItemProgressOverlay(itemProgressData);
+        applyPendingMetaProgressOverlay(levelEstimates, markedDoneLevels);
 
         updateIncorrectButtonVisibility();
         updateTotalStatsButtonVisibility();
 
         // 3. Update cache
-        localStorage.setItem(cacheKey, JSON.stringify({
-            progress: progressData,
-            itemProgress: itemProgressData,
-            estimates: levelEstimates
-        }));
+        cacheProgressLocally();
 
         // Return whether data changed (different count = something changed)
         const newCount = Object.keys(progressData).length;
         const newItemCount = Object.keys(itemProgressData).length;
-        return newCount !== prevCount || newItemCount !== prevItemCount || !cached;
+        return newCount !== prevCount || newItemCount !== prevItemCount
+            || JSON.stringify(markedDoneLevels || {}) !== prevDone || !cached;
     } catch (error) {
         console.error('Failed to load progress from Google Sheets:', error);
         // Continue with cached data if available
@@ -452,21 +635,30 @@ async function loadUserProgressFromSheet() {
     }
 }
 
-// Save the level estimate sentinel row to Google Sheets
+// Save the level estimate as metadata in the unified Progress tab.
 async function saveLevelEstimateToSheet(rank) {
     if (!currentUser || currentUser.isGuest) return;
-    // Offline-durable: de-dupe on sheet+language so only the latest estimate
-    // per language is queued.
-    const sheet = activeArtist ? 'Lyrics' : 'UserProgress';
     const language = selectedLanguage;
-    sendOrQueue({
+    const unified = progressBackendSchemaVersion >= 4;
+    sendOrQueue(unified ? {
+        action: 'saveMeta',
+        sheet: 'Progress',
+        user: currentUser.initials,
+        metaKey: 'level-estimate',
+        metaId: language,
+        mode: 'normal',
+        source: 'speech',
+        language,
+        value: rank,
+        lastSeen: new Date().toISOString()
+    } : {
         action: 'save',
+        sheet: getProgressSheetName(),
         user: currentUser.initials,
         word: '_LEVEL_ESTIMATE_',
-        language: language,
         wordId: rank,
-        sheet: sheet
-    }, `level|${sheet}|${language}`);
+        language
+    }, `meta|level-estimate|${currentUser.initials}|${language}`);
 }
 
 // Save progress for a single word to Google Sheets
@@ -508,21 +700,18 @@ async function saveWordProgress(card, isCorrect) {
     // Persist to the localStorage progress cache immediately so an offline
     // reload (which reads this cache in loadUserProgressFromSheet) shows the
     // just-answered counts even before the write reaches Sheets.
-    try {
-        localStorage.setItem(`progress_cache_${currentUser.initials}`, JSON.stringify({
-            progress: progressData,
-            itemProgress: itemProgressData,
-            estimates: levelEstimates
-        }));
-    } catch (e) { /* cache is best-effort */ }
+    cacheProgressLocally();
 
     // Save to Google Sheets via the offline-durable queue. Write-through when
     // online (same latency as before); enqueued and retried when offline or on
     // a transient failure. De-dupe key keeps only the latest cumulative state
-    // per word+sheet in the queue.
-    const sheet = activeArtist ? 'Lyrics' : 'UserProgress';
+    // per word+mode in the queue.
+    const mode = getProgressMode();
+    const sheet = getProgressSheetName();
     sendOrQueue({
         action: 'save',
+        sheet,
+        mode,
         user: currentUser.initials,
         word: word,
         language: language,
@@ -532,14 +721,13 @@ async function saveWordProgress(card, isCorrect) {
         lastCorrect: progressData[wordId].lastCorrect,
         lastWrong: progressData[wordId].lastWrong,
         lastSeen: progressData[wordId].lastSeen,
-        srsStage: progressData[wordId].srsStage,
-        sheet: sheet
-    }, `save|${sheet}|${wordId}`);
+        srsStage: progressData[wordId].srsStage
+    }, `save|${sheet}|${mode}|${wordId}`);
 }
 
 // Flag a word as having erroneous translation/data — debugging-only path.
 // Routes to a separate FlaggedWords sheet (auto-created by GAS) so it doesn't
-// pollute UserProgress/Lyrics. Reuses lastWrong for the flag timestamp; the
+// pollute Progress. Reuses lastWrong for the flag timestamp; the
 // structured audit target/category report remains compatible by using the
 // existing `word` value column.
 async function flagWord(card, fieldPath, fieldValue) {
@@ -1302,6 +1490,13 @@ window.hideLoginForm = hideLoginForm;
 window.submitLogin = submitLogin;
 window.logout = logout;
 window.loadUserProgressFromSheet = loadUserProgressFromSheet;
+window.getProgressMode = getProgressMode;
+window.getProgressSheetName = getProgressSheetName;
+window.getProgressSource = getProgressSource;
+window.getProgressScopeKey = getProgressScopeKey;
+window.isLevelMarkedDone = isLevelMarkedDone;
+window.saveMarkedLevelDone = saveMarkedLevelDone;
+window.cacheProgressLocally = cacheProgressLocally;
 window.saveLevelEstimateToSheet = saveLevelEstimateToSheet;
 window.saveWordProgress = saveWordProgress;
 window.flagWord = flagWord;

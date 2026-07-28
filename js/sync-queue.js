@@ -1,6 +1,6 @@
 // Offline write-queue + sync for Google Sheets writes.
 //
-// Progress saves, word flags, and level-estimate writes all POST to the
+// Progress saves, word flags, and progress-metadata writes all POST to the
 // GOOGLE_SCRIPT_URL (a cross-origin Google Apps Script endpoint the service
 // worker deliberately does NOT intercept — mutating verbs must always hit the
 // network). When the user is offline, or a write fails transiently, we can't
@@ -173,7 +173,7 @@ export async function flushQueue() {
 // When progress is (re)loaded from Sheets, any writes still sitting in the
 // queue are newer than what the sheet knows. Overlay them onto progressData so
 // a refresh (e.g. reconnect triggers loadUserProgressFromSheet) never visually
-// regresses un-synced local answers. Flag/level entries are skipped.
+// regresses un-synced local answers. Flags and metadata are skipped.
 export function applyPendingProgressOverlay(progress) {
     if (!progress) return progress;
     const q = loadQueue();
@@ -181,7 +181,7 @@ export function applyPendingProgressOverlay(progress) {
         const p = e && e.payload;
         if (!p || p.action !== 'save') continue;
         if (p.sheet === 'FlaggedWords') continue;
-        if (p.word === '_LEVEL_ESTIMATE_') continue;
+        if (p.word === '_LEVEL_ESTIMATE_' || p.itemType === 'meta') continue;
         if (!p.wordId || p.correct === undefined) continue;
         progress[p.wordId] = {
             word: p.word,
@@ -222,6 +222,34 @@ export function applyPendingItemProgressOverlay(items) {
         };
     }
     return items;
+}
+
+// Scalar metadata uses the same last-write-wins queue semantics. Keep level
+// estimates and suggestion-only level flags from rolling back during an
+// offline→online refresh before their queued writes have drained.
+export function applyPendingMetaProgressOverlay(estimates, doneLevels) {
+    const q = loadQueue();
+    for (const e of q) {
+        const p = e && e.payload;
+        if (!p) continue;
+        if (p.action === 'save' && p.word === '_LEVEL_ESTIMATE_' && p.language) {
+            estimates[p.language] = p.wordId;
+            continue;
+        }
+        if (p.action !== 'saveMeta') continue;
+        if (p.metaKey === 'level-estimate' && p.language) {
+            estimates[p.language] = p.value;
+            continue;
+        }
+        if (p.metaKey !== 'level-done' || !p.scopeKey || !p.metaId) continue;
+        const scope = { ...(doneLevels[p.scopeKey] || {}) };
+        const enabled = p.value === true || p.value === 1 || p.value === '1'
+            || String(p.value).toLowerCase() === 'true';
+        if (enabled) scope[p.metaId] = true;
+        else delete scope[p.metaId];
+        doneLevels[p.scopeKey] = scope;
+    }
+    return { estimates, doneLevels };
 }
 
 // ---- Indicator ------------------------------------------------------------
@@ -287,5 +315,6 @@ window.flushQueue = flushQueue;
 window.getPendingCount = getPendingCount;
 window.applyPendingProgressOverlay = applyPendingProgressOverlay;
 window.applyPendingItemProgressOverlay = applyPendingItemProgressOverlay;
+window.applyPendingMetaProgressOverlay = applyPendingMetaProgressOverlay;
 window.updateSyncIndicator = updateIndicator;
 window.initSync = initSync;
