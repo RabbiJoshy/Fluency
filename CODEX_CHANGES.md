@@ -32,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-28 — Remove phantom sets and make note submission explicit
+
+- Commit `e8fa8e6d`; front-end cache `flashcards-v129` / `20260728g`.
+- Reproduced the set discrepancy against JST's live schema-v4 progress and the current Bad Bunny deck. `tequi` is a genuinely unseen/buildable level-11 card, while level-12 entries such as `señores` and `relaciones` had corpus counts above one but no artist sense at the renderer's 0.05 support threshold: setup counted them and deck construction later discarded them. `buildFilteredVocab()` now applies the same shared threshold, so these phantom cards never enter set counts.
+- Added a race-safe fallback for the other empty-set path: if Sheets reconciliation makes every advertised new card seen between setup render and the tap, the selected range opens using the existing Study Again behavior rather than throwing “No unseen flashcards remain.”
+- Simplified notes into one inline interaction. Tapping “Add a note” expands the textarea immediately below it; only the separate enabled “Send note” button submits. The initial tap and ordinary Enter key can no longer send a report.
+- Changed service-worker navigations to network-first while retaining stale-while-revalidate for versioned modules and deck data. The previous cached-shell policy deliberately delayed every deployment by one page load, which explained why both earlier fixes could remain invisible together; future online opens receive current module tags immediately while offline shell fallback remains.
+- Verification: live Apps Script progress/item reads, current Bad Bunny level-11/12 fixture assertions, first-tap-no-submit and explicit-send assertions, bundled-Node parsing, unique DOM IDs, balanced CSS, cache-version lockstep, and `git diff --check`. No browser preview was used.
+
 ### 2026-07-28 — Mobile-first card reporting and direct notes
 
 - Commit `d3b3a844`; front-end cache `flashcards-v128` / `20260728f`.

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-28",
+      "commit": "e8fa8e6d",
+      "summary": "Phantom artist cards and ambiguous note reporting are fixed at their source",
+      "details": [
+        "Setup now applies the same artist-sense support threshold as deck construction, removing cards such as señores and relaciones that appeared available but could never build",
+        "If refreshed progress completes an advertised set before it opens, the tap now opens that set in Study Again mode instead of stopping with a no-unseen-cards alert",
+        "Add a note now expands its text box and explicit Send note button directly underneath; the first tap cannot submit anything, and online navigations fetch the current HTML shell so future deployments no longer appear one visit late; cache v128→v129, assets 20260728f→20260728g"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "commit": "d3b3a844",
       "summary": "Card reporting is easier to use on a phone",
       "details": [
