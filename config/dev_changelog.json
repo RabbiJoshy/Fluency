@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "ebdb0421",
       "summary": "Study options now matches the scrubber tile shape",
       "details": [
         "Changed the Study options control from a 44px circle to the same softly rounded 36×36px, 10px-radius tile used by scrubber positions",

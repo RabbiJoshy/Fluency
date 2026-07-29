@@ -32,6 +32,21 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Match Study options to the scrubber tiles
+
+- Commit `ebdb0421`; front-end cache `flashcards-v153` / `20260729y`.
+- Changed the icon-only Study options control from a 44px circle to the scrubber marker's 36×36px softly rounded tile with a 10px radius.
+- Increased the gear from 22px to 26px and reduced padding from 10px to 5px, allowing the icon to occupy more of the control while retaining its accent tint and focus treatment.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; exact tile/icon/padding assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
+### 2026-07-29 — Colour scrubber results and reuse POS styling for morphology
+
+- Commit `0e76784b`; front-end cache `flashcards-v152` / `20260729x`.
+- Replaced circular scrubber markers with softly rounded 36×36px tiles and switched their bold 16px numbers to the normal reading/interface font. Unanswered stays neutral, correct-only is green, incorrect-only is red, and mixed attempts are amber.
+- Kept current position independent from answer state: its accent outline, scale, and lens animation sit around the retained result-coloured fill. Each marker's result is also exposed through `data-result` and its accessible label.
+- Morphology now reuses the actual POS-pill classes appropriate to each face (`card-pos` or `front-meaning-pos`) rather than parallel approximate styling. Font, size, weight, casing, padding, radius, fill, border, and colour therefore match the connected Verb pill exactly; only zero margin/nowrap are layout-specific.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; result-state, accessible-label, rounded-shape, interface-font, and shared-POS-class assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Add real mobile drag scrubbing
 
 - Commit `97487314`; front-end cache `flashcards-v151` / `20260729w`.
