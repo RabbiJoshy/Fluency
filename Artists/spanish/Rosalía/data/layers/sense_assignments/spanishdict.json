@@ -2462,78 +2462,99 @@
   "por": {
     "spanishdict-flash-lite": [
       {
-        "sense": "18c",
-        "examples": [
-          0,
-          5,
-          9
-        ],
-        "example_ids": [
-          "8189170:10",
-          "12581291:9",
-          "12581296:19"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      },
-      {
         "sense": "18c2",
-        "examples": [
-          7
-        ],
-        "example_ids": [
-          "10129261:5"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      },
-      {
-        "sense": "79d",
         "examples": [
           6
         ],
         "example_ids": [
-          "3964062:4"
+          "7515161:6"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "527",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "12581291:9"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "a31",
+        "examples": [
+          0,
+          4,
+          5,
+          7
+        ],
+        "example_ids": [
+          "8189170:10",
+          "3964058:1",
+          "6387245:18",
+          "8324985:8"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
         "sense": "c77",
         "examples": [
-          3
+          2
         ],
         "example_ids": [
-          "3856338:41"
+          "3964062:3"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      },
-      {
-        "sense": "cc6",
-        "examples": [
-          1,
-          4,
-          8
-        ],
-        "example_ids": [
-          "12581294:24",
-          "7142770:31",
-          "7515169:7"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
         "sense": "cc60",
         "examples": [
-          2
+          3
         ],
         "example_ids": [
-          "12579326:2"
+          "3301215:7"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "6eb",
+        "pos": "VERB",
+        "translation": "ends up",
+        "lemma": "por",
+        "examples": [
+          8
+        ],
+        "type": "figurative",
+        "construction": "acabar por",
+        "example_ids": [
+          "2966663:25"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "cca",
+        "pos": "ADV",
+        "translation": "why",
+        "lemma": "por",
+        "examples": [
+          9
+        ],
+        "type": "figurative",
+        "construction": "por qué",
+        "example_ids": [
+          "3066994:7"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -2585,66 +2606,48 @@
         "sense": "606",
         "examples": [
           0,
+          2,
           3,
-          4
+          6,
+          8,
+          9
         ],
         "example_ids": [
           "3964056:13",
           "7515169:5",
-          "7515186:30"
+          "7528145:8",
+          "7515170:5",
+          "6387245:4",
+          "7515161:18"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      },
-      {
-        "sense": "8b6",
-        "examples": [
-          8
-        ],
-        "example_ids": [
-          "3964058:2"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      },
-      {
-        "sense": "8d8",
-        "examples": [
-          2,
-          5
-        ],
-        "example_ids": [
-          "7142770:41",
-          "7528145:8"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
         "sense": "9e1",
         "examples": [
           1,
-          9
+          4,
+          5
         ],
         "example_ids": [
           "4201752:26",
-          "7515170:5"
+          "12581296:52",
+          "3964058:2"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
-        "sense": "ab0",
+        "sense": "a10",
         "examples": [
-          6,
           7
         ],
         "example_ids": [
-          "12581296:52",
-          "3065090:27"
+          "3065897:12"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -2653,40 +2656,49 @@
       {
         "sense": "0a5",
         "examples": [
-          0,
           1,
-          2,
           3,
           4,
-          5,
-          7,
-          8,
+          6,
           9
         ],
         "example_ids": [
-          "3964043:7",
           "5369732:7",
-          "3131429:8",
           "12581298:15",
           "12581301:43",
-          "7515069:27",
-          "8173139:7",
-          "7515113:45",
-          "3065897:5"
+          "4674077:23",
+          "6367361:3"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
-        "sense": "815",
+        "sense": "0a5c",
         "examples": [
-          6
+          2,
+          5
         ],
         "example_ids": [
+          "3131429:8",
           "5461781:2"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "0a5cd",
+        "examples": [
+          0,
+          7,
+          8
+        ],
+        "example_ids": [
+          "3964043:7",
+          "5245004:2",
+          "8587430:7"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -2696,48 +2708,69 @@
         "sense": "256",
         "examples": [
           0,
-          1,
           3,
           4,
+          5,
           6,
-          8
+          7
         ],
         "example_ids": [
           "8402908:13",
-          "4801759:36",
           "3066994:7",
           "3964070:17",
-          "5384007:8",
-          "8365376:45"
+          "8916307:38",
+          "8365376:45",
+          "8416396:48"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
-        "sense": "575",
+        "sense": "2562",
         "examples": [
           2,
-          5,
           9
         ],
         "example_ids": [
           "3301215:1",
-          "3036615:21",
-          "8416396:48"
+          "3036615:18"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "34f",
+        "pos": "INTJ",
+        "translation": "what's up",
+        "lemma": "qué",
+        "examples": [
+          1
+        ],
+        "type": "slang",
+        "construction": "qué lo que",
+        "example_ids": [
+          "4801759:36"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
-        "sense": "af1",
+        "sense": "f91",
+        "pos": "VERB",
+        "translation": "what difference does it make",
+        "lemma": "qué",
         "examples": [
-          7
+          8
         ],
+        "type": "figurative",
+        "construction": "qué más da",
         "example_ids": [
-          "8916307:38"
+          "7515185:31"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -2747,49 +2780,6 @@
         "sense": "d64",
         "examples": [
           0,
-          1,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
-        ],
-        "example_ids": [
-          "7791131:7",
-          "12581303:14",
-          "7142770:6",
-          "7515185:27",
-          "3964062:3",
-          "7515069:3",
-          "3067584:12",
-          "5369732:7",
-          "10129261:7"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      },
-      {
-        "sense": "ff8",
-        "examples": [
-          2
-        ],
-        "example_ids": [
-          "4057969:35"
-        ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
-      }
-    ]
-  },
-  "una": {
-    "spanishdict-flash-lite": [
-      {
-        "sense": "c31",
-        "examples": [
-          0,
-          1,
           2,
           3,
           4,
@@ -2800,19 +2790,71 @@
           9
         ],
         "example_ids": [
-          "12581294:37",
-          "12579326:18",
-          "7433029:10",
-          "6387245:4",
-          "8324985:24",
-          "3191212:15",
-          "8587430:2",
-          "7528115:21",
-          "7515176:28",
-          "12397133:12"
+          "12581303:14",
+          "7142770:6",
+          "7515069:3",
+          "5369732:7",
+          "12397133:10",
+          "7515185:26",
+          "3964062:2",
+          "7515113:49",
+          "10912589:5"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "ff8",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "4057969:35"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      }
+    ]
+  },
+  "una": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "870",
+        "examples": [
+          2,
+          3,
+          9
+        ],
+        "example_ids": [
+          "3191212:15",
+          "7528115:21",
+          "5384007:14"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "c31",
+        "examples": [
+          0,
+          1,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "example_ids": [
+          "12581294:37",
+          "7433029:10",
+          "10129261:15",
+          "7515279:21",
+          "7515113:45",
+          "7515186:12",
+          "3065090:29"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -2879,6 +2921,37 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "d5a",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "12581305:24",
+          "8402908:8",
+          "12581290:16",
+          "12660487:12",
+          "7515176:20",
+          "7515371:4",
+          "7791131:8",
+          "8324985:12",
+          "5187929:2",
+          "10129261:23"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -4055,40 +4128,65 @@
       {
         "sense": "2b6",
         "examples": [
-          0,
           1,
           3,
+          6
+        ],
+        "example_ids": [
+          "3964069:5",
+          "12581288:24",
+          "2814756:2"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "2b61",
+        "examples": [
           5,
-          6,
-          7,
-          8,
           9
         ],
         "example_ids": [
-          "5245004:14",
-          "3964070:25",
-          "10615838:10",
-          "3814300:2",
-          "4425584:6",
-          "4779329:18",
-          "6211010:24",
-          "7659063:4"
+          "12579326:6",
+          "7515069:13"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
         "sense": "952",
         "examples": [
+          0,
           2,
-          4
+          4,
+          8
         ],
         "example_ids": [
-          "4674077:22",
-          "3750274:30"
+          "3750274:30",
+          "10615838:32",
+          "8916306:8",
+          "7142770:44"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "b97",
+        "pos": "VERB",
+        "translation": "no reason to",
+        "lemma": "para",
+        "examples": [
+          7
+        ],
+        "type": "slang",
+        "construction": "no tener para qué",
+        "example_ids": [
+          "3856338:18"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -41650,16 +41748,16 @@
           "12579327:12",
           "3964068:25",
           "3345402:23",
-          "8365376:8",
           "4153830:1",
-          "12650523:9",
-          "9077775:28",
-          "3066984:6",
-          "4459381:4",
-          "3036615:19"
+          "3814307:9",
+          "3036615:16",
+          "4779329:11",
+          "7659063:2",
+          "8173139:13",
+          "3646825:27"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -42181,33 +42279,90 @@
   "se": {
     "spanishdict-flash-lite": [
       {
-        "sense": "d97",
+        "sense": "00c",
         "examples": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9
+          6
         ],
         "example_ids": [
-          "4201752:22",
-          "3067584:8",
-          "10129261:1",
-          "3066994:9",
-          "3068425:2",
-          "3964069:1",
-          "3191212:4",
-          "4470734:6",
-          "8587430:12",
-          "12581288:12"
+          "9077775:36"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "093",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "7515371:8"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "8cd",
+        "examples": [
+          0,
+          7,
+          8
+        ],
+        "example_ids": [
+          "12579327:13",
+          "9176102:3",
+          "8416396:28"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "d97",
+        "examples": [
+          1,
+          2,
+          4
+        ],
+        "example_ids": [
+          "5002535:3",
+          "7515176:8",
+          "7791131:8"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "97a",
+        "pos": "VERB",
+        "translation": "to be about",
+        "lemma": "se",
+        "examples": [
+          5
+        ],
+        "type": "figurative",
+        "construction": "tratarse de",
+        "example_ids": [
+          "8916307:38"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "8a3",
+        "pos": "VERB",
+        "translation": "allow oneself",
+        "lemma": "se",
+        "examples": [
+          9
+        ],
+        "type": "figurative",
+        "construction": "dejarse hacer",
+        "example_ids": [
+          "4496591:9"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -42219,7 +42374,6 @@
           0,
           1,
           2,
-          3,
           4,
           5,
           6,
@@ -42230,17 +42384,27 @@
         "example_ids": [
           "12581303:17",
           "8176090:5",
-          "12581290:16",
-          "6367361:1",
-          "7288792:13",
-          "7515279:22",
-          "12579327:3",
-          "2814756:31",
-          "3856338:15",
-          "8916306:14"
+          "3066984:7",
+          "11841928:8",
+          "4201752:23",
+          "3964070:16",
+          "3067584:15",
+          "4459381:34",
+          "8682586:5"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "98f0",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "8365376:45"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },
@@ -47115,31 +47279,40 @@
         "sense": "103",
         "examples": [
           2,
-          5
+          3
         ],
         "example_ids": [
           "5197781:4",
-          "8916305:43"
+          "9176102:14"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
         "sense": "53f",
         "examples": [
+          5
+        ],
+        "example_ids": [
+          "8916305:43"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
+      },
+      {
+        "sense": "624",
+        "examples": [
           0,
           1,
-          3,
           6
         ],
         "example_ids": [
           "3964068:1",
           "3964056:2",
-          "9176102:14",
           "4151176:4"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       },
       {
         "sense": "a3f",
@@ -47155,8 +47328,8 @@
           "3964062:3",
           "10912589:5"
         ],
-        "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-29T18:00Z"
       }
     ]
   },

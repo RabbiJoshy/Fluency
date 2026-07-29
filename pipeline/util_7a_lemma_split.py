@@ -267,10 +267,14 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
             for item in items:
                 sid = item.get("sense")
                 if sid and sid in sense_ids:
-                    kept.append({
-                        "sense": sid,
-                        "examples": sorted(set(item.get("examples", []))),
-                    })
+                    # Preserve every field (provenance prompt_id/run_ts,
+                    # example_ids, and any inline pos/translation/lemma) — only
+                    # `examples` is normalized. Rebuilding as bare
+                    # {sense, examples} previously stripped provenance and
+                    # example_ids on every menu-pick during lemma remapping.
+                    new_item = deepcopy(item)
+                    new_item["examples"] = sorted(set(item.get("examples", [])))
+                    kept.append(new_item)
             if kept:
                 target_methods[method] = kept
         if target_methods:

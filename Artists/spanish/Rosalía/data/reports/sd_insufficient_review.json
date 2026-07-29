@@ -2,10 +2,80 @@
   "_meta": {
     "source": "spanishdict",
     "classifier": "classify-or-propose",
-    "model": "gemini-3.1-flash-lite",
-    "count": 80
+    "model": "gemini-3.5-flash-lite",
+    "count": 87
   },
   "items": [
+    {
+      "word": "por",
+      "lemma": "por",
+      "proposed": "ends up",
+      "type": "figurative",
+      "construction": "acabar por",
+      "corpus_count": 133,
+      "example": "Cuando alguno como tú acabe por cansarme",
+      "translation": "When someone like you ends up tiring me"
+    },
+    {
+      "word": "por",
+      "lemma": "por",
+      "proposed": "why",
+      "type": "figurative",
+      "construction": "por qué",
+      "corpus_count": 133,
+      "example": "¿Por qué no te despiertas tú, hermanito?",
+      "translation": "Why don't you wake up, little brother?"
+    },
+    {
+      "word": "para",
+      "lemma": "para",
+      "proposed": "no reason to",
+      "type": "slang",
+      "construction": "no tener para qué",
+      "corpus_count": 128,
+      "example": "(Que no salga la luna que no tiene para qué",
+      "translation": "(Let the moon not come out, it has no reason to"
+    },
+    {
+      "word": "se",
+      "lemma": "se",
+      "proposed": "to be about",
+      "type": "figurative",
+      "construction": "tratarse de",
+      "corpus_count": 121,
+      "example": "Yo quiero saber de qué se trata el mundo",
+      "translation": "I want to know what the world is about"
+    },
+    {
+      "word": "se",
+      "lemma": "se",
+      "proposed": "allow oneself",
+      "type": "figurative",
+      "construction": "dejarse hacer",
+      "corpus_count": 121,
+      "example": "Tu cuerpo estremecido no se deja estremecer",
+      "translation": "Your shaking body does not allow itself to be shaken"
+    },
+    {
+      "word": "qué",
+      "lemma": "qué",
+      "proposed": "what's up",
+      "type": "slang",
+      "construction": "qué lo que",
+      "corpus_count": 78,
+      "example": "¿Qué lo, qué lo, qué lo que?",
+      "translation": "What what, what what, what what?"
+    },
+    {
+      "word": "qué",
+      "lemma": "qué",
+      "proposed": "what difference does it make",
+      "type": "figurative",
+      "construction": "qué más da",
+      "corpus_count": 78,
+      "example": "¿Qué más da que me tire La Mala?",
+      "translation": "What difference does it make if La Mala throws me?"
+    },
     {
       "word": "ha",
       "lemma": "ha",

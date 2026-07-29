@@ -7,8 +7,8 @@
       "summary": "Card back shows which prompt/model produced each sense (JST only)",
       "details": [
         "New ⓘ button on the card back opens a panel listing each classified sense with the exact prompt, Gemini model, and run date behind it — traces a stale/bad translation to its source run",
-        "Applied in place on the live decks (no card IDs changed, progress untouched): most senses show 'legacy-unknown' (pre-tracking menu-picks), and the recent 3.1 classify-or-propose run shows 'sd-cop-v2'",
-        "Future Gemini runs default to gemini-3.5-flash-lite and stamp 'sd-cop-v3' so they're distinguishable"
+        "Applied in place on the live decks (no card IDs changed, progress untouched): most senses show 'legacy-unknown' (pre-tracking menu-picks), the 3.1 run shows gemini-3.1-flash-lite, and a first Rosalía 3.5 pass shows gemini-3.5-flash-lite (e.g. para)",
+        "Future Gemini runs default to gemini-3.5-flash-lite; cache v129→v130, assets 20260729a→20260729b"
       ]
     },
     {
