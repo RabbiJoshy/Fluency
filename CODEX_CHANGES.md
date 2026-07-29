@@ -32,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Replace the audit matrix with one predictable flag sheet
+
+- Commit `0d591dea`; front-end cache `flashcards-v135` / `20260729g`.
+- Replaced the rendered target/category/preview matrix with one calm hierarchy: an independent free-form note composer, explicit Proper noun / English / Cognate / Wrong lemma / Wrong elision correction actions, a dedicated sense–meaning pairing view, and one full-width Flag whole card action.
+- Notes require only text and the explicit Send note button. Enter remains ordinary multiline input; no target or category selection is involved, and the current card ID is included only as retrieval context.
+- Every accepted flag now produces a visible success confirmation. Notes, classifications, lemma/elision issues, and sense pairings keep the sheet open for further reports; a whole-card report confirms and closes after a 1.1-second visible pause. Reports no longer advance the study deck.
+- Made `flagWord()` await queue acceptance and report whether a flag was accepted, allowing signed-out/guest failures to remain visible instead of falsely confirming.
+- Verification: bundled-Node syntax checks for every affected module, valid changelog JSON, unique static HTML IDs, removal assertions for legacy rendered controls, cache-version lockstep, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Make Find word temporary-card navigation deterministic
 
 - Commit `c432f3d2`; front-end cache `flashcards-v134` / `20260729f`.

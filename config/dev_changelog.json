@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "0d591dea",
       "summary": "The card flag sheet is simpler and predictable",
       "details": [
         "There is one independent note box and one Send note button; typing or pressing Enter cannot submit it, and no category or target selection is required",
