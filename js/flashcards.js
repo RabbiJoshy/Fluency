@@ -1177,14 +1177,6 @@ function initializeApp() {
     });
 
     document.getElementById('studyMenuBtn')?.addEventListener('click', showStudyMenu);
-    document.getElementById('deckProgressPrev')?.addEventListener('click', function(e) {
-        e.stopPropagation();
-        previousCard();
-    });
-    document.getElementById('deckProgressNext')?.addEventListener('click', function(e) {
-        e.stopPropagation();
-        nextCard();
-    });
 
     // Floating buttons (desktop sidebar) + on-card mobile copies share handlers.
     // Back uses navigateBack() which falls through to goBackToSetup() when
@@ -1197,12 +1189,6 @@ function initializeApp() {
             navigateBack();
         });
     });
-
-    // Desktop side navigation zones
-    const sideNavPrev = document.getElementById('sideNavPrev');
-    const sideNavNext = document.getElementById('sideNavNext');
-    if (sideNavPrev) sideNavPrev.addEventListener('click', function(e) { e.stopPropagation(); previousCard(); });
-    if (sideNavNext) sideNavNext.addEventListener('click', function(e) { e.stopPropagation(); nextCard(); });
 
     // X button on stacked (off-deck) cards
     ['stackedExitFront', 'stackedExitBack'].forEach(function(id) {
@@ -3695,36 +3681,38 @@ function updateCard({ announceHeadword = false } = {}) {
     document.getElementById('prevBtnFrontMobile').disabled = isPrevDisabled;
     document.getElementById('nextBtnFrontMobile').disabled = isNextDisabled;
 
-    // Discrete progress rail. Ordinary sets get one cell per card; special
-    // decks are capped at 50 visual cells so the bar stays legible.
+    // Numbered active-set scrubber. It mirrors the level picker: the current
+    // position is magnified, while any visible number can be selected directly.
     const progressSegments = document.getElementById('deckProgressSegments');
     if (progressSegments) {
-        const segmentCount = Math.max(1, Math.min(50, flashcards.length));
+        const segmentCount = flashcards.length;
         if (progressSegments.childElementCount !== segmentCount) {
-            progressSegments.replaceChildren(...Array.from({ length: segmentCount }, () => {
-                const segment = document.createElement('span');
+            progressSegments.replaceChildren(...Array.from({ length: segmentCount }, (_, i) => {
+                const segment = document.createElement('button');
+                segment.type = 'button';
                 segment.className = 'deck-progress-segment';
+                segment.textContent = String(i + 1);
+                segment.dataset.cardIndex = String(i);
+                segment.setAttribute('aria-label', `Go to card ${i + 1} of ${segmentCount}`);
+                segment.addEventListener('click', event => {
+                    event.stopPropagation();
+                    goToDeckCard(i);
+                });
                 return segment;
             }));
         }
-        const activeSegment = flashcards.length > 0
-            ? Math.min(segmentCount - 1, Math.floor(currentIndex * segmentCount / flashcards.length))
-            : 0;
         Array.from(progressSegments.children).forEach((segment, i) => {
-            segment.classList.toggle('is-complete', i < activeSegment);
-            segment.classList.toggle('is-current', i === activeSegment);
+            segment.classList.toggle('is-visited', stats.studied.has(i));
+            segment.classList.toggle('is-current', i === currentIndex);
+            segment.setAttribute('aria-current', i === currentIndex ? 'step' : 'false');
         });
+        const currentSegment = progressSegments.children[currentIndex];
+        if (currentSegment && !progressSegments.dataset.userScrolling) {
+            requestAnimationFrame(() => currentSegment.scrollIntoView({
+                behavior: 'smooth', block: 'nearest', inline: 'center'
+            }));
+        }
     }
-    const railPrev = document.getElementById('deckProgressPrev');
-    const railNext = document.getElementById('deckProgressNext');
-    if (railPrev) railPrev.disabled = isPrevDisabled;
-    if (railNext) railNext.disabled = isNextDisabled;
-
-    // Update desktop side nav zones
-    const sideNavPrev = document.getElementById('sideNavPrev');
-    const sideNavNext = document.getElementById('sideNavNext');
-    if (sideNavPrev) sideNavPrev.disabled = isPrevDisabled;
-    if (sideNavNext) sideNavNext.disabled = isNextDisabled;
 
     // Drive ghost card visibility based on how many real cards exist behind each side
     const cardContainer = document.querySelector('.card-container');
@@ -4047,6 +4035,20 @@ function previousCard() {
 
 function nextCard() {
     if (currentIndex < flashcards.length - 1) _navCard('next');
+}
+
+function goToDeckCard(index) {
+    const nextIndex = Number(index);
+    if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= flashcards.length
+            || nextIndex === currentIndex) return;
+    stopExampleAutoplay(true);
+    currentIndex = nextIndex;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    currentGroupSelection = null;
+    document.getElementById('flashcard')?.classList.remove('flipped');
+    updateCard({ announceHeadword: true });
 }
 
 function shuffleCards() {

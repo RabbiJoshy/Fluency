@@ -510,7 +510,7 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: min(540px, calc(100% - 32px));
-                height: 34px;
+                height: 42px;
                 align-items: center;
                 gap: 8px;
                 pointer-events: auto;
@@ -2273,54 +2273,60 @@
             color: rgba(255, 255, 255, 0.8);
         }
         /* Frequency info tooltip */
-        /* Shared by desktop and mobile active-set progress rails. */
+        /* Shared by desktop and mobile active-set card scrubbers. */
         .deck-progress-segments {
             display: flex;
             flex: 1 1 auto;
             min-width: 0;
-            gap: 2px;
-            height: 9px;
+            height: 42px;
+            gap: 0;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            padding: 0 calc(50% - 25px);
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+                    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
         }
+        .deck-progress-segments::-webkit-scrollbar { display: none; }
         .deck-progress-segment {
-            flex: 1 1 0;
-            min-width: 2px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.16);
-            transition: background 0.2s ease, transform 0.2s ease;
+            flex: 0 0 50px;
+            width: 50px;
+            height: 42px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.4);
+            font: 700 13px/1 var(--font-data, var(--font-emphasis));
+            cursor: pointer;
+            opacity: 0.7;
+            transform: scale(0.82);
+            scroll-snap-align: center;
+            transition: color 0.16s ease, opacity 0.16s ease, transform 0.16s ease;
         }
-        .deck-progress-segment.is-complete {
-            background: color-mix(in srgb, var(--accent-primary) 65%, white);
+        .deck-progress-segment.is-visited:not(.is-current) {
+            color: rgba(255, 255, 255, 0.68);
+            opacity: 0.9;
         }
         .deck-progress-segment.is-current {
-            background: white;
-            transform: scaleY(1.7);
-            box-shadow: 0 0 7px color-mix(in srgb, var(--accent-primary) 65%, transparent);
-        }
-        .deck-progress-nav {
-            flex: 0 0 34px;
-            width: 34px;
-            height: 34px;
-            padding: 0 0 2px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 50%;
-            background: color-mix(in srgb, var(--bg-card) 88%, transparent);
-            color: rgba(255, 255, 255, 0.86);
-            font: 500 27px/1 var(--font-reading);
-            cursor: pointer;
-        }
-        .deck-progress-nav:disabled {
-            opacity: 0.25;
-            cursor: default;
+            color: var(--accent-primary);
+            opacity: 1;
+            transform: scale(1.45);
+            text-shadow: 0 0 12px rgba(var(--accent-primary-rgb), 0.5);
         }
         .deck-progress-track .study-menu-btn {
-            flex: 0 0 34px;
-            width: 34px;
-            height: 34px;
-            padding: 5px;
-            border-radius: 50%;
+            flex: 0 0 auto;
+            width: auto;
+            min-width: 124px;
+            height: 40px;
+            padding: 7px 12px;
+            gap: 7px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.68);
             background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
+            font: 700 12px/1 var(--font-emphasis);
         }
         .deck-progress-track .study-menu-btn:hover,
         .deck-progress-track .study-menu-btn:focus-visible {
@@ -2329,8 +2335,9 @@
             outline: none;
         }
         .deck-progress-track .study-menu-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 19px;
+            height: 19px;
+            flex: 0 0 19px;
         }
 
         .freq-tooltip {
@@ -4705,6 +4712,12 @@
                 grid-template-columns: 1fr;
                 gap: 7px;
             }
+            .deck-progress-track .study-menu-btn {
+                min-width: 42px;
+                width: 42px;
+                padding: 8px;
+            }
+            .deck-progress-track .study-menu-btn span { display: none; }
             .artist-vocabulary-scope-buttons {
                 width: 100%;
             }
@@ -9494,7 +9507,7 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 32px);
-                height: 38px;
+                height: 42px;
                 align-items: center;
                 gap: 7px;
                 pointer-events: auto;

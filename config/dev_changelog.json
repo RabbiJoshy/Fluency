@@ -4,6 +4,16 @@
     {
       "date": "2026-07-29",
       "commit": "pending",
+      "summary": "The active set now has a numbered card scrubber",
+      "details": [
+        "The thin progress cells and separate arrow buttons are replaced by a swipeable numbered strip that clearly magnifies the current card position",
+        "Choose any visible number to jump directly to that card; swipe and keyboard card navigation continue to work as before",
+        "Study options now has a larger labelled control on desktop and retains a compact touch-friendly control on mobile; cache v130→v131, assets 20260729b→20260729c"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "commit": "pending",
       "summary": "Card back shows which prompt/model produced each sense (JST only)",
       "details": [
         "New ⓘ button on the card back opens a panel listing each classified sense with the exact prompt, Gemini model, and run date behind it — traces a stale/bad translation to its source run",

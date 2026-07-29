@@ -24,20 +24,20 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260729b">
-    <link rel="modulepreload" href="js/state.js?v=20260729b">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260729b">
-    <link rel="modulepreload" href="js/speech.js?v=20260729b">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260729b">
-    <link rel="modulepreload" href="js/auth.js?v=20260729b">
-    <link rel="modulepreload" href="js/spotify.js?v=20260729b">
-    <link rel="modulepreload" href="js/estimation.js?v=20260729b">
-    <link rel="modulepreload" href="js/config.js?v=20260729b">
-    <link rel="modulepreload" href="js/progress.js?v=20260729b">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260729b">
-    <link rel="modulepreload" href="js/ui.js?v=20260729b">
-    <link rel="modulepreload" href="js/vocab.js?v=20260729b">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260729b">
+    <link rel="modulepreload" href="js/main.js?v=20260729c">
+    <link rel="modulepreload" href="js/state.js?v=20260729c">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260729c">
+    <link rel="modulepreload" href="js/speech.js?v=20260729c">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260729c">
+    <link rel="modulepreload" href="js/auth.js?v=20260729c">
+    <link rel="modulepreload" href="js/spotify.js?v=20260729c">
+    <link rel="modulepreload" href="js/estimation.js?v=20260729c">
+    <link rel="modulepreload" href="js/config.js?v=20260729c">
+    <link rel="modulepreload" href="js/progress.js?v=20260729c">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260729c">
+    <link rel="modulepreload" href="js/ui.js?v=20260729c">
+    <link rel="modulepreload" href="js/vocab.js?v=20260729c">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260729c">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -521,29 +521,17 @@
                     <button id="correctBtnOutside" class="hidden" aria-hidden="true"></button>
                     <button id="prevBtnFrontOutside" class="hidden" aria-hidden="true"></button>
                     <button id="nextBtnFrontOutside" class="hidden" aria-hidden="true"></button>
-                    <!-- Active-set rail: discrete progress with navigation folded into its ends. -->
-                    <div id="deckProgressTrack" class="deck-progress-track" aria-label="Study progress">
-                        <button type="button" id="deckProgressPrev" class="deck-progress-nav" aria-label="Previous card">‹</button>
-                        <div id="deckProgressSegments" class="deck-progress-segments" aria-hidden="true"></div>
-                        <button type="button" id="deckProgressNext" class="deck-progress-nav" aria-label="Next card">›</button>
+                    <!-- Active-set scrubber: numbered card positions with direct navigation. -->
+                    <div id="deckProgressTrack" class="deck-progress-track" aria-label="Card position in active set">
+                        <div id="deckProgressSegments" class="deck-progress-segments" role="group" aria-label="Cards in this set"></div>
                         <button type="button" id="studyMenuBtn" class="gear-btn study-menu-btn" aria-label="Open study options" title="Study options">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.05.05-2.86 2.86-.05-.05A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.55V21h-4v-.05a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.88.34l-.05.05-2.86-2.86.05-.05A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3v-4h.05A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.88l-.05-.05 2.86-2.86.05.05A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3h4v.05a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.05-.05 2.86 2.86-.05.05A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21v4h-.05A1.7 1.7 0 0 0 19.4 15z"></path>
                             </svg>
+                            <span>Study options</span>
                         </button>
                     </div>
-                    <!-- Desktop: side navigation zones (click the gutter to go prev/next) -->
-                    <button id="sideNavPrev" class="side-nav-zone side-nav-prev" aria-label="Previous card">
-                        <svg class="side-nav-chevron" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
-                    <button id="sideNavNext" class="side-nav-zone side-nav-next" aria-label="Next card">
-                        <svg class="side-nav-chevron" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </button>
                 </div>
                 <!-- Mobile actions popup: position:fixed, sits just below the top banner.
                      Both front-face and back-face gear buttons toggle this single popup.
@@ -1162,8 +1150,8 @@
                     <p><strong>Swipe left</strong> if you don't know it &#10007;</p>
                     <p id="helpStudyLyricsLine"><strong>Lyric examples:</strong> tap the sentence to cycle manually, or use the small desktop play control to hear each sense label and its timestamped lyric lines in order.</p>
                     <p><strong>Words with multiple meanings:</strong> A grouped row starts on its shared meaning; pick a colored sub-sense to narrow the examples. Its color links it to the matching example.</p>
-                    <p><strong>Progress rail:</strong> The discrete cells show movement through the active set, with previous and next controls built into the ends.</p>
-                    <p><strong>Study options:</strong> Use the button at the end of the progress rail for Change set, Shuffle, card language order, Audio, Set progress, Settings, and Help.</p>
+                    <p><strong>Card scrubber:</strong> The numbered strip shows your current position in the active set. Swipe it or choose a number to move directly to that card.</p>
+                    <p><strong>Study options:</strong> Use the button beside the scrubber for Change set, Shuffle, card language order, Audio, Set progress, Settings, and Help.</p>
                     <p><strong>At the end of each set</strong>, you'll see your accuracy and can repeat mistakes from that session or continue to the next unseen set.</p>
                 </div>
             </div>
@@ -1188,6 +1176,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260729b"></script>
+    <script type="module" src="js/main.js?v=20260729c"></script>
 </body>
 </html>
