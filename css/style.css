@@ -2186,9 +2186,9 @@
             position: relative;
         }
 
-        /* Fixed morphology badge. Four equal circles always occupy the same
-           2×2 footprint: person, number, tense, mood/form. It sits in the
-           header rather than extending the POS stack vertically. */
+        /* Compact morphology strip: person+number, tense, mood/form. Each
+           category owns its ambiguity (e.g. 1/3SG) instead of hiding it
+           behind an analysis count. */
         #flipBtn {
             position: relative;
         }
@@ -2199,48 +2199,31 @@
             z-index: 3;
             margin: 0;
         }
-        .morph-grid-wrap {
+        .morph-strip-wrap {
             position: relative;
             display: inline-flex;
         }
-        .morph-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 32px);
-            grid-template-rows: repeat(2, 32px);
+        .morph-strip {
+            display: flex;
+            align-items: center;
             gap: 3px;
         }
-        .morph-grid > span {
+        .morph-strip > span {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            padding: 3px;
+            min-width: 28px;
+            height: 25px;
+            padding: 0 7px;
             box-sizing: border-box;
             border: 1px solid rgba(0, 212, 170, 0.3);
-            border-radius: 50%;
+            border-radius: 8px;
             background: rgba(0, 212, 170, 0.12);
             color: #9edbce;
-            font: 650 8px/1.05 var(--font-reading);
+            font: 750 9px/1 var(--font-data);
+            letter-spacing: 0.025em;
             text-align: center;
-            overflow-wrap: anywhere;
-        }
-        .morph-grid-count {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 22px;
-            height: 22px;
-            padding: 0 4px;
-            box-sizing: border-box;
-            border: 2px solid var(--bg-card);
-            border-radius: 999px;
-            background: var(--accent-green);
-            color: var(--bg-primary);
-            font: 800 9px/1 var(--font-data);
+            white-space: nowrap;
         }
         .back-morph-list {
             position: absolute;
@@ -2251,8 +2234,7 @@
             max-width: none;
         }
         .back-header.has-morphology .flip-back-area {
-            padding-left: 78px;
-            padding-right: 78px;
+            padding-top: 36px;
         }
 
         .card-pos {

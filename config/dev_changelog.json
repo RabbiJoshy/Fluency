@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Morphology is now a compact grammatical feature strip",
+      "details": [
+        "Replaced the four cramped circles with up to three shallow tokens for person+number, tense, and mood/form, using familiar codes such as 1SG, PRES, and SUBJ",
+        "Ambiguity is displayed in the category where it occurs—for example 1/3SG—rather than as a vague +N analysis count; exact full analyses remain in the accessible label and tooltip",
+        "Irrelevant categories are omitted for non-finite forms, and the back header reserves a shallow top row for the strip; cache v144→v145, assets 20260729p→20260729q"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "3345ba9c",
       "summary": "Next-level continuation now opens the next deck directly",
       "details": [
