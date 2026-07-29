@@ -4424,7 +4424,10 @@ document.addEventListener('click', (e) => {
 // name in the stub list isn't actually exported by the lazy module (typo /
 // drift); without it, the stub would infinite-recurse into itself.
 
-const ASSET_VERSION = '20260728g';
+// Keep this in lockstep with service-worker.js. These lazy modules own search
+// result cards and conjugation; a stale URL here can keep running an old modal
+// implementation even after the eagerly loaded app has updated.
+const ASSET_VERSION = '20260729e';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
@@ -4450,6 +4453,7 @@ const stubFor = (name, loader) => {
         return window[name](...args);
     }).catch(err => {
         console.error('Lazy load failed for', name, err);
+        throw err;
     });
     fn[STUB] = true;
     window[name] = fn;

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Search results open temporary cards again",
+      "details": [
+        "Find word was lazy-loading its temporary-card module with an obsolete cache URL while the rest of the app used the current version, so results such as por in the Rosalía deck could silently run stale code",
+        "Lazy modal and conjugation modules now share the same asset version as the app and service worker; lazy-load failures also reach the visible Could not open card state instead of being swallowed",
+        "Confirmed por remains searchable as an examples-only Rosalía entry; cache v132→v133, assets 20260729d→20260729e"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "01eaa2ef",
       "summary": "Card positions now taper around the current card",
       "details": [
