@@ -27,28 +27,63 @@ BACKUP_DIR = os.path.join(LOCAL_DIR, 'backups')
 # Default "push everything" set — progress sheets only, so a bare invocation
 # never touches the flags sheet.
 SHEETS = ['Progress']
-# FlaggedWords shares the same 8-column schema (HEADER_KEYS) but is opt-in via
-# an explicit --sheet FlaggedWords, since pushing it is a curation action, not
-# routine progress sync. --replace deletes remote flags absent from local.
+# FlaggedWords is opt-in via an explicit --sheet FlaggedWords, since pushing it
+# is a curation action, not routine progress sync. --replace deletes remote flags
+# absent from local. Its schema is v2 (FLAG_KEYS), no longer the progress-shaped
+# eight columns.
 PUSHABLE_SHEETS = SHEETS + ['FlaggedWords']
 PROGRESS_KEYS = [
     'user', 'itemId', 'itemType', 'mode', 'source', 'parentWordId', 'label',
     'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong', 'lastSeen',
     'schemaVersion', 'srsStage', 'value'
 ]
-FLAG_KEYS = ['user', 'word', 'wordId', 'language', 'correct', 'wrong', 'lastCorrect', 'lastWrong']
+# Local-JSON key names (what sync_sheets.py writes), used for diffing. The
+# Word column arrives as `word`; it is renamed to `wordText` only at send time,
+# because the backend reserves the `word` payload key for the v1 report-blob
+# contract. See flag_push_payload().
+FLAG_KEYS = [
+    'user', 'flaggedAt', 'word', 'lemma', 'language', 'wordId', 'cardId',
+    'fieldPath', 'target', 'category', 'sensePos', 'senseId', 'senseGloss',
+    'context', 'example', 'translation', 'song', 'exampleAssignment',
+    'translationSource', 'senseAssignment', 'requestedTag', 'note', 'report',
+    'schemaVersion'
+]
 HEADER_ALIASES = {
     'user': 'user', 'itemid': 'itemId', 'itemtype': 'itemType', 'mode': 'mode',
     'source': 'source', 'parentwordid': 'parentWordId', 'label': 'label',
     'word': 'word', 'wordid': 'wordId', 'language': 'language',
     'correct': 'correct', 'wrong': 'wrong', 'lastcorrect': 'lastCorrect',
     'lastwrong': 'lastWrong', 'lastseen': 'lastSeen',
-    'schemaversion': 'schemaVersion', 'srsstage': 'srsStage', 'value': 'value'
+    'schemaversion': 'schemaVersion', 'srsstage': 'srsStage', 'value': 'value',
+    # FlaggedWords v2. The sheet's Word column maps to `wordText` because the
+    # backend reserves the `word` payload key for the v1 report-blob contract.
+    'flaggedat': 'flaggedAt', 'lemma': 'lemma', 'cardid': 'cardId',
+    'fieldpath': 'fieldPath', 'target': 'target', 'category': 'category',
+    'sensepos': 'sensePos', 'senseid': 'senseId', 'sensegloss': 'senseGloss',
+    'context': 'context', 'example': 'example', 'translation': 'translation',
+    'song': 'song', 'exampleassignment': 'exampleAssignment',
+    'translationsource': 'translationSource',
+    'senseassignment': 'senseAssignment', 'requestedtag': 'requestedTag',
+    'note': 'note', 'report': 'report'
 }
 
 
 def sheet_keys(sheet_name):
     return PROGRESS_KEYS if sheet_name == 'Progress' else FLAG_KEYS
+
+
+def flag_push_payload(row):
+    """Rename the local `word` field to the backend's `wordText` parameter.
+
+    saveFlaggedWord/buildFlagRow accept `word` only as the v1 fallback, where it
+    held the whole rendered report. Sending a bare headword under that key would
+    overwrite the row's Report column with it.
+    """
+    payload = {k: v for k, v in row.items() if k != 'word'}
+    word_text = row.get('wordText', row.get('word', ''))
+    if word_text != '':
+        payload['wordText'] = word_text
+    return payload
 
 
 def load_script_url():
@@ -252,10 +287,12 @@ def main():
 
         if to_upsert:
             print(f"  Pushing {len(to_upsert)} rows to {sheet_name}...")
+            rows_payload = ([flag_push_payload(r) for r in to_upsert]
+                            if sheet_name == 'FlaggedWords' else to_upsert)
             result = post_json(script_url, {
                 'action': 'bulkSave',
                 'sheet': sheet_name,
-                'rows': to_upsert
+                'rows': rows_payload
             })
             if result.get('success'):
                 print(f"    {result['message']}")

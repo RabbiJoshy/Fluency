@@ -734,10 +734,19 @@ async function saveWordProgress(card, isCorrect) {
 
 // Flag a word as having erroneous translation/data — debugging-only path.
 // Routes to a separate FlaggedWords sheet (auto-created by GAS) so it doesn't
-// pollute Progress. Reuses lastWrong for the flag timestamp; the
-// structured audit target/category report remains compatible by using the
-// existing `word` value column.
-async function flagWord(card, fieldPath, fieldValue) {
+// pollute Progress.
+//
+// `fields` (optional) carries the flag-schema-v2 structured payload: stable
+// target/category keys plus the individual sense/example attributes that used
+// to be readable only by parsing the rendered report text. A v2 backend writes
+// each into its own column.
+//
+// Deploy-order safety: `word` keeps carrying the rendered report exactly as
+// before, so an un-redeployed v1 backend still records the full flag with
+// nothing lost. The v2 backend prefers `wordText` for the Word column and
+// treats `word` as the Report blob. Same for lastCorrect/lastWrong, which v1
+// overloads as fieldPath and flag timestamp.
+async function flagWord(card, fieldPath, fieldValue, fields = null) {
     if (!currentUser) {
         console.warn('flagWord skipped: no user logged in');
         return false;
@@ -765,7 +774,15 @@ async function flagWord(card, fieldPath, fieldValue) {
         language: language,
         wordId: wordId,
         lastCorrect: fieldPath || '',
-        lastWrong: timestamp
+        lastWrong: timestamp,
+        // Flag schema v2 structured columns. Explicit fallbacks keep the row
+        // populated when a caller has not been migrated to pass `fields`.
+        ...(fields || {}),
+        wordText: fields?.wordText || card.targetWord || '',
+        cardId: fields?.cardId || baseId || '',
+        fieldPath: fieldPath || '',
+        flaggedAt: timestamp,
+        report: fieldValue !== undefined && fieldValue !== null ? String(fieldValue) : ''
     }, `flag|${wordId}`);
     console.log(`Flagged ${word} (${wordId}) for review`);
     return true;

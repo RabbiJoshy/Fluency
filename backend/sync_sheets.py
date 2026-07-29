@@ -38,6 +38,27 @@ HEADER_KEYS = {
     'schemaversion': 'schemaVersion',
     'srsstage': 'srsStage',
     'value': 'value',
+    # FlaggedWords schema v2 — each audit attribute is its own column instead of
+    # being buried in the rendered report blob.
+    'flaggedat': 'flaggedAt',
+    'lemma': 'lemma',
+    'cardid': 'cardId',
+    'fieldpath': 'fieldPath',
+    'target': 'target',
+    'category': 'category',
+    'sensepos': 'sensePos',
+    'senseid': 'senseId',
+    'sensegloss': 'senseGloss',
+    'context': 'context',
+    'example': 'example',
+    'translation': 'translation',
+    'song': 'song',
+    'exampleassignment': 'exampleAssignment',
+    'translationsource': 'translationSource',
+    'senseassignment': 'senseAssignment',
+    'requestedtag': 'requestedTag',
+    'note': 'note',
+    'report': 'report',
 }
 
 

@@ -48,7 +48,7 @@
       "details": [
         "FlaggedWords moves to schema v2: 24 real columns (Target, Category, Lemma, CardId, SenseId, SenseGloss, Example, Song, ExampleAssignment, TranslationSource, Note) instead of one free-text blob, so audits can be sorted and filtered",
         "Both flag entry paths (audit menu and quick actions) now emit one canonical set of stable target/category keys rather than two different sets of display labels",
-        "The 28 existing flags migrate automatically on first request, with the old tab copied to FlaggedWords_v1_backup and three blank legacy rows dropped; needs an Apps Script redeploy"
+        "Migrated all 29 existing flags with zero parse failures, copied the old tab to FlaggedWords_v1_backup, and dropped three blank legacy rows; cache v153→v154, assets 20260729y→20260729z"
       ]
     },
     {

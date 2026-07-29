@@ -13,11 +13,53 @@ const PROGRESS_HEADERS = [
   'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen',
   'SchemaVersion', 'SrsStage', 'Value'
 ];
+// Flag schema v2. v1 was the progress-shaped eight-column tab
+// (User, Word, WordId, Language, Correct, Wrong, LastCorrect, LastWrong) where
+// the whole audit report was crammed into Word, fieldPath was smuggled through
+// LastCorrect, the flag timestamp through LastWrong, and Correct/Wrong were
+// always zero. The app's flag UI can emit ~29 distinct attributes, so v2 gives
+// each one a real column and keeps the rendered blob in Report for reading.
+const FLAG_SCHEMA_VERSION = 2;
+const FLAGGED_WORDS_SHEET_NAME = 'FlaggedWords';
 const FLAGGED_WORDS_HEADERS = [
+  'User', 'FlaggedAt', 'Word', 'Lemma', 'Language', 'WordId', 'CardId',
+  'FieldPath', 'Target', 'Category', 'SensePos', 'SenseId', 'SenseGloss',
+  'Context', 'Example', 'Translation', 'Song', 'ExampleAssignment',
+  'TranslationSource', 'SenseAssignment', 'RequestedTag', 'Note', 'Report',
+  'SchemaVersion'
+];
+const FLAGGED_WORDS_V1_HEADERS = [
   'User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong',
   'LastCorrect', 'LastWrong'
 ];
+const F = {
+  USER: 0,
+  FLAGGED_AT: 1,
+  WORD: 2,
+  LEMMA: 3,
+  LANGUAGE: 4,
+  WORD_ID: 5,
+  CARD_ID: 6,
+  FIELD_PATH: 7,
+  TARGET: 8,
+  CATEGORY: 9,
+  SENSE_POS: 10,
+  SENSE_ID: 11,
+  SENSE_GLOSS: 12,
+  CONTEXT: 13,
+  EXAMPLE: 14,
+  TRANSLATION: 15,
+  SONG: 16,
+  EXAMPLE_ASSIGNMENT: 17,
+  TRANSLATION_SOURCE: 18,
+  SENSE_ASSIGNMENT: 19,
+  REQUESTED_TAG: 20,
+  NOTE: 21,
+  REPORT: 22,
+  SCHEMA: 23
+};
 const PROGRESS_MIGRATION_PROPERTY = 'FLUENCY_PROGRESS_V4_MIGRATED';
+const FLAG_MIGRATION_PROPERTY = 'FLUENCY_FLAGS_V2_MIGRATED';
 
 const P = {
   USER: 0,
@@ -56,12 +98,17 @@ function doPost(e) {
     if (action === 'capabilities') {
       return createResponse(true, 'Backend capabilities', {
         schemaVersion: PROGRESS_SCHEMA_VERSION,
-        sheets: [PROGRESS_SHEET_NAME, 'FlaggedWords']
+        flagSchemaVersion: FLAG_SCHEMA_VERSION,
+        sheets: [PROGRESS_SHEET_NAME, FLAGGED_WORDS_SHEET_NAME]
       });
     }
     if (action === 'migrateProgress') {
       const result = ensureProgressSchema(true);
       return createResponse(true, 'Progress schema migration complete', result.summary);
+    }
+    if (action === 'migrateFlags') {
+      const result = ensureFlaggedWordsSchema(true);
+      return createResponse(true, 'Flag schema migration complete', result.summary);
     }
     return createResponse(false, 'Invalid action');
   } catch (error) {
@@ -76,7 +123,9 @@ function doGet() {
     status: 'success',
     message: 'Flashcard API is running',
     schemaVersion: PROGRESS_SCHEMA_VERSION,
+    flagSchemaVersion: FLAG_SCHEMA_VERSION,
     progressMigrationComplete: props.getProperty(PROGRESS_MIGRATION_PROPERTY) === '1',
+    flagMigrationComplete: props.getProperty(FLAG_MIGRATION_PROPERTY) === '1',
     timestamp: new Date().toISOString()
   })).setMimeType(ContentService.MimeType.JSON);
 }
@@ -534,9 +583,17 @@ function dumpSheet(params) {
     });
   }
   const ss = SpreadsheetApp.getActiveSpreadsheet();
+  // Flags migrate on read as well as on write: sync_sheets.py dumps the tab
+  // before anything has been flagged, and must not receive the v1 shape.
+  if (requested === FLAGGED_WORDS_SHEET_NAME) {
+    const flagData = getOrCreateFlaggedWordsSheet().getDataRange().getValues();
+    return createResponse(true, 'Sheet dumped successfully', {
+      headers: flagData[0] || FLAGGED_WORDS_HEADERS,
+      rows: flagData.slice(1)
+    });
+  }
   let sheet = ss.getSheetByName(requested);
   if (!sheet) sheet = ss.getSheetByName(requested + '_legacy');
-  if (!sheet && requested === 'FlaggedWords') sheet = getOrCreateFlaggedWordsSheet();
   if (!sheet) return createResponse(false, 'Sheet not found: ' + requested);
   const data = sheet.getDataRange().getValues();
   return createResponse(true, 'Sheet dumped successfully', {
@@ -730,37 +787,282 @@ function renameLegacySheet(ss, sheet, preferredName) {
   sheet.setName(target);
 }
 
-function getOrCreateFlaggedWordsSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = ss.getSheetByName('FlaggedWords');
-  if (!sheet) {
-    sheet = ss.insertSheet('FlaggedWords');
-    sheet.getRange(1, 1, 1, FLAGGED_WORDS_HEADERS.length).setValues([FLAGGED_WORDS_HEADERS]);
-    sheet.getRange(1, 1, 1, FLAGGED_WORDS_HEADERS.length).setFontWeight('bold');
-    sheet.setFrozenRows(1);
-    sheet.autoResizeColumns(1, FLAGGED_WORDS_HEADERS.length);
+// --- Flag schema v2 -------------------------------------------------------
+//
+// Both app entry paths (full audit menu + quick actions) historically wrote
+// display LABELS into a single free-text column, and used two different Target
+// vocabularies. These maps fold every label either path ever emitted onto the
+// canonical stable keys the app now sends directly, so migrated history and new
+// rows are queryable in the same namespace.
+const FLAG_LEGACY_TARGETS = {
+  // Full audit menu vocabulary.
+  'Sense + example': { target: 'pairing' },
+  'Meaning': { target: 'sense' },
+  'Example line': { target: 'example' },
+  'Lemma': { target: 'lemma' },
+  'Word form': { target: 'surface' },
+  'Whole card': { target: 'card' },
+  'Note': { target: 'note' },
+  'Classification tag': { target: 'routing' },
+  // Quick-action vocabulary.
+  'Proper noun': { target: 'routing', category: 'proper_noun', requestedTag: 'proper_noun' },
+  'English': { target: 'routing', category: 'english', requestedTag: 'english' },
+  'Cognate': { target: 'routing', category: 'cognate', requestedTag: 'cognate' },
+  'Wrong lemma': { target: 'lemma', category: 'lemma' },
+  'Wrong elision correction': { target: 'surface', category: 'morphology' },
+  'Wrong card POS': { target: 'card', category: 'pos' },
+  'Wrong sense POS': { target: 'sense', category: 'pos' },
+  'Sense–meaning pairing': { target: 'pairing', category: 'matching' }
+};
+const FLAG_LEGACY_CATEGORIES = {
+  'Wrong match': 'matching',
+  'Translation': 'translation',
+  'Lemma / grouping': 'lemma',
+  'Morphology': 'morphology',
+  'Example / lyric': 'example',
+  'Expression / clitic': 'expression',
+  'Frequency / rank': 'frequency',
+  'Other': 'other',
+  'English word': 'english',
+  'Loanword': 'loanword',
+  'Cognate': 'cognate',
+  'Proper noun': 'proper_noun',
+  'Part of speech': 'pos',
+  'Unspecified': ''
+};
+
+/** Pull "Label: value" out of a rendered flag report blob. */
+function flagReportField(report, label) {
+  if (!report) return '';
+  const lines = String(report).split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    const idx = lines[i].indexOf(': ');
+    if (idx > 0 && lines[i].slice(0, idx).trim() === label) {
+      return lines[i].slice(idx + 2).trim();
+    }
   }
-  return sheet;
+  return '';
+}
+
+/** "Sense 1: VERB · to dance" -> { pos: 'VERB', gloss: 'to dance' } */
+function flagReportSense(report) {
+  if (!report) return { pos: '', gloss: '' };
+  const lines = String(report).split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    const match = /^Sense \d+: (.*)$/.exec(lines[i]);
+    if (!match) continue;
+    const parts = match[1].split(' · ');
+    return {
+      pos: (parts[0] || '').trim() === '?' ? '' : (parts[0] || '').trim(),
+      gloss: (parts.slice(1).join(' · ') || '').trim()
+    };
+  }
+  return { pos: '', gloss: '' };
+}
+
+/**
+ * Convert one v1 row into a v2 row by back-parsing its report blob.
+ * v1 layout: [User, Word(=report), WordId, Language, Correct, Wrong,
+ *             LastCorrect(=fieldPath), LastWrong(=timestamp)]
+ */
+function convertLegacyFlagRow(v1Row) {
+  const report = String(v1Row[1] || '');
+  const wordId = String(v1Row[2] || '');
+  const fieldPath = String(v1Row[6] || '');
+  const targetLabel = flagReportField(report, 'Target');
+  const mapped = FLAG_LEGACY_TARGETS[targetLabel] || {};
+  const categoryLabel = flagReportField(report, 'Category');
+  const requestedLabel = flagReportField(report, 'Requested classification');
+  const sense = flagReportSense(report);
+
+  // Pre-Target reports ([Sense ↔ example]) only ever described a pairing.
+  let target = mapped.target || '';
+  if (!target) target = report.indexOf('[Sense') === 0 ? 'pairing' : '';
+  if (!target && fieldPath) target = fieldPath.split(':')[0];
+
+  let category = FLAG_LEGACY_CATEGORIES[categoryLabel];
+  if (category === undefined) category = mapped.category || '';
+  let requestedTag = mapped.requestedTag || '';
+  if (!requestedTag && requestedLabel) {
+    requestedTag = FLAG_LEGACY_CATEGORIES[requestedLabel] || '';
+  }
+
+  const cardId = flagReportField(report, 'Card ID') || wordId.split('#')[0];
+  const row = new Array(FLAGGED_WORDS_HEADERS.length).fill('');
+  row[F.USER] = v1Row[0] || '';
+  row[F.FLAGGED_AT] = v1Row[7] || '';
+  row[F.WORD] = flagReportField(report, 'Word');
+  row[F.LEMMA] = flagReportField(report, 'Lemma');
+  row[F.LANGUAGE] = v1Row[3] || '';
+  row[F.WORD_ID] = wordId;
+  row[F.CARD_ID] = cardId === '(missing)' ? '' : cardId;
+  row[F.FIELD_PATH] = fieldPath;
+  row[F.TARGET] = target;
+  row[F.CATEGORY] = category;
+  row[F.SENSE_POS] = sense.pos;
+  row[F.SENSE_ID] = flagReportField(report, 'Sense ID');
+  row[F.SENSE_GLOSS] = sense.gloss === '(empty)' ? '' : sense.gloss;
+  row[F.CONTEXT] = flagReportField(report, 'Context');
+  row[F.EXAMPLE] = flagReportField(report, 'Example');
+  row[F.TRANSLATION] = flagReportField(report, 'Translation');
+  row[F.SONG] = flagReportField(report, 'Source');
+  row[F.EXAMPLE_ASSIGNMENT] = flagReportField(report, 'Example assignment');
+  row[F.TRANSLATION_SOURCE] = flagReportField(report, 'Translation source');
+  row[F.SENSE_ASSIGNMENT] = flagReportField(report, 'Sense assignment');
+  row[F.REQUESTED_TAG] = requestedTag;
+  row[F.NOTE] = flagReportField(report, 'Note');
+  row[F.REPORT] = report;
+  row[F.SCHEMA] = 1;  // provenance: migrated from v1, not natively captured
+  return row;
+}
+
+function flagHeadersMatch(sheet) {
+  if (!sheet || sheet.getLastColumn() < FLAGGED_WORDS_HEADERS.length) return false;
+  const header = sheet.getRange(1, 1, 1, FLAGGED_WORDS_HEADERS.length).getValues()[0];
+  for (let i = 0; i < FLAGGED_WORDS_HEADERS.length; i++) {
+    if (String(header[i]).trim() !== FLAGGED_WORDS_HEADERS[i]) return false;
+  }
+  return true;
+}
+
+function writeFlaggedWordsHeader(sheet) {
+  const range = sheet.getRange(1, 1, 1, FLAGGED_WORDS_HEADERS.length);
+  range.setValues([FLAGGED_WORDS_HEADERS]);
+  range.setFontWeight('bold');
+  sheet.setFrozenRows(1);
+}
+
+/**
+ * Create the tab, or migrate a v1 tab in place. The pre-migration tab is copied
+ * to FlaggedWords_v1_backup first, so a bad parse is always recoverable.
+ * Entirely blank rows (three exist at the top of the live sheet, left over from
+ * an early schema) are dropped rather than carried forward.
+ */
+function ensureFlaggedWordsSchema(force) {
+  const props = PropertiesService.getScriptProperties();
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(FLAGGED_WORDS_SHEET_NAME);
+  const alreadyMigrated = props.getProperty(FLAG_MIGRATION_PROPERTY) === '1';
+  if (sheet && alreadyMigrated && flagHeadersMatch(sheet) && !force) {
+    return { sheet: sheet, summary: { migrated: false, rows: Math.max(0, sheet.getLastRow() - 1) } };
+  }
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    sheet = ss.getSheetByName(FLAGGED_WORDS_SHEET_NAME);
+    if (!sheet) {
+      sheet = ss.insertSheet(FLAGGED_WORDS_SHEET_NAME);
+      writeFlaggedWordsHeader(sheet);
+      sheet.autoResizeColumns(1, FLAGGED_WORDS_HEADERS.length);
+      props.setProperty(FLAG_MIGRATION_PROPERTY, '1');
+      return { sheet: sheet, summary: { migrated: false, created: true, rows: 0 } };
+    }
+    if (flagHeadersMatch(sheet) && !force) {
+      props.setProperty(FLAG_MIGRATION_PROPERTY, '1');
+      return { sheet: sheet, summary: { migrated: false, rows: Math.max(0, sheet.getLastRow() - 1) } };
+    }
+
+    const existing = sheet.getDataRange().getValues();
+    if (!ss.getSheetByName(FLAGGED_WORDS_SHEET_NAME + '_v1_backup')) {
+      sheet.copyTo(ss).setName(FLAGGED_WORDS_SHEET_NAME + '_v1_backup');
+    }
+
+    const converted = [];
+    let dropped = 0;
+    for (let i = 1; i < existing.length; i++) {
+      const raw = existing[i];
+      const isBlank = raw.every(function(cell) { return String(cell || '').trim() === ''; });
+      if (isBlank) { dropped++; continue; }
+      converted.push(convertLegacyFlagRow(raw));
+    }
+
+    sheet.clear();
+    writeFlaggedWordsHeader(sheet);
+    if (converted.length) {
+      sheet.getRange(2, 1, converted.length, FLAGGED_WORDS_HEADERS.length).setValues(converted);
+    }
+    sheet.autoResizeColumns(1, FLAGGED_WORDS_HEADERS.length);
+    props.setProperty(FLAG_MIGRATION_PROPERTY, '1');
+    return {
+      sheet: sheet,
+      summary: { migrated: true, rows: converted.length, droppedBlankRows: dropped }
+    };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function getOrCreateFlaggedWordsSheet() {
+  return ensureFlaggedWordsSchema(false).sheet;
+}
+
+/**
+ * Build a v2 row from a save payload. `wordText`/`report` are the v2 fields;
+ * the `word` fallback is the v1 client contract, where `word` carried the
+ * rendered report and there was no separate headword field.
+ */
+function buildFlagRow(params, existing) {
+  const row = existing
+    ? existing.slice(0, FLAGGED_WORDS_HEADERS.length)
+    : new Array(FLAGGED_WORDS_HEADERS.length).fill('');
+  while (row.length < FLAGGED_WORDS_HEADERS.length) row.push('');
+
+  const report = params.report !== undefined && params.report !== null && params.report !== ''
+    ? String(params.report)
+    : String(params.word || '');
+  const set = function(index, value) {
+    if (value !== undefined && value !== null && value !== '') row[index] = value;
+  };
+
+  row[F.USER] = params.user;
+  row[F.WORD_ID] = params.wordId;
+  row[F.FLAGGED_AT] = params.flaggedAt || params.lastWrong || new Date().toISOString();
+  // Preserve on re-flag: a partial payload (e.g. a bulkSave that omits these)
+  // must not blank a column the row already has.
+  row[F.FIELD_PATH] = params.fieldPath || params.lastCorrect || row[F.FIELD_PATH] || '';
+  if (report) row[F.REPORT] = report;
+  row[F.SCHEMA] = FLAG_SCHEMA_VERSION;
+  set(F.WORD, params.wordText || flagReportField(report, 'Word'));
+  set(F.LEMMA, params.lemma || flagReportField(report, 'Lemma'));
+  set(F.LANGUAGE, params.language);
+  set(F.CARD_ID, params.cardId || String(params.wordId || '').split('#')[0]);
+  set(F.TARGET, params.target);
+  set(F.CATEGORY, params.category);
+  set(F.SENSE_POS, params.sensePos);
+  set(F.SENSE_ID, params.senseId);
+  set(F.SENSE_GLOSS, params.senseGloss);
+  set(F.CONTEXT, params.context);
+  set(F.EXAMPLE, params.example);
+  set(F.TRANSLATION, params.translation);
+  set(F.SONG, params.song);
+  set(F.EXAMPLE_ASSIGNMENT, params.exampleAssignment);
+  set(F.TRANSLATION_SOURCE, params.translationSource);
+  set(F.SENSE_ASSIGNMENT, params.senseAssignment);
+  set(F.REQUESTED_TAG, params.requestedTag);
+  set(F.NOTE, params.note);
+  return row;
+}
+
+/** Row index (1-based) of an existing flag for this user + wordId, else -1. */
+function findFlagRowIndex(data, user, wordId) {
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][F.USER] === user && String(data[i][F.WORD_ID]) === String(wordId)) {
+      return i + 1;
+    }
+  }
+  return -1;
 }
 
 function saveFlaggedWord(params) {
-  if (!params.user || params.wordId === undefined) {
+  if (!params.user || params.wordId === undefined || String(params.wordId) === '') {
     return createResponse(false, 'Missing required fields: user, wordId');
   }
   const sheet = getOrCreateFlaggedWordsSheet();
   const data = sheet.getDataRange().getValues();
-  let rowIndex = -1;
-  for (let i = 1; i < data.length; i++) {
-    if (data[i][0] === params.user && String(data[i][2]) === String(params.wordId)) {
-      rowIndex = i + 1;
-      break;
-    }
-  }
-  const values = [
-    params.user, params.word || '', params.wordId, params.language || '',
-    Number(params.correct) || 0, Number(params.wrong) || 0,
-    params.lastCorrect || '', params.lastWrong || ''
-  ];
+  const rowIndex = findFlagRowIndex(data, params.user, params.wordId);
+  const existing = rowIndex > 0 ? data[rowIndex - 1] : null;
+  const values = buildFlagRow(params, existing);
   if (rowIndex > 0) sheet.getRange(rowIndex, 1, 1, values.length).setValues([values]);
   else sheet.appendRow(values);
   return createResponse(true, 'Flag saved successfully');
@@ -772,8 +1074,8 @@ function deleteFlaggedWord(params) {
   const data = sheet.getDataRange().getValues();
   let deleted = 0;
   for (let i = data.length - 1; i >= 1; i--) {
-    if (data[i][0] === params.user
-        && (params.wordId === undefined || String(data[i][2]) === String(params.wordId))) {
+    if (data[i][F.USER] === params.user
+        && (params.wordId === undefined || String(data[i][F.WORD_ID]) === String(params.wordId))) {
       sheet.deleteRow(i + 1);
       deleted++;
     }
@@ -784,28 +1086,17 @@ function deleteFlaggedWord(params) {
 function bulkSaveFlaggedWords(rows) {
   let updated = 0;
   let inserted = 0;
+  const sheet = getOrCreateFlaggedWordsSheet();
   rows.forEach(function(row) {
-    const sheet = getOrCreateFlaggedWordsSheet();
+    if (!row.user || row.wordId === undefined || String(row.wordId) === '') return;
     const data = sheet.getDataRange().getValues();
-    let found = false;
-    for (let i = 1; i < data.length; i++) {
-      if (data[i][0] === row.user && String(data[i][2]) === String(row.wordId)) {
-        sheet.getRange(i + 1, 1, 1, 8).setValues([[
-          row.user, row.word || '', row.wordId, row.language || '',
-          Number(row.correct) || 0, Number(row.wrong) || 0,
-          row.lastCorrect || '', row.lastWrong || ''
-        ]]);
-        updated++;
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      sheet.appendRow([
-        row.user, row.word || '', row.wordId, row.language || '',
-        Number(row.correct) || 0, Number(row.wrong) || 0,
-        row.lastCorrect || '', row.lastWrong || ''
-      ]);
+    const rowIndex = findFlagRowIndex(data, row.user, row.wordId);
+    const values = buildFlagRow(row, rowIndex > 0 ? data[rowIndex - 1] : null);
+    if (rowIndex > 0) {
+      sheet.getRange(rowIndex, 1, 1, values.length).setValues([values]);
+      updated++;
+    } else {
+      sheet.appendRow(values);
       inserted++;
     }
   });

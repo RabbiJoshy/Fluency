@@ -1061,6 +1061,42 @@ const FLAG_DEFAULT_CATEGORY = {
     lemma: 'lemma', surface: 'morphology', card: 'other'
 };
 
+// ---------------------------------------------------------------------------
+// Canonical flag taxonomy (schema v2).
+//
+// The audit sheet stores these STABLE KEYS, never the display labels, so
+// renaming a label in the UI can no longer orphan flag history. Two entry
+// paths write flags — the full menu (FLAG_TARGETS keys) and the quick actions
+// (_sendSimpleFlag's own shorthand) — and they historically emitted different
+// Target vocabularies into the same column. FLAG_QUICK_CANONICAL folds the
+// quick shorthand onto the menu's vocabulary so both paths agree.
+//
+// fieldPath strings are deliberately NOT changed here: they are the sheet's
+// dedup key, so re-flagging the same field must keep updating its existing row.
+// ---------------------------------------------------------------------------
+const FLAG_CATEGORY_LABELS = {
+    ...Object.fromEntries(FLAG_CATEGORIES.map(item => [item.key, item.label])),
+    ...Object.fromEntries(FLAG_ROUTING_TAGS.map(item => [item.key, item.label])),
+    pos: 'Part of speech',
+    proper_noun: 'Proper noun'
+};
+const FLAG_QUICK_CANONICAL = {
+    note: { target: 'note', category: 'other' },
+    propernoun: { target: 'routing', category: 'proper_noun', requestedTag: 'proper_noun' },
+    english: { target: 'routing', category: 'english', requestedTag: 'english' },
+    cognate: { target: 'routing', category: 'cognate', requestedTag: 'cognate' },
+    lemma: { target: 'lemma', category: 'lemma' },
+    elision: { target: 'surface', category: 'morphology' },
+    'card-pos': { target: 'card', category: 'pos' },
+    'sense-pos': { target: 'sense', category: 'pos' },
+    pairing: { target: 'pairing', category: 'matching' },
+    card: { target: 'card', category: 'other' }
+};
+
+function _flagCanonicalQuick(target) {
+    return FLAG_QUICK_CANONICAL[target] || { target: target, category: 'other' };
+}
+
 function _flagMenuCard() {
     return (typeof flashcards !== 'undefined' && flashcards) ? flashcards[currentIndex] : null;
 }
@@ -1463,8 +1499,31 @@ function flagMenuConfirm() {
     if (note) reportLines.push(`Note: ${note}`);
     const report = reportLines.join('\n');
 
+    const isSenseTarget = FLAG_SENSE_TARGETS.has(_flagTarget);
+    const isExampleTarget = _flagTarget === 'pairing' || _flagTarget === 'example';
+    const fields = {
+        schemaVersion: 2,
+        target: _flagTarget,
+        category: _flagTarget === 'routing' ? _flagCategory : (_flagCategory || ''),
+        requestedTag: _flagTarget === 'routing' ? _flagCategory : '',
+        wordText: word,
+        lemma: lemma,
+        cardId: cardId,
+        sensePos: isSenseTarget ? (m?.pos || '') : '',
+        senseId: isSenseTarget ? senseId : '',
+        senseGloss: isSenseTarget ? gloss : '',
+        context: isSenseTarget ? (m?.context || '') : '',
+        senseAssignment: isSenseTarget ? (m?.assignment_method || '') : '',
+        example: isExampleTarget ? spanish : '',
+        translation: isExampleTarget ? english : '',
+        song: isExampleTarget ? song : '',
+        exampleAssignment: isExampleTarget ? (example?.assignment_method || '') : '',
+        translationSource: isExampleTarget ? (example?.translation_source || '') : '',
+        note: note
+    };
+
     if (typeof flagWord === 'function') {
-        flagWord(card, path, report);
+        flagWord(card, path, report, fields);
     }
     hideFlagMenu();
     // Hand back to core flashcards.js for the flag animation + advance.
@@ -1608,6 +1667,40 @@ function _simpleFlagPath(target, meaningIndex = 0) {
     return paths[target] || target;
 }
 
+// Structured payload for the quick-action path, folded onto the same canonical
+// vocabulary the full menu emits so the audit sheet has one Target/Category
+// namespace regardless of which control raised the flag.
+function _simpleFlagFields(target, { meaningIndex = 0, note = '' } = {}) {
+    const card = _flagMenuCard();
+    const meaning = card?.meanings?.[meaningIndex] || null;
+    const example = _simpleFlagExample(meaning, meaningIndex);
+    const canonical = _flagCanonicalQuick(target);
+    const isSense = target === 'pairing' || target === 'sense-pos';
+    const isExample = target === 'pairing';
+    const word = card?.targetWord || card?.word || '';
+    return {
+        schemaVersion: 2,
+        target: canonical.target,
+        category: canonical.category || '',
+        requestedTag: canonical.requestedTag || '',
+        wordText: word,
+        lemma: card?.lemma || word,
+        cardId: card?.fullId || card?.id || '',
+        sensePos: isSense ? (meaning?.pos || '') : '',
+        senseId: isSense ? (meaning?.sense_id || meaning?.senseId || meaning?.id || '') : '',
+        senseGloss: isSense ? (meaning?.meaning || meaning?.translation || '') : '',
+        context: isSense ? (meaning?.context || '') : '',
+        senseAssignment: isSense ? (meaning?.assignment_method || '') : '',
+        example: isExample
+            ? (example?.spanish || example?.target || example?.targetSentence || example?.original || '') : '',
+        translation: isExample ? (example?.english || example?.englishSentence || '') : '',
+        song: isExample ? (example?.song_name || example?.song || '') : '',
+        exampleAssignment: isExample ? (example?.assignment_method || '') : '',
+        translationSource: isExample ? (example?.translation_source || '') : '',
+        note: note || ''
+    };
+}
+
 async function _sendSimpleFlag(target, options = {}) {
     if (_simpleFlagBusy) return false;
     const card = _flagMenuCard();
@@ -1618,7 +1711,8 @@ async function _sendSimpleFlag(target, options = {}) {
         const ok = await flagWord(
             card,
             _simpleFlagPath(target, options.meaningIndex || 0),
-            _simpleFlagReport(target, options)
+            _simpleFlagReport(target, options),
+            _simpleFlagFields(target, options)
         );
         if (!ok) {
             _simpleFlagStatus('This flag could not be saved. Please sign in and try again.', true);
