@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Compact morphology into a fixed card-header badge
+
+- Commit `f972c954`; front-end cache `flashcards-v138` / `20260729j`.
+- Replaced the vertically expanding morphology pills with a fixed 2×2 circular badge for person, number, tense, and mood/form in the top-right of both card faces. Every token now uses the same restrained tense/mood text colour.
+- Ambiguous forms preserve the fixed footprint by showing the first active analysis plus a `+N` count; the full set remains available through the badge's accessible label and tooltip. Merged-lemma cards derive the badge from the active example, so it changes with the example selection.
+- Long front prompts now remain on one line and shrink from their normal display size down to 18px on mobile or 22px on desktop rather than wrapping. The back keeps its existing conservative sizing, with header space reserved around the new badge.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Clarify grouped-sense selection hierarchy
 
 - Commit `716c5d5a`; front-end cache `flashcards-v137` / `20260729i`.
