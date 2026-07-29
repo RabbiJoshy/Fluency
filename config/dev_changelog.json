@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "113c8a88",
       "summary": "Next-level continuation is reliable and multi-POS cards use tabs",
       "details": [
         "Serialized setup range rebuilding before next-level selection, preventing the old and new level renders from racing and leaving the completion screen stalled",

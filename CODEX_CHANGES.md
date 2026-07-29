@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Fix next-level continuation and tab multi-POS cards
+
+- Commit `113c8a88`; front-end cache `flashcards-v141` / `20260729m`.
+- Fixed the end-of-level continuation race by awaiting the completed level's setup-range rebuild before selecting and rendering the next level. Previously the old and new asynchronous renders could overwrite the same set panel, leaving no first-set target while the completion action appeared stalled.
+- Multi-POS card backs now turn their POS badges into tabs and render only the active grammatical section. Selecting a tab focuses its first sense without invoking sense-cycle behavior; single-POS cards retain the existing informational badge.
+- Expressions and clitics remain pinned below the tabbed grammatical section, and selecting them preserves the active POS tab. POS selection follows direct sense and knowledge-item navigation as well.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `ui.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; POS-tab handler/static routing assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Require an explicit direction choice after holding
 
 - Commit `996e1ffc`; front-end cache `flashcards-v140` / `20260729l`.
