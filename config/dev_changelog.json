@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Morphology now uses full names and matches the POS pill",
+      "details": [
+        "Replaced abbreviated codes such as 1/3SG, PRES, and SUBJ with readable labels such as 1st/3rd singular, present, and subjunctive while preserving category-specific ambiguity",
+        "Morphology items now match POS pills more closely through the same reading font, 11px size, 600 weight, 4×8px padding, fully rounded shape, tinted fill, and proportional border",
+        "The front remains centred beneath Verb and the back remains horizontally attached to Verb; cache v147→v148, assets 20260729s→20260729t"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "bad45d28",
       "summary": "Card backs reserve a lemma line and make POS tabs unmistakable",
       "details": [

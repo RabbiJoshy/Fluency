@@ -2453,30 +2453,16 @@ function updateCard({ announceHeadword = false } = {}) {
         return labels[String(pos || '').toUpperCase()]
             || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
     };
-    const shortMorphToken = (value, kind) => {
-        const short = {
-            mood: { indicative: 'IND', subjunctive: 'SUBJ', imperative: 'IMP', conditional: 'COND', infinitive: 'INF', gerund: 'GER', 'past participle': 'PTCP' },
-            tense: { present: 'PRES', preterite: 'PRET', imperfect: 'IMPF', future: 'FUT', conditional: 'COND', affirmative: 'AFF', negative: 'NEG', 'present perfect': 'PRES·PRF', 'future perfect': 'FUT·PRF', pluperfect: 'PLUP' }
-        };
-        return short[kind]?.[value] || String(value || '').toUpperCase();
-    };
     const renderMorphStrip = () => {
         if (!morphLabels.length) return '';
         const fullLabels = morphLabels.map(item => [item.person, item.grammar].filter(Boolean).join(' · '));
         const uniqueTokens = values => [...new Set(values.filter(Boolean))];
-        const personNumberTokens = uniqueTokens(morphLabels.map(label => {
-            const people = String(label.personToken || '')
-                .replaceAll('1st', '1').replaceAll('2nd', '2').replaceAll('3rd', '3');
-            const numbers = String(label.numberToken || '')
-                .replaceAll('singular', 'SG').replaceAll('plural', 'PL');
-            if (people && /^(SG|PL)$/.test(numbers)) return `${people}${numbers}`;
-            return [people, numbers].filter(Boolean).join('·');
-        }));
-        const tenseTokens = uniqueTokens(morphLabels.map(label => shortMorphToken(label.tense, 'tense')));
-        const moodTokens = uniqueTokens(morphLabels.map(label => shortMorphToken(label.mood, 'mood')));
+        const personNumberTokens = uniqueTokens(morphLabels.map(label => label.person));
+        const tenseTokens = uniqueTokens(morphLabels.map(label => label.tense));
+        const moodTokens = uniqueTokens(morphLabels.map(label => label.mood));
         const categoryTokens = [personNumberTokens, tenseTokens, moodTokens]
             .filter(tokens => tokens.length)
-            .map(tokens => tokens.join('/'));
+            .map(tokens => tokens.join(' / '));
         return `<span class="morph-strip-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
             <span class="morph-strip" aria-hidden="true">
                 ${categoryTokens.map(token => `<span>${escapeCardText(token)}</span>`).join('')}
@@ -4557,7 +4543,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729s';
+const ASSET_VERSION = '20260729t';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
