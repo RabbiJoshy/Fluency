@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Reserve lemma space and clarify multi-POS switching
+
+- Commit `bad45d28`; front-end cache `flashcards-v147` / `20260729s`.
+- Every card back now reserves a fixed 28px citation/lemma slot. Cards without a distinct lemma render an invisible placeholder, keeping the POS controls and sense area at a consistent vertical position across cards and tab changes.
+- Multi-POS controls now sit inside a shared segmented track with an explicit “Choose part of speech” label. Inactive tabs remain clearly visible, while the active tab has a stronger POS-coloured fill, border, outline, and depth cue.
+- Single-POS cards deliberately retain the simpler standalone pill and do not receive switch framing or an instructional label.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; reserved-slot and conditional-tab static assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Attach morphology directly to the verb pill
 
 - Commit `6bc65c3c`; front-end cache `flashcards-v146` / `20260729r`.

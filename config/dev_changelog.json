@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "bad45d28",
       "summary": "Card backs reserve a lemma line and make POS tabs unmistakable",
       "details": [
         "Every card back now reserves the same 28px citation/lemma slot, keeping the header and sense area stable when a card or POS has no separate lemma to display",
