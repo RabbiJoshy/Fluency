@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "3345ba9c",
       "summary": "Next-level continuation now opens the next deck directly",
       "details": [
         "Removed the setup-screen detour that rebuilt a partly unfinished current level before advancing and could conflict with the next-level set render after jumping to the final set",

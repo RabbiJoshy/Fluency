@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Load the next level without rebuilding the current one
+
+- Commit `3345ba9c`; front-end cache `flashcards-v144` / `20260729p`.
+- Follow-up after the awaited-setup fix still failed when the learner jumped to a final physical set while earlier sets in that level were unfinished. Removed the regular next-level path's setup detour entirely: it now selects the next level in the existing selector DOM, awaits that level's own range promise, and loads its first available set directly.
+- Passed the next level number into the new deck metadata and made missing level/render/set state explicit errors. The completion screen is restored with a retry message if continuation cannot resolve instead of silently stalling.
+- Artist Main→Extra still uses the necessary setup/scope transition because it changes vocabulary sources rather than merely changing a level.
+- Verification: bundled-Node syntax checks for `ui.js`, `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; regular-path assertion showing no setup detour; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Reveal the direction choice inline on the card
 
 - Commit `6060d4d1`; supersedes the intermediate radial implementation in `c9ec6324`; front-end cache `flashcards-v143` / `20260729o`.
