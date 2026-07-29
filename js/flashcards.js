@@ -2981,12 +2981,11 @@ function updateCard({ announceHeadword = false } = {}) {
                     if (compactKnowledgeView && !groupIsCurrent) return;
                     const groupStateClasses = groupIsCurrent ? ' is-current-sense' : '';
                     const cardBg = 'rgba(var(--sense-match-rgb), 0.08)';
-                    const sharedBg = groupSelected
-                        ? 'rgba(var(--sense-match-rgb), 0.2)'
-                        : 'transparent';
-                    const sharedBorder = groupSelected
-                        ? 'box-shadow: inset 3px 0 0 rgb(var(--sense-match-rgb));'
-                        : '';
+                    // The outer row is the complete-family selection marker.
+                    // Do not repeat it on the shared cell: an inner marker is
+                    // reserved for a specific member selected within a family.
+                    const sharedBg = 'transparent';
+                    const sharedBorder = '';
 
                     const memberCells = members.map((memberIdx, rowIdx) => {
                         const mm = card.meanings[memberIdx];
@@ -2995,7 +2994,7 @@ function updateCard({ announceHeadword = false } = {}) {
                             ? 'rgba(var(--sense-match-rgb), 0.2)'
                             : 'rgba(255, 255, 255, 0.03)';
                         const cellBorder = (isMemberSelected && !mm.unassigned)
-                            ? 'box-shadow: inset 3px 0 0 rgb(var(--sense-match-rgb));'
+                            ? 'box-shadow: inset 3px 0 0 rgb(var(--sense-match-rgb)), inset -3px 0 0 rgb(var(--sense-match-rgb));'
                             : '';
                         const baseCell = `grid-row: ${rowIdx + 1}; padding: 2px 6px; background: ${cellBg}; ${cellBorder} border-radius: 6px; cursor: pointer; min-height: 25px; display: flex; align-items: center; justify-content: center;`;
                         // Varying cell.
@@ -4427,7 +4426,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729h';
+const ASSET_VERSION = '20260729i';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

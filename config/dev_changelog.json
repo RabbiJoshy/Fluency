@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Meaning and example selection now share one visual hierarchy",
+      "details": [
+        "Selected meanings and their paired example sentences now use symmetrical left-and-right rails with balanced colour gradients",
+        "Selecting an entire grouped family uses only the outer primary selection treatment; the redundant marker and fill on the shared group cell are removed",
+        "Selecting one sense within a family retains the outer family treatment and adds a smaller symmetrical marker only to that specific member; cache v136→v137, assets 20260729h→20260729i"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "f68f95df",
       "summary": "Search waits for a temporary card to render",
       "details": [
