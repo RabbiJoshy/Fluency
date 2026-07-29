@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "99e86429",
       "summary": "The active set now has a numbered card scrubber",
       "details": [
         "The thin progress cells and separate arrow buttons are replaced by a swipeable numbered strip that clearly magnifies the current card position",

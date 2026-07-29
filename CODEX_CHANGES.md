@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Replace the active-set progress rail with a card scrubber
+
+- Commit `99e86429`; front-end cache `flashcards-v131` / `20260729c`.
+- Replaced the thin discrete progress cells with a horizontally swipeable, numbered card-position scrubber modelled on the main-menu level picker. The current card is magnified, visited positions remain legible, and choosing a number jumps directly to that card.
+- Removed the separate rail arrows and desktop gutter chevrons. Swipe gestures and keyboard navigation remain available, while Study options uses the freed width for a larger labelled desktop control and a 42px mobile control.
+- Updated the in-app study help and developer changelog. Verification: bundled-Node syntax checks, valid changelog JSON, cache-version lockstep, stale navigation-hook scan, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — [Claude, cross-boundary] Sense-provenance card panel + deck fields
 
 - **Author: Claude (engine side), touching the app surface by explicit user request** — this is a diagnostic UI whose purpose is to expose pipeline provenance, so it was built alongside the engine work rather than handed off. Recorded here so future Codex sessions know Claude edited `js/`, `css/`, `index.html`, and `dev_changelog.json`.
