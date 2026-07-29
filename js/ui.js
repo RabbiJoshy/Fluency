@@ -1969,28 +1969,34 @@ function getNextStudyLevelMeta() {
 
 async function startNextStudyLevelFirstSet() {
     const nextMeta = getNextStudyLevelMeta();
+    if (!nextMeta) throw new Error('No next study level is available');
     if (nextMeta?.scope === 'extra') {
         await window.goBackToSetup?.();
         await window.setArtistVocabularyScope?.('extra', { autoStart: true });
         return;
     }
-    await window.goBackToSetup?.();
 
+    // Stay in the active study surface and launch the next level directly,
+    // just like next-set continuation. Returning through setup first rebuilt
+    // the partly completed current level and could race the next-level range
+    // render, especially after jumping to its final physical set.
     const next = nextMeta?.level
         ? document.querySelector(`.level-btn[data-level="${CSS.escape(nextMeta.level)}"]`)
         : null;
-    if (!next) return;
+    if (!next) throw new Error(`Could not find next level ${nextMeta.level}`);
 
     next.click();
-    await (next._rangeRenderPromise || Promise.resolve());
+    if (!next._rangeRenderPromise) throw new Error('Next level did not begin rendering its sets');
+    await next._rangeRenderPromise;
     const setDots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
     const firstSet = setDots.find(dot => !dot.disabled && Number(dot.dataset.pct || 0) < 100)
         || setDots.find(dot => !dot.disabled);
-    if (!firstSet) return;
+    if (!firstSet) throw new Error(`Next level ${nextMeta.level} has no available set`);
     await loadVocabularyData(firstSet.dataset.range, {
         rankBasis: firstSet.dataset.rankBasis || 'stable',
         setNumber: Number(firstSet.dataset.index) + 1,
-        levelSetCount: document.querySelectorAll('#rangeSelector .study-set-dot').length
+        levelSetCount: setDots.length,
+        levelNumber: nextMeta.levelNumber
     });
 }
 

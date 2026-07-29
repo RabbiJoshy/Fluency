@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Next-level continuation now opens the next deck directly",
+      "details": [
+        "Removed the setup-screen detour that rebuilt a partly unfinished current level before advancing and could conflict with the next-level set render after jumping to the final set",
+        "Next Level now selects the next level, awaits its own set render, and loads its first available set directly using the same transition pattern as Next Set",
+        "Missing level or set state now restores the completion screen with a retry message instead of silently stalling; cache v143→v144, assets 20260729o→20260729p"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "6060d4d1",
       "summary": "The held-word direction choice now appears on the card",
       "details": [

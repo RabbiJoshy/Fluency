@@ -1436,6 +1436,11 @@ function initializeApp() {
             } else if (action === 'next-level') {
                 await window.startNextStudyLevelFirstSet?.();
             }
+        } catch (error) {
+            console.error('Could not continue from completed set:', error);
+            await window.showEndOfDeckOptions?.();
+            const message = document.getElementById('completeMessage');
+            if (message) message.textContent = 'Could not open the next level. Please try again.';
         } finally {
             this.dataset.loading = 'false';
             this.disabled = false;
@@ -4539,7 +4544,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729o';
+const ASSET_VERSION = '20260729p';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
