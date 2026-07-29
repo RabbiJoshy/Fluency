@@ -2478,46 +2478,70 @@
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
             padding: 0 calc(50% - 25px);
+            background: linear-gradient(
+                to right,
+                transparent 0,
+                rgba(255, 255, 255, 0.16) 14%,
+                rgba(var(--accent-primary-rgb), 0.46) 50%,
+                rgba(255, 255, 255, 0.16) 86%,
+                transparent 100%
+            ) center / 100% 2px no-repeat;
             -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
                     mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
         }
         .deck-progress-segments::-webkit-scrollbar { display: none; }
         .deck-progress-segment {
-            flex: 0 0 44px;
-            width: 34px;
-            min-width: 34px;
-            max-width: 34px;
-            height: 34px;
+            flex: 0 0 38px;
+            width: 36px;
+            min-width: 36px;
+            max-width: 36px;
+            height: 36px;
             padding: 0;
-            margin: 0 5px;
+            margin: 0 1px;
             border: 1px solid rgba(255, 255, 255, 0.16);
             border-radius: 50%;
             background: color-mix(in srgb, var(--bg-card) 82%, transparent);
             color: rgba(255, 255, 255, 0.4);
-            font: 700 13px/1 var(--font-data, var(--font-emphasis));
+            font: 800 16px/1 var(--font-data, var(--font-emphasis));
             cursor: pointer;
             opacity: 0.16;
-            transform: scale(0.5);
+            transform: scale(0.42);
             scroll-snap-align: center;
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
-            transition: color 0.16s ease, opacity 0.16s ease, transform 0.16s ease,
-                        border-color 0.16s ease, background 0.16s ease;
+            transition: color 260ms ease, opacity 260ms ease,
+                        transform 300ms cubic-bezier(0.2, 0.85, 0.25, 1.25),
+                        border-color 260ms ease, background 260ms ease,
+                        box-shadow 260ms ease;
         }
         .deck-progress-segment.is-visited:not(.is-current) {
             color: rgba(255, 255, 255, 0.68);
         }
-        .deck-progress-segment[data-distance="1"] { opacity: 0.72; transform: scale(0.88); }
-        .deck-progress-segment[data-distance="2"] { opacity: 0.48; transform: scale(0.7); }
-        .deck-progress-segment[data-distance="3"] { opacity: 0.28; transform: scale(0.58); }
+        .deck-progress-segment[data-distance="1"] { opacity: 0.78; transform: scale(0.88); }
+        .deck-progress-segment[data-distance="2"] { opacity: 0.5; transform: scale(0.67); }
+        .deck-progress-segment[data-distance="3"] { opacity: 0.3; transform: scale(0.52); }
         .deck-progress-segment.is-current {
             color: white;
             opacity: 1;
-            transform: scale(1.14);
+            transform: scale(1.16);
             border-color: color-mix(in srgb, var(--accent-primary) 74%, white);
             background: color-mix(in srgb, var(--accent-primary) 24%, var(--bg-card));
             box-shadow: 0 0 0 2px rgba(var(--accent-primary-rgb), 0.12),
                         0 0 13px rgba(var(--accent-primary-rgb), 0.3);
             text-shadow: 0 0 12px rgba(var(--accent-primary-rgb), 0.5);
+            animation: deck-scrubber-lens 300ms cubic-bezier(0.2, 0.85, 0.25, 1.25);
+        }
+        @keyframes deck-scrubber-lens {
+            0% { transform: scale(0.82); }
+            65% { transform: scale(1.22); }
+            100% { transform: scale(1.16); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .deck-progress-segment {
+                transition-duration: 0.01ms;
+            }
+            .deck-progress-segment.is-current {
+                animation: none;
+            }
         }
         .deck-progress-track .study-menu-btn {
             flex: 0 0 auto;

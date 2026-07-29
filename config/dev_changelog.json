@@ -3,6 +3,26 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "The card-position control now reads as a connected animated scrubber",
+      "details": [
+        "Added a continuous accent-tinted rail through the numbered markers and reduced their spacing so they read as one scrub control rather than unrelated buttons",
+        "The active marker now travels with a 300ms lens-like expand-and-settle animation while neighbouring markers progressively ease in size and opacity",
+        "Increased marker diameter to 36px and number text to bold 16px so each number uses the available shape instead of floating undersized inside it; cache v149→v150, assets 20260729u→20260729v"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Audit flags now record every field in its own sheet column",
+      "details": [
+        "FlaggedWords moves to schema v2: 24 real columns (Target, Category, Lemma, CardId, SenseId, SenseGloss, Example, Song, ExampleAssignment, TranslationSource, Note) instead of one free-text blob, so audits can be sorted and filtered",
+        "Both flag entry paths (audit menu and quick actions) now emit one canonical set of stable target/category keys rather than two different sets of display labels",
+        "The 28 existing flags migrate automatically on first request, with the old tab copied to FlaggedWords_v1_backup and three blank legacy rows dropped; needs an Apps Script redeploy"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "17ec1b56",
       "summary": "Desktop scrubber and Study options now occupy a real row above the card",
       "details": [
