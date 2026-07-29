@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Replace morphology circles with a feature strip
+
+- Commit `ae97a5ff`; front-end cache `flashcards-v145` / `20260729q`.
+- Replaced the cramped four-circle matrix with up to three shallow independent tokens: combined person+number (`1SG`, `3PL`), tense (`PRES`, `PRET`, `IMPF`, etc.), and mood/form (`IND`, `SUBJ`, `INF`, etc.). Irrelevant empty categories are omitted.
+- Ambiguity is now expressed inside the affected category. The common `sea`-style first/third singular ambiguity renders as `1/3SG · PRES · SUBJ` rather than selecting one analysis and showing a vague count. If tense or mood differs, that token carries its own slash alternatives; the tooltip/accessibility label preserves the exact full analyses.
+- The back header reserves one shallow row above the word for the strip, preventing overlap without constraining the headword horizontally.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; removal assertions for the old grid/count classes; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Load the next level without rebuilding the current one
 
 - Commit `3345ba9c`; front-end cache `flashcards-v144` / `20260729p`.

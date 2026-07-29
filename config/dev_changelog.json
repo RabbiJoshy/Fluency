@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "ae97a5ff",
       "summary": "Morphology is now a compact grammatical feature strip",
       "details": [
         "Replaced the four cramped circles with up to three shallow tokens for person+number, tense, and mood/form, using familiar codes such as 1SG, PRES, and SUBJ",
