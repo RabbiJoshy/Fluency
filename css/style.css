@@ -2189,15 +2189,8 @@
         /* Compact morphology strip: person+number, tense, mood/form. Each
            category owns its ambiguity (e.g. 1/3SG) instead of hiding it
            behind an analysis count. */
-        #flipBtn {
-            position: relative;
-        }
         .card-morph {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            z-index: 3;
-            margin: 0;
+            display: none !important;
         }
         .morph-strip-wrap {
             position: relative;
@@ -2216,25 +2209,37 @@
             height: 25px;
             padding: 0 7px;
             box-sizing: border-box;
-            border: 1px solid rgba(0, 212, 170, 0.3);
-            border-radius: 8px;
-            background: rgba(0, 212, 170, 0.12);
-            color: #9edbce;
+            border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
+            border-radius: 999px;
+            background: color-mix(in srgb, currentColor 18%, transparent);
+            color: inherit;
             font: 750 9px/1 var(--font-data);
             letter-spacing: 0.025em;
             text-align: center;
             white-space: nowrap;
         }
-        .back-morph-list {
-            position: absolute;
-            top: 0;
-            right: 4px;
-            z-index: 2;
-            margin: 0;
-            max-width: none;
+        .front-pos-unit.has-morphology {
+            gap: 4px;
         }
-        .back-header.has-morphology .flip-back-area {
-            padding-top: 36px;
+        .front-pos-unit.has-morphology .morph-strip-wrap {
+            color: #66e4cc;
+        }
+        .back-pos-unit {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            color: #66e4cc;
+        }
+        .back-pos-unit.has-morphology .card-pos {
+            border-radius: 999px;
+        }
+        .back-pos-unit.has-morphology .morph-strip {
+            gap: 3px;
+        }
+        .back-pos-unit.has-morphology .morph-strip > span {
+            height: 23px;
+            background: rgba(0, 212, 170, 0.14);
+            border-color: rgba(0, 212, 170, 0.42);
         }
 
         .card-pos {

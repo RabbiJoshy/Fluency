@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Morphology is now visually attached to the verb pill",
+      "details": [
+        "Moved the morphology strip out of the front card corner and centred it directly beneath the verb pill on both target-word and English-meaning fronts",
+        "On the back, the strip is horizontally connected to the Verb tab or pill, using the same green rounded-pill border, tint, and text treatment",
+        "Removed the separate header morphology position and its reserved spacing while retaining compact codes and category-specific ambiguity; cache v145→v146, assets 20260729q→20260729r"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "ae97a5ff",
       "summary": "Morphology is now a compact grammatical feature strip",
       "details": [

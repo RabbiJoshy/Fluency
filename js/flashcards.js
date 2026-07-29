@@ -2483,14 +2483,13 @@ function updateCard({ announceHeadword = false } = {}) {
             </span>
         </span>`;
     };
-    const renderFrontPosUnit = (pos, _includeMorph = false, pillClass = 'card-pos') => {
-        return `<span class="front-pos-unit">
+    const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
+        const hasMorph = includeMorph && isVerbPos(pos) && morphLabels.length > 0;
+        return `<span class="front-pos-unit${hasMorph ? ' has-morphology' : ''}">
             <span class="${pillClass} ${getPosColorClass(pos)}">${posDisplayName(pos)}</span>
+            ${hasMorph ? renderMorphStrip() : ''}
         </span>`;
     };
-    const backMorphologyHTML = morphLabels.length > 0
-        ? `<div class="back-morph-list">${renderMorphStrip()}</div>`
-        : '';
 
     if (flippedFrontMeanings) {
         // EN→Target structured display: meanings with POS badges
@@ -2575,13 +2574,12 @@ function updateCard({ announceHeadword = false } = {}) {
         frontLemmaEl.style.display = 'none';
     }
 
-    // Fixed-footprint morphology badge: one active analysis plus a count for
-    // genuinely ambiguous forms. Merged cards refresh this from the active
-    // example morphology on every updateCard() call.
+    // Legacy node retained for cached HTML. Morphology now belongs directly
+    // beneath the verb pill rendered in frontPOS/frontMeanings.
     const frontMorphEl = document.getElementById('frontMorph');
     if (frontMorphEl) {
-        frontMorphEl.innerHTML = renderMorphStrip();
-        frontMorphEl.style.display = morphLabels.length ? 'block' : 'none';
+        frontMorphEl.innerHTML = '';
+        frontMorphEl.style.display = 'none';
     }
 
     const vocabularyRank = card.vocabularyRank || card.rank;
@@ -2679,10 +2677,13 @@ function updateCard({ announceHeadword = false } = {}) {
     let backPosLegendHTML = '';
     let activeBackPos = null;
     let hasBackPosTabs = false;
-    if (card.isMultiMeaning && card.meanings) {
+    if ((card.isMultiMeaning && card.meanings) || card.partOfSpeech) {
         const posItems = [];
         const seenPos = new Set();
-        card.meanings.forEach((meaning, meaningIndex) => {
+        const posMeanings = card.isMultiMeaning && card.meanings
+            ? card.meanings
+            : [{ pos: card.partOfSpeech }];
+        posMeanings.forEach((meaning, meaningIndex) => {
             const pos = meaning.pos === 'SENSE_CYCLE'
                 ? (meaning.cycle_pos || 'X')
                 : meaning.pos;
@@ -2703,10 +2704,15 @@ function updateCard({ announceHeadword = false } = {}) {
                 ? currentPos
                 : (rememberedPos || posItems[0].pos);
             card._activePosTab = activeBackPos;
-            const posPills = posItems.map(({ pos, meaningIndex }) => hasBackPosTabs
-                ? `<button type="button" class="card-pos back-pos-tab ${getPosColorClass(pos)}${pos === activeBackPos ? ' selected' : ''}" role="tab" aria-selected="${pos === activeBackPos}" onclick="selectPartOfSpeech(event, ${meaningIndex}, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
-                : `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
-            );
+            const posPills = posItems.map(({ pos, meaningIndex }) => {
+                const posButton = hasBackPosTabs
+                    ? `<button type="button" class="card-pos back-pos-tab ${getPosColorClass(pos)}${pos === activeBackPos ? ' selected' : ''}" role="tab" aria-selected="${pos === activeBackPos}" onclick="selectPartOfSpeech(event, ${meaningIndex}, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
+                    : `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
+                const hasMorph = isVerbPos(pos) && morphLabels.length > 0;
+                return hasMorph
+                    ? `<span class="back-pos-unit has-morphology" role="presentation">${posButton}${renderMorphStrip()}</span>`
+                    : posButton;
+            });
             backPosLegendHTML = `<div class="back-pos-legend"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${posPills.join('')}</div>`;
         }
     }
@@ -2717,12 +2723,11 @@ function updateCard({ announceHeadword = false } = {}) {
     // cards are unaffected — line-height only matters when there are two
     // or more rendered lines.
     let backHTML = `
-        <div class="back-header${backMorphologyHTML ? ' has-morphology' : ''}" style="text-align: center; margin-bottom: 8px;">
+        <div class="back-header" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
                 ${backCitationHTML}
-                ${backMorphologyHTML}
                 ${backDerivationHTML}
             </div>
             ${backPosLegendHTML}
@@ -4552,7 +4557,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729q';
+const ASSET_VERSION = '20260729r';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
