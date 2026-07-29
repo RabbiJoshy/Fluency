@@ -1,16 +1,19 @@
-import './state.js?v=20260729e';
-import './sync-queue.js?v=20260729e';
-import './speech.js?v=20260729e';
-import './artist-ui.js?v=20260729e';
-import './auth.js?v=20260729e';
-import './spotify.js?v=20260729e';
-import './estimation.js?v=20260729e';
-import './config.js?v=20260729e';
-import './progress.js?v=20260729e';
-import './knowledge.js?v=20260729e';
-import './ui.js?v=20260729e';
-import './vocab.js?v=20260729e';
-import './flashcards.js?v=20260729e';
+import './state.js?v=20260729f';
+import './sync-queue.js?v=20260729f';
+import './speech.js?v=20260729f';
+import './artist-ui.js?v=20260729f';
+import './auth.js?v=20260729f';
+import './spotify.js?v=20260729f';
+import './estimation.js?v=20260729f';
+import './config.js?v=20260729f';
+import './progress.js?v=20260729f';
+import './knowledge.js?v=20260729f';
+import './ui.js?v=20260729f';
+import './vocab.js?v=20260729f';
+import './flashcards.js?v=20260729f';
+// Find word is a primary navigation route. Load its temporary-card owner with
+// the app so the first result click cannot depend on a delayed dynamic import.
+import './flashcards-modals.js?v=20260729f';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -760,7 +763,8 @@ async function buildFindWordIndex() {
             id: item.id || window.getWordId(item),
             firstMeaning: firstMeaning ? firstMeaning.translation : '',
             exclusionReason: window.getVocabularyExclusionReason?.(item) || null,
-            examplesOnly: matchedMeanings.length === 0
+            examplesOnly: matchedMeanings.length === 0,
+            sourceEntry: item
         };
     });
     _findWordIndex = idx;

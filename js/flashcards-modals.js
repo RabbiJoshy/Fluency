@@ -545,18 +545,16 @@ async function popupFoundWord(entry, opts) {
         const reopenSearchOnBack = opts.reopenSearchOnBack !== false;
         const startFlipped = opts.startFlipped === true;
 
-        // Look up the full vocab entry by ID from cached vocab data.
+        // Find-word results carry the exact full joined entry they were built
+        // from. Prefer it over global cache pointers, which other setup work
+        // can legitimately repoint between rendering and selecting a result.
         const vocabSource = (activeArtist && window._cachedMergedIndex)
             ? window._cachedMergedIndex
             : window._cachedJoinedIndex;
-        if (!vocabSource) {
-            console.warn('popupFoundWord: no cached vocab index available');
-            return;
-        }
-        const vocabEntry = vocabSource.find(it => it.id === entry.id);
+        const vocabEntry = entry.sourceEntry
+            || (vocabSource && vocabSource.find(it => it.id === entry.id));
         if (!vocabEntry) {
-            console.warn('popupFoundWord: entry not found in cached index', entry.id);
-            return;
+            throw new Error(`Search entry ${entry.id} is no longer available in the active vocabulary`);
         }
 
         const langConfig = (config && config.languages && config.languages[selectedLanguage]) || {};

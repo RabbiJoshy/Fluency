@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Find word now opens cards from its exact search result",
+      "details": [
+        "The earlier cache correction was insufficient: temporary cards still depended on a mutable global vocabulary pointer and a first-click dynamic module load",
+        "Search results now retain their exact full joined vocabulary entry, and the temporary-card module loads eagerly as a primary navigation route",
+        "Missing source data now produces the visible Could not open card state instead of an inert result; cache v133→v134, assets 20260729e→20260729f"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "16dad7cc",
       "summary": "Search results open temporary cards again",
       "details": [
