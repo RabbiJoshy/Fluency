@@ -4,6 +4,15 @@
     {
       "date": "2026-07-29",
       "commit": "pending",
+      "summary": "The held-word direction choice now appears on the card",
+      "details": [
+        "Holding the back headword reveals one compact Spanish→English or English→Spanish button directly beneath the word instead of opening any overlay or radial picker",
+        "Direction changes only when the revealed inline button is selected; cache v142→v143, assets 20260729n→20260729o"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "commit": "c9ec6324",
       "summary": "Holding the back word opens only the direction switch",
       "details": [
         "Replaced the full Study options picker on back-headword hold with a dedicated chooser containing only the explicitly labelled Spanish→English or English→Spanish action",

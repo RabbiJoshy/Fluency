@@ -1076,26 +1076,6 @@ function initializeApp() {
         });
     };
 
-    const showDirectionMenu = () => {
-        if (!window.showRadialPicker) return;
-        const targetLanguage = (config.languages[selectedLanguage]?.name || selectedLanguage || 'Target language')
-            .replace(/\s*\(.*\)$/, '');
-        const switchOrderLabel = isFlipped
-            ? `${targetLanguage} → English`
-            : `English → ${targetLanguage}`;
-        window.showRadialPicker({
-            id: 'directionRadialPicker',
-            ariaLabel: 'Reverse card language direction',
-            hubHTML: 'Card<br>direction',
-            className: 'direction-radial-picker',
-            entries: [{
-                label: switchOrderLabel,
-                iconHTML: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path></svg>',
-                onSelect: () => flipDirection()
-            }]
-        });
-    };
-
     // Event listeners
     // Flip button on front
     document.getElementById('flipBtn').addEventListener('click', function(e) {
@@ -1104,9 +1084,9 @@ function initializeApp() {
     });
 
     // The back header remains an invisible flip target. Holding the headword
-    // itself reveals a dedicated one-action direction chooser. Reversal
-    // remains an explicit second choice; movement cancels the hold so
-    // horizontal card swipes never open the chooser accidentally.
+    // itself reveals a one-action button in the card header. Reversal remains
+    // an explicit second choice; movement cancels the hold so horizontal card
+    // swipes never reveal the button accidentally.
     const flashcard = document.getElementById('flashcard');
     let backWordHoldTimer = null;
     let backWordHoldStart = null;
@@ -1124,7 +1104,11 @@ function initializeApp() {
             backWordHoldStart = null;
             suppressCardFlipUntil = Date.now() + 800;
             navigator.vibrate?.(20);
-            showDirectionMenu();
+            const directionOption = document.getElementById('backDirectionOption');
+            if (directionOption) {
+                directionOption.hidden = false;
+                directionOption.focus({ preventScroll: true });
+            }
         }, 600);
     });
     flashcard.addEventListener('pointermove', event => {
@@ -2723,6 +2707,7 @@ function updateCard({ announceHeadword = false } = {}) {
         <div class="back-header${backMorphologyHTML ? ' has-morphology' : ''}" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
                 ${backCitationHTML}
                 ${backMorphologyHTML}
                 ${backDerivationHTML}
@@ -4554,7 +4539,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729n';
+const ASSET_VERSION = '20260729o';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
