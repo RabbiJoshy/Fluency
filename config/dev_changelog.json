@@ -4,6 +4,15 @@
     {
       "date": "2026-07-29",
       "commit": "pending",
+      "summary": "Study options now matches the scrubber tile shape",
+      "details": [
+        "Changed the Study options control from a 44px circle to the same softly rounded 36×36px, 10px-radius tile used by scrubber positions",
+        "Increased the gear from 22px to 26px and reduced internal padding from 10px to 5px so the icon uses substantially more of the available shape; cache v152→v153, assets 20260729x→20260729y"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "commit": "0e76784b",
       "summary": "Scrubber results are clearer and morphology exactly matches POS pills",
       "details": [
         "Replaced circular markers with softly rounded 36×36px tiles so one- and two-digit positions use the shape more naturally, and switched their numbers to the normal reading/interface font",

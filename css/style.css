@@ -2566,11 +2566,11 @@
         }
         .deck-progress-track .study-menu-btn {
             flex: 0 0 auto;
-            width: 44px;
-            min-width: 44px;
-            height: 44px;
-            padding: 10px;
-            border-radius: 50%;
+            width: 36px;
+            min-width: 36px;
+            height: 36px;
+            padding: 5px;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.68);
             background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
@@ -2582,9 +2582,9 @@
             outline: none;
         }
         .deck-progress-track .study-menu-btn svg {
-            width: 22px;
-            height: 22px;
-            flex: 0 0 22px;
+            width: 26px;
+            height: 26px;
+            flex: 0 0 26px;
         }
 
         .freq-tooltip {
