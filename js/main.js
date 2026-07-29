@@ -1,19 +1,19 @@
-import './state.js?v=20260729i';
-import './sync-queue.js?v=20260729i';
-import './speech.js?v=20260729i';
-import './artist-ui.js?v=20260729i';
-import './auth.js?v=20260729i';
-import './spotify.js?v=20260729i';
-import './estimation.js?v=20260729i';
-import './config.js?v=20260729i';
-import './progress.js?v=20260729i';
-import './knowledge.js?v=20260729i';
-import './ui.js?v=20260729i';
-import './vocab.js?v=20260729i';
-import './flashcards.js?v=20260729i';
+import './state.js?v=20260729j';
+import './sync-queue.js?v=20260729j';
+import './speech.js?v=20260729j';
+import './artist-ui.js?v=20260729j';
+import './auth.js?v=20260729j';
+import './spotify.js?v=20260729j';
+import './estimation.js?v=20260729j';
+import './config.js?v=20260729j';
+import './progress.js?v=20260729j';
+import './knowledge.js?v=20260729j';
+import './ui.js?v=20260729j';
+import './vocab.js?v=20260729j';
+import './flashcards.js?v=20260729j';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260729i';
+import './flashcards-modals.js?v=20260729j';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it

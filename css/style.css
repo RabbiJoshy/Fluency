@@ -1797,6 +1797,7 @@
             flex: 0 0 auto;
             width: 100%;
             margin-bottom: 0 !important;
+            position: relative;
         }
 
         /* `flex: 0 1 auto` lets the scroll region take its natural height
@@ -2052,13 +2053,14 @@
             margin-bottom: 8px;
             color: white;
             text-align: center;
-            /* Long words (e.g. "encantadísimo") used to spill off the right
-               edge of the card because the default white-space didn't break
-               them and card-face clips. Allow breaks and cap width so long
-               words wrap inside the card. */
+            /* updateCard measures the available width and shrinks long prompts
+               to one line. Keep wrapping disabled so the result cannot fall
+               back to an awkward two-line word after measurement. */
+            width: 100%;
             max-width: 100%;
-            overflow-wrap: anywhere;
-            word-break: break-word;
+            white-space: nowrap;
+            overflow-wrap: normal;
+            word-break: normal;
             line-height: 1.1;
         }
 
@@ -2173,63 +2175,78 @@
             position: relative;
         }
 
-        .front-pos-unit.has-morph .card-pos,
-        .front-pos-unit.has-morph .front-meaning-pos {
-            margin-bottom: 0;
-        }
-
-        .front-morph-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 4px;
+        /* Fixed morphology badge. Four equal circles always occupy the same
+           2×2 footprint: person, number, tense, mood/form. It sits in the
+           header rather than extending the POS stack vertically. */
+        #flipBtn {
             position: relative;
-            max-width: 230px;
         }
-
-        .front-pos-unit.has-morph .front-morph-list::before {
-            content: '';
+        .card-morph {
             position: absolute;
-            top: -4px;
-            left: 50%;
-            width: 1px;
-            height: 4px;
-            background: rgba(0, 212, 170, 0.55);
+            top: 16px;
+            right: 16px;
+            z-index: 3;
+            margin: 0;
         }
-
-        .back-morph-list {
-            margin: 5px auto 0;
-            max-width: min(100%, 430px);
+        .morph-grid-wrap {
+            position: relative;
+            display: inline-flex;
         }
-
-        .front-morph-tag {
-            font-family: var(--font-reading);
-            font-size: 11.5px;
-            font-weight: 550;
-            line-height: 1.15;
-            color: #a4efe0;
-            background: rgba(0, 212, 170, 0.13);
+        .morph-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 36px);
+            grid-template-rows: repeat(2, 36px);
+            gap: 4px;
+            padding: 5px;
+            border: 1px solid rgba(0, 212, 170, 0.24);
+            border-radius: 15px;
+            background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2);
+        }
+        .morph-grid > span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 3px;
+            box-sizing: border-box;
             border: 1px solid rgba(0, 212, 170, 0.3);
-            border-radius: 5px;
-            padding: 3px 7px;
-            max-width: 100%;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        .front-morph-person {
-            color: #d9fff7;
-            font-weight: 800;
-        }
-
-        .front-morph-divider {
-            margin: 0 0.18em;
-            opacity: 0.58;
-        }
-
-        .front-morph-grammar {
+            border-radius: 50%;
+            background: rgba(0, 212, 170, 0.12);
             color: #9edbce;
-            font-weight: 550;
+            font: 650 8px/1.05 var(--font-reading);
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+        .morph-grid-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 4px;
+            box-sizing: border-box;
+            border: 2px solid var(--bg-card);
+            border-radius: 999px;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            font: 800 9px/1 var(--font-data);
+        }
+        .back-morph-list {
+            position: absolute;
+            top: 0;
+            right: 4px;
+            z-index: 2;
+            margin: 0;
+            max-width: none;
+        }
+        .back-header.has-morphology .flip-back-area {
+            padding-left: 96px;
+            padding-right: 96px;
         }
 
         .card-pos {

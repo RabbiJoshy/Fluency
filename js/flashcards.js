@@ -245,6 +245,8 @@ function formatMorphLabel(m) {
         personCode: m.person || '',
         person,
         grammar,
+        tense: formatMorphTense(m.tense),
+        mood: formatMorphMood(m.mood),
     };
 }
 
@@ -281,14 +283,25 @@ function compactMorphLabels(morphologyRows) {
         groups.get(groupKey).labels.push(label);
     }
     return [...groups.values()].map(group => {
+        const personCodes = group.labels.map(label => label.personCode).filter(Boolean);
         const person = formatMorphPersonGroup(
-            group.labels.map(label => label.personCode),
+            personCodes,
             group.labels.map(label => label.person)
         );
+        const people = [...new Set(personCodes.map(code => ({
+            '1': '1st', '2': '2nd', '3': '3rd'
+        })[code.charAt(0)]).filter(Boolean))].join('/');
+        const numbers = [...new Set(personCodes.map(code => code.endsWith('s')
+            ? 'singular' : (code.endsWith('p') ? 'plural' : '')).filter(Boolean))];
+        const first = group.labels[0] || {};
         return {
             key: `${person}|${group.grammar}`,
             person,
-            grammar: group.grammar
+            grammar: group.grammar,
+            personToken: people,
+            numberToken: numbers.length === 1 ? numbers[0] : numbers.join('/'),
+            tense: first.tense || '',
+            mood: first.mood || ''
         };
     });
 }
@@ -2390,22 +2403,35 @@ function updateCard({ announceHeadword = false } = {}) {
         return labels[String(pos || '').toUpperCase()]
             || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
     };
-    const renderMorphTags = () => morphLabels.map(label =>
-        `<span class="front-morph-tag">
-            ${label.person ? `<strong class="front-morph-person">${label.person}</strong>` : ''}
-            ${label.person && label.grammar ? '<span class="front-morph-divider">·</span>' : ''}
-            ${label.grammar ? `<span class="front-morph-grammar">${label.grammar}</span>` : ''}
-        </span>`
-    ).join('');
-    const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
-        const hasMorph = includeMorph && morphLabels.length > 0 && isVerbPos(pos);
-        return `<span class="front-pos-unit${hasMorph ? ' has-morph' : ''}">
-            <span class="${pillClass} ${getPosColorClass(pos)}">${posDisplayName(pos)}</span>
-            ${hasMorph ? `<span class="front-morph-list">${renderMorphTags()}</span>` : ''}
+    const shortMorphToken = (value, kind) => {
+        const short = {
+            number: { singular: 'sing.', plural: 'plural' },
+            mood: { indicative: 'indic.', subjunctive: 'subj.', imperative: 'imper.', conditional: 'cond.', infinitive: 'inf.', gerund: 'gerund', 'past participle': 'part.' },
+            tense: { 'present perfect': 'pres. perf.', 'future perfect': 'fut. perf.', pluperfect: 'pluperf.', preterite: 'preterite', imperfect: 'imperfect' }
+        };
+        return short[kind]?.[value] || value || '—';
+    };
+    const renderMorphGrid = () => {
+        if (!morphLabels.length) return '';
+        const label = morphLabels[0];
+        const fullLabels = morphLabels.map(item => [item.person, item.grammar].filter(Boolean).join(' · '));
+        return `<span class="morph-grid-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
+            <span class="morph-grid" aria-hidden="true">
+                <span>${escapeCardText(label.personToken || '—')}</span>
+                <span>${escapeCardText(shortMorphToken(label.numberToken, 'number'))}</span>
+                <span>${escapeCardText(shortMorphToken(label.tense, 'tense'))}</span>
+                <span>${escapeCardText(shortMorphToken(label.mood, 'mood'))}</span>
+            </span>
+            ${morphLabels.length > 1 ? `<span class="morph-grid-count">+${morphLabels.length - 1}</span>` : ''}
         </span>`;
     };
-    const backMorphologyHTML = !isFlipped && card.mergedLemma && morphLabels.length > 0
-        ? `<div class="front-morph-list back-morph-list" aria-label="Form used in this example">${renderMorphTags()}</div>`
+    const renderFrontPosUnit = (pos, _includeMorph = false, pillClass = 'card-pos') => {
+        return `<span class="front-pos-unit">
+            <span class="${pillClass} ${getPosColorClass(pos)}">${posDisplayName(pos)}</span>
+        </span>`;
+    };
+    const backMorphologyHTML = morphLabels.length > 0
+        ? `<div class="back-morph-list">${renderMorphGrid()}</div>`
         : '';
 
     if (flippedFrontMeanings) {
@@ -2441,7 +2467,7 @@ function updateCard({ announceHeadword = false } = {}) {
         // narrower container ("Sandungueo" at 10 chars overflows on a phone-
         // width card). shrinkToFit measures intrinsic content width and
         // steps the font-size down until it fits.
-        shrinkToFit(frontWordEl, 28);
+        shrinkToFit(frontWordEl, window.innerWidth < 768 ? 18 : 22);
     }
 
     // Display part of speech on front with color coding
@@ -2491,12 +2517,13 @@ function updateCard({ announceHeadword = false } = {}) {
         frontLemmaEl.style.display = 'none';
     }
 
-    // Legacy DOM node retained for cached markup; morphology now renders as
-    // part of the verb POS unit above.
+    // Fixed-footprint morphology badge: one active analysis plus a count for
+    // genuinely ambiguous forms. Merged cards refresh this from the active
+    // example morphology on every updateCard() call.
     const frontMorphEl = document.getElementById('frontMorph');
     if (frontMorphEl) {
-        frontMorphEl.innerHTML = '';
-        frontMorphEl.style.display = 'none';
+        frontMorphEl.innerHTML = renderMorphGrid();
+        frontMorphEl.style.display = morphLabels.length ? 'block' : 'none';
     }
 
     const vocabularyRank = card.vocabularyRank || card.rank;
@@ -2617,7 +2644,7 @@ function updateCard({ announceHeadword = false } = {}) {
     // cards are unaffected — line-height only matters when there are two
     // or more rendered lines.
     let backHTML = `
-        <div class="back-header" style="text-align: center; margin-bottom: 8px;">
+        <div class="back-header${backMorphologyHTML ? ' has-morphology' : ''}" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
                 <div style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 ${backCitationHTML}
@@ -4426,7 +4453,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729i';
+const ASSET_VERSION = '20260729j';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

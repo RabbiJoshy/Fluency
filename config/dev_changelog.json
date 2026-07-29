@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Morphology uses a fixed header badge and long prompts stay on one line",
+      "details": [
+        "Person, number, tense, and mood/form now occupy a consistent 2×2 circular grid in the top-right header instead of extending the POS stack vertically",
+        "All four morphology tokens use the same existing tense/mood text colour; ambiguous analyses keep the same footprint with a +N count and full accessible label",
+        "Merged-lemma cards update the badge from the active example, and long front prompts shrink as far as 18px on mobile rather than wrapping onto two lines; cache v137→v138, assets 20260729i→20260729j"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "716c5d5a",
       "summary": "Meaning and example selection now share one visual hierarchy",
       "details": [
