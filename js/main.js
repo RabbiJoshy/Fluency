@@ -1,19 +1,19 @@
-import './state.js?v=20260729g';
-import './sync-queue.js?v=20260729g';
-import './speech.js?v=20260729g';
-import './artist-ui.js?v=20260729g';
-import './auth.js?v=20260729g';
-import './spotify.js?v=20260729g';
-import './estimation.js?v=20260729g';
-import './config.js?v=20260729g';
-import './progress.js?v=20260729g';
-import './knowledge.js?v=20260729g';
-import './ui.js?v=20260729g';
-import './vocab.js?v=20260729g';
-import './flashcards.js?v=20260729g';
+import './state.js?v=20260729h';
+import './sync-queue.js?v=20260729h';
+import './speech.js?v=20260729h';
+import './artist-ui.js?v=20260729h';
+import './auth.js?v=20260729h';
+import './spotify.js?v=20260729h';
+import './estimation.js?v=20260729h';
+import './config.js?v=20260729h';
+import './progress.js?v=20260729h';
+import './knowledge.js?v=20260729h';
+import './ui.js?v=20260729h';
+import './vocab.js?v=20260729h';
+import './flashcards.js?v=20260729h';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260729g';
+import './flashcards-modals.js?v=20260729h';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -830,6 +830,7 @@ async function jumpToFoundWord(entry) {
             await window.popupFoundWord(entry);
         } catch (e) {
             console.error('Find-word: popupFoundWord failed', e);
+            document.getElementById('findWordModal')?.classList.remove('hidden');
             const statusEl = document.getElementById('findWordStatus');
             if (statusEl) statusEl.textContent = 'Could not open card.';
         }

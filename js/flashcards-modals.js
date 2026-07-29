@@ -607,7 +607,7 @@ async function popupFoundWord(entry, opts) {
             String(m?.translation || '').trim()
             && (!activeArtist || Number(m.frequency || 0) > 0));
         const meanings = sourceMeanings.map(m => {
-            const ex = getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
+            const ex = window.getExampleFromMeaning(m, exampleTargetField, exampleEnglishField);
             const meaning = {
                 pos: m.pos,
                 meaning: m.translation,
@@ -685,14 +685,14 @@ async function popupFoundWord(entry, opts) {
             lemma: vocabEntry.lemma || '',
             ...(window.buildCardFormModel?.(vocabEntry, meanings) || {}),
             id: vocabEntry.id || '0000',
-            fullId: getWordId(vocabEntry),
+            fullId: window.getWordId(vocabEntry),
             rank: vocabEntry.rank || 0,
             corpusCount: vocabEntry.corpus_count || null,
             meanings: meanings,
             translation: meanings.length > 0 ? meanings[0].meaning : '',
             targetSentence: firstExample.targetSentence,
             englishSentence: firstExample.englishSentence,
-            links: generateLinks(vocabEntry.word, vocabEntry.lemma || vocabEntry.word, langConfig.referenceLinks || {}),
+            links: window.generateLinks(vocabEntry.word, vocabEntry.lemma || vocabEntry.word, langConfig.referenceLinks || {}),
             isMultiMeaning: true,
             variants: vocabEntry.variants || null,
             homographIds: vocabEntry.homograph_ids || null,
@@ -703,9 +703,9 @@ async function popupFoundWord(entry, opts) {
             searchExamplesOnly: entry.examplesOnly || meanings[0]?.exampleOnly || false
         };
 
-        // Hide the search modal while the card is being viewed.
+        // Keep search visible until the temporary card has rendered. Hiding it
+        // early made any render exception look like an inert/dead result click.
         const findModal = document.getElementById('findWordModal');
-        if (findModal) findModal.classList.add('hidden');
 
         const noDeckLoaded = !flashcards || flashcards.length === 0;
         const wasOnSetup = !document.getElementById('setupPanel').classList.contains('hidden');
@@ -725,10 +725,10 @@ async function popupFoundWord(entry, opts) {
             currentMWEIndex = 0;
             document.getElementById('setupPanel').classList.add('hidden');
             document.getElementById('appContent').classList.remove('hidden');
-            showFloatingBtns(true);
+            window.showFloatingBtns(true);
             const fc = document.getElementById('flashcard');
             if (startFlipped) fc.classList.add('flipped'); else fc.classList.remove('flipped');
-            initializeApp();
+            window.initializeApp();
         } else {
             // Deck loaded — append temp card and push current position onto nav stack.
             const tempIndex = flashcards.length;
@@ -748,8 +748,9 @@ async function popupFoundWord(entry, opts) {
             currentMWEIndex = 0;
             const fc = document.getElementById('flashcard');
             if (startFlipped) fc.classList.add('flipped'); else fc.classList.remove('flipped');
-            updateCard();
+            window.updateCard();
         }
+        if (findModal) findModal.classList.add('hidden');
     } finally {
         popupFoundWord._inFlight = false;
     }
@@ -1550,6 +1551,7 @@ function _simpleFlagReport(target, { meaningIndex = 0, note = '' } = {}) {
     const labels = {
         note: 'Note', propernoun: 'Proper noun', english: 'English', cognate: 'Cognate',
         lemma: 'Wrong lemma', elision: 'Wrong elision correction',
+        'card-pos': 'Wrong card POS', 'sense-pos': 'Wrong sense POS',
         pairing: 'Sense–meaning pairing', card: 'Whole card'
     };
     const lines = [
@@ -1559,16 +1561,18 @@ function _simpleFlagReport(target, { meaningIndex = 0, note = '' } = {}) {
         `Lemma: ${lemma}`,
         `Card ID: ${card?.fullId || card?.id || '(missing)'}`
     ];
-    if (target === 'pairing') {
+    if (target === 'pairing' || target === 'sense-pos') {
         lines.push(`Sense ${meaningIndex + 1}: ${meaning?.pos || '?'} · ${gloss || '(empty)'}`);
         const senseId = meaning?.sense_id || meaning?.senseId || meaning?.id;
         if (senseId) lines.push(`Sense ID: ${senseId}`);
         if (meaning?.context) lines.push(`Context: ${meaning.context}`);
         if (meaning?.assignment_method) lines.push(`Sense assignment: ${meaning.assignment_method}`);
-        lines.push(`Example: ${spanish || '(none visible)'}`);
-        if (english) lines.push(`Translation: ${english}`);
-        if (example?.song_name || example?.song) lines.push(`Source: ${example.song_name || example.song}`);
-        if (example?.assignment_method) lines.push(`Example assignment: ${example.assignment_method}`);
+        if (target === 'pairing') {
+            lines.push(`Example: ${spanish || '(none visible)'}`);
+            if (english) lines.push(`Translation: ${english}`);
+            if (example?.song_name || example?.song) lines.push(`Source: ${example.song_name || example.song}`);
+            if (example?.assignment_method) lines.push(`Example assignment: ${example.assignment_method}`);
+        }
     }
     if (target === 'propernoun') lines.push('Requested classification: Proper noun', `Current is_propernoun: ${card?.is_propernoun ?? '(missing)'}`);
     if (target === 'english') lines.push('Requested classification: English', `Current is_english: ${card?.is_english ?? '(missing)'}`);
@@ -1576,6 +1580,10 @@ function _simpleFlagReport(target, { meaningIndex = 0, note = '' } = {}) {
     if (target === 'elision') {
         lines.push(`Displayed form: ${card?._activeExampleSurface || card?.displaySurface || word}`);
         lines.push(`Morphology: ${card?.morphology ? JSON.stringify(card.morphology).slice(0, 500) : '(none)'}`);
+    }
+    if (target === 'card-pos') {
+        const cardPos = card?.pos || card?.partOfSpeech || [...new Set((card?.meanings || []).map(item => item?.pos).filter(Boolean))].join(', ');
+        lines.push(`Current card POS: ${cardPos || '(missing)'}`);
     }
     if (note) lines.push(`Note: ${note}`);
     return lines.join('\n');
@@ -1591,10 +1599,12 @@ function _simpleFlagPath(target, meaningIndex = 0) {
         propernoun: 'routing:propernoun', english: 'routing:english', cognate: 'routing:cognate',
         lemma: `lemma:${_flagTextHash(card?.lemma || '')}`,
         elision: `surface:elision:${_flagTextHash(card?._activeExampleSurface || card?.displaySurface || card?.targetWord || '')}`,
+        'card-pos': 'card:pos',
         card: 'card'
     };
     if (target === 'note') return `note:${Date.now()}`;
     if (target === 'pairing') return `pairing:${senseRef}:${_flagTextHash(spanish)}`;
+    if (target === 'sense-pos') return `sense:${senseRef}:pos`;
     return paths[target] || target;
 }
 
@@ -1618,6 +1628,7 @@ async function _sendSimpleFlag(target, options = {}) {
             note: 'Note sent.', propernoun: 'Proper noun flag sent.', english: 'English flag sent.',
             cognate: 'Cognate flag sent.', lemma: 'Wrong lemma flag sent.',
             elision: 'Wrong elision correction flag sent.',
+            'card-pos': 'Wrong card POS flag sent.', 'sense-pos': 'Wrong sense POS flag sent.',
             pairing: 'Sense–meaning pairing flag sent.', card: 'Whole-card flag sent.'
         };
         _simpleFlagStatus(labels[target] || 'Flag sent.');
@@ -1644,7 +1655,10 @@ function _renderSimpleSenses() {
         return `<article class="flag-simple-sense">
             <div class="flag-simple-sense-meaning"><span>${_escapeHtml(meaning.pos || '?')}</span><strong>${_escapeHtml(meaning.meaning || meaning.translation || '(empty meaning)')}</strong></div>
             <div class="flag-simple-sense-example">${_escapeHtml(spanish || 'No paired example')}${english ? `<small>${_escapeHtml(english)}</small>` : ''}</div>
-            <button type="button" data-flag-sense="${index}">Flag this pairing</button>
+            <div class="flag-simple-sense-actions">
+                <button type="button" data-flag-sense="${index}">Flag this pairing</button>
+                <button type="button" data-flag-sense-pos="${index}">Wrong POS</button>
+            </div>
         </article>`;
     }).join('') : '<div class="card-meta-empty">No senses are available on this card.</div>';
 }
@@ -1694,7 +1708,9 @@ function showSimpleFlagMenu() {
     });
     document.getElementById('flagSimpleSenses')?.addEventListener('click', event => {
         const button = event.target.closest('[data-flag-sense]');
+        const posButton = event.target.closest('[data-flag-sense-pos]');
         if (button) _sendSimpleFlag('pairing', { meaningIndex: Number(button.dataset.flagSense) });
+        else if (posButton) _sendSimpleFlag('sense-pos', { meaningIndex: Number(posButton.dataset.flagSensePos) });
     });
     document.getElementById('flagWholeCard')?.addEventListener('click', async () => {
         if (await _sendSimpleFlag('card')) {

@@ -1510,7 +1510,7 @@
             border-radius: 10px;
         }
         .flag-simple-actions button[data-simple-flag="elision"] {
-            grid-column: 1 / -1;
+            grid-column: auto;
         }
         .flag-simple-actions button:hover,
         .flag-senses-route:hover,
@@ -1588,10 +1588,14 @@
             margin-top: 3px;
             color: var(--text-muted);
         }
-        .flag-simple-sense button {
-            width: 100%;
-            min-height: 38px;
+        .flag-simple-sense-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
             margin-top: 10px;
+        }
+        .flag-simple-sense button {
+            min-height: 38px;
             border-radius: 9px;
         }
         .flag-whole-card-btn {
