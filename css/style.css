@@ -2226,23 +2226,8 @@
             align-items: center;
             gap: 3px;
         }
-        .morph-strip > span {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 0;
-            min-height: 24px;
-            padding: 4px 8px;
-            box-sizing: border-box;
-            border: 1px solid color-mix(in srgb, currentColor 38%, transparent);
-            border-radius: 999px;
-            background: color-mix(in srgb, currentColor 14%, transparent);
-            color: inherit;
-            font-family: var(--font-reading);
-            font-size: 11px;
-            font-weight: 600;
-            line-height: 1;
-            text-align: center;
+        .morph-strip .morphology-pill {
+            margin: 0;
             white-space: nowrap;
         }
         .front-pos-unit.has-morphology {
@@ -2262,11 +2247,6 @@
         }
         .back-pos-unit.has-morphology .morph-strip {
             gap: 3px;
-        }
-        .back-pos-unit.has-morphology .morph-strip > span {
-            min-height: 24px;
-            background: color-mix(in srgb, currentColor 14%, transparent);
-            border-color: color-mix(in srgb, currentColor 38%, transparent);
         }
 
         .card-pos {
@@ -2514,11 +2494,11 @@
             height: 36px;
             padding: 0;
             margin: 0 1px;
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: 50%;
-            background: color-mix(in srgb, var(--bg-card) 82%, transparent);
-            color: rgba(255, 255, 255, 0.4);
-            font: 800 16px/1 var(--font-data, var(--font-emphasis));
+            border: 1px solid var(--scrubber-marker-border, rgba(255, 255, 255, 0.16));
+            border-radius: 10px;
+            background: var(--scrubber-marker-fill, color-mix(in srgb, var(--bg-card) 82%, transparent));
+            color: var(--scrubber-marker-text, rgba(255, 255, 255, 0.4));
+            font: 750 16px/1 var(--font-reading);
             cursor: pointer;
             opacity: 0.16;
             transform: scale(0.42);
@@ -2530,7 +2510,31 @@
                         box-shadow 260ms ease;
         }
         .deck-progress-segment.is-visited:not(.is-current) {
-            color: rgba(255, 255, 255, 0.68);
+            --scrubber-marker-text: rgba(255, 255, 255, 0.68);
+        }
+        .deck-progress-segment.is-result-correct {
+            --scrubber-marker-fill: rgba(34, 197, 94, 0.28);
+            --scrubber-marker-border: rgba(74, 222, 128, 0.66);
+            --scrubber-marker-text: #b9f6ca;
+        }
+        .deck-progress-segment.is-result-incorrect {
+            --scrubber-marker-fill: rgba(239, 68, 68, 0.28);
+            --scrubber-marker-border: rgba(248, 113, 113, 0.68);
+            --scrubber-marker-text: #fecaca;
+        }
+        .deck-progress-segment.is-result-mixed {
+            --scrubber-marker-fill: rgba(245, 166, 35, 0.28);
+            --scrubber-marker-border: rgba(251, 191, 36, 0.68);
+            --scrubber-marker-text: #fde7ae;
+        }
+        .deck-progress-segment.is-visited.is-result-correct:not(.is-current) {
+            --scrubber-marker-text: #b9f6ca;
+        }
+        .deck-progress-segment.is-visited.is-result-incorrect:not(.is-current) {
+            --scrubber-marker-text: #fecaca;
+        }
+        .deck-progress-segment.is-visited.is-result-mixed:not(.is-current) {
+            --scrubber-marker-text: #fde7ae;
         }
         .deck-progress-segment[data-distance="1"] { opacity: 0.78; transform: scale(0.88); }
         .deck-progress-segment[data-distance="2"] { opacity: 0.5; transform: scale(0.67); }
@@ -2539,8 +2543,9 @@
             color: white;
             opacity: 1;
             transform: scale(1.16);
+            border-radius: 11px;
             border-color: color-mix(in srgb, var(--accent-primary) 74%, white);
-            background: color-mix(in srgb, var(--accent-primary) 24%, var(--bg-card));
+            background: var(--scrubber-marker-fill, color-mix(in srgb, var(--accent-primary) 24%, var(--bg-card)));
             box-shadow: 0 0 0 2px rgba(var(--accent-primary-rgb), 0.12),
                         0 0 13px rgba(var(--accent-primary-rgb), 0.3);
             text-shadow: 0 0 12px rgba(var(--accent-primary-rgb), 0.5);

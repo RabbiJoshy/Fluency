@@ -2504,7 +2504,7 @@ function updateCard({ announceHeadword = false } = {}) {
         return labels[String(pos || '').toUpperCase()]
             || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
     };
-    const renderMorphStrip = () => {
+    const renderMorphStrip = (tokenClasses = 'card-pos pos-verb') => {
         if (!morphLabels.length) return '';
         const fullLabels = morphLabels.map(item => [item.person, item.grammar].filter(Boolean).join(' · '));
         const uniqueTokens = values => [...new Set(values.filter(Boolean))];
@@ -2516,7 +2516,7 @@ function updateCard({ announceHeadword = false } = {}) {
             .map(tokens => tokens.join(' / '));
         return `<span class="morph-strip-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
             <span class="morph-strip" aria-hidden="true">
-                ${categoryTokens.map(token => `<span>${escapeCardText(token)}</span>`).join('')}
+                ${categoryTokens.map(token => `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`).join('')}
             </span>
         </span>`;
     };
@@ -2524,7 +2524,7 @@ function updateCard({ announceHeadword = false } = {}) {
         const hasMorph = includeMorph && isVerbPos(pos) && morphLabels.length > 0;
         return `<span class="front-pos-unit${hasMorph ? ' has-morphology' : ''}">
             <span class="${pillClass} ${getPosColorClass(pos)}">${posDisplayName(pos)}</span>
-            ${hasMorph ? renderMorphStrip() : ''}
+            ${hasMorph ? renderMorphStrip(`${pillClass} ${getPosColorClass(pos)}`) : ''}
         </span>`;
     };
 
@@ -2747,7 +2747,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     : `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
                 const hasMorph = isVerbPos(pos) && morphLabels.length > 0;
                 return hasMorph
-                    ? `<span class="back-pos-unit has-morphology" role="presentation">${posButton}${renderMorphStrip()}</span>`
+                    ? `<span class="back-pos-unit has-morphology" role="presentation">${posButton}${renderMorphStrip('card-pos pos-verb')}</span>`
                     : posButton;
             });
             backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose part of speech</span>' : ''}${posPills.join('')}</div>`;
@@ -3848,10 +3848,21 @@ function updateCard({ announceHeadword = false } = {}) {
         }
         Array.from(progressSegments.children).forEach((segment, i) => {
             const distance = Math.abs(i - currentIndex);
+            const result = stats.cardStats[i] || null;
+            const hasCorrect = Number(result?.correct || 0) > 0;
+            const hasIncorrect = Number(result?.incorrect || 0) > 0;
+            const resultState = hasCorrect && hasIncorrect
+                ? 'mixed'
+                : (hasCorrect ? 'correct' : (hasIncorrect ? 'incorrect' : 'unanswered'));
             segment.classList.toggle('is-visited', stats.studied.has(i));
             segment.classList.toggle('is-current', i === currentIndex);
+            segment.classList.toggle('is-result-correct', resultState === 'correct');
+            segment.classList.toggle('is-result-incorrect', resultState === 'incorrect');
+            segment.classList.toggle('is-result-mixed', resultState === 'mixed');
             segment.dataset.distance = String(Math.min(distance, 4));
+            segment.dataset.result = resultState;
             segment.setAttribute('aria-current', i === currentIndex ? 'step' : 'false');
+            segment.setAttribute('aria-label', `Go to card ${i + 1} of ${segmentCount} · ${resultState}`);
         });
         const currentSegment = progressSegments.children[currentIndex];
         if (currentSegment && !progressSegments.dataset.userScrolling) {
@@ -4595,7 +4606,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729w';
+const ASSET_VERSION = '20260729x';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

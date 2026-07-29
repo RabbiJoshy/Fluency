@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Scrubber results are clearer and morphology exactly matches POS pills",
+      "details": [
+        "Replaced circular markers with softly rounded 36×36px tiles so one- and two-digit positions use the shape more naturally, and switched their numbers to the normal reading/interface font",
+        "Unanswered cards remain neutral, correct-only cards are green, incorrect-only cards are red, and cards answered both ways are amber; the current card keeps its separate accent outline and lens scale",
+        "Result state is also included in each marker's accessible label and data attribute",
+        "Morphology now reuses the actual POS-pill classes on each card face, matching its connected Verb pill's font, size, weight, casing, padding, radius, fill, border, and colour rather than approximating them; cache v151→v152, assets 20260729w→20260729x"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "97487314",
       "summary": "The mobile numbered rail is now a real drag scrubber",
       "details": [
