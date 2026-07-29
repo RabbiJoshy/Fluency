@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "6060d4d1",
       "summary": "The held-word direction choice now appears on the card",
       "details": [
         "Holding the back headword reveals one compact Spanish→English or English→Spanish button directly beneath the word instead of opening any overlay or radial picker",

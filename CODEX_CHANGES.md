@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Reveal the direction choice inline on the card
+
+- Commit `6060d4d1`; supersedes the intermediate radial implementation in `c9ec6324`; front-end cache `flashcards-v143` / `20260729o`.
+- Holding the back headword now reveals one compact, explicitly labelled direction button directly beneath the word. It does not open the general Study options picker or any dedicated overlay/radial UI.
+- The card reverses only when the revealed button is selected. Existing movement cancellation, haptic acknowledgement, focus placement, and synthetic-click suppression remain intact.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; absence of the discarded direction radial; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Fix next-level continuation and tab multi-POS cards
 
 - Commit `113c8a88`; front-end cache `flashcards-v141` / `20260729m`.
