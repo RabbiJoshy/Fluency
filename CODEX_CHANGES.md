@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Restore temporary cards opened from search
+
+- Commit `16dad7cc`; front-end cache `flashcards-v133` / `20260729e`.
+- Fixed Find word and other temporary-card routes loading `flashcards-modals.js` through the obsolete `20260728g` cache URL while the main app had advanced. Lazy modal and conjugation imports now share the service worker's current asset version, preventing a stale implementation from silently owning search-result clicks.
+- Lazy import errors are rethrown to the existing Find word handler, so a genuine load failure now shows “Could not open card” instead of only logging and appearing inert.
+- Confirmed Rosalía `por` (`a67298`) remains searchable and has 133 corpus occurrences plus lyric evidence. It correctly opens as an examples-only temporary view because the current artist entry has no assigned translated sense.
+- Verification: bundled-Node syntax checks for the eager, modal, and worker modules; valid changelog JSON; all eager and lazy asset versions in lockstep; real Rosalía `por` data assertion; and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Refine the numbered card scrubber
 
 - Commit `01eaa2ef`; front-end cache `flashcards-v132` / `20260729d`.

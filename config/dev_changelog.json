@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "16dad7cc",
       "summary": "Search results open temporary cards again",
       "details": [
         "Find word was lazy-loading its temporary-card module with an obsolete cache URL while the rest of the app used the current version, so results such as por in the Rosalía deck could silently run stale code",
