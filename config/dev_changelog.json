@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "The card flag sheet is simpler and predictable",
+      "details": [
+        "There is one independent note box and one Send note button; typing or pressing Enter cannot submit it, and no category or target selection is required",
+        "The only specific actions are Proper noun, English, Cognate, Wrong lemma, Wrong elision correction, a dedicated sense–meaning pairing view, and the primary Flag whole card button",
+        "Every successful action shows confirmation and keeps the sheet open; whole-card confirmation closes the sheet after a short visible pause; cache v134→v135, assets 20260729f→20260729g"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "c432f3d2",
       "summary": "Find word now opens cards from its exact search result",
       "details": [

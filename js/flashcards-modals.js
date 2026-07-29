@@ -1510,15 +1510,200 @@ function flagMenuConfirm() {
     });
     document.addEventListener('keydown', (e) => {
         if (pop.hidden) return;
-        if (e.target?.id === 'flagMenuNote' && e.key !== 'Escape') return;
-        if (e.key === 'ArrowUp') { e.preventDefault(); flagMenuNav(-1); }
-        else if (e.key === 'ArrowDown') { e.preventDefault(); flagMenuNav(1); }
-        else if (e.key === 'Enter') { e.preventDefault(); flagMenuConfirm(); }
-        else if (e.key === 'Escape') { e.preventDefault(); hideFlagMenu(); }
+        if (e.key === 'Escape') { e.preventDefault(); hideFlagMenu(); }
     });
 })();
 
-window.showFlagMenu = showFlagMenu;
+// ---------------------------------------------------------------------------
+// Simplified audit flow. The previous target/category matrix remains above for
+// payload compatibility, but this is the only UI exposed to the learner.
+// Every action has one explicit send gesture; successful non-card flags keep
+// the sheet open, while the whole-card action confirms and then closes.
+// ---------------------------------------------------------------------------
+let _simpleFlagBusy = false;
+let _simpleFlagCloseTimer = null;
+
+function _simpleFlagStatus(message, isError = false) {
+    const status = document.getElementById('flagMenuStatus');
+    if (!status) return;
+    status.hidden = false;
+    status.textContent = message;
+    status.classList.toggle('is-error', isError);
+}
+
+function _simpleFlagExample(meaning, index) {
+    if (index === currentMeaningIndex && window._currentDisplayedExample) {
+        return window._currentDisplayedExample;
+    }
+    return meaning?.allExamples?.[0] || null;
+}
+
+function _simpleFlagReport(target, { meaningIndex = 0, note = '' } = {}) {
+    const card = _flagMenuCard();
+    const meaning = card?.meanings?.[meaningIndex] || null;
+    const example = _simpleFlagExample(meaning, meaningIndex);
+    const word = card?.targetWord || card?.word || '';
+    const lemma = card?.lemma || word;
+    const gloss = meaning?.meaning || meaning?.translation || '';
+    const spanish = example?.spanish || example?.target || example?.targetSentence || example?.original || '';
+    const english = example?.english || example?.englishSentence || '';
+    const labels = {
+        note: 'Note', propernoun: 'Proper noun', english: 'English', cognate: 'Cognate',
+        lemma: 'Wrong lemma', elision: 'Wrong elision correction',
+        pairing: 'Sense–meaning pairing', card: 'Whole card'
+    };
+    const lines = [
+        '[Audit flag]',
+        `Target: ${labels[target] || target}`,
+        `Word: ${word}`,
+        `Lemma: ${lemma}`,
+        `Card ID: ${card?.fullId || card?.id || '(missing)'}`
+    ];
+    if (target === 'pairing') {
+        lines.push(`Sense ${meaningIndex + 1}: ${meaning?.pos || '?'} · ${gloss || '(empty)'}`);
+        const senseId = meaning?.sense_id || meaning?.senseId || meaning?.id;
+        if (senseId) lines.push(`Sense ID: ${senseId}`);
+        if (meaning?.context) lines.push(`Context: ${meaning.context}`);
+        if (meaning?.assignment_method) lines.push(`Sense assignment: ${meaning.assignment_method}`);
+        lines.push(`Example: ${spanish || '(none visible)'}`);
+        if (english) lines.push(`Translation: ${english}`);
+        if (example?.song_name || example?.song) lines.push(`Source: ${example.song_name || example.song}`);
+        if (example?.assignment_method) lines.push(`Example assignment: ${example.assignment_method}`);
+    }
+    if (target === 'propernoun') lines.push('Requested classification: Proper noun', `Current is_propernoun: ${card?.is_propernoun ?? '(missing)'}`);
+    if (target === 'english') lines.push('Requested classification: English', `Current is_english: ${card?.is_english ?? '(missing)'}`);
+    if (target === 'cognate') lines.push('Requested classification: Cognate', `Current cognate score: ${card?.cognate_score ?? '(missing)'}`);
+    if (target === 'elision') {
+        lines.push(`Displayed form: ${card?._activeExampleSurface || card?.displaySurface || word}`);
+        lines.push(`Morphology: ${card?.morphology ? JSON.stringify(card.morphology).slice(0, 500) : '(none)'}`);
+    }
+    if (note) lines.push(`Note: ${note}`);
+    return lines.join('\n');
+}
+
+function _simpleFlagPath(target, meaningIndex = 0) {
+    const card = _flagMenuCard();
+    const meaning = card?.meanings?.[meaningIndex] || null;
+    const example = _simpleFlagExample(meaning, meaningIndex);
+    const senseRef = meaning?.sense_id || meaning?.senseId || meaning?.id || meaningIndex;
+    const spanish = example?.spanish || example?.target || example?.targetSentence || '';
+    const paths = {
+        propernoun: 'routing:propernoun', english: 'routing:english', cognate: 'routing:cognate',
+        lemma: `lemma:${_flagTextHash(card?.lemma || '')}`,
+        elision: `surface:elision:${_flagTextHash(card?._activeExampleSurface || card?.displaySurface || card?.targetWord || '')}`,
+        card: 'card'
+    };
+    if (target === 'note') return `note:${Date.now()}`;
+    if (target === 'pairing') return `pairing:${senseRef}:${_flagTextHash(spanish)}`;
+    return paths[target] || target;
+}
+
+async function _sendSimpleFlag(target, options = {}) {
+    if (_simpleFlagBusy) return false;
+    const card = _flagMenuCard();
+    if (!card || typeof flagWord !== 'function') return false;
+    _simpleFlagBusy = true;
+    document.getElementById('flagMenuContent')?.classList.add('is-sending');
+    try {
+        const ok = await flagWord(
+            card,
+            _simpleFlagPath(target, options.meaningIndex || 0),
+            _simpleFlagReport(target, options)
+        );
+        if (!ok) {
+            _simpleFlagStatus('This flag could not be saved. Please sign in and try again.', true);
+            return false;
+        }
+        const labels = {
+            note: 'Note sent.', propernoun: 'Proper noun flag sent.', english: 'English flag sent.',
+            cognate: 'Cognate flag sent.', lemma: 'Wrong lemma flag sent.',
+            elision: 'Wrong elision correction flag sent.',
+            pairing: 'Sense–meaning pairing flag sent.', card: 'Whole-card flag sent.'
+        };
+        _simpleFlagStatus(labels[target] || 'Flag sent.');
+        return true;
+    } catch (error) {
+        console.error('Could not save audit flag', error);
+        _simpleFlagStatus('This flag could not be saved. Please try again.', true);
+        return false;
+    } finally {
+        _simpleFlagBusy = false;
+        document.getElementById('flagMenuContent')?.classList.remove('is-sending');
+    }
+}
+
+function _renderSimpleSenses() {
+    const card = _flagMenuCard();
+    const host = document.getElementById('flagSimpleSenses');
+    if (!host) return;
+    const meanings = card?.meanings || [];
+    host.innerHTML = meanings.length ? meanings.map((meaning, index) => {
+        const example = _simpleFlagExample(meaning, index);
+        const spanish = example?.spanish || example?.target || example?.targetSentence || '';
+        const english = example?.english || example?.englishSentence || '';
+        return `<article class="flag-simple-sense">
+            <div class="flag-simple-sense-meaning"><span>${_escapeHtml(meaning.pos || '?')}</span><strong>${_escapeHtml(meaning.meaning || meaning.translation || '(empty meaning)')}</strong></div>
+            <div class="flag-simple-sense-example">${_escapeHtml(spanish || 'No paired example')}${english ? `<small>${_escapeHtml(english)}</small>` : ''}</div>
+            <button type="button" data-flag-sense="${index}">Flag this pairing</button>
+        </article>`;
+    }).join('') : '<div class="card-meta-empty">No senses are available on this card.</div>';
+}
+
+function showSimpleFlagMenu() {
+    const pop = document.getElementById('flagMenu');
+    const card = _flagMenuCard();
+    if (!pop || !card) return;
+    if (_simpleFlagCloseTimer) clearTimeout(_simpleFlagCloseTimer);
+    document.getElementById('flagMenuTitle').textContent = `Flag: ${card.targetWord || card.word || 'card'}`;
+    document.getElementById('flagMenuMainView').hidden = false;
+    document.getElementById('flagMenuSensesView').hidden = true;
+    const status = document.getElementById('flagMenuStatus');
+    if (status) { status.hidden = true; status.textContent = ''; status.classList.remove('is-error'); }
+    const note = document.getElementById('flagMenuNote');
+    if (note) note.value = '';
+    const sendNote = document.getElementById('flagSimpleSendNote');
+    if (sendNote) sendNote.disabled = true;
+    _renderSimpleSenses();
+    pop.hidden = false;
+    pop.setAttribute('aria-hidden', 'false');
+}
+
+(function _initSimpleFlagMenu() {
+    const note = document.getElementById('flagMenuNote');
+    const sendNote = document.getElementById('flagSimpleSendNote');
+    note?.addEventListener('input', () => { if (sendNote) sendNote.disabled = !note.value.trim(); });
+    sendNote?.addEventListener('click', async () => {
+        const text = note?.value.trim().slice(0, 600) || '';
+        if (!text) return note?.focus();
+        if (await _sendSimpleFlag('note', { note: text })) {
+            note.value = '';
+            sendNote.disabled = true;
+        }
+    });
+    document.querySelectorAll('[data-simple-flag]').forEach(button => {
+        button.addEventListener('click', () => _sendSimpleFlag(button.dataset.simpleFlag));
+    });
+    document.getElementById('flagOpenSenses')?.addEventListener('click', () => {
+        document.getElementById('flagMenuMainView').hidden = true;
+        document.getElementById('flagMenuSensesView').hidden = false;
+        _renderSimpleSenses();
+    });
+    document.getElementById('flagSensesBack')?.addEventListener('click', () => {
+        document.getElementById('flagMenuSensesView').hidden = true;
+        document.getElementById('flagMenuMainView').hidden = false;
+    });
+    document.getElementById('flagSimpleSenses')?.addEventListener('click', event => {
+        const button = event.target.closest('[data-flag-sense]');
+        if (button) _sendSimpleFlag('pairing', { meaningIndex: Number(button.dataset.flagSense) });
+    });
+    document.getElementById('flagWholeCard')?.addEventListener('click', async () => {
+        if (await _sendSimpleFlag('card')) {
+            _simpleFlagCloseTimer = setTimeout(hideFlagMenu, 1100);
+        }
+    });
+})();
+
+window.showFlagMenu = showSimpleFlagMenu;
 window.hideFlagMenu = hideFlagMenu;
 window.flagMenuNav = flagMenuNav;
 window.flagMenuSelect = flagMenuSelect;

@@ -24,21 +24,21 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260729f">
-    <link rel="modulepreload" href="js/state.js?v=20260729f">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260729f">
-    <link rel="modulepreload" href="js/speech.js?v=20260729f">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260729f">
-    <link rel="modulepreload" href="js/auth.js?v=20260729f">
-    <link rel="modulepreload" href="js/spotify.js?v=20260729f">
-    <link rel="modulepreload" href="js/estimation.js?v=20260729f">
-    <link rel="modulepreload" href="js/config.js?v=20260729f">
-    <link rel="modulepreload" href="js/progress.js?v=20260729f">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260729f">
-    <link rel="modulepreload" href="js/ui.js?v=20260729f">
-    <link rel="modulepreload" href="js/vocab.js?v=20260729f">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260729f">
-    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260729f">
+    <link rel="modulepreload" href="js/main.js?v=20260729g">
+    <link rel="modulepreload" href="js/state.js?v=20260729g">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260729g">
+    <link rel="modulepreload" href="js/speech.js?v=20260729g">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260729g">
+    <link rel="modulepreload" href="js/auth.js?v=20260729g">
+    <link rel="modulepreload" href="js/spotify.js?v=20260729g">
+    <link rel="modulepreload" href="js/estimation.js?v=20260729g">
+    <link rel="modulepreload" href="js/config.js?v=20260729g">
+    <link rel="modulepreload" href="js/progress.js?v=20260729g">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260729g">
+    <link rel="modulepreload" href="js/ui.js?v=20260729g">
+    <link rel="modulepreload" href="js/vocab.js?v=20260729g">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260729g">
+    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260729g">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -166,8 +166,8 @@
             </div>
         </div>
     </div>
-    <!-- Audit flag menu: target and problem type are separate so reports can
-         point at a pairing, sense, example, lemma, form, card, or just a note. -->
+    <!-- Audit flag menu: one note composer, a few direct classifications,
+         a dedicated sense-pairing view, and one primary whole-card action. -->
     <div id="flagMenu" class="card-meta-popover flag-menu" role="dialog" aria-hidden="true" aria-label="Flag a card" hidden>
         <div class="card-meta-modal-content" id="flagMenuContent">
             <div class="card-meta-header">
@@ -175,44 +175,44 @@
                 <button class="card-meta-close" id="flagMenuClose" aria-label="Close">×</button>
             </div>
             <div class="card-meta-body">
-                <div class="flag-menu-hint" id="flagMenuHint">Tell the data audit exactly where to look. The visible sense and example start selected.</div>
-                <div class="card-meta-section flag-menu-quick-section" id="flagMenuQuickSection">
-                    <h4>Quick report</h4>
-                    <div class="flag-menu-quick-actions" id="flagMenuQuickActions"></div>
-                </div>
-                <details class="card-meta-section flag-menu-note-section" id="flagMenuNoteSection">
-                    <summary class="flag-menu-note-summary">
-                        <span id="flagMenuNoteSummary">Add details</span><small>optional</small>
-                    </summary>
-                    <div class="flag-menu-note-composer">
+                <div class="flag-menu-hint">Choose one action. A flag is only sent when you press its clearly labelled button.</div>
+                <div id="flagMenuStatus" class="flag-menu-status" role="status" aria-live="polite" hidden></div>
+
+                <div id="flagMenuMainView">
+                    <section class="card-meta-section flag-simple-note-section">
+                        <h4>Send a note</h4>
                         <label class="flag-menu-note-label" for="flagMenuNote">Your note</label>
-                        <textarea id="flagMenuNote" class="flag-menu-note" rows="4" maxlength="600" placeholder="What did you notice? Include the correction or expected behaviour if you know it."></textarea>
-                        <div class="flag-menu-note-help">Nothing is sent until you tap Send note.</div>
-                        <div class="flag-menu-note-actions">
-                            <button class="flag-menu-note-back" id="flagMenuNoteBack" type="button">Cancel</button>
-                            <button class="flag-menu-note-send" id="flagMenuNoteSend" type="button" disabled>Send note</button>
+                        <textarea id="flagMenuNote" class="flag-menu-note" rows="5" maxlength="600" placeholder="What did you notice? Include the correction if you know it."></textarea>
+                        <button class="flag-simple-send-note" id="flagSimpleSendNote" type="button" disabled>Send note</button>
+                    </section>
+
+                    <section class="card-meta-section">
+                        <h4>Flag a specific problem</h4>
+                        <div class="flag-simple-actions">
+                            <button type="button" data-simple-flag="propernoun">Proper noun</button>
+                            <button type="button" data-simple-flag="english">English</button>
+                            <button type="button" data-simple-flag="cognate">Cognate</button>
+                            <button type="button" data-simple-flag="lemma">Wrong lemma</button>
+                            <button type="button" data-simple-flag="elision">Wrong elision correction</button>
                         </div>
-                    </div>
-                </details>
-                <div class="card-meta-section flag-menu-target-section" id="flagMenuTargetSection">
-                    <h4>Detailed report</h4>
-                    <div class="flag-menu-targets" id="flagMenuTargets"></div>
+                    </section>
+
+                    <section class="card-meta-section">
+                        <button type="button" class="flag-senses-route" id="flagOpenSenses">
+                            <span><strong>Sense–meaning pairings</strong><small>Choose and flag a particular pairing</small></span>
+                            <span aria-hidden="true">›</span>
+                        </button>
+                    </section>
                 </div>
-                <div class="card-meta-section" id="flagMenuSenseSection">
-                    <h4>Which meaning?</h4>
-                    <ul class="flag-menu-senses" id="flagMenuSenses" role="listbox" aria-label="Card senses"></ul>
-                </div>
-                <div class="card-meta-section" id="flagMenuCategorySection">
-                    <h4>What seems wrong? <span class="flag-section-optional">optional</span></h4>
-                    <div class="flag-menu-categories" id="flagMenuCategories"></div>
-                </div>
-                <div class="card-meta-section" id="flagMenuPreviewSection">
-                    <h4>Audit preview</h4>
-                    <div class="flag-menu-pairing" id="flagMenuPairingPreview"></div>
+
+                <div id="flagMenuSensesView" hidden>
+                    <button type="button" class="flag-senses-back" id="flagSensesBack">‹ Back</button>
+                    <h4>Flag a sense–meaning pairing</h4>
+                    <div class="flag-simple-senses" id="flagSimpleSenses"></div>
                 </div>
             </div>
             <div class="card-meta-footer">
-                <button class="card-meta-flag-btn" id="flagMenuConfirm" type="button" title="Send this report to the data audit">Send audit flag</button>
+                <button class="card-meta-flag-btn flag-whole-card-btn" id="flagWholeCard" type="button">Flag whole card</button>
             </div>
         </div>
     </div>
@@ -1176,6 +1176,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260729f"></script>
+    <script type="module" src="js/main.js?v=20260729g"></script>
 </body>
 </html>

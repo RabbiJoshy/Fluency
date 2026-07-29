@@ -740,11 +740,11 @@ async function saveWordProgress(card, isCorrect) {
 async function flagWord(card, fieldPath, fieldValue) {
     if (!currentUser) {
         console.warn('flagWord skipped: no user logged in');
-        return;
+        return false;
     }
     if (currentUser.isGuest) {
         console.warn('flagWord skipped: guest sessions are not persisted');
-        return;
+        return false;
     }
     const baseId = card.fullId;
     const wordId = fieldPath ? `${baseId}#${fieldPath}` : baseId;
@@ -757,7 +757,7 @@ async function flagWord(card, fieldPath, fieldValue) {
     // Route through the offline-durable queue so flags raised offline aren't
     // lost. De-dupe on wordId (which already encodes the flagged field path):
     // the latest flag for a given field wins.
-    sendOrQueue({
+    await sendOrQueue({
         action: 'save',
         sheet: 'FlaggedWords',
         user: currentUser.initials,
@@ -768,6 +768,7 @@ async function flagWord(card, fieldPath, fieldValue) {
         lastWrong: timestamp
     }, `flag|${wordId}`);
     console.log(`Flagged ${word} (${wordId}) for review`);
+    return true;
 }
 
 // Minimal Markdown → HTML renderer. Handles headings (##/###), paragraphs,
