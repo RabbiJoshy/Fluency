@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Clarify grouped-sense selection hierarchy
+
+- Commit `716c5d5a`; front-end cache `flashcards-v137` / `20260729i`.
+- Made the primary selection treatment symmetrical: selected meanings and their paired examples now use matching left/right POS-coloured rails and balanced gradients.
+- Removed the redundant inner highlight and inset marker from a whole-family group selection. The outer grouped row alone communicates that the combined family is active.
+- When one member inside a family is explicitly selected, the outer row retains the primary family context and only that member receives the smaller symmetrical secondary marker. Ordinary single meanings retain one primary selection state.
+- Verification: bundled-Node syntax checks, valid changelog JSON, cache-version lockstep, static assertions for the three symmetrical rail widths and absence of the shared group marker, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Add POS flags and keep search visible until cards render
 
 - Commit `f68f95df`; front-end cache `flashcards-v136` / `20260729h`.
