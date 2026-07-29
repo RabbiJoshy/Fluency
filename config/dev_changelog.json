@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Desktop scrubber and Study options now occupy a real row above the card",
+      "details": [
+        "Changed the desktop card container to a vertical layout with the card-position scrubber and icon-only Study options button in a dedicated 44px control row before the card",
+        "Removed the desktop absolute overlay positioning while preserving the centred scrubber, right-side settings icon, stacked-card hiding, and existing mobile top-rail layout",
+        "The card retains its existing desktop height and now begins beneath an explicit 8px control-row gap; cache v148→v149, assets 20260729t→20260729u"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "f657d585",
       "summary": "Morphology now uses full names and matches the POS pill",
       "details": [

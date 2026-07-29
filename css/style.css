@@ -505,17 +505,26 @@
             /* Deck progress scrubber — sits above the card */
             .deck-progress-track {
                 display: flex;
-                position: absolute;
-                top: 34px;
-                left: 50%;
-                transform: translateX(-50%);
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                order: -1;
+                flex: 0 0 44px;
                 width: min(540px, calc(100% - 32px));
-                height: 42px;
+                height: 44px;
                 align-items: center;
+                justify-content: center;
                 gap: 8px;
                 pointer-events: auto;
                 transition: opacity 0.2s;
                 z-index: 8;
+            }
+            .card-container {
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: 8px;
+                padding: 20px 0;
             }
             /* fill styles live in the global block below so mobile shares them */
             /* Hide progress + side zones while browsing an off-deck card */
