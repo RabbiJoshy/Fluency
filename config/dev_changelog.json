@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "c432f3d2",
       "summary": "Find word now opens cards from its exact search result",
       "details": [
         "The earlier cache correction was insufficient: temporary cards still depended on a mutable global vocabulary pointer and a first-click dynamic module load",

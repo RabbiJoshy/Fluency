@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Make Find word temporary-card navigation deterministic
+
+- Commit `c432f3d2`; front-end cache `flashcards-v134` / `20260729f`.
+- Follow-up after a refreshed client proved that cache-version lockstep alone did not restore Find word. Search results now retain the exact full joined vocabulary entry used to render them, so opening a card cannot fail because another setup operation repointed the legacy global index cache.
+- Promoted `flashcards-modals.js`, which owns temporary cards, to an eager primary-navigation dependency and preloaded it with the other boot modules. The first result click no longer doubles as a dynamic module-loading attempt.
+- Missing source entries now throw into the existing visible “Could not open card” handler instead of warning and returning silently.
+- Verification: bundled-Node syntax checks for all affected modules, valid changelog JSON, eager/lazy/service-worker asset versions in lockstep, exact-source routing assertions, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Restore temporary cards opened from search
 
 - Commit `16dad7cc`; front-end cache `flashcards-v133` / `20260729e`.
