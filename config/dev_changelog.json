@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "17ec1b56",
       "summary": "Desktop scrubber and Study options now occupy a real row above the card",
       "details": [
         "Changed the desktop card container to a vertical layout with the card-position scrubber and icon-only Study options button in a dedicated 44px control row before the card",

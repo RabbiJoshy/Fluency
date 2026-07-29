@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Put desktop study controls in a row above the card
+
+- Commit `17ec1b56`; front-end cache `flashcards-v149` / `20260729u`.
+- Changed the desktop card container to a vertical layout with a real 44px controls row before the card. The numbered active-set scrubber and icon-only Study options button now share that row, followed by an explicit 8px gap and the card.
+- Removed the desktop rail's absolute positioning/translation so the controls no longer behave as an overlay. Existing stacked-card hiding and scrubber interaction remain unchanged.
+- The mobile breakpoint retains its prior absolute top-padding rail and card sizing.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; desktop/mobile positioning assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Use full morphology names in POS-matched pills
 
 - Commit `f657d585`; front-end cache `flashcards-v148` / `20260729t`.
