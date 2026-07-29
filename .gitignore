@@ -117,3 +117,4 @@ _backups/
 # Sandbox rebuild artifacts (step_8b --output-suffix) — never commit
 *_sandbox*
 **/routing_tags_dashboard.html
+gittoken.txt
