@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "01eaa2ef",
       "summary": "Card positions now taper around the current card",
       "details": [
         "The scrubber sits fully above the card and shows numbered circular markers rather than bare numbers",

@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Refine the numbered card scrubber
+
+- Commit `01eaa2ef`; front-end cache `flashcards-v132` / `20260729d`.
+- Turned the bare card numbers into circular position markers contained in a dedicated 42px strip above the card on desktop and mobile. The current position is largest; the nearest three positions on either side progressively shrink and fade, while distant markers disappear into the scrubber's masked edges.
+- Reversed the earlier labelled-control decision: Study options is now a larger 44px circular icon-only button at every breakpoint, as requested.
+- Verification: bundled-Node syntax check, valid changelog JSON, cache-version lockstep, removed-label assertion, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Replace the active-set progress rail with a card scrubber
 
 - Commit `99e86429`; front-end cache `flashcards-v131` / `20260729c`.
