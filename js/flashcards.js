@@ -2713,7 +2713,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     ? `<span class="back-pos-unit has-morphology" role="presentation">${posButton}${renderMorphStrip()}</span>`
                     : posButton;
             });
-            backPosLegendHTML = `<div class="back-pos-legend"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${posPills.join('')}</div>`;
+            backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose part of speech</span>' : ''}${posPills.join('')}</div>`;
         }
     }
 
@@ -2727,7 +2727,7 @@ function updateCard({ announceHeadword = false } = {}) {
             <div class="flip-back-area" id="flipBackArea">
                 <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
-                ${backCitationHTML}
+                <div class="back-citation-slot${backCitationHTML ? '' : ' is-empty'}"${backCitationHTML ? '' : ' aria-hidden="true"'}>${backCitationHTML || '&nbsp;'}</div>
                 ${backDerivationHTML}
             </div>
             ${backPosLegendHTML}
@@ -4557,7 +4557,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729r';
+const ASSET_VERSION = '20260729s';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

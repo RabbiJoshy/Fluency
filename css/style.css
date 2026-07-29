@@ -1858,6 +1858,21 @@
             gap: 5px;
             margin: 7px 0 2px;
         }
+        .back-pos-legend.has-tabs {
+            padding: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.035);
+            gap: 5px;
+        }
+        .back-pos-tab-label {
+            flex: 0 0 100%;
+            color: var(--text-muted);
+            font: 650 9px/1 var(--font-data);
+            letter-spacing: 0.08em;
+            text-align: center;
+            text-transform: uppercase;
+        }
 
         .back-pos-legend .card-pos {
             margin: 0;
@@ -1877,15 +1892,16 @@
             cursor: pointer;
         }
         .back-pos-legend .back-pos-tab {
-            opacity: 0.58;
-            border-color: transparent;
-            background: transparent;
+            opacity: 0.76;
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.035);
             transition: opacity 150ms ease, background 150ms ease, border-color 150ms ease;
         }
         .back-pos-legend .back-pos-tab.selected {
             opacity: 1;
-            background: color-mix(in srgb, currentColor 14%, transparent);
-            border-color: color-mix(in srgb, currentColor 42%, transparent);
+            background: color-mix(in srgb, currentColor 23%, transparent);
+            border-color: color-mix(in srgb, currentColor 68%, transparent);
+            box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 18%, transparent), 0 3px 10px rgba(0, 0, 0, 0.22);
         }
         .back-pos-dot {
             width: 6px;
@@ -7276,6 +7292,17 @@
             gap: 5px 8px;
             margin-top: 3px;
             line-height: 1.15;
+        }
+
+        .back-citation-slot {
+            display: flex;
+            min-height: 28px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .back-citation-slot.is-empty {
+            visibility: hidden;
         }
 
         .back-citation-line .back-lemma {

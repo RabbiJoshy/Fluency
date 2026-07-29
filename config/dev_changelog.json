@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Card backs reserve a lemma line and make POS tabs unmistakable",
+      "details": [
+        "Every card back now reserves the same 28px citation/lemma slot, keeping the header and sense area stable when a card or POS has no separate lemma to display",
+        "Multi-POS cards use a labelled Choose part of speech segmented track with visible inactive tabs and a stronger bordered, tinted, shadowed selected tab",
+        "Single-POS cards keep the simpler standalone pill without the extra switch framing; cache v146→v147, assets 20260729r→20260729s"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "6bc65c3c",
       "summary": "Morphology is now visually attached to the verb pill",
       "details": [
