@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Connect and animate the card scrubber
+
+- Commit `532833b3`; front-end cache `flashcards-v150` / `20260729v`.
+- Added a continuous accent-tinted rail behind the numbered card markers and reduced their spacing/basis so the control reads as one connected scrubber rather than isolated buttons.
+- Increased markers to 36px and number text to bold 16px. The active position uses a 300ms expand-and-settle lens animation, while the nearest three positions progressively ease down in size and opacity through a spring-like transform curve.
+- Added a reduced-motion override that removes the lens animation and collapses transition duration for users who request it.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; connected-rail/lens/reduced-motion assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Put desktop study controls in a row above the card
 
 - Commit `17ec1b56`; front-end cache `flashcards-v149` / `20260729u`.

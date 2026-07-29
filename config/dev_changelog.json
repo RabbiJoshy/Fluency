@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "532833b3",
       "summary": "The card-position control now reads as a connected animated scrubber",
       "details": [
         "Added a continuous accent-tinted rail through the numbered markers and reduced their spacing so they read as one scrub control rather than unrelated buttons",
