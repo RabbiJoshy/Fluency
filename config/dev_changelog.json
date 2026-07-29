@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "The mobile numbered rail is now a real drag scrubber",
+      "details": [
+        "On mobile, pressing and dragging horizontally across the connected card rail now moves continuously through the active set at roughly one card per 24px, with bounds at the first and last card",
+        "Intermediate scrubbed cards do not trigger speech, the active marker follows immediately without queued smooth scrolling, and release suppresses the synthetic click that could otherwise jump twice",
+        "Ordinary number taps remain available; active mobile drag brightens the rail and accelerates marker transitions, while desktop drag behavior remains unchanged; cache v150→v151, assets 20260729v→20260729w"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "532833b3",
       "summary": "The card-position control now reads as a connected animated scrubber",
       "details": [

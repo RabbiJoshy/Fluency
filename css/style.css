@@ -2490,6 +2490,22 @@
                     mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
         }
         .deck-progress-segments::-webkit-scrollbar { display: none; }
+        .deck-progress-segments.is-scrubbing {
+            background-size: 100% 3px;
+            filter: drop-shadow(0 0 7px rgba(var(--accent-primary-rgb), 0.32));
+        }
+        .deck-progress-segments.is-scrubbing .deck-progress-segment {
+            transition-duration: 90ms;
+        }
+        .deck-progress-segments.is-scrubbing .deck-progress-segment.is-current {
+            animation: none;
+        }
+        @media (max-width: 767px) {
+            .deck-progress-segments {
+                touch-action: none;
+                cursor: ew-resize;
+            }
+        }
         .deck-progress-segment {
             flex: 0 0 38px;
             width: 36px;

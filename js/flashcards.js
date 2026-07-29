@@ -11,6 +11,8 @@ let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, tran
 let _conjugationLoadPromise = null;  // shared in-flight promise so concurrent callers don't double-fetch
 let _conjugatedEnglishData = null;  // lemma -> translation -> tense -> 6-element person-indexed array
 let _conjugatedEnglishLoading = false;
+let _deckScrubberActive = false;
+let _suppressDeckScrubberClickUntil = 0;
 
 // Map verbecc tense keys (used in vocabulary.index.json's morphology field) to
 // the keys produced by step_5e_build_conjugated_english.py. Identical today, but
@@ -1235,6 +1237,55 @@ function initializeApp() {
     });
 
     document.getElementById('studyMenuBtn')?.addEventListener('click', showStudyMenu);
+
+    // The connected number rail is also a real scrub control. Horizontal
+    // movement advances relative to the card where the drag began; taps still
+    // use the individual numbered buttons. Intermediate cards stay silent.
+    const deckScrubber = document.getElementById('deckProgressSegments');
+    if (deckScrubber) {
+        let scrubPointerId = null;
+        let scrubStartX = 0;
+        let scrubStartIndex = 0;
+        let scrubMoved = false;
+        const finishScrub = event => {
+            if (scrubPointerId === null || (event && event.pointerId !== scrubPointerId)) return;
+            if (scrubMoved) _suppressDeckScrubberClickUntil = Date.now() + 350;
+            const finishedPointerId = scrubPointerId;
+            scrubPointerId = null;
+            if (deckScrubber.hasPointerCapture?.(finishedPointerId)) {
+                deckScrubber.releasePointerCapture(finishedPointerId);
+            }
+            scrubMoved = false;
+            _deckScrubberActive = false;
+            deckScrubber.classList.remove('is-scrubbing');
+        };
+        deckScrubber.addEventListener('pointerdown', event => {
+            if (!window.matchMedia('(max-width: 767px)').matches) return;
+            if (event.button !== undefined && event.button !== 0) return;
+            scrubPointerId = event.pointerId;
+            scrubStartX = event.clientX;
+            scrubStartIndex = currentIndex;
+            scrubMoved = false;
+            _deckScrubberActive = true;
+            deckScrubber.classList.add('is-scrubbing');
+            deckScrubber.setPointerCapture?.(event.pointerId);
+        });
+        deckScrubber.addEventListener('pointermove', event => {
+            if (event.pointerId !== scrubPointerId) return;
+            const delta = event.clientX - scrubStartX;
+            if (Math.abs(delta) < 6) return;
+            scrubMoved = true;
+            event.preventDefault();
+            const targetIndex = Math.max(0, Math.min(
+                flashcards.length - 1,
+                scrubStartIndex + Math.round(delta / 24)
+            ));
+            goToDeckCard(targetIndex, { announceHeadword: false });
+        });
+        deckScrubber.addEventListener('pointerup', finishScrub);
+        deckScrubber.addEventListener('pointercancel', finishScrub);
+        deckScrubber.addEventListener('lostpointercapture', finishScrub);
+    }
 
     // Floating buttons (desktop sidebar) + on-card mobile copies share handlers.
     // Back uses navigateBack() which falls through to goBackToSetup() when
@@ -3789,6 +3840,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 segment.setAttribute('aria-label', `Go to card ${i + 1} of ${segmentCount}`);
                 segment.addEventListener('click', event => {
                     event.stopPropagation();
+                    if (Date.now() < _suppressDeckScrubberClickUntil) return;
                     goToDeckCard(i);
                 });
                 return segment;
@@ -3804,7 +3856,7 @@ function updateCard({ announceHeadword = false } = {}) {
         const currentSegment = progressSegments.children[currentIndex];
         if (currentSegment && !progressSegments.dataset.userScrolling) {
             requestAnimationFrame(() => currentSegment.scrollIntoView({
-                behavior: 'smooth', block: 'nearest', inline: 'center'
+                behavior: _deckScrubberActive ? 'auto' : 'smooth', block: 'nearest', inline: 'center'
             }));
         }
     }
@@ -4154,7 +4206,7 @@ function nextCard() {
     if (currentIndex < flashcards.length - 1) _navCard('next');
 }
 
-function goToDeckCard(index) {
+function goToDeckCard(index, { announceHeadword = true } = {}) {
     const nextIndex = Number(index);
     if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= flashcards.length
             || nextIndex === currentIndex) return;
@@ -4165,7 +4217,7 @@ function goToDeckCard(index) {
     currentMWEIndex = 0;
     currentGroupSelection = null;
     document.getElementById('flashcard')?.classList.remove('flipped');
-    updateCard({ announceHeadword: true });
+    updateCard({ announceHeadword });
 }
 
 function shuffleCards() {
@@ -4543,7 +4595,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729v';
+const ASSET_VERSION = '20260729w';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
