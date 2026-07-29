@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "97487314",
       "summary": "The mobile numbered rail is now a real drag scrubber",
       "details": [
         "On mobile, pressing and dragging horizontally across the connected card rail now moves continuously through the active set at roughly one card per 24px, with bounds at the first and last card",

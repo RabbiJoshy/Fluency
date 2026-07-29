@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Add real mobile drag scrubbing
+
+- Commit `97487314`; front-end cache `flashcards-v151` / `20260729w`.
+- On viewports below 768px, pressing and dragging the connected numbered rail now changes the active card continuously at approximately one card per 24px. Right advances, left goes back, and indices clamp to the active set.
+- Intermediate scrubbed cards suppress speech and centre their active marker immediately rather than queueing smooth-scroll animations. Releasing after movement suppresses the synthetic click, preventing a second unintended jump.
+- Active drag brightens/thickens the rail and shortens marker transitions. Ordinary number taps remain available. Desktop retains its existing interaction and only uses the connected visual/lens animation.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; mobile-breakpoint, silent-intermediate, pointer-capture, and click-suppression assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Connect and animate the card scrubber
 
 - Commit `532833b3`; front-end cache `flashcards-v150` / `20260729v`.
