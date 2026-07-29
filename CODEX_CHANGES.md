@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Lighten morphology and add hold-to-reverse
+
+- Commit `afbd255d`; front-end cache `flashcards-v139` / `20260729k`.
+- Removed the morphology grid's enclosing panel, shadow, and padding. Its four independent circles now use a tighter 32px 2×2 arrangement, with correspondingly reduced back-header reservation.
+- Made the back-word flip target visually invisible in hover and active states. A 600ms hold directly on the headword now reverses study direction, provides supported-device haptic acknowledgement, suppresses the resulting synthetic click, and cancels after 10px of pointer movement so swipes do not trigger it.
+- POS tabs were deliberately not introduced in this styling/gesture task. Recommended follow-up behavior is to render tabs only for genuinely multi-POS cards, keeping single-POS cards unchanged and preserving a separate all-items route.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Compact morphology into a fixed card-header badge
 
 - Commit `f972c954`; front-end cache `flashcards-v138` / `20260729j`.

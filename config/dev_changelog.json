@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "afbd255d",
       "summary": "Morphology circles are lighter and the back word supports hold-to-reverse",
       "details": [
         "Removed the enclosing morphology badge box and tightened the four standalone circles into a smaller fixed 2×2 arrangement",
