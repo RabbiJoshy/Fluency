@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "6bc65c3c",
       "summary": "Morphology is now visually attached to the verb pill",
       "details": [
         "Moved the morphology strip out of the front card corner and centred it directly beneath the verb pill on both target-word and English-meaning fronts",

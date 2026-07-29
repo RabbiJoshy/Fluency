@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Attach morphology directly to the verb pill
+
+- Commit `6bc65c3c`; front-end cache `flashcards-v146` / `20260729r`.
+- Removed morphology from the independent top-right front/back header position. On either kind of card front, the compact feature strip is now centred immediately beneath the relevant Verb pill as part of the same POS unit.
+- On the back, the Verb tab or informational pill and morphology strip render as one horizontal unit. Morphology tokens use the same green colour, rounded outline, and tinted-fill language as the verb control; this covers both multi-POS and legacy/single-POS verb cards.
+- Retained the compact person+number/tense/mood codes and per-category ambiguity representation without adding back the old header spacing.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; absence of the former back-header morphology path; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Replace morphology circles with a feature strip
 
 - Commit `ae97a5ff`; front-end cache `flashcards-v145` / `20260729q`.
