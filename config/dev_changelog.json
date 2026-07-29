@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Holding the back word opens only the direction switch",
+      "details": [
+        "Replaced the full Study options picker on back-headword hold with a dedicated chooser containing only the explicitly labelled Spanish→English or English→Spanish action",
+        "The direction still changes only after selecting that action, while movement cancellation prevents swipes from opening it; cache v141→v142, assets 20260729m→20260729n"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "113c8a88",
       "summary": "Next-level continuation is reliable and multi-POS cards use tabs",
       "details": [
