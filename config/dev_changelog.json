@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "f68f95df",
       "summary": "Search waits for a temporary card to render",
       "details": [
         "Find word no longer hides its results before temporary-card rendering succeeds, which previously made a render exception look like an inert click",
@@ -13,7 +13,7 @@
     },
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "f68f95df",
       "summary": "POS can be flagged at card or sense level",
       "details": [
         "Wrong card POS records the card's current combined part-of-speech presentation from the main flag view",

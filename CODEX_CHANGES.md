@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Add POS flags and keep search visible until cards render
+
+- Commit `f68f95df`; front-end cache `flashcards-v136` / `20260729h`.
+- Added Wrong card POS to the main specific-problem grid. Each row in the sense–meaning view now has separate Flag this pairing and Wrong POS actions; sense POS reports carry the current POS, gloss, stable sense ID, context, and assignment method.
+- Hardened the still-inert Find word route again: it now keeps the result sheet visible until temporary-card rendering completes and calls the exported example/form, ID, link, layout, initialization, and rendering helpers explicitly. A genuine exception reopens/retains search with “Could not open card,” rather than hiding the sheet and looking like a dead click.
+- Both POS actions use the simplified reporter's confirmation-and-stay-open behavior. The visual layout retains a balanced two-column specific-action grid and paired per-sense actions.
+- Verification: bundled-Node syntax checks for every affected module, valid changelog JSON, unique static HTML IDs, explicit temporary-card helper assertions, eager/lazy/service-worker version lockstep, and `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Replace the audit matrix with one predictable flag sheet
 
 - Commit `0d591dea`; front-end cache `flashcards-v135` / `20260729g`.
