@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Card positions now taper around the current card",
+      "details": [
+        "The scrubber sits fully above the card and shows numbered circular markers rather than bare numbers",
+        "The current marker is largest; neighbouring markers progressively shrink and fade on both sides so the whole set is not presented at once",
+        "Study options is now a larger icon-only button on desktop and mobile; cache v131→v132, assets 20260729c→20260729d"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "99e86429",
       "summary": "The active set now has a numbered card scrubber",
       "details": [

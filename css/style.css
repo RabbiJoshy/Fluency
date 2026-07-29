@@ -2276,7 +2276,9 @@
         /* Shared by desktop and mobile active-set card scrubbers. */
         .deck-progress-segments {
             display: flex;
+            align-items: center;
             flex: 1 1 auto;
+            max-width: 330px;
             min-width: 0;
             height: 42px;
             gap: 0;
@@ -2291,42 +2293,52 @@
         }
         .deck-progress-segments::-webkit-scrollbar { display: none; }
         .deck-progress-segment {
-            flex: 0 0 50px;
-            width: 50px;
-            height: 42px;
+            flex: 0 0 44px;
+            width: 34px;
+            min-width: 34px;
+            max-width: 34px;
+            height: 34px;
             padding: 0;
-            border: 0;
-            background: transparent;
+            margin: 0 5px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--bg-card) 82%, transparent);
             color: rgba(255, 255, 255, 0.4);
             font: 700 13px/1 var(--font-data, var(--font-emphasis));
             cursor: pointer;
-            opacity: 0.7;
-            transform: scale(0.82);
+            opacity: 0.16;
+            transform: scale(0.5);
             scroll-snap-align: center;
-            transition: color 0.16s ease, opacity 0.16s ease, transform 0.16s ease;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+            transition: color 0.16s ease, opacity 0.16s ease, transform 0.16s ease,
+                        border-color 0.16s ease, background 0.16s ease;
         }
         .deck-progress-segment.is-visited:not(.is-current) {
             color: rgba(255, 255, 255, 0.68);
-            opacity: 0.9;
         }
+        .deck-progress-segment[data-distance="1"] { opacity: 0.72; transform: scale(0.88); }
+        .deck-progress-segment[data-distance="2"] { opacity: 0.48; transform: scale(0.7); }
+        .deck-progress-segment[data-distance="3"] { opacity: 0.28; transform: scale(0.58); }
         .deck-progress-segment.is-current {
-            color: var(--accent-primary);
+            color: white;
             opacity: 1;
-            transform: scale(1.45);
+            transform: scale(1.14);
+            border-color: color-mix(in srgb, var(--accent-primary) 74%, white);
+            background: color-mix(in srgb, var(--accent-primary) 24%, var(--bg-card));
+            box-shadow: 0 0 0 2px rgba(var(--accent-primary-rgb), 0.12),
+                        0 0 13px rgba(var(--accent-primary-rgb), 0.3);
             text-shadow: 0 0 12px rgba(var(--accent-primary-rgb), 0.5);
         }
         .deck-progress-track .study-menu-btn {
             flex: 0 0 auto;
-            width: auto;
-            min-width: 124px;
-            height: 40px;
-            padding: 7px 12px;
-            gap: 7px;
-            border-radius: 12px;
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
+            padding: 10px;
+            border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.68);
             background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
-            font: 700 12px/1 var(--font-emphasis);
         }
         .deck-progress-track .study-menu-btn:hover,
         .deck-progress-track .study-menu-btn:focus-visible {
@@ -2335,9 +2347,9 @@
             outline: none;
         }
         .deck-progress-track .study-menu-btn svg {
-            width: 19px;
-            height: 19px;
-            flex: 0 0 19px;
+            width: 22px;
+            height: 22px;
+            flex: 0 0 22px;
         }
 
         .freq-tooltip {
@@ -4712,12 +4724,6 @@
                 grid-template-columns: 1fr;
                 gap: 7px;
             }
-            .deck-progress-track .study-menu-btn {
-                min-width: 42px;
-                width: 42px;
-                padding: 8px;
-            }
-            .deck-progress-track .study-menu-btn span { display: none; }
             .artist-vocabulary-scope-buttons {
                 width: 100%;
             }

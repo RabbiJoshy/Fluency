@@ -3702,8 +3702,10 @@ function updateCard({ announceHeadword = false } = {}) {
             }));
         }
         Array.from(progressSegments.children).forEach((segment, i) => {
+            const distance = Math.abs(i - currentIndex);
             segment.classList.toggle('is-visited', stats.studied.has(i));
             segment.classList.toggle('is-current', i === currentIndex);
+            segment.dataset.distance = String(Math.min(distance, 4));
             segment.setAttribute('aria-current', i === currentIndex ? 'step' : 'false');
         });
         const currentSegment = progressSegments.children[currentIndex];
