@@ -2008,7 +2008,7 @@ async function goBackToSetup() {
                 document.getElementById('cognateToggleContainer').style.display = 'block';
             }
             // Re-render the automatic stable-set panel
-            renderRangeSelector();
+            await renderRangeSelector();
         } else {
             // Level no longer exists (e.g., switched from CEFR to percentage mode)
             // Reset selectedLevel and hide subsequent steps
@@ -2660,22 +2660,37 @@ function updateCard({ announceHeadword = false } = {}) {
     // their POS colour through the surrounding section, so repeating the pill
     // above every section would add labels without adding information.
     let backPosLegendHTML = '';
+    let activeBackPos = null;
+    let hasBackPosTabs = false;
     if (card.isMultiMeaning && card.meanings) {
+        const posItems = [];
         const seenPos = new Set();
-        const posPills = [];
-        for (const meaning of card.meanings) {
+        card.meanings.forEach((meaning, meaningIndex) => {
             const pos = meaning.pos === 'SENSE_CYCLE'
                 ? (meaning.cycle_pos || 'X')
                 : meaning.pos;
-            if (pos === 'MWE' || pos === 'CLITIC' || pos === 'EXAMPLE_ONLY') continue;
-            if (!pos || seenPos.has(pos)) continue;
+            if (pos === 'MWE' || pos === 'CLITIC' || pos === 'EXAMPLE_ONLY') return;
+            if (!pos || seenPos.has(pos)) return;
             seenPos.add(pos);
-            posPills.push(
-                `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
+            posItems.push({ pos, meaningIndex });
+        });
+        hasBackPosTabs = posItems.length > 1;
+        if (posItems.length > 0) {
+            const currentPos = currentMeaning?.pos === 'SENSE_CYCLE'
+                ? (currentMeaning.cycle_pos || 'X')
+                : currentMeaning?.pos;
+            const rememberedPos = posItems.some(item => item.pos === card._activePosTab)
+                ? card._activePosTab
+                : null;
+            activeBackPos = posItems.some(item => item.pos === currentPos)
+                ? currentPos
+                : (rememberedPos || posItems[0].pos);
+            card._activePosTab = activeBackPos;
+            const posPills = posItems.map(({ pos, meaningIndex }) => hasBackPosTabs
+                ? `<button type="button" class="card-pos back-pos-tab ${getPosColorClass(pos)}${pos === activeBackPos ? ' selected' : ''}" role="tab" aria-selected="${pos === activeBackPos}" onclick="selectPartOfSpeech(event, ${meaningIndex}, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
+                : `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
             );
-        }
-        if (posPills.length > 0) {
-            backPosLegendHTML = `<div class="back-pos-legend" aria-label="Parts of speech">${posPills.join('')}</div>`;
+            backPosLegendHTML = `<div class="back-pos-legend"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${posPills.join('')}</div>`;
         }
     }
 
@@ -2724,11 +2739,13 @@ function updateCard({ announceHeadword = false } = {}) {
             if (!sections.has(pos)) sections.set(pos, []);
             return sections.get(pos);
         };
-        const renderSections = sections => Array.from(sections, ([pos, rows]) => `
-            <section class="meaning-pos-section" data-pos="${pos}" style="--sense-match-rgb: ${getPosAccentRgb(pos)};">
-                <div class="meaning-pos-rows">${rows.join('')}</div>
-            </section>
-        `).join('');
+        const renderSections = (sections, filterToActivePos = false) => Array.from(sections)
+            .filter(([pos]) => !filterToActivePos || pos === activeBackPos)
+            .map(([pos, rows]) => `
+                <section class="meaning-pos-section" data-pos="${pos}" style="--sense-match-rgb: ${getPosAccentRgb(pos)};">
+                    <div class="meaning-pos-rows">${rows.join('')}</div>
+                </section>
+            `).join('');
 
         // Render-side grouping: collapse rows that share either
         // translation OR context into a single "group card" — shared
@@ -3151,7 +3168,7 @@ function updateCard({ announceHeadword = false } = {}) {
         // Emit the scroll region first, then the pinned tray underneath
         // (MWE/CLITIC rows that stay visible when the user scrolls).
         if (scrollSections.size > 0) {
-            backHTML += `<div class="meanings-scroll">${renderSections(scrollSections)}</div>`;
+            backHTML += `<div class="meanings-scroll">${renderSections(scrollSections, hasBackPosTabs)}</div>`;
         }
         if (traySections.size > 0) {
             backHTML += `<div class="meanings-tray">${renderSections(traySections)}</div>`;
@@ -3985,9 +4002,31 @@ function selectMeaning(index) {
     // Clicking a sub-row exits group-selection mode and pins the chosen meaning.
     currentGroupSelection = null;
     currentMeaningIndex = index;
+    const selectedCard = flashcards[currentIndex];
+    const selectedMeaning = selectedCard?.meanings?.[index];
+    const selectedPos = selectedMeaning?.pos === 'SENSE_CYCLE'
+        ? (selectedMeaning.cycle_pos || 'X')
+        : selectedMeaning?.pos;
+    if (selectedPos && !['MWE', 'CLITIC', 'EXAMPLE_ONLY'].includes(selectedPos)) {
+        selectedCard._activePosTab = selectedPos;
+    }
     _explicitMeaningSelectionKey = meaningSelectionKey(flashcards[currentIndex], index);
     currentExampleIndex = 0;
     currentMWEIndex = 0;
+    updateCard();
+}
+
+function selectPartOfSpeech(event, meaningIndex, pos) {
+    event?.stopPropagation();
+    stopExampleAutoplay(true);
+    const card = flashcards[currentIndex];
+    if (!card?.meanings?.[meaningIndex]) return;
+    card._activePosTab = pos;
+    currentGroupSelection = null;
+    currentMeaningIndex = meaningIndex;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    _explicitMeaningSelectionKey = meaningSelectionKey(card, meaningIndex);
     updateCard();
 }
 
@@ -4366,6 +4405,7 @@ window.stopExampleAutoplay = stopExampleAutoplay;
 window.cycleMWEForward = cycleMWEForward;
 window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
+window.selectPartOfSpeech = selectPartOfSpeech;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
@@ -4494,7 +4534,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729l';
+const ASSET_VERSION = '20260729m';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

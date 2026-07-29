@@ -1876,6 +1876,17 @@
             border-radius: 999px;
             cursor: pointer;
         }
+        .back-pos-legend .back-pos-tab {
+            opacity: 0.58;
+            border-color: transparent;
+            background: transparent;
+            transition: opacity 150ms ease, background 150ms ease, border-color 150ms ease;
+        }
+        .back-pos-legend .back-pos-tab.selected {
+            opacity: 1;
+            background: color-mix(in srgb, currentColor 14%, transparent);
+            border-color: color-mix(in srgb, currentColor 42%, transparent);
+        }
         .back-pos-dot {
             width: 6px;
             height: 6px;

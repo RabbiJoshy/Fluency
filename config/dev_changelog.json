@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Next-level continuation is reliable and multi-POS cards use tabs",
+      "details": [
+        "Serialized setup range rebuilding before next-level selection, preventing the old and new level renders from racing and leaving the completion screen stalled",
+        "Cards with multiple grammatical parts of speech now show compact POS tabs and only the selected POS sense rows; single-POS cards retain their existing badge",
+        "Expression and clitic rows remain available below the tabbed sense area, and the selected POS persists while using them; cache v140→v141, assets 20260729l→20260729m"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "996e1ffc",
       "summary": "Holding the back word now asks before reversing direction",
       "details": [
