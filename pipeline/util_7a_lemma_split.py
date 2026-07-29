@@ -81,7 +81,14 @@ def normalize_assignment_methods(raw_value):
 
 
 def merge_items(existing, incoming):
-    """Merge two lists of {sense, examples} items, deduplicating by sense ID."""
+    """Merge two lists of assignment items, deduplicating by sense ID.
+
+    Union the ``examples`` lists per sense; carry through every other field
+    (``pos``/``translation``/``lemma``/``example_ids``/``prompt_id``/``run_ts``
+    for discovery + provenance) from the first item that defines each key, so a
+    same-sense collision no longer silently strips the inline sense definition or
+    provenance stamps down to bare ``{sense, examples}``.
+    """
     merged = {}
     order = []
     for item in list(existing) + list(incoming):
@@ -91,9 +98,17 @@ def merge_items(existing, incoming):
         examples = sorted(set(item.get("examples", [])))
         if sense not in merged:
             merged[sense] = {"sense": sense, "examples": examples}
+            # Preserve all non-example fields from the first item seen.
+            for k, v in item.items():
+                if k not in ("sense", "examples"):
+                    merged[sense][k] = v
             order.append(sense)
         else:
             merged[sense]["examples"] = sorted(set(merged[sense]["examples"]) | set(examples))
+            # Backfill any field the earlier item lacked (don't overwrite).
+            for k, v in item.items():
+                if k not in ("sense", "examples") and k not in merged[sense]:
+                    merged[sense][k] = v
     return [merged[sense] for sense in order]
 
 

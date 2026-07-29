@@ -114,8 +114,8 @@ def main():
                         help="Max examples per word sent to Gemini (step 6c default 10).")
     parser.add_argument("--force", action="store_true",
                         help="Re-classify everything, ignoring existing assignments.")
-    parser.add_argument("--gemini-model", default="gemini-2.5-flash-lite",
-                        help="Gemini model (default: gemini-2.5-flash-lite)")
+    parser.add_argument("--gemini-model", default="gemini-3.5-flash-lite",
+                        help="Gemini model (default: gemini-3.5-flash-lite)")
     parser.add_argument("--word", action="append", default=[],
                         help="Only process specific surface words (repeatable). "
                              "Forwarded to the underlying classifier. Useful "

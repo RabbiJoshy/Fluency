@@ -9,6 +9,19 @@ async function loadConfig() {
         config = await configResponse.json();
         cefrLevelsConfig = await cefrResponse.json();
 
+        // Sense-assignment provenance registry (prompt_id -> model/family/notes).
+        // Resolves the compact prompt_id join keys carried on card meanings into
+        // the human-readable provenance shown in the card's info panel. Optional:
+        // failure leaves window._promptRegistry empty and the panel degrades to
+        // "provenance not recorded".
+        try {
+            const regResp = await fetch('config/prompt_registry.json');
+            const reg = await regResp.json();
+            window._promptRegistry = (reg && reg.prompts) || {};
+        } catch (e) {
+            window._promptRegistry = {};
+        }
+
         // Stash normal-mode lang configs before artist override (used by estimation + cross-mode progress)
         window._normalModeLangConfigs = {};
         for (const [lang, cfg] of Object.entries(config.languages)) {

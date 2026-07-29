@@ -12,7 +12,7 @@ Flags:
     --sense-source {wiktionary, spanishdict}   (default: spanishdict)
     --max-examples N                           (Gemini per-word cap, default 10)
     --force                                    (re-classify everything)
-    --gemini-model MODEL                       (default: gemini-2.5-flash-lite)
+    --gemini-model MODEL                       (default: gemini-3.5-flash-lite)
 
 Usage:
     .venv/bin/python3 pipeline/artist/step_6a_assign_senses.py \
@@ -54,8 +54,8 @@ def _spanishdict_args_local():
 
 
 def _spanishdict_args_gemini(gemini_model):
-    # Default (gemini_model is None) resolves to gemini-3.1-flash-lite in
-    # step_6c, which is a flash-lite model → spanishdict-flash-lite priority.
+    # Default (gemini_model is None) resolves to SD_DEFAULT_MODEL
+    # (gemini-3.5-flash-lite) in step_6c, a flash-lite model → spanishdict-flash-lite priority.
     method = ("spanishdict-flash"
               if (gemini_model and "flash-lite" not in gemini_model)
               else "spanishdict-flash-lite")
@@ -95,10 +95,9 @@ def main():
                         help="Only process a specific surface word (repeatable). "
                              "Useful with --force for surgical re-classification.")
     parser.add_argument("--gemini-model", default=None,
-                        help="Gemini model. Default (unset) lets step_6c pick: "
-                             "gemini-3.1-flash-lite for the SpanishDict "
-                             "classify-or-propose path, gemini-2.5-flash-lite "
-                             "otherwise.")
+                        help="Gemini model. Default (unset) lets step_6c pick "
+                             "gemini-3.5-flash-lite (SD_DEFAULT_MODEL) for the "
+                             "SpanishDict classify-or-propose path.")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)

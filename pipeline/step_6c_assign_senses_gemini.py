@@ -19,6 +19,7 @@ warnings.filterwarnings("ignore", message=".*urllib3.*")
 
 import argparse, concurrent.futures, gzip, json, os, re, sys, time
 from copy import deepcopy
+from datetime import datetime, timezone
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -32,7 +33,9 @@ from util_1a_artist_config import (load_artist_config,
                            load_dotenv_from_project_root)
 from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority,
                                      assign_sense_ids)
-from util_6a_assignment_format import load_assignments, dump_assignments, stamp_example_ids
+from util_6a_assignment_format import (load_assignments, dump_assignments,
+                                        stamp_example_ids, stamp_provenance)
+from util_6a_prompt_registry import CURRENT_SD_PROMPT_ID
 from util_7a_lemma_split import merge_method_maps
 from util_5c_sense_paths import sense_menu_path, sense_assignments_path
 from util_6a_pos_menu_filter import (
@@ -478,11 +481,13 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
 # call than BATCH_SIZE=50. The validated eval (scratchpad/eval30.py) used 10.
 SD_CLASSIFY_BATCH_SIZE = 10
 # Default model for the SpanishDict classify-or-propose path. On the gold set
-# gemini-3.1-flash-lite scores 6/6 detection + 4/4 clean controls AND produces
-# strong proposals at flash-lite speed/price (see the 2026-07-22 sense-matching
-# redesign in docs/design/artist_pipeline_quality_audit.md). Overridable with
-# --gemini-model.
-SD_DEFAULT_MODEL = "gemini-3.1-flash-lite"
+# SpanishDict classify-or-propose default. gemini-3.1-flash-lite scored 6/6
+# detection + 4/4 clean controls at flash-lite speed/price (2026-07-22 redesign,
+# docs/design/artist_pipeline_quality_audit.md); bumped to 3.5-flash-lite on
+# 2026-07-29 (newer flash-lite). Runs made under this default are stamped
+# prompt_id CURRENT_SD_PROMPT_ID (see util_6a_prompt_registry). Override with
+# --gemini-model (+ pass a matching --prompt-id so provenance stays accurate).
+SD_DEFAULT_MODEL = "gemini-3.5-flash-lite"
 DEFAULT_ARTIST_CONTEXT = "regional slang and figurative usage"
 
 
@@ -685,6 +690,11 @@ def main():
                              "Defaults to %s for the SpanishDict classify-or-"
                              "propose path and gemini-2.5-flash-lite otherwise."
                              % SD_DEFAULT_MODEL)
+    parser.add_argument("--prompt-id", default=CURRENT_SD_PROMPT_ID,
+                        help="Provenance id stamped onto every assignment this "
+                             "run writes (joins into config/prompt_registry.json). "
+                             "Mint a new registry entry when the prompt or model "
+                             "changes, then pass its id here. Default: %(default)s.")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--normal-slang-only", action="store_true",
                         help="Only process normal-mode words that have eswiktionary dialect senses")
@@ -765,7 +775,7 @@ def main():
     elif sd_gemini_mode:
         gemini_model = SD_DEFAULT_MODEL
     else:
-        gemini_model = "gemini-2.5-flash-lite"
+        gemini_model = "gemini-3.5-flash-lite"
     if use_gemini:
         api_key = os.environ.get("GEMINI_API_KEY", "")
         if not api_key:
@@ -1846,6 +1856,13 @@ def main():
     # Stamp example_ids onto every new assignment item before merging.
     # Idempotent — items already carrying example_ids are untouched.
     stamp_example_ids(assignments_out, examples_raw)
+
+    # Stamp provenance (prompt_id + run timestamp) onto every item this run
+    # produced, so the display resolver and card UI can trace which prompt/model
+    # made each assignment. Idempotent — items already carrying prompt_id are
+    # untouched. run_ts uses UTC ISO-8601 (sorts lexicographically for tie-breaks).
+    run_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+    stamp_provenance(assignments_out, args.prompt_id, run_ts)
 
     # Merge assignments with existing file.
     #

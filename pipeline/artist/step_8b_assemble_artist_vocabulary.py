@@ -36,6 +36,7 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import (load_assignments, resolve_best_per_example,  # noqa: E402
                                                 is_proper_noun_gloss)
+from pipeline.util_6a_prompt_registry import load_registry, capability_tier  # noqa: E402
 from pipeline.util_7a_lemma_split import (  # noqa: E402
     _is_phrase_only_self_analysis,
     plural_lemma_redirects,
@@ -404,6 +405,38 @@ def _normalize_wiktionary_senses(menu):
 # Assembly
 # ---------------------------------------------------------------------------
 
+def resolve_sense_provenance(raw_assignments, registry):
+    """Map each assigned sense_id to the provenance of its most trustworthy claim.
+
+    Reads a word's ``{method: [items]}`` assignment dict and, per sense_id,
+    picks the item with the highest capability_tier (registry lookup on
+    ``prompt_id``), breaking ties by the most recent ``run_ts``. Returns
+    ``{sense_id: {"prompt_id": str, "run_ts": str|None}}``.
+
+    This is the authoritative per-sense provenance source for the card, keyed by
+    the stable sense_id — independent of the lossy (pos, translation) match and
+    of which meaning-build path attached the examples.
+    """
+    best = {}
+    if not isinstance(raw_assignments, dict):
+        return {}
+    for _method, items in raw_assignments.items():
+        for item in items or []:
+            if not isinstance(item, dict):
+                continue
+            sid = item.get("sense")
+            prompt_id = item.get("prompt_id")
+            if not sid or not prompt_id:
+                continue
+            run_ts = item.get("run_ts") or ""
+            rank = (capability_tier(prompt_id, registry), run_ts)
+            cur = best.get(sid)
+            if cur is None or rank > cur[0]:
+                best[sid] = (rank, prompt_id, item.get("run_ts"))
+    return {sid: {"prompt_id": pid, "run_ts": rts}
+            for sid, (_rank, pid, rts) in best.items()}
+
+
 def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                          sense_source="wiktionary", skip_words_path=None,
                          emit_remainders=False, min_priority=0,
@@ -748,6 +781,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # --- Assemble entries ---
     print("\nAssembling vocabulary...")
     entries = []
+    # Provenance registry (prompt_id -> capability_tier/model/...). Loaded once;
+    # used to pick the most trustworthy claim per sense for the card's info panel.
+    prompt_registry = load_registry()
 
     for inv_entry in inventory:
         # Skip clitic forms that were merged into their base verb
@@ -996,6 +1032,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     ex_entries = assignment.get("examples", [])
                     meaning_examples = []
                     methods_in_meaning = set()
+                    # Provenance candidates for the meaning-level stamp: (run_ts,
+                    # prompt_id). The card surfaces which prompt/model produced
+                    # this sense; pick the most recent run among contributing
+                    # examples (ISO timestamps sort lexicographically).
+                    prov_candidates = []
                     for entry in ex_entries:
                         # Post-refactor: entries are {"ex_idx", "method"} dicts
                         # so each example can carry its own per-example method.
@@ -1003,9 +1044,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if isinstance(entry, dict):
                             ex_idx = entry.get("ex_idx")
                             ex_method = entry.get("method")
+                            ex_prompt_id = entry.get("prompt_id")
+                            ex_run_ts = entry.get("run_ts")
                         else:
                             ex_idx = entry
                             ex_method = None
+                            ex_prompt_id = None
+                            ex_run_ts = None
                         if ex_idx is None or ex_idx >= len(raw_examples):
                             continue
                         raw_ex = raw_examples[ex_idx]
@@ -1025,6 +1070,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_method:
                             ex_dict["assignment_method"] = ex_method
                             methods_in_meaning.add(ex_method)
+                        # Per-example provenance (which prompt/model produced
+                        # this claim) — for the card's info panel.
+                        if ex_prompt_id:
+                            ex_dict["prompt_id"] = ex_prompt_id
+                            if ex_run_ts:
+                                ex_dict["run_ts"] = ex_run_ts
+                            prov_candidates.append((ex_run_ts or "", ex_prompt_id, ex_run_ts))
                         score_entry = translation_scores.get(spanish, {})
                         if isinstance(score_entry, dict) and "score" in score_entry:
                             ex_dict["translation_quality"] = score_entry["score"]
@@ -1076,6 +1128,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         meaning["assignment_method"] = max(
                             methods_in_meaning,
                             key=lambda m: METHOD_PRIORITY.get(m, 0))
+                    # Meaning-level provenance: the most recent run among the
+                    # contributing examples. The card resolves prompt_id ->
+                    # model/notes via config/prompt_registry.json.
+                    if prov_candidates:
+                        _, best_prompt_id, best_run_ts = max(prov_candidates)
+                        meaning["prompt_id"] = best_prompt_id
+                        if best_run_ts:
+                            meaning["run_ts"] = best_run_ts
                     meanings.append(meaning)
 
                 # If the word's highest-priority method is keyword-tier, add
@@ -1284,13 +1344,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     ex_entries = assignment.get("examples", [])
                     meaning_examples = []
                     methods_in_meaning = set()
+                    prov_candidates = []
                     for entry in ex_entries:
                         if isinstance(entry, dict):
                             ex_idx = entry.get("ex_idx")
                             ex_method = entry.get("method")
+                            ex_prompt_id = entry.get("prompt_id")
+                            ex_run_ts = entry.get("run_ts")
                         else:
                             ex_idx = entry
                             ex_method = None
+                            ex_prompt_id = None
+                            ex_run_ts = None
                         if ex_idx is None or ex_idx >= len(raw_examples):
                             continue
                         raw_ex = raw_examples[ex_idx]
@@ -1306,6 +1371,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_method:
                             ex_dict["assignment_method"] = ex_method
                             methods_in_meaning.add(ex_method)
+                        if ex_prompt_id:
+                            ex_dict["prompt_id"] = ex_prompt_id
+                            if ex_run_ts:
+                                ex_dict["run_ts"] = ex_run_ts
+                            prov_candidates.append((ex_run_ts or "", ex_prompt_id, ex_run_ts))
                         _copy_example_priority(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
@@ -1328,6 +1398,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         meaning["assignment_method"] = max(
                             methods_in_meaning,
                             key=lambda m: METHOD_PRIORITY.get(m, 0))
+                    if prov_candidates:
+                        _, best_prompt_id, best_run_ts = max(prov_candidates)
+                        meaning["prompt_id"] = best_prompt_id
+                        if best_run_ts:
+                            meaning["run_ts"] = best_run_ts
                     meanings.append(meaning)
             else:
                 curated_key = "%s|%s" % (word.lower(), word_lemma)
@@ -1497,6 +1572,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     # Word had nothing BUT remainder rows — no useful card to
                     # build, skip the whole entry.
                     continue
+
+            # Authoritative per-sense provenance keyed by stable sense_id, drawn
+            # straight from the assignment layer (all word|lemma keys for this
+            # surface, covering gap-fill orphan lemmas). write_split_files reads
+            # it by master sense_id — robust to whichever path built the meaning.
+            _prefix = "%s|" % word
+            _entry_prov = {}
+            for _lkey, _lval in lemma_assignments.items():
+                if _lkey == "%s|%s" % (word, word_lemma) or _lkey.startswith(_prefix):
+                    _entry_prov.update(resolve_sense_provenance(_lval, prompt_registry))
+            if _entry_prov:
+                entry["_sense_provenance"] = _entry_prov
 
             entries.append(entry)
 
@@ -2112,11 +2199,20 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
 
         sense_freq = []
         sense_methods = []
+        sense_prompt_ids = []
+        sense_run_ts = []
         sense_examples = []
         total_ex = 0
 
         def _ctx_key(s):
             return (s.get("context") or "").strip().lower()
+
+        # Provenance is keyed by stable sense_id, NOT by the (pos, translation,
+        # context) string match used for examples below — that match is lossy
+        # (cleaned/curated glosses drift) and misses the meaning-build paths that
+        # never stamp prompt_id, dropping provenance on ~90% of assigned senses.
+        # entry["_sense_provenance"] comes straight from the assignment layer.
+        entry_prov = entry.get("_sense_provenance") or {}
 
         for sense in m.get("senses", []):
             sense_ctx = _ctx_key(sense)
@@ -2142,6 +2238,23 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             sense_examples.append(exs)
             total_ex += len(exs)
             sense_methods.append(matching.get("assignment_method") if matching else None)
+            # Provenance aligned per-sense (parallel to sense_methods): which
+            # prompt/model produced this sense, for the card's info panel.
+            # Primary source is the authoritative layer map keyed by sense_id
+            # (catches gap-fill discoveries whose id is the master id); fall back
+            # to the string-matched meaning's own stamp (catches resolve-path
+            # menu-pick meanings). Fallback-display senses (keyword-filtered or
+            # unclassified) legitimately have neither -> None.
+            _prov = entry_prov.get(sense.get("sense_id"))
+            if _prov:
+                sense_prompt_ids.append(_prov.get("prompt_id"))
+                sense_run_ts.append(_prov.get("run_ts"))
+            elif matching and matching.get("prompt_id"):
+                sense_prompt_ids.append(matching.get("prompt_id"))
+                sense_run_ts.append(matching.get("run_ts"))
+            else:
+                sense_prompt_ids.append(None)
+                sense_run_ts.append(None)
 
         for exs in sense_examples:
             sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
@@ -2162,6 +2275,10 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
         }
         if any(sense_methods):
             idx_entry["sense_methods"] = sense_methods
+        if any(sense_prompt_ids):
+            idx_entry["sense_prompt_ids"] = sense_prompt_ids
+        if any(sense_run_ts):
+            idx_entry["sense_run_ts"] = sense_run_ts
         if any(mg.get("unassigned") for mg in entry.get("meanings", [])):
             idx_entry["unassigned"] = True
         if entry.get("cognate_score") is not None:

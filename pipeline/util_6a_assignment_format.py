@@ -190,6 +190,32 @@ def stamp_example_ids(assignments_out, examples_raw):
                 ]
 
 
+def stamp_provenance(assignments_out, prompt_id, run_ts):
+    """Stamp ``prompt_id`` + ``run_ts`` onto every item that lacks a ``prompt_id``.
+
+    Records which prompt/model run produced each assignment so the display
+    resolver and the card UI can trace it. Idempotent — items already carrying a
+    ``prompt_id`` are left untouched, so re-running never relabels prior runs.
+
+    assignments_out : {word: {method: [items]}}  (legacy in-memory shape)
+    prompt_id       : the registry join key for THIS run (e.g. "sd-cop-v2")
+    run_ts          : ISO-8601 timestamp string for this run
+    """
+    if not prompt_id:
+        return
+    for _word, methods in assignments_out.items():
+        items_iter = (
+            methods.values() if isinstance(methods, dict) else [methods]
+        )
+        for item_list in items_iter:
+            for item in item_list or []:
+                if not isinstance(item, dict) or item.get("prompt_id"):
+                    continue
+                item["prompt_id"] = prompt_id
+                if run_ts:
+                    item["run_ts"] = run_ts
+
+
 def resolve_best_per_example(word_data, min_priority=0):
     """Resolve per-example winners from a word's {method: [items]} dict.
 
@@ -213,7 +239,7 @@ def resolve_best_per_example(word_data, min_priority=0):
     if not isinstance(word_data, dict) or not word_data:
         return {}
 
-    # ex_idx -> (priority, method, sense_id, ex_id_or_None)
+    # ex_idx -> (priority, method, sense_id, ex_id_or_None, prompt_id, run_ts)
     best = {}
     for method, items in word_data.items():
         prio = METHOD_PRIORITY.get(method, 0)
@@ -232,6 +258,11 @@ def resolve_best_per_example(word_data, min_priority=0):
             sid = item.get("sense")
             if not sid:
                 continue
+            # Provenance join keys (may be absent on pre-backfill data). Carried
+            # through additively — they do NOT participate in winner selection
+            # here; the winner is still highest method priority.
+            prompt_id = item.get("prompt_id")
+            run_ts = item.get("run_ts")
             examples = item.get("examples") or []
             example_ids = item.get("example_ids") or []
             # Map integer index -> stable ID (positional alignment).
@@ -243,14 +274,19 @@ def resolve_best_per_example(word_data, min_priority=0):
             for ex_idx in examples:
                 existing = best.get(ex_idx)
                 if existing is None or prio > existing[0]:
-                    best[ex_idx] = (prio, method, sid, idx_to_id.get(ex_idx))
+                    best[ex_idx] = (prio, method, sid, idx_to_id.get(ex_idx),
+                                    prompt_id, run_ts)
 
     # Regroup by sense_id with ex_idx-sorted example lists.
     out = {}
     for ex_idx in sorted(best.keys()):
-        _, method, sid, ex_id = best[ex_idx]
+        _, method, sid, ex_id, prompt_id, run_ts = best[ex_idx]
         entry = {"ex_idx": ex_idx, "method": method}
         if ex_id:
             entry["ex_id"] = ex_id
+        if prompt_id:
+            entry["prompt_id"] = prompt_id
+        if run_ts:
+            entry["run_ts"] = run_ts
         out.setdefault(sid, []).append(entry)
     return out

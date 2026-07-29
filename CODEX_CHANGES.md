@@ -32,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — [Claude, cross-boundary] Sense-provenance card panel + deck fields
+
+- **Author: Claude (engine side), touching the app surface by explicit user request** — this is a diagnostic UI whose purpose is to expose pipeline provenance, so it was built alongside the engine work rather than handed off. Recorded here so future Codex sessions know Claude edited `js/`, `css/`, `index.html`, and `dev_changelog.json`.
+- Commit `pending`; front-end cache bumped `20260728g` → `20260729a` (all `?v=` tags in `index.html` + `js/main.js`).
+- Engine: new `config/prompt_registry.json`; assignments now carry `prompt_id`/`run_ts` (backfilled 242,289 items via `pipeline/tool_6a_backfill_provenance.py`; `step_6c` stamps future runs). `step_8b` emits per-sense `sense_prompt_ids`/`sense_run_ts` in the artist index, keyed by stable sense_id. Full design + coverage caveats in `docs/design/sense_provenance.md`.
+- Front-end: `config.js` loads the registry into `window._promptRegistry`; `vocab.js` `joinWithMaster()` + the `buildFilteredVocab()` meaning rebuild + `mergeArtistVocabularies()` carry `prompt_id`/`run_ts` through (parallel to the existing `assignment_method` plumbing); `flashcards.js` adds a JST-gated `ⓘ` provenance button + panel on the card back (`buildProvenancePanelHTML`/`toggleProvenancePanel`), styled in `css/style.css` (`.provenance-panel`).
+- Deliberately did NOT change `resolve_best_per_example` winner selection (still method-priority) — the tier-based re-rank is a separate deferred task. Verified: all 3 Spanish artist decks rebuild clean and ship provenance (Bad Bunny 2001 stamped senses, Young Miko 190, Rosalía 78); no `_sense_provenance` internal field leaks into the shipped index/examples.
+- Not verified in a live browser (per repo policy Claude doesn't run previews); JS not run through Node (unavailable) — Codex/Josh should sanity-check the panel renders.
+
 ### 2026-07-28 — Remove phantom sets and make note submission explicit
 
 - Commit `e8fa8e6d`; front-end cache `flashcards-v129` / `20260728g`.

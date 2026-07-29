@@ -88,7 +88,20 @@ Step 6 classifier processes every word that isn't in `exclude.*` or `clitic_merg
 
 Per artist and for normal mode, two layer files per source (`wiktionary`, `spanishdict`):
 
-- `sense_menu/{source}.json` — sense definitions (built by `step_5c`)
+- `sense_menu/{source}.json` — sense definitions **and each surface form's lemma/headword** (built by `step_5c`)
+
+  > ⚠️ **Rebuild prerequisite (fresh clones):** `sense_menu/spanishdict.json` is
+  > **gitignored** and won't be in a fresh clone, and the SpanishDict cache that
+  > `step_5c` normally rebuilds it from is gitignored too. `step_8b` reads this
+  > file to look up each word's lemma at the grouping step
+  > (`senses.get(word)`); **if it's missing, every word self-keys** (`estaban →
+  > estaban` instead of `estaban → estar`), which regresses verb lemmatization
+  > across the whole deck and shifts card IDs — silently breaking saved progress
+  > on rebuild. Regenerate it from the tracked master (no re-scrape needed) with
+  > `pipeline/tool_5c_reconstruct_sense_menu_from_master.py --artist-dir <dir>`
+  > **before** any `step_8b` rebuild. Verified to restore lemmatization and
+  > reproduce ~98–99.6% of live card IDs.
+
 - `sense_assignments/{source}.json` — method-keyed assignments in `{word: {method: [{sense, examples}]}}` form, written by `step_6b` and `step_6c`
 - `sense_assignments_lemma/{source}.json` — same assignments re-keyed by `word|lemma` (written by `step_7a`)
 - `unassigned_routing/{source}.json` — orphan examples routed to a lemma by POS (written by `step_7a`). Used for `SENSE_CYCLE` remainder buckets when `--remainders` is on.

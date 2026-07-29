@@ -3556,6 +3556,18 @@ function updateCard({ announceHeadword = false } = {}) {
         }
     }
 
+    // Sense-assignment provenance: which prompt/model/run produced each sense.
+    // JST-gated diagnostic (mirrors the report tool) — surfaces the prompt_id +
+    // timestamp so a stale/bad translation can be traced to its exact run.
+    if (currentUser && currentUser.initials === 'JST'
+        && (card.meanings || []).some(m => m.prompt_id)) {
+        backHTML += `<button class="ref-icon-btn ref-prov-btn" title="Sense provenance (prompt · model · run)" aria-label="Sense provenance" onclick="event.stopPropagation(); toggleProvenancePanel();">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="16" cy="16" r="11"></circle><path d="M16 14.5v7"></path><circle cx="16" cy="10.5" r="0.6" fill="currentColor" stroke="none"></circle>
+            </svg>
+        </button>`;
+    }
+
     // One report route everywhere: this opens the modern audit sheet directly.
     // JST-gated because the FlaggedWords backend is currently an owner tool.
     if (currentUser && currentUser.initials === 'JST') {
@@ -3581,6 +3593,11 @@ function updateCard({ announceHeadword = false } = {}) {
 
     if (hasSynonyms) {
         backHTML += buildSynonymsPanelHTML(card.synonyms || [], card.antonyms || [], card.lemma || card.targetWord);
+    }
+
+    if (currentUser && currentUser.initials === 'JST'
+        && (card.meanings || []).some(m => m.prompt_id)) {
+        backHTML += buildProvenancePanelHTML(card);
     }
 
     document.getElementById('backContent').innerHTML = backHTML;
@@ -4156,6 +4173,55 @@ function jumpToSynonym(word) {
     const url = `https://www.spanishdict.com/translate/${encodeURIComponent((word || '').toLowerCase())}`;
     window.open(url, '_blank', 'noopener');
 }
+
+// Sense-assignment provenance panel (JST diagnostic). Lists each meaning with
+// the prompt/model/run that produced its assignment, resolved against
+// window._promptRegistry (loaded in config.js). "Legacy / unknown" and blank
+// provenance are shown honestly rather than hidden.
+function buildProvenancePanelHTML(card) {
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => (
+        {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+    const registry = (window._promptRegistry) || {};
+
+    function fmtTs(ts) {
+        if (!ts) return '';
+        const d = new Date(ts);
+        if (isNaN(d.getTime())) return esc(ts);
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    const rows = (card.meanings || [])
+        .filter(m => m.prompt_id)
+        .map(m => {
+            const reg = registry[m.prompt_id] || {};
+            const model = reg.model || 'unknown model';
+            const family = reg.family || '';
+            const tier = (reg.capability_tier != null) ? `tier ${reg.capability_tier}` : '';
+            const ts = fmtTs(m.run_ts);
+            const meta = [family, tier, ts].filter(Boolean).join(' · ');
+            const notes = reg.notes ? `<div class="prov-notes">${esc(reg.notes)}</div>` : '';
+            return `<div class="prov-row">
+                <div class="prov-gloss">${esc(m.meaning || m.translation || '')}
+                    <span class="prov-pos">${esc(m.pos || '')}</span></div>
+                <div class="prov-model">${esc(model)}</div>
+                <div class="prov-meta"><code>${esc(m.prompt_id)}</code> · ${esc(meta)}</div>
+                ${notes}
+            </div>`;
+        }).join('');
+
+    return `<div id="provenancePanel" class="provenance-panel" style="display:none;">
+        <button class="prov-close" title="Close" aria-label="Close" onclick="event.stopPropagation(); toggleProvenancePanel();">&times;</button>
+        <div class="prov-title">Sense provenance</div>
+        ${rows || '<div class="prov-empty">No stamped provenance on this card.</div>'}
+    </div>`;
+}
+
+function toggleProvenancePanel() {
+    const panel = document.getElementById('provenancePanel');
+    if (!panel) return;
+    panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
+}
+window.toggleProvenancePanel = toggleProvenancePanel;
 
 function buildSynonymsPanelHTML(synonyms, antonyms, headword) {
     const headwordLower = (headword || '').toLowerCase();

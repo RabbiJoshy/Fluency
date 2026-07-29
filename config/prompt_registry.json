@@ -1,0 +1,37 @@
+{
+  "_meta": {
+    "description": "Provenance registry for sense-assignment runs. Each prompt_id names a specific (prompt-architecture, model) combination that produced sense assignments. Assignment items carry a `prompt_id` join key + `run_ts`; this file resolves the id to a human-readable model/family/notes. Append-only: mint a NEW id whenever the prompt architecture or model changes, never edit an existing entry's meaning. Higher capability_tier = more trustworthy; leave gaps (10, 20, ...) so intermediate tiers can be inserted. See docs/design/sense_provenance.md.",
+    "updated": "2026-07-29",
+    "schema_version": 1
+  },
+  "prompts": {
+    "sd-cop-v1": {
+      "family": "spanishdict-menu-pick",
+      "capability_tier": 10,
+      "model": "gemini-2.5-flash-lite",
+      "date": "2026-05",
+      "notes": "Menu-pick only — Gemini picks a sense from the SpanishDict menu; no off-menu proposal path."
+    },
+    "sd-cop-v2": {
+      "family": "classify-or-propose",
+      "capability_tier": 20,
+      "model": "gemini-3.1-flash-lite",
+      "date": "2026-07",
+      "notes": "Classify-or-propose — Gemini may return sense=null and propose an off-menu meaning (pos/type/construction). The gap-fill / off-menu signature in the data."
+    },
+    "sd-cop-v3": {
+      "family": "classify-or-propose",
+      "capability_tier": 30,
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-07",
+      "notes": "Same classify-or-propose prompt as sd-cop-v2 on the newer gemini-3.5-flash-lite. Higher tier: supersedes sd-cop-v2 answers once the tier-based resolver is wired. Current default (SD_DEFAULT_MODEL); step_6c stamps new runs with this id."
+    },
+    "legacy-unknown": {
+      "family": "legacy",
+      "capability_tier": 0,
+      "model": "unknown",
+      "date": "",
+      "notes": "Pre-provenance assignment. Exact model/prompt is not recoverable from the stored format (bare menu-picks look identical across 2.5 and 3.1). Any stamped run supersedes this tier."
+    }
+  }
+}

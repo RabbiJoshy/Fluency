@@ -3,10 +3,55 @@ title: Sense-assignment provenance (prompt registry + resolution order)
 status: research
 language: cross-lang
 created: 2026-07-27
-updated: 2026-07-27
+updated: 2026-07-29
 ---
 
 # Sense-assignment provenance
+
+## Implemented — structure-first (2026-07-29)
+
+The provenance *structure* is now in place end-to-end; the tier-based
+**resolution re-rank (§3) is deliberately NOT wired yet** (the resolver still
+picks the highest method priority — see "remaining"). What landed:
+
+- **`config/prompt_registry.json`** — the registry (`sd-cop-v1`, `sd-cop-v2`,
+  `legacy-unknown`) with `capability_tier`/`model`/`family`/`notes`.
+- **Per-assignment stamp** — items now carry `prompt_id` + `run_ts`.
+  - *Go-forward:* `step_6c_assign_senses_gemini.py` stamps every item it writes
+    with `--prompt-id` (default `sd-cop-v2`) + a UTC `run_ts`
+    (`util_6a_assignment_format.stamp_provenance`).
+  - *Backfill:* `pipeline/tool_6a_backfill_provenance.py` stamped 242,289
+    historical items across 21 files. **Correction to the original plan:** the
+    persisted format does *not* keep `type`/`construction`, so the only provable
+    3.1-run signal is the **`gap-fill` method key** → `sd-cop-v2`; everything
+    else → `legacy-unknown`. `run_ts` best-effort from each file's
+    `.meta.json` `generated_at` (epoch → ISO).
+- **Threading to the card** — `resolve_best_per_example` carries `prompt_id`/
+  `run_ts` (additively; winner selection unchanged); `step_8b` emits per-sense
+  `sense_prompt_ids` / `sense_run_ts` in the index (keyed off an authoritative
+  `sense_id → provenance` map, `resolve_sense_provenance`, since assignment sids
+  are menu-local and remap to master sense_ids). `merge_items` now preserves
+  extra fields (was silently dropping `pos`/`translation`/`example_ids` on
+  sense-id collisions — latent bug, now fixed).
+- **Card info panel** — JST-gated `ⓘ` button on the card back
+  (`buildProvenancePanelHTML` / `toggleProvenancePanel`) resolves each sense's
+  `prompt_id` against `window._promptRegistry` (loaded in `config.js`) and shows
+  model · family · tier · run date · notes.
+
+**Coverage is honest, not total:** only senses a *tracked classifier*
+(flash-lite / gap-fill that survived `min_priority` and went through the
+resolve path) carry provenance. Senses shown via fallback display
+(keyword-filtered by `min_priority=50`, or unclassified menu senses) legitimately
+show none — the index's per-sense `sense_methods` was already all-`None`, so this
+matches the pre-existing method-tracking coverage.
+
+**Remaining (the deferred "full fix"):** wire §3 resolution order into
+`resolve_best_per_example` so `capability_tier` (not raw method priority) decides
+the winner — this is what actually re-ranks a newer run's answers above stale
+ones, and it changes deck output (needs a rebuild). Broad per-sense provenance
+coverage for menu-picks rides on that same rework.
+
+
 
 ## Problem
 

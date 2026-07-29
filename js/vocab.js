@@ -314,6 +314,8 @@ function joinWithMaster(indexData, master) {
         // standard Speech evidence packaged in the examples split. This is
         // what makes Artist Extra useful without another Gemini pass.
         const methods = idx.sense_methods || [];
+        const promptIds = idx.sense_prompt_ids || [];
+        const runTimes = idx.sense_run_ts || [];
         const freqs = idx.sense_frequencies || [];
         const meanings = [];
         (m.senses || []).forEach((sense, i) => {
@@ -324,6 +326,12 @@ function joinWithMaster(indexData, master) {
                 frequency: String(freq),
                 examples: []  // Attached later from examples file
             };
+            // Provenance (which prompt/model produced this sense) for the
+            // card's info panel — resolved against window._promptRegistry.
+            if (freq > 0 && promptIds[i]) {
+                meaning.prompt_id = promptIds[i];
+                if (runTimes[i]) meaning.run_ts = runTimes[i];
+            }
             if (sense.id || sense.sense_id) meaning.sense_id = sense.id || sense.sense_id;
             if (sense.sense_id_aliases?.length) meaning.sense_id_aliases = sense.sense_id_aliases;
             if (freq <= 0) {
@@ -1495,6 +1503,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 };
                 if (m.unassigned) meaning.unassigned = true;
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
+                if (m.prompt_id) meaning.prompt_id = m.prompt_id;
+                if (m.run_ts) meaning.run_ts = m.run_ts;
                 if (m.source) meaning.source = m.source;
                 if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
                 if (m.sense_id_aliases?.length) meaning.senseIdAliases = m.sense_id_aliases;
@@ -2169,6 +2179,12 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                                 if (!newM.unassigned) delete existingM.unassigned;
                                 if (!existingM.assignment_method && newM.assignment_method) {
                                     existingM.assignment_method = newM.assignment_method;
+                                }
+                                // Carry provenance from whichever artist first
+                                // classified this shared master sense.
+                                if (!existingM.prompt_id && newM.prompt_id) {
+                                    existingM.prompt_id = newM.prompt_id;
+                                    if (newM.run_ts) existingM.run_ts = newM.run_ts;
                                 }
                             } else {
                                 const added = structuredClone(newM);
