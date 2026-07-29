@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Use full morphology names in POS-matched pills
+
+- Commit `f657d585`; front-end cache `flashcards-v148` / `20260729t`.
+- Replaced compact grammar codes with full English labels: for example `1st/3rd singular`, `present`, and `subjunctive` instead of `1/3SG`, `PRES`, and `SUBJ`. Ambiguity remains local to the category that differs.
+- Matched morphology tokens more closely to the POS controls: reading font, 11px size, 600 weight, 4×8px padding, fully rounded ends, 14% current-colour tint, and 38% current-colour border.
+- Preserved the front's centred-below-Verb placement and the back's horizontal Verb attachment.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; abbreviation-removal assertions; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Reserve lemma space and clarify multi-POS switching
 
 - Commit `bad45d28`; front-end cache `flashcards-v147` / `20260729s`.

@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "f657d585",
       "summary": "Morphology now uses full names and matches the POS pill",
       "details": [
         "Replaced abbreviated codes such as 1/3SG, PRES, and SUBJ with readable labels such as 1st/3rd singular, present, and subjunctive while preserving category-specific ambiguity",
