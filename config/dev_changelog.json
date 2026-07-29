@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "996e1ffc",
       "summary": "Holding the back word now asks before reversing direction",
       "details": [
         "A 600ms hold on the back headword now opens Study options instead of immediately changing the card language direction",

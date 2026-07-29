@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-29 — Require an explicit direction choice after holding
+
+- Commit `996e1ffc`; front-end cache `flashcards-v140` / `20260729l`.
+- Corrected the back-headword long press so it opens the existing Study options picker rather than reversing immediately. The user must then select the dynamically labelled target→English or English→target action.
+- Retained the 600ms threshold, movement cancellation, haptic acknowledgement where supported, and synthetic-click suppression.
+- Verification: bundled-Node syntax checks for `flashcards.js`, `main.js`, and `service-worker.js`; valid changelog JSON; asset-version lockstep; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Lighten morphology and add hold-to-reverse
 
 - Commit `afbd255d`; front-end cache `flashcards-v139` / `20260729k`.
