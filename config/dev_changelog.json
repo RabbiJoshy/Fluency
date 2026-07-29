@@ -43,7 +43,7 @@
     },
     {
       "date": "2026-07-29",
-      "commit": "pending",
+      "commit": "50aa97c5",
       "summary": "Audit flags now record every field in its own sheet column",
       "details": [
         "FlaggedWords moves to schema v2: 24 real columns (Target, Category, Lemma, CardId, SenseId, SenseGloss, Example, Song, ExampleAssignment, TranslationSource, Note) instead of one free-text blob, so audits can be sorted and filtered",
