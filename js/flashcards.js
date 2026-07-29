@@ -1084,8 +1084,9 @@ function initializeApp() {
     });
 
     // The back header remains an invisible flip target. Holding the headword
-    // itself reverses the study direction; movement cancels the hold so
-    // horizontal card swipes never switch language accidentally.
+    // itself reveals Study options, where direction reversal remains an
+    // explicit second choice. Movement cancels the hold so horizontal card
+    // swipes never open the menu accidentally.
     const flashcard = document.getElementById('flashcard');
     let backWordHoldTimer = null;
     let backWordHoldStart = null;
@@ -1103,7 +1104,7 @@ function initializeApp() {
             backWordHoldStart = null;
             suppressCardFlipUntil = Date.now() + 800;
             navigator.vibrate?.(20);
-            flipDirection();
+            showStudyMenu();
         }, 600);
     });
     flashcard.addEventListener('pointermove', event => {
@@ -4493,7 +4494,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729k';
+const ASSET_VERSION = '20260729l';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

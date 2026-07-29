@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Holding the back word now asks before reversing direction",
+      "details": [
+        "A 600ms hold on the back headword now opens Study options instead of immediately changing the card language direction",
+        "Direction changes only after selecting the explicitly labelled language-order option; movement still cancels the hold so swipes remain safe; cache v139→v140, assets 20260729k→20260729l"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "afbd255d",
       "summary": "Morphology circles are lighter and the back word supports hold-to-reverse",
       "details": [
