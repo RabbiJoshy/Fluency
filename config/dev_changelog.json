@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-29",
+      "commit": "pending",
+      "summary": "Morphology circles are lighter and the back word supports hold-to-reverse",
+      "details": [
+        "Removed the enclosing morphology badge box and tightened the four standalone circles into a smaller fixed 2×2 arrangement",
+        "The back-word flip target no longer reveals a border, background, or pressed outline on hover",
+        "Holding the back word for 600ms reverses the card language direction; moving into a swipe cancels the hold; cache v138→v139, assets 20260729j→20260729k"
+      ]
+    },
+    {
+      "date": "2026-07-29",
       "commit": "f972c954",
       "summary": "Morphology uses a fixed header badge and long prompts stay on one line",
       "details": [

@@ -2194,21 +2194,16 @@
         }
         .morph-grid {
             display: grid;
-            grid-template-columns: repeat(2, 36px);
-            grid-template-rows: repeat(2, 36px);
-            gap: 4px;
-            padding: 5px;
-            border: 1px solid rgba(0, 212, 170, 0.24);
-            border-radius: 15px;
-            background: color-mix(in srgb, var(--bg-card) 88%, transparent);
-            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2);
+            grid-template-columns: repeat(2, 32px);
+            grid-template-rows: repeat(2, 32px);
+            gap: 3px;
         }
         .morph-grid > span {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             padding: 3px;
             box-sizing: border-box;
             border: 1px solid rgba(0, 212, 170, 0.3);
@@ -2245,8 +2240,8 @@
             max-width: none;
         }
         .back-header.has-morphology .flip-back-area {
-            padding-left: 96px;
-            padding-right: 96px;
+            padding-left: 78px;
+            padding-right: 78px;
         }
 
         .card-pos {
@@ -7144,16 +7139,17 @@
             border: 2px solid rgba(255, 255, 255, 0);
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
 
         .flip-back-area:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.02);
+            border-color: transparent;
+            background: transparent;
         }
 
         .flip-back-area:active {
-            transform: scale(0.98);
+            transform: none;
         }
 
         #flipBtn {

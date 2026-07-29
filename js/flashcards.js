@@ -1083,8 +1083,48 @@ function initializeApp() {
         flipCard();
     });
 
+    // The back header remains an invisible flip target. Holding the headword
+    // itself reverses the study direction; movement cancels the hold so
+    // horizontal card swipes never switch language accidentally.
+    const flashcard = document.getElementById('flashcard');
+    let backWordHoldTimer = null;
+    let backWordHoldStart = null;
+    let suppressCardFlipUntil = 0;
+    const cancelBackWordHold = () => {
+        if (backWordHoldTimer) clearTimeout(backWordHoldTimer);
+        backWordHoldTimer = null;
+        backWordHoldStart = null;
+    };
+    flashcard.addEventListener('pointerdown', event => {
+        if (!event.target.closest('.back-headword') || (event.button !== undefined && event.button !== 0)) return;
+        backWordHoldStart = { x: event.clientX, y: event.clientY };
+        backWordHoldTimer = setTimeout(() => {
+            backWordHoldTimer = null;
+            backWordHoldStart = null;
+            suppressCardFlipUntil = Date.now() + 800;
+            navigator.vibrate?.(20);
+            flipDirection();
+        }, 600);
+    });
+    flashcard.addEventListener('pointermove', event => {
+        if (!backWordHoldStart) return;
+        if (Math.hypot(event.clientX - backWordHoldStart.x, event.clientY - backWordHoldStart.y) > 10) {
+            cancelBackWordHold();
+        }
+    });
+    flashcard.addEventListener('pointerup', cancelBackWordHold);
+    flashcard.addEventListener('pointercancel', cancelBackWordHold);
+    flashcard.addEventListener('contextmenu', event => {
+        if (event.target.closest('.back-headword')) event.preventDefault();
+    });
+
     // Flip on back side
-    document.getElementById('flashcard').addEventListener('click', function(e) {
+    flashcard.addEventListener('click', function(e) {
+        if (Date.now() < suppressCardFlipUntil) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+        }
         // Don't flip if clicking on buttons, links, or elements with onclick handlers
         if (e.target.closest('.nav-btn-inline') ||
             e.target.closest('.link-btn') ||
@@ -2646,7 +2686,7 @@ function updateCard({ announceHeadword = false } = {}) {
     let backHTML = `
         <div class="back-header${backMorphologyHTML ? ' has-morphology' : ''}" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 ${backCitationHTML}
                 ${backMorphologyHTML}
                 ${backDerivationHTML}
@@ -4453,7 +4493,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260729j';
+const ASSET_VERSION = '20260729k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
