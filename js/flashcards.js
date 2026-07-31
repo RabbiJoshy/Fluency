@@ -2652,11 +2652,13 @@ function updateCard({ announceHeadword = false } = {}) {
         // Same measured shrink as the main word — rare, but e.g. the lemma
         // of a long derived form can exceed the card width at 32px.
         shrinkToFit(frontLemmaEl, 18);
+        frontWordEl.classList.add('is-surface-form');
     } else {
         frontLemmaEl.textContent = '';
         frontLemmaEl.dataset.formNote = '';
         frontLemmaEl.classList.remove('has-form-note');
         frontLemmaEl.style.display = 'none';
+        frontWordEl.classList.remove('is-surface-form');
     }
 
     // Legacy node retained for cached HTML. Morphology now belongs directly
@@ -2737,6 +2739,7 @@ function updateCard({ announceHeadword = false } = {}) {
         backDerivationHTML = `<div class="back-derivation-line"><span>${relationLabel}</span><strong>${escapeCardText(derivation.base_lemma)}</strong></div>`;
     }
     const backWordLength = backWordText.replace(/<[^>]+>/g, '').length;
+    const hasDistinctBackLemma = Boolean(backCitationHTML || wordDisplay.includes('class="back-lemma"'));
 
     // Build homograph chip HTML if siblings exist
     let homographChipHTML = '';
@@ -2815,7 +2818,7 @@ function updateCard({ announceHeadword = false } = {}) {
     let backHTML = `
         <div class="back-header" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                <div class="back-headword${hasDistinctBackLemma ? ' is-surface-form' : ''}" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
                 <div class="back-citation-slot${backCitationHTML ? '' : ' is-empty'}"${backCitationHTML ? '' : ' aria-hidden="true"'}>${backCitationHTML || '&nbsp;'}</div>
                 ${backDerivationHTML}
@@ -4660,7 +4663,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260731j';
+const ASSET_VERSION = '20260731k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
