@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "1364b0ac",
+      "summary": "Cards now show how a word is used — slang, vulgar, regional",
+      "details": [
+        "Sense rows carry a small register tag where the pipeline has one: 1602 meanings across 1310 Bad Bunny cards, mostly slang (946), figurative (372), regional (127), loanword (104) and vulgar (52)",
+        "These tags were already being produced for every deck build and then discarded twice over — once at pipeline assembly and again when the front end rebuilt meanings — so nothing new had to be generated to surface them",
+        "Vulgar gets a warning tint; other and proper_noun stay hidden since neither tells a learner anything the card does not already show; cache v160→v161, assets 20260731f→20260731g"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "90c70874",
       "summary": "Reconnect sync now tolerates iPhone network warm-up",
       "details": [

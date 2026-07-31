@@ -464,6 +464,25 @@ async function loadConjugatedEnglishData() {
     _conjugatedEnglishLoading = false;
 }
 
+// Register/dialect tag stamped by the classify-or-propose prompt. Only the
+// tags that tell a learner something about HOW a word is used are surfaced:
+// `other` says nothing, and `proper_noun` is already expressed by the PROPN
+// part of speech and the Extra routing, so both stay hidden.
+const REGISTER_TAG_LABELS = {
+    slang: 'slang',
+    vulgar: 'vulgar',
+    regional: 'regional',
+    figurative: 'figurative',
+    loanword: 'loanword',
+    idiomatic: 'idiomatic'
+};
+
+function registerTagHTML(meaning) {
+    const label = REGISTER_TAG_LABELS[meaning?.type];
+    if (!label) return '';
+    return ` <span class="meaning-register" data-register="${meaning.type}">${label}</span>`;
+}
+
 // --- MWE translation split (JS mirror of pipeline/util_5c_spanishdict.split_mwe_translation) ---
 // Applied at render time so existing decks (whose mwe_memberships predate the
 // pipeline-side split) still get the two-line layout. New builds set m.context
@@ -3206,6 +3225,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         const safeFull = String(m.context).replace(/"/g, '&quot;');
                         contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                     }
+                    contextInline += registerTagHTML(m);
                     // Pct pinned to the row's right edge (not body's), so it
                     // hugs the row outline rather than sitting inside body
                     // padding. pointer-events:none lets the row's selectMeaning

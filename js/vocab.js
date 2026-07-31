@@ -340,6 +340,12 @@ function joinWithMaster(indexData, master) {
             }
             if (sense.source) meaning.source = sense.source;
             if (sense.context) meaning.context = sense.context;
+            // Register/dialect tag stamped by the classify-or-propose prompt
+            // (slang | regional | figurative | vulgar | loanword | proper_noun).
+            // Copy-through matters: meanings are rebuilt from scratch here and
+            // again in buildFilteredVocab(), so anything not carried explicitly
+            // is silently dropped before it reaches the card.
+            if (sense.type) meaning.type = sense.type;
             const method = freq > 0 ? methods[i] : null;
             if (method) {
                 meaning.assignment_method = method;
@@ -1509,6 +1515,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
                 if (m.sense_id_aliases?.length) meaning.senseIdAliases = m.sense_id_aliases;
                 if (m.context) meaning.context = m.context;
+                if (m.type) meaning.type = m.type;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;
                 if (m.shared_fallback) meaning.sharedFallback = true;
@@ -2180,6 +2187,9 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                                 if (!existingM.assignment_method && newM.assignment_method) {
                                     existingM.assignment_method = newM.assignment_method;
                                 }
+                                // Register tags come from the shared master, so
+                                // whichever artist carries one is authoritative.
+                                if (!existingM.type && newM.type) existingM.type = newM.type;
                                 // Carry provenance from whichever artist first
                                 // classified this shared master sense.
                                 if (!existingM.prompt_id && newM.prompt_id) {

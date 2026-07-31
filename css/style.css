@@ -2082,6 +2082,34 @@
             opacity: 1;
         }
 
+        /* Register/dialect tag on a sense row (slang, vulgar, regional…).
+           Deliberately quieter than the translation and not POS-coloured: it
+           qualifies how a word is used, it does not compete with the meaning
+           itself or with the POS legend above the rows. */
+        .meaning-register {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: lowercase;
+            vertical-align: middle;
+            padding: 1px 6px;
+            margin-left: 5px;
+            border-radius: 999px;
+            opacity: 0.75;
+            color: var(--text-primary);
+            background: rgba(127, 127, 127, 0.16);
+            border: 1px solid rgba(127, 127, 127, 0.22);
+            white-space: nowrap;
+        }
+
+        /* Vulgar is the one tag a learner benefits from noticing before they
+           use the word in the wrong room; give it a warning tint. */
+        .meaning-register[data-register="vulgar"] {
+            background: rgba(220, 70, 70, 0.16);
+            border-color: rgba(220, 70, 70, 0.3);
+        }
+
         .card-word {
             font-family: var(--font-emphasis);
             font-size: 64px;
