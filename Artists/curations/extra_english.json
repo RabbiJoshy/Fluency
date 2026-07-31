@@ -20,6 +20,7 @@
     "don't",
     "drinkin'",
     "drownin'",
+    "et",
     "fallin'",
     "feelin'",
     "fuckin'",
@@ -31,6 +32,7 @@
     "hasn't",
     "haven't",
     "he's",
+    "hits",
     "hustlin'",
     "i'd",
     "i'll",
@@ -180,7 +182,9 @@
     "pullin'": "migrated_from_elision_mapping",
     "gettin'": "migrated_from_elision_mapping",
     "typin'": "migrated_from_elision_mapping",
-    "makin'": "migrated_from_elision_mapping"
+    "makin'": "migrated_from_elision_mapping",
+    "et": "audit-flag",
+    "hits": "audit-flag"
   },
   "_intent": "EXCLUDE AS ENGLISH — words flagged as English (routed to exclude.english in step 4a). Covers English contractions ('don\\'t', 'i\\'m'), -in' dropped-g slang ('fuckin\\'', 'goin\\''), and non-Spanish rap terms (glock, kush, og, molly). Supplements the en_50k wordlist for words the wordlist misses."
 }
