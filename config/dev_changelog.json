@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "9553fc33",
+      "summary": "Kept card headwords white",
+      "details": [
+        "Front and back headwords now remain white whether or not the displayed word is already the lemma",
+        "POS colour is reserved for a separately displayed citation lemma and still updates with the selected POS"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "e0d74260",
       "summary": "Separated word and lemma colour hierarchy",
       "details": [

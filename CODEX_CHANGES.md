@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Keep headwords white and reserve POS colour for separate lemmas
+
+- Commit `9553fc33`; front-end cache `flashcards-v166` / `20260731l`.
+- Front and back headwords remain white even when the displayed word is itself the lemma.
+- Only a separately rendered citation lemma uses the contrast-adjusted active POS colour; it continues to update when the selected POS changes.
+- Verification: bundled-Node syntax checks, changelog JSON parsing, cache-version and removed-state-class assertions, and `git diff --check`.
+
 ### 2026-07-31 — Separate surface-word and lemma colour hierarchy
 
 - Commit `e0d74260`; front-end cache `flashcards-v165` / `20260731k`.
