@@ -13,8 +13,10 @@ import {
 } from './sync-queue.js';
 
 async function loadSecrets() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
     try {
-        const response = await fetch('backend/secrets.json');
+        const response = await fetch('backend/secrets.json', { signal: controller.signal });
         if (response.ok) {
             const secrets = await response.json();
             GOOGLE_SCRIPT_URL = secrets.googleScriptUrl || '';
@@ -23,6 +25,8 @@ async function loadSecrets() {
         }
     } catch (error) {
         console.warn('Could not load backend/secrets.json - Google Sheets sync will be disabled');
+    } finally {
+        clearTimeout(timeout);
     }
 }
 
@@ -538,6 +542,11 @@ async function loadUserProgressFromSheet() {
             console.warn('Failed to parse progress cache:', e);
         }
     }
+
+    // Authentication and local studying never wait for the optional remote
+    // endpoint. loadSecrets() may still be resolving, or the app may have
+    // launched entirely offline; the durable queue will reconcile later.
+    if (!GOOGLE_SCRIPT_URL) return false;
 
     // Confirm v4 before addressing Progress directly. Cached/older clients
     // continue through the legacy names, which v4 maps into Progress; this

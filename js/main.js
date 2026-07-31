@@ -1,21 +1,21 @@
-import './state.js?v=20260731a';
-import './offline-db.js?v=20260731a';
-import './sync-queue.js?v=20260731a';
-import { initOfflineContent } from './offline-content.js?v=20260731a';
-import './speech.js?v=20260731a';
-import './artist-ui.js?v=20260731a';
-import './auth.js?v=20260731a';
-import './spotify.js?v=20260731a';
-import './estimation.js?v=20260731a';
-import './config.js?v=20260731a';
-import './progress.js?v=20260731a';
-import './knowledge.js?v=20260731a';
-import './ui.js?v=20260731a';
-import './vocab.js?v=20260731a';
-import './flashcards.js?v=20260731a';
+import './state.js?v=20260731b';
+import './offline-db.js?v=20260731b';
+import './sync-queue.js?v=20260731b';
+import { initOfflineContent } from './offline-content.js?v=20260731b';
+import './speech.js?v=20260731b';
+import './artist-ui.js?v=20260731b';
+import './auth.js?v=20260731b';
+import './spotify.js?v=20260731b';
+import './estimation.js?v=20260731b';
+import './config.js?v=20260731b';
+import './progress.js?v=20260731b';
+import './knowledge.js?v=20260731b';
+import './ui.js?v=20260731b';
+import './vocab.js?v=20260731b';
+import './flashcards.js?v=20260731b';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260731a';
+import './flashcards-modals.js?v=20260731b';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -220,6 +220,13 @@ loadConfig().then(async () => {
     setupTooltipHandlers();
     setupAuthEventListeners();
 
+    // Authentication must be interactive before any optional network or
+    // storage initialization. In particular, iOS may suspend a fetch or an
+    // IndexedDB upgrade indefinitely after a Home Screen lifecycle change.
+    checkAuthentication();
+    perfMark('after checkAuthentication');
+    if (!currentUser) hideAppLoading();
+
     // Wire shared top bar buttons (How to start, Estimate Level, gear)
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());
     document.getElementById('topBarGearBtn').addEventListener('click', () => showSettingsModal());
@@ -260,21 +267,21 @@ loadConfig().then(async () => {
     // Hide floating gear — replaced by gear in the top bar
     document.getElementById('gearBtn').style.display = 'none';
     perfMark('after sync setup phase');
-    await migrateLocalStorageIds();
-    await migrateLocalStorageIdsV2();
+    await Promise.allSettled([migrateLocalStorageIds(), migrateLocalStorageIdsV2()]);
     perfMark('after migrations');
     await loadSecrets();
     perfMark('after loadSecrets');
     // Retry Spotify player init now that client ID is available (handles race with SDK load)
     if (window._spotifyTryInit) window._spotifyTryInit();
-    checkAuthentication();
-    perfMark('after checkAuthentication');
-
     // Offline sync: wire connectivity listeners, render the status indicator,
     // and drain any writes queued while previously offline. Runs after
     // loadSecrets() so GOOGLE_SCRIPT_URL is populated for the initial flush.
-    if (window.initSync) await window.initSync();
-    await initOfflineContent();
+    // These enhance the already-interactive app. Neither is allowed to block
+    // authentication or source rendering when Safari storage is unavailable.
+    if (window.initSync) window.initSync().catch(error =>
+        console.warn('Offline sync initialization deferred:', error));
+    initOfflineContent().catch(error =>
+        console.warn('Offline content initialization deferred:', error));
 
     // Set user name in top bar immediately (don't wait for progress load)
     const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';

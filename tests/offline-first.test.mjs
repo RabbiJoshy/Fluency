@@ -42,6 +42,19 @@ test('queue records durable retry and idempotency metadata', async () => {
     assert.match(queue, /MAX_ACTIVE_ATTEMPTS/);
 });
 
+test('optional offline services cannot block authentication indefinitely', async () => {
+    const [main, auth, database, content] = await Promise.all([
+        text('js/main.js'), text('js/auth.js'), text('js/offline-db.js'), text('js/offline-content.js')
+    ]);
+    assert.ok(main.indexOf('checkAuthentication();') < main.indexOf('await loadSecrets();'));
+    assert.match(main, /window\.initSync\(\)\.catch/);
+    assert.match(main, /initOfflineContent\(\)\.catch/);
+    assert.match(auth, /AbortController/);
+    assert.match(auth, /if \(!GOOGLE_SCRIPT_URL\) return false/);
+    assert.match(database, /Offline database open timed out/);
+    assert.match(content, /controller\.abort/);
+});
+
 test('asset versions remain in lockstep', async () => {
     const [worker, main, html, cards] = await Promise.all([
         text('service-worker.js'), text('js/main.js'), text('index.html'), text('js/flashcards.js')

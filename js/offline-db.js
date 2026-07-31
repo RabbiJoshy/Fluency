@@ -11,6 +11,10 @@ export function openOfflineDb() {
     if (dbPromise) return dbPromise;
     dbPromise = new Promise((resolve, reject) => {
         const request = indexedDB.open(DB_NAME, DB_VERSION);
+        // Safari can leave an IndexedDB open request pending indefinitely
+        // after process suspension or a version-change race. Offline support
+        // must degrade gracefully instead of blocking the entire app boot.
+        const timeout = setTimeout(() => reject(new Error('Offline database open timed out')), 3000);
         request.onupgradeneeded = () => {
             const db = request.result;
             if (!db.objectStoreNames.contains('operations')) {
@@ -31,9 +35,9 @@ export function openOfflineDb() {
                 db.createObjectStore('migrations', { keyPath: 'id' });
             }
         };
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-        request.onblocked = () => reject(new Error('Offline database upgrade blocked'));
+        request.onsuccess = () => { clearTimeout(timeout); resolve(request.result); };
+        request.onerror = () => { clearTimeout(timeout); reject(request.error); };
+        request.onblocked = () => { clearTimeout(timeout); reject(new Error('Offline database upgrade blocked')); };
     });
     return dbPromise;
 }

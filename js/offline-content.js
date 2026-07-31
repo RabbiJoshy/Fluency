@@ -16,7 +16,16 @@ const fmt = bytes => {
 
 export async function loadOfflineManifest({ refresh = false } = {}) {
     if (manifest && !refresh) return manifest;
-    const response = await fetch(MANIFEST_URL, { cache: refresh ? 'no-cache' : 'default' });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
+    let response;
+    try {
+        response = await fetch(MANIFEST_URL, {
+            cache: refresh ? 'no-cache' : 'default', signal: controller.signal
+        });
+    } finally {
+        clearTimeout(timeout);
+    }
     if (!response.ok) throw new Error(`Content catalogue HTTP ${response.status}`);
     const next = await response.json();
     if (next.schemaVersion !== 1 || !Array.isArray(next.sources)) {

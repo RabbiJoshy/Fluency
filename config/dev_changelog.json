@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "pending",
+      "summary": "Home Screen startup no longer waits on offline services",
+      "details": [
+        "Login and guest controls become interactive before remote secrets, IndexedDB, or the offline-content catalogue initialize",
+        "Safari-sensitive storage and catalogue requests now time out safely, while sync and download setup continue in the background",
+        "An offline launch without the remote endpoint uses durable local progress immediately and reconciles when connectivity returns"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "a118d60d",
       "summary": "Offline downloads and durable progress sync",
       "details": [
