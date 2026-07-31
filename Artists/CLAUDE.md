@@ -154,8 +154,44 @@ Artists/{lang}/{Name}/
 | `multi_word_elisions.json` | Contractions split into multiple Spanish words by artist step 2a (`pal' → para el`, `vo'a → voy a`). Counts reach every component while exact lyric surfaces remain available for examples and Expression highlighting. |
 | `extra_english.json` | English words (and English contractions like `goin'`, `fuckin'`) that leak into lyrics via code-switching. Step 4 uses this to route them to the `english` exclusion bucket. |
 | `noise.json`, `proper_nouns.json`, `cognates.json` | Sectioned `{drop, keep}` curations used by step 4. drop = filter into the named bucket; keep = override (e.g. function words `a`/`o`/`y` in `noise.json.keep` survive the noise filter; false friends like `embarazada` in `cognates.json.keep` survive cognate exclusion). Loader: `load_curation_section()` in `util_1a_artist_config.py`. |
+| `proposals.json` | **Append-only ledger of proposed data corrections** — see below. |
 | `conjugation_families.json`, `curated_mwes.json`, `skip_mwes.json` | MWE and conjugation curation. |
 | `derivational_relations.json` | Reviewed include/exclude overrides for the shared derived-lemma relation layer; links lexemes but never merges cards. |
+
+## Proposed Corrections — write them down, don't apply them
+
+`Artists/curations/proposals.json` is the single visible place for data
+corrections proposed by **any** source: a detector script, Gemini, an audit
+flag, or an AI assistant that noticed something while working on the data.
+
+**If you spot a wrong lemma, a bogus gloss, an unmerged elision, a missed
+proper noun or an ad-lib being taught as a word — append a proposal.** Do not
+leave the observation in chat, where it is lost, and do not silently edit a
+curation file. The ledger is the training signal for the next pass over word
+routing, and a rejected entry is a permanent veto that stops the same wrong
+suggestion being re-raised.
+
+```
+detector / Gemini / flag  →  proposals.json (status=open)  →  Josh decides
+                                                          →  accepted: copied
+                                                             into the real
+                                                             curation file
+```
+
+Each entry carries `id` (stable, `kind:word`), `kind`, `word`, `current`,
+`proposed`, `reason`, `evidence` (the lyric line), `source`, `confidence`,
+`status`, `created`, `artist`.
+
+**Gemini proposes, it never applies.** Lemma is card identity — `fullId` derives
+from it and progress rows key off it — so a lemma that moves between runs
+detaches the learner's history. Model judgment enters through this ledger, so a
+build stays a pure function of files in git: diffable, revertible, reproducible.
+
+Producers:
+- `pipeline/artist/tool_4a_detect_echo_words.py` — echo-reduplication ad-libs
+  (`entera-tera` → `tera`), adjacency-constrained
+- `pipeline/artist/tool_4a_apply_flag_routing.py` — turns audit-flag
+  classification requests into routing curations
 
 ## Other Directories
 
