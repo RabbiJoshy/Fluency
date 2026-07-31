@@ -1775,5 +1775,11 @@
     "pos": "NOUN",
     "mode": "artist",
     "source": "Bad Bunny"
+  },
+  "josear|josear": {
+    "translation": "to hustle, to work the streets",
+    "pos": "VERB",
+    "mode": "all",
+    "source": "proposal (claude-code)"
   }
 }

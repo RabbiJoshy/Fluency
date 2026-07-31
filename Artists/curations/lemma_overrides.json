@@ -1,0 +1,9 @@
+{
+  "_format": "Sectioned curation file. overrides = {word: lemma} forced onto the builder. keep = words whose current lemma is correct and must never be overridden, including by a model proposal.",
+  "_intent": "Lemma is card identity — fullId derives from it and progress rows key off it — so a lemma that moves between runs detaches the learner's history. Models therefore never set a lemma directly; they propose into proposals.json and an accepted proposal is written here, where it is diffable and revertible. keep wins on conflicts.",
+  "overrides": {
+    "manín": "manín",
+    "selfie": "selfie"
+  },
+  "keep": []
+}

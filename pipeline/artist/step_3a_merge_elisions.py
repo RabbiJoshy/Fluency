@@ -605,6 +605,15 @@ def merge_evidence(data, targets, known_vocab):
                             key, display = bare[0], bare[1]
                             source = "bare_d_elision"
 
+        # A resolved target can itself still be an apostrophe-less d-elision:
+        # the mapping restores metío' -> metíos, which is not a Spanish word
+        # either. Normalise the key so the chain lands on metidos rather than
+        # stopping halfway. Display keeps the original lyric surface.
+        if key is not None:
+            bare_key = bare_d_elision_canonical(key, load_spanish_forms())
+            if bare_key:
+                key = bare_key[0]
+
         if key is None:
             key = word
             display = word

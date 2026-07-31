@@ -69,6 +69,10 @@ KIND_TARGETS = {
     "noise": ("noise.json", "drop", "keep"),
     "echo_reduplication": ("noise.json", "drop", "keep"),
     "elision": ("elision_mapping.json", None, None),
+    # A wrong gloss is not a routing decision — no bucket fixes a translation.
+    # Glosses live in the shared curated-translation layer, keyed word|lemma,
+    # which both builders consult when assembling a card.
+    "gloss": (os.path.join(_PROJECT_ROOT, "shared", "curated_translations.json"), "_curated", None),
 }
 
 
@@ -84,8 +88,9 @@ def save_json(path, data):
 
 
 def load_curation(filename):
-    path = os.path.join(CURATIONS, filename)
-    if not os.path.isfile(path) and filename == "lemma_overrides.json":
+    # Absolute paths address shared layers outside Artists/curations.
+    path = filename if os.path.isabs(filename) else os.path.join(CURATIONS, filename)
+    if not os.path.isfile(path) and os.path.basename(path) == "lemma_overrides.json":
         return path, json.loads(json.dumps(LEMMA_OVERRIDES_SEED))
     return path, load_json(path)
 
@@ -107,6 +112,19 @@ def blocked_reason(proposal, doc, veto_section):
 def apply_proposal(proposal, doc, section):
     """Write one accepted proposal into the loaded curation doc. True if changed."""
     word = proposal["word"].strip().lower()
+    if section == "_curated":
+        # curated_translations.json is a flat map keyed `word|lemma`. mode=all
+        # so the override applies whichever sense source built the deck.
+        key = "%s|%s" % (word, (proposal.get("lemma") or word).strip().lower())
+        if doc.get(key, {}).get("translation") == proposal["proposed"]:
+            return False
+        doc[key] = {
+            "translation": proposal["proposed"],
+            "pos": proposal.get("pos") or "X",
+            "mode": "all",
+            "source": "proposal (%s)" % proposal.get("source", "unknown"),
+        }
+        return True
     if section is None:  # elision_mapping.json is a list of merge records
         if any(r.get("elided_word") == word for r in doc):
             return False
@@ -181,7 +199,8 @@ def main():
             blocked_n += 1
             continue
         if apply_proposal(proposal, doc, section):
-            print("   + %-12s -> %s [%s]" % (proposal["word"], filename, section or "elided_only"))
+            print("   + %-12s -> %s [%s]"
+                  % (proposal["word"], os.path.basename(filename), section or "elided_only"))
             applied_n += 1
         else:
             print("   = %-12s already present in %s" % (proposal["word"], filename))

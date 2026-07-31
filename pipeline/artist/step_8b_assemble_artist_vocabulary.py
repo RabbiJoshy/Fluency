@@ -98,6 +98,81 @@ def _copy_timestamp(timestamp_entry, output_example):
         output_example["end_timestamp_ms"] = timestamp_entry["end_ms"]
 
 
+_ECHO_DROPS_CACHE = None
+
+
+def load_echo_drops():
+    """{word: {example_id, ...}} from accepted `drop_occurrences` proposals.
+
+    Echo reduplication is a property of an OCCURRENCE, not of a string: `over`
+    is an ad-lib in "mover, -over" but an ordinary word in "game over" and the
+    artist name "Lary Over" — only 1 of its 7 lines is an echo. Such a word must
+    lose those lines without losing its card, so it is filtered here at render
+    time rather than removed from examples_raw: sense assignments address
+    examples by index, and deleting one would silently shift every later claim.
+    """
+    global _ECHO_DROPS_CACHE
+    if _ECHO_DROPS_CACHE is not None:
+        return _ECHO_DROPS_CACHE
+    path = os.path.join(_PROJECT_ROOT, "Artists", "curations", "proposals.json")
+    drops = {}
+    if os.path.isfile(path):
+        with open(path, "r", encoding="utf-8") as f:
+            ledger = json.load(f)
+        for proposal in ledger.get("proposals", []):
+            if proposal.get("status") != "accepted":
+                continue
+            if proposal.get("proposed") != "drop_occurrences":
+                continue
+            ids = {i for i in (proposal.get("echo_example_ids") or []) if i}
+            if ids:
+                drops.setdefault((proposal.get("word") or "").lower(), set()).update(ids)
+    _ECHO_DROPS_CACHE = drops
+    return drops
+
+
+_LEMMA_OVERRIDES_CACHE = None
+
+
+def load_lemma_overrides():
+    """{word: lemma} from Artists/curations/lemma_overrides.json.
+
+    Lemma is card identity — fullId derives from it and progress rows key off
+    it — so a model never sets one directly. An accepted proposal is written to
+    that file, where the value is diffable and revertible, and applied here.
+    A word listed in `keep` is protected: its current lemma is correct and must
+    survive even an accepted override.
+    """
+    global _LEMMA_OVERRIDES_CACHE
+    if _LEMMA_OVERRIDES_CACHE is not None:
+        return _LEMMA_OVERRIDES_CACHE
+    path = os.path.join(_PROJECT_ROOT, "Artists", "curations", "lemma_overrides.json")
+    overrides = {}
+    if os.path.isfile(path):
+        with open(path, "r", encoding="utf-8") as f:
+            doc = json.load(f)
+        protected = {w.lower() for w in doc.get("keep", [])}
+        for word, lemma in (doc.get("overrides") or {}).items():
+            key = (word or "").strip().lower()
+            if key and lemma and key not in protected:
+                overrides[key] = lemma
+    _LEMMA_OVERRIDES_CACHE = overrides
+    return overrides
+
+
+def apply_lemma_override(word, lemma):
+    """Curated lemma for `word` when one exists, else the computed lemma."""
+    return load_lemma_overrides().get((word or "").lower(), lemma)
+
+
+def is_dropped_example(word, raw_ex):
+    """True when this exact occurrence was accepted as an ad-lib, not usage."""
+    if not raw_ex:
+        return False
+    ids = load_echo_drops().get((word or "").lower())
+    return bool(ids) and raw_ex.get("id") in ids
+
+
 def _collect_sid_meta(raw_assignments, per_sense):
     """For each sense in ``per_sense``, pick inline metadata (pos/translation/
     lemma/source/...) from the highest-priority item claiming that sense.
@@ -1005,7 +1080,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         for g_idx, group in enumerate(active_groups or [{
             "lemma": word, "sense_by_id": {}, "word_senses": [], "assignments": []
         }]):
-            word_lemma = group.get("lemma", word)
+            word_lemma = apply_lemma_override(word, group.get("lemma", word))
             sense_by_id = group.get("sense_by_id")
             word_senses = group.get("word_senses")
             word_assignments = group.get("assignments", [])
@@ -1056,6 +1131,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_idx is None or ex_idx >= len(raw_examples):
                             continue
                         raw_ex = raw_examples[ex_idx]
+                        if is_dropped_example(word, raw_ex):
+                            continue
                         spanish = raw_ex.get("spanish", "")
                         trans_info = translations.get(spanish, {})
                         english = trans_info.get("english", "")
@@ -1157,6 +1234,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_idx >= len(raw_examples):
                             continue
                         raw_ex = raw_examples[ex_idx]
+                        if is_dropped_example(word, raw_ex):
+                            continue
                         spanish = raw_ex.get("spanish", "")
                         trans_info = translations.get(spanish, {})
                         ex_dict = {
@@ -1235,6 +1314,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 # Build resolved examples once
                 all_examples = []
                 for raw_ex in raw_examples:
+                    if is_dropped_example(word, raw_ex):
+                        continue
                     spanish = raw_ex.get("spanish", "")
                     trans_info = translations.get(spanish, {})
                     ex_dict = {
@@ -1365,6 +1446,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if ex_idx is None or ex_idx >= len(raw_examples):
                             continue
                         raw_ex = raw_examples[ex_idx]
+                        if is_dropped_example(word, raw_ex):
+                            continue
                         spanish = raw_ex.get("spanish", "")
                         trans_info = translations.get(spanish, {})
                         ex_dict = {
@@ -1415,8 +1498,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 curated_key = "%s|%s" % (word.lower(), word_lemma)
                 translation = curated.get(curated_key, "")
                 fallback_examples = []
-                if raw_examples:
-                    raw_ex = raw_examples[0]
+                # First occurrence that is not an accepted ad-lib. A word whose
+                # only line is an echo simply gets no fallback example.
+                raw_ex = next((ex for ex in raw_examples
+                               if not is_dropped_example(word, ex)), None)
+                if raw_ex:
                     spanish = raw_ex.get("spanish", "")
                     trans_info = translations.get(spanish, {})
                     ex_dict = {

@@ -114,8 +114,25 @@ def compute_easiness(spanish_text, word_to_rank, lemma_to_rank, elision_map,
     return int(median(ranks))
 
 
+def resolve_spanish_vocab_path(spanish_path):
+    """Path to the normal-mode Spanish vocabulary, tolerating the split format.
+
+    Data/Spanish/vocabulary.json is gitignored and absent on a fresh checkout —
+    the deck ships as vocabulary.index.json + vocabulary.examples.json. The
+    index carries the same word/lemma fields in the same frequency order, which
+    is all the rank lookup needs, so fall back to it instead of crashing.
+    """
+    if os.path.isfile(spanish_path):
+        return spanish_path
+    index_path = spanish_path.replace("vocabulary.json", "vocabulary.index.json")
+    if os.path.isfile(index_path):
+        return index_path
+    return spanish_path
+
+
 def build_spanish_lookup(spanish_path):
     """Build word -> rank and lemma -> rank lookups from the general Spanish vocabulary."""
+    spanish_path = resolve_spanish_vocab_path(spanish_path)
     with open(spanish_path, "r", encoding="utf-8") as f:
         spanish_data = json.load(f)
 

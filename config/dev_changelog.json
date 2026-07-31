@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "2b5cc3f1",
+      "summary": "Rebuilt Bad Bunny: ad-libs removed, elisions merged, lemmas corrected",
+      "details": [
+        "Rap ad-libs where a word tail is echoed (entera-tera, perrear -rrear, alcohol-cohol) no longer become cards; words like over that are echoed once but real elsewhere keep their card and lose only that line",
+        "More Caribbean elisions now merge into their real word: to s and to as into todos/todas (180 occurrences), metio into metidos, vengamo into vengamos — 58 fewer half-merged forms",
+        "manin is no longer filed under mani (peanut) and selfie no longer under the invented selfi; josear now reads to hustle rather than the name Joseph"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "37749f01",
       "summary": "Bigger study controls and clearer morphology alternatives",
       "details": [

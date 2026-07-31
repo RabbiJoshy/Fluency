@@ -10228,7 +10228,7 @@
   },
   {
     "word": "todo",
-    "corpus_count": 509,
+    "corpus_count": 510,
     "song_count": 200,
     "song_ids": [
       "10313440",
@@ -10520,7 +10520,8 @@
     "display_form": "to'",
     "variants": {
       "to'": 374,
-      "todo": 135
+      "todo": 135,
+      "to'o": 1
     }
   },
   {
@@ -30359,6 +30360,166 @@
     ]
   },
   {
+    "word": "todas",
+    "corpus_count": 92,
+    "song_count": 68,
+    "song_ids": [
+      "10313440",
+      "11290147",
+      "11296557",
+      "11304595",
+      "2503547",
+      "2914746",
+      "2919428",
+      "2924481",
+      "2935271",
+      "2942055",
+      "2962706",
+      "2976947",
+      "2990674",
+      "3001094",
+      "3007462",
+      "3015945",
+      "3022353",
+      "3092934",
+      "3100770",
+      "3104979",
+      "3133285",
+      "3176687",
+      "3193669",
+      "3212029",
+      "3253426",
+      "3256611",
+      "3377480",
+      "3410963",
+      "3431731",
+      "3523266",
+      "3524844",
+      "3591240",
+      "3627151",
+      "3749052",
+      "4179006",
+      "4179009",
+      "4558062",
+      "4641326",
+      "4706730",
+      "4763027",
+      "4969980",
+      "5002336",
+      "5113455",
+      "5305002",
+      "5305018",
+      "5305021",
+      "5557738",
+      "5614024",
+      "5629827",
+      "5629886",
+      "6211005",
+      "6211036",
+      "6717116",
+      "7927935",
+      "7967954",
+      "7967957",
+      "7967958",
+      "7967959",
+      "7967968",
+      "8659966",
+      "9237319",
+      "9614064",
+      "9614068",
+      "9614081",
+      "9614084",
+      "9614095",
+      "9614098",
+      "9614104"
+    ],
+    "examples": [
+      {
+        "id": "6211036:17",
+        "line": "Le metí a toa' mis crush, shh, ya me aburro hasta 'e chichar (Ay, rra)",
+        "title": "BOOKER T",
+        "surface": "toa'"
+      },
+      {
+        "id": "9614064:23",
+        "line": "Tú con él, yo pichándole a toa'",
+        "title": "GRACIAS POR NADA",
+        "surface": "toa'"
+      },
+      {
+        "id": "3377480:20",
+        "line": "A toa' las vo' hacer venir",
+        "title": "Fantasía",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "3524844:18",
+        "line": "Y que ahora camina solo, sin nadie, por toa' la' acera'",
+        "title": "Amorfoda",
+        "surface": "toa'"
+      },
+      {
+        "id": "3627151:37",
+        "line": "Tú compras toa' las Jordan, bo, a mí me las regalan (Jeje)",
+        "title": "I Like It",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "7967958:5",
+        "line": "Extrañando toa' las noche' de cabernet y mignon",
+        "title": "Yo No Soy Celoso",
+        "surface": "toa'"
+      },
+      {
+        "id": "11304595:13",
+        "line": "En toa' las fotito' se ve bien",
+        "title": "VeLDÁ",
+        "vocalists": [
+          "Dei V"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "toa'"
+      },
+      {
+        "id": "7967968:51",
+        "line": "De esa' chapa' se habla en toa' las barbería'",
+        "title": "Después de la Playa",
+        "surface": "toa'"
+      },
+      {
+        "id": "9614095:30",
+        "line": "Pa' que mueva' el culo toa' las Doja, toa' las SZA",
+        "title": "CYBERTRUCK",
+        "surface": "toa'"
+      },
+      {
+        "id": "8659966:8",
+        "line": "Ya te quiero comer y repetir toa' las pose'",
+        "title": "Gato de Noche",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      }
+    ],
+    "display_form": "toa'",
+    "variants": {
+      "toa'": 35,
+      "to'as": 27,
+      "toda'": 17,
+      "todas": 13
+    }
+  },
+  {
     "word": "dale",
     "corpus_count": 89,
     "song_count": 56,
@@ -30814,6 +30975,165 @@
         "surface": "quién"
       }
     ]
+  },
+  {
+    "word": "todos",
+    "corpus_count": 88,
+    "song_count": 59,
+    "song_ids": [
+      "2503547",
+      "2829388",
+      "2871746",
+      "2927716",
+      "2951579",
+      "2953251",
+      "3007462",
+      "3015945",
+      "3033848",
+      "3046295",
+      "3075944",
+      "3098225",
+      "3101741",
+      "3115965",
+      "3133285",
+      "3167974",
+      "3173788",
+      "3176687",
+      "3193669",
+      "3255641",
+      "3256611",
+      "3334750",
+      "3523266",
+      "3640901",
+      "3825550",
+      "3928253",
+      "4035827",
+      "4082272",
+      "4133643",
+      "4179006",
+      "4628729",
+      "4706730",
+      "4969980",
+      "5002336",
+      "5091581",
+      "5305018",
+      "5305036",
+      "5305051",
+      "5320881",
+      "5557738",
+      "5629886",
+      "5629919",
+      "5699025",
+      "6192613",
+      "6210865",
+      "7967934",
+      "7967940",
+      "7967942",
+      "7967944",
+      "7967975",
+      "7967980",
+      "9025881",
+      "9237319",
+      "9592355",
+      "9614068",
+      "9614081",
+      "9614083",
+      "9614084",
+      "9614087"
+    ],
+    "examples": [
+      {
+        "id": "9592355:22",
+        "line": "En RD están to's mis cueros, en PR to'a las yales",
+        "title": "Gently",
+        "vocalists": [
+          "Bad Bunny",
+          "Diulka Cristina Pérez"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "to's"
+      },
+      {
+        "id": "7967934:46",
+        "line": "To's dicen que ese culo lo hizo el cirujano",
+        "title": "Aguacero",
+        "surface": "to's"
+      },
+      {
+        "id": "3115965:22",
+        "line": "Quiero que to's nos vean agarra'os de mano",
+        "title": "Sensualidad",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "to's"
+      },
+      {
+        "id": "5305051:25",
+        "line": "Si to's quieren ser yo, to's quieren mi DNA",
+        "title": "˂3",
+        "surface": "to's"
+      },
+      {
+        "id": "3015945:21",
+        "line": "Y pila e' cuarto pa' to's estos cabrones hacerles fiero",
+        "title": "Krippy Kush",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "to's"
+      },
+      {
+        "id": "7967944:11",
+        "line": "El DM explotao', to's le escriben \"hola\"",
+        "title": "Neverita",
+        "surface": "to's"
+      },
+      {
+        "id": "9614083:16",
+        "line": "¿Quién es el más duro? To's saben que yo",
+        "title": "BATICANO",
+        "surface": "to's"
+      },
+      {
+        "id": "9614084:56",
+        "line": "En mi combo to's son fino' como los violine'",
+        "title": "VUELVE CANDY B",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "to's"
+      },
+      {
+        "id": "9614087:18",
+        "line": "Je, algunas mutilá', otras con licencia, pero aquí to's andan con corta",
+        "title": "MERCEDES CAROTA",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "to's"
+      },
+      {
+        "id": "5091581:30",
+        "line": "Si to's los que me tiran terminan mamando (Mamando)",
+        "title": "Así Soy Yo",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "to's"
+      }
+    ],
+    "display_form": "to's",
+    "variants": {
+      "to's": 35,
+      "todos": 35,
+      "todo'": 18
+    }
   },
   {
     "word": "culo",
@@ -36416,150 +36736,6 @@
     ]
   },
   {
-    "word": "todas",
-    "corpus_count": 65,
-    "song_count": 53,
-    "song_ids": [
-      "10313440",
-      "11290147",
-      "11296557",
-      "11304595",
-      "2503547",
-      "2914746",
-      "2919428",
-      "2924481",
-      "2935271",
-      "2942055",
-      "2962706",
-      "3001094",
-      "3007462",
-      "3022353",
-      "3092934",
-      "3104979",
-      "3193669",
-      "3212029",
-      "3377480",
-      "3431731",
-      "3523266",
-      "3524844",
-      "3591240",
-      "3627151",
-      "3749052",
-      "4558062",
-      "4641326",
-      "4969980",
-      "5002336",
-      "5113455",
-      "5305002",
-      "5305018",
-      "5305021",
-      "5557738",
-      "5629886",
-      "6211005",
-      "6211036",
-      "6717116",
-      "7927935",
-      "7967954",
-      "7967957",
-      "7967958",
-      "7967959",
-      "7967968",
-      "8659966",
-      "9237319",
-      "9614064",
-      "9614068",
-      "9614081",
-      "9614084",
-      "9614095",
-      "9614098",
-      "9614104"
-    ],
-    "examples": [
-      {
-        "id": "6211036:17",
-        "line": "Le metí a toa' mis crush, shh, ya me aburro hasta 'e chichar (Ay, rra)",
-        "title": "BOOKER T",
-        "surface": "toa'"
-      },
-      {
-        "id": "9614064:23",
-        "line": "Tú con él, yo pichándole a toa'",
-        "title": "GRACIAS POR NADA",
-        "surface": "toa'"
-      },
-      {
-        "id": "3377480:20",
-        "line": "A toa' las vo' hacer venir",
-        "title": "Fantasía",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "3524844:18",
-        "line": "Y que ahora camina solo, sin nadie, por toa' la' acera'",
-        "title": "Amorfoda",
-        "surface": "toa'"
-      },
-      {
-        "id": "3627151:37",
-        "line": "Tú compras toa' las Jordan, bo, a mí me las regalan (Jeje)",
-        "title": "I Like It",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "7967958:5",
-        "line": "Extrañando toa' las noche' de cabernet y mignon",
-        "title": "Yo No Soy Celoso",
-        "surface": "toa'"
-      },
-      {
-        "id": "11304595:13",
-        "line": "En toa' las fotito' se ve bien",
-        "title": "VeLDÁ",
-        "vocalists": [
-          "Dei V"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "toa'"
-      },
-      {
-        "id": "7967968:51",
-        "line": "De esa' chapa' se habla en toa' las barbería'",
-        "title": "Después de la Playa",
-        "surface": "toa'"
-      },
-      {
-        "id": "9614095:30",
-        "line": "Pa' que mueva' el culo toa' las Doja, toa' las SZA",
-        "title": "CYBERTRUCK",
-        "surface": "toa'"
-      },
-      {
-        "id": "8659966:8",
-        "line": "Ya te quiero comer y repetir toa' las pose'",
-        "title": "Gato de Noche",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      }
-    ],
-    "display_form": "toa'",
-    "variants": {
-      "toa'": 35,
-      "toda'": 17,
-      "todas": 13
-    }
-  },
-  {
     "word": "meto",
     "corpus_count": 64,
     "song_count": 48,
@@ -40208,148 +40384,6 @@
         "surface": "kingz"
       }
     ]
-  },
-  {
-    "word": "todos",
-    "corpus_count": 53,
-    "song_count": 42,
-    "song_ids": [
-      "2503547",
-      "2829388",
-      "2871746",
-      "2927716",
-      "2951579",
-      "2953251",
-      "3007462",
-      "3033848",
-      "3046295",
-      "3075944",
-      "3098225",
-      "3101741",
-      "3167974",
-      "3173788",
-      "3193669",
-      "3255641",
-      "3334750",
-      "3523266",
-      "3825550",
-      "3928253",
-      "4035827",
-      "4082272",
-      "4133643",
-      "4179006",
-      "4628729",
-      "4706730",
-      "4969980",
-      "5002336",
-      "5091581",
-      "5305036",
-      "5320881",
-      "5557738",
-      "5629886",
-      "5699025",
-      "6192613",
-      "6210865",
-      "7967940",
-      "7967942",
-      "7967980",
-      "9025881",
-      "9614068",
-      "9614081"
-    ],
-    "examples": [
-      {
-        "id": "3255641:11",
-        "line": "Protégeme a todos los barrio' y a los caserío'",
-        "title": "Mi Puerto Rico",
-        "surface": "todos"
-      },
-      {
-        "id": "2951579:41",
-        "line": "Tirensen todos a la vez, que al que me toque lo crucifican al revés (¡Rrrra!)",
-        "title": "Me Importa Un Carajo",
-        "surface": "todos"
-      },
-      {
-        "id": "9025881:12",
-        "line": "No he mandado los mensajes, siguen todos ahí",
-        "title": "un x100to",
-        "vocalists": [
-          "Payo Solís"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "todos"
-      },
-      {
-        "id": "7967940:22",
-        "line": "La capital del perreo, ahora todos quieren ser latino' (Nah, ey; ¡no, no, no!), no, ey",
-        "title": "El Apagón",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todos"
-      },
-      {
-        "id": "6192613:40",
-        "line": "Con el mismo mahón todos se parecen (Wuh, wuh, wuh, wuh)",
-        "title": "YO VISTO ASÍ",
-        "surface": "todos"
-      },
-      {
-        "id": "4969980:23",
-        "line": "Me la navego en todos lados, siempre con ojos tumbados (¡Ay!; jajajaja)",
-        "title": "Soy el Diablo (Remix)",
-        "vocalists": [
-          "Natanael Cano",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todos"
-      },
-      {
-        "id": "4179006:25",
-        "line": "Mi respeto a todos en la nevera, yeah",
-        "title": "Ser Bichote",
-        "surface": "todos"
-      },
-      {
-        "id": "4706730:47",
-        "line": "Somos el rugido de la bandera de Puertorro con todos sus tejidos",
-        "title": "Afilando los Cuchillos",
-        "vocalists": [
-          "Residente"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "todos"
-      },
-      {
-        "id": "2953251:12",
-        "line": "Ya no los conozco, todos se viraron",
-        "title": "Loco Pero Millonario (Remix)",
-        "vocalists": [
-          "N-Fasis",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todos"
-      },
-      {
-        "id": "3046295:6",
-        "line": "Que vo'a entrar cuando todos se duerman",
-        "title": "Puerta Abierta",
-        "vocalists": [
-          "Juhn"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "todos"
-      }
-    ],
-    "display_form": "todo'",
-    "variants": {
-      "todos": 35,
-      "todo'": 18
-    }
   },
   {
     "word": "this",
@@ -53477,123 +53511,6 @@
     ]
   },
   {
-    "word": "to's",
-    "corpus_count": 35,
-    "song_count": 23,
-    "song_ids": [
-      "3015945",
-      "3115965",
-      "3133285",
-      "3176687",
-      "3256611",
-      "3334750",
-      "3640901",
-      "4133643",
-      "4706730",
-      "5091581",
-      "5305018",
-      "5305051",
-      "5629886",
-      "5629919",
-      "7967934",
-      "7967944",
-      "7967975",
-      "9237319",
-      "9592355",
-      "9614081",
-      "9614083",
-      "9614084",
-      "9614087"
-    ],
-    "examples": [
-      {
-        "id": "9592355:22",
-        "line": "En RD están to's mis cueros, en PR to'a las yales",
-        "title": "Gently",
-        "vocalists": [
-          "Bad Bunny",
-          "Diulka Cristina Pérez"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to's"
-      },
-      {
-        "id": "7967934:46",
-        "line": "To's dicen que ese culo lo hizo el cirujano",
-        "title": "Aguacero",
-        "surface": "to's"
-      },
-      {
-        "id": "3115965:22",
-        "line": "Quiero que to's nos vean agarra'os de mano",
-        "title": "Sensualidad",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to's"
-      },
-      {
-        "id": "5305051:25",
-        "line": "Si to's quieren ser yo, to's quieren mi DNA",
-        "title": "˂3",
-        "surface": "to's"
-      },
-      {
-        "id": "3015945:21",
-        "line": "Y pila e' cuarto pa' to's estos cabrones hacerles fiero",
-        "title": "Krippy Kush",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to's"
-      },
-      {
-        "id": "7967944:11",
-        "line": "El DM explotao', to's le escriben \"hola\"",
-        "title": "Neverita",
-        "surface": "to's"
-      },
-      {
-        "id": "9614083:16",
-        "line": "¿Quién es el más duro? To's saben que yo",
-        "title": "BATICANO",
-        "surface": "to's"
-      },
-      {
-        "id": "9614084:56",
-        "line": "En mi combo to's son fino' como los violine'",
-        "title": "VUELVE CANDY B",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to's"
-      },
-      {
-        "id": "9614087:18",
-        "line": "Je, algunas mutilá', otras con licencia, pero aquí to's andan con corta",
-        "title": "MERCEDES CAROTA",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to's"
-      },
-      {
-        "id": "5091581:30",
-        "line": "Si to's los que me tiran terminan mamando (Mamando)",
-        "title": "Así Soy Yo",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to's"
-      }
-    ]
-  },
-  {
     "word": "días",
     "corpus_count": 35,
     "song_count": 32,
@@ -64109,124 +64026,6 @@
         "line": "La luz se puso roja, hay que parar",
         "title": "Un Ratito",
         "surface": "puso"
-      }
-    ]
-  },
-  {
-    "word": "to'as",
-    "corpus_count": 27,
-    "song_count": 17,
-    "song_ids": [
-      "2976947",
-      "2990674",
-      "3015945",
-      "3022353",
-      "3100770",
-      "3133285",
-      "3176687",
-      "3253426",
-      "3256611",
-      "3410963",
-      "4179006",
-      "4179009",
-      "4641326",
-      "4706730",
-      "4763027",
-      "5614024",
-      "5629827"
-    ],
-    "examples": [
-      {
-        "id": "4179006:14",
-        "line": "Siempre quise to'as las tenis y to'as las gorras (¡Wouh!)",
-        "title": "Ser Bichote",
-        "surface": "to'as"
-      },
-      {
-        "id": "4179009:86",
-        "line": "Que puta felicidá' (¡Wouh!), hoy a to'as se le da, ey (¡Shh!)",
-        "title": "La Romana",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "3133285:12",
-        "line": "Y hacemo' to'as las cosa' que tú quiere'",
-        "title": "Solita",
-        "vocalists": [
-          "Ozuna"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to'as"
-      },
-      {
-        "id": "3410963:43",
-        "line": "Por ahora quiero darte en to'as las pose' (Yeh)",
-        "title": "EL BAÑO",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "2990674:10",
-        "line": "De to'as las baby', yo a la que quiero e' a esa",
-        "title": "Haters (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "3256611:12",
-        "line": "Los culos en to'as las area code",
-        "title": "El Combo Me Llama 2",
-        "vocalists": [
-          "Pusho"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to'as"
-      },
-      {
-        "id": "4763027:74",
-        "line": "De Dom Pérignon son to'as las botella'",
-        "title": "Subimos de Rango",
-        "vocalists": [
-          "Shootter Ledo"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to'as"
-      },
-      {
-        "id": "3100770:30",
-        "line": "Como no sabía que cartera comprarte, te las compré to'as",
-        "title": "Give It Up",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "3022353:21",
-        "line": "Snapchats sin ropa escuchando to'as mis cancione'",
-        "title": "Tócate Tú Misma",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "4641326:50",
-        "line": "A to'as mis fotos y los imation que decía",
-        "title": "No Perdamos Tiempo",
-        "surface": "to'as"
       }
     ]
   },
@@ -99518,115 +99317,6 @@
     ]
   },
   {
-    "word": "mover",
-    "corpus_count": 15,
-    "song_count": 9,
-    "song_ids": [
-      "11292885",
-      "12488960",
-      "3167974",
-      "3359025",
-      "3523266",
-      "4662262",
-      "4763027",
-      "5553968",
-      "7967937"
-    ],
-    "examples": [
-      {
-        "id": "12488960:4",
-        "line": "La que ma' te gustan y te hacen mover (Skrr)",
-        "title": "Moda Te Mueve",
-        "surface": "mover"
-      },
-      {
-        "id": "7967937:12",
-        "line": "Cada vez que me miras, sin parar de mover las cadera', eh, eh",
-        "title": "Enséñame a Bailar",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "mover"
-      },
-      {
-        "id": "4662262:22",
-        "line": "Ni yo sin mover el burrito",
-        "title": "CUIDAO POR AHÍ",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "mover"
-      },
-      {
-        "id": "11292885:48",
-        "line": "Si tú lo quiere', lo tiene' que mover",
-        "title": "NUEVAYoL",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "mover"
-      },
-      {
-        "id": "5553968:29",
-        "line": "Es el Nicky Jam pa' ponerte a mover",
-        "title": "BAD CON NICKY",
-        "vocalists": [
-          "Nicky Jam"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "mover"
-      },
-      {
-        "id": "3359025:20",
-        "line": "Tú no sabes lo que es mover los cosos pa’ allá fuera",
-        "title": "Como Soy",
-        "vocalists": [
-          "Daddy Yankee"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "mover"
-      },
-      {
-        "id": "4763027:43",
-        "line": "Hijo 'e puta, tú no eres bichote por mover dos zeta'",
-        "title": "Subimos de Rango",
-        "vocalists": [
-          "Omy de Oro"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "mover"
-      },
-      {
-        "id": "3167974:70",
-        "line": "Pa' que te puedes mover",
-        "title": "El Challet (Remix)",
-        "vocalists": [
-          "Jory Boy"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "mover"
-      },
-      {
-        "id": "3523266:100",
-        "line": "Yo les enseñé a toda' esa' bitche' a mover (Ah, ah)",
-        "title": "Loca (Remix)",
-        "vocalists": [
-          "Cazzu",
-          "KHEA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "mover"
-      }
-    ],
-    "variants": {
-      "mover": 13,
-      "move'": 2
-    }
-  },
-  {
     "word": "palos",
     "corpus_count": 15,
     "song_count": 12,
@@ -105875,6 +105565,111 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "millonario"
+      }
+    ]
+  },
+  {
+    "word": "mover",
+    "corpus_count": 13,
+    "song_count": 9,
+    "song_ids": [
+      "11292885",
+      "12488960",
+      "3167974",
+      "3359025",
+      "3523266",
+      "4662262",
+      "4763027",
+      "5553968",
+      "7967937"
+    ],
+    "examples": [
+      {
+        "id": "12488960:4",
+        "line": "La que ma' te gustan y te hacen mover (Skrr)",
+        "title": "Moda Te Mueve",
+        "surface": "mover"
+      },
+      {
+        "id": "7967937:12",
+        "line": "Cada vez que me miras, sin parar de mover las cadera', eh, eh",
+        "title": "Enséñame a Bailar",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "mover"
+      },
+      {
+        "id": "4662262:22",
+        "line": "Ni yo sin mover el burrito",
+        "title": "CUIDAO POR AHÍ",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "mover"
+      },
+      {
+        "id": "11292885:48",
+        "line": "Si tú lo quiere', lo tiene' que mover",
+        "title": "NUEVAYoL",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "mover"
+      },
+      {
+        "id": "5553968:29",
+        "line": "Es el Nicky Jam pa' ponerte a mover",
+        "title": "BAD CON NICKY",
+        "vocalists": [
+          "Nicky Jam"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "mover"
+      },
+      {
+        "id": "3359025:20",
+        "line": "Tú no sabes lo que es mover los cosos pa’ allá fuera",
+        "title": "Como Soy",
+        "vocalists": [
+          "Daddy Yankee"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "mover"
+      },
+      {
+        "id": "4763027:43",
+        "line": "Hijo 'e puta, tú no eres bichote por mover dos zeta'",
+        "title": "Subimos de Rango",
+        "vocalists": [
+          "Omy de Oro"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "mover"
+      },
+      {
+        "id": "3167974:70",
+        "line": "Pa' que te puedes mover",
+        "title": "El Challet (Remix)",
+        "vocalists": [
+          "Jory Boy"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "mover"
+      },
+      {
+        "id": "3523266:100",
+        "line": "Yo les enseñé a toda' esa' bitche' a mover (Ah, ah)",
+        "title": "Loca (Remix)",
+        "vocalists": [
+          "Cazzu",
+          "KHEA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "mover"
       }
     ]
   },
@@ -130560,6 +130355,31 @@
     }
   },
   {
+    "word": "exagerado",
+    "corpus_count": 10,
+    "song_count": 1,
+    "song_ids": [
+      "5629827"
+    ],
+    "examples": [
+      {
+        "id": "5629827:21",
+        "line": "So entiendan, que tengo un flow exagera'o",
+        "title": "Flow Exagerao",
+        "vocalists": [
+          "Angel Wavy"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "exagera'o"
+      }
+    ],
+    "display_form": "exagera'o",
+    "variants": {
+      "exagera'o": 6,
+      "exagerao": 4
+    }
+  },
+  {
     "word": "juntos",
     "corpus_count": 10,
     "song_count": 10,
@@ -149765,98 +149585,6 @@
     ]
   },
   {
-    "word": "cantar",
-    "corpus_count": 8,
-    "song_count": 7,
-    "song_ids": [
-      "2953251",
-      "2976831",
-      "2978566",
-      "3193669",
-      "5091581",
-      "5422982",
-      "9614068"
-    ],
-    "examples": [
-      {
-        "id": "5422982:35",
-        "line": "Ay, yo quiero cantar una, please",
-        "title": "EN CASITA",
-        "vocalists": [
-          "Bad Bunny",
-          "Gabriela"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "cantar"
-      },
-      {
-        "id": "2976831:59",
-        "line": "Si es por cantar abajo, yo bajo y me gano un Grammy",
-        "title": "Amigos y Enemigos (Remix)",
-        "vocalists": [
-          "Almighty"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "cantar"
-      },
-      {
-        "id": "5091581:24",
-        "line": "Y son quiniento' mil por show o yo no vo'a cantar (Brr)",
-        "title": "Así Soy Yo",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "cantar"
-      },
-      {
-        "id": "2978566:21",
-        "line": "Luego las cosa' cambiaron (Yeah) y nos pusimo' a cantar (Yeah)",
-        "title": "Me Acostumbré",
-        "vocalists": [
-          "Arcangel"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "cantar"
-      },
-      {
-        "id": "3193669:29",
-        "line": "Y ayer por cantar media hora me dieron 7-5 mil",
-        "title": "El Ganador (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "cantar"
-      },
-      {
-        "id": "9614068:105",
-        "line": "Que prefiero cantar gratis en la Loiza que en Coachella",
-        "title": "ACHO PR",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "cantar"
-      },
-      {
-        "id": "2953251:11",
-        "line": "Y después me voy a poner a canta' pa' justificar el dinero poco a poco",
-        "title": "Loco Pero Millonario (Remix)",
-        "vocalists": [
-          "N-Fasis",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "canta'"
-      }
-    ],
-    "variants": {
-      "cantar": 7,
-      "canta'": 1
-    }
-  },
-  {
     "word": "casas",
     "corpus_count": 8,
     "song_count": 7,
@@ -150219,6 +149947,96 @@
     "variants": {
       "hablamo'": 7,
       "hablamos": 1
+    }
+  },
+  {
+    "word": "metidos",
+    "corpus_count": 8,
+    "song_count": 8,
+    "song_ids": [
+      "3104973",
+      "4147689",
+      "5210444",
+      "5422982",
+      "6211037",
+      "6387245",
+      "8598733",
+      "9614087"
+    ],
+    "examples": [
+      {
+        "id": "4147689:22",
+        "line": "Tú metío' en tu casa y yo de gira (Jaja)",
+        "title": "¿Quién Tú Eres?",
+        "surface": "metío'"
+      },
+      {
+        "id": "5422982:18",
+        "line": "Pero estar metío' aquí hasta mayo 16",
+        "title": "EN CASITA",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "metío'"
+      },
+      {
+        "id": "6211037:23",
+        "line": "Desde chiquito metío' en problema' (Prr)",
+        "title": "LA DROGA",
+        "surface": "metío'"
+      },
+      {
+        "id": "5210444:10",
+        "line": "Y, ¿dónde estará Dios metío' en estos momento'?",
+        "title": "6 Rings",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "metío'"
+      },
+      {
+        "id": "3104973:32",
+        "line": "Me tienes en tu Snapchat to' el día metío'",
+        "title": "Dime Si Vas A Volver",
+        "surface": "metío'"
+      },
+      {
+        "id": "9614087:53",
+        "line": "Yo ando con la cone planeando la vuelta en Perú, estoy metío' en un campo (Ah-ah-ah)",
+        "title": "MERCEDES CAROTA",
+        "vocalists": [
+          "YOVNGCHIMI"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "metío'"
+      },
+      {
+        "id": "8598733:24",
+        "line": "Santa Claus con la esencia del Grinch metío' (Rrra)",
+        "title": "La Jumpa",
+        "vocalists": [
+          "Arcángel"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "metío'"
+      },
+      {
+        "id": "6387245:1",
+        "line": "Le he visto en déjà vu, metido' en el hotel",
+        "title": "Tagliatelle Santeria",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "metido'"
+      }
+    ],
+    "display_form": "metío'",
+    "variants": {
+      "metío'": 7,
+      "metido'": 1
     }
   },
   {
@@ -153413,6 +153231,82 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "campeón"
+      }
+    ]
+  },
+  {
+    "word": "cantar",
+    "corpus_count": 7,
+    "song_count": 6,
+    "song_ids": [
+      "2976831",
+      "2978566",
+      "3193669",
+      "5091581",
+      "5422982",
+      "9614068"
+    ],
+    "examples": [
+      {
+        "id": "5422982:35",
+        "line": "Ay, yo quiero cantar una, please",
+        "title": "EN CASITA",
+        "vocalists": [
+          "Bad Bunny",
+          "Gabriela"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "cantar"
+      },
+      {
+        "id": "2976831:59",
+        "line": "Si es por cantar abajo, yo bajo y me gano un Grammy",
+        "title": "Amigos y Enemigos (Remix)",
+        "vocalists": [
+          "Almighty"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "cantar"
+      },
+      {
+        "id": "5091581:24",
+        "line": "Y son quiniento' mil por show o yo no vo'a cantar (Brr)",
+        "title": "Así Soy Yo",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "cantar"
+      },
+      {
+        "id": "2978566:21",
+        "line": "Luego las cosa' cambiaron (Yeah) y nos pusimo' a cantar (Yeah)",
+        "title": "Me Acostumbré",
+        "vocalists": [
+          "Arcangel"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "cantar"
+      },
+      {
+        "id": "3193669:29",
+        "line": "Y ayer por cantar media hora me dieron 7-5 mil",
+        "title": "El Ganador (Remix)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "cantar"
+      },
+      {
+        "id": "9614068:105",
+        "line": "Que prefiero cantar gratis en la Loiza que en Coachella",
+        "title": "ACHO PR",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "cantar"
       }
     ]
   },
@@ -157956,81 +157850,6 @@
     ]
   },
   {
-    "word": "metíos",
-    "corpus_count": 7,
-    "song_count": 7,
-    "song_ids": [
-      "3104973",
-      "4147689",
-      "5210444",
-      "5422982",
-      "6211037",
-      "8598733",
-      "9614087"
-    ],
-    "examples": [
-      {
-        "id": "4147689:22",
-        "line": "Tú metío' en tu casa y yo de gira (Jaja)",
-        "title": "¿Quién Tú Eres?",
-        "surface": "metío'"
-      },
-      {
-        "id": "5422982:18",
-        "line": "Pero estar metío' aquí hasta mayo 16",
-        "title": "EN CASITA",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "metío'"
-      },
-      {
-        "id": "6211037:23",
-        "line": "Desde chiquito metío' en problema' (Prr)",
-        "title": "LA DROGA",
-        "surface": "metío'"
-      },
-      {
-        "id": "5210444:10",
-        "line": "Y, ¿dónde estará Dios metío' en estos momento'?",
-        "title": "6 Rings",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "metío'"
-      },
-      {
-        "id": "3104973:32",
-        "line": "Me tienes en tu Snapchat to' el día metío'",
-        "title": "Dime Si Vas A Volver",
-        "surface": "metío'"
-      },
-      {
-        "id": "9614087:53",
-        "line": "Yo ando con la cone planeando la vuelta en Perú, estoy metío' en un campo (Ah-ah-ah)",
-        "title": "MERCEDES CAROTA",
-        "vocalists": [
-          "YOVNGCHIMI"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "metío'"
-      },
-      {
-        "id": "8598733:24",
-        "line": "Santa Claus con la esencia del Grinch metío' (Rrra)",
-        "title": "La Jumpa",
-        "vocalists": [
-          "Arcángel"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "metío'"
-      }
-    ],
-    "display_form": "metío'"
-  },
-  {
     "word": "millos",
     "corpus_count": 7,
     "song_count": 4,
@@ -162229,74 +162048,6 @@
     "variants": {
       "posicione'": 6,
       "posiciones": 1
-    }
-  },
-  {
-    "word": "quemar",
-    "corpus_count": 7,
-    "song_count": 5,
-    "song_ids": [
-      "11292691",
-      "3171036",
-      "3529948",
-      "4662271",
-      "7967942"
-    ],
-    "examples": [
-      {
-        "id": "4662271:14",
-        "line": "Que quiera' prender, que quiera' quemar (Uh-huh)",
-        "title": "QUÉ PRETENDES",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "quemar"
-      },
-      {
-        "id": "11292691:13",
-        "line": "Te dejo mojaíta', el sol te va a secar, sí, te va a quemar",
-        "title": "WELTiTA",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "quemar"
-      },
-      {
-        "id": "3529948:61",
-        "line": "Y hoy vamo' a quemar to' el mundo a nombre de Bob Marley",
-        "title": "La Cartera",
-        "vocalists": [
-          "Farruko"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "quemar"
-      },
-      {
-        "id": "7967942:7",
-        "line": "Enrola y va a quemar, ah-ay (Ey)",
-        "title": "Party",
-        "vocalists": [
-          "Rauw Alejandro"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "quemar"
-      },
-      {
-        "id": "3171036:58",
-        "line": "Sigue ahí, que tú estás que quema'",
-        "title": "Báilame (Remix)",
-        "vocalists": [
-          "Yandel"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "quema'"
-      }
-    ],
-    "variants": {
-      "quemar": 6,
-      "quema'": 1
     }
   },
   {
@@ -168789,7 +168540,7 @@
     ]
   },
   {
-    "word": "crecíos",
+    "word": "crecidos",
     "corpus_count": 6,
     "song_count": 4,
     "song_ids": [
@@ -170525,27 +170276,6 @@
         "surface": "et"
       }
     ]
-  },
-  {
-    "word": "exagerado",
-    "corpus_count": 6,
-    "song_count": 1,
-    "song_ids": [
-      "5629827"
-    ],
-    "examples": [
-      {
-        "id": "5629827:21",
-        "line": "So entiendan, que tengo un flow exagera'o",
-        "title": "Flow Exagerao",
-        "vocalists": [
-          "Angel Wavy"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "exagera'o"
-      }
-    ],
-    "display_form": "exagera'o"
   },
   {
     "word": "explotando",
@@ -174919,6 +174649,59 @@
         ],
         "sung_by_primary_artist": false,
         "surface": "quedarme"
+      }
+    ]
+  },
+  {
+    "word": "quemar",
+    "corpus_count": 6,
+    "song_count": 4,
+    "song_ids": [
+      "11292691",
+      "3529948",
+      "4662271",
+      "7967942"
+    ],
+    "examples": [
+      {
+        "id": "4662271:14",
+        "line": "Que quiera' prender, que quiera' quemar (Uh-huh)",
+        "title": "QUÉ PRETENDES",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "quemar"
+      },
+      {
+        "id": "11292691:13",
+        "line": "Te dejo mojaíta', el sol te va a secar, sí, te va a quemar",
+        "title": "WELTiTA",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "quemar"
+      },
+      {
+        "id": "3529948:61",
+        "line": "Y hoy vamo' a quemar to' el mundo a nombre de Bob Marley",
+        "title": "La Cartera",
+        "vocalists": [
+          "Farruko"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "quemar"
+      },
+      {
+        "id": "7967942:7",
+        "line": "Enrola y va a quemar, ah-ay (Ey)",
+        "title": "Party",
+        "vocalists": [
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "quemar"
       }
     ]
   },
@@ -189776,7 +189559,7 @@
     ]
   },
   {
-    "word": "partie'",
+    "word": "parties",
     "corpus_count": 5,
     "song_count": 5,
     "song_ids": [
@@ -189839,7 +189622,8 @@
         "sung_by_primary_artist": false,
         "surface": "partie'"
       }
-    ]
+    ],
+    "display_form": "partie'"
   },
   {
     "word": "peleando",
@@ -194230,7 +194014,7 @@
     ]
   },
   {
-    "word": "yo'",
+    "word": "yos",
     "corpus_count": 5,
     "song_count": 4,
     "song_ids": [
@@ -194280,7 +194064,8 @@
         "sung_by_primary_artist": true,
         "surface": "yo'"
       }
-    ]
+    ],
+    "display_form": "yo'"
   },
   {
     "word": "ñejo",
@@ -194312,6 +194097,59 @@
         "surface": "ñejo"
       }
     ]
+  },
+  {
+    "word": "babys",
+    "corpus_count": 5,
+    "song_count": 4,
+    "song_ids": [
+      "2990674",
+      "3015945",
+      "3167974",
+      "3495715"
+    ],
+    "examples": [
+      {
+        "id": "3015945:3",
+        "line": "To'as las babys quieren kush, kush, kush, kush, kush",
+        "title": "Krippy Kush",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "babys"
+      },
+      {
+        "id": "3495715:104",
+        "line": "Me voy con las babys que quieran jugar",
+        "title": "Te Boté (Remix)",
+        "vocalists": [
+          "Nicky Jam"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "babys"
+      },
+      {
+        "id": "3167974:83",
+        "line": "Yo le quité las 4 babys a Maluma",
+        "title": "El Challet (Remix)",
+        "vocalists": [
+          "Alexio"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "babys"
+      },
+      {
+        "id": "2990674:128",
+        "line": "Las babys son de nosotros, tranquilo mi hermano",
+        "title": "Haters (Remix)",
+        "surface": "babys"
+      }
+    ],
+    "variants": {
+      "babys": 4,
+      "baby'": 1
+    }
   },
   {
     "word": "bienvenido",
@@ -195102,63 +194940,6 @@
     "variants": {
       "millonario'": 4,
       "millonarios": 1
-    }
-  },
-  {
-    "word": "misiones",
-    "corpus_count": 5,
-    "song_count": 4,
-    "song_ids": [
-      "2925348",
-      "3006211",
-      "3167974",
-      "5553950"
-    ],
-    "examples": [
-      {
-        "id": "2925348:46",
-        "line": "Ahora me la paso de misiones en misiones",
-        "title": "Ahora Soy Peor",
-        "vocalists": [
-          "Lil Santana"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "misiones"
-      },
-      {
-        "id": "5553950:20",
-        "line": "Do' bellaco' amante 'e la' misiones",
-        "title": "CÓMO SE SIENTE (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "misiones"
-      },
-      {
-        "id": "3167974:53",
-        "line": "Vivo en Grand Theft Auto pero sin misiones",
-        "title": "El Challet (Remix)",
-        "vocalists": [
-          "Almighty"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "misiones"
-      },
-      {
-        "id": "3006211:56",
-        "line": "Con los mío' me monto pa' to'a las misione' (¡Darell!)",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Darell"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "misione'"
-      }
-    ],
-    "variants": {
-      "misiones": 4,
-      "misione'": 1
     }
   },
   {
@@ -198985,55 +198766,6 @@
         "line": "La' 11 en blanca y en azul royal",
         "title": "25/8",
         "surface": "azul"
-      }
-    ]
-  },
-  {
-    "word": "babys",
-    "corpus_count": 4,
-    "song_count": 4,
-    "song_ids": [
-      "2990674",
-      "3015945",
-      "3167974",
-      "3495715"
-    ],
-    "examples": [
-      {
-        "id": "3015945:3",
-        "line": "To'as las babys quieren kush, kush, kush, kush, kush",
-        "title": "Krippy Kush",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "babys"
-      },
-      {
-        "id": "3495715:104",
-        "line": "Me voy con las babys que quieran jugar",
-        "title": "Te Boté (Remix)",
-        "vocalists": [
-          "Nicky Jam"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "babys"
-      },
-      {
-        "id": "3167974:83",
-        "line": "Yo le quité las 4 babys a Maluma",
-        "title": "El Challet (Remix)",
-        "vocalists": [
-          "Alexio"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "babys"
-      },
-      {
-        "id": "2990674:128",
-        "line": "Las babys son de nosotros, tranquilo mi hermano",
-        "title": "Haters (Remix)",
-        "surface": "babys"
       }
     ]
   },
@@ -204998,26 +204730,6 @@
     ]
   },
   {
-    "word": "exagerao",
-    "corpus_count": 4,
-    "song_count": 1,
-    "song_ids": [
-      "5629827"
-    ],
-    "examples": [
-      {
-        "id": "5629827:34",
-        "line": "Tenemo' un flow exagerao, flow exagerao",
-        "title": "Flow Exagerao",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "exagerao"
-      }
-    ]
-  },
-  {
     "word": "experto",
     "corpus_count": 4,
     "song_count": 4,
@@ -207810,7 +207522,7 @@
     "display_form": "jodí'o"
   },
   {
-    "word": "jodíos",
+    "word": "jodidos",
     "corpus_count": 4,
     "song_count": 4,
     "song_ids": [
@@ -209904,6 +209616,48 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "miró"
+      }
+    ]
+  },
+  {
+    "word": "misiones",
+    "corpus_count": 4,
+    "song_count": 3,
+    "song_ids": [
+      "2925348",
+      "3167974",
+      "5553950"
+    ],
+    "examples": [
+      {
+        "id": "2925348:46",
+        "line": "Ahora me la paso de misiones en misiones",
+        "title": "Ahora Soy Peor",
+        "vocalists": [
+          "Lil Santana"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "misiones"
+      },
+      {
+        "id": "5553950:20",
+        "line": "Do' bellaco' amante 'e la' misiones",
+        "title": "CÓMO SE SIENTE (Remix)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "misiones"
+      },
+      {
+        "id": "3167974:53",
+        "line": "Vivo en Grand Theft Auto pero sin misiones",
+        "title": "El Challet (Remix)",
+        "vocalists": [
+          "Almighty"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "misiones"
       }
     ]
   },
@@ -219152,6 +218906,56 @@
     ]
   },
   {
+    "word": "arrebatados",
+    "corpus_count": 4,
+    "song_count": 4,
+    "song_ids": [
+      "2915707",
+      "3152684",
+      "5305015",
+      "5614024"
+    ],
+    "examples": [
+      {
+        "id": "5614024:44",
+        "line": "Porque nosotro' estamo' arrebatao' (Arrebatao'; ey)",
+        "title": "Hasta Que Dios Diga",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "arrebatao'"
+      },
+      {
+        "id": "2915707:62",
+        "line": "Arrebatao' con un pasto que dicen que no es sano",
+        "title": "CYNH2",
+        "surface": "arrebatao'"
+      },
+      {
+        "id": "5305015:4",
+        "line": "Siempre ando con lo' mismo', arrebatao' (Ey, ey, ey, ey)",
+        "title": "25/8",
+        "surface": "arrebatao'"
+      },
+      {
+        "id": "3152684:34",
+        "line": "Siempre chingamos arrebata'os, viendo to' borroso",
+        "title": "Si Tú Lo Dejas",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "arrebata'os"
+      }
+    ],
+    "display_form": "arrebatao'",
+    "variants": {
+      "arrebatao'": 3,
+      "arrebata'os": 1
+    }
+  },
+  {
     "word": "avisas",
     "corpus_count": 4,
     "song_count": 4,
@@ -220798,6 +220602,65 @@
     }
   },
   {
+    "word": "bendecido",
+    "corpus_count": 4,
+    "song_count": 4,
+    "song_ids": [
+      "3288015",
+      "3626034",
+      "5305039",
+      "9614068"
+    ],
+    "examples": [
+      {
+        "id": "5305039:32",
+        "line": "Tu envidia no me afecta, yo estoy bendecido (Yao)",
+        "title": "P FKN R",
+        "vocalists": [
+          "Bad Bunny",
+          "Arcángel"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "bendecido"
+      },
+      {
+        "id": "9614068:55",
+        "line": "Me sobran razone' pa' decir que estoy bendecido",
+        "title": "ACHO PR",
+        "vocalists": [
+          "Arcángel"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "bendecido"
+      },
+      {
+        "id": "3626034:81",
+        "line": "Ah, bendecí'o",
+        "title": "Original",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "bendecí'o"
+      },
+      {
+        "id": "3288015:56",
+        "line": "Digan lo que digan (Ah), yo estoy bendecío (Ah)",
+        "title": "Favorito De Los Capos (Remix)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "bendecío"
+      }
+    ],
+    "variants": {
+      "bendecido": 2,
+      "bendecí'o": 1,
+      "bendecío": 1
+    }
+  },
+  {
     "word": "brazos",
     "corpus_count": 4,
     "song_count": 3,
@@ -221021,6 +220884,66 @@
     "variants": {
       "caricia'": 2,
       "caricias": 2
+    }
+  },
+  {
+    "word": "escondidos",
+    "corpus_count": 4,
+    "song_count": 4,
+    "song_ids": [
+      "4706730",
+      "5305009",
+      "5761512",
+      "8659966"
+    ],
+    "examples": [
+      {
+        "id": "5305009:39",
+        "line": "Sin cojone' me tiene quedarme escondío' (No)",
+        "title": "Qué Malo",
+        "vocalists": [
+          "Bad Bunny",
+          "Ñengo Flow"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "escondío'"
+      },
+      {
+        "id": "8659966:44",
+        "line": "Mi bicho no tiene miedo, pero se pasa escondío'",
+        "title": "Gato de Noche",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "escondío'"
+      },
+      {
+        "id": "5761512:25",
+        "line": "Deja a tus amiga' allá atrás, que no' vamos en un viaje escondido'",
+        "title": "UN DÍA (ONE DAY)",
+        "vocalists": [
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "escondido'"
+      },
+      {
+        "id": "4706730:64",
+        "line": "Pero yo no tengo fondo' públicos escondí'os",
+        "title": "Afilando los Cuchillos",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "escondí'os"
+      }
+    ],
+    "display_form": "escondío'",
+    "variants": {
+      "escondío'": 2,
+      "escondido'": 1,
+      "escondí'os": 1
     }
   },
   {
@@ -221949,7 +221872,7 @@
     }
   },
   {
-    "word": "aborrecíos",
+    "word": "aborrecidos",
     "corpus_count": 3,
     "song_count": 3,
     "song_ids": [
@@ -223464,41 +223387,6 @@
     ]
   },
   {
-    "word": "arrebataos",
-    "corpus_count": 3,
-    "song_count": 3,
-    "song_ids": [
-      "2915707",
-      "5305015",
-      "5614024"
-    ],
-    "examples": [
-      {
-        "id": "5614024:44",
-        "line": "Porque nosotro' estamo' arrebatao' (Arrebatao'; ey)",
-        "title": "Hasta Que Dios Diga",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "arrebatao'"
-      },
-      {
-        "id": "2915707:62",
-        "line": "Arrebatao' con un pasto que dicen que no es sano",
-        "title": "CYNH2",
-        "surface": "arrebatao'"
-      },
-      {
-        "id": "5305015:4",
-        "line": "Siempre ando con lo' mismo', arrebatao' (Ey, ey, ey, ey)",
-        "title": "25/8",
-        "surface": "arrebatao'"
-      }
-    ],
-    "display_form": "arrebatao'"
-  },
-  {
     "word": "arreglar",
     "corpus_count": 3,
     "song_count": 3,
@@ -224668,7 +224556,7 @@
     "display_form": "bellaquera'"
   },
   {
-    "word": "bendecíos",
+    "word": "bendecidos",
     "corpus_count": 3,
     "song_count": 3,
     "song_ids": [
@@ -239128,7 +239016,7 @@
     "display_form": "paragua'"
   },
   {
-    "word": "parao'",
+    "word": "paraos",
     "corpus_count": 3,
     "song_count": 1,
     "song_ids": [
@@ -239147,7 +239035,8 @@
         "sung_by_primary_artist": true,
         "surface": "parao'"
       }
-    ]
+    ],
+    "display_form": "parao'"
   },
   {
     "word": "paraíso",
@@ -241146,7 +241035,7 @@
     ]
   },
   {
-    "word": "prendíos",
+    "word": "prendidos",
     "corpus_count": 3,
     "song_count": 2,
     "song_ids": [
@@ -248168,53 +248057,6 @@
     }
   },
   {
-    "word": "bendecido",
-    "corpus_count": 3,
-    "song_count": 3,
-    "song_ids": [
-      "3626034",
-      "5305039",
-      "9614068"
-    ],
-    "examples": [
-      {
-        "id": "5305039:32",
-        "line": "Tu envidia no me afecta, yo estoy bendecido (Yao)",
-        "title": "P FKN R",
-        "vocalists": [
-          "Bad Bunny",
-          "Arcángel"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "bendecido"
-      },
-      {
-        "id": "9614068:55",
-        "line": "Me sobran razone' pa' decir que estoy bendecido",
-        "title": "ACHO PR",
-        "vocalists": [
-          "Arcángel"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "bendecido"
-      },
-      {
-        "id": "3626034:81",
-        "line": "Ah, bendecí'o",
-        "title": "Original",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "bendecí'o"
-      }
-    ],
-    "variants": {
-      "bendecido": 2,
-      "bendecí'o": 1
-    }
-  },
-  {
     "word": "caletas",
     "corpus_count": 3,
     "song_count": 3,
@@ -248511,6 +248353,38 @@
     "variants": {
       "comemo'": 2,
       "comemos": 1
+    }
+  },
+  {
+    "word": "confundidos",
+    "corpus_count": 3,
+    "song_count": 2,
+    "song_ids": [
+      "4763027",
+      "9614095"
+    ],
+    "examples": [
+      {
+        "id": "9614095:3",
+        "line": "Yo los noto confundío', confundío'",
+        "title": "CYBERTRUCK",
+        "surface": "confundío'"
+      },
+      {
+        "id": "4763027:86",
+        "line": "'Ta gente tan confundido', okay",
+        "title": "Subimos de Rango",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "confundido'"
+      }
+    ],
+    "display_form": "confundío'",
+    "variants": {
+      "confundío'": 2,
+      "confundido'": 1
     }
   },
   {
@@ -251631,6 +251505,50 @@
     }
   },
   {
+    "word": "todito",
+    "corpus_count": 3,
+    "song_count": 3,
+    "song_ids": [
+      "3006211",
+      "5320881",
+      "6387245"
+    ],
+    "examples": [
+      {
+        "id": "5320881:15",
+        "line": "Ella vacila con to'ito, pero soy el unico que se lo mete",
+        "title": "Tentación",
+        "surface": "to'ito"
+      },
+      {
+        "id": "3006211:70",
+        "line": "Pero si fallas tirando, en el mismo intento to'ito se mueren (Mueren)",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Farruko",
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "to'ito"
+      },
+      {
+        "id": "6387245:23",
+        "line": "Todito bien hecho, la luna supervisó (Ey, ey)",
+        "title": "Tagliatelle Santeria",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todito"
+      }
+    ],
+    "display_form": "to'ito",
+    "variants": {
+      "to'ito": 2,
+      "todito": 1
+    }
+  },
+  {
     "word": "toques",
     "corpus_count": 3,
     "song_count": 2,
@@ -252047,6 +251965,54 @@
     "variants": {
       "éxtasis": 2,
       "éxtasi'": 1
+    }
+  },
+  {
+    "word": "toditas",
+    "corpus_count": 3,
+    "song_count": 3,
+    "song_ids": [
+      "3048221",
+      "3193669",
+      "7967959"
+    ],
+    "examples": [
+      {
+        "id": "3048221:75",
+        "line": "Se pasa metida en YouPorn, buscando aprenderse to'itas las pose'",
+        "title": "Me Mata",
+        "vocalists": [
+          "Brytiago"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "to'itas"
+      },
+      {
+        "id": "7967959:21",
+        "line": "Y las de PR que todita' son mía'",
+        "title": "Tití Me Preguntó",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todita'"
+      },
+      {
+        "id": "3193669:4",
+        "line": "Ahora me llaman, me tiran D.M. toditas las mamis",
+        "title": "El Ganador (Remix)",
+        "vocalists": [
+          "Nicky Jam"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "toditas"
+      }
+    ],
+    "display_form": "to'itas",
+    "variants": {
+      "to'itas": 1,
+      "todita'": 1,
+      "toditas": 1
     }
   },
   {
@@ -257938,7 +257904,7 @@
     ]
   },
   {
-    "word": "callaítas",
+    "word": "calladitas",
     "corpus_count": 2,
     "song_count": 2,
     "song_ids": [
@@ -261770,23 +261736,6 @@
       }
     ],
     "display_form": "confunda'"
-  },
-  {
-    "word": "confundíos",
-    "corpus_count": 2,
-    "song_count": 1,
-    "song_ids": [
-      "9614095"
-    ],
-    "examples": [
-      {
-        "id": "9614095:3",
-        "line": "Yo los noto confundío', confundío'",
-        "title": "CYBERTRUCK",
-        "surface": "confundío'"
-      }
-    ],
-    "display_form": "confundío'"
   },
   {
     "word": "conne",
@@ -267608,39 +267557,6 @@
         "surface": "escondo"
       }
     ]
-  },
-  {
-    "word": "escondíos",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "5305009",
-      "8659966"
-    ],
-    "examples": [
-      {
-        "id": "5305009:39",
-        "line": "Sin cojone' me tiene quedarme escondío' (No)",
-        "title": "Qué Malo",
-        "vocalists": [
-          "Bad Bunny",
-          "Ñengo Flow"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "escondío'"
-      },
-      {
-        "id": "8659966:44",
-        "line": "Mi bicho no tiene miedo, pero se pasa escondío'",
-        "title": "Gato de Noche",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "escondío'"
-      }
-    ],
-    "display_form": "escondío'"
   },
   {
     "word": "escoria",
@@ -278969,6 +278885,26 @@
     ]
   },
   {
+    "word": "move'",
+    "corpus_count": 2,
+    "song_count": 1,
+    "song_ids": [
+      "11292885"
+    ],
+    "examples": [
+      {
+        "id": "11292885:53",
+        "line": "Lo tiene' que move'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'",
+        "title": "NUEVAYoL",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "move'"
+      }
+    ]
+  },
+  {
     "word": "muchacho",
     "corpus_count": 2,
     "song_count": 1,
@@ -279553,7 +279489,7 @@
     ]
   },
   {
-    "word": "nacíos",
+    "word": "nacidos",
     "corpus_count": 2,
     "song_count": 2,
     "song_ids": [
@@ -281965,7 +281901,7 @@
     ]
   },
   {
-    "word": "patás",
+    "word": "patadas",
     "corpus_count": 2,
     "song_count": 2,
     "song_ids": [
@@ -292173,34 +292109,6 @@
     ]
   },
   {
-    "word": "to'ito",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "3006211",
-      "5320881"
-    ],
-    "examples": [
-      {
-        "id": "5320881:15",
-        "line": "Ella vacila con to'ito, pero soy el unico que se lo mete",
-        "title": "Tentación",
-        "surface": "to'ito"
-      },
-      {
-        "id": "3006211:70",
-        "line": "Pero si fallas tirando, en el mismo intento to'ito se mueren (Mueren)",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Farruko",
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to'ito"
-      }
-    ]
-  },
-  {
     "word": "tocaba",
     "corpus_count": 2,
     "song_count": 2,
@@ -296108,6 +296016,44 @@
     }
   },
   {
+    "word": "alexis",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "2953251",
+      "3022353"
+    ],
+    "examples": [
+      {
+        "id": "2953251:66",
+        "line": "DJ Alexi', produciendo",
+        "title": "Loco Pero Millonario (Remix)",
+        "vocalists": [
+          "N-Fasis",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "alexi'"
+      },
+      {
+        "id": "3022353:66",
+        "line": "Alexis & Fido",
+        "title": "Tócate Tú Misma",
+        "vocalists": [
+          "Alexis",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "alexis"
+      }
+    ],
+    "display_form": "alexi'",
+    "variants": {
+      "alexi'": 1,
+      "alexis": 1
+    }
+  },
+  {
     "word": "ames",
     "corpus_count": 2,
     "song_count": 2,
@@ -296767,31 +296713,6 @@
     }
   },
   {
-    "word": "cagar",
-    "corpus_count": 2,
-    "song_count": 1,
-    "song_ids": [
-      "3006211"
-    ],
-    "examples": [
-      {
-        "id": "3006211:115",
-        "line": "Nosotro' somo' los verdadero' hijo e' puta', me vo'a caga' en la madre",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "caga'"
-      }
-    ],
-    "display_form": "caga'",
-    "variants": {
-      "caga'": 1,
-      "cagar": 1
-    }
-  },
-  {
     "word": "caicos",
     "corpus_count": 2,
     "song_count": 2,
@@ -296956,39 +296877,6 @@
     "variants": {
       "cartera'": 1,
       "carteras": 1
-    }
-  },
-  {
-    "word": "cenar",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "2953251",
-      "9237319"
-    ],
-    "examples": [
-      {
-        "id": "2953251:6",
-        "line": "Ayúdeme, comandante, y deme algo pa' cena' (Yeh, yeh)",
-        "title": "Loco Pero Millonario (Remix)",
-        "vocalists": [
-          "N-Fasis",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "cena'"
-      },
-      {
-        "id": "9237319:38",
-        "line": "Mientras tanto yo lo sigo rulin después de cenar en Sophia (Mmm)",
-        "title": "MOJABI GHOST",
-        "surface": "cenar"
-      }
-    ],
-    "display_form": "cena'",
-    "variants": {
-      "cena'": 1,
-      "cenar": 1
     }
   },
   {
@@ -298025,39 +297913,35 @@
     }
   },
   {
-    "word": "escondidos",
+    "word": "estuviésemos",
     "corpus_count": 2,
     "song_count": 2,
     "song_ids": [
-      "4706730",
-      "5761512"
+      "4179007",
+      "6866266"
     ],
     "examples": [
       {
-        "id": "5761512:25",
-        "line": "Deja a tus amiga' allá atrás, que no' vamos en un viaje escondido'",
-        "title": "UN DÍA (ONE DAY)",
-        "vocalists": [
-          "J Balvin"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "escondido'"
-      },
-      {
-        "id": "4706730:64",
-        "line": "Pero yo no tengo fondo' públicos escondí'os",
-        "title": "Afilando los Cuchillos",
+        "id": "6866266:58",
+        "line": "Si estuviésemo' en kínder te enviaba cartita'",
+        "title": "Volando (Remix)",
         "vocalists": [
           "Bad Bunny"
         ],
         "sung_by_primary_artist": true,
-        "surface": "escondí'os"
+        "surface": "estuviésemo'"
+      },
+      {
+        "id": "4179007:10",
+        "line": "Si estuviésemos juntos, aún enamorados",
+        "title": "Si Estuviésemos Juntos",
+        "surface": "estuviésemos"
       }
     ],
-    "display_form": "escondido'",
+    "display_form": "estuviésemo'",
     "variants": {
-      "escondido'": 1,
-      "escondí'os": 1
+      "estuviésemo'": 1,
+      "estuviésemos": 1
     }
   },
   {
@@ -298672,6 +298556,31 @@
     }
   },
   {
+    "word": "involucrado",
+    "corpus_count": 2,
+    "song_count": 1,
+    "song_ids": [
+      "3753517"
+    ],
+    "examples": [
+      {
+        "id": "3753517:117",
+        "line": "'Tamo' involucra'o lo' dos en la cama (en la cama)",
+        "title": "Maldades (Remix)",
+        "vocalists": [
+          "Lito Kirino"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "involucra'o"
+      }
+    ],
+    "display_form": "involucra'o",
+    "variants": {
+      "involucra'o": 1,
+      "involucrao": 1
+    }
+  },
+  {
     "word": "jevos",
     "corpus_count": 2,
     "song_count": 2,
@@ -299084,6 +298993,38 @@
     }
   },
   {
+    "word": "mentales",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "2990674",
+      "3928253"
+    ],
+    "examples": [
+      {
+        "id": "2990674:76",
+        "line": "Que si tengo problema' mentale'",
+        "title": "Haters (Remix)",
+        "vocalists": [
+          "Almighty"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "mentale'"
+      },
+      {
+        "id": "3928253:18",
+        "line": "Son de otro planeta, con naves espaciales, lápiz especiales, problemas mentales",
+        "title": "Bad Bunny: Problemas de un niño normal",
+        "surface": "mentales"
+      }
+    ],
+    "display_form": "mentale'",
+    "variants": {
+      "mentale'": 1,
+      "mentales": 1
+    }
+  },
+  {
     "word": "metas",
     "corpus_count": 2,
     "song_count": 2,
@@ -299284,43 +299225,6 @@
     "variants": {
       "pase'": 1,
       "pases": 1
-    }
-  },
-  {
-    "word": "pecados",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "6862415",
-      "7967942"
-    ],
-    "examples": [
-      {
-        "id": "6862415:10",
-        "line": "Son siete los pecado' que te quiero cometer",
-        "title": "AM Remix",
-        "vocalists": [
-          "Bad Bunny",
-          "J Balvin"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "pecado'"
-      },
-      {
-        "id": "7967942:79",
-        "line": "Todos son santos cuando hablan de los pecados ajenos",
-        "title": "Party",
-        "vocalists": [
-          "Javis Germoso"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "pecados"
-      }
-    ],
-    "display_form": "pecado'",
-    "variants": {
-      "pecado'": 1,
-      "pecados": 1
     }
   },
   {
@@ -300077,6 +299981,46 @@
     }
   },
   {
+    "word": "setas",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3359025",
+      "7420852"
+    ],
+    "examples": [
+      {
+        "id": "7420852:29",
+        "line": "Par de seta', moñas verde' como Yoda",
+        "title": "No Te Deseo el Mal",
+        "vocalists": [
+          "KAROL G",
+          "Eladio Carrión",
+          "Ambos",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "seta'"
+      },
+      {
+        "id": "3359025:35",
+        "line": "Traje un pa’l de setas y no son las del Zorro",
+        "title": "Como Soy",
+        "vocalists": [
+          "Pacho",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "setas"
+      }
+    ],
+    "display_form": "seta'",
+    "variants": {
+      "seta'": 1,
+      "setas": 1
+    }
+  },
+  {
     "word": "sillas",
     "corpus_count": 2,
     "song_count": 2,
@@ -300415,6 +300359,42 @@
     }
   },
   {
+    "word": "tickets",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "2990674",
+      "4763027"
+    ],
+    "examples": [
+      {
+        "id": "2990674:16",
+        "line": "Y esos que roncan de ticket' (¡Wuh!)",
+        "title": "Haters (Remix)",
+        "vocalists": [
+          "J Álvarez"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "ticket'"
+      },
+      {
+        "id": "4763027:41",
+        "line": "No quiero mis tickets en caleta",
+        "title": "Subimos de Rango",
+        "vocalists": [
+          "Omy de Oro"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "tickets"
+      }
+    ],
+    "display_form": "ticket'",
+    "variants": {
+      "ticket'": 1,
+      "tickets": 1
+    }
+  },
+  {
     "word": "tiras",
     "corpus_count": 2,
     "song_count": 2,
@@ -300449,42 +300429,6 @@
     "variants": {
       "tira'": 1,
       "tiras": 1
-    }
-  },
-  {
-    "word": "toditas",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "3193669",
-      "7967959"
-    ],
-    "examples": [
-      {
-        "id": "7967959:21",
-        "line": "Y las de PR que todita' son mía'",
-        "title": "Tití Me Preguntó",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todita'"
-      },
-      {
-        "id": "3193669:4",
-        "line": "Ahora me llaman, me tiran D.M. toditas las mamis",
-        "title": "El Ganador (Remix)",
-        "vocalists": [
-          "Nicky Jam"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "toditas"
-      }
-    ],
-    "display_form": "todita'",
-    "variants": {
-      "todita'": 1,
-      "toditas": 1
     }
   },
   {
@@ -301228,7 +301172,7 @@
     ]
   },
   {
-    "word": "abrazaos",
+    "word": "abrazados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -303140,7 +303084,7 @@
     ]
   },
   {
-    "word": "adictivo'",
+    "word": "adictivos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -303157,7 +303101,8 @@
         "sung_by_primary_artist": true,
         "surface": "adictivo'"
       }
-    ]
+    ],
+    "display_form": "adictivo'"
   },
   {
     "word": "adivinen",
@@ -305117,48 +305062,6 @@
     ]
   },
   {
-    "word": "alexi'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2953251"
-    ],
-    "examples": [
-      {
-        "id": "2953251:66",
-        "line": "DJ Alexi', produciendo",
-        "title": "Loco Pero Millonario (Remix)",
-        "vocalists": [
-          "N-Fasis",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "alexi'"
-      }
-    ]
-  },
-  {
-    "word": "alexis",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3022353"
-    ],
-    "examples": [
-      {
-        "id": "3022353:66",
-        "line": "Alexis & Fido",
-        "title": "Tócate Tú Misma",
-        "vocalists": [
-          "Alexis",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "alexis"
-      }
-    ]
-  },
-  {
     "word": "alfabeto",
     "corpus_count": 1,
     "song_count": 1,
@@ -306040,7 +305943,7 @@
     ]
   },
   {
-    "word": "amanecíos",
+    "word": "amanecidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -308070,7 +307973,7 @@
     ]
   },
   {
-    "word": "apretaos",
+    "word": "apretados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -308952,27 +308855,6 @@
       }
     ],
     "display_form": "arrastramo'"
-  },
-  {
-    "word": "arrebatados",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3152684"
-    ],
-    "examples": [
-      {
-        "id": "3152684:34",
-        "line": "Siempre chingamos arrebata'os, viendo to' borroso",
-        "title": "Si Tú Lo Dejas",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "arrebata'os"
-      }
-    ],
-    "display_form": "arrebata'os"
   },
   {
     "word": "arrebataba",
@@ -310179,7 +310061,7 @@
     ]
   },
   {
-    "word": "atragantá'",
+    "word": "atragantás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -310196,7 +310078,8 @@
         "sung_by_primary_artist": false,
         "surface": "atragantá'"
       }
-    ]
+    ],
+    "display_form": "atragantá'"
   },
   {
     "word": "atrajo",
@@ -311241,26 +311124,6 @@
         ],
         "sung_by_primary_artist": false,
         "surface": "baba"
-      }
-    ]
-  },
-  {
-    "word": "baby'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2990674"
-    ],
-    "examples": [
-      {
-        "id": "2990674:10",
-        "line": "De to'as las baby', yo a la que quiero e' a esa",
-        "title": "Haters (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "baby'"
       }
     ]
   },
@@ -312834,7 +312697,7 @@
     ]
   },
   {
-    "word": "bebíos",
+    "word": "bebidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -313122,26 +312985,6 @@
         "line": "Aunque baje Jesucristo y nos vuelva a bendecir",
         "title": "GRACIAS POR NADA",
         "surface": "bendecir"
-      }
-    ]
-  },
-  {
-    "word": "bendecío",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3288015"
-    ],
-    "examples": [
-      {
-        "id": "3288015:56",
-        "line": "Digan lo que digan (Ah), yo estoy bendecío (Ah)",
-        "title": "Favorito De Los Capos (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "bendecío"
       }
     ]
   },
@@ -313889,7 +313732,7 @@
     "display_form": "bienvenido'"
   },
   {
-    "word": "bienvenías",
+    "word": "bienvenidas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -314139,7 +313982,7 @@
     "display_form": "blade'"
   },
   {
-    "word": "blanquita'",
+    "word": "blanquitas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -314156,7 +313999,8 @@
         "sung_by_primary_artist": false,
         "surface": "blanquita'"
       }
-    ]
+    ],
+    "display_form": "blanquita'"
   },
   {
     "word": "blass",
@@ -315412,7 +315256,7 @@
     ]
   },
   {
-    "word": "botá'",
+    "word": "botás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -315429,7 +315273,8 @@
         "sung_by_primary_artist": false,
         "surface": "botá'"
       }
-    ]
+    ],
+    "display_form": "botá'"
   },
   {
     "word": "botó",
@@ -317722,6 +317567,26 @@
     ]
   },
   {
+    "word": "caga'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3006211"
+    ],
+    "examples": [
+      {
+        "id": "3006211:115",
+        "line": "Nosotro' somo' los verdadero' hijo e' puta', me vo'a caga' en la madre",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "caga'"
+      }
+    ]
+  },
+  {
     "word": "cagaos",
     "corpus_count": 1,
     "song_count": 1,
@@ -317741,6 +317606,30 @@
       }
     ],
     "display_form": "cagao'"
+  },
+  {
+    "word": "cagar",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3006211"
+    ],
+    "examples": [
+      {
+        "id": "3006211:158",
+        "line": "Real G4 Life hasta que me maten, me vo'a cagar en la madre 'el diablo",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Anuel AA",
+          "Ñengo Flow",
+          "Bad Bunny",
+          "Casper Mágico",
+          "*Darell*"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "cagar"
+      }
+    ]
   },
   {
     "word": "cague",
@@ -318172,7 +318061,7 @@
     ]
   },
   {
-    "word": "callaítos",
+    "word": "calladitos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -319173,6 +319062,27 @@
         ],
         "sung_by_primary_artist": false,
         "surface": "canta"
+      }
+    ]
+  },
+  {
+    "word": "canta'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "2953251"
+    ],
+    "examples": [
+      {
+        "id": "2953251:11",
+        "line": "Y después me voy a poner a canta' pa' justificar el dinero poco a poco",
+        "title": "Loco Pero Millonario (Remix)",
+        "vocalists": [
+          "N-Fasis",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "canta'"
       }
     ]
   },
@@ -320259,7 +320169,7 @@
     ]
   },
   {
-    "word": "cartita'",
+    "word": "cartitas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -320276,10 +320186,11 @@
         "sung_by_primary_artist": true,
         "surface": "cartita'"
       }
-    ]
+    ],
+    "display_form": "cartita'"
   },
   {
-    "word": "cartuchazo'",
+    "word": "cartuchazos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -320297,7 +320208,8 @@
         "sung_by_primary_artist": true,
         "surface": "cartuchazo'"
       }
-    ]
+    ],
+    "display_form": "cartuchazo'"
   },
   {
     "word": "caruso",
@@ -321214,6 +321126,43 @@
         "line": "Les pasé po' encima con las White Cement (Yeah, yeah, yeah)",
         "title": "200 MPH",
         "surface": "cement"
+      }
+    ]
+  },
+  {
+    "word": "cena'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "2953251"
+    ],
+    "examples": [
+      {
+        "id": "2953251:6",
+        "line": "Ayúdeme, comandante, y deme algo pa' cena' (Yeh, yeh)",
+        "title": "Loco Pero Millonario (Remix)",
+        "vocalists": [
+          "N-Fasis",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "cena'"
+      }
+    ]
+  },
+  {
+    "word": "cenar",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "9237319"
+    ],
+    "examples": [
+      {
+        "id": "9237319:38",
+        "line": "Mientras tanto yo lo sigo rulin después de cenar en Sophia (Mmm)",
+        "title": "MOJABI GHOST",
+        "surface": "cenar"
       }
     ]
   },
@@ -322502,7 +322451,7 @@
     ]
   },
   {
-    "word": "chingaos",
+    "word": "chingados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -324610,7 +324559,7 @@
     ]
   },
   {
-    "word": "cojine'",
+    "word": "cojines",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -324627,7 +324576,8 @@
         "sung_by_primary_artist": true,
         "surface": "cojine'"
       }
-    ]
+    ],
+    "display_form": "cojine'"
   },
   {
     "word": "cojonus",
@@ -326733,7 +326683,7 @@
     ]
   },
   {
-    "word": "confiaos",
+    "word": "confiados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -326977,27 +326927,6 @@
         "surface": "confunda"
       }
     ]
-  },
-  {
-    "word": "confundidos",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "4763027"
-    ],
-    "examples": [
-      {
-        "id": "4763027:86",
-        "line": "'Ta gente tan confundido', okay",
-        "title": "Subimos de Rango",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "confundido'"
-      }
-    ],
-    "display_form": "confundido'"
   },
   {
     "word": "confundimos",
@@ -328420,7 +328349,7 @@
     ]
   },
   {
-    "word": "coronaviru'",
+    "word": "coronavirus",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -328439,7 +328368,8 @@
         "sung_by_primary_artist": true,
         "surface": "coronaviru'"
       }
-    ]
+    ],
+    "display_form": "coronaviru'"
   },
   {
     "word": "corone",
@@ -329179,7 +329109,7 @@
     ]
   },
   {
-    "word": "cotizaos",
+    "word": "cotizados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -330726,7 +330656,7 @@
     ]
   },
   {
-    "word": "cuentes",
+    "word": "cuente'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -330743,8 +330673,7 @@
         "sung_by_primary_artist": true,
         "surface": "cuente'"
       }
-    ],
-    "display_form": "cuente'"
+    ]
   },
   {
     "word": "cuerdo",
@@ -331151,7 +331080,7 @@
     "display_form": "cumplimo'"
   },
   {
-    "word": "cumplíos",
+    "word": "cumplidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -333022,7 +332951,7 @@
     ]
   },
   {
-    "word": "demasiaos",
+    "word": "demasiados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -333311,7 +333240,7 @@
     ]
   },
   {
-    "word": "dentale'",
+    "word": "dentales",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -333328,7 +333257,8 @@
         "sung_by_primary_artist": false,
         "surface": "dentale'"
       }
-    ]
+    ],
+    "display_form": "dentale'"
   },
   {
     "word": "dentera",
@@ -333743,7 +333673,7 @@
     ]
   },
   {
-    "word": "derrumbamo'",
+    "word": "derrumbamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -333760,7 +333690,8 @@
         "sung_by_primary_artist": false,
         "surface": "derrumbamo'"
       }
-    ]
+    ],
+    "display_form": "derrumbamo'"
   },
   {
     "word": "desafinar",
@@ -335326,7 +335257,7 @@
     ]
   },
   {
-    "word": "desquitarno'",
+    "word": "desquitarnos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -335344,7 +335275,8 @@
         "sung_by_primary_artist": true,
         "surface": "desquitarno'"
       }
-    ]
+    ],
+    "display_form": "desquitarno'"
   },
   {
     "word": "destacado",
@@ -336502,7 +336434,7 @@
     ]
   },
   {
-    "word": "direcciones",
+    "word": "direccione'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -336519,8 +336451,7 @@
         "sung_by_primary_artist": false,
         "surface": "direccione'"
       }
-    ],
-    "display_form": "direccione'"
+    ]
   },
   {
     "word": "director",
@@ -337026,7 +336957,7 @@
     ]
   },
   {
-    "word": "disquera'",
+    "word": "disqueras",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -337043,7 +336974,8 @@
         "sung_by_primary_artist": false,
         "surface": "disquera'"
       }
-    ]
+    ],
+    "display_form": "disquera'"
   },
   {
     "word": "disquito",
@@ -340680,7 +340612,7 @@
     "display_form": "encendía'"
   },
   {
-    "word": "encendíos",
+    "word": "encendidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -340702,7 +340634,7 @@
     "display_form": "encendío'"
   },
   {
-    "word": "encerraos",
+    "word": "encerrados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -340765,7 +340697,7 @@
     "display_form": "encerrarno'"
   },
   {
-    "word": "encerrá'",
+    "word": "encerrás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -340782,7 +340714,8 @@
         "sung_by_primary_artist": true,
         "surface": "encerrá'"
       }
-    ]
+    ],
+    "display_form": "encerrá'"
   },
   {
     "word": "encesto",
@@ -341346,7 +341279,7 @@
     ]
   },
   {
-    "word": "endrogamo'",
+    "word": "endrogamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -341363,7 +341296,8 @@
         "sung_by_primary_artist": false,
         "surface": "endrogamo'"
       }
-    ]
+    ],
+    "display_form": "endrogamo'"
   },
   {
     "word": "enfangarse",
@@ -342419,7 +342353,7 @@
     "display_form": "entere'"
   },
   {
-    "word": "entero'",
+    "word": "enteros",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -342436,10 +342370,11 @@
         "sung_by_primary_artist": false,
         "surface": "entero'"
       }
-    ]
+    ],
+    "display_form": "entero'"
   },
   {
-    "word": "enterramo'",
+    "word": "enterramos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -342457,7 +342392,8 @@
         "sung_by_primary_artist": true,
         "surface": "enterramo'"
       }
-    ]
+    ],
+    "display_form": "enterramo'"
   },
   {
     "word": "enterrar",
@@ -346297,42 +346233,6 @@
     ]
   },
   {
-    "word": "estuviésemo'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "6866266"
-    ],
-    "examples": [
-      {
-        "id": "6866266:58",
-        "line": "Si estuviésemo' en kínder te enviaba cartita'",
-        "title": "Volando (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "estuviésemo'"
-      }
-    ]
-  },
-  {
-    "word": "estuviésemos",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "4179007"
-    ],
-    "examples": [
-      {
-        "id": "4179007:10",
-        "line": "Si estuviésemos juntos, aún enamorados",
-        "title": "Si Estuviésemos Juntos",
-        "surface": "estuviésemos"
-      }
-    ]
-  },
-  {
     "word": "estuvo",
     "corpus_count": 1,
     "song_count": 1,
@@ -347282,7 +347182,7 @@
     ]
   },
   {
-    "word": "explotaos",
+    "word": "explotados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -347987,7 +347887,7 @@
     ]
   },
   {
-    "word": "fallaos",
+    "word": "fallados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -348693,7 +348593,7 @@
     ]
   },
   {
-    "word": "fechoría'",
+    "word": "fechorías",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -348710,7 +348610,8 @@
         "sung_by_primary_artist": false,
         "surface": "fechoría'"
       }
-    ]
+    ],
+    "display_form": "fechoría'"
   },
   {
     "word": "federico",
@@ -348733,7 +348634,7 @@
     ]
   },
   {
-    "word": "federico'",
+    "word": "federicos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -348751,7 +348652,8 @@
         "sung_by_primary_artist": false,
         "surface": "federico'"
       }
-    ]
+    ],
+    "display_form": "federico'"
   },
   {
     "word": "fedex",
@@ -350046,7 +349948,7 @@
     ]
   },
   {
-    "word": "flechas",
+    "word": "flecha'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -350063,8 +349965,7 @@
         "sung_by_primary_artist": true,
         "surface": "flecha'"
       }
-    ],
-    "display_form": "flecha'"
+    ]
   },
   {
     "word": "fleche",
@@ -350647,7 +350548,7 @@
     ]
   },
   {
-    "word": "formamo'",
+    "word": "formamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -350664,7 +350565,8 @@
         "sung_by_primary_artist": true,
         "surface": "formamo'"
       }
-    ]
+    ],
+    "display_form": "formamo'"
   },
   {
     "word": "formar",
@@ -351924,7 +351826,7 @@
     ]
   },
   {
-    "word": "fumándono'",
+    "word": "fumándonos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -351941,7 +351843,8 @@
         "sung_by_primary_artist": true,
         "surface": "fumándono'"
       }
-    ]
+    ],
+    "display_form": "fumándono'"
   },
   {
     "word": "fumándose",
@@ -352370,7 +352273,7 @@
     ]
   },
   {
-    "word": "gabinete'",
+    "word": "gabinetes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -352387,7 +352290,8 @@
         "sung_by_primary_artist": false,
         "surface": "gabinete'"
       }
-    ]
+    ],
+    "display_form": "gabinete'"
   },
   {
     "word": "gabs",
@@ -353293,7 +353197,7 @@
     ]
   },
   {
-    "word": "gatito'",
+    "word": "gatitos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -353311,7 +353215,8 @@
         "sung_by_primary_artist": true,
         "surface": "gatito'"
       }
-    ]
+    ],
+    "display_form": "gatito'"
   },
   {
     "word": "gatos",
@@ -357211,7 +357116,7 @@
     "display_form": "hermana'"
   },
   {
-    "word": "hermanao",
+    "word": "hermanado",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -357228,7 +357133,8 @@
         "sung_by_primary_artist": false,
         "surface": "hermanao"
       }
-    ]
+    ],
+    "display_form": "hermanao"
   },
   {
     "word": "hermanazo",
@@ -359434,7 +359340,7 @@
     ]
   },
   {
-    "word": "imperfeccione'",
+    "word": "imperfecciones",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -359451,7 +359357,8 @@
         "sung_by_primary_artist": false,
         "surface": "imperfeccione'"
       }
-    ]
+    ],
+    "display_form": "imperfeccione'"
   },
   {
     "word": "impido",
@@ -360012,7 +359919,7 @@
     ]
   },
   {
-    "word": "india'",
+    "word": "indias",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -360029,7 +359936,8 @@
         "sung_by_primary_artist": false,
         "surface": "india'"
       }
-    ]
+    ],
+    "display_form": "india'"
   },
   {
     "word": "indica",
@@ -361602,47 +361510,6 @@
     ]
   },
   {
-    "word": "involucrado",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3753517"
-    ],
-    "examples": [
-      {
-        "id": "3753517:117",
-        "line": "'Tamo' involucra'o lo' dos en la cama (en la cama)",
-        "title": "Maldades (Remix)",
-        "vocalists": [
-          "Lito Kirino"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "involucra'o"
-      }
-    ],
-    "display_form": "involucra'o"
-  },
-  {
-    "word": "involucrao",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3753517"
-    ],
-    "examples": [
-      {
-        "id": "3753517:119",
-        "line": "'Tamo' involucrao, lo' dos en la cama",
-        "title": "Maldades (Remix)",
-        "vocalists": [
-          "Lito Kirino"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "involucrao"
-      }
-    ]
-  },
-  {
     "word": "invítame",
     "corpus_count": 1,
     "song_count": 1,
@@ -362925,7 +362792,7 @@
     ]
   },
   {
-    "word": "jingle'",
+    "word": "jingles",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -362942,10 +362809,11 @@
         "sung_by_primary_artist": false,
         "surface": "jingle'"
       }
-    ]
+    ],
+    "display_form": "jingle'"
   },
   {
-    "word": "jirafa'",
+    "word": "jirafas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -362962,7 +362830,8 @@
         "sung_by_primary_artist": false,
         "surface": "jirafa'"
       }
-    ]
+    ],
+    "display_form": "jirafa'"
   },
   {
     "word": "jirafales",
@@ -363062,7 +362931,7 @@
     ]
   },
   {
-    "word": "jodé'",
+    "word": "jodés",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -363079,7 +362948,8 @@
         "sung_by_primary_artist": false,
         "surface": "jodé'"
       }
-    ]
+    ],
+    "display_form": "jodé'"
   },
   {
     "word": "jodida",
@@ -364030,7 +363900,7 @@
     "display_form": "jura'o"
   },
   {
-    "word": "juraos",
+    "word": "jurados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -365628,7 +365498,7 @@
     ]
   },
   {
-    "word": "latido'",
+    "word": "latidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -365645,7 +365515,8 @@
         "sung_by_primary_artist": false,
         "surface": "latido'"
       }
-    ]
+    ],
+    "display_form": "latido'"
   },
   {
     "word": "latinos",
@@ -366698,7 +366569,7 @@
     "display_form": "liga'"
   },
   {
-    "word": "ligamo'",
+    "word": "ligamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -366716,7 +366587,8 @@
         "sung_by_primary_artist": false,
         "surface": "ligamo'"
       }
-    ]
+    ],
+    "display_form": "ligamo'"
   },
   {
     "word": "ligan",
@@ -368627,7 +368499,7 @@
     ]
   },
   {
-    "word": "loto'",
+    "word": "lotos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -368646,7 +368518,8 @@
         "sung_by_primary_artist": false,
         "surface": "loto'"
       }
-    ]
+    ],
+    "display_form": "loto'"
   },
   {
     "word": "lou",
@@ -369397,7 +369270,7 @@
     ]
   },
   {
-    "word": "machetazo'",
+    "word": "machetazos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -369415,7 +369288,8 @@
         "sung_by_primary_artist": true,
         "surface": "machetazo'"
       }
-    ]
+    ],
+    "display_form": "machetazo'"
   },
   {
     "word": "machete",
@@ -369846,7 +369720,7 @@
     ]
   },
   {
-    "word": "magnate'",
+    "word": "magnates",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -369863,7 +369737,8 @@
         "sung_by_primary_artist": true,
         "surface": "magnate'"
       }
-    ]
+    ],
+    "display_form": "magnate'"
   },
   {
     "word": "magneto",
@@ -370878,7 +370753,7 @@
     ]
   },
   {
-    "word": "manejo'",
+    "word": "manejos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -370895,7 +370770,8 @@
         "sung_by_primary_artist": false,
         "surface": "manejo'"
       }
-    ]
+    ],
+    "display_form": "manejo'"
   },
   {
     "word": "maneras",
@@ -372149,7 +372025,7 @@
     ]
   },
   {
-    "word": "maríos",
+    "word": "maridos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -373617,42 +373493,6 @@
     ]
   },
   {
-    "word": "mentale'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2990674"
-    ],
-    "examples": [
-      {
-        "id": "2990674:76",
-        "line": "Que si tengo problema' mentale'",
-        "title": "Haters (Remix)",
-        "vocalists": [
-          "Almighty"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "mentale'"
-      }
-    ]
-  },
-  {
-    "word": "mentales",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3928253"
-    ],
-    "examples": [
-      {
-        "id": "3928253:18",
-        "line": "Son de otro planeta, con naves espaciales, lápiz especiales, problemas mentales",
-        "title": "Bad Bunny: Problemas de un niño normal",
-        "surface": "mentales"
-      }
-    ]
-  },
-  {
     "word": "mentido",
     "corpus_count": 1,
     "song_count": 1,
@@ -374132,27 +373972,6 @@
         "surface": "metida"
       }
     ]
-  },
-  {
-    "word": "metidos",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "6387245"
-    ],
-    "examples": [
-      {
-        "id": "6387245:1",
-        "line": "Le he visto en déjà vu, metido' en el hotel",
-        "title": "Tagliatelle Santeria",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "metido'"
-      }
-    ],
-    "display_form": "metido'"
   },
   {
     "word": "metiéndolo",
@@ -374976,6 +374795,26 @@
         "line": "La nueva religión, las bebecita' en la misa",
         "title": "CYBERTRUCK",
         "surface": "misa"
+      }
+    ]
+  },
+  {
+    "word": "misione'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3006211"
+    ],
+    "examples": [
+      {
+        "id": "3006211:56",
+        "line": "Con los mío' me monto pa' to'a las misione' (¡Darell!)",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Darell"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "misione'"
       }
     ]
   },
@@ -376406,7 +376245,7 @@
     "display_form": "mordía'"
   },
   {
-    "word": "morena'",
+    "word": "morenas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -376423,7 +376262,8 @@
         "sung_by_primary_artist": false,
         "surface": "morena'"
       }
-    ]
+    ],
+    "display_form": "morena'"
   },
   {
     "word": "morimos",
@@ -378346,7 +378186,7 @@
     ]
   },
   {
-    "word": "nalgás",
+    "word": "nalgadas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -378419,7 +378259,7 @@
     ]
   },
   {
-    "word": "narco'",
+    "word": "narcos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -378436,7 +378276,8 @@
         "sung_by_primary_artist": false,
         "surface": "narco'"
       }
-    ]
+    ],
+    "display_form": "narco'"
   },
   {
     "word": "narcotraficante",
@@ -379555,7 +379396,7 @@
     ]
   },
   {
-    "word": "nomá'",
+    "word": "nomás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -379572,7 +379413,8 @@
         "sung_by_primary_artist": false,
         "surface": "nomá'"
       }
-    ]
+    ],
+    "display_form": "nomá'"
   },
   {
     "word": "noqueados",
@@ -379726,7 +379568,7 @@
     ]
   },
   {
-    "word": "notaos",
+    "word": "notados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -379799,7 +379641,7 @@
     ]
   },
   {
-    "word": "notificacione'",
+    "word": "notificaciones",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -379816,7 +379658,8 @@
         "sung_by_primary_artist": false,
         "surface": "notificacione'"
       }
-    ]
+    ],
+    "display_form": "notificacione'"
   },
   {
     "word": "notorious",
@@ -380043,7 +379886,7 @@
     "display_form": "nuestra'"
   },
   {
-    "word": "nueve'",
+    "word": "nueves",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -380061,7 +379904,8 @@
         "sung_by_primary_artist": true,
         "surface": "nueve'"
       }
-    ]
+    ],
+    "display_form": "nueve'"
   },
   {
     "word": "nwo",
@@ -380352,7 +380196,7 @@
     ]
   },
   {
-    "word": "octavo'",
+    "word": "octavos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -380369,7 +380213,8 @@
         "sung_by_primary_artist": false,
         "surface": "octavo'"
       }
-    ]
+    ],
+    "display_form": "octavo'"
   },
   {
     "word": "octubre",
@@ -382661,7 +382506,7 @@
     ]
   },
   {
-    "word": "pali'",
+    "word": "palis",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -382680,7 +382525,8 @@
         "sung_by_primary_artist": true,
         "surface": "pali'"
       }
-    ]
+    ],
+    "display_form": "pali'"
   },
   {
     "word": "palma",
@@ -384789,6 +384635,47 @@
     ]
   },
   {
+    "word": "pecado'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "6862415"
+    ],
+    "examples": [
+      {
+        "id": "6862415:10",
+        "line": "Son siete los pecado' que te quiero cometer",
+        "title": "AM Remix",
+        "vocalists": [
+          "Bad Bunny",
+          "J Balvin"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "pecado'"
+      }
+    ]
+  },
+  {
+    "word": "pecados",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "7967942"
+    ],
+    "examples": [
+      {
+        "id": "7967942:79",
+        "line": "Todos son santos cuando hablan de los pecados ajenos",
+        "title": "Party",
+        "vocalists": [
+          "Javis Germoso"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "pecados"
+      }
+    ]
+  },
+  {
     "word": "pecando",
     "corpus_count": 1,
     "song_count": 1,
@@ -386484,7 +386371,7 @@
     "display_form": "perreártela'"
   },
   {
-    "word": "perreé'",
+    "word": "perreés",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -386503,7 +386390,8 @@
         "sung_by_primary_artist": true,
         "surface": "perreé'"
       }
-    ]
+    ],
+    "display_form": "perreé'"
   },
   {
     "word": "perriaba",
@@ -387711,7 +387599,7 @@
     "display_form": "pillarlo'"
   },
   {
-    "word": "pillo'",
+    "word": "pillos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -387729,7 +387617,8 @@
         "sung_by_primary_artist": false,
         "surface": "pillo'"
       }
-    ]
+    ],
+    "display_form": "pillo'"
   },
   {
     "word": "pillé",
@@ -389161,7 +389050,7 @@
     ]
   },
   {
-    "word": "polare'",
+    "word": "polares",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -389178,7 +389067,8 @@
         "sung_by_primary_artist": false,
         "surface": "polare'"
       }
-    ]
+    ],
+    "display_form": "polare'"
   },
   {
     "word": "polaris",
@@ -390349,7 +390239,7 @@
     ]
   },
   {
-    "word": "prendimo'",
+    "word": "prendimos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -390368,7 +390258,8 @@
         "sung_by_primary_artist": false,
         "surface": "prendimo'"
       }
-    ]
+    ],
+    "display_form": "prendimo'"
   },
   {
     "word": "prendiéndole",
@@ -390490,7 +390381,7 @@
     ]
   },
   {
-    "word": "preparados",
+    "word": "preparado'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -390507,8 +390398,7 @@
         "sung_by_primary_artist": true,
         "surface": "preparado'"
       }
-    ],
-    "display_form": "preparado'"
+    ]
   },
   {
     "word": "presbi",
@@ -390693,7 +390583,7 @@
     "display_form": "presta'o"
   },
   {
-    "word": "prestaos",
+    "word": "prestados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -391555,7 +391445,7 @@
     ]
   },
   {
-    "word": "prohibida'",
+    "word": "prohibidas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -391573,7 +391463,8 @@
         "sung_by_primary_artist": true,
         "surface": "prohibida'"
       }
-    ]
+    ],
+    "display_form": "prohibida'"
   },
   {
     "word": "promesa",
@@ -392381,7 +392272,7 @@
     ]
   },
   {
-    "word": "pupilo'",
+    "word": "pupilos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -392398,7 +392289,8 @@
         "sung_by_primary_artist": false,
         "surface": "pupilo'"
       }
-    ]
+    ],
+    "display_form": "pupilo'"
   },
   {
     "word": "puppy",
@@ -392542,7 +392434,7 @@
     ]
   },
   {
-    "word": "putero'",
+    "word": "puteros",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -392559,7 +392451,8 @@
         "sung_by_primary_artist": true,
         "surface": "putero'"
       }
-    ]
+    ],
+    "display_form": "putero'"
   },
   {
     "word": "putería",
@@ -393223,6 +393116,26 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "quejando"
+      }
+    ]
+  },
+  {
+    "word": "quema'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3171036"
+    ],
+    "examples": [
+      {
+        "id": "3171036:58",
+        "line": "Sigue ahí, que tú estás que quema'",
+        "title": "Báilame (Remix)",
+        "vocalists": [
+          "Yandel"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "quema'"
       }
     ]
   },
@@ -398179,7 +398092,7 @@
     ]
   },
   {
-    "word": "ripiao",
+    "word": "ripiado",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -398196,7 +398109,8 @@
         "sung_by_primary_artist": true,
         "surface": "ripiao"
       }
-    ]
+    ],
+    "display_form": "ripiao"
   },
   {
     "word": "riqueza",
@@ -398804,7 +398718,7 @@
     ]
   },
   {
-    "word": "rojas",
+    "word": "roja'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -398822,8 +398736,7 @@
         "sung_by_primary_artist": true,
         "surface": "roja'"
       }
-    ],
-    "display_form": "roja'"
+    ]
   },
   {
     "word": "rojizos",
@@ -399075,7 +398988,7 @@
     "display_form": "rompe'"
   },
   {
-    "word": "rompemo'",
+    "word": "rompemos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -399092,7 +399005,8 @@
         "sung_by_primary_artist": false,
         "surface": "rompemo'"
       }
-    ]
+    ],
+    "display_form": "rompemo'"
   },
   {
     "word": "rompen",
@@ -401179,7 +401093,7 @@
     ]
   },
   {
-    "word": "santida'",
+    "word": "santidad",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -401196,7 +401110,8 @@
         "sung_by_primary_artist": true,
         "surface": "santida'"
       }
-    ]
+    ],
+    "display_form": "santida'"
   },
   {
     "word": "sanz",
@@ -403190,51 +403105,7 @@
     ]
   },
   {
-    "word": "seta'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "7420852"
-    ],
-    "examples": [
-      {
-        "id": "7420852:29",
-        "line": "Par de seta', moñas verde' como Yoda",
-        "title": "No Te Deseo el Mal",
-        "vocalists": [
-          "KAROL G",
-          "Eladio Carrión",
-          "Ambos",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "seta'"
-      }
-    ]
-  },
-  {
-    "word": "setas",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3359025"
-    ],
-    "examples": [
-      {
-        "id": "3359025:35",
-        "line": "Traje un pa’l de setas y no son las del Zorro",
-        "title": "Como Soy",
-        "vocalists": [
-          "Pacho",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "setas"
-      }
-    ]
-  },
-  {
-    "word": "seteamo'",
+    "word": "seteamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -403252,7 +403123,8 @@
         "sung_by_primary_artist": false,
         "surface": "seteamo'"
       }
-    ]
+    ],
+    "display_form": "seteamo'"
   },
   {
     "word": "setenta",
@@ -405419,7 +405291,7 @@
     ]
   },
   {
-    "word": "sorprendíos",
+    "word": "sorprendidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -406485,7 +406357,7 @@
     ]
   },
   {
-    "word": "subíos",
+    "word": "subidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -410085,46 +409957,6 @@
     ]
   },
   {
-    "word": "ticket'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2990674"
-    ],
-    "examples": [
-      {
-        "id": "2990674:16",
-        "line": "Y esos que roncan de ticket' (¡Wuh!)",
-        "title": "Haters (Remix)",
-        "vocalists": [
-          "J Álvarez"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "ticket'"
-      }
-    ]
-  },
-  {
-    "word": "tickets",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "4763027"
-    ],
-    "examples": [
-      {
-        "id": "4763027:41",
-        "line": "No quiero mis tickets en caleta",
-        "title": "Subimos de Rango",
-        "vocalists": [
-          "Omy de Oro"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "tickets"
-      }
-    ]
-  },
-  {
     "word": "tictac",
     "corpus_count": 1,
     "song_count": 1,
@@ -410177,7 +410009,7 @@
     ]
   },
   {
-    "word": "tieso'",
+    "word": "tiesos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -410194,7 +410026,8 @@
         "sung_by_primary_artist": false,
         "surface": "tieso'"
       }
-    ]
+    ],
+    "display_form": "tieso'"
   },
   {
     "word": "tiffany",
@@ -410472,7 +410305,7 @@
     ]
   },
   {
-    "word": "tintado'",
+    "word": "tintados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -410490,7 +410323,8 @@
         "sung_by_primary_artist": false,
         "surface": "tintado'"
       }
-    ]
+    ],
+    "display_form": "tintado'"
   },
   {
     "word": "tinte",
@@ -410922,46 +410756,6 @@
     ]
   },
   {
-    "word": "to'itas",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3048221"
-    ],
-    "examples": [
-      {
-        "id": "3048221:75",
-        "line": "Se pasa metida en YouPorn, buscando aprenderse to'itas las pose'",
-        "title": "Me Mata",
-        "vocalists": [
-          "Brytiago"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to'itas"
-      }
-    ]
-  },
-  {
-    "word": "to'o",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3100770"
-    ],
-    "examples": [
-      {
-        "id": "3100770:37",
-        "line": "Y chingando, bebé, hago to'o lo que tú quieras",
-        "title": "Give It Up",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'o"
-      }
-    ]
-  },
-  {
     "word": "toa",
     "corpus_count": 1,
     "song_count": 1,
@@ -411134,26 +410928,6 @@
         ],
         "sung_by_primary_artist": false,
         "surface": "tocándote"
-      }
-    ]
-  },
-  {
-    "word": "todito",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "6387245"
-    ],
-    "examples": [
-      {
-        "id": "6387245:23",
-        "line": "Todito bien hecho, la luna supervisó (Ey, ey)",
-        "title": "Tagliatelle Santeria",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todito"
       }
     ]
   },
@@ -411668,7 +411442,7 @@
     ]
   },
   {
-    "word": "torturamo'",
+    "word": "torturamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -411686,7 +411460,8 @@
         "sung_by_primary_artist": false,
         "surface": "torturamo'"
       }
-    ]
+    ],
+    "display_form": "torturamo'"
   },
   {
     "word": "torturar",
@@ -413106,7 +412881,7 @@
     ]
   },
   {
-    "word": "trepaos",
+    "word": "trepados",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -413782,7 +413557,7 @@
     ]
   },
   {
-    "word": "tsunami'",
+    "word": "tsunamis",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -413799,7 +413574,8 @@
         "sung_by_primary_artist": false,
         "surface": "tsunami'"
       }
-    ]
+    ],
+    "display_form": "tsunami'"
   },
   {
     "word": "tuesto",
@@ -416169,7 +415945,7 @@
     "display_form": "vena'o"
   },
   {
-    "word": "vencíos",
+    "word": "vencidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -416286,7 +416062,7 @@
     ]
   },
   {
-    "word": "vendíos",
+    "word": "vendidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -416405,7 +416181,7 @@
     "display_form": "venezolana'"
   },
   {
-    "word": "vengamo'",
+    "word": "vengamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -416422,7 +416198,8 @@
         "sung_by_primary_artist": false,
         "surface": "vengamo'"
       }
-    ]
+    ],
+    "display_form": "vengamo'"
   },
   {
     "word": "vengase",
@@ -417574,7 +417351,7 @@
     ]
   },
   {
-    "word": "virtude'",
+    "word": "virtudes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -417592,7 +417369,8 @@
         "sung_by_primary_artist": true,
         "surface": "virtude'"
       }
-    ]
+    ],
+    "display_form": "virtude'"
   },
   {
     "word": "virás",
@@ -417896,7 +417674,7 @@
     ]
   },
   {
-    "word": "vivíos",
+    "word": "vividos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
