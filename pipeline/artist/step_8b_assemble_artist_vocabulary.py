@@ -1877,23 +1877,41 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         def _ctx_key(s):
             return (s.get("context") or "").strip().lower()
 
-        existing_keys = {
-            (s["pos"], normalize_translation(s.get("translation", "")), _ctx_key(s))
-            for s in m["senses"]
-        }
+        # Canonicalise stored POS before keying. A master built before POS
+        # normalization can hold a PROPER_NOUN sense that a freshly normalized
+        # PROPN meaning would otherwise fail to match, appending a duplicate row
+        # with the identical translation. Collapse any such twins in place.
+        def _sense_key(s):
+            return (normalize_pos(s.get("pos")),
+                    normalize_translation(s.get("translation", "")),
+                    _ctx_key(s))
+
+        _deduped = []
+        _seen = {}
+        for s in m["senses"]:
+            norm = normalize_pos(s.get("pos"))
+            if norm and norm != s.get("pos"):
+                s["pos"] = norm
+            k = _sense_key(s)
+            if k in _seen:
+                merge_sense_identity(_seen[k], s)
+                continue
+            _seen[k] = s
+            _deduped.append(s)
+        m["senses"] = _deduped
+
+        existing_keys = set(_seen.keys())
         for meaning in entry_meanings:
-            pos = meaning.get("pos", "X")
+            pos = normalize_pos(meaning.get("pos", "X")) or "X"
             if pos in ("X", "SENSE_CYCLE"):
                 continue  # don't pollute master with fallback senses
             translation = meaning.get("translation", "")
             context = meaning.get("context")
             key = (pos, normalize_translation(translation), (context or "").strip().lower())
             if key in existing_keys:
-                existing_sense = next(
-                    s for s in m["senses"]
-                    if (s["pos"], normalize_translation(s.get("translation", "")), _ctx_key(s)) == key
-                )
+                existing_sense = _seen[key]
                 merge_sense_identity(existing_sense, meaning)
+                carry_sense_tags(existing_sense, meaning)
                 continue
             s_entry = {"pos": pos, "translation": translation}
             carry_sense_identity(
@@ -1901,6 +1919,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 meaning.get("sense_id"),
                 meaning.get("sense_id_aliases") or [],
             )
+            carry_sense_tags(s_entry, meaning)
             if context:
                 s_entry["context"] = context
             src = meaning.get("source")
@@ -1908,6 +1927,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 s_entry["source"] = src
             m["senses"].append(s_entry)
             existing_keys.add(key)
+            _seen[key] = s_entry
             new_senses += 1
 
     # Some legacy union senses exist only in the shared master and therefore
