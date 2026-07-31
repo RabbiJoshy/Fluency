@@ -4452,7 +4452,13 @@
           8
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "6211036:17",
+          "11304636:32",
+          "5305036:65",
+          "6211030:27"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -8931,7 +8937,17 @@
           8
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3102293:51",
+          "3176704:21",
+          "3162779:13",
+          "3193669:64",
+          "2962706:6",
+          "3431731:42",
+          "3753517:132",
+          "5557738:10"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -9932,7 +9948,15 @@
           7
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3410963:12",
+          "9614083:54",
+          "4589199:1",
+          "11292695:35",
+          "11296730:1",
+          "2978566:8"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -10935,7 +10959,12 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "6855744:26",
+          "4179012:52",
+          "5002336:15"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -13468,7 +13497,18 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "11292695:19",
+          "6211043:21",
+          "3075944:21",
+          "2924481:15",
+          "7967941:14",
+          "9614068:35",
+          "2978566:27",
+          "5305015:3",
+          "9614083:12"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -14789,7 +14829,18 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3171036:37",
+          "7934367:26",
+          "7967954:43",
+          "3652331:27",
+          "2829722:10",
+          "3359025:56",
+          "3092934:55",
+          "3075944:43",
+          "5320881:10"
+        ]
       },
       {
         "sense": "f4c",
@@ -14797,7 +14848,10 @@
           3
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "4179010:9"
+        ]
       }
     ]
   },
@@ -19073,7 +19127,10 @@
           7
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5305015:15"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -20704,7 +20761,16 @@
           8
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "4140387:16",
+          "3524844:7",
+          "5553966:27",
+          "6211037:21",
+          "3652331:8",
+          "3176687:29",
+          "5305018:24"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -22410,7 +22476,11 @@
           4
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5629919:52",
+          "3033848:8"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -25043,7 +25113,17 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "6353964:17",
+          "4759404:16",
+          "9614104:27",
+          "11292885:12",
+          "3098225:26",
+          "5529098:2",
+          "9614095:4",
+          "3870990:36"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -26134,7 +26214,10 @@
           5
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3016410:79"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -26336,7 +26419,12 @@
           7
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967967:14",
+          "7967941:14",
+          "7967939:23"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -27860,7 +27948,16 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "6100181:7",
+          "7967941:1",
+          "4178982:19",
+          "8915218:23",
+          "8659966:41",
+          "3167974:18",
+          "3591240:8"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -32960,8 +33057,12 @@
         "examples": [
           0,
           1,
+          3,
           4,
-          8
+          5,
+          6,
+          8,
+          9
         ],
         "example_ids": [
           "3106600:38",
@@ -37455,7 +37556,15 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "11292700:19",
+          "5529070:15",
+          "4179002:35",
+          "9237319:38",
+          "3208907:30",
+          "3424254:40"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -37565,7 +37674,15 @@
           9
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967975:34",
+          "5320909:44",
+          "7967938:4",
+          "3749052:3",
+          "5305008:7",
+          "4726686:63"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -41001,7 +41118,11 @@
           8
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7257949:20",
+          "2976831:83"
+        ]
       }
     ]
   },
@@ -67877,7 +67998,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5553950:41"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -69519,7 +69643,15 @@
           6
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5553966:11",
+          "6211030:29",
+          "4662272:1",
+          "11289772:26",
+          "7967938:8",
+          "2990674:53"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -71527,7 +71659,10 @@
           4
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "2919428:29"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -76664,7 +76799,13 @@
           5
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3104979:56",
+          "9614090:26",
+          "3106600:46",
+          "2962706:5"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -80847,7 +80988,12 @@
           5
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967954:3",
+          "7967938:35",
+          "9592355:16"
+        ]
       },
       {
         "sense": "4fe",
@@ -80856,7 +81002,11 @@
           3
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "9614076:21",
+          "3048221:20"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -88101,7 +88251,12 @@
           4
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5113818:45",
+          "4558062:62",
+          "4763027:44"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -88801,7 +88956,11 @@
           7
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5305008:25",
+          "3288015:66"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -89906,7 +90065,14 @@
           6
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "9614095:4",
+          "7934367:52",
+          "3006211:123",
+          "11304595:82",
+          "3334750:17"
+        ]
       },
       {
         "sense": "f4c",
@@ -89914,7 +90080,10 @@
           2
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "9614087:4"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -91484,7 +91653,10 @@
           2
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3162779:7"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -96612,7 +96784,10 @@
           4
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3039781:38"
+        ]
       }
     ]
   },
@@ -102532,7 +102707,11 @@
           2
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "6211037:5",
+          "2976831:15"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -107867,7 +108046,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967941:13"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -112356,7 +112538,10 @@
           2
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5914252:13"
+        ]
       },
       {
         "sense": "e88",
@@ -117585,7 +117770,11 @@
           1
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5305033:8",
+          "2871746:59"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -119656,7 +119845,10 @@
           1
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "5305015:20"
+        ]
       }
     ]
   },
@@ -120459,7 +120651,10 @@
           1
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3001094:17"
+        ]
       }
     ]
   },
@@ -122775,6 +122970,17 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      },
+      {
+        "sense": "913",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "6866266:58"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
       }
     ]
   },
@@ -124455,7 +124661,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3100770:19"
+        ]
       },
       {
         "sense": "de4",
@@ -129445,7 +129654,10 @@
           1
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3098225:22"
+        ]
       },
       {
         "sense": "c56",
@@ -129453,7 +129665,10 @@
           2
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "11290147:12"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -130011,7 +130226,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3255641:13"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -130971,7 +131189,11 @@
           2
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "9614083:45",
+          "4763027:40"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -138135,7 +138357,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "2951579:42"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -144623,7 +144848,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967978:35"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -156020,7 +156248,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3982717:37"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -168322,7 +168553,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "2942055:21"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -174883,7 +175117,10 @@
           0
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967975:40"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -205108,7 +205345,9 @@
       {
         "sense": "d8a",
         "examples": [
-          1
+          1,
+          2,
+          3
         ],
         "example_ids": [
           "4706730:64"
@@ -247861,7 +248100,13 @@
           8
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "4179012:27",
+          "11304636:25",
+          "4140387:49",
+          "9614068:32"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -248749,7 +248994,13 @@
           7
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3098225:25",
+          "3122516:16",
+          "7967959:18",
+          "3627151:46"
+        ]
       },
       {
         "sense": "1a9",
@@ -248757,7 +249008,10 @@
           3
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "7967975:41"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -249426,7 +249680,10 @@
           4
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "8598733:38"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -253257,7 +253514,10 @@
           4
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "9592355:37"
+        ]
       },
       {
         "sense": "494",
@@ -255972,7 +256232,10 @@
           1
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "3288015:49"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -258421,6 +258684,17 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      },
+      {
+        "sense": "3bf",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "3288015:56"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
       }
     ]
   },
@@ -258531,7 +258805,10 @@
           1
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "example_ids": [
+          "4589199:42"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -258804,6 +259081,19 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "397",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "4506147:57"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
       }
     ]
   },
@@ -283269,6 +283559,19 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "6fd",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "2990674:76"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
       }
     ]
   },
@@ -307768,6 +308071,19 @@
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
       }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "dcb",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "9614095:3"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
     ]
   },
   "conspiraciones": {
@@ -315953,6 +316269,31 @@
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
       }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "25f",
+        "examples": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "example_ids": [
+          "4147689:22",
+          "5422982:18",
+          "6211037:23",
+          "5210444:10",
+          "3104973:32",
+          "9614087:53",
+          "8598733:24"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
     ]
   },
   "millonaria": {
@@ -320404,6 +320745,19 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "397",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "7420852:29"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
       }
     ]
   },
@@ -325647,6 +326001,1506 @@
         ],
         "prompt_id": "sd-cop-v2",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ]
+  },
+  "he": {
+    "spanishdict-auto": [
+      {
+        "sense": "713",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "6211040:8",
+          "4179007:30",
+          "6387245:1",
+          "5320909:45",
+          "11292773:64",
+          "5305000:16",
+          "7967938:10",
+          "9025881:12",
+          "5305051:15",
+          "9123229:42"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "calladitas": {
+    "spanishdict-auto": [
+      {
+        "sense": "549",
+        "examples": [
+          0,
+          1
+        ],
+        "example_ids": [
+          "11036575:33",
+          "4589199:5"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "patadas": {
+    "spanishdict-auto": [
+      {
+        "sense": "a83",
+        "examples": [
+          0,
+          1
+        ],
+        "example_ids": [
+          "11296557:11",
+          "2953251:17"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "adictivos": {
+    "spanishdict-auto": [
+      {
+        "sense": "4fa",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7934367:54"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "calladitos": {
+    "spanishdict-auto": [
+      {
+        "sense": "549",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "9246653:91"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "cartitas": {
+    "spanishdict-auto": [
+      {
+        "sense": "ab2",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6866266:58"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "cojines": {
+    "spanishdict-auto": [
+      {
+        "sense": "13d",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2976831:29"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "disqueras": {
+    "spanishdict-auto": [
+      {
+        "sense": "1bd",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3059630:81"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "maridos": {
+    "spanishdict-auto": [
+      {
+        "sense": "b9f",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5305009:40"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "sorprendidos": {
+    "spanishdict-auto": [
+      {
+        "sense": "01c",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "9614076:19"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "tintados": {
+    "spanishdict-auto": [
+      {
+        "sense": "a9a",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3059630:65"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "crecidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "7da",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "10901838:22"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      },
+      {
+        "sense": "e7e",
+        "examples": [
+          0,
+          2,
+          3
+        ],
+        "example_ids": [
+          "3098225:28",
+          "5305039:29",
+          "6852775:9"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "yos": {
+    "gap-fill": [
+      {
+        "sense": "711",
+        "pos": "INTJ",
+        "translation": "hey, yo",
+        "lemma": "yos",
+        "examples": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3591240:17",
+          "5557738:60",
+          "3288015:85",
+          "2978566:38"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "jodidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "7ba",
+        "examples": [
+          1
+        ],
+        "example_ids": [
+          "5553967:3"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      },
+      {
+        "sense": "7fd1",
+        "examples": [
+          0,
+          2
+        ],
+        "example_ids": [
+          "7967960:10",
+          "3591240:16"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      },
+      {
+        "sense": "bb7",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "5305013:22"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "aborrecidos": {
+    "gap-fill": [
+      {
+        "sense": "9a6",
+        "pos": "ADJ",
+        "translation": "fed up",
+        "lemma": "aborrecidos",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "type": "regional",
+        "example_ids": [
+          "9614064:31",
+          "9614095:4",
+          "9614081:19"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "bendecidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "3bf",
+        "examples": [
+          0,
+          1,
+          2
+        ],
+        "example_ids": [
+          "5529098:4",
+          "4759404:40",
+          "3006211:92"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "paraos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "094",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5557738:30"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "prendidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "24b",
+        "examples": [
+          0,
+          1
+        ],
+        "example_ids": [
+          "9614076:12",
+          "9614068:36"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "nacidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5d5",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "4759404:38"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "dc5",
+        "pos": "ADJ",
+        "translation": "born bad",
+        "lemma": "nacidos",
+        "examples": [
+          1
+        ],
+        "type": "figurative",
+        "example_ids": [
+          "3288015:55"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "abrazados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "d02",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "10901838:42"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "amanecidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "896",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5529101:20"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "apretados": {
+    "gap-fill": [
+      {
+        "sense": "910",
+        "pos": "ADJ",
+        "translation": "outclassed or falling short",
+        "lemma": "apretados",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "9614084:12"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "atragantás": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "059",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3523266:21"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "bebidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "1ca",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3591240:16"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "bienvenidas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b1f",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "11290147:22"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "blanquitas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "1a7",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2990674:61"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "botás": {
+    "gap-fill": [
+      {
+        "sense": "111",
+        "pos": "NOUN",
+        "translation": "sneakers or shoes",
+        "lemma": "botás",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3495715:38"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "chingados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "2c2",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5553967:34"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "confiados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "3da3",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3524844:10"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "cotizados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "170",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5305015:23"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "cumplidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "481",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3041034:55"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "demasiados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "ffd",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5318195:14"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "dentales": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0cc",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2990674:78"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "derrumbamos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "bd6",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7401420:40"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "encendidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "697",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "9614068:20"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "encerrados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "f63",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5305018:7"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "encerrás": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "e8d",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5553950:16"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "hermanado": {
+    "gap-fill": [
+      {
+        "sense": "f15",
+        "pos": "NOUN",
+        "translation": "brother / close friend",
+        "lemma": "hermanado",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "6353964:17"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "imperfecciones": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "aae",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7401420:23"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "indias": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "8796",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2990674:61"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "jirafas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "38c",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2990674:64"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "jodés": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0ba",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3523266:83"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "jurados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "159",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "9614100:23"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "latidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "933",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6866266:47"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "ligamos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "dc5",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3059630:64"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "lotos": {
+    "gap-fill": [
+      {
+        "sense": "551",
+        "pos": "NOUN",
+        "translation": "lottery",
+        "lemma": "lotos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3101741:64"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "machetazos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "eb8",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2953251:17"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "magnates": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "8ab",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5553950:24"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "manejos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "0a3",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3334750:24"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "morenas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "5b7",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2990674:61"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "nalgadas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "129",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "9614083:46"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "narcos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "e2d",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2990674:97"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "nomás": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "681",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3523266:20"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "notados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "2c1",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5614024:45"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "notificaciones": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "16c",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "4558062:58"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "nueves": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "e8e",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6862415:12"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "octavos": {
+    "gap-fill": [
+      {
+        "sense": "733",
+        "pos": "NOUN",
+        "translation": "eighth of an ounce",
+        "lemma": "octavos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3006211:42"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "palis": {
+    "gap-fill": [
+      {
+        "sense": "22a",
+        "pos": "NOUN",
+        "translation": "shots or drinks of liquor",
+        "lemma": "palis",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3288015:61"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "perreés": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "880",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5557738:57"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "pillos": {
+    "gap-fill": [
+      {
+        "sense": "c3d",
+        "pos": "NOUN",
+        "translation": "enemies or targets",
+        "lemma": "pillos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3006211:72"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "polares": {
+    "gap-fill": [
+      {
+        "sense": "c83",
+        "pos": "NOUN",
+        "translation": "Polaroid pictures",
+        "lemma": "polares",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3059630:32"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "prendimos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "e54",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3167974:6"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "prestados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a53",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5614024:46"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "prohibidas": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "657",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3001094:7"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "pupilos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "301",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3288015:30"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "puteros": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "c5e",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3288015:44"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "ripiado": {
+    "gap-fill": [
+      {
+        "sense": "e8b",
+        "pos": "ADJ",
+        "translation": "finely ground cocaine",
+        "lemma": "ripiado",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "construction": "perico ripiado",
+        "example_ids": [
+          "9614084:9"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "rompemos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a8e",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3167974:40"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "santidad": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "293",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7934367:51"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "subidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "550",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6210873:25"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "tiesos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "ef5",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3059630:30"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "torturamos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "6ec",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3006211:73"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "trepados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b9b",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5614024:47"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "vencidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "b8f",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6852775:10"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "vendidos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "9c6",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6211036:31"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "vengamos": {
+    "gap-fill": [
+      {
+        "sense": "93f",
+        "pos": "VERB",
+        "translation": "to reach orgasm",
+        "lemma": "vengamos",
+        "examples": [
+          0
+        ],
+        "type": "figurative",
+        "construction": "venirse",
+        "example_ids": [
+          "3753517:38"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "virtudes": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "8c2",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "2953251:73"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "vividos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "548",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "6211030:37"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "desquitar": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "210",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "4506147:8"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:08Z"
+      }
+    ]
+  },
+  "endrogamos": {
+    "gap-fill": [
+      {
+        "sense": "ed5",
+        "pos": "VERB",
+        "translation": "to get high",
+        "lemma": "endrogamos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3753517:100"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "enteros": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "cf2",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3006211:44"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "enterramos": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "6c8",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3006211:94"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "explotados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a1aa",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "7967944:11"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "fallados": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "f57",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "5305051:15"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "fechorías": {
+    "spanishdict-flash-lite": [
+      {
+        "sense": "a7b",
+        "examples": [
+          0
+        ],
+        "example_ids": [
+          "3753517:51"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "federicos": {
+    "gap-fill": [
+      {
+        "sense": "ce1",
+        "pos": "NOUN",
+        "translation": "police officers",
+        "lemma": "federicos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3059630:75"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "formamos": {
+    "gap-fill": [
+      {
+        "sense": "bed",
+        "pos": "VERB",
+        "translation": "to start a fight",
+        "lemma": "formamos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "construction": "formar un royal rumble",
+        "example_ids": [
+          "3021794:27"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "gabinetes": {
+    "gap-fill": [
+      {
+        "sense": "cea",
+        "pos": "NOUN",
+        "translation": "lawyers",
+        "lemma": "gabinetes",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "3059630:55"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "gatitos": {
+    "gap-fill": [
+      {
+        "sense": "935",
+        "pos": "NOUN",
+        "translation": "novices or weak men",
+        "lemma": "gatitos",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "example_ids": [
+          "4506147:53"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-07-31T20:09Z"
       }
     ]
   }

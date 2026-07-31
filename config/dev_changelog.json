@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "37b6efa3",
+      "summary": "Newly merged words got real meanings from a Gemini pass",
+      "details": [
+        "Words that only appeared after the elision fixes (crecidos, jodidos, patadas, calladitas, paraos) had blank cards; they now carry proper senses — 85 fewer empty cards",
+        "Ran on gemini-3.5-flash-lite for 93 cards plus gap-fill, after fetching 598 missing dictionary entries and rebuilding the sense menu from 8310 to 8710 words",
+        "Register tags now sit at 1797 across the deck; the remaining blank cards are almost all single-occurrence words that are excluded from sense assignment by design"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "9553fc33",
       "summary": "Kept card headwords white",
       "details": [

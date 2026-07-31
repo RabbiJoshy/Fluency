@@ -2,8 +2,8 @@
   "_meta": {
     "source": "spanishdict",
     "classifier": "classify-or-propose",
-    "model": "gemini-3.1-flash-lite",
-    "count": 1785
+    "model": "gemini-3.5-flash-lite",
+    "count": 1803
   },
   "items": [
     {
@@ -6027,6 +6027,16 @@
       "translation": "The stacks, the ski mask, the braids and the dreadlocks"
     },
     {
+      "word": "yos",
+      "lemma": "yos",
+      "proposed": "hey, yo",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Quiere que me la lleve aparte, yos",
+      "translation": "She wants me to take her aside, yo'"
+    },
+    {
       "word": "abusadora",
       "lemma": "abusadora",
       "proposed": "wild person",
@@ -9055,6 +9065,16 @@
       "corpus_count": 3,
       "example": "Me tiene' escribiéndote to' tracks",
       "translation": "You have me writing you all the tracks"
+    },
+    {
+      "word": "aborrecidos",
+      "lemma": "aborrecidos",
+      "proposed": "fed up",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "aborrecidos, estoy que me mudo pa' Kansa'",
+      "translation": "Fed up, I'm about to move to Kansas"
     },
     {
       "word": "aborrecías",
@@ -12295,6 +12315,16 @@
       "corpus_count": 2,
       "example": "Pichyboyz & Skaary",
       "translation": "Pichyboyz & Skaary"
+    },
+    {
+      "word": "nacidos",
+      "lemma": "nacidos",
+      "proposed": "born bad",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Hijueputa mal nacidos (Ah)",
+      "translation": "Born a motherfucker, born bad (Ah)"
     },
     {
       "word": "abajé",
@@ -17855,6 +17885,156 @@
       "corpus_count": 1,
       "example": "Envía un par de foto' (¡Wuh!), que yo no la' riego (¡No!)",
       "translation": "Send a couple of pics (Wuh!), I don't water them down (No!)"
+    },
+    {
+      "word": "apretados",
+      "lemma": "apretados",
+      "proposed": "outclassed or falling short",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Visten oversize, pero conmigo están apretados (Ey)",
+      "translation": "They wear oversize, but with me they're tight (Ey)"
+    },
+    {
+      "word": "botás",
+      "lemma": "botás",
+      "proposed": "sneakers or shoes",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Y desde que te di esa' botás, las gata' son de tre' en tre' (Eso e' así)",
+      "translation": "And since I gave you those kicks, the girls are coming three by three (That's right)"
+    },
+    {
+      "word": "hermanado",
+      "lemma": "hermanado",
+      "proposed": "brother / close friend",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tú ere' de lo' mío' y de Bad Bunny, mi hermanado",
+      "translation": "You're one of mine and Bad Bunny's, my brother"
+    },
+    {
+      "word": "lotos",
+      "lemma": "lotos",
+      "proposed": "lottery",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "You, contigo me saque la lotos",
+      "translation": "You, I hit the jackpot with you"
+    },
+    {
+      "word": "octavos",
+      "lemma": "octavos",
+      "proposed": "eighth of an ounce",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Ya no cachamos octavos, cogimos la vía y los cachamo' entero (Pa' que sepa)",
+      "translation": "We don't catch eighths anymore, we took the highway and we catch them all (So you know)"
+    },
+    {
+      "word": "palis",
+      "lemma": "palis",
+      "proposed": "shots or drinks of liquor",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Le metí dos palis y de una vez me la clavé",
+      "translation": "I hit her twice and immediately nailed her"
+    },
+    {
+      "word": "pillos",
+      "lemma": "pillos",
+      "proposed": "enemies or targets",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Si los pillos por ahí dormí'o, les pago a una puta y los seteamo' (Brr)",
+      "translation": "If I catch them sleeping around, I'll pay a whore and set them up (Brr)"
+    },
+    {
+      "word": "polares",
+      "lemma": "polares",
+      "proposed": "Polaroid pictures",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Lo' greti' de franco van en lo' polares (Yah, yah, yah)",
+      "translation": "Franco's 'greti' are in the Polaroids (Yah, yah, yah)"
+    },
+    {
+      "word": "ripiado",
+      "lemma": "ripiado",
+      "proposed": "finely ground cocaine",
+      "type": "slang",
+      "construction": "perico ripiado",
+      "corpus_count": 1,
+      "example": "A mí me va cabrón, en Casa de Campo, perico ripiado",
+      "translation": "I'm doing great, in Casa de Campo, with perico ripiao"
+    },
+    {
+      "word": "vengamos",
+      "lemma": "vengamos",
+      "proposed": "to reach orgasm",
+      "type": "figurative",
+      "construction": "venirse",
+      "corpus_count": 1,
+      "example": "Quiere que nos vengamos a la vez",
+      "translation": "She wants us to finish at the same time"
+    },
+    {
+      "word": "endrogamos",
+      "lemma": "endrogamos",
+      "proposed": "to get high",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Juntos no' endrogamos y después no' comemo'",
+      "translation": "We get high together and then we eat each other"
+    },
+    {
+      "word": "federicos",
+      "lemma": "federicos",
+      "proposed": "police officers",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Moca con lo' federicos, uh-nah",
+      "translation": "Coffee with the Federicos, uh-nah"
+    },
+    {
+      "word": "formamos",
+      "lemma": "formamos",
+      "proposed": "to start a fight",
+      "type": "slang",
+      "construction": "formar un royal rumble",
+      "corpus_count": 1,
+      "example": "Pero si me fallan formamos un royal rumble",
+      "translation": ""
+    },
+    {
+      "word": "gabinetes",
+      "lemma": "gabinetes",
+      "proposed": "lawyers",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Pilla la cocina y el caso te lo tumban lo' gabinetes",
+      "translation": "Check out the kitchen and the case will be dropped by the cabinets"
+    },
+    {
+      "word": "gatitos",
+      "lemma": "gatitos",
+      "proposed": "novices or weak men",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "La leona no está puesta pa' gatitos (No), ey",
+      "translation": "The lioness isn't down for kittens (No), ey"
     }
   ]
 }
