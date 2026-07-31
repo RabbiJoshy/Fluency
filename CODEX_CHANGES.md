@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Enlarge the active-set rail and separate morphology alternatives
+
+- Commit `37749f01`; front-end cache `flashcards-v162` / `20260731h`.
+- Enlarged the active-set number markers and Study options button, and gave the mobile rail a modest height increase so its main navigation targets are easier to acquire by touch.
+- Moved the scrubber connector onto a true behind-marker layer and composited marker fills against the card background, preventing the connector from showing through translucent numbered shapes.
+- Morphology now compacts only ambiguous grammatical person with `/` (for example `1st/3rd`). Distinct number, tense, or mood analyses render as separate rows of pills on both card faces.
+- Verification: JavaScript syntax checks, a focused morphology grouping regression case, changelog JSON parsing, cache-version assertions, and `git diff --check`. Browser preview was intentionally left to Josh's real app session because service-worker previews are unreliable in this repository.
+
 ### 2026-07-31 — Retry sync after reconnect warm-up
 
 - Commit `90c70874`; front-end cache `flashcards-v160` / `20260731f`.
