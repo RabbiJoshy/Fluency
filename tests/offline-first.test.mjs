@@ -40,6 +40,10 @@ test('queue records durable retry and idempotency metadata', async () => {
     assert.match(queue, /auth-paused/);
     assert.match(queue, /visibilitychange/);
     assert.match(queue, /MAX_ACTIVE_ATTEMPTS/);
+    assert.match(queue, /MAX_AUTOMATIC_ATTEMPTS/);
+    assert.match(queue, /RECONNECT_GRACE_MS = 1500/);
+    assert.match(queue, /nextAutomaticRetryDelay/);
+    assert.match(queue, /resetTransientFailures/);
     // Parse the actual module in a browser-equivalent grammar. This catches
     // malformed regex literals before they can abort the full import graph.
     assert.doesNotMatch(queue, /https\?:\\\\\/\\\\\//);

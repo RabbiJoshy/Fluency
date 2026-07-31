@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "pending",
+      "summary": "Reconnect sync now tolerates iPhone network warm-up",
+      "details": [
+        "The queue waits 1.5 seconds after iOS reports online before its first upload attempt",
+        "Transient failures retry automatically with bounded exponential backoff and show Changes pending until all automatic attempts are exhausted",
+        "App launch and foregrounding resume previously failed transient operations; explicit Sync now still retries immediately"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "1309427a",
       "summary": "Fixed the startup parser error blocking the entire app",
       "details": [

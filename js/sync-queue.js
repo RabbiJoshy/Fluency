@@ -5,6 +5,8 @@ import { dbDelete, dbGetAll, dbPut, makeOperationId, openOfflineDb } from './off
 const LEGACY_QUEUE_KEY = 'fluency_sync_queue_v1';
 const LAST_SYNC_KEY = 'fluency_last_sync_v1';
 const MAX_ACTIVE_ATTEMPTS = 4;
+const MAX_AUTOMATIC_ATTEMPTS = 4;
+const RECONNECT_GRACE_MS = 1500;
 const REQUEST_TIMEOUT_MS = 15000;
 let queue = [];
 let readyPromise;
@@ -91,7 +93,7 @@ async function enqueueWrite(payload, dedupeKey) {
     const now = Date.now();
     const entry = existing ? {
         ...existing, payload, updatedAt: now, operationType: operationType(payload),
-        retryState: 'pending', lastError: null, nextAttemptAt: 0
+        attemptCount: 0, retryState: 'pending', lastError: null, nextAttemptAt: 0
     } : {
         id: makeOperationId(acct, dedupeKey, now),
         idempotencyKey: makeOperationId(acct, dedupeKey, now),
@@ -144,6 +146,24 @@ function scheduleFlush(delay = 400) {
     flushTimer = setTimeout(() => flushQueue(), delay);
 }
 
+function nextAutomaticRetryDelay() {
+    const now = Date.now();
+    const eligible = queue.filter(item =>
+        item.retryState !== 'auth-paused' && item.retryState !== 'failed');
+    if (eligible.length === 0) return null;
+    return Math.max(0, Math.min(...eligible.map(item => Number(item.nextAttemptAt) || now)) - now);
+}
+
+async function resetTransientFailures() {
+    for (const entry of queue) {
+        if (entry.retryState !== 'failed') continue;
+        entry.attemptCount = 0;
+        entry.retryState = 'pending';
+        entry.nextAttemptAt = 0;
+        await persist(entry);
+    }
+}
+
 export async function flushQueue({ force = false } = {}) {
     await ensureReady();
     if (flushing || !navigator.onLine || !GOOGLE_SCRIPT_URL || queue.length === 0) {
@@ -158,6 +178,7 @@ export async function flushQueue({ force = false } = {}) {
             const now = Date.now();
             const entry = queue.find(item =>
                 (force || item.retryState !== 'auth-paused') &&
+                (force || item.retryState !== 'failed') &&
                 (force || !item.nextAttemptAt || item.nextAttemptAt <= now));
             if (!entry) break;
             attempts++;
@@ -177,9 +198,10 @@ export async function flushQueue({ force = false } = {}) {
                 lastError = sanitizedError(error);
                 entry.lastError = lastError;
                 entry.updatedAt = Date.now();
-                entry.retryState = error.auth ? 'auth-paused' : 'failed';
-                entry.nextAttemptAt = error.auth ? 0 :
-                    Date.now() + Math.min(60000, 1000 * (2 ** Math.min(entry.attemptCount, 6)));
+                const exhausted = entry.attemptCount >= MAX_AUTOMATIC_ATTEMPTS;
+                entry.retryState = error.auth ? 'auth-paused' : exhausted ? 'failed' : 'pending';
+                entry.nextAttemptAt = error.auth || exhausted ? 0 :
+                    Date.now() + Math.min(30000, 1000 * (2 ** entry.attemptCount));
                 await persist(entry);
                 break; // preserve ordering after an uncertain outcome
             }
@@ -188,6 +210,8 @@ export async function flushQueue({ force = false } = {}) {
         flushing = false;
         updateIndicator();
         dispatchStatus();
+        const retryDelay = nextAutomaticRetryDelay();
+        if (navigator.onLine && retryDelay !== null) scheduleFlush(retryDelay);
     }
 }
 
@@ -195,6 +219,7 @@ export async function retryOperation(id) {
     await ensureReady();
     const entry = queue.find(item => item.id === id);
     if (entry) {
+        entry.attemptCount = 0;
         entry.retryState = 'pending';
         entry.nextAttemptAt = 0;
         entry.lastError = null;
@@ -290,10 +315,17 @@ export function applyPendingMetaProgressOverlay(estimates, doneLevels) {
 
 export async function initSync() {
     await ensureReady();
-    window.addEventListener('online', () => { updateIndicator(); scheduleFlush(0); });
+    window.addEventListener('online', async () => {
+        updateIndicator();
+        await resetTransientFailures();
+        scheduleFlush(RECONNECT_GRACE_MS);
+    });
     window.addEventListener('offline', updateIndicator);
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') scheduleFlush(0);
+    document.addEventListener('visibilitychange', async () => {
+        if (document.visibilityState === 'visible') {
+            await resetTransientFailures();
+            scheduleFlush(500);
+        }
     });
     window.addEventListener('fluency-auth-restored', () => {
         queue.forEach(item => { if (item.retryState === 'auth-paused') item.retryState = 'pending'; });
@@ -301,7 +333,8 @@ export async function initSync() {
     });
     document.getElementById('syncNowBtn')?.addEventListener('click', () => flushQueue({ force: true }));
     updateIndicator();
-    scheduleFlush(0);
+    await resetTransientFailures();
+    scheduleFlush(500);
 }
 
 Object.assign(window, {
