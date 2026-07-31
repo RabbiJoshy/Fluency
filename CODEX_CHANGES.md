@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Make Home Screen startup fail open
+
+- Commit `6afae1b5`; front-end cache `flashcards-v156` / `20260731b`.
+- Moved authentication ahead of remote secrets, IndexedDB migration, sync initialization, and offline-catalogue loading. A signed-out user now gets an interactive login/guest surface immediately instead of the 12-second watchdog merely revealing an uninitialized page.
+- Bounded the optional secrets, IndexedDB-open, and content-catalogue operations with short abort/timeouts. Sync and download initialization now continue in the background and report failures without blocking source rendering; an unavailable sync endpoint leaves local progress intact for later reconciliation.
+- Verification: five focused Node tests, including authentication-before-optional-services and timeout assertions; bundled-Node syntax checks for all changed modules and the service worker; valid changelog JSON; asset-version lockstep; `git diff --check`. The in-app browser could not reach the workspace local server, so no live browser preview was completed.
+
 ### 2026-07-31 — Add offline-first downloads and durable synchronization
 
 - Commit `a118d60d`; front-end cache `flashcards-v155` / `20260731a`.

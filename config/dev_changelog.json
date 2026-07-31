@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-31",
-      "commit": "pending",
+      "commit": "6afae1b5",
       "summary": "Home Screen startup no longer waits on offline services",
       "details": [
         "Login and guest controls become interactive before remote secrets, IndexedDB, or the offline-content catalogue initialize",
