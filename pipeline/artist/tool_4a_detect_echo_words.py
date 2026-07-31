@@ -55,19 +55,33 @@ def load_json(path):
         return json.load(f)
 
 
-def echo_source(word, examples):
-    """Return (source_word, line) when `word` is an adjacent echo of a longer word."""
+def echo_occurrences(word, examples):
+    """Split a word's examples into echo and non-echo occurrences.
+
+    Returns (source_word, echo_example_ids, echo_line, total). Echo is a
+    property of an OCCURRENCE, not of a string: `over` is an echo in
+    "mover, -over" but an ordinary word in "game over" and the artist name
+    "Lary Over". Only 1 of its 7 Bad Bunny lines is an echo, so tagging the
+    string as noise would destroy six legitimate occurrences.
+    """
     pattern = re.compile(
         r"([\wáéíóúüñ]{4,})\s*[-,]\s*-?\s*%s\b" % re.escape(word),
         re.IGNORECASE | re.UNICODE,
     )
-    for example in examples or []:
+    source = None
+    echo_ids = []
+    echo_line = None
+    examples = examples or []
+    for example in examples:
         line = example.get("line") or ""
         for match in pattern.finditer(line):
-            source = match.group(1).lower()
-            if len(source) > len(word) and source.endswith(word.lower()):
-                return source, line
-    return None, None
+            candidate = match.group(1).lower()
+            if len(candidate) > len(word) and candidate.endswith(word.lower()):
+                source = source or candidate
+                echo_ids.append(example.get("id"))
+                echo_line = echo_line or line
+                break
+    return source, echo_ids, echo_line, len(examples)
 
 
 def main():
@@ -91,47 +105,80 @@ def main():
         # A real Spanish word keeps its card even when it is also echoed.
         if word in spanish_forms or len(word) < MIN_ECHO_LEN:
             continue
-        source, line = echo_source(word, entry.get("examples"))
+        source, echo_ids, line, total = echo_occurrences(word, entry.get("examples"))
         # The source must be real Spanish; one ad-lib cannot certify another.
         if not source or source not in spanish_forms:
             continue
+        # A word every one of whose lines is an echo can be dropped outright.
+        # A word with surviving real lines must only lose those occurrences,
+        # or the card loses genuine evidence.
+        pure = len(echo_ids) == total
         found.append({
             "id": "echo_reduplication:%s" % word,
             "kind": "echo_reduplication",
             "word": word,
             "current": None,
-            "proposed": "noise",
+            "proposed": "noise" if pure else "drop_occurrences",
             "reason": "Echo reduplication of '%s' — the tail of the preceding word "
-                      "repeated as an ad-lib, not a word." % source,
-            "evidence": line.strip(),
+                      "repeated as an ad-lib, not a word.%s"
+                      % (source,
+                         "" if pure else
+                         " Only %d of %d occurrences are echoes, so the string is "
+                         "NOT noise corpus-wide — drop those lines only."
+                         % (len(echo_ids), total)),
+            "evidence": (line or "").strip(),
+            "echo_occurrences": len(echo_ids),
+            "total_occurrences": total,
+            "echo_example_ids": echo_ids,
             "source": "tool_4a_detect_echo_words",
-            "confidence": "high",
+            "confidence": "high" if pure else "medium",
             "status": "open",
             "created": date.today().isoformat(),
             "artist": artist,
         })
 
-    found.sort(key=lambda p: p["word"])
+    found.sort(key=lambda p: (p["proposed"], p["word"]))
+    pure = [p for p in found if p["proposed"] == "noise"]
+    partial = [p for p in found if p["proposed"] != "noise"]
     print("%d echo-reduplication candidate(s) in %s\n" % (len(found), artist))
-    for p in found:
-        print("   %-12s <- %s" % (p["word"], p["evidence"][:64]))
+    print("  pure ad-libs (every occurrence is an echo) — safe to drop as noise:")
+    for p in pure:
+        print("     %-10s %d/%d  %s" % (p["word"], p["echo_occurrences"],
+                                        p["total_occurrences"], p["evidence"][:50]))
+    if partial:
+        print("\n  partial — the string is also a real word elsewhere, drop occurrences only:")
+        for p in partial:
+            print("     %-10s %d/%d  %s" % (p["word"], p["echo_occurrences"],
+                                            p["total_occurrences"], p["evidence"][:50]))
 
     if not args.write:
         print("\nPreview only — re-run with --write to append to proposals.json")
         return
 
     ledger = load_json(PROPOSALS_PATH)
-    known = {p["id"] for p in ledger["proposals"]}
-    new = [p for p in found if p["id"] not in known]
-    if not new:
+    by_id = {p["id"]: p for p in ledger["proposals"]}
+    new, refreshed = [], 0
+    for proposal in found:
+        existing = by_id.get(proposal["id"])
+        if existing is None:
+            new.append(proposal)
+            continue
+        # Never overwrite a human decision; refresh the measured fields only.
+        if existing.get("status") != "open":
+            continue
+        before = dict(existing)
+        existing.update({k: v for k, v in proposal.items() if k != "status"})
+        if existing != before:
+            refreshed += 1
+    if not new and not refreshed:
         print("\nNothing new — all candidates are already in the ledger.")
         return
     ledger["proposals"].extend(new)
     with open(PROPOSALS_PATH, "w", encoding="utf-8") as f:
         json.dump(ledger, f, ensure_ascii=False, indent=2)
         f.write("\n")
-    print("\nAppended %d new proposal(s) to %s (status=open)"
-          % (len(new), os.path.relpath(PROPOSALS_PATH, _PROJECT_ROOT)))
+    print("\n%d new, %d refreshed in %s (status=open; decided entries untouched)"
+          % (len(new), refreshed, os.path.relpath(PROPOSALS_PATH, _PROJECT_ROOT)))
 
 
 if __name__ == "__main__":

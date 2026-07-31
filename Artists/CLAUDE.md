@@ -193,6 +193,31 @@ Producers:
 - `pipeline/artist/tool_4a_apply_flag_routing.py` — turns audit-flag
   classification requests into routing curations
 
+Consumer: `pipeline/artist/tool_4a_apply_proposals.py` copies **accepted**
+proposals into the real curation file for their kind (`lemma_overrides.json`,
+`proper_nouns.json`, `extra_english.json`, `cognates.json`, `noise.json`,
+`elision_mapping.json`). Dry-run by default. `keep` always wins.
+
+### Type-level vs occurrence-level facts
+
+Not every property belongs on the string. Putting it at the wrong level is a
+recurring source of damage, and the pipeline already has machinery at all three
+levels — use the right one:
+
+| Level | Machinery | Right for |
+|-------|-----------|-----------|
+| Occurrence | per-example splitting, e.g. `AMBIGUOUS_ELISIONS` in step_3a (`ve'` → `vez`/`ves` by preceding word) | echo ad-libs, context-dependent readings |
+| Type, several readings | `homograph_overrides.json` + `compute_homograph_ratios()` | `mira` the verb vs `Mira` the name |
+| Type, single reading | flat exclusion lists (`noise`, `extra_english`, `proper_nouns`) | genuinely English or genuinely noise strings |
+
+Echo reduplication is the worked example: `over` is an ad-lib in
+`"mover, -over"` but an ordinary word in `"game over"` and the artist name
+`"Lary Over"` — only 1 of its 7 Bad Bunny lines is an echo. Adding `over` to
+`noise.json` would destroy six real occurrences. The detector therefore records
+`echo_occurrences` / `total_occurrences`, proposes `noise` only when every
+occurrence is an echo, and otherwise proposes `drop_occurrences`, which the
+apply tool refuses to apply corpus-wide.
+
 ## Other Directories
 
 - `Artists/tools/` — audit utilities (`check_translations.py`, `split_lang_audit.py`, `scan_duplicates.py`)

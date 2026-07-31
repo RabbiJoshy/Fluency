@@ -87,7 +87,12 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "4662257:48"
+      ]
     },
     {
       "id": "echo_reduplication:dir",
@@ -101,21 +106,31 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "2942055:49"
+      ]
     },
     {
       "id": "echo_reduplication:gar",
       "kind": "echo_reduplication",
       "word": "gar",
       "current": null,
-      "proposed": "noise",
-      "reason": "Echo reduplication of 'llegar' — the tail of the preceding word repeated as an ad-lib, not a word.",
+      "proposed": "drop_occurrences",
+      "reason": "Echo reduplication of 'llegar' — the tail of the preceding word repeated as an ad-lib, not a word. Only 1 of 2 occurrences are echoes, so the string is NOT noise corpus-wide — drop those lines only.",
       "evidence": "Que vamo' a llegar, que vamo a llegar-gar llegar",
       "source": "tool_4a_detect_echo_words",
-      "confidence": "high",
+      "confidence": "medium",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 2,
+      "echo_example_ids": [
+        "5629919:12"
+      ]
     },
     {
       "id": "echo_reduplication:huana",
@@ -129,7 +144,12 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "9614083:2"
+      ]
     },
     {
       "id": "echo_reduplication:llá",
@@ -143,7 +163,12 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "3542120:10"
+      ]
     },
     {
       "id": "echo_reduplication:mor",
@@ -157,21 +182,31 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "3001094:32"
+      ]
     },
     {
       "id": "echo_reduplication:over",
       "kind": "echo_reduplication",
       "word": "over",
       "current": null,
-      "proposed": "noise",
-      "reason": "Echo reduplication of 'mover' — the tail of the preceding word repeated as an ad-lib, not a word.",
+      "proposed": "drop_occurrences",
+      "reason": "Echo reduplication of 'mover' — the tail of the preceding word repeated as an ad-lib, not a word. Only 1 of 7 occurrences are echoes, so the string is NOT noise corpus-wide — drop those lines only.",
       "evidence": "Y tú quieres mover, -over",
       "source": "tool_4a_detect_echo_words",
-      "confidence": "high",
+      "confidence": "medium",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 7,
+      "echo_example_ids": [
+        "3523266:84"
+      ]
     },
     {
       "id": "echo_reduplication:rrear",
@@ -185,7 +220,12 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "11292888:43"
+      ]
     },
     {
       "id": "echo_reduplication:tera",
@@ -199,21 +239,31 @@
       "confidence": "high",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 1,
+      "echo_example_ids": [
+        "3529948:14"
+      ]
     },
     {
       "id": "echo_reduplication:truck",
       "kind": "echo_reduplication",
       "word": "truck",
       "current": null,
-      "proposed": "noise",
-      "reason": "Echo reduplication of 'cybertruck' — the tail of the preceding word repeated as an ad-lib, not a word.",
+      "proposed": "drop_occurrences",
+      "reason": "Echo reduplication of 'cybertruck' — the tail of the preceding word repeated as an ad-lib, not a word. Only 1 of 2 occurrences are echoes, so the string is NOT noise corpus-wide — drop those lines only.",
       "evidence": "Les pasé po' encima en la Cybertruck, -truck",
       "source": "tool_4a_detect_echo_words",
-      "confidence": "high",
+      "confidence": "medium",
       "status": "open",
       "created": "2026-07-31",
-      "artist": "Bad Bunny"
+      "artist": "Bad Bunny",
+      "echo_occurrences": 1,
+      "total_occurrences": 2,
+      "echo_example_ids": [
+        "9614095:41"
+      ]
     }
   ]
 }
