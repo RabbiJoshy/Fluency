@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Initialize login before app boot
+
+- Commit `6d7bddc6`; front-end cache `flashcards-v157` / `20260731c`.
+- Identified why the prior fail-open change could still show an untappable modal: authentication markup is present in static HTML, while its click handlers were attached only inside `loadConfig().then(...)`. The 12-second watchdog could therefore reveal the modal after a stalled configuration request without ever initializing its controls.
+- Authentication listeners and session restoration now run before artist/configuration loading. Showing auth forcibly hides the boot surface, adds an explicit auth-active guard, and raises the auth modal above every transient overlay; listener setup is idempotent.
+- Verification: five focused Node tests, including listener/check-auth ordering before `resolveArtist`; bundled-Node syntax checks; valid changelog JSON; cache-version lockstep; `git diff --check`. No live iPhone/browser verification was available.
+
 ### 2026-07-31 — Make Home Screen startup fail open
 
 - Commit `6afae1b5`; front-end cache `flashcards-v156` / `20260731b`.

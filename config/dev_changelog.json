@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-31",
-      "commit": "pending",
+      "commit": "6d7bddc6",
       "summary": "Login controls remain usable during a stalled boot",
       "details": [
         "Authentication click handlers now attach before artist or configuration loading begins, rather than after those requests finish",
