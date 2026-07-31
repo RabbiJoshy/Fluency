@@ -24,21 +24,23 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260729z">
-    <link rel="modulepreload" href="js/state.js?v=20260729z">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260729z">
-    <link rel="modulepreload" href="js/speech.js?v=20260729z">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260729z">
-    <link rel="modulepreload" href="js/auth.js?v=20260729z">
-    <link rel="modulepreload" href="js/spotify.js?v=20260729z">
-    <link rel="modulepreload" href="js/estimation.js?v=20260729z">
-    <link rel="modulepreload" href="js/config.js?v=20260729z">
-    <link rel="modulepreload" href="js/progress.js?v=20260729z">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260729z">
-    <link rel="modulepreload" href="js/ui.js?v=20260729z">
-    <link rel="modulepreload" href="js/vocab.js?v=20260729z">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260729z">
-    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260729z">
+    <link rel="modulepreload" href="js/main.js?v=20260731a">
+    <link rel="modulepreload" href="js/state.js?v=20260731a">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260731a">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260731a">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260731a">
+    <link rel="modulepreload" href="js/speech.js?v=20260731a">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260731a">
+    <link rel="modulepreload" href="js/auth.js?v=20260731a">
+    <link rel="modulepreload" href="js/spotify.js?v=20260731a">
+    <link rel="modulepreload" href="js/estimation.js?v=20260731a">
+    <link rel="modulepreload" href="js/config.js?v=20260731a">
+    <link rel="modulepreload" href="js/progress.js?v=20260731a">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260731a">
+    <link rel="modulepreload" href="js/ui.js?v=20260731a">
+    <link rel="modulepreload" href="js/vocab.js?v=20260731a">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260731a">
+    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731a">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -226,7 +228,7 @@
                     <span id="topBarUserName" class="top-bar-user-name"></span>
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
                     <!-- Offline / sync-pending status pill. Hidden when online with an empty queue. -->
-                    <span id="syncStatusIndicator" class="sync-status hidden" role="status" aria-live="polite"></span>
+                    <button id="syncStatusIndicator" class="sync-status is-synced" type="button" title="Open synchronization details" onclick="showSettingsModal('data')">Synced</button>
                     <button class="gear-btn top-bar-find" id="findWordBtn" title="Find a word">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="7"></circle>
@@ -1089,7 +1091,27 @@
             </div>
             <!-- Data tab content -->
             <div class="settings-tab-content" id="dataTabContent">
-                <p class="settings-data-intro">Progress sync, cached vocabulary, and reset tools.</p>
+                <p class="settings-data-intro">Downloaded lessons stay on this device. Progress and notes synchronize with your account.</p>
+                <section class="offline-panel" aria-labelledby="syncPanelTitle">
+                    <div class="offline-panel-heading">
+                        <div><strong id="syncPanelTitle">Progress sync</strong><small><span id="syncPendingCount">0</span> pending · Last synced <span id="syncLastSuccess">Not yet</span></small></div>
+                        <button type="button" id="syncNowBtn">Sync now</button>
+                    </div>
+                    <p id="syncLastError" class="offline-error" hidden></p>
+                    <details>
+                        <summary>Inspect queued changes</summary>
+                        <ul id="syncQueueList" class="sync-queue-list"><li class="sync-queue-empty">No pending changes.</li></ul>
+                    </details>
+                </section>
+                <section class="offline-panel" aria-labelledby="offlineContentTitle">
+                    <div class="offline-panel-heading">
+                        <div><strong id="offlineContentTitle">Offline content</strong><small>Available without a connection after download</small></div>
+                        <button type="button" id="downloadEverythingBtn">Download everything</button>
+                    </div>
+                    <div id="offlineContentList" class="offline-content-list" aria-live="polite"></div>
+                    <button type="button" id="cancelOfflineDownloadBtn" class="offline-cancel">Cancel current download</button>
+                    <p class="settings-data-intro">Storage estimates include source JSON, but browser cache bookkeeping and migration space can require more. Removing content never removes progress.</p>
+                </section>
                 <div class="stat-row" style="cursor: pointer; display: none;" id="clearLevelEstimateRow">
                     <span>Level estimate: <span id="levelEstimateDisplay" style="color: var(--accent-primary);"></span></span>
                     <span class="settings-row-action">Clear</span>
@@ -1177,6 +1199,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260729z"></script>
+    <script type="module" src="js/main.js?v=20260731a"></script>
 </body>
 </html>

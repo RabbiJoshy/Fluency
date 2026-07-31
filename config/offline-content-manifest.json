@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "2026-07-31",
+  "generatedAt": "2026-07-31T00:00:00Z",
+  "sources": [
+    {
+      "id": "language-spanish",
+      "name": "Spanish",
+      "scope": "language",
+      "scopeLabel": "Speech · all levels",
+      "language": "spanish",
+      "contentVersion": "2026-07-31",
+      "storageBytes": 51228940,
+      "transferBytes": 10677212,
+      "dependencies": [],
+      "files": [
+        {"path": "Data/Spanish/vocabulary.index.json", "bytes": 17829503, "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"},
+        {"path": "Data/Spanish/vocabulary.examples.json", "bytes": 33399437, "sha256": "fa251dec9172b8f2c1d1a2981a1eb5b74912fd1d694a01ccff6d90f8ffc69861"}
+      ]
+    },
+    {
+      "id": "language-french",
+      "name": "French",
+      "scope": "language",
+      "scopeLabel": "Speech · all levels",
+      "language": "french",
+      "contentVersion": "2026-07-31",
+      "storageBytes": 13164872,
+      "transferBytes": 2329812,
+      "dependencies": [],
+      "files": [
+        {"path": "Data/French/vocabulary.index.json", "bytes": 3470720, "sha256": "14a588f6ca006e1f03d45208c48ebb3fd49ae0f789818e456cebcba5fba824b6"},
+        {"path": "Data/French/vocabulary.examples.json", "bytes": 9694152, "sha256": "6a7c1b37b991262c313a2fccd75ac9ec06490abf5fe17d5063acd3fe8ba21154"}
+      ]
+    },
+    {
+      "id": "artist-bad-bunny",
+      "name": "Bad Bunny",
+      "scope": "artist",
+      "scopeLabel": "Lyrics · shared Spanish meanings included",
+      "language": "spanish",
+      "artist": "bad-bunny",
+      "contentVersion": "2026-07-31",
+      "storageBytes": 40926858,
+      "transferBytes": 5965517,
+      "dependencies": ["shared-spanish-artist"],
+      "files": [
+        {"path": "Artists/spanish/vocabulary_master.json", "bytes": 6390479, "sha256": "0c71794f5a83ba9a033ef9a6dd153e502525fd3b1c1f19923d81b5271fcc216c"},
+        {"path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json", "bytes": 13884141, "sha256": "bbf840275a4ab498d696fa635d2491f146fc5bbf7bbb524702aa57884cd3d525"},
+        {"path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json", "bytes": 20652238, "sha256": "053d215c845b101e2f9459ed8748132d31f19d5c860bd8bb2cdcd416401d9ddc"}
+      ]
+    },
+    {
+      "id": "artist-rosalia",
+      "name": "Rosalía",
+      "scope": "artist",
+      "scopeLabel": "Lyrics · shared Spanish meanings included",
+      "language": "spanish",
+      "artist": "rosalia",
+      "contentVersion": "2026-07-31",
+      "storageBytes": 16631760,
+      "transferBytes": 2304061,
+      "dependencies": ["shared-spanish-artist"],
+      "files": [
+        {"path": "Artists/spanish/vocabulary_master.json", "bytes": 6390479, "sha256": "0c71794f5a83ba9a033ef9a6dd153e502525fd3b1c1f19923d81b5271fcc216c"},
+        {"path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json", "bytes": 4593756, "sha256": "af2ac80f010a30df8539605897576c8a5c46e28cd30825e270501c603f1fc4fb"},
+        {"path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json", "bytes": 5647525, "sha256": "3857d0b670c99df6e0ca0235f7d67aa7ac2701cde9914f63372131a1e6f4ff8d"}
+      ]
+    },
+    {
+      "id": "artist-young-miko",
+      "name": "Young Miko",
+      "scope": "artist",
+      "scopeLabel": "Lyrics · shared Spanish meanings included",
+      "language": "spanish",
+      "artist": "young-miko",
+      "contentVersion": "2026-07-31",
+      "storageBytes": 20036040,
+      "transferBytes": 2799704,
+      "dependencies": ["shared-spanish-artist"],
+      "files": [
+        {"path": "Artists/spanish/vocabulary_master.json", "bytes": 6390479, "sha256": "0c71794f5a83ba9a033ef9a6dd153e502525fd3b1c1f19923d81b5271fcc216c"},
+        {"path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json", "bytes": 6104053, "sha256": "478b957b503abb067b0f08bcd3ec36bb6fdce036c7c56258cd0ce3a0a9c1c344"},
+        {"path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json", "bytes": 7541508, "sha256": "768df74e666534b2d1f89d36de60cfb0b1d21279e8d5e1f923500f83b923f52a"}
+      ]
+    }
+  ]
+}

@@ -4,12 +4,14 @@
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v154';
+const CACHE_NAME = 'flashcards-v155';
+const SHELL_CACHE_PREFIX = 'flashcards-v';
+const CONTENT_CACHE_PREFIX = 'fluency-content-';
 
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260729z';
+const ASSET_VERSION = '20260731a';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -24,10 +26,12 @@ const urlsToCache = [
   '/config/config.json',
   '/config/cefr_levels.json',
   '/config/artists.json',
-  '/backend/secrets.json',
+  '/config/offline-content-manifest.json',
   `/js/main.js?v=${ASSET_VERSION}`,
   `/js/state.js?v=${ASSET_VERSION}`,
+  `/js/offline-db.js?v=${ASSET_VERSION}`,
   `/js/sync-queue.js?v=${ASSET_VERSION}`,
+  `/js/offline-content.js?v=${ASSET_VERSION}`,
   `/js/speech.js?v=${ASSET_VERSION}`,
   `/js/artist-ui.js?v=${ASSET_VERSION}`,
   `/js/auth.js?v=${ASSET_VERSION}`,
@@ -47,7 +51,6 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
-      .then(() => self.skipWaiting())
   );
 });
 
@@ -83,7 +86,8 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Stale-while-revalidate applies to all remaining same-origin GETs, which
+  // Explicit retained downloads live in immutable, source-versioned content
+  // caches. Prefer those before ordinary runtime cache entries.
   // includes the deck DATA the app fetches to render a deck: the per-artist
   // *.index.json / *.examples.json, shared vocabulary_master.json, config/*.json,
   // and the Data/Spanish/* rank & conjugation files. Any of these fetched once
@@ -93,8 +97,17 @@ self.addEventListener('fetch', event => {
   // first real fetch keeps the pre-cache lean while still giving full offline
   // study to a returning user.
   event.respondWith(
-    caches.open(CACHE_NAME).then(cache =>
-      cache.match(request).then(cached => {
+    caches.keys().then(async names => {
+      const contentNames = names.filter(name => name.startsWith(CONTENT_CACHE_PREFIX) && !name.includes('staging-'));
+      for (const name of contentNames) {
+        const contentCache = await caches.open(name);
+        const complete = await contentCache.match('/__fluency_content_complete__');
+        if (!complete) continue;
+        const retained = await contentCache.match(request);
+        if (retained) return retained;
+      }
+      const cache = await caches.open(CACHE_NAME);
+      return cache.match(request).then(cached => {
         const fetchPromise = fetch(request).then(response => {
           // Only cache valid 200 responses. Don't poison the cache with
           // 404s, opaque cross-origin responses, or partial content.
@@ -119,8 +132,8 @@ self.addEventListener('fetch', event => {
         // rejected promise, which the browser surfaces as a normal
         // network error — same UX as having no service worker at all.
         return cached || fetchPromise;
-      })
-    )
+      });
+    })
   );
 });
 
@@ -129,9 +142,15 @@ self.addEventListener('activate', event => {
     caches.keys().then(cacheNames =>
       Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) return caches.delete(cacheName);
+          if (cacheName.startsWith(SHELL_CACHE_PREFIX) && cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
         })
       )
     ).then(() => self.clients.claim())
   );
+});
+
+self.addEventListener('message', event => {
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });

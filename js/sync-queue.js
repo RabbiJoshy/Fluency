@@ -1,320 +1,311 @@
-// Offline write-queue + sync for Google Sheets writes.
-//
-// Progress saves, word flags, and progress-metadata writes all POST to the
-// GOOGLE_SCRIPT_URL (a cross-origin Google Apps Script endpoint the service
-// worker deliberately does NOT intercept — mutating verbs must always hit the
-// network). When the user is offline, or a write fails transiently, we can't
-// let that write silently vanish. This module gives those writes a durable
-// localStorage queue and flushes it back to Sheets when connectivity returns.
-//
-// Design:
-//  - sendOrQueue(payload, dedupeKey): write-through when online (fast path,
-//    unchanged latency for online users), enqueue on failure/offline.
-//  - The queue is de-duped by dedupeKey so the LATEST state per word wins —
-//    every Sheets "save" carries the full cumulative counts, so a newer save
-//    for a word fully supersedes an older queued one (no need to replay both).
-//  - flushQueue() drains in FIFO order; a partial failure stops the drain and
-//    leaves the unsent tail in place (idempotent: re-sending a full-state save
-//    is harmless).
-//  - Flushes fire on the `online` event, on a periodic timer, and once at boot.
+// Durable, local-first synchronization queue.
 import './state.js';
+import { dbDelete, dbGetAll, dbPut, makeOperationId, openOfflineDb } from './offline-db.js';
 
-const QUEUE_KEY = 'fluency_sync_queue_v1';
-const FLUSH_INTERVAL_MS = 20000;
+const LEGACY_QUEUE_KEY = 'fluency_sync_queue_v1';
+const LAST_SYNC_KEY = 'fluency_last_sync_v1';
+const MAX_ACTIVE_ATTEMPTS = 4;
+const REQUEST_TIMEOUT_MS = 15000;
+let queue = [];
+let readyPromise;
+let flushing = false;
+let flushTimer = null;
+let lastError = null;
 
-let _flushing = false;
-let _intervalStarted = false;
+const accountId = payload => String(payload?.user || currentUser?.initials || 'anonymous');
+const operationType = payload => String(payload?.action || 'unknown');
+const sanitizedError = error => String(error?.message || error || 'Unknown sync error')
+    .replace(/https?:\\/\\/\\S+/g, '[endpoint]')
+    .slice(0, 180);
 
-// ---- Queue persistence ----------------------------------------------------
+function newestFirst(a, b) { return b.updatedAt - a.updatedAt; }
 
-function loadQueue() {
+async function initializeQueue() {
     try {
-        const raw = localStorage.getItem(QUEUE_KEY);
-        if (!raw) return [];
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-    } catch (e) {
-        console.warn('sync-queue: could not parse queue, resetting', e);
-        return [];
-    }
-}
-
-function saveQueue(q) {
-    try {
-        if (q.length === 0) localStorage.removeItem(QUEUE_KEY);
-        else localStorage.setItem(QUEUE_KEY, JSON.stringify(q));
-    } catch (e) {
-        // localStorage full or unavailable — nothing more we can do; the
-        // in-memory attempt already happened. Log and move on.
-        console.warn('sync-queue: could not persist queue', e);
-    }
-    updateIndicator();
-}
-
-// Append (or replace, when dedupeKey matches an existing entry) a write.
-// Replacing in place keeps FIFO ordering roughly stable while ensuring the
-// latest state per key wins.
-function enqueueWrite(payload, dedupeKey) {
-    const q = loadQueue();
-    const entry = { dedupeKey: dedupeKey || null, payload, ts: Date.now() };
-    if (dedupeKey) {
-        const i = q.findIndex(e => e.dedupeKey === dedupeKey);
-        if (i >= 0) q[i] = entry;
-        else q.push(entry);
-    } else {
-        q.push(entry);
-    }
-    saveQueue(q);
-}
-
-export function getPendingCount() {
-    return loadQueue().length;
-}
-
-// ---- Network primitive ----------------------------------------------------
-
-// POST one payload to the Apps Script endpoint. Resolves true on a confirmed
-// save, throws on network failure or an explicit {success:false} from GAS.
-async function postToSheet(payload) {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-    });
-    // GAS returns JSON like {success:true}. Some deployments/redirects can
-    // yield an opaque-ish body; if we can't parse but the HTTP status is OK,
-    // treat it as success rather than re-queueing forever.
-    let json = null;
-    try { json = await response.json(); } catch (_) { json = null; }
-    if (json && json.success === false) {
-        throw new Error(json.message || 'Sheet save reported failure');
-    }
-    if (!json && !response.ok) {
-        throw new Error(`Sheet save HTTP ${response.status}`);
-    }
-    return true;
-}
-
-// ---- Public write path ----------------------------------------------------
-
-// Write-through when online, enqueue otherwise. Fire-and-forget friendly:
-// callers don't need to await. Returns a promise<bool> (true = confirmed sent).
-export async function sendOrQueue(payload, dedupeKey) {
-    if (!GOOGLE_SCRIPT_URL) {
-        // Sheets sync disabled (no secrets) — nothing durable to do.
-        return false;
-    }
-    if (navigator.onLine) {
-        try {
-            await postToSheet(payload);
-            // A successful direct write is a good moment to also drain any
-            // backlog that accumulated during a prior offline stretch.
-            if (getPendingCount() > 0) scheduleFlush();
-            return true;
-        } catch (e) {
-            console.warn('sync-queue: direct write failed, queueing', e);
-            enqueueWrite(payload, dedupeKey);
-            return false;
-        }
-    }
-    enqueueWrite(payload, dedupeKey);
-    return false;
-}
-
-// ---- Flush ----------------------------------------------------------------
-
-let _flushScheduled = false;
-function scheduleFlush() {
-    if (_flushScheduled) return;
-    _flushScheduled = true;
-    setTimeout(() => { _flushScheduled = false; flushQueue(); }, 500);
-}
-
-// Drain the queue in FIFO order. Re-reads localStorage around each await so a
-// concurrent enqueue (user answers a card mid-flush) is never clobbered.
-export async function flushQueue() {
-    if (_flushing) return;
-    if (!navigator.onLine || !GOOGLE_SCRIPT_URL) return;
-    if (getPendingCount() === 0) { updateIndicator(); return; }
-
-    _flushing = true;
-    updateIndicator();
-    try {
-        // Bound the loop by the starting length so a runaway can't spin.
-        let guard = loadQueue().length + 5;
-        while (guard-- > 0) {
-            if (!navigator.onLine) break;
-            const q = loadQueue();
-            if (q.length === 0) break;
-            const entry = q[0];
-            try {
-                await postToSheet(entry.payload);
-            } catch (e) {
-                // Network/endpoint problem — stop draining, keep the tail
-                // (including this entry) for the next flush attempt.
-                console.warn('sync-queue: flush interrupted, will retry', e);
-                break;
+        await openOfflineDb();
+        queue = await dbGetAll('operations');
+        const legacy = JSON.parse(localStorage.getItem(LEGACY_QUEUE_KEY) || '[]');
+        if (Array.isArray(legacy)) {
+            for (const old of legacy) {
+                const createdAt = Number(old.ts) || Date.now();
+                const acct = accountId(old.payload);
+                const id = makeOperationId(acct, old.dedupeKey, createdAt);
+                if (queue.some(item => item.id === id)) continue;
+                const entry = {
+                    id, idempotencyKey: id, dedupeKey: old.dedupeKey || null,
+                    accountId: acct, operationType: operationType(old.payload),
+                    payload: old.payload, createdAt, updatedAt: createdAt,
+                    attemptCount: 0, retryState: 'pending', lastError: null,
+                    nextAttemptAt: 0, serverReceipt: null
+                };
+                await dbPut('operations', entry);
+                queue.push(entry);
             }
-            // Remove exactly the entry we just sent, re-reading first so an
-            // enqueue that landed during the await isn't overwritten.
-            const q2 = loadQueue();
-            const idx = q2.findIndex(e => e.ts === entry.ts && e.dedupeKey === entry.dedupeKey);
-            if (idx >= 0) q2.splice(idx, 1);
-            else q2.shift(); // fallback: entry was de-duped/replaced; drop head
-            saveQueue(q2);
+        }
+        localStorage.removeItem(LEGACY_QUEUE_KEY);
+    } catch (error) {
+        // Retain the legacy queue when IndexedDB is unavailable.
+        console.warn('sync-queue: IndexedDB unavailable; legacy queue retained', error);
+        try {
+            queue = JSON.parse(localStorage.getItem(LEGACY_QUEUE_KEY) || '[]').map(old => ({
+                id: makeOperationId(accountId(old.payload), old.dedupeKey, old.ts),
+                idempotencyKey: makeOperationId(accountId(old.payload), old.dedupeKey, old.ts),
+                dedupeKey: old.dedupeKey || null, accountId: accountId(old.payload),
+                operationType: operationType(old.payload), payload: old.payload,
+                createdAt: old.ts || Date.now(), updatedAt: old.ts || Date.now(),
+                attemptCount: 0, retryState: 'pending', nextAttemptAt: 0
+            }));
+        } catch (_) { queue = []; }
+    }
+    queue.sort((a, b) => a.createdAt - b.createdAt);
+    updateIndicator();
+    return queue;
+}
+
+function ensureReady() {
+    if (!readyPromise) readyPromise = initializeQueue();
+    return readyPromise;
+}
+
+async function persist(entry) {
+    try { await dbPut('operations', entry); } catch (error) {
+        localStorage.setItem(LEGACY_QUEUE_KEY, JSON.stringify(queue.map(item => ({
+            dedupeKey: item.dedupeKey, payload: item.payload, ts: item.createdAt
+        }))));
+        throw error;
+    }
+    updateIndicator();
+}
+
+async function remove(entry) {
+    queue = queue.filter(item => item.id !== entry.id);
+    try { await dbDelete('operations', entry.id); } catch (_) {}
+    updateIndicator();
+}
+
+async function enqueueWrite(payload, dedupeKey) {
+    await ensureReady();
+    const acct = accountId(payload);
+    const existing = dedupeKey && queue.find(item =>
+        item.dedupeKey === dedupeKey && item.accountId === acct);
+    const now = Date.now();
+    const entry = existing ? {
+        ...existing, payload, updatedAt: now, operationType: operationType(payload),
+        retryState: 'pending', lastError: null, nextAttemptAt: 0
+    } : {
+        id: makeOperationId(acct, dedupeKey, now),
+        idempotencyKey: makeOperationId(acct, dedupeKey, now),
+        dedupeKey: dedupeKey || null, accountId: acct,
+        operationType: operationType(payload), payload,
+        createdAt: now, updatedAt: now, attemptCount: 0,
+        retryState: 'pending', lastError: null, nextAttemptAt: 0,
+        serverReceipt: null
+    };
+    entry.payload = { ...payload, idempotencyKey: entry.idempotencyKey };
+    if (!existing) queue.push(entry);
+    await persist(entry);
+    dispatchStatus();
+    return entry;
+}
+
+export function getPendingCount() { return queue.length; }
+export async function inspectQueue() { await ensureReady(); return queue.slice().sort(newestFirst); }
+
+async function postToSheet(entry) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    try {
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST', body: JSON.stringify(entry.payload), signal: controller.signal
+        });
+        let json;
+        try { json = await response.json(); } catch (_) {
+            throw new Error(`Ambiguous response (HTTP ${response.status})`);
+        }
+        if (!response.ok || json?.success !== true) {
+            const error = new Error(json?.message || `Sync rejected (HTTP ${response.status})`);
+            error.auth = response.status === 401 || response.status === 403 || /auth|login/i.test(error.message);
+            throw error;
+        }
+        return json.receipt || json.operationId || entry.idempotencyKey;
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+export async function sendOrQueue(payload, dedupeKey) {
+    await enqueueWrite(payload, dedupeKey);
+    if (navigator.onLine && GOOGLE_SCRIPT_URL) scheduleFlush(0);
+    return false; // only a queue drain may acknowledge/remove durable work
+}
+
+function scheduleFlush(delay = 400) {
+    clearTimeout(flushTimer);
+    flushTimer = setTimeout(() => flushQueue(), delay);
+}
+
+export async function flushQueue({ force = false } = {}) {
+    await ensureReady();
+    if (flushing || !navigator.onLine || !GOOGLE_SCRIPT_URL || queue.length === 0) {
+        updateIndicator(); return;
+    }
+    flushing = true;
+    lastError = null;
+    updateIndicator();
+    let attempts = 0;
+    try {
+        while (navigator.onLine && attempts < MAX_ACTIVE_ATTEMPTS) {
+            const now = Date.now();
+            const entry = queue.find(item =>
+                (force || item.retryState !== 'auth-paused') &&
+                (force || !item.nextAttemptAt || item.nextAttemptAt <= now));
+            if (!entry) break;
+            attempts++;
+            entry.attemptCount = Number(entry.attemptCount || 0) + 1;
+            entry.updatedAt = now;
+            entry.retryState = 'sending';
+            await persist(entry);
+            try {
+                const receipt = await postToSheet(entry);
+                await dbPut('receipts', {
+                    idempotencyKey: entry.idempotencyKey, accountId: entry.accountId,
+                    operationType: entry.operationType, acknowledgedAt: Date.now(), serverReceipt: receipt
+                });
+                await remove(entry);
+                localStorage.setItem(LAST_SYNC_KEY, String(Date.now()));
+            } catch (error) {
+                lastError = sanitizedError(error);
+                entry.lastError = lastError;
+                entry.updatedAt = Date.now();
+                entry.retryState = error.auth ? 'auth-paused' : 'failed';
+                entry.nextAttemptAt = error.auth ? 0 :
+                    Date.now() + Math.min(60000, 1000 * (2 ** Math.min(entry.attemptCount, 6)));
+                await persist(entry);
+                break; // preserve ordering after an uncertain outcome
+            }
         }
     } finally {
-        _flushing = false;
+        flushing = false;
         updateIndicator();
+        dispatchStatus();
     }
 }
 
-// ---- Progress overlay -----------------------------------------------------
+export async function retryOperation(id) {
+    await ensureReady();
+    const entry = queue.find(item => item.id === id);
+    if (entry) {
+        entry.retryState = 'pending';
+        entry.nextAttemptAt = 0;
+        entry.lastError = null;
+        await persist(entry);
+    }
+    return flushQueue({ force: true });
+}
 
-// When progress is (re)loaded from Sheets, any writes still sitting in the
-// queue are newer than what the sheet knows. Overlay them onto progressData so
-// a refresh (e.g. reconnect triggers loadUserProgressFromSheet) never visually
-// regresses un-synced local answers. Flags and metadata are skipped.
+function dispatchStatus() {
+    window.dispatchEvent(new CustomEvent('fluency-sync-status', { detail: getSyncStatus() }));
+}
+
+export function getSyncStatus() {
+    const pending = queue.length;
+    const online = navigator.onLine;
+    const failed = queue.some(item => item.retryState === 'failed' || item.retryState === 'auth-paused');
+    return {
+        state: !online ? 'offline' : flushing ? 'syncing' : failed ? 'failed' : pending ? 'pending' : 'synced',
+        online, pending, lastError, lastSuccessfulSync: Number(localStorage.getItem(LAST_SYNC_KEY)) || null
+    };
+}
+
+export function updateIndicator() {
+    const el = document.getElementById('syncStatusIndicator');
+    if (!el) return;
+    const status = getSyncStatus();
+    el.className = `sync-status is-${status.state}`;
+    const label = {
+        offline: status.pending ? `Offline · ${status.pending}` : 'Offline',
+        syncing: `Syncing ${status.pending}…`,
+        failed: `Sync failed · ${status.pending}`,
+        pending: `${status.pending} pending`,
+        synced: 'Synced'
+    }[status.state];
+    el.textContent = label;
+    el.title = status.lastError || (status.pending ? `${status.pending} changes saved locally` : 'Progress synchronized');
+    updateSyncDetails();
+}
+
+async function updateSyncDetails() {
+    const status = getSyncStatus();
+    const count = document.getElementById('syncPendingCount');
+    const last = document.getElementById('syncLastSuccess');
+    const error = document.getElementById('syncLastError');
+    if (count) count.textContent = String(status.pending);
+    if (last) last.textContent = status.lastSuccessfulSync
+        ? new Date(status.lastSuccessfulSync).toLocaleString() : 'Not yet';
+    if (error) {
+        error.textContent = status.lastError || '';
+        error.hidden = !status.lastError;
+    }
+    const list = document.getElementById('syncQueueList');
+    if (list) {
+        list.innerHTML = queue.map(item =>
+            `<li><span><strong>${item.operationType}</strong><small>${item.retryState} · ${item.attemptCount} attempts</small></span><button type="button" data-retry-op="${item.id}">Retry</button></li>`
+        ).join('') || '<li class="sync-queue-empty">No pending changes.</li>';
+        list.querySelectorAll('[data-retry-op]').forEach(button =>
+            button.addEventListener('click', () => retryOperation(button.dataset.retryOp)));
+    }
+}
+
 export function applyPendingProgressOverlay(progress) {
-    if (!progress) return progress;
-    const q = loadQueue();
-    for (const e of q) {
-        const p = e && e.payload;
-        if (!p || p.action !== 'save') continue;
-        if (p.sheet === 'FlaggedWords') continue;
-        if (p.word === '_LEVEL_ESTIMATE_' || p.itemType === 'meta') continue;
-        if (!p.wordId || p.correct === undefined) continue;
+    for (const { payload: p } of queue) {
+        if (!p || p.action !== 'save' || p.sheet === 'FlaggedWords' ||
+            p.word === '_LEVEL_ESTIMATE_' || p.itemType === 'meta' || !p.wordId) continue;
         progress[p.wordId] = {
-            word: p.word,
-            language: p.language,
-            correct: p.correct,
-            wrong: p.wrong,
-            lastCorrect: p.lastCorrect,
-            lastWrong: p.lastWrong,
-            lastSeen: p.lastSeen,
-            srsStage: p.srsStage
+            word: p.word, language: p.language, correct: p.correct, wrong: p.wrong,
+            lastCorrect: p.lastCorrect, lastWrong: p.lastWrong, lastSeen: p.lastSeen, srsStage: p.srsStage
         };
     }
     return progress;
 }
 
-// Item-level sense/expression writes use the same full-state semantics as
-// card progress. Overlay queued writes after a Sheets refresh so offline
-// granular choices cannot visually roll back.
 export function applyPendingItemProgressOverlay(items) {
-    if (!items) return items;
-    const q = loadQueue();
-    for (const e of q) {
-        const p = e && e.payload;
-        if (!p || p.action !== 'saveItem' || !p.itemId) continue;
-        items[p.itemId] = {
-            itemId: p.itemId,
-            parentWordId: p.parentWordId,
-            itemType: p.itemType,
-            label: p.label,
-            language: p.language,
-            correct: p.correct,
-            wrong: p.wrong,
-            lastCorrect: p.lastCorrect,
-            lastWrong: p.lastWrong,
-            lastSeen: p.lastSeen,
-            schemaVersion: p.schemaVersion || 1,
-            srsStage: p.srsStage
-        };
+    for (const { payload: p } of queue) {
+        if (p?.action === 'saveItem' && p.itemId) items[p.itemId] = { ...p };
     }
     return items;
 }
 
-// Scalar metadata uses the same last-write-wins queue semantics. Keep level
-// estimates and suggestion-only level flags from rolling back during an
-// offline→online refresh before their queued writes have drained.
 export function applyPendingMetaProgressOverlay(estimates, doneLevels) {
-    const q = loadQueue();
-    for (const e of q) {
-        const p = e && e.payload;
-        if (!p) continue;
-        if (p.action === 'save' && p.word === '_LEVEL_ESTIMATE_' && p.language) {
-            estimates[p.language] = p.wordId;
-            continue;
-        }
-        if (p.action !== 'saveMeta') continue;
-        if (p.metaKey === 'level-estimate' && p.language) {
-            estimates[p.language] = p.value;
-            continue;
-        }
-        if (p.metaKey !== 'level-done' || !p.scopeKey || !p.metaId) continue;
+    for (const { payload: p } of queue) {
+        if (p?.action === 'save' && p.word === '_LEVEL_ESTIMATE_' && p.language) estimates[p.language] = p.wordId;
+        if (p?.action === 'saveMeta' && p.metaKey === 'level-estimate' && p.language) estimates[p.language] = p.value;
+        if (p?.action !== 'saveMeta' || p.metaKey !== 'level-done' || !p.scopeKey || !p.metaId) continue;
         const scope = { ...(doneLevels[p.scopeKey] || {}) };
-        const enabled = p.value === true || p.value === 1 || p.value === '1'
-            || String(p.value).toLowerCase() === 'true';
-        if (enabled) scope[p.metaId] = true;
+        if (p.value === true || p.value === 1 || p.value === '1') scope[p.metaId] = true;
         else delete scope[p.metaId];
         doneLevels[p.scopeKey] = scope;
     }
     return { estimates, doneLevels };
 }
 
-// ---- Indicator ------------------------------------------------------------
-
-// Small status pill in the top bar. Three visible states:
-//   offline           → "Offline" (+ "· N pending" if any queued)
-//   online + pending  → "Syncing N…"
-//   online + empty    → hidden
-export function updateIndicator() {
-    const el = document.getElementById('syncStatusIndicator');
-    if (!el) return;
-    const pending = getPendingCount();
-    const online = navigator.onLine;
-
-    el.classList.remove('is-offline', 'is-pending');
-    if (!online) {
-        el.classList.add('is-offline');
-        el.classList.remove('hidden');
-        el.textContent = pending > 0 ? `Offline · ${pending} pending` : 'Offline';
-        el.title = pending > 0
-            ? `${pending} change${pending === 1 ? '' : 's'} will sync when you reconnect`
-            : 'You are offline. Progress is saved on this device.';
-    } else if (pending > 0) {
-        el.classList.add('is-pending');
-        el.classList.remove('hidden');
-        el.textContent = `Syncing ${pending}…`;
-        el.title = `Syncing ${pending} pending change${pending === 1 ? '' : 's'} to your account`;
-    } else {
-        el.classList.add('hidden');
-        el.textContent = '';
-        el.title = '';
-    }
-}
-
-// ---- Init -----------------------------------------------------------------
-
-function onOnline() {
+export async function initSync() {
+    await ensureReady();
+    window.addEventListener('online', () => { updateIndicator(); scheduleFlush(0); });
+    window.addEventListener('offline', updateIndicator);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') scheduleFlush(0);
+    });
+    window.addEventListener('fluency-auth-restored', () => {
+        queue.forEach(item => { if (item.retryState === 'auth-paused') item.retryState = 'pending'; });
+        scheduleFlush(0);
+    });
+    document.getElementById('syncNowBtn')?.addEventListener('click', () => flushQueue({ force: true }));
     updateIndicator();
-    flushQueue();
-}
-function onOffline() {
-    updateIndicator();
+    scheduleFlush(0);
 }
 
-// Wire connectivity listeners + periodic retry. Safe to call more than once.
-export function initSync() {
-    updateIndicator();
-    if (!_intervalStarted) {
-        _intervalStarted = true;
-        window.addEventListener('online', onOnline);
-        window.addEventListener('offline', onOffline);
-        setInterval(() => {
-            if (navigator.onLine && getPendingCount() > 0) flushQueue();
-        }, FLUSH_INTERVAL_MS);
-    }
-    // Attempt an initial drain in case we booted online with a backlog.
-    if (navigator.onLine) flushQueue();
-}
-
-// Expose for cross-module (non-import) callers and debugging.
-window.sendOrQueue = sendOrQueue;
-window.flushQueue = flushQueue;
-window.getPendingCount = getPendingCount;
-window.applyPendingProgressOverlay = applyPendingProgressOverlay;
-window.applyPendingItemProgressOverlay = applyPendingItemProgressOverlay;
-window.applyPendingMetaProgressOverlay = applyPendingMetaProgressOverlay;
-window.updateSyncIndicator = updateIndicator;
-window.initSync = initSync;
+Object.assign(window, {
+    sendOrQueue, flushQueue, retryOperation, getPendingCount, inspectSyncQueue: inspectQueue,
+    applyPendingProgressOverlay, applyPendingItemProgressOverlay,
+    applyPendingMetaProgressOverlay, updateSyncIndicator: updateIndicator, initSync
+});

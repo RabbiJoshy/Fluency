@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-31",
+      "commit": "pending",
+      "summary": "Offline downloads and durable progress sync",
+      "details": [
+        "The app shell now installs independently from optional decks, retained Spanish/French/artist content can be downloaded or removed in Settings, and verified downloads survive app restarts",
+        "Progress, sense answers, flags, and notes enter an IndexedDB queue immediately with stable idempotency keys, bounded retry, authentication pause, foreground/reconnect triggers, and explicit Sync now controls",
+        "The status pill and Data settings distinguish connectivity, synchronization, pending/failed work, app updates, and device-local content; ambiguous server responses remain queued"
+      ]
+    },
+    {
       "date": "2026-07-30",
       "commit": "4cf1a7bf",
       "summary": "Rebuilt Bad Bunny with Gemini's sense tags finally reaching the deck",

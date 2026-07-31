@@ -1,8 +1,9 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
 import './state.js';
+import { dbGet, dbPut } from './offline-db.js';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
-// enqueues to localStorage when offline/failed. The two overlay helpers keep
+// enqueues to IndexedDB when offline/failed. The overlay helpers keep
 // un-synced card and granular knowledge answers visible after a Sheets reload.
 import {
     sendOrQueue,
@@ -359,13 +360,22 @@ function isLevelMarkedDone(levelId, scopeKey = getProgressScopeKey()) {
 
 function cacheProgressLocally() {
     if (!currentUser || currentUser.isGuest) return;
+    const record = {
+        key: `progress|${currentUser.initials}`,
+        progress: progressData,
+        itemProgress: itemProgressData,
+        estimates: levelEstimates,
+        doneLevels: markedDoneLevels,
+        backendSchema: progressBackendSchemaVersion >= 4 ? progressBackendSchemaVersion : 0,
+        updatedAt: Date.now()
+    };
+    dbPut('localState', record).catch(error =>
+        console.warn('Could not persist local progress to IndexedDB', error));
     try {
         localStorage.setItem(`progress_cache_${currentUser.initials}`, JSON.stringify({
-            progress: progressData,
-            itemProgress: itemProgressData,
-            estimates: levelEstimates,
-            doneLevels: markedDoneLevels,
-            backendSchema: progressBackendSchemaVersion >= 4 ? progressBackendSchemaVersion : 0
+            progress: record.progress, itemProgress: record.itemProgress,
+            estimates: record.estimates, doneLevels: record.doneLevels,
+            backendSchema: record.backendSchema
         }));
     } catch (_) {
         // Cache is best-effort; the durable queue still owns remote writes.
@@ -508,7 +518,11 @@ async function loadUserProgressFromSheet() {
 
     // 1. Load from localStorage cache immediately
     const cacheKey = `progress_cache_${currentUser.initials}`;
-    const cached = localStorage.getItem(cacheKey);
+    let cached = localStorage.getItem(cacheKey);
+    try {
+        const durable = await dbGet('localState', `progress|${currentUser.initials}`);
+        if (durable) cached = JSON.stringify(durable);
+    } catch (_) {}
     if (cached) {
         try {
             const { progress, itemProgress, estimates, doneLevels, backendSchema } = JSON.parse(cached);

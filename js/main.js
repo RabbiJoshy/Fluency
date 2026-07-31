@@ -1,19 +1,21 @@
-import './state.js?v=20260729z';
-import './sync-queue.js?v=20260729z';
-import './speech.js?v=20260729z';
-import './artist-ui.js?v=20260729z';
-import './auth.js?v=20260729z';
-import './spotify.js?v=20260729z';
-import './estimation.js?v=20260729z';
-import './config.js?v=20260729z';
-import './progress.js?v=20260729z';
-import './knowledge.js?v=20260729z';
-import './ui.js?v=20260729z';
-import './vocab.js?v=20260729z';
-import './flashcards.js?v=20260729z';
+import './state.js?v=20260731a';
+import './offline-db.js?v=20260731a';
+import './sync-queue.js?v=20260731a';
+import { initOfflineContent } from './offline-content.js?v=20260731a';
+import './speech.js?v=20260731a';
+import './artist-ui.js?v=20260731a';
+import './auth.js?v=20260731a';
+import './spotify.js?v=20260731a';
+import './estimation.js?v=20260731a';
+import './config.js?v=20260731a';
+import './progress.js?v=20260731a';
+import './knowledge.js?v=20260731a';
+import './ui.js?v=20260731a';
+import './vocab.js?v=20260731a';
+import './flashcards.js?v=20260731a';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260729z';
+import './flashcards-modals.js?v=20260731a';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -74,7 +76,26 @@ window.hideAppLoading = hideAppLoading;
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('service-worker.js')
-            .then(registration => console.log('SW registered'))
+            .then(registration => {
+                console.log('SW registered');
+                const announceUpdate = () => {
+                    if (!registration.waiting) return;
+                    const indicator = document.getElementById('syncStatusIndicator');
+                    if (indicator) {
+                        indicator.className = 'sync-status is-update';
+                        indicator.textContent = 'Update ready';
+                        indicator.onclick = () => registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                    }
+                };
+                announceUpdate();
+                registration.addEventListener('updatefound', () => {
+                    registration.installing?.addEventListener('statechange', announceUpdate);
+                });
+                let reloading = false;
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    if (!reloading) { reloading = true; location.reload(); }
+                });
+            })
             .catch(err => console.log('SW registration failed'));
     });
 }
@@ -252,7 +273,8 @@ loadConfig().then(async () => {
     // Offline sync: wire connectivity listeners, render the status indicator,
     // and drain any writes queued while previously offline. Runs after
     // loadSecrets() so GOOGLE_SCRIPT_URL is populated for the initial flush.
-    if (window.initSync) window.initSync();
+    if (window.initSync) await window.initSync();
+    await initOfflineContent();
 
     // Set user name in top bar immediately (don't wait for progress load)
     const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';

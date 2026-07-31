@@ -8111,12 +8111,69 @@
             background: var(--accent-primary);
             animation: syncPulse 1.1s ease-in-out infinite;
         }
+        .sync-status.is-syncing::before { animation: syncPulse 1.1s ease-in-out infinite; }
+        .sync-status.is-failed,
+        .sync-status.is-update {
+            color: var(--error);
+            border-color: currentColor;
+            background: color-mix(in srgb, currentColor 10%, transparent);
+        }
+        .sync-status.is-failed::before,
+        .sync-status.is-update::before { background: currentColor; }
+        .sync-status.is-synced { opacity: .78; }
         @keyframes syncPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.35; transform: scale(0.7); }
         }
         @media (prefers-reduced-motion: reduce) {
             .sync-status.is-pending::before { animation: none; }
+        }
+
+        .offline-panel {
+            margin: 12px 0;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: var(--bg-card);
+        }
+        .offline-panel-heading,
+        .offline-source {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 8px 12px;
+            align-items: center;
+        }
+        .offline-panel-heading small,
+        .offline-source small {
+            display: block;
+            margin-top: 3px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .offline-panel button,
+        .sync-queue-list button {
+            min-height: 36px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 7px 11px;
+        }
+        .offline-source {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .offline-source:last-child { border-bottom: 0; }
+        .offline-source-status { color: var(--text-muted); font-size: 12px; }
+        .offline-error { grid-column: 1 / -1; color: var(--error); overflow-wrap: anywhere; }
+        .offline-cancel { margin-top: 10px; }
+        .sync-queue-list { list-style: none; padding: 0; margin: 8px 0 0; }
+        .sync-queue-list li { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; }
+        .sync-queue-list small { display: block; color: var(--text-muted); }
+        @media (max-width: 600px) {
+            .sync-status { max-width: 92px; overflow: hidden; text-overflow: ellipsis; }
+            .offline-panel-heading { grid-template-columns: 1fr; }
+            .offline-panel-heading button { width: 100%; }
         }
 
         /* ===== Radial "clock of pictures" artist picker ===== */
