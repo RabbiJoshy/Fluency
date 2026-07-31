@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-07-30",
+      "commit": "4cf1a7bf",
+      "summary": "Rebuilt Bad Bunny with Gemini's sense tags finally reaching the deck",
+      "details": [
+        "1779 register tags now survive into the vocabulary (slang 944, figurative 372, other 174, regional 127, loanword 104, vulgar 52, proper_noun 4) — they were being computed and then discarded at assembly",
+        "Proper nouns are recognised by their tag rather than by a regex on the gloss text, so names with a real description (Beatles, Wisin, Miguel, PR, Nio Garcia) are now correctly tagged instead of sitting in the main deck with an empty meaning",
+        "Fixed two bad lemmas that a stale build had kept (fulete no longer filete, hermas no longer horma) and collapsed duplicate senses left by the older PROPER_NOUN spelling"
+      ]
+    },
+    {
       "date": "2026-07-29",
       "commit": "ebdb0421",
       "summary": "Study options now matches the scrubber tile shape",

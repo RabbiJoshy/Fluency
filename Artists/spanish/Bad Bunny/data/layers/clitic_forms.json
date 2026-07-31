@@ -1,7 +1,7 @@
 {
   "59b006": {
     "base_verb": "soltar",
-    "lemma": "suéltame",
+    "lemma": "soltar",
     "corpus_count": 1,
     "translation": "let me go",
     "assignments": {
@@ -39,7 +39,7 @@
   },
   "a01b9a": {
     "base_verb": "alejar",
-    "lemma": "alejarse",
+    "lemma": "alejar",
     "corpus_count": 1,
     "translation": "to move away",
     "assignments": {
@@ -85,7 +85,7 @@
     "base_verb": "hacer",
     "lemma": "hacer",
     "corpus_count": 5,
-    "translation": "to do",
+    "translation": "to make",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -157,9 +157,9 @@
   },
   "3f964b": {
     "base_verb": "meter",
-    "lemma": "meterse",
+    "lemma": "meter",
     "corpus_count": 1,
-    "translation": "to go in",
+    "translation": "to get involved",
     "assignments": {
       "biencoder": [
         {
@@ -273,7 +273,7 @@
     "base_verb": "ahorrarse",
     "lemma": "ahorrar",
     "corpus_count": 1,
-    "translation": "to save",
+    "translation": "to avoid",
     "assignments": {
       "biencoder": [
         {
@@ -314,7 +314,7 @@
     "base_verb": "poner",
     "lemma": "poner",
     "corpus_count": 5,
-    "translation": "to put",
+    "translation": "to put on",
     "assignments": {
       "biencoder": [
         {
@@ -433,9 +433,9 @@
   },
   "1d5283": {
     "base_verb": "acostar",
-    "lemma": "acostarse",
+    "lemma": "acostar",
     "corpus_count": 3,
-    "translation": "to go to bed",
+    "translation": "to lie down",
     "assignments": {
       "biencoder": [
         {
@@ -710,7 +710,7 @@
     "base_verb": "cagarse",
     "lemma": "cagar",
     "corpus_count": 2,
-    "translation": "to shit",
+    "translation": "to piss off",
     "assignments": {
       "biencoder": [
         {
@@ -767,7 +767,7 @@
     "base_verb": "matar",
     "lemma": "matar",
     "corpus_count": 1,
-    "translation": "to kill",
+    "translation": "to kill oneself",
     "assignments": {
       "biencoder": [
         {
@@ -1052,9 +1052,9 @@
   },
   "4015a5": {
     "base_verb": "conocer",
-    "lemma": "conocerse",
+    "lemma": "conocer",
     "corpus_count": 2,
-    "translation": "to know oneself",
+    "translation": "to meet",
     "assignments": {
       "biencoder": [
         {
@@ -1271,7 +1271,7 @@
   },
   "103195": {
     "base_verb": "sentarse",
-    "lemma": "sentarse",
+    "lemma": "sentar",
     "corpus_count": 2,
     "translation": "to sit",
     "assignments": {
@@ -1356,9 +1356,9 @@
   },
   "820dab": {
     "base_verb": "hacer",
-    "lemma": "hazme",
+    "lemma": "hacer",
     "corpus_count": 5,
-    "translation": "make me",
+    "translation": "make",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -1441,7 +1441,7 @@
     "base_verb": "acostumbrar",
     "lemma": "acostumbrar",
     "corpus_count": 1,
-    "translation": "to be accustomed to",
+    "translation": "to get used to",
     "assignments": {
       "biencoder": [
         {
@@ -2063,7 +2063,7 @@
     "base_verb": "dejar",
     "lemma": "déjalo",
     "corpus_count": 2,
-    "translation": "let him",
+    "translation": "leave it",
     "assignments": {
       "biencoder": [
         {
@@ -2121,7 +2121,7 @@
     "base_verb": "chingarse",
     "lemma": "chingar",
     "corpus_count": 1,
-    "translation": "to fuck with",
+    "translation": "to fuck",
     "assignments": {
       "biencoder": [
         {
@@ -2454,7 +2454,7 @@
     "base_verb": "llegar",
     "lemma": "llegar",
     "corpus_count": 2,
-    "translation": "to arrive",
+    "translation": "to get",
     "assignments": {
       "biencoder": [
         {
@@ -2621,9 +2621,9 @@
   },
   "a283a5": {
     "base_verb": "clavar",
-    "lemma": "clavarse",
+    "lemma": "clavar",
     "corpus_count": 1,
-    "translation": "to get",
+    "translation": "to screw",
     "assignments": {
       "biencoder": [
         {
@@ -2665,7 +2665,7 @@
     "base_verb": "hablar",
     "lemma": "hablar",
     "corpus_count": 1,
-    "translation": "to speak",
+    "translation": "to talk",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -3197,7 +3197,7 @@
     "base_verb": "quitar",
     "lemma": "quitar",
     "corpus_count": 1,
-    "translation": "to remove",
+    "translation": "to take off",
     "assignments": {
       "biencoder": [
         {
@@ -3276,7 +3276,7 @@
   },
   "cb1c6e": {
     "base_verb": "empatarse",
-    "lemma": "empatarse",
+    "lemma": "empatar",
     "corpus_count": 2,
     "translation": "to join",
     "assignments": {
@@ -3364,7 +3364,7 @@
   },
   "8b11a2": {
     "base_verb": "hacerse",
-    "lemma": "hacerse",
+    "lemma": "hacer",
     "corpus_count": 2,
     "translation": "to make oneself",
     "assignments": {
@@ -3519,7 +3519,7 @@
   },
   "15cf87": {
     "base_verb": "quitarse",
-    "lemma": "quitarse",
+    "lemma": "quitar",
     "corpus_count": 6,
     "translation": "to take off",
     "assignments": {
@@ -4319,7 +4319,7 @@
   },
   "4ed0de": {
     "base_verb": "abrir",
-    "lemma": "abrirse",
+    "lemma": "abrir",
     "corpus_count": 1,
     "translation": "to open up",
     "assignments": {
@@ -4353,7 +4353,7 @@
     "base_verb": "hablar",
     "lemma": "háblame",
     "corpus_count": 4,
-    "translation": "tell me",
+    "translation": "talk to me",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -4413,7 +4413,7 @@
   },
   "bfb8b1": {
     "base_verb": "avisar",
-    "lemma": "avísame",
+    "lemma": "avisar",
     "corpus_count": 3,
     "translation": "let me know",
     "assignments": {
@@ -4458,7 +4458,7 @@
   },
   "f68383": {
     "base_verb": "enterarse",
-    "lemma": "enterarse",
+    "lemma": "enterar",
     "corpus_count": 4,
     "translation": "to find out",
     "assignments": {
@@ -4644,7 +4644,7 @@
     "base_verb": "buscarse",
     "lemma": "buscar",
     "corpus_count": 2,
-    "translation": "to look for",
+    "translation": "to try to find",
     "assignments": {
       "biencoder": [
         {
@@ -4907,7 +4907,7 @@
     "base_verb": "ensuciar",
     "lemma": "ensuciar",
     "corpus_count": 1,
-    "translation": "to dirty",
+    "translation": "to get dirty",
     "assignments": {
       "biencoder": [
         {
@@ -4941,7 +4941,7 @@
   },
   "f729da": {
     "base_verb": "morir",
-    "lemma": "morirse",
+    "lemma": "morir",
     "corpus_count": 2,
     "translation": "to die",
     "assignments": {
@@ -5135,7 +5135,7 @@
     "base_verb": "echar",
     "lemma": "echar",
     "corpus_count": 3,
-    "translation": "to throw",
+    "translation": "to put",
     "assignments": {
       "biencoder": [
         {
@@ -5242,7 +5242,7 @@
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 1,
-    "translation": "to say",
+    "translation": "to tell",
     "assignments": {
       "biencoder": [
         {
@@ -5324,7 +5324,7 @@
   },
   "fd9d48": {
     "base_verb": "secar",
-    "lemma": "secarse",
+    "lemma": "secar",
     "corpus_count": 1,
     "translation": "to dry",
     "assignments": {
@@ -5411,7 +5411,7 @@
     "base_verb": "echar",
     "lemma": "echar",
     "corpus_count": 1,
-    "translation": "to throw",
+    "translation": "to put",
     "assignments": {
       "biencoder": [
         {
@@ -5528,7 +5528,7 @@
   },
   "aa9805": {
     "base_verb": "mover",
-    "lemma": "moverse",
+    "lemma": "mover",
     "corpus_count": 1,
     "translation": "to move",
     "assignments": {
@@ -5612,7 +5612,7 @@
     "base_verb": "quedar",
     "lemma": "quedar",
     "corpus_count": 1,
-    "translation": "to be left",
+    "translation": "to stay",
     "assignments": {
       "biencoder": [
         {
@@ -5652,7 +5652,7 @@
   },
   "edcd97": {
     "base_verb": "esconder",
-    "lemma": "esconderse",
+    "lemma": "esconder",
     "corpus_count": 1,
     "translation": "to hide oneself",
     "assignments": {
@@ -5779,7 +5779,7 @@
   },
   "08a762": {
     "base_verb": "desaparecerse",
-    "lemma": "desaparecerse",
+    "lemma": "desaparecer",
     "corpus_count": 2,
     "translation": "to disappear",
     "assignments": {
@@ -6106,7 +6106,7 @@
   },
   "f7164f": {
     "base_verb": "asomarse",
-    "lemma": "asomarse",
+    "lemma": "asomar",
     "corpus_count": 2,
     "translation": "to look",
     "assignments": {
@@ -6250,7 +6250,7 @@
   },
   "8d09b6": {
     "base_verb": "convencerse",
-    "lemma": "convencerse",
+    "lemma": "convencer",
     "corpus_count": 2,
     "translation": "to convince oneself",
     "assignments": {
@@ -6292,7 +6292,7 @@
     "base_verb": "calentar",
     "lemma": "calentar",
     "corpus_count": 1,
-    "translation": "to heat",
+    "translation": "to get hot",
     "assignments": {
       "biencoder": [
         {
@@ -6332,7 +6332,7 @@
   },
   "aed0ec": {
     "base_verb": "morirse",
-    "lemma": "morirse",
+    "lemma": "morir",
     "corpus_count": 4,
     "translation": "to die",
     "assignments": {
@@ -6618,7 +6618,7 @@
     "base_verb": "cuidarse",
     "lemma": "cuídense",
     "corpus_count": 1,
-    "translation": "to take care of oneself",
+    "translation": "to take care",
     "assignments": {},
     "examples": [
       {
@@ -6640,9 +6640,9 @@
   },
   "87d479": {
     "base_verb": "alejar",
-    "lemma": "alejarse",
+    "lemma": "alejar",
     "corpus_count": 2,
-    "translation": "to move away",
+    "translation": "to go away",
     "assignments": {
       "biencoder": [
         {
@@ -6878,9 +6878,9 @@
   },
   "b4ba49": {
     "base_verb": "perder",
-    "lemma": "perderse",
+    "lemma": "perder",
     "corpus_count": 1,
-    "translation": "to get lost",
+    "translation": "to waste",
     "assignments": {
       "biencoder": [
         {
@@ -7297,7 +7297,7 @@
     "base_verb": "localizar",
     "lemma": "localizar",
     "corpus_count": 1,
-    "translation": "to locate",
+    "translation": "to find",
     "assignments": {
       "biencoder": [
         {
@@ -8155,7 +8155,7 @@
     "base_verb": "aguantar",
     "lemma": "aguantar",
     "corpus_count": 1,
-    "translation": "to bear",
+    "translation": "to put up with",
     "assignments": {
       "biencoder": [
         {
@@ -8293,7 +8293,7 @@
   },
   "da2561": {
     "base_verb": "enamorarse",
-    "lemma": "enamorarse",
+    "lemma": "enamorar",
     "corpus_count": 6,
     "translation": "to fall in love",
     "assignments": {
@@ -8354,7 +8354,7 @@
     "base_verb": "hablar",
     "lemma": "hablar",
     "corpus_count": 1,
-    "translation": "to speak",
+    "translation": "to talk to",
     "assignments": {
       "biencoder": [
         {
@@ -8516,9 +8516,9 @@
   },
   "80efaa": {
     "base_verb": "subirse",
-    "lemma": "subirse",
+    "lemma": "subir",
     "corpus_count": 2,
-    "translation": "to go up",
+    "translation": "to raise",
     "assignments": {
       "biencoder": [
         {
@@ -8748,7 +8748,7 @@
     "base_verb": "acostarse",
     "lemma": "acostándose",
     "corpus_count": 1,
-    "translation": "to go to bed",
+    "translation": "to lie down",
     "assignments": {},
     "examples": [
       {
@@ -8939,7 +8939,7 @@
     "base_verb": "entrar",
     "lemma": "entrar",
     "corpus_count": 1,
-    "translation": "to enter",
+    "translation": "to start",
     "assignments": {
       "biencoder": [
         {
@@ -8980,9 +8980,9 @@
   },
   "bb12d9": {
     "base_verb": "perder",
-    "lemma": "perderse",
+    "lemma": "perder",
     "corpus_count": 1,
-    "translation": "to get lost",
+    "translation": "to miss out on",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -9078,7 +9078,7 @@
   },
   "e3fb9e": {
     "base_verb": "meter",
-    "lemma": "meterse",
+    "lemma": "meter",
     "corpus_count": 1,
     "translation": "to go in",
     "assignments": {
@@ -9113,7 +9113,7 @@
   },
   "a29f55": {
     "base_verb": "medicar",
-    "lemma": "medicarse",
+    "lemma": "medicar",
     "corpus_count": 2,
     "translation": "to take medicine",
     "assignments": {
@@ -9252,7 +9252,7 @@
     "base_verb": "aguantar",
     "lemma": "aguantar",
     "corpus_count": 1,
-    "translation": "to bear",
+    "translation": "to put up with",
     "assignments": {
       "biencoder": [
         {
@@ -9444,7 +9444,7 @@
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 9,
-    "translation": "to say",
+    "translation": "to tell",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -9549,9 +9549,9 @@
   },
   "e93cfe": {
     "base_verb": "perder",
-    "lemma": "perderse",
+    "lemma": "perder",
     "corpus_count": 1,
-    "translation": "to get lost",
+    "translation": "to lose",
     "assignments": {
       "biencoder": [
         {
@@ -9587,7 +9587,7 @@
   },
   "918792": {
     "base_verb": "portar",
-    "lemma": "portarse",
+    "lemma": "portar",
     "corpus_count": 1,
     "translation": "to behave",
     "assignments": {
@@ -9669,7 +9669,7 @@
   },
   "ecc074": {
     "base_verb": "moverse",
-    "lemma": "moverse",
+    "lemma": "mover",
     "corpus_count": 2,
     "translation": "to move",
     "assignments": {
@@ -9713,7 +9713,7 @@
     "base_verb": "importar",
     "lemma": "importar",
     "corpus_count": 1,
-    "translation": "to matter",
+    "translation": "to care",
     "assignments": {
       "biencoder": [
         {
@@ -9791,7 +9791,7 @@
   },
   "5201d8": {
     "base_verb": "fumar",
-    "lemma": "fumarse",
+    "lemma": "fumar",
     "corpus_count": 3,
     "translation": "to smoke",
     "assignments": {
@@ -9920,9 +9920,9 @@
   },
   "3f8057": {
     "base_verb": "meterse",
-    "lemma": "meterse",
+    "lemma": "meter",
     "corpus_count": 1,
-    "translation": "to go in",
+    "translation": "to do",
     "assignments": {
       "biencoder": [
         {
@@ -10072,7 +10072,7 @@
     "base_verb": "tronchar",
     "lemma": "tronchar",
     "corpus_count": 1,
-    "translation": "to snap",
+    "translation": "to cut short",
     "assignments": {
       "biencoder": [
         {
@@ -10114,7 +10114,7 @@
     "base_verb": "casar",
     "lemma": "casar",
     "corpus_count": 2,
-    "translation": "to marry",
+    "translation": "to get married",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -10167,7 +10167,7 @@
     "base_verb": "elevar",
     "lemma": "elevar",
     "corpus_count": 1,
-    "translation": "to lift",
+    "translation": "to elevate",
     "assignments": {
       "biencoder": [
         {
@@ -10270,7 +10270,7 @@
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 1,
-    "translation": "to leave",
+    "translation": "to let",
     "assignments": {
       "biencoder": [
         {
@@ -10770,7 +10770,7 @@
     "base_verb": "bañar",
     "lemma": "bañar",
     "corpus_count": 1,
-    "translation": "to bathe",
+    "translation": "to cover",
     "assignments": {
       "biencoder": [
         {
@@ -10879,7 +10879,7 @@
     "base_verb": "ignorar",
     "lemma": "ignorar",
     "corpus_count": 1,
-    "translation": "to not know",
+    "translation": "to ignore",
     "assignments": {
       "biencoder": [
         {
@@ -10921,7 +10921,7 @@
     "base_verb": "mandar",
     "lemma": "mandar",
     "corpus_count": 1,
-    "translation": "to order",
+    "translation": "to send",
     "assignments": {
       "biencoder": [
         {
@@ -11075,7 +11075,7 @@
     "base_verb": "quedar",
     "lemma": "quedar",
     "corpus_count": 6,
-    "translation": "to be left",
+    "translation": "to stay",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -11243,9 +11243,9 @@
   },
   "a1c8a7": {
     "base_verb": "conformar",
-    "lemma": "conformarse",
+    "lemma": "conformar",
     "corpus_count": 1,
-    "translation": "to be satisfied with",
+    "translation": "to settle for",
     "assignments": {
       "biencoder": [
         {
@@ -11285,9 +11285,9 @@
   },
   "a19056": {
     "base_verb": "montarse",
-    "lemma": "montarse",
+    "lemma": "montar",
     "corpus_count": 4,
-    "translation": "to get on",
+    "translation": "to get in",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -11339,9 +11339,9 @@
   },
   "ce7a00": {
     "base_verb": "clavar",
-    "lemma": "clavarse",
+    "lemma": "clavar",
     "corpus_count": 3,
-    "translation": "to get",
+    "translation": "to screw",
     "assignments": {
       "biencoder": [
         {
@@ -11638,7 +11638,7 @@
   },
   "2f324b": {
     "base_verb": "esconderse",
-    "lemma": "esconderse",
+    "lemma": "esconder",
     "corpus_count": 2,
     "translation": "to hide oneself",
     "assignments": {
@@ -11802,7 +11802,7 @@
   },
   "707ea1": {
     "base_verb": "encerrar",
-    "lemma": "encerrarse",
+    "lemma": "encerrar",
     "corpus_count": 1,
     "translation": "to shut oneself up",
     "assignments": {
@@ -11843,7 +11843,7 @@
   },
   "28c9c3": {
     "base_verb": "esconder",
-    "lemma": "esconderse",
+    "lemma": "esconder",
     "corpus_count": 1,
     "translation": "to hide oneself",
     "assignments": {
@@ -11881,9 +11881,9 @@
   },
   "bb5e9f": {
     "base_verb": "quedarse",
-    "lemma": "quedarse",
+    "lemma": "quedar",
     "corpus_count": 8,
-    "translation": "to stay",
+    "translation": "to keep",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -12039,7 +12039,7 @@
     "base_verb": "buscar",
     "lemma": "buscar",
     "corpus_count": 1,
-    "translation": "to look for",
+    "translation": "to look up",
     "assignments": {
       "biencoder": [
         {
@@ -12075,9 +12075,9 @@
   },
   "142654": {
     "base_verb": "meter",
-    "lemma": "meterse",
+    "lemma": "meter",
     "corpus_count": 2,
-    "translation": "to go in",
+    "translation": "to get into",
     "assignments": {
       "biencoder": [
         {
@@ -12208,7 +12208,7 @@
     "base_verb": "azotar",
     "lemma": "azotar",
     "corpus_count": 1,
-    "translation": "to whip",
+    "translation": "to spank",
     "assignments": {
       "biencoder": [
         {
@@ -12250,7 +12250,7 @@
     "base_verb": "colar",
     "lemma": "colar",
     "corpus_count": 1,
-    "translation": "to strain",
+    "translation": "to sneak in",
     "assignments": {
       "biencoder": [
         {
@@ -12349,9 +12349,9 @@
   },
   "98b3f3": {
     "base_verb": "escuchar",
-    "lemma": "escucharse",
+    "lemma": "escuchar",
     "corpus_count": 1,
-    "translation": "to listen to oneself",
+    "translation": "to listen to",
     "assignments": {
       "biencoder": [
         {
@@ -12661,7 +12661,7 @@
     "base_verb": "subirse",
     "lemma": "subir",
     "corpus_count": 4,
-    "translation": "to go up",
+    "translation": "to get on",
     "assignments": {
       "biencoder": [
         {
@@ -12765,7 +12765,7 @@
   },
   "80dd98": {
     "base_verb": "quitar",
-    "lemma": "quitarse",
+    "lemma": "quitar",
     "corpus_count": 2,
     "translation": "to take off",
     "assignments": {
@@ -12913,7 +12913,7 @@
   },
   "849e1b": {
     "base_verb": "irse",
-    "lemma": "irse",
+    "lemma": "ir",
     "corpus_count": 16,
     "translation": "to leave",
     "assignments": {
@@ -13048,7 +13048,7 @@
     "base_verb": "mamar",
     "lemma": "mamar",
     "corpus_count": 4,
-    "translation": "to suckle",
+    "translation": "to suck off",
     "assignments": {
       "biencoder": [
         {
@@ -13227,7 +13227,7 @@
     "base_verb": "tirarse",
     "lemma": "tirar",
     "corpus_count": 1,
-    "translation": "to throw",
+    "translation": "to throw oneself",
     "assignments": {
       "biencoder": [
         {
@@ -13349,7 +13349,7 @@
     "base_verb": "calentar",
     "lemma": "calentar",
     "corpus_count": 1,
-    "translation": "to heat",
+    "translation": "to get hot",
     "assignments": {
       "biencoder": [
         {
@@ -13391,7 +13391,7 @@
     "base_verb": "perseguir",
     "lemma": "perseguir",
     "corpus_count": 1,
-    "translation": "to pursue",
+    "translation": "to chase",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -13648,7 +13648,7 @@
   },
   "e46090": {
     "base_verb": "meterse",
-    "lemma": "meterse",
+    "lemma": "meter",
     "corpus_count": 6,
     "translation": "to go in",
     "assignments": {
@@ -14373,7 +14373,7 @@
     "base_verb": "mandar",
     "lemma": "mandar",
     "corpus_count": 2,
-    "translation": "to order",
+    "translation": "to prescribe",
     "assignments": {
       "gap-fill": [
         {
@@ -14577,7 +14577,7 @@
   },
   "852152": {
     "base_verb": "juntar",
-    "lemma": "juntarse",
+    "lemma": "juntar",
     "corpus_count": 1,
     "translation": "to move closer together",
     "assignments": {
@@ -14857,7 +14857,7 @@
   },
   "45bce2": {
     "base_verb": "comerse",
-    "lemma": "comerse",
+    "lemma": "comer",
     "corpus_count": 2,
     "translation": "to eat",
     "assignments": {
@@ -14901,7 +14901,7 @@
     "base_verb": "repartir",
     "lemma": "repartir",
     "corpus_count": 1,
-    "translation": "to distribute",
+    "translation": "to give out",
     "assignments": {
       "biencoder": [
         {
@@ -14943,7 +14943,7 @@
     "base_verb": "mandar",
     "lemma": "mandar",
     "corpus_count": 1,
-    "translation": "to order",
+    "translation": "to send",
     "assignments": {
       "biencoder": [
         {
@@ -15079,7 +15079,7 @@
     "base_verb": "joder",
     "lemma": "joder",
     "corpus_count": 2,
-    "translation": "to fuck",
+    "translation": "to fuck with",
     "assignments": {
       "biencoder": [
         {
@@ -15231,7 +15231,7 @@
   },
   "e067e1": {
     "base_verb": "esforzar",
-    "lemma": "esforzarse",
+    "lemma": "esforzar",
     "corpus_count": 1,
     "translation": "to make an effort",
     "assignments": {
@@ -15272,7 +15272,7 @@
   },
   "ea3422": {
     "base_verb": "olvidar",
-    "lemma": "olvidarse",
+    "lemma": "olvidar",
     "corpus_count": 4,
     "translation": "to forget",
     "assignments": {
@@ -15903,7 +15903,7 @@
     "base_verb": "acariciar",
     "lemma": "acariciar",
     "corpus_count": 1,
-    "translation": "to pet",
+    "translation": "to caress",
     "assignments": {
       "biencoder": [
         {
@@ -16054,7 +16054,7 @@
     "base_verb": "conocer",
     "lemma": "conocer",
     "corpus_count": 3,
-    "translation": "to know",
+    "translation": "to meet",
     "assignments": {
       "biencoder": [
         {
@@ -16129,9 +16129,9 @@
   },
   "301d67": {
     "base_verb": "usar",
-    "lemma": "usarse",
+    "lemma": "usar",
     "corpus_count": 3,
-    "translation": "to be worn",
+    "translation": "to use",
     "assignments": {
       "biencoder": [
         {
@@ -16374,7 +16374,7 @@
   },
   "24b351": {
     "base_verb": "caerse",
-    "lemma": "caerse",
+    "lemma": "caer",
     "corpus_count": 2,
     "translation": "to fall",
     "assignments": {
@@ -16479,7 +16479,7 @@
     "base_verb": "conocer",
     "lemma": "conocer",
     "corpus_count": 3,
-    "translation": "to know",
+    "translation": "to get to know",
     "assignments": {
       "biencoder": [
         {
@@ -16803,7 +16803,7 @@
   },
   "425330": {
     "base_verb": "enamorar",
-    "lemma": "enamorarse",
+    "lemma": "enamorar",
     "corpus_count": 1,
     "translation": "to fall in love",
     "assignments": {
@@ -17023,9 +17023,9 @@
   },
   "985506": {
     "base_verb": "multiplicar",
-    "lemma": "multiplicarse",
+    "lemma": "multiplicar",
     "corpus_count": 1,
-    "translation": "to multiply",
+    "translation": "to increase",
     "assignments": {
       "biencoder": [
         {
@@ -17061,7 +17061,7 @@
   },
   "4eb945": {
     "base_verb": "amarrarse",
-    "lemma": "amarrarse",
+    "lemma": "amarrar",
     "corpus_count": 4,
     "translation": "to tie",
     "assignments": {
@@ -17290,7 +17290,7 @@
   },
   "a1944a": {
     "base_verb": "sentirse",
-    "lemma": "sentirse",
+    "lemma": "sentir",
     "corpus_count": 4,
     "translation": "to feel",
     "assignments": {
@@ -17350,7 +17350,7 @@
     "base_verb": "ganar",
     "lemma": "ganar",
     "corpus_count": 1,
-    "translation": "to win",
+    "translation": "to beat",
     "assignments": {
       "biencoder": [
         {
@@ -17475,7 +17475,7 @@
     "base_verb": "coger",
     "lemma": "comer",
     "corpus_count": 1,
-    "translation": "to eat",
+    "translation": "to take",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -17550,7 +17550,7 @@
     "base_verb": "acostar",
     "lemma": "acostar",
     "corpus_count": 2,
-    "translation": "to put to bed",
+    "translation": "to lay down",
     "assignments": {
       "biencoder": [
         {
@@ -17642,7 +17642,7 @@
     "base_verb": "mantener",
     "lemma": "mantener",
     "corpus_count": 1,
-    "translation": "to hold",
+    "translation": "to keep",
     "assignments": {
       "biencoder": [
         {
@@ -17897,7 +17897,7 @@
     "base_verb": "montarse",
     "lemma": "montar",
     "corpus_count": 3,
-    "translation": "to ride",
+    "translation": "to mount",
     "assignments": {
       "biencoder": [
         {
@@ -17968,9 +17968,9 @@
   },
   "b93e74": {
     "base_verb": "meter",
-    "lemma": "meterse",
+    "lemma": "meter",
     "corpus_count": 1,
-    "translation": "to go in",
+    "translation": "to get into",
     "assignments": {
       "biencoder": [
         {
@@ -18179,7 +18179,7 @@
     "base_verb": "conceder",
     "lemma": "conceder",
     "corpus_count": 1,
-    "translation": "to give",
+    "translation": "to grant",
     "assignments": {
       "biencoder": [
         {
@@ -18217,7 +18217,7 @@
     "base_verb": "soltarse",
     "lemma": "soltar",
     "corpus_count": 2,
-    "translation": "to let go of",
+    "translation": "to set free",
     "assignments": {
       "biencoder": [
         {
@@ -18259,7 +18259,7 @@
     "base_verb": "aguantarse",
     "lemma": "aguantar",
     "corpus_count": 1,
-    "translation": "to bear",
+    "translation": "to put up with",
     "assignments": {
       "biencoder": [
         {
@@ -18622,7 +18622,7 @@
   },
   "40c77a": {
     "base_verb": "concentrar",
-    "lemma": "concentrarse",
+    "lemma": "concentrar",
     "corpus_count": 1,
     "translation": "to concentrate",
     "assignments": {
@@ -18804,9 +18804,9 @@
   },
   "8a79aa": {
     "base_verb": "hablar",
-    "lemma": "hablarse",
+    "lemma": "hablar",
     "corpus_count": 4,
-    "translation": "to speak to each other",
+    "translation": "to talk to",
     "assignments": {
       "biencoder": [
         {
@@ -18943,7 +18943,7 @@
     "base_verb": "acostarse",
     "lemma": "acuéstense",
     "corpus_count": 1,
-    "translation": "to go to bed",
+    "translation": "to lie down",
     "assignments": {},
     "examples": [
       {
@@ -18966,7 +18966,7 @@
     "base_verb": "probar",
     "lemma": "probar",
     "corpus_count": 2,
-    "translation": "to try",
+    "translation": "to test",
     "assignments": {
       "biencoder": [
         {
@@ -19106,7 +19106,7 @@
     "base_verb": "enseñar",
     "lemma": "enseñarme",
     "corpus_count": 1,
-    "translation": "to teach me",
+    "translation": "to show me",
     "assignments": {
       "biencoder": [
         {
@@ -19354,7 +19354,7 @@
     "base_verb": "darse",
     "lemma": "dándose",
     "corpus_count": 1,
-    "translation": "to give",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -19495,7 +19495,7 @@
   },
   "8841ae": {
     "base_verb": "llevarse",
-    "lemma": "llevarse",
+    "lemma": "llevar",
     "corpus_count": 2,
     "translation": "to take",
     "assignments": {
@@ -19580,7 +19580,7 @@
   },
   "c4f736": {
     "base_verb": "mirar",
-    "lemma": "mirarse",
+    "lemma": "mirar",
     "corpus_count": 1,
     "translation": "to look at oneself",
     "assignments": {
@@ -19616,7 +19616,7 @@
   },
   "6bd0a7": {
     "base_verb": "mudar",
-    "lemma": "mudarse",
+    "lemma": "mudar",
     "corpus_count": 2,
     "translation": "to move",
     "assignments": {
@@ -19677,7 +19677,7 @@
     "base_verb": "probar",
     "lemma": "probar",
     "corpus_count": 1,
-    "translation": "to try",
+    "translation": "to prove",
     "assignments": {
       "biencoder": [
         {
@@ -19785,7 +19785,7 @@
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
-    "translation": "to throw",
+    "translation": "to pull",
     "assignments": {
       "biencoder": [
         {
@@ -19868,9 +19868,9 @@
   },
   "e0fa66": {
     "base_verb": "ver",
-    "lemma": "verse",
+    "lemma": "ver",
     "corpus_count": 1,
-    "translation": "to see oneself",
+    "translation": "to see each other",
     "assignments": {
       "biencoder": [
         {
@@ -20003,7 +20003,7 @@
     "base_verb": "bajar",
     "lemma": "bajar",
     "corpus_count": 1,
-    "translation": "to go down",
+    "translation": "to get down",
     "assignments": {
       "biencoder": [
         {
@@ -20043,9 +20043,9 @@
   },
   "139008": {
     "base_verb": "encontrar",
-    "lemma": "encontrarse",
+    "lemma": "encontrar",
     "corpus_count": 3,
-    "translation": "to be",
+    "translation": "to find",
     "assignments": {
       "biencoder": [
         {
@@ -20209,7 +20209,7 @@
     "base_verb": "atender",
     "lemma": "atender",
     "corpus_count": 1,
-    "translation": "to look after",
+    "translation": "to deal with",
     "assignments": {
       "biencoder": [
         {
@@ -20252,7 +20252,7 @@
     "base_verb": "meter",
     "lemma": "meter",
     "corpus_count": 1,
-    "translation": "to put",
+    "translation": "to score",
     "assignments": {
       "biencoder": [
         {
@@ -20294,7 +20294,7 @@
     "base_verb": "comer",
     "lemma": "comer",
     "corpus_count": 1,
-    "translation": "to eat",
+    "translation": "to eat up",
     "assignments": {
       "biencoder": [
         {
@@ -20336,7 +20336,7 @@
     "base_verb": "hacerse",
     "lemma": "hacer",
     "corpus_count": 1,
-    "translation": "to do",
+    "translation": "to pretend",
     "assignments": {
       "biencoder": [
         {
@@ -20798,7 +20798,7 @@
     "base_verb": "quedar",
     "lemma": "quedar",
     "corpus_count": 2,
-    "translation": "to be left",
+    "translation": "to remain",
     "assignments": {
       "biencoder": [
         {
@@ -20869,7 +20869,7 @@
     "base_verb": "implantar",
     "lemma": "implantarle",
     "corpus_count": 1,
-    "translation": "to introduce",
+    "translation": "to establish",
     "assignments": {},
     "examples": [
       {
@@ -21346,7 +21346,7 @@
     "base_verb": "portarse",
     "lemma": "portar",
     "corpus_count": 1,
-    "translation": "to carry",
+    "translation": "to behave",
     "assignments": {
       "biencoder": [
         {
@@ -21386,7 +21386,7 @@
   },
   "62a549": {
     "base_verb": "retirar",
-    "lemma": "retirarse",
+    "lemma": "retirar",
     "corpus_count": 1,
     "translation": "to retire",
     "assignments": {
@@ -21772,7 +21772,7 @@
     "base_verb": "probar",
     "lemma": "probar",
     "corpus_count": 1,
-    "translation": "to try",
+    "translation": "to test",
     "assignments": {
       "biencoder": [
         {
@@ -21908,7 +21908,7 @@
   },
   "490c00": {
     "base_verb": "vestirse",
-    "lemma": "vístete",
+    "lemma": "vestir",
     "corpus_count": 1,
     "translation": "get dressed",
     "assignments": {
@@ -22018,7 +22018,7 @@
     "base_verb": "poner",
     "lemma": "pon",
     "corpus_count": 3,
-    "translation": "ride",
+    "translation": "put",
     "assignments": {
       "biencoder": [
         {
@@ -22141,7 +22141,7 @@
   },
   "328794": {
     "base_verb": "erizar",
-    "lemma": "erizarse",
+    "lemma": "erizar",
     "corpus_count": 1,
     "translation": "to bristle",
     "assignments": {
@@ -22559,7 +22559,7 @@
     "base_verb": "subir",
     "lemma": "subir",
     "corpus_count": 2,
-    "translation": "to go up",
+    "translation": "to turn up",
     "assignments": {
       "biencoder": [
         {
@@ -22704,7 +22704,7 @@
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 1,
-    "translation": "to say",
+    "translation": "to tell",
     "assignments": {
       "biencoder": [
         {
@@ -22742,7 +22742,7 @@
   },
   "69bccf": {
     "base_verb": "creer",
-    "lemma": "créeme",
+    "lemma": "crear",
     "corpus_count": 1,
     "translation": "believe me",
     "assignments": {
@@ -22772,7 +22772,7 @@
   },
   "eda03c": {
     "base_verb": "compararse",
-    "lemma": "compararse",
+    "lemma": "comparar",
     "corpus_count": 2,
     "translation": "to compare oneself to",
     "assignments": {
@@ -22968,7 +22968,7 @@
     "base_verb": "acercarse",
     "lemma": "acércate",
     "corpus_count": 3,
-    "translation": "approach",
+    "translation": "come closer",
     "assignments": {
       "biencoder": [
         {
@@ -23221,7 +23221,7 @@
     "base_verb": "chingar",
     "lemma": "chingar",
     "corpus_count": 2,
-    "translation": "to fuck with",
+    "translation": "to fuck",
     "assignments": {
       "biencoder": [
         {
@@ -23282,7 +23282,7 @@
   },
   "2eefa5": {
     "base_verb": "hundir",
-    "lemma": "hundirse",
+    "lemma": "hundir",
     "corpus_count": 1,
     "translation": "to sink",
     "assignments": {
@@ -23429,7 +23429,7 @@
   },
   "6b7a21": {
     "base_verb": "portarse",
-    "lemma": "portarse",
+    "lemma": "portar",
     "corpus_count": 10,
     "translation": "to behave",
     "assignments": {
@@ -23604,7 +23604,7 @@
     "base_verb": "joder",
     "lemma": "joder",
     "corpus_count": 2,
-    "translation": "to fuck",
+    "translation": "to fuck with",
     "assignments": {
       "biencoder": [
         {
@@ -23811,7 +23811,7 @@
   },
   "b2cb7e": {
     "base_verb": "casarse",
-    "lemma": "casarse",
+    "lemma": "casar",
     "corpus_count": 4,
     "translation": "to get married",
     "assignments": {
@@ -24034,7 +24034,7 @@
   },
   "303500": {
     "base_verb": "ponerse",
-    "lemma": "ponerse",
+    "lemma": "poner",
     "corpus_count": 1,
     "translation": "to get",
     "assignments": {
@@ -24113,7 +24113,7 @@
   },
   "045fde": {
     "base_verb": "morir",
-    "lemma": "morirse",
+    "lemma": "morir",
     "corpus_count": 1,
     "translation": "to die",
     "assignments": {
@@ -24157,7 +24157,7 @@
     "base_verb": "enseñar",
     "lemma": "enseñar",
     "corpus_count": 2,
-    "translation": "to teach",
+    "translation": "to show",
     "assignments": {
       "biencoder": [
         {
@@ -24211,7 +24211,7 @@
     "base_verb": "retirarse",
     "lemma": "retirar",
     "corpus_count": 1,
-    "translation": "to remove",
+    "translation": "to retire",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -24250,7 +24250,7 @@
   },
   "101db9": {
     "base_verb": "despeinar",
-    "lemma": "despeinarse",
+    "lemma": "despeinar",
     "corpus_count": 1,
     "translation": "to mess one's hair up",
     "assignments": {
@@ -24294,7 +24294,7 @@
     "base_verb": "hacer",
     "lemma": "hacer",
     "corpus_count": 1,
-    "translation": "to do",
+    "translation": "to make",
     "assignments": {
       "biencoder": [
         {
@@ -25305,7 +25305,7 @@
     "base_verb": "guardar",
     "lemma": "guardar",
     "corpus_count": 1,
-    "translation": "to put away",
+    "translation": "to save",
     "assignments": {
       "biencoder": [
         {
@@ -25386,7 +25386,7 @@
   },
   "8e9ef3": {
     "base_verb": "prepararse",
-    "lemma": "prepárate",
+    "lemma": "preparar",
     "corpus_count": 2,
     "translation": "get ready",
     "assignments": {
@@ -25532,7 +25532,7 @@
   },
   "8bf4db": {
     "base_verb": "quemar",
-    "lemma": "quemarse",
+    "lemma": "quemar",
     "corpus_count": 1,
     "translation": "to burn oneself",
     "assignments": {
@@ -25920,7 +25920,7 @@
   },
   "668028": {
     "base_verb": "aprenderse",
-    "lemma": "aprenderse",
+    "lemma": "aprender",
     "corpus_count": 2,
     "translation": "to learn",
     "assignments": {
@@ -26428,7 +26428,7 @@
     "base_verb": "poner",
     "lemma": "poner",
     "corpus_count": 1,
-    "translation": "to put",
+    "translation": "to get",
     "assignments": {
       "biencoder": [
         {
@@ -26627,7 +26627,7 @@
     "base_verb": "imaginarse",
     "lemma": "imagínate",
     "corpus_count": 2,
-    "translation": "can you believe that",
+    "translation": "imagine",
     "assignments": {
       "biencoder": [
         {
@@ -26724,9 +26724,9 @@
   },
   "b4e3a2": {
     "base_verb": "dejarse",
-    "lemma": "dejarse",
+    "lemma": "dejar",
     "corpus_count": 7,
-    "translation": "to let oneself",
+    "translation": "to leave",
     "assignments": {
       "spanishdict-flash-lite": [
         {
@@ -26890,7 +26890,7 @@
     "base_verb": "joder",
     "lemma": "joder",
     "corpus_count": 1,
-    "translation": "to fuck",
+    "translation": "to fuck with",
     "assignments": {
       "biencoder": [
         {
@@ -26930,7 +26930,7 @@
   },
   "16fb8f": {
     "base_verb": "buscarse",
-    "lemma": "buscarse",
+    "lemma": "buscar",
     "corpus_count": 8,
     "translation": "to ask for",
     "assignments": {
@@ -27189,7 +27189,7 @@
     "base_verb": "encontrarse",
     "lemma": "encontrar",
     "corpus_count": 2,
-    "translation": "to find",
+    "translation": "to encounter",
     "assignments": {
       "spanishdict-keyword": [
         {
@@ -27229,7 +27229,7 @@
     "base_verb": "devolverse",
     "lemma": "devolver",
     "corpus_count": 1,
-    "translation": "to give back",
+    "translation": "to return",
     "assignments": {
       "biencoder": [
         {
@@ -27463,7 +27463,7 @@
     "base_verb": "conquistar",
     "lemma": "conquistar",
     "corpus_count": 1,
-    "translation": "to conquer",
+    "translation": "to win over",
     "assignments": {
       "biencoder": [
         {
@@ -27932,7 +27932,7 @@
   },
   "ba7d25": {
     "base_verb": "quitar",
-    "lemma": "quitarse",
+    "lemma": "quitar",
     "corpus_count": 1,
     "translation": "to take off",
     "assignments": {
@@ -27997,7 +27997,7 @@
   },
   "0e52b0": {
     "base_verb": "tocarse",
-    "lemma": "tocarse",
+    "lemma": "tocar",
     "corpus_count": 4,
     "translation": "to touch",
     "assignments": {
@@ -28377,7 +28377,7 @@
     "base_verb": "contar",
     "lemma": "contar",
     "corpus_count": 2,
-    "translation": "to count",
+    "translation": "to tell",
     "assignments": {
       "biencoder": [
         {
@@ -28429,9 +28429,9 @@
   },
   "3a0c84": {
     "base_verb": "entregar",
-    "lemma": "entregarse",
+    "lemma": "entregar",
     "corpus_count": 1,
-    "translation": "to surrender",
+    "translation": "to devote oneself",
     "assignments": {
       "biencoder": [
         {
@@ -28635,7 +28635,7 @@
   },
   "7fb010": {
     "base_verb": "fumar",
-    "lemma": "fumarse",
+    "lemma": "fumar",
     "corpus_count": 1,
     "translation": "to smoke",
     "assignments": {
@@ -29227,7 +29227,7 @@
     "base_verb": "amanecer",
     "lemma": "amanecer",
     "corpus_count": 1,
-    "translation": "dawn",
+    "translation": "to wake up",
     "assignments": {
       "biencoder": [
         {
@@ -29312,7 +29312,7 @@
     "base_verb": "demostrar",
     "lemma": "demostrar",
     "corpus_count": 1,
-    "translation": "to demonstrate",
+    "translation": "to prove",
     "assignments": {
       "biencoder": [
         {
@@ -29451,9 +29451,9 @@
   },
   "41d35a": {
     "base_verb": "soltarse",
-    "lemma": "soltar",
+    "lemma": "suéltate",
     "corpus_count": 2,
-    "translation": "to let go of",
+    "translation": "to set free",
     "assignments": {},
     "examples": [
       {
@@ -29488,7 +29488,7 @@
     "base_verb": "jugarse",
     "lemma": "juégate",
     "corpus_count": 1,
-    "translation": "to bet",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -29535,9 +29535,9 @@
   },
   "13f831": {
     "base_verb": "posar",
-    "lemma": "posar",
+    "lemma": "pósame",
     "corpus_count": 1,
-    "translation": "to put down",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -29558,7 +29558,7 @@
   },
   "e8d010": {
     "base_verb": "proteger",
-    "lemma": "proteger",
+    "lemma": "protégeme",
     "corpus_count": 2,
     "translation": "to protect",
     "assignments": {},
@@ -29577,9 +29577,9 @@
   },
   "ed932c": {
     "base_verb": "roncar",
-    "lemma": "roncar",
+    "lemma": "roncarme",
     "corpus_count": 3,
-    "translation": "to snore",
+    "translation": "to be bossy",
     "assignments": {},
     "examples": [
       {
@@ -29617,9 +29617,9 @@
   },
   "f3f387": {
     "base_verb": "gritar",
-    "lemma": "grita",
+    "lemma": "grítale",
     "corpus_count": 1,
-    "translation": "uproar",
+    "translation": "to scream",
     "assignments": {},
     "examples": [
       {
@@ -29714,7 +29714,7 @@
     "base_verb": "roncar",
     "lemma": "roncarnos",
     "corpus_count": 1,
-    "translation": "to snore",
+    "translation": "to be bossy",
     "assignments": {},
     "examples": [
       {
@@ -29741,7 +29741,7 @@
     "base_verb": "saludar",
     "lemma": "salúdenme",
     "corpus_count": 1,
-    "translation": "to say hello to",
+    "translation": "to greet",
     "assignments": {},
     "examples": [
       {
@@ -29953,7 +29953,7 @@
   },
   "8e9571": {
     "base_verb": "sentir",
-    "lemma": "sentir",
+    "lemma": "siénteme",
     "corpus_count": 1,
     "translation": "to feel",
     "assignments": {},
@@ -29979,7 +29979,7 @@
   },
   "92c3e7": {
     "base_verb": "activarse",
-    "lemma": "activar",
+    "lemma": "actívate",
     "corpus_count": 2,
     "translation": "to activate",
     "assignments": {},
@@ -30056,7 +30056,7 @@
   },
   "c61e8d": {
     "base_verb": "devorar",
-    "lemma": "devorar",
+    "lemma": "dévorame",
     "corpus_count": 2,
     "translation": "to devour",
     "assignments": {},
@@ -30134,7 +30134,7 @@
     "base_verb": "encerrarse",
     "lemma": "enciérrate",
     "corpus_count": 1,
-    "translation": "to shut oneself up",
+    "translation": "to lock oneself up",
     "assignments": {},
     "examples": [
       {
@@ -30185,7 +30185,7 @@
     "base_verb": "roncar",
     "lemma": "roncarle",
     "corpus_count": 1,
-    "translation": "to snore",
+    "translation": "to be bossy",
     "assignments": {},
     "examples": [
       {
@@ -30206,7 +30206,7 @@
   },
   "7f0890": {
     "base_verb": "chequearse",
-    "lemma": "chequear",
+    "lemma": "chequéate",
     "corpus_count": 6,
     "translation": "to check",
     "assignments": {},
@@ -30347,7 +30347,7 @@
   },
   "909872": {
     "base_verb": "prender",
-    "lemma": "prender",
+    "lemma": "préndelo",
     "corpus_count": 2,
     "translation": "to light",
     "assignments": {},
@@ -30386,7 +30386,7 @@
   },
   "a0baa1": {
     "base_verb": "escaparse",
-    "lemma": "escapar",
+    "lemma": "escápate",
     "corpus_count": 4,
     "translation": "to escape",
     "assignments": {},
@@ -30428,7 +30428,7 @@
     "base_verb": "virarse",
     "lemma": "virar",
     "corpus_count": 1,
-    "translation": "to tack",
+    "translation": "to take off",
     "assignments": {},
     "examples": [
       {
@@ -30499,7 +30499,7 @@
     "base_verb": "dedicar",
     "lemma": "dedícame",
     "corpus_count": 1,
-    "translation": "to dedicate",
+    "translation": "to devote",
     "assignments": {},
     "examples": [
       {
@@ -30708,9 +30708,9 @@
   },
   "48dc42": {
     "base_verb": "aprovechar",
-    "lemma": "aprovechar",
+    "lemma": "aprovéchame",
     "corpus_count": 3,
-    "translation": "to take advantage of",
+    "translation": "to make the most of",
     "assignments": {},
     "examples": [
       {
@@ -30773,7 +30773,7 @@
     "base_verb": "seguirse",
     "lemma": "síguete",
     "corpus_count": 1,
-    "translation": "to follow",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -30862,7 +30862,7 @@
   },
   "2b5fd1": {
     "base_verb": "avisar",
-    "lemma": "avisar",
+    "lemma": "avísale",
     "corpus_count": 2,
     "translation": "to let know",
     "assignments": {},
@@ -30902,7 +30902,7 @@
   },
   "be736f": {
     "base_verb": "mojar",
-    "lemma": "mojar",
+    "lemma": "mójame",
     "corpus_count": 1,
     "translation": "to get wet",
     "assignments": {},
@@ -31006,7 +31006,7 @@
   },
   "b46e70": {
     "base_verb": "pensar",
-    "lemma": "pensar",
+    "lemma": "piénsame",
     "corpus_count": 2,
     "translation": "to think",
     "assignments": {},
@@ -31033,7 +31033,7 @@
     "base_verb": "treparse",
     "lemma": "trepar",
     "corpus_count": 10,
-    "translation": "to climb",
+    "translation": "to scale",
     "assignments": {},
     "examples": [
       {
@@ -31161,7 +31161,7 @@
   },
   "6e5324": {
     "base_verb": "invitar",
-    "lemma": "invitar",
+    "lemma": "invítala",
     "corpus_count": 2,
     "translation": "to invite",
     "assignments": {},
@@ -31209,7 +31209,7 @@
     "base_verb": "papar",
     "lemma": "papele",
     "corpus_count": 1,
-    "translation": "to eat",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -31228,7 +31228,7 @@
     "base_verb": "roncar",
     "lemma": "roncándome",
     "corpus_count": 1,
-    "translation": "to snore",
+    "translation": "to be bossy",
     "assignments": {},
     "examples": [
       {
@@ -31277,7 +31277,7 @@
   },
   "635da4": {
     "base_verb": "prenderse",
-    "lemma": "prender",
+    "lemma": "préndete",
     "corpus_count": 2,
     "translation": "to light",
     "assignments": {},
