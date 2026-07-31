@@ -1,6 +1,9 @@
 # Fluency — TODO
 
-<!-- Don't start items without explicit ask. Mention relevant items naturally; update them in-place when worked on; move to Decisions Made when done. [design doc] items get a docs/design/ prompt before implementation. -->
+<!-- HISTORICAL SNAPSHOT ONLY. GitHub Issues is the live backlog and the Fluency TODO
+     project is its dashboard. Do not add or update active work here; search/create/update
+     https://github.com/RabbiJoshy/Fluency/issues using COLLABORATION.md. Existing detail
+     remains as migration history. Work still requires Josh's explicit go-ahead. -->
 
 ## Key
 
@@ -12,13 +15,6 @@
 ---
 
 ## UI / Front-End
-
-- **[idea] Combined artist and album selector (L) [artist] [cross-lang]**
-  Design a richer selection surface under the new multi-artist schema when the app is ready
-  for more artists and per-album customization. Open it from the artist-picking flow rather
-  than keeping an Artists tab in the main settings modal; support selecting multiple artists,
-  narrowing each one to particular albums, and making the resulting deck scope clear before
-  rebuilding it. Reconcile this with the existing Album-specific mode idea below before work starts.
 
 - **[now] UI overhaul batch — requested 2026-07-22 (L) [shared] [cross-lang]**
   Run as SEQUENTIAL worktree agents (all touch `css/style.css` + the cache-version files, so
@@ -195,6 +191,7 @@
   conjugations not in the pipeline yet — this item is Spanish only until they are.
 
 - **[idea] Album-specific mode (M) [artist] [cross-lang]**
+  Live issue: [#9 — Design a combined artist and album selector](https://github.com/RabbiJoshy/Fluency/issues/9).
   Let users choose specific albums. Options range from light (filter example lyrics to chosen
   albums, keep full corpus count) to heavy (album-only deck with album-specific corpus count).
   Long-term extension: user provides their own song list and gets a custom deck. Probably far

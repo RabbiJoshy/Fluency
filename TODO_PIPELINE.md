@@ -1,7 +1,9 @@
 # Fluency — Pipeline / Data TODO (Claude-owned)
 
-<!-- Claude's backlog for the pipeline/data engine. Codex's app/UI backlog is TODO.md.
-     Ownership + rules: COLLABORATION.md. Don't start items without Josh's go-ahead. -->
+<!-- HISTORICAL SNAPSHOT ONLY. GitHub Issues is the live backlog and the Fluency TODO
+     project is its dashboard. Do not add or update active work here; search/create/update
+     https://github.com/RabbiJoshy/Fluency/issues using COLLABORATION.md. Existing detail
+     remains as migration history. Work still requires Josh's explicit go-ahead. -->
 
 ## Key
 **Priority:** `now` = next up | `soon` = near-term | `idea` = someday

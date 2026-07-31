@@ -21,23 +21,23 @@ keys**, and long-running jobs, so it lives with whichever agent's environment ha
 
 ### Codex — the product / app surface
 - **Files:** `js/`, `css/`, `index.html`, `service-worker.js`, `config/dev_changelog.json`,
-  `CODEX_CHANGES.md`, `TODO.md`.
+  `CODEX_CHANGES.md`.
 - **Owns:** all UI/UX, artist-mode presentation, per-sense progress (app + Google Apps
   Script), Extra-mode **presentation/grouping**, settings-menu cleanup, and the app-side
   rendering of Expressions. Codex's temporary artist-MWE pipeline vertical was completed
   and handed back on 2026-07-26 (`1f649cfe`, regression closeout `f53c82d8`).
 - **Owns the cache-version bump** (`CACHE_NAME` + `ASSET_VERSION` + every `?v=` tag).
   Only Codex bumps these, because all the front-end files live on its side.
-- **Backlog:** `TODO.md`.
+- **Backlog:** GitHub Issues filtered by `owner: codex`.
 
 ### Claude — the pipeline / data engine
-- **Files:** `pipeline/`, `Data/`, `Artists/` (data outputs), `docs/`, `TODO_PIPELINE.md`.
+- **Files:** `pipeline/`, `Data/`, `Artists/` (data outputs), `docs/`.
 - **Owns:** pipeline correctness, sense-assignment quality, word routing
   (cognate / proper-noun / English / loanword / slang detection), scalability &
   parsimony (minimal Gemini), new-language onboarding (French, Dutch), new-artist
   onboarding, the normal-mode Spanish rerun, tagging / per-morphology experiments,
   and future MWE/clitic detection or data-quality work after the completed Codex handoff.
-- **Backlog:** `TODO_PIPELINE.md` (Claude edits only this; not `TODO.md`).
+- **Backlog:** GitHub Issues filtered by `owner: claude`.
 
 ## The interface: the deck-JSON contract
 
@@ -52,13 +52,35 @@ it. Treat that doc as the API contract between engine and app.
    the same moment. On conflict in the other agent's file, stop and flag it — don't
    clobber.
 2. **Cache versions:** only Codex bumps them (see above).
-3. **TODO files:** each agent edits only its own (`TODO.md` = Codex, `TODO_PIPELINE.md`
-   = Claude).
+3. **Backlog:** GitHub Issues is the single source of truth. `TODO.md` and
+   `TODO_PIPELINE.md` are read-only historical snapshots, not live queues.
 4. **Sense-ID stability (load-bearing):** sense IDs hash gloss text, so a pipeline
    rerun/menu change orphans them. Once **per-sense progress** ships, any Claude rerun
    MUST preserve sense IDs **or** emit a migration map — otherwise it wipes a user's
    per-sense progress. This is the one place the two tracks are genuinely coupled;
    agree the contract before running.
 5. **User-visible data changes:** when a Claude data rebuild changes what the user sees,
-   Claude notes it in `TODO_PIPELINE.md`; Codex folds it into `config/dev_changelog.json`
-   (the user-facing changelog) since it owns that file.
+   Claude records it in the relevant issue/handoff; Codex folds it into
+   `config/dev_changelog.json` (the user-facing changelog) since it owns that file.
+
+## Backlog workflow — GitHub Issues + Fluency TODO
+
+The live backlog is [RabbiJoshy/Fluency Issues](https://github.com/RabbiJoshy/Fluency/issues).
+The private [Fluency TODO project](https://github.com/users/RabbiJoshy/projects/1) is the
+phone-friendly board. Its enabled auto-add workflow matches `is:issue is:open`, so creating or
+reopening a repository issue puts it on the board automatically.
+
+1. Before adding work, search open and closed issues using a distinctive phrase. Extend or
+   reopen an overlapping issue instead of creating a duplicate.
+2. New work must be a GitHub issue, not a new bullet in either Markdown TODO file. Give it a
+   concrete title and enough context, decisions, and acceptance criteria to resume later.
+3. Apply exactly one `owner: codex` or `owner: claude`, one `horizon: now|soon|idea|pause`, and
+   one `size: S|M|L`. Add applicable `mode:`, `language:`, `surface:`, and `topic:` labels from
+   the repository's existing label set.
+4. Do not start backlog work without Josh's explicit go-ahead. The issue records and organizes
+   work; it does not authorize implementation by itself.
+5. Put material scope/decision updates on the issue. When the work is genuinely finished,
+   reference the implementation commit or PR and close the issue. Do not create new open issues
+   with the migration-only `horizon: completed` label.
+6. If GitHub access is unavailable, report that the issue update is blocked. Do not silently
+   fall back to editing `TODO.md` or `TODO_PIPELINE.md` unless Josh explicitly requests it.
