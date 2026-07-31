@@ -32,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Add offline-first downloads and durable synchronization
+
+- Commit `a118d60d`; front-end cache `flashcards-v155` / `20260731a`.
+- Added a shared IndexedDB database for queued operations, receipts, retained-download metadata, local progress state, and migrations. Legacy localStorage queue entries migrate forward; every operation carries account/type/timestamps/attempt/error/retry/idempotency metadata, ambiguous responses remain queued, and bounded drains run at launch, reconnect, foreground, authentication recovery, opportunistic writes, and explicit retry/Sync now.
+- Added a checksummed, versioned content catalogue based on measured repository files plus a device-local Offline Content manager for Spanish, French, Bad Bunny, Rosalía, and Young Miko. Downloads use hidden staging caches and a completion marker before switching versions; interruption/failure metadata survives termination, updates preserve the prior verified version, and removal does not touch progress.
+- Split service-worker shell caches from retained content caches, removed optional secrets from core precaching, kept a failed new install from replacing the working worker, staged worker activation behind an Update ready action, preferred retained local content while online, and preserved retained decks during shell cleanup.
+- Added compact/full synchronization states, pending count, last-success time, safe error text, queue inspection/per-operation retry, download sizes/status/removal/cancellation, and mobile layouts in Settings → Data. Current manifests package whole sources because shard generation belongs to the pipeline/data owner; the manifest schema already supports multiple files and dependencies.
+- Verification: bundled-Node syntax checks for all changed modules and the service worker; four focused Node tests covering exact manifest size/checksum integrity, staged/retained cache policy, durable retry/idempotency fields, and asset-version lockstep; valid JSON; `git diff --check`. No live browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-29 — Match Study options to the scrubber tiles
 
 - Commit `ebdb0421`; front-end cache `flashcards-v153` / `20260729y`.
