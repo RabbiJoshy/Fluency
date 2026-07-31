@@ -1,21 +1,21 @@
-import './state.js?v=20260731g';
-import './offline-db.js?v=20260731g';
-import './sync-queue.js?v=20260731g';
-import { initOfflineContent } from './offline-content.js?v=20260731g';
-import './speech.js?v=20260731g';
-import './artist-ui.js?v=20260731g';
-import './auth.js?v=20260731g';
-import './spotify.js?v=20260731g';
-import './estimation.js?v=20260731g';
-import './config.js?v=20260731g';
-import './progress.js?v=20260731g';
-import './knowledge.js?v=20260731g';
-import './ui.js?v=20260731g';
-import './vocab.js?v=20260731g';
-import './flashcards.js?v=20260731g';
+import './state.js?v=20260731h';
+import './offline-db.js?v=20260731h';
+import './sync-queue.js?v=20260731h';
+import { initOfflineContent } from './offline-content.js?v=20260731h';
+import './speech.js?v=20260731h';
+import './artist-ui.js?v=20260731h';
+import './auth.js?v=20260731h';
+import './spotify.js?v=20260731h';
+import './estimation.js?v=20260731h';
+import './config.js?v=20260731h';
+import './progress.js?v=20260731h';
+import './knowledge.js?v=20260731h';
+import './ui.js?v=20260731h';
+import './vocab.js?v=20260731h';
+import './flashcards.js?v=20260731h';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260731g';
+import './flashcards-modals.js?v=20260731h';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it

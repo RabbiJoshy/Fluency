@@ -510,9 +510,9 @@
                 left: auto;
                 transform: none;
                 order: -1;
-                flex: 0 0 44px;
+                flex: 0 0 50px;
                 width: min(540px, calc(100% - 32px));
-                height: 44px;
+                height: 50px;
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
@@ -2251,7 +2251,14 @@
         }
         .morph-strip {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 3px;
+        }
+        .morph-strip-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 3px;
         }
         .morph-strip .morphology-pill {
@@ -2474,11 +2481,12 @@
         /* Shared by desktop and mobile active-set card scrubbers. */
         .deck-progress-segments {
             display: flex;
+            position: relative;
             align-items: center;
             flex: 1 1 auto;
             max-width: 330px;
             min-width: 0;
-            height: 42px;
+            height: 50px;
             gap: 0;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
@@ -2486,6 +2494,20 @@
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
             padding: 0 calc(50% - 25px);
+            background: none;
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+                    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+        }
+        .deck-progress-segments::before {
+            content: '';
+            position: absolute;
+            z-index: 0;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            transform: translateY(-50%);
+            pointer-events: none;
             background: linear-gradient(
                 to right,
                 transparent 0,
@@ -2493,15 +2515,13 @@
                 rgba(var(--accent-primary-rgb), 0.46) 50%,
                 rgba(255, 255, 255, 0.16) 86%,
                 transparent 100%
-            ) center / 100% 2px no-repeat;
-            -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
-                    mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+            );
         }
         .deck-progress-segments::-webkit-scrollbar { display: none; }
         .deck-progress-segments.is-scrubbing {
-            background-size: 100% 3px;
             filter: drop-shadow(0 0 7px rgba(var(--accent-primary-rgb), 0.32));
         }
+        .deck-progress-segments.is-scrubbing::before { height: 3px; }
         .deck-progress-segments.is-scrubbing .deck-progress-segment {
             transition-duration: 90ms;
         }
@@ -2515,16 +2535,18 @@
             }
         }
         .deck-progress-segment {
-            flex: 0 0 38px;
-            width: 36px;
-            min-width: 36px;
-            max-width: 36px;
-            height: 36px;
+            position: relative;
+            z-index: 1;
+            flex: 0 0 44px;
+            width: 42px;
+            min-width: 42px;
+            max-width: 42px;
+            height: 42px;
             padding: 0;
             margin: 0 1px;
             border: 1px solid var(--scrubber-marker-border, rgba(255, 255, 255, 0.16));
             border-radius: 10px;
-            background: var(--scrubber-marker-fill, color-mix(in srgb, var(--bg-card) 82%, transparent));
+            background: var(--scrubber-marker-fill, color-mix(in srgb, var(--bg-card) 88%, var(--bg-tertiary)));
             color: var(--scrubber-marker-text, rgba(255, 255, 255, 0.4));
             font: 750 16px/1 var(--font-reading);
             cursor: pointer;
@@ -2541,17 +2563,17 @@
             --scrubber-marker-text: rgba(255, 255, 255, 0.68);
         }
         .deck-progress-segment.is-result-correct {
-            --scrubber-marker-fill: rgba(34, 197, 94, 0.28);
+            --scrubber-marker-fill: color-mix(in srgb, rgb(34, 197, 94) 28%, var(--bg-card));
             --scrubber-marker-border: rgba(74, 222, 128, 0.66);
             --scrubber-marker-text: #b9f6ca;
         }
         .deck-progress-segment.is-result-incorrect {
-            --scrubber-marker-fill: rgba(239, 68, 68, 0.28);
+            --scrubber-marker-fill: color-mix(in srgb, rgb(239, 68, 68) 28%, var(--bg-card));
             --scrubber-marker-border: rgba(248, 113, 113, 0.68);
             --scrubber-marker-text: #fecaca;
         }
         .deck-progress-segment.is-result-mixed {
-            --scrubber-marker-fill: rgba(245, 166, 35, 0.28);
+            --scrubber-marker-fill: color-mix(in srgb, rgb(245, 166, 35) 28%, var(--bg-card));
             --scrubber-marker-border: rgba(251, 191, 36, 0.68);
             --scrubber-marker-text: #fde7ae;
         }
@@ -2594,10 +2616,10 @@
         }
         .deck-progress-track .study-menu-btn {
             flex: 0 0 auto;
-            width: 36px;
-            min-width: 36px;
-            height: 36px;
-            padding: 5px;
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
+            padding: 6px;
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.68);
@@ -2610,9 +2632,9 @@
             outline: none;
         }
         .deck-progress-track .study-menu-btn svg {
-            width: 26px;
-            height: 26px;
-            flex: 0 0 26px;
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
         }
 
         .freq-tooltip {
@@ -9855,7 +9877,7 @@
         @media (max-width: 767px) {
             .card-container {
                 min-height: 100vh;
-                padding: 68px 0 44px;
+                padding: 74px 0 44px;
                 align-items: flex-start;
             }
 
@@ -9867,7 +9889,7 @@
             }
 
             .card {
-                height: calc(100vh - 112px);
+                height: calc(100vh - 118px);
                 min-height: 460px;
                 max-height: none;
             }
@@ -9876,11 +9898,11 @@
             .deck-progress-track {
                 display: flex;
                 position: absolute;
-                top: 14px;
+                top: 10px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 32px);
-                height: 42px;
+                height: 52px;
                 align-items: center;
                 gap: 7px;
                 pointer-events: auto;

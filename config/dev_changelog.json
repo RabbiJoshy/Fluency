@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "pending",
+      "summary": "Bigger study controls and clearer morphology alternatives",
+      "details": [
+        "The active-set number scrubber and Study options button are larger, with a taller mobile rail and easier touch targets",
+        "The scrubber connector now sits on its own layer behind opaque markers, so it no longer shows through the numbered shapes",
+        "Morphology uses a slash only for ambiguous person such as 1st/3rd; different number, tense, or mood analyses render as separate pill rows; cache v161→v162, assets 20260731g→20260731h"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "1364b0ac",
       "summary": "Cards now show how a word is used — slang, vulgar, regional",
       "details": [

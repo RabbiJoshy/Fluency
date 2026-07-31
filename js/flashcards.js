@@ -253,26 +253,17 @@ function formatMorphLabel(m) {
 }
 
 function formatMorphPersonGroup(personCodes, fallbackLabels = []) {
-    const order = ['1s', '2s', '3s', '1p', '2p', '3p'];
-    const unique = [...new Set(personCodes.filter(Boolean))]
-        .sort((a, b) => order.indexOf(a) - order.indexOf(b));
-    const buckets = [
-        { suffix: 's', label: 'singular' },
-        { suffix: 'p', label: 'plural' }
-    ];
-    const parts = buckets.map(bucket => {
-        const people = unique
-            .filter(code => code.endsWith(bucket.suffix))
-            .map(code => ({ '1': '1st', '2': '2nd', '3': '3rd' })[code.charAt(0)])
-            .filter(Boolean);
-        return people.length ? `${people.join('/')} ${bucket.label}` : '';
-    }).filter(Boolean);
-    return parts.join(' / ') || fallbackLabels.filter(Boolean).join(' / ');
+    const people = [...new Set(personCodes
+        .map(code => ({ '1': '1st', '2': '2nd', '3': '3rd' })[String(code || '').charAt(0)])
+        .filter(Boolean))];
+    return people.join('/') || fallbackLabels.filter(Boolean).join('/');
 }
 
 // One Spanish surface can legitimately represent several people in the same
-// tense/mood (sea = 1st and 3rd singular present subjunctive). State that once
-// rather than repeating the full grammar badge for every person.
+// number/tense/mood (sea = 1st and 3rd singular present subjunctive). Person is
+// the only ambiguity compacted with a slash. A different number, tense, or mood
+// remains a separate morphology row so its alternatives never become an
+// overstuffed "singular / plural" or "present / preterite" pill.
 function compactMorphLabels(morphologyRows) {
     const unique = [...new Map(morphologyRows
         .map(formatMorphLabel)
@@ -280,8 +271,19 @@ function compactMorphLabels(morphologyRows) {
         .map(label => [label.key, label])).values()];
     const groups = new Map();
     for (const label of unique) {
-        const groupKey = label.grammar || `person:${label.person}`;
-        if (!groups.has(groupKey)) groups.set(groupKey, { grammar: label.grammar, labels: [] });
+        const number = label.personCode.endsWith('s')
+            ? 'singular'
+            : (label.personCode.endsWith('p') ? 'plural' : '');
+        const groupKey = `${number}|${label.tense}|${label.mood}`;
+        if (!groups.has(groupKey)) {
+            groups.set(groupKey, {
+                grammar: label.grammar,
+                number,
+                tense: label.tense,
+                mood: label.mood,
+                labels: []
+            });
+        }
         groups.get(groupKey).labels.push(label);
     }
     return [...groups.values()].map(group => {
@@ -290,20 +292,13 @@ function compactMorphLabels(morphologyRows) {
             personCodes,
             group.labels.map(label => label.person)
         );
-        const people = [...new Set(personCodes.map(code => ({
-            '1': '1st', '2': '2nd', '3': '3rd'
-        })[code.charAt(0)]).filter(Boolean))].join('/');
-        const numbers = [...new Set(personCodes.map(code => code.endsWith('s')
-            ? 'singular' : (code.endsWith('p') ? 'plural' : '')).filter(Boolean))];
-        const first = group.labels[0] || {};
         return {
             key: `${person}|${group.grammar}`,
             person,
             grammar: group.grammar,
-            personToken: people,
-            numberToken: numbers.length === 1 ? numbers[0] : numbers.join('/'),
-            tense: first.tense || '',
-            mood: first.mood || ''
+            number: group.number,
+            tense: group.tense,
+            mood: group.mood
         };
     });
 }
@@ -2525,17 +2520,22 @@ function updateCard({ announceHeadword = false } = {}) {
     };
     const renderMorphStrip = (tokenClasses = 'card-pos pos-verb') => {
         if (!morphLabels.length) return '';
-        const fullLabels = morphLabels.map(item => [item.person, item.grammar].filter(Boolean).join(' · '));
-        const uniqueTokens = values => [...new Set(values.filter(Boolean))];
-        const personNumberTokens = uniqueTokens(morphLabels.map(label => label.person));
-        const tenseTokens = uniqueTokens(morphLabels.map(label => label.tense));
-        const moodTokens = uniqueTokens(morphLabels.map(label => label.mood));
-        const categoryTokens = [personNumberTokens, tenseTokens, moodTokens]
-            .filter(tokens => tokens.length)
-            .map(tokens => tokens.join(' / '));
+        const fullLabels = morphLabels.map(item => [
+            item.person,
+            item.number,
+            item.tense,
+            item.mood
+        ].filter(Boolean).join(' · '));
         return `<span class="morph-strip-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
             <span class="morph-strip" aria-hidden="true">
-                ${categoryTokens.map(token => `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`).join('')}
+                ${morphLabels.map(label => `
+                    <span class="morph-strip-row">
+                        ${[label.person, label.number, label.tense, label.mood]
+                            .filter(Boolean)
+                            .map(token => `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`)
+                            .join('')}
+                    </span>
+                `).join('')}
             </span>
         </span>`;
     };
@@ -4626,7 +4626,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260731f';
+const ASSET_VERSION = '20260731h';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
