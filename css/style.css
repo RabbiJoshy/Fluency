@@ -8733,6 +8733,10 @@
             gap: 10px;
         }
         .auth-modal-content .auth-btn {
+            position: relative;
+            z-index: 1;
+            pointer-events: auto;
+            touch-action: manipulation;
             min-height: 72px;
             gap: 12px;
             padding: 13px 15px;
@@ -8906,7 +8910,7 @@
         }
         @media (max-width: 480px) {
             #authModal {
-                align-items: flex-end;
+                align-items: center;
                 padding: 10px;
             }
             .auth-modal-content {

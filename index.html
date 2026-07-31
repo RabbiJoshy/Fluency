@@ -24,23 +24,23 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260731c">
-    <link rel="modulepreload" href="js/state.js?v=20260731c">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260731c">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260731c">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260731c">
-    <link rel="modulepreload" href="js/speech.js?v=20260731c">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260731c">
-    <link rel="modulepreload" href="js/auth.js?v=20260731c">
-    <link rel="modulepreload" href="js/spotify.js?v=20260731c">
-    <link rel="modulepreload" href="js/estimation.js?v=20260731c">
-    <link rel="modulepreload" href="js/config.js?v=20260731c">
-    <link rel="modulepreload" href="js/progress.js?v=20260731c">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260731c">
-    <link rel="modulepreload" href="js/ui.js?v=20260731c">
-    <link rel="modulepreload" href="js/vocab.js?v=20260731c">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260731c">
-    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731c">
+    <link rel="modulepreload" href="js/main.js?v=20260731d">
+    <link rel="modulepreload" href="js/state.js?v=20260731d">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260731d">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260731d">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260731d">
+    <link rel="modulepreload" href="js/speech.js?v=20260731d">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260731d">
+    <link rel="modulepreload" href="js/auth.js?v=20260731d">
+    <link rel="modulepreload" href="js/spotify.js?v=20260731d">
+    <link rel="modulepreload" href="js/estimation.js?v=20260731d">
+    <link rel="modulepreload" href="js/config.js?v=20260731d">
+    <link rel="modulepreload" href="js/progress.js?v=20260731d">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260731d">
+    <link rel="modulepreload" href="js/ui.js?v=20260731d">
+    <link rel="modulepreload" href="js/vocab.js?v=20260731d">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260731d">
+    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731d">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -50,6 +50,48 @@
             document.documentElement.classList.remove('app-booting');
             document.getElementById('appLoadingScreen')?.classList.add('is-hidden');
         }, 12000);
+
+        // Authentication must remain usable even if Safari aborts evaluation
+        // of the ES-module graph. These tiny handlers deliberately depend on
+        // no imported code; main.js attaches the full handlers when available.
+        window.fluencyAuthFallback = {
+            finish: function() {
+                document.documentElement.classList.remove('app-booting');
+                document.body.classList.remove('auth-active');
+                document.getElementById('appLoadingScreen')?.classList.add('is-hidden');
+                document.getElementById('authModal')?.classList.add('hidden');
+                var setup = document.getElementById('setupPanel');
+                if (setup) setup.style.display = 'block';
+            },
+            openLogin: function() {
+                document.getElementById('guestModeBtn').style.display = 'none';
+                document.getElementById('loginModeRow').style.display = 'none';
+                document.getElementById('aboutProjectBtn').style.display = 'none';
+                document.getElementById('loginInfoNote').classList.add('hidden');
+                document.querySelector('#authModal .auth-modal-content')?.classList.add('is-login-form');
+                document.getElementById('loginForm').classList.remove('hidden');
+                document.getElementById('userInitials').focus();
+            },
+            cancelLogin: function() {
+                document.getElementById('guestModeBtn').style.display = 'flex';
+                document.getElementById('loginModeRow').style.display = 'flex';
+                document.getElementById('aboutProjectBtn').style.display = '';
+                document.querySelector('#authModal .auth-modal-content')?.classList.remove('is-login-form');
+                document.getElementById('loginForm').classList.add('hidden');
+            },
+            guest: function() {
+                try { sessionStorage.setItem('flashcardGuestSession', '1'); } catch (_) {}
+                this.finish();
+            },
+            submit: function() {
+                var input = document.getElementById('userInitials');
+                var initials = input.value.trim().toUpperCase();
+                if (!/^[A-Z]{2,4}$/.test(initials)) return;
+                try { localStorage.setItem('flashcardUser', JSON.stringify({ initials: initials, isGuest: false })); } catch (_) {}
+                this.finish();
+                window.dispatchEvent(new CustomEvent('fluency-fallback-login', { detail: { initials: initials } }));
+            }
+        };
     </script>
 </head>
 <body>
@@ -589,7 +631,7 @@
             </div>
             <div class="auth-body">
                 <div class="auth-btn-row" id="loginModeRow">
-                    <button class="auth-btn login-btn" id="loginModeBtn">
+                    <button class="auth-btn login-btn" id="loginModeBtn" type="button" onclick="window.fluencyAuthFallback.openLogin()">
                         <span class="auth-choice-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.6-4 3-6 7-6s6.4 2 7 6"></path></svg>
                         </span>
@@ -607,7 +649,7 @@
                     This small beta uses initials instead of accounts. Pick something personal enough that another learner will not enter it by accident. There is no email or password yet.
                 </div>
 
-                <button class="auth-btn guest-btn" id="guestModeBtn">
+                <button class="auth-btn guest-btn" id="guestModeBtn" type="button" onclick="window.fluencyAuthFallback.guest()">
                     <span class="auth-choice-icon auth-choice-icon--guest" aria-hidden="true">
                         <svg viewBox="0 0 24 24"><path d="M4 12h16"></path><path d="m14 6 6 6-6 6"></path></svg>
                     </span>
@@ -638,8 +680,8 @@
                         autocapitalize="characters"
                     />
                     <div class="login-form-actions">
-                        <button class="auth-submit-btn" id="submitInitialsBtn">Continue</button>
-                        <button class="auth-cancel-btn" id="cancelLoginBtn">← Back</button>
+                        <button class="auth-submit-btn" id="submitInitialsBtn" type="button" onclick="window.fluencyAuthFallback.submit()">Continue</button>
+                        <button class="auth-cancel-btn" id="cancelLoginBtn" type="button" onclick="window.fluencyAuthFallback.cancelLogin()">← Back</button>
                     </div>
                 </div>
             </div>
@@ -1199,6 +1241,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260731c"></script>
+    <script type="module" src="js/main.js?v=20260731d"></script>
 </body>
 </html>

@@ -43,8 +43,8 @@ test('queue records durable retry and idempotency metadata', async () => {
 });
 
 test('optional offline services cannot block authentication indefinitely', async () => {
-    const [main, auth, database, content] = await Promise.all([
-        text('js/main.js'), text('js/auth.js'), text('js/offline-db.js'), text('js/offline-content.js')
+    const [main, auth, database, content, html] = await Promise.all([
+        text('js/main.js'), text('js/auth.js'), text('js/offline-db.js'), text('js/offline-content.js'), text('index.html')
     ]);
     assert.ok(main.indexOf('setupAuthEventListeners();') < main.indexOf('await resolveArtist();'));
     assert.ok(main.indexOf('checkAuthentication();') < main.indexOf('await resolveArtist();'));
@@ -55,6 +55,10 @@ test('optional offline services cannot block authentication indefinitely', async
     assert.match(database, /Offline database open timed out/);
     assert.match(content, /controller\.abort/);
     assert.match(auth, /window\.hideAppLoading\?\.\(\)/);
+    assert.match(html, /window\.fluencyAuthFallback/);
+    for (const action of ['openLogin()', 'guest()', 'submit()', 'cancelLogin()']) {
+        assert.ok(html.includes(`window.fluencyAuthFallback.${action}`), action);
+    }
 });
 
 test('asset versions remain in lockstep', async () => {

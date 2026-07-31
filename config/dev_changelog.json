@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "pending",
+      "summary": "Login has a Safari-safe non-module fallback",
+      "details": [
+        "Continue with initials, guest mode, Continue, and Back now have direct inline handlers that work even if Safari aborts the module graph",
+        "The mobile login returns to the center of the screen and its controls explicitly accept touch input above surrounding layers",
+        "The full module handlers still take over normally when app initialization succeeds"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "6d7bddc6",
       "summary": "Login controls remain usable during a stalled boot",
       "details": [
