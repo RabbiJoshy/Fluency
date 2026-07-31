@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Retry sync after reconnect warm-up
+
+- Commit `90c70874`; front-end cache `flashcards-v160` / `20260731f`.
+- Corrected the real-device reconnect race: the browser's `online` event can precede a usable iOS network route, but the queue attempted immediately, marked the first transient failure final, and scheduled no later drain. Manual Sync now was therefore the only recovery.
+- Reconnect now waits 1.5 seconds. Transient failures remain Pending and retry automatically with bounded 2/4/8-second exponential delays; four failed attempts produce the final Sync failed state. Launch/foreground reset exhausted transient entries for a new bounded cycle, manual retry resets its attempt count, and auth-paused operations remain paused.
+- Verification: five focused Node tests with retry/grace/reset policy assertions; bundled-Node syntax checks; valid changelog JSON; cache-version lockstep; `git diff --check`. Real-device reconnect remains the decisive end-to-end verification.
+
 ### 2026-07-31 — Fix the sync-queue browser parser error
 
 - Commit `1309427a`; front-end cache `flashcards-v159` / `20260731e`.

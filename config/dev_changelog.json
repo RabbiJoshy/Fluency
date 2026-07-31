@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-31",
-      "commit": "pending",
+      "commit": "90c70874",
       "summary": "Reconnect sync now tolerates iPhone network warm-up",
       "details": [
         "The queue waits 1.5 seconds after iOS reports online before its first upload attempt",
