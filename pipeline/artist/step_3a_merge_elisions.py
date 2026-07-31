@@ -64,7 +64,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 6
+STEP_VERSION = 7
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
@@ -77,6 +77,8 @@ STEP_VERSION_NOTES = {
        "onto the tail. Counts and examples flow to both halves.",
     6: "+ union full-corpus song IDs while merging variants so song_count remains "
        "exact after elision normalization",
+    7: "+ apostrophe-less d-elision (metíos → metidos), guarded so it only "
+       "fires when the surface is not itself a known Spanish form",
 }
 
 # ---------------------------------------------------------------------------
@@ -288,6 +290,32 @@ D_ELISION_RULES = [
 
 D_ELISION_EXCEPTIONS = frozenset()
 
+# Apostrophe-less d-elision. The rules above all require the apostrophe the
+# lyric usually keeps (arrebata'o), but Genius transcriptions frequently drop
+# it too, leaving a bare `metíos` / `arrebataos` / `exagerao`. Those never match
+# above, so real past participles fall through to sense_discovery and Gemini is
+# asked to invent a meaning for a word Spanish already has.
+#
+# These patterns are far more dangerous than the apostrophe'd ones, because
+# `-ía`/`-ías`/`-ás` are also ordinary imperfect and future endings: unguarded,
+# they rewrite estás→estadas, vía→vida, quería→querida. bare_d_elision_canonical
+# therefore fires ONLY when the surface is not itself a known Spanish form and
+# the restored candidate is one. On the Bad Bunny corpus that is 43 recoveries
+# with zero false positives; without the guard it is 135 corruptions.
+D_ELISION_BARE_RULES = [
+    (re.compile(r"^(.+)aítas$"), "aditas"),
+    (re.compile(r"^(.+)aítos$"), "aditos"),
+    (re.compile(r"^(.+)aíta$"), "adita"),
+    (re.compile(r"^(.+)aíto$"), "adito"),
+    (re.compile(r"^(.+)íos$"), "idos"),
+    (re.compile(r"^(.+)ías$"), "idas"),
+    (re.compile(r"^(.+)aos$"), "ados"),
+    (re.compile(r"^(.+)ás$"), "adas"),
+    (re.compile(r"^(.+)ío$"), "ido"),
+    (re.compile(r"^(.+)ía$"), "ida"),
+    (re.compile(r"^(.+)ao$"), "ado"),
+]
+
 # Trailing-apostrophe consonant candidates (s-elision is most common; others
 # cover verda' → verdad, die' → diez, comé' → comer).
 _TRAILING_APOS_RESTORES = ("s", "d", "z", "r", "l", "n")
@@ -359,6 +387,30 @@ def d_elision_canonical(word):
     return None
 
 
+def bare_d_elision_canonical(word, known_set):
+    """Apostrophe-less d-elision: `metíos` → `metidos`, `exagerao` → `exagerado`.
+
+    Deliberately conservative, because the bare patterns collide with ordinary
+    imperfect/future endings. Both guards are required:
+
+    * the surface must NOT already be a known Spanish form — that alone spares
+      estás, vía, quería, mía, sabía and 130 others; and
+    * the restored candidate MUST be a known Spanish form, so a nonsense stem
+      can never invent a lemma.
+
+    Returns (canonical, display) or None.
+    """
+    if not known_set or word in D_ELISION_EXCEPTIONS or word in known_set:
+        return None
+    for pattern, suffix in D_ELISION_BARE_RULES:
+        m = pattern.match(word)
+        if m:
+            candidate = m.group(1) + suffix
+            if candidate in known_set:
+                return (candidate, word)
+    return None
+
+
 def double_elision_canonical(word):
     """Chain: `parao'` → `parao` → `parado`.
 
@@ -419,7 +471,16 @@ def load_merge_targets(mapping_path):
 
 
 def load_known_vocab():
-    """Load the normal-mode Spanish vocabulary for trailing-apos tiebreaker."""
+    """Load the normal-mode Spanish vocabulary for trailing-apos tiebreaker.
+
+    NOTE: Data/Spanish/vocabulary.json no longer exists — the deck moved to the
+    split vocabulary.index.json / vocabulary.examples.json format and the
+    monolithic file is gitignored. This therefore returns an empty set on a
+    current checkout, which silently disables the trailing-apos tiebreaker.
+    Left as-is deliberately: re-enabling it changes lemma selection across the
+    whole deck and deserves its own verified change, not a side effect of the
+    d-elision work. bare_d_elision_canonical uses load_spanish_forms() instead.
+    """
     vocab_path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "vocabulary.json")
     if not os.path.isfile(vocab_path):
         return set()
@@ -428,12 +489,34 @@ def load_known_vocab():
     return set(entry["word"].lower() for entry in data)
 
 
+_spanish_forms_cache = None
+
+
+def load_spanish_forms():
+    """Canonical 'is this a Spanish form?' set — the same source step_4a uses.
+
+    Needed by the bare d-elision rule, whose safety depends entirely on knowing
+    which surfaces are already real Spanish (estás, vía, quería). A deck-shaped
+    word list is not sufficient for that; the full form table is.
+    """
+    global _spanish_forms_cache
+    if _spanish_forms_cache is None:
+        path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers", "spanish_forms.json")
+        if not os.path.isfile(path):
+            _spanish_forms_cache = frozenset()
+        else:
+            with open(path, "r", encoding="utf-8") as f:
+                _spanish_forms_cache = frozenset(json.load(f))
+    return _spanish_forms_cache
+
+
 def merge_evidence(data, targets, known_vocab):
     """Merge entries. Returns a new list. Each example carries `surface`."""
     groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
                                   "variants": {}, "song_ids": set()})
 
-    stats = {"mapping": 0, "d_elision": 0, "double_elision": 0, "trailing_apos": 0, "unmerged": 0}
+    stats = {"mapping": 0, "d_elision": 0, "double_elision": 0, "trailing_apos": 0,
+             "bare_d_elision": 0, "unmerged": 0}
 
     for entry in data:
         word = entry["word"]
@@ -509,6 +592,14 @@ def merge_evidence(data, targets, known_vocab):
                     if tap:
                         key, display = tap[0], tap[1]
                         source = "trailing_apos"
+                    else:
+                        # Last resort: apostrophe-less d-elision. Runs after
+                        # every other rule so it can never pre-empt one, and
+                        # only touches words nothing else claimed.
+                        bare = bare_d_elision_canonical(word, load_spanish_forms())
+                        if bare:
+                            key, display = bare[0], bare[1]
+                            source = "bare_d_elision"
 
         if key is None:
             key = word
