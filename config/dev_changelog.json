@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-31",
-      "commit": "pending",
+      "commit": "e7ca69d5",
       "summary": "Login has a Safari-safe non-module fallback",
       "details": [
         "Continue with initials, guest mode, Continue, and Back now have direct inline handlers that work even if Safari aborts the module graph",

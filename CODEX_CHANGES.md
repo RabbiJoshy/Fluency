@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Add a Safari-safe login fallback
+
+- Commit `e7ca69d5`; front-end cache `flashcards-v158` / `20260731d`.
+- After the early module handlers still proved untappable on the real iPhone, added direct classic-script handlers to Continue with initials, Explore as a guest, Continue, and Back. These controls now function without depending on the ES-module graph; normal module handlers remain additive when initialization succeeds.
+- Restored centered mobile authentication and explicitly gave its action controls touch handling and stacking priority. Verified the deployed prior release served the expected `20260731c` HTML and all 17 startup modules returned HTTP 200, narrowing the remaining failure to Safari-side module evaluation rather than a missing deployment asset.
+- Verification: five focused Node tests including presence of every inline fallback action; bundled-Node syntax checks; valid changelog JSON; cache-version lockstep; live HTTP status checks for deployed startup assets; `git diff --check`. Real-device confirmation remains required.
+
 ### 2026-07-31 — Initialize login before app boot
 
 - Commit `6d7bddc6`; front-end cache `flashcards-v157` / `20260731c`.
