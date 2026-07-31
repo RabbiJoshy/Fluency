@@ -24,23 +24,23 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260731h">
-    <link rel="modulepreload" href="js/state.js?v=20260731h">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260731h">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260731h">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260731h">
-    <link rel="modulepreload" href="js/speech.js?v=20260731h">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260731h">
-    <link rel="modulepreload" href="js/auth.js?v=20260731h">
-    <link rel="modulepreload" href="js/spotify.js?v=20260731h">
-    <link rel="modulepreload" href="js/estimation.js?v=20260731h">
-    <link rel="modulepreload" href="js/config.js?v=20260731h">
-    <link rel="modulepreload" href="js/progress.js?v=20260731h">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260731h">
-    <link rel="modulepreload" href="js/ui.js?v=20260731h">
-    <link rel="modulepreload" href="js/vocab.js?v=20260731h">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260731h">
-    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731h">
+    <link rel="modulepreload" href="js/main.js?v=20260731i">
+    <link rel="modulepreload" href="js/state.js?v=20260731i">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260731i">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260731i">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260731i">
+    <link rel="modulepreload" href="js/speech.js?v=20260731i">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260731i">
+    <link rel="modulepreload" href="js/auth.js?v=20260731i">
+    <link rel="modulepreload" href="js/spotify.js?v=20260731i">
+    <link rel="modulepreload" href="js/estimation.js?v=20260731i">
+    <link rel="modulepreload" href="js/config.js?v=20260731i">
+    <link rel="modulepreload" href="js/progress.js?v=20260731i">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260731i">
+    <link rel="modulepreload" href="js/ui.js?v=20260731i">
+    <link rel="modulepreload" href="js/vocab.js?v=20260731i">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260731i">
+    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731i">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -122,15 +122,6 @@
                 </svg>
             </button>
             <button class="gear-btn" id="reverseLangBtn" title="Reverse language direction"></button>
-            <button class="gear-btn" id="shuffleBtnTop" title="Shuffle">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 3 21 3 21 8"></polyline>
-                    <line x1="4" y1="20" x2="21" y2="3"></line>
-                    <polyline points="21 16 21 21 16 21"></polyline>
-                    <line x1="15" y1="15" x2="21" y2="21"></line>
-                    <line x1="4" y1="4" x2="9" y2="9"></line>
-                </svg>
-            </button>
             <button class="gear-btn" id="speakBtn" title="Toggle auto-speak">
                 <svg id="speakBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -583,15 +574,6 @@
                      Outside the card's preserve-3d context so there are no z-fighting or
                      axis-reversal issues. Never shown on desktop (desktop media query). -->
                 <div class="card-actions-popup" id="cardActionsPopup">
-                    <button class="gear-btn" id="shuffleBtnPopup" title="Shuffle">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="16 3 21 3 21 8"></polyline>
-                            <line x1="4" y1="20" x2="21" y2="3"></line>
-                            <polyline points="21 16 21 21 16 21"></polyline>
-                            <line x1="15" y1="15" x2="21" y2="21"></line>
-                            <line x1="4" y1="4" x2="9" y2="9"></line>
-                        </svg>
-                    </button>
                     <button class="gear-btn" id="reverseLangBtnPopup" title="Reverse language direction">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="17 1 21 5 17 9"></polyline>
@@ -1216,7 +1198,7 @@
                     <p id="helpStudyLyricsLine"><strong>Lyric examples:</strong> tap the sentence to cycle manually, or use the small desktop play control to hear each sense label and its timestamped lyric lines in order.</p>
                     <p><strong>Words with multiple meanings:</strong> A grouped row starts on its shared meaning; pick a colored sub-sense to narrow the examples. Its color links it to the matching example.</p>
                     <p><strong>Card scrubber:</strong> The numbered strip shows your current position in the active set. Swipe it or choose a number to move directly to that card.</p>
-                    <p><strong>Study options:</strong> Use the button beside the scrubber for Change set, Shuffle, card language order, Audio, Set progress, Settings, and Help.</p>
+                    <p><strong>Study options:</strong> Use the button beside the scrubber for the main menu, card language order, automatic speech, progress, and study preferences.</p>
                     <p><strong>At the end of each set</strong>, you'll see your accuracy and can repeat mistakes from that session or continue to the next unseen set.</p>
                 </div>
             </div>
@@ -1241,6 +1223,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260731h"></script>
+    <script type="module" src="js/main.js?v=20260731i"></script>
 </body>
 </html>

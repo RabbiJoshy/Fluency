@@ -2508,14 +2508,7 @@
             height: 2px;
             transform: translateY(-50%);
             pointer-events: none;
-            background: linear-gradient(
-                to right,
-                transparent 0,
-                rgba(255, 255, 255, 0.16) 14%,
-                rgba(var(--accent-primary-rgb), 0.46) 50%,
-                rgba(255, 255, 255, 0.16) 86%,
-                transparent 100%
-            );
+            background: linear-gradient(to right, transparent, rgba(170, 174, 184, 0.42) 14%, rgba(170, 174, 184, 0.42) 86%, transparent);
         }
         .deck-progress-segments::-webkit-scrollbar { display: none; }
         .deck-progress-segments.is-scrubbing {
@@ -2550,11 +2543,11 @@
             color: var(--scrubber-marker-text, rgba(255, 255, 255, 0.4));
             font: 750 16px/1 var(--font-reading);
             cursor: pointer;
-            opacity: 0.16;
+            opacity: 1;
             transform: scale(0.42);
             scroll-snap-align: center;
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
-            transition: color 260ms ease, opacity 260ms ease,
+            transition: color 260ms ease,
                         transform 300ms cubic-bezier(0.2, 0.85, 0.25, 1.25),
                         border-color 260ms ease, background 260ms ease,
                         box-shadow 260ms ease;
@@ -2586,9 +2579,9 @@
         .deck-progress-segment.is-visited.is-result-mixed:not(.is-current) {
             --scrubber-marker-text: #fde7ae;
         }
-        .deck-progress-segment[data-distance="1"] { opacity: 0.78; transform: scale(0.88); }
-        .deck-progress-segment[data-distance="2"] { opacity: 0.5; transform: scale(0.67); }
-        .deck-progress-segment[data-distance="3"] { opacity: 0.3; transform: scale(0.52); }
+        .deck-progress-segment[data-distance="1"] { transform: scale(0.88); }
+        .deck-progress-segment[data-distance="2"] { transform: scale(0.67); }
+        .deck-progress-segment[data-distance="3"] { transform: scale(0.52); }
         .deck-progress-segment.is-current {
             color: white;
             opacity: 1;
@@ -2616,20 +2609,20 @@
         }
         .deck-progress-track .study-menu-btn {
             flex: 0 0 auto;
-            width: 44px;
-            min-width: 44px;
-            height: 44px;
-            padding: 6px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            width: 50px;
+            min-width: 50px;
+            height: 50px;
+            padding: 9px;
+            border-radius: 12px;
+            border: 1px solid transparent;
             color: rgba(255, 255, 255, 0.68);
-            background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
+            background: transparent;
         }
         .deck-progress-track .study-menu-btn:hover,
         .deck-progress-track .study-menu-btn:focus-visible {
             border-color: color-mix(in srgb, var(--accent-primary) 70%, white);
             color: white;
-            outline: none;
+            background: rgba(255, 255, 255, 0.06);
         }
         .deck-progress-track .study-menu-btn svg {
             width: 30px;
@@ -8267,6 +8260,7 @@
             height: 34%;
             border-radius: 50%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -8285,6 +8279,14 @@
             font-size: clamp(13px, 3.4vw, 18px);
             line-height: 1.15;
             color: var(--text-primary, #fff);
+            pointer-events: none;
+        }
+        .artist-radial-close-label {
+            margin-top: 6px;
+            color: var(--text-muted);
+            font-family: var(--font-emphasis);
+            font-size: 11px;
+            font-weight: 600;
             pointer-events: none;
         }
 
@@ -8355,8 +8357,8 @@
         }
 
         /* Study options reuse the radial interaction without borrowing the
-           loud picture-picker palette. Neutral icon discs make seven actions
-           readable as one control family on both desktop and mobile. */
+           loud picture-picker palette. Quiet icon-and-label targets keep the
+           actions readable on both desktop and mobile. */
         .study-radial-picker {
             background: rgba(7, 9, 14, 0.76);
             backdrop-filter: blur(10px);
@@ -8375,15 +8377,18 @@
         }
         .study-radial-picker .artist-radial-thumb {
             width: 25%;
-            gap: 7px;
+            min-height: min(22vw, 22vh, 108px);
+            justify-content: center;
+            gap: 3px;
+            border-radius: 50%;
         }
         .study-radial-picker .artist-radial-disc {
             width: min(17vw, 17vh, 82px);
             height: min(17vw, 17vh, 82px);
-            border: 1px solid rgba(255, 255, 255, 0.17);
-            background: color-mix(in srgb, var(--bg-tertiary) 90%, black);
+            border: 1px solid transparent;
+            background: transparent;
             color: rgba(255, 255, 255, 0.86);
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+            box-shadow: none;
             text-shadow: none;
         }
         .artist-radial-disc--icon svg {
@@ -8394,9 +8399,9 @@
         .study-radial-picker .artist-radial-thumb:hover .artist-radial-disc,
         .study-radial-picker .artist-radial-thumb:focus-visible .artist-radial-disc {
             transform: translateY(-2px);
-            border-color: color-mix(in srgb, var(--accent-primary) 58%, white);
-            background: color-mix(in srgb, var(--accent-primary) 14%, var(--bg-tertiary));
-            box-shadow: 0 9px 22px rgba(0, 0, 0, 0.38);
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: none;
         }
         .study-radial-picker .artist-radial-label {
             max-width: 112px;
@@ -9908,6 +9913,12 @@
                 pointer-events: auto;
                 transition: opacity 0.2s;
                 z-index: 12;
+            }
+            .deck-progress-track .study-menu-btn {
+                height: 74px;
+                margin-top: -10px;
+                border-color: transparent;
+                background: transparent;
             }
             .card-container:has(.card.is-stacked) .deck-progress-track {
                 opacity: 0;

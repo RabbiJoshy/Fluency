@@ -186,7 +186,7 @@ function getCurrentSpokenEnglish(card) {
 
 function formatMorphMood(mood) {
     const moodMap = {
-        indicativo: 'indicative',
+        indicativo: '',
         subjuntivo: 'subjunctive',
         imperativo: 'imperative',
         gerundio: 'gerund',
@@ -204,7 +204,7 @@ function formatMorphMood(mood) {
 function formatMorphTense(tense) {
     const tenseMap = {
         presente: 'present',
-        afirmativo: 'affirmative',
+        afirmativo: '',
         negativo: 'negative',
         futuro: 'future',
         'futuro-perfecto': 'future perfect',
@@ -272,8 +272,8 @@ function compactMorphLabels(morphologyRows) {
     const groups = new Map();
     for (const label of unique) {
         const number = label.personCode.endsWith('s')
-            ? 'singular'
-            : (label.personCode.endsWith('p') ? 'plural' : '');
+            ? 'SING'
+            : (label.personCode.endsWith('p') ? 'PLURAL' : '');
         const groupKey = `${number}|${label.tense}|${label.mood}`;
         if (!groups.has(groupKey)) {
             groups.set(groupKey, {
@@ -1078,10 +1078,10 @@ function initializeApp() {
             id: 'studyRadialPicker',
             ariaLabel: 'Study options',
             hubHTML: 'Study<br>options',
+            closeLabel: 'Tap to close',
             className: 'study-radial-picker',
             entries: [
                 { label: 'Main menu', iconHTML: icon('<path d="M9 7H5v12h12v-4"></path><path d="m9 11-4-4 4-4"></path><path d="M5 7h9a5 5 0 0 1 5 5"></path>'), onSelect: () => goBackToSetup() },
-                { label: 'Shuffle', iconHTML: icon('<path d="M3 6h3c4 0 5 12 9 12h6"></path><path d="m18 15 3 3-3 3"></path><path d="M3 18h3c1.7 0 2.9-2.1 4-4.6"></path><path d="M14 6h7"></path><path d="m18 3 3 3-3 3"></path>'), onSelect: () => shuffleCards() },
                 { label: switchOrderLabel, iconHTML: icon('<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>'), onSelect: () => flipDirection() },
                 { label: speechEnabled ? 'Mute automatic speech' : 'Enable automatic speech', iconHTML: speechEnabled
                     ? icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path>')
@@ -1190,14 +1190,6 @@ function initializeApp() {
             flipDirection();
         });
     });
-    ['shuffleBtnTop', 'shuffleBtnPopup'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (btn) btn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            shuffleCards();
-        });
-    });
-
     // Lyric breakdown modal
     document.getElementById('closeLyricBreakdown').addEventListener('click', hideLyricBreakdown);
     document.getElementById('lyricBreakdownModal').addEventListener('click', function(e) {
@@ -2521,8 +2513,7 @@ function updateCard({ announceHeadword = false } = {}) {
     const renderMorphStrip = (tokenClasses = 'card-pos pos-verb') => {
         if (!morphLabels.length) return '';
         const fullLabels = morphLabels.map(item => [
-            item.person,
-            item.number,
+            [item.person, item.number].filter(Boolean).join(' '),
             item.tense,
             item.mood
         ].filter(Boolean).join(' · '));
@@ -2530,7 +2521,7 @@ function updateCard({ announceHeadword = false } = {}) {
             <span class="morph-strip" aria-hidden="true">
                 ${morphLabels.map(label => `
                     <span class="morph-strip-row">
-                        ${[label.person, label.number, label.tense, label.mood]
+                        ${[[label.person, label.number].filter(Boolean).join(' '), label.tense, label.mood]
                             .filter(Boolean)
                             .map(token => `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`)
                             .join('')}
@@ -4626,7 +4617,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260731h';
+const ASSET_VERSION = '20260731i';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

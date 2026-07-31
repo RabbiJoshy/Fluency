@@ -1,21 +1,21 @@
-import './state.js?v=20260731h';
-import './offline-db.js?v=20260731h';
-import './sync-queue.js?v=20260731h';
-import { initOfflineContent } from './offline-content.js?v=20260731h';
-import './speech.js?v=20260731h';
-import './artist-ui.js?v=20260731h';
-import './auth.js?v=20260731h';
-import './spotify.js?v=20260731h';
-import './estimation.js?v=20260731h';
-import './config.js?v=20260731h';
-import './progress.js?v=20260731h';
-import './knowledge.js?v=20260731h';
-import './ui.js?v=20260731h';
-import './vocab.js?v=20260731h';
-import './flashcards.js?v=20260731h';
+import './state.js?v=20260731i';
+import './offline-db.js?v=20260731i';
+import './sync-queue.js?v=20260731i';
+import { initOfflineContent } from './offline-content.js?v=20260731i';
+import './speech.js?v=20260731i';
+import './artist-ui.js?v=20260731i';
+import './auth.js?v=20260731i';
+import './spotify.js?v=20260731i';
+import './estimation.js?v=20260731i';
+import './config.js?v=20260731i';
+import './progress.js?v=20260731i';
+import './knowledge.js?v=20260731i';
+import './ui.js?v=20260731i';
+import './vocab.js?v=20260731i';
+import './flashcards.js?v=20260731i';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260731h';
+import './flashcards-modals.js?v=20260731i';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -526,7 +526,7 @@ function wireExtraScopeModal() {
 window.openExtraScopeModal = openExtraScopeModal;
 
 // Shared radial "clock of pictures" picker used by artists and languages.
-function showRadialPicker({ id, ariaLabel, hubHTML, entries, className = '' }) {
+function showRadialPicker({ id, ariaLabel, hubHTML, entries, className = '', closeLabel = '' }) {
     const existing = document.getElementById(id);
     if (existing) { closeRadialPicker(id); return; }
 
@@ -546,7 +546,7 @@ function showRadialPicker({ id, ariaLabel, hubHTML, entries, className = '' }) {
     // Center hub: label + close affordance.
     const hub = document.createElement('div');
     hub.className = 'artist-radial-hub';
-    hub.innerHTML = `<span class="artist-radial-hub-title">${hubHTML}</span>`;
+    hub.innerHTML = `<span class="artist-radial-hub-title">${hubHTML}</span>${closeLabel ? `<span class="artist-radial-close-label">${closeLabel}</span>` : ''}`;
     stage.appendChild(hub);
 
     // Radius as a fraction of the stage half-size. Thumbs sit on this ring.
