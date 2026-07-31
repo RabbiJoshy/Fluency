@@ -3,6 +3,15 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "e0d74260",
+      "summary": "Separated word and lemma colour hierarchy",
+      "details": [
+        "A surface word stays white when a separate citation lemma is shown; when the displayed word is itself the lemma, it receives the active POS colour",
+        "Lemma colour follows POS selection on both card faces and automatically mixes toward the theme text colour for stronger contrast"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "b040b2ae",
       "summary": "Improved card hierarchy and multi-POS defaults",
       "details": [

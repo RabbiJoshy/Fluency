@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Separate surface-word and lemma colour hierarchy
+
+- Commit `e0d74260`; front-end cache `flashcards-v165` / `20260731k`.
+- A displayed surface word remains white whenever a distinct citation lemma is present; if the displayed word is itself the lemma, the headword receives the active POS colour.
+- Separate front/back lemma text keeps the active POS identity and updates after a POS choice. Its colour is automatically mixed toward `--text-primary`, adapting contrast to the theme rather than relying on a fixed brightness.
+- Verification: bundled-Node syntax checks, changelog JSON parsing, cache-version and word/lemma state assertions, and `git diff --check`.
+
 ### 2026-07-31 — Improve card hierarchy and multi-POS defaults
 
 - Commit `b040b2ae`; front-end cache `flashcards-v164` / `20260731j`.
