@@ -24,23 +24,23 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260731l">
-    <link rel="modulepreload" href="js/state.js?v=20260731l">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260731l">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260731l">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260731l">
-    <link rel="modulepreload" href="js/speech.js?v=20260731l">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260731l">
-    <link rel="modulepreload" href="js/auth.js?v=20260731l">
-    <link rel="modulepreload" href="js/spotify.js?v=20260731l">
-    <link rel="modulepreload" href="js/estimation.js?v=20260731l">
-    <link rel="modulepreload" href="js/config.js?v=20260731l">
-    <link rel="modulepreload" href="js/progress.js?v=20260731l">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260731l">
-    <link rel="modulepreload" href="js/ui.js?v=20260731l">
-    <link rel="modulepreload" href="js/vocab.js?v=20260731l">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260731l">
-    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731l">
+    <link rel="modulepreload" href="js/main.js?v=20260731m">
+    <link rel="modulepreload" href="js/state.js?v=20260731m">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260731m">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260731m">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260731m">
+    <link rel="modulepreload" href="js/speech.js?v=20260731m">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260731m">
+    <link rel="modulepreload" href="js/auth.js?v=20260731m">
+    <link rel="modulepreload" href="js/spotify.js?v=20260731m">
+    <link rel="modulepreload" href="js/estimation.js?v=20260731m">
+    <link rel="modulepreload" href="js/config.js?v=20260731m">
+    <link rel="modulepreload" href="js/progress.js?v=20260731m">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260731m">
+    <link rel="modulepreload" href="js/ui.js?v=20260731m">
+    <link rel="modulepreload" href="js/vocab.js?v=20260731m">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260731m">
+    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731m">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -261,7 +261,7 @@
                     <span id="topBarUserName" class="top-bar-user-name"></span>
                     <button id="helpBtn" class="top-bar-text-btn">How to start</button>
                     <!-- Offline / sync-pending status pill. Hidden when online with an empty queue. -->
-                    <button id="syncStatusIndicator" class="sync-status is-synced" type="button" title="Open synchronization details" onclick="showSettingsModal('data')">Synced</button>
+                    <button id="syncStatusIndicator" class="sync-status is-synced" type="button" title="Open synchronization details" onclick="showSettingsModalWithTab('offline')">Synced</button>
                     <button class="gear-btn top-bar-find" id="findWordBtn" title="Find a word">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="7"></circle>
@@ -1001,14 +1001,14 @@
             <div class="settings-tabs-header">
                 <div class="settings-tabs">
                     <button class="settings-tab active" data-tab="account">Account</button>
-                    <button class="settings-tab" data-tab="settings">Study</button>
-                    <button class="settings-tab" data-tab="data">Data</button>
-                    <button class="settings-tab" data-tab="artists" id="artistsTabBtn" style="display: none;">Artists</button>
+                    <button class="settings-tab" data-tab="study">Study</button>
+                    <button class="settings-tab" data-tab="offline">Offline &amp; sync</button>
+                    <button class="settings-tab" data-tab="appData" id="appDataTabBtn" hidden>App data</button>
                 </div>
                 <button class="modal-close" id="closeSettingsModal">✕</button>
             </div>
             <!-- Settings tab content -->
-            <div class="settings-tab-content" id="settingsTabContent">
+            <div class="settings-tab-content" id="studyTabContent">
                 <section class="settings-defaults-card" aria-labelledby="studyDefaultsTitle">
                     <div class="settings-defaults-heading">
                         <strong id="studyDefaultsTitle">Default study setup</strong>
@@ -1113,8 +1113,8 @@
                     </span>
                 </div>
             </div>
-            <!-- Data tab content -->
-            <div class="settings-tab-content" id="dataTabContent">
+            <!-- Offline and synchronization tab content -->
+            <div class="settings-tab-content" id="offlineTabContent">
                 <p class="settings-data-intro">Downloaded lessons stay on this device. Progress and notes synchronize with your account.</p>
                 <section class="offline-panel" aria-labelledby="syncPanelTitle">
                     <div class="offline-panel-heading">
@@ -1145,16 +1145,13 @@
                     <span>Reset progress for current set</span>
                     <span class="settings-row-action settings-row-action--warning">Reset</span>
                 </div>
+            </div>
+            <!-- JST-only app/data deployment audit -->
+            <div class="settings-tab-content" id="appDataTabContent">
+                <p class="settings-data-intro">Developer audit for the app build and vocabulary files loaded on this device.</p>
                 <!-- Filled on open from the vocab files' Last-Modified headers;
                      an old date here means the service worker served cached data. -->
                 <div id="dataFreshnessFooter" class="data-freshness-footer"></div>
-            </div>
-            <!-- Artists tab content -->
-            <div class="settings-tab-content" id="artistsTabContent">
-                <div class="artist-section-label">Main artist</div>
-                <div id="artistPrimarySection" style="padding: 4px 0;"></div>
-                <div class="artist-section-label">Add to mix</div>
-                <div id="artistSecondarySection" style="padding: 4px 0;"></div>
             </div>
         </div>
     </div>
@@ -1223,6 +1220,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260731l"></script>
+    <script type="module" src="js/main.js?v=20260731m"></script>
 </body>
 </html>

@@ -2068,6 +2068,9 @@ function showSettingsModalWithTab(tabName) {
     // Update account tab with current user
     const userBadge = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
     document.getElementById('accountUserBadge').textContent = userBadge;
+    const isJstAccount = Boolean(currentUser && currentUser.initials === 'JST');
+    const appDataTabBtn = document.getElementById('appDataTabBtn');
+    if (appDataTabBtn) appDataTabBtn.hidden = !isJstAccount;
 
     // Show/hide clear level estimate row
     const estimate = levelEstimates[selectedLanguage] || 0;
@@ -2079,24 +2082,30 @@ function showSettingsModalWithTab(tabName) {
         clearRow.style.display = 'none';
     }
 
-    // Switch to specified tab
+    // Switch to the requested settings surface. App data is a developer audit
+    // and must never be exposed outside the JST account.
     const settingsModal = document.getElementById('settingsModal');
+    const tabContentIds = {
+        account: 'accountTabContent',
+        study: 'studyTabContent',
+        offline: 'offlineTabContent',
+        appData: 'appDataTabContent'
+    };
+    const requestedTab = tabContentIds[tabName] && (tabName !== 'appData' || isJstAccount)
+        ? tabName
+        : 'account';
     settingsModal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
-    settingsModal.querySelector(`.settings-tab[data-tab="${tabName}"]`)?.classList.add('active');
+    settingsModal.querySelector(`.settings-tab[data-tab="${requestedTab}"]`)?.classList.add('active');
     settingsModal.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
-    const tabContentId = tabName === 'settings' ? 'settingsTabContent' :
-                         tabName === 'artists' ? 'artistsTabContent' :
-                         tabName === 'data' ? 'dataTabContent' :
-                         tabName === 'stats' ? 'statsTabContent' : 'accountTabContent';
-    document.getElementById(tabContentId).classList.add('active');
+    document.getElementById(tabContentIds[requestedTab]).classList.add('active');
 
     // Data-freshness footer: newest Last-Modified across the vocab files
     // (set in vocab.js trackDataFreshness). An old date = the service
     // worker served cached data; "not loaded yet" = no deck fetched.
-    // The JST account additionally gets a verbose dev block (per-file
-    // dates, app version, latest Claude changelog entry).
+    // This entire audit surface is JST-only: newest data freshness, per-file
+    // dates, app version, and recent development changelog entries.
     const freshnessEl = document.getElementById('dataFreshnessFooter');
-    if (freshnessEl) {
+    if (freshnessEl && isJstAccount) {
         if (window._vocabDataLastModified) {
             const upd = new Date(window._vocabDataLastModified).toLocaleString(undefined,
                 { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -2109,9 +2118,7 @@ function showSettingsModalWithTab(tabName) {
         } else {
             freshnessEl.textContent = 'Data not loaded yet';
         }
-        if (currentUser && currentUser.initials === 'JST') {
-            renderDevFooter(freshnessEl);   // async, appends below basic line
-        }
+        renderDevFooter(freshnessEl);   // async, appends below basic line
     }
 
     settingsModal.classList.remove('hidden');
@@ -2120,7 +2127,7 @@ function showSettingsModalWithTab(tabName) {
 // Verbose data-provenance block for the JST (dev) account only: per-file
 // Last-Modified dates, the running asset version, and the latest entries
 // from config/dev_changelog.json (which Claude appends to when deck data
-// changes). Everyone else just sees the one-line freshness note above.
+// changes). The containing App data tab is hidden from every other account.
 async function renderDevFooter(freshnessEl) {
     let devEl = document.getElementById('devFooterDetail');
     if (!devEl) {
@@ -2160,7 +2167,7 @@ async function renderDevFooter(freshnessEl) {
         }
         const entries = (window._devChangelog && window._devChangelog.entries) || [];
         if (entries.length) {
-            lines.push('<div class="dev-footer-label">Recent Claude changes</div>');
+            lines.push('<div class="dev-footer-label">Recent app/data changes</div>');
             for (const e of entries.slice(0, 2)) {
                 lines.push(`<div class="dev-footer-entry"><b>${e.date}</b> · ${e.summary}` +
                     (e.commit ? ` <span class="dev-footer-commit">(${e.commit})</span>` : '') + '</div>');
@@ -2557,160 +2564,3 @@ window.showTotalStatsModal = showTotalStatsModal;
 window.hideTotalStatsModal = hideTotalStatsModal;
 window.updateTotalStatsButtonVisibility = updateTotalStatsButtonVisibility;
 window.updateStatsModal = updateStatsModal;
-window.setupArtistSelection = setupArtistSelection;
-
-// Multi-artist selection UI in the settings modal (Artists tab)
-function setupArtistSelection() {
-    const primaryContainer = document.getElementById('artistPrimarySection');
-    const secondaryContainer = document.getElementById('artistSecondarySection');
-    const tabBtn = document.getElementById('artistsTabBtn');
-    if (!primaryContainer || !secondaryContainer || !activeArtist) return;
-
-    const artists = window._allArtistsConfig;
-    if (!artists) return;
-
-    // Show the Artists tab
-    if (tabBtn) tabBtn.style.display = '';
-
-    primaryContainer.innerHTML = '';
-    secondaryContainer.innerHTML = '';
-
-    const urlArtistSlug = window._urlArtistSlug;
-
-    for (const [slug, cfg] of Object.entries(artists)) {
-        const isPrimary = slug === urlArtistSlug;
-
-        if (isPrimary) {
-            // Primary: highlighted row, not clickable
-            const row = document.createElement('div');
-            row.className = 'stat-row artist-primary-row';
-            row.innerHTML = `<span>${cfg.name}</span>`;
-            primaryContainer.appendChild(row);
-        } else {
-            // Other artists: tappable to switch primary
-            const row = document.createElement('div');
-            row.className = 'stat-row artist-switch-row';
-            row.style.cursor = 'pointer';
-            row.innerHTML = `<span>${cfg.name}</span>`;
-            row.addEventListener('click', () => switchPrimaryArtist(slug));
-            primaryContainer.appendChild(row);
-        }
-
-        // Secondary section: toggles for non-primary artists.
-        // Only show artists in the SAME language as the primary — mixing
-        // a French playlist into a Spanish deck doesn't make sense, and
-        // the rest of the app assumes a single active language.
-        const sameLanguage = (cfg.language || 'spanish') === (activeArtist.language || 'spanish');
-        if (!isPrimary && sameLanguage) {
-            const toggleRow = document.createElement('div');
-            toggleRow.className = 'stat-row';
-            toggleRow.style.cursor = 'pointer';
-
-            const label = document.createElement('span');
-            label.textContent = cfg.name;
-
-            const toggle = document.createElement('span');
-            const isSelected = window._selectedArtistSlugs.includes(slug);
-            toggle.style.color = isSelected ? 'var(--accent-primary)' : 'var(--text-muted)';
-            toggle.textContent = isSelected ? 'ON' : 'OFF';
-            toggle.dataset.slug = slug;
-
-            toggleRow.appendChild(label);
-            toggleRow.appendChild(toggle);
-            toggleRow.addEventListener('click', () => {
-                const nowSelected = !window._selectedArtistSlugs.includes(slug);
-                if (nowSelected) {
-                    window._selectedArtistSlugs.push(slug);
-                } else {
-                    window._selectedArtistSlugs = window._selectedArtistSlugs.filter(s => s !== slug);
-                }
-                toggle.textContent = nowSelected ? 'ON' : 'OFF';
-                toggle.style.color = nowSelected ? 'var(--accent-primary)' : 'var(--text-muted)';
-                onArtistSelectionChange();
-            });
-            secondaryContainer.appendChild(toggleRow);
-        }
-    }
-}
-
-function switchPrimaryArtist(newSlug) {
-    const allConfigs = window._allArtistsConfig;
-    const newConfig = allConfigs[newSlug];
-    if (!newConfig) return;
-
-    // Update the primary artist globals
-    window._urlArtistSlug = newSlug;
-    activeArtist = newConfig;
-    artistVocabularyScope = 'main';
-
-    // Reset to only the new primary (clear secondaries)
-    window._selectedArtistSlugs = [newSlug];
-
-    // Update URL without reload
-    const url = new URL(window.location);
-    url.searchParams.set('artist', newSlug);
-    url.searchParams.delete('scope');
-    history.replaceState(null, '', url);
-
-    // Update config with new artist's paths and colors
-    const lang = newConfig.language || 'spanish';
-    config.languages[lang] = {
-        ...config.languages[lang],
-        name: `${config.languages[lang].name.replace(/\s*\(.*\)$/, '')} (${newConfig.name})`,
-        dataPath: newConfig.dataPath,
-        indexPath: newConfig.indexPath || newConfig.dataPath,
-        examplesPath: newConfig.examplesPath || null,
-        masterPath: newConfig.masterPath || null,
-        ppmDataPath: null,
-        colorTheme: newConfig.colorTheme || config.languages[lang].colorTheme
-    };
-    document.title = `${newConfig.name} Vocabulary`;
-
-    // Re-apply color theme and re-render checkboxes
-    applyLanguageColorTheme();
-    setupArtistSelection();
-    window.renderArtistSourceSummary?.();
-
-    // Trigger full vocabulary reload (cache invalidation + UI reset)
-    onArtistSelectionChange();
-}
-
-function onArtistSelectionChange() {
-    const urlArtistSlug = window._urlArtistSlug;
-    const checkboxes = document.querySelectorAll('#artistCheckboxes input[type="checkbox"]');
-
-    // Primary (URL) artist is always first; add any checked secondary artists after
-    const selected = [urlArtistSlug];
-    checkboxes.forEach(cb => {
-        if (cb.checked && cb.dataset.slug !== urlArtistSlug) {
-            selected.push(cb.dataset.slug);
-        }
-    });
-
-    window._selectedArtistSlugs = selected;
-    localStorage.setItem('selected_artists', JSON.stringify(selected));
-
-    // Invalidate all cached vocabulary data
-    window._cachedMergedIndex = null;
-    window._cachedMergedExamples = null;
-    window._cachedExamplesData = null;
-    window._cachedJoinedIndex = null;
-    window._cachedJoinedIndexPath = null;
-    delete _levelSliderRawCache[selectedLanguage];
-
-    // Reload albums dictionary for multi-artist mode
-    loadMultiArtistAlbumsDictionaries(selected, window._allArtistsConfig);
-
-    // If we're currently viewing flashcards, go back to setup so user re-picks a set
-    // with the merged vocabulary
-    const appContent = document.getElementById('appContent');
-    const setupPanel = document.getElementById('setupPanel');
-    if (appContent && !appContent.classList.contains('hidden')) {
-        appContent.classList.add('hidden');
-        setupPanel.classList.remove('hidden');
-        setupPanel.style.display = 'block';
-        showFloatingBtns(false);
-        // Re-render level selector with new merged data
-        renderLevelSelector(selectedLanguage);
-    }
-}

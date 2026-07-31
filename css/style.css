@@ -7176,44 +7176,6 @@
             }
         }
 
-        /* Section labels in the Artists settings tab — "Main artist" /
-           "Add to mix". Match the substep-title styling used elsewhere
-           so all minor section headers read consistently. */
-        .artist-section-label {
-            font-family: var(--font-emphasis);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            padding: 8px 0 4px;
-        }
-        .artist-section-label + #artistPrimarySection,
-        .artist-section-label + #artistSecondarySection {
-            margin-bottom: 6px;
-        }
-
-        .artist-primary-row {
-            background: rgba(var(--accent-primary-rgb), 0.12);
-            border: 1px solid rgba(var(--accent-primary-rgb), 0.3);
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .artist-switch-row {
-            padding: 10px 14px;
-            border-radius: 8px;
-            margin-bottom: 2px;
-            transition: background 0.15s;
-        }
-
-        .artist-switch-row:hover {
-            background: rgba(var(--accent-primary-rgb), 0.06);
-        }
-
         .tap-hint {
             text-align: center;
             color: var(--text-muted);
@@ -10167,8 +10129,8 @@
             color: var(--accent-secondary);
         }
 
-/* Data-freshness footer at the bottom of the settings modal (see
-   trackDataFreshness in vocab.js). Diagnostic for service-worker staleness. */
+/* Data freshness in the JST-only App data tab (see trackDataFreshness in
+   vocab.js). Diagnostic for service-worker staleness. */
 .data-freshness-footer {
     margin-top: 12px;
     padding-top: 8px;

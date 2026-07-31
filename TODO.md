@@ -13,6 +13,13 @@
 
 ## UI / Front-End
 
+- **[idea] Combined artist and album selector (L) [artist] [cross-lang]**
+  Design a richer selection surface under the new multi-artist schema when the app is ready
+  for more artists and per-album customization. Open it from the artist-picking flow rather
+  than keeping an Artists tab in the main settings modal; support selecting multiple artists,
+  narrowing each one to particular albums, and making the resulting deck scope clear before
+  rebuilding it. Reconcile this with the existing Album-specific mode idea below before work starts.
+
 - **[now] UI overhaul batch — requested 2026-07-22 (L) [shared] [cross-lang]**
   Run as SEQUENTIAL worktree agents (all touch `css/style.css` + the cache-version files, so
   one at a time; merge each before the next). Specs locked with Josh:

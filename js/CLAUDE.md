@@ -63,8 +63,9 @@ coverage wrapper into the step-1 header beside the language pill; artist mode
 keeps the standalone coverage card.
 Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the set progress panel. DOM `id="step4"` is the automatic next-set panel (visual step 3).
 
-The main settings modal is bounded/scrollable and has Account, Study, Data, and
-Artists tabs. `fluency_global_study_defaults_v1` persists Merge Lemmas, Cognates,
+The main settings modal is bounded/scrollable and has Account, Study, and Offline & sync
+tabs, plus a JST-only App data audit tab. Artist/album selection is intentionally absent
+until its combined selector is redesigned. `fluency_global_study_defaults_v1` persists Merge Lemmas, Cognates,
 card direction, and automatic speech. In-study direction/audio changes write the
 same store immediately; exact resume snapshots additionally retain those active
 choices. The study-options radial uses the generic picker with

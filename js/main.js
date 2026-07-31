@@ -1,21 +1,21 @@
-import './state.js?v=20260731l';
-import './offline-db.js?v=20260731l';
-import './sync-queue.js?v=20260731l';
-import { initOfflineContent } from './offline-content.js?v=20260731l';
-import './speech.js?v=20260731l';
-import './artist-ui.js?v=20260731l';
-import './auth.js?v=20260731l';
-import './spotify.js?v=20260731l';
-import './estimation.js?v=20260731l';
-import './config.js?v=20260731l';
-import './progress.js?v=20260731l';
-import './knowledge.js?v=20260731l';
-import './ui.js?v=20260731l';
-import './vocab.js?v=20260731l';
-import './flashcards.js?v=20260731l';
+import './state.js?v=20260731m';
+import './offline-db.js?v=20260731m';
+import './sync-queue.js?v=20260731m';
+import { initOfflineContent } from './offline-content.js?v=20260731m';
+import './speech.js?v=20260731m';
+import './artist-ui.js?v=20260731m';
+import './auth.js?v=20260731m';
+import './spotify.js?v=20260731m';
+import './estimation.js?v=20260731m';
+import './config.js?v=20260731m';
+import './progress.js?v=20260731m';
+import './knowledge.js?v=20260731m';
+import './ui.js?v=20260731m';
+import './vocab.js?v=20260731m';
+import './flashcards.js?v=20260731m';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260731l';
+import './flashcards-modals.js?v=20260731m';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -325,7 +325,6 @@ loadConfig().then(async () => {
             await updateCognateToggleVisibility();
             await renderLevelSelector(activeArtist.language || 'spanish');
             await updateExclusionBars();
-            setupArtistSelection();
         } finally {
             if (!isResumeNavigation) hideAppLoading();
         }

@@ -1473,15 +1473,7 @@ function setupAuthEventListeners() {
     const settingsModal = document.getElementById('settingsModal');
     settingsModal.querySelectorAll('.settings-tab').forEach(tab => {
         tab.addEventListener('click', function() {
-            const tabName = this.dataset.tab;
-
-            // Update active tab button
-            settingsModal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-
-            // Update active tab content
-            settingsModal.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
-            document.getElementById(tabName + 'TabContent').classList.add('active');
+            showSettingsModalWithTab(this.dataset.tab);
         });
     });
 
