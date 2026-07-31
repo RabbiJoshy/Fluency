@@ -471,22 +471,26 @@ def load_merge_targets(mapping_path):
 
 
 def load_known_vocab():
-    """Load the normal-mode Spanish vocabulary for trailing-apos tiebreaker.
+    """Known-Spanish set backing the trailing-apos tiebreaker.
 
-    NOTE: Data/Spanish/vocabulary.json no longer exists — the deck moved to the
-    split vocabulary.index.json / vocabulary.examples.json format and the
-    monolithic file is gitignored. This therefore returns an empty set on a
-    current checkout, which silently disables the trailing-apos tiebreaker.
-    Left as-is deliberately: re-enabling it changes lemma selection across the
-    whole deck and deserves its own verified change, not a side effect of the
-    d-elision work. bare_d_elision_canonical uses load_spanish_forms() instead.
+    This used to read Data/Spanish/vocabulary.json, which no longer exists —
+    the deck moved to the split vocabulary.index.json / vocabulary.examples.json
+    format and the monolithic file is gitignored. The loader returned an empty
+    set on any current checkout, silently disabling the tiebreaker: 191 elided
+    forms survived as their own Bad Bunny cards (vengamo', estuviésemo',
+    virtude') instead of merging into vengamos / estuviésemos / virtudes.
+
+    It now uses spanish_forms.json, the same canonical "is this Spanish?" table
+    step_4a consults. The split deck index is NOT a workable substitute for the
+    original file: it holds ~9.4k mostly-lemma entries and recovers 0 of the 191,
+    because the needed targets are inflected forms that were never deck cards.
+    spanish_forms recovers 65.
+
+    Widening the set cannot disturb an existing merge: the tiebreaker only runs
+    after the explicit mapping, d-elision and double-elision rules have all
+    declined, so it can add merges but never override one.
     """
-    vocab_path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "vocabulary.json")
-    if not os.path.isfile(vocab_path):
-        return set()
-    with open(vocab_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return set(entry["word"].lower() for entry in data)
+    return load_spanish_forms()
 
 
 _spanish_forms_cache = None

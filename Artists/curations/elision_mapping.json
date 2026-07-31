@@ -33774,5 +33774,50 @@
     "display_form": "pa'lante",
     "target_lemma": "adelante",
     "note": "pa' adelante → pa'lante (forward)"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to's",
+    "target_word": "todos",
+    "display_form": "to's",
+    "target_lemma": "todo",
+    "note": "manual override (internal apostrophe: to' = tod-)"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to'as",
+    "target_word": "todas",
+    "display_form": "to'as",
+    "target_lemma": "todo",
+    "note": "manual override (internal apostrophe: to' = tod-)"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to'ito",
+    "target_word": "todito",
+    "display_form": "to'ito",
+    "target_lemma": "todito",
+    "note": "manual override (internal apostrophe: to' = tod-)"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to'o",
+    "target_word": "todo",
+    "display_form": "to'o",
+    "target_lemma": "todo",
+    "note": "manual override (internal apostrophe: to' = tod-)"
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "elided_word": "to'itas",
+    "target_word": "toditas",
+    "display_form": "to'itas",
+    "target_lemma": "todito",
+    "note": "manual override (internal apostrophe: to' = tod-)"
   }
 ]
