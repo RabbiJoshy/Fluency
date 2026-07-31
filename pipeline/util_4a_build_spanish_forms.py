@@ -23,12 +23,22 @@ import json
 import os
 import sys
 
+def _resolve_spanish_vocab(path):
+    """Data/Spanish/vocabulary.json is gitignored and absent on a fresh
+    checkout; the deck ships split. Fall back to the index, same word/lemma
+    fields in the same order."""
+    import os as _os
+    if _os.path.isfile(path):
+        return path
+    alt = path.replace("vocabulary.json", "vocabulary.index.json")
+    return alt if _os.path.isfile(alt) else path
+
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(_THIS_DIR)
 
 WIKT_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "Senses", "wiktionary", "kaikki-spanish.jsonl.gz")
 CONJ_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "conjugation_reverse.json")
-NORMAL_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "vocabulary.json")
+NORMAL_PATH = _resolve_spanish_vocab(os.path.join(PROJECT_ROOT, "Data", "Spanish", "vocabulary.json"))
 OUT_PATH = os.path.join(PROJECT_ROOT, "Data", "Spanish", "layers", "spanish_forms.json")
 
 

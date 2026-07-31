@@ -266,6 +266,22 @@
       "echo_example_ids": [
         "9614095:41"
       ]
+    },
+    {
+      "id": "gloss:manín",
+      "kind": "gloss",
+      "word": "manín",
+      "current": "peanut",
+      "proposed": "bro, buddy (PR slang)",
+      "lemma": "manín",
+      "pos": "NOUN",
+      "reason": "manín accumulated a peanut sense from the era when it was wrongly lemmatised to maní. Master senses are never removed, so a rebuild cannot clear it. Note the correct gloss is UNCLAIMED by assignments while peanut IS claimed, so no automatic staleness heuristic can fix this — it needs a human decision.",
+      "evidence": "Dime, manín, ¿me cosieron la boca a mí?",
+      "source": "claude-code",
+      "confidence": "high",
+      "status": "open",
+      "created": "2026-07-31",
+      "artist": "Young Miko"
     }
   ]
 }

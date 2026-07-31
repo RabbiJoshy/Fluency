@@ -21,6 +21,16 @@ import json
 import os
 import sys
 
+def _resolve_spanish_vocab(path):
+    """Data/Spanish/vocabulary.json is gitignored and absent on a fresh
+    checkout; the deck ships split. Fall back to the index, same word/lemma
+    fields in the same order."""
+    import os as _os
+    if _os.path.isfile(path):
+        return path
+    alt = path.replace("vocabulary.json", "vocabulary.index.json")
+    return alt if _os.path.isfile(alt) else path
+
 
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(_THIS_DIR)
@@ -209,6 +219,7 @@ def main():
         targets = []
         normal = os.path.join(_PROJECT_ROOT, "Data", args.language,
                               "vocabulary.json")
+        normal = _resolve_spanish_vocab(normal)
         if os.path.isfile(normal):
             targets.append(normal)
         artist_dir = _LANG_TO_ARTIST_DIR.get(args.language, args.language.lower())
