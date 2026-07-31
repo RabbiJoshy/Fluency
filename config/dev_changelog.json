@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "bda12254",
+      "summary": "Settings now separates study, offline tools, and app-data auditing",
+      "details": [
+        "Study preferences from the card opens the Study tab directly, while the sync-status pill opens Offline & sync",
+        "The former Data tab is now Offline & sync; deployment freshness, app version, and recent changes have their own JST-only App data tab",
+        "Removed the premature Artists settings tab and recorded a future combined multi-artist and per-album selector in the app backlog; cache v166→v167, assets 20260731l→20260731m"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "37b6efa3",
       "summary": "Newly merged words got real meanings from a Gemini pass",
       "details": [

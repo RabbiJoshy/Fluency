@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Separate settings by study, offline, and app-data purpose
+
+- Commit `bda12254`; front-end cache `flashcards-v167` / `20260731m`.
+- Made the card's Study preferences action open the canonical Study tab directly and routed the top-bar synchronization indicator to Offline & sync.
+- Renamed the mixed Data surface to Offline & sync, moved freshness/version/changelog diagnostics into a separate JST-only App data tab, and removed the main settings Artists tab plus its obsolete modal-specific JavaScript and CSS.
+- Added a TODO for a future combined multi-artist and per-album selector opened from artist selection under the new schema.
+- Verification: bundled-Node syntax checks for every changed JavaScript module and the service worker; focused settings-routing/JST-gating/removal assertions; asset-version lockstep; valid changelog JSON; `git diff --check`. No browser preview was used because of the repository's service-worker policy.
+
 ### 2026-07-31 — Keep headwords white and reserve POS colour for separate lemmas
 
 - Commit `9553fc33`; front-end cache `flashcards-v166` / `20260731l`.
