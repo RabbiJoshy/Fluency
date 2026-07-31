@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "77466b91",
+      "summary": "Cleaned up study controls and morphology labels",
+      "details": [
+        "The active-set connector is neutral grey and no longer shows through subdued card-number markers; the icon-only Study options target reaches the top edge on mobile",
+        "Study options use cleaner icon-and-text targets, explicitly say how to close the radial, and no longer include Shuffle",
+        "Morphology omits assumed indicative and affirmative labels, combines person and number, and uses compact SING and PLURAL wording"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "2b5cc3f1",
       "summary": "Rebuilt Bad Bunny: ad-libs removed, elisions merged, lemmas corrected",
       "details": [

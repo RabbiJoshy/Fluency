@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Clean up the active-set controls and morphology defaults
+
+- Commit `77466b91`; front-end cache `flashcards-v163` / `20260731i`.
+- Replaced the scrubber's accent connector with neutral grey and kept every numbered marker opaque at its own visible footprint so the connector cannot show through subdued markers.
+- Made Study options visually icon-only with a 50px desktop target and a mobile target extending from the screen edge to the card. The radial keeps generous circular hit areas around cleaner icon-and-text actions, removes Shuffle, and labels its centre as the close action.
+- Combined morphology person and number into one pill, uses `SING` / `PLURAL`, and suppresses the assumed indicative and affirmative defaults while keeping distinct analyses on separate rows.
+- Verification: bundled-Node syntax checks, focused morphology grouping regression, changelog JSON parsing, cache-version and removed-control assertions, and `git diff --check`.
+
 ### 2026-07-31 — Enlarge the active-set rail and separate morphology alternatives
 
 - Commit `37749f01`; front-end cache `flashcards-v162` / `20260731h`.
