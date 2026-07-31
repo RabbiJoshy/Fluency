@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Fix the sync-queue browser parser error
+
+- Commit `1309427a`; front-end cache `flashcards-v159` / `20260731e`.
+- Reproduced the deployed failure in a real browser and read the decisive console error: `SyntaxError: Invalid regular expression flags` in `sync-queue.js`. The URL-sanitizing regex had double-escaped slashes, which Node's syntax check accepted but the browser parsed as an early regex terminator plus invalid flags; because `main.js` statically imports the queue, this aborted the entire application module graph.
+- Corrected the literal to `/https?:\/\/\S+/g`. This is the root fix for the spinner, static/untappable login, and nonfunctional setup after fallback login; the earlier non-module auth fallback remains as defense in depth.
+- Verification: deployed-browser console reproduction; five focused Node tests with a new assertion rejecting the malformed literal; bundled-Node syntax checks; valid changelog JSON; cache-version lockstep; `git diff --check`. Deployment will be rechecked in-browser after publishing.
+
 ### 2026-07-31 — Add a Safari-safe login fallback
 
 - Commit `e7ca69d5`; front-end cache `flashcards-v158` / `20260731d`.

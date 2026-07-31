@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-07-31",
-      "commit": "pending",
+      "commit": "1309427a",
       "summary": "Fixed the startup parser error blocking the entire app",
       "details": [
         "Corrected a malformed URL-sanitizing regular expression in the new sync queue that browsers rejected before main.js could run",
