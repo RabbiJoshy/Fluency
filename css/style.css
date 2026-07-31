@@ -2111,7 +2111,7 @@
             font-size: 64px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: color-mix(in srgb, rgb(var(--card-pos-rgb, var(--accent-primary-rgb))) 64%, var(--text-primary));
+            color: #fff;
             text-align: center;
             /* updateCard measures the available width and shrinks long prompts
                to one line. Keep wrapping disabled so the result cannot fall
@@ -2122,10 +2122,6 @@
             overflow-wrap: normal;
             word-break: normal;
             line-height: 1.1;
-        }
-
-        .card-word.is-surface-form {
-            color: #fff;
         }
 
         .card-lemma {
@@ -7383,10 +7379,6 @@
         /* Headword and lemma follow the selected POS. The lemma is mixed with
            white for hierarchy and contrast without losing that POS identity. */
         .back-headword {
-            color: color-mix(in srgb, rgb(var(--card-pos-rgb, var(--accent-primary-rgb))) 64%, var(--text-primary));
-        }
-
-        .back-headword.is-surface-form {
             color: #fff;
         }
 
