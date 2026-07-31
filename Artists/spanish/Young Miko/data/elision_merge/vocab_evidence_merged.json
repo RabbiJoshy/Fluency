@@ -12207,6 +12207,136 @@
     ]
   },
   {
+    "word": "todas",
+    "corpus_count": 38,
+    "song_count": 23,
+    "song_ids": [
+      "10220921",
+      "10220940",
+      "10220946",
+      "11373471",
+      "11888474",
+      "12570922",
+      "12591723",
+      "8219794",
+      "8224314",
+      "8361727",
+      "8406201",
+      "8422401",
+      "8503396",
+      "8580461",
+      "8618160",
+      "8693529",
+      "8783598",
+      "8874493",
+      "8981516",
+      "9555844",
+      "9614105",
+      "9788043",
+      "9923845"
+    ],
+    "examples": [
+      {
+        "id": "8874493:28",
+        "line": "Con toa' esta' prenda', las pone bellaca el brillo (El bling-bling)",
+        "title": "Lisa",
+        "surface": "toa'"
+      },
+      {
+        "id": "8224314:7",
+        "line": "Pa' toa' las puta' y las cuero, ah (Grr)",
+        "title": "Putero",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "8406201:5",
+        "line": "Compro toa' las botella' (Prr)",
+        "title": "La Mini",
+        "vocalists": [
+          "Casper Mágico"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "toa'"
+      },
+      {
+        "id": "11373471:5",
+        "line": "Mucha' gata', gata' a fogata, toa' las prenda' y la plata",
+        "title": "Gata",
+        "vocalists": [
+          "Young Miko",
+          "Central Cee"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "12570922:17",
+        "line": "Vamo' a toa' y que se joda to'",
+        "title": "Sexo de moteles",
+        "surface": "toa'"
+      },
+      {
+        "id": "10220940:29",
+        "line": "Ahora toa' las babie' son bi desde que salí, shoutout a Brray (Sheesh)",
+        "title": "pinot grigio",
+        "vocalists": [
+          "Young Miko",
+          "Brray"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "10220946:17",
+        "line": "Baby, pa' mí es normal (Ujum), toa' las tienda' reservada'",
+        "title": "oye ma’",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "8361727:11",
+        "line": "Rompe la discoteca casi toa' las semana'",
+        "title": "Condado",
+        "vocalists": [
+          "Lunay",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toa'"
+      },
+      {
+        "id": "10220921:5",
+        "line": "Ahora veo mi nombre number one en toa' las lista'",
+        "title": "rookie of the year",
+        "surface": "toa'"
+      },
+      {
+        "id": "8783598:9",
+        "line": "Pichea pa' salir, en toa' las foto' infraganti (Una mami)",
+        "title": "Big Booty",
+        "vocalists": [
+          "Hozwal"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "toa'"
+      }
+    ],
+    "display_form": "toa'",
+    "variants": {
+      "toa'": 20,
+      "to'as": 14,
+      "todas": 3,
+      "toda'": 1
+    }
+  },
+  {
     "word": "oh",
     "corpus_count": 37,
     "song_count": 16,
@@ -16794,132 +16924,6 @@
     ]
   },
   {
-    "word": "todas",
-    "corpus_count": 24,
-    "song_count": 20,
-    "song_ids": [
-      "10220921",
-      "10220940",
-      "10220946",
-      "11373471",
-      "11888474",
-      "12570922",
-      "12591723",
-      "8219794",
-      "8224314",
-      "8361727",
-      "8406201",
-      "8422401",
-      "8580461",
-      "8783598",
-      "8874493",
-      "8981516",
-      "9555844",
-      "9614105",
-      "9788043",
-      "9923845"
-    ],
-    "examples": [
-      {
-        "id": "8874493:28",
-        "line": "Con toa' esta' prenda', las pone bellaca el brillo (El bling-bling)",
-        "title": "Lisa",
-        "surface": "toa'"
-      },
-      {
-        "id": "8224314:7",
-        "line": "Pa' toa' las puta' y las cuero, ah (Grr)",
-        "title": "Putero",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "8406201:5",
-        "line": "Compro toa' las botella' (Prr)",
-        "title": "La Mini",
-        "vocalists": [
-          "Casper Mágico"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "toa'"
-      },
-      {
-        "id": "11373471:5",
-        "line": "Mucha' gata', gata' a fogata, toa' las prenda' y la plata",
-        "title": "Gata",
-        "vocalists": [
-          "Young Miko",
-          "Central Cee"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "12570922:17",
-        "line": "Vamo' a toa' y que se joda to'",
-        "title": "Sexo de moteles",
-        "surface": "toa'"
-      },
-      {
-        "id": "10220940:29",
-        "line": "Ahora toa' las babie' son bi desde que salí, shoutout a Brray (Sheesh)",
-        "title": "pinot grigio",
-        "vocalists": [
-          "Young Miko",
-          "Brray"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "10220946:17",
-        "line": "Baby, pa' mí es normal (Ujum), toa' las tienda' reservada'",
-        "title": "oye ma’",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "8361727:11",
-        "line": "Rompe la discoteca casi toa' las semana'",
-        "title": "Condado",
-        "vocalists": [
-          "Lunay",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toa'"
-      },
-      {
-        "id": "10220921:5",
-        "line": "Ahora veo mi nombre number one en toa' las lista'",
-        "title": "rookie of the year",
-        "surface": "toa'"
-      },
-      {
-        "id": "8783598:9",
-        "line": "Pichea pa' salir, en toa' las foto' infraganti (Una mami)",
-        "title": "Big Booty",
-        "vocalists": [
-          "Hozwal"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "toa'"
-      }
-    ],
-    "display_form": "toa'",
-    "variants": {
-      "toa'": 20,
-      "todas": 3,
-      "toda'": 1
-    }
-  },
-  {
     "word": "prr",
     "corpus_count": 23,
     "song_count": 16,
@@ -18679,6 +18683,122 @@
     "variants": {
       "gana'": 12,
       "ganas": 8
+    }
+  },
+  {
+    "word": "todos",
+    "corpus_count": 20,
+    "song_count": 14,
+    "song_ids": [
+      "10220921",
+      "11690948",
+      "12582444",
+      "12591720",
+      "7134347",
+      "7750717",
+      "8156995",
+      "8224310",
+      "8224313",
+      "8406201",
+      "8618160",
+      "8693529",
+      "9077520",
+      "9555844"
+    ],
+    "examples": [
+      {
+        "id": "8224313:12",
+        "line": "Todo' me miran, I work (I work)",
+        "title": "Pull Up",
+        "surface": "todo'"
+      },
+      {
+        "id": "9077520:22",
+        "line": "Pero ninguno de todo' eso' sos vos",
+        "title": "8 AM",
+        "vocalists": [
+          "NICKI NICOLE",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todo'"
+      },
+      {
+        "id": "7750717:20",
+        "line": "Las favorita', todo' las quieren, como ninguna' compiten (Ah-ah)",
+        "title": "Besties",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todo'"
+      },
+      {
+        "id": "8224310:47",
+        "line": "Todo' mis shooters le meten preciso, ello' todo' le meten like ninety (Huh)",
+        "title": "Trending",
+        "surface": "todo'"
+      },
+      {
+        "id": "8406201:12",
+        "line": "Todo' la quieren, pero no es con trili (Uh)",
+        "title": "La Mini",
+        "vocalists": [
+          "Casper Mágico",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todo'"
+      },
+      {
+        "id": "10220921:26",
+        "line": "Obvio, si de todo' soy el tipo (Ah)",
+        "title": "rookie of the year",
+        "surface": "todo'"
+      },
+      {
+        "id": "9555844:31",
+        "line": "Que todo' los R-Sport tienen transmisión de Ferrari, ah-ah",
+        "title": "CC (Remix)",
+        "vocalists": [
+          "Bryant Myers"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "todo'"
+      },
+      {
+        "id": "7134347:27",
+        "line": "Todo' ven que ya estamo' comandando (Yeah)",
+        "title": "Vendetta",
+        "vocalists": [
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todo'"
+      },
+      {
+        "id": "12591720:29",
+        "line": "Y a nosotra' nos conocen en to's lao'",
+        "title": "Algo casual",
+        "surface": "to's"
+      },
+      {
+        "id": "8693529:24",
+        "line": "Quiero ver to's sus sobacos, como si fuera un atraco",
+        "title": "Déjanos Pasar",
+        "vocalists": [
+          "PJ Sin suela",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "to's"
+      }
+    ],
+    "display_form": "todo'",
+    "variants": {
+      "todo'": 9,
+      "to's": 6,
+      "todos": 5
     }
   },
   {
@@ -25936,70 +26056,6 @@
     ]
   },
   {
-    "word": "to'as",
-    "corpus_count": 14,
-    "song_count": 5,
-    "song_ids": [
-      "10220946",
-      "8219794",
-      "8503396",
-      "8618160",
-      "8693529"
-    ],
-    "examples": [
-      {
-        "id": "8693529:12",
-        "line": "Aquí a to'as las babies les gustan gángster",
-        "title": "Déjanos Pasar",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "10220946:14",
-        "line": "Cada ve' que me la chingo to'as se van feeling loqui (Prr)",
-        "title": "oye ma’",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "8618160:45",
-        "line": "Llegamos a la disco con to'as las cuero",
-        "title": "Katana",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "8219794:25",
-        "line": "Si ahora to'as quieren de mí, tienen curiosidad, ah-ah",
-        "title": "Bi",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      },
-      {
-        "id": "8503396:28",
-        "line": "To'as las Chevy ya tuve que tintear",
-        "title": "Kachipun",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to'as"
-      }
-    ]
-  },
-  {
     "word": "van",
     "corpus_count": 14,
     "song_count": 10,
@@ -26462,118 +26518,6 @@
     "variants": {
       "foto'": 9,
       "fotos": 5
-    }
-  },
-  {
-    "word": "todos",
-    "corpus_count": 14,
-    "song_count": 12,
-    "song_ids": [
-      "10220921",
-      "11690948",
-      "12582444",
-      "7134347",
-      "7750717",
-      "8156995",
-      "8224310",
-      "8224313",
-      "8406201",
-      "8618160",
-      "9077520",
-      "9555844"
-    ],
-    "examples": [
-      {
-        "id": "8224313:12",
-        "line": "Todo' me miran, I work (I work)",
-        "title": "Pull Up",
-        "surface": "todo'"
-      },
-      {
-        "id": "9077520:22",
-        "line": "Pero ninguno de todo' eso' sos vos",
-        "title": "8 AM",
-        "vocalists": [
-          "NICKI NICOLE",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todo'"
-      },
-      {
-        "id": "7750717:20",
-        "line": "Las favorita', todo' las quieren, como ninguna' compiten (Ah-ah)",
-        "title": "Besties",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todo'"
-      },
-      {
-        "id": "8224310:47",
-        "line": "Todo' mis shooters le meten preciso, ello' todo' le meten like ninety (Huh)",
-        "title": "Trending",
-        "surface": "todo'"
-      },
-      {
-        "id": "8406201:12",
-        "line": "Todo' la quieren, pero no es con trili (Uh)",
-        "title": "La Mini",
-        "vocalists": [
-          "Casper Mágico",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todo'"
-      },
-      {
-        "id": "10220921:26",
-        "line": "Obvio, si de todo' soy el tipo (Ah)",
-        "title": "rookie of the year",
-        "surface": "todo'"
-      },
-      {
-        "id": "9555844:31",
-        "line": "Que todo' los R-Sport tienen transmisión de Ferrari, ah-ah",
-        "title": "CC (Remix)",
-        "vocalists": [
-          "Bryant Myers"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "todo'"
-      },
-      {
-        "id": "7134347:27",
-        "line": "Todo' ven que ya estamo' comandando (Yeah)",
-        "title": "Vendetta",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todo'"
-      },
-      {
-        "id": "12582444:16",
-        "line": "Siempre que pisa la disco, todos vienen con lo mismo",
-        "title": "Likey Likey",
-        "surface": "todos"
-      },
-      {
-        "id": "8156995:34",
-        "line": "Todos nos miran en el Alfa Romeo, uh",
-        "title": "Castigada",
-        "vocalists": [
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todos"
-      }
-    ],
-    "display_form": "todo'",
-    "variants": {
-      "todo'": 9,
-      "todos": 5
     }
   },
   {
@@ -47055,34 +46999,6 @@
     ]
   },
   {
-    "word": "to's",
-    "corpus_count": 6,
-    "song_count": 2,
-    "song_ids": [
-      "12591720",
-      "8693529"
-    ],
-    "examples": [
-      {
-        "id": "12591720:29",
-        "line": "Y a nosotra' nos conocen en to's lao'",
-        "title": "Algo casual",
-        "surface": "to's"
-      },
-      {
-        "id": "8693529:24",
-        "line": "Quiero ver to's sus sobacos, como si fuera un atraco",
-        "title": "Déjanos Pasar",
-        "vocalists": [
-          "PJ Sin suela",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "to's"
-      }
-    ]
-  },
-  {
     "word": "top",
     "corpus_count": 6,
     "song_count": 4,
@@ -56356,7 +56272,7 @@
     ]
   },
   {
-    "word": "metíos",
+    "word": "metidos",
     "corpus_count": 4,
     "song_count": 3,
     "song_ids": [
@@ -56908,7 +56824,7 @@
     ]
   },
   {
-    "word": "pegaítos",
+    "word": "pegaditos",
     "corpus_count": 4,
     "song_count": 2,
     "song_ids": [
@@ -70072,6 +69988,43 @@
     }
   },
   {
+    "word": "arrebatados",
+    "corpus_count": 3,
+    "song_count": 2,
+    "song_ids": [
+      "8693529",
+      "9555844"
+    ],
+    "examples": [
+      {
+        "id": "8693529:44",
+        "line": "To's borrachos y to's arrebata'os",
+        "title": "Déjanos Pasar",
+        "vocalists": [
+          "PJ Sin Suela",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "arrebata'os"
+      },
+      {
+        "id": "9555844:65",
+        "line": "En tus ojo' arrebatao' es que yo pienso (Yo pienso)",
+        "title": "CC (Remix)",
+        "vocalists": [
+          "Omar Courtz"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "arrebatao'"
+      }
+    ],
+    "display_form": "arrebata'os",
+    "variants": {
+      "arrebata'os": 2,
+      "arrebatao'": 1
+    }
+  },
+  {
     "word": "bitches",
     "corpus_count": 3,
     "song_count": 3,
@@ -70901,7 +70854,7 @@
     }
   },
   {
-    "word": "prendíos",
+    "word": "prendidos",
     "corpus_count": 3,
     "song_count": 3,
     "song_ids": [
@@ -72085,28 +72038,6 @@
         "surface": "argentina"
       }
     ]
-  },
-  {
-    "word": "arrebatados",
-    "corpus_count": 2,
-    "song_count": 1,
-    "song_ids": [
-      "8693529"
-    ],
-    "examples": [
-      {
-        "id": "8693529:44",
-        "line": "To's borrachos y to's arrebata'os",
-        "title": "Déjanos Pasar",
-        "vocalists": [
-          "PJ Sin Suela",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "arrebata'os"
-      }
-    ],
-    "display_form": "arrebata'os"
   },
   {
     "word": "arrepiento",
@@ -83382,7 +83313,7 @@
     "display_form": "parte'"
   },
   {
-    "word": "partie'",
+    "word": "parties",
     "corpus_count": 2,
     "song_count": 2,
     "song_ids": [
@@ -83406,7 +83337,8 @@
         "title": "Plug (Type Shit)",
         "surface": "partie'"
       }
-    ]
+    ],
+    "display_form": "partie'"
   },
   {
     "word": "parto",
@@ -91147,6 +91079,27 @@
     }
   },
   {
+    "word": "irnos",
+    "corpus_count": 2,
+    "song_count": 1,
+    "song_ids": [
+      "12458903"
+    ],
+    "examples": [
+      {
+        "id": "12458903:8",
+        "line": "Ay, sí, voy a preguntarle si vamo' a irno'",
+        "title": "Meiomi",
+        "surface": "irno'"
+      }
+    ],
+    "display_form": "irno'",
+    "variants": {
+      "irno'": 1,
+      "irnos": 1
+    }
+  },
+  {
     "word": "jevos",
     "corpus_count": 2,
     "song_count": 2,
@@ -91407,44 +91360,6 @@
     "variants": {
       "mucha'": 1,
       "muchas": 1
-    }
-  },
-  {
-    "word": "negras",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "8043163",
-      "8219794"
-    ],
-    "examples": [
-      {
-        "id": "8043163:63",
-        "line": "Las Oveja' Negra' (Quería una molly y se la, oh, quería una molly y se la, oh)",
-        "title": "2seater",
-        "vocalists": [
-          "Juanka",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "negra'"
-      },
-      {
-        "id": "8219794:64",
-        "line": "Las Ovejas Negras",
-        "title": "Bi",
-        "vocalists": [
-          "Brray",
-          "Young Miko"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "negras"
-      }
-    ],
-    "display_form": "negra'",
-    "variants": {
-      "negra'": 1,
-      "negras": 1
     }
   },
   {
@@ -92718,7 +92633,7 @@
     ]
   },
   {
-    "word": "agarren",
+    "word": "agarre'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -92735,8 +92650,7 @@
         "sung_by_primary_artist": true,
         "surface": "agarre'"
       }
-    ],
-    "display_form": "agarre'"
+    ]
   },
   {
     "word": "agarro",
@@ -92864,7 +92778,7 @@
     ]
   },
   {
-    "word": "ahogamo'",
+    "word": "ahogamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -92883,7 +92797,8 @@
         "sung_by_primary_artist": true,
         "surface": "ahogamo'"
       }
-    ]
+    ],
+    "display_form": "ahogamo'"
   },
   {
     "word": "aight",
@@ -93516,7 +93431,7 @@
     ]
   },
   {
-    "word": "amigable'",
+    "word": "amigables",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -93533,7 +93448,8 @@
         "sung_by_primary_artist": true,
         "surface": "amigable'"
       }
-    ]
+    ],
+    "display_form": "amigable'"
   },
   {
     "word": "amigo",
@@ -93710,7 +93626,7 @@
     ]
   },
   {
-    "word": "andábamo'",
+    "word": "andábamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -93723,7 +93639,8 @@
         "title": "Sexo de moteles",
         "surface": "andábamo'"
       }
-    ]
+    ],
+    "display_form": "andábamo'"
   },
   {
     "word": "angel",
@@ -94492,7 +94409,7 @@
     ]
   },
   {
-    "word": "armamo'",
+    "word": "armamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -94509,7 +94426,8 @@
         "sung_by_primary_artist": false,
         "surface": "armamo'"
       }
-    ]
+    ],
+    "display_form": "armamo'"
   },
   {
     "word": "armas",
@@ -94548,7 +94466,7 @@
     ]
   },
   {
-    "word": "arrancamo'",
+    "word": "arrancamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -94565,7 +94483,8 @@
         "sung_by_primary_artist": true,
         "surface": "arrancamo'"
       }
-    ]
+    ],
+    "display_form": "arrancamo'"
   },
   {
     "word": "arrastrarte",
@@ -94586,27 +94505,6 @@
         "surface": "arrastrarte"
       }
     ]
-  },
-  {
-    "word": "arrebataos",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "9555844"
-    ],
-    "examples": [
-      {
-        "id": "9555844:65",
-        "line": "En tus ojo' arrebatao' es que yo pienso (Yo pienso)",
-        "title": "CC (Remix)",
-        "vocalists": [
-          "Omar Courtz"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "arrebatao'"
-      }
-    ],
-    "display_form": "arrebatao'"
   },
   {
     "word": "arrebatarse",
@@ -95573,7 +95471,7 @@
     ]
   },
   {
-    "word": "babeá'",
+    "word": "babeás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -95590,7 +95488,8 @@
         "sung_by_primary_artist": false,
         "surface": "babeá'"
       }
-    ]
+    ],
+    "display_form": "babeá'"
   },
   {
     "word": "babilla",
@@ -95730,7 +95629,7 @@
     ]
   },
   {
-    "word": "bahama'",
+    "word": "bahamas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -95743,7 +95642,8 @@
         "title": "fuck TMZ",
         "surface": "bahama'"
       }
-    ]
+    ],
+    "display_form": "bahama'"
   },
   {
     "word": "bailaba",
@@ -97398,7 +97298,7 @@
     ]
   },
   {
-    "word": "blancos",
+    "word": "blanco'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -97415,8 +97315,7 @@
         "sung_by_primary_artist": true,
         "surface": "blanco'"
       }
-    ],
-    "display_form": "blanco'"
+    ]
   },
   {
     "word": "blanquita",
@@ -97839,7 +97738,7 @@
     ]
   },
   {
-    "word": "boquete'",
+    "word": "boquetes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -97856,7 +97755,8 @@
         "sung_by_primary_artist": true,
         "surface": "boquete'"
       }
-    ]
+    ],
+    "display_form": "boquete'"
   },
   {
     "word": "boring",
@@ -97937,7 +97837,7 @@
     ]
   },
   {
-    "word": "borramo'",
+    "word": "borramos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -97954,7 +97854,8 @@
         "sung_by_primary_artist": true,
         "surface": "borramo'"
       }
-    ]
+    ],
+    "display_form": "borramo'"
   },
   {
     "word": "borrar",
@@ -98949,7 +98850,7 @@
     ]
   },
   {
-    "word": "cabina'",
+    "word": "cabinas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -98966,7 +98867,8 @@
         "sung_by_primary_artist": false,
         "surface": "cabina'"
       }
-    ]
+    ],
+    "display_form": "cabina'"
   },
   {
     "word": "cabrona",
@@ -99005,7 +98907,7 @@
     ]
   },
   {
-    "word": "cachete'",
+    "word": "cachetes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -99022,7 +98924,8 @@
         "sung_by_primary_artist": false,
         "surface": "cachete'"
       }
-    ]
+    ],
+    "display_form": "cachete'"
   },
   {
     "word": "cachetitos",
@@ -99388,7 +99291,7 @@
     "display_form": "calla'"
   },
   {
-    "word": "callamo'",
+    "word": "callamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -99405,7 +99308,8 @@
         "sung_by_primary_artist": true,
         "surface": "callamo'"
       }
-    ]
+    ],
+    "display_form": "callamo'"
   },
   {
     "word": "callejero",
@@ -99921,7 +99825,7 @@
     ]
   },
   {
-    "word": "cantante'",
+    "word": "cantantes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -99938,7 +99842,8 @@
         "sung_by_primary_artist": false,
         "surface": "cantante'"
       }
-    ]
+    ],
+    "display_form": "cantante'"
   },
   {
     "word": "cantarte",
@@ -100494,7 +100399,7 @@
     ]
   },
   {
-    "word": "castigá'",
+    "word": "castigás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -100507,7 +100412,8 @@
         "title": "Sexo de moteles",
         "surface": "castigá'"
       }
-    ]
+    ],
+    "display_form": "castigá'"
   },
   {
     "word": "castle",
@@ -101625,7 +101531,7 @@
     ]
   },
   {
-    "word": "chiquitita'",
+    "word": "chiquititas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -101642,7 +101548,8 @@
         "sung_by_primary_artist": false,
         "surface": "chiquitita'"
       }
-    ]
+    ],
+    "display_form": "chiquitita'"
   },
   {
     "word": "chiquititos",
@@ -102248,7 +102155,7 @@
     ]
   },
   {
-    "word": "clube'",
+    "word": "clubes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -102265,7 +102172,8 @@
         "sung_by_primary_artist": true,
         "surface": "clube'"
       }
-    ]
+    ],
+    "display_form": "clube'"
   },
   {
     "word": "co",
@@ -102786,7 +102694,7 @@
     ]
   },
   {
-    "word": "combinamo'",
+    "word": "combinamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -102803,7 +102711,8 @@
         "sung_by_primary_artist": true,
         "surface": "combinamo'"
       }
-    ]
+    ],
+    "display_form": "combinamo'"
   },
   {
     "word": "combinan",
@@ -103883,7 +103792,7 @@
     ]
   },
   {
-    "word": "consecuencias",
+    "word": "consecuencia'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -103900,8 +103809,7 @@
         "sung_by_primary_artist": true,
         "surface": "consecuencia'"
       }
-    ],
-    "display_form": "consecuencia'"
+    ]
   },
   {
     "word": "consejos",
@@ -104189,7 +104097,7 @@
     "display_form": "conversacione'"
   },
   {
-    "word": "convertimo'",
+    "word": "convertimos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -104202,7 +104110,8 @@
         "title": "MVP",
         "surface": "convertimo'"
       }
-    ]
+    ],
+    "display_form": "convertimo'"
   },
   {
     "word": "conviene",
@@ -104729,7 +104638,7 @@
     ]
   },
   {
-    "word": "costo'",
+    "word": "costos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -104746,7 +104655,8 @@
         "sung_by_primary_artist": false,
         "surface": "costo'"
       }
-    ]
+    ],
+    "display_form": "costo'"
   },
   {
     "word": "costumbre",
@@ -104841,7 +104751,7 @@
     ]
   },
   {
-    "word": "cover'",
+    "word": "covers",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -104858,7 +104768,8 @@
         "sung_by_primary_artist": true,
         "surface": "cover'"
       }
-    ]
+    ],
+    "display_form": "cover'"
   },
   {
     "word": "coxis",
@@ -105027,7 +104938,7 @@
     "display_form": "crecía'"
   },
   {
-    "word": "creyente'",
+    "word": "creyentes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -105045,7 +104956,8 @@
         "sung_by_primary_artist": true,
         "surface": "creyente'"
       }
-    ]
+    ],
+    "display_form": "creyente'"
   },
   {
     "word": "crezco",
@@ -105326,7 +105238,7 @@
     "display_form": "cruza'o"
   },
   {
-    "word": "cruzarle'",
+    "word": "cruzarles",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -105343,7 +105255,8 @@
         "sung_by_primary_artist": false,
         "surface": "cruzarle'"
       }
-    ]
+    ],
+    "display_form": "cruzarle'"
   },
   {
     "word": "cu",
@@ -106837,7 +106750,7 @@
     ]
   },
   {
-    "word": "descarrilá'",
+    "word": "descarrilás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -106854,7 +106767,8 @@
         "sung_by_primary_artist": false,
         "surface": "descarrilá'"
       }
-    ]
+    ],
+    "display_form": "descarrilá'"
   },
   {
     "word": "descifran",
@@ -107034,7 +106948,7 @@
     ]
   },
   {
-    "word": "desesperá'",
+    "word": "desesperás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -107047,7 +106961,8 @@
         "title": "Sexo de moteles",
         "surface": "desesperá'"
       }
-    ]
+    ],
+    "display_form": "desesperá'"
   },
   {
     "word": "design",
@@ -107086,7 +107001,7 @@
     ]
   },
   {
-    "word": "desocupada'",
+    "word": "desocupadas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -107099,7 +107014,8 @@
         "title": "arcoíris",
         "surface": "desocupada'"
       }
-    ]
+    ],
+    "display_form": "desocupada'"
   },
   {
     "word": "desorden",
@@ -107122,7 +107038,7 @@
     ]
   },
   {
-    "word": "despedida'",
+    "word": "despedidas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -107139,7 +107055,8 @@
         "sung_by_primary_artist": false,
         "surface": "despedida'"
       }
-    ]
+    ],
+    "display_form": "despedida'"
   },
   {
     "word": "desperdiciar",
@@ -107435,7 +107352,7 @@
     ]
   },
   {
-    "word": "diaria'",
+    "word": "diarias",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -107452,7 +107369,8 @@
         "sung_by_primary_artist": false,
         "surface": "diaria'"
       }
-    ]
+    ],
+    "display_form": "diaria'"
   },
   {
     "word": "dicho",
@@ -109343,7 +109261,7 @@
     ]
   },
   {
-    "word": "encendíos",
+    "word": "encendidos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -109864,7 +109782,7 @@
     ]
   },
   {
-    "word": "enterao'",
+    "word": "enteraos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -109881,7 +109799,8 @@
         "sung_by_primary_artist": true,
         "surface": "enterao'"
       }
-    ]
+    ],
+    "display_form": "enterao'"
   },
   {
     "word": "entere",
@@ -110067,7 +109986,7 @@
     ]
   },
   {
-    "word": "entrená'",
+    "word": "entrenás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -110084,7 +110003,8 @@
         "sung_by_primary_artist": true,
         "surface": "entrená'"
       }
-    ]
+    ],
+    "display_form": "entrená'"
   },
   {
     "word": "entretener",
@@ -110330,7 +110250,7 @@
     "display_form": "envidiosa'"
   },
   {
-    "word": "envolvemo'",
+    "word": "envolvemos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -110347,7 +110267,8 @@
         "sung_by_primary_artist": true,
         "surface": "envolvemo'"
       }
-    ]
+    ],
+    "display_form": "envolvemo'"
   },
   {
     "word": "envolverme",
@@ -111160,7 +111081,7 @@
     ]
   },
   {
-    "word": "esposas",
+    "word": "esposa'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -111177,8 +111098,7 @@
         "sung_by_primary_artist": true,
         "surface": "esposa'"
       }
-    ],
-    "display_form": "esposa'"
+    ]
   },
   {
     "word": "esquina",
@@ -111507,7 +111427,7 @@
     ]
   },
   {
-    "word": "europeo'",
+    "word": "europeos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -111524,7 +111444,8 @@
         "sung_by_primary_artist": true,
         "surface": "europeo'"
       }
-    ]
+    ],
+    "display_form": "europeo'"
   },
   {
     "word": "evan",
@@ -112002,7 +111923,7 @@
     ]
   },
   {
-    "word": "exótica'",
+    "word": "exóticas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -112019,7 +111940,8 @@
         "sung_by_primary_artist": false,
         "surface": "exótica'"
       }
-    ]
+    ],
+    "display_form": "exótica'"
   },
   {
     "word": "eyo",
@@ -112239,7 +112161,7 @@
     ]
   },
   {
-    "word": "farra'",
+    "word": "farras",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -112256,7 +112178,8 @@
         "sung_by_primary_artist": false,
         "surface": "farra'"
       }
-    ]
+    ],
+    "display_form": "farra'"
   },
   {
     "word": "farrear",
@@ -112562,7 +112485,7 @@
     ]
   },
   {
-    "word": "fetiche'",
+    "word": "fetiches",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -112579,7 +112502,8 @@
         "sung_by_primary_artist": false,
         "surface": "fetiche'"
       }
-    ]
+    ],
+    "display_form": "fetiche'"
   },
   {
     "word": "fieles",
@@ -112619,7 +112543,7 @@
     ]
   },
   {
-    "word": "filas",
+    "word": "fila'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -112636,8 +112560,7 @@
         "sung_by_primary_artist": true,
         "surface": "fila'"
       }
-    ],
-    "display_form": "fila'"
+    ]
   },
   {
     "word": "finas",
@@ -113166,7 +113089,7 @@
     ]
   },
   {
-    "word": "forrá'",
+    "word": "forrás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -113183,7 +113106,8 @@
         "sung_by_primary_artist": false,
         "surface": "forrá'"
       }
-    ]
+    ],
+    "display_form": "forrá'"
   },
   {
     "word": "forty",
@@ -113451,7 +113375,7 @@
     ]
   },
   {
-    "word": "frenamo'",
+    "word": "frenamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -113468,7 +113392,8 @@
         "sung_by_primary_artist": false,
         "surface": "frenamo'"
       }
-    ]
+    ],
+    "display_form": "frenamo'"
   },
   {
     "word": "frenarlo",
@@ -114483,7 +114408,7 @@
     ]
   },
   {
-    "word": "girar",
+    "word": "gira'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -114501,8 +114426,7 @@
         "sung_by_primary_artist": true,
         "surface": "gira'"
       }
-    ],
-    "display_form": "gira'"
+    ]
   },
   {
     "word": "girls",
@@ -114969,7 +114893,7 @@
     ]
   },
   {
-    "word": "grabemo'",
+    "word": "grabemos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -114982,7 +114906,8 @@
         "title": "Ni le cabe",
         "surface": "grabemo'"
       }
-    ]
+    ],
+    "display_form": "grabemo'"
   },
   {
     "word": "grabo",
@@ -115059,7 +114984,7 @@
     ]
   },
   {
-    "word": "grandota'",
+    "word": "grandotas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -115076,7 +115001,8 @@
         "sung_by_primary_artist": true,
         "surface": "grandota'"
       }
-    ]
+    ],
+    "display_form": "grandota'"
   },
   {
     "word": "grasa",
@@ -115734,7 +115660,7 @@
     ]
   },
   {
-    "word": "gémini'",
+    "word": "géminis",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -115747,7 +115673,8 @@
         "title": "Sexo de moteles",
         "surface": "gémini'"
       }
-    ]
+    ],
+    "display_form": "gémini'"
   },
   {
     "word": "génesis",
@@ -115906,7 +115833,7 @@
     "display_form": "hacerle'"
   },
   {
-    "word": "hacerno'",
+    "word": "hacernos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -115919,7 +115846,8 @@
         "title": "fuck TMZ",
         "surface": "hacerno'"
       }
-    ]
+    ],
+    "display_form": "hacerno'"
   },
   {
     "word": "hacia",
@@ -117436,7 +117364,7 @@
     "display_form": "iguale'"
   },
   {
-    "word": "igualita'",
+    "word": "igualitas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -117454,7 +117382,8 @@
         "sung_by_primary_artist": true,
         "surface": "igualita'"
       }
-    ]
+    ],
+    "display_form": "igualita'"
   },
   {
     "word": "ikea",
@@ -118224,7 +118153,7 @@
     ]
   },
   {
-    "word": "invitada'",
+    "word": "invitadas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -118241,7 +118170,8 @@
         "sung_by_primary_artist": false,
         "surface": "invitada'"
       }
-    ]
+    ],
+    "display_form": "invitada'"
   },
   {
     "word": "invite",
@@ -118302,38 +118232,6 @@
         ],
         "sung_by_primary_artist": false,
         "surface": "involucre"
-      }
-    ]
-  },
-  {
-    "word": "irno'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "12458903"
-    ],
-    "examples": [
-      {
-        "id": "12458903:8",
-        "line": "Ay, sí, voy a preguntarle si vamo' a irno'",
-        "title": "Meiomi",
-        "surface": "irno'"
-      }
-    ]
-  },
-  {
-    "word": "irnos",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "12458903"
-    ],
-    "examples": [
-      {
-        "id": "12458903:48",
-        "line": "Voy a preguntarle si vamo’ a irnos",
-        "title": "Meiomi",
-        "surface": "irnos"
       }
     ]
   },
@@ -118593,7 +118491,7 @@
     ]
   },
   {
-    "word": "jangueamo'",
+    "word": "jangueamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -118610,7 +118508,8 @@
         "sung_by_primary_artist": false,
         "surface": "jangueamo'"
       }
-    ]
+    ],
+    "display_form": "jangueamo'"
   },
   {
     "word": "jaquemate",
@@ -120687,7 +120586,7 @@
     ]
   },
   {
-    "word": "listas",
+    "word": "lista'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -120700,8 +120599,7 @@
         "title": "rookie of the year",
         "surface": "lista'"
       }
-    ],
-    "display_form": "lista'"
+    ]
   },
   {
     "word": "livin'",
@@ -121890,7 +121788,7 @@
     ]
   },
   {
-    "word": "mamacita'",
+    "word": "mamacitas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -121908,7 +121806,8 @@
         "sung_by_primary_artist": true,
         "surface": "mamacita'"
       }
-    ]
+    ],
+    "display_form": "mamacita'"
   },
   {
     "word": "mamando",
@@ -122078,7 +121977,7 @@
     ]
   },
   {
-    "word": "mandarina'",
+    "word": "mandarinas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -122096,7 +121995,8 @@
         "sung_by_primary_artist": true,
         "surface": "mandarina'"
       }
-    ]
+    ],
+    "display_form": "mandarina'"
   },
   {
     "word": "mandarte",
@@ -122791,7 +122691,7 @@
     ]
   },
   {
-    "word": "medalla'",
+    "word": "medallas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -122804,7 +122704,8 @@
         "title": "Trending",
         "surface": "medalla'"
       }
-    ]
+    ],
+    "display_form": "medalla'"
   },
   {
     "word": "mediabicha",
@@ -123235,7 +123136,7 @@
     ]
   },
   {
-    "word": "meterno'",
+    "word": "meternos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -123253,7 +123154,8 @@
         "sung_by_primary_artist": true,
         "surface": "meterno'"
       }
-    ]
+    ],
+    "display_form": "meterno'"
   },
   {
     "word": "meterse",
@@ -124005,7 +123907,7 @@
     ]
   },
   {
-    "word": "montamo'",
+    "word": "montamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -124022,7 +123924,8 @@
         "sung_by_primary_artist": false,
         "surface": "montamo'"
       }
-    ]
+    ],
+    "display_form": "montamo'"
   },
   {
     "word": "montó",
@@ -124763,7 +124666,7 @@
     ]
   },
   {
-    "word": "mágico'",
+    "word": "mágicos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -124780,7 +124683,8 @@
         "sung_by_primary_artist": false,
         "surface": "mágico'"
       }
-    ]
+    ],
+    "display_form": "mágico'"
   },
   {
     "word": "máscara",
@@ -125220,6 +125124,48 @@
     ]
   },
   {
+    "word": "negra'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "8043163"
+    ],
+    "examples": [
+      {
+        "id": "8043163:63",
+        "line": "Las Oveja' Negra' (Quería una molly y se la, oh, quería una molly y se la, oh)",
+        "title": "2seater",
+        "vocalists": [
+          "Juanka",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "negra'"
+      }
+    ]
+  },
+  {
+    "word": "negras",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "8219794"
+    ],
+    "examples": [
+      {
+        "id": "8219794:64",
+        "line": "Las Ovejas Negras",
+        "title": "Bi",
+        "vocalists": [
+          "Brray",
+          "Young Miko"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "negras"
+      }
+    ]
+  },
+  {
     "word": "nenes",
     "corpus_count": 1,
     "song_count": 1,
@@ -125474,7 +125420,7 @@
     ]
   },
   {
-    "word": "nominá'",
+    "word": "nominás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -125487,7 +125433,8 @@
         "title": "Ni le cabe",
         "surface": "nominá'"
       }
-    ]
+    ],
+    "display_form": "nominá'"
   },
   {
     "word": "none",
@@ -127245,7 +127192,7 @@
     ]
   },
   {
-    "word": "parqueábamo'",
+    "word": "parqueábamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -127258,7 +127205,8 @@
         "title": "Sexo de moteles",
         "surface": "parqueábamo'"
       }
-    ]
+    ],
+    "display_form": "parqueábamo'"
   },
   {
     "word": "parqueé",
@@ -127573,7 +127521,7 @@
     ]
   },
   {
-    "word": "patás",
+    "word": "patadas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -127820,7 +127768,7 @@
     ]
   },
   {
-    "word": "pegamo'",
+    "word": "pegamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -127837,7 +127785,8 @@
         "sung_by_primary_artist": true,
         "surface": "pegamo'"
       }
-    ]
+    ],
+    "display_form": "pegamo'"
   },
   {
     "word": "pegan",
@@ -128007,7 +127956,7 @@
     ]
   },
   {
-    "word": "peleemo'",
+    "word": "peleemos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -128024,7 +127973,8 @@
         "sung_by_primary_artist": false,
         "surface": "peleemo'"
       }
-    ]
+    ],
+    "display_form": "peleemo'"
   },
   {
     "word": "pelets",
@@ -128963,7 +128913,7 @@
     ]
   },
   {
-    "word": "picá'",
+    "word": "picás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -128981,7 +128931,8 @@
         "sung_by_primary_artist": true,
         "surface": "picá'"
       }
-    ]
+    ],
+    "display_form": "picá'"
   },
   {
     "word": "pida",
@@ -130194,7 +130145,7 @@
     ]
   },
   {
-    "word": "posteá'",
+    "word": "posteás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -130211,7 +130162,8 @@
         "sung_by_primary_artist": true,
         "surface": "posteá'"
       }
-    ]
+    ],
+    "display_form": "posteá'"
   },
   {
     "word": "pote",
@@ -130649,7 +130601,7 @@
     ]
   },
   {
-    "word": "previo'",
+    "word": "previos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -130662,7 +130614,8 @@
         "title": "pinot grigio",
         "surface": "previo'"
       }
-    ]
+    ],
+    "display_form": "previo'"
   },
   {
     "word": "price",
@@ -132792,7 +132745,7 @@
     ]
   },
   {
-    "word": "reemplazar",
+    "word": "reemplaza'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -132805,8 +132758,7 @@
         "title": "Ojalá",
         "surface": "reemplaza'"
       }
-    ],
-    "display_form": "reemplaza'"
+    ]
   },
   {
     "word": "reemplazas",
@@ -132937,7 +132889,7 @@
     ]
   },
   {
-    "word": "rellenita'",
+    "word": "rellenitas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -132954,7 +132906,8 @@
         "sung_by_primary_artist": false,
         "surface": "rellenita'"
       }
-    ]
+    ],
+    "display_form": "rellenita'"
   },
   {
     "word": "reloj",
@@ -133197,7 +133150,7 @@
     ]
   },
   {
-    "word": "reservada'",
+    "word": "reservadas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -133214,7 +133167,8 @@
         "sung_by_primary_artist": true,
         "surface": "reservada'"
       }
-    ]
+    ],
+    "display_form": "reservada'"
   },
   {
     "word": "resistencia",
@@ -133349,7 +133303,7 @@
     ]
   },
   {
-    "word": "respondan",
+    "word": "responda'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -133366,8 +133320,7 @@
         "sung_by_primary_artist": false,
         "surface": "responda'"
       }
-    ],
-    "display_form": "responda'"
+    ]
   },
   {
     "word": "rest",
@@ -133837,7 +133790,7 @@
     ]
   },
   {
-    "word": "rindas",
+    "word": "rinda'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -133854,8 +133807,7 @@
         "sung_by_primary_artist": true,
         "surface": "rinda'"
       }
-    ],
-    "display_form": "rinda'"
+    ]
   },
   {
     "word": "ringo",
@@ -135178,7 +135130,7 @@
     ]
   },
   {
-    "word": "salirle'",
+    "word": "salirles",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -135195,7 +135147,8 @@
         "sung_by_primary_artist": false,
         "surface": "salirle'"
       }
-    ]
+    ],
+    "display_form": "salirle'"
   },
   {
     "word": "salita",
@@ -135234,7 +135187,7 @@
     ]
   },
   {
-    "word": "salábamo'",
+    "word": "salábamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -135247,7 +135200,8 @@
         "title": "Sexo de moteles",
         "surface": "salábamo'"
       }
-    ]
+    ],
+    "display_form": "salábamo'"
   },
   {
     "word": "samu",
@@ -135979,7 +135933,7 @@
     ]
   },
   {
-    "word": "serenata'",
+    "word": "serenatas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -135996,7 +135950,8 @@
         "sung_by_primary_artist": false,
         "surface": "serenata'"
       }
-    ]
+    ],
+    "display_form": "serenata'"
   },
   {
     "word": "seria",
@@ -136616,7 +136571,7 @@
     ]
   },
   {
-    "word": "sirena'",
+    "word": "sirenas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -136629,7 +136584,8 @@
         "title": "Esa nena",
         "surface": "sirena'"
       }
-    ]
+    ],
+    "display_form": "sirena'"
   },
   {
     "word": "sirve",
@@ -137165,7 +137121,7 @@
     ]
   },
   {
-    "word": "soportar",
+    "word": "soporta'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -137182,8 +137138,7 @@
         "sung_by_primary_artist": false,
         "surface": "soporta'"
       }
-    ],
-    "display_form": "soporta'"
+    ]
   },
   {
     "word": "soporte",
@@ -137279,7 +137234,7 @@
     ]
   },
   {
-    "word": "speaker'",
+    "word": "speakers",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -137296,7 +137251,8 @@
         "sung_by_primary_artist": false,
         "surface": "speaker'"
       }
-    ]
+    ],
+    "display_form": "speaker'"
   },
   {
     "word": "sport",
@@ -138530,7 +138486,7 @@
     ]
   },
   {
-    "word": "taco'",
+    "word": "tacos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -138548,7 +138504,8 @@
         "sung_by_primary_artist": false,
         "surface": "taco'"
       }
-    ]
+    ],
+    "display_form": "taco'"
   },
   {
     "word": "take",
@@ -139230,7 +139187,7 @@
     ]
   },
   {
-    "word": "terminábamo'",
+    "word": "terminábamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -139243,7 +139200,8 @@
         "title": "Sexo de moteles",
         "surface": "terminábamo'"
       }
-    ]
+    ],
+    "display_form": "terminábamo'"
   },
   {
     "word": "testigos",
@@ -139263,7 +139221,7 @@
     "display_form": "testigo'"
   },
   {
-    "word": "tetica'",
+    "word": "teticas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -139280,7 +139238,8 @@
         "sung_by_primary_artist": false,
         "surface": "tetica'"
       }
-    ]
+    ],
+    "display_form": "tetica'"
   },
   {
     "word": "tetotas",
@@ -139689,7 +139648,7 @@
     "display_form": "tira'o"
   },
   {
-    "word": "tiramo'",
+    "word": "tiramos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -139702,7 +139661,8 @@
         "title": "Trending",
         "surface": "tiramo'"
       }
-    ]
+    ],
+    "display_form": "tiramo'"
   },
   {
     "word": "tiraos",
@@ -140023,7 +139983,7 @@
     ]
   },
   {
-    "word": "tono'",
+    "word": "tonos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -140040,7 +140000,8 @@
         "sung_by_primary_artist": true,
         "surface": "tono'"
       }
-    ]
+    ],
+    "display_form": "tono'"
   },
   {
     "word": "toquen",
@@ -140382,7 +140343,7 @@
     ]
   },
   {
-    "word": "transmisione'",
+    "word": "transmisiones",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -140400,7 +140361,8 @@
         "sung_by_primary_artist": false,
         "surface": "transmisione'"
       }
-    ]
+    ],
+    "display_form": "transmisione'"
   },
   {
     "word": "transmisión",
@@ -140879,7 +140841,7 @@
     ]
   },
   {
-    "word": "truquito'",
+    "word": "truquitos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -140892,7 +140854,8 @@
         "title": "WASSUP",
         "surface": "truquito'"
       }
-    ]
+    ],
+    "display_form": "truquito'"
   },
   {
     "word": "tryout",
@@ -141584,7 +141547,7 @@
     "display_form": "vacacione'"
   },
   {
-    "word": "vaciao'",
+    "word": "vaciaos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -141603,7 +141566,8 @@
         "sung_by_primary_artist": false,
         "surface": "vaciao'"
       }
-    ]
+    ],
+    "display_form": "vaciao'"
   },
   {
     "word": "vacíe",
@@ -142474,7 +142438,7 @@
     ]
   },
   {
-    "word": "viejito'",
+    "word": "viejitos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -142491,7 +142455,8 @@
         "sung_by_primary_artist": true,
         "surface": "viejito'"
       }
-    ]
+    ],
+    "display_form": "viejito'"
   },
   {
     "word": "viejo",

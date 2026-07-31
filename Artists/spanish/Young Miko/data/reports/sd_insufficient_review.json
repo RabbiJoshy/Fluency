@@ -2,8 +2,8 @@
   "_meta": {
     "source": "spanishdict",
     "classifier": "classify-or-propose",
-    "model": "gemini-2.5-flash-lite",
-    "count": 195
+    "model": "gemini-3.5-flash-lite",
+    "count": 268
   },
   "items": [
     {
@@ -357,6 +357,16 @@
       "translation": "I'm here to give it all night until I'm empty (One time)"
     },
     {
+      "word": "ha",
+      "lemma": "ha",
+      "proposed": "laughter sound",
+      "type": "other",
+      "construction": null,
+      "corpus_count": 6,
+      "example": "Mueve el culo, babe, ha-hasta abajo, please",
+      "translation": "Move your ass, babe, down, please"
+    },
+    {
       "word": "ponerse",
       "lemma": "ponerse",
       "proposed": "get aggressive",
@@ -435,6 +445,36 @@
       "corpus_count": 5,
       "example": "treparse encima, gymnastic",
       "translation": "Climb on top, gymnastic"
+    },
+    {
+      "word": "body",
+      "lemma": "body",
+      "proposed": "body",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "En el carro it sticks body, cómo baila, she my thottie",
+      "translation": "In the car it sticks body, how she dances, she my thottie"
+    },
+    {
+      "word": "time",
+      "lemma": "time",
+      "proposed": "time",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 5,
+      "example": "Time 1:02",
+      "translation": "Time 1:02"
+    },
+    {
+      "word": "time",
+      "lemma": "time",
+      "proposed": "peak wild mode",
+      "type": "slang",
+      "construction": "on demon time",
+      "corpus_count": 5,
+      "example": "Ella se enrola varios siempre está on demon time (Demon time), ah",
+      "translation": "She enlists several, she's always on demon time (Demon time), ah"
     },
     {
       "word": "fit",
@@ -605,6 +645,56 @@
       "corpus_count": 4,
       "example": "Sin fantasmeo, nos matamo' y reset",
       "translation": "Without ghosting, we kill each other and reset"
+    },
+    {
+      "word": "metidos",
+      "lemma": "metidos",
+      "proposed": "slipping into",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "metidos en mi DM, ¿ustedes qué se creen?",
+      "translation": "I put it in my DM, what do you think?"
+    },
+    {
+      "word": "metidos",
+      "lemma": "metidos",
+      "proposed": "to feed lies",
+      "type": "slang",
+      "construction": "meter feka",
+      "corpus_count": 4,
+      "example": "Yo soy un bellaco y nunca te he metidos feka",
+      "translation": "I am a scoundrel and I have never put you in feka"
+    },
+    {
+      "word": "pegaditos",
+      "lemma": "pegaditos",
+      "proposed": "pink suit",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Traje pegaditos, and she looks so fine",
+      "translation": "'Pink suit', and she looks so fine"
+    },
+    {
+      "word": "pegaditos",
+      "lemma": "pegaditos",
+      "proposed": "pressed close together",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Ella lo quiere pegaditos a la pared en lo oscuro",
+      "translation": "She wants him stuck to the wall in the dark"
+    },
+    {
+      "word": "ski",
+      "lemma": "ski",
+      "proposed": "jet ski",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 4,
+      "example": "Nos vamo' de bote, bote, también 'tán ready los jet ski",
+      "translation": "We're going on a boat, boat, the jet skis are also ready"
     },
     {
       "word": "joseando",
@@ -895,6 +985,56 @@
       "corpus_count": 3,
       "example": "Eso no es na', dejarse ver, ¿te va' a hacer? Sí (Oye)",
       "translation": "That's nothing, let me see, is it going to do it to you? Yes (Hey)"
+    },
+    {
+      "word": "dance",
+      "lemma": "dance",
+      "proposed": "lap dance",
+      "type": "loanword",
+      "construction": "lap dance",
+      "corpus_count": 3,
+      "example": "Me-Me dijo que esta noche me hace un lap dance (Really?)",
+      "translation": "Me-He told me that tonight he'll do a lap dance for me (Really?)"
+    },
+    {
+      "word": "arrebatados",
+      "lemma": "arrebatados",
+      "proposed": "high on drugs",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "To's borrachos y to's arrebatados",
+      "translation": "Everyone's drunk and everyone's snatched"
+    },
+    {
+      "word": "prendidos",
+      "lemma": "prendidos",
+      "proposed": "caught on",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "prendidos en la muñeca puesta",
+      "translation": "It caught on the wrist"
+    },
+    {
+      "word": "brilloteo",
+      "lemma": "brilloteo",
+      "proposed": "flashy display or glitter",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "Siempre mucho brilloteo, baby, ¿no ves que las gafas son CC?",
+      "translation": "Always a lot of glitter, baby, can't you see that the glasses are CC?"
+    },
+    {
+      "word": "bubis",
+      "lemma": "bubis",
+      "proposed": "boobs",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 3,
+      "example": "En el culo, en el culo, en la cara, en la cara, y también en las bubis",
+      "translation": "In the ass, in the ass, in the face, in the face, and also in the boobs"
     },
     {
       "word": "after",
@@ -1955,6 +2095,596 @@
       "corpus_count": 2,
       "example": "Brinca, brinca, brinca, brincar",
       "translation": "Jump, jump, jump, jump me"
+    },
+    {
+      "word": "bermudas",
+      "lemma": "bermudas",
+      "proposed": "Bermuda",
+      "type": "proper_noun",
+      "construction": "Triángulo de Bermudas",
+      "corpus_count": 2,
+      "example": "Me pierdo en tu cuerpo, Triángulo 'e bermudas",
+      "translation": "I get lost in your body, Bermuda Triangle"
+    },
+    {
+      "word": "bellaquita",
+      "lemma": "bellaquita",
+      "proposed": "horny or sexy woman",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Bellaquita",
+      "translation": "Bellaquita"
+    },
+    {
+      "word": "blin",
+      "lemma": "blin",
+      "proposed": "bling or flashy jewelry",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Enamorá' del blin-blin Swarovski (Nah)",
+      "translation": "Fall in love with the blin-blin Swarovski (Nah)"
+    },
+    {
+      "word": "bonaroti",
+      "lemma": "bonaroti",
+      "proposed": "reference to Italian artist Michelangelo Buonarroti",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Bonaroti, baby",
+      "translation": "Bonaroti, baby"
+    },
+    {
+      "word": "boy",
+      "lemma": "boy",
+      "proposed": "guy or boy",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Llámame, bad boy",
+      "translation": "Call me, bad boy"
+    },
+    {
+      "word": "amarras",
+      "lemma": "amarras",
+      "proposed": "to tie up",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Me tienes amarras en tu booby trap",
+      "translation": "You have me tied up in your booby trap"
+    },
+    {
+      "word": "amarrado",
+      "lemma": "amarrado",
+      "proposed": "tied up",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Me tiene' amarrado, ma",
+      "translation": "He's got me tied up, ma"
+    },
+    {
+      "word": "amazónico",
+      "lemma": "amazónico",
+      "proposed": "wild and untamed style",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Un perreíto en lo amazónico",
+      "translation": "A little dog in the Amazon"
+    },
+    {
+      "word": "aplico",
+      "lemma": "aplico",
+      "proposed": "to deliver fast",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "No quiere esperar pues se lo aplico en la Veloster (Eh)",
+      "translation": "He doesn't want to wait because I apply it on the Veloster (Eh)"
+    },
+    {
+      "word": "armamos",
+      "lemma": "armamos",
+      "proposed": "to start chaos",
+      "type": "figurative",
+      "construction": "armar el desorden",
+      "corpus_count": 1,
+      "example": "Al frente de los tuyos te armamos el desorden",
+      "translation": "In front of yours we will create chaos for you"
+    },
+    {
+      "word": "arrebatá",
+      "lemma": "arrebatá",
+      "proposed": "high on drugs",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Arrebatá me di un par de cachas",
+      "translation": "Arrebatá I gave myself a pair of hunks"
+    },
+    {
+      "word": "arrolla",
+      "lemma": "arrolla",
+      "proposed": "to roll up",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Porque le debo el respeto, cómo arrolla su camisa",
+      "translation": "Because I owe him respect, how he runs over his shirt"
+    },
+    {
+      "word": "baya",
+      "lemma": "baya",
+      "proposed": "Bayamón, a city in Puerto Rico",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Se trepa como vaquerita de Baya",
+      "translation": "She climbs like a little Baya cowgirl"
+    },
+    {
+      "word": "bonete",
+      "lemma": "bonete",
+      "proposed": "car hood",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "PR escrito en el bonete, no cambio a mi isla ni to' sus boquete'",
+      "translation": "PR written on the bonnet, I do not change my island or all its gaps"
+    },
+    {
+      "word": "capeara",
+      "lemma": "capeara",
+      "proposed": "to buy drugs",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Ese culo tiene un plug (Ew), como si capeara droga (Wuh)",
+      "translation": "That ass has a plug (Ew), like it's on drugs (Wuh)"
+    },
+    {
+      "word": "capearon",
+      "lemma": "capearon",
+      "proposed": "to trick or beat",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Me capearon, yo los vi, cogieron nota",
+      "translation": "They beat me, I saw them, they took note"
+    },
+    {
+      "word": "cc",
+      "lemma": "cc",
+      "proposed": "Chanel, luxury fashion brand",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Siempre mucho brilloteo, baby, ¿no ves que las gafas son CC?",
+      "translation": "Always a lot of glitter, baby, can't you see that the glasses are CC?"
+    },
+    {
+      "word": "cha",
+      "lemma": "cha",
+      "proposed": "slang prefix or sound",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Cha-Chamaquita, pero yo soy old school",
+      "translation": "Cha-Chamaquita, but I'm old school"
+    },
+    {
+      "word": "chan",
+      "lemma": "chan",
+      "proposed": "Jackie Chan, famous martial artist and actor",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tampoco Jackie Chan ni los de ese clan",
+      "translation": "Neither does Jackie Chan nor those of that clan"
+    },
+    {
+      "word": "cocí",
+      "lemma": "cocí",
+      "proposed": "to succeed or do well",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Como miran, si cocí, lavando latina",
+      "translation": "As you can see, I did cook, washing Latin"
+    },
+    {
+      "word": "colectivo",
+      "lemma": "colectivo",
+      "proposed": "group sex",
+      "type": "slang",
+      "construction": "en colectivo",
+      "corpus_count": 1,
+      "example": "Si vienen con amiga, pues les doy en colectivo (No)",
+      "translation": "If they come with a friend, then I'll give them a bus (No)"
+    },
+    {
+      "word": "concepción",
+      "lemma": "concepción",
+      "proposed": "Concepción, a city or town",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "El chamaquito que vino directo 'e Concepción",
+      "translation": "The little boy who came straight to Concepción"
+    },
+    {
+      "word": "cortijo",
+      "lemma": "cortijo",
+      "proposed": "rural estate or farm",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tú y yo pegamo', maelo y cortijo",
+      "translation": "You and I hit each other, maelo and cortijo"
+    },
+    {
+      "word": "dejás",
+      "lemma": "dejás",
+      "proposed": "tired",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Sé que estás dejás y por eso vine cuando llamaste",
+      "translation": "I know you're tired and that's why I came when you called"
+    },
+    {
+      "word": "desacato",
+      "lemma": "desacato",
+      "proposed": "lawlessness or wild partying",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "24/7 desacato (¡Wuh!)",
+      "translation": "24/7 contempt (Wuh!)"
+    },
+    {
+      "word": "elevás",
+      "lemma": "elevás",
+      "proposed": "get high on drugs",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "La nota elevás, no hay quien me alcance (No)",
+      "translation": "The grade goes up, there is no one who can reach me (No)"
+    },
+    {
+      "word": "elevé",
+      "lemma": "elevé",
+      "proposed": "to get high",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Que te elevé cuando te lo entré",
+      "translation": "That I elevated you when I gave it to you"
+    },
+    {
+      "word": "formula",
+      "lemma": "formula",
+      "proposed": "Formula 1 racing series",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Formula 1, la pista e' mi course",
+      "translation": "Formula 1, the track is my course"
+    },
+    {
+      "word": "guacha",
+      "lemma": "guacha",
+      "proposed": "girl or chick",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Guacha, por acá no damo' vuelta' (No, no)",
+      "translation": "Guacha, we don't turn around here (No, no)"
+    },
+    {
+      "word": "guacho",
+      "lemma": "guacho",
+      "proposed": "dude, bro or guy",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "'Tamo fine, guacho, bajen para el barrio, don't cry",
+      "translation": "'Tamo fine, guacho, go down to the neighborhood, don't cry"
+    },
+    {
+      "word": "guayaba",
+      "lemma": "guayaba",
+      "proposed": "guava fruit",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Cómo guayaba en la pared?",
+      "translation": "How guava on the wall?"
+    },
+    {
+      "word": "guayando",
+      "lemma": "guayando",
+      "proposed": "teasing or dancing closely",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Te estoy guayando hace rato (Ah), ya tú tienes dos strike",
+      "translation": "I've been teasing you for a while (Ah), you already have two strikes"
+    },
+    {
+      "word": "géminis",
+      "lemma": "géminis",
+      "proposed": "a specific club or venue",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Sino en el west side, terminábamo' en el géminis",
+      "translation": "If not on the west side, we would end up in the Gemini"
+    },
+    {
+      "word": "hackeás",
+      "lemma": "hackeás",
+      "proposed": "being manipulated or played",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "E-E-Está bien pillá', la baby está hackeás (Eh-eh)",
+      "translation": "E-E-It's okay get it, the baby is getting hacked (Eh-eh)"
+    },
+    {
+      "word": "imprenta",
+      "lemma": "imprenta",
+      "proposed": "printed letters or font",
+      "type": "figurative",
+      "construction": "letra imprenta",
+      "corpus_count": 1,
+      "example": "El rap argentino en letra imprenta",
+      "translation": "Argentine rap in print"
+    },
+    {
+      "word": "incomoda",
+      "lemma": "incomoda",
+      "proposed": "to bother or trouble",
+      "type": null,
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Puesta pa'l trío, eso no le incomoda (Sí)",
+      "translation": "Set for the trio, that doesn't bother him (Yes)"
+    },
+    {
+      "word": "invite",
+      "lemma": "invite",
+      "proposed": "invitation or treat",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Mami, tú siempre tiene' el invite",
+      "translation": "Mommy, you always have the invite"
+    },
+    {
+      "word": "jebe",
+      "lemma": "jebe",
+      "proposed": "rubber or condom",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "De jebe tu de jebere",
+      "translation": "From Jebe, you from Jebere."
+    },
+    {
+      "word": "lelo",
+      "lemma": "lelo",
+      "proposed": "Viagra or erection aid",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Pa' que te vengas rápido no necesito LELO (Ey)",
+      "translation": "For you to come quickly I don't need LELO (Hey)"
+    },
+    {
+      "word": "madrugás",
+      "lemma": "madrugás",
+      "proposed": "early morning",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Un mensaje de madrugás y sé que es de ti",
+      "translation": "An early morning message and I know it's from you"
+    },
+    {
+      "word": "manteca",
+      "lemma": "manteca",
+      "proposed": "money or wealth",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Que ya cayeron los míos, mai, me sobra la manteca",
+      "translation": "Mine have already fallen, mai, I have plenty of butter"
+    },
+    {
+      "word": "manía",
+      "lemma": "manía",
+      "proposed": "habit or tendency",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Ma, qué manía tú tienes de hacerme esos tatuaje' nuevo' con forma de mordida",
+      "translation": "Ma, what a habit you have of giving me those 'new' tattoos in the shape of a bite"
+    },
+    {
+      "word": "marcianos",
+      "lemma": "marcianos",
+      "proposed": "musical group or producer tag",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Los marcianos, hijueputa",
+      "translation": "The Marcianos, son of a bitch"
+    },
+    {
+      "word": "matadora",
+      "lemma": "matadora",
+      "proposed": "killer or femme fatale",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Es una matadora cómo menea la cola",
+      "translation": ""
+    },
+    {
+      "word": "mordidos",
+      "lemma": "mordidos",
+      "proposed": "jealous or resentful",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "La ven conmigo y se quedan mordidos",
+      "translation": "They see it with me and they are shocked"
+    },
+    {
+      "word": "pegamos",
+      "lemma": "pegamos",
+      "proposed": "to go well together",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tú y yo pegamos, maelo y cortijo",
+      "translation": "You and I hit each other, maelo and cortijo"
+    },
+    {
+      "word": "pichaban",
+      "lemma": "pichaban",
+      "proposed": "to ignore someone",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Antes me pichaban ahora me prefieren",
+      "translation": "Before they pissed me off now they prefer me"
+    },
+    {
+      "word": "picás",
+      "lemma": "picás",
+      "proposed": "buzzing or high from substances",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "No estoy borracha, estoy picás",
+      "translation": "I'm not drunk, I'm itchy"
+    },
+    {
+      "word": "previos",
+      "lemma": "previos",
+      "proposed": "around here",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "To' los que me odian yo nunca los vi por los previos",
+      "translation": "I have never seen all those who hate me before"
+    },
+    {
+      "word": "prime",
+      "lemma": "prime",
+      "proposed": "premium subscription",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Pa' ver su contenido tienes que pagar el prime (Ching)",
+      "translation": "To see its content you have to pay the prime (Ching)"
+    },
+    {
+      "word": "pro",
+      "lemma": "pro",
+      "proposed": "part of a wordplay",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "La trae 'e lejos, a la carta, y no le di ni pro-pina",
+      "translation": "He brings her away, a la carte, and I didn't even give her a tip"
+    },
+    {
+      "word": "salábamos",
+      "lemma": "salábamos",
+      "proposed": "to drive a car",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Pa' cuando no andábamo' en Tesla y salábamos el Génesi' (Ay)",
+      "translation": "For when we weren't driving a Tesla and we were driving the Genesis (Ay)"
+    },
+    {
+      "word": "serrano",
+      "lemma": "serrano",
+      "proposed": "a person from the mountains or a surname",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Serrano con sus golpizas y si quiere' que apriete, aprieto",
+      "translation": "Serrano with his beatings and if he wants me to push, I'll push"
+    },
+    {
+      "word": "tap",
+      "lemma": "tap",
+      "proposed": "to submit in a fight",
+      "type": "slang",
+      "construction": "tap out",
+      "corpus_count": 1,
+      "example": "No es MMA y la tengo haciendo tap out",
+      "translation": "It's not MMA and I have her doing tap out"
+    },
+    {
+      "word": "teca",
+      "lemma": "teca",
+      "proposed": "hard or tough",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Mi flow se lo meten por la vena, son teca",
+      "translation": "They put my flow through the vein, they are teak"
+    },
+    {
+      "word": "texteo",
+      "lemma": "texteo",
+      "proposed": "text message",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Vuelvo y te texteo",
+      "translation": "I'll come back and text you"
+    },
+    {
+      "word": "tila",
+      "lemma": "tila",
+      "proposed": "Tila, a female name",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Nos colamos por la fila con tequila como Tila",
+      "translation": "We sneak through the line with tequila like Tila"
+    },
+    {
+      "word": "traqueo",
+      "lemma": "traqueo",
+      "proposed": "to track down",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Envía el número, que si no llegan, yo los traqueo",
+      "translation": "Send the number, if they don't arrive, I'll track them down"
+    },
+    {
+      "word": "indicar",
+      "lemma": "indicar",
+      "proposed": "what's up / greeting",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Je, indicar Miko, je",
+      "translation": "Heh, tell me Miko, heh"
     }
   ]
 }

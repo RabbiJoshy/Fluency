@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "984d878d",
+      "summary": "Rosalía and Young Miko rebuilt with the same fixes as Bad Bunny",
+      "details": [
+        "Both decks now merge the extra Caribbean elisions, carry register tags (slang, vulgar, regional, loanword) and use the corrected lemma layer",
+        "manín finally reads bro, buddy (slang) instead of being filed under maní (peanut) — the flag that started this thread",
+        "Added 734 dictionary entries and ran a Gemini pass over 490 newly classifiable words plus gap-fill; master grew to 17174 entries with 744 new senses"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "bda12254",
       "summary": "Settings now separates study, offline tools, and app-data auditing",
       "details": [

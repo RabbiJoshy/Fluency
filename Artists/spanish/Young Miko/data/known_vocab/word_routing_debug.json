@@ -249,7 +249,7 @@
   "accord": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -620,11 +620,8 @@
   },
   "after": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -654,14 +651,11 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "agarren": {
+  "agarre'": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "agarro": {
@@ -788,11 +782,14 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "ahogamo'": {
+  "ahogamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "ahora": {
@@ -829,7 +826,7 @@
   "aight": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -877,12 +874,8 @@
   },
   "ajá": {
     "freq": 13,
-    "wikt_pos": [
-      "intj",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -1096,7 +1089,7 @@
   "almighty": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -1168,11 +1161,8 @@
   },
   "am": {
     "freq": 2,
-    "wikt_pos": [
-      "adv"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -1315,7 +1305,8 @@
   },
   "amg": {
     "freq": 3,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -1330,11 +1321,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "amigable'": {
+  "amigables": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "amigas": {
@@ -1427,11 +1421,8 @@
   },
   "amén": {
     "freq": 1,
-    "wikt_pos": [
-      "intj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -1528,11 +1519,14 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "andábamo'": {
+  "andábamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "angel": {
@@ -1778,7 +1772,7 @@
   "apartment": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2076,11 +2070,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "armamo'": {
+  "armamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "armas": {
@@ -2101,11 +2098,14 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "arrancamo'": {
+  "arrancamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "arrastrarte": {
@@ -2132,7 +2132,7 @@
     "in_en_50k": false
   },
   "arrebatados": {
-    "freq": 2,
+    "freq": 3,
     "wikt_pos": [
       "adj",
       "verb"
@@ -2140,13 +2140,6 @@
     "bucket": "conjugation",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "arrebataos": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "arrebatarse": {
@@ -2238,7 +2231,7 @@
   "arrgh": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2301,14 +2294,14 @@
   "asap": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "ascension": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2335,7 +2328,8 @@
   },
   "aserejé": {
     "freq": 2,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -2412,7 +2406,7 @@
   "assault": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2858,17 +2852,20 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "babeá'": {
+  "babeás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "babies": {
     "freq": 17,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2884,18 +2881,15 @@
   },
   "baby": {
     "freq": 157,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "baccarat": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2932,18 +2926,15 @@
   },
   "bae": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "baggie": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -2957,12 +2948,12 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "bahama'": {
+  "bahamas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
+    "bucket": "proper_nouns",
+    "source": "wikt_all_propn",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "baila": {
     "freq": 7,
@@ -3233,7 +3224,7 @@
   "baking": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -3261,7 +3252,7 @@
   "balcony": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -3374,7 +3365,7 @@
   "banger": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -3397,11 +3388,8 @@
   },
   "barbie": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -3534,7 +3522,7 @@
   "beanie": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -3959,14 +3947,14 @@
   "bestie": {
     "freq": 6,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "besties": {
     "freq": 9,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4029,11 +4017,8 @@
   },
   "bichote": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -4083,7 +4068,7 @@
   "bigger": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4096,11 +4081,8 @@
   },
   "bikini": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -4149,7 +4131,7 @@
   "birthday": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4163,7 +4145,7 @@
   "bitches": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4177,7 +4159,7 @@
   "bitchy": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4222,7 +4204,7 @@
   "blame": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4238,15 +4220,11 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "blancos": {
+  "blanco'": {
     "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "blanquita": {
@@ -4292,7 +4270,7 @@
   "bling": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4336,7 +4314,7 @@
   "blowjob": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4349,11 +4327,8 @@
   },
   "blunt": {
     "freq": 4,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -4370,14 +4345,14 @@
   "bmx": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "bnb": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4552,14 +4527,14 @@
   "boobies": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "booby": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4575,26 +4550,26 @@
   },
   "boom": {
     "freq": 6,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "booty": {
     "freq": 16,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "boquete'": {
+  "boquetes": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "boquita": {
@@ -4617,7 +4592,7 @@
   "boring": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4682,11 +4657,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "borramo'": {
+  "borramos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "borrar": {
@@ -4831,14 +4809,14 @@
   "bouncer": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "bout": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -4905,11 +4883,8 @@
   },
   "break": {
     "freq": 8,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -5068,21 +5043,15 @@
   },
   "brother": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "browser": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -5109,7 +5078,7 @@
   "bruh": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -5237,11 +5206,8 @@
   },
   "bumper": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -5381,7 +5347,7 @@
   "butt": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -5505,11 +5471,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "cabina'": {
+  "cabinas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "cabrona": {
@@ -5567,11 +5536,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "cachete'": {
+  "cachetes": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "cachetitos": {
@@ -5808,18 +5780,15 @@
   },
   "cake": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "caleb": {
     "freq": 10,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -5902,11 +5871,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "callamo'": {
+  "callamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "callas": {
@@ -5955,8 +5927,8 @@
   },
   "calloway": {
     "freq": 6,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -6332,11 +6304,15 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "cantante'": {
+  "cantantes": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "cantarte": {
@@ -6486,14 +6462,14 @@
   "caption": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "captions": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -6641,19 +6617,14 @@
   "carola": {
     "freq": 4,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "carolina": {
     "freq": 2,
-    "wikt_pos": [
-      "adj",
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -6834,11 +6805,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "castigá'": {
+  "castigás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "castle": {
@@ -6970,11 +6944,8 @@
   },
   "cd": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -7001,18 +6972,15 @@
   },
   "celebrity": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "cello": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -7250,12 +7218,8 @@
   },
   "chance": {
     "freq": 3,
-    "wikt_pos": [
-      "conj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -7295,12 +7259,8 @@
   },
   "chapo": {
     "freq": 1,
-    "wikt_pos": [
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -7324,11 +7284,8 @@
   },
   "chauffeur": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -7345,31 +7302,28 @@
   "cheat": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "cheater": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "check": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "checkbook": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -7516,11 +7470,8 @@
   },
   "chin": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -7691,11 +7642,15 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "chiquitita'": {
+  "chiquititas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "chiquititos": {
@@ -7775,11 +7730,8 @@
   },
   "choker": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -7853,11 +7805,8 @@
   },
   "ciara": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -8018,11 +7967,8 @@
   },
   "clan": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -8065,7 +8011,7 @@
   "classy": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -8095,11 +8041,8 @@
   },
   "cloche": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -8116,25 +8059,25 @@
   "clout": {
     "freq": 5,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "club": {
     "freq": 5,
+    "bucket": "english",
+    "source": "english_loanwords",
+    "in_spanish_forms": true,
+    "in_en_50k": true
+  },
+  "clubes": {
+    "freq": 1,
     "wikt_pos": [
       "noun"
     ],
     "bucket": "normal_vocab",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "clube'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "clásico": {
@@ -8163,7 +8106,7 @@
   "coat": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -8536,11 +8479,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "combinamo'": {
+  "combinamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "combinan": {
@@ -8652,7 +8598,7 @@
   "comforter": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -8723,7 +8669,7 @@
   "commander": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -8856,7 +8802,7 @@
   "complain": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -8998,7 +8944,7 @@
   "conceited": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -9054,11 +9000,8 @@
   },
   "condado": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -9092,7 +9035,7 @@
   "cone": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -9298,14 +9241,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "consecuencias": {
+  "consecuencia'": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "consejos": {
@@ -9533,11 +9473,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "convertimo'": {
+  "convertimos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "conviene": {
@@ -9562,28 +9505,22 @@
   },
   "cookie": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "cooking": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "cool": {
     "freq": 1,
-    "wikt_pos": [
-      "adj"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -9913,11 +9850,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "costo'": {
+  "costos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "costumbre": {
@@ -9933,7 +9873,7 @@
   "costume": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -9951,7 +9891,7 @@
   "coupe": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -9964,20 +9904,17 @@
   },
   "cover": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "cover'": {
+  "covers": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
+    "bucket": "english",
+    "source": "en_not_es",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "coxis": {
     "freq": 1,
@@ -9992,7 +9929,7 @@
   "cozy": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10130,11 +10067,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "creyente'": {
+  "creyentes": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "crezco": {
@@ -10180,7 +10120,7 @@
   "crib": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10227,20 +10167,15 @@
   },
   "cristina": {
     "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "crop": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10268,11 +10203,8 @@
   },
   "cruising": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -10288,11 +10220,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "cruzarle'": {
+  "cruzarles": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "clitic_merge",
+    "clitic_base": "cruzar",
+    "clitic_pronoun": "les",
+    "source": "wikt_only_clitic",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "cry": {
@@ -10665,7 +10602,7 @@
   "culprit": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10703,7 +10640,7 @@
   "cupid": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10749,14 +10686,14 @@
   "cute": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "cutie": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10997,8 +10934,8 @@
   },
   "damn": {
     "freq": 4,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -11175,7 +11112,7 @@
   "dd": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -11193,17 +11130,14 @@
   "deadly": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "dealer": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11347,11 +11281,8 @@
   },
   "decline": {
     "freq": 5,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11417,11 +11348,8 @@
   },
   "default": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -11672,7 +11600,7 @@
   "delay": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -11722,11 +11650,8 @@
   },
   "dembow": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -11930,11 +11855,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "descarrilá'": {
+  "descarrilás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "descifran": {
@@ -12054,24 +11982,27 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "desesperá'": {
+  "desesperás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "design": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "designer": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -12086,11 +12017,15 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "desocupada'": {
+  "desocupadas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "desorden": {
@@ -12103,11 +12038,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "despedida'": {
+  "despedidas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "desperdiciar": {
@@ -12271,7 +12211,7 @@
   "deuces": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -12386,11 +12326,14 @@
     "in_spanish_forms": false,
     "in_en_50k": false
   },
-  "diaria'": {
+  "diarias": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "dice": {
@@ -12746,12 +12689,8 @@
   },
   "dios": {
     "freq": 10,
-    "wikt_pos": [
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -12932,14 +12871,14 @@
   "district": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "disturb": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -12998,11 +12937,8 @@
   },
   "dixie": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -13027,24 +12963,22 @@
   },
   "dj": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "dm": {
     "freq": 5,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "dnd": {
     "freq": 3,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -13142,11 +13076,8 @@
   },
   "don": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -13216,7 +13147,7 @@
   "dose": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -13239,11 +13170,8 @@
   },
   "down": {
     "freq": 3,
-    "wikt_pos": [
-      "adj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -13267,7 +13195,7 @@
   "dp": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -13299,7 +13227,7 @@
   "dress": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -13366,7 +13294,7 @@
   "drums": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -13485,7 +13413,7 @@
   "dump": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -13956,11 +13884,8 @@
   },
   "emoji": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -14017,7 +13942,7 @@
   "empty": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -14113,11 +14038,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "encendíos": {
+  "encendidos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "enchula": {
@@ -14468,11 +14398,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "enterao'": {
+  "enteraos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "entere": {
@@ -14662,11 +14595,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "entrená'": {
+  "entrenás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "entretener": {
@@ -14800,11 +14736,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "envolvemo'": {
+  "envolvemos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "envolverme": {
@@ -15474,15 +15413,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "esposas": {
+  "esposa'": {
     "freq": 1,
-    "wikt_pos": [
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "esquina": {
@@ -15765,11 +15700,8 @@
   },
   "estrés": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -15874,11 +15806,15 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "europeo'": {
+  "europeos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "evan": {
@@ -15966,11 +15902,8 @@
   },
   "excuses": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -15984,12 +15917,8 @@
   },
   "exes": {
     "freq": 1,
-    "wikt_pos": [
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -16003,14 +15932,14 @@
   "expedition": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "expensive": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16062,7 +15991,7 @@
   "explicit": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16212,11 +16141,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "exótica'": {
+  "exóticas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "ey": {
@@ -16259,7 +16191,7 @@
   "fake": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16413,7 +16345,7 @@
   "fantastic": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16448,11 +16380,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "farra'": {
+  "farras": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "farrear": {
@@ -16488,12 +16423,8 @@
   },
   "fashion": {
     "freq": 2,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -16589,7 +16520,7 @@
   "feat": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16615,11 +16546,8 @@
   },
   "feeling": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -16693,11 +16621,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "fetiche'": {
+  "fetiches": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "fieles": {
@@ -16733,15 +16664,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "filas": {
+  "fila'": {
     "freq": 1,
-    "wikt_pos": [
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "fina": {
@@ -16759,7 +16686,7 @@
   "finally": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16796,11 +16723,8 @@
   },
   "finger": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -16849,18 +16773,15 @@
   },
   "fit": {
     "freq": 4,
-    "wikt_pos": [
-      "adj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "fitting": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16877,21 +16798,15 @@
   },
   "flash": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "flashbacks": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -16933,7 +16848,7 @@
   "flex": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16964,7 +16879,7 @@
   "floor": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -16993,11 +16908,8 @@
   },
   "flow": {
     "freq": 14,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -17034,11 +16946,8 @@
   },
   "foam": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -17055,7 +16964,7 @@
   "follow": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17068,15 +16977,15 @@
   },
   "force": {
     "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "foreign": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17138,17 +17047,20 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "forrá'": {
+  "forrás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "forty": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17228,7 +17140,7 @@
   "freaky": {
     "freq": 8,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17251,11 +17163,8 @@
   },
   "freestyle": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -17269,7 +17178,7 @@
   "freeze": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17283,11 +17192,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "frenamo'": {
+  "frenamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "frenarlo": {
@@ -17374,7 +17286,7 @@
   "friendly": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17448,7 +17360,7 @@
   "frozen": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17771,18 +17683,15 @@
   },
   "g": {
     "freq": 8,
-    "wikt_pos": [
-      "character"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "gabbana": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -17899,11 +17808,8 @@
   },
   "gasolina": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -18124,14 +18030,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "girar": {
+  "gira'": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "girl": {
@@ -18151,17 +18054,14 @@
   "girly": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "gistro": {
     "freq": 6,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -18207,7 +18107,7 @@
   "gloss": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -18224,14 +18124,14 @@
   "goddamn": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "goddamnit": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -18293,7 +18193,7 @@
   "goodness": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -18430,11 +18330,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "grabemo'": {
+  "grabemos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "grabo": {
@@ -18491,11 +18394,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "grandota'": {
+  "grandotas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "grasa": {
@@ -18522,11 +18428,8 @@
   },
   "green": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -18631,7 +18534,7 @@
   "grr": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -18959,17 +18862,15 @@
   },
   "gyal": {
     "freq": 9,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "gym": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -18988,11 +18889,8 @@
   },
   "gángster": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -19006,11 +18904,15 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "gémini'": {
+  "géminis": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "name"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "génesis": {
@@ -19290,11 +19192,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "hacerno'": {
+  "hacernos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "clitic_merge",
+    "clitic_base": "hacer",
+    "clitic_pronoun": "nos",
+    "source": "wikt_only_clitic",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "hacerte": {
@@ -19483,24 +19390,21 @@
   "handle": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "handles": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "hard": {
     "freq": 2,
-    "wikt_pos": [
-      "adj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -19538,11 +19442,8 @@
   },
   "hashtag": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -19559,11 +19460,8 @@
   },
   "haters": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -19678,8 +19576,8 @@
   },
   "hello": {
     "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -19696,25 +19594,22 @@
   },
   "hennessy": {
     "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "henny": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "hentai": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -19742,11 +19637,8 @@
   },
   "hey": {
     "freq": 3,
-    "wikt_pos": [
-      "intj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -19817,11 +19709,8 @@
   },
   "highlight": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -19926,11 +19815,8 @@
   },
   "hit": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -19944,7 +19830,7 @@
   "hitter": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -19967,25 +19853,22 @@
   },
   "hobby": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "hoe": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "hoes": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20022,7 +19905,7 @@
   "holla": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20039,7 +19922,7 @@
   "homies": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20064,11 +19947,8 @@
   },
   "hoodie": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -20082,7 +19962,7 @@
   "hookah": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20116,14 +19996,14 @@
   "hornet": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "horny": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20146,11 +20026,8 @@
   },
   "hotdog": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -20177,7 +20054,7 @@
   "hotline": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20191,7 +20068,7 @@
   "housekeeping": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20322,7 +20199,7 @@
   "hush": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20343,7 +20220,7 @@
   "hyundai": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20406,7 +20283,8 @@
   },
   "i'ma": {
     "freq": 5,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -20439,19 +20317,15 @@
   },
   "ice": {
     "freq": 1,
-    "wikt_pos": [
-      "name",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "icy": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20467,12 +20341,8 @@
   },
   "ig": {
     "freq": 4,
-    "wikt_pos": [
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -20538,11 +20408,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "igualita'": {
+  "igualitas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "ikea": {
@@ -20726,7 +20599,7 @@
   "impulsive": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20740,7 +20613,7 @@
   "inception": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20886,17 +20759,14 @@
   "infinity": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "info": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -20924,7 +20794,7 @@
   "injection": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -20981,11 +20851,8 @@
   },
   "intro": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -21042,11 +20909,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "invitada'": {
+  "invitadas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "invite": {
@@ -21091,15 +20963,8 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "irno'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "irnos": {
-    "freq": 1,
+    "freq": 2,
     "wikt_pos": [
       "verb"
     ],
@@ -21287,11 +21152,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "jangueamo'": {
+  "jangueamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "janguear": {
@@ -21382,18 +21250,15 @@
   },
   "jenga": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "jenner": {
     "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -21427,11 +21292,8 @@
   },
   "jet": {
     "freq": 6,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -21749,7 +21611,7 @@
   "juicy": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -21788,17 +21650,14 @@
   "jumper": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "jungla": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -21947,7 +21806,7 @@
   "keeper": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -21968,7 +21827,7 @@
   "khalifa": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -21988,11 +21847,8 @@
   },
   "kill": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -22060,18 +21916,15 @@
   },
   "kitty": {
     "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "kiwi": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -22143,8 +21996,8 @@
   },
   "kylie": {
     "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22157,11 +22010,8 @@
   },
   "l": {
     "freq": 2,
-    "wikt_pos": [
-      "character"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -22244,7 +22094,7 @@
   "lap": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22312,7 +22162,7 @@
   "lately": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22403,7 +22253,7 @@
   "leash": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22465,7 +22315,7 @@
   "legit": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22688,11 +22538,8 @@
   },
   "lifestyle": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -22720,18 +22567,15 @@
   },
   "like": {
     "freq": 16,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "likey": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22766,7 +22610,7 @@
   "limousine": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -22804,11 +22648,8 @@
   },
   "lingote": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -22829,19 +22670,14 @@
   "lips": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "lisa": {
     "freq": 3,
-    "wikt_pos": [
-      "adj",
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -22857,16 +22693,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "listas": {
+  "lista'": {
     "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "livin'": {
@@ -23455,17 +23286,14 @@
   "loading": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "lobby": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -23540,11 +23368,8 @@
   },
   "look": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -23568,7 +23393,7 @@
   "loose": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -23660,7 +23485,7 @@
   "luci": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -23753,7 +23578,7 @@
   "lv": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -24002,11 +23827,8 @@
   },
   "mall": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -24059,11 +23881,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "mamacita'": {
+  "mamacitas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "mamando": {
@@ -24137,11 +23962,8 @@
   },
   "man": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -24186,11 +24008,15 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "mandarina'": {
+  "mandarinas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "mandarte": {
@@ -24499,11 +24325,8 @@
   },
   "marte": {
     "freq": 1,
-    "wikt_pos": [
-      "name"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -24526,8 +24349,8 @@
   },
   "martino": {
     "freq": 13,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -24765,11 +24588,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "medalla'": {
+  "medallas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "media": {
@@ -24947,7 +24773,7 @@
   "mention": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -25020,13 +24846,8 @@
   },
   "mercedes": {
     "freq": 3,
-    "wikt_pos": [
-      "name",
-      "noun",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -25157,11 +24978,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "meterno'": {
+  "meternos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "clitic_merge",
+    "clitic_base": "meter",
+    "clitic_pronoun": "nos",
+    "source": "wikt_only_clitic",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "meterse": {
@@ -25191,6 +25017,17 @@
   "metes": {
     "freq": 1,
     "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
+  "metidos": {
+    "freq": 4,
+    "wikt_pos": [
+      "adj",
       "verb"
     ],
     "bucket": "conjugation",
@@ -25248,12 +25085,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "metíos": {
-    "freq": 4,
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "mezcal": {
     "freq": 1,
     "wikt_pos": [
@@ -25287,7 +25118,7 @@
   "mhm": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -25312,7 +25143,7 @@
   "mic": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -25447,11 +25278,8 @@
   },
   "milf": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -25485,7 +25313,7 @@
   "milli": {
     "freq": 5,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -25726,14 +25554,14 @@
   "missionary": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "mistake": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -25761,7 +25589,7 @@
   "mmh": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -25904,18 +25732,14 @@
   "mommy": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "mona": {
     "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -25962,11 +25786,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "montamo'": {
+  "montamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "montarse": {
@@ -26026,14 +25853,14 @@
   "mood": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "moolah": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26047,7 +25874,7 @@
   "moped": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26141,7 +25968,7 @@
   "motherfuckers": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26167,11 +25994,8 @@
   },
   "mouse": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -26458,7 +26282,7 @@
   "munchies": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26512,11 +26336,8 @@
   },
   "mute": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -26592,7 +26413,7 @@
   "mvp": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26617,11 +26438,14 @@
     "in_spanish_forms": false,
     "in_en_50k": false
   },
-  "mágico'": {
+  "mágicos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "máquina": {
@@ -26845,7 +26669,7 @@
   "nae": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26859,7 +26683,7 @@
   "naked": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -26903,7 +26727,7 @@
   "nap": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -27082,8 +26906,15 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
+  "negra'": {
+    "freq": 1,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
+    "in_en_50k": false
+  },
   "negras": {
-    "freq": 2,
+    "freq": 1,
     "wikt_pos": [
       "adj",
       "noun"
@@ -27200,11 +27031,8 @@
   },
   "nice": {
     "freq": 2,
-    "wikt_pos": [
-      "adj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -27222,7 +27050,7 @@
   "nigga": {
     "freq": 4,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -27250,7 +27078,7 @@
   "ninety": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -27401,11 +27229,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "nominá'": {
+  "nominás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "nomás": {
@@ -27421,7 +27252,7 @@
   "none": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -27660,11 +27491,8 @@
   },
   "nudes": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -27744,7 +27572,7 @@
   "numbers": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -27961,12 +27789,8 @@
   },
   "okey": {
     "freq": 4,
-    "wikt_pos": [
-      "intj",
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -28102,11 +27926,8 @@
   },
   "omg": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -28278,7 +28099,7 @@
   "ot": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -28339,34 +28160,29 @@
   },
   "ousi": {
     "freq": 4,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "out": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "outfit": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "outside": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -28400,21 +28216,21 @@
   "overdrive": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "overseas": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "overtime": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -28729,11 +28545,8 @@
   },
   "panty": {
     "freq": 7,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -28970,19 +28783,19 @@
   },
   "parquear": {
     "freq": 1,
+    "bucket": "english",
+    "source": "english_loanwords",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
+  "parqueábamos": {
+    "freq": 1,
     "wikt_pos": [
       "verb"
     ],
     "bucket": "conjugation",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "parqueábamo'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "parqueé": {
@@ -29029,13 +28842,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "partie'": {
-    "freq": 2,
-    "bucket": "english",
-    "source": "curated_extra_english",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "partiendo": {
     "freq": 1,
     "wikt_pos": [
@@ -29045,6 +28851,13 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": false
+  },
+  "parties": {
+    "freq": 2,
+    "bucket": "english",
+    "source": "en_not_es",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "partir": {
     "freq": 3,
@@ -29070,11 +28883,8 @@
   },
   "party": {
     "freq": 10,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -29101,12 +28911,8 @@
   },
   "parís": {
     "freq": 3,
-    "wikt_pos": [
-      "name",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -29315,6 +29121,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
+  "patadas": {
+    "freq": 1,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
   "patea": {
     "freq": 1,
     "wikt_pos": [
@@ -29359,22 +29175,10 @@
   },
   "patricia": {
     "freq": 2,
-    "wikt_pos": [
-      "adj",
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
-  },
-  "patás": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
   },
   "paul": {
     "freq": 1,
@@ -29385,12 +29189,8 @@
   },
   "paulina": {
     "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "name"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -29517,6 +29317,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
+  "pegaditos": {
+    "freq": 4,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
   "pegado": {
     "freq": 2,
     "wikt_pos": [
@@ -29539,11 +29349,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "pegamo'": {
+  "pegamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "pegan": {
@@ -29597,12 +29410,6 @@
     "bucket": "conjugation",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "pegaítos": {
-    "freq": 4,
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "pego": {
@@ -29729,11 +29536,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "peleemo'": {
+  "peleemos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "pelets": {
@@ -29997,8 +29807,8 @@
   },
   "perc": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -30329,7 +30139,7 @@
   "petite": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -30343,7 +30153,7 @@
   "pew": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -30367,14 +30177,14 @@
   "phd": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "phew": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -30388,14 +30198,14 @@
   "phillies": {
     "freq": 4,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "phone": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -30409,7 +30219,7 @@
   "photo": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -30533,7 +30343,7 @@
   "picky": {
     "freq": 11,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -30551,15 +30361,18 @@
   "picture": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "picá'": {
+  "picás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "pida": {
@@ -30737,11 +30550,8 @@
   },
   "piercing": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -30893,11 +30703,8 @@
   },
   "pin": {
     "freq": 4,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -31069,18 +30876,15 @@
   },
   "pitcher": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "pixie": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -31190,7 +30994,7 @@
   "plug": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -31700,11 +31504,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "posteá'": {
+  "posteás": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "pote": {
@@ -31727,13 +31534,8 @@
   },
   "pr": {
     "freq": 5,
-    "wikt_pos": [
-      "conj",
-      "name",
-      "prep"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -32023,6 +31825,17 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
+  "prendidos": {
+    "freq": 3,
+    "wikt_pos": [
+      "adj",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
   "prendiendo": {
     "freq": 1,
     "wikt_pos": [
@@ -32061,12 +31874,6 @@
     "bucket": "conjugation",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "prendíos": {
-    "freq": 3,
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "presenta": {
@@ -32131,7 +31938,7 @@
   "pressure": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -32186,11 +31993,14 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "previo'": {
+  "previos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "price": {
@@ -32256,7 +32066,7 @@
   "privacy": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -32358,7 +32168,7 @@
   "problematic": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -32762,7 +32572,7 @@
   "pull": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -32824,7 +32634,7 @@
   "purse": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -33042,11 +32852,8 @@
   },
   "póster": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -33365,7 +33172,7 @@
   "question": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -33379,7 +33186,7 @@
   "quickie": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -33721,17 +33528,14 @@
   "raff": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "ram": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -33779,11 +33583,8 @@
   },
   "ranking": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -33923,7 +33724,7 @@
   "reaction": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -34132,18 +33933,15 @@
   "reel": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "reemplazar": {
+  "reemplaza'": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "reemplazas": {
@@ -34257,11 +34055,8 @@
   },
   "relax": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -34286,11 +34081,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "rellenita'": {
+  "rellenitas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "reloj": {
@@ -34306,17 +34104,14 @@
   "reminder": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "remix": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -34344,7 +34139,7 @@
   "repeat": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -34371,14 +34166,14 @@
   "replay": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "reply": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -34405,7 +34200,7 @@
   "request": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -34429,20 +34224,21 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "reservada'": {
+  "reservadas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "reset": {
     "freq": 4,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -34469,18 +34265,15 @@
   },
   "resort": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "respectfully": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -34525,14 +34318,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "respondan": {
+  "responda'": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "respuesta": {
@@ -34643,11 +34433,8 @@
   },
   "reversible": {
     "freq": 1,
-    "wikt_pos": [
-      "adj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -34738,7 +34525,7 @@
   "rican": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -34797,11 +34584,8 @@
   },
   "right": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -34844,23 +34628,17 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "rindas": {
+  "rinda'": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "ring": {
     "freq": 5,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -34876,7 +34654,8 @@
   },
   "riri": {
     "freq": 2,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -34909,15 +34688,15 @@
   },
   "ritz": {
     "freq": 5,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "riverside": {
     "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -35003,7 +34782,7 @@
   "rockstar": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -35119,7 +34898,7 @@
   "romantic": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -35202,11 +34981,8 @@
   },
   "ron": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -35275,17 +35051,14 @@
   "roof": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "rookie": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -35357,11 +35130,8 @@
   },
   "roster": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -35380,17 +35150,14 @@
   "rough": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "round": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -35681,7 +35448,7 @@
   "saiyan": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -35860,11 +35627,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "salirle'": {
+  "salirles": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "clitic_merge",
+    "clitic_base": "salir",
+    "clitic_pronoun": "les",
+    "source": "wikt_only_clitic",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "salita": {
@@ -35920,11 +35692,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "salábamo'": {
+  "salábamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "salí": {
@@ -35953,11 +35728,8 @@
   },
   "samurai": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -36076,7 +35848,7 @@
   "satisfaction": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -36174,18 +35946,15 @@
   },
   "screenshot": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
   "scuba": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -36343,8 +36112,8 @@
   },
   "seh": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -36531,11 +36300,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "serenata'": {
+  "serenatas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "seria": {
@@ -36616,17 +36388,14 @@
   "session": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "set": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -36744,14 +36513,14 @@
   "sheesh": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "sheets": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -36792,31 +36561,22 @@
   },
   "shooters": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "shopping": {
     "freq": 4,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "short": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -36845,11 +36605,8 @@
   },
   "shots": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -36862,11 +36619,8 @@
   },
   "show": {
     "freq": 5,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -36880,7 +36634,7 @@
   "shy": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37016,14 +36770,14 @@
   "sight": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "sign": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37194,11 +36948,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "sirena'": {
+  "sirenas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "siri": {
@@ -37269,7 +37026,7 @@
   "size": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37287,11 +37044,8 @@
   },
   "skate": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -37336,7 +37090,7 @@
   "slow": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37350,7 +37104,7 @@
   "smooth": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37648,14 +37402,11 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "soportar": {
+  "soporta'": {
     "freq": 1,
-    "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
+    "bucket": "low_frequency",
+    "source": "freq<2",
+    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "soporte": {
@@ -37682,11 +37433,8 @@
   },
   "sorry": {
     "freq": 2,
-    "wikt_pos": [
-      "intj"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -37748,20 +37496,17 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "speaker'": {
+  "speakers": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
+    "bucket": "english",
+    "source": "en_not_es",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "split": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -37775,7 +37520,7 @@
   "sprite": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37805,11 +37550,8 @@
   },
   "stand": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -37844,7 +37586,7 @@
   "states": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37860,11 +37602,8 @@
   },
   "step": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -37891,25 +37630,22 @@
   },
   "sticker": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "sticks": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "sticky": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37925,18 +37661,15 @@
   },
   "stop": {
     "freq": 1,
-    "wikt_pos": [
-      "intj"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "stories": {
     "freq": 4,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -37956,11 +37689,8 @@
   },
   "stream": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -37973,11 +37703,8 @@
   },
   "strike": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -38001,7 +37728,7 @@
   "stuck": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -38348,18 +38075,15 @@
   },
   "sunroof": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "suntan": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -38441,7 +38165,7 @@
   "supreme": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -38475,8 +38199,8 @@
   },
   "suv": {
     "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -38501,7 +38225,7 @@
   "swipe": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -38671,12 +38395,15 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "taco'": {
+  "tacos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "tainy": {
     "freq": 3,
@@ -38745,11 +38472,8 @@
   },
   "tamagotchi": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -38971,7 +38695,7 @@
   "tasty": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -38990,7 +38714,7 @@
   "tattoo": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39066,7 +38790,7 @@
   "tease": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39319,11 +39043,8 @@
   },
   "tenis": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -39415,11 +39136,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "terminábamo'": {
+  "terminábamos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "terminó": {
@@ -39434,8 +39158,8 @@
   },
   "tesla": {
     "freq": 4,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39467,11 +39191,14 @@
     "in_spanish_forms": false,
     "in_en_50k": false
   },
-  "tetica'": {
+  "teticas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "tetotas": {
@@ -39484,7 +39211,7 @@
   "text": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39569,7 +39296,7 @@
   "thick": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39596,28 +39323,28 @@
   "though": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "thousand": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "threesome": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "threesomes": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39639,11 +39366,8 @@
   },
   "ticket": {
     "freq": 7,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -39823,11 +39547,8 @@
   },
   "tip": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -39846,7 +39567,7 @@
   "tipsy": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -39874,11 +39595,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "tiramo'": {
+  "tiramos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "tiran": {
@@ -40037,18 +39761,15 @@
   },
   "tlc": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "tmz": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40063,18 +39784,6 @@
     "freq": 1,
     "bucket": "low_frequency",
     "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
-  "to'as": {
-    "freq": 14,
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
-  "to's": {
-    "freq": 6,
-    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -40147,7 +39856,7 @@
     "in_en_50k": true
   },
   "todas": {
-    "freq": 24,
+    "freq": 38,
     "wikt_pos": [
       "det"
     ],
@@ -40198,7 +39907,7 @@
     "in_en_50k": true
   },
   "todos": {
-    "freq": 14,
+    "freq": 20,
     "wikt_pos": [
       "det"
     ],
@@ -40209,8 +39918,8 @@
   },
   "toki": {
     "freq": 4,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40301,11 +40010,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "tono'": {
+  "tonos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "too": {
@@ -40320,12 +40032,8 @@
   },
   "top": {
     "freq": 6,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -40417,7 +40125,7 @@
   "tote": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40434,7 +40142,7 @@
   "toxic": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40630,11 +40338,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "transmisione'": {
+  "transmisiones": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "transmisión": {
@@ -40649,11 +40360,8 @@
   },
   "trap": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -40687,7 +40395,7 @@
   "trashy": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40757,7 +40465,7 @@
   "trending": {
     "freq": 4,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40841,18 +40549,15 @@
   },
   "tri": {
     "freq": 4,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "tricky": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40864,11 +40569,8 @@
   },
   "trip": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -40905,11 +40607,8 @@
   },
   "troca": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -40936,7 +40635,7 @@
   "troubles": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -40986,11 +40685,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "truquito'": {
+  "truquitos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "try": {
@@ -41008,11 +40710,8 @@
   },
   "tryout": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -41238,7 +40937,7 @@
   "twenty": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41255,7 +40954,7 @@
   "twix": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41269,7 +40968,7 @@
   "type": {
     "freq": 11,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41468,7 +41167,7 @@
   "underwater": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41536,7 +41235,7 @@
   "update": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41596,7 +41295,7 @@
   "usd": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41690,11 +41389,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "vaciao'": {
+  "vaciaos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "vacíe": {
@@ -41743,8 +41445,8 @@
   },
   "valentino": {
     "freq": 2,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -41795,14 +41497,15 @@
   },
   "vander": {
     "freq": 3,
-    "bucket": "sense_discovery",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
   "vanilla": {
     "freq": 1,
-    "bucket": "derivation",
-    "derivation_base": "vana",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -42092,11 +41795,8 @@
   },
   "vendetta": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -42176,7 +41876,7 @@
   "venue": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -42336,12 +42036,8 @@
   },
   "versa": {
     "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -42354,11 +42050,8 @@
   },
   "versus": {
     "freq": 1,
-    "wikt_pos": [
-      "prep"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -42502,7 +42195,7 @@
   "vibe": {
     "freq": 4,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -42546,12 +42239,8 @@
   },
   "victoria": {
     "freq": 3,
-    "wikt_pos": [
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -42584,11 +42273,8 @@
   },
   "video": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -42620,11 +42306,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "viejito'": {
+  "viejitos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "adj"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "viejo": {
@@ -42749,12 +42438,8 @@
   },
   "villana": {
     "freq": 2,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": false
   },
@@ -42838,11 +42523,8 @@
   },
   "vip": {
     "freq": 3,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -43105,7 +42787,7 @@
   "volley": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -43383,7 +43065,7 @@
   "waikiki": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -43432,7 +43114,7 @@
   "wannabes": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -43469,25 +43151,22 @@
   },
   "webcam": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "en_not_es",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "wednesday": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
   "weed": {
     "freq": 2,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -43527,11 +43206,8 @@
   },
   "when": {
     "freq": 2,
-    "wikt_pos": [
-      "conj"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -43544,22 +43220,15 @@
   },
   "whiskey": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
   "whisky": {
     "freq": 2,
-    "wikt_pos": [
-      "intj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -43594,7 +43263,7 @@
   "wifey": {
     "freq": 3,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -43617,11 +43286,8 @@
   },
   "wiki": {
     "freq": 1,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -43754,7 +43420,7 @@
   "xl": {
     "freq": 1,
     "bucket": "english",
-    "source": "en_50k",
+    "source": "en_not_es",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -43825,11 +43491,8 @@
   },
   "yate": {
     "freq": 2,
-    "wikt_pos": [
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "english",
+    "source": "english_loanwords",
     "in_spanish_forms": true,
     "in_en_50k": false
   },

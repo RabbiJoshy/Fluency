@@ -13136,6 +13136,105 @@
     ]
   },
   {
+    "word": "todas",
+    "corpus_count": 14,
+    "song_count": 11,
+    "song_ids": [
+      "10912589",
+      "12397133",
+      "12581301",
+      "12660487",
+      "4801759",
+      "5384007",
+      "7515069",
+      "7515113",
+      "7515186",
+      "8173139",
+      "8916307"
+    ],
+    "examples": [
+      {
+        "id": "12660487:30",
+        "line": "Doblo contigo todas las esquinas",
+        "title": "Dios Es Un Stalker (Versión Física)",
+        "surface": "todas"
+      },
+      {
+        "id": "8916307:19",
+        "line": "Quiero comer cerezas contigo y subir todas las montañas",
+        "title": "PROMESA",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "todas"
+      },
+      {
+        "id": "7515069:5",
+        "line": "Y todas las chicas son tan bonitas, tan plásticas",
+        "title": "SAKURA",
+        "surface": "todas"
+      },
+      {
+        "id": "12581301:3",
+        "line": "¡Un auténtico robo de identidad, libertad y poder a mano armada donde todas somos invitadas!",
+        "title": "Novia Robot",
+        "surface": "todas"
+      },
+      {
+        "id": "5384007:1",
+        "line": "Por toda' esas veces que me puse detrá'",
+        "title": "Dolerme",
+        "surface": "toda'"
+      },
+      {
+        "id": "7515113:16",
+        "line": "Bendicen toda' mis canciones",
+        "title": "LA COMBI VERSACE",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "toda'"
+      },
+      {
+        "id": "4801759:102",
+        "line": "Quiero verle a toda' meneado las cadera'",
+        "title": "KLK",
+        "vocalists": [
+          "Arca"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "toda'"
+      },
+      {
+        "id": "7515186:27",
+        "line": "Toda' mis domi' saben la que hay, hey",
+        "title": "CHICKEN TERIYAKI",
+        "surface": "toda'"
+      },
+      {
+        "id": "8173139:7",
+        "line": "Con toa' mis motomami', con toda' mis yale'",
+        "title": "DESPECHÁ",
+        "surface": "toda'"
+      },
+      {
+        "id": "12397133:18",
+        "line": "To'as en mi pelo",
+        "title": "De Madrugá",
+        "surface": "to'as"
+      }
+    ],
+    "display_form": "toda'",
+    "variants": {
+      "todas": 6,
+      "toda'": 5,
+      "to'as": 2,
+      "toa'": 1
+    }
+  },
+  {
     "word": "algo",
     "corpus_count": 13,
     "song_count": 11,
@@ -14704,96 +14803,6 @@
     "variants": {
       "vez": 11,
       "ve'": 1
-    }
-  },
-  {
-    "word": "todas",
-    "corpus_count": 12,
-    "song_count": 9,
-    "song_ids": [
-      "12581301",
-      "12660487",
-      "4801759",
-      "5384007",
-      "7515069",
-      "7515113",
-      "7515186",
-      "8173139",
-      "8916307"
-    ],
-    "examples": [
-      {
-        "id": "12660487:30",
-        "line": "Doblo contigo todas las esquinas",
-        "title": "Dios Es Un Stalker (Versión Física)",
-        "surface": "todas"
-      },
-      {
-        "id": "8916307:19",
-        "line": "Quiero comer cerezas contigo y subir todas las montañas",
-        "title": "PROMESA",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "todas"
-      },
-      {
-        "id": "7515069:5",
-        "line": "Y todas las chicas son tan bonitas, tan plásticas",
-        "title": "SAKURA",
-        "surface": "todas"
-      },
-      {
-        "id": "12581301:3",
-        "line": "¡Un auténtico robo de identidad, libertad y poder a mano armada donde todas somos invitadas!",
-        "title": "Novia Robot",
-        "surface": "todas"
-      },
-      {
-        "id": "5384007:1",
-        "line": "Por toda' esas veces que me puse detrá'",
-        "title": "Dolerme",
-        "surface": "toda'"
-      },
-      {
-        "id": "7515113:16",
-        "line": "Bendicen toda' mis canciones",
-        "title": "LA COMBI VERSACE",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "toda'"
-      },
-      {
-        "id": "4801759:102",
-        "line": "Quiero verle a toda' meneado las cadera'",
-        "title": "KLK",
-        "vocalists": [
-          "Arca"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "toda'"
-      },
-      {
-        "id": "7515186:27",
-        "line": "Toda' mis domi' saben la que hay, hey",
-        "title": "CHICKEN TERIYAKI",
-        "surface": "toda'"
-      },
-      {
-        "id": "8173139:7",
-        "line": "Con toa' mis motomami', con toda' mis yale'",
-        "title": "DESPECHÁ",
-        "surface": "toda'"
-      }
-    ],
-    "display_form": "toda'",
-    "variants": {
-      "todas": 6,
-      "toda'": 5,
-      "toa'": 1
     }
   },
   {
@@ -19401,90 +19410,6 @@
     }
   },
   {
-    "word": "quien",
-    "corpus_count": 8,
-    "song_count": 8,
-    "song_ids": [
-      "12581290",
-      "12581296",
-      "12581301",
-      "2814756",
-      "3964062",
-      "5461781",
-      "7528145",
-      "8587430"
-    ],
-    "examples": [
-      {
-        "id": "8587430:10",
-        "line": "Yo miro bien a quien bien me mire",
-        "title": "X GRANAÍNA",
-        "surface": "quien"
-      },
-      {
-        "id": "7528145:19",
-        "line": "Habrá quien te falle",
-        "title": "CUUUUuuuuuute",
-        "surface": "quien"
-      },
-      {
-        "id": "5461781:3",
-        "line": "Los secreto' solo con quien pueda' confia'",
-        "title": "TKN",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "quien"
-      },
-      {
-        "id": "12581290:18",
-        "line": "No me das pena, quien queda contigo se drena",
-        "title": "La Perla",
-        "vocalists": [
-          "Yahritza",
-          "Su Esencia",
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "quien"
-      },
-      {
-        "id": "2814756:14",
-        "line": "Le meto a él y a quien venga detrás, no le temo al dolor",
-        "title": "Antes de Morirme",
-        "vocalists": [
-          "C. Tangana",
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "quien"
-      },
-      {
-        "id": "12581301:4",
-        "line": "Y quien dice invitadas dice obligadas, forzadas, rehenes, prisioneras",
-        "title": "Novia Robot",
-        "surface": "quien"
-      },
-      {
-        "id": "12581296:29",
-        "line": "Dice quien sabe que tú eres pa' mí",
-        "title": "La Rumba Del Perdón",
-        "surface": "quien"
-      },
-      {
-        "id": "3964062:39",
-        "line": "Senta'ita, al cielo quie' rezarle",
-        "title": "BAGDAD (Cap.7: Liturgia)",
-        "surface": "quie'"
-      }
-    ],
-    "variants": {
-      "quien": 7,
-      "quie'": 1
-    }
-  },
-  {
     "word": "azúcar",
     "corpus_count": 7,
     "song_count": 6,
@@ -20698,6 +20623,79 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "quería"
+      }
+    ]
+  },
+  {
+    "word": "quien",
+    "corpus_count": 7,
+    "song_count": 7,
+    "song_ids": [
+      "12581290",
+      "12581296",
+      "12581301",
+      "2814756",
+      "5461781",
+      "7528145",
+      "8587430"
+    ],
+    "examples": [
+      {
+        "id": "8587430:10",
+        "line": "Yo miro bien a quien bien me mire",
+        "title": "X GRANAÍNA",
+        "surface": "quien"
+      },
+      {
+        "id": "7528145:19",
+        "line": "Habrá quien te falle",
+        "title": "CUUUUuuuuuute",
+        "surface": "quien"
+      },
+      {
+        "id": "5461781:3",
+        "line": "Los secreto' solo con quien pueda' confia'",
+        "title": "TKN",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "quien"
+      },
+      {
+        "id": "12581290:18",
+        "line": "No me das pena, quien queda contigo se drena",
+        "title": "La Perla",
+        "vocalists": [
+          "Yahritza",
+          "Su Esencia",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "quien"
+      },
+      {
+        "id": "2814756:14",
+        "line": "Le meto a él y a quien venga detrás, no le temo al dolor",
+        "title": "Antes de Morirme",
+        "vocalists": [
+          "C. Tangana",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "quien"
+      },
+      {
+        "id": "12581301:4",
+        "line": "Y quien dice invitadas dice obligadas, forzadas, rehenes, prisioneras",
+        "title": "Novia Robot",
+        "surface": "quien"
+      },
+      {
+        "id": "12581296:29",
+        "line": "Dice quien sabe que tú eres pa' mí",
+        "title": "La Rumba Del Perdón",
+        "surface": "quien"
       }
     ]
   },
@@ -26246,6 +26244,48 @@
     }
   },
   {
+    "word": "todos",
+    "corpus_count": 5,
+    "song_count": 4,
+    "song_ids": [
+      "12397133",
+      "12581298",
+      "3191212",
+      "3814300"
+    ],
+    "examples": [
+      {
+        "id": "3191212:17",
+        "line": "Todos le preguntaban",
+        "title": "La Hija De Juan Simón",
+        "surface": "todos"
+      },
+      {
+        "id": "12581298:5",
+        "line": "Todos habéis venido",
+        "title": "Magnolias",
+        "surface": "todos"
+      },
+      {
+        "id": "3814300:2",
+        "line": "Porque todos pueden ve' los hoyuelitos que te salen",
+        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
+        "surface": "todos"
+      },
+      {
+        "id": "12397133:16",
+        "line": "To's los luceros del cielo se reflejan en mi pelo",
+        "title": "De Madrugá",
+        "surface": "to's"
+      }
+    ],
+    "display_form": "todo'",
+    "variants": {
+      "todos": 4,
+      "to's": 1
+    }
+  },
+  {
     "word": "atrás",
     "corpus_count": 5,
     "song_count": 5,
@@ -29647,37 +29687,6 @@
     ]
   },
   {
-    "word": "todos",
-    "corpus_count": 4,
-    "song_count": 3,
-    "song_ids": [
-      "12581298",
-      "3191212",
-      "3814300"
-    ],
-    "examples": [
-      {
-        "id": "3191212:17",
-        "line": "Todos le preguntaban",
-        "title": "La Hija De Juan Simón",
-        "surface": "todos"
-      },
-      {
-        "id": "12581298:5",
-        "line": "Todos habéis venido",
-        "title": "Magnolias",
-        "surface": "todos"
-      },
-      {
-        "id": "3814300:2",
-        "line": "Porque todos pueden ve' los hoyuelitos que te salen",
-        "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
-        "surface": "todos"
-      }
-    ],
-    "display_form": "todo'"
-  },
-  {
     "word": "triste",
     "corpus_count": 4,
     "song_count": 4,
@@ -30240,60 +30249,6 @@
     "variants": {
       "legua'": 3,
       "leguas": 1
-    }
-  },
-  {
-    "word": "penas",
-    "corpus_count": 4,
-    "song_count": 4,
-    "song_ids": [
-      "3646825",
-      "3964043",
-      "8324985",
-      "8916307"
-    ],
-    "examples": [
-      {
-        "id": "3964043:9",
-        "line": "Amargas penas te vendo",
-        "title": "DE AQUÍ NO SALES (Cap.4: Disputa)",
-        "surface": "penas"
-      },
-      {
-        "id": "8324985:14",
-        "line": "A aliviarnos las penas y curarno' en la cama",
-        "title": "El Pañuelo",
-        "vocalists": [
-          "Romeo Santos",
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "penas"
-      },
-      {
-        "id": "3646825:7",
-        "line": "Lloran con mis penas (Tra), si salgo a cantar (Tra)",
-        "title": "Brillo",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "penas"
-      },
-      {
-        "id": "8916307:5",
-        "line": "La fuerza, las pena' a tu la'o no me quedan",
-        "title": "PROMESA",
-        "vocalists": [
-          "Rauw Alejandro"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "pena'"
-      }
-    ],
-    "variants": {
-      "penas": 3,
-      "pena'": 1
     }
   },
   {
@@ -33414,6 +33369,45 @@
     "display_form": "paí'"
   },
   {
+    "word": "penas",
+    "corpus_count": 3,
+    "song_count": 3,
+    "song_ids": [
+      "3646825",
+      "3964043",
+      "8324985"
+    ],
+    "examples": [
+      {
+        "id": "3964043:9",
+        "line": "Amargas penas te vendo",
+        "title": "DE AQUÍ NO SALES (Cap.4: Disputa)",
+        "surface": "penas"
+      },
+      {
+        "id": "8324985:14",
+        "line": "A aliviarnos las penas y curarno' en la cama",
+        "title": "El Pañuelo",
+        "vocalists": [
+          "Romeo Santos",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "penas"
+      },
+      {
+        "id": "3646825:7",
+        "line": "Lloran con mis penas (Tra), si salgo a cantar (Tra)",
+        "title": "Brillo",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "penas"
+      }
+    ]
+  },
+  {
     "word": "peor",
     "corpus_count": 3,
     "song_count": 3,
@@ -35783,6 +35777,40 @@
     }
   },
   {
+    "word": "sido",
+    "corpus_count": 3,
+    "song_count": 3,
+    "song_ids": [
+      "12579326",
+      "3065090",
+      "3191212"
+    ],
+    "examples": [
+      {
+        "id": "12579326:5",
+        "line": "Pero mi corazón nunca ha sido mío, yo siempre lo doy, oh",
+        "title": "Reliquia",
+        "surface": "sido"
+      },
+      {
+        "id": "3065090:31",
+        "line": "Apúnteme un cuadro rompi'o que ya ni Dios sabe del santo que ha sido",
+        "title": "Catalina",
+        "surface": "sido"
+      },
+      {
+        "id": "3191212:5",
+        "line": "Y yo, que la culpa he sío",
+        "title": "La Hija De Juan Simón",
+        "surface": "sío"
+      }
+    ],
+    "variants": {
+      "sido": 2,
+      "sío": 1
+    }
+  },
+  {
     "word": "tenemos",
     "corpus_count": 3,
     "song_count": 3,
@@ -35865,6 +35893,46 @@
     "variants": {
       "vámonos": 2,
       "vámono'": 1
+    }
+  },
+  {
+    "word": "perdido",
+    "corpus_count": 3,
+    "song_count": 3,
+    "song_ids": [
+      "2814756",
+      "3191212",
+      "8682586"
+    ],
+    "examples": [
+      {
+        "id": "8682586:22",
+        "line": "Perdido por el mundo",
+        "title": "Es Por Ti",
+        "surface": "perdido"
+      },
+      {
+        "id": "2814756:12",
+        "line": "Quiero jugar con mi vida hasta haberle perdí'o el valor",
+        "title": "Antes de Morirme",
+        "vocalists": [
+          "C. Tangana",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "perdí'o"
+      },
+      {
+        "id": "3191212:3",
+        "line": "Me vi muy solo y perdío",
+        "title": "La Hija De Juan Simón",
+        "surface": "perdío"
+      }
+    ],
+    "variants": {
+      "perdido": 1,
+      "perdí'o": 1,
+      "perdío": 1
     }
   },
   {
@@ -44213,7 +44281,7 @@
     ]
   },
   {
-    "word": "puñalás",
+    "word": "puñaladas",
     "corpus_count": 2,
     "song_count": 2,
     "song_ids": [
@@ -44233,7 +44301,8 @@
         "title": "La Rumba Del Perdón",
         "surface": "puñalás"
       }
-    ]
+    ],
+    "display_form": "puñalás"
   },
   {
     "word": "puños",
@@ -45195,29 +45264,6 @@
     "display_form": "señala'o"
   },
   {
-    "word": "sido",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "12579326",
-      "3065090"
-    ],
-    "examples": [
-      {
-        "id": "12579326:5",
-        "line": "Pero mi corazón nunca ha sido mío, yo siempre lo doy, oh",
-        "title": "Reliquia",
-        "surface": "sido"
-      },
-      {
-        "id": "3065090:31",
-        "line": "Apúnteme un cuadro rompi'o que ya ni Dios sabe del santo que ha sido",
-        "title": "Catalina",
-        "surface": "sido"
-      }
-    ]
-  },
-  {
     "word": "sigo",
     "corpus_count": 2,
     "song_count": 2,
@@ -45871,33 +45917,6 @@
         "line": "Y una pelota de golf ocupa el Titanic",
         "title": "La Yugular",
         "surface": "titanic"
-      }
-    ]
-  },
-  {
-    "word": "to'as",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "10912589",
-      "12397133"
-    ],
-    "examples": [
-      {
-        "id": "12397133:18",
-        "line": "To'as en mi pelo",
-        "title": "De Madrugá",
-        "surface": "to'as"
-      },
-      {
-        "id": "10912589:19",
-        "line": "Soy de to'as partes y mi ganga me cubre",
-        "title": "Omega",
-        "vocalists": [
-          "Ralphie Choo"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "to'as"
       }
     ]
   },
@@ -46851,6 +46870,34 @@
     ]
   },
   {
+    "word": "aros",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3750274",
+      "8173139"
+    ],
+    "examples": [
+      {
+        "id": "8173139:16",
+        "line": "Voy con la falda, aro' y cadena'",
+        "title": "DESPECHÁ",
+        "surface": "aro'"
+      },
+      {
+        "id": "3750274:30",
+        "line": "Voy a salir pa' la calle, en la manita los aros brillando en mi piel",
+        "title": "MALAMENTE (Cap.1: Augurio)",
+        "surface": "aros"
+      }
+    ],
+    "display_form": "aro'",
+    "variants": {
+      "aro'": 1,
+      "aros": 1
+    }
+  },
+  {
     "word": "arroz",
     "corpus_count": 2,
     "song_count": 2,
@@ -46944,6 +46991,40 @@
     }
   },
   {
+    "word": "compás",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "2814756",
+      "3964062"
+    ],
+    "examples": [
+      {
+        "id": "2814756:35",
+        "line": "Sin ser gitana, tengo compá'",
+        "title": "Antes de Morirme",
+        "vocalists": [
+          "ROSALÍA",
+          "C. Tangana",
+          "ambos"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "compá'"
+      },
+      {
+        "id": "3964062:19",
+        "line": "Que al compás por bulerías",
+        "title": "BAGDAD (Cap.7: Liturgia)",
+        "surface": "compás"
+      }
+    ],
+    "display_form": "compá'",
+    "variants": {
+      "compá'": 1,
+      "compás": 1
+    }
+  },
+  {
     "word": "coronada",
     "corpus_count": 2,
     "song_count": 2,
@@ -47008,34 +47089,6 @@
     "variants": {
       "de'": 1,
       "des": 1
-    }
-  },
-  {
-    "word": "entrañas",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "3065897",
-      "3345402"
-    ],
-    "examples": [
-      {
-        "id": "3065897:31",
-        "line": "Madre, tiene la reina de mi' entraña'",
-        "title": "Si Tú Supieras Compañero",
-        "surface": "entraña'"
-      },
-      {
-        "id": "3345402:31",
-        "line": "Las entrañas mías, por ti las daré",
-        "title": "Por Mi Puerta No Lo Pasen",
-        "surface": "entrañas"
-      }
-    ],
-    "display_form": "entraña'",
-    "variants": {
-      "entraña'": 1,
-      "entrañas": 1
     }
   },
   {
@@ -47132,35 +47185,24 @@
     }
   },
   {
-    "word": "perdido",
+    "word": "mariposas",
     "corpus_count": 2,
-    "song_count": 2,
+    "song_count": 1,
     "song_ids": [
-      "2814756",
-      "8682586"
+      "7528145"
     ],
     "examples": [
       {
-        "id": "8682586:22",
-        "line": "Perdido por el mundo",
-        "title": "Es Por Ti",
-        "surface": "perdido"
-      },
-      {
-        "id": "2814756:12",
-        "line": "Quiero jugar con mi vida hasta haberle perdí'o el valor",
-        "title": "Antes de Morirme",
-        "vocalists": [
-          "C. Tangana",
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "perdí'o"
+        "id": "7528145:11",
+        "line": "Yo quiero ver las mariposa' suelta' (One, one)",
+        "title": "CUUUUuuuuuute",
+        "surface": "mariposa'"
       }
     ],
+    "display_form": "mariposa'",
     "variants": {
-      "perdido": 1,
-      "perdí'o": 1
+      "mariposa'": 1,
+      "mariposas": 1
     }
   },
   {
@@ -47606,7 +47648,7 @@
     ]
   },
   {
-    "word": "abanico'",
+    "word": "abanicos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -47619,7 +47661,8 @@
         "title": "Si Tú Supieras Compañero",
         "surface": "abanico'"
       }
-    ]
+    ],
+    "display_form": "abanico'"
   },
   {
     "word": "abejas",
@@ -48359,7 +48402,7 @@
     ]
   },
   {
-    "word": "afilao'",
+    "word": "afilaos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -48377,7 +48420,8 @@
         "sung_by_primary_artist": true,
         "surface": "afilao'"
       }
-    ]
+    ],
+    "display_form": "afilao'"
   },
   {
     "word": "aflojó",
@@ -48476,7 +48520,7 @@
     ]
   },
   {
-    "word": "aguas",
+    "word": "agua'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -48493,8 +48537,7 @@
         "sung_by_primary_artist": false,
         "surface": "agua'"
       }
-    ],
-    "display_form": "agua'"
+    ]
   },
   {
     "word": "aguantar",
@@ -49898,38 +49941,6 @@
         "line": "En el aro escarlata y brillante del tiempo",
         "title": "Reliquia",
         "surface": "aro"
-      }
-    ]
-  },
-  {
-    "word": "aro'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "8173139"
-    ],
-    "examples": [
-      {
-        "id": "8173139:16",
-        "line": "Voy con la falda, aro' y cadena'",
-        "title": "DESPECHÁ",
-        "surface": "aro'"
-      }
-    ]
-  },
-  {
-    "word": "aros",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3750274"
-    ],
-    "examples": [
-      {
-        "id": "3750274:30",
-        "line": "Voy a salir pa' la calle, en la manita los aros brillando en mi piel",
-        "title": "MALAMENTE (Cap.1: Augurio)",
-        "surface": "aros"
       }
     ]
   },
@@ -51738,7 +51749,7 @@
     ]
   },
   {
-    "word": "blindá'",
+    "word": "blindás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -51751,7 +51762,8 @@
         "title": "COMO UN G",
         "surface": "blindá'"
       }
-    ]
+    ],
+    "display_form": "blindá'"
   },
   {
     "word": "blonde",
@@ -52059,7 +52071,7 @@
     "display_form": "brazo'"
   },
   {
-    "word": "brazuca'",
+    "word": "brazucas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -52076,7 +52088,8 @@
         "sung_by_primary_artist": false,
         "surface": "brazuca'"
       }
-    ]
+    ],
+    "display_form": "brazuca'"
   },
   {
     "word": "brechas",
@@ -53397,7 +53410,7 @@
     ]
   },
   {
-    "word": "cargá'",
+    "word": "cargás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -53410,7 +53423,8 @@
         "title": "Aute Cuture",
         "surface": "cargá'"
       }
-    ]
+    ],
+    "display_form": "cargá'"
   },
   {
     "word": "carnaval",
@@ -54348,7 +54362,7 @@
     ]
   },
   {
-    "word": "chulearno'",
+    "word": "chulearnos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -54366,7 +54380,8 @@
         "sung_by_primary_artist": true,
         "surface": "chulearno'"
       }
-    ]
+    ],
+    "display_form": "chulearno'"
   },
   {
     "word": "cia",
@@ -55008,7 +55023,7 @@
     ]
   },
   {
-    "word": "colmillo'",
+    "word": "colmillos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -55026,7 +55041,8 @@
         "sung_by_primary_artist": true,
         "surface": "colmillo'"
       }
-    ]
+    ],
+    "display_form": "colmillo'"
   },
   {
     "word": "coloqué",
@@ -55413,44 +55429,6 @@
         "line": "Yo una cabaña compré",
         "title": "Guajiras",
         "surface": "compré"
-      }
-    ]
-  },
-  {
-    "word": "compá'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2814756"
-    ],
-    "examples": [
-      {
-        "id": "2814756:35",
-        "line": "Sin ser gitana, tengo compá'",
-        "title": "Antes de Morirme",
-        "vocalists": [
-          "ROSALÍA",
-          "C. Tangana",
-          "ambos"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "compá'"
-      }
-    ]
-  },
-  {
-    "word": "compás",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3964062"
-    ],
-    "examples": [
-      {
-        "id": "3964062:19",
-        "line": "Que al compás por bulerías",
-        "title": "BAGDAD (Cap.7: Liturgia)",
-        "surface": "compás"
       }
     ]
   },
@@ -56205,7 +56183,7 @@
     ]
   },
   {
-    "word": "cortá'",
+    "word": "cortás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -56218,7 +56196,8 @@
         "title": "Dio$ No$ Libre del Dinero",
         "surface": "cortá'"
       }
-    ]
+    ],
+    "display_form": "cortá'"
   },
   {
     "word": "cosa",
@@ -56521,7 +56500,7 @@
     ]
   },
   {
-    "word": "crujío",
+    "word": "crujido",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -56534,7 +56513,8 @@
         "title": "Se nos rompió el amor",
         "surface": "crujío"
       }
-    ]
+    ],
+    "display_form": "crujío"
   },
   {
     "word": "cruzando",
@@ -56633,7 +56613,7 @@
     ]
   },
   {
-    "word": "cuatrociento'",
+    "word": "cuatrocientos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -56646,7 +56626,8 @@
         "title": "Juro Que",
         "surface": "cuatrociento'"
       }
-    ]
+    ],
+    "display_form": "cuatrociento'"
   },
   {
     "word": "cubata",
@@ -56669,7 +56650,7 @@
     ]
   },
   {
-    "word": "cubito'",
+    "word": "cubitos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -56682,7 +56663,8 @@
         "title": "SAOKO",
         "surface": "cubito'"
       }
-    ]
+    ],
+    "display_form": "cubito'"
   },
   {
     "word": "cubre",
@@ -57269,7 +57251,7 @@
     ]
   },
   {
-    "word": "dao'",
+    "word": "daos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -57282,7 +57264,8 @@
         "title": "SAKURA",
         "surface": "dao'"
       }
-    ]
+    ],
+    "display_form": "dao'"
   },
   {
     "word": "darme",
@@ -57814,7 +57797,7 @@
     ]
   },
   {
-    "word": "demasiás",
+    "word": "demasiadas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -58156,7 +58139,7 @@
     ]
   },
   {
-    "word": "descansar",
+    "word": "descansa'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -58175,8 +58158,7 @@
         "sung_by_primary_artist": true,
         "surface": "descansa'"
       }
-    ],
-    "display_form": "descansa'"
+    ]
   },
   {
     "word": "descansillo",
@@ -58571,7 +58553,7 @@
     ]
   },
   {
-    "word": "despejá'",
+    "word": "despejás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -58588,7 +58570,8 @@
         "sung_by_primary_artist": false,
         "surface": "despejá'"
       }
-    ]
+    ],
+    "display_form": "despejá'"
   },
   {
     "word": "despertarnos",
@@ -58765,7 +58748,7 @@
     ]
   },
   {
-    "word": "destrozá'",
+    "word": "destrozás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -58782,7 +58765,8 @@
         "sung_by_primary_artist": true,
         "surface": "destrozá'"
       }
-    ]
+    ],
+    "display_form": "destrozá'"
   },
   {
     "word": "destruye",
@@ -60449,7 +60433,7 @@
     ]
   },
   {
-    "word": "enamorao'",
+    "word": "enamoraos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -60462,7 +60446,8 @@
         "title": "DELIRIO DE GRANDEZA",
         "surface": "enamorao'"
       }
-    ]
+    ],
+    "display_form": "enamorao'"
   },
   {
     "word": "enamoro",
@@ -60549,7 +60534,7 @@
     ]
   },
   {
-    "word": "encendío",
+    "word": "encendido",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -60562,7 +60547,8 @@
         "title": "Aute Cuture",
         "surface": "encendío"
       }
-    ]
+    ],
+    "display_form": "encendío"
   },
   {
     "word": "encomiendo",
@@ -60708,7 +60694,7 @@
     ]
   },
   {
-    "word": "encuerá'",
+    "word": "encuerás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -60721,7 +60707,8 @@
         "title": "HENTAI",
         "surface": "encuerá'"
       }
-    ]
+    ],
+    "display_form": "encuerá'"
   },
   {
     "word": "endiablas",
@@ -60815,7 +60802,7 @@
     "display_form": "enfermeda'"
   },
   {
-    "word": "enfocá'",
+    "word": "enfocás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -60832,7 +60819,8 @@
         "sung_by_primary_artist": true,
         "surface": "enfocá'"
       }
-    ]
+    ],
+    "display_form": "enfocá'"
   },
   {
     "word": "engarzá",
@@ -61279,6 +61267,38 @@
     ]
   },
   {
+    "word": "entraña'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3065897"
+    ],
+    "examples": [
+      {
+        "id": "3065897:31",
+        "line": "Madre, tiene la reina de mi' entraña'",
+        "title": "Si Tú Supieras Compañero",
+        "surface": "entraña'"
+      }
+    ]
+  },
+  {
+    "word": "entrañas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3345402"
+    ],
+    "examples": [
+      {
+        "id": "3345402:31",
+        "line": "Las entrañas mías, por ti las daré",
+        "title": "Por Mi Puerta No Lo Pasen",
+        "surface": "entrañas"
+      }
+    ]
+  },
+  {
     "word": "entro",
     "corpus_count": 1,
     "song_count": 1,
@@ -61410,7 +61430,7 @@
     ]
   },
   {
-    "word": "equi'",
+    "word": "equis",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -61427,7 +61447,8 @@
         "sung_by_primary_artist": false,
         "surface": "equi'"
       }
-    ]
+    ],
+    "display_form": "equi'"
   },
   {
     "word": "equipaje",
@@ -61703,7 +61724,7 @@
     ]
   },
   {
-    "word": "escrita'",
+    "word": "escritas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -61716,7 +61737,8 @@
         "title": "LA KILIÉ",
         "surface": "escrita'"
       }
-    ]
+    ],
+    "display_form": "escrita'"
   },
   {
     "word": "escrito",
@@ -62474,7 +62496,7 @@
     ]
   },
   {
-    "word": "estrellá'",
+    "word": "estrellás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -62491,7 +62513,8 @@
         "sung_by_primary_artist": true,
         "surface": "estrellá'"
       }
-    ]
+    ],
+    "display_form": "estrellá'"
   },
   {
     "word": "estremecer",
@@ -64680,7 +64703,7 @@
     ]
   },
   {
-    "word": "graná'",
+    "word": "granás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -64693,7 +64716,8 @@
         "title": "Reliquia",
         "surface": "graná'"
       }
-    ]
+    ],
+    "display_form": "graná'"
   },
   {
     "word": "grave",
@@ -64719,7 +64743,7 @@
     ]
   },
   {
-    "word": "grillete'",
+    "word": "grilletes",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -64736,7 +64760,8 @@
         "sung_by_primary_artist": true,
         "surface": "grillete'"
       }
-    ]
+    ],
+    "display_form": "grillete'"
   },
   {
     "word": "gris",
@@ -64827,7 +64852,7 @@
     ]
   },
   {
-    "word": "guardao'",
+    "word": "guardaos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -64845,7 +64870,8 @@
         "sung_by_primary_artist": true,
         "surface": "guardao'"
       }
-    ]
+    ],
+    "display_form": "guardao'"
   },
   {
     "word": "guarden",
@@ -65630,7 +65656,7 @@
     "display_form": "hería'"
   },
   {
-    "word": "hidratá'",
+    "word": "hidratás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -65647,7 +65673,8 @@
         "sung_by_primary_artist": true,
         "surface": "hidratá'"
       }
-    ]
+    ],
+    "display_form": "hidratá'"
   },
   {
     "word": "hierve",
@@ -65770,7 +65797,7 @@
     ]
   },
   {
-    "word": "hoodie'",
+    "word": "hoodies",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -65788,7 +65815,8 @@
         "sung_by_primary_artist": true,
         "surface": "hoodie'"
       }
-    ]
+    ],
+    "display_form": "hoodie'"
   },
   {
     "word": "horas",
@@ -65840,7 +65868,7 @@
     ]
   },
   {
-    "word": "hospedá'",
+    "word": "hospedás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -65858,7 +65886,8 @@
         "sung_by_primary_artist": false,
         "surface": "hospedá'"
       }
-    ]
+    ],
+    "display_form": "hospedá'"
   },
   {
     "word": "hostia",
@@ -66636,7 +66665,7 @@
     ]
   },
   {
-    "word": "inmortale'",
+    "word": "inmortales",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -66654,7 +66683,8 @@
         "sung_by_primary_artist": true,
         "surface": "inmortale'"
       }
-    ]
+    ],
+    "display_form": "inmortale'"
   },
   {
     "word": "inseparables",
@@ -68073,7 +68103,7 @@
     ]
   },
   {
-    "word": "legendario'",
+    "word": "legendarios",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -68092,7 +68122,8 @@
         "sung_by_primary_artist": true,
         "surface": "legendario'"
       }
-    ]
+    ],
+    "display_form": "legendario'"
   },
   {
     "word": "lego",
@@ -69962,38 +69993,6 @@
     ]
   },
   {
-    "word": "mariposa'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "7528145"
-    ],
-    "examples": [
-      {
-        "id": "7528145:11",
-        "line": "Yo quiero ver las mariposa' suelta' (One, one)",
-        "title": "CUUUUuuuuuute",
-        "surface": "mariposa'"
-      }
-    ]
-  },
-  {
-    "word": "mariposas",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "7528145"
-    ],
-    "examples": [
-      {
-        "id": "7528145:16",
-        "line": "Mariposas sueltas por la calle",
-        "title": "CUUUUuuuuuute",
-        "surface": "mariposas"
-      }
-    ]
-  },
-  {
     "word": "marrakech",
     "corpus_count": 1,
     "song_count": 1,
@@ -71618,7 +71617,7 @@
     ]
   },
   {
-    "word": "morío'",
+    "word": "moríos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -71636,7 +71635,8 @@
         "sung_by_primary_artist": true,
         "surface": "morío'"
       }
-    ]
+    ],
+    "display_form": "morío'"
   },
   {
     "word": "moschino",
@@ -72913,7 +72913,7 @@
     ]
   },
   {
-    "word": "ocupá'",
+    "word": "ocupás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -72926,7 +72926,8 @@
         "title": "DESPECHÁ",
         "surface": "ocupá'"
       }
-    ]
+    ],
+    "display_form": "ocupá'"
   },
   {
     "word": "ocurra",
@@ -73559,7 +73560,7 @@
     ]
   },
   {
-    "word": "pagao",
+    "word": "pagado",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -73572,7 +73573,8 @@
         "title": "Por Mi Puerta No Lo Pasen",
         "surface": "pagao"
       }
-    ]
+    ],
+    "display_form": "pagao"
   },
   {
     "word": "pagar",
@@ -73815,7 +73817,7 @@
     ]
   },
   {
-    "word": "parecío",
+    "word": "parecido",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -73828,7 +73830,8 @@
         "title": "Te Venero",
         "surface": "parecío"
       }
-    ]
+    ],
+    "display_form": "parecío"
   },
   {
     "word": "parirás",
@@ -74198,7 +74201,7 @@
     ]
   },
   {
-    "word": "pasá'",
+    "word": "pasás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -74211,7 +74214,8 @@
         "title": "SAOKO",
         "surface": "pasá'"
       }
-    ]
+    ],
+    "display_form": "pasá'"
   },
   {
     "word": "pasé",
@@ -74299,7 +74303,7 @@
     ]
   },
   {
-    "word": "payo'",
+    "word": "payos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -74312,7 +74316,8 @@
         "title": "Catalina",
         "surface": "payo'"
       }
-    ]
+    ],
+    "display_form": "payo'"
   },
   {
     "word": "pañuelo",
@@ -74336,7 +74341,7 @@
     ]
   },
   {
-    "word": "pez",
+    "word": "pe'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -74349,8 +74354,7 @@
         "title": "SAOKO",
         "surface": "pe'"
       }
-    ],
-    "display_form": "pe'"
+    ]
   },
   {
     "word": "pecado",
@@ -74423,7 +74427,7 @@
     ]
   },
   {
-    "word": "pegaítos",
+    "word": "pegaditos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -74476,6 +74480,26 @@
       }
     ],
     "display_form": "pelea'"
+  },
+  {
+    "word": "pena'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "8916307"
+    ],
+    "examples": [
+      {
+        "id": "8916307:5",
+        "line": "La fuerza, las pena' a tu la'o no me quedan",
+        "title": "PROMESA",
+        "vocalists": [
+          "Rauw Alejandro"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "pena'"
+      }
+    ]
   },
   {
     "word": "penita",
@@ -74615,7 +74639,7 @@
     ]
   },
   {
-    "word": "pentagrama'",
+    "word": "pentagramas",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -74628,7 +74652,8 @@
         "title": "CHICKEN TERIYAKI",
         "surface": "pentagrama'"
       }
-    ]
+    ],
+    "display_form": "pentagrama'"
   },
   {
     "word": "pequeña",
@@ -74801,22 +74826,6 @@
     "display_form": "perdía'"
   },
   {
-    "word": "perdío",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3191212"
-    ],
-    "examples": [
-      {
-        "id": "3191212:3",
-        "line": "Me vi muy solo y perdío",
-        "title": "La Hija De Juan Simón",
-        "surface": "perdío"
-      }
-    ]
-  },
-  {
     "word": "perfil",
     "corpus_count": 1,
     "song_count": 1,
@@ -74975,7 +74984,7 @@
     ]
   },
   {
-    "word": "pesao'",
+    "word": "pesaos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -74993,7 +75002,8 @@
         "sung_by_primary_artist": true,
         "surface": "pesao'"
       }
-    ]
+    ],
+    "display_form": "pesao'"
   },
   {
     "word": "peñas",
@@ -75418,7 +75428,7 @@
     "display_form": "plane'"
   },
   {
-    "word": "planificamo'",
+    "word": "planificamos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -75435,7 +75445,8 @@
         "sung_by_primary_artist": false,
         "surface": "planificamo'"
       }
-    ]
+    ],
+    "display_form": "planificamo'"
   },
   {
     "word": "playboy",
@@ -77193,7 +77204,7 @@
     ]
   },
   {
-    "word": "quemarlo'",
+    "word": "quemarlos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -77206,7 +77217,8 @@
         "title": "Dio$ No$ Libre del Dinero",
         "surface": "quemarlo'"
       }
-    ]
+    ],
+    "display_form": "quemarlo'"
   },
   {
     "word": "quemaré",
@@ -77289,6 +77301,22 @@
         "line": "Si qui'es hablarme, siéntate en la silla",
         "title": "A Palé",
         "surface": "qui'es"
+      }
+    ]
+  },
+  {
+    "word": "quie'",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "3964062"
+    ],
+    "examples": [
+      {
+        "id": "3964062:39",
+        "line": "Senta'ita, al cielo quie' rezarle",
+        "title": "BAGDAD (Cap.7: Liturgia)",
+        "surface": "quie'"
       }
     ]
   },
@@ -78675,7 +78703,7 @@
     ]
   },
   {
-    "word": "rodeá'",
+    "word": "rodeás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -78692,7 +78720,8 @@
         "sung_by_primary_artist": true,
         "surface": "rodeá'"
       }
-    ]
+    ],
+    "display_form": "rodeá'"
   },
   {
     "word": "rodona",
@@ -81622,22 +81651,6 @@
     ]
   },
   {
-    "word": "sío",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3191212"
-    ],
-    "examples": [
-      {
-        "id": "3191212:5",
-        "line": "Y yo, que la culpa he sío",
-        "title": "La Hija De Juan Simón",
-        "surface": "sío"
-      }
-    ]
-  },
-  {
     "word": "t",
     "corpus_count": 1,
     "song_count": 1,
@@ -81910,7 +81923,7 @@
     ]
   },
   {
-    "word": "tatuá'",
+    "word": "tatuás",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -81927,7 +81940,8 @@
         "sung_by_primary_artist": true,
         "surface": "tatuá'"
       }
-    ]
+    ],
+    "display_form": "tatuá'"
   },
   {
     "word": "taza",
@@ -82487,7 +82501,7 @@
     ]
   },
   {
-    "word": "tijeras",
+    "word": "tijera'",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -82500,8 +82514,7 @@
         "title": "SAOKO",
         "surface": "tijera'"
       }
-    ],
-    "display_form": "tijera'"
+    ]
   },
   {
     "word": "times",
@@ -82776,22 +82789,6 @@
         "line": "Soy to'a' la' cosa', yo me transformo",
         "title": "SAOKO",
         "surface": "to'a'"
-      }
-    ]
-  },
-  {
-    "word": "to's",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "12397133"
-    ],
-    "examples": [
-      {
-        "id": "12397133:16",
-        "line": "To's los luceros del cielo se reflejan en mi pelo",
-        "title": "De Madrugá",
-        "surface": "to's"
       }
     ]
   },

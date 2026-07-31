@@ -1,11 +1,11 @@
 {
-  "created": "2026-07-31T20:03:17.556549+00:00",
+  "created": "2026-07-31T20:43:32.795747+00:00",
   "counts": {
-    "headword_cache.json": 2280,
-    "phrases_cache.json": 138,
-    "redirects.json": 5130,
+    "headword_cache.json": 2635,
+    "phrases_cache.json": 314,
+    "redirects.json": 5850,
     "status.json": 3,
-    "surface_cache.json": 5130
+    "surface_cache.json": 5850
   },
-  "bytes": 3693965
+  "bytes": 4465577
 }

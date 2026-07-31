@@ -3,7 +3,7 @@
     "source": "spanishdict",
     "classifier": "classify-or-propose",
     "model": "gemini-3.5-flash-lite",
-    "count": 87
+    "count": 139
   },
   "items": [
     {
@@ -867,6 +867,16 @@
       "translation": "Take it and cut it, and that's it (Cut, cut that, quit that)"
     },
     {
+      "word": "compás",
+      "lemma": "compás",
+      "proposed": "good rhythm or flair",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 2,
+      "example": "Sin ser gitana, tengo compás",
+      "translation": "Without being a gypsy, I have friends"
+    },
+    {
       "word": "tirar",
       "lemma": "tirar",
       "proposed": "to show off",
@@ -875,6 +885,516 @@
       "corpus_count": 1,
       "example": "tirar magnolias",
       "translation": "throw me magnolias"
+    },
+    {
+      "word": "ale",
+      "lemma": "ale",
+      "proposed": "short for Alejandra",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Aquí con mi Ale 'tamo bendecía' (Blessed)",
+      "translation": "Here with my Ale 'we blessed' (Blessed)"
+    },
+    {
+      "word": "amarrados",
+      "lemma": "amarrados",
+      "proposed": "tied up",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Los míos bien amarrados",
+      "translation": "Mine well tied"
+    },
+    {
+      "word": "apa",
+      "lemma": "apa",
+      "proposed": "cut off syllables",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Que me lo vas a apa-pagar",
+      "translation": "That you are going to pay me"
+    },
+    {
+      "word": "arrebatada",
+      "lemma": "arrebatada",
+      "proposed": "lived intensely fast",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "La vida es breve si arrebatada",
+      "translation": "Life is short if taken"
+    },
+    {
+      "word": "bizcocho",
+      "lemma": "bizcocho",
+      "proposed": "attractive person",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Las tennis Valentino, y bizcocho de Moschino",
+      "translation": "Valentino sneakers, and Moschino cake"
+    },
+    {
+      "word": "blindás",
+      "lemma": "blindás",
+      "proposed": "armored / protected",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "No duermo na' y voy como si estuviera blindás",
+      "translation": "I don't sleep at all and I go like I'm blinded"
+    },
+    {
+      "word": "bordón",
+      "lemma": "bordón",
+      "proposed": "fretboard edge or margin",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "De la primera al bordón",
+      "translation": "From the first to the edge"
+    },
+    {
+      "word": "brasero",
+      "lemma": "brasero",
+      "proposed": "close to the heater",
+      "type": "regional",
+      "construction": "al laíco del brasero",
+      "corpus_count": 1,
+      "example": "Al laíco del brasero",
+      "translation": "To the layman of the brazier"
+    },
+    {
+      "word": "básica",
+      "lemma": "básica",
+      "proposed": "someone unoriginal or basic",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Pero prefiere' una básica (Oh-oh)",
+      "translation": "But he prefers a basic one (Oh-oh)"
+    },
+    {
+      "word": "camarón",
+      "lemma": "camarón",
+      "proposed": "legendary flamenco singer Camarón de la Isla",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Llevo a Camarón en la guantera (De la Isla)",
+      "translation": "I carry Camarón in the glove compartment (De la Isla)"
+    },
+    {
+      "word": "capear",
+      "lemma": "capear",
+      "proposed": "to afford",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Soy la marca más cara que tú no vas a poder capear",
+      "translation": "I am the most expensive brand that you will not be able to afford"
+    },
+    {
+      "word": "capeo",
+      "lemma": "capeo",
+      "proposed": "drug deal",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Despué', me fui pa' un punto a brega' con un capeo",
+      "translation": "Afterwards, I went to a point to struggle with a capeo"
+    },
+    {
+      "word": "chula",
+      "lemma": "chula",
+      "proposed": "cool or stylish",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Chula como Mike Dean",
+      "translation": "Cool like Mike Dean"
+    },
+    {
+      "word": "chulearnos",
+      "lemma": "chulearnos",
+      "proposed": "to show off or brag",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Vamo' a chulearnos pa' allá (Jajajaja; jajajaja)",
+      "translation": "Let's go and suck it over there (Hahahaha; hahahaha)"
+    },
+    {
+      "word": "cia",
+      "lemma": "cia",
+      "proposed": "non-Spanish word fragment",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Una absència que sacia, perseguint a la gràcia",
+      "translation": "An absència that satisfies, pursues grace"
+    },
+    {
+      "word": "colada",
+      "lemma": "colada",
+      "proposed": "strained or filtered",
+      "type": null,
+      "construction": "piña colada",
+      "corpus_count": 1,
+      "example": "Piña colada, no tengo pena",
+      "translation": "Piña colada, I have no shame"
+    },
+    {
+      "word": "cortás",
+      "lemma": "cortás",
+      "proposed": "having a downcast expression",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Los reye' y presidente' con la carita cortás",
+      "translation": "The kings and presidents with short faces"
+    },
+    {
+      "word": "cubata",
+      "lemma": "cubata",
+      "proposed": "cigar",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Como un cubata cae mi garganta y se vierte en mi pelo hasta el suelo",
+      "translation": "Like a cigar it falls down my throat and pours into my hair to the floor."
+    },
+    {
+      "word": "cucha",
+      "lemma": "cucha",
+      "proposed": "listen to",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tú tienes que amarme (Tra), 'cucha la ciudad (Tra)",
+      "translation": "You have to love me (Tra), listen to the city (Tra)"
+    },
+    {
+      "word": "cuco",
+      "lemma": "cuco",
+      "proposed": "cuckoo bird",
+      "type": null,
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tú seras el pájaro cuco",
+      "translation": "You will be the cuckoo bird"
+    },
+    {
+      "word": "derrames",
+      "lemma": "derrames",
+      "proposed": "to overflow emotionally or physically",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "En ti no creo hasta que te derrames en mi pecho",
+      "translation": "I don't believe in you until you spill into my chest"
+    },
+    {
+      "word": "desacato",
+      "lemma": "desacato",
+      "proposed": "rebellion or defiance",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Pa' quita'me la rechura y desacato tengo tiempo (Ah, ah)",
+      "translation": "To take away my anger and contempt, I have time (Ah, ah)"
+    },
+    {
+      "word": "despechás",
+      "lemma": "despechás",
+      "proposed": "acting out of spite",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Y ando despechás, woah, alocá'",
+      "translation": "And I'm out of spite, woah, crazy"
+    },
+    {
+      "word": "drena",
+      "lemma": "drena",
+      "proposed": "to drain emotionally",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "No me das pena, quien queda contigo se drena",
+      "translation": "I don't feel sorry for you, whoever is left with you is drained"
+    },
+    {
+      "word": "echada",
+      "lemma": "echada",
+      "proposed": "the die is cast",
+      "type": "figurative",
+      "construction": "la suerte está echada",
+      "corpus_count": 1,
+      "example": "Yo no me olvido, la suerte está echada (Bum)",
+      "translation": "I don't forget, the die is cast (Bum)"
+    },
+    {
+      "word": "encuerás",
+      "lemma": "encuerás",
+      "proposed": "to be naked",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "De cuero na', pero estoy encuerás (Ah-ah)",
+      "translation": ""
+    },
+    {
+      "word": "endiablas",
+      "lemma": "endiablas",
+      "proposed": "to act devilish",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Si tienes 60 y te endiablas cuando una mujer frontea",
+      "translation": "If you are 60 and you are devilish when a woman confronts you"
+    },
+    {
+      "word": "esperanzaba",
+      "lemma": "esperanzaba",
+      "proposed": "to wait for",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Nadie esperanzaba los pasitos de tus pies",
+      "translation": "Nobody expected the little steps of your feet"
+    },
+    {
+      "word": "estimada",
+      "lemma": "estimada",
+      "proposed": "appreciated",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Se sent més estimada, el vertigen del cos",
+      "translation": "She felt more appreciated, the vertigo of cos"
+    },
+    {
+      "word": "fundamento",
+      "lemma": "fundamento",
+      "proposed": "sense or substance",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Quisiera hacer testamento como eso' payo' con fundamento",
+      "translation": "I would like to make a will like that 'payo' with foundation"
+    },
+    {
+      "word": "ganga",
+      "lemma": "ganga",
+      "proposed": "gang or crew",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Soy de to'as partes y mi ganga me cubre",
+      "translation": "I'm from everywhere and my bargain covers me"
+    },
+    {
+      "word": "hackeás",
+      "lemma": "hackeás",
+      "proposed": "to impress or amaze",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Bajé con un flow nuevo 'e caja, baby, hackeás",
+      "translation": "I came down with a new flow 'box, baby, hack'"
+    },
+    {
+      "word": "herías",
+      "lemma": "herías",
+      "proposed": "wounds",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Ni un amigo nuevo, ni una herías",
+      "translation": "Not a new friend, not a wound"
+    },
+    {
+      "word": "l",
+      "lemma": "l",
+      "proposed": "French definite article",
+      "type": "loanword",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Si on m'invite à rendre les armes sans rendre l’âme",
+      "translation": "If on m'invite à rendre les armes sans rendre l’âme"
+    },
+    {
+      "word": "lego",
+      "lemma": "lego",
+      "proposed": "popular toy brick brand",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "El logo de LEGO, bebé",
+      "translation": "The LEGO logo, baby"
+    },
+    {
+      "word": "lía",
+      "lemma": "lía",
+      "proposed": "part of a proper name",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Ah, Rosa-lía, ah",
+      "translation": "Ah, Rosa-lía, ah"
+    },
+    {
+      "word": "madrugás",
+      "lemma": "madrugás",
+      "proposed": "early morning",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Hasta la madrugás, que así sea",
+      "translation": "Until the early morning, so be it"
+    },
+    {
+      "word": "manida",
+      "lemma": "manida",
+      "proposed": "flock or dwelling",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Qué bien sé yo dónde tiene su manida",
+      "translation": "How well I know where he has his flock"
+    },
+    {
+      "word": "metidas",
+      "lemma": "metidas",
+      "proposed": "packed or contained",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Metidas en 21 gramos?",
+      "translation": "Packed in 21 grams?"
+    },
+    {
+      "word": "milano",
+      "lemma": "milano",
+      "proposed": "Milan, a city in Italy",
+      "type": "proper_noun",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "FaceTime con Milano (Tim Cook)",
+      "translation": "FaceTime with Milano (Tim Cook)"
+    },
+    {
+      "word": "muela",
+      "lemma": "muela",
+      "proposed": "to talk nonsense",
+      "type": "slang",
+      "construction": "dar muela",
+      "corpus_count": 1,
+      "example": "La que siempre está dando muela y en habladurías",
+      "translation": "The one who is always grinding and gossiping"
+    },
+    {
+      "word": "mutáis",
+      "lemma": "mutáis",
+      "proposed": "got it going on",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Sombra, de la'o tengo mutáis (Gy-gypsy)",
+      "translation": "Shadow, of the 'o I have mutais (Gy-gypsy)"
+    },
+    {
+      "word": "pesaos",
+      "lemma": "pesaos",
+      "proposed": "annoying people",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Tengo más guardao', desde hace años, pesaos (Eh)",
+      "translation": "I have more saved, for years, but (Eh)"
+    },
+    {
+      "word": "poma",
+      "lemma": "poma",
+      "proposed": "apple (fruit)",
+      "type": "regional",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Òbviament és la poma que està prohibida",
+      "translation": "Obviously it is the poma that is prohibited"
+    },
+    {
+      "word": "recargo",
+      "lemma": "recargo",
+      "proposed": "I recharge",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Aunque sea un tramo largo con tu sonrisa recargo",
+      "translation": "Even if it's a long stretch with your smile, extra"
+    },
+    {
+      "word": "singando",
+      "lemma": "singando",
+      "proposed": "to waste time",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Siempre llego tarde, me coge el tiempo singando (Ah, ah)",
+      "translation": "I'm always late, I catch my time singing (Ah, ah)"
+    },
+    {
+      "word": "sinrazón",
+      "lemma": "sinrazón",
+      "proposed": "madness or unreason",
+      "type": "figurative",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "Él es tan encantador, estrella de la sinrazón",
+      "translation": "He's so charming, star of unreason"
+    },
+    {
+      "word": "trillan",
+      "lemma": "trillan",
+      "proposed": "to copy or steal",
+      "type": "slang",
+      "construction": null,
+      "corpus_count": 1,
+      "example": "To' lo que me invento me lo trillan (Me lo trillan)",
+      "translation": "Everything I invent they trill me (they trill it)"
+    },
+    {
+      "word": "acordar",
+      "lemma": "acordar",
+      "proposed": "to remember",
+      "type": "figurative",
+      "construction": "acordarse de",
+      "corpus_count": 1,
+      "example": "Pa' acordar para siempre",
+      "translation": "To remember me forever"
+    },
+    {
+      "word": "valer",
+      "lemma": "valer",
+      "proposed": "God help me",
+      "type": "idiomatic",
+      "construction": "válgame",
+      "corpus_count": 1,
+      "example": "valer, San Rafael",
+      "translation": "Valgame, San Rafael"
+    },
+    {
+      "word": "sentirse",
+      "lemma": "sentirse",
+      "proposed": "to sit down",
+      "type": "figurative",
+      "construction": "sentirse en",
+      "corpus_count": 1,
+      "example": "Si qui'es hablarme, sentirse en la silla",
+      "translation": "If you want to talk to me, sit in the chair"
     }
   ]
 }
