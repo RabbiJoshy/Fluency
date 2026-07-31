@@ -58,6 +58,62 @@ def is_proper_noun_gloss(translation):
     return bool(_PROPER_NOUN_GLOSS_RE.match(translation.strip()))
 
 
+# Gemini answers PROPN, but has also been observed returning the spelled-out
+# PROPER_NOUN. Both mean the same thing; PROPN is the canonical UD tag used
+# everywhere else in the pipeline and by the front end's POS colouring.
+_POS_ALIASES = {"PROPER_NOUN": "PROPN", "PROPERNOUN": "PROPN"}
+PROPER_NOUN_POS = frozenset({"PROPN"})
+
+
+def normalize_pos(pos):
+    """Canonicalise a POS tag coming from a model proposal."""
+    if not pos or not isinstance(pos, str):
+        return pos
+    cleaned = pos.strip()
+    return _POS_ALIASES.get(cleaned.upper(), cleaned)
+
+
+# The classify-or-propose prompt stamps a `type` on off-menu proposals
+# (slang|regional|figurative|vulgar|loanword|proper_noun|other) and may carry a
+# `construction`. These are bonus metadata: the word should normally have been
+# excluded by word routing, so a tag here is the backstop telling us routing
+# missed one, plus useful register information for the card.
+_SENSE_TAG_FIELDS = ("type", "construction")
+
+
+def carry_sense_tags(target, sense):
+    """Copy a sense's model-assigned tags onto an outgoing meaning dict.
+
+    Mirrors ``carry_sense_identity``: assembly rebuilds meanings as fresh dicts
+    of ``pos``/``translation``, so anything not explicitly carried is dropped.
+    """
+    if not isinstance(target, dict) or not isinstance(sense, dict):
+        return target
+    for key in _SENSE_TAG_FIELDS:
+        value = sense.get(key)
+        if value:
+            target[key] = value
+    return target
+
+
+def is_proper_noun_sense(sense):
+    """True if a sense denotes a proper noun, by tag, POS, or gloss shape.
+
+    Order matters. The ``type`` stamp and the PROPN part of speech are what the
+    model actually asserts, so they are checked first; the gloss regex is only a
+    fallback for the legacy form where the category was written into the
+    translation. Checking the regex first would perversely recognise a *useless*
+    gloss ("proper noun") while missing a *good* one ("The Beatles (band)").
+    """
+    if not isinstance(sense, dict):
+        return False
+    if sense.get("type") == "proper_noun":
+        return True
+    if normalize_pos(sense.get("pos")) in PROPER_NOUN_POS:
+        return True
+    return is_proper_noun_gloss(sense.get("translation"))
+
+
 # Methods that discover senses absent from the menu. Items written by these
 # methods carry the inline sense definition (pos, translation, lemma, source)
 # alongside the {sense, examples} fields.

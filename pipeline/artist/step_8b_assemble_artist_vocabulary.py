@@ -35,7 +35,8 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import (load_assignments, resolve_best_per_example,  # noqa: E402
-                                                is_proper_noun_gloss)
+                                                is_proper_noun_gloss, is_proper_noun_sense,
+                                                carry_sense_tags, normalize_pos)
 from pipeline.util_6a_prompt_registry import load_registry, capability_tier  # noqa: E402
 from pipeline.util_7a_lemma_split import (  # noqa: E402
     _is_phrase_only_self_analysis,
@@ -147,7 +148,8 @@ def _ensure_sense_in_group(group, sid, meta):
     translation = (meta.get("translation") or "").strip() if meta else ""
     if not translation:
         return False
-    synth = {"pos": (meta.get("pos") or "X"), "translation": meta.get("translation")}
+    synth = {"pos": normalize_pos(meta.get("pos")) or "X",
+             "translation": meta.get("translation")}
     for k in ("type", "construction", "source", "lemma"):
         if meta.get(k):
             synth[k] = meta[k]
@@ -1205,7 +1207,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
                         all_senses = []
                         for s in senses_for_pos:
-                            sense_out = {"pos": s["pos"], "translation": s["translation"]}
+                            sense_out = carry_sense_tags(
+                                {"pos": normalize_pos(s["pos"]), "translation": s["translation"]}, s)
                             carry_sense_identity(
                                 sense_out, s.get("sense_id"), s.get("sense_id_aliases") or [])
                             all_senses.append(sense_out)
@@ -1252,13 +1255,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     if curated_key in curated:
                         translation = curated[curated_key]
                     single_meaning = {
-                        "pos": word_senses[0]["pos"],
+                        "pos": normalize_pos(word_senses[0]["pos"]),
                         "translation": translation,
                         "frequency": "1.00",
                         "examples": all_examples,
                     }
                     if sense_ids:
                         carry_sense_identity(single_meaning, sense_ids[0])
+                    carry_sense_tags(single_meaning, word_senses[0])
                     src = word_senses[0].get("source")
                     if src:
                         single_meaning["source"] = src
@@ -1323,7 +1327,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                 "allSenses": [],
                             }
                             for s in senses_for_pos:
-                                sense_out = {"pos": s["pos"], "translation": s["translation"]}
+                                sense_out = carry_sense_tags(
+                                    {"pos": normalize_pos(s["pos"]),
+                                     "translation": s["translation"]}, s)
                                 carry_sense_identity(
                                     sense_out,
                                     s.get("sense_id"),
@@ -1382,12 +1388,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         meaning_examples.append(ex_dict)
                     freq = "%.2f" % (len(ex_entries) / total_assigned) if total_assigned > 0 else "1.00"
                     meaning = {
-                        "pos": pos,
+                        "pos": normalize_pos(pos),
                         "translation": translation,
                         "frequency": freq,
                         "examples": meaning_examples,
                     }
                     carry_sense_identity(meaning, assignment.get("sense"))
+                    carry_sense_tags(meaning, assignment)
                     src = assignment.get("source")
                     if src:
                         meaning["source"] = src
@@ -1466,13 +1473,25 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             #   - if the word also has real meanings, drop the proper-noun one;
             #   - if it's ONLY that, route the whole entry to Extra as a proper
             #     noun (keeping the description text) instead of the main deck.
+            # Structural signals (type stamp, PROPN pos) are checked before the
+            # gloss regex. Regex-first recognised only the useless label form
+            # ("proper noun") and missed the good identifying gloss ("The
+            # Beatles (band)"), so the better Gemini's answer the less likely
+            # the word got tagged. See is_proper_noun_sense.
             def _is_propn_meaning(m):
-                return (m.get("type") == "proper_noun"
-                        or is_proper_noun_gloss(m.get("translation")))
+                return is_proper_noun_sense(m)
+            # "Real" has to mean teachable. A blank-translation POS=X sense is a
+            # placeholder, not a meaning, and treating it as one would keep a
+            # pure proper noun in the main deck showing an empty gloss while its
+            # one informative line (the name description) was dropped.
+            def _is_teachable_meaning(m):
+                return bool((m.get("translation") or "").strip()) and m.get("pos") != "X"
+
             _propn_meanings = [m for m in meanings if _is_propn_meaning(m)]
             _force_propn = False
             if _propn_meanings:
-                _real_meanings = [m for m in meanings if not _is_propn_meaning(m)]
+                _real_meanings = [m for m in meanings
+                                  if not _is_propn_meaning(m) and _is_teachable_meaning(m)]
                 if _real_meanings:
                     meanings = _real_meanings          # keep real senses, drop the label
                 else:
