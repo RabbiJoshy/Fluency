@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "b040b2ae",
+      "summary": "Improved card hierarchy and multi-POS defaults",
+      "details": [
+        "The active-set scrubber gives the large central numbers more breathing room while the smaller distant markers cluster progressively toward the ends",
+        "Example text is upright and only its translation remains italic; multi-POS cards start with the POS carrying the greatest summed sense frequency and show common POS choices first",
+        "The POS chooser no longer has an enclosing panel, and front/back headwords and lemmas now follow the active POS colour and update when the POS changes"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "77466b91",
       "summary": "Cleaned up study controls and morphology labels",
       "details": [

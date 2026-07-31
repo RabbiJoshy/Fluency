@@ -32,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-07-31 — Improve card hierarchy and multi-POS defaults
+
+- Commit `b040b2ae`; front-end cache `flashcards-v164` / `20260731j`.
+- Redistributed the active-set scrubber visually: the large centre markers have progressively wider separation, while smaller distant markers cluster progressively toward the ends.
+- Example sentences/lyrics are upright and their translations remain italic. Removed the enclosing multi-POS chooser panel while retaining its explicit label and pills.
+- Multi-POS cards now default to and list the POS with the greatest summed sense percentage first, with stable source order as the tie-breaker. A learner's explicit POS selection remains remembered on that card.
+- Front/back headwords and citation lemmas now use the active POS colour and update with POS selection rather than inheriting the artist/language accent.
+- Verification: bundled-Node syntax checks, changelog JSON parsing, cache-version and targeted behavior assertions, and `git diff --check`.
+
 ### 2026-07-31 — Clean up the active-set controls and morphology defaults
 
 - Commit `77466b91`; front-end cache `flashcards-v163` / `20260731i`.
