@@ -1,6 +1,6 @@
 # Codex changes and cross-model handoff
 
-This file tells Claude and future Codex sessions what Codex changed, why, and how it was checked. Git remains authoritative for exact diffs; `config/dev_changelog.json` remains the in-app user-visible history; `TODO.md` remains the backlog.
+This file tells Claude and future Codex sessions what Codex changed, why, and how it was checked. Git remains authoritative for exact diffs; `config/dev_changelog.json` remains the in-app user-visible history; GitHub Issues remains the live backlog.
 
 Maintenance rule: after each completed Codex task, prepend a dated entry to **Codex task history** after the commit exists. Include the final commit hash, user-visible result, non-obvious decisions, verification, and cache version for front-end work. Do not silently rewrite an earlier decision—add a newer entry explaining the change.
 
@@ -31,6 +31,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-07-31 — Make GitHub Issues the live backlog
+
+- Commit `08fae949`; no front-end cache change (workflow documentation only).
+- Established repository Issues as the single live backlog and the private Fluency TODO project as its phone-friendly dashboard, with automatic intake for every open issue.
+- Documented duplicate-search, labeling, authorization, update, and closure rules in the shared agent instructions. Marked both Markdown TODO files as read-only migration history and linked their overlapping album-selection note to issue #9.
+- Consolidated the future multi-artist/per-album selector into issue #9, expanded its acceptance criteria, and relabeled it as a large Codex-owned Lyrics/setup idea. Preserved 12 migrated open issues carrying `horizon: completed` for a separate state audit because that label is inconsistent with several issue titles and is not safe evidence that the work is done.
+- Verification: GitHub issue search confirmed issue #9 and its labels; the linked Project and open-issue auto-add workflow were inspected in the signed-in GitHub session; `git diff --check` and focused documentation searches passed.
 
 ### 2026-07-31 — Separate settings by study, offline, and app-data purpose
 
