@@ -15,7 +15,7 @@ let lastError = null;
 const accountId = payload => String(payload?.user || currentUser?.initials || 'anonymous');
 const operationType = payload => String(payload?.action || 'unknown');
 const sanitizedError = error => String(error?.message || error || 'Unknown sync error')
-    .replace(/https?:\\/\\/\\S+/g, '[endpoint]')
+    .replace(/https?:\/\/\S+/g, '[endpoint]')
     .slice(0, 180);
 
 function newestFirst(a, b) { return b.updatedAt - a.updatedAt; }

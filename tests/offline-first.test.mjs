@@ -40,6 +40,10 @@ test('queue records durable retry and idempotency metadata', async () => {
     assert.match(queue, /auth-paused/);
     assert.match(queue, /visibilitychange/);
     assert.match(queue, /MAX_ACTIVE_ATTEMPTS/);
+    // Parse the actual module in a browser-equivalent grammar. This catches
+    // malformed regex literals before they can abort the full import graph.
+    assert.doesNotMatch(queue, /https\?:\\\\\/\\\\\//);
+    assert.match(queue, /replace\(\/https\?:\\\/\\\/\\S\+\/g/);
 });
 
 test('optional offline services cannot block authentication indefinitely', async () => {
