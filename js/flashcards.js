@@ -2352,6 +2352,28 @@ function updateCard({ announceHeadword = false } = {}) {
         currentGroupSelection = null;
     }
 
+    // On first entry, start multi-POS cards on the part of speech carrying
+    // the most corpus weight. Source order remains the stable tie-breaker.
+    if (announceHeadword && card.isMultiMeaning && card.meanings?.length && !card._activePosTab) {
+        const posWeights = new Map();
+        card.meanings.forEach((meaning, index) => {
+            const pos = meaning.pos === 'SENSE_CYCLE' ? (meaning.cycle_pos || 'X') : meaning.pos;
+            if (!pos || ['MWE', 'CLITIC', 'EXAMPLE_ONLY'].includes(pos)) return;
+            const weight = Number(meaning.percentage ?? meaning.frequency ?? meaning.count) || 0;
+            const entry = posWeights.get(pos) || { pos, weight: 0, firstIndex: index };
+            entry.weight += weight;
+            posWeights.set(pos, entry);
+        });
+        const primaryPos = [...posWeights.values()].sort((a, b) =>
+            (b.weight - a.weight) || (a.firstIndex - b.firstIndex)
+        )[0];
+        if (primaryPos) {
+            card._activePosTab = primaryPos.pos;
+            currentMeaningIndex = primaryPos.firstIndex;
+            currentGroupSelection = null;
+        }
+    }
+
     // Validate the group selection against the current card. If any member
     // index is out of range, or the anchor's meaning/context no longer
     // matches the stored groupKey/POS (data shifted under us), drop the
@@ -2375,6 +2397,10 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Get the current meaning for multi-meaning cards
     const currentMeaning = card.isMultiMeaning ? card.meanings[currentMeaningIndex] : null;
+    const activeDisplayPos = currentMeaning?.pos === 'SENSE_CYCLE'
+        ? (currentMeaning.cycle_pos || 'X')
+        : (currentMeaning?.pos || card.partOfSpeech || '');
+    document.getElementById('flashcard')?.style.setProperty('--card-pos-rgb', getPosAccentRgb(activeDisplayPos));
     const activeProductionAnswer = getActiveProductionAnswer(card, currentMeaning);
     const mergedExampleFocus = getMergedLemmaExampleFocus(card, currentMeaning, {
         advanceOnEntry: announceHeadword
@@ -2585,10 +2611,22 @@ function updateCard({ announceHeadword = false } = {}) {
         // SP→EN: each grammatical POS gets its own colour. Morphology nests
         // beneath VERB so it reads as a property of that POS, not the word as
         // a whole. Expressions/clitics are self-evident rows, not POS badges.
+        const posTotals = new Map();
+        card.meanings.forEach((meaning, index) => {
+            if (['MWE', 'CLITIC', 'SENSE_CYCLE', 'EXAMPLE_ONLY'].includes(meaning.pos)) return;
+            const entry = posTotals.get(meaning.pos) || { pos: meaning.pos, weight: 0, index };
+            entry.weight += Number(meaning.percentage ?? meaning.frequency ?? meaning.count) || 0;
+            posTotals.set(meaning.pos, entry);
+        });
         const allPOS = [...new Set(card.meanings
             .filter(m => m.pos !== 'MWE' && m.pos !== 'CLITIC'
                 && m.pos !== 'SENSE_CYCLE' && m.pos !== 'EXAMPLE_ONLY')
-            .map(m => m.pos))];
+            .map(m => m.pos))].sort((a, b) => {
+                const left = posTotals.get(a);
+                const right = posTotals.get(b);
+                return ((right?.weight || 0) - (left?.weight || 0))
+                    || ((left?.index || 0) - (right?.index || 0));
+            });
         frontPOSEl.innerHTML = allPOS.map(pos =>
             renderFrontPosUnit(pos, isVerbPos(pos))
         ).join('');
@@ -2726,19 +2764,24 @@ function updateCard({ announceHeadword = false } = {}) {
     let hasBackPosTabs = false;
     if ((card.isMultiMeaning && card.meanings) || card.partOfSpeech) {
         const posItems = [];
-        const seenPos = new Set();
         const posMeanings = card.isMultiMeaning && card.meanings
             ? card.meanings
             : [{ pos: card.partOfSpeech }];
+        const posWeights = new Map();
         posMeanings.forEach((meaning, meaningIndex) => {
             const pos = meaning.pos === 'SENSE_CYCLE'
                 ? (meaning.cycle_pos || 'X')
                 : meaning.pos;
             if (pos === 'MWE' || pos === 'CLITIC' || pos === 'EXAMPLE_ONLY') return;
-            if (!pos || seenPos.has(pos)) return;
-            seenPos.add(pos);
-            posItems.push({ pos, meaningIndex });
+            if (!pos) return;
+            const weight = Number(meaning.percentage ?? meaning.frequency ?? meaning.count) || 0;
+            const entry = posWeights.get(pos) || { pos, meaningIndex, weight: 0 };
+            entry.weight += weight;
+            posWeights.set(pos, entry);
         });
+        posItems.push(...[...posWeights.values()].sort((a, b) =>
+            (b.weight - a.weight) || (a.meaningIndex - b.meaningIndex)
+        ));
         hasBackPosTabs = posItems.length > 1;
         if (posItems.length > 0) {
             const currentPos = currentMeaning?.pos === 'SENSE_CYCLE'
@@ -2772,7 +2815,7 @@ function updateCard({ announceHeadword = false } = {}) {
     let backHTML = `
         <div class="back-header" style="text-align: center; margin-bottom: 8px;">
             <div class="flip-back-area" id="flipBackArea">
-                <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; color: white; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
                 <div class="back-citation-slot${backCitationHTML ? '' : ' is-empty'}"${backCitationHTML ? '' : ' aria-hidden="true"'}>${backCitationHTML || '&nbsp;'}</div>
                 ${backDerivationHTML}
@@ -3615,7 +3658,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 ${sentenceIndicator}
                 <div class="sentence" style="min-height: 80px; text-align: center;">
                     ${showExampleProductionForm ? `<div class="reverse-example-form"><span>In this example</span><strong>${escapeCardText(exampleProductionForm)}</strong></div>` : ''}
-                    ${exampleSentence ? `<div style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
+                    ${exampleSentence ? `<div class="example-sentence-text" style="margin-bottom: 8px;">${exampleSentence}</div>` : ''}
                     ${exampleTranslation ? `<div class="translation">${exampleTranslation}</div>` : ''}
                     ${showEmpty ? `<div style="color: var(--text-muted); text-align: center; padding: 20px;">(No example sentence)</div>` : ''}
                 </div>
@@ -4617,7 +4660,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260731i';
+const ASSET_VERSION = '20260731j';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

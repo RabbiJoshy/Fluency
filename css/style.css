@@ -1868,10 +1868,6 @@
             margin: 7px 0 2px;
         }
         .back-pos-legend.has-tabs {
-            padding: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.13);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.035);
             gap: 5px;
         }
         .back-pos-tab-label {
@@ -2115,7 +2111,7 @@
             font-size: 64px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: white;
+            color: rgb(var(--card-pos-rgb, var(--accent-primary-rgb)));
             text-align: center;
             /* updateCard measures the available width and shrinks long prompts
                to one line. Keep wrapping disabled so the result cannot fall
@@ -2131,7 +2127,7 @@
         .card-lemma {
             font-family: var(--font-reading);
             font-size: 32px;
-            color: white;
+            color: rgb(var(--card-pos-rgb, var(--accent-primary-rgb)));
             text-align: center;
             margin-bottom: 10px;
             font-weight: 500;
@@ -2536,7 +2532,7 @@
             max-width: 42px;
             height: 42px;
             padding: 0;
-            margin: 0 1px;
+            margin-inline: -8px;
             border: 1px solid var(--scrubber-marker-border, rgba(255, 255, 255, 0.16));
             border-radius: 10px;
             background: var(--scrubber-marker-fill, color-mix(in srgb, var(--bg-card) 88%, var(--bg-tertiary)));
@@ -2579,9 +2575,9 @@
         .deck-progress-segment.is-visited.is-result-mixed:not(.is-current) {
             --scrubber-marker-text: #fde7ae;
         }
-        .deck-progress-segment[data-distance="1"] { transform: scale(0.88); }
-        .deck-progress-segment[data-distance="2"] { transform: scale(0.67); }
-        .deck-progress-segment[data-distance="3"] { transform: scale(0.52); }
+        .deck-progress-segment[data-distance="1"] { margin-inline: 3px; transform: scale(0.88); }
+        .deck-progress-segment[data-distance="2"] { margin-inline: -2px; transform: scale(0.67); }
+        .deck-progress-segment[data-distance="3"] { margin-inline: -5px; transform: scale(0.52); }
         .deck-progress-segment.is-current {
             color: white;
             opacity: 1;
@@ -2593,6 +2589,7 @@
                         0 0 13px rgba(var(--accent-primary-rgb), 0.3);
             text-shadow: 0 0 12px rgba(var(--accent-primary-rgb), 0.5);
             animation: deck-scrubber-lens 300ms cubic-bezier(0.2, 0.85, 0.25, 1.25);
+            margin-inline: 8px;
         }
         @keyframes deck-scrubber-lens {
             0% { transform: scale(0.82); }
@@ -2811,7 +2808,7 @@
             border: 1px solid var(--accent-primary);
             border-radius: 8px;
             font-family: var(--font-reading);
-            font-style: italic;
+            font-style: normal;
             font-size: 20px;
             overflow-wrap: break-word;
             word-wrap: break-word;
@@ -2886,6 +2883,12 @@
             color: white;
             font-size: 15px;
             font-weight: 500;
+            font-style: italic;
+        }
+
+        .breakdown-trigger,
+        .example-sentence-text {
+            font-style: normal;
         }
 
         /* Desktop-only utility: hidden on mobile, inline-flex on desktop */
@@ -7373,13 +7376,16 @@
             font-family: var(--font-data);
         }
 
-        /* Card-back lemma — brightened accent tint so it reads clearly against
-           the dark card back (raw --accent-primary is too low-contrast). Stays
-           tied to the language accent via color-mix rather than a hardcoded hue. */
+        /* Headword and lemma follow the selected POS. The lemma is mixed with
+           white for hierarchy and contrast without losing that POS identity. */
+        .back-headword {
+            color: rgb(var(--card-pos-rgb, var(--accent-primary-rgb)));
+        }
+
         .back-lemma {
             font-size: 28px;
             font-weight: 600;
-            color: color-mix(in srgb, var(--accent-primary) 55%, white);
+            color: color-mix(in srgb, rgb(var(--card-pos-rgb, var(--accent-primary-rgb))) 72%, white);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
         }
 
