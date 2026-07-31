@@ -1,21 +1,21 @@
-import './state.js?v=20260731b';
-import './offline-db.js?v=20260731b';
-import './sync-queue.js?v=20260731b';
-import { initOfflineContent } from './offline-content.js?v=20260731b';
-import './speech.js?v=20260731b';
-import './artist-ui.js?v=20260731b';
-import './auth.js?v=20260731b';
-import './spotify.js?v=20260731b';
-import './estimation.js?v=20260731b';
-import './config.js?v=20260731b';
-import './progress.js?v=20260731b';
-import './knowledge.js?v=20260731b';
-import './ui.js?v=20260731b';
-import './vocab.js?v=20260731b';
-import './flashcards.js?v=20260731b';
+import './state.js?v=20260731c';
+import './offline-db.js?v=20260731c';
+import './sync-queue.js?v=20260731c';
+import { initOfflineContent } from './offline-content.js?v=20260731c';
+import './speech.js?v=20260731c';
+import './artist-ui.js?v=20260731c';
+import './auth.js?v=20260731c';
+import './spotify.js?v=20260731c';
+import './estimation.js?v=20260731c';
+import './config.js?v=20260731c';
+import './progress.js?v=20260731c';
+import './knowledge.js?v=20260731c';
+import './ui.js?v=20260731c';
+import './vocab.js?v=20260731c';
+import './flashcards.js?v=20260731c';
 // Find word is a primary navigation route. Load its temporary-card owner with
 // the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260731b';
+import './flashcards-modals.js?v=20260731c';
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -71,6 +71,13 @@ try {
 
 window.showAppLoading = showAppLoading;
 window.hideAppLoading = hideAppLoading;
+
+// Wire the static authentication surface before any configuration fetch or
+// artist resolution. The HTML intentionally contains this modal as a boot
+// fallback; its buttons must never depend on loadConfig() having completed.
+setupAuthEventListeners();
+checkAuthentication();
+perfMark('after early authentication');
 
 // Register service worker for PWA functionality
 if ('serviceWorker' in navigator) {
@@ -218,14 +225,6 @@ loadConfig().then(async () => {
     setupPercentModeButton();
     setupEstimationModal();
     setupTooltipHandlers();
-    setupAuthEventListeners();
-
-    // Authentication must be interactive before any optional network or
-    // storage initialization. In particular, iOS may suspend a fetch or an
-    // IndexedDB upgrade indefinitely after a Home Screen lifecycle change.
-    checkAuthentication();
-    perfMark('after checkAuthentication');
-    if (!currentUser) hideAppLoading();
 
     // Wire shared top bar buttons (How to start, Estimate Level, gear)
     document.getElementById('helpBtn').addEventListener('click', () => openHelpModal());

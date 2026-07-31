@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-07-31",
+      "commit": "pending",
+      "summary": "Login controls remain usable during a stalled boot",
+      "details": [
+        "Authentication click handlers now attach before artist or configuration loading begins, rather than after those requests finish",
+        "Opening login forcibly removes the boot overlay and places authentication above every transient app overlay",
+        "The static fallback login can no longer be revealed by the watchdog without its controls being initialized"
+      ]
+    },
+    {
+      "date": "2026-07-31",
       "commit": "6afae1b5",
       "summary": "Home Screen startup no longer waits on offline services",
       "details": [

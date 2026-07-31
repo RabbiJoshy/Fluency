@@ -8652,11 +8652,18 @@
         /* First-run authentication surface. Scoped overrides keep the older
            generic modal primitives available to the remaining dialogs. */
         #authModal {
+            z-index: 30001;
+            pointer-events: auto;
             padding: 22px;
             background:
                 radial-gradient(circle at 50% 10%, rgba(var(--accent-primary-rgb), 0.14), transparent 36%),
                 rgba(7, 8, 13, 0.9);
             backdrop-filter: blur(16px);
+        }
+        body.auth-active .app-loading-screen {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
         .auth-modal-content {
             position: relative;

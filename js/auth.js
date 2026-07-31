@@ -96,6 +96,11 @@ function checkAuthentication() {
 // Show authentication modal
 function showAuthModal() {
     const authModal = document.getElementById('authModal');
+    // Authentication is the fail-open boot surface. If configuration or an
+    // imported feature stalls, never leave the visual watchdog's loading
+    // layer above a modal whose controls should already be usable.
+    window.hideAppLoading?.();
+    document.body.classList.add('auth-active');
     hideLoginForm();
     authModal.classList.remove('hidden');
     document.getElementById('setupPanel').style.display = 'none';
@@ -105,6 +110,7 @@ function showAuthModal() {
 function hideAuthModal() {
     const authModal = document.getElementById('authModal');
     authModal.classList.add('hidden');
+    document.body.classList.remove('auth-active');
     document.getElementById('setupPanel').style.display = 'block';
 }
 
@@ -1381,6 +1387,9 @@ function layoutAboutTwoModes(root) {
 
 // Setup authentication modal event listeners
 function setupAuthEventListeners() {
+    const authModal = document.getElementById('authModal');
+    if (authModal?.dataset.listenersReady === '1') return;
+    if (authModal) authModal.dataset.listenersReady = '1';
     // Guest mode button
     document.getElementById('guestModeBtn').addEventListener('click', enterGuestMode);
 
