@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-01 — Simplify morphology person and tense pills
+
+- Commit `2f0dc889`; front-end cache `flashcards-v169` / `20260801b`; follow-up on GitHub issue #52.
+- Replaced technical person/plurality labels with Spanish subject labels: `Yo`, `Tú`, `Él(la)`, `Nosotros`, `Vosotros`, and `Ellos`. Ambiguous analyses keep every applicable subject together, such as `Yo/Él(la)`.
+- Suppressed the `present` pill whenever it is the only named tense across the available analyses. It remains visible when another tense such as preterite is present and the contrast matters.
+- Verification: bundled-Node syntax checks; focused executable tests for all six person mappings, ambiguous analysis ordering, lone-present suppression, contrasted-present retention, coupled alternatives, and asset-version lockstep; `git diff --check`.
+
 ### 2026-08-01 — Focus active-deck Study settings and compact morphology alternatives
 
 - Commit `3f2db31b`; front-end cache `flashcards-v168` / `20260801a`; tracked by GitHub issue #52.

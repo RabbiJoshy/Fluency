@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-01",
+      "commit": "2f0dc889",
+      "summary": "Morphology pills now read like Spanish conjugation labels",
+      "details": [
+        "Replaced technical person-and-number wording with Yo, Tú, Él(la), Nosotros, Vosotros and Ellos",
+        "Ambiguous forms retain every applicable subject in one pill, such as Yo/Él(la)",
+        "Present is now implicit when it is the only tense, but remains visible when another tense must be distinguished; cache v168→v169, assets 20260801a→20260801b"
+      ]
+    },
+    {
+      "date": "2026-08-01",
       "commit": "3f2db31b",
       "summary": "Study preferences and morphology alternatives are more focused",
       "details": [
