@@ -249,6 +249,7 @@ function formatMorphLabel(m) {
         grammar,
         tense: formatMorphTense(m.tense),
         mood: formatMorphMood(m.mood),
+        moodCode: m.mood || '',
     };
 }
 
@@ -259,11 +260,10 @@ function formatMorphPersonGroup(personCodes, fallbackLabels = []) {
     return people.join('/') || fallbackLabels.filter(Boolean).join('/');
 }
 
-// One Spanish surface can legitimately represent several people in the same
-// number/tense/mood (sea = 1st and 3rd singular present subjunctive). Person is
-// the only ambiguity compacted with a slash. A different number, tense, or mood
-// remains a separate morphology row so its alternatives never become an
-// overstuffed "singular / plural" or "present / preterite" pill.
+// One Spanish surface can legitimately represent several complete analyses.
+// Compact person ambiguity within one analysis (sea = 1st/3rd singular), keep
+// grammatical permutations coupled, and rank indicative ahead of imperative so
+// the initially visible row is the ordinary reading when both are possible.
 function compactMorphLabels(morphologyRows) {
     const unique = [...new Map(morphologyRows
         .map(formatMorphLabel)
@@ -281,6 +281,7 @@ function compactMorphLabels(morphologyRows) {
                 number,
                 tense: label.tense,
                 mood: label.mood,
+                moodCode: label.moodCode,
                 labels: []
             });
         }
@@ -298,8 +299,23 @@ function compactMorphLabels(morphologyRows) {
             grammar: group.grammar,
             number: group.number,
             tense: group.tense,
-            mood: group.mood
+            mood: group.mood,
+            moodCode: group.moodCode
         };
+    }).sort((a, b) => {
+        const moodPriority = moodCode => ({
+            indicativo: 0,
+            '': 1,
+            subjuntivo: 2,
+            condicional: 3,
+            infinitivo: 4,
+            gerundio: 5,
+            participio: 5,
+            participo: 5,
+            'participio-pasado': 5,
+            imperativo: 6,
+        })[moodCode] ?? 4;
+        return moodPriority(a.moodCode) - moodPriority(b.moodCode);
     });
 }
 
@@ -1087,7 +1103,7 @@ function initializeApp() {
                     ? icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path>')
                     : icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 10 5 5"></path><path d="m21 10-5 5"></path>'), onSelect: () => toggleAutoSpeak() },
                 { label: 'Set progress', iconHTML: icon('<path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path>'), onSelect: () => showStatsModal() },
-                { label: 'Study preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModalWithTab('study') }
+                { label: 'Study preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModalWithTab('study', { singleTab: true }) }
             ]
         });
     };
@@ -1326,56 +1342,6 @@ function initializeApp() {
     document.getElementById('closeStatsModal').addEventListener('click', hideStatsModal);
 
     // Settings modal interactions
-
-    // Proper nouns + interjections/noise toggles. Same pattern as
-    // the other active filters — flip the state, refresh the badge, then
-    // re-render the level + range selectors so the affected entries
-    // disappear/reappear in the deck. No ppm recalc needed because
-    // these flags don't change the corpus frequency totals.
-    const _refreshAfterFilterToggle = () => {
-        const step2Display = document.getElementById('step2').style.display;
-        if (selectedLanguage && step2Display !== 'none') {
-            renderLevelSelector(selectedLanguage);
-            if (selectedLevel) {
-                const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
-                if (levelBtn) {
-                    levelBtn.classList.add('selected');
-                    levelBtn.textContent = levelBtn.dataset.full;
-                }
-                renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
-            }
-        }
-    };
-    const propnToggleEl = document.getElementById('excludePropernounsToggle');
-    if (propnToggleEl) {
-        propnToggleEl.addEventListener('click', function() {
-            excludeProperNouns = !excludeProperNouns;
-            const status = document.getElementById('excludePropernounsStatus');
-            status.textContent = excludeProperNouns ? 'ON' : 'OFF';
-            status.style.color = excludeProperNouns ? 'var(--accent-primary)' : 'var(--text-muted)';
-            _refreshAfterFilterToggle();
-        });
-    }
-    const noiseToggleEl = document.getElementById('excludeNoiseToggle');
-    if (noiseToggleEl) {
-        noiseToggleEl.addEventListener('click', function() {
-            excludeNoise = !excludeNoise;
-            const status = document.getElementById('excludeNoiseStatus');
-            status.textContent = excludeNoise ? 'ON' : 'OFF';
-            status.style.color = excludeNoise ? 'var(--accent-primary)' : 'var(--text-muted)';
-            _refreshAfterFilterToggle();
-        });
-    }
-    const loanwordToggleEl = document.getElementById('excludeEnglishLoanwordsToggle');
-    if (loanwordToggleEl) {
-        loanwordToggleEl.addEventListener('click', function() {
-            excludeEnglishLoanwords = !excludeEnglishLoanwords;
-            const status = document.getElementById('excludeEnglishLoanwordsStatus');
-            status.textContent = excludeEnglishLoanwords ? 'ON' : 'OFF';
-            status.style.color = excludeEnglishLoanwords ? 'var(--accent-primary)' : 'var(--text-muted)';
-            _refreshAfterFilterToggle();
-        });
-    }
 
     // Percentage mode toggle
     // Refresh study set - delete progress for words in current set
@@ -2146,6 +2112,20 @@ function escapeCardText(value) {
     })[character]);
 }
 
+function toggleMorphAlternatives(event) {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    const wrap = event?.currentTarget?.closest?.('.morph-strip-wrap');
+    const alternatives = wrap?.querySelector('.morph-alternatives');
+    if (!wrap || !alternatives) return;
+    const shouldOpen = alternatives.hidden;
+    alternatives.hidden = !shouldOpen;
+    wrap.classList.toggle('is-open', shouldOpen);
+    wrap.querySelectorAll('.morph-pill-toggle, .morph-more-toggle').forEach(button => {
+        button.setAttribute('aria-expanded', String(shouldOpen));
+    });
+}
+
 function getExampleProductionForm(card, meaning, example, targetSentence) {
     const sentence = String(targetSentence || '').replace(/<[^>]*>/g, '');
     if (!sentence || !card) return '';
@@ -2538,21 +2518,52 @@ function updateCard({ announceHeadword = false } = {}) {
     };
     const renderMorphStrip = (tokenClasses = 'card-pos pos-verb') => {
         if (!morphLabels.length) return '';
+        const primary = morphLabels[0];
+        const alternatives = morphLabels.slice(1);
+        const tokensFor = label => ({
+            personNumber: [label.person, label.number].filter(Boolean).join(' '),
+            tense: label.tense,
+            mood: label.mood,
+        });
+        const primaryTokens = tokensFor(primary);
+        const alternativeTokens = alternatives.map(tokensFor);
         const fullLabels = morphLabels.map(item => [
             [item.person, item.number].filter(Boolean).join(' '),
             item.tense,
             item.mood
         ].filter(Boolean).join(' · '));
-        return `<span class="morph-strip-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
-            <span class="morph-strip" aria-hidden="true">
-                ${morphLabels.map(label => `
-                    <span class="morph-strip-row">
-                        ${[[label.person, label.number].filter(Boolean).join(' '), label.tense, label.mood]
-                            .filter(Boolean)
+        let interactiveTokenCount = 0;
+        const renderPrimaryToken = (key, token) => {
+            if (!token) return '';
+            const hasAlternative = alternativeTokens.some(alt => alt[key] !== token);
+            if (!hasAlternative) {
+                return `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`;
+            }
+            interactiveTokenCount += 1;
+            return `<button type="button" class="${tokenClasses} morphology-pill morph-pill-toggle" aria-label="${escapeCardText(token)}. Show morphology alternatives" aria-expanded="false" onclick="toggleMorphAlternatives(event)">${escapeCardText(token)}<span class="morph-pill-plus" aria-hidden="true">+</span></button>`;
+        };
+        const primaryHTML = Object.entries(primaryTokens)
+            .map(([key, token]) => renderPrimaryToken(key, token))
+            .join('');
+        const fallbackToggle = alternatives.length && !interactiveTokenCount
+            ? `<button type="button" class="morph-more-toggle" aria-label="Show morphology alternatives" aria-expanded="false" onclick="toggleMorphAlternatives(event)">+</button>`
+            : '';
+        const alternativesHTML = alternatives.length
+            ? `<span class="morph-alternatives" hidden>
+                ${alternatives.map(label => {
+                    const tokens = tokensFor(label);
+                    return `<span class="morph-strip-row morph-alternative-row">
+                        ${Object.values(tokens).filter(Boolean)
                             .map(token => `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`)
                             .join('')}
-                    </span>
-                `).join('')}
+                    </span>`;
+                }).join('')}
+            </span>`
+            : '';
+        return `<span class="morph-strip-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
+            <span class="morph-strip">
+                <span class="morph-strip-row morph-primary-row">${primaryHTML}${fallbackToggle}</span>
+                ${alternativesHTML}
             </span>
         </span>`;
     };
@@ -4522,6 +4533,7 @@ window.recordCardResult = recordCardResult;
 window.showFloatingBtns = showFloatingBtns;
 window.goBackToSetup = goBackToSetup;
 window.updateCard = updateCard;
+window.toggleMorphAlternatives = toggleMorphAlternatives;
 window.flipCard = flipCard;
 window.cycleExample = cycleExample;
 window.cycleExampleForward = cycleExampleForward;
@@ -4660,7 +4672,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260731m';
+const ASSET_VERSION = '20260801a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

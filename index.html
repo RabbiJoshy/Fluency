@@ -24,23 +24,23 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260731m">
-    <link rel="modulepreload" href="js/state.js?v=20260731m">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260731m">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260731m">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260731m">
-    <link rel="modulepreload" href="js/speech.js?v=20260731m">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260731m">
-    <link rel="modulepreload" href="js/auth.js?v=20260731m">
-    <link rel="modulepreload" href="js/spotify.js?v=20260731m">
-    <link rel="modulepreload" href="js/estimation.js?v=20260731m">
-    <link rel="modulepreload" href="js/config.js?v=20260731m">
-    <link rel="modulepreload" href="js/progress.js?v=20260731m">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260731m">
-    <link rel="modulepreload" href="js/ui.js?v=20260731m">
-    <link rel="modulepreload" href="js/vocab.js?v=20260731m">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260731m">
-    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260731m">
+    <link rel="modulepreload" href="js/main.js?v=20260801a">
+    <link rel="modulepreload" href="js/state.js?v=20260801a">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260801a">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260801a">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260801a">
+    <link rel="modulepreload" href="js/speech.js?v=20260801a">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260801a">
+    <link rel="modulepreload" href="js/auth.js?v=20260801a">
+    <link rel="modulepreload" href="js/spotify.js?v=20260801a">
+    <link rel="modulepreload" href="js/estimation.js?v=20260801a">
+    <link rel="modulepreload" href="js/config.js?v=20260801a">
+    <link rel="modulepreload" href="js/progress.js?v=20260801a">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260801a">
+    <link rel="modulepreload" href="js/ui.js?v=20260801a">
+    <link rel="modulepreload" href="js/vocab.js?v=20260801a">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260801a">
+    <link rel="modulepreload" href="js/flashcards-modals.js?v=20260801a">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -999,6 +999,7 @@
         <div class="modal-content settings-modal-content">
             <!-- Tab buttons as header -->
             <div class="settings-tabs-header">
+                <strong class="settings-single-tab-title" id="settingsSingleTabTitle" hidden>Study preferences</strong>
                 <div class="settings-tabs">
                     <button class="settings-tab active" data-tab="account">Account</button>
                     <button class="settings-tab" data-tab="study">Study</button>
@@ -1054,36 +1055,25 @@
                         </div>
                     </div>
                 </section>
-                <div class="stat-row" style="cursor: pointer; display: none;" id="hideSingleOccToggle">
-                    <span>Hide single-occurrence words</span>
-                    <span id="hideSingleOccStatus" style="color: var(--accent-primary);">ON</span>
-                </div>
-                <div class="stat-row" style="cursor: pointer; display: none;" id="excludePropernounsToggle"
-                     title="Hide entries that are proper nouns (names of people, places, brands).">
-                    <span>Hide proper nouns</span>
-                    <span id="excludePropernounsStatus" style="color: var(--accent-primary);">ON</span>
-                </div>
-                <div class="stat-row" style="cursor: pointer; display: none;" id="excludeNoiseToggle"
-                     title="Hide noise words and interjections (yeah, uh, ay, brrr).">
-                    <span>Hide interjections &amp; noise</span>
-                    <span id="excludeNoiseStatus" style="color: var(--accent-primary);">ON</span>
-                </div>
-                <div class="stat-row" style="cursor: pointer; display: none;" id="excludeEnglishLoanwordsToggle"
-                     title="Hide English loanwords and code-switches (hey, baby, shot, panty).">
-                    <span>Hide English loanwords</span>
-                    <span id="excludeEnglishLoanwordsStatus" style="color: var(--accent-primary);">ON</span>
-                </div>
                 <!-- Cognate exclusion sensitivity. Higher threshold = only
                      the most obvious cognates get excluded (looser); lower
                      = more aggressive. Hidden until cognate-data languages
                      are active (see updateCognateSensitivityVisibility). -->
                 <div class="stat-row" id="cognateSensitivityRow" style="display: none;">
-                    <span>Cognate filter sensitivity</span>
+                    <span class="settings-row-label">Cognate filter sensitivity
+                        <button type="button" class="settings-info-btn" id="cognateSensitivityInfoBtn"
+                                aria-label="Explain cognate filter sensitivity" aria-expanded="false"
+                                aria-controls="cognateSensitivityExplanation">i</button>
+                    </span>
                     <div id="cognateSensitivitySelector" class="group-size-selector settings-toggle">
                         <button class="cognate-sens-btn group-size-btn" data-threshold="0.95" title="Only obvious cognates (e.g. animal, hotel)">Loose</button>
                         <button class="cognate-sens-btn group-size-btn selected" data-threshold="0.85" title="Default cutoff">Default</button>
                         <button class="cognate-sens-btn group-size-btn" data-threshold="0.75" title="Skip more cognate-like words">Strict</button>
                     </div>
+                </div>
+                <div class="settings-inline-explanation" id="cognateSensitivityExplanation" hidden>
+                    <strong>How sensitivity works</strong>
+                    <p><b>Loose</b> excludes only the most obvious look-alikes. <b>Default</b> balances confidence and coverage. <b>Strict</b> also excludes less certain cognate-like words, leaving a smaller study deck.</p>
                 </div>
             </div>
             <!-- Account tab content -->
@@ -1220,6 +1210,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260731m"></script>
+    <script type="module" src="js/main.js?v=20260801a"></script>
 </body>
 </html>

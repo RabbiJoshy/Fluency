@@ -1381,8 +1381,8 @@ function setupCognateToggle() {
             _refreshAfterCognateChange();
         });
     });
-    // Cognate sensitivity (Loose / Default / Strict) lives in the
-    // Advanced settings tab. Higher threshold = only the most obvious
+    // Cognate sensitivity (Loose / Default / Strict) lives in Study settings.
+    // Higher threshold = only the most obvious
     // cognates excluded; lower threshold = more aggressive exclusion.
     document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -1393,6 +1393,13 @@ function setupCognateToggle() {
                 .forEach(b => b.classList.toggle('selected', b === this));
             if (excludeCognates) _refreshAfterCognateChange();
         });
+    });
+    const sensitivityInfoBtn = document.getElementById('cognateSensitivityInfoBtn');
+    const sensitivityExplanation = document.getElementById('cognateSensitivityExplanation');
+    sensitivityInfoBtn?.addEventListener('click', function() {
+        const shouldOpen = sensitivityExplanation.hidden;
+        sensitivityExplanation.hidden = !shouldOpen;
+        this.setAttribute('aria-expanded', String(shouldOpen));
     });
 }
 
@@ -2014,38 +2021,7 @@ function showSettingsModal() {
     showSettingsModalWithTab('account');
 }
 
-function showSettingsModalWithTab(tabName) {
-    // Individual 1x forms are no longer a filter. Artist Main/Extra is a
-    // lemma-family scope selected in the artist source card.
-    const hideSingleOccToggle = document.getElementById('hideSingleOccToggle');
-    if (hideSingleOccToggle) hideSingleOccToggle.style.display = 'none';
-
-    // Artist-mode toggles for proper nouns and noise/interjections.
-    // Mirror the hideSingleOccurrence pattern: only visible in artist
-    // mode (the underlying flags are pipeline outputs that only artist
-    // entries carry).
-    const propnToggle = document.getElementById('excludePropernounsToggle');
-    if (propnToggle) {
-        propnToggle.style.display = activeArtist ? 'flex' : 'none';
-        const status = document.getElementById('excludePropernounsStatus');
-        status.textContent = excludeProperNouns ? 'ON' : 'OFF';
-        status.style.color = excludeProperNouns ? 'var(--accent-primary)' : 'var(--text-muted)';
-    }
-    const noiseToggle = document.getElementById('excludeNoiseToggle');
-    if (noiseToggle) {
-        noiseToggle.style.display = activeArtist ? 'flex' : 'none';
-        const status = document.getElementById('excludeNoiseStatus');
-        status.textContent = excludeNoise ? 'ON' : 'OFF';
-        status.style.color = excludeNoise ? 'var(--accent-primary)' : 'var(--text-muted)';
-    }
-    const loanwordToggle = document.getElementById('excludeEnglishLoanwordsToggle');
-    if (loanwordToggle) {
-        loanwordToggle.style.display = activeArtist ? 'flex' : 'none';
-        const status = document.getElementById('excludeEnglishLoanwordsStatus');
-        status.textContent = excludeEnglishLoanwords ? 'ON' : 'OFF';
-        status.style.color = excludeEnglishLoanwords ? 'var(--accent-primary)' : 'var(--text-muted)';
-    }
-
+function showSettingsModalWithTab(tabName, { singleTab = false } = {}) {
     // Show/hide refresh set option based on whether a study set is loaded and user is logged in
     const refreshSetToggle = document.getElementById('refreshSetToggle');
     if (currentUser && !currentUser.isGuest && flashcards.length > 0) {
@@ -2063,6 +2039,11 @@ function showSettingsModalWithTab(tabName) {
         document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn').forEach(b => {
             b.classList.toggle('selected', Math.abs(parseFloat(b.dataset.threshold) - cognateThreshold) < 1e-6);
         });
+        if (!cognateFieldAvailable) {
+            const explanation = document.getElementById('cognateSensitivityExplanation');
+            if (explanation) explanation.hidden = true;
+            document.getElementById('cognateSensitivityInfoBtn')?.setAttribute('aria-expanded', 'false');
+        }
     }
 
     // Update account tab with current user
@@ -2094,6 +2075,10 @@ function showSettingsModalWithTab(tabName) {
     const requestedTab = tabContentIds[tabName] && (tabName !== 'appData' || isJstAccount)
         ? tabName
         : 'account';
+    const showOnlyStudy = singleTab && requestedTab === 'study';
+    settingsModal.classList.toggle('settings-single-tab', showOnlyStudy);
+    const singleTabTitle = document.getElementById('settingsSingleTabTitle');
+    if (singleTabTitle) singleTabTitle.hidden = !showOnlyStudy;
     settingsModal.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
     settingsModal.querySelector(`.settings-tab[data-tab="${requestedTab}"]`)?.classList.add('active');
     settingsModal.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));

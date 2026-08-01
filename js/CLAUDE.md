@@ -64,7 +64,8 @@ keeps the standalone coverage card.
 Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the set progress panel. DOM `id="step4"` is the automatic next-set panel (visual step 3).
 
 The main settings modal is bounded/scrollable and has Account, Study, and Offline & sync
-tabs, plus a JST-only App data audit tab. Artist/album selection is intentionally absent
+tabs, plus a JST-only App data audit tab. The active deck's Study preferences entry opens
+the same Study content as a single-surface modal without exposing the other tabs. Artist/album selection is intentionally absent
 until its combined selector is redesigned. `fluency_global_study_defaults_v1` persists Merge Lemmas, Cognates,
 card direction, and automatic speech. In-study direction/audio changes write the
 same store immediately; exact resume snapshots additionally retain those active
@@ -294,7 +295,9 @@ cannot be guaranteed after Spotify handoff.
 
 On the card front, `.card-pos-list` renders one pill per grammatical POS rather
 than a comma-separated combined pill. Morphology is nested under the VERB pill
-as `.front-morph-tag` elements in the same colour family. In example sentences,
+as a compact preferred analysis in the same colour family. Indicative outranks
+imperative; changed pills carry a `+` that expands every complete coupled
+alternative row on either card face. In example sentences,
 `.example-word-highlight` uses the active POS colour at low intensity for the
 headword / `used with` companion; `.example-related-highlight` is quieter for
 other study-set words and keyword-matched English fragments.
