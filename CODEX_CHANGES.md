@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-01 — Focus active-deck Study settings and compact morphology alternatives
+
+- Commit `3f2db31b`; front-end cache `flashcards-v168` / `20260801a`; tracked by GitHub issue #52.
+- Active-deck Study preferences now presents only the canonical Study content and a close control; the main-menu Settings entry still restores Account, Study, Offline & sync, and the gated App data tab.
+- Removed the obsolete single-occurrence, proper-noun, noise, and English-loanword rows from Study because those routing categories belong to Artist Extra. Cognate sensitivity again has a discoverable explanation button with concise Loose/Default/Strict guidance.
+- Morphology now renders one preferred analysis row, prioritizing indicative over imperative. Only changed pills carry a `+`; opening any one reveals every complete alternative analysis together so person, number, tense, and mood permutations remain coupled.
+- Verification: bundled-Node syntax checks for changed JavaScript and the service worker; three focused UI regression tests including executable indicative/imperative ordering; four unaffected offline/service-worker tests; valid changelog JSON; cache-version lockstep; `git diff --check`. The full offline-manifest suite retains a pre-existing pipeline-owned size mismatch for `Artists/spanish/vocabulary_master.json`.
+
 ### 2026-07-31 — Make GitHub Issues the live backlog
 
 - Commit `08fae949`; no front-end cache change (workflow documentation only).

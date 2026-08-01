@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-01",
+      "commit": "3f2db31b",
+      "summary": "Study preferences and morphology alternatives are more focused",
+      "details": [
+        "Study preferences opened from an active deck now shows only Study, while main-menu Settings still exposes the full tab set",
+        "Removed obsolete artist-category hide controls from Study and restored a tappable explanation for cognate sensitivity",
+        "Morphology shows one preferred analysis by default, prioritizes indicative over imperative, and expands complete coupled alternatives from + pills; cache v167→v168, assets 20260731m→20260801a"
+      ]
+    },
+    {
       "date": "2026-07-31",
       "commit": "984d878d",
       "summary": "Rosalía and Young Miko rebuilt with the same fixes as Bad Bunny",
