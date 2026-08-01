@@ -225,12 +225,12 @@ function formatMorphTense(tense) {
 
 function formatMorphPerson(person) {
     const personMap = {
-        '1s': '1st singular',
-        '2s': '2nd singular',
-        '3s': '3rd singular',
-        '1p': '1st plural',
-        '2p': '2nd plural',
-        '3p': '3rd plural',
+        '1s': 'Yo',
+        '2s': 'Tú',
+        '3s': 'Él(la)',
+        '1p': 'Nosotros',
+        '2p': 'Vosotros',
+        '3p': 'Ellos',
     };
     return personMap[person] || '';
 }
@@ -255,7 +255,7 @@ function formatMorphLabel(m) {
 
 function formatMorphPersonGroup(personCodes, fallbackLabels = []) {
     const people = [...new Set(personCodes
-        .map(code => ({ '1': '1st', '2': '2nd', '3': '3rd' })[String(code || '').charAt(0)])
+        .map(formatMorphPerson)
         .filter(Boolean))];
     return people.join('/') || fallbackLabels.filter(Boolean).join('/');
 }
@@ -317,6 +317,11 @@ function compactMorphLabels(morphologyRows) {
         })[moodCode] ?? 4;
         return moodPriority(a.moodCode) - moodPriority(b.moodCode);
     });
+}
+
+function visibleMorphTense(label, labels) {
+    const distinctTenses = new Set(labels.map(item => item.tense).filter(Boolean));
+    return label.tense === 'present' && distinctTenses.size <= 1 ? '' : label.tense;
 }
 
 const CLITIC_ROLES = {
@@ -2521,15 +2526,15 @@ function updateCard({ announceHeadword = false } = {}) {
         const primary = morphLabels[0];
         const alternatives = morphLabels.slice(1);
         const tokensFor = label => ({
-            personNumber: [label.person, label.number].filter(Boolean).join(' '),
-            tense: label.tense,
+            person: label.person,
+            tense: visibleMorphTense(label, morphLabels),
             mood: label.mood,
         });
         const primaryTokens = tokensFor(primary);
         const alternativeTokens = alternatives.map(tokensFor);
         const fullLabels = morphLabels.map(item => [
-            [item.person, item.number].filter(Boolean).join(' '),
-            item.tense,
+            item.person,
+            visibleMorphTense(item, morphLabels),
             item.mood
         ].filter(Boolean).join(' · '));
         let interactiveTokenCount = 0;
@@ -4672,7 +4677,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260801a';
+const ASSET_VERSION = '20260801b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

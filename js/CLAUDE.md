@@ -297,7 +297,9 @@ On the card front, `.card-pos-list` renders one pill per grammatical POS rather
 than a comma-separated combined pill. Morphology is nested under the VERB pill
 as a compact preferred analysis in the same colour family. Indicative outranks
 imperative; changed pills carry a `+` that expands every complete coupled
-alternative row on either card face. In example sentences,
+alternative row on either card face. Person/number is expressed as Spanish
+subject labels (`Yo`, `Tú`, `Él(la)`, `Nosotros`, `Vosotros`, `Ellos`), and a
+lone present tense is implicit rather than rendered as another pill. In example sentences,
 `.example-word-highlight` uses the active POS colour at low intensity for the
 headword / `used with` companion; `.example-related-highlight` is quieter for
 other study-set words and keyword-matched English fragments.

@@ -45,6 +45,7 @@ test('morphology defaults to a preferred row and expands coupled alternatives', 
     assert.match(cards, /class="morph-alternatives" hidden/);
     assert.match(cards, /toggleMorphAlternatives\(event\)/);
     assert.match(cards, /alternatives\.hidden = !shouldOpen/);
+    assert.match(cards, /label\.tense === 'present' && distinctTenses\.size <= 1/);
     assert.match(css, /\.morph-pill-plus/);
     assert.match(css, /\.morph-alternative-row/);
 
@@ -59,4 +60,21 @@ test('morphology defaults to a preferred row and expands coupled alternatives', 
     ]);`, context);
     assert.equal(context.result[0].moodCode, 'indicativo');
     assert.equal(context.result[1].moodCode, 'imperativo');
+    assert.equal(context.result[0].person, 'Él(la)');
+    assert.equal(context.result[1].person, 'Tú');
+
+    runInNewContext(`${helpers}; result = {
+        people: ['1s', '2s', '3s', '1p', '2p', '3p'].map(formatMorphPerson),
+        lonePresent: visibleMorphTense({ tense: 'present' }, [{ tense: 'present' }]),
+        contrastedPresent: visibleMorphTense(
+            { tense: 'present' },
+            [{ tense: 'present' }, { tense: 'preterite' }]
+        )
+    };`, context);
+    assert.deepEqual(
+        [...context.result.people],
+        ['Yo', 'Tú', 'Él(la)', 'Nosotros', 'Vosotros', 'Ellos']
+    );
+    assert.equal(context.result.lonePresent, '');
+    assert.equal(context.result.contrastedPresent, 'present');
 });
