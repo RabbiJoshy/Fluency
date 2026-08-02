@@ -298,8 +298,9 @@ CLITIC stay out of the legend because their pinned rows are self-explanatory.
 Every canonical POS and special row type has an explicit `pos-*` theme; keep
 aliases such as `ADJ`/`ADJECTIVE` together, but do not collapse genuinely
 different types such as proper nouns, particles, contractions, MWE, or clitics.
-Sense-row type scales are assigned by `adaptiveRowTextClass()`: short copy grows
-to fill spare space and long copy steps down before wrapping/clamping. MWE and
+Sense-row type scales are assigned by `adaptiveRowTextClass()`: short main and
+italic context copy both grow to fill spare space, while long copy steps down
+before wrapping/clamping. MWE and
 clitic copy is inline-first, with upright source text, white italic English, and a
 subordinate context fragment; wrapping remains the fallback when one line will
 not fit.

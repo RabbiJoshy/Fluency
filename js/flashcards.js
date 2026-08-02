@@ -4717,7 +4717,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260802d';
+const ASSET_VERSION = '20260802e';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

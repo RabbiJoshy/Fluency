@@ -2032,25 +2032,25 @@
         .row-text-xl {
             --row-primary-size: 21px;
             --row-secondary-size: 18px;
-            --row-context-size: 14px;
+            --row-context-size: 17px;
         }
 
         .row-text-lg {
             --row-primary-size: 19px;
             --row-secondary-size: 17px;
-            --row-context-size: 13px;
+            --row-context-size: 15px;
         }
 
         .row-text-md {
             --row-primary-size: 17px;
             --row-secondary-size: 15px;
-            --row-context-size: 12px;
+            --row-context-size: 13px;
         }
 
         .row-text-sm {
             --row-primary-size: 15px;
             --row-secondary-size: 13px;
-            --row-context-size: 11px;
+            --row-context-size: 11.5px;
         }
 
         .row-adaptive-text {

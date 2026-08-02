@@ -146,6 +146,9 @@ test('card rows use distinct POS themes and content-aware bilingual typography',
     assert.match(css, /\.card-details \.special-meaning-copy strong\s*\{[^}]*color: #fff;/s);
     assert.match(css, /\.mwe-expression\s*\{[^}]*font-style: normal;/s);
     assert.match(css, /\.row-text-xl\s*\{[^}]*--row-primary-size: 21px;/s);
+    assert.match(css, /\.row-text-xl\s*\{[^}]*--row-context-size: 17px;/s);
+    assert.match(css, /\.row-text-lg\s*\{[^}]*--row-context-size: 15px;/s);
+    assert.match(css, /\.row-text-sm\s*\{[^}]*--row-context-size: 11\.5px;/s);
 });
 
 test('setup routing advances past fully seen and suggestion-skipped levels', async () => {
