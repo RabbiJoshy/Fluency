@@ -32,6 +32,12 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Keep Expression translations white
+
+- Commit `1061bc55`; front-end cache `flashcards-v172` / `20260802c`; follow-up to GitHub issue #53.
+- Added a deliberately stronger `.card-details .special-meaning-copy strong` rule so the later generic strong-text accent cannot override bilingual-row English with the active red artist colour. Spanish remains upright and English remains italic.
+- Verification: bundled-Node syntax checks for the changed modules and service worker; all 12 UI/offline tests including a CSS-cascade regression assertion; valid developer-changelog JSON; `git diff --check`. Per repository policy, no browser preview was used against the service-worker app.
+
 ### 2026-08-02 — Give card rows distinct themes and adaptive type
 
 - Commit `06eedf41`; front-end cache `flashcards-v171` / `20260802b`; tracked by GitHub issue #53.

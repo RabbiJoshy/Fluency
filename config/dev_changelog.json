@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "1061bc55",
+      "summary": "Expression translations now stay white",
+      "details": [
+        "English text in Expression/MWE and clitic rows is explicitly white and remains italic",
+        "The row-specific colour now wins over the later generic strong-text accent rule, preventing artist themes from turning translations red",
+        "Added a regression assertion for the CSS cascade; cache v171→v172, assets 20260802b→20260802c"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "06eedf41",
       "summary": "Card rows now use clearer colour identities and make better use of space",
       "details": [
