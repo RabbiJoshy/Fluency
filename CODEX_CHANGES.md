@@ -32,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Remove systemic startup and study stalls
+
+- Commit `8bb74735`; front-end cache `flashcards-v170` / `20260802a`; follow-up on GitHub issue #5.
+- Replaced the service worker's per-request scan across every retained download with one manifest-derived pathname index. Shell/runtime cache hits are now genuinely cache-first for their version instead of launching another background transfer and cache write for multi-megabyte deck JSON on every visit.
+- Coalesced whole-progress IndexedDB/localStorage snapshots into an idle-time write with hide/page-exit flushing. Per-answer and per-item operations remain immediately durable in the existing IndexedDB sync queue, so the responsiveness improvement does not weaken offline recovery.
+- Reused the prepared setup filter's stable baseline and restored joined artist sense trees only after deck construction actually mutates them. This removes redundant full-corpus sorting plus repeated `_base_meanings` cloning during setup while preserving Main/Extra and example-attachment isolation.
+- Kept Spotify and the large card-modal module out of normal Speech startup, deferred the 1.4 MB conjugation table until its panel is opened, and skipped identical back-card DOM/layout, album-art, and direction-control writes. Updated all artist offline sizes/checksums after the latest shared-master/deck rebuild so integrity checks succeed again.
+- Verification: syntax checks for every JavaScript module and the service worker; 11 focused Node tests covering exact offline size/checksum integrity, retained-cache routing, no cached-hit re-download, durable sync metadata, idle progress batching, setup reuse/dirty restoration, lazy startup modules, lazy conjugations, unchanged-card render reuse, authentication fail-open, morphology behavior, and asset-version lockstep; valid JSON; `git diff --check`. Repository policy leaves real-device Safari confirmation to Josh's installed app.
+
 ### 2026-08-01 — Simplify morphology person and tense pills
 
 - Commit `2f0dc889`; front-end cache `flashcards-v169` / `20260801b`; follow-up on GitHub issue #52.

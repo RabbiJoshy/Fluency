@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-02",
+      "commit": "8bb74735",
+      "summary": "App startup and study interactions now do substantially less background work",
+      "details": [
+        "Cached deck files no longer re-download in the background on every visit, and retained downloads use one direct manifest-indexed cache lookup instead of scanning every installed source per request",
+        "Progress snapshots are batched during idle time while each answer remains immediately durable in the offline sync queue; repeated setup filtering and unchanged card DOM/layout work are reused",
+        "Normal Speech startup no longer evaluates Spotify or large card-modal code, full conjugation tables load only when opened, and artist offline-download metadata is valid again; cache v169→v170, assets 20260801b→20260802a"
+      ]
+    },
+    {
       "date": "2026-08-01",
       "commit": "2f0dc889",
       "summary": "Morphology pills now read like Spanish conjugation labels",
