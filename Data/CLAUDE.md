@@ -6,6 +6,14 @@ Static vocabulary JSON files consumed by the front-end. No backend.
 
 Pipeline layers (intermediate files produced by each build step) are in `Spanish/layers/` — see `layers/CLAUDE.md` for schemas and provenance design. The normal-mode pipeline orchestrator is `pipeline/run_pipeline.py`.
 
+Immutable Spanish Normal Mode checkpoints live in
+`Spanish/runs/normal_mode/{run_id}/`. Before replacing a sense menu or either
+assignment layer, archive the active state with
+`pipeline/tool_6d_archive_normal_run.py`. The run manifest binds assignments to
+their exact menu and records hashes, evidence recovery, and external resource
+snapshots. `Spanish/active_normal_run.json` names the comparison/deployment
+baseline; it is intentionally not an automatic restore mechanism.
+
 ## Vocabulary Files
 
 | Language | File | Entries |

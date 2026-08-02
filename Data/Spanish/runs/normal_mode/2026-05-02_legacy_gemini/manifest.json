@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-05-02_legacy_gemini",
+  "mode": "normal",
+  "language": "Spanish",
+  "status": "frozen",
+  "purpose": "Preserve the pre-rebuild Spanish Normal Mode SpanishDict mappings and approximate sense distributions.",
+  "archived_at": "2026-08-02T23:07:26.328682+00:00",
+  "git_commit_at_archive": "9b93460a60db2e48563bd752b6b3529b224f54c2",
+  "immutable": true,
+  "artifacts": {
+    "sense_menu/spanishdict.json": {
+      "path": "sense_menu/spanishdict.json",
+      "bytes": 43786636,
+      "sha256": "8eb786341341bf169f565eb6f88945f8c263b574a94c5ca7f74a3dbf512063a8"
+    },
+    "sense_menu/spanishdict.json.meta.json": {
+      "path": "sense_menu/spanishdict.json.meta.json",
+      "bytes": 111,
+      "sha256": "991a20157707233e70e921022e638301aa00c5cd14d588b324d33a09370cf69d"
+    },
+    "assignments/surface_spanishdict.json": {
+      "path": "assignments/surface_spanishdict.json",
+      "bytes": 15223559,
+      "sha256": "bb90a7ef3b99092d5d8359503084f77df958b5d34e042aba57e2cc7266443d61"
+    },
+    "assignments/surface_spanishdict.json.meta.json": {
+      "path": "assignments/surface_spanishdict.json.meta.json",
+      "bytes": 91,
+      "sha256": "a62d7368107f5be5d0e017577c6214f4b44fd98cacf4293f671392610e14b16a"
+    },
+    "assignments/lemma_spanishdict.json": {
+      "path": "assignments/lemma_spanishdict.json",
+      "bytes": 11275027,
+      "sha256": "93b5ac0338dd3f9c60f7393aae44414bfc518a980ca3ea711392cf5c67b9e85d"
+    },
+    "assignments/lemma_spanishdict.json.meta.json": {
+      "path": "assignments/lemma_spanishdict.json.meta.json",
+      "bytes": 119,
+      "sha256": "b9402d67e203dcad3b2bcd6678dfa0b90c85a18c48ab68ac2c6d5407df652236"
+    },
+    "distributions/spanishdict.json": {
+      "path": "distributions/spanishdict.json",
+      "bytes": 6143052,
+      "sha256": "5e222c26204d34d9025916b8635a3ab9340da21bf70b9bf9125e814eb68807ab"
+    }
+  },
+  "external_references": {
+    "published_examples": {
+      "bytes": 33399437,
+      "sha256": "fa251dec9172b8f2c1d1a2981a1eb5b74912fd1d694a01ccff6d90f8ffc69861",
+      "repository_path": "Data/Spanish/vocabulary.examples.json"
+    },
+    "spanishdict_cache_snapshot": {
+      "bytes": 4465577,
+      "sha256": "f0495cc4de4901b22678ed47c0a2f077498ac6fb9a80658c36c445afbd5b0275",
+      "repository_path": "Data/Spanish/Senses/spanishdict_cache_snapshot.tar.gz"
+    },
+    "spanishdict_cache_manifest": {
+      "bytes": 236,
+      "sha256": "b52e623370447b955cb7b460e4c4b6822a981fd592643aafa0d90d9a82281370",
+      "repository_path": "Data/Spanish/Senses/spanishdict_cache_snapshot.tar.gz.manifest.json"
+    }
+  },
+  "evidence_recovery": {
+    "assignment_example_ids": 88730,
+    "retained_in_published_deck": 42537,
+    "missing_from_published_deck": 46193,
+    "retained_percentage": 47.94,
+    "note": "The original examples_raw.json was not available when this run was archived."
+  },
+  "provenance_notes": [
+    "Assignment rows retain their original method, prompt_id, and run_ts fields.",
+    "The distribution file is derived deterministically from archived surface assignments.",
+    "Generated or personalised examples must never contribute to these distributions."
+  ]
+}

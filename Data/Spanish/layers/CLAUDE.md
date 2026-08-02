@@ -12,6 +12,13 @@ Intermediate data layers produced by pipeline steps. Each layer captures one asp
 
 This also applies to the artist pipeline layers in `Artists/{lang}/{Name}/data/layers/`.
 
+For complete Spanish Normal Mode sense-assignment reruns, also freeze the
+current menu plus surface/lemma assignments under
+`Data/Spanish/runs/normal_mode/{run_id}/` with
+`pipeline/tool_6d_archive_normal_run.py` before changing active layers. Layer
+files are the current materialized state; the immutable run directory is the
+historical checkpoint. Never edit an existing run in place.
+
 ## Layer Files (Normal Mode)
 
 | File | Key format | Value | Producer |
