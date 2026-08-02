@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Advance setup past seen and skipped levels
+
+- Commit `0c3cbbf3`; front-end cache `flashcards-v173` / `20260802d`; tracked by GitHub issue #54.
+- Corrected level completion for new-set routing from Known to Seen, matching the stable-set dots and the established rule that Review is a separate level action. This removes the Level 1 / Set 10 trap when every set was encountered but some answers remain in Review.
+- Main menu return now deliberately reruns first-actionable routing instead of restoring the level that owned the abandoned/completed set. Fully seen and marked-done levels are skipped; manual level selections remain sticky while setup is open. Artist Extra category landing and auto-start use the same routing contract.
+- Applied localStorage progress synchronously before the first IndexedDB await, then retained the durable-store and remote reconciliation passes. A remote update reroutes only an automatic choice, not a learner's manual level choice.
+- Verification: syntax checks for every JavaScript module and the service worker; all 13 UI/offline tests, including executable fully-seen-with-review and marked-done routing cases plus cached-progress ordering and asset-version lockstep; valid developer-changelog JSON; `git diff --check`. Per repository policy, no browser preview was used against the service-worker app.
+
 ### 2026-08-02 — Preserve Spanish Normal Mode assignment runs
 
 - Commit `84383de7`; no front-end cache change (pipeline provenance only).

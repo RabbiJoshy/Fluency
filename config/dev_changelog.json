@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "0c3cbbf3",
+      "summary": "The main menu now advances to the first genuinely unseen set",
+      "details": [
+        "Levels whose available cards have all been seen no longer trap setup on their final set just because some cards remain in the separate Review queue",
+        "Opening the app and returning from study now bypass fully seen or suggestion-skipped levels, while an explicit manual level choice still remains available",
+        "Cached progress is applied before the first automatic choice and refreshed progress can correct an automatic choice; cache v172→v173, assets 20260802c→20260802d"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "1061bc55",
       "summary": "Expression translations now stay white",
       "details": [
