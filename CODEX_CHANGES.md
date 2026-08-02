@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Preserve Spanish Normal Mode assignment runs
+
+- Commit `84383de7`; no front-end cache change (pipeline provenance only).
+- Added an immutable, versioned Normal Mode run registry and froze the pre-rebuild SpanishDict menu, surface/lemma assignment mappings, and deterministically derived sense distributions as `2026-05-02_legacy_gemini`.
+- Added `tool_6d_archive_normal_run.py`, which binds each future checkpoint to hashes and resource references and refuses to overwrite an existing run. The active-run pointer remains declarative so changing it cannot silently replace working layers.
+- Recorded the inherited evidence limitation honestly: the original raw example layer was already absent, and 42,537 of 88,730 assigned example IDs remain present in the published deck. Verification covered Python compilation, exact source/archive hashes, all manifest hashes, JSON parsing, distribution totals, overwrite refusal, and `git diff --check`.
+
 ### 2026-08-02 — Keep Expression translations white
 
 - Commit `1061bc55`; front-end cache `flashcards-v172` / `20260802c`; follow-up to GitHub issue #53.
