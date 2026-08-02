@@ -32,6 +32,12 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Scale short italic submeanings with their rows
+
+- Commit `0cf5501e`; front-end cache `flashcards-v174` / `20260802e`; follow-up to GitHub issue #53.
+- Raised the adaptive italic context/submeaning sizes from 14/13/12/11px to 17/15/13/11.5px across the XL/L/M/S density tiers. Short supporting copy now benefits from available space alongside the already-adaptive main translation, while long context still steps down to protect wrapping and card height.
+- Verification: syntax checks for every JavaScript module and the service worker; all 13 UI/offline tests including exact context-tier assertions and asset-version lockstep; valid developer-changelog JSON; `git diff --check`. Per repository policy, no browser preview was used against the service-worker app.
+
 ### 2026-08-02 — Advance setup past seen and skipped levels
 
 - Commit `0c3cbbf3`; front-end cache `flashcards-v173` / `20260802d`; tracked by GitHub issue #54.

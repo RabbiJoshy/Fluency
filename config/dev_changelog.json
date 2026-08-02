@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "0cf5501e",
+      "summary": "Short italic submeanings now grow with their sense rows",
+      "details": [
+        "Italic context and submeaning text now uses the same content-aware size tiers as the main translation instead of staying uniformly small",
+        "The shortest rows can show italic supporting text at 17px, with progressively denser rows stepping through 15px, 13px and 11.5px",
+        "Long context remains compact enough to preserve wrapping and card layout; cache v173→v174, assets 20260802d→20260802e"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "0c3cbbf3",
       "summary": "The main menu now advances to the first genuinely unseen set",
       "details": [
