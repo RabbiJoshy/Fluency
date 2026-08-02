@@ -1,21 +1,29 @@
-import './state.js?v=20260801b';
-import './offline-db.js?v=20260801b';
-import './sync-queue.js?v=20260801b';
-import { initOfflineContent } from './offline-content.js?v=20260801b';
-import './speech.js?v=20260801b';
-import './artist-ui.js?v=20260801b';
-import './auth.js?v=20260801b';
-import './spotify.js?v=20260801b';
-import './estimation.js?v=20260801b';
-import './config.js?v=20260801b';
-import './progress.js?v=20260801b';
-import './knowledge.js?v=20260801b';
-import './ui.js?v=20260801b';
-import './vocab.js?v=20260801b';
-import './flashcards.js?v=20260801b';
-// Find word is a primary navigation route. Load its temporary-card owner with
-// the app so the first result click cannot depend on a delayed dynamic import.
-import './flashcards-modals.js?v=20260801b';
+import './state.js?v=20260802a';
+import './offline-db.js?v=20260802a';
+import './sync-queue.js?v=20260802a';
+import { initOfflineContent } from './offline-content.js?v=20260802a';
+import './speech.js?v=20260802a';
+import './artist-ui.js?v=20260802a';
+import './auth.js?v=20260802a';
+import './estimation.js?v=20260802a';
+import './config.js?v=20260802a';
+import './progress.js?v=20260802a';
+import './knowledge.js?v=20260802a';
+import './ui.js?v=20260802a';
+import './vocab.js?v=20260802a';
+import './flashcards.js?v=20260802a';
+
+// Spotify is lyrics-only and its module is sizeable. Start the dynamic import
+// immediately for an artist URL so it races setup/data loading, but keep it
+// entirely out of normal Speech startup. Card/modal code already has its own
+// lazy module stubs in flashcards.js.
+const _initialParams = new URLSearchParams(window.location.search);
+const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
+    ? import('./spotify.js?v=20260802a').catch(error => {
+        console.warn('Spotify controls deferred:', error);
+        return null;
+    })
+    : null;
 
 // Boot profiling — opt-in via ?perf=1 URL param so normal users don't see
 // console noise. After boot, call window.perfSummary() in DevTools (or it
@@ -209,13 +217,13 @@ loadConfig().then(async () => {
     // Set first language with data as default (but don't auto-select it)
     const firstLang = Object.keys(config.languages).find(lang => config.languages[lang].hasData !== false) || Object.keys(config.languages)[0];
     selectedLanguage = firstLang;
-    // Spanish-only boot fetches: rank lookup (personal easiness), conjugation
-    // tables, conjugated-English translations. Skip when the first language
+    // Spanish-only boot fetches: rank lookup (personal easiness) and
+    // conjugated-English translations. Full conjugation paradigms are loaded
+    // only when their already-lazy panel is opened. Skip when the first language
     // isn't Spanish — the ui.js language-tab handler refires them on
     // switch-to-Spanish, and the load helpers themselves are idempotent.
     if (selectedLanguage === 'spanish') {
         if (window.loadSpanishRanks) window.loadSpanishRanks();
-        if (window.loadConjugationData) window.loadConjugationData();
         if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
     }
     applyLanguageColorTheme();
@@ -271,7 +279,7 @@ loadConfig().then(async () => {
     await loadSecrets();
     perfMark('after loadSecrets');
     // Retry Spotify player init now that client ID is available (handles race with SDK load)
-    if (window._spotifyTryInit) window._spotifyTryInit();
+    _spotifyModulePromise?.then(() => window._spotifyTryInit?.());
     // Offline sync: wire connectivity listeners, render the status indicator,
     // and drain any writes queued while previously offline. Runs after
     // loadSecrets() so GOOGLE_SCRIPT_URL is populated for the initial flush.

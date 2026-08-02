@@ -93,6 +93,16 @@ examples and prune artist senses. Artist `loadPpmData()` must reuse
 `fetchActiveVocabularyData()`; fetching its index independently recreates the
 largest mode-switch delay.
 
+Joined artist sense trees are restored only after deck construction has marked
+their source array dirty. Do not return to unconditional `_base_meanings`
+cloning in every `buildFilteredVocab()` call: setup intentionally invokes the
+filter several times, and those full-corpus allocations cause mobile stalls.
+
+Whole progress snapshots are coalesced through `cacheProgressLocally()` during
+idle time and flushed on hide/page exit. Individual answers remain immediately
+durable through `sendOrQueue()`; do not put synchronous full-state
+`JSON.stringify()`/`localStorage.setItem()` calls back into the answer path.
+
 ## Progress and granular knowledge
 
 `progressData` stores the word/card history. `getProgressState()` is the canonical
@@ -313,6 +323,12 @@ other study-set words and keyword-matched English fragments.
 The ES module cache keys by resolved URL and survives page reloads, service-worker resets, and even hard refreshes — only a URL change forces a re-import. So every entry-point import in `main.js` carries a `?v=YYYYMMDDx` query string, and `index.html`'s `js/main.js?v=…` reference matches. **Bump every `?v=` tag in lockstep whenever any module changes substantively** — even modules that look "minor" like `state.js`, `auth.js`, or `speech.js`. Missing the bump on a module that gained a new export (or new `window.x = …` assignment) means consumers run against the stale version and the new symbol is silently undefined.
 
 Module-to-module imports inside `js/` (e.g. `flashcards.js` importing `./speech.js`) currently have no `?v=` tag. They share the same cache slot regardless of `main.js`'s version, so they only re-import when the browser's HTTP cache decides to. If you hit a "looks cached even after reload" bug, hard-refresh; if it persists, that import is the suspect — add a `?v=` tag matching `main.js`.
+
+The service worker resolves retained downloads through one manifest-derived
+pathname→cache index and serves shell/runtime hits cache-first for that cache
+version. Do not reintroduce per-request loops over every content cache or
+stale-while-revalidate for the multi-megabyte deck JSON files; either pattern
+causes repeated CacheStorage work and background downloads during study.
 
 ## Multi-Artist Merge
 

@@ -357,20 +357,7 @@ function buildFocusedReviewCard(card) {
 }
 
 function cacheItemProgress() {
-    if (!currentUser || currentUser.isGuest) return;
-    const cacheKey = `progress_cache_${currentUser.initials}`;
-    try {
-        const cached = JSON.parse(localStorage.getItem(cacheKey) || '{}');
-        localStorage.setItem(cacheKey, JSON.stringify({
-            ...cached,
-            progress: progressData,
-            itemProgress: itemProgressData,
-            estimates: levelEstimates,
-            doneLevels: markedDoneLevels
-        }));
-    } catch (_) {
-        // Cache is best-effort; the durable sync queue still owns the write.
-    }
+    window.cacheProgressLocally?.();
 }
 
 async function saveKnowledgeProgress(card, items, isCorrect) {

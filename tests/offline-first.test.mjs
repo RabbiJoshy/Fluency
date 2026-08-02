@@ -22,12 +22,20 @@ test('offline manifest files have exact sizes and checksums', async () => {
 });
 
 test('service worker separates shell, staging, and retained content policies', async () => {
-    const worker = await text('service-worker.js');
+    const [worker, content] = await Promise.all([
+        text('service-worker.js'), text('js/offline-content.js')
+    ]);
     assert.match(worker, /fluency-content-/);
-    assert.match(worker, /!name\.includes\('staging-'\)/);
+    assert.match(worker, /CONTENT_STAGING_PREFIX/);
     assert.match(worker, /cacheName\.startsWith\(SHELL_CACHE_PREFIX\)/);
     assert.doesNotMatch(worker, /cacheName !== CACHE_NAME\) return caches\.delete/);
     assert.match(worker, /SKIP_WAITING/);
+    assert.match(worker, /buildRetainedContentIndex/);
+    assert.match(worker, /index\.get\(new URL\(request\.url\)\.pathname\)/);
+    assert.doesNotMatch(worker, /for \(const name of contentNames\)/);
+    assert.match(worker, /if \(cached\) return cached/);
+    assert.doesNotMatch(worker, /const fetchPromise = fetch\(request\)/);
+    assert.match(content, /CONTENT_CACHES_CHANGED/);
 });
 
 test('queue records durable retry and idempotency metadata', async () => {
@@ -48,6 +56,19 @@ test('queue records durable retry and idempotency metadata', async () => {
     // malformed regex literals before they can abort the full import graph.
     assert.doesNotMatch(queue, /https\?:\\\\\/\\\\\//);
     assert.match(queue, /replace\(\/https\?:\\\/\\\/\\S\+\/g/);
+});
+
+test('whole progress snapshots are batched outside answer interactions', async () => {
+    const [auth, knowledge] = await Promise.all([
+        text('js/auth.js'), text('js/knowledge.js')
+    ]);
+    assert.match(auth, /PROGRESS_CACHE_DELAY_MS = 750/);
+    assert.match(auth, /requestIdleCallback/);
+    assert.match(auth, /window\.addEventListener\('pagehide', flushProgressCache\)/);
+    assert.match(auth, /progressCacheWrite = progressCacheWrite/);
+    assert.match(auth, /sendOrQueue\(\{/);
+    assert.doesNotMatch(knowledge, /localStorage\.setItem\(cacheKey/);
+    assert.match(knowledge, /window\.cacheProgressLocally\?\.\(\)/);
 });
 
 test('optional offline services cannot block authentication indefinitely', async () => {

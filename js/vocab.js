@@ -935,6 +935,7 @@ function assignExtraCategoryRanks(orderedVocab) {
 
 // Ordered group metadata from the most recent Extra-scope buildFilteredVocab().
 let _extraCategoryGroups = [];
+const vocabularySourcesNeedingRestore = new WeakSet();
 function getExtraCategoryGroups() {
     return _extraCategoryGroups.map(group => ({ ...group }));
 }
@@ -1038,24 +1039,28 @@ function getVocabularyExclusionReason(item) {
 
 function buildFilteredVocab(vocabData) {
     // Deck construction attaches examples and prunes senses in place. Restore
-    // the joined master template before every new filter pass so switching
-    // Main ↔ Extra cannot inherit the previous scope's reduced sense menu.
-    for (const item of vocabData) {
-        if (Array.isArray(item._base_meanings)) {
-            item.meanings = item._base_meanings.map(meaning => ({
-                ...meaning,
-                examples: (meaning.examples || []).map(example => ({ ...example })),
-            }));
-            if (Array.isArray(item._base_extra_raw_examples)) {
-                item.extra_raw_examples = item._base_extra_raw_examples.map(example => ({ ...example }));
-            } else {
-                delete item.extra_raw_examples;
+    // the joined master template only after a deck actually mutated it.
+    // Setup calls this function several times; cloning every sense tree on
+    // every pass was one of the largest avoidable mobile allocations.
+    if (vocabularySourcesNeedingRestore.has(vocabData)) {
+        for (const item of vocabData) {
+            if (Array.isArray(item._base_meanings)) {
+                item.meanings = item._base_meanings.map(meaning => ({
+                    ...meaning,
+                    examples: (meaning.examples || []).map(example => ({ ...example })),
+                }));
+                if (Array.isArray(item._base_extra_raw_examples)) {
+                    item.extra_raw_examples = item._base_extra_raw_examples.map(example => ({ ...example }));
+                } else {
+                    delete item.extra_raw_examples;
+                }
             }
         }
+        vocabularySourcesNeedingRestore.delete(vocabData);
     }
     const spuriousSelfInfinitives = findSpuriousSelfInfinitives(vocabData);
     // Assign stable rank from array position (pipeline sort order)
-    assignStableVocabularyRanks(vocabData, spuriousSelfInfinitives);
+    const stableBaseline = assignStableVocabularyRanks(vocabData, spuriousSelfInfinitives);
 
     // Single-pass filter combining: basic validity → POS=X placeholder
     // strip → artist scope → artist-mode flags → cognates → lemma mode.
@@ -1209,7 +1214,7 @@ function buildFilteredVocab(vocabData) {
         _extraCategoryGroups = [];
     }
 
-    return { vocab: result, counts };
+    return { vocab: result, counts, stableBaseline };
 }
 
 async function loadVocabularyData(rangeString, opts = {}) {
@@ -1389,6 +1394,14 @@ async function loadVocabularyData(rangeString, opts = {}) {
             alert(emptyMessage);
             document.getElementById('loadingMessage').style.display = 'none';
             return;
+        }
+
+        // Everything below may attach examples, pool lemma siblings, or prune
+        // the artist sense menu. The next setup/filter pass will restore the
+        // canonical joined template once; repeated setup passes before then
+        // remain allocation-free.
+        if (vocabularyData.some(item => Array.isArray(item._base_meanings))) {
+            vocabularySourcesNeedingRestore.add(vocabularyData);
         }
 
         // Convert to flashcards format

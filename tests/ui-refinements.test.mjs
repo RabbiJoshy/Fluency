@@ -78,3 +78,32 @@ test('morphology defaults to a preferred row and expands coupled alternatives', 
     assert.equal(context.result.lonePresent, '');
     assert.equal(context.result.contrastedPresent, 'present');
 });
+
+test('setup reuses filtering work and restores joined senses only after deck mutation', async () => {
+    const [vocab, ui] = await Promise.all([
+        text('js/vocab.js'), text('js/ui.js')
+    ]);
+    assert.match(vocab, /const vocabularySourcesNeedingRestore = new WeakSet\(\)/);
+    assert.match(vocab, /if \(vocabularySourcesNeedingRestore\.has\(vocabData\)\)/);
+    assert.match(vocab, /vocabularySourcesNeedingRestore\.add\(vocabularyData\)/);
+    assert.match(vocab, /return \{ vocab: result, counts, stableBaseline \}/);
+    assert.match(ui, /computeSmartLevelRanges\(prepared\?\.stableBaseline \|\| \[\]\)/);
+    assert.doesNotMatch(ui, /const stableBaseline = assignStableVocabularyRanks\(_raw\)/);
+});
+
+test('nonessential study modules and unchanged card chrome avoid repeated startup/render work', async () => {
+    const [main, html, cards, artistUi, conj] = await Promise.all([
+        text('js/main.js'), text('index.html'), text('js/flashcards.js'),
+        text('js/artist-ui.js'), text('js/flashcards-conj.js')
+    ]);
+    assert.doesNotMatch(main, /^import '\.\/spotify\.js/m);
+    assert.doesNotMatch(main, /^import '\.\/flashcards-modals\.js/m);
+    assert.match(main, /import\('\.\/spotify\.js\?v=/);
+    assert.doesNotMatch(html, /modulepreload" href="js\/(?:spotify|flashcards-modals)\.js/);
+    assert.doesNotMatch(main, /window\.loadConjugationData\) window\.loadConjugationData\(\)/);
+    assert.match(conj, /await window\.loadConjugationData\(\)/);
+    assert.match(cards, /const backDomChanged = renderedBack\?\._fluencyRenderedHTML !== backHTML/);
+    assert.match(cards, /if \(backDomChanged\) \{/);
+    assert.match(cards, /reverseBtn\.dataset\.renderKey === renderKey/);
+    assert.match(artistUi, /face\.dataset\.albumImage === imageUrl/);
+});

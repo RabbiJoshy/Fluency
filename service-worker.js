@@ -1,17 +1,19 @@
 // Navigations use network-first so the HTML shell immediately receives new
 // module version tags after a deploy. Versioned assets and large data files
-// remain stale-while-revalidate for instant repeat loads and offline study.
+// are cache-first until the next cache/content version, avoiding repeated
+// multi-megabyte background transfers during ordinary study.
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v169';
+const CACHE_NAME = 'flashcards-v170';
 const SHELL_CACHE_PREFIX = 'flashcards-v';
 const CONTENT_CACHE_PREFIX = 'fluency-content-';
+const CONTENT_STAGING_PREFIX = `${CONTENT_CACHE_PREFIX}staging-`;
 
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260801b';
+const ASSET_VERSION = '20260802a';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -54,6 +56,55 @@ self.addEventListener('install', event => {
   );
 });
 
+// Resolve retained downloads by their manifest ownership instead of opening
+// and probing every downloaded cache for every module, image, and data fetch.
+// The promise is process-local: it is rebuilt when the worker wakes, and the
+// page invalidates it after a download/remove changes CacheStorage.
+let retainedContentIndexPromise = null;
+
+async function buildRetainedContentIndex() {
+  const shell = await caches.open(CACHE_NAME);
+  const manifestResponse = await shell.match('/config/offline-content-manifest.json');
+  if (!manifestResponse) return new Map();
+
+  const manifest = await manifestResponse.json();
+  const cacheNames = (await caches.keys()).filter(name =>
+    name.startsWith(CONTENT_CACHE_PREFIX) && !name.startsWith(CONTENT_STAGING_PREFIX));
+  const index = new Map();
+
+  for (const source of manifest.sources || []) {
+    const prefix = `${CONTENT_CACHE_PREFIX}${source.id}-`;
+    const expectedName = `${prefix}${source.contentVersion}`;
+    const candidates = cacheNames.filter(name => name.startsWith(prefix));
+    candidates.sort((a, b) => Number(b === expectedName) - Number(a === expectedName));
+    let cacheName = null;
+    for (const candidate of candidates) {
+      const cache = await caches.open(candidate);
+      if (await cache.match('/__fluency_content_complete__')) {
+        cacheName = candidate;
+        break;
+      }
+    }
+    if (!cacheName) continue;
+    for (const file of source.files || []) {
+      const pathname = new URL(file.path, self.location.origin).pathname;
+      if (!index.has(pathname)) index.set(pathname, cacheName);
+    }
+  }
+  return index;
+}
+
+async function matchRetainedContent(request) {
+  retainedContentIndexPromise ||= buildRetainedContentIndex().catch(error => {
+    console.warn('Retained content index unavailable:', error);
+    return new Map();
+  });
+  const index = await retainedContentIndexPromise;
+  const cacheName = index.get(new URL(request.url).pathname);
+  if (!cacheName) return null;
+  return (await caches.open(cacheName)).match(request);
+}
+
 self.addEventListener('fetch', event => {
   const request = event.request;
 
@@ -90,48 +141,27 @@ self.addEventListener('fetch', event => {
   // caches. Prefer those before ordinary runtime cache entries.
   // includes the deck DATA the app fetches to render a deck: the per-artist
   // *.index.json / *.examples.json, shared vocabulary_master.json, config/*.json,
-  // and the Data/Spanish/* rank & conjugation files. Any of these fetched once
-  // while online is cached here and served from cache on later offline visits.
+  // and the Data/Spanish/* rank & conjugation files. Runtime misses are cached
+  // once for the lifetime of this version; retained downloads stay separately
+  // versioned and survive shell upgrades.
   // They're intentionally NOT in the install-time pre-cache list: they're large,
   // per-artist, and use accented/space-containing paths — caching them lazily on
   // first real fetch keeps the pre-cache lean while still giving full offline
   // study to a returning user.
   event.respondWith(
-    caches.keys().then(async names => {
-      const contentNames = names.filter(name => name.startsWith(CONTENT_CACHE_PREFIX) && !name.includes('staging-'));
-      for (const name of contentNames) {
-        const contentCache = await caches.open(name);
-        const complete = await contentCache.match('/__fluency_content_complete__');
-        if (!complete) continue;
-        const retained = await contentCache.match(request);
-        if (retained) return retained;
-      }
+    matchRetainedContent(request).then(async retained => {
+      if (retained) return retained;
       const cache = await caches.open(CACHE_NAME);
       return cache.match(request).then(cached => {
-        const fetchPromise = fetch(request).then(response => {
+        if (cached) return cached;
+        return fetch(request).then(response => {
           // Only cache valid 200 responses. Don't poison the cache with
           // 404s, opaque cross-origin responses, or partial content.
           if (response && response.status === 200 && response.type === 'basic') {
             cache.put(request, response.clone());
           }
           return response;
-        }).catch(() => {
-          // Network failed. For a navigation (e.g. an offline deep-link to
-          // /?artist=bad-bunny, whose exact URL won't be in the cache), fall
-          // back to the cached app shell so the PWA still boots and can hydrate
-          // from cached deck JSON. Non-navigation misses just surface the error.
-          if (request.mode === 'navigate') {
-            return cache.match('/index.html').then(shell => shell || cache.match('/'));
-          }
-          return cached;
         });
-
-        // Cached hit: return immediately, refresh in background. Cache
-        // miss: wait for the network. The fetchPromise's .catch above
-        // means a network failure on a cache miss propagates as a
-        // rejected promise, which the browser surfaces as a normal
-        // network error — same UX as having no service worker at all.
-        return cached || fetchPromise;
       });
     })
   );
@@ -153,4 +183,5 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('message', event => {
   if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
+  if (event.data?.type === 'CONTENT_CACHES_CHANGED') retainedContentIndexPromise = null;
 });

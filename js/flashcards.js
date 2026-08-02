@@ -3800,7 +3800,12 @@ function updateCard({ announceHeadword = false } = {}) {
         backHTML += buildProvenancePanelHTML(card);
     }
 
-    document.getElementById('backContent').innerHTML = backHTML;
+    const renderedBack = document.getElementById('backContent');
+    const backDomChanged = renderedBack?._fluencyRenderedHTML !== backHTML;
+    if (renderedBack && backDomChanged) {
+        renderedBack.innerHTML = backHTML;
+        renderedBack._fluencyRenderedHTML = backHTML;
+    }
 
     // Post-render layout pass:
     //   1. Flag meaning rows whose translation+context actually overflows the
@@ -3822,7 +3827,7 @@ function updateCard({ announceHeadword = false } = {}) {
     // Previously there was a hardcoded "> 3 rows → cap at 3 rows" rule that
     // forced scrolling even when the card had plenty of room; this replaces
     // it with a genuine content-vs-space check.
-    {
+    if (backDomChanged) {
         const backEl = document.getElementById('backContent');
         if (backEl) {
             // Two-phase: collect overflowing rows in a read-only pass, then
@@ -4373,12 +4378,14 @@ function updateReverseButton() {
 
     const fromFlag = isFlipped ? englishFlag : targetFlag;
     const toFlag = isFlipped ? targetFlag : englishFlag;
+    const title = isFlipped
+        ? `Reverse to ${config.languages[selectedLanguage]?.name || selectedLanguage} → English`
+        : `Reverse to English → ${config.languages[selectedLanguage]?.name || selectedLanguage}`;
+    const renderKey = `${fromFlag}|${toFlag}|${title}`;
+    if (reverseBtn.dataset.renderKey === renderKey) return;
+    reverseBtn.dataset.renderKey = renderKey;
     reverseBtn.innerHTML = `<span class="reverse-flag-from">${fromFlag}</span><span class="reverse-swap-glyph" aria-hidden="true">⇄</span><span class="reverse-flag-to" aria-hidden="true">${toFlag}</span>`;
-    if (isFlipped) {
-        reverseBtn.title = `Reverse to ${config.languages[selectedLanguage]?.name || selectedLanguage} → English`;
-    } else {
-        reverseBtn.title = `Reverse to English → ${config.languages[selectedLanguage]?.name || selectedLanguage}`;
-    }
+    reverseBtn.title = title;
 }
 
 function updateStats() {
@@ -4677,7 +4684,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260801b';
+const ASSET_VERSION = '20260802a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

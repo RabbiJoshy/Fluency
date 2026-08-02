@@ -354,11 +354,11 @@ function setupLanguageTabs() {
 
             // Mirror the boot-time Spanish-only fetches in main.js so users
             // who land on a non-Spanish first language and switch to Spanish
-            // still get rank + conjugation data. Idempotent — no-ops if
+            // still get rank + conjugated-English data. Full paradigms remain
+            // lazy until the conjugation panel opens. Idempotent — no-ops if
             // already loaded.
             if (newLanguage === 'spanish') {
                 if (window.loadSpanishRanks) window.loadSpanishRanks();
-                if (window.loadConjugationData) window.loadConjugationData();
                 if (window.loadConjugatedEnglishData) window.loadConjugatedEnglishData();
             }
 
@@ -610,9 +610,9 @@ async function renderLevelSelector(language) {
             // Level boundaries are built from the stable baseline before any
             // optional filters. Filters change the eligible card count inside
             // a level, never the level's identity or rank span.
-            const stableBaseline = assignStableVocabularyRanks(_raw);
-            _smartLevelRangesCache = computeSmartLevelRanges(stableBaseline);
-            const eligible = getPreparedSetupVocabulary(selectedLanguage, _raw)?.vocab || [];
+            const prepared = getPreparedSetupVocabulary(selectedLanguage, _raw);
+            _smartLevelRangesCache = computeSmartLevelRanges(prepared?.stableBaseline || []);
+            const eligible = prepared?.vocab || [];
             const lastEligibleRank = eligible.reduce((maxRank, item) =>
                 Math.max(maxRank, Number(item.stableRank) || 0), 0);
             // Hide only empty trailing levels (most notably the reserved 1×

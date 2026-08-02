@@ -5,6 +5,10 @@ const CONTENT_CACHE_PREFIX = 'fluency-content-';
 let manifest = null;
 let activeDownload = null;
 
+function notifyContentCachesChanged() {
+    navigator.serviceWorker?.controller?.postMessage({ type: 'CONTENT_CACHES_CHANGED' });
+}
+
 const fmt = bytes => {
     if (!Number.isFinite(bytes)) return 'Unknown';
     const units = ['B', 'KB', 'MB', 'GB'];
@@ -90,6 +94,7 @@ export async function downloadSource(sourceId, onProgress = () => {}) {
                 await caches.delete(name);
             }
         }
+        notifyContentCachesChanged();
     } catch (error) {
         await dbPut('downloads', {
             sourceId, contentVersion: source.contentVersion,
@@ -113,6 +118,7 @@ export async function removeOfflineSource(sourceId) {
         if (name.startsWith(`${CONTENT_CACHE_PREFIX}${sourceId}-`)) await caches.delete(name);
     }
     await dbDelete('downloads', sourceId);
+    notifyContentCachesChanged();
     await renderOfflineContent();
 }
 

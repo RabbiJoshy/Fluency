@@ -53,6 +53,8 @@ function updateArtistBackground() {
     const imageUrl = getAlbumImageForSong(songName, artistSlug);
 
     cardFaces.forEach(face => {
+        if (face.dataset.albumImage === imageUrl) return;
+        face.dataset.albumImage = imageUrl;
         face.style.backgroundImage = imageUrl ? `url('${imageUrl}')` : '';
     });
 }

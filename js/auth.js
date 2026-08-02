@@ -368,7 +368,18 @@ function isLevelMarkedDone(levelId, scopeKey = getProgressScopeKey()) {
     return !!(levelId && markedDoneLevels?.[scopeKey]?.[levelId]);
 }
 
-function cacheProgressLocally() {
+const PROGRESS_CACHE_DELAY_MS = 750;
+let progressCacheTimer = null;
+let progressCacheIdleHandle = null;
+let progressCacheWrite = Promise.resolve();
+
+function flushProgressCache() {
+    if (progressCacheTimer !== null) clearTimeout(progressCacheTimer);
+    if (progressCacheIdleHandle !== null && window.cancelIdleCallback) {
+        window.cancelIdleCallback(progressCacheIdleHandle);
+    }
+    progressCacheTimer = null;
+    progressCacheIdleHandle = null;
     if (!currentUser || currentUser.isGuest) return;
     const record = {
         key: `progress|${currentUser.initials}`,
@@ -379,8 +390,12 @@ function cacheProgressLocally() {
         backendSchema: progressBackendSchemaVersion >= 4 ? progressBackendSchemaVersion : 0,
         updatedAt: Date.now()
     };
-    dbPut('localState', record).catch(error =>
-        console.warn('Could not persist local progress to IndexedDB', error));
+    // Serialize once per answer burst, outside the tap/swipe handler. IndexedDB
+    // writes are kept in order so an earlier slow transaction cannot overwrite
+    // a newer snapshot.
+    progressCacheWrite = progressCacheWrite
+        .then(() => dbPut('localState', record))
+        .catch(error => console.warn('Could not persist local progress to IndexedDB', error));
     try {
         localStorage.setItem(`progress_cache_${currentUser.initials}`, JSON.stringify({
             progress: record.progress, itemProgress: record.itemProgress,
@@ -391,6 +406,28 @@ function cacheProgressLocally() {
         // Cache is best-effort; the durable queue still owns remote writes.
     }
 }
+
+function cacheProgressLocally({ immediate = false } = {}) {
+    if (!currentUser || currentUser.isGuest) return;
+    if (immediate) {
+        flushProgressCache();
+        return;
+    }
+    if (progressCacheTimer !== null || progressCacheIdleHandle !== null) return;
+    if (window.requestIdleCallback) {
+        progressCacheIdleHandle = window.requestIdleCallback(
+            () => flushProgressCache(),
+            { timeout: PROGRESS_CACHE_DELAY_MS }
+        );
+    } else {
+        progressCacheTimer = setTimeout(flushProgressCache, PROGRESS_CACHE_DELAY_MS);
+    }
+}
+
+window.addEventListener('pagehide', flushProgressCache);
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flushProgressCache();
+});
 
 // Setup renders immediately from the local cache while Sheets refreshes in
 // the background. Compare the actual UI-driving state after that refresh — a
@@ -733,9 +770,8 @@ async function saveWordProgress(card, isCorrect) {
     progressData[wordId].word = word;
     progressData[wordId].language = language;
 
-    // Persist to the localStorage progress cache immediately so an offline
-    // reload (which reads this cache in loadUserProgressFromSheet) shows the
-    // just-answered counts even before the write reaches Sheets.
+    // Coalesce whole-state cache snapshots outside the answer interaction.
+    // The per-answer sync operation below is still durably queued immediately.
     cacheProgressLocally();
 
     // Save to Google Sheets via the offline-durable queue. Write-through when
@@ -1520,6 +1556,7 @@ window.getProgressScopeKey = getProgressScopeKey;
 window.isLevelMarkedDone = isLevelMarkedDone;
 window.saveMarkedLevelDone = saveMarkedLevelDone;
 window.cacheProgressLocally = cacheProgressLocally;
+window.flushProgressCache = flushProgressCache;
 window.saveLevelEstimateToSheet = saveLevelEstimateToSheet;
 window.saveWordProgress = saveWordProgress;
 window.flagWord = flagWord;
