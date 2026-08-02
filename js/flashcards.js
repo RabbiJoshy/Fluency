@@ -2117,6 +2117,31 @@ function escapeCardText(value) {
     })[character]);
 }
 
+// Choose a type scale from the amount of visible copy in a sense row. Short
+// glosses should use the room the card gives them; long glosses step down
+// before the existing wrap/clamp rules take over. Considering both the
+// longest individual fragment and the combined copy keeps bilingual MWE rows
+// large when both halves are compact without letting a single long fragment
+// dominate the row.
+function adaptiveRowTextClass(...parts) {
+    const fragments = parts
+        .flat(Infinity)
+        .filter(value => value !== null && value !== undefined)
+        .map(value => String(value)
+            .replace(/<[^>]*>/g, ' ')
+            .replace(/&[a-z0-9#]+;/gi, ' ')
+            .replace(/\s+/g, ' ')
+            .trim())
+        .filter(Boolean);
+    const longest = fragments.reduce((max, value) => Math.max(max, value.length), 0);
+    const combined = fragments.join(' ').length;
+    const density = Math.max(longest, combined * 0.65);
+    if (density <= 24) return 'row-text-xl';
+    if (density <= 44) return 'row-text-lg';
+    if (density <= 72) return 'row-text-md';
+    return 'row-text-sm';
+}
+
 function toggleMorphAlternatives(event) {
     event?.preventDefault?.();
     event?.stopPropagation?.();
@@ -3059,10 +3084,11 @@ function updateCard({ announceHeadword = false } = {}) {
                 // context — the text is legitimate, only its structural
                 // guarantee differs. No visual distinction is exposed to the
                 // reader (a subtle one could be added later if needed).
-                const contextHTML = mweContext ? `<small>${mweContext}</small>` : '';
+                const contextHTML = mweContext ? `<small class="special-meaning-context">· ${mweContext}</small>` : '';
+                const mweTextClass = adaptiveRowTextClass(mweExpr, mwePrimary, mweContext);
                 target.push(`
-                <div class="meaning-row meaning-row-mwe${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span class="special-meaning-copy">
+                <div class="meaning-row meaning-row-mwe ${mweTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                    <span class="special-meaning-copy${mweCount > 1 ? ' has-counter' : ''}">
                         <span class="mwe-expression">${mweExpr}</span>
                         <strong>${primaryDisplay}</strong>
                         ${contextHTML}
@@ -3077,12 +3103,13 @@ function updateCard({ announceHeadword = false } = {}) {
                 const activeClitic = m.allClitics ? m.allClitics[cliticIdx] : null;
                 const cliticTrRaw = activeClitic?.translation || '';
                 const cliticDetail = describeCliticForm(activeClitic, card);
+                const cliticTextClass = adaptiveRowTextClass(cliticForm, cliticDetail.displayTranslation || cliticTrRaw, cliticDetail.visualDetail);
                 target.push(`
-                <div class="meaning-row meaning-row-clitic${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span class="special-meaning-copy clitic-meaning">
+                <div class="meaning-row meaning-row-clitic ${cliticTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                    <span class="special-meaning-copy clitic-meaning${cliticCount > 1 ? ' has-counter' : ''}">
                         <span class="mwe-expression clitic-form">${cliticForm}</span>
                         <strong>${escapeCardText(cliticDetail.displayTranslation || cliticTrRaw || 'Translation unavailable')}</strong>
-                        <small>${escapeCardText(cliticDetail.visualDetail)}</small>
+                        ${cliticDetail.visualDetail ? `<small class="special-meaning-context">· ${escapeCardText(cliticDetail.visualDetail)}</small>` : ''}
                     </span>
                     ${cliticCounter}
                 </div>
@@ -3147,9 +3174,10 @@ function updateCard({ announceHeadword = false } = {}) {
                 const ellipsisBtn = isTruncated
                     ? ` <span class="sense-cycle-expand" style="cursor: pointer; opacity: 0.7; font-size: 12px;" onclick="event.stopPropagation(); this.parentElement.querySelector('.sense-cycle-short').style.display='none'; this.parentElement.querySelector('.sense-cycle-full').style.display='inline'; this.style.display='none';" title="Show all senses">…</span>`
                     : '';
+                const cycleTextClass = adaptiveRowTextClass(joinedFull);
                 target.push(`
-                <div class="meaning-row meaning-row-cycle${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
-                    <span style="flex: 1; font-size: 13px; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
+                <div class="meaning-row meaning-row-cycle ${cycleTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                    <span class="row-adaptive-text" style="flex: 1; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
                 `);
             } else {
@@ -3179,6 +3207,15 @@ function updateCard({ announceHeadword = false } = {}) {
                     const sharedText = isTransAxis
                         ? displayMeaning
                         : String(m.context || '').replace(/"/g, '&quot;');
+                    const groupedTextClass = adaptiveRowTextClass(
+                        sharedText,
+                        members.map(memberIdx => {
+                            const member = card.meanings[memberIdx];
+                            return isTransAxis
+                                ? (member.context || '')
+                                : (getConjugatedEnglish(card, member.meaning) || member.meaning || '');
+                        })
+                    );
                     // Group-level selection: clicking the shared field selects
                     // the whole group (examples become union of members);
                     // clicking any sub-item reverts to per-meaning selection.
@@ -3222,7 +3259,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         } else {
                             const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
                             const transSafe = String(transRaw).replace(/"/g, '&quot;');
-                            varyingHtml = `<span style="font-size: 16px; font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
+                            varyingHtml = `<span class="row-adaptive-text" style="font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
                         }
                         const varyingCol = isTransAxis ? 2 : 1;
                         const varyingCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${varyingCol}; min-width: 0; overflow: hidden;">${varyingHtml}</div>`;
@@ -3246,7 +3283,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     const sharedCol = isTransAxis ? 1 : 2;
                     const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
-                        ? `<div class="group-card-shared" style="${sharedSpan} font-size: 16px; font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}</div>`
+                        ? `<div class="group-card-shared row-adaptive-text" style="${sharedSpan} font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}</div>`
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;"><span class="meaning-context">${sharedText}</span></div>`;
 
                     // Body grid: shared + varying. The pct column lives in the
@@ -3258,7 +3295,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     const outerGridCols = '1fr auto';
 
                     target.push(`
-                    <div class="meaning-row meaning-row-group${groupIsCurrent ? ' selected' : ''}${groupStateClasses}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="position: relative; display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                    <div class="meaning-row meaning-row-group ${groupedTextClass}${groupIsCurrent ? ' selected' : ''}${groupStateClasses}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="position: relative; display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
@@ -3276,6 +3313,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                     }
                     contextInline += registerTagHTML(m);
+                    const singletonTextClass = adaptiveRowTextClass(displayMeaning, m.context || '');
                     // Pct pinned to the row's right edge (not body's), so it
                     // hugs the row outline rather than sitting inside body
                     // padding. pointer-events:none lets the row's selectMeaning
@@ -3285,9 +3323,9 @@ function updateCard({ announceHeadword = false } = {}) {
                         ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                         : '';
                     target.push(`
-                    <div class="meaning-row meaning-row-regular${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
+                    <div class="meaning-row meaning-row-regular ${singletonTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
                         <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${pctVal < 100 ? '42px' : '8px'} 0 8px;">
-                            <span class="meaning-row-translation" style="font-size: 16px; font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
+                            <span class="meaning-row-translation row-adaptive-text" style="font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
                         ${pctTail}
                     </div>
@@ -4323,37 +4361,54 @@ function flipDirection() {
 }
 
 function getPosColorClass(pos) {
-    if (!pos) return '';
-    const posLower = pos.toLowerCase();
-    if (posLower.includes('noun') || posLower === 'n' || posLower === 'nn' || posLower === 'propn') return 'pos-noun';
+    if (!pos) return 'pos-other';
+    const posLower = String(pos).trim().toLowerCase().replace(/[\s-]+/g, '_');
+    if (posLower === 'propn' || posLower === 'proper_noun' || posLower === 'propernoun') return 'pos-propn';
+    if (posLower.includes('noun') || posLower === 'n' || posLower === 'nn') return 'pos-noun';
+    if (posLower === 'aux' || posLower === 'auxiliary') return 'pos-aux';
     if (posLower.includes('verb') || posLower === 'v' || posLower === 'vb') return 'pos-verb';
     if (posLower.includes('adj') || posLower === 'a' || posLower === 'jj') return 'pos-adj';
     if (posLower.includes('adv') || posLower === 'rb') return 'pos-adv';
     if (posLower.includes('prep') || posLower === 'in' || posLower === 'adp') return 'pos-prep';
-    if (posLower.includes('conj') || posLower === 'cc') return 'pos-conj';
+    if (posLower === 'cconj' || posLower === 'coordinating_conjunction' || posLower === 'cc') return 'pos-cconj';
+    if (posLower === 'sconj' || posLower === 'subordinating_conjunction') return 'pos-sconj';
+    if (posLower.includes('conj')) return 'pos-conj';
     if (posLower.includes('pron') || posLower === 'prp') return 'pos-pron';
     if (posLower.includes('det') || posLower === 'dt') return 'pos-det';
     if (posLower.includes('int') || posLower === 'uh') return 'pos-int';
     if (posLower.includes('num') || posLower === 'cd') return 'pos-num';
     if (posLower === 'mwe' || posLower === 'phrase') return 'pos-mwe';
-    if (posLower === 'clitic' || posLower === 'part' || posLower === 'contraction') return 'pos-clitic';
-    return '';
+    if (posLower === 'clitic') return 'pos-clitic';
+    if (posLower === 'part' || posLower === 'particle') return 'pos-part';
+    if (posLower === 'prefix') return 'pos-prefix';
+    if (posLower === 'suffix') return 'pos-suffix';
+    if (posLower === 'contraction') return 'pos-contraction';
+    return 'pos-other';
 }
 
 function getPosAccentRgb(pos) {
     const accents = {
         'pos-noun': '74, 158, 255',
+        'pos-propn': '14, 165, 233',
         'pos-verb': '0, 212, 170',
+        'pos-aux': '45, 212, 191',
         'pos-adj': '245, 166, 35',
         'pos-adv': '168, 85, 247',
         'pos-prep': '236, 72, 153',
         'pos-conj': '20, 184, 166',
+        'pos-cconj': '34, 197, 94',
+        'pos-sconj': '132, 204, 22',
         'pos-pron': '99, 102, 241',
         'pos-det': '244, 63, 94',
         'pos-int': '234, 179, 8',
         'pos-num': '6, 182, 212',
         'pos-mwe': '251, 191, 36',
-        'pos-clitic': '249, 115, 22'
+        'pos-clitic': '249, 115, 22',
+        'pos-part': '192, 132, 252',
+        'pos-prefix': '163, 230, 53',
+        'pos-suffix': '74, 222, 128',
+        'pos-contraction': '248, 113, 113',
+        'pos-other': '148, 163, 184'
     };
     return accents[getPosColorClass(pos)] || 'var(--accent-primary-rgb)';
 }
@@ -4684,7 +4739,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260802a';
+const ASSET_VERSION = '20260802b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

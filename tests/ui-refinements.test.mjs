@@ -107,3 +107,42 @@ test('nonessential study modules and unchanged card chrome avoid repeated startu
     assert.match(cards, /reverseBtn\.dataset\.renderKey === renderKey/);
     assert.match(artistUi, /face\.dataset\.albumImage === imageUrl/);
 });
+
+test('card rows use distinct POS themes and content-aware bilingual typography', async () => {
+    const [cards, css] = await Promise.all([
+        text('js/flashcards.js'), text('css/style.css')
+    ]);
+    const posHelper = cards.slice(
+        cards.indexOf('function getPosColorClass'),
+        cards.indexOf('function getPosAccentRgb')
+    );
+    const typeHelper = cards.slice(
+        cards.indexOf('function adaptiveRowTextClass'),
+        cards.indexOf('function toggleMorphAlternatives')
+    );
+    const context = {};
+    runInNewContext(`${posHelper}; result = [
+        getPosColorClass('NOUN'), getPosColorClass('PROPN'),
+        getPosColorClass('CCONJ'), getPosColorClass('SCONJ'),
+        getPosColorClass('PART'), getPosColorClass('CONTRACTION'),
+        getPosColorClass('PHRASE'), getPosColorClass('CLITIC'),
+        getPosColorClass('X')
+    ];`, context);
+    assert.deepEqual([...context.result], [
+        'pos-noun', 'pos-propn', 'pos-cconj', 'pos-sconj', 'pos-part',
+        'pos-contraction', 'pos-mwe', 'pos-clitic', 'pos-other'
+    ]);
+
+    runInNewContext(`${typeHelper}; result = [
+        adaptiveRowTextClass('tiny'),
+        adaptiveRowTextClass('a moderate translation that fits'),
+        adaptiveRowTextClass('a very long translation '.repeat(8))
+    ];`, context);
+    assert.deepEqual([...context.result], ['row-text-xl', 'row-text-lg', 'row-text-sm']);
+    assert.match(cards, /class="special-meaning-context">· /);
+    assert.match(cards, /meaning-row-translation row-adaptive-text/);
+    assert.match(css, /\.special-meaning-copy\s*\{[^}]*flex-direction: row;[^}]*flex-wrap: wrap;/s);
+    assert.match(css, /\.special-meaning-copy strong\s*\{[^}]*font-style: italic;/s);
+    assert.match(css, /\.mwe-expression\s*\{[^}]*font-style: normal;/s);
+    assert.match(css, /\.row-text-xl\s*\{[^}]*--row-primary-size: 21px;/s);
+});
