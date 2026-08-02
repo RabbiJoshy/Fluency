@@ -2029,32 +2029,10 @@ async function goBackToSetup() {
         await loadPpmData(selectedLanguage);
     }
 
-    // Re-render level selector to show updated progress
-    await renderLevelSelector(selectedLanguage);
-
-    // If a level was selected, re-select the level button with full text
-    // But only if the level still exists in the current mode (CEFR vs percentage)
-    if (selectedLevel) {
-        const levelBtn = document.querySelector(`.level-btn[data-level="${selectedLevel}"]`);
-        if (levelBtn) {
-            levelBtn.classList.add('selected');
-            levelBtn.textContent = levelBtn.dataset.full;
-            // Also show lemma, cognate, and cards steps
-            document.getElementById('lemmaToggleContainer').style.display = 'block';
-            if (cognateFieldAvailable) {
-                document.getElementById('cognateToggleContainer').style.display = 'block';
-            }
-            // Re-render the automatic stable-set panel
-            await renderRangeSelector();
-        } else {
-            // Level no longer exists (e.g., switched from CEFR to percentage mode)
-            // Reset selectedLevel and hide subsequent steps
-            selectedLevel = null;
-            document.getElementById('lemmaToggleContainer').style.display = 'none';
-            document.getElementById('cognateToggleContainer').style.display = 'none';
-    
-        }
-    }
+    // Main-menu return is a fresh suggestion decision, not restoration of the
+    // level that owned the set we just left. Route past levels whose available
+    // cards are all seen or which the learner explicitly skipped.
+    await renderLevelSelector(selectedLanguage, { preferActionable: true });
 
     updateLemmaToggleVisibility();
     updateCognateToggleVisibility();
@@ -4739,7 +4717,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260802c';
+const ASSET_VERSION = '20260802d';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

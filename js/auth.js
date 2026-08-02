@@ -563,16 +563,11 @@ async function saveMarkedLevelDone(levelId, done) {
 async function loadUserProgressFromSheet() {
     if (!currentUser || currentUser.isGuest) return false;
 
-    // 1. Load from localStorage cache immediately
-    const cacheKey = `progress_cache_${currentUser.initials}`;
-    let cached = localStorage.getItem(cacheKey);
-    try {
-        const durable = await dbGet('localState', `progress|${currentUser.initials}`);
-        if (durable) cached = JSON.stringify(durable);
-    } catch (_) {}
-    if (cached) {
+    const applyCachedProgress = raw => {
+        if (!raw) return false;
         try {
-            const { progress, itemProgress, estimates, doneLevels, backendSchema } = JSON.parse(cached);
+            const { progress, itemProgress, estimates, doneLevels, backendSchema } =
+                typeof raw === 'string' ? JSON.parse(raw) : raw;
             progressData = progress || {};
             itemProgressData = itemProgress || {};
             levelEstimates = estimates || {};
@@ -580,11 +575,28 @@ async function loadUserProgressFromSheet() {
             progressBackendSchemaVersion = Number(backendSchema) >= 4 ? Number(backendSchema) : 0;
             updateIncorrectButtonVisibility();
             updateTotalStatsButtonVisibility();
-            console.log(`Loaded ${Object.keys(progressData).length} cached card entries and ${Object.keys(itemProgressData).length} knowledge items`);
-        } catch (e) {
-            console.warn('Failed to parse progress cache:', e);
+            return true;
+        } catch (error) {
+            console.warn('Failed to parse progress cache:', error);
+            return false;
         }
+    };
+
+    // 1. Apply localStorage synchronously before the first await so initial
+    // setup routing cannot briefly choose Level 1 from empty progress. Then
+    // prefer the durable IndexedDB snapshot when it becomes available.
+    const cacheKey = `progress_cache_${currentUser.initials}`;
+    let cached = localStorage.getItem(cacheKey);
+    if (applyCachedProgress(cached)) {
+        console.log(`Loaded ${Object.keys(progressData).length} cached card entries and ${Object.keys(itemProgressData).length} knowledge items`);
     }
+    try {
+        const durable = await dbGet('localState', `progress|${currentUser.initials}`);
+        if (durable) {
+            cached = JSON.stringify(durable);
+            applyCachedProgress(durable);
+        }
+    } catch (_) {}
 
     // Authentication and local studying never wait for the optional remote
     // endpoint. loadSecrets() may still be resolving, or the app may have

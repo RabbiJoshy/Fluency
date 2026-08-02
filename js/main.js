@@ -1,17 +1,17 @@
-import './state.js?v=20260802c';
-import './offline-db.js?v=20260802c';
-import './sync-queue.js?v=20260802c';
-import { initOfflineContent } from './offline-content.js?v=20260802c';
-import './speech.js?v=20260802c';
-import './artist-ui.js?v=20260802c';
-import './auth.js?v=20260802c';
-import './estimation.js?v=20260802c';
-import './config.js?v=20260802c';
-import './progress.js?v=20260802c';
-import './knowledge.js?v=20260802c';
-import './ui.js?v=20260802c';
-import './vocab.js?v=20260802c';
-import './flashcards.js?v=20260802c';
+import './state.js?v=20260802d';
+import './offline-db.js?v=20260802d';
+import './sync-queue.js?v=20260802d';
+import { initOfflineContent } from './offline-content.js?v=20260802d';
+import './speech.js?v=20260802d';
+import './artist-ui.js?v=20260802d';
+import './auth.js?v=20260802d';
+import './estimation.js?v=20260802d';
+import './config.js?v=20260802d';
+import './progress.js?v=20260802d';
+import './knowledge.js?v=20260802d';
+import './ui.js?v=20260802d';
+import './vocab.js?v=20260802d';
+import './flashcards.js?v=20260802d';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -19,7 +19,7 @@ import './flashcards.js?v=20260802c';
 // lazy module stubs in flashcards.js.
 const _initialParams = new URLSearchParams(window.location.search);
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260802c').catch(error => {
+    ? import('./spotify.js?v=20260802d').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -357,8 +357,8 @@ loadConfig().then(async () => {
     // Reconcile the setup badges once the background Sheets refresh finishes.
     const dataChanged = await progressPromise;
     const setupIsVisible = !document.getElementById('setupPanel')?.classList.contains('hidden');
-    if (dataChanged && selectedLanguage && setupIsVisible) {
-        try { await renderRangeSelector(); } catch (e) { /* range selector may not be visible yet */ }
+    if (dataChanged && selectedLanguage && selectedLevel && setupIsVisible) {
+        try { await window.refreshSetupAfterProgress?.(); } catch (e) { /* setup may not be visible yet */ }
     }
     perfMark('boot complete');
     perfSummary();
@@ -471,16 +471,16 @@ async function setArtistVocabularyScope(scope, { autoStart = false } = {}) {
     const loading = document.getElementById('dataLoadingIndicator');
     loading?.classList.add('visible');
     try {
-        await renderLevelSelector(selectedLanguage);
+        await renderLevelSelector(selectedLanguage, { preferActionable: true });
         await updateExclusionBars();
         if (autoStart) {
-            const firstLevel = document.querySelector(
-                '.level-selector-buttons .level-btn, #levelSelector > .level-btn'
-            );
-            firstLevel?.click();
-            await renderRangeSelector();
+            const firstLevel = document.querySelector('.level-btn.selected')
+                || document.querySelector('.level-selector-buttons .level-btn, #levelSelector > .level-btn');
+            if (!firstLevel) return;
             const firstSet = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'))
-                .find(dot => !dot.disabled);
+                .find(dot => !dot.disabled && Number(dot.dataset.pct) < 100)
+                || Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'))
+                    .find(dot => !dot.disabled);
             if (firstSet) {
                 await loadVocabularyData(firstSet.dataset.range, {
                     rankBasis: firstSet.dataset.rankBasis || 'stable',

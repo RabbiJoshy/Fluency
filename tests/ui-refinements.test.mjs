@@ -147,3 +147,65 @@ test('card rows use distinct POS themes and content-aware bilingual typography',
     assert.match(css, /\.mwe-expression\s*\{[^}]*font-style: normal;/s);
     assert.match(css, /\.row-text-xl\s*\{[^}]*--row-primary-size: 21px;/s);
 });
+
+test('setup routing advances past fully seen and suggestion-skipped levels', async () => {
+    const [ui, auth, cards, main] = await Promise.all([
+        text('js/ui.js'), text('js/auth.js'), text('js/flashcards.js'), text('js/main.js')
+    ]);
+    const helper = ui.slice(
+        ui.indexOf('async function findFirstIncompleteLevelBtn'),
+        ui.indexOf('async function renderLevelSelector')
+    );
+    const context = {};
+    runInNewContext(`
+        const items = Array.from({ length: 60 }, (_, index) => ({
+            id: 'w' + (index + 1), rank: index + 1
+        }));
+        const seenIds = new Set(items.slice(0, 40).map(item => item.id));
+        const skipped = new Set();
+        const makeButton = (level, start, end) => ({
+            dataset: { level, startRank: String(start), endRank: String(end), rankBasis: 'source' },
+            classList: { toggle() {} },
+            style: { setProperty() {} },
+            setAttribute() {}
+        });
+        const buttons = [makeButton('L1', 1, 41), makeButton('L2', 41, 61)];
+        const config = { languages: { spanish: {} } };
+        const levelEstimates = { spanish: 0 };
+        const activeArtist = null;
+        const currentUser = { isGuest: false };
+        const progressData = {};
+        const percentageMode = true;
+        const ppmData = [{}];
+        const window = { isLevelMarkedDone: level => skipped.has(level) };
+        const document = { querySelector: () => null };
+        const fetchActiveVocabularyData = async () => items;
+        const getPreparedSetupVocabulary = (_language, vocab) => ({ vocab });
+        const _levelRankAccessor = () => item => item.rank;
+        const getWordId = item => item.id;
+        const getWordProgressState = id => ({ seen: seenIds.has(id), needsReview: id === 'w1' });
+        const wordHasKnowledgeProgress = () => false;
+        ${helper}
+        result = (async () => {
+            const afterSeen = await findFirstIncompleteLevelBtn('spanish', buttons);
+            seenIds.delete('w40');
+            skipped.add('L1');
+            const afterSkip = await findFirstIncompleteLevelBtn('spanish', buttons);
+            return {
+                afterSeen: afterSeen.dataset.level,
+                afterSkip: afterSkip.dataset.level,
+                firstCompletion: buttons[0].dataset.progressPct
+            };
+        })();
+    `, context);
+    assert.deepEqual({ ...(await context.result) }, {
+        afterSeen: 'L2',
+        afterSkip: 'L2',
+        firstCompletion: '98'
+    });
+    assert.match(cards, /renderLevelSelector\(selectedLanguage, \{ preferActionable: true \}\)/);
+    assert.match(main, /refreshSetupAfterProgress/);
+    assert.ok(
+        auth.indexOf('applyCachedProgress(cached)') < auth.indexOf("await dbGet('localState'")
+    );
+});

@@ -175,6 +175,11 @@ version whenever this persistence contract changes.
 `level-done` metadata. Setup auto-selection, estimated-level selection, resume
 suggestions, and end-of-set advancement skip marked levels, but explicitly opening
 one still works and all real correct/wrong history continues to record normally.
+New-set routing measures **Seen**, not **Known**: Review remains a separate level
+action and must not pin the automatic picker to a level whose available sets
+have all been encountered. Landing and Main menu return rerun the first-actionable
+level choice, skipping both fully seen and marked-done levels; a learner's manual
+level choice still wins while they remain on setup.
 
 ## buildFilteredVocab() — Central Filter
 

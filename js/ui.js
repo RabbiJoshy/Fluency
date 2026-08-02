@@ -3,6 +3,7 @@
 import './state.js';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
+let _setupLevelSelectionWasManual = false;
 
 function readGlobalStudyDefaults() {
     try {
@@ -350,6 +351,7 @@ function setupLanguageTabs() {
 
             selectedLanguage = newLanguage;
             selectedLevel = null;
+            _setupLevelSelectionWasManual = false;
             applyGlobalStudyDefaults();
 
             // Mirror the boot-time Spanish-only fetches in main.js so users
@@ -415,7 +417,10 @@ function setupLanguageTabs() {
                     updateIncorrectButtonVisibility();
 
                     progressRefresh.then(changed => {
-                        if (changed) renderRangeSelector();
+                        const setupPanel = document.getElementById('setupPanel');
+                        if (changed && setupPanel && !setupPanel.classList.contains('hidden')) {
+                            window.refreshSetupAfterProgress?.();
+                        }
                     }).catch(() => {});
                     updateTotalStatsButtonVisibility();
                 } finally {
@@ -513,14 +518,19 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
     const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
         ? await buildEstimatedKnownIds(estimate)
         : null;
-    const wordKnown = item => {
+    const wordSeen = item => {
         if (!currentUser || currentUser.isGuest || !progressData) return false;
+        const wordId = getWordId(item);
+        const recorded = getWordProgressState(wordId);
+        // Review is a separate route. Once a card has been encountered, it
+        // must not hold new-set progression on this level indefinitely.
+        if (recorded.seen || wordHasKnowledgeProgress(wordId)) return true;
         if (activeArtist) {
             if (item.id && estimatedIds?.has(item.id)) return true;
         } else if (item.rank <= estimate) {
             return true;
         }
-        return isWordKnown(getWordId(item));
+        return false;
     };
 
     let firstIncomplete = null;
@@ -549,9 +559,10 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
         lastAvailable = btn;
         const suggestionSkipped = window.isLevelMarkedDone?.(btn.dataset.level) || false;
         if (!suggestionSkipped) lastSuggestionLevel = btn;
-        const knownCount = wordsInLevel.filter(wordKnown).length;
-        const completion = Math.round(100 * knownCount / wordsInLevel.length);
-        const isPartial = completion > 0 && completion < 100;
+        const seenCount = wordsInLevel.filter(wordSeen).length;
+        const completion = Math.round(100 * seenCount / wordsInLevel.length);
+        const hasUnseen = seenCount < wordsInLevel.length;
+        const isPartial = seenCount > 0 && hasUnseen;
         btn.dataset.progressPct = String(completion);
         btn.classList.toggle('has-partial-progress', isPartial);
         btn.classList.toggle('is-suggestion-skipped', suggestionSkipped);
@@ -568,13 +579,14 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
                 `Level ${buttonIndex + 1}, ${completion}% complete${suggestionSkipped ? ', skipped in suggestions' : ''}`
             );
         }
-        if (!firstIncomplete && completion < 100 && !suggestionSkipped) firstIncomplete = btn;
+        if (!firstIncomplete && hasUnseen && !suggestionSkipped) firstIncomplete = btn;
     }
     return firstIncomplete || lastSuggestionLevel || lastAvailable || buttons[buttons.length - 1];
 }
 
-async function renderLevelSelector(language) {
+async function renderLevelSelector(language, { preferActionable = false } = {}) {
     const container = document.getElementById('levelSelector');
+    if (preferActionable) _setupLevelSelectionWasManual = false;
 
     if (useLemmaMode) {
         await ensureLemmaPoolingData(config.languages[language]);
@@ -583,7 +595,7 @@ async function renderLevelSelector(language) {
 
     // Artist Extra replaces frequency levels with category groups.
     if (activeArtist && artistVocabularyScope === 'extra') {
-        await renderExtraCategorySelector(container, language);
+        await renderExtraCategorySelector(container, language, { preferActionable });
         return;
     }
 
@@ -700,7 +712,8 @@ async function renderLevelSelector(language) {
 
     // Add click handlers for level buttons
     document.querySelectorAll('.level-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(event) {
+            if (event.isTrusted) _setupLevelSelectionWasManual = true;
             // Reset all buttons to short text
             document.querySelectorAll('.level-btn').forEach(b => {
                 b.classList.remove('selected');
@@ -768,7 +781,7 @@ async function renderLevelSelector(language) {
     // actionable work — finishing the 70% level should auto-open 80%, not
     // sit on a level whose sets are already complete. Falls back to the
     // first button on data-load failure or if there are no buttons.
-    if (!selectedLevel) {
+    if (!selectedLevel || preferActionable) {
         if (levelButtons.length === 0) return;
         let target = levelButtons[0];
         try {
@@ -778,7 +791,10 @@ async function renderLevelSelector(language) {
             console.warn('Level auto-pick failed, using first', err);
         }
         // Re-check: the user may have clicked a level during the await above.
-        if (!selectedLevel) target.click();
+        if (!_setupLevelSelectionWasManual && (!selectedLevel || preferActionable)) {
+            target.click();
+            await target._rangeRenderPromise;
+        }
     } else {
         levelProgressPromise.catch(err =>
             console.warn('Level progress indicators unavailable', err));
@@ -799,7 +815,7 @@ function _escapeAttr(value) {
 // renderRangeSelector()/study-set machinery pages through it unchanged. If the
 // data has no categories yet, buildFilteredVocab() returns a single "All Extra"
 // group and this renders one chip.
-async function renderExtraCategorySelector(container, language) {
+async function renderExtraCategorySelector(container, language, { preferActionable = false } = {}) {
     const langConfig = config.languages[language];
     let vocabularyData = [];
     try {
@@ -849,7 +865,7 @@ async function renderExtraCategorySelector(container, language) {
     const hiddenButtons = Array.from(container.querySelectorAll('.level-selector-buttons .level-btn'));
     const chips = Array.from(container.querySelectorAll('.extra-category-chip'));
 
-    const selectCategory = index => {
+    const selectCategory = async index => {
         hiddenButtons.forEach((btn, i) => btn.classList.toggle('selected', i === index));
         chips.forEach((chip, i) => {
             const selected = i === index;
@@ -861,26 +877,43 @@ async function renderExtraCategorySelector(container, language) {
         // Cognates only changes which category cognates land in), so hide both.
         document.getElementById('lemmaToggleContainer').style.display = 'none';
         document.getElementById('cognateToggleContainer').style.display = 'none';
-        renderRangeSelector().catch(err => console.error('Error rendering Extra ranges:', err));
+        await renderRangeSelector();
     };
 
     // Wire hidden buttons so getNextStudyLevelMeta()/startNextStudyLevelFirstSet()
     // (which .click() the next .level-btn) reuse this exact selection path.
     hiddenButtons.forEach((btn, index) => {
-        btn.addEventListener('click', () => selectCategory(index));
+        btn.addEventListener('click', () => {
+            btn._rangeRenderPromise = selectCategory(index);
+            btn._rangeRenderPromise.catch(err => console.error('Error rendering Extra ranges:', err));
+        });
     });
     chips.forEach((chip, index) => {
-        chip.addEventListener('click', () => hiddenButtons[index].click());
+        chip.addEventListener('click', () => {
+            _setupLevelSelectionWasManual = true;
+            hiddenButtons[index].click();
+        });
     });
 
-    // Preserve a still-valid saved category selection, else pick the first.
+    // Preserve an explicit category choice; on landing/return, route to the
+    // first category that still contains unseen cards and is not skipped.
     let initialIndex = 0;
-    if (selectedLevel) {
+    if (selectedLevel && !preferActionable) {
         const saved = hiddenButtons.findIndex(btn => btn.dataset.level === selectedLevel);
         if (saved >= 0) initialIndex = saved;
         else selectedLevel = null;
     }
+    if ((!selectedLevel || preferActionable) && !_setupLevelSelectionWasManual) {
+        try {
+            const actionable = await findFirstIncompleteLevelBtn(language, hiddenButtons);
+            const actionableIndex = hiddenButtons.indexOf(actionable);
+            if (actionableIndex >= 0) initialIndex = actionableIndex;
+        } catch (error) {
+            console.warn('Extra category auto-pick failed, using first', error);
+        }
+    }
     hiddenButtons[initialIndex].click();
+    await hiddenButtons[initialIndex]._rangeRenderPromise;
 }
 
 // Smart-range cache: computed snap points for the active source baseline.
@@ -1232,7 +1265,10 @@ function wireLevelScrubber(segBar, buttons) {
     let commitTimer = null;
     const commit = () => {
         const btn = buttons[_levelCenteredIdx(segBar)];
-        if (btn) btn.click(); // → renderRangeSelector (resets the set options)
+        if (btn) {
+            _setupLevelSelectionWasManual = true;
+            btn.click(); // → renderRangeSelector (resets the set options)
+        }
     };
     segBar.addEventListener('scroll', () => {
         const i = _levelCenteredIdx(segBar);
@@ -1256,7 +1292,10 @@ function wireLevelScrubber(segBar, buttons) {
     segBar.querySelectorAll('.lsw-seg').forEach(seg => {
         seg.addEventListener('click', () => {
             const idx = parseInt(seg.dataset.i, 10);
-            if (!Number.isNaN(idx) && buttons[idx]) buttons[idx].click();
+            if (!Number.isNaN(idx) && buttons[idx]) {
+                _setupLevelSelectionWasManual = true;
+                buttons[idx].click();
+            }
         });
     });
 }
@@ -2451,6 +2490,10 @@ window.updatePercentModeButton = updatePercentModeButton;
 window.updateStep2Tooltip = updateStep2Tooltip;
 window.updateStep5Tooltip = updateStep5Tooltip;
 window.renderLevelSelector = renderLevelSelector;
+window.refreshSetupAfterProgress = async function() {
+    if (_setupLevelSelectionWasManual) return renderRangeSelector();
+    return renderLevelSelector(selectedLanguage, { preferActionable: true });
+};
 window.setupCognateToggle = setupCognateToggle;
 // Open the help modal — always reset to About tab, update content for mode
 function openHelpModal() {
