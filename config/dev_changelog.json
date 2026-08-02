@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "06eedf41",
+      "summary": "Card rows now use clearer colour identities and make better use of space",
+      "details": [
+        "Proper nouns, auxiliaries, conjunction types, particles, prefixes, suffixes, contractions, expressions and clitics now have explicit colour themes instead of falling back to another category",
+        "Expression rows prefer one compact line with upright Spanish, italic English and quieter context, wrapping only when the content needs it",
+        "Short sense and expression text grows to use available room while progressively longer copy steps down before wrapping or clamping; cache v170→v171, assets 20260802a→20260802b"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "8bb74735",
       "summary": "App startup and study interactions now do substantially less background work",
       "details": [

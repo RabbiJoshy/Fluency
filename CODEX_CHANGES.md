@@ -13,7 +13,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Artist corpus frequency excludes exact repeated lyric lines within each song. Lemma-mode card frequency and examples use the same pooled sibling basis.
 - Artist rank ties use each word's full distinct-song spread, not the capped example sample. Artist lyric examples prefer an explicitly credited active artist, Spotify availability, and a standard release in that order before the teaching signals.
 - Desktop lyric autoplay is line-bounded and card-wide: it announces each sense/sub-sense/Expression with distinguishing context, plays that item's eligible examples, and skips unplayable lines without changing full-list counters. It remains unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
-- Card grammar uses separate POS pills, English morphology labels, POS-linked colour, pooled-form highlighting, and a grouped/linked card-back layout. Trivial plural and elision form metadata is suppressed on the back.
+- Card grammar uses separate POS pills, English morphology labels, distinct semantic POS/special-row colour themes, pooled-form highlighting, and a grouped/linked card-back layout. Sense-row typography scales with copy length; Expression/clitic rows are inline-first with upright source text and italic English. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Audit flags separate the target (pairing, meaning, example, lemma, word form, card, or note only) from the problem category. They default to the visible sense–example pairing and store structured evidence through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
@@ -31,6 +31,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-08-02 — Give card rows distinct themes and adaptive type
+
+- Commit `06eedf41`; front-end cache `flashcards-v171` / `20260802b`; tracked by GitHub issue #53.
+- Split previously shared or fallback colours into explicit themes for proper nouns, auxiliaries, coordinating/subordinating conjunctions, particles, prefixes, suffixes, contractions, Expressions/MWEs, clitics, and unknown values while keeping true label aliases together.
+- Reworked Expression and clitic copy into an inline-first bilingual layout: source text is upright, English is italic and uses the normal text colour, context is subordinate, and wrapping remains available for genuinely long rows.
+- Added four content-density type tiers across singleton, grouped, remainder, Expression, and clitic rows so compact copy renders larger and long copy steps down before the existing wrap/clamp safeguards.
+- Verification: bundled-Node syntax check for `js/flashcards.js`; 12 focused UI/offline tests including executable POS alias and type-tier checks plus asset-version lockstep; valid developer-changelog JSON; `git diff --check`. Per repository policy, no browser preview was used against the service-worker app.
 
 ### 2026-08-02 — Remove systemic startup and study stalls
 
