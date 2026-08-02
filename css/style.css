@@ -2010,6 +2010,14 @@
             font-weight: 550;
         }
 
+        /* `.card-details strong` appears later in this stylesheet and uses
+           the active app accent. Keep bilingual row translations white with
+           a deliberately stronger selector so artist themes cannot turn the
+           English MWE/clitic copy red. */
+        .card-details .special-meaning-copy strong {
+            color: #fff;
+        }
+
         .special-meaning-copy small {
             color: var(--text-muted);
             font-family: var(--font-reading);

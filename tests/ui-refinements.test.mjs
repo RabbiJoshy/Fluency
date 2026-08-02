@@ -143,6 +143,7 @@ test('card rows use distinct POS themes and content-aware bilingual typography',
     assert.match(cards, /meaning-row-translation row-adaptive-text/);
     assert.match(css, /\.special-meaning-copy\s*\{[^}]*flex-direction: row;[^}]*flex-wrap: wrap;/s);
     assert.match(css, /\.special-meaning-copy strong\s*\{[^}]*font-style: italic;/s);
+    assert.match(css, /\.card-details \.special-meaning-copy strong\s*\{[^}]*color: #fff;/s);
     assert.match(css, /\.mwe-expression\s*\{[^}]*font-style: normal;/s);
     assert.match(css, /\.row-text-xl\s*\{[^}]*--row-primary-size: 21px;/s);
 });

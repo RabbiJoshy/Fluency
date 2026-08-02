@@ -295,7 +295,7 @@ aliases such as `ADJ`/`ADJECTIVE` together, but do not collapse genuinely
 different types such as proper nouns, particles, contractions, MWE, or clitics.
 Sense-row type scales are assigned by `adaptiveRowTextClass()`: short copy grows
 to fill spare space and long copy steps down before wrapping/clamping. MWE and
-clitic copy is inline-first, with upright source text, italic English, and a
+clitic copy is inline-first, with upright source text, white italic English, and a
 subordinate context fragment; wrapping remains the fallback when one line will
 not fit.
 The initial selection for a collapsed translation/context group is the

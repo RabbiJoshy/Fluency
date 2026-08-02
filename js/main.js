@@ -1,17 +1,17 @@
-import './state.js?v=20260802b';
-import './offline-db.js?v=20260802b';
-import './sync-queue.js?v=20260802b';
-import { initOfflineContent } from './offline-content.js?v=20260802b';
-import './speech.js?v=20260802b';
-import './artist-ui.js?v=20260802b';
-import './auth.js?v=20260802b';
-import './estimation.js?v=20260802b';
-import './config.js?v=20260802b';
-import './progress.js?v=20260802b';
-import './knowledge.js?v=20260802b';
-import './ui.js?v=20260802b';
-import './vocab.js?v=20260802b';
-import './flashcards.js?v=20260802b';
+import './state.js?v=20260802c';
+import './offline-db.js?v=20260802c';
+import './sync-queue.js?v=20260802c';
+import { initOfflineContent } from './offline-content.js?v=20260802c';
+import './speech.js?v=20260802c';
+import './artist-ui.js?v=20260802c';
+import './auth.js?v=20260802c';
+import './estimation.js?v=20260802c';
+import './config.js?v=20260802c';
+import './progress.js?v=20260802c';
+import './knowledge.js?v=20260802c';
+import './ui.js?v=20260802c';
+import './vocab.js?v=20260802c';
+import './flashcards.js?v=20260802c';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -19,7 +19,7 @@ import './flashcards.js?v=20260802b';
 // lazy module stubs in flashcards.js.
 const _initialParams = new URLSearchParams(window.location.search);
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260802b').catch(error => {
+    ? import('./spotify.js?v=20260802c').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
