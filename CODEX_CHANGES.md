@@ -32,6 +32,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Build the SpanishDict-example Normal Mode candidate
+
+- Commit `97a3e76e`; front-end cache `flashcards-v175` / `20260802f`.
+- Activated immutable candidate run `2026-08-02_spanishdict_examples_v1`: the existing displayed senses and legacy percentages remain the provisional proxy, while 27,115 canonical SpanishDict examples now cover 25,978 of 26,566 displayed meanings through exact `sense_id` joins. The builder repaired 261 reversed bilingual pairs and left 588 unsupported meanings empty rather than assigning evidence to the wrong leaf.
+- Embedded only the 15 generated variants accepted by both independent Iteration 3 audits. The app hides each template unless its reinforcement word has a dated mistake in the last seven days, then promotes and labels it as personalised practice; generated evidence never changes a distribution and study makes no model call.
+- Added a reproducible candidate builder, compact tracked frame bank, immutable run manifest, offline checksums, and focused runtime/data tests. Verification: Python compilation; zero residual direction reversals under the Spanish/English detector; exact run/active and manifest hashes; valid JSON; JavaScript syntax; all 16 focused personalisation, offline, and UI tests; `git diff --check`.
+
 ### 2026-08-02 — Scale short italic submeanings with their rows
 
 - Commit `0cf5501e`; front-end cache `flashcards-v174` / `20260802e`; follow-up to GitHub issue #53.

@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "97a3e76e",
+      "summary": "Spanish Speech now starts from exact SpanishDict examples",
+      "details": [
+        "Replaced subtitle examples with 27,115 SpanishDict examples tied directly to 25,978 displayed sense IDs while retaining the previous sense percentages as an explicit provisional proxy",
+        "Repaired 261 source records whose Spanish and English sides were reversed; the new deck is about 8.2 MB instead of 32 MB and remains an immutable, reversible candidate run",
+        "Added a first offline personalisation beta: 15 independently audited templates appear only when their reinforcement word was answered incorrectly in the last seven days; no live model call and no generated sentence affects percentages; cache v174→v175, assets 20260802e→20260802f"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "0cf5501e",
       "summary": "Short italic submeanings now grow with their sense rows",
       "details": [
