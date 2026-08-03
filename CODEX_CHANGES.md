@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Expand reviewed personalised Spanish practice
+
+- Commit `a405048e`; front-end cache `flashcards-v177` / `20260802h`.
+- Added a bounded, resumable offline expansion pipeline that selects exact-sense SpanishDict bases and common single-meaning noun reinforcements, then records generation, deterministic checks, a separate semantic gate, and explicit release decisions as distinct evidence layers.
+- The pilot proposed 58 variants across 60 target senses. Structural checks retained 23, the model gate marked 16 high-confidence, and manual review retained 12 after rejecting four confident failures involving idiomatic prepositions, adverb scope, contrivance, and a malformed support construction. The stricter future gate now calls out those failure classes explicitly.
+- Activated immutable run `2026-08-03_spanishdict_examples_v2` with 27 personalised frames total (15 earlier dual-audit frames plus 12 reviewed pilot frames), covering 10 new reinforcement words and 9 target senses. Runtime selection remains recent-mistake-only; all frames preserve their exact target sense and contribute nothing to sense distributions.
+- Verification: Python compilation; exact active/run deck match; pilot metric assertions; offline file size/checksum integrity; all 17 focused personalisation, offline, and UI tests; `git diff --check`; refreshed local app loaded `20260802h` with no browser console errors.
+
 ### 2026-08-02 — Polish card tools and stabilize POS information
 
 - Commit `0f4fcec7`; front-end cache `flashcards-v176` / `20260802g`; tracked by GitHub issue #55.
