@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "461d3c3f",
+      "summary": "Example lyrics no longer waste a line on ad-libs",
+      "details": [
+        "Parenthetical ad-libs like (Eh-eh), (Wuh) and (Yeah) are hidden in the example area — they appear on 27% of lines and cost about a fifth of the visible text",
+        "Only short ones go: two words and ten characters at most, which removes 2647 of them across the Bad Bunny deck without touching a single real sung line",
+        "The lyric itself is unchanged in the data, so nothing else is affected; cache v177→v178, assets 20260802h→20260802i"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "a405048e",
       "summary": "Personalised Spanish practice now has a reviewed scale pilot",
       "details": [

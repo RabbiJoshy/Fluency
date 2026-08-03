@@ -504,6 +504,33 @@ function registerTagHTML(meaning) {
     return ` <span class="meaning-register" data-register="${meaning.type}">${label}</span>`;
 }
 
+// Parenthetical ad-libs in lyric transcriptions — "(Eh-eh)", "(Wuh)", "(Yeah)",
+// "(Prr)". They appear on 27% of Bad Bunny example lines and cost about 10 of a
+// 49-character line, which is the difference between one line and two in the
+// example area.
+//
+// The threshold is empirical, not a guess: at 2 words / 10 characters this
+// removes 2,647 parentheticals across the deck with ZERO real-lyric casualties.
+// Loosening to 3 words / 14 characters gains ~320 more but starts eating actual
+// sung lines ("Que se mueve", "Toda la noche"), so it stays tight — a stray
+// "(Ey, ey)" surviving costs a few pixels, a deleted lyric costs meaning.
+const _ADLIB_PAREN_RE = /\s*\(([^()]*)\)/g;
+const ADLIB_MAX_WORDS = 2;
+const ADLIB_MAX_CHARS = 10;
+
+function stripAdlibParentheticals(text) {
+    if (!text || typeof text !== 'string' || text.indexOf('(') === -1) return text;
+    const cleaned = text.replace(_ADLIB_PAREN_RE, (whole, inner) => {
+        const trimmed = inner.trim();
+        if (trimmed.length > ADLIB_MAX_CHARS) return whole;
+        const words = trimmed.match(/[\wáéíóúüñ'’-]+/gi) || [];
+        return words.length <= ADLIB_MAX_WORDS ? '' : whole;
+    });
+    // Tidy punctuation left stranded by a removal (", ," / trailing comma).
+    return cleaned.replace(/\s+([,.;!?])/g, '$1').replace(/,\s*(?=[,.;!?])/g, '')
+                  .replace(/[ \t]{2,}/g, ' ').replace(/[\s,;]+$/, '').trim();
+}
+
 // --- MWE translation split (JS mirror of pipeline/util_5c_spanishdict.split_mwe_translation) ---
 // Applied at render time so existing decks (whose mwe_memberships predate the
 // pipeline-side split) still get the two-line layout. New builds set m.context
@@ -2487,6 +2514,14 @@ function updateCard({ announceHeadword = false } = {}) {
             exampleTranslation = currentSentence.english;
         }
     }
+
+    // Lyric transcriptions carry parenthetical ad-libs — "(Eh-eh)", "(Wuh)",
+    // "(Yeah)" — on 27% of example lines, costing ~10 of a 49-character line.
+    // Stripped at render only: the stored lyric stays intact, so search,
+    // highlighting against the original, and any future re-analysis are
+    // unaffected.
+    exampleSentence = stripAdlibParentheticals(exampleSentence);
+    exampleTranslation = stripAdlibParentheticals(exampleTranslation);
 
     // Build variant display if available (e.g. "la'o | lado")
     const variantDisplay = card.mergedLemma ? null : buildVariantDisplay(card);
