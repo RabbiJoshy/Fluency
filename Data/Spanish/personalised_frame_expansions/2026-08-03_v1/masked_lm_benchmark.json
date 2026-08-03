@@ -1,0 +1,1668 @@
+{
+  "schema_version": 1,
+  "training_performed": false,
+  "model": "dccuchile/bert-base-spanish-wwm-cased",
+  "model_revision": "c4d86612f51b4f46759c8390d1798c2febe71b93",
+  "device": "cpu",
+  "vocabulary_limit": 10000,
+  "eligible_single_token_nouns": 3096,
+  "slot_tests": [
+    {
+      "id": "show_possession_masc",
+      "sentence": "¿Quieres ver mi [MASK] nuevo?",
+      "eligible_nouns": 3096,
+      "top_fillers": [
+        {
+          "word": "auto",
+          "vocabulary_rank": 301,
+          "log_probability": -1.3850610256195068
+        },
+        {
+          "word": "coche",
+          "vocabulary_rank": 9842,
+          "log_probability": -1.7260138988494873
+        },
+        {
+          "word": "juguete",
+          "vocabulary_rank": 3072,
+          "log_probability": -2.7001235485076904
+        },
+        {
+          "word": "juego",
+          "vocabulary_rank": 725,
+          "log_probability": -3.3272931575775146
+        },
+        {
+          "word": "teléfono",
+          "vocabulary_rank": 502,
+          "log_probability": -4.2384443283081055
+        },
+        {
+          "word": "vergüenza",
+          "vocabulary_rank": 1859,
+          "log_probability": -4.366471290588379
+        },
+        {
+          "word": "libro",
+          "vocabulary_rank": 9847,
+          "log_probability": -4.375389099121094
+        },
+        {
+          "word": "trabajo",
+          "vocabulary_rank": 9764,
+          "log_probability": -4.517363548278809
+        },
+        {
+          "word": "anillo",
+          "vocabulary_rank": 9978,
+          "log_probability": -4.745633125305176
+        },
+        {
+          "word": "televisor",
+          "vocabulary_rank": 6683,
+          "log_probability": -4.795282363891602
+        },
+        {
+          "word": "cuarto",
+          "vocabulary_rank": 474,
+          "log_probability": -4.859818458557129
+        },
+        {
+          "word": "apartamento",
+          "vocabulary_rank": 1595,
+          "log_probability": -4.872079849243164
+        },
+        {
+          "word": "camión",
+          "vocabulary_rank": 1148,
+          "log_probability": -4.951096534729004
+        },
+        {
+          "word": "sombrero",
+          "vocabulary_rank": 1642,
+          "log_probability": -5.014655113220215
+        },
+        {
+          "word": "carro",
+          "vocabulary_rank": 1564,
+          "log_probability": -5.105172157287598
+        },
+        {
+          "word": "automóvil",
+          "vocabulary_rank": 5229,
+          "log_probability": -5.133545875549316
+        },
+        {
+          "word": "equipo",
+          "vocabulary_rank": 9870,
+          "log_probability": -5.280173301696777
+        },
+        {
+          "word": "video",
+          "vocabulary_rank": 1648,
+          "log_probability": -5.317731857299805
+        },
+        {
+          "word": "truco",
+          "vocabulary_rank": 1986,
+          "log_probability": -5.335268020629883
+        },
+        {
+          "word": "collar",
+          "vocabulary_rank": 3553,
+          "log_probability": -5.365212440490723
+        },
+        {
+          "word": "mundo",
+          "vocabulary_rank": 165,
+          "log_probability": -5.398821830749512
+        },
+        {
+          "word": "barco",
+          "vocabulary_rank": 743,
+          "log_probability": -5.479167938232422
+        },
+        {
+          "word": "bolso",
+          "vocabulary_rank": 2426,
+          "log_probability": -5.557147026062012
+        },
+        {
+          "word": "reloj",
+          "vocabulary_rank": 1405,
+          "log_probability": -5.627409934997559
+        },
+        {
+          "word": "casco",
+          "vocabulary_rank": 4898,
+          "log_probability": -5.6528215408325195
+        }
+      ],
+      "probes": [
+        {
+          "word": "perro",
+          "eligible": true,
+          "rank": 28,
+          "log_probability": -5.717622756958008
+        },
+        {
+          "word": "camión",
+          "eligible": true,
+          "rank": 13,
+          "log_probability": -4.951096534729004
+        },
+        {
+          "word": "robot",
+          "eligible": true,
+          "rank": 51,
+          "log_probability": -6.753054618835449
+        },
+        {
+          "word": "coche",
+          "eligible": true,
+          "rank": 2,
+          "log_probability": -1.7260138988494873
+        },
+        {
+          "word": "dinero",
+          "eligible": true,
+          "rank": 125,
+          "log_probability": -8.15422248840332
+        },
+        {
+          "word": "verano",
+          "eligible": true,
+          "rank": 350,
+          "log_probability": -10.02242374420166
+        }
+      ],
+      "corpus": {
+        "pattern": "quieres ver (?:a )?mi ([[:alpha:]ÁÉÍÓÚÜÑáéíóúüñ]+)",
+        "matches": 383,
+        "distinct_fillers": 207,
+        "top_fillers": [
+          {
+            "word": "cuarto",
+            "count": 25
+          },
+          {
+            "word": "habitación",
+            "count": 16
+          },
+          {
+            "word": "nuevo",
+            "count": 9
+          },
+          {
+            "word": "placa",
+            "count": 9
+          },
+          {
+            "word": "identificación",
+            "count": 9
+          },
+          {
+            "word": "casa",
+            "count": 7
+          },
+          {
+            "word": "colección",
+            "count": 7
+          },
+          {
+            "word": "madre",
+            "count": 5
+          },
+          {
+            "word": "licencia",
+            "count": 5
+          },
+          {
+            "word": "imitación",
+            "count": 5
+          },
+          {
+            "word": "pieza",
+            "count": 5
+          },
+          {
+            "word": "cara",
+            "count": 5
+          },
+          {
+            "word": "trasero",
+            "count": 4
+          },
+          {
+            "word": "hermana",
+            "count": 4
+          },
+          {
+            "word": "pistola",
+            "count": 4
+          },
+          {
+            "word": "pene",
+            "count": 4
+          },
+          {
+            "word": "concha",
+            "count": 3
+          },
+          {
+            "word": "amigo",
+            "count": 3
+          },
+          {
+            "word": "cuerpo",
+            "count": 3
+          },
+          {
+            "word": "AUTO",
+            "count": 3
+          },
+          {
+            "word": "nueva",
+            "count": 3
+          },
+          {
+            "word": "álbum",
+            "count": 3
+          },
+          {
+            "word": "regalo",
+            "count": 3
+          },
+          {
+            "word": "apartamento",
+            "count": 3
+          },
+          {
+            "word": "mano",
+            "count": 3
+          }
+        ],
+        "probe_counts": {
+          "perro": 3,
+          "camión": 2,
+          "robot": 0,
+          "coche": 2,
+          "dinero": 0,
+          "verano": 0
+        }
+      }
+    },
+    {
+      "id": "expensive_masc",
+      "sentence": "El [MASK] era muy caro.",
+      "eligible_nouns": 3096,
+      "top_fillers": [
+        {
+          "word": "alquiler",
+          "vocabulary_rank": 3868,
+          "log_probability": -1.8072538375854492
+        },
+        {
+          "word": "trabajo",
+          "vocabulary_rank": 9764,
+          "log_probability": -3.1541242599487305
+        },
+        {
+          "word": "servicio",
+          "vocabulary_rank": 801,
+          "log_probability": -3.530740737915039
+        },
+        {
+          "word": "precio",
+          "vocabulary_rank": 9984,
+          "log_probability": -3.606844902038574
+        },
+        {
+          "word": "billete",
+          "vocabulary_rank": 5236,
+          "log_probability": -3.9113922119140625
+        },
+        {
+          "word": "dinero",
+          "vocabulary_rank": 156,
+          "log_probability": -4.139092445373535
+        },
+        {
+          "word": "coche",
+          "vocabulary_rank": 9842,
+          "log_probability": -4.170594215393066
+        },
+        {
+          "word": "papel",
+          "vocabulary_rank": 977,
+          "log_probability": -4.491415023803711
+        },
+        {
+          "word": "combustible",
+          "vocabulary_rank": 2365,
+          "log_probability": -4.572639465332031
+        },
+        {
+          "word": "viaje",
+          "vocabulary_rank": 9962,
+          "log_probability": -4.579739570617676
+        },
+        {
+          "word": "tratamiento",
+          "vocabulary_rank": 2405,
+          "log_probability": -4.751474380493164
+        },
+        {
+          "word": "tabaco",
+          "vocabulary_rank": 3827,
+          "log_probability": -4.816732406616211
+        },
+        {
+          "word": "vergüenza",
+          "vocabulary_rank": 1859,
+          "log_probability": -4.822854042053223
+        },
+        {
+          "word": "pasaje",
+          "vocabulary_rank": 4230,
+          "log_probability": -4.8635663986206055
+        },
+        {
+          "word": "juego",
+          "vocabulary_rank": 725,
+          "log_probability": -4.883659362792969
+        },
+        {
+          "word": "camino",
+          "vocabulary_rank": 9840,
+          "log_probability": -5.013833999633789
+        },
+        {
+          "word": "alcohol",
+          "vocabulary_rank": 2504,
+          "log_probability": -5.015500068664551
+        },
+        {
+          "word": "producto",
+          "vocabulary_rank": 3480,
+          "log_probability": -5.0198822021484375
+        },
+        {
+          "word": "mantenimiento",
+          "vocabulary_rank": 5426,
+          "log_probability": -5.0330915451049805
+        },
+        {
+          "word": "café",
+          "vocabulary_rank": 598,
+          "log_probability": -5.060976982116699
+        },
+        {
+          "word": "cambio",
+          "vocabulary_rank": 9933,
+          "log_probability": -5.102285385131836
+        },
+        {
+          "word": "tiempo",
+          "vocabulary_rank": 100,
+          "log_probability": -5.176083564758301
+        },
+        {
+          "word": "terreno",
+          "vocabulary_rank": 3007,
+          "log_probability": -5.287117004394531
+        },
+        {
+          "word": "vino",
+          "vocabulary_rank": 9904,
+          "log_probability": -5.308660507202148
+        },
+        {
+          "word": "hotel",
+          "vocabulary_rank": 797,
+          "log_probability": -5.310739517211914
+        }
+      ],
+      "probes": [
+        {
+          "word": "edificio",
+          "eligible": true,
+          "rank": 43,
+          "log_probability": -5.808950424194336
+        },
+        {
+          "word": "hotel",
+          "eligible": true,
+          "rank": 25,
+          "log_probability": -5.310739517211914
+        },
+        {
+          "word": "coche",
+          "eligible": true,
+          "rank": 7,
+          "log_probability": -4.170594215393066
+        },
+        {
+          "word": "perro",
+          "eligible": true,
+          "rank": 118,
+          "log_probability": -7.232681751251221
+        },
+        {
+          "word": "verano",
+          "eligible": true,
+          "rank": 276,
+          "log_probability": -8.526348114013672
+        },
+        {
+          "word": "dinero",
+          "eligible": true,
+          "rank": 6,
+          "log_probability": -4.139092445373535
+        }
+      ],
+      "corpus": {
+        "pattern": "el ([[:alpha:]ÁÉÍÓÚÜÑáéíóúüñ]+) era muy caro",
+        "matches": 9,
+        "distinct_fillers": 8,
+        "top_fillers": [
+          {
+            "word": "OxyContin",
+            "count": 2
+          },
+          {
+            "word": "seguro",
+            "count": 1
+          },
+          {
+            "word": "taxi",
+            "count": 1
+          },
+          {
+            "word": "tratamiento",
+            "count": 1
+          },
+          {
+            "word": "pub",
+            "count": 1
+          },
+          {
+            "word": "acero",
+            "count": 1
+          },
+          {
+            "word": "alquiler",
+            "count": 1
+          },
+          {
+            "word": "láton",
+            "count": 1
+          }
+        ],
+        "probe_counts": {
+          "edificio": 0,
+          "hotel": 0,
+          "coche": 0,
+          "perro": 0,
+          "verano": 0,
+          "dinero": 0
+        }
+      }
+    },
+    {
+      "id": "pass_fem_object",
+      "sentence": "¿Me puedes pasar esa [MASK]?",
+      "eligible_nouns": 3096,
+      "top_fillers": [
+        {
+          "word": "toalla",
+          "vocabulary_rank": 4059,
+          "log_probability": -2.642310380935669
+        },
+        {
+          "word": "bolsa",
+          "vocabulary_rank": 1083,
+          "log_probability": -2.992835283279419
+        },
+        {
+          "word": "cosa",
+          "vocabulary_rank": 302,
+          "log_probability": -3.229937791824341
+        },
+        {
+          "word": "pluma",
+          "vocabulary_rank": 4517,
+          "log_probability": -3.306128740310669
+        },
+        {
+          "word": "botella",
+          "vocabulary_rank": 1742,
+          "log_probability": -3.5168936252593994
+        },
+        {
+          "word": "cámara",
+          "vocabulary_rank": 968,
+          "log_probability": -3.8096792697906494
+        },
+        {
+          "word": "foto",
+          "vocabulary_rank": 737,
+          "log_probability": -3.9683964252471924
+        },
+        {
+          "word": "llave",
+          "vocabulary_rank": 861,
+          "log_probability": -3.999391794204712
+        },
+        {
+          "word": "luz",
+          "vocabulary_rank": 488,
+          "log_probability": -4.0060529708862305
+        },
+        {
+          "word": "cerveza",
+          "vocabulary_rank": 1108,
+          "log_probability": -4.011797904968262
+        },
+        {
+          "word": "tarjeta",
+          "vocabulary_rank": 1381,
+          "log_probability": -4.017263412475586
+        },
+        {
+          "word": "caja",
+          "vocabulary_rank": 829,
+          "log_probability": -4.1498212814331055
+        },
+        {
+          "word": "mano",
+          "vocabulary_rank": 333,
+          "log_probability": -4.1718292236328125
+        },
+        {
+          "word": "pelota",
+          "vocabulary_rank": 1634,
+          "log_probability": -4.184116363525391
+        },
+        {
+          "word": "pistola",
+          "vocabulary_rank": 956,
+          "log_probability": -4.190393447875977
+        },
+        {
+          "word": "carta",
+          "vocabulary_rank": 912,
+          "log_probability": -4.20366096496582
+        },
+        {
+          "word": "radio",
+          "vocabulary_rank": 9941,
+          "log_probability": -4.283729553222656
+        },
+        {
+          "word": "camisa",
+          "vocabulary_rank": 1773,
+          "log_probability": -4.322121620178223
+        },
+        {
+          "word": "bandeja",
+          "vocabulary_rank": 5673,
+          "log_probability": -4.333553314208984
+        },
+        {
+          "word": "linterna",
+          "vocabulary_rank": 4720,
+          "log_probability": -4.44809627532959
+        },
+        {
+          "word": "hamburguesa",
+          "vocabulary_rank": 4436,
+          "log_probability": -4.796169281005859
+        },
+        {
+          "word": "camiseta",
+          "vocabulary_rank": 4618,
+          "log_probability": -4.862870216369629
+        },
+        {
+          "word": "sal",
+          "vocabulary_rank": 9995,
+          "log_probability": -4.919559478759766
+        },
+        {
+          "word": "chaqueta",
+          "vocabulary_rank": 2515,
+          "log_probability": -4.9468231201171875
+        },
+        {
+          "word": "lista",
+          "vocabulary_rank": 9907,
+          "log_probability": -4.959094047546387
+        }
+      ],
+      "probes": [
+        {
+          "word": "tarjeta",
+          "eligible": true,
+          "rank": 11,
+          "log_probability": -4.017263412475586
+        },
+        {
+          "word": "botella",
+          "eligible": true,
+          "rank": 5,
+          "log_probability": -3.5168936252593994
+        },
+        {
+          "word": "cerveza",
+          "eligible": true,
+          "rank": 10,
+          "log_probability": -4.011797904968262
+        },
+        {
+          "word": "escuela",
+          "eligible": true,
+          "rank": 586,
+          "log_probability": -11.6792573928833
+        },
+        {
+          "word": "iglesia",
+          "eligible": true,
+          "rank": 564,
+          "log_probability": -11.558611869812012
+        },
+        {
+          "word": "vida",
+          "eligible": true,
+          "rank": 511,
+          "log_probability": -11.33110237121582
+        }
+      ],
+      "corpus": {
+        "pattern": "(?:me )?puedes pasar esa ([[:alpha:]ÁÉÍÓÚÜÑáéíóúüñ]+)",
+        "matches": 5,
+        "distinct_fillers": 5,
+        "top_fillers": [
+          {
+            "word": "mermelada",
+            "count": 1
+          },
+          {
+            "word": "ropa",
+            "count": 1
+          },
+          {
+            "word": "toalla",
+            "count": 1
+          },
+          {
+            "word": "cinta",
+            "count": 1
+          },
+          {
+            "word": "clase",
+            "count": 1
+          }
+        ],
+        "probe_counts": {
+          "tarjeta": 0,
+          "botella": 0,
+          "cerveza": 0,
+          "escuela": 0,
+          "iglesia": 0,
+          "vida": 0
+        }
+      }
+    },
+    {
+      "id": "location_masc",
+      "sentence": "Si ellos están aquí, entonces, ¿quién está en el [MASK]?",
+      "eligible_nouns": 3096,
+      "top_fillers": [
+        {
+          "word": "edificio",
+          "vocabulary_rank": 859,
+          "log_probability": -3.0677924156188965
+        },
+        {
+          "word": "mundo",
+          "vocabulary_rank": 165,
+          "log_probability": -3.52085542678833
+        },
+        {
+          "word": "lugar",
+          "vocabulary_rank": 164,
+          "log_probability": -3.5929274559020996
+        },
+        {
+          "word": "cuarto",
+          "vocabulary_rank": 474,
+          "log_probability": -3.704860210418701
+        },
+        {
+          "word": "coche",
+          "vocabulary_rank": 9842,
+          "log_probability": -3.7389063835144043
+        },
+        {
+          "word": "equipo",
+          "vocabulary_rank": 9870,
+          "log_probability": -3.746401309967041
+        },
+        {
+          "word": "avión",
+          "vocabulary_rank": 634,
+          "log_probability": -3.8569817543029785
+        },
+        {
+          "word": "banco",
+          "vocabulary_rank": 9908,
+          "log_probability": -3.8768868446350098
+        },
+        {
+          "word": "auto",
+          "vocabulary_rank": 301,
+          "log_probability": -3.895864963531494
+        },
+        {
+          "word": "barco",
+          "vocabulary_rank": 743,
+          "log_probability": -3.955716609954834
+        },
+        {
+          "word": "camión",
+          "vocabulary_rank": 1148,
+          "log_probability": -4.089675426483154
+        },
+        {
+          "word": "cielo",
+          "vocabulary_rank": 589,
+          "log_probability": -4.157626628875732
+        },
+        {
+          "word": "medio",
+          "vocabulary_rank": 471,
+          "log_probability": -4.195526599884033
+        },
+        {
+          "word": "grupo",
+          "vocabulary_rank": 717,
+          "log_probability": -4.240635395050049
+        },
+        {
+          "word": "juego",
+          "vocabulary_rank": 725,
+          "log_probability": -4.392329692840576
+        },
+        {
+          "word": "puente",
+          "vocabulary_rank": 1159,
+          "log_probability": -4.455461025238037
+        },
+        {
+          "word": "tren",
+          "vocabulary_rank": 813,
+          "log_probability": -4.502408504486084
+        },
+        {
+          "word": "teléfono",
+          "vocabulary_rank": 502,
+          "log_probability": -4.601831912994385
+        },
+        {
+          "word": "pueblo",
+          "vocabulary_rank": 9827,
+          "log_probability": -4.634530544281006
+        },
+        {
+          "word": "hotel",
+          "vocabulary_rank": 797,
+          "log_probability": -4.669121265411377
+        },
+        {
+          "word": "campo",
+          "vocabulary_rank": 9977,
+          "log_probability": -4.681573390960693
+        },
+        {
+          "word": "baño",
+          "vocabulary_rank": 1166,
+          "log_probability": -4.715012073516846
+        },
+        {
+          "word": "autobús",
+          "vocabulary_rank": 1626,
+          "log_probability": -4.721983432769775
+        },
+        {
+          "word": "fondo",
+          "vocabulary_rank": 1258,
+          "log_probability": -4.7392497062683105
+        },
+        {
+          "word": "interior",
+          "vocabulary_rank": 1605,
+          "log_probability": -4.783432483673096
+        }
+      ],
+      "probes": [
+        {
+          "word": "hospital",
+          "eligible": true,
+          "rank": 42,
+          "log_probability": -5.351498126983643
+        },
+        {
+          "word": "hotel",
+          "eligible": true,
+          "rank": 20,
+          "log_probability": -4.669121265411377
+        },
+        {
+          "word": "edificio",
+          "eligible": true,
+          "rank": 1,
+          "log_probability": -3.0677924156188965
+        },
+        {
+          "word": "verano",
+          "eligible": true,
+          "rank": 1020,
+          "log_probability": -12.95334243774414
+        },
+        {
+          "word": "dinero",
+          "eligible": true,
+          "rank": 185,
+          "log_probability": -7.792639255523682
+        },
+        {
+          "word": "perro",
+          "eligible": true,
+          "rank": 312,
+          "log_probability": -9.166543960571289
+        }
+      ],
+      "corpus": {
+        "pattern": "quién está en el ([[:alpha:]ÁÉÍÓÚÜÑáéíóúüñ]+)",
+        "matches": 307,
+        "distinct_fillers": 154,
+        "top_fillers": [
+          {
+            "word": "teléfono",
+            "count": 19
+          },
+          {
+            "word": "coche",
+            "count": 15
+          },
+          {
+            "word": "auto",
+            "count": 12
+          },
+          {
+            "word": "cuarto",
+            "count": 11
+          },
+          {
+            "word": "comité",
+            "count": 9
+          },
+          {
+            "word": "menú",
+            "count": 8
+          },
+          {
+            "word": "hospital",
+            "count": 7
+          },
+          {
+            "word": "lugar",
+            "count": 5
+          },
+          {
+            "word": "interior",
+            "count": 4
+          },
+          {
+            "word": "ascensor",
+            "count": 4
+          },
+          {
+            "word": "sindicato",
+            "count": 4
+          },
+          {
+            "word": "armario",
+            "count": 4
+          },
+          {
+            "word": "avión",
+            "count": 4
+          },
+          {
+            "word": "barco",
+            "count": 3
+          },
+          {
+            "word": "caso",
+            "count": 3
+          },
+          {
+            "word": "baño",
+            "count": 3
+          },
+          {
+            "word": "portón",
+            "count": 3
+          },
+          {
+            "word": "fondo",
+            "count": 3
+          },
+          {
+            "word": "puente",
+            "count": 3
+          },
+          {
+            "word": "medio",
+            "count": 3
+          },
+          {
+            "word": "área",
+            "count": 3
+          },
+          {
+            "word": "billete",
+            "count": 3
+          },
+          {
+            "word": "mostrador",
+            "count": 3
+          },
+          {
+            "word": "techo",
+            "count": 3
+          },
+          {
+            "word": "lado",
+            "count": 3
+          }
+        ],
+        "probe_counts": {
+          "hospital": 7,
+          "hotel": 0,
+          "edificio": 1,
+          "verano": 0,
+          "dinero": 0,
+          "perro": 0
+        }
+      }
+    },
+    {
+      "id": "hot_weather_breakfast_location",
+      "sentence": "Cuando hace calor, nos gusta desayunar en la [MASK].",
+      "eligible_nouns": 3096,
+      "top_fillers": [
+        {
+          "word": "cama",
+          "vocabulary_rank": 563,
+          "log_probability": -1.4845629930496216
+        },
+        {
+          "word": "calle",
+          "vocabulary_rank": 9947,
+          "log_probability": -2.8637733459472656
+        },
+        {
+          "word": "mañana",
+          "vocabulary_rank": 176,
+          "log_probability": -3.4587316513061523
+        },
+        {
+          "word": "plaza",
+          "vocabulary_rank": 3477,
+          "log_probability": -3.7047195434570312
+        },
+        {
+          "word": "casa",
+          "vocabulary_rank": 9751,
+          "log_probability": -3.7094297409057617
+        },
+        {
+          "word": "piscina",
+          "vocabulary_rank": 2279,
+          "log_probability": -3.843195915222168
+        },
+        {
+          "word": "iglesia",
+          "vocabulary_rank": 897,
+          "log_probability": -4.016986846923828
+        },
+        {
+          "word": "mesa",
+          "vocabulary_rank": 9898,
+          "log_probability": -4.036905288696289
+        },
+        {
+          "word": "noche",
+          "vocabulary_rank": 136,
+          "log_probability": -4.091991424560547
+        },
+        {
+          "word": "ciudad",
+          "vocabulary_rank": 316,
+          "log_probability": -4.131570816040039
+        },
+        {
+          "word": "chimenea",
+          "vocabulary_rank": 4901,
+          "log_probability": -4.182770729064941
+        },
+        {
+          "word": "fuente",
+          "vocabulary_rank": 1750,
+          "log_probability": -4.241426467895508
+        },
+        {
+          "word": "estación",
+          "vocabulary_rank": 1035,
+          "log_probability": -4.340024948120117
+        },
+        {
+          "word": "nevera",
+          "vocabulary_rank": 9128,
+          "log_probability": -4.443175315856934
+        },
+        {
+          "word": "carretera",
+          "vocabulary_rank": 1906,
+          "log_probability": -4.675280570983887
+        },
+        {
+          "word": "oficina",
+          "vocabulary_rank": 608,
+          "log_probability": -4.6881513595581055
+        },
+        {
+          "word": "arena",
+          "vocabulary_rank": 2242,
+          "log_probability": -4.762689590454102
+        },
+        {
+          "word": "ventana",
+          "vocabulary_rank": 974,
+          "log_probability": -5.015253067016602
+        },
+        {
+          "word": "madrugada",
+          "vocabulary_rank": 7195,
+          "log_probability": -5.10186767578125
+        },
+        {
+          "word": "habitación",
+          "vocabulary_rank": 658,
+          "log_probability": -5.174759864807129
+        },
+        {
+          "word": "cafetería",
+          "vocabulary_rank": 3542,
+          "log_probability": -5.19504451751709
+        },
+        {
+          "word": "oscuridad",
+          "vocabulary_rank": 1400,
+          "log_probability": -5.291837692260742
+        },
+        {
+          "word": "villa",
+          "vocabulary_rank": 4071,
+          "log_probability": -5.5085344314575195
+        },
+        {
+          "word": "escuela",
+          "vocabulary_rank": 475,
+          "log_probability": -5.526637077331543
+        },
+        {
+          "word": "sala",
+          "vocabulary_rank": 9913,
+          "log_probability": -5.641556739807129
+        }
+      ],
+      "probes": [
+        {
+          "word": "escuela",
+          "eligible": true,
+          "rank": 24,
+          "log_probability": -5.526637077331543
+        },
+        {
+          "word": "iglesia",
+          "eligible": true,
+          "rank": 7,
+          "log_probability": -4.016986846923828
+        },
+        {
+          "word": "casa",
+          "eligible": true,
+          "rank": 5,
+          "log_probability": -3.7094297409057617
+        },
+        {
+          "word": "cocina",
+          "eligible": false,
+          "rank": null,
+          "log_probability": null
+        },
+        {
+          "word": "playa",
+          "eligible": false,
+          "rank": null,
+          "log_probability": null
+        },
+        {
+          "word": "calle",
+          "eligible": true,
+          "rank": 2,
+          "log_probability": -2.8637733459472656
+        }
+      ],
+      "corpus": {
+        "pattern": "desayunar en la ([[:alpha:]ÁÉÍÓÚÜÑáéíóúüñ]+)",
+        "matches": 45,
+        "distinct_fillers": 12,
+        "top_fillers": [
+          {
+            "word": "cama",
+            "count": 28
+          },
+          {
+            "word": "terraza",
+            "count": 4
+          },
+          {
+            "word": "cocina",
+            "count": 2
+          },
+          {
+            "word": "mañana",
+            "count": 2
+          },
+          {
+            "word": "cena",
+            "count": 2
+          },
+          {
+            "word": "cubierta",
+            "count": 1
+          },
+          {
+            "word": "habitación",
+            "count": 1
+          },
+          {
+            "word": "oficina",
+            "count": 1
+          },
+          {
+            "word": "mesa",
+            "count": 1
+          },
+          {
+            "word": "escuela",
+            "count": 1
+          },
+          {
+            "word": "nevera",
+            "count": 1
+          },
+          {
+            "word": "tienda",
+            "count": 1
+          }
+        ],
+        "probe_counts": {
+          "escuela": 1,
+          "iglesia": 0,
+          "casa": 0,
+          "cocina": 2,
+          "playa": 0,
+          "calle": 0
+        }
+      }
+    },
+    {
+      "id": "purchase_without",
+      "sentence": "No voy a comprarlo sin [MASK].",
+      "eligible_nouns": 3096,
+      "top_fillers": [
+        {
+          "word": "dinero",
+          "vocabulary_rank": 156,
+          "log_probability": -2.6940712928771973
+        },
+        {
+          "word": "vergüenza",
+          "vocabulary_rank": 1859,
+          "log_probability": -4.430444240570068
+        },
+        {
+          "word": "pruebas",
+          "vocabulary_rank": 2139,
+          "log_probability": -4.590295314788818
+        },
+        {
+          "word": "embargo",
+          "vocabulary_rank": 9986,
+          "log_probability": -4.984246730804443
+        },
+        {
+          "word": "permiso",
+          "vocabulary_rank": 710,
+          "log_probability": -5.053197383880615
+        },
+        {
+          "word": "razón",
+          "vocabulary_rank": 236,
+          "log_probability": -5.587657928466797
+        },
+        {
+          "word": "invitación",
+          "vocabulary_rank": 3756,
+          "log_probability": -5.636873245239258
+        },
+        {
+          "word": "ayuda",
+          "vocabulary_rank": 9839,
+          "log_probability": -5.672532081604004
+        },
+        {
+          "word": "protección",
+          "vocabulary_rank": 1636,
+          "log_probability": -5.769039630889893
+        },
+        {
+          "word": "efectivo",
+          "vocabulary_rank": 1955,
+          "log_probability": -5.84974479675293
+        },
+        {
+          "word": "problemas",
+          "vocabulary_rank": 332,
+          "log_probability": -6.0175251960754395
+        },
+        {
+          "word": "publicidad",
+          "vocabulary_rank": 3642,
+          "log_probability": -6.133321762084961
+        },
+        {
+          "word": "trabajo",
+          "vocabulary_rank": 9764,
+          "log_probability": -6.26924467086792
+        },
+        {
+          "word": "condiciones",
+          "vocabulary_rank": 2312,
+          "log_probability": -6.281857013702393
+        },
+        {
+          "word": "consentimiento",
+          "vocabulary_rank": 6908,
+          "log_probability": -6.465851783752441
+        },
+        {
+          "word": "información",
+          "vocabulary_rank": 640,
+          "log_probability": -6.587756633758545
+        },
+        {
+          "word": "zapatos",
+          "vocabulary_rank": 1280,
+          "log_probability": -6.635844707489014
+        },
+        {
+          "word": "identificación",
+          "vocabulary_rank": 2534,
+          "log_probability": -6.764330863952637
+        },
+        {
+          "word": "presentación",
+          "vocabulary_rank": 4024,
+          "log_probability": -6.809114456176758
+        },
+        {
+          "word": "gasolina",
+          "vocabulary_rank": 2379,
+          "log_probability": -6.82611608505249
+        },
+        {
+          "word": "plata",
+          "vocabulary_rank": 1847,
+          "log_probability": -6.827497959136963
+        },
+        {
+          "word": "crédito",
+          "vocabulary_rank": 2251,
+          "log_probability": -6.8366546630859375
+        },
+        {
+          "word": "motivos",
+          "vocabulary_rank": 3460,
+          "log_probability": -6.851736068725586
+        },
+        {
+          "word": "regalos",
+          "vocabulary_rank": 2890,
+          "log_probability": -6.859946250915527
+        },
+        {
+          "word": "depósito",
+          "vocabulary_rank": 3161,
+          "log_probability": -6.883021831512451
+        }
+      ],
+      "probes": [
+        {
+          "word": "dinero",
+          "eligible": true,
+          "rank": 1,
+          "log_probability": -2.6940712928771973
+        },
+        {
+          "word": "permiso",
+          "eligible": true,
+          "rank": 5,
+          "log_probability": -5.053197383880615
+        },
+        {
+          "word": "ayuda",
+          "eligible": true,
+          "rank": 8,
+          "log_probability": -5.672532081604004
+        },
+        {
+          "word": "miedo",
+          "eligible": true,
+          "rank": 185,
+          "log_probability": -8.879761695861816
+        },
+        {
+          "word": "verano",
+          "eligible": true,
+          "rank": 2416,
+          "log_probability": -14.754566192626953
+        },
+        {
+          "word": "perro",
+          "eligible": true,
+          "rank": 554,
+          "log_probability": -10.528196334838867
+        }
+      ],
+      "corpus": {
+        "pattern": "comprarlo sin ([[:alpha:]ÁÉÍÓÚÜÑáéíóúüñ]+)",
+        "matches": 6,
+        "distinct_fillers": 6,
+        "top_fillers": [
+          {
+            "word": "más",
+            "count": 1
+          },
+          {
+            "word": "ti",
+            "count": 1
+          },
+          {
+            "word": "ella",
+            "count": 1
+          },
+          {
+            "word": "licencia",
+            "count": 1
+          },
+          {
+            "word": "mirarlo",
+            "count": 1
+          },
+          {
+            "word": "preguntarte",
+            "count": 1
+          }
+        ],
+        "probe_counts": {
+          "dinero": 0,
+          "permiso": 0,
+          "ayuda": 0,
+          "miedo": 0,
+          "verano": 0,
+          "perro": 0
+        }
+      }
+    }
+  ],
+  "reviewed_variant_scores": [
+    {
+      "frame_id": "scalev1-f7b968893463",
+      "decision": "reject",
+      "review_reason": "Por verano is not idiomatic for the intended duration reading.",
+      "base_spanish": "Estaré en Madrid por Navidad.",
+      "generated_spanish": "Estaré en Madrid por verano.",
+      "replaced_spanish": "Navidad",
+      "spanish_realization": "verano",
+      "reinforcement_word": "verano",
+      "base_mean_log_probability": -2.8455448150634766,
+      "generated_mean_log_probability": -4.119414806365967,
+      "delta": -1.2738699913024902
+    },
+    {
+      "frame_id": "scalev1-54877e7e7863",
+      "decision": "accept",
+      "review_reason": "Natural standalone old-card example.",
+      "base_spanish": "Tienen una vieja cámara que todavía funciona.",
+      "generated_spanish": "Tienen una vieja tarjeta que todavía funciona.",
+      "replaced_spanish": "cámara",
+      "spanish_realization": "tarjeta",
+      "reinforcement_word": "tarjeta",
+      "base_mean_log_probability": -1.5356253385543823,
+      "generated_mean_log_probability": -2.1848273277282715,
+      "delta": -0.6492019891738892
+    },
+    {
+      "frame_id": "scalev1-cb1b15db7bd6",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "La mejor parte del fin de semana es comer con toda la familia los domingos.",
+      "generated_spanish": "La mejor parte del verano es comer con toda la familia los domingos.",
+      "replaced_spanish": "del fin de semana",
+      "spanish_realization": "del verano",
+      "reinforcement_word": "verano",
+      "base_mean_log_probability": -0.47170042991638184,
+      "generated_mean_log_probability": -0.9683965444564819,
+      "delta": -0.4966961145401001
+    },
+    {
+      "frame_id": "scalev1-a33fa03f0866",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "El hotel era muy caro.",
+      "generated_spanish": "El edificio era muy caro.",
+      "replaced_spanish": "El hotel",
+      "spanish_realization": "El edificio",
+      "reinforcement_word": "edificio",
+      "base_mean_log_probability": -1.5318140983581543,
+      "generated_mean_log_probability": -2.070984125137329,
+      "delta": -0.5391700267791748
+    },
+    {
+      "frame_id": "scalev1-530bdc5a3565",
+      "decision": "accept",
+      "review_reason": "Situational but plausible, grammatical, and correctly translated.",
+      "base_spanish": "Cuando hace calor, nos gusta desayunar en el jardín.",
+      "generated_spanish": "Cuando hace calor, nos gusta desayunar en la escuela.",
+      "replaced_spanish": "en el jardín",
+      "spanish_realization": "en la escuela",
+      "reinforcement_word": "escuela",
+      "base_mean_log_probability": -1.2054965496063232,
+      "generated_mean_log_probability": -1.3681288957595825,
+      "delta": -0.16263234615325928
+    },
+    {
+      "frame_id": "scalev1-c8d178cc3361",
+      "decision": "reject",
+      "review_reason": "Breakfast in church conditional on hot weather is conspicuously contrived.",
+      "base_spanish": "Cuando hace calor, nos gusta desayunar en el jardín.",
+      "generated_spanish": "Cuando hace calor, nos gusta desayunar en la iglesia.",
+      "replaced_spanish": "en el jardín",
+      "spanish_realization": "en la iglesia",
+      "reinforcement_word": "iglesia",
+      "base_mean_log_probability": -1.2054965496063232,
+      "generated_mean_log_probability": -1.1630476713180542,
+      "delta": 0.04244887828826904
+    },
+    {
+      "frame_id": "scalev1-4fa8c5520c22",
+      "decision": "reject",
+      "review_reason": "Final solo creates a scope/meaning ambiguity not reflected by the English.",
+      "base_spanish": "Bebí un vaso de vino sólo.",
+      "generated_spanish": "Bebí un vaso de cerveza sólo.",
+      "replaced_spanish": "vino",
+      "spanish_realization": "cerveza",
+      "reinforcement_word": "cerveza",
+      "base_mean_log_probability": -1.3848994970321655,
+      "generated_mean_log_probability": -1.917281150817871,
+      "delta": -0.5323816537857056
+    },
+    {
+      "frame_id": "scalev1-98c75f058351",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "¿Quieres ver mi carro nuevo?",
+      "generated_spanish": "¿Quieres ver mi perro nuevo?",
+      "replaced_spanish": "carro",
+      "spanish_realization": "perro",
+      "reinforcement_word": "perro",
+      "base_mean_log_probability": -1.2285759449005127,
+      "generated_mean_log_probability": -1.98581063747406,
+      "delta": -0.7572346925735474
+    },
+    {
+      "frame_id": "scalev1-93b615db3e7c",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "¿Quieres ver mi carro nuevo?",
+      "generated_spanish": "¿Quieres ver mi camión nuevo?",
+      "replaced_spanish": "carro",
+      "spanish_realization": "camión",
+      "reinforcement_word": "camión",
+      "base_mean_log_probability": -1.2285759449005127,
+      "generated_mean_log_probability": -1.22765052318573,
+      "delta": 0.0009254217147827148
+    },
+    {
+      "frame_id": "scalev1-5af7f0ea921c",
+      "decision": "accept",
+      "review_reason": "Unusual but plausible, grammatical, and correctly translated.",
+      "base_spanish": "¿Quieres ver mi carro nuevo?",
+      "generated_spanish": "¿Quieres ver mi robot nuevo?",
+      "replaced_spanish": "carro",
+      "spanish_realization": "robot",
+      "reinforcement_word": "robot",
+      "base_mean_log_probability": -1.2285759449005127,
+      "generated_mean_log_probability": -2.0184614658355713,
+      "delta": -0.7898855209350586
+    },
+    {
+      "frame_id": "scalev1-9b5c07fe74a1",
+      "decision": "reject",
+      "review_reason": "Estar por un aumento en dinero is not an idiomatic expression of support.",
+      "base_spanish": "Los estudiantes están por un aumento en ayuda financiera de parte de la universidad.",
+      "generated_spanish": "Los estudiantes están por un aumento en dinero de parte de la universidad.",
+      "replaced_spanish": "ayuda financiera",
+      "spanish_realization": "dinero",
+      "reinforcement_word": "dinero",
+      "base_mean_log_probability": -2.0075249671936035,
+      "generated_mean_log_probability": -2.3668322563171387,
+      "delta": -0.35930728912353516
+    },
+    {
+      "frame_id": "scalev1-6e7de4a8a9ef",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "Si ellos están aquí, entonces, ¿quién está en casa?",
+      "generated_spanish": "Si ellos están aquí, entonces, ¿quién está en la escuela?",
+      "replaced_spanish": "casa",
+      "spanish_realization": "la escuela",
+      "reinforcement_word": "escuela",
+      "base_mean_log_probability": -0.37065792083740234,
+      "generated_mean_log_probability": -0.7916861176490784,
+      "delta": -0.421028196811676
+    },
+    {
+      "frame_id": "scalev1-ae8982558f59",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "Si ellos están aquí, entonces, ¿quién está en casa?",
+      "generated_spanish": "Si ellos están aquí, entonces, ¿quién está en el hospital?",
+      "replaced_spanish": "casa",
+      "spanish_realization": "el hospital",
+      "reinforcement_word": "hospital",
+      "base_mean_log_probability": -0.37065792083740234,
+      "generated_mean_log_probability": -0.7613223195075989,
+      "delta": -0.39066439867019653
+    },
+    {
+      "frame_id": "scalev1-7c7b0a10bf66",
+      "decision": "accept",
+      "review_reason": "Agreement was regenerated correctly and the result is natural.",
+      "base_spanish": "¿Me puedes pasar ese lápiz?",
+      "generated_spanish": "¿Me puedes pasar esa tarjeta?",
+      "replaced_spanish": "ese lápiz",
+      "spanish_realization": "esa tarjeta",
+      "reinforcement_word": "tarjeta",
+      "base_mean_log_probability": -1.1645543575286865,
+      "generated_mean_log_probability": -1.5144394636154175,
+      "delta": -0.34988510608673096
+    },
+    {
+      "frame_id": "scalev1-5db97f86b538",
+      "decision": "accept",
+      "review_reason": "Natural standalone wish and aligned translation.",
+      "base_spanish": "Quiero que mi vida esté llena de aventura y amor.",
+      "generated_spanish": "Quiero que mi vida esté llena de salud.",
+      "replaced_spanish": "aventura y amor",
+      "spanish_realization": "salud",
+      "reinforcement_word": "salud",
+      "base_mean_log_probability": -0.9507822394371033,
+      "generated_mean_log_probability": -1.3762348890304565,
+      "delta": -0.42545264959335327
+    },
+    {
+      "frame_id": "scalev1-c7c07171c7ba",
+      "decision": "accept",
+      "review_reason": "Natural substitution and aligned translation.",
+      "base_spanish": "No voy a comprarlo sin un descuento.",
+      "generated_spanish": "No voy a comprarlo sin dinero.",
+      "replaced_spanish": "un descuento",
+      "spanish_realization": "dinero",
+      "reinforcement_word": "dinero",
+      "base_mean_log_probability": -1.6824116706848145,
+      "generated_mean_log_probability": -1.7186976671218872,
+      "delta": -0.036285996437072754
+    }
+  ],
+  "reviewed_variant_summary": {
+    "accepted": 12,
+    "rejected": 4,
+    "accepted_median_delta": -0.42324042320251465,
+    "rejected_median_delta": -0.44584447145462036,
+    "pairwise_accuracy": 0.5,
+    "interpretation": "pairwise_accuracy is the probability that a random human-accepted variant receives a better source-relative score than a random human-rejected variant"
+  },
+  "limitations": [
+    "Single-mask filler ranking covers only vocabulary words represented by one model token.",
+    "Masked-token probability measures contextual plausibility, not target-sense preservation.",
+    "Pseudo-log-likelihood is evaluated on only 16 reviewed pilot variants."
+  ]
+}
