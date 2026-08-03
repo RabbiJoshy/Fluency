@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "status": "beta_consensus_only",
+  "purpose": "Offline personalised examples for recently incorrect Spanish words.",
+  "selection_rule": "Both Iteration 3 independent audits accepted every included variant.",
+  "excluded_note": "Gate-only approvals and every disputed/rejected variant are excluded.",
+  "source_hashes": {
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/panel.json": "d4883b57665217c8afdea3e19d3caadcdbbd84b4110f33b4736a554584912ccb",
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/iteration_2/proposals.jsonl": "207b2a6af085bd750c5dbcfa260c18d624d46a5e9268e153a30c04a8e4c7d3dd",
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/iteration_3/audit_a.json": "059a34ae125c1b6e7a8eb17b73046c63d09ed6e98f77c19d98a6a926cf607fff",
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/iteration_3/audit_b.json": "40c0bcfa019bfe14aa90712e07023ab0af6afac60d7ddd1a31c2fa38dd83f439"
+  },
+  "frames": [
+    {
+      "frame_id": "afp-03/de2900",
+      "target_card_id": "c47250",
+      "target_word": "radar",
+      "target_lemma": "radar",
+      "target_sense_id": "a6d",
+      "target_translation": "radar",
+      "target_context": "device",
+      "reinforcement_card_id": "de2900",
+      "reinforcement_word": "coche",
+      "spanish": "Este coche no está equipado con radar.",
+      "english": "The car is not equipped with radar.",
+      "base_source_id": "a6c7eb7a2955",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-04/434b77",
+      "target_card_id": "c3c61b",
+      "target_word": "muros",
+      "target_lemma": "muro",
+      "target_sense_id": "6aa",
+      "target_translation": "wall",
+      "target_context": "vertical structure",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "El hombre pintó los muros de blanco.",
+      "english": "The man painted the walls white.",
+      "base_source_id": "447d1df862ff",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-04/b54435",
+      "target_card_id": "c3c61b",
+      "target_word": "muros",
+      "target_lemma": "muro",
+      "target_sense_id": "6aa",
+      "target_translation": "wall",
+      "target_context": "vertical structure",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "El amigo pintó los muros de blanco.",
+      "english": "The friend painted the walls white.",
+      "base_source_id": "447d1df862ff",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-04/baebbd",
+      "target_card_id": "c3c61b",
+      "target_word": "muros",
+      "target_lemma": "muro",
+      "target_sense_id": "6aa",
+      "target_translation": "wall",
+      "target_context": "vertical structure",
+      "reinforcement_card_id": "baebbd",
+      "reinforcement_word": "mujer",
+      "spanish": "La mujer pintó los muros de blanco.",
+      "english": "The woman painted the walls white.",
+      "base_source_id": "447d1df862ff",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-06/489811",
+      "target_card_id": "c86a7b",
+      "target_word": "compré",
+      "target_lemma": "comprar",
+      "target_sense_id": "f91",
+      "target_translation": "to buy",
+      "target_context": "to acquire",
+      "reinforcement_card_id": "489811",
+      "reinforcement_word": "camisa",
+      "spanish": "Compré esta camisa a bajo precio.",
+      "english": "I bought this shirt at a low price.",
+      "base_source_id": "44faf0cb33e6",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-11/4415d4",
+      "target_card_id": "7a798b",
+      "target_word": "hacer",
+      "target_lemma": "hacer",
+      "target_sense_id": "bf6",
+      "target_translation": "to make",
+      "target_context": "to produce",
+      "reinforcement_card_id": "4415d4",
+      "reinforcement_word": "huevos",
+      "spanish": "Tan pronto como llegues, ella va a hacer huevos.",
+      "english": "As soon as you arrive, she will make eggs.",
+      "base_source_id": "d3202806e73b",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-17/434b77",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "802",
+      "target_translation": "living",
+      "target_context": "livelihood",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "¿Qué hace el hombre para ganarse la vida?",
+      "english": "What does the man do for a living?",
+      "base_source_id": "02e77734da1e",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-17/b54435",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "802",
+      "target_translation": "living",
+      "target_context": "livelihood",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "¿Qué hace tu amigo para ganarse la vida?",
+      "english": "What does your friend do for a living?",
+      "base_source_id": "02e77734da1e",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-17/baebbd",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "802",
+      "target_translation": "living",
+      "target_context": "livelihood",
+      "reinforcement_card_id": "baebbd",
+      "reinforcement_word": "mujer",
+      "spanish": "¿Qué hace tu mujer para ganarse la vida?",
+      "english": "What does your wife do for a living?",
+      "base_source_id": "02e77734da1e",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-18/434b77",
+      "target_card_id": "95bf53",
+      "target_word": "verdad",
+      "target_lemma": "verdad",
+      "target_sense_id": "d9eb",
+      "target_translation": "truth",
+      "target_context": "reality",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "A decir verdad, yo no soy tu hombre.",
+      "english": "To tell the truth, I'm not your man.",
+      "base_source_id": "9fe0bcc13030",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-18/b54435",
+      "target_card_id": "95bf53",
+      "target_word": "verdad",
+      "target_lemma": "verdad",
+      "target_sense_id": "d9eb",
+      "target_translation": "truth",
+      "target_context": "reality",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "A decir verdad, yo no soy tu amigo.",
+      "english": "To tell the truth, I'm not your friend.",
+      "base_source_id": "9fe0bcc13030",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-19/489811",
+      "target_card_id": "a9ff0a",
+      "target_word": "poniendo",
+      "target_lemma": "poner",
+      "target_sense_id": "be9",
+      "target_translation": "to put on",
+      "target_context": "clothing",
+      "reinforcement_card_id": "489811",
+      "reinforcement_word": "camisa",
+      "spanish": "Se está poniendo una camisa.",
+      "english": "He's putting on a shirt.",
+      "base_source_id": "c3268285474a",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-23/434b77",
+      "target_card_id": "38ab9a",
+      "target_word": "haya",
+      "target_lemma": "haber",
+      "target_sense_id": "d62",
+      "target_translation": "to have",
+      "target_context": "used in compound tenses",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "Es raro que el hombre no haya venido aún.",
+      "english": "It is strange that the man has not come yet.",
+      "base_source_id": "181bfd41f771",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass_with_soft_flags",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-23/b54435",
+      "target_card_id": "38ab9a",
+      "target_word": "haya",
+      "target_lemma": "haber",
+      "target_sense_id": "d62",
+      "target_translation": "to have",
+      "target_context": "used in compound tenses",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "Es raro que el amigo no haya venido aún.",
+      "english": "It is strange that the friend has not come yet.",
+      "base_source_id": "181bfd41f771",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass_with_soft_flags",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-23/baebbd",
+      "target_card_id": "38ab9a",
+      "target_word": "haya",
+      "target_lemma": "haber",
+      "target_sense_id": "d62",
+      "target_translation": "to have",
+      "target_context": "used in compound tenses",
+      "reinforcement_card_id": "baebbd",
+      "reinforcement_word": "mujer",
+      "spanish": "Es raro que la mujer no haya venido aún.",
+      "english": "It is strange that the woman has not come yet.",
+      "base_source_id": "181bfd41f771",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass_with_soft_flags",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    }
+  ]
+}

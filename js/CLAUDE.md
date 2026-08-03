@@ -181,6 +181,14 @@ have all been encountered. Landing and Main menu return rerun the first-actionab
 level choice, skipping both fully seen and marked-done levels; a learner's manual
 level choice still wins while they remain on setup.
 
+Normal-mode Spanish examples may include `personalised: true` offline template
+variants with `reinforcement_word`. `example-personalisation.js` hides them
+unless that word has a dated mistake in the last seven days; the ordinary
+SpanishDict example remains visible otherwise. Eligible variants are promoted
+by `sortExamplesByRelevance()` and labelled “Personalised practice”. These are
+precomputed, consensus-audited examples—not live model output—and they must not
+affect sense percentages.
+
 ## buildFilteredVocab() — Central Filter
 
 Filter order: blank/dupe removal → artist flags (is_english, is_noise/is_interjection, is_propernoun) → cognates → single-occurrence → lemma mode.

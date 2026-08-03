@@ -3,6 +3,11 @@
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
 import './state.js';
 import './speech.js';
+import {
+    collectRecentWrongWords,
+    exampleReinforcesRecentMistake,
+    filterPersonalisedExamples,
+} from './example-personalisation.js?v=20260802f';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -682,14 +687,7 @@ function getDeckWords() {
 }
 
 function getRecentWrongWords() {
-    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
-    const words = new Set();
-    for (const [, data] of Object.entries(progressData)) {
-        if (data.wrong > 0 && data.lastWrong && new Date(data.lastWrong).getTime() > sevenDaysAgo) {
-            words.add((data.word || '').toLowerCase());
-        }
-    }
-    return words;
+    return collectRecentWrongWords(progressData);
 }
 
 // Count "content" tokens after stripping ad-libs/brackets/parentheticals —
@@ -1001,7 +999,7 @@ function sortExamplesByRelevance(examples) {
     // A good "first line" is long enough to be a real phrase but short enough
     // to read at a glance; lines outside the window get a graded penalty.
     const LEN_MIN = 6, LEN_MAX = 14;
-    const scored = examples.map(ex => {
+    const scored = filterPersonalisedExamples(examples, wrongWords).map(ex => {
         const spanishText = ex.spanish || ex.target || '';
         const tokens = spanishText.toLowerCase()
             .match(/[\p{L}\p{N}]+(?:['’][\p{L}\p{N}]+)*/gu) || [];
@@ -1010,6 +1008,7 @@ function sortExamplesByRelevance(examples) {
             if (wrongWords.has(t)) wrongHits++;
             if (deckWords.has(t)) deckHits++;
         }
+        if (exampleReinforcesRecentMistake(ex, wrongWords)) wrongHits += 2;
         // Cap the overlap counts: with ~3.5k visible cards nearly every token
         // is a deck word, so an uncapped deckHits is just sentence length in
         // disguise — that made the sort pick the single longest line ~80% of
@@ -1063,7 +1062,7 @@ function sortExamplesByRelevance(examples) {
 
 function dedupeExamples(examples) {
     const seen = new Set();
-    return examples.filter(ex => {
+    return filterPersonalisedExamples(examples, getRecentWrongWords()).filter(ex => {
         const key = (ex.target || ex.spanish || '').trim();
         if (!key || seen.has(key)) return false;
         seen.add(key);
@@ -3436,7 +3435,11 @@ function updateCard({ announceHeadword = false } = {}) {
                 const exIdx = currentExampleIndex % activeExamples.length;
                 const example = activeExamples[exIdx];
                 currentExample = example;
-                exampleSourceLabel = example.source_mode === 'speech' ? 'Speech example' : null;
+                exampleSourceLabel = example.personalised
+                    ? `Personalised practice · ${example.reinforcement_word}`
+                    : (example.source_mode === 'speech'
+                        ? 'Speech example'
+                        : (example.source === 'spanishdict' ? 'SpanishDict example' : null));
                 window._currentDisplayedExample = example;
                 const exTarget = example.target || example.spanish || '';
                 const exEnglish = example.english || '';
@@ -4717,7 +4720,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260802e';
+const ASSET_VERSION = '20260802f';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

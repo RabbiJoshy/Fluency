@@ -23,3 +23,16 @@ reviewed operation so a mistaken pointer cannot overwrite working data.
 
 Large downloadable corpora do not belong here. Compact, expensive-to-recreate
 menus, assignments, distributions, curated examples, and their manifests do.
+
+Create and activate a future SpanishDict-example candidate with a new immutable
+run ID:
+
+```bash
+.venv/bin/python3 pipeline/tool_8a_build_spanishdict_candidate.py \
+  --run-id YYYY-MM-DD_spanishdict_examples_vN \
+  --activate
+```
+
+Pass `--extract-audited-frames` only when deliberately regenerating the compact
+frame bank from the local methodology experiment. Ordinary rebuilds consume
+the tracked frame bank and do not depend on the gitignored experiment folder.

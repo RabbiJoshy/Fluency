@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "run_id": "2026-05-02_legacy_gemini",
-  "role": "comparison_baseline",
-  "note": "Frozen pre-rebuild Normal Mode mappings and their derived distributions."
+  "run_id": "2026-08-02_spanishdict_examples_v1",
+  "role": "active_candidate",
+  "parent_run": "2026-05-02_legacy_gemini",
+  "note": "SpanishDict exact-sense examples with provisional legacy sense weights."
 }

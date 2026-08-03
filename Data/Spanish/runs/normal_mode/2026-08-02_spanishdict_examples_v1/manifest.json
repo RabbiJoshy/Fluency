@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-02_spanishdict_examples_v1",
+  "mode": "normal",
+  "language": "Spanish",
+  "status": "active_candidate",
+  "created_at": "2026-08-02T23:42:39.932248+00:00",
+  "git_commit_at_build": "65466696bcf4094b91121a5284657b571105f17a",
+  "method": {
+    "sense_selection": "Existing displayed SpanishDict sense IDs",
+    "sense_distribution": "Inherited provisional frequencies from 2026-05-02_legacy_gemini",
+    "examples": "Exact SpanishDict examples attached to each displayed sense ID",
+    "personalisation": "Consensus-audited offline templates selected by recent learner mistakes"
+  },
+  "parent_run": "2026-05-02_legacy_gemini",
+  "parent_manifest_sha256": "4cbba986c92b54825d55e639ff8d2e175d0d33900efb09de3efb08a4e81787e1",
+  "artifacts": {
+    "vocabulary.index.json": {
+      "path": "vocabulary.index.json",
+      "bytes": 17829503,
+      "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"
+    },
+    "vocabulary.examples.json": {
+      "path": "vocabulary.examples.json",
+      "bytes": 8601406,
+      "sha256": "7eb66eaf7a113f01bac4ff82e20ce4ea730064ec266537e257cb9846148598bd"
+    },
+    "sense_menu/spanishdict.json": {
+      "path": "sense_menu/spanishdict.json",
+      "bytes": 43786636,
+      "sha256": "8eb786341341bf169f565eb6f88945f8c263b574a94c5ca7f74a3dbf512063a8"
+    },
+    "personalised_example_frames.json": {
+      "path": "personalised_example_frames.json",
+      "bytes": 12283,
+      "sha256": "4b81664f3a755e10c0c88e6d5a7a1ad061255402b40abf7f1d6471b0a2848a59"
+    }
+  },
+  "metrics": {
+    "cards": 11729,
+    "displayed_meanings": 26566,
+    "exact_sense_matches": 26004,
+    "meanings_with_spanishdict_examples": 25978,
+    "meanings_without_spanishdict_examples": 588,
+    "spanishdict_examples": 27115,
+    "direction_repaired_examples": 261,
+    "personalised_frames": 15,
+    "preserved_nonmeaning_buckets": 959
+  },
+  "invariants": [
+    "Every canonical example is attached through its exact SpanishDict sense ID.",
+    "Generated examples do not contribute to sense distributions.",
+    "Only variants accepted by both Iteration 3 audits enter the personalised bank.",
+    "The app makes no live model call while studying."
+  ]
+}

@@ -14,6 +14,14 @@ their exact menu and records hashes, evidence recovery, and external resource
 snapshots. `Spanish/active_normal_run.json` names the comparison/deployment
 baseline; it is intentionally not an automatic restore mechanism.
 
+The active SpanishDict-example candidate is built by
+`pipeline/tool_8a_build_spanishdict_candidate.py`. It keeps the current index's
+displayed senses and provisional frequencies, replaces meaning evidence with
+the example attached to each exact SpanishDict `sense_id`, and embeds only the
+consensus-audited offline templates in
+`Spanish/personalised_example_frames.json`. Generated templates never
+contribute to frequency estimates.
+
 ## Vocabulary Files
 
 | Language | File | Entries |
