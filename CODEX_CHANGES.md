@@ -16,6 +16,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Card grammar uses an adaptive identity block: a distinct lemma shares its row with POS, repeated lemmas leave no placeholder hole, and verb morphology wraps independently below. POS pills, English morphology labels, semantic POS/special-row colour themes, pooled-form highlighting, and the grouped/linked card-back layout remain. Sense-row typography scales with copy length; Expression rows stack upright source text above italic English, while clitic rows remain compact. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Spanish Speech vNext is a versioned data candidate rather than an in-place rewrite or a separate learner UI. Its eventual route must use the ordinary setup, sets, cards, navigation, and info panel while swapping only same-schema Spanish index/example paths. Stable SpanishDict sense IDs, legacy word IDs, canonical examples, and reviewed evidence may migrate forward; legacy runs remain recoverable. The earlier four-word custom preview is superseded and must not be treated as the target app experience.
+- Sentence-aligned bilingual string matching is rejected as Spanish Speech WSD or prominence evidence. It may retrieve candidates, but a word aligner is needed to bind an English cue to the Spanish token and a separate semantic gate is still needed for the full SpanishDict translation/context. No string-match counts may become learner percentages.
 - Audit flags separate the target (pairing, meaning, example, lemma, word form, card, or note only) from the problem category. They default to the visible sense–example pairing and store structured evidence through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
@@ -32,6 +33,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-08-03 — Reject raw string matching as Spanish Speech WSD
+
+- Commit `f3d8d3ba`; no shipped deck or front-end change, so no cache bump.
+- Audited the completed 61,434,251-line zero-AI run: 302,551,875 surface/line matches, 49,554,992 unique-English-cue matches (16.4%), and 38,328 observed SpanishDict leaves. The scan itself completed correctly, but its cue matches are not valid sense counts.
+- A deterministic 60-row polysemous sample contained at least 14 plainly wrong or unusable attachments, establishing a precision ceiling of about 77% before debatable context distinctions. Examples include `hacer` assigned “to think” because `think` translated `creo`, `mano` assigned “way” because it translated `forma`, and `daba` assigned “to press” because it translated `presionaba` elsewhere in the same sentence.
+- Decision: do not build or activate a deck from these counts. Preserve the output as a large retrieval-candidate and benchmark bank. The next bounded experiment is pretrained word alignment (SimAlign or AWESOME-Align) followed by a separate full-translation/context semantic gate with abstention; require at least 95% exact-leaf precision before another corpus-wide run.
+- Verification: ten focused Speech evidence tests; complete manifest/headline inspection; targeted high-frequency/concrete/verb examples; deterministic 60-row sample; tracked decision report with real data; `git diff --check`. The active deck and immutable historical runs remain unchanged.
 
 ### 2026-08-03 — Prepare the full zero-AI Spanish Speech audit
 
