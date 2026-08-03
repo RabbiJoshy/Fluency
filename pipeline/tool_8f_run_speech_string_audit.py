@@ -683,7 +683,7 @@ def finalize(
             "Sentence-level bilingual alignment is not word alignment.",
             "Exact lexical cues favour senses whose English gloss appears literally.",
             "Translation-equivalent SpanishDict leaves intentionally receive no shared cue.",
-            "Counts are evidence lower bounds, not production prominence percentages.",
+            "Counts are raw lexical-cue matches, not validated lower bounds or prominence percentages.",
             "The completed audit does not modify or activate an app deck.",
         ],
     }
@@ -705,7 +705,7 @@ def finalize(
         f"(**{(total_assigned / total_matches if total_matches else 0):.1%}** coverage).",
         f"Observed **{observed_senses:,}** SpanishDict leaves through unique English cues.",
         "",
-        "These counts are auditable lower-bound evidence. They must not be treated as final percentages until cue precision and sense-dependent recall are reviewed.",
+        "These are auditable lexical-cue matches, not validated sense counts. Sentence alignment is not word alignment, so precision must be established before any prominence use.",
         "",
         "## Highest-coverage surfaces (minimum 20 matches)",
         "",
