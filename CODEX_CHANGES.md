@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-02 — Polish card tools and stabilize POS information
+
+- Commit `0f4fcec7`; front-end cache `flashcards-v176` / `20260802g`; tracked by GitHub issue #55.
+- Replaced the scaled favicon-proxy presentation for the SpanishDict and Reverso card-back links with local inline SVG marks, preserving the familiar identities without density-dependent raster softness or adding a new asset request.
+- Restyled the Synonyms and Verb icons with the same translucent white tile, border, and white artwork used by the sense-progress trigger.
+- Made the POS information popover a bounded momentum-scroll surface with contained overscroll. A post-scroll synthetic click can no longer dismiss it: only the explicit close button, backdrop, or Escape closes the dialog.
+- Verification: syntax checks for the changed JavaScript modules and service worker; all 14 focused UI/offline tests including crisp vector controls, scroll containment, backdrop-only dismissal, and asset-version lockstep; valid developer-changelog JSON; `git diff --check`. Per repository policy, no browser preview was used against the service-worker app.
+
 ### 2026-08-02 — Build the SpanishDict-example Normal Mode candidate
 
 - Commit `97a3e76e`; front-end cache `flashcards-v175` / `20260802f`.

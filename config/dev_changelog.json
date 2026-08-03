@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "0f4fcec7",
+      "summary": "Card tools are sharper and information popups scroll reliably",
+      "details": [
+        "Replaced the enlarged SpanishDict and Reverso favicon artwork with density-independent vector marks so both remain crisp",
+        "Synonyms and Verb now share the translucent white tile treatment used by the sense-progress control",
+        "POS information now scrolls inside a height-limited touch surface and closes only from its close button, backdrop or Escape; cache v175→v176, assets 20260802f→20260802g"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "97a3e76e",
       "summary": "Spanish Speech now starts from exact SpanishDict examples",
       "details": [
