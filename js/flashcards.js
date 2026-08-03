@@ -7,7 +7,7 @@ import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260802h';
+} from './example-personalisation.js?v=20260803a';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -1458,13 +1458,6 @@ function initializeApp() {
         restartAllCards();
     });
 
-    document.getElementById('continueIncorrectBtn').addEventListener('click', function() {
-        if (window.currentIncorrectCards && window.currentIncorrectCards.length > 0) {
-            hideDeckCompleteModal();
-            restartWithIncorrectCards(window.currentIncorrectCards);
-        }
-    });
-
     document.getElementById('markCompleteBtn').addEventListener('click', async function() {
         if (this.dataset.loading === 'true') return;
         const action = this.dataset.action;
@@ -1774,7 +1767,14 @@ function setupKeyboardShortcuts() {
         const deckCompleteModal = document.getElementById('deckCompleteModal');
         if (deckCompleteModal && !deckCompleteModal.classList.contains('hidden')) {
             e.preventDefault();
-            if (e.key === 'Escape') hideDeckCompleteModal();
+            if (e.key === 'Escape') {
+                hideDeckCompleteModal();
+            } else if (e.key === 'Enter' && window.matchMedia('(min-width: 768px)').matches) {
+                const continueBtn = document.getElementById('markCompleteBtn');
+                if (continueBtn?.dataset.action && continueBtn.dataset.loading !== 'true' && !continueBtn.disabled) {
+                    continueBtn.click();
+                }
+            }
             return;
         }
 
@@ -2770,10 +2770,8 @@ function updateCard({ announceHeadword = false } = {}) {
         && foldSurfaceForm(citationForm) !== foldSurfaceForm(backWordText)
         && !isTrivialCanonicalRelation(backWordText, citationForm)) {
         if (!isFlipped) {
-            backCitationHTML = `<div class="back-citation-line">
-                <span class="back-lemma">${escapeCardText(citationForm)}</span>
-                ${formNote ? `<span class="back-form-note">${escapeCardText(formNote)}</span>` : ''}
-            </div>`;
+            backCitationHTML = `<span class="back-lemma">${escapeCardText(citationForm)}</span>
+                ${formNote ? `<span class="back-form-note">${escapeCardText(formNote)}</span>` : ''}`;
         } else if (foldSurfaceForm(citationForm) !== foldSurfaceForm(backWordText)) {
             // An unmerged surface-form card can still benefit from its
             // dictionary citation beneath the exact production answer.
@@ -2813,6 +2811,7 @@ function updateCard({ announceHeadword = false } = {}) {
     // their POS colour through the surrounding section, so repeating the pill
     // above every section would add labels without adding information.
     let backPosLegendHTML = '';
+    let backMorphologyHTML = '';
     let activeBackPos = null;
     let hasBackPosTabs = false;
     if ((card.isMultiMeaning && card.meanings) || card.partOfSpeech) {
@@ -2851,14 +2850,21 @@ function updateCard({ announceHeadword = false } = {}) {
                 const posButton = hasBackPosTabs
                     ? `<button type="button" class="card-pos back-pos-tab ${getPosColorClass(pos)}${pos === activeBackPos ? ' selected' : ''}" role="tab" aria-selected="${pos === activeBackPos}" onclick="selectPartOfSpeech(event, ${meaningIndex}, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
                     : `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
-                const hasMorph = isVerbPos(pos) && morphLabels.length > 0;
-                return hasMorph
-                    ? `<span class="back-pos-unit has-morphology" role="presentation">${posButton}${renderMorphStrip('card-pos pos-verb')}</span>`
-                    : posButton;
+                return posButton;
             });
             backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose part of speech</span>' : ''}${posPills.join('')}</div>`;
+            if (isVerbPos(activeBackPos) && morphLabels.length > 0) {
+                backMorphologyHTML = `<div class="back-morphology-row">${renderMorphStrip('card-pos pos-verb')}</div>`;
+            }
         }
     }
+
+    const backGrammarHTML = (backCitationHTML || backPosLegendHTML || backMorphologyHTML)
+        ? `<div class="back-grammar-block">
+                <div class="back-identity-row">${backCitationHTML}${backPosLegendHTML}</div>
+                ${backMorphologyHTML}
+           </div>`
+        : '';
 
     // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
     // on narrow viewports) so the header grows by a reasonable amount
@@ -2870,10 +2876,9 @@ function updateCard({ announceHeadword = false } = {}) {
             <div class="flip-back-area" id="flipBackArea">
                 <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
-                <div class="back-citation-slot${backCitationHTML ? '' : ' is-empty'}"${backCitationHTML ? '' : ' aria-hidden="true"'}>${backCitationHTML || '&nbsp;'}</div>
-                ${backDerivationHTML}
             </div>
-            ${backPosLegendHTML}
+            ${backGrammarHTML}
+            ${backDerivationHTML}
             ${homographChipHTML}
         </div>
     `;
@@ -3100,9 +3105,9 @@ function updateCard({ announceHeadword = false } = {}) {
                 const mweTextClass = adaptiveRowTextClass(mweExpr, mwePrimary, mweContext);
                 target.push(`
                 <div class="meaning-row meaning-row-mwe ${mweTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
-                    <span class="special-meaning-copy${mweCount > 1 ? ' has-counter' : ''}">
+                    <span class="special-meaning-copy bilingual-meaning-copy${mweCount > 1 ? ' has-counter' : ''}">
                         <span class="mwe-expression">${mweExpr}</span>
-                        <strong>${primaryDisplay}</strong>
+                        <strong class="mwe-translation">${primaryDisplay}</strong>
                         ${contextHTML}
                     </span>
                     ${mweCounter}
@@ -4755,7 +4760,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260802h';
+const ASSET_VERSION = '20260803a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
@@ -4794,7 +4799,7 @@ const stubFor = (name, loader) => {
  'navigateToCard', 'navigateToVocabCard', 'navigateBack',
  'popupFoundWord', 'peekHomograph',
  'showEndOfDeckOptions', 'hideDeckCompleteModal',
- 'restartWithIncorrectCards', 'restartAllCards']
+ 'restartAllCards']
     .forEach(name => stubFor(name, lazyModals));
 
 ['toggleConjugationTable', 'switchConjMood', 'switchConjTense']

@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-03",
+      "commit": "pending",
+      "summary": "Card grammar, Expressions, and set completion now read more clearly",
+      "details": [
+        "The back uses one occupied grammar block: a distinct lemma shares its identity row with POS, repeated lemmas leave no hole, and verb morphology wraps on its own row",
+        "Expression rows now stack the source phrase above its English meaning with a subtle divider instead of mixing both languages inline",
+        "Set completion removes mistake-only review and duplicate no-mistakes copy, keeps compact icon actions for Main menu and Redo set, and lets desktop Enter start the suggested next set; cache v178→v179, assets 20260802i→20260803a"
+      ]
+    },
+    {
       "date": "2026-08-02",
       "commit": "461d3c3f",
       "summary": "Example lyrics no longer waste a line on ad-libs",

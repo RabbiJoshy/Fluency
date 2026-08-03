@@ -141,7 +141,10 @@ test('card rows use distinct POS themes and content-aware bilingual typography',
     assert.deepEqual([...context.result], ['row-text-xl', 'row-text-lg', 'row-text-sm']);
     assert.match(cards, /class="special-meaning-context">· /);
     assert.match(cards, /meaning-row-translation row-adaptive-text/);
-    assert.match(css, /\.special-meaning-copy\s*\{[^}]*flex-direction: row;[^}]*flex-wrap: wrap;/s);
+    assert.match(cards, /class="special-meaning-copy bilingual-meaning-copy/);
+    assert.match(cards, /class="mwe-translation"/);
+    assert.match(css, /\.special-meaning-copy\.bilingual-meaning-copy\s*\{[^}]*flex-direction: column;[^}]*flex-wrap: nowrap;/s);
+    assert.match(css, /\.bilingual-meaning-copy \.mwe-translation\s*\{[^}]*border-top:/s);
     assert.match(css, /\.special-meaning-copy strong\s*\{[^}]*font-style: italic;/s);
     assert.match(css, /\.card-details \.special-meaning-copy strong\s*\{[^}]*color: #fff;/s);
     assert.match(css, /\.mwe-expression\s*\{[^}]*font-style: normal;/s);
@@ -149,6 +152,36 @@ test('card rows use distinct POS themes and content-aware bilingual typography',
     assert.match(css, /\.row-text-xl\s*\{[^}]*--row-context-size: 17px;/s);
     assert.match(css, /\.row-text-lg\s*\{[^}]*--row-context-size: 15px;/s);
     assert.match(css, /\.row-text-sm\s*\{[^}]*--row-context-size: 11\.5px;/s);
+});
+
+test('card grammar uses an occupied identity row and a separate verb morphology row', async () => {
+    const [cards, css] = await Promise.all([
+        text('js/flashcards.js'), text('css/style.css')
+    ]);
+    assert.match(cards, /class="back-grammar-block"/);
+    assert.match(cards, /class="back-identity-row">\$\{backCitationHTML\}\$\{backPosLegendHTML\}/);
+    assert.match(cards, /class="back-morphology-row">\$\{renderMorphStrip/);
+    assert.doesNotMatch(cards, /back-citation-slot/);
+    assert.doesNotMatch(css, /\.back-citation-slot/);
+    assert.match(css, /\.back-grammar-block\s*\{[^}]*min-height: 32px;/s);
+    assert.match(css, /\.back-identity-row\s*\{[^}]*flex-wrap: wrap;/s);
+});
+
+test('set completion offers next, main menu, and redo without mistake-only review', async () => {
+    const [html, cards, modals, css] = await Promise.all([
+        text('index.html'), text('js/flashcards.js'),
+        text('js/flashcards-modals.js'), text('css/style.css')
+    ]);
+    assert.match(html, /id="markCompleteBtn"/);
+    assert.match(html, /id="deckCompleteMenuBtn"[\s\S]*?secondary-action-icon[\s\S]*?Main menu/);
+    assert.match(html, /id="restartAllBtn"[\s\S]*?secondary-action-icon[\s\S]*?Redo set/);
+    assert.doesNotMatch(html, /continueIncorrectBtn|Review mistakes|No mistakes/);
+    assert.doesNotMatch(cards, /restartWithIncorrectCards|currentIncorrectCards|continueIncorrectBtn/);
+    assert.doesNotMatch(modals, /restartWithIncorrectCards|currentIncorrectCards|continueIncorrectBtn|No mistakes/);
+    assert.match(cards, /e\.key === 'Enter' && window\.matchMedia\('\(min-width: 768px\)'\)\.matches/);
+    assert.match(cards, /continueBtn\.click\(\)/);
+    assert.match(css, /\.deck-complete-btn\.menu-btn,[\s\S]*?font-size: 11px;/);
+    assert.match(css, /\.secondary-action-icon/);
 });
 
 test('setup routing advances past fully seen and suggestion-skipped levels', async () => {

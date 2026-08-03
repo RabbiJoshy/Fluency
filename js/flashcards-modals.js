@@ -906,18 +906,14 @@ function peekHomograph(siblingId) {
 
 // ---------------------------------------------------------------------------
 // End-of-deck modal — shown when handleSwipeAction or nextCard exhausts the
-// current deck. Buttons (restart all / review incorrect) are wired in core's
+// current deck. Continuation, main-menu, and redo controls are wired in core's
 // initializeApp via lazy stubs.
 // ---------------------------------------------------------------------------
 
 function showEndOfDeckOptions() {
-    // A completed deck is no longer resumable. Starting a follow-up set or
-    // mistake review will create a fresh snapshot on its first rendered card.
+    // A completed deck is no longer resumable. Starting a follow-up or redo
+    // set will create a fresh snapshot on its first rendered card.
     window.clearStudySessionSnapshot?.();
-    const incorrectCards = Object.keys(stats.cardStats)
-        .filter(idx => stats.cardStats[idx].incorrect > stats.cardStats[idx].correct)
-        .map(Number);
-
     const totalAttempts = stats.correct + stats.incorrect;
     const accuracy = totalAttempts > 0 ? Math.round((stats.correct / totalAttempts) * 100) : 0;
 
@@ -935,7 +931,6 @@ function showEndOfDeckOptions() {
     document.getElementById('completeIncorrect').textContent = stats.incorrect;
     document.getElementById('completeAccuracy').textContent = `${accuracy}% accuracy`;
 
-    const continueBtn = document.getElementById('continueIncorrectBtn');
     const messageEl = document.getElementById('completeMessage');
     const finishBtn = document.getElementById('markCompleteBtn');
     const finishLabel = document.getElementById('markCompleteLabel');
@@ -967,18 +962,9 @@ function showEndOfDeckOptions() {
         }
     }
 
-    if (incorrectCards.length > 0) {
-        messageEl.textContent = `${incorrectCards.length} card${incorrectCards.length > 1 ? 's' : ''} to review`;
-        continueBtn.disabled = false;
-        continueBtn.querySelector('span:last-child').textContent = `Review ${incorrectCards.length} Mistake${incorrectCards.length > 1 ? 's' : ''}`;
-    } else {
-        messageEl.innerHTML = '<span class="deck-complete-perfect">No mistakes this time.</span>';
-        continueBtn.disabled = true;
-        continueBtn.querySelector('span:last-child').textContent = 'No mistakes';
-    }
-
-    // Store incorrect cards for later use
-    window.currentIncorrectCards = incorrectCards;
+    // The stats already communicate misses. Keep this line empty during the
+    // normal completion state and reserve it for actionable loading errors.
+    messageEl.textContent = '';
 
     // Show the modal
     document.getElementById('deckCompleteModal').classList.remove('hidden');
@@ -986,26 +972,6 @@ function showEndOfDeckOptions() {
 
 function hideDeckCompleteModal() {
     document.getElementById('deckCompleteModal').classList.add('hidden');
-}
-
-function restartWithIncorrectCards(incorrectIndices) {
-    // Create new deck with only incorrect cards
-    const incorrectFlashcards = incorrectIndices.map(idx => flashcards[idx]);
-
-    // Reset stats
-    stats.correct = 0;
-    stats.incorrect = 0;
-    stats.total = 0;
-    stats.studied = new Set();
-    stats.cardStats = {};
-
-    // Set new flashcards array
-    flashcards = incorrectFlashcards;
-    currentIndex = 0;
-    currentSentenceIndex = 0;
-
-    updateCard();
-    document.getElementById('flashcard').classList.remove('flipped');
 }
 
 function restartAllCards() {
@@ -1847,5 +1813,4 @@ window.popupFoundWord = popupFoundWord;
 window.peekHomograph = peekHomograph;
 window.showEndOfDeckOptions = showEndOfDeckOptions;
 window.hideDeckCompleteModal = hideDeckCompleteModal;
-window.restartWithIncorrectCards = restartWithIncorrectCards;
 window.restartAllCards = restartAllCards;
