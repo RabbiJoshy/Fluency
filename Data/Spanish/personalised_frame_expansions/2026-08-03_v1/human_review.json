@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "reviewer": "Codex pilot review",
+  "reviewed_at": "2026-08-03T00:00:00Z",
+  "policy": "Accept grammatical, accurately translated, standalone Spanish that preserves the target sense. Slightly situational but plausible examples are allowed; reject idiomatic, scope, or conspicuous contrivance failures.",
+  "decisions": [
+    {"frame_id": "scalev1-f7b968893463", "decision": "reject", "reason": "Por verano is not idiomatic for the intended duration reading."},
+    {"frame_id": "scalev1-54877e7e7863", "decision": "accept", "reason": "Natural standalone old-card example."},
+    {"frame_id": "scalev1-cb1b15db7bd6", "decision": "accept", "reason": "Natural substitution and aligned translation."},
+    {"frame_id": "scalev1-a33fa03f0866", "decision": "accept", "reason": "Natural substitution and aligned translation."},
+    {"frame_id": "scalev1-530bdc5a3565", "decision": "accept", "reason": "Situational but plausible, grammatical, and correctly translated."},
+    {"frame_id": "scalev1-c8d178cc3361", "decision": "reject", "reason": "Breakfast in church conditional on hot weather is conspicuously contrived."},
+    {"frame_id": "scalev1-4fa8c5520c22", "decision": "reject", "reason": "Final solo creates a scope/meaning ambiguity not reflected by the English."},
+    {"frame_id": "scalev1-98c75f058351", "decision": "accept", "reason": "Natural substitution and aligned translation."},
+    {"frame_id": "scalev1-93b615db3e7c", "decision": "accept", "reason": "Natural substitution and aligned translation."},
+    {"frame_id": "scalev1-5af7f0ea921c", "decision": "accept", "reason": "Unusual but plausible, grammatical, and correctly translated."},
+    {"frame_id": "scalev1-9b5c07fe74a1", "decision": "reject", "reason": "Estar por un aumento en dinero is not an idiomatic expression of support."},
+    {"frame_id": "scalev1-6e7de4a8a9ef", "decision": "accept", "reason": "Natural substitution and aligned translation."},
+    {"frame_id": "scalev1-ae8982558f59", "decision": "accept", "reason": "Natural substitution and aligned translation."},
+    {"frame_id": "scalev1-7c7b0a10bf66", "decision": "accept", "reason": "Agreement was regenerated correctly and the result is natural."},
+    {"frame_id": "scalev1-5db97f86b538", "decision": "accept", "reason": "Natural standalone wish and aligned translation."},
+    {"frame_id": "scalev1-c7c07171c7ba", "decision": "accept", "reason": "Natural substitution and aligned translation."}
+  ]
+}

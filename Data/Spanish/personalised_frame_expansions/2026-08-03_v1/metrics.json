@@ -1,0 +1,13 @@
+{
+  "targets": 60,
+  "proposed_variants": 58,
+  "deterministic_pass": 23,
+  "deterministic_reject": 35,
+  "gate_assessed": 23,
+  "model_accepted_high_confidence": 16,
+  "accepted_after_review": 12,
+  "human_review_applied": true,
+  "unique_reinforcement_words": 10,
+  "unique_target_senses": 9,
+  "merged": 12
+}

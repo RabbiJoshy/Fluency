@@ -9,13 +9,13 @@
       "scope": "language",
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
-      "contentVersion": "2026-08-02-spanishdict-v1",
-      "storageBytes": 26430909,
-      "transferBytes": 4744865,
+      "contentVersion": "2026-08-03-spanishdict-v2",
+      "storageBytes": 26435208,
+      "transferBytes": 4745745,
       "dependencies": [],
       "files": [
         {"path": "Data/Spanish/vocabulary.index.json", "bytes": 17829503, "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"},
-        {"path": "Data/Spanish/vocabulary.examples.json", "bytes": 8601406, "sha256": "7eb66eaf7a113f01bac4ff82e20ce4ea730064ec266537e257cb9846148598bd"}
+        {"path": "Data/Spanish/vocabulary.examples.json", "bytes": 8605705, "sha256": "1cd6373e99c7421c531ee6a2c1342ab8cacc50b3cd6c1252f44cacd822ca7fe0"}
       ]
     },
     {

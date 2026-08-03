@@ -31,20 +31,31 @@ test('personalised templates appear only for recent incorrect words', () => {
     assert.equal(exampleReinforcesRecentMistake(mujer, wrongWords), false);
 });
 
-test('candidate frames are attached to their exact target sense and are consensus-only', async () => {
+test('reviewed candidate frames are attached to their exact target sense', async () => {
+    const active = await json('Data/Spanish/active_normal_run.json');
     const [index, examples, bank, manifest] = await Promise.all([
         json('Data/Spanish/vocabulary.index.json'),
         json('Data/Spanish/vocabulary.examples.json'),
         json('Data/Spanish/personalised_example_frames.json'),
-        json('Data/Spanish/runs/normal_mode/2026-08-02_spanishdict_examples_v1/manifest.json'),
+        json(`Data/Spanish/runs/normal_mode/${active.run_id}/manifest.json`),
     ]);
-    assert.equal(bank.status, 'beta_consensus_only');
-    assert.equal(bank.frames.length, 15);
-    assert.equal(manifest.metrics.personalised_frames, 15);
+    assert.equal(active.run_id, '2026-08-03_spanishdict_examples_v2');
+    assert.equal(bank.status, 'beta_consensus_and_reviewed_generation');
+    assert.equal(bank.frames.length, 27);
+    assert.equal(manifest.metrics.personalised_frames, bank.frames.length);
     const cards = new Map(index.map(card => [card.id, card]));
     for (const frame of bank.frames) {
-        assert.match(frame.audit.a, /^(pass|accept)/);
-        assert.match(frame.audit.b, /^(pass|accept)/);
+        if (frame.validation_tier === 'deterministic_model_gate_human_review_v1') {
+            assert.equal(frame.human_review.reviewer, 'Codex pilot review');
+            assert.equal(frame.gate.assessment.confidence, 'high');
+            for (const check of [
+                'sense_preserved', 'grammar_valid', 'translation_faithful',
+                'role_compatible', 'factually_coherent', 'natural_for_flashcard',
+            ]) assert.equal(frame.gate.assessment[check], true, `${frame.frame_id}: ${check}`);
+        } else {
+            assert.match(frame.audit.a, /^(pass|accept)/);
+            assert.match(frame.audit.b, /^(pass|accept)/);
+        }
         const card = cards.get(frame.target_card_id);
         assert.ok(card, frame.frame_id);
         const meaningIndex = card.meanings.findIndex(meaning =>
@@ -55,7 +66,12 @@ test('candidate frames are attached to their exact target sense and are consensu
         assert.ok(attached, frame.frame_id);
         assert.equal(attached.sense_id, frame.target_sense_id);
         assert.equal(attached.reinforcement_word, frame.reinforcement_word);
-        assert.equal(attached.assignment_method, 'audited-template');
+        assert.equal(
+            attached.assignment_method,
+            frame.validation_tier === 'deterministic_model_gate_human_review_v1'
+                ? 'human-reviewed-template'
+                : 'audited-template',
+        );
     }
 });
 

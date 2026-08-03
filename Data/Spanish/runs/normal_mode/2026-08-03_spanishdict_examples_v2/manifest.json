@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-03_spanishdict_examples_v2",
+  "mode": "normal",
+  "language": "Spanish",
+  "status": "active_candidate",
+  "created_at": "2026-08-03T02:44:49.058414+00:00",
+  "git_commit_at_build": "8e250bc7a09ed9b9e241666b9a2142782b174430",
+  "method": {
+    "sense_selection": "Existing displayed SpanishDict sense IDs",
+    "sense_distribution": "Inherited provisional frequencies from 2026-05-02_legacy_gemini",
+    "examples": "Exact SpanishDict examples attached to each displayed sense ID",
+    "personalisation": "Reviewed offline templates selected by recent learner mistakes"
+  },
+  "parent_run": "2026-05-02_legacy_gemini",
+  "parent_manifest_sha256": "4cbba986c92b54825d55e639ff8d2e175d0d33900efb09de3efb08a4e81787e1",
+  "artifacts": {
+    "vocabulary.index.json": {
+      "path": "vocabulary.index.json",
+      "bytes": 17829503,
+      "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"
+    },
+    "vocabulary.examples.json": {
+      "path": "vocabulary.examples.json",
+      "bytes": 8605705,
+      "sha256": "1cd6373e99c7421c531ee6a2c1342ab8cacc50b3cd6c1252f44cacd822ca7fe0"
+    },
+    "sense_menu/spanishdict.json": {
+      "path": "sense_menu/spanishdict.json",
+      "bytes": 43786636,
+      "sha256": "8eb786341341bf169f565eb6f88945f8c263b574a94c5ca7f74a3dbf512063a8"
+    },
+    "personalised_example_frames.json": {
+      "path": "personalised_example_frames.json",
+      "bytes": 28831,
+      "sha256": "07774fac4b2685c3f091a9136eab98e9f366127a428123a4934156cefb618016"
+    }
+  },
+  "metrics": {
+    "cards": 11729,
+    "displayed_meanings": 26566,
+    "exact_sense_matches": 26004,
+    "meanings_with_spanishdict_examples": 25978,
+    "meanings_without_spanishdict_examples": 588,
+    "spanishdict_examples": 27115,
+    "direction_repaired_examples": 261,
+    "personalised_frames": 27,
+    "preserved_nonmeaning_buckets": 959
+  },
+  "invariants": [
+    "Every canonical example is attached through its exact SpanishDict sense ID.",
+    "Generated examples do not contribute to sense distributions.",
+    "The original templates require both Iteration 3 audits; scale-pilot templates also require deterministic checks, a high-confidence semantic gate, and explicit human acceptance.",
+    "The app makes no live model call while studying."
+  ]
+}

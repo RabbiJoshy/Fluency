@@ -24,7 +24,7 @@ from lingua import Language, LanguageDetectorBuilder
 
 ROOT = Path(__file__).resolve().parents[1]
 SPANISH = ROOT / "Data" / "Spanish"
-DEFAULT_RUN_ID = "2026-08-02_spanishdict_examples_v1"
+DEFAULT_RUN_ID = "2026-08-03_spanishdict_examples_v2"
 DEFAULT_FRAME_BANK = SPANISH / "personalised_example_frames.json"
 EXPERIMENT = SPANISH / "Intermediates" / "example_methodology_v2" / "automatic_frame_test"
 LANGUAGE_DETECTOR = LanguageDetectorBuilder.from_languages(
@@ -206,7 +206,11 @@ def personalised_record(frame: dict[str, Any]) -> dict[str, Any]:
         "target": spanish,
         "english": english,
         "source": "personalised-template",
-        "assignment_method": "audited-template",
+        "assignment_method": (
+            "human-reviewed-template"
+            if frame.get("validation_tier") == "deterministic_model_gate_human_review_v1"
+            else "audited-template"
+        ),
         "sense_id": frame["target_sense_id"],
         "personalised": True,
         "reinforcement_word": frame["reinforcement_word"],
@@ -325,7 +329,7 @@ def main() -> None:
             "sense_selection": "Existing displayed SpanishDict sense IDs",
             "sense_distribution": "Inherited provisional frequencies from 2026-05-02_legacy_gemini",
             "examples": "Exact SpanishDict examples attached to each displayed sense ID",
-            "personalisation": "Consensus-audited offline templates selected by recent learner mistakes",
+            "personalisation": "Reviewed offline templates selected by recent learner mistakes",
         },
         "parent_run": "2026-05-02_legacy_gemini",
         "parent_manifest_sha256": sha256(legacy_manifest_path),
@@ -337,7 +341,7 @@ def main() -> None:
         "invariants": [
             "Every canonical example is attached through its exact SpanishDict sense ID.",
             "Generated examples do not contribute to sense distributions.",
-            "Only variants accepted by both Iteration 3 audits enter the personalised bank.",
+            "The original templates require both Iteration 3 audits; scale-pilot templates also require deterministic checks, a high-confidence semantic gate, and explicit human acceptance.",
             "The app makes no live model call while studying.",
         ],
     }
@@ -361,7 +365,7 @@ def main() -> None:
                 "run_id": args.run_id,
                 "role": "active_candidate",
                 "parent_run": "2026-05-02_legacy_gemini",
-                "note": "SpanishDict exact-sense examples with provisional legacy sense weights.",
+                "note": "SpanishDict exact-sense examples plus reviewed offline personalisation, with provisional legacy sense weights.",
             },
         )
         print(f"Activated {args.run_id} -> Data/Spanish/vocabulary.examples.json")

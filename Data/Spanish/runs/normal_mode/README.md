@@ -36,3 +36,15 @@ run ID:
 Pass `--extract-audited-frames` only when deliberately regenerating the compact
 frame bank from the local methodology experiment. Ordinary rebuilds consume
 the tracked frame bank and do not depend on the gitignored experiment folder.
+
+Expand the offline personalised bank with a bounded, resumable pilot run:
+
+```bash
+.venv/bin/python3 pipeline/tool_8b_expand_personalised_frames.py --run
+```
+
+The expansion writes proposals, deterministic rejections, semantic-gate
+assessments, and a review queue under `Data/Spanish/personalised_frame_expansions/`.
+Adding `--merge` consumes `human_review.json` when present and merges only
+explicitly accepted rows. Model confidence alone is retained as audit evidence,
+not treated as sufficient publication approval.

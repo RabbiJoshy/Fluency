@@ -1,0 +1,770 @@
+{
+  "schema_version": 1,
+  "status": "beta_consensus_and_reviewed_generation",
+  "purpose": "Offline personalised examples for recently incorrect Spanish words.",
+  "selection_rule": "Both Iteration 3 independent audits accepted every included variant.",
+  "excluded_note": "Gate-only approvals and every disputed/rejected variant are excluded.",
+  "source_hashes": {
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/panel.json": "d4883b57665217c8afdea3e19d3caadcdbbd84b4110f33b4736a554584912ccb",
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/iteration_2/proposals.jsonl": "207b2a6af085bd750c5dbcfa260c18d624d46a5e9268e153a30c04a8e4c7d3dd",
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/iteration_3/audit_a.json": "059a34ae125c1b6e7a8eb17b73046c63d09ed6e98f77c19d98a6a926cf607fff",
+    "Data/Spanish/Intermediates/example_methodology_v2/automatic_frame_test/iteration_3/audit_b.json": "40c0bcfa019bfe14aa90712e07023ab0af6afac60d7ddd1a31c2fa38dd83f439"
+  },
+  "frames": [
+    {
+      "frame_id": "afp-03/de2900",
+      "target_card_id": "c47250",
+      "target_word": "radar",
+      "target_lemma": "radar",
+      "target_sense_id": "a6d",
+      "target_translation": "radar",
+      "target_context": "device",
+      "reinforcement_card_id": "de2900",
+      "reinforcement_word": "coche",
+      "spanish": "Este coche no está equipado con radar.",
+      "english": "The car is not equipped with radar.",
+      "base_source_id": "a6c7eb7a2955",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-04/434b77",
+      "target_card_id": "c3c61b",
+      "target_word": "muros",
+      "target_lemma": "muro",
+      "target_sense_id": "6aa",
+      "target_translation": "wall",
+      "target_context": "vertical structure",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "El hombre pintó los muros de blanco.",
+      "english": "The man painted the walls white.",
+      "base_source_id": "447d1df862ff",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-04/b54435",
+      "target_card_id": "c3c61b",
+      "target_word": "muros",
+      "target_lemma": "muro",
+      "target_sense_id": "6aa",
+      "target_translation": "wall",
+      "target_context": "vertical structure",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "El amigo pintó los muros de blanco.",
+      "english": "The friend painted the walls white.",
+      "base_source_id": "447d1df862ff",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-04/baebbd",
+      "target_card_id": "c3c61b",
+      "target_word": "muros",
+      "target_lemma": "muro",
+      "target_sense_id": "6aa",
+      "target_translation": "wall",
+      "target_context": "vertical structure",
+      "reinforcement_card_id": "baebbd",
+      "reinforcement_word": "mujer",
+      "spanish": "La mujer pintó los muros de blanco.",
+      "english": "The woman painted the walls white.",
+      "base_source_id": "447d1df862ff",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-06/489811",
+      "target_card_id": "c86a7b",
+      "target_word": "compré",
+      "target_lemma": "comprar",
+      "target_sense_id": "f91",
+      "target_translation": "to buy",
+      "target_context": "to acquire",
+      "reinforcement_card_id": "489811",
+      "reinforcement_word": "camisa",
+      "spanish": "Compré esta camisa a bajo precio.",
+      "english": "I bought this shirt at a low price.",
+      "base_source_id": "44faf0cb33e6",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-11/4415d4",
+      "target_card_id": "7a798b",
+      "target_word": "hacer",
+      "target_lemma": "hacer",
+      "target_sense_id": "bf6",
+      "target_translation": "to make",
+      "target_context": "to produce",
+      "reinforcement_card_id": "4415d4",
+      "reinforcement_word": "huevos",
+      "spanish": "Tan pronto como llegues, ella va a hacer huevos.",
+      "english": "As soon as you arrive, she will make eggs.",
+      "base_source_id": "d3202806e73b",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-17/434b77",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "802",
+      "target_translation": "living",
+      "target_context": "livelihood",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "¿Qué hace el hombre para ganarse la vida?",
+      "english": "What does the man do for a living?",
+      "base_source_id": "02e77734da1e",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-17/b54435",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "802",
+      "target_translation": "living",
+      "target_context": "livelihood",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "¿Qué hace tu amigo para ganarse la vida?",
+      "english": "What does your friend do for a living?",
+      "base_source_id": "02e77734da1e",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-17/baebbd",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "802",
+      "target_translation": "living",
+      "target_context": "livelihood",
+      "reinforcement_card_id": "baebbd",
+      "reinforcement_word": "mujer",
+      "spanish": "¿Qué hace tu mujer para ganarse la vida?",
+      "english": "What does your wife do for a living?",
+      "base_source_id": "02e77734da1e",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-18/434b77",
+      "target_card_id": "95bf53",
+      "target_word": "verdad",
+      "target_lemma": "verdad",
+      "target_sense_id": "d9eb",
+      "target_translation": "truth",
+      "target_context": "reality",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "A decir verdad, yo no soy tu hombre.",
+      "english": "To tell the truth, I'm not your man.",
+      "base_source_id": "9fe0bcc13030",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-18/b54435",
+      "target_card_id": "95bf53",
+      "target_word": "verdad",
+      "target_lemma": "verdad",
+      "target_sense_id": "d9eb",
+      "target_translation": "truth",
+      "target_context": "reality",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "A decir verdad, yo no soy tu amigo.",
+      "english": "To tell the truth, I'm not your friend.",
+      "base_source_id": "9fe0bcc13030",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-19/489811",
+      "target_card_id": "a9ff0a",
+      "target_word": "poniendo",
+      "target_lemma": "poner",
+      "target_sense_id": "be9",
+      "target_translation": "to put on",
+      "target_context": "clothing",
+      "reinforcement_card_id": "489811",
+      "reinforcement_word": "camisa",
+      "spanish": "Se está poniendo una camisa.",
+      "english": "He's putting on a shirt.",
+      "base_source_id": "c3268285474a",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass",
+        "b": "pass",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-23/434b77",
+      "target_card_id": "38ab9a",
+      "target_word": "haya",
+      "target_lemma": "haber",
+      "target_sense_id": "d62",
+      "target_translation": "to have",
+      "target_context": "used in compound tenses",
+      "reinforcement_card_id": "434b77",
+      "reinforcement_word": "hombre",
+      "spanish": "Es raro que el hombre no haya venido aún.",
+      "english": "It is strange that the man has not come yet.",
+      "base_source_id": "181bfd41f771",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass_with_soft_flags",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-23/b54435",
+      "target_card_id": "38ab9a",
+      "target_word": "haya",
+      "target_lemma": "haber",
+      "target_sense_id": "d62",
+      "target_translation": "to have",
+      "target_context": "used in compound tenses",
+      "reinforcement_card_id": "b54435",
+      "reinforcement_word": "amigo",
+      "spanish": "Es raro que el amigo no haya venido aún.",
+      "english": "It is strange that the friend has not come yet.",
+      "base_source_id": "181bfd41f771",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass_with_soft_flags",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "afp-23/baebbd",
+      "target_card_id": "38ab9a",
+      "target_word": "haya",
+      "target_lemma": "haber",
+      "target_sense_id": "d62",
+      "target_translation": "to have",
+      "target_context": "used in compound tenses",
+      "reinforcement_card_id": "baebbd",
+      "reinforcement_word": "mujer",
+      "spanish": "Es raro que la mujer no haya venido aún.",
+      "english": "It is strange that the woman has not come yet.",
+      "base_source_id": "181bfd41f771",
+      "model": "gemini-3.5-flash-lite",
+      "prompt_id": "automatic-frame-exhaustive-semantic-v2",
+      "audit": {
+        "a": "pass_with_soft_flags",
+        "b": "pass_with_soft_flags",
+        "rule": "retained only when both independent audits accepted the variant"
+      }
+    },
+    {
+      "frame_id": "scalev1-54877e7e7863",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "5c76b5",
+      "target_word": "una",
+      "target_lemma": "un",
+      "target_sense_id": "5ad",
+      "target_translation": "an",
+      "target_context": "singular",
+      "reinforcement_card_id": "dce699",
+      "reinforcement_word": "tarjeta",
+      "spanish": "Tienen una vieja tarjeta que todavía funciona.",
+      "english": "They have an old card which is still working.",
+      "base_source_id": "5387d5837c47",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-54877e7e7863",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Clean noun substitution that preserves all grammatical and contextual requirements."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural standalone old-card example."
+      }
+    },
+    {
+      "frame_id": "scalev1-cb1b15db7bd6",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "b78685",
+      "target_word": "del",
+      "target_lemma": "del",
+      "target_sense_id": "6c1",
+      "target_translation": "of the",
+      "target_context": "used to indicate relationship or possession",
+      "reinforcement_card_id": "bf3f39",
+      "reinforcement_word": "verano",
+      "spanish": "La mejor parte del verano es comer con toda la familia los domingos.",
+      "english": "The best part of the summer is having dinner with the whole family on Sundays.",
+      "base_source_id": "5320f5911e37",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-cb1b15db7bd6",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Smooth substitution of 'fin de semana' with 'verano' maintaining proper contraction."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-a33fa03f0866",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "53500a",
+      "target_word": "muy",
+      "target_lemma": "muy",
+      "target_sense_id": "633",
+      "target_translation": "very",
+      "target_context": "extremely",
+      "reinforcement_card_id": "9761c0",
+      "reinforcement_word": "edificio",
+      "spanish": "El edificio era muy caro.",
+      "english": "The building was very expensive.",
+      "base_source_id": "9f29bbe81515",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-a33fa03f0866",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Valid substitution of 'hotel' with 'edificio' yielding a natural sentence."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-530bdc5a3565",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "51dc2e",
+      "target_word": "cuando",
+      "target_lemma": "cuando",
+      "target_sense_id": "d33",
+      "target_translation": "when",
+      "target_context": "used to indicate time",
+      "reinforcement_card_id": "415587",
+      "reinforcement_word": "escuela",
+      "spanish": "Cuando hace calor, nos gusta desayunar en la escuela.",
+      "english": "When it's hot, we like to have breakfast at the school.",
+      "base_source_id": "1acc2a155b25",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-530bdc5a3565",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Having breakfast at school when it's hot is entirely plausible."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Situational but plausible, grammatical, and correctly translated."
+      }
+    },
+    {
+      "frame_id": "scalev1-98c75f058351",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "cd9482",
+      "target_word": "ver",
+      "target_lemma": "ver",
+      "target_sense_id": "74d",
+      "target_translation": "to see",
+      "target_context": "to perceive with the eyes",
+      "reinforcement_card_id": "f8785e",
+      "reinforcement_word": "perro",
+      "spanish": "¿Quieres ver mi perro nuevo?",
+      "english": "Do you want to see my new dog?",
+      "base_source_id": "2f5d7e4f3984",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-98c75f058351",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Replaced car with dog, creating a perfectly normal and natural sentence."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-93b615db3e7c",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "cd9482",
+      "target_word": "ver",
+      "target_lemma": "ver",
+      "target_sense_id": "74d",
+      "target_translation": "to see",
+      "target_context": "to perceive with the eyes",
+      "reinforcement_card_id": "eaf850",
+      "reinforcement_word": "camión",
+      "spanish": "¿Quieres ver mi camión nuevo?",
+      "english": "Do you want to see my new truck?",
+      "base_source_id": "2f5d7e4f3984",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-93b615db3e7c",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Replaced car with truck cleanly."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-5af7f0ea921c",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "cd9482",
+      "target_word": "ver",
+      "target_lemma": "ver",
+      "target_sense_id": "74d",
+      "target_translation": "to see",
+      "target_context": "to perceive with the eyes",
+      "reinforcement_card_id": "a3d51e",
+      "reinforcement_word": "robot",
+      "spanish": "¿Quieres ver mi robot nuevo?",
+      "english": "Do you want to see my new robot?",
+      "base_source_id": "2f5d7e4f3984",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-5af7f0ea921c",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Replaced car with robot successfully."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Unusual but plausible, grammatical, and correctly translated."
+      }
+    },
+    {
+      "frame_id": "scalev1-6e7de4a8a9ef",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "1fa9ac",
+      "target_word": "entonces",
+      "target_lemma": "entonces",
+      "target_sense_id": "56f",
+      "target_translation": "then",
+      "target_context": "introducing a conclusion",
+      "reinforcement_card_id": "415587",
+      "reinforcement_word": "escuela",
+      "spanish": "Si ellos están aquí, entonces, ¿quién está en la escuela?",
+      "english": "If they're here, then who's at school?",
+      "base_source_id": "64528da81548",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-6e7de4a8a9ef",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Replaced 'casa' with 'la escuela', completely natural."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-ae8982558f59",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "1fa9ac",
+      "target_word": "entonces",
+      "target_lemma": "entonces",
+      "target_sense_id": "56f",
+      "target_translation": "then",
+      "target_context": "introducing a conclusion",
+      "reinforcement_card_id": "c57c52",
+      "reinforcement_word": "hospital",
+      "spanish": "Si ellos están aquí, entonces, ¿quién está en el hospital?",
+      "english": "If they're here, then who's at the hospital?",
+      "base_source_id": "64528da81548",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-ae8982558f59",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "Replaced 'casa' with 'el hospital', completely natural."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-7c7b0a10bf66",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "6d6075",
+      "target_word": "puedes",
+      "target_lemma": "poder",
+      "target_sense_id": "31d9",
+      "target_translation": "can",
+      "target_context": "used to ask for something or permission",
+      "reinforcement_card_id": "dce699",
+      "reinforcement_word": "tarjeta",
+      "spanish": "¿Me puedes pasar esa tarjeta?",
+      "english": "Can you pass me that card?",
+      "base_source_id": "e6e42119a7f0",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-7c7b0a10bf66",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "The variant perfectly substitutes 'ese lápiz' with 'esa tarjeta', maintaining correct gender agreement, natural usage, and accurate translation."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Agreement was regenerated correctly and the result is natural."
+      }
+    },
+    {
+      "frame_id": "scalev1-5db97f86b538",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "486efa",
+      "target_word": "vida",
+      "target_lemma": "vida",
+      "target_sense_id": "30c",
+      "target_translation": "life",
+      "target_context": "existence",
+      "reinforcement_card_id": "771c38",
+      "reinforcement_word": "salud",
+      "spanish": "Quiero que mi vida esté llena de salud.",
+      "english": "I want my life to be filled with health.",
+      "base_source_id": "4ebdaa637f08",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-5db97f86b538",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "The replacement of 'aventura y amor' with 'salud' results in a grammatically correct, natural, and logically coherent sentence."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural standalone wish and aligned translation."
+      }
+    },
+    {
+      "frame_id": "scalev1-c7c07171c7ba",
+      "validation_tier": "deterministic_model_gate_human_review_v1",
+      "target_card_id": "8d8b54",
+      "target_word": "sin",
+      "target_lemma": "sin",
+      "target_sense_id": "062",
+      "target_translation": "without",
+      "target_context": "absence",
+      "reinforcement_card_id": "a50f82",
+      "reinforcement_word": "dinero",
+      "spanish": "No voy a comprarlo sin dinero.",
+      "english": "I am not buying it without money.",
+      "base_source_id": "4353b24a2612",
+      "model": "gemini-3.5-flash-lite",
+      "gate": {
+        "model": "gemini-3.5-flash-lite",
+        "assessment": {
+          "variant_id": "scalev1-c7c07171c7ba",
+          "sense_preserved": true,
+          "grammar_valid": true,
+          "translation_faithful": true,
+          "role_compatible": true,
+          "factually_coherent": true,
+          "natural_for_flashcard": true,
+          "confidence": "high",
+          "reason": "The replacement of 'un descuento' with 'dinero' creates a completely natural and common Spanish sentence with correct grammar and translation."
+        }
+      },
+      "human_review": {
+        "reviewer": "Codex pilot review",
+        "reviewed_at": "2026-08-03T00:00:00Z",
+        "reason": "Natural substitution and aligned translation."
+      }
+    }
+  ],
+  "expanded_selection_rule": "New scale-v1 rows pass deterministic constraints, every separate semantic gate check at high confidence, and an explicit pilot human review.",
+  "expansions": [
+    {
+      "id": "2026-08-03_v1",
+      "path": "Data/Spanish/personalised_frame_expansions/2026-08-03_v1",
+      "frames_added": 12,
+      "metrics": {
+        "targets": 60,
+        "proposed_variants": 58,
+        "deterministic_pass": 23,
+        "deterministic_reject": 35,
+        "gate_assessed": 23,
+        "model_accepted_high_confidence": 16,
+        "accepted_after_review": 12,
+        "human_review_applied": true,
+        "unique_reinforcement_words": 10,
+        "unique_target_senses": 9
+      }
+    }
+  ]
+}

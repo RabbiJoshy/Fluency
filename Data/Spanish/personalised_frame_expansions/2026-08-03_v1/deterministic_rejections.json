@@ -1,0 +1,1444 @@
+[
+  {
+    "variant_id": "scalev1-0ff18afa417f",
+    "target": {
+      "target_id": "ed688d:c30",
+      "target_card_id": "ed688d",
+      "target_word": "que",
+      "target_lemma": "que",
+      "target_rank": 1,
+      "target_sense_id": "c30",
+      "target_pos": "CCONJ",
+      "target_translation": "to",
+      "target_context": "used in comparisons",
+      "base_spanish": "Prefiero las tiendas pequeñas que los grandes supermercados.",
+      "base_english": "I prefer small stores to big supermarkets.",
+      "base_example_id": "dd596fc4ace4"
+    },
+    "candidate": {
+      "candidate_id": "f8785e",
+      "word": "perro",
+      "lemma": "perro",
+      "rank": 501,
+      "translation": "dog",
+      "context": "animal"
+    },
+    "variant": {
+      "candidate_id": "f8785e",
+      "candidate_word": "perro",
+      "spanish_realization": "perro",
+      "english_realization": "dog",
+      "generated_spanish": "Prefiero los gatos pequeños que los grandes perros.",
+      "generated_english": "I prefer small cats to big dogs.",
+      "replaced_spanish": "tiendas",
+      "replaced_english": "stores",
+      "rationale": "Replaced tiendas with perros to form a plausible comparison."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-93875088eac0",
+    "target": {
+      "target_id": "ed688d:c30",
+      "target_card_id": "ed688d",
+      "target_word": "que",
+      "target_lemma": "que",
+      "target_rank": 1,
+      "target_sense_id": "c30",
+      "target_pos": "CCONJ",
+      "target_translation": "to",
+      "target_context": "used in comparisons",
+      "base_spanish": "Prefiero las tiendas pequeñas que los grandes supermercados.",
+      "base_english": "I prefer small stores to big supermarkets.",
+      "base_example_id": "dd596fc4ace4"
+    },
+    "candidate": {
+      "candidate_id": "415587",
+      "word": "escuela",
+      "lemma": "escuela",
+      "rank": 475,
+      "translation": "school",
+      "context": "educational institution"
+    },
+    "variant": {
+      "candidate_id": "415587",
+      "candidate_word": "escuela",
+      "spanish_realization": "escuela",
+      "english_realization": "school",
+      "generated_spanish": "Prefiero las casas pequeñas que las grandes escuelas.",
+      "generated_english": "I prefer small houses to big schools.",
+      "replaced_spanish": "tiendas",
+      "replaced_english": "stores",
+      "rationale": "Replaced tiendas with escuela for a valid comparison."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-560f829610e1",
+    "target": {
+      "target_id": "414451:e8d",
+      "target_card_id": "414451",
+      "target_word": "los",
+      "target_lemma": "los",
+      "target_rank": 16,
+      "target_sense_id": "e8d",
+      "target_pos": "DET",
+      "target_translation": "the",
+      "target_context": "plural",
+      "base_spanish": "Todos los asientos estaban ocupados.",
+      "base_english": "All the seats were taken.",
+      "base_example_id": "64cb5507294a"
+    },
+    "candidate": {
+      "candidate_id": "5f6f37",
+      "word": "puerta",
+      "lemma": "puerta",
+      "rank": 272,
+      "translation": "door",
+      "context": "entrance"
+    },
+    "variant": {
+      "candidate_id": "5f6f37",
+      "candidate_word": "puerta",
+      "spanish_realization": "puerta",
+      "english_realization": "door",
+      "generated_spanish": "Todas las puertas estaban ocupadas.",
+      "generated_english": "All the doors were taken.",
+      "replaced_spanish": "asientos",
+      "replaced_english": "seats",
+      "rationale": "Replaced asientos with puertas."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "target_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-5fce765aa0d6",
+    "target": {
+      "target_id": "d86f06:9138e81a",
+      "target_card_id": "d86f06",
+      "target_word": "está",
+      "target_lemma": "estar",
+      "target_rank": 22,
+      "target_sense_id": "9138e81a",
+      "target_pos": "VERB",
+      "target_translation": "to be",
+      "target_context": "to exist",
+      "base_spanish": "Luego está el trabajo que queda por hacer.",
+      "base_english": "Then there is the work that still needs to be done.",
+      "base_example_id": "e4c7e859f5f6"
+    },
+    "candidate": {
+      "candidate_id": "74435a",
+      "word": "familia",
+      "lemma": "familia",
+      "rank": 253,
+      "translation": "family",
+      "context": "relatives"
+    },
+    "variant": {
+      "candidate_id": "74435a",
+      "candidate_word": "familia",
+      "spanish_realization": "familia",
+      "english_realization": "family",
+      "generated_spanish": "Luego está la familia que queda por hacer.",
+      "generated_english": "Then there is the family that still needs to be done.",
+      "replaced_spanish": "trabajo",
+      "replaced_english": "work",
+      "rationale": "Replaced trabajo with familia."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-126b20e734fe",
+    "target": {
+      "target_id": "3985f6:d5a",
+      "target_card_id": "3985f6",
+      "target_word": "pero",
+      "target_lemma": "pero",
+      "target_rank": 25,
+      "target_sense_id": "d5a",
+      "target_pos": "CCONJ",
+      "target_translation": "but",
+      "target_context": "indicating contradiction",
+      "base_spanish": "Te quiero comprar algo, pero no tengo dinero.",
+      "base_english": "I want to buy you something but I don't have any money.",
+      "base_example_id": "60d7a7e4eed0"
+    },
+    "candidate": {
+      "candidate_id": "a50f82",
+      "word": "dinero",
+      "lemma": "dinero",
+      "rank": 156,
+      "translation": "money",
+      "context": "currency"
+    },
+    "variant": {
+      "candidate_id": "a50f82",
+      "candidate_word": "dinero",
+      "spanish_realization": "dinero",
+      "english_realization": "money",
+      "generated_spanish": "Te quiero comprar pan, pero no tengo dinero.",
+      "generated_english": "I want to buy you bread, but I don't have any money.",
+      "replaced_spanish": "algo",
+      "replaced_english": "something",
+      "rationale": "Replaced algo with dinero."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-04e8d8f73d96",
+    "target": {
+      "target_id": "138345:e53",
+      "target_card_id": "138345",
+      "target_word": "aquí",
+      "target_lemma": "aquí",
+      "target_rank": 32,
+      "target_sense_id": "e53",
+      "target_pos": "ADV",
+      "target_translation": "here",
+      "target_context": "indicating place",
+      "base_spanish": "Estoy parada aquí, en el círculo amarillo.",
+      "base_english": "I'm standing here, inside the yellow circle.",
+      "base_example_id": "98a47539cc14"
+    },
+    "candidate": {
+      "candidate_id": "cfa129",
+      "word": "iglesia",
+      "lemma": "iglesia",
+      "rank": 897,
+      "translation": "church",
+      "context": "religious"
+    },
+    "variant": {
+      "candidate_id": "cfa129",
+      "candidate_word": "iglesia",
+      "spanish_realization": "iglesia",
+      "english_realization": "church",
+      "generated_spanish": "Estoy parada aquí, en la iglesia.",
+      "generated_english": "I'm standing here, inside the church.",
+      "replaced_spanish": "círculo amarillo",
+      "replaced_english": "yellow circle",
+      "rationale": "Replaced círculo amarillo with iglesia."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-f49fd2f235fd",
+    "target": {
+      "target_id": "53500a:633",
+      "target_card_id": "53500a",
+      "target_word": "muy",
+      "target_lemma": "muy",
+      "target_rank": 42,
+      "target_sense_id": "633",
+      "target_pos": "ADV",
+      "target_translation": "very",
+      "target_context": "extremely",
+      "base_spanish": "El hotel era muy caro.",
+      "base_english": "The hotel was very expensive.",
+      "base_example_id": "9f29bbe81515"
+    },
+    "candidate": {
+      "candidate_id": "1c8182",
+      "word": "hotel",
+      "lemma": "hotel",
+      "rank": 797,
+      "translation": "hotel",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "1c8182",
+      "candidate_word": "hotel",
+      "spanish_realization": "El hotel",
+      "english_realization": "The hotel",
+      "generated_spanish": "El hotel era muy caro.",
+      "generated_english": "The hotel was very expensive.",
+      "replaced_spanish": "El hotel",
+      "replaced_english": "The hotel",
+      "rationale": "Retained the exact structure with identical subject."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "source_identical"
+    ]
+  },
+  {
+    "variant_id": "scalev1-70013fb681eb",
+    "target": {
+      "target_id": "481144:9b65296",
+      "target_card_id": "481144",
+      "target_word": "tengo",
+      "target_lemma": "tener",
+      "target_rank": 48,
+      "target_sense_id": "9b65296",
+      "target_pos": "VERB",
+      "target_translation": "to have",
+      "target_context": "to have planned",
+      "base_spanish": "El lunes tengo una cita con el dentista.",
+      "base_english": "I have a dentist appointment on Monday.",
+      "base_example_id": "e509f844ddb3"
+    },
+    "candidate": {
+      "candidate_id": "b66b80",
+      "word": "cumpleaños",
+      "lemma": "cumpleaños",
+      "rank": 854,
+      "translation": "birthday",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "b66b80",
+      "candidate_word": "cumpleaños",
+      "spanish_realization": "un cumpleaños",
+      "english_realization": "a birthday",
+      "generated_spanish": "El lunes tengo un cumpleaños con el dentista.",
+      "generated_english": "I have a birthday with the dentist on Monday.",
+      "replaced_spanish": "una cita",
+      "replaced_english": "an appointment",
+      "rationale": "Replaced 'una cita' with 'un cumpleaños'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "english_span_not_unique",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-14a5358e1dbe",
+    "target": {
+      "target_id": "357f3d:2f3",
+      "target_card_id": "357f3d",
+      "target_word": "vez",
+      "target_lemma": "vez",
+      "target_rank": 72,
+      "target_sense_id": "2f3",
+      "target_pos": "NOUN",
+      "target_translation": "time",
+      "target_context": "occasion",
+      "base_spanish": "Esa fue la última vez que lo vi.",
+      "base_english": "That was the last time I saw him.",
+      "base_example_id": "8d07aedd7982"
+    },
+    "candidate": {
+      "candidate_id": "78e460",
+      "word": "día",
+      "lemma": "día",
+      "rank": 134,
+      "translation": "day",
+      "context": "period of time"
+    },
+    "variant": {
+      "candidate_id": "78e460",
+      "candidate_word": "día",
+      "spanish_realization": "día",
+      "english_realization": "day",
+      "generated_spanish": "Esa fue la última día que lo vi.",
+      "generated_english": "That was the last day I saw him.",
+      "replaced_spanish": "vez",
+      "replaced_english": "time",
+      "rationale": "Replaced 'vez' with 'día' adjusted for gender."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "target_word_absent"
+    ]
+  },
+  {
+    "variant_id": "scalev1-6c82bc43ac89",
+    "target": {
+      "target_id": "3db789:eb9",
+      "target_card_id": "3db789",
+      "target_word": "ella",
+      "target_lemma": "ella",
+      "target_rank": 78,
+      "target_sense_id": "eb9",
+      "target_pos": "PRON",
+      "target_translation": "she",
+      "target_context": "third person singular",
+      "base_spanish": "Ella publicó un libro acerca de la epidemiología.",
+      "base_english": "She published a book about epidemiology.",
+      "base_example_id": "371c9cd0d08a"
+    },
+    "candidate": {
+      "candidate_id": "f1766a",
+      "word": "canción",
+      "lemma": "canción",
+      "rank": 1056,
+      "translation": "song",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "f1766a",
+      "candidate_word": "canción",
+      "spanish_realization": "canción",
+      "english_realization": "song",
+      "generated_spanish": "Ella publicó una canción acerca de la epidemiología.",
+      "generated_english": "She published a song about epidemiology.",
+      "replaced_spanish": "libro",
+      "replaced_english": "book",
+      "rationale": "Replaced publication type."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-e6a3740cbff4",
+    "target": {
+      "target_id": "513214:31d",
+      "target_card_id": "513214",
+      "target_word": "puede",
+      "target_lemma": "poder",
+      "target_rank": 85,
+      "target_sense_id": "31d",
+      "target_pos": "VERB",
+      "target_translation": "can",
+      "target_context": "used to indicate capability",
+      "base_spanish": "Mi novia puede bailar salsa.",
+      "base_english": "My girlfriend can dance the salsa.",
+      "base_example_id": "1ea09b78c227"
+    },
+    "candidate": {
+      "candidate_id": "f1766a",
+      "word": "canción",
+      "lemma": "canción",
+      "rank": 1056,
+      "translation": "song",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "f1766a",
+      "candidate_word": "canción",
+      "spanish_realization": "bailar salsa",
+      "english_realization": "dance the salsa",
+      "generated_spanish": "Mi novia puede cantar una canción.",
+      "generated_english": "My girlfriend can sing a song.",
+      "replaced_spanish": "bailar salsa",
+      "replaced_english": "dance the salsa",
+      "rationale": "Replaced the verb phrase with a compatible noun phrase object."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-2006b3340b11",
+    "target": {
+      "target_id": "d771e9:8dc",
+      "target_card_id": "d771e9",
+      "target_word": "porque",
+      "target_lemma": "porque",
+      "target_rank": 89,
+      "target_sense_id": "8dc",
+      "target_pos": "CCONJ",
+      "target_translation": "because",
+      "target_context": "indicating cause",
+      "base_spanish": "Mi hermano está triste porque no ganó el concurso.",
+      "base_english": "My brother is upset because he did not win the contest.",
+      "base_example_id": "3bbc3d14ca1f"
+    },
+    "candidate": {
+      "candidate_id": "f1766a",
+      "word": "canción",
+      "lemma": "canción",
+      "rank": 1056,
+      "translation": "song",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "f1766a",
+      "candidate_word": "canción",
+      "spanish_realization": "el concurso",
+      "english_realization": "the contest",
+      "generated_spanish": "Mi hermano está triste porque no ganó la canción.",
+      "generated_english": "My brother is upset because he did not win the song.",
+      "replaced_spanish": "el concurso",
+      "replaced_english": "the contest",
+      "rationale": "Replaced the noun phrase with a compatible noun."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-0899d83349d1",
+    "target": {
+      "target_id": "d0884d:321",
+      "target_card_id": "d0884d",
+      "target_word": "dios",
+      "target_lemma": "dios",
+      "target_rank": 90,
+      "target_sense_id": "321",
+      "target_pos": "NOUN",
+      "target_translation": "god",
+      "target_context": "supernatural being",
+      "base_spanish": "Marte era el dios romano de la guerra.",
+      "base_english": "Mars was the Roman god of war.",
+      "base_example_id": "a1d9b84054b7"
+    },
+    "candidate": {
+      "candidate_id": "438463",
+      "word": "ley",
+      "lemma": "ley",
+      "rank": 871,
+      "translation": "law",
+      "context": "rule"
+    },
+    "variant": {
+      "candidate_id": "438463",
+      "candidate_word": "ley",
+      "spanish_realization": "la guerra",
+      "english_realization": "war",
+      "generated_spanish": "Marte era el dios romano de la ley.",
+      "generated_english": "Mars was the Roman god of law.",
+      "replaced_spanish": "la guerra",
+      "replaced_english": "war",
+      "rationale": "Replaced 'la guerra' with 'la ley'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-5e8a39c6f9c7",
+    "target": {
+      "target_id": "d0884d:321",
+      "target_card_id": "d0884d",
+      "target_word": "dios",
+      "target_lemma": "dios",
+      "target_rank": 90,
+      "target_sense_id": "321",
+      "target_pos": "NOUN",
+      "target_translation": "god",
+      "target_context": "supernatural being",
+      "base_spanish": "Marte era el dios romano de la guerra.",
+      "base_english": "Mars was the Roman god of war.",
+      "base_example_id": "a1d9b84054b7"
+    },
+    "candidate": {
+      "candidate_id": "3e8cae",
+      "word": "árbol",
+      "lemma": "árbol",
+      "rank": 1451,
+      "translation": "tree",
+      "context": "botany"
+    },
+    "variant": {
+      "candidate_id": "3e8cae",
+      "candidate_word": "árbol",
+      "spanish_realization": "la guerra",
+      "english_realization": "war",
+      "generated_spanish": "Marte era el dios romano del árbol.",
+      "generated_english": "Mars was the Roman god of the tree.",
+      "replaced_spanish": "la guerra",
+      "replaced_english": "war",
+      "rationale": "Replaced 'la guerra' with 'del árbol'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-9690282d091f",
+    "target": {
+      "target_id": "708823:c28",
+      "target_card_id": "708823",
+      "target_word": "nunca",
+      "target_lemma": "nunca",
+      "target_rank": 92,
+      "target_sense_id": "c28",
+      "target_pos": "ADV",
+      "target_translation": "never",
+      "target_context": "not ever",
+      "base_spanish": "Nunca he ido a París.",
+      "base_english": "I've never been to Paris.",
+      "base_example_id": "d22f6d7e2592"
+    },
+    "candidate": {
+      "candidate_id": "415587",
+      "word": "escuela",
+      "lemma": "escuela",
+      "rank": 475,
+      "translation": "school",
+      "context": "educational institution"
+    },
+    "variant": {
+      "candidate_id": "415587",
+      "candidate_word": "escuela",
+      "spanish_realization": "París",
+      "english_realization": "Paris",
+      "generated_spanish": "Nunca he ido a la escuela.",
+      "generated_english": "I've never been to school.",
+      "replaced_spanish": "París",
+      "replaced_english": "Paris",
+      "rationale": "Replaced 'París' with 'la escuela'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-203e4a544f66",
+    "target": {
+      "target_id": "708823:c28",
+      "target_card_id": "708823",
+      "target_word": "nunca",
+      "target_lemma": "nunca",
+      "target_rank": 92,
+      "target_sense_id": "c28",
+      "target_pos": "ADV",
+      "target_translation": "never",
+      "target_context": "not ever",
+      "base_spanish": "Nunca he ido a París.",
+      "base_english": "I've never been to Paris.",
+      "base_example_id": "d22f6d7e2592"
+    },
+    "candidate": {
+      "candidate_id": "c57c52",
+      "word": "hospital",
+      "lemma": "hospital",
+      "rank": 573,
+      "translation": "hospital",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "c57c52",
+      "candidate_word": "hospital",
+      "spanish_realization": "París",
+      "english_realization": "Paris",
+      "generated_spanish": "Nunca he ido al hospital.",
+      "generated_english": "I've never been to the hospital.",
+      "replaced_spanish": "París",
+      "replaced_english": "Paris",
+      "rationale": "Replaced 'París' with 'al hospital'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-effa99bc3a8f",
+    "target": {
+      "target_id": "708823:c28",
+      "target_card_id": "708823",
+      "target_word": "nunca",
+      "target_lemma": "nunca",
+      "target_rank": 92,
+      "target_sense_id": "c28",
+      "target_pos": "ADV",
+      "target_translation": "never",
+      "target_context": "not ever",
+      "base_spanish": "Nunca he ido a París.",
+      "base_english": "I've never been to Paris.",
+      "base_example_id": "d22f6d7e2592"
+    },
+    "candidate": {
+      "candidate_id": "1c8182",
+      "word": "hotel",
+      "lemma": "hotel",
+      "rank": 797,
+      "translation": "hotel",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "1c8182",
+      "candidate_word": "hotel",
+      "spanish_realization": "París",
+      "english_realization": "Paris",
+      "generated_spanish": "Nunca he ido al hotel.",
+      "generated_english": "I've never been to the hotel.",
+      "replaced_spanish": "París",
+      "replaced_english": "Paris",
+      "rationale": "Replaced 'París' with 'al hotel'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-fde4a303c1d0",
+    "target": {
+      "target_id": "71f97b:b97",
+      "target_card_id": "71f97b",
+      "target_word": "dónde",
+      "target_lemma": "dónde",
+      "target_rank": 93,
+      "target_sense_id": "b97",
+      "target_pos": "ADV",
+      "target_translation": "where",
+      "target_context": "in questions",
+      "base_spanish": "¿Dónde quieren construir el edificio los arquitectos?",
+      "base_english": "Where do the architects want to build the building?",
+      "base_example_id": "f5999f4f3ee1"
+    },
+    "candidate": {
+      "candidate_id": "415587",
+      "word": "escuela",
+      "lemma": "escuela",
+      "rank": 475,
+      "translation": "school",
+      "context": "educational institution"
+    },
+    "variant": {
+      "candidate_id": "415587",
+      "candidate_word": "escuela",
+      "spanish_realization": "el edificio",
+      "english_realization": "the building",
+      "generated_spanish": "¿Dónde quieren construir la escuela los arquitectos?",
+      "generated_english": "Where do the architects want to build the school?",
+      "replaced_spanish": "el edificio",
+      "replaced_english": "the building",
+      "rationale": "Replaced 'el edificio' with 'la escuela'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-0f6eb9264a0d",
+    "target": {
+      "target_id": "71f97b:b97",
+      "target_card_id": "71f97b",
+      "target_word": "dónde",
+      "target_lemma": "dónde",
+      "target_rank": 93,
+      "target_sense_id": "b97",
+      "target_pos": "ADV",
+      "target_translation": "where",
+      "target_context": "in questions",
+      "base_spanish": "¿Dónde quieren construir el edificio los arquitectos?",
+      "base_english": "Where do the architects want to build the building?",
+      "base_example_id": "f5999f4f3ee1"
+    },
+    "candidate": {
+      "candidate_id": "c57c52",
+      "word": "hospital",
+      "lemma": "hospital",
+      "rank": 573,
+      "translation": "hospital",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "c57c52",
+      "candidate_word": "hospital",
+      "spanish_realization": "el edificio",
+      "english_realization": "the building",
+      "generated_spanish": "¿Dónde quieren construir el hospital los arquitectos?",
+      "generated_english": "Where do the architects want to build the hospital?",
+      "replaced_spanish": "el edificio",
+      "replaced_english": "the building",
+      "rationale": "Replaced 'el edificio' with 'el hospital'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-f7569a53d45d",
+    "target": {
+      "target_id": "71f97b:b97",
+      "target_card_id": "71f97b",
+      "target_word": "dónde",
+      "target_lemma": "dónde",
+      "target_rank": 93,
+      "target_sense_id": "b97",
+      "target_pos": "ADV",
+      "target_translation": "where",
+      "target_context": "in questions",
+      "base_spanish": "¿Dónde quieren construir el edificio los arquitectos?",
+      "base_english": "Where do the architects want to build the building?",
+      "base_example_id": "f5999f4f3ee1"
+    },
+    "candidate": {
+      "candidate_id": "9761c0",
+      "word": "edificio",
+      "lemma": "edificio",
+      "rank": 859,
+      "translation": "building",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "9761c0",
+      "candidate_word": "edificio",
+      "spanish_realization": "el edificio",
+      "english_realization": "the building",
+      "generated_spanish": "¿Dónde quieren construir el edificio los arquitectos?",
+      "generated_english": "Where do the architects want to build the building?",
+      "replaced_spanish": "el edificio",
+      "replaced_english": "the building",
+      "rationale": "Self-replacement matching identity."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "source_identical"
+    ]
+  },
+  {
+    "variant_id": "scalev1-20c4dcb1f7b6",
+    "target": {
+      "target_id": "9ff02a:4b1",
+      "target_card_id": "9ff02a",
+      "target_word": "señor",
+      "target_lemma": "señor",
+      "target_rank": 99,
+      "target_sense_id": "4b1",
+      "target_pos": "NOUN",
+      "target_translation": "gentleman",
+      "target_context": "adult male",
+      "base_spanish": "Está saliendo con un señor que conoció en el club de golf.",
+      "base_english": "She's dating a gentleman she met at the golf club.",
+      "base_example_id": "24fbc7dbdbae"
+    },
+    "candidate": {
+      "candidate_id": "529e3d",
+      "word": "médico",
+      "lemma": "médico",
+      "rank": 741,
+      "translation": "doctor",
+      "context": "medicine"
+    },
+    "variant": {
+      "candidate_id": "529e3d",
+      "candidate_word": "médico",
+      "spanish_realization": "un señor",
+      "english_realization": "a gentleman",
+      "generated_spanish": "Está saliendo con un médico que conoció en el club de golf.",
+      "generated_english": "She's dating a doctor she met at the golf club.",
+      "replaced_spanish": "un señor",
+      "replaced_english": "a gentleman",
+      "rationale": "Replaced 'un señor' with 'un médico'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "target_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-acc7d515933d",
+    "target": {
+      "target_id": "9ff02a:4b1",
+      "target_card_id": "9ff02a",
+      "target_word": "señor",
+      "target_lemma": "señor",
+      "target_rank": 99,
+      "target_sense_id": "4b1",
+      "target_pos": "NOUN",
+      "target_translation": "gentleman",
+      "target_context": "adult male",
+      "base_spanish": "Está saliendo con un señor que conoció en el club de golf.",
+      "base_english": "She's dating a gentleman she met at the golf club.",
+      "base_example_id": "24fbc7dbdbae"
+    },
+    "candidate": {
+      "candidate_id": "35c902",
+      "word": "líder",
+      "lemma": "líder",
+      "rank": 1487,
+      "translation": "leader",
+      "context": "boss"
+    },
+    "variant": {
+      "candidate_id": "35c902",
+      "candidate_word": "líder",
+      "spanish_realization": "un señor",
+      "english_realization": "a gentleman",
+      "generated_spanish": "Está saliendo con un líder que conoció en el club de golf.",
+      "generated_english": "She's dating a leader she met at the golf club.",
+      "replaced_spanish": "un señor",
+      "replaced_english": "a gentleman",
+      "rationale": "Replaced 'un señor' with 'un líder'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "learner_word_absent",
+      "target_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-11f0af0a1581",
+    "target": {
+      "target_id": "434b77:913a",
+      "target_card_id": "434b77",
+      "target_word": "hombre",
+      "target_lemma": "hombre",
+      "target_rank": 105,
+      "target_sense_id": "913a",
+      "target_pos": "NOUN",
+      "target_translation": "man",
+      "target_context": "human species",
+      "base_spanish": "Cuando el hombre llegó al continente, alteró el ecosistema.",
+      "base_english": "When man reached the continent, he disturbed the ecosystem.",
+      "base_example_id": "3c322de4acb3"
+    },
+    "candidate": {
+      "candidate_id": "e9af04",
+      "word": "país",
+      "lemma": "país",
+      "rank": 553,
+      "translation": "country",
+      "context": "geography"
+    },
+    "variant": {
+      "candidate_id": "e9af04",
+      "candidate_word": "país",
+      "spanish_realization": "el país",
+      "english_realization": "the country",
+      "generated_spanish": "Cuando el hombre llegó al país, alteró el ecosistema.",
+      "generated_english": "When man reached the country, he disturbed the ecosystem.",
+      "replaced_spanish": "el continente",
+      "replaced_english": "the continent",
+      "rationale": "Replaced 'el continente' with 'el país'."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "spanish_span_not_unique",
+      "nonlocal_spanish_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-c270a1e0c35a",
+    "target": {
+      "target_id": "dc32a2:1e0",
+      "target_card_id": "dc32a2",
+      "target_word": "mucho",
+      "target_lemma": "mucho",
+      "target_rank": 108,
+      "target_sense_id": "1e0",
+      "target_pos": "ADV",
+      "target_translation": "a lot",
+      "target_context": "considerably",
+      "base_spanish": "Estudia mucho, pero le cuesta mucho la escuela.",
+      "base_english": "He studies a lot, but he finds school hard.",
+      "base_example_id": "1a9fc5ae57b5"
+    },
+    "candidate": {
+      "candidate_id": "415587",
+      "word": "escuela",
+      "lemma": "escuela",
+      "rank": 475,
+      "translation": "school",
+      "context": "educational institution"
+    },
+    "variant": {
+      "candidate_id": "415587",
+      "candidate_word": "escuela",
+      "spanish_realization": "la escuela",
+      "english_realization": "school",
+      "generated_spanish": "Estudia mucho, pero le cuesta mucho la escuela.",
+      "generated_english": "He studies a lot, but he finds school hard.",
+      "replaced_spanish": "la escuela",
+      "replaced_english": "school",
+      "rationale": "Matched candidate perfectly."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "source_identical"
+    ]
+  },
+  {
+    "variant_id": "scalev1-38de31e201bb",
+    "target": {
+      "target_id": "70c1e5:da6",
+      "target_card_id": "70c1e5",
+      "target_word": "alguien",
+      "target_lemma": "alguien",
+      "target_rank": 116,
+      "target_sense_id": "da6",
+      "target_pos": "PRON",
+      "target_translation": "someone",
+      "target_context": "indeterminate person",
+      "base_spanish": "Alguien me dijo una vez que la vida no es justa.",
+      "base_english": "Someone once told me that life isn't fair.",
+      "base_example_id": "77c430cd21a5"
+    },
+    "candidate": {
+      "candidate_id": "8b4b01",
+      "word": "piel",
+      "lemma": "piel",
+      "rank": 1289,
+      "translation": "skin",
+      "context": "epidermis"
+    },
+    "variant": {
+      "candidate_id": "8b4b01",
+      "candidate_word": "piel",
+      "spanish_realization": "piel",
+      "english_realization": "skin",
+      "generated_spanish": "Alguien me dijo una vez que la piel no es justa.",
+      "generated_english": "Someone once told me that skin isn't fair.",
+      "replaced_spanish": "la vida",
+      "replaced_english": "life",
+      "rationale": "Replaced la vida with la piel."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-1adab3e2cffb",
+    "target": {
+      "target_id": "70c1e5:da6",
+      "target_card_id": "70c1e5",
+      "target_word": "alguien",
+      "target_lemma": "alguien",
+      "target_rank": 116,
+      "target_sense_id": "da6",
+      "target_pos": "PRON",
+      "target_translation": "someone",
+      "target_context": "indeterminate person",
+      "base_spanish": "Alguien me dijo una vez que la vida no es justa.",
+      "base_english": "Someone once told me that life isn't fair.",
+      "base_example_id": "77c430cd21a5"
+    },
+    "candidate": {
+      "candidate_id": "4b4fd1",
+      "word": "miedo",
+      "lemma": "miedo",
+      "rank": 304,
+      "translation": "fear",
+      "context": "fright"
+    },
+    "variant": {
+      "candidate_id": "4b4fd1",
+      "candidate_word": "miedo",
+      "spanish_realization": "miedo",
+      "english_realization": "fear",
+      "generated_spanish": "Alguien me dijo una vez que el miedo no es justo.",
+      "generated_english": "Someone once told me that fear isn't fair.",
+      "replaced_spanish": "la vida",
+      "replaced_english": "life",
+      "rationale": "Replaced la vida with el miedo, updating agreement."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-a8fe8c991533",
+    "target": {
+      "target_id": "594fec:6e0",
+      "target_card_id": "594fec",
+      "target_word": "hasta",
+      "target_lemma": "hasta",
+      "target_rank": 118,
+      "target_sense_id": "6e0",
+      "target_pos": "ADP",
+      "target_translation": "as far as",
+      "target_context": "used to indicate destination",
+      "base_spanish": "Ven conmigo hasta la esquina.",
+      "base_english": "Come with me as far as the corner.",
+      "base_example_id": "66a80effe520"
+    },
+    "candidate": {
+      "candidate_id": "415587",
+      "word": "escuela",
+      "lemma": "escuela",
+      "rank": 475,
+      "translation": "school",
+      "context": "educational institution"
+    },
+    "variant": {
+      "candidate_id": "415587",
+      "candidate_word": "escuela",
+      "spanish_realization": "escuela",
+      "english_realization": "school",
+      "generated_spanish": "Ven conmigo hasta la escuela.",
+      "generated_english": "Come with me as far as the school.",
+      "replaced_spanish": "la esquina",
+      "replaced_english": "the corner",
+      "rationale": "Replaced la esquina with la escuela."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-84095586e9ca",
+    "target": {
+      "target_id": "594fec:6e0",
+      "target_card_id": "594fec",
+      "target_word": "hasta",
+      "target_lemma": "hasta",
+      "target_rank": 118,
+      "target_sense_id": "6e0",
+      "target_pos": "ADP",
+      "target_translation": "as far as",
+      "target_context": "used to indicate destination",
+      "base_spanish": "Ven conmigo hasta la esquina.",
+      "base_english": "Come with me as far as the corner.",
+      "base_example_id": "66a80effe520"
+    },
+    "candidate": {
+      "candidate_id": "cfa129",
+      "word": "iglesia",
+      "lemma": "iglesia",
+      "rank": 897,
+      "translation": "church",
+      "context": "religious"
+    },
+    "variant": {
+      "candidate_id": "cfa129",
+      "candidate_word": "iglesia",
+      "spanish_realization": "iglesia",
+      "english_realization": "church",
+      "generated_spanish": "Ven conmigo hasta la iglesia.",
+      "generated_english": "Come with me as far as the church.",
+      "replaced_spanish": "la esquina",
+      "replaced_english": "the corner",
+      "rationale": "Replaced la esquina with la iglesia."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-5839c6cad959",
+    "target": {
+      "target_id": "5a6ece:267",
+      "target_card_id": "5a6ece",
+      "target_word": "solo",
+      "target_lemma": "solo",
+      "target_rank": 121,
+      "target_sense_id": "267",
+      "target_pos": "ADJ",
+      "target_translation": "alone",
+      "target_context": "unaccompanied",
+      "base_spanish": "Me da miedo estar solo en la oscuridad.",
+      "base_english": "It scares me to be alone in the dark.",
+      "base_example_id": "cb8d13fe6d08"
+    },
+    "candidate": {
+      "candidate_id": "4b4fd1",
+      "word": "miedo",
+      "lemma": "miedo",
+      "rank": 304,
+      "translation": "fear",
+      "context": "fright"
+    },
+    "variant": {
+      "candidate_id": "4b4fd1",
+      "candidate_word": "miedo",
+      "spanish_realization": "miedo",
+      "english_realization": "fear",
+      "generated_spanish": "Me da miedo estar solo con miedo.",
+      "generated_english": "It scares me to be alone with fear.",
+      "replaced_spanish": "en la oscuridad",
+      "replaced_english": "in the dark",
+      "rationale": "Replaced en la oscuridad with con miedo."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-303755bc3506",
+    "target": {
+      "target_id": "9b59c6:ac0",
+      "target_card_id": "9b59c6",
+      "target_word": "siempre",
+      "target_lemma": "siempre",
+      "target_rank": 125,
+      "target_sense_id": "ac0",
+      "target_pos": "ADV",
+      "target_translation": "always",
+      "target_context": "used to express frequency",
+      "base_spanish": "Siempre va de ropa azul.",
+      "base_english": "She always wears blue.",
+      "base_example_id": "b73efaf64485"
+    },
+    "candidate": {
+      "candidate_id": "05d180",
+      "word": "cabello",
+      "lemma": "cabello",
+      "rank": 1503,
+      "translation": "hair",
+      "context": "anatomy"
+    },
+    "variant": {
+      "candidate_id": "05d180",
+      "candidate_word": "cabello",
+      "spanish_realization": "cabello",
+      "english_realization": "hair",
+      "generated_spanish": "Siempre va de cabello azul.",
+      "generated_english": "She always wears blue hair.",
+      "replaced_spanish": "ropa azul",
+      "replaced_english": "blue",
+      "rationale": "Replaced ropa azul with cabello azul."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-3249501e5159",
+    "target": {
+      "target_id": "225f81:c53",
+      "target_card_id": "225f81",
+      "target_word": "también",
+      "target_lemma": "también",
+      "target_rank": 127,
+      "target_sense_id": "c53",
+      "target_pos": "ADV",
+      "target_translation": "also",
+      "target_context": "equally",
+      "base_spanish": "París también es conocida como capital del mundo de la moda.",
+      "base_english": "Paris is also known as the fashion capital of the world.",
+      "base_example_id": "45ce8eb51e27"
+    },
+    "candidate": {
+      "candidate_id": "e9af04",
+      "word": "país",
+      "lemma": "país",
+      "rank": 553,
+      "translation": "country",
+      "context": "geography"
+    },
+    "variant": {
+      "candidate_id": "e9af04",
+      "candidate_word": "país",
+      "spanish_realization": "país",
+      "english_realization": "country",
+      "generated_spanish": "Este país también es conocido como capital del mundo de la moda.",
+      "generated_english": "This country is also known as the fashion capital of the world.",
+      "replaced_spanish": "París",
+      "replaced_english": "Paris",
+      "rationale": "Replaced París with Este país."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-57fe359d3ebf",
+    "target": {
+      "target_id": "78e460:75f",
+      "target_card_id": "78e460",
+      "target_word": "día",
+      "target_lemma": "día",
+      "target_rank": 134,
+      "target_sense_id": "75f",
+      "target_pos": "NOUN",
+      "target_translation": "day",
+      "target_context": "period of time",
+      "base_spanish": "Estoy en el restaurante en donde comimos el otro día.",
+      "base_english": "I'm at the restaurant where we ate the other day.",
+      "base_example_id": "a801b5a40024"
+    },
+    "candidate": {
+      "candidate_id": "c380e4",
+      "word": "semana",
+      "lemma": "semana",
+      "rank": 337,
+      "translation": "week",
+      "context": "period of time"
+    },
+    "variant": {
+      "candidate_id": "c380e4",
+      "candidate_word": "semana",
+      "spanish_realization": "semana",
+      "english_realization": "week",
+      "generated_spanish": "Estoy en el restaurante en donde comimos la otra semana.",
+      "generated_english": "I'm at the restaurant where we ate the other week.",
+      "replaced_spanish": "el otro día",
+      "replaced_english": "the other day",
+      "rationale": "Replaced el otro día with la otra semana."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "target_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-e54dd2632efc",
+    "target": {
+      "target_id": "55a46f:fac",
+      "target_card_id": "55a46f",
+      "target_word": "noche",
+      "target_lemma": "noche",
+      "target_rank": 136,
+      "target_sense_id": "fac",
+      "target_pos": "NOUN",
+      "target_translation": "night",
+      "target_context": "time of day",
+      "base_spanish": "No dormí en toda la noche.",
+      "base_english": "I didn't sleep all night.",
+      "base_example_id": "839bb9fe5b60"
+    },
+    "candidate": {
+      "candidate_id": "6d6eed",
+      "word": "mes",
+      "lemma": "mes",
+      "rank": 810,
+      "translation": "month",
+      "context": "period of time"
+    },
+    "variant": {
+      "candidate_id": "6d6eed",
+      "candidate_word": "mes",
+      "spanish_realization": "mes",
+      "english_realization": "month",
+      "generated_spanish": "No dormí en todo el mes.",
+      "generated_english": "I didn't sleep all month.",
+      "replaced_spanish": "toda la noche",
+      "replaced_english": "all night",
+      "rationale": "Replaced toda la noche with todo el mes."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "target_word_absent",
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-c78339136146",
+    "target": {
+      "target_id": "49fed5:65418d20bf",
+      "target_card_id": "49fed5",
+      "target_word": "fue",
+      "target_lemma": "ser",
+      "target_rank": 137,
+      "target_sense_id": "65418d20bf",
+      "target_pos": "VERB",
+      "target_translation": "to be",
+      "target_context": "with the passive voice",
+      "base_spanish": "El edificio fue diseñado por un equipo de arquitectos.",
+      "base_english": "The building was built by a team of architects.",
+      "base_example_id": "d7b2063ce6f6"
+    },
+    "candidate": {
+      "candidate_id": "9761c0",
+      "word": "edificio",
+      "lemma": "edificio",
+      "rank": 859,
+      "translation": "building",
+      "context": "general"
+    },
+    "variant": {
+      "candidate_id": "9761c0",
+      "candidate_word": "edificio",
+      "spanish_realization": "edificio",
+      "english_realization": "building",
+      "generated_spanish": "El hospital fue diseñado por un equipo de arquitectos.",
+      "generated_english": "The hospital was built by a team of architects.",
+      "replaced_spanish": "El edificio",
+      "replaced_english": "The building",
+      "rationale": "Replaced El edificio with El hospital."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  },
+  {
+    "variant_id": "scalev1-6b00e68182bb",
+    "target": {
+      "target_id": "3fbf56:fe3",
+      "target_card_id": "3fbf56",
+      "target_word": "nadie",
+      "target_lemma": "nadie",
+      "target_rank": 138,
+      "target_sense_id": "fe3",
+      "target_pos": "PRON",
+      "target_translation": "no one",
+      "target_context": "no person",
+      "base_spanish": "Nadie sabe cuánto me costó conseguir la presidencia.",
+      "base_english": "No one knows how much it cost me to attain the presidency.",
+      "base_example_id": "32715ebbd3a4"
+    },
+    "candidate": {
+      "candidate_id": "0dddb7",
+      "word": "plan",
+      "lemma": "plan",
+      "rank": 543,
+      "translation": "plan",
+      "context": "project"
+    },
+    "variant": {
+      "candidate_id": "0dddb7",
+      "candidate_word": "plan",
+      "spanish_realization": "plan",
+      "english_realization": "plan",
+      "generated_spanish": "Nadie sabe cuánto me costó conseguir el plan.",
+      "generated_english": "No one knows how much it cost me to attain the plan.",
+      "replaced_spanish": "la presidencia",
+      "replaced_english": "the presidency",
+      "rationale": "Replaced la presidencia with el plan."
+    },
+    "generator_model": "gemini-3.5-flash-lite",
+    "deterministic_rejections": [
+      "nonlocal_spanish_change",
+      "nonlocal_english_change"
+    ]
+  }
+]

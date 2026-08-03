@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-02",
+      "commit": "pending",
+      "summary": "Personalised Spanish practice now has a reviewed scale pilot",
+      "details": [
+        "Expanded the offline personalised bank from 15 to 27 examples while preserving the exact target sense and selecting examples only for words missed in the last seven days",
+        "The pilot proposed 58 variants: structural checks retained 23, the semantic gate retained 16, and explicit review retained 12 after catching four confidently approved but unsuitable sentences",
+        "Generated examples remain separate from sense-frequency estimates and require no model call during study; cache v176→v177, assets 20260802g→20260802h"
+      ]
+    },
+    {
+      "date": "2026-08-02",
       "commit": "0f4fcec7",
       "summary": "Card tools are sharper and information popups scroll reliably",
       "details": [
