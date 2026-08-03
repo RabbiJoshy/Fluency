@@ -2420,8 +2420,8 @@
         .pos-other { background: rgba(148, 163, 184, 0.45); border-color: rgba(148, 163, 184, 0.6); color: #cbd5e1; }
 
         /* POS info popover — shown when the POS pill on a sense row is
-           tapped. Click anywhere on the overlay (including the popover
-           itself) dismisses. The popover inherits its accent colour from
+           tapped. The backdrop dismisses it while the popover remains a
+           stable scroll surface. The popover inherits its accent colour from
            the same .pos-* class the pill carries. */
         .pos-info-overlay {
             position: fixed;
@@ -2433,7 +2433,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: max(20px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
             cursor: pointer;
+            overscroll-behavior: contain;
             animation: posInfoFadeIn 0.15s ease-out;
         }
 
@@ -2443,8 +2445,10 @@
         }
 
         .pos-info-popover {
+            position: relative;
             max-width: 360px;
-            width: calc(100% - 40px);
+            width: 100%;
+            max-height: min(680px, calc(100dvh - 40px - env(safe-area-inset-top) - env(safe-area-inset-bottom)));
             padding: 22px 26px 18px;
             background: var(--bg-card, #1a1e27);
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -2453,6 +2457,38 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
             font-family: var(--font-reading);
             color: var(--text-primary);
+            cursor: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            touch-action: pan-y;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-gutter: stable;
+            outline: none;
+        }
+
+        .pos-info-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--text-primary);
+            font: 400 24px/1 var(--font-reading);
+            cursor: pointer;
+        }
+
+        .pos-info-close:hover,
+        .pos-info-close:focus-visible {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.28);
         }
 
         /* Same .pos-* classes adjust the popover accent. Only the
@@ -6287,6 +6323,52 @@
         .ref-icon-btn svg {
             width: 42px;
             height: 42px;
+        }
+
+        /* Match the sense-progress trigger's quiet glass treatment. The icon
+           artwork remains white while its tile stays translucent rather than
+           reading as a separate solid-white control. */
+        .ref-conj-btn,
+        .ref-syn-btn {
+            color: var(--text-primary);
+        }
+        .ref-conj-btn svg rect,
+        .ref-syn-btn svg rect {
+            fill: rgba(255, 255, 255, 0.07);
+            stroke: rgba(255, 255, 255, 0.18);
+            stroke-width: 1.5;
+        }
+        .ref-conj-btn svg text,
+        .ref-syn-btn svg text {
+            fill: currentColor;
+        }
+
+        /* The favicon proxy supplies small raster marks, which become soft
+           after card-button scaling. Recreate the two simple marks as local
+           vector backgrounds so they remain crisp at every device density. */
+        .ref-icon-btn[title="SpanishDict"],
+        .ref-icon-btn[title="Reverso Context"] {
+            position: relative;
+        }
+        .ref-icon-btn[title="SpanishDict"] img,
+        .ref-icon-btn[title="Reverso Context"] img {
+            opacity: 0;
+        }
+        .ref-icon-btn[title="SpanishDict"]::before,
+        .ref-icon-btn[title="Reverso Context"]::before {
+            content: "";
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+        .ref-icon-btn[title="SpanishDict"]::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect width='42' height='42' rx='6' fill='white'/%3E%3Cg fill='%232684df'%3E%3Ccircle cx='14.5' cy='15' r='4.8'/%3E%3Cpath d='M9.8 22h9.4l1.3 13H8.5z'/%3E%3Ccircle cx='28' cy='27.5' r='4.8'/%3E%3Cpath d='M23 6h10l-1.3 15h-7.4z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        .ref-icon-btn[title="Reverso Context"]::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect width='42' height='42' rx='6' fill='white'/%3E%3Cpath d='M10 15h17c5 0 8 3 8 7 0 1.4-.4 2.8-1.1 4' fill='none' stroke='%231e91d6' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='m13 9-6 6 6 6' fill='none' stroke='%231e91d6' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M32 27H15c-5 0-8-3-8-7 0-1.4.4-2.8 1.1-4' fill='none' stroke='%23ef4938' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='m29 33 6-6-6-6' fill='none' stroke='%23ef4938' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         }
         .ref-icon-btn:hover {
             opacity: 1;
