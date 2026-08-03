@@ -32,6 +32,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-03 — Benchmark zero-training Spanish slot filling
+
+- Commit `c28f2884`; no front-end or shipped-deck change, so no cache bump.
+- Added `tool_8c_benchmark_masked_fillers` (inference-only slot benchmark) using pinned BETO revision `c4d86612f51b4f46759c8390d1798c2febe71b93`, with no training or fine-tuning. It ranks 3,096 single-token noun candidates from the first 10,000 Spanish entries for six reusable constructions and records exact OpenSubtitles construction fillers.
+- Masked-slot ranking produced useful classes (`coche` rank 2 and `camión` 13 for `¿Quieres ver mi ___ nuevo?`; `tarjeta` 11 for `¿Me puedes pasar esa ___?`; `dinero` 1 for `comprarlo sin ___`). However, it also ranked `iglesia` 7 for the contrived breakfast sentence.
+- Whole-sentence pseudo-log-likelihood achieved only 50% pairwise separation between the 12 human-accepted and four human-rejected pilot variants. Decision: use the pretrained model as a cheap proposal/ranking signal, combine it with grammatical and corpus constraints, and never treat it as the final naturalness or target-sense gate.
+- Verification: pinned CPU rerun with offline model loading; 61,434,251-line OpenSubtitles scan; exact JSON metric assertions; Python compilation; `git diff --check`. GitHub backlog search found no overlapping issue, but issue creation/update is blocked because the GitHub CLI is unavailable in this environment.
+
 ### 2026-08-02 — Expand reviewed personalised Spanish practice
 
 - Commit `a405048e`; front-end cache `flashcards-v177` / `20260802h`.
