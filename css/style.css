@@ -10455,3 +10455,85 @@
 .dev-footer-entry { margin-top: 3px; }
 .dev-footer-commit { opacity: 0.6; }
 .dev-footer-bullet { padding-left: 10px; }
+
+/* Query-only Spanish Speech vNext route. It deliberately reuses the shipped
+   card layout; these additions only replace numeric sense tails with broad
+   prominence labels and identify the non-progress-bearing preview deck. */
+.speech-vnext-card-label,
+.speech-vnext-card-status {
+    display: inline-flex;
+    align-items: center;
+}
+.speech-vnext-card-label {
+    padding: 4px 8px;
+    border: 1px solid color-mix(in srgb, var(--accent-green) 50%, var(--border-color));
+    border-radius: 999px;
+    color: #66e4cc;
+    font-family: var(--font-data);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.speech-vnext-card-label.known_risk {
+    border-color: color-mix(in srgb, var(--error) 55%, var(--border-color));
+    color: #ff8e8e;
+}
+.speech-vnext-card-label.insufficient {
+    border-color: color-mix(in srgb, var(--warning) 55%, var(--border-color));
+    color: #f9c96e;
+}
+.speech-vnext-card-status {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+.speech-vnext-back-note {
+    display: grid;
+    gap: 2px;
+    margin: 0 0 7px;
+    padding: 7px 9px;
+    border: 1px solid color-mix(in srgb, var(--accent-green) 32%, var(--border-color));
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--bg-secondary) 78%, transparent);
+    text-align: center;
+}
+.speech-vnext-back-note span {
+    color: #66e4cc;
+    font-family: var(--font-data);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.speech-vnext-back-note strong {
+    color: var(--text-primary);
+    font-size: 11px;
+}
+.speech-vnext-back-note small {
+    color: var(--text-muted);
+    font-size: 8px;
+    line-height: 1.3;
+}
+.sense-prominence-label {
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    transform: translateY(-50%);
+    padding: 3px 6px;
+    border: 1px solid color-mix(in srgb, var(--accent-green) 38%, var(--border-color));
+    border-radius: 999px;
+    color: #66e4cc;
+    background: color-mix(in srgb, var(--accent-green) 10%, transparent);
+    font-family: var(--font-data);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.sense-prominence-label.occasional {
+    border-color: color-mix(in srgb, var(--warning) 42%, var(--border-color));
+    color: #f9c96e;
+    background: color-mix(in srgb, var(--warning) 9%, transparent);
+}

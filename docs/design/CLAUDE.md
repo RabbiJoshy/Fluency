@@ -45,6 +45,7 @@ updated: YYYY-MM-DD
 
 | Doc | Status | Lang | Topic |
 |-----|--------|------|-------|
+| `spanish_speech_evidence_architecture.md` | research | spanish | SpanishDict-authoritative Speech Mode prominence and example evidence v0.1 |
 | `wsd_benchmark_results.md` | implemented | spanish | Word sense disambiguation — all approaches tried, Gemini chosen |
 | `example_selection_design.md` | implemented | spanish | Example sentence scoring and selection |
 | `new_artist_filter_design.md` | implemented | spanish | Known vocab filter chain (94% Gemini reduction) |

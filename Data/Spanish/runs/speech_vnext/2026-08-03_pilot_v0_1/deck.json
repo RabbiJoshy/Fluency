@@ -1,0 +1,633 @@
+{
+  "schema_version": 1,
+  "architecture": "spanish_speech_vnext",
+  "run_id": "2026-08-03_pilot_v0_1",
+  "status": "candidate_default_four_word_pilot",
+  "immutable_after_review": true,
+  "generated_at": "2026-08-03T16:21:35.418842+00:00",
+  "product_contract": {
+    "sense_authority": "SpanishDict stable leaf sense IDs",
+    "sense_selection": "Display senses with accepted evidence; audit before publishing at scale",
+    "prominence": "Broad labels derived from random-use evidence; numeric shares retained only for audit",
+    "examples": "SpanishDict exact sense-tied examples only",
+    "personalisation": "Out of scope; downstream export can use missed stable sense IDs later"
+  },
+  "legacy_compatibility": {
+    "default_app_unchanged": true,
+    "legacy_candidate_run": "Data/Spanish/runs/normal_mode/2026-08-03_spanishdict_examples_v2",
+    "legacy_app_index": "Data/Spanish/vocabulary.index.json",
+    "legacy_app_examples": "Data/Spanish/vocabulary.examples.json",
+    "portable_fields": [
+      "legacy_word_id",
+      "SpanishDict sense_id",
+      "translation",
+      "context",
+      "canonical SpanishDict example"
+    ],
+    "not_adopted_as_vnext_truth": [
+      "legacy numeric sense distributions",
+      "personalised generated frames",
+      "unaudited corpus-to-sense attachments"
+    ]
+  },
+  "evidence": {
+    "source_run": "Data/Spanish/Intermediates/speech_mode_evidence/runs/2026-08-03_v0_1",
+    "corpus_candidates_location": "Data/Spanish/Intermediates/speech_mode_evidence/runs/2026-08-03_v0_1/example_bank.jsonl",
+    "corpus_candidates_in_learner_deck": false
+  },
+  "words": [
+    {
+      "legacy_word_id": "2232e7",
+      "surface": "banco",
+      "lemma": "banco",
+      "pos": "NOUN",
+      "sample": {
+        "total": 25,
+        "accepted": 25,
+        "coverage": 1.0,
+        "abstained": 0,
+        "below_gate": 0
+      },
+      "publication": {
+        "status": "clean_signal",
+        "headline": "A clean first-pass result",
+        "detail": "All 25 sampled uses received a high-confidence unique sense, strongly favoring the financial sense."
+      },
+      "dictionary_senses": [
+        {
+          "sense_id": "18e",
+          "pos": "NOUN",
+          "translation": "bank",
+          "context": "finance",
+          "regions": [],
+          "display": true,
+          "prominence": "dominant",
+          "observed_count": 22,
+          "share_of_sample": 0.88,
+          "canonical_examples": [
+            {
+              "spanish": "Fui al banco a pedir un préstamo.",
+              "english": "I went to the bank to ask for a loan."
+            }
+          ]
+        },
+        {
+          "sense_id": "64a",
+          "pos": "NOUN",
+          "translation": "bench",
+          "context": "seat",
+          "regions": [],
+          "display": true,
+          "prominence": "occasional",
+          "observed_count": 2,
+          "share_of_sample": 0.08,
+          "canonical_examples": [
+            {
+              "spanish": "Los bancos del parque están recién pintados.",
+              "english": "The park benches have just been painted."
+            }
+          ]
+        },
+        {
+          "sense_id": "807",
+          "pos": "NOUN",
+          "translation": "pew",
+          "context": "seat",
+          "regions": [],
+          "display": true,
+          "prominence": "occasional",
+          "observed_count": 1,
+          "share_of_sample": 0.04,
+          "canonical_examples": [
+            {
+              "spanish": "La iglesia se ve vacía sin los bancos.",
+              "english": "The church looks empty without the pews."
+            }
+          ]
+        },
+        {
+          "sense_id": "18e6",
+          "pos": "NOUN",
+          "translation": "bank",
+          "context": "stock",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "El banco de sangre necesita donantes de todo tipo de sangre.",
+              "english": "The blood bank needs donors of all blood types."
+            }
+          ]
+        },
+        {
+          "sense_id": "18e63",
+          "pos": "NOUN",
+          "translation": "bank",
+          "context": "mound",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Aquí la vegetación acuática incluye bancos de algas.",
+              "english": "The aquatic vegetation here includes banks of seaweed."
+            }
+          ]
+        },
+        {
+          "sense_id": "63b",
+          "pos": "NOUN",
+          "translation": "stool",
+          "context": "seat",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "¿Me pasas un banco para bajar ese libro del estante de arriba?",
+              "english": "Can you pass me a stool to get that book down from the top shelf?"
+            }
+          ]
+        },
+        {
+          "sense_id": "9e6",
+          "pos": "NOUN",
+          "translation": "school",
+          "context": "group of fish",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "La zona atrae a muchos visitantes porque las aguas cristalinas dejan ver bancos de peces tropicales.",
+              "english": "Many visitors are attracted to the area because schools of tropical fish can be seen in the crystal-clear waters."
+            }
+          ]
+        },
+        {
+          "sense_id": "b1c",
+          "pos": "NOUN",
+          "translation": "workbench",
+          "context": "seat",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Necesito un banco más grande para trabajar en el taller.",
+              "english": "I need a larger workbench to work on in the workshop."
+            }
+          ]
+        },
+        {
+          "sense_id": "c83",
+          "pos": "NOUN",
+          "translation": "desk",
+          "context": "seat",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "El colegio ha renovado todos los bancos.",
+              "english": "The school has replaced all the desks."
+            }
+          ]
+        },
+        {
+          "sense_id": "f9e",
+          "pos": "NOUN",
+          "translation": "shoal",
+          "context": "group of fish",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Vimos un banco de atunes mientras buceábamos.",
+              "english": "We saw a shoal of tuna while we were diving."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "legacy_word_id": "612fad",
+      "surface": "cola",
+      "lemma": "cola",
+      "pos": "NOUN",
+      "sample": {
+        "total": 25,
+        "accepted": 19,
+        "coverage": 0.76,
+        "abstained": 6,
+        "below_gate": 0
+      },
+      "publication": {
+        "status": "known_risk",
+        "headline": "Useful counts, unsafe examples",
+        "detail": "The broad tail-versus-line split is plausible, but several figurative body uses were confidently attached to the literal tail sense."
+      },
+      "dictionary_senses": [
+        {
+          "sense_id": "237",
+          "pos": "NOUN",
+          "translation": "tail",
+          "context": "animal anatomy",
+          "regions": [],
+          "display": true,
+          "prominence": "dominant",
+          "observed_count": 13,
+          "share_of_sample": 0.52,
+          "canonical_examples": [
+            {
+              "spanish": "Milo mueve la cola cuando me escucha entrar.",
+              "english": "Milo wags his tail when he hears me come in."
+            }
+          ]
+        },
+        {
+          "sense_id": "b9b",
+          "pos": "NOUN",
+          "translation": "line",
+          "context": "row of waiting people",
+          "regions": [],
+          "display": true,
+          "prominence": "common",
+          "observed_count": 5,
+          "share_of_sample": 0.2,
+          "canonical_examples": [
+            {
+              "spanish": "La cola para entrar al teatro es muy larga.",
+              "english": "The line to get into the theater is very long."
+            }
+          ]
+        },
+        {
+          "sense_id": "ff3",
+          "pos": "NOUN",
+          "translation": "queue",
+          "context": "row of waiting people",
+          "regions": [
+            "United Kingdom"
+          ],
+          "display": true,
+          "prominence": "occasional",
+          "observed_count": 1,
+          "share_of_sample": 0.04,
+          "canonical_examples": [
+            {
+              "spanish": "El vendedor quiere que nos pongamos en cola.",
+              "english": "The salesman wants us to form a queue."
+            }
+          ]
+        },
+        {
+          "sense_id": "095",
+          "pos": "NOUN",
+          "translation": "bum",
+          "context": "buttocks",
+          "regions": [
+            "Latin America",
+            "United Kingdom"
+          ],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Había agua en el banco donde me senté. Ahora tengo la cola mojada.",
+              "english": "There was water on the bench where I sat down. Now my bum is wet."
+            }
+          ]
+        },
+        {
+          "sense_id": "10d",
+          "pos": "NOUN",
+          "translation": "bottom",
+          "context": "buttocks",
+          "regions": [
+            "Latin America"
+          ],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "¿Se me ve una cola enorme con este vaquero?",
+              "english": "Does my bottom look huge in these jeans?"
+            }
+          ]
+        },
+        {
+          "sense_id": "2378",
+          "pos": "NOUN",
+          "translation": "tail",
+          "context": "clothing",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Hay chicle en la cola del frac.",
+              "english": "There's gum on the tailcoat's tail."
+            }
+          ]
+        },
+        {
+          "sense_id": "2a6",
+          "pos": "NOUN",
+          "translation": "glue",
+          "context": "substance",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Pega eso con cola.",
+              "english": "Stick that on with glue."
+            }
+          ]
+        },
+        {
+          "sense_id": "801",
+          "pos": "NOUN",
+          "translation": "caboose",
+          "context": "train",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "El bandido está en la cola del tren.",
+              "english": "The villain is in the train's caboose."
+            }
+          ]
+        },
+        {
+          "sense_id": "885",
+          "pos": "NOUN",
+          "translation": "train",
+          "context": "clothing",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "La cola de mi vestido se arruinó en la lluvia.",
+              "english": "The train of my dress got ruined in the rain."
+            }
+          ]
+        },
+        {
+          "sense_id": "88b",
+          "pos": "NOUN",
+          "translation": "soda",
+          "context": "beverage",
+          "regions": [
+            "Dominican Republic",
+            "Ecuador",
+            "El Salvador"
+          ],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Dame una cola helada, por favor.",
+              "english": "I'll have a cold soda, please."
+            }
+          ]
+        },
+        {
+          "sense_id": "939",
+          "pos": "NOUN",
+          "translation": "willy",
+          "context": "penis",
+          "regions": [
+            "Spain",
+            "United Kingdom"
+          ],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "El bebé llora cuando hace pipí. Creo que le escuece la cola al pobrecito.",
+              "english": "The baby cries when he's peeing. I think his willy stings, poor thing."
+            }
+          ]
+        },
+        {
+          "sense_id": "99e",
+          "pos": "NOUN",
+          "translation": "butt",
+          "context": "buttocks",
+          "regions": [
+            "Latin America",
+            "United States"
+          ],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "La cola de la bebé está irritada.",
+              "english": "The baby's butt is irritated."
+            }
+          ]
+        },
+        {
+          "sense_id": "a42",
+          "pos": "NOUN",
+          "translation": "weenie",
+          "context": "penis",
+          "regions": [
+            "Spain",
+            "United States"
+          ],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Mamá, a ese niño se le ve la cola.",
+              "english": "Mom, I can see that boy's weenie."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "legacy_word_id": "d2a3bd",
+      "surface": "cura",
+      "lemma": "cura",
+      "pos": "NOUN",
+      "sample": {
+        "total": 25,
+        "accepted": 18,
+        "coverage": 0.72,
+        "abstained": 6,
+        "below_gate": 1
+      },
+      "publication": {
+        "status": "clean_signal",
+        "headline": "Two genuinely common senses",
+        "detail": "The noun sample splits evenly between priest and cure; verb-shaped uses were allowed to abstain."
+      },
+      "dictionary_senses": [
+        {
+          "sense_id": "875",
+          "pos": "NOUN",
+          "translation": "priest",
+          "context": "religious",
+          "regions": [],
+          "display": true,
+          "prominence": "common",
+          "observed_count": 9,
+          "share_of_sample": 0.36,
+          "canonical_examples": [
+            {
+              "spanish": "El cura ofreció la misa el domingo por la mañana.",
+              "english": "The priest offered Mass on Sunday morning."
+            }
+          ]
+        },
+        {
+          "sense_id": "b94",
+          "pos": "NOUN",
+          "translation": "cure",
+          "context": "medical care",
+          "regions": [],
+          "display": true,
+          "prominence": "common",
+          "observed_count": 9,
+          "share_of_sample": 0.36,
+          "canonical_examples": [
+            {
+              "spanish": "Los médicos están buscando una cura para el ébola.",
+              "english": "Doctors are trying to find a cure for Ebola."
+            }
+          ]
+        },
+        {
+          "sense_id": "74f",
+          "pos": "NOUN",
+          "translation": "treatment",
+          "context": "medical care",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "¿Estás seguro de que esta cura me ayudará?",
+              "english": "Are you sure this treatment will help me?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "legacy_word_id": "03102e",
+      "surface": "sierra",
+      "lemma": "sierra",
+      "pos": "NOUN",
+      "sample": {
+        "total": 25,
+        "accepted": 14,
+        "coverage": 0.56,
+        "abstained": 10,
+        "below_gate": 1
+      },
+      "publication": {
+        "status": "insufficient",
+        "headline": "Not enough usable evidence",
+        "detail": "Only 14 of 25 random occurrences passed the gate, so the prominence labels should not be published yet."
+      },
+      "dictionary_senses": [
+        {
+          "sense_id": "995",
+          "pos": "NOUN",
+          "translation": "saw",
+          "context": "tool",
+          "regions": [],
+          "display": true,
+          "prominence": "common",
+          "observed_count": 10,
+          "share_of_sample": 0.4,
+          "canonical_examples": [
+            {
+              "spanish": "El leñador utilizó una sierra para cortar el árbol.",
+              "english": "The lumberjack used a saw to cut down the tree."
+            }
+          ]
+        },
+        {
+          "sense_id": "391",
+          "pos": "NOUN",
+          "translation": "mountain range",
+          "context": "series of mountains",
+          "regions": [],
+          "display": true,
+          "prominence": "common",
+          "observed_count": 4,
+          "share_of_sample": 0.16,
+          "canonical_examples": [
+            {
+              "spanish": "Podía ver toda la sierra desde el avión.",
+              "english": "I could see the whole mountain range from my plane."
+            }
+          ]
+        },
+        {
+          "sense_id": "5f9",
+          "pos": "NOUN",
+          "translation": "mountains",
+          "context": "series of mountains",
+          "regions": [],
+          "display": false,
+          "prominence": "uncommon_or_unseen",
+          "observed_count": 0,
+          "share_of_sample": 0.0,
+          "canonical_examples": [
+            {
+              "spanish": "Vivo cerca de la sierra para aprovechar el buen esquí de la región.",
+              "english": "I live close to the mountains to take advantage of the good skiing in the region."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

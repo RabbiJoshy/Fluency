@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23bd3a35'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='22' fill='white'%3EF%3C/text%3E%3C/svg%3E" />
+    <title>Speech Mode — Evidence Preview</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Fluency Speech Mode preview">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span>Fluency</span>
+        </a>
+        <div class="prototype-label">
+          <span class="status-dot" aria-hidden="true"></span>
+          Isolated prototype · not shipped
+        </div>
+        <div class="view-switch" aria-label="Preview mode">
+          <button class="view-button is-active" type="button" data-view="learner">Learner</button>
+          <button class="view-button" type="button" data-view="evidence">Evidence</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="word-rail" aria-label="Preview words">
+          <div class="rail-heading">
+            <span>Four-word trial</span>
+            <small>v0.1</small>
+          </div>
+          <nav id="word-nav" class="word-nav"></nav>
+          <div class="rail-note">
+            <span class="eyebrow">Prototype question</span>
+            <p>Can broad prominence labels improve the learner view without pretending the counts are ground truth?</p>
+          </div>
+        </aside>
+
+        <section class="content" aria-live="polite">
+          <div id="word-header"></div>
+          <div id="method-note"></div>
+          <div id="sense-list" class="sense-list"></div>
+          <div id="other-senses"></div>
+          <footer class="word-footer">
+            <button id="previous-word" class="quiet-button" type="button">← Previous</button>
+            <span id="word-position"></span>
+            <button id="next-word" class="primary-button" type="button">Next word →</button>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <script src="preview-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

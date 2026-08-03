@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-08-03_pilot_v0_1",
+  "architecture": "spanish_speech_vnext",
+  "immutable_after_review": true,
+  "deck": {
+    "path": "deck.json",
+    "bytes": 19629,
+    "sha256": "7a0b4092cb502ad64fad7ff888c645ae2f25184ecc4f0d9324e5073c43e2edeb"
+  },
+  "source_evidence_run": "Data/Spanish/Intermediates/speech_mode_evidence/runs/2026-08-03_v0_1",
+  "legacy_fallback": "Data/Spanish/runs/normal_mode/2026-08-03_spanishdict_examples_v2"
+}

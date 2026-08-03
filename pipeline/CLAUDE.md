@@ -55,6 +55,7 @@ Current main steps:
 
 Supporting tools/utils:
 
+- `tool_8e_build_speech_evidence.py` — experimental Spanish Speech Mode evidence v0.1; snapshots exact SpanishDict menus, reservoir-samples provenance-bearing parallel-corpus occurrences, performs direct closed-set WSD with abstention, and derives review-only prominence/example candidates outside active runs
 - `tool_5c_enrich_sense_menu_metadata.py`
 - `tool_6a_classify_senses.py`
 - `tool_6a_refine_pos.py`

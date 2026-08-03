@@ -17,6 +17,7 @@ Vanilla JS with native ES modules. No framework, no bundler, no build step.
 | `auth.js` | Login, Google Sheets sync | `submitLogin()`, `saveWordProgress()`, `loadUserProgressFromSheet()` |
 | `progress.js` | Card progress state + coverage bars | `getProgressState()`, `calculateCoveragePercent()` |
 | `knowledge.js` | Sparse per-sense/expression knowledge layered over card progress | `getKnowledgeItemState()`, `buildFocusedReviewCard()`, `saveKnowledgeProgress()` |
+| `speech-vnext.js` | Versioned Spanish Speech vNext deck adapter | `buildSpeechVnextCards()`, `startSpeechVnext()` |
 | `estimation.js` | Receptive level estimation — adaptive frequency bands | `startEstimation()`, `handleAnswer()`, `showEstimationResult()`, `revealTranslation()` |
 | `speech.js` | Text-to-speech | `speakWord()` |
 | `artist-ui.js` | Album art, artist backgrounds | `updateArtistBackground()` |
@@ -34,6 +35,7 @@ Each module exposes functions on `window` (e.g. `window.buildFilteredVocab = bui
 ## Entry Points
 
 - `index.html` — normal vocabulary mode
+- `index.html?speech=vnext` — candidate Spanish Speech vNext method (versioned deck, legacy route unchanged)
 - `index.html?artist=bad-bunny` — artist/lyrics mode (loads from `artists.json`)
 - `index.html?mode=badbunny` — legacy alias
 

@@ -79,6 +79,9 @@ export const state = {
     // Hidden by default; toggle to study them.
     excludeEnglishLoanwords: true,
     speechEnabled: true,
+    // Query-only app route used to evaluate the new Spanish Speech sense
+    // architecture without changing normal decks or saving preview answers.
+    speechVnextActive: false,
     // Optional while the app/content are still being developed. When off,
     // time-based due cards remain Known; explicit mistakes and partial cards
     // still enter Review. Existing stages/timestamps are preserved.

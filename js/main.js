@@ -1,25 +1,26 @@
-import './state.js?v=20260803a';
-import './offline-db.js?v=20260803a';
-import './sync-queue.js?v=20260803a';
-import { initOfflineContent } from './offline-content.js?v=20260803a';
-import './speech.js?v=20260803a';
-import './artist-ui.js?v=20260803a';
-import './auth.js?v=20260803a';
-import './estimation.js?v=20260803a';
-import './config.js?v=20260803a';
-import './progress.js?v=20260803a';
-import './knowledge.js?v=20260803a';
-import './ui.js?v=20260803a';
-import './vocab.js?v=20260803a';
-import './flashcards.js?v=20260803a';
+import './state.js?v=20260803b';
+import './offline-db.js?v=20260803b';
+import './sync-queue.js?v=20260803b';
+import { initOfflineContent } from './offline-content.js?v=20260803b';
+import './speech.js?v=20260803b';
+import './artist-ui.js?v=20260803b';
+import './auth.js?v=20260803b';
+import './estimation.js?v=20260803b';
+import './config.js?v=20260803b';
+import './progress.js?v=20260803b';
+import './knowledge.js?v=20260803b';
+import './ui.js?v=20260803b';
+import './vocab.js?v=20260803b';
+import './flashcards.js?v=20260803b';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
 // entirely out of normal Speech startup. Card/modal code already has its own
 // lazy module stubs in flashcards.js.
 const _initialParams = new URLSearchParams(window.location.search);
+const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260803a').catch(error => {
+    ? import('./spotify.js?v=20260803b').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -273,6 +274,38 @@ loadConfig().then(async () => {
     }
     // Hide floating gear — replaced by gear in the top bar
     document.getElementById('gearBtn').style.display = 'none';
+
+    // Set user name in top bar immediately (don't wait for progress load).
+    const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';
+    document.getElementById('topBarUserName').textContent = userName;
+
+    // Shareable landing URL: ?about=1 opens the About modal on top of whatever
+    // state the app lands in.
+    if (_initialParams.has('about')) {
+        window.openAboutProjectModal && window.openAboutProjectModal();
+    }
+
+    // Speech vNext is a compact, local-data route. Start it before migrations,
+    // remote secrets, sync, progress or offline-catalogue work so evaluating
+    // the new method does not inherit legacy runtime cost or write behavior.
+    if (_speechVnextRoute) {
+        try {
+            selectedLanguage = 'spanish';
+            applyLanguageColorTheme();
+            const speechVnext = await import('./speech-vnext.js?v=20260803b');
+            await speechVnext.startSpeechVnext();
+        } catch (error) {
+            console.error('Speech vNext preview failed to load:', error);
+            document.getElementById('loadingMessage').textContent = 'Speech vNext could not be loaded.';
+            document.getElementById('loadingMessage').style.display = 'block';
+            document.getElementById('setupPanel').classList.remove('hidden');
+            document.getElementById('setupPanel').style.display = 'block';
+        } finally {
+            hideAppLoading();
+        }
+        return;
+    }
+
     perfMark('after sync setup phase');
     await Promise.allSettled([migrateLocalStorageIds(), migrateLocalStorageIdsV2()]);
     perfMark('after migrations');
@@ -289,19 +322,6 @@ loadConfig().then(async () => {
         console.warn('Offline sync initialization deferred:', error));
     initOfflineContent().catch(error =>
         console.warn('Offline content initialization deferred:', error));
-
-    // Set user name in top bar immediately (don't wait for progress load)
-    const userName = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : '';
-    document.getElementById('topBarUserName').textContent = userName;
-
-    // Shareable landing URL: ?about=1 opens the About modal on top of whatever
-    // state the app lands in. If the visitor has no session, they see the
-    // landing layered over the auth modal and can pick an auth path from the
-    // CTAs at the bottom of the About content. If they DO have a session,
-    // they see the landing over the app and can dismiss back to it.
-    if (new URLSearchParams(window.location.search).has('about')) {
-        window.openAboutProjectModal && window.openAboutProjectModal();
-    }
 
     // Start loading progress from Google Sheets (loads cache synchronously, then fetches)
     let progressPromise = Promise.resolve(false);

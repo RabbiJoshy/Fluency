@@ -7,7 +7,7 @@ import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260803a';
+} from './example-personalisation.js?v=20260803b';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -1981,6 +1981,7 @@ function recordCardResult(result) {
 
     // Save progress to Google Sheets or LocalStorage
     const currentCard = flashcards[currentIndex];
+    if (currentCard?.previewOnly) return;
     if (currentCard && currentCard.rank) {
         saveWordProgress(currentCard, isCorrect);
     }
@@ -2004,6 +2005,13 @@ function showFloatingBtns(show) {
 
 async function goBackToSetup() {
     stopExampleAutoplay(true);
+    if (speechVnextActive) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('speech');
+        url.searchParams.delete('resume');
+        window.location.href = url.toString();
+        return;
+    }
     // Hide app content, show setup
     const appContent = document.getElementById('appContent');
     const setupPanel = document.getElementById('setupPanel');
@@ -2741,6 +2749,12 @@ function updateCard({ announceHeadword = false } = {}) {
     } else if (card.searchExamplesOnly) {
         frontRankingEl.innerHTML = '<span class="card-exclusion-label card-exclusion-label--examples">Examples only · no matched sense</span>';
         frontRankingEl.style.display = 'flex';
+    } else if (card.speechVnext) {
+        const verdict = String(card.previewVerdict || 'preview').replace(/[^a-z0-9_-]/gi, '');
+        frontRankingEl.innerHTML = `
+            <span class="speech-vnext-card-label ${verdict}">Speech vNext · candidate method</span>
+            <span class="speech-vnext-card-status">${escapeCardText(card.previewHeadline || '')}</span>`;
+        frontRankingEl.style.display = 'flex';
     } else if (vocabularyRank !== undefined) {
         let freqHtml = '';
         if (card.corpusCount) {
@@ -2884,6 +2898,14 @@ function updateCard({ announceHeadword = false } = {}) {
     `;
     if (card.translationUnavailable) {
         backHTML += `<div class="extra-translation-unavailable"><strong>No translation available yet.</strong><br>This one-off lyric remains available as corpus evidence.</div>`;
+    }
+    if (card.speechVnext) {
+        const coverage = Math.round((Number(card.previewCoverage) || 0) * 100);
+        backHTML += `<div class="speech-vnext-back-note">
+            <span>SpanishDict senses + exact examples</span>
+            <strong>${escapeCardText(card.previewHeadline || 'Experimental prominence')}</strong>
+            <small>${coverage}% of the 25-use sample passed the assignment gate · prominence remains provisional</small>
+        </div>`;
     }
 
     // Multi-meaning cards keep a compact active-item view for large merged
@@ -3208,6 +3230,9 @@ function updateCard({ announceHeadword = false } = {}) {
                 // Continuations of a group are skipped; the leader emits a
                 // single card containing all members.
                 const pctVal = Math.round(m.percentage * 100);
+                const prominenceText = m.prominenceLabel
+                    ? escapeCardText(m.prominenceLabel)
+                    : '';
                 const axis = GROUP_DUPLICATE_MEANINGS ? (axisOf.get(idx) || 'singleton') : 'singleton';
                 const isGrouped = axis === 'translation' || axis === 'context';
                 const groupKey = isGrouped ? groupKeyOf.get(idx) : null;
@@ -3336,12 +3361,14 @@ function updateCard({ announceHeadword = false } = {}) {
                     // padding. pointer-events:none lets the row's selectMeaning
                     // still fire through. right:8px matches the group pct's
                     // effective right offset for vertical alignment.
-                    const pctTail = pctVal < 100
-                        ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
-                        : '';
+                    const pctTail = prominenceText
+                        ? `<span class="sense-prominence-label ${String(m.prominenceLabel || '').toLowerCase()}">${prominenceText}</span>`
+                        : (pctVal < 100
+                            ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
+                            : '');
                     target.push(`
                     <div class="meaning-row meaning-row-regular ${singletonTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
-                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${pctVal < 100 ? '42px' : '8px'} 0 8px;">
+                        <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${prominenceText ? '86px' : (pctVal < 100 ? '42px' : '8px')} 0 8px;">
                             <span class="meaning-row-translation row-adaptive-text" style="font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
                         ${pctTail}
@@ -4760,7 +4787,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260803a';
+const ASSET_VERSION = '20260803b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
