@@ -212,3 +212,18 @@ test('setup routing advances past fully seen and suggestion-skipped levels', asy
         auth.indexOf('applyCachedProgress(cached)') < auth.indexOf("await dbGet('localState'")
     );
 });
+
+test('card utility controls stay crisp and the POS popup scrolls without dismissing', async () => {
+    const [cards, modals, css] = await Promise.all([
+        text('js/flashcards.js'), text('js/flashcards-modals.js'), text('css/style.css')
+    ]);
+    assert.match(cards, /class="ref-icon-btn ref-conj-btn"/);
+    assert.match(cards, /class="ref-icon-btn ref-syn-btn"/);
+    assert.match(css, /\.ref-conj-btn svg rect,[\s\S]*?fill: rgba\(255, 255, 255, 0\.07\)/);
+    assert.match(css, /\.ref-icon-btn\[title="SpanishDict"\]::before[\s\S]*?data:image\/svg\+xml/);
+    assert.match(css, /\.ref-icon-btn\[title="Reverso Context"\]::before[\s\S]*?data:image\/svg\+xml/);
+    assert.match(css, /\.pos-info-popover\s*\{[\s\S]*?overflow-y: auto;[\s\S]*?touch-action: pan-y;/);
+    assert.match(modals, /if \(e\.target === overlay\) close\(\)/);
+    assert.match(modals, /class="pos-info-close"/);
+    assert.doesNotMatch(modals, /overlay\.addEventListener\('click', close\)/);
+});

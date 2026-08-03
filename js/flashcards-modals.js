@@ -59,8 +59,9 @@ const POS_INFO = {
 // a tap on the pill opens a full-screen semi-transparent overlay holding
 // a small card with the POS name + description. If a percentage is
 // passed and is a real sub-100 frequency, the popover also explains
-// what that percentage means. Any subsequent click (or Escape) closes
-// the overlay. The pill's own click stops propagation so the row's
+// what that percentage means. The backdrop, close button, or Escape closes
+// the overlay; interaction inside the popover stays inside it so the content
+// can be scrolled safely on touch screens. The pill's own click stops propagation so the row's
 // selectMeaning handler doesn't also fire.
 function showPOSInfo(event, pos, pct) {
     if (event) {
@@ -93,11 +94,12 @@ function showPOSInfo(event, pos, pct) {
     // mirror them on the popover so the pairing is obvious.
     const posColorClass = getPosColorClass(pos) || '';
     overlay.innerHTML = `
-        <div class="pos-info-popover ${posColorClass}" role="dialog" aria-label="${info.name}">
+        <div class="pos-info-popover ${posColorClass}" role="dialog" aria-modal="true" aria-label="${info.name}" tabindex="-1">
+            <button type="button" class="pos-info-close" aria-label="Close information popup">×</button>
             <div class="pos-info-name">${info.name}</div>
             <div class="pos-info-description">${info.description}</div>
             ${pctSection}
-            <div class="pos-info-hint">Tap anywhere to close</div>
+            <div class="pos-info-hint">Scroll for details · tap outside to close</div>
         </div>
     `;
     document.body.appendChild(overlay);
@@ -106,11 +108,21 @@ function showPOSInfo(event, pos, pct) {
         document.removeEventListener('keydown', onKey);
     };
     const onKey = (e) => { if (e.key === 'Escape') close(); };
-    // Any click on the overlay (including the popover) closes. The user
-    // asked for "press anywhere to close" — pairs cleanly with the
-    // one-glance nature of the info.
-    overlay.addEventListener('click', close);
+    const popover = overlay.querySelector('.pos-info-popover');
+    const closeButton = overlay.querySelector('.pos-info-close');
+    // Mobile browsers can emit a click after a touch-scroll. Only a genuine
+    // backdrop click dismisses, so scrolling or selecting text in the dialog
+    // never tears the overlay down underneath the gesture.
+    overlay.addEventListener('click', e => {
+        if (e.target === overlay) close();
+    });
+    popover.addEventListener('click', e => e.stopPropagation());
+    closeButton.addEventListener('click', e => {
+        e.stopPropagation();
+        close();
+    });
     document.addEventListener('keydown', onKey);
+    popover.focus({ preventScroll: true });
 }
 
 // ---------------------------------------------------------------------------
