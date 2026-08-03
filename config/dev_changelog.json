@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-03",
+      "commit": "38cf8de7",
+      "summary": "Spanish Speech vNext is now a reversible candidate method in the real app",
+      "details": [
+        "The new index.html?speech=vnext route uses the existing Fluency flashcard UI to show important SpanishDict senses, broad prominence labels and exact SpanishDict examples",
+        "Its first four-word deck is an immutable versioned run with a checksum manifest, legacy whole-word IDs, stable SpanishDict sense IDs and every non-displayed dictionary sense retained for later migration",
+        "The ordinary Speech route and active legacy deck remain unchanged; unaudited corpus matches and legacy percentages are not imported as vNext truth, pilot answers cannot alter progress, and cache v179→v180 / assets 20260803a→20260803b"
+      ]
+    },
+    {
+      "date": "2026-08-03",
       "commit": "36022593",
       "summary": "Card grammar, Expressions, and set completion now read more clearly",
       "details": [

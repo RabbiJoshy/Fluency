@@ -15,6 +15,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Desktop lyric autoplay is line-bounded and card-wide: it announces each sense/sub-sense/Expression with distinguishing context, plays that item's eligible examples, and skips unplayable lines without changing full-list counters. It remains unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
 - Card grammar uses an adaptive identity block: a distinct lemma shares its row with POS, repeated lemmas leave no placeholder hole, and verb morphology wraps independently below. POS pills, English morphology labels, semantic POS/special-row colour themes, pooled-form highlighting, and the grouped/linked card-back layout remain. Sense-row typography scales with copy length; Expression rows stack upright source text above italic English, while clitic rows remain compact. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
+- Spanish Speech vNext is a versioned candidate method rather than an in-place rewrite. `?speech=vnext` consumes immutable vNext runs through the existing card renderer; the ordinary Speech route retains the legacy deck. Stable SpanishDict sense IDs, legacy word IDs, canonical examples, and reviewed evidence may migrate forward, while legacy percentages, personalised frames, and unaudited corpus attachments remain separately recoverable rather than becoming vNext truth.
 - Audit flags separate the target (pairing, meaning, example, lemma, word form, card, or note only) from the problem category. They default to the visible sense–example pairing and store structured evidence through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
@@ -31,6 +32,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-08-03 — Establish Spanish Speech vNext as a reversible candidate method
+
+- Commit `38cf8de7`; front-end cache `flashcards-v180` / `20260803b`.
+- Added `index.html?speech=vnext` as a first-class Spanish Speech route using the existing card shell, navigation, sense rows, SpanishDict links, and example presentation. The four-word pilot shows only selected important senses with Dominant/Common/Occasional labels and exact SpanishDict examples.
+- Created immutable run `Data/Spanish/runs/speech_vnext/2026-08-03_pilot_v0_1` with a checksum manifest. It retains legacy whole-word IDs, every SpanishDict sense and stable leaf ID, raw audit counts, canonical examples, and explicit source references; only its selected senses render.
+- Kept the existing `Data/Spanish/vocabulary.index.json` / `vocabulary.examples.json` route and `2026-08-03_spanishdict_examples_v2` candidate fully intact. Legacy percentages, personalised frames, and unaudited corpus candidates are referenced but not adopted as vNext truth. Pilot answers are explicitly barred from progress persistence.
+- The route starts before migration, secrets, sync, progress, and offline-catalogue work, so its runtime reflects the intended compact architecture. A route-local versioned data fallback protects first load from an older service worker's cached config.
+- Verification: deterministic exporter and manifest hash assertions; Python compilation; JavaScript syntax checks; 23 Speech-vNext/UI/offline/personalisation tests; valid config/deck/manifest JSON; cache-version lockstep; `git diff --check`. Per repository policy, the service-worker app was not browser-automated; a localhost-only, restricted-asset server was started for Josh's live review. GitHub search found no broader matching issue beyond #18's narrower OpenSubtitles-MWE scope.
 
 ### 2026-08-03 — Refine card grammar and set completion
 
