@@ -57,6 +57,7 @@ Supporting tools/utils:
 
 - `tool_8e_build_speech_evidence.py` — experimental Spanish Speech Mode evidence v0.1; snapshots exact SpanishDict menus, reservoir-samples provenance-bearing parallel-corpus occurrences, performs direct closed-set WSD with abstention, and derives review-only prominence/example candidates outside active runs
 - `tool_8f_run_speech_string_audit.py` — full zero-AI Speech audit runner; scans aligned OpenSubtitles once, assigns only uniquely supported SpanishDict leaves through literal English cues, explicitly abstains on missing/conflicting cues, checkpoints for resume, and retains bounded provenance samples without changing an app deck
+- `tool_8g_benchmark_speech_alignment.py` — bounded 60-row exact-leaf benchmark comparing raw cue retrieval, pretrained SimAlign word alignment, Gemini closed-set SpanishDict semantic validation, and their intersections against gold recorded before predictions; never rebuilds or activates a deck
 - `tool_5c_enrich_sense_menu_metadata.py`
 - `tool_6a_classify_senses.py`
 - `tool_6a_refine_pos.py`

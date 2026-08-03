@@ -55,6 +55,12 @@ class SpeechStringAuditTests(unittest.TestCase):
         self.assertEqual(audit.raw_cues("that"), set())
         self.assertIn(("used", "to"), audit.raw_cues("used to"))
 
+    def test_english_tokenization_casefolds_before_matching(self):
+        self.assertEqual(
+            audit.normalize_tokens("Think AGAIN", audit.ENGLISH_TOKEN_RE),
+            ("think", "again"),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

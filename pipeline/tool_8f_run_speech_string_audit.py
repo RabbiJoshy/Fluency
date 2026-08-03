@@ -164,7 +164,8 @@ def sha256(path: Path) -> str:
 
 
 def normalize_tokens(text: str, pattern: re.Pattern[str]) -> tuple[str, ...]:
-    return tuple(match.group(0).casefold() for match in pattern.finditer(text))
+    folded = text.casefold()
+    return tuple(match.group(0) for match in pattern.finditer(folded))
 
 
 def split_glosses(translation: str) -> list[str]:
