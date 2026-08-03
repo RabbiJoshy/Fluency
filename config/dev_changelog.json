@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-03",
-      "commit": "pending",
+      "commit": "36022593",
       "summary": "Card grammar, Expressions, and set completion now read more clearly",
       "details": [
         "The back uses one occupied grammar block: a distinct lemma shares its identity row with POS, repeated lemmas leave no hole, and verb morphology wraps on its own row",

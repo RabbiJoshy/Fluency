@@ -13,7 +13,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Artist corpus frequency excludes exact repeated lyric lines within each song. Lemma-mode card frequency and examples use the same pooled sibling basis.
 - Artist rank ties use each word's full distinct-song spread, not the capped example sample. Artist lyric examples prefer an explicitly credited active artist, Spotify availability, and a standard release in that order before the teaching signals.
 - Desktop lyric autoplay is line-bounded and card-wide: it announces each sense/sub-sense/Expression with distinguishing context, plays that item's eligible examples, and skips unplayable lines without changing full-list counters. It remains unavailable on mobile where Spotify handoff timers cannot guarantee the stop boundary.
-- Card grammar uses separate POS pills, English morphology labels, distinct semantic POS/special-row colour themes, pooled-form highlighting, and a grouped/linked card-back layout. Sense-row typography scales with copy length; Expression/clitic rows are inline-first with upright source text and italic English. Trivial plural and elision form metadata is suppressed on the back.
+- Card grammar uses an adaptive identity block: a distinct lemma shares its row with POS, repeated lemmas leave no placeholder hole, and verb morphology wraps independently below. POS pills, English morphology labels, semantic POS/special-row colour themes, pooled-form highlighting, and the grouped/linked card-back layout remain. Sense-row typography scales with copy length; Expression rows stack upright source text above italic English, while clitic rows remain compact. Trivial plural and elision form metadata is suppressed on the back.
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Audit flags separate the target (pairing, meaning, example, lemma, word form, card, or note only) from the problem category. They default to the visible sense–example pairing and store structured evidence through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
@@ -31,6 +31,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-08-03 — Refine card grammar and set completion
+
+- Commit `36022593`; front-end cache `flashcards-v179` / `20260803a`.
+- Replaced the fixed empty lemma slot with one adaptive grammar block. Distinct lemmas share an identity row with POS, repeated lemmas let POS occupy that row, and active verb morphology wraps on its own row below.
+- Stacked Expression source text above its English meaning with a subtle divider, preserving upright source text, italic English, adaptive sizing, and language-neutral behavior.
+- Simplified set completion to the suggested continuation plus compact icon actions for Main menu and Redo set. Removed mistake-only review and duplicate no-mistakes copy; desktop Enter now triggers the available suggested continuation.
+- Verification: syntax checks for changed JavaScript and the service worker; 19 UI/offline/personalisation tests plus the Google Apps Script v4 regression; valid changelog JSON; cache-version lockstep; `git diff --check`. Per repository policy, no browser preview was used against the service-worker app. GitHub backlog search found no indexed overlap; issue creation/update remains blocked because the GitHub CLI is unavailable.
 
 ### 2026-08-03 — Benchmark zero-training Spanish slot filling
 
