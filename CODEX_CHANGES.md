@@ -17,6 +17,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - SpanishDict sense menus for normal and artist modes share `pipeline/util_5c_spanishdict.py`; reverse-direction conjugation collisions such as `sea` are guarded there rather than patched only in a final deck.
 - Spanish Speech vNext is a versioned data candidate rather than an in-place rewrite or a separate learner UI. Its eventual route must use the ordinary setup, sets, cards, navigation, and info panel while swapping only same-schema Spanish index/example paths. Stable SpanishDict sense IDs, legacy word IDs, canonical examples, and reviewed evidence may migrate forward; legacy runs remain recoverable. The earlier four-word custom preview is superseded and must not be treated as the target app experience.
 - Sentence-aligned bilingual string matching is rejected as Spanish Speech WSD or prominence evidence. It may retrieve candidates, but a word aligner is needed to bind an English cue to the Spanish token and a separate semantic gate is still needed for the full SpanishDict translation/context. No string-match counts may become learner percentages.
+- For high-precision external examples, literal cues may retrieve candidates and a conservative closed-set semantic gate may validate the exact SpanishDict leaf. On the first fixed benchmark, semantic validation outperformed mandatory word alignment; alignment remains useful diagnostic/consensus evidence. This candidate-selected method cannot estimate prominence because retrieval and gate recall are sense-dependent.
 - Audit flags separate the target (pairing, meaning, example, lemma, word form, card, or note only) from the problem category. They default to the visible sense–example pairing and store structured evidence through the existing FlaggedWords backend contract.
 - Artist expressions remain rows on word/lemma cards. Curated and morphology-backed construction templates pool deterministic unique-line evidence, require their semantic complement, and preserve exact lyric surfaces.
 - Per-sense, Expression, and clitic knowledge is a sparse override layer on whole-card progress. The newest parent/item timestamp wins, and level review synthesizes focused word cards rather than creating a second permanent card taxonomy. Standard and artist decks now ship stable sense IDs, preserving aliases and legacy content-derived progress during migration.
@@ -33,6 +34,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
 
 ## Codex task history
+
+### 2026-08-03 — Benchmark word alignment and semantic exact-leaf validation
+
+- Commit `9382d725`; no shipped deck or front-end change, so no cache bump.
+- Froze and manually labelled a deterministic 60-row, polysemous, sense-stratified panel before predictions: 40 valid exact-leaf attachments and 20 invalid ones. The raw cue baseline was 66.7% precision.
+- SimAlign with `bert-base-multilingual-cased` revision `3f076fdb1ab68d5b2880cb87a0886f315b8146f8` completed the panel on CPU in six seconds after load. Strict intersection reached 82.5% precision and IterMax 81.8%, confirming that word alignment fixes some wrong-token cues but cannot establish exact SpanishDict context.
+- A separate temperature-zero `gemini-3.5-flash-lite` closed-set gate accepted 23 medium/high-confidence same-leaf candidates at 100% precision on the panel (57.5% recall of valid candidates); high-only accepted 20 at 100%. Requiring strict alignment as well retained 19 at the same precision, so mandatory alignment reduced useful recall without improving this panel's precision.
+- Decision: advance only to a larger candidate-validation benchmark, not a corpus-wide run. Use literal matching for retrieval, semantic validation for exact-leaf publication, and alignment as optional audit/consensus evidence. Keep prominence separate because this subset is selection-biased. Require at least 95% exact-leaf precision on a second 200+ row POS/frequency/cue/alignment-stratified human review before scaling.
+- Verification: 14 focused Speech evidence/alignment tests; repeatable scoring; exact confusion-matrix assertions; manual inspection of every semantic acceptance and miss; tracked report with real examples; `git diff --check`. Active and immutable decks remain unchanged.
 
 ### 2026-08-03 — Reject raw string matching as Spanish Speech WSD
 
