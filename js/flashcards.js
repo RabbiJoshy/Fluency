@@ -3126,12 +3126,12 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Left-aligned header: word + its POS pill(s) share the top line —
     // flex-wrap lets the legend sit to the right of the word when it fits
-    // and drop to its own line only when it doesn't. The lemma/citation,
-    // if any, is the secondary line beneath.
+    // and drop to its own line only when it doesn't. The lemma/citation, if
+    // any, is the secondary line beneath, with verb morphology inline to
+    // its right (not stacked on its own row).
     const backGrammarHTML = (backCitationHTML || backMorphologyHTML)
         ? `<div class="back-grammar-block">
-                ${backCitationHTML ? `<div class="back-lemma-row">${backCitationHTML}</div>` : ''}
-                ${backMorphologyHTML}
+                <div class="back-lemma-row">${backCitationHTML}${backMorphologyHTML}</div>
            </div>`
         : '';
 
@@ -3149,9 +3149,9 @@ function updateCard({ announceHeadword = false } = {}) {
                     <span class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
                     ${backPosLegendHTML}
                 </div>
+                ${backGrammarHTML}
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
             </div>
-            ${backGrammarHTML}
             ${backDerivationHTML}
             ${homographChipHTML}
         </div>
