@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-04",
+      "commit": "8e3d7efb",
+      "summary": "Card-back controls are simpler: fewer buttons, morphology on demand, footer pinned in place",
+      "details": [
+        "The lemma sits left-aligned under the headword at a slightly smaller size; the Spotify button doubles as the lyric-autoplay toggle on a long press, replacing the separate autoplay icon",
+        "Verb morphology is now formatted like the POS pills and stays hidden until you press the pill, instead of always showing; POS pills are bigger, vertically centred with the word, and the multi-POS chooser can sit inline to the right instead of forcing a new line",
+        "The flag icon and the old POS-info popup merge into one flag button that opens a small choice sheet, same pattern as Look up; the bottom row of icon links is now pinned to the card's bottom edge instead of drifting with example length; cache v183→v184 / assets 20260803e→20260804a"
+      ]
+    },
+    {
       "date": "2026-08-03",
       "commit": "pending",
       "summary": "Card back is more legible on small phones, and Expressions/clitics now hand off as follow-up cards",
