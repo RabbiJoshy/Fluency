@@ -2069,21 +2069,30 @@
             color: #66e4cc;
         }
 
-        .back-pos-legend .card-pos {
+        .back-pos-legend .card-pos,
+        .back-morphology-row .card-pos {
             margin: 0;
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 5px 11px;
+            padding: 7px 15px;
             min-width: 0;
             font-family: var(--font-reading);
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             line-height: 1;
             text-transform: none;
             background: rgba(255, 255, 255, 0.055);
             border-color: rgba(255, 255, 255, 0.12);
             border-radius: 999px;
+            cursor: pointer;
+        }
+        /* Non-interactive pills (no verb morphology to toggle) shouldn't
+           look pressable. */
+        .back-pos-legend span.card-pos {
+            cursor: default;
+        }
+        .back-pos-legend .card-pos.has-morph-toggle {
             cursor: pointer;
         }
         .back-pos-legend .back-pos-tab {
@@ -2156,11 +2165,14 @@
            header. Explicit margin-top: 4px sits inside the block
            itself — it's the gap between the example sentence and the
            links row, not a grow-to-fill hack. */
+        /* Pinned to the bottom of the card at all times — the auto top
+           margin absorbs whatever slack is left above it, instead of the
+           row's position drifting with how tall the example sentence is. */
         #backContent > .links-section {
             flex: 0 0 auto;
-            margin-top: 0;
+            margin-top: auto;
             margin-bottom: 0;
-            padding-top: 0;
+            padding-top: 15px;
         }
 
         .mwe-expression {
@@ -6530,10 +6542,11 @@
             min-width: 54px;
             min-height: 54px;
             padding: 6px;
-            border: none;
+            border: 1px solid transparent;
+            border-radius: 50%;
             background: none;
             opacity: 0.85;
-            transition: opacity 0.2s;
+            transition: opacity 0.2s, border-color 0.16s ease, background 0.16s ease;
             -webkit-tap-highlight-color: transparent;
         }
         .spotify-btn svg {
@@ -6544,7 +6557,17 @@
         .spotify-btn:hover {
             opacity: 1;
             background: none;
-            border: none;
+        }
+        /* Long-press on the Spotify button toggles card-wide lyric autoplay
+           (merged from the old standalone autoplay button) — this ring shows
+           it's on, matching the previous button's active treatment. */
+        .spotify-btn.autoplay-active {
+            border-color: #1db954;
+            background: rgba(29, 185, 84, 0.18);
+            opacity: 1;
+        }
+        .spotify-btn.autoplay-loading {
+            animation: autoplay-loading-pulse 0.8s ease-in-out infinite alternate;
         }
 
         .breakdown-trigger {
@@ -7869,7 +7892,8 @@
         }
 
         .back-lemma-row .back-lemma {
-            font-size: 21px;
+            font-size: 30px;
+            text-align: left;
         }
 
         .back-form-note {

@@ -1000,6 +1000,39 @@ async function playExampleAutoplayStep(runId) {
     }
 }
 
+// Long-press on the Spotify button toggles card-wide lyric autoplay,
+// folding the old standalone autoplay button into the Spotify button
+// wherever both would otherwise appear side by side. A quick tap still
+// plays the track in Spotify as before.
+let _spotifyBtnLongPressTimer = null;
+let _spotifyBtnLongPressFired = false;
+const SPOTIFY_LONG_PRESS_MS = 500;
+
+function spotifyBtnPressStart(event) {
+    clearTimeout(_spotifyBtnLongPressTimer);
+    _spotifyBtnLongPressFired = false;
+    _spotifyBtnLongPressTimer = setTimeout(() => {
+        _spotifyBtnLongPressFired = true;
+        toggleExampleAutoplay(event);
+    }, SPOTIFY_LONG_PRESS_MS);
+}
+
+function spotifyBtnPressEnd() {
+    clearTimeout(_spotifyBtnLongPressTimer);
+}
+
+function spotifyBtnActivate(event, trackId, positionMs) {
+    event.stopPropagation();
+    if (event.cancelable) event.preventDefault();
+    clearTimeout(_spotifyBtnLongPressTimer);
+    if (_spotifyBtnLongPressFired) {
+        _spotifyBtnLongPressFired = false;
+        return;
+    }
+    stopExampleAutoplay(true);
+    spotifyPlayTrack(trackId, positionMs);
+}
+
 function toggleExampleAutoplay(event) {
     event?.stopPropagation();
     if (_exampleAutoplayActive) {
@@ -3072,22 +3105,29 @@ function updateCard({ announceHeadword = false } = {}) {
                 : (rememberedPos || posItems[0].pos);
             card._activePosTab = activeBackPos;
             const posPills = posItems.map(({ pos, meaningIndex }) => {
-                const posButton = hasBackPosTabs
-                    ? `<button type="button" class="card-pos back-pos-tab ${getPosColorClass(pos)}${pos === activeBackPos ? ' selected' : ''}" role="tab" aria-selected="${pos === activeBackPos}" onclick="selectPartOfSpeech(event, ${meaningIndex}, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`
-                    : `<button type="button" class="card-pos ${getPosColorClass(pos)}" onclick="showPOSInfo(event, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
-                return posButton;
+                if (hasBackPosTabs) {
+                    return `<button type="button" class="card-pos back-pos-tab ${getPosColorClass(pos)}${pos === activeBackPos ? ' selected' : ''}" role="tab" aria-selected="${pos === activeBackPos}" onclick="selectPartOfSpeech(event, ${meaningIndex}, '${pos}')"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
+                }
+                // Verb morphology is hidden until the pill is pressed, rather
+                // than showing permanently; a non-verb pill (nothing to
+                // toggle) renders as a plain, non-interactive pill instead.
+                const pillHasMorph = isVerbPos(pos) && morphLabels.length > 0;
+                if (!pillHasMorph) {
+                    return `<span class="card-pos ${getPosColorClass(pos)}"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</span>`;
+                }
+                return `<button type="button" class="card-pos has-morph-toggle ${getPosColorClass(pos)}" aria-expanded="${card._showBackMorphology ? 'true' : 'false'}" aria-label="${posDisplayName(pos)}. Show verb morphology" onclick="toggleBackMorphology(event)"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
             });
             backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose part of speech</span>' : ''}${posPills.join('')}</div>`;
-            if (isVerbPos(activeBackPos) && morphLabels.length > 0) {
+            if (isVerbPos(activeBackPos) && morphLabels.length > 0 && card._showBackMorphology) {
                 backMorphologyHTML = `<div class="back-morphology-row">${renderMorphStrip('card-pos pos-verb')}</div>`;
             }
         }
     }
 
-    // Left-aligned header: word + its (single, non-tab) POS pill share the
-    // top line; the lemma/citation, if any, is the secondary line beneath.
-    // Multi-POS tab strips stay their own row below the word — a full tab
-    // bar doesn't fit inline with the headword.
+    // Left-aligned header: word + its POS pill(s) share the top line —
+    // flex-wrap lets the legend sit to the right of the word when it fits
+    // and drop to its own line only when it doesn't. The lemma/citation,
+    // if any, is the secondary line beneath.
     const backGrammarHTML = (backCitationHTML || backMorphologyHTML)
         ? `<div class="back-grammar-block">
                 ${backCitationHTML ? `<div class="back-lemma-row">${backCitationHTML}</div>` : ''}
@@ -3107,11 +3147,10 @@ function updateCard({ announceHeadword = false } = {}) {
             <div class="flip-back-area" id="flipBackArea">
                 <div class="back-headword-row">
                     <span class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
-                    ${!hasBackPosTabs ? backPosLegendHTML : ''}
+                    ${backPosLegendHTML}
                 </div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
             </div>
-            ${hasBackPosTabs ? backPosLegendHTML : ''}
             ${backGrammarHTML}
             ${backDerivationHTML}
             ${homographChipHTML}
@@ -3885,12 +3924,20 @@ function updateCard({ announceHeadword = false } = {}) {
             }
             // Breakdown button removed — English translation is now clickable instead
             const spotifySvg = `<svg width="44" height="44" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
+            // A press-and-hold on the Spotify button toggles card-wide
+            // autoplay (merged from the old standalone button); a quick tap
+            // still plays the track. Only wire the long-press when autoplay
+            // is actually available — otherwise behave exactly as before.
+            const spotifyBtnActiveClass = cardAutoplayAvailable && _exampleAutoplayActive ? ' autoplay-active' : '';
             const spotifyBtn = spotifyTrackId
-                ? `<button type="button" class="spotify-btn link-btn" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="Play in Spotify" style="cursor:pointer; background:none; border:none; margin:0; padding:6px; position:relative; z-index:999;" onclick="event.stopPropagation(); stopExampleAutoplay(true); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})" ontouchend="event.stopPropagation(); event.preventDefault(); stopExampleAutoplay(true); spotifyPlayTrack('${spotifyTrackId}', ${positionMs})">${spotifySvg}</button>`
+                ? `<button type="button" class="spotify-btn link-btn${spotifyBtnActiveClass}" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="${cardAutoplayAvailable ? 'Play in Spotify · hold to toggle lyric autoplay' : 'Play in Spotify'}" style="cursor:pointer; margin:0; position:relative; z-index:999;" onclick="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})" ontouchend="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})"${cardAutoplayAvailable ? ` onmousedown="spotifyBtnPressStart(event)" onmouseup="spotifyBtnPressEnd()" onmouseleave="spotifyBtnPressEnd()" ontouchstart="spotifyBtnPressStart(event)" ontouchcancel="spotifyBtnPressEnd()"` : ''}>${spotifySvg}</button>`
                 : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
             // Card-wide availability keeps this visible even when only a
-            // later sense has a playable clip.
-            const autoplayBtn = cardAutoplayButton;
+            // later sense has a playable clip. Once a Spotify button is on
+            // screen, autoplay control is reached by holding it instead of a
+            // second icon — this fallback stays only for senses with no
+            // Spotify link at all.
+            const autoplayBtn = spotifyTrackId ? '' : cardAutoplayButton;
             const songNameDisplay = songName ? `
                 <div style="display: flex; justify-content: space-between; align-items: center; color: #b9c2cd; font-size: 13px; margin-top: 8px; font-style: italic;">
                     <span class="example-song-credit">— ${songName}${vocalistCredit ? `<span class="example-vocalist-credit"> · ${vocalistCredit}</span>` : ''}</span>
@@ -4101,14 +4148,21 @@ function updateCard({ announceHeadword = false } = {}) {
         </button>`;
     }
 
-    // One report route everywhere: this opens the modern audit sheet directly.
+    // The flag opens a small choice sheet (mirrors "Look up") instead of
+    // jumping straight to the audit modal. POS info — previously its own
+    // popup triggered by tapping a POS pill — lives here now too, since
+    // pill taps toggle verb morphology instead (see back-pos-legend above).
     // JST-gated because the FlaggedWords backend is currently an owner tool.
     if (currentUser && currentUser.initials === 'JST') {
-        backHTML += `<button class="ref-icon-btn ref-meta-btn" title="Report a card issue" aria-label="Report a card issue" onclick="event.stopPropagation(); showFlagMenu();">
+        backHTML += `<button class="ref-icon-btn ref-meta-btn" title="Card options" aria-label="Card options" onclick="event.stopPropagation(); toggleCardOptionsSheet(event);">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M8 27V6"></path><path d="M8 7h15l-3 6 3 6H8"></path>
             </svg>
-        </button>`;
+        </button>
+        <div class="lookup-sheet" id="cardOptionsSheet" hidden>
+            ${activeBackPos ? `<a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); showPOSInfo(event, '${activeBackPos}');">About this part of speech</a>` : ''}
+            <a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); showFlagMenu();">Report a card issue</a>
+        </div>`;
     }
 
     backHTML += `</div>`;
@@ -4505,12 +4559,30 @@ function selectPartOfSpeech(event, meaningIndex, pos) {
     stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     if (!card?.meanings?.[meaningIndex]) return;
-    card._activePosTab = pos;
+    // Pressing the already-active tab toggles verb morphology instead of
+    // doing nothing; switching to a different POS hides it again until
+    // pressed explicitly.
+    if (card._activePosTab === pos) {
+        card._showBackMorphology = !card._showBackMorphology;
+    } else {
+        card._activePosTab = pos;
+        card._showBackMorphology = false;
+    }
     currentGroupSelection = null;
     currentMeaningIndex = meaningIndex;
     currentExampleIndex = 0;
     currentMWEIndex = 0;
     _explicitMeaningSelectionKey = meaningSelectionKey(card, meaningIndex);
+    updateCard();
+}
+
+// Single (non-tab) POS pill: toggles the hidden-by-default verb morphology
+// row beneath it. Only rendered as a button when morphology exists to show.
+function toggleBackMorphology(event) {
+    event?.stopPropagation();
+    const card = flashcards[currentIndex];
+    if (!card) return;
+    card._showBackMorphology = !card._showBackMorphology;
     updateCard();
 }
 
@@ -4905,6 +4977,30 @@ function toggleLookupSheet(event) {
 }
 window.toggleLookupSheet = toggleLookupSheet;
 
+// Small sheet offering "About this part of speech" / "Report a card issue",
+// opened from the flag icon — same dismiss pattern as the lookup sheet.
+function toggleCardOptionsSheet(event) {
+    event?.stopPropagation();
+    const sheet = document.getElementById('cardOptionsSheet');
+    if (!sheet) return;
+    const opening = sheet.hidden;
+    sheet.hidden = !opening;
+    if (opening) {
+        setTimeout(() => {
+            document.addEventListener('click', function dismiss(e) {
+                if (!sheet.contains(e.target)) sheet.hidden = true;
+                document.removeEventListener('click', dismiss);
+            });
+        }, 0);
+    }
+}
+function hideCardOptionsSheet() {
+    const sheet = document.getElementById('cardOptionsSheet');
+    if (sheet) sheet.hidden = true;
+}
+window.toggleCardOptionsSheet = toggleCardOptionsSheet;
+window.hideCardOptionsSheet = hideCardOptionsSheet;
+
 window.computeLinesUnderstood = computeLinesUnderstood;
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
@@ -4925,11 +5021,15 @@ window.cycleExample = cycleExample;
 window.cycleExampleForward = cycleExampleForward;
 window.cycleExampleBackward = cycleExampleBackward;
 window.toggleExampleAutoplay = toggleExampleAutoplay;
+window.spotifyBtnPressStart = spotifyBtnPressStart;
+window.spotifyBtnPressEnd = spotifyBtnPressEnd;
+window.spotifyBtnActivate = spotifyBtnActivate;
 window.stopExampleAutoplay = stopExampleAutoplay;
 window.cycleMWEForward = cycleMWEForward;
 window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
 window.selectPartOfSpeech = selectPartOfSpeech;
+window.toggleBackMorphology = toggleBackMorphology;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
