@@ -162,6 +162,10 @@
 
         .card {
             width: 100%;
+            /* Foundation for a future accessibility text-size setting —
+               nothing reads this yet. Clamped against viewport height (the
+               567px iPhone SE card is the tight case, not card width). */
+            --card-fs: clamp(15px, 2.1vh, 20px);
             /* Fixed mobile height so the card shell doesn't grow/shrink
                between cards. Content shifts that used to come from
                min-height→max-height auto-sizing are now contained inside
@@ -224,6 +228,11 @@
         }
         .card.is-stacked .stacked-exit-btn {
             display: flex;
+        }
+        /* Chain-child cards carry their own exit affordance in the
+           breadcrumb header — the generic round X would double up. */
+        .card.is-chain-child .stacked-exit-btn {
+            display: none;
         }
 
         .card.swiping {
@@ -1785,9 +1794,67 @@
 
         @media (max-width: 767px) {
             .card-back {
-                padding-top: 76px;
+                padding-top: 68px;
             }
         }
+
+        .swipe-legend {
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .swipe-legend {
+                flex: 0 0 auto;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 14px;
+                height: 34px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 11.5px;
+                font-weight: 600;
+                transition: background 120ms ease, border-color 120ms ease;
+            }
+        }
+        .swipe-legend-wrong { color: #e08b8b; }
+        .swipe-legend-right { color: #6fd8c0; }
+        .swipe-legend-sep {
+            width: 1px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.16);
+        }
+        .swipe-legend-commit {
+            display: none;
+            font-size: 11.5px;
+            font-weight: 700;
+        }
+        .swipe-legend.legend-commit-correct,
+        .swipe-legend.legend-commit-incorrect {
+            border-top-width: 1px;
+        }
+        .swipe-legend.legend-commit-correct {
+            background: rgba(0, 212, 170, 0.16);
+            border-top-color: rgb(0, 212, 170);
+        }
+        .swipe-legend.legend-commit-incorrect {
+            background: rgba(255, 82, 82, 0.16);
+            border-top-color: rgb(255, 82, 82);
+        }
+        .swipe-legend.legend-commit-correct .swipe-legend-wrong,
+        .swipe-legend.legend-commit-correct .swipe-legend-sep,
+        .swipe-legend.legend-commit-correct .swipe-legend-right,
+        .swipe-legend.legend-commit-incorrect .swipe-legend-wrong,
+        .swipe-legend.legend-commit-incorrect .swipe-legend-sep,
+        .swipe-legend.legend-commit-incorrect .swipe-legend-right {
+            display: none;
+        }
+        .swipe-legend.legend-commit-correct .swipe-legend-commit,
+        .swipe-legend.legend-commit-incorrect .swipe-legend-commit {
+            display: inline;
+        }
+        .swipe-legend.legend-commit-correct .swipe-legend-commit { color: #6fd8c0; }
+        .swipe-legend.legend-commit-incorrect .swipe-legend-commit { color: #e08b8b; }
+
 
         /* Back layout: header / scroll / tray / sentence / links.
            #backContent sits inside .card-back and is the actual flex column
@@ -1807,6 +1874,14 @@
             width: 100%;
             margin-bottom: 0 !important;
             position: relative;
+            text-align: left;
+        }
+
+        .back-headword-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 10px;
         }
 
         /* `flex: 0 1 auto` lets the scroll region take its natural height
@@ -1838,14 +1913,9 @@
             padding-bottom: 0;
         }
 
-        /* Pinned tray for MWE / CLITIC rows. The border-top IS the divider
-           line. For the line to cut through the mid-point of the gap
-           between the last sense and first MWE, the space on either side
-           of the line must match:
-             above line = last-sense margin-bottom (6px, set inline)
-             below line = tray padding-top (6px, here)
-           Tray margins stay at 0 so the only gap to the sentence below is
-           the last MWE's own margin-bottom (6px), matching sense→sentence. */
+        /* Pinned tray for MWE / CLITIC rows — only rendered when "Phrases
+           mode" is off (js/ui.js); when on, those entries leave silently as
+           chained child cards instead (collectChainItems in flashcards.js). */
         #backContent > .meanings-tray {
             flex: 0 0 auto;
             width: 100%;
@@ -1853,6 +1923,100 @@
             padding-top: 10px;
             margin-top: 0;
             margin-bottom: 0;
+        }
+
+        /* Chain-child card chrome (phrase/clitic handoff cards) */
+        .card.is-chain-child .card-back .mobile-nav-row {
+            display: none !important;
+        }
+
+        .phrase-summary-subtitle {
+            margin-top: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #b9c2cd;
+            text-align: left;
+        }
+
+        /* One scrollable column of phrase cards, not a sequence you swipe
+           through one at a time. Each item reads top to bottom, left
+           aligned — no row backgrounds, no percentages. */
+        .phrase-summary-scroll {
+            flex: 1 1 auto;
+            width: 100%;
+            min-height: 0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .phrase-summary-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            width: 100%;
+            padding: 12px 4px;
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .phrase-summary-item:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+        .phrase-kind-badge {
+            display: inline-block;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 2px 7px;
+            border-radius: 5px;
+            background: rgba(20, 184, 166, 0.18);
+            border: 1px solid rgba(20, 184, 166, 0.55);
+            color: #7ce6d8;
+        }
+        .phrase-expression {
+            font-family: var(--font-reading);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #fff;
+        }
+        .phrase-translation {
+            font-family: var(--font-reading);
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #e6eaf0;
+        }
+        .phrase-context {
+            font-size: 13px;
+            font-style: italic;
+            color: #b9c2cd;
+        }
+        .phrase-example {
+            width: 100%;
+            margin-top: 4px;
+            padding: 10px 12px 6px;
+            background: #0d141c;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-left: 5px solid #14b8a6;
+            border-radius: 10px;
+        }
+        .phrase-example-target {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+            color: #fff;
+        }
+        .phrase-example-translation {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+            font-size: 14px;
+            line-height: 1.4;
+            color: #e6eaf0;
         }
 
         .meaning-pos-section + .meaning-pos-section {
@@ -1863,50 +2027,45 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 5px;
             margin: 0;
         }
         .back-pos-legend.has-tabs {
             gap: 5px;
+            margin-top: 4px;
         }
         .back-pos-tab-label {
             flex: 0 0 100%;
             color: var(--text-muted);
-            font: 650 9px/1 var(--font-data);
+            font: 650 12px/1 var(--font-data);
             letter-spacing: 0.08em;
-            text-align: center;
+            text-align: left;
             text-transform: uppercase;
         }
 
-        /* Reserve one grammar block, never a lemma-shaped hole. A distinct
-           citation and POS share the identity row; POS occupies it alone when
-           the citation repeats. Verb morphology gets its own wrapping row. */
+        /* Word + its single POS pill share the top line (.back-headword-row,
+           inline with the word). This block holds what comes underneath:
+           the lemma/citation on its own line, then verb morphology. */
         .back-grammar-block {
             display: flex;
-            min-height: 32px;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
             gap: 4px;
             margin: 3px 0 2px;
         }
-        .back-identity-row {
+        .back-lemma-row {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
             gap: 5px 8px;
             width: 100%;
             line-height: 1.15;
         }
-        .back-identity-row .back-pos-legend.has-tabs {
-            flex: 1 1 100%;
-        }
         .back-morphology-row {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             color: #66e4cc;
         }
 
@@ -1915,10 +2074,10 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 4px 8px;
+            padding: 5px 11px;
             min-width: 0;
             font-family: var(--font-reading);
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 600;
             line-height: 1;
             text-transform: none;
@@ -1953,29 +2112,31 @@
         }
 
         .meaning-pos-section .meaning-row {
-            background: linear-gradient(
-                90deg,
-                rgba(var(--sense-match-rgb), 0.1),
-                rgba(15, 20, 28, 0.82) 72%
-            ) !important;
-            border: 1px solid rgba(var(--sense-match-rgb), 0.16);
+            min-height: 48px;
+            background: #1b232e !important;
+            border: 1px solid rgba(255, 255, 255, 0.16);
             transition: background 160ms ease, border-color 160ms ease,
                         box-shadow 160ms ease, transform 160ms ease;
+            /* Reserve the 18px check-glyph slot uniformly regardless of each
+               row variant's own inline padding shorthand. */
+            padding-left: 30px !important;
+        }
+        .meaning-row-check {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            flex: 0 0 18px;
+            z-index: 1;
         }
 
         .meaning-row.is-current-sense {
-            background: linear-gradient(
-                90deg,
-                rgba(var(--sense-match-rgb), 0.3),
-                rgba(var(--sense-match-rgb), 0.1) 50%,
-                rgba(var(--sense-match-rgb), 0.3)
-            ) !important;
-            border-color: rgba(var(--sense-match-rgb), 0.62);
-            box-shadow:
-                inset 5px 0 0 rgb(var(--sense-match-rgb)),
-                inset -5px 0 0 rgb(var(--sense-match-rgb)),
-                0 5px 15px rgba(var(--sense-match-rgb), 0.22);
-            transform: translateY(-1px);
+            /* POS-tinted flat fill, not a fixed color — a verb-selected row
+               reads teal, an adjective-selected row reads amber, etc. */
+            background: rgba(var(--sense-match-rgb), 0.18) !important;
+            border: 2px solid rgb(var(--sense-match-rgb));
+            box-shadow: none;
+            transform: none;
             opacity: 1 !important;
         }
 
@@ -2091,13 +2252,13 @@
         .row-text-md {
             --row-primary-size: 17px;
             --row-secondary-size: 15px;
-            --row-context-size: 13px;
+            --row-context-size: 14px;
         }
 
         .row-text-sm {
             --row-primary-size: 15px;
-            --row-secondary-size: 13px;
-            --row-context-size: 11.5px;
+            --row-secondary-size: 15px;
+            --row-context-size: 14px;
         }
 
         .row-adaptive-text {
@@ -3006,13 +3167,16 @@
 
         .sentence {
             margin-top: 15px;
-            padding: 7px 11px;
-            background: rgba(var(--accent-primary-rgb), 0.14);
-            border: 1px solid var(--accent-primary);
-            border-radius: 8px;
+            padding: 10px 12px 6px;
+            background: #0d141c;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-left: 5px solid rgb(var(--sense-match-rgb));
+            border-radius: 10px;
             font-family: var(--font-reading);
             font-style: normal;
+            font-weight: 500;
             font-size: 20px;
+            line-height: 1.4;
             overflow-wrap: break-word;
             word-wrap: break-word;
             text-align: center;
@@ -3020,16 +3184,9 @@
         }
 
         .sentence.example-is-matched {
-            background: linear-gradient(
-                90deg,
-                rgba(var(--sense-match-rgb), 0.2),
-                rgba(15, 20, 28, 0.86) 50%,
-                rgba(var(--sense-match-rgb), 0.2)
-            );
-            box-shadow:
-                inset 4px 0 0 rgb(var(--sense-match-rgb)),
-                inset -4px 0 0 rgb(var(--sense-match-rgb)),
-                0 4px 14px rgba(var(--sense-match-rgb), 0.16);
+            /* Flat fill; the left edge already carries the POS accent. */
+            background: #0d141c;
+            box-shadow: none;
         }
 
         .example-word-highlight,
@@ -3043,9 +3200,10 @@
         }
 
         .example-word-highlight {
-            font-weight: 750;
-            background: rgba(var(--sense-match-rgb), 0.15);
-            box-shadow: inset 0 -2px 0 rgba(var(--sense-match-rgb), 0.72);
+            font-weight: 800;
+            color: color-mix(in srgb, rgb(var(--sense-match-rgb)) 55%, white);
+            background: transparent;
+            box-shadow: inset 0 -3px 0 rgb(var(--sense-match-rgb));
         }
 
         .example-word-highlight.example-pooled-form {
@@ -3061,19 +3219,6 @@
             box-shadow: inset 0 -1px 0 rgba(var(--sense-match-rgb), 0.38);
         }
 
-        body.artist-mode .sentence {
-            background: rgba(15, 20, 28, 0.85);
-        }
-
-        body.artist-mode .sentence.example-is-matched {
-            background: linear-gradient(
-                90deg,
-                rgba(var(--sense-match-rgb), 0.2),
-                rgba(15, 20, 28, 0.86) 50%,
-                rgba(var(--sense-match-rgb), 0.2)
-            );
-        }
-
         @media (max-width: 767px) {
             .sentence {
                 font-size: 18px;
@@ -3082,11 +3227,18 @@
         }
 
         .translation {
-            margin-top: 6px;
-            color: white;
-            font-size: 15px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+            color: #e6eaf0;
+            font-size: 16px;
             font-weight: 500;
-            font-style: italic;
+            font-style: normal;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 389px) {
+            .translation { font-size: 15px; }
         }
 
         .breakdown-trigger,
@@ -3119,8 +3271,8 @@
         }
 
         .example-autoplay-btn {
-            width: 28px;
-            height: 28px;
+            width: 44px;
+            height: 44px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -3191,27 +3343,20 @@
 
         .example-cycle-btn,
         .mwe-cycle-btn {
-            width: 22px;
-            height: 22px;
-            background: none;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.08);
             border: none;
-            border-radius: 50%;
-            color: var(--text-muted);
-            font-size: 16px;
+            border-radius: 9px;
+            color: #fff;
+            font-size: 20px;
             cursor: pointer;
             padding: 0;
-            display: none;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             transition: all 0.15s;
             line-height: 1;
-        }
-
-        @media (min-width: 768px) {
-            .example-cycle-btn,
-            .mwe-cycle-btn {
-                display: inline-flex;
-            }
         }
 
         .example-cycle-btn:hover,
@@ -3224,11 +3369,74 @@
             margin-top: auto;
             padding-top: 15px;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            flex-wrap: wrap;
+            position: relative;
+        }
+        @media (min-width: 390px) {
+            .links-section {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        /* iPhone SE and smaller: the handoff row / example already claim
+           this space, so the tile grid is dropped entirely. */
+        @media (max-width: 359px) {
+            .links-section {
+                display: none;
+            }
+        }
+
+        .ref-tile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            min-height: 58px;
+            padding: 8px 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 10px;
+            cursor: pointer;
+            color: #e6eaf0;
+        }
+        .ref-tile-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #e6eaf0;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .lookup-sheet[hidden] {
+            display: none;
+        }
+        .lookup-sheet {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            right: 0;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 160px;
+            padding: 6px;
+            background: #1b232e;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+        .lookup-sheet-link {
+            padding: 9px 10px;
+            border-radius: 7px;
+            color: #e6eaf0;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .lookup-sheet-link:hover {
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .link-btn {
@@ -4558,7 +4766,7 @@
             border-radius: 999px;
             background: var(--accent-primary);
             color: var(--accent-primary-text);
-            font: 750 9px/1 var(--font-emphasis);
+            font: 750 11px/1 var(--font-emphasis);
             letter-spacing: -0.02em;
         }
 
@@ -6215,7 +6423,7 @@
         /* Homograph chips */
         .homograph-chips {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 8px;
             margin-top: -8px;
             margin-bottom: 4px;
@@ -7513,14 +7721,16 @@
         }
 
         .flip-back-area {
-            display: inline-block;
+            display: block;
+            width: 100%;
             /* Vertical padding kept small so single-line words don't carve
                out a fat top block that dwarfs the content below. Wrapping
                content (long word + lemma on narrow screens) still breathes
                because line-height on the inner word div takes over once a
-               second line exists. Horizontal padding stays generous so the
-               click target remains finger-friendly. */
-            padding: 8px 40px;
+               second line exists. Left-aligned now, so horizontal padding
+               only needs to clear the card's own edge padding, not create a
+               centered click target. */
+            padding: 8px 4px;
             border: 2px solid rgba(255, 255, 255, 0);
             border-radius: 12px;
             cursor: pointer;
@@ -7541,7 +7751,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            margin: 7px auto 0;
+            margin: 7px 0 0;
             padding: 5px 10px;
             border: 1px solid rgba(var(--accent-primary-rgb), 0.42);
             border-radius: 999px;
@@ -7658,13 +7868,13 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
         }
 
-        .back-identity-row .back-lemma {
+        .back-lemma-row .back-lemma {
             font-size: 21px;
         }
 
         .back-form-note {
             font-family: var(--font-reading);
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 500;
             color: var(--text-muted);
         }
@@ -7676,7 +7886,7 @@
         .back-derivation-line {
             display: flex;
             align-items: baseline;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 5px;
             margin-top: 5px;
             color: var(--text-muted);

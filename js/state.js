@@ -116,6 +116,14 @@ export const state = {
     cardNavStack: [],
     cachedVocabularyData: null,
 
+    // Phrase/clitic chaining — MWE/CLITIC entries a parent card hands off to
+    // a single scrollable summary card shown after the parent is marked
+    // correct. Gated by the "Phrases mode" study preference (js/ui.js); off
+    // restores the pinned meanings-tray behavior.
+    cardChainQueue: [],
+    cardChainReturnIndex: -1,
+    phrasesModeEnabled: true,
+
     // Level estimation
     estimationState: {
         active: false,

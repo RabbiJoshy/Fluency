@@ -1,8 +1,8 @@
 // Granular sense / expression knowledge layered over whole-card progress.
 // Whole-card answers are the baseline; only explicit row-level answers create
 // ItemProgress records. The newest card-level or item-level event wins.
-import './state.js';
-import { sendOrQueue } from './sync-queue.js';
+import './state.js?v=20260803c';
+import { sendOrQueue } from './sync-queue.js?v=20260803c';
 
 const KNOWLEDGE_SCHEMA_VERSION = 1;
 
@@ -451,13 +451,13 @@ function renderKnowledgeOverviewButton(card) {
     const summary = getCardKnowledgeSummary(card);
     if (summary.total === 0) return '';
     const label = `${summary.learned} of ${summary.total} known`;
-    return `<button type="button" class="ref-icon-btn knowledge-overview-trigger" title="Meanings and expressions: ${label}" aria-label="Open meanings and expressions knowledge: ${label}" onclick="showKnowledgeOverview(event)">
-        <svg viewBox="0 0 42 42" aria-hidden="true">
+    return `<button type="button" class="ref-tile knowledge-overview-trigger" aria-label="Open meanings and expressions knowledge: ${label}" onclick="showKnowledgeOverview(event)">
+        <svg width="24" height="24" viewBox="0 0 42 42" aria-hidden="true">
             <rect x="1" y="1" width="40" height="40" rx="7" class="knowledge-overview-icon-bg"/>
             <path d="M12 13.5h18M12 21h18M12 28.5h11" class="knowledge-overview-icon-lines"/>
             <path d="m27 29 2.4 2.4L34 26.8" class="knowledge-overview-icon-check"/>
         </svg>
-        <span class="knowledge-overview-count" aria-hidden="true">${summary.learned}/${summary.total}</span>
+        <span class="ref-tile-label">${summary.learned}/${summary.total} known</span>
     </button>`;
 }
 
@@ -592,6 +592,7 @@ async function markCurrentKnowledge(event, isCorrect) {
     updateCard();
 }
 
+window.knowledgeItemsForMeaning = knowledgeItemsForMeaning;
 window.getCardKnowledgeItems = getCardKnowledgeItems;
 window.getActiveKnowledgeItems = getActiveKnowledgeItems;
 window.getKnowledgeItemState = getKnowledgeItemState;

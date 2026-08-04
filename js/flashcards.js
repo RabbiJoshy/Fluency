@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js';
-import './speech.js';
+import './state.js?v=20260803e';
+import './speech.js?v=20260803e';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260803b';
+} from './example-personalisation.js?v=20260803e';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -1514,6 +1514,22 @@ function initializeApp() {
     setupKeyboardShortcuts();
 }
 
+// Toggles the swipe-legend's commit state: null restores "← Again / Got it
+// →"; 'correct'/'incorrect' fills the strip and swaps to a single release
+// label. Only the back-face legend exists in the DOM (see index.html).
+function setSwipeLegendCommit(direction) {
+    const legend = document.querySelector('.card-back .swipe-legend');
+    if (!legend) return;
+    legend.classList.toggle('legend-commit-correct', direction === 'correct');
+    legend.classList.toggle('legend-commit-incorrect', direction === 'incorrect');
+    const label = legend.querySelector('.swipe-legend-commit');
+    if (label) {
+        label.textContent = direction === 'correct' ? 'Release to mark correct'
+            : direction === 'incorrect' ? 'Release to mark incorrect'
+            : '';
+    }
+}
+
 function setupSwipeGestures() {
     const card = document.getElementById('flashcard');
     const incorrectIndicator = document.getElementById('incorrectIndicator');
@@ -1625,12 +1641,23 @@ function setupSwipeGestures() {
                 correctIndicator.classList.remove('visible');
                 incorrectIndicator.classList.remove('visible');
             }
+
+            // Swipe legend reacts once the drag passes ~40% of the card's
+            // width — independent of the 50px auto-commit threshold above,
+            // this is purely the visual "you're about to release this" cue.
+            const progress = Math.abs(diffX) / (card.offsetWidth || 1);
+            if (progress > 0.4) {
+                setSwipeLegendCommit(diffX > 0 ? 'correct' : 'incorrect');
+            } else {
+                setSwipeLegendCommit(null);
+            }
         }
     }, { passive: true });
 
     card.addEventListener('touchend', function(e) {
         if (!isDragging) return;
         isDragging = false;
+        setSwipeLegendCommit(null);
 
         const diffX = currentX - touchStartX;
         const diffY = currentY - touchStartY;
@@ -1922,6 +1949,16 @@ function handleSwipeAction(result) {
     const card = document.getElementById('flashcard');
     const isFlipped = card.classList.contains('flipped');
 
+    // A correct grade on an ordinary deck card (not already inside a nav-
+    // stack popup/peek) with pending MWE/CLITIC entries starts the phrase
+    // chain instead of advancing normally. Captured before recordCardResult
+    // in case it mutates card state.
+    const swipedCard = flashcards[currentIndex];
+    const isChainChild = swipedCard?.isChainChild === true;
+    const chainToStart = (phrasesModeEnabled && !isChainChild && cardNavStack.length === 0 && result === 'correct')
+        ? collectChainItems(swipedCard)
+        : [];
+
     // Record the result
     recordCardResult(result);
 
@@ -1936,6 +1973,19 @@ function handleSwipeAction(result) {
     setTimeout(() => {
         card.classList.remove('swipe-correct', 'swipe-incorrect');
         card.style.transform = '';
+
+        // The single swipe on the phrase-summary card grades every phrase at
+        // once and continues to the next real deck card.
+        if (isChainChild) {
+            finishPhraseChain(result === 'correct');
+            return;
+        }
+
+        // Starting a new phrase chain off the just-graded parent card.
+        if (chainToStart.length > 0) {
+            startPhraseChain(chainToStart);
+            return;
+        }
 
         // If we're on a linked card (nav stack), go back instead of advancing
         if (cardNavStack.length > 0) {
@@ -1964,8 +2014,9 @@ function handleSwipeAction(result) {
 function recordCardResult(result) {
     const isCorrect = result === 'correct';
 
-    // Skip session stats for peek/stacked cards, but still save progress below
-    if (cardNavStack.length === 0) {
+    // Skip session stats for peek/stacked cards and phrase-chain children —
+    // a phrase isn't a deck word, so it shouldn't inflate "X/Y correct".
+    if (cardNavStack.length === 0 && !flashcards[currentIndex]?.isChainChild) {
         if (!stats.cardStats[currentIndex]) {
             stats.cardStats[currentIndex] = { correct: 0, incorrect: 0 };
         }
@@ -2117,6 +2168,16 @@ function foldSurfaceForm(value) {
         .replace(/[\u0300-\u036f]/g, '')
         .toLocaleLowerCase('es')
         .trim();
+}
+
+// 18px-wide slot on the left of every sense row. Selected rows get a teal
+// checkmark; unselected rows get nothing — but the slot is always reserved
+// (via CSS padding on .meaning-row) so text stays aligned across rows.
+// Color alone no longer carries the selection state.
+function renderRowCheckSlot(isSelected) {
+    return isSelected
+        ? `<svg class="meaning-row-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgb(var(--sense-match-rgb))" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+        : '';
 }
 
 function escapeCardText(value) {
@@ -2334,6 +2395,156 @@ function buildVariantDisplay(card, { back = false } = {}) {
     displayForms = [...new Set(displayForms.filter(Boolean))];
     if (displayForms.length < 2) return null;
     return displayForms.join('<span class="variant-sep">|</span>');
+}
+
+// ---------------------------------------------------------------------------
+// Phrase / clitic chaining — MWE/CLITIC entries leave the card's pinned tray
+// and are studied as standalone child cards immediately after the parent is
+// marked correct. See docs handoff "Card back — mobile legibility + phrase
+// chaining" for the full design rationale.
+// ---------------------------------------------------------------------------
+
+// Ordered list of chainable children for a real deck card. Source of truth
+// is the same card.meanings entries the tray used to pin. Chain-child cards
+// themselves are excluded — their single MWE/CLITIC meaning is the card's
+// own content, not something to chain further.
+function collectChainItems(card) {
+    if (!card?.isMultiMeaning || card.isChainChild) return [];
+    return (card.meanings || [])
+        .map((m, idx) => ({ m, idx }))
+        .filter(({ m }) => m.pos === 'MWE' || m.pos === 'CLITIC')
+        .flatMap(({ m, idx }) => {
+            const list = m.allMWEs || m.allClitics || [m];
+            return list.map((item, sub) => ({
+                parentCard: card,
+                parentWord: card.targetWord,
+                meaningIndex: idx,
+                subIndex: sub,
+                kind: m.pos, // 'MWE' | 'CLITIC'
+                expression: item.expression || item.form || '',
+                translation: item.translation || m.meaning || '',
+                context: item.context || item.context_heuristic || '',
+                examples: item.examples || []
+            }));
+        })
+        .filter(c => c.expression);
+}
+
+
+// Builds the synthetic card rendered after the parent — one card holding
+// every phrase/clitic together in a scrollable list, not a sequence of
+// separate cards to swipe through one at a time.
+function phraseSummaryCard(items) {
+    return {
+        id: `${items[0].parentCard.id}::phrases`,
+        isChainChild: true,
+        chainParentWord: items[0].parentWord,
+        targetWord: items[0].parentWord,
+        isMultiMeaning: true,
+        meanings: [],
+        links: {}
+    };
+}
+
+// Dedicated back-face template for the phrase-summary card — every item's
+// badge/expression/translation/example stacked in one scrollable column.
+// Deliberately does not go through the shared meaning-row renderer: that
+// renderer assumes fields (m.expression, m.allClitics) a synthesized
+// meaning doesn't carry, which silently produced "undefined" text.
+function renderPhraseSummaryBack(card) {
+    const items = cardChainQueue;
+    const n = items.length;
+    const rows = items.map(item => {
+        const kindLabel = item.kind === 'CLITIC' ? 'PRONOMINAL' : 'PHRASE';
+        const example = (item.examples || [])[0];
+        const target = example
+            ? (example.target || example.spanish || example.swedish || example.dutch || example.italian || example.polish || '')
+            : '';
+        const englishHTML = (target && example.english)
+            ? `<div class="phrase-example-translation">${escapeCardText(example.english)}</div>` : '';
+        const exampleHTML = target ? `<div class="phrase-example">
+                <div class="phrase-example-target">${escapeCardText(target)}</div>
+                ${englishHTML}
+            </div>` : '';
+        return `<div class="phrase-summary-item">
+            <span class="phrase-kind-badge">${kindLabel}</span>
+            <div class="phrase-expression">${escapeCardText(item.expression)}</div>
+            ${item.translation ? `<div class="phrase-translation">${escapeCardText(item.translation)}</div>` : ''}
+            ${item.context ? `<div class="phrase-context">${escapeCardText(item.context)}</div>` : ''}
+            ${exampleHTML}
+        </div>`;
+    }).join('');
+
+    return `<div class="back-header">
+            <div class="back-headword-row">
+                <span class="back-headword" style="font-size: 32px; font-weight: bold; line-height: 1.1;">${escapeCardText(card.chainParentWord || '')}</span>
+            </div>
+            <div class="phrase-summary-subtitle">${n} phrase${n === 1 ? '' : 's'} from this word</div>
+        </div>
+        <div class="phrase-summary-scroll">${rows}</div>`;
+}
+
+// Shows the summary card: appends it as a temp card (search-popup pattern)
+// and remembers the parent's real deck index so finishing resumes at
+// parent+1 directly. Deliberately does NOT use cardNavStack/navigateBack —
+// returning to the parent card left it unflipped and ungraded-looking, so a
+// swipe there re-triggered collectChainItems and started an identical
+// summary card again (an infinite loop). Finishing now behaves like the
+// parent's own correct swipe just kept going before reaching the next card.
+function startPhraseChain(items) {
+    cardChainQueue = items;
+    cardChainReturnIndex = currentIndex;
+
+    const tempIndex = flashcards.length;
+    flashcards.push(phraseSummaryCard(items));
+
+    currentIndex = tempIndex;
+    currentMeaningIndex = 0;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    currentGroupSelection = null;
+    document.getElementById('flashcard').classList.remove('flipped');
+    updateCard({ announceHeadword: true });
+}
+
+// Records one item's grade against the same per-meaning knowledge store the
+// tray rows wrote to (knowledge.js), keyed on the parent card + the
+// meaning/cycle index the item came from.
+function recordChainChildResult(item, isCorrect) {
+    if (typeof knowledgeItemsForMeaning !== 'function' || typeof saveKnowledgeProgress !== 'function') return;
+    const parentCard = item.parentCard;
+    const meaning = parentCard?.meanings?.[item.meaningIndex];
+    if (!meaning) return;
+    const knowledgeItems = knowledgeItemsForMeaning(parentCard, meaning, item.meaningIndex)
+        .filter(k => k.cycleIndex === item.subIndex);
+    if (knowledgeItems.length === 0) return;
+    saveKnowledgeProgress(parentCard, knowledgeItems, isCorrect);
+}
+
+// Grades every phrase in the summary at once (the single swipe covers the
+// whole card) and resumes exactly where the parent would have left off had
+// it not had any phrases — the next real deck card, or end-of-deck.
+function finishPhraseChain(isCorrect) {
+    for (const item of cardChainQueue) recordChainChildResult(item, isCorrect);
+
+    const tempIndex = currentIndex;
+    flashcards.splice(tempIndex, 1);
+    const resumeIndex = cardChainReturnIndex + 1;
+    cardChainQueue = [];
+    cardChainReturnIndex = -1;
+
+    if (resumeIndex < flashcards.length) {
+        currentIndex = resumeIndex;
+        currentSentenceIndex = 0;
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
+        currentGroupSelection = null;
+        document.getElementById('flashcard').classList.remove('flipped');
+        updateCard({ announceHeadword: true });
+    } else {
+        showEndOfDeckOptions();
+    }
 }
 
 function updateCard({ announceHeadword = false } = {}) {
@@ -2873,9 +3084,13 @@ function updateCard({ announceHeadword = false } = {}) {
         }
     }
 
-    const backGrammarHTML = (backCitationHTML || backPosLegendHTML || backMorphologyHTML)
+    // Left-aligned header: word + its (single, non-tab) POS pill share the
+    // top line; the lemma/citation, if any, is the secondary line beneath.
+    // Multi-POS tab strips stay their own row below the word — a full tab
+    // bar doesn't fit inline with the headword.
+    const backGrammarHTML = (backCitationHTML || backMorphologyHTML)
         ? `<div class="back-grammar-block">
-                <div class="back-identity-row">${backCitationHTML}${backPosLegendHTML}</div>
+                ${backCitationHTML ? `<div class="back-lemma-row">${backCitationHTML}</div>` : ''}
                 ${backMorphologyHTML}
            </div>`
         : '';
@@ -2885,12 +3100,18 @@ function updateCard({ announceHeadword = false } = {}) {
     // rather than adding a full line of whitespace each wrap. Single-line
     // cards are unaffected — line-height only matters when there are two
     // or more rendered lines.
-    let backHTML = `
-        <div class="back-header" style="text-align: center; margin-bottom: 8px;">
+    let backHTML = card.isChainChild
+        ? renderPhraseSummaryBack(card)
+        : `
+        <div class="back-header">
             <div class="flip-back-area" id="flipBackArea">
-                <div class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</div>
+                <div class="back-headword-row">
+                    <span class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
+                    ${!hasBackPosTabs ? backPosLegendHTML : ''}
+                </div>
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
             </div>
+            ${hasBackPosTabs ? backPosLegendHTML : ''}
             ${backGrammarHTML}
             ${backDerivationHTML}
             ${homographChipHTML}
@@ -2910,7 +3131,10 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Multi-meaning cards keep a compact active-item view for large merged
     // inventories; smaller and unmerged cards retain the full inline menu.
-    if (card.isMultiMeaning) {
+    // Chain-child cards skip this entirely — renderPhraseChildHeader already
+    // rendered the expression/translation, and renderPhraseChildExample
+    // (below) is a self-contained example panel, not a sense-row list.
+    if (card.isMultiMeaning && !card.isChainChild) {
         // Merged-lemma cards can carry a large learnable inventory (dictionary
         // senses plus Expressions/clitics). Once that inventory grows beyond a
         // small glanceable menu, keep the ordinary card focused on the active
@@ -3059,9 +3283,12 @@ function updateCard({ announceHeadword = false } = {}) {
             const isSenseCycle = m.pos === 'SENSE_CYCLE';
             const sectionPos = isSenseCycle ? (m.cycle_pos || 'X') : m.pos;
             // Route this row to the pinned tray (MWE/CLITIC) or the scroll
-            // region (regular + SENSE_CYCLE).
+            // region (regular + SENSE_CYCLE). Chain-child cards carry their
+            // own single MWE/CLITIC meaning as the card's main content, not
+            // a tray row — the tray no longer renders for anyone else since
+            // those entries leave via the phrase handoff instead.
             const target = rowsForSection(
-                (isMWE || isClitic) ? traySections : scrollSections,
+                (isMWE || isClitic) && !card.isChainChild ? traySections : scrollSections,
                 sectionPos
             );
             // For MWE pill, show the current expression/translation based on MWE index
@@ -3069,12 +3296,12 @@ function updateCard({ announceHeadword = false } = {}) {
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
             const mweMeaning = isMWE && m.allMWEs ? m.allMWEs[mweIdx].translation : m.meaning;
             const mweCount = isMWE && m.allMWEs ? m.allMWEs.length : 0;
-            const mweCounter = (isMWE && mweCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous expression">‹</button><span style="opacity: 0.6; font-size: 10px;">${mweIdx + 1}/${mweCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next expression">›</button></span>` : '';
+            const mweCounter = (isMWE && mweCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn" onclick="cycleMWEBackward(event)" title="Previous expression">‹</button><span style="font-family: var(--font-data); font-size: 14px; min-width: 32px; text-align: center; display: inline-block;">${mweIdx + 1}/${mweCount}</span><button class="mwe-cycle-btn" onclick="cycleMWEForward(event)" title="Next expression">›</button></span>` : '';
             // For Clitic pill, reuse MWE cycling with allClitics
             const cliticIdx = (isClitic && isSelected) ? currentMWEIndex % (m.allClitics ? m.allClitics.length : 1) : 0;
             const cliticForm = isClitic && m.allClitics ? m.allClitics[cliticIdx].form : '';
             const cliticCount = isClitic && m.allClitics ? m.allClitics.length : 0;
-            const cliticCounter = (isClitic && cliticCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEBackward(event)" title="Previous form">‹</button><span style="opacity: 0.6; font-size: 10px;">${cliticIdx + 1}/${cliticCount}</span><button class="mwe-cycle-btn desktop-only" onclick="cycleMWEForward(event)" title="Next form">›</button></span>` : '';
+            const cliticCounter = (isClitic && cliticCount > 1) ? ` <span class="example-counter-group"><button class="mwe-cycle-btn" onclick="cycleMWEBackward(event)" title="Previous form">‹</button><span style="font-family: var(--font-data); font-size: 14px; min-width: 32px; text-align: center; display: inline-block;">${cliticIdx + 1}/${cliticCount}</span><button class="mwe-cycle-btn" onclick="cycleMWEForward(event)" title="Next form">›</button></span>` : '';
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
             const displayMeaning = isMWE
                 ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>')
@@ -3127,6 +3354,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 const mweTextClass = adaptiveRowTextClass(mweExpr, mwePrimary, mweContext);
                 target.push(`
                 <div class="meaning-row meaning-row-mwe ${mweTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                    ${renderRowCheckSlot(isSelected)}
                     <span class="special-meaning-copy bilingual-meaning-copy${mweCount > 1 ? ' has-counter' : ''}">
                         <span class="mwe-expression">${mweExpr}</span>
                         <strong class="mwe-translation">${primaryDisplay}</strong>
@@ -3145,6 +3373,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 const cliticTextClass = adaptiveRowTextClass(cliticForm, cliticDetail.displayTranslation || cliticTrRaw, cliticDetail.visualDetail);
                 target.push(`
                 <div class="meaning-row meaning-row-clitic ${cliticTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 6px 8px; margin-bottom: 6px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 40px;" onclick="selectMeaning(${idx})">
+                    ${renderRowCheckSlot(isSelected)}
                     <span class="special-meaning-copy clitic-meaning${cliticCount > 1 ? ' has-counter' : ''}">
                         <span class="mwe-expression clitic-form">${cliticForm}</span>
                         <strong>${escapeCardText(cliticDetail.displayTranslation || cliticTrRaw || 'Translation unavailable')}</strong>
@@ -3216,6 +3445,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 const cycleTextClass = adaptiveRowTextClass(joinedFull);
                 target.push(`
                 <div class="meaning-row meaning-row-cycle ${cycleTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: flex; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px; opacity: 0.75;" onclick="selectMeaning(${idx})">
+                    ${renderRowCheckSlot(isSelected)}
                     <span class="row-adaptive-text" style="flex: 1; font-weight: 600; color: white; min-width: 0; text-align: center; line-height: 1.4; padding: 0 8px;">${isTruncated ? `<span class="sense-cycle-short">${joinedDisplay}</span><span class="sense-cycle-full" style="display:none">${joinedFull}</span>${ellipsisBtn}` : joinedDisplay}</span>
                 </div>
                 `);
@@ -3317,7 +3547,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         if (memberPct >= 100) {
                             return '<div style="min-height: 25px; padding: 2px 6px;"></div>';
                         }
-                        return `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="min-height: 25px; padding: 2px 6px; display: flex; align-items: center; justify-content: flex-end; font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; cursor: pointer;">${memberPct}%</div>`;
+                        return `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="min-height: 25px; padding: 2px 6px; display: flex; align-items: center; justify-content: flex-end; font-family: var(--font-data); font-size: 14px; color: #c9d2dd; white-space: nowrap; cursor: pointer;">${memberPct}%</div>`;
                     }).join('');
                     const pctColumnHtml = `<div class="pct-column" style="display: flex; flex-direction: column; gap: 3px; padding-left: 4px;">${pctStackHtml}</div>`;
 
@@ -3338,6 +3568,7 @@ function updateCard({ announceHeadword = false } = {}) {
 
                     target.push(`
                     <div class="meaning-row meaning-row-group ${groupedTextClass}${groupIsCurrent ? ' selected' : ''}${groupStateClasses}" data-axis="${axis}" onclick="selectGroup('${axis}', ${idx})" style="position: relative; display: grid; grid-template-columns: ${outerGridCols}; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${cardBg}; border-radius: 8px; cursor: pointer;">
+                        ${renderRowCheckSlot(groupIsCurrent)}
                         <div class="meaning-row-body group-card-body" style="display: grid; grid-template-columns: ${gridCols}; align-items: center; gap: 3px 6px; min-width: 0; max-width: 100%; overflow: hidden; padding: 4px 8px; background: ${sharedBg}; ${sharedBorder} border-radius: 6px; justify-self: center;">
                             ${memberCells}
                             ${sharedCellHtml}
@@ -3364,12 +3595,13 @@ function updateCard({ announceHeadword = false } = {}) {
                     const pctTail = prominenceText
                         ? `<span class="sense-prominence-label ${String(m.prominenceLabel || '').toLowerCase()}">${prominenceText}</span>`
                         : (pctVal < 100
-                            ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; opacity: 0.65; color: var(--text-primary); white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
+                            ? `<span style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: var(--font-data); font-size: 14px; color: #c9d2dd; white-space: nowrap; pointer-events: none;">${pctVal}%</span>`
                             : '');
                     target.push(`
                     <div class="meaning-row meaning-row-regular ${singletonTextClass}${isSelected ? ' selected' : ''}${rowStateClasses}" style="position: relative; display: grid; grid-template-columns: 1fr; align-items: center; padding: 1px 2px; margin-bottom: 4px; background: ${bgColor}; ${borderStyle} border-radius: 8px; cursor: pointer; min-height: 39px;" onclick="selectMeaning(${idx})">
+                        ${renderRowCheckSlot(isSelected)}
                         <div class="meaning-row-body" style="display: flex; flex-direction: column; align-items: stretch; justify-content: center; min-width: 0; padding: 0 ${prominenceText ? '86px' : (pctVal < 100 ? '42px' : '8px')} 0 8px;">
-                            <span class="meaning-row-translation row-adaptive-text" style="font-weight: 600; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
+                            <span class="meaning-row-translation row-adaptive-text" style="font-weight: ${isSelected ? 700 : 500}; color: ${textColor}; text-align: center; width: 100%;">${displayMeaning}${contextInline}</span>
                         </div>
                         ${pctTail}
                     </div>
@@ -3382,7 +3614,9 @@ function updateCard({ announceHeadword = false } = {}) {
         if (scrollSections.size > 0) {
             backHTML += `<div class="meanings-scroll">${renderSections(scrollSections, hasBackPosTabs)}</div>`;
         }
-        if (traySections.size > 0) {
+        // Phrases mode off restores the pinned tray; on, MWE/CLITIC entries
+        // leave silently as chain children (no on-card announcement).
+        if (!phrasesModeEnabled && traySections.size > 0) {
             backHTML += `<div class="meanings-tray">${renderSections(traySections)}</div>`;
         }
         // Show current sentence
@@ -3647,7 +3881,7 @@ function updateCard({ announceHeadword = false } = {}) {
             let exampleCounter = '';
             if (hasMultipleExamples) {
                 const exIdx = currentExampleIndex % exampleCount;
-                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn desktop-only" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span>${exIdx + 1}/${exampleCount}</span><button class="example-cycle-btn desktop-only" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
+                exampleCounter = `<span class="example-counter-group"><button class="example-cycle-btn" onclick="cycleExampleBackward(event)" title="Previous example">‹</button><span style="font-family: var(--font-data); font-size: 14px; min-width: 32px; text-align: center; display: inline-block;">${exIdx + 1}/${exampleCount}</span><button class="example-cycle-btn" onclick="cycleExampleForward(event)" title="Next example">›</button></span>`;
             }
             // Breakdown button removed — English translation is now clickable instead
             const spotifySvg = `<svg width="44" height="44" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>`;
@@ -3658,12 +3892,12 @@ function updateCard({ announceHeadword = false } = {}) {
             // later sense has a playable clip.
             const autoplayBtn = cardAutoplayButton;
             const songNameDisplay = songName ? `
-                <div style="display: flex; justify-content: space-between; align-items: center; color: white; font-size: 11px; margin-top: 8px; font-style: italic; opacity: 0.85;">
+                <div style="display: flex; justify-content: space-between; align-items: center; color: #b9c2cd; font-size: 13px; margin-top: 8px; font-style: italic;">
                     <span class="example-song-credit">— ${songName}${vocalistCredit ? `<span class="example-vocalist-credit"> · ${vocalistCredit}</span>` : ''}</span>
                     <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${spotifyBtn}${exampleCounter}</span>
                 </div>
             ` : ((exampleSourceLabel || exampleCounter || autoplayBtn) ? `
-                <div style="display: flex; justify-content: flex-end; align-items: center; color: white; font-size: 11px; margin-top: 8px; opacity: 0.85;">
+                <div style="display: flex; justify-content: flex-end; align-items: center; color: #b9c2cd; font-size: 13px; margin-top: 8px;">
                     ${exampleSourceLabel ? `<span class="example-song-credit" style="margin-right:auto;">${exampleSourceLabel}</span>` : ''}
                     <span style="display: flex; align-items: center; gap: 6px;">${autoplayBtn}${exampleCounter}</span>
                 </div>
@@ -3728,6 +3962,8 @@ function updateCard({ announceHeadword = false } = {}) {
         } else if (currentMeaning?.exampleOnly) {
             backHTML += `<div class="sentence search-example-empty">No example is available for this source entry yet.</div>`;
         }
+    } else if (card.isChainChild) {
+        // renderPhraseSummaryBack already rendered every phrase's example.
     } else {
         // Legacy format
         backHTML += `<div style="font-size: 28px; color: var(--text-primary); margin-top: 12px; font-weight: 600; text-align: center; margin-bottom: 20px;">${backTranslation}</div>`;
@@ -3793,16 +4029,20 @@ function updateCard({ announceHeadword = false } = {}) {
         isVerb = pos.includes('verb') || pos === 'v' || pos === 'vb';
     }
 
+    if (card.isChainChild) {
+        // No external reference links on the phrase-summary card — every
+        // phrase's own content is already shown in the scrollable list.
+    } else {
+    // Four labelled tiles instead of a row of icon-only buttons — a name
+    // under each icon reads faster than a strip of near-identical circles.
+    // The tile grid is dropped entirely on small phones (see @media in
+    // style.css); the handoff row / example already earn that vertical
+    // space there.
     backHTML += `<div class="links-section" id="linksSection">`;
 
-    // Unified in-app conjugation button for every verb card (always the
-    // same red/yellow AR/ER/IR icon). Clicking opens the conjugation
-    // panel, which itself handles the "no inline data" case with a
-    // friendly message + SpanishDict link. Single entry point avoids
-    // the old "visually-indistinguishable-SpanishDict-favicon" clutter.
     if (isVerb) {
-        backHTML += `<button class="ref-icon-btn ref-conj-btn" title="Conjugation Table" onclick="toggleConjugationTable()">
-            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        backHTML += `<button class="ref-tile ref-conj-btn" onclick="toggleConjugationTable()">
+            <svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
                 <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3" fill="#000000">
                     <text x="16" y="11">-AR</text>
@@ -3810,16 +4050,18 @@ function updateCard({ announceHeadword = false } = {}) {
                     <text x="16" y="29">-IR</text>
                 </g>
             </svg>
+            <span class="ref-tile-label">Conjugate</span>
         </button>`;
     }
 
     const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
     if (hasSynonyms) {
-        backHTML += `<button class="ref-icon-btn ref-syn-btn" title="Synonyms &amp; Antonyms" onclick="toggleSynonymsPanel()">
-            <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        backHTML += `<button class="ref-tile ref-syn-btn" onclick="toggleSynonymsPanel()">
+            <svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
                 <text x="16" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#000000">≈</text>
             </svg>
+            <span class="ref-tile-label">Synonyms</span>
         </button>`;
     }
 
@@ -3829,17 +4071,22 @@ function updateCard({ announceHeadword = false } = {}) {
     // space from the ordinary study flow.
     backHTML += renderKnowledgeOverviewButton(card);
 
-    for (const [key, url] of Object.entries(card.links)) {
-        if (key === 'wordReference') continue; // Skip wordReference
-        // Conjugation is handled by the unified in-app toggle above.
-        if (key === 'conjugation') continue;
-        const icon = linkIcons[key];
-        const title = linkTitles[key] || key;
-        if (icon) {
-            backHTML += `<a href="${url}" target="_blank" class="ref-icon-btn" title="${title}">${icon}</a>`;
-        } else {
-            backHTML += `<a href="${url}" target="_blank" class="link-btn">${title}</a>`;
-        }
+    // Every external reference collapses into one "Look up" tile that opens
+    // a small sheet — replaces the old per-favicon icon strip.
+    const lookupLinks = Object.entries(card.links)
+        .filter(([key]) => key !== 'wordReference' && key !== 'conjugation');
+    if (lookupLinks.length > 0) {
+        backHTML += `<button class="ref-tile ref-lookup-btn" onclick="event.stopPropagation(); toggleLookupSheet(event);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span class="ref-tile-label">Look up</span>
+        </button>
+        <div class="lookup-sheet" id="lookupSheet" hidden>
+            ${lookupLinks.map(([key, url]) => `<a href="${url}" target="_blank" class="lookup-sheet-link">${linkTitles[key] || key}</a>`).join('')}
+        </div>`;
     }
 
     // Sense-assignment provenance: which prompt/model/run produced each sense.
@@ -3884,6 +4131,7 @@ function updateCard({ announceHeadword = false } = {}) {
     if (currentUser && currentUser.initials === 'JST'
         && (card.meanings || []).some(m => m.prompt_id)) {
         backHTML += buildProvenancePanelHTML(card);
+    }
     }
 
     const renderedBack = document.getElementById('backContent');
@@ -3969,9 +4217,12 @@ function updateCard({ announceHeadword = false } = {}) {
     // Visual cue: this card was opened via search/synonym/lyric breakdown.
     // The .is-stacked class drives a peek-tab pseudo above the card.
     document.getElementById('flashcard').classList.toggle('is-stacked', cardNavStack.length > 0);
+    // Chain-child cards (phrase/clitic handoff) swap the ordinary mobile nav
+    // banner for a breadcrumb header — see .is-chain-child rules in style.css.
+    document.getElementById('flashcard').classList.toggle('is-chain-child', card.isChainChild === true);
 
-    // Update frequency display (skip for peek/stacked cards)
-    if (cardNavStack.length === 0) {
+    // Update frequency display (skip for peek/stacked cards and phrase-chain children)
+    if (cardNavStack.length === 0 && !card.isChainChild) {
         stats.studied.add(currentIndex);
         updateStats();
     }
@@ -4634,6 +4885,26 @@ function toggleSynonymsPanel() {
     }
 }
 
+// Small sheet listing every external reference link (SpanishDict, Reverso,
+// etc.), opened from the single "Look up" tile. Dismisses on an outside tap,
+// mirroring the word-search popup's dismiss pattern.
+function toggleLookupSheet(event) {
+    event?.stopPropagation();
+    const sheet = document.getElementById('lookupSheet');
+    if (!sheet) return;
+    const opening = sheet.hidden;
+    sheet.hidden = !opening;
+    if (opening) {
+        setTimeout(() => {
+            document.addEventListener('click', function dismiss(e) {
+                if (!sheet.contains(e.target)) sheet.hidden = true;
+                document.removeEventListener('click', dismiss);
+            });
+        }, 0);
+    }
+}
+window.toggleLookupSheet = toggleLookupSheet;
+
 window.computeLinesUnderstood = computeLinesUnderstood;
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
@@ -4787,7 +5058,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260803b';
+const ASSET_VERSION = '20260803e';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

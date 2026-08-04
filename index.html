@@ -24,22 +24,22 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260803b">
-    <link rel="modulepreload" href="js/state.js?v=20260803b">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260803b">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260803b">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260803b">
-    <link rel="modulepreload" href="js/speech.js?v=20260803b">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260803b">
-    <link rel="modulepreload" href="js/auth.js?v=20260803b">
-    <link rel="modulepreload" href="js/estimation.js?v=20260803b">
-    <link rel="modulepreload" href="js/config.js?v=20260803b">
-    <link rel="modulepreload" href="js/progress.js?v=20260803b">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260803b">
-    <link rel="modulepreload" href="js/ui.js?v=20260803b">
-    <link rel="modulepreload" href="js/vocab.js?v=20260803b">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260803b">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260803b">
+    <link rel="modulepreload" href="js/main.js?v=20260803e">
+    <link rel="modulepreload" href="js/state.js?v=20260803e">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260803e">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260803e">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260803e">
+    <link rel="modulepreload" href="js/speech.js?v=20260803e">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260803e">
+    <link rel="modulepreload" href="js/auth.js?v=20260803e">
+    <link rel="modulepreload" href="js/estimation.js?v=20260803e">
+    <link rel="modulepreload" href="js/config.js?v=20260803e">
+    <link rel="modulepreload" href="js/progress.js?v=20260803e">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260803e">
+    <link rel="modulepreload" href="js/ui.js?v=20260803e">
+    <link rel="modulepreload" href="js/vocab.js?v=20260803e">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260803e">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260803e">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -549,6 +549,12 @@
                                 </svg>
                             </button>
                             <div class="card-details" id="backContent"></div>
+                            <div class="swipe-legend" aria-hidden="true">
+                                <span class="swipe-legend-wrong">← Again</span>
+                                <span class="swipe-legend-sep"></span>
+                                <span class="swipe-legend-right">Got it →</span>
+                                <span class="swipe-legend-commit"></span>
+                            </div>
                             <div class="card-tint" aria-hidden="true"></div>
                         </div>
                     </div>
@@ -1058,6 +1064,13 @@
                             <button type="button" class="group-size-btn global-study-default-btn" data-setting="spacedRepetitionEnabled" data-value="on" aria-pressed="false">On</button>
                         </div>
                     </div>
+                    <div class="settings-default-row settings-default-row-explained">
+                        <span>Phrases mode <small>On sends Expressions/clitics after the word as their own card; off keeps them on the word's back.</small></span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Phrases mode setting">
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="phrasesMode" data-value="off" aria-pressed="false">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="phrasesMode" data-value="on" aria-pressed="true">On</button>
+                        </div>
+                    </div>
                 </section>
                 <!-- Cognate exclusion sensitivity. Higher threshold = only
                      the most obvious cognates get excluded (looser); lower
@@ -1214,6 +1227,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260803b"></script>
+    <script type="module" src="js/main.js?v=20260803e"></script>
 </body>
 </html>

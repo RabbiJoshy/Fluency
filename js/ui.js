@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js';
+import './state.js?v=20260803c';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -21,6 +21,7 @@ function applyGlobalStudyDefaults() {
     isFlipped = saved.directionFlipped === true;
     speechEnabled = saved.speechEnabled !== false;
     spacedRepetitionEnabled = saved.spacedRepetitionEnabled === true;
+    phrasesModeEnabled = saved.phrasesMode !== false;
     syncStudyPreferenceControls();
 }
 
@@ -36,7 +37,8 @@ function syncStudyPreferenceControls() {
         excludeCognates: saved.excludeCognates === true,
         directionFlipped: saved.directionFlipped === true,
         speechEnabled: saved.speechEnabled !== false,
-        spacedRepetitionEnabled: saved.spacedRepetitionEnabled === true
+        spacedRepetitionEnabled: saved.spacedRepetitionEnabled === true,
+        phrasesMode: saved.phrasesMode !== false
     };
     document.querySelectorAll('.global-study-default-btn').forEach(button => {
         const value = button.dataset.value === 'on';

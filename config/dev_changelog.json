@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-03",
+      "commit": "pending",
+      "summary": "Card back is more legible on small phones, and Expressions/clitics now hand off as follow-up cards",
+      "details": [
+        "Nothing on the back reads below 14px anymore; sense rows use flat fills with a check glyph plus bold text for the selected sense instead of relying on color alone, and the example box and reference-link icons grow to real touch targets",
+        "Expressions and pronominal forms leave the pinned tray: a small \"N phrases next\" row tells you what's coming, and marking the word correct opens each one as its own mini card (progress dots, breadcrumb back to the word, Next: preview) before returning you to the deck",
+        "Each phrase card is its own title-page layout (badge, expression, translation, example) instead of a squeezed sense row, the selected sense on the parent card shows a checkmark instead of relying on colour alone, and finishing or skipping the phrase queue continues straight to the next real card instead of bouncing back through the parent",
+        "Grades on those follow-up cards write to the same per-Expression/clitic knowledge store the old tray rows used, so tracking is unchanged; cache v180→v183 / assets 20260803b→20260803e"
+      ]
+    },
+    {
+      "date": "2026-08-03",
       "commit": "38cf8de7",
       "summary": "Spanish Speech vNext is now a reversible candidate method in the real app",
       "details": [
