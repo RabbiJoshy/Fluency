@@ -107,9 +107,14 @@ async function _prepareAuth() {
         return null;
     }
 
-    const redirectUri = _isMobile
-        ? new URL('callback.html', window.location.href).href
-        : (window._spotifyRedirectUri || new URL('callback.html', window.location.href).href);
+    // Always derive from the current origin rather than a fixed configured
+    // value — this app runs from multiple origins (local dev server(s),
+    // GitHub Pages, any custom domain), and a hardcoded redirect URI can
+    // only ever be correct for one of them. Each real origin's own
+    // callback.html still needs registering in the Spotify dashboard, but
+    // which one gets sent now always matches wherever the app is actually
+    // running.
+    const redirectUri = new URL('callback.html', window.location.href).href;
 
     const verifier = generateCodeVerifier();
     const challenge = await generateCodeChallenge(verifier);
@@ -119,9 +124,8 @@ async function _prepareAuth() {
 function spotifyLogin(pendingTrackId, pendingPositionMs) {
     return new Promise(async (resolve) => {
         const clientId = window._spotifyClientId;
-        const redirectUri = _isMobile
-            ? new URL('callback.html', window.location.href).href
-            : (window._spotifyRedirectUri || new URL('callback.html', window.location.href).href);
+        // See _prepareAuth() above — always derive from the current origin.
+        const redirectUri = new URL('callback.html', window.location.href).href;
 
         if (!clientId) {
             _debugLog('ERROR: Spotify client ID not configured in secrets.json');
