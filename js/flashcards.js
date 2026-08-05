@@ -2566,6 +2566,134 @@ function renderPhraseSummaryBack(card) {
         <div class="phrase-summary-scroll">${rows}</div>`;
 }
 
+// ---------------------------------------------------------------------------
+// Backup example sentences — the second chain child.
+//
+// Sense-free corpus sentences built by tool_5a_build_backup_examples, sharded
+// by deck position so opening the list costs one fetch per level rather than
+// one per card. Nothing here consults sense assignment; a sentence is attached
+// to a word, so this survives sense-assignment rework untouched.
+// ---------------------------------------------------------------------------
+const _backupExampleShards = new Map();   // shard index -> {wordId: [sentence]}
+let _backupExampleManifest = null;
+let _backupExampleUnavailable = false;
+
+function backupExampleBaseDir() {
+    const indexPath = config?.languages?.[selectedLanguage]?.indexPath || '';
+    return indexPath.slice(0, indexPath.lastIndexOf('/') + 1);
+}
+
+async function loadBackupExampleShard(rank) {
+    if (_backupExampleUnavailable || !Number.isFinite(rank)) return null;
+    const base = backupExampleBaseDir();
+    if (!base) return null;
+    try {
+        if (!_backupExampleManifest) {
+            const response = await fetch(`${base}vocabulary.backup_examples.index.json`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            _backupExampleManifest = await response.json();
+        }
+        const size = _backupExampleManifest.shardSize || 2000;
+        const shardIndex = Math.floor((rank - 1) / size);
+        if (_backupExampleShards.has(shardIndex)) return _backupExampleShards.get(shardIndex);
+        const entry = (_backupExampleManifest.shards || [])
+            .find(item => item.shard === shardIndex);
+        if (!entry) return null;
+        const response = await fetch(`${base}${entry.file}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        _backupExampleShards.set(shardIndex, payload);
+        return payload;
+    } catch (error) {
+        // A missing layer is not an error worth blocking study for — the child
+        // simply doesn't offer itself.
+        console.warn('Backup examples unavailable:', error);
+        _backupExampleUnavailable = true;
+        return null;
+    }
+}
+
+// In Merge Lemmas mode the card stands for the whole lemma family, so pool the
+// siblings' sentences the way poolLemmaSiblingExamples does for sense examples.
+function backupExampleIdsFor(card) {
+    const ids = [card.id].filter(Boolean);
+    if (!card.mergedLemma || !card.lemma) return ids;
+    const source = window._cachedVocabularyData || [];
+    for (const item of source) {
+        if (item.lemma === card.lemma && item.id && !ids.includes(item.id)) ids.push(item.id);
+    }
+    return ids;
+}
+
+async function collectBackupExamples(card) {
+    const rank = Number(card?.rank);
+    const shard = await loadBackupExampleShard(rank);
+    if (!shard) return [];
+    const seen = new Set();
+    const out = [];
+    for (const id of backupExampleIdsFor(card)) {
+        for (const sentence of (shard[id] || [])) {
+            if (seen.has(sentence.id)) continue;
+            seen.add(sentence.id);
+            out.push(sentence);
+        }
+    }
+    // Fully-known sentences first: `burden` is the graded difficulty of
+    // everything in the sentence the learner has not reached yet.
+    return out.sort((a, b) => (a.burden || 0) - (b.burden || 0));
+}
+
+function examplesChildCard(parentCard) {
+    return {
+        id: `${parentCard.id}::examples`,
+        isChainChild: true,
+        chainChildKind: 'examples',
+        chainParentWord: parentCard.displaySurface || parentCard.targetWord,
+        targetWord: parentCard.targetWord,
+        isMultiMeaning: true,
+        meanings: [],
+        links: {}
+    };
+}
+
+function renderExamplesChildBack(card) {
+    const sentences = cardChainExamples;
+    if (!sentences.length) {
+        return `<div class="back-header">
+                <div class="back-headword-row">
+                    <span class="back-headword" style="font-size: 32px; font-weight: bold;">${escapeCardText(card.chainParentWord || '')}</span>
+                </div>
+                <div class="phrase-summary-subtitle">No corpus sentences for this word yet</div>
+            </div>`;
+    }
+    const rows = sentences.map((sentence, index) => {
+        // Translation stays hidden until asked for: the point is to read the
+        // Spanish and find out whether it landed.
+        const known = Number(sentence.harder || 0) === 0
+            ? '<span class="wild-badge" title="Every other word is more frequent than this one">all known</span>'
+            : `<span class="wild-badge wild-badge--new">${sentence.harder} new</span>`;
+        return `<button type="button" class="wild-row" onclick="revealWildTranslation(event, ${index})">
+            <div class="wild-target">${escapeCardText(sentence.target)}${known}</div>
+            <div class="wild-english" id="wildEnglish${index}" hidden>${escapeCardText(sentence.english)}</div>
+        </button>`;
+    }).join('');
+    return `<div class="back-header">
+            <div class="back-headword-row">
+                <span class="back-headword" style="font-size: 32px; font-weight: bold; line-height: 1.1;">${escapeCardText(card.chainParentWord || '')}</span>
+            </div>
+            <div class="phrase-summary-subtitle">${sentences.length} sentence${sentences.length === 1 ? '' : 's'} in the wild · tap for the translation</div>
+        </div>
+        <div class="phrase-summary-scroll wild-scroll">${rows}</div>`;
+}
+
+function revealWildTranslation(event, index) {
+    event?.stopPropagation();
+    const line = document.getElementById(`wildEnglish${index}`);
+    if (!line) return;
+    line.hidden = !line.hidden;
+    event.currentTarget?.classList.toggle('is-revealed', !line.hidden);
+}
+
 // Shows the summary card: appends it as a temp card (search-popup pattern)
 // and remembers the parent's real deck index so finishing resumes at
 // parent+1 directly. Deliberately does NOT use cardNavStack/navigateBack —
