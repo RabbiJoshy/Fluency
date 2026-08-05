@@ -1373,11 +1373,49 @@ function initializeApp() {
         deckScrubber.addEventListener('lostpointercapture', finishScrub);
     }
 
+    // Mobile card-back pip row: a direct-position drag surface, not a
+    // relative-delta one — the pip under the finger becomes current, both
+    // on initial touch and while dragging. Chevrons sit outside this
+    // element and stop propagation on their own pointerdown so they never
+    // feed into this handler.
+    const cardBackPips = document.getElementById('cardBackPips');
+    if (cardBackPips) {
+        let pipPointerId = null;
+        const indexFromPointerEvent = event => {
+            const rect = cardBackPips.getBoundingClientRect();
+            if (!rect.width) return currentIndex;
+            const ratio = (event.clientX - rect.left) / rect.width;
+            const idx = Math.floor(ratio * flashcards.length);
+            return Math.max(0, Math.min(flashcards.length - 1, idx));
+        };
+        const endPipDrag = event => {
+            if (pipPointerId === null || (event && event.pointerId !== pipPointerId)) return;
+            if (cardBackPips.hasPointerCapture?.(pipPointerId)) {
+                cardBackPips.releasePointerCapture(pipPointerId);
+            }
+            pipPointerId = null;
+        };
+        cardBackPips.addEventListener('pointerdown', event => {
+            if (event.button !== undefined && event.button !== 0) return;
+            pipPointerId = event.pointerId;
+            cardBackPips.setPointerCapture?.(event.pointerId);
+            goToDeckCard(indexFromPointerEvent(event), { announceHeadword: false });
+        });
+        cardBackPips.addEventListener('pointermove', event => {
+            if (event.pointerId !== pipPointerId) return;
+            event.preventDefault();
+            goToDeckCard(indexFromPointerEvent(event), { announceHeadword: false });
+        });
+        cardBackPips.addEventListener('pointerup', endPipDrag);
+        cardBackPips.addEventListener('pointercancel', endPipDrag);
+        cardBackPips.addEventListener('lostpointercapture', endPipDrag);
+    }
+
     // Floating buttons (desktop sidebar) + on-card mobile copies share handlers.
     // Back uses navigateBack() which falls through to goBackToSetup() when
     // cardNavStack is empty — single smart-back affordance for normal decks
     // and synonym/search/lyrics popup chains alike.
-    ['backBtnFloating', 'backBtnFrontMobile', 'backBtnBackMobile'].forEach(id => {
+    ['backBtnFloating', 'backBtnFrontMobile'].forEach(id => {
         const btn = document.getElementById(id);
         if (btn) btn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1596,6 +1634,9 @@ function setupSwipeGestures() {
             e.target.closest('.card-control-btn') ||
             e.target.closest('.card-action-small') ||
             e.target.closest('.desktop-answer-btn') ||
+            // Inline set scrubber (chevrons, pip drag surface, gear) — its
+            // own pointerdown/click handlers own this touch entirely.
+            e.target.closest('.card-back-scrubber') ||
             e.target.closest('[onclick]')) {
             return;
         }
@@ -4338,6 +4379,30 @@ function updateCard({ announceHeadword = false } = {}) {
                 behavior: _deckScrubberActive ? 'auto' : 'smooth', block: 'nearest', inline: 'center'
             }));
         }
+    }
+
+    // Mobile inline card-back scrubber: one plain pip per card, no
+    // scroll/window (sets are capped at 25). The current pip alone carries
+    // its number; drag/tap handling lives in the pointerdown/move listeners
+    // set up once in initializeApp() (see #cardBackPips wiring).
+    const cardBackPips = document.getElementById('cardBackPips');
+    if (cardBackPips) {
+        const pipCount = flashcards.length;
+        if (cardBackPips.childElementCount !== pipCount) {
+            cardBackPips.replaceChildren(...Array.from({ length: pipCount }, (_, i) => {
+                const pip = document.createElement('div');
+                pip.className = 'cbp-pip';
+                pip.setAttribute('aria-hidden', 'true');
+                return pip;
+            }));
+        }
+        Array.from(cardBackPips.children).forEach((pip, i) => {
+            const isCurrent = i === currentIndex;
+            pip.classList.toggle('is-current', isCurrent);
+            pip.classList.toggle('is-visited', !isCurrent && stats.studied.has(i));
+            pip.textContent = isCurrent ? String(i + 1) : '';
+        });
+        cardBackPips.setAttribute('aria-label', `Card ${currentIndex + 1} of ${pipCount}`);
     }
 
     // Drive ghost card visibility based on how many real cards exist behind each side

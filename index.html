@@ -24,22 +24,22 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260804c">
-    <link rel="modulepreload" href="js/state.js?v=20260804c">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260804c">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260804c">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260804c">
-    <link rel="modulepreload" href="js/speech.js?v=20260804c">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260804c">
-    <link rel="modulepreload" href="js/auth.js?v=20260804c">
-    <link rel="modulepreload" href="js/estimation.js?v=20260804c">
-    <link rel="modulepreload" href="js/config.js?v=20260804c">
-    <link rel="modulepreload" href="js/progress.js?v=20260804c">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260804c">
-    <link rel="modulepreload" href="js/ui.js?v=20260804c">
-    <link rel="modulepreload" href="js/vocab.js?v=20260804c">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260804c">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260804c">
+    <link rel="modulepreload" href="js/main.js?v=20260804d">
+    <link rel="modulepreload" href="js/state.js?v=20260804d">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260804d">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260804d">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260804d">
+    <link rel="modulepreload" href="js/speech.js?v=20260804d">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260804d">
+    <link rel="modulepreload" href="js/auth.js?v=20260804d">
+    <link rel="modulepreload" href="js/estimation.js?v=20260804d">
+    <link rel="modulepreload" href="js/config.js?v=20260804d">
+    <link rel="modulepreload" href="js/progress.js?v=20260804d">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260804d">
+    <link rel="modulepreload" href="js/ui.js?v=20260804d">
+    <link rel="modulepreload" href="js/vocab.js?v=20260804d">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260804d">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260804d">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -522,24 +522,21 @@
                             <div class="card-tint" aria-hidden="true"></div>
                         </div>
                         <div class="card-face card-back">
-                            <!-- Mobile top banner: prev far-left, [back][gear] paired in middle, next far-right -->
-                            <div class="mobile-nav-row card-top-banner" style="display: none; position: absolute; top: 0; left: 0; right: 0; height: 72px; padding: 4px 12px; box-sizing: border-box; z-index: 5; pointer-events: none; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-                                <button class="nav-btn-inline" id="prevBtnBack" style="pointer-events: auto;">←</button>
-                                <div class="banner-center" style="display: flex; gap: 4px; pointer-events: auto;">
-                                    <button class="gear-btn nav-row-icon" id="backBtnBackMobile" title="Back" style="pointer-events: auto;">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="9 14 4 9 9 4"></polyline>
-                                            <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="gear-btn nav-row-icon" id="actionsGearBack" title="More actions" style="pointer-events: auto;">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                        </svg>
-                                    </button>
+                            <!-- Inline set scrubber docked to the card back's top edge (mobile
+                                 only — see .card-back-scrubber). Replaces the old absolutely
+                                 positioned .deck-progress-track that floated above the card. -->
+                            <div class="card-back-scrubber" id="cardBackScrubber">
+                                <div class="cbs-strip">
+                                    <button type="button" class="cbs-chevron cbs-chevron-prev" id="prevBtnBack" aria-label="Previous card" onpointerdown="event.stopPropagation()">‹</button>
+                                    <div class="cbs-pips" id="cardBackPips" role="group" aria-label="Card position in this set"></div>
+                                    <button type="button" class="cbs-chevron cbs-chevron-next" id="nextBtnBack" aria-label="Next card" onpointerdown="event.stopPropagation()">›</button>
                                 </div>
-                                <button class="nav-btn-inline" id="nextBtnBack" style="pointer-events: auto;">→</button>
+                                <button type="button" class="cbs-gear" id="actionsGearBack" title="More actions" aria-label="More actions">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                    </svg>
+                                </button>
                             </div>
                             <!-- X button: shown when card was opened via search/synonym/lyric jump -->
                             <button class="stacked-exit-btn" id="stackedExitBack" aria-label="Return to deck">
@@ -1227,6 +1224,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260804c"></script>
+    <script type="module" src="js/main.js?v=20260804d"></script>
 </body>
 </html>
