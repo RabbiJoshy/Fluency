@@ -4,6 +4,17 @@
     {
       "date": "2026-08-05",
       "commit": "pending",
+      "summary": "Unified every cache-busting tag so edits stop arriving late or not at all",
+      "details": [
+        "19 module-to-module imports had drifted two days behind main.js, leaving three separate copies of state.js loaded at once — the module cache keys by URL, so a stale tag is a second module, not a second reference",
+        "Every ?v= is now rewritten by pattern rather than by replacing the previous value, which is the mechanism that let the drift build up unnoticed",
+        "tools/check_asset_versions.py fails on any disagreement, so this cannot quietly return",
+        "Cache v200→v201 / assets 20260805g→20260805h"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "commit": "pending",
       "summary": "Bottom link row is bare icons at a readable size; POS pills own the top-right corner",
       "details": [
         "Conjugate, Synonyms and the knowledge map lose the white plate behind their glyphs — every tile is now just an icon and a label, matching Look up; labels go 12px→13.5px",

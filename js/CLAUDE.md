@@ -346,7 +346,17 @@ other study-set words and keyword-matched English fragments.
 
 The ES module cache keys by resolved URL and survives page reloads, service-worker resets, and even hard refreshes — only a URL change forces a re-import. So every entry-point import in `main.js` carries a `?v=YYYYMMDDx` query string, and `index.html`'s `js/main.js?v=…` reference matches. **Bump every `?v=` tag in lockstep whenever any module changes substantively** — even modules that look "minor" like `state.js`, `auth.js`, or `speech.js`. Missing the bump on a module that gained a new export (or new `window.x = …` assignment) means consumers run against the stale version and the new symbol is silently undefined.
 
-Module-to-module imports inside `js/` (e.g. `flashcards.js` importing `./speech.js`) currently have no `?v=` tag. They share the same cache slot regardless of `main.js`'s version, so they only re-import when the browser's HTTP cache decides to. If you hit a "looks cached even after reload" bug, hard-refresh; if it persists, that import is the suspect — add a `?v=` tag matching `main.js`.
+Module-to-module imports inside `js/` (e.g. `flashcards.js` importing `./speech.js`) carry the **same** tag as `main.js`'s. They must, because the module cache keys by resolved URL: `state.js?v=A` and `state.js?v=B` are two modules, fetched twice, with two executions of top-level code. On 2026-08-05 three versions of `state.js` were live at once — 19 intra-module imports had drifted to `20260803c`/`e` while `main.js` had reached `20260805g`.
+
+**Bump every tag by pattern, never by replacing the previous value.** Replacing `20260805f` → `20260805g` silently skips anything already reading an older tag, which is exactly how the drift accumulated:
+
+```bash
+find js index.html service-worker.js -type f -exec sed -i '' -E 's/\?v=[0-9]{8}[a-z]/?v=NEW/g' {} +
+```
+
+Then update the two `ASSET_VERSION` constants (`service-worker.js`, `flashcards.js`) and `CACHE_NAME`, and verify with `python3 tools/check_asset_versions.py`, which fails on any disagreement.
+
+`css/style.css` is versioned too. It previously was not, and because the service worker precaches with `cache.addAll()` — free to satisfy an unchanged URL from the browser's disk cache — bumping `CACHE_NAME` re-cached the same stale bytes and hid every CSS change for a day. Install now uses `cache: 'reload'` so the deliberately unversioned entries (`index.html`, config JSONs) cannot rot the same way.
 
 The service worker resolves retained downloads through one manifest-derived
 pathname→cache index and serves shell/runtime hits cache-first for that cache
