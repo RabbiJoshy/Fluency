@@ -1792,21 +1792,11 @@
             padding-bottom: 4px;
         }
 
-        /* Inline set scrubber docked to the card back's own top edge —
-           mobile only (desktop keeps the separate .deck-progress-track
-           rail above the card). Real flow content, first child of
-           .card-back, so it pushes #backContent down by its own height
-           rather than needing manual padding compensation. */
+        /* Inline set scrubber — mobile-only redesign of #deckProgressTrack,
+           sitting in the same reserved strip above the card (not on the
+           card face itself). Hidden by default; shown only on mobile. */
         .card-back-scrubber {
             display: none;
-        }
-
-        /* Chain-child cards (phrase/clitic handoff) and stacked (off-deck)
-           cards never show the set scrubber — matches the old banner's
-           hiding rules and avoids colliding with the X exit button. */
-        .card.is-chain-child .card-back .card-back-scrubber,
-        .card.is-stacked .card-back-scrubber {
-            display: none !important;
         }
 
         .swipe-legend {
@@ -10378,11 +10368,7 @@
         @media (max-width: 767px) {
             .card-container {
                 min-height: 100vh;
-                /* Was 74px, reserved for the old floating scrubber above the
-                   card. That control now lives inside the card back's own
-                   top edge (.card-back-scrubber), so only a small safe-area
-                   gap is needed here — the card reclaims the other ~52px. */
-                padding: 22px 0 44px;
+                padding: 74px 0 44px;
                 align-items: flex-start;
             }
 
@@ -10394,15 +10380,14 @@
             }
 
             .card {
-                /* 118px → 66px: same 52px reclaimed from .card-container's
-                   padding above goes straight into card height. */
-                height: calc(100vh - 66px);
+                height: calc(100vh - 118px);
                 min-height: 460px;
                 max-height: none;
             }
 
-            /* The old above-the-card rail is desktop-only now; its mobile
-               role is replaced by .card-back-scrubber inside the card. */
+            /* #deckProgressTrack (segments + gear) is desktop-only now;
+               .card-back-scrubber below is its mobile redesign, sitting in
+               this same reserved strip above the card. */
             #deckProgressTrack {
                 display: none;
             }
@@ -10413,25 +10398,30 @@
                 pointer-events: none;
             }
 
-            /* Inline set scrubber — docked to the card back's top edge.
-               One 52px row: an inset strip (chevrons + pips) plus a
-               separate gear tile. Real flow content inside .card-back, so
-               it's visible/interactive only when the card is flipped
-               (inherits .card-back's existing flip visibility). */
+            /* Inline set scrubber — sits above the card, in the same spot
+               #deckProgressTrack used to occupy (position:absolute,
+               top:10px). One 52px row: an inset strip (chevrons + pips)
+               plus a separate gear tile. */
             .card-back-scrubber {
                 display: flex;
-                flex: 0 0 auto;
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: calc(100% - 32px);
+                height: 52px;
                 align-items: center;
                 gap: 6px;
-                /* Bleed out to the card's real edges — .card-back carries
-                   15px/20px side/top padding that this row shouldn't inherit,
-                   since it's meant to span the card's full top edge. */
-                width: calc(100% + 30px);
-                margin: -20px -15px 8px;
-                height: 52px;
                 padding: 6px;
                 box-sizing: border-box;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+                pointer-events: auto;
+                transition: opacity 0.2s;
+                z-index: 12;
+            }
+            .card-container:has(.card.is-stacked) .card-back-scrubber {
+                opacity: 0;
+                pointer-events: none;
             }
 
             .cbs-strip {

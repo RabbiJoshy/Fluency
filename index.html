@@ -24,22 +24,22 @@
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260804d">
-    <link rel="modulepreload" href="js/state.js?v=20260804d">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260804d">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260804d">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260804d">
-    <link rel="modulepreload" href="js/speech.js?v=20260804d">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260804d">
-    <link rel="modulepreload" href="js/auth.js?v=20260804d">
-    <link rel="modulepreload" href="js/estimation.js?v=20260804d">
-    <link rel="modulepreload" href="js/config.js?v=20260804d">
-    <link rel="modulepreload" href="js/progress.js?v=20260804d">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260804d">
-    <link rel="modulepreload" href="js/ui.js?v=20260804d">
-    <link rel="modulepreload" href="js/vocab.js?v=20260804d">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260804d">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260804d">
+    <link rel="modulepreload" href="js/main.js?v=20260804e">
+    <link rel="modulepreload" href="js/state.js?v=20260804e">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260804e">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260804e">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260804e">
+    <link rel="modulepreload" href="js/speech.js?v=20260804e">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260804e">
+    <link rel="modulepreload" href="js/auth.js?v=20260804e">
+    <link rel="modulepreload" href="js/estimation.js?v=20260804e">
+    <link rel="modulepreload" href="js/config.js?v=20260804e">
+    <link rel="modulepreload" href="js/progress.js?v=20260804e">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260804e">
+    <link rel="modulepreload" href="js/ui.js?v=20260804e">
+    <link rel="modulepreload" href="js/vocab.js?v=20260804e">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260804e">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260804e">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -522,22 +522,6 @@
                             <div class="card-tint" aria-hidden="true"></div>
                         </div>
                         <div class="card-face card-back">
-                            <!-- Inline set scrubber docked to the card back's top edge (mobile
-                                 only — see .card-back-scrubber). Replaces the old absolutely
-                                 positioned .deck-progress-track that floated above the card. -->
-                            <div class="card-back-scrubber" id="cardBackScrubber">
-                                <div class="cbs-strip">
-                                    <button type="button" class="cbs-chevron cbs-chevron-prev" id="prevBtnBack" aria-label="Previous card" onpointerdown="event.stopPropagation()">‹</button>
-                                    <div class="cbs-pips" id="cardBackPips" role="group" aria-label="Card position in this set"></div>
-                                    <button type="button" class="cbs-chevron cbs-chevron-next" id="nextBtnBack" aria-label="Next card" onpointerdown="event.stopPropagation()">›</button>
-                                </div>
-                                <button type="button" class="cbs-gear" id="actionsGearBack" title="More actions" aria-label="More actions">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                                    </svg>
-                                </button>
-                            </div>
                             <!-- X button: shown when card was opened via search/synonym/lyric jump -->
                             <button class="stacked-exit-btn" id="stackedExitBack" aria-label="Return to deck">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -560,13 +544,30 @@
                     <button id="correctBtnOutside" class="hidden" aria-hidden="true"></button>
                     <button id="prevBtnFrontOutside" class="hidden" aria-hidden="true"></button>
                     <button id="nextBtnFrontOutside" class="hidden" aria-hidden="true"></button>
-                    <!-- Active-set scrubber: numbered card positions with direct navigation. -->
+                    <!-- Active-set scrubber: numbered card positions with direct navigation.
+                         Desktop only now — see .card-back-scrubber below for the mobile
+                         redesign, which sits in this same reserved strip above the card. -->
                     <div id="deckProgressTrack" class="deck-progress-track" aria-label="Card position in active set">
                         <div id="deckProgressSegments" class="deck-progress-segments" role="group" aria-label="Cards in this set"></div>
                         <button type="button" id="studyMenuBtn" class="gear-btn study-menu-btn" aria-label="Open study options" title="Study options">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <circle cx="12" cy="12" r="3"></circle>
                                 <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.05.05-2.86 2.86-.05-.05A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.55V21h-4v-.05a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.88.34l-.05.05-2.86-2.86.05-.05A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3v-4h.05A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.88l-.05-.05 2.86-2.86.05.05A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3h4v.05a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.88-.34l.05-.05 2.86 2.86-.05.05A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21v4h-.05A1.7 1.7 0 0 0 19.4 15z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Inline set scrubber — mobile only, replaces #deckProgressTrack in
+                         this same reserved strip above the card (not on the card face). -->
+                    <div class="card-back-scrubber" id="cardBackScrubber" aria-label="Card position in active set">
+                        <div class="cbs-strip">
+                            <button type="button" class="cbs-chevron cbs-chevron-prev" id="prevBtnBack" aria-label="Previous card" onpointerdown="event.stopPropagation()">‹</button>
+                            <div class="cbs-pips" id="cardBackPips" role="group" aria-label="Card position in this set"></div>
+                            <button type="button" class="cbs-chevron cbs-chevron-next" id="nextBtnBack" aria-label="Next card" onpointerdown="event.stopPropagation()">›</button>
+                        </div>
+                        <button type="button" class="cbs-gear" id="actionsGearBack" title="More actions" aria-label="More actions">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                             </svg>
                         </button>
                     </div>
@@ -1224,6 +1225,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260804d"></script>
+    <script type="module" src="js/main.js?v=20260804e"></script>
 </body>
 </html>
