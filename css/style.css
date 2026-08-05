@@ -513,12 +513,15 @@
 
             /* #deckProgressTrack is retired everywhere (see base rules);
                .card-back-scrubber sits above the card in its place — same
-               order:-1 flex-item trick, sized to match. */
+               order:-1 flex-item trick. Width matches .card's own
+               max-width:480px exactly (not the wider 540px the old rail
+               used, which didn't line up with the card and instead
+               spanned closer to the ghost-card staircase behind it). */
             .card-back-scrubber {
                 position: relative;
                 order: -1;
                 flex: 0 0 auto;
-                width: min(540px, calc(100% - 32px));
+                width: min(480px, 100%);
                 pointer-events: auto;
             }
             .card-container {
