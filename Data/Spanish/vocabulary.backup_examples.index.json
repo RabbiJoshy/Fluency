@@ -14,7 +14,7 @@
       "rankEnd": 2000,
       "words": 1958,
       "sentences": 18742,
-      "bytes": 3299838
+      "bytes": 3739462
     },
     {
       "file": "backup_examples/backup_examples.001.json",
@@ -23,7 +23,7 @@
       "rankEnd": 4000,
       "words": 1877,
       "sentences": 14500,
-      "bytes": 2682248
+      "bytes": 2969477
     },
     {
       "file": "backup_examples/backup_examples.002.json",
@@ -32,7 +32,7 @@
       "rankEnd": 6000,
       "words": 1737,
       "sentences": 10480,
-      "bytes": 1958363
+      "bytes": 2131818
     },
     {
       "file": "backup_examples/backup_examples.003.json",
@@ -41,7 +41,7 @@
       "rankEnd": 8000,
       "words": 1578,
       "sentences": 7467,
-      "bytes": 1409478
+      "bytes": 1513031
     },
     {
       "file": "backup_examples/backup_examples.004.json",
@@ -50,7 +50,7 @@
       "rankEnd": 10000,
       "words": 1533,
       "sentences": 8044,
-      "bytes": 1472188
+      "bytes": 1607658
     },
     {
       "file": "backup_examples/backup_examples.005.json",
@@ -59,7 +59,7 @@
       "rankEnd": 12000,
       "words": 1417,
       "sentences": 9126,
-      "bytes": 1668858
+      "bytes": 1827830
     }
   ]
 }

@@ -9,9 +9,9 @@
       "scope": "language",
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
-      "contentVersion": "2026-08-05-backup-examples-2",
-      "storageBytes": 39038719,
-      "transferBytes": 39038719,
+      "contentVersion": "2026-08-05-backup-examples-3",
+      "storageBytes": 40337022,
+      "transferBytes": 40337022,
       "dependencies": [],
       "files": [
         {
@@ -27,37 +27,37 @@
         {
           "path": "Data/Spanish/vocabulary.backup_examples.index.json",
           "bytes": 1437,
-          "sha256": "b97204be94e2fc22ba4b46e1d4605cedcf347aa672ae038e6e83fdc822222d9f"
+          "sha256": "7fb6a658727bfd9125aaf20ce878f4d49442ce9aa31489566409970127e2708c"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.000.json",
-          "bytes": 3299838,
-          "sha256": "eae8515d2519e958b518c8430df96f01fe00737456f3771ce74cbe6eb9df799c"
+          "bytes": 3739462,
+          "sha256": "2e4b61a55f9560ca1b546c76f6c7a5b3aa6b4d723582406f25e439de0b5227c0"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.001.json",
-          "bytes": 2682248,
-          "sha256": "19caf51a2299ced6b3fa8256dcb9d0e23c0d47ecbc13029f8596454281fbece9"
+          "bytes": 2969477,
+          "sha256": "4e73e6f6b17e88f6f7161b7ebb215a429c3de4cbcb4653920ccf498d2e2cb64c"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.002.json",
-          "bytes": 1958363,
-          "sha256": "60b75b6003c8dc08ff1ffcad241b38827a76f693d12756a7ab1bc665cf91d37a"
+          "bytes": 2131818,
+          "sha256": "adb286d450f4eb96756e6e6b7fc25e0b7b7dd81ea0a28c10426b12991530212c"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.003.json",
-          "bytes": 1409478,
-          "sha256": "b80ebda1e90910b215a13fae4a587031c03cc28f257ea35c183cb74928e54597"
+          "bytes": 1513031,
+          "sha256": "1fe66934da6239ba6fdce516acf1a4c69061618c97aab4bc6e2b61e02ccdb306"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.004.json",
-          "bytes": 1472188,
-          "sha256": "0b4247db3711112dac7b27af1ea429cd6818aba1d9d704b75c1c33c90437070e"
+          "bytes": 1607658,
+          "sha256": "74c337f84c20801863d3a2349c71a5da6aa07b73fa41cdf69e17908ca745f68b"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.005.json",
-          "bytes": 1668858,
-          "sha256": "9bbb5efb3e787b66869dfce3acaf633c36d72e13fbcb986e5a4ff24f2c3e3d35"
+          "bytes": 1827830,
+          "sha256": "632d96ba68687577d12cd6b2dde159c59251545dcc6fde84e665e062331a63f8"
         },
         {
           "path": "Data/Spanish/backup_examples/shard_index.json",

@@ -255,8 +255,13 @@ def dedupe_key(sentence):
     return " ".join(tokenize(sentence))
 
 
+# How many unknown words are worth glossing before the list stops being a
+# reading aid and becomes a vocabulary dump.
+MAX_GLOSSED_NEW_WORDS = 4
+
+
 def select_for_word(word, target_rank, candidate_indices, records,
-                    per_word, usage, reuse_cap):
+                    per_word, usage, reuse_cap, glossary):
     """Cheapest-first pick under a continuous difficulty model."""
     if len(candidate_indices) > MAX_CANDIDATES_PER_WORD:
         # Seeded sample, not the first N. Corpus order is not neutral —
@@ -270,12 +275,13 @@ def select_for_word(word, target_rank, candidate_indices, records,
     scored = []
     for record_index in candidate_indices:
         record = records[record_index]
-        costs = sorted(
-            (math.log10(rank) - log_target
+        new_words = sorted(
+            ((math.log10(rank) - log_target, token)
              for token, rank in record["ranks"].items()
              if token != word and rank > target_rank),
             reverse=True,
         )
+        costs = [cost for cost, _token in new_words]
         beyond = len(costs)
         # Discount the hardest single unknown — that is the word the sentence
         # is teaching — and charge the remainder at full rate.
@@ -283,7 +289,8 @@ def select_for_word(word, target_rank, candidate_indices, records,
         length = record["length"]
         penalty = (SHORT_PENALTY_WEIGHT * max(0, PREFERRED_MIN_WORDS - length)
                    + LONG_PENALTY_WEIGHT * max(0, length - PREFERRED_MAX_WORDS))
-        scored.append((burden + penalty, burden, beyond, record_index))
+        scored.append((burden + penalty, burden, beyond, record_index,
+                       tuple(token for _cost, token in new_words)))
 
     scored.sort()
 
@@ -293,7 +300,7 @@ def select_for_word(word, target_rank, candidate_indices, records,
     # Two passes: fill on the diversity rule, then relax it rather than return
     # fewer sentences than the corpus can actually support.
     for allow_similar in (False, True):
-        for total, burden, beyond, record_index in scored:
+        for _total, burden, beyond, record_index, new_tokens in scored:
             if len(selected) >= per_word:
                 break
             record = records[record_index]
@@ -313,11 +320,24 @@ def select_for_word(word, target_rank, candidate_indices, records,
             seen_here.add(key)
             chosen_bigrams.append(record["bigrams"])
             usage[key] += 1
+            # Gloss the words the learner has not reached yet, hardest first,
+            # so the expanded row explains itself without a dictionary trip.
+            # Carried in the data rather than looked up in the app: a lyrics
+            # deck never loads the language index, and that is exactly where
+            # these sentences are most useful.
+            glossed = []
+            for token in new_tokens:
+                translation = glossary.get(token)
+                if translation:
+                    glossed.append([token, translation])
+                if len(glossed) >= MAX_GLOSSED_NEW_WORDS:
+                    break
             selected.append({
                 "id": example_id(record["target"], record["eng"]),
                 "target": record["target"],
                 "english": record["eng"],
                 "source": record["source"],
+                "new": glossed,
                 # Rounded so the shards stay compact; the app sorts on it to
                 # show fully-known sentences first where they exist.
                 "burden": round(burden, 2),
@@ -366,6 +386,16 @@ def main():
         inventory = inventory[:args.limit_words]
 
     wanted = {entry["word"].lower() for entry in inventory if entry.get("word")}
+    # Surface form -> its most prominent translation, for glossing unknown
+    # words inside a sentence.
+    glossary = {}
+    for entry in inventory:
+        surface = (entry.get("word") or "").lower()
+        meanings = entry.get("meanings") or []
+        if surface and meanings and not glossary.get(surface):
+            translation = meanings[0].get("translation")
+            if translation:
+                glossary[surface] = translation
     print(f"  {len(inventory):,} deck entries, {len(wanted):,} distinct surface forms")
 
     pairs = []
@@ -427,7 +457,7 @@ def main():
         candidates = merged_index.get(word)
         chosen = select_for_word(
             word, target_rank, candidates, all_records,
-            args.per_word, usage, args.reuse_cap
+            args.per_word, usage, args.reuse_cap, glossary
         ) if candidates else []
         histogram[min(len(chosen), args.per_word)] += 1
         if chosen:
