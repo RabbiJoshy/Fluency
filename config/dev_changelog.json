@@ -4,6 +4,26 @@
     {
       "date": "2026-08-05",
       "commit": "pending",
+      "summary": "Card-surface polish pass: long-press popovers, Spotify loading ring, settings split into Deck vs Learning",
+      "details": [
+        "Settings → Study is now two labelled groups: Deck Settings (what ends up in the deck) and Learning Settings (how cards are presented)",
+        "Every setting has a ? that reveals a one-line explanation; cognate sensitivity is hidden entirely unless cognates are excluded",
+        "Study-options radial icons and labels are noticeably bigger",
+        "Long-press the headword: a small popover explains the direction switch, tap the pill to flip, tap away to cancel — replaces the old bare inline button",
+        "Long-press the Spotify button for the same style of popover with an autoplay toggle; the preference persists",
+        "Spotify button shows a rotating ring while the track is starting, cleared by the real playback-start signal (with timeouts so it can't spin forever)",
+        "Long artist and song names now ellipsize instead of breaking the credit line",
+        "Fixed: the Spotify logo painted over the synonyms panel — an inline z-index:999 outranked the card-face overlays",
+        "Synonyms that have no card now ask for confirmation before leaving the app for SpanishDict",
+        "Synonym icon redrawn as a proper stroked vector so it matches the Known / Look up tiles",
+        "The X/N known-senses sheet now drops in from the top instead of rising from the bottom",
+        "Past-participle POS pill: not done — the deck JSON carries no participle signal, only plain ADJ, so it needs a pipeline change first",
+        "Cache v204→v205 / assets 20260805k→20260805l"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "commit": "pending",
       "summary": "About gains \"See Example\" — a real card, annotated on both sides, with working Spotify",
       "details": [
         "Opens on the BACK of the card: senses, shares and lyric evidence all visible at once, which is what the app is actually for",

@@ -19,29 +19,29 @@
          weights = fewer round trips to fonts.gstatic.com on cold start. -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
-    <link rel="stylesheet" href="css/style.css?v=20260805k">
+    <link rel="stylesheet" href="css/style.css?v=20260805l">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260805k">
-    <link rel="modulepreload" href="js/state.js?v=20260805k">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260805k">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260805k">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260805k">
-    <link rel="modulepreload" href="js/speech.js?v=20260805k">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260805k">
-    <link rel="modulepreload" href="js/auth.js?v=20260805k">
-    <link rel="modulepreload" href="js/about-example.js?v=20260805k">
-    <link rel="modulepreload" href="js/estimation.js?v=20260805k">
-    <link rel="modulepreload" href="js/config.js?v=20260805k">
-    <link rel="modulepreload" href="js/progress.js?v=20260805k">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260805k">
-    <link rel="modulepreload" href="js/ui.js?v=20260805k">
-    <link rel="modulepreload" href="js/vocab.js?v=20260805k">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260805k">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260805k">
+    <link rel="modulepreload" href="js/main.js?v=20260805l">
+    <link rel="modulepreload" href="js/state.js?v=20260805l">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260805l">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260805l">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260805l">
+    <link rel="modulepreload" href="js/speech.js?v=20260805l">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260805l">
+    <link rel="modulepreload" href="js/auth.js?v=20260805l">
+    <link rel="modulepreload" href="js/about-example.js?v=20260805l">
+    <link rel="modulepreload" href="js/estimation.js?v=20260805l">
+    <link rel="modulepreload" href="js/config.js?v=20260805l">
+    <link rel="modulepreload" href="js/progress.js?v=20260805l">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260805l">
+    <link rel="modulepreload" href="js/ui.js?v=20260805l">
+    <link rel="modulepreload" href="js/vocab.js?v=20260805l">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260805l">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260805l">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -1067,72 +1067,125 @@
                         These choices apply automatically to every new Speech or Lyrics setup.
                         Changing them also updates the current setup; continuing an exact saved set keeps that set's original choices.
                     </p>
+                    <!-- Deck Settings: everything that changes which cards the
+                         deck contains. Each row carries a "?" that reveals a
+                         one-line description of what the toggle actually does. -->
+                    <div class="settings-group-heading">
+                        <strong>Deck Settings</strong>
+                        <span>What ends up in the deck</span>
+                    </div>
                     <div class="settings-default-row">
-                        <span>Merge Lemmas</span>
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Merge Lemmas
+                                <button type="button" class="settings-info-btn" aria-label="Explain Merge Lemmas" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Collapses every inflected form onto one card for its dictionary form, so a word is studied once instead of once per conjugation.</small>
+                        </span>
                         <div class="group-size-selector settings-toggle" role="group" aria-label="Default Merge Lemmas setting">
                             <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="mergeLemmas" data-value="off" aria-pressed="true">Off</button>
                             <button type="button" class="group-size-btn global-study-default-btn" data-setting="mergeLemmas" data-value="on" aria-pressed="false">On</button>
                         </div>
                     </div>
                     <div class="settings-default-row">
-                        <span>Exclude Cognates</span>
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Exclude Cognates
+                                <button type="button" class="settings-info-btn" aria-label="Explain Exclude Cognates" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Drops words that look close enough to their English equivalent to be guessable, so they never reach the deck.</small>
+                        </span>
                         <div class="group-size-selector settings-toggle" role="group" aria-label="Default Exclude Cognates setting">
                             <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="excludeCognates" data-value="off" aria-pressed="true">Off</button>
                             <button type="button" class="group-size-btn global-study-default-btn" data-setting="excludeCognates" data-value="on" aria-pressed="false">On</button>
                         </div>
                     </div>
+                    <!-- Cognate exclusion sensitivity. Higher threshold = only
+                         the most obvious cognates get excluded (looser); lower
+                         = more aggressive. Hidden unless cognates are actually
+                         being excluded and the language has cognate scores
+                         (see updateCognateSensitivityVisibility in ui.js). -->
+                    <div class="settings-default-row" id="cognateSensitivityRow" style="display: none;">
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Cognate filter sensitivity
+                                <button type="button" class="settings-info-btn" id="cognateSensitivityInfoBtn"
+                                        aria-label="Explain cognate filter sensitivity" aria-expanded="false"
+                                        aria-controls="cognateSensitivityExplanation">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Sets how similar to English a word must be before the cognate filter removes it — Loose keeps all but the obvious look-alikes, Strict removes far more.</small>
+                        </span>
+                        <div id="cognateSensitivitySelector" class="group-size-selector settings-toggle">
+                            <button class="cognate-sens-btn group-size-btn" data-threshold="0.95" title="Only obvious cognates (e.g. animal, hotel)">Loose</button>
+                            <button class="cognate-sens-btn group-size-btn selected" data-threshold="0.85" title="Default cutoff">Default</button>
+                            <button class="cognate-sens-btn group-size-btn" data-threshold="0.75" title="Skip more cognate-like words">Strict</button>
+                        </div>
+                    </div>
                     <div class="settings-default-row">
-                        <span>Card front</span>
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Spaced repetition
+                                <button type="button" class="settings-info-btn" aria-label="Explain spaced repetition" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Returns correct cards to Review once their interval lapses; off keeps due cards Known, while mistakes still go to Review.</small>
+                        </span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Spaced repetition setting">
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="spacedRepetitionEnabled" data-value="off" aria-pressed="true">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="spacedRepetitionEnabled" data-value="on" aria-pressed="false">On</button>
+                        </div>
+                    </div>
+                    <div class="settings-default-row">
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Extra examples
+                                <button type="button" class="settings-info-btn" aria-label="Explain extra examples" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Adds a follow-up card of corpus sentences after the word, so you see it used outside this deck — lyrics decks are often thin even on common words.</small>
+                        </span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Extra examples setting">
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="extraExamples" data-value="off" aria-pressed="false">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="extraExamples" data-value="on" aria-pressed="true">On</button>
+                        </div>
+                    </div>
+                    <div class="settings-default-row">
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Phrases mode
+                                <button type="button" class="settings-info-btn" aria-label="Explain phrases mode" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Sends Expressions and attached-pronoun forms after the word as their own cards; off leaves them on the word's back.</small>
+                        </span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Phrases mode setting">
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="phrasesMode" data-value="off" aria-pressed="false">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="phrasesMode" data-value="on" aria-pressed="true">On</button>
+                        </div>
+                    </div>
+
+                    <!-- Learning Settings: how the active card looks and behaves.
+                         These never change which cards are in the deck. -->
+                    <div class="settings-group-heading">
+                        <strong>Learning Settings</strong>
+                        <span>How cards are presented</span>
+                    </div>
+                    <div class="settings-default-row">
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Card front
+                                <button type="button" class="settings-info-btn" aria-label="Explain card front" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Chooses the side you see first: Target shows the foreign word to recognise, English asks you to produce it.</small>
+                        </span>
                         <div class="group-size-selector settings-toggle" role="group" aria-label="Default card direction">
                             <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="directionFlipped" data-value="off" aria-pressed="true">Target</button>
                             <button type="button" class="group-size-btn global-study-default-btn" data-setting="directionFlipped" data-value="on" aria-pressed="false">English</button>
                         </div>
                     </div>
                     <div class="settings-default-row">
-                        <span>Automatic speech</span>
+                        <span class="settings-row-label-block">
+                            <span class="settings-row-label">Automatic speech
+                                <button type="button" class="settings-info-btn" aria-label="Explain automatic speech" aria-expanded="false">?</button>
+                            </span>
+                            <small class="settings-row-explanation" hidden>Speaks the target-language answer aloud on its own as each card is shown; the speaker icon still works when off.</small>
+                        </span>
                         <div class="group-size-selector settings-toggle" role="group" aria-label="Default automatic speech setting">
                             <button type="button" class="group-size-btn global-study-default-btn" data-setting="speechEnabled" data-value="off" aria-pressed="false">Off</button>
                             <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="speechEnabled" data-value="on" aria-pressed="true">On</button>
                         </div>
                     </div>
-                    <div class="settings-default-row settings-default-row-explained">
-                        <span>Spaced repetition <small>Off keeps due cards Known; mistakes still go to Review.</small></span>
-                        <div class="group-size-selector settings-toggle" role="group" aria-label="Spaced repetition setting">
-                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="spacedRepetitionEnabled" data-value="off" aria-pressed="true">Off</button>
-                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="spacedRepetitionEnabled" data-value="on" aria-pressed="false">On</button>
-                        </div>
-                    </div>
-                    <div class="settings-default-row settings-default-row-explained">
-                        <span>Extra examples <small>Adds corpus sentences after the word, so you see it used outside this deck. Lyrics decks are often thin even on common words.</small></span>
-                        <div class="group-size-selector settings-toggle" role="group" aria-label="Extra examples setting">
-                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="extraExamples" data-value="off" aria-pressed="false">Off</button>
-                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="extraExamples" data-value="on" aria-pressed="true">On</button>
-                        </div>
-                    </div>
-                    <div class="settings-default-row settings-default-row-explained">
-                        <span>Phrases mode <small>On sends Expressions/clitics after the word as their own card; off keeps them on the word's back.</small></span>
-                        <div class="group-size-selector settings-toggle" role="group" aria-label="Phrases mode setting">
-                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="phrasesMode" data-value="off" aria-pressed="false">Off</button>
-                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="phrasesMode" data-value="on" aria-pressed="true">On</button>
-                        </div>
-                    </div>
                 </section>
-                <!-- Cognate exclusion sensitivity. Higher threshold = only
-                     the most obvious cognates get excluded (looser); lower
-                     = more aggressive. Hidden until cognate-data languages
-                     are active (see updateCognateSensitivityVisibility). -->
-                <div class="stat-row" id="cognateSensitivityRow" style="display: none;">
-                    <span class="settings-row-label">Cognate filter sensitivity
-                        <button type="button" class="settings-info-btn" id="cognateSensitivityInfoBtn"
-                                aria-label="Explain cognate filter sensitivity" aria-expanded="false"
-                                aria-controls="cognateSensitivityExplanation">i</button>
-                    </span>
-                    <div id="cognateSensitivitySelector" class="group-size-selector settings-toggle">
-                        <button class="cognate-sens-btn group-size-btn" data-threshold="0.95" title="Only obvious cognates (e.g. animal, hotel)">Loose</button>
-                        <button class="cognate-sens-btn group-size-btn selected" data-threshold="0.85" title="Default cutoff">Default</button>
-                        <button class="cognate-sens-btn group-size-btn" data-threshold="0.75" title="Skip more cognate-like words">Strict</button>
-                    </div>
-                </div>
                 <div class="settings-inline-explanation" id="cognateSensitivityExplanation" hidden>
                     <strong>How sensitivity works</strong>
                     <p><b>Loose</b> excludes only the most obvious look-alikes. <b>Default</b> balances confidence and coverage. <b>Strict</b> also excludes less certain cognate-like words, leaving a smaller study deck.</p>
@@ -1272,6 +1325,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260805k"></script>
+    <script type="module" src="js/main.js?v=20260805l"></script>
 </body>
 </html>

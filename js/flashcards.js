@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260805k';
-import './speech.js?v=20260805k';
+import './state.js?v=20260805l';
+import './speech.js?v=20260805l';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260805k';
+} from './example-personalisation.js?v=20260805l';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -1000,6 +1000,84 @@ async function playExampleAutoplayStep(runId) {
     }
 }
 
+// Long-press popover on the card headword. Same contract as the Spotify
+// button's autoplay popover: the hold reveals a small rounded control that
+// says what it does, its button performs the switch, and a tap anywhere else
+// dismisses it without changing the direction.
+let _directionPopover = null;
+let _directionPopoverArm = null;
+
+function closeDirectionPopover() {
+    if (!_directionPopover) return;
+    _directionPopover.remove();
+    _directionPopover = null;
+    if (_directionPopoverArm) {
+        document.removeEventListener('click', _directionPopoverArm, true);
+        _directionPopoverArm = null;
+    }
+    document.removeEventListener('click', dismissDirectionPopover, true);
+    window.removeEventListener('scroll', closeDirectionPopover, true);
+    window.removeEventListener('resize', closeDirectionPopover);
+}
+
+function dismissDirectionPopover(event) {
+    if (_directionPopover && _directionPopover.contains(event.target)) return;
+    closeDirectionPopover();
+}
+
+function openDirectionPopover(anchor) {
+    closeDirectionPopover();
+    const targetLanguage = (config?.languages?.[selectedLanguage]?.name || selectedLanguage || 'the other language')
+        .replace(/\s*\(.*\)$/, '');
+    // Label the direction this will switch TO, matching the study menu's entry.
+    const switchLabel = isFlipped ? `${targetLanguage} → English` : `English → ${targetLanguage}`;
+    const popover = document.createElement('div');
+    popover.className = 'direction-popover';
+    popover.setAttribute('role', 'dialog');
+    popover.setAttribute('aria-label', 'Card language direction');
+    popover.innerHTML = `
+        <span class="direction-popover-text">Choose which language every card asks you first.</span>
+        <button type="button" class="direction-popover-btn">
+            <span class="direction-popover-btn-icon" aria-hidden="true">⇄</span>
+            <span class="direction-popover-btn-label">${escapeCardText(switchLabel)}</span>
+        </button>`;
+    document.body.appendChild(popover);
+    _directionPopover = popover;
+
+    // Fixed positioning keeps this out of the card's preserve-3d context.
+    const rect = anchor.getBoundingClientRect();
+    const width = popover.offsetWidth;
+    const left = Math.min(
+        Math.max(8, rect.left + rect.width / 2 - width / 2),
+        Math.max(8, window.innerWidth - width - 8)
+    );
+    let top = rect.top - popover.offsetHeight - 10;
+    if (top < 8) top = Math.min(rect.bottom + 10, window.innerHeight - popover.offsetHeight - 8);
+    popover.style.left = `${Math.round(left)}px`;
+    popover.style.top = `${Math.round(top)}px`;
+
+    popover.querySelector('.direction-popover-btn').addEventListener('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        closeDirectionPopover();
+        flipDirection();
+    });
+
+    // The pointerup that ends the long press still emits a click on the
+    // headword. Forgive exactly that one click, so the popover cannot dismiss
+    // itself the instant it appears; any other tap outside closes it at once.
+    const armDismiss = (event) => {
+        document.removeEventListener('click', armDismiss, true);
+        _directionPopoverArm = null;
+        document.addEventListener('click', dismissDirectionPopover, true);
+        if (!anchor.contains(event.target) && !popover.contains(event.target)) closeDirectionPopover();
+    };
+    _directionPopoverArm = armDismiss;
+    document.addEventListener('click', armDismiss, true);
+    window.addEventListener('scroll', closeDirectionPopover, true);
+    window.addEventListener('resize', closeDirectionPopover);
+}
+
 // Long-press on the Spotify button toggles card-wide lyric autoplay,
 // folding the old standalone autoplay button into the Spotify button
 // wherever both would otherwise appear side by side. A quick tap still
@@ -1193,9 +1271,9 @@ function initializeApp() {
     });
 
     // The back header remains an invisible flip target. Holding the headword
-    // itself reveals a one-action button in the card header. Reversal remains
-    // an explicit second choice; movement cancels the hold so horizontal card
-    // swipes never reveal the button accidentally.
+    // itself opens the direction popover. Reversal remains an explicit second
+    // choice inside that popover; movement cancels the hold so horizontal card
+    // swipes never reveal it accidentally.
     const flashcard = document.getElementById('flashcard');
     let backWordHoldTimer = null;
     let backWordHoldStart = null;
@@ -1206,18 +1284,17 @@ function initializeApp() {
         backWordHoldStart = null;
     };
     flashcard.addEventListener('pointerdown', event => {
-        if (!event.target.closest('.back-headword') || (event.button !== undefined && event.button !== 0)) return;
+        const headword = event.target.closest('.back-headword');
+        if (!headword || (event.button !== undefined && event.button !== 0)) return;
         backWordHoldStart = { x: event.clientX, y: event.clientY };
         backWordHoldTimer = setTimeout(() => {
             backWordHoldTimer = null;
             backWordHoldStart = null;
+            // The pointerup that ends the hold still produces a click on the
+            // card; this window swallows it so the card never flips.
             suppressCardFlipUntil = Date.now() + 800;
             navigator.vibrate?.(20);
-            const directionOption = document.getElementById('backDirectionOption');
-            if (directionOption) {
-                directionOption.hidden = false;
-                directionOption.focus({ preventScroll: true });
-            }
+            openDirectionPopover(headword);
         }, 600);
     });
     flashcard.addEventListener('pointermove', event => {
@@ -2709,14 +2786,25 @@ function renderExamplesChildBack(card) {
             </div>`;
     }
     const rows = sentences.map((sentence, index) => {
-        // Translation stays hidden until asked for: the point is to read the
-        // Spanish and find out whether it landed.
-        const known = Number(sentence.harder || 0) === 0
-            ? '<span class="wild-badge" title="Every other word is more frequent than this one">all known</span>'
-            : `<span class="wild-badge wild-badge--new">${sentence.harder} new</span>`;
-        return `<button type="button" class="wild-row" onclick="revealWildTranslation(event, ${index})">
-            <div class="wild-target">${escapeCardText(sentence.target)}${known}</div>
-            <div class="wild-english" id="wildEnglish${index}" hidden>${escapeCardText(sentence.english)}</div>
+        // Collapsed, the row is just the sentence — a count of unknown words
+        // told the learner nothing they could act on. Expanded, it gives the
+        // translation and glosses the words they have not met yet, which is
+        // the thing that was actually missing.
+        const glosses = Array.isArray(sentence.new) ? sentence.new : [];
+        const glossHTML = glosses.length
+            ? `<div class="wild-gloss">
+                    ${glosses.map(([word, translation]) => `<div class="wild-gloss-row">
+                        <span class="wild-gloss-word">${escapeCardText(word)}</span>
+                        <span class="wild-gloss-translation">${escapeCardText(translation)}</span>
+                    </div>`).join('')}
+               </div>`
+            : '';
+        return `<button type="button" class="wild-row" aria-expanded="false" onclick="revealWildTranslation(event, ${index})">
+            <div class="wild-target">${escapeCardText(sentence.target)}</div>
+            <div class="wild-reveal" id="wildReveal${index}" hidden>
+                <div class="wild-english">${escapeCardText(sentence.english)}</div>
+                ${glossHTML}
+            </div>
         </button>`;
     }).join('');
     return `<div class="back-header">
@@ -2730,10 +2818,13 @@ function renderExamplesChildBack(card) {
 
 function revealWildTranslation(event, index) {
     event?.stopPropagation();
-    const line = document.getElementById(`wildEnglish${index}`);
-    if (!line) return;
-    line.hidden = !line.hidden;
-    event.currentTarget?.classList.toggle('is-revealed', !line.hidden);
+    const panel = document.getElementById(`wildReveal${index}`);
+    if (!panel) return;
+    const opening = panel.hidden;
+    panel.hidden = !opening;
+    const row = event.currentTarget;
+    row?.classList.toggle('is-revealed', opening);
+    row?.setAttribute('aria-expanded', String(opening));
 }
 
 // Shows the summary card: appends it as a temp card (search-popup pattern)
@@ -3428,7 +3519,6 @@ function updateCard({ announceHeadword = false } = {}) {
                     ${backPosLegendHTML}
                 </div>
                 ${backGrammarHTML}
-                <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
             </div>
             ${backDerivationHTML}
             ${homographChipHTML}
@@ -4210,7 +4300,7 @@ function updateCard({ announceHeadword = false } = {}) {
             // is actually available — otherwise behave exactly as before.
             const spotifyBtnActiveClass = cardAutoplayAvailable && _exampleAutoplayActive ? ' autoplay-active' : '';
             const spotifyBtn = spotifyTrackId
-                ? `<button type="button" class="spotify-btn link-btn${spotifyBtnActiveClass}" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="${cardAutoplayAvailable ? 'Play in Spotify · hold to toggle lyric autoplay' : 'Play in Spotify'}" style="cursor:pointer; margin:0; position:relative; z-index:999;" onclick="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})" ontouchend="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})"${cardAutoplayAvailable ? ` onmousedown="spotifyBtnPressStart(event)" onmouseup="spotifyBtnPressEnd()" onmouseleave="spotifyBtnPressEnd()" ontouchstart="spotifyBtnPressStart(event)" ontouchcancel="spotifyBtnPressEnd()"` : ''}>${spotifySvg}</button>`
+                ? `<button type="button" class="spotify-btn link-btn${spotifyBtnActiveClass}" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="${cardAutoplayAvailable ? 'Play in Spotify · hold to toggle lyric autoplay' : 'Play in Spotify'}" style="cursor:pointer; margin:0;" onclick="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})" ontouchend="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})"${cardAutoplayAvailable ? ` onmousedown="spotifyBtnPressStart(event)" onmouseup="spotifyBtnPressEnd()" onmouseleave="spotifyBtnPressEnd()" ontouchstart="spotifyBtnPressStart(event)" ontouchcancel="spotifyBtnPressEnd()"` : ''}>${spotifySvg}</button>`
                 : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
             // Card-wide availability keeps this visible even when only a
             // later sense has a playable clip. Once a Spotify button is on
@@ -4379,8 +4469,9 @@ function updateCard({ announceHeadword = false } = {}) {
     const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
     if (hasSynonyms) {
         backHTML += `<button class="ref-tile ref-syn-btn" onclick="toggleSynonymsPanel()">
-            <svg class="ref-tile-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <text x="16" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="30" text-anchor="middle" fill="currentColor">≈</text>
+            <svg class="ref-tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3.5 9.25q4.25-4 8.5 0t8.5 0"></path>
+                <path d="M3.5 15.75q4.25-4 8.5 0t8.5 0"></path>
             </svg>
             <span class="ref-tile-label">Synonyms</span>
         </button>`;
@@ -5182,9 +5273,87 @@ function jumpToSynonym(word) {
         window.popupFoundWord({ id }, { reopenSearchOnBack: false, startFlipped: true });
         return;
     }
-    // No card available — open SpanishDict in a new tab.
+    // No card available — SpanishDict is the fallback, but that leaves the
+    // app entirely, so confirm first instead of silently opening a new tab.
     const url = `https://www.spanishdict.com/translate/${encodeURIComponent((word || '').toLowerCase())}`;
-    window.open(url, '_blank', 'noopener');
+    confirmLeaveForSpanishDict(word || '', url);
+}
+
+// Leave-the-app confirmation for synonyms with no card in the deck. Reuses the
+// knowledge-overview modal's sheet chrome (backdrop, sheet, header, close) and
+// the auth form's button pair so it reads as the same dialog system rather
+// than a second bespoke popup. Lives on document.body, not inside the card, so
+// it is not trapped in the card face's stacking context.
+let _synLeaveTargetUrl = null;
+
+function _synLeaveKeydown(event) {
+    if (event.key === 'Escape') {
+        event.stopPropagation();
+        closeSynLeaveConfirm();
+    }
+}
+
+function ensureSynLeaveConfirmModal() {
+    let modal = document.getElementById('synLeaveConfirmModal');
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.id = 'synLeaveConfirmModal';
+    modal.className = 'knowledge-overview-modal syn-leave-modal';
+    modal.hidden = true;
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'synLeaveConfirmTitle');
+    modal.innerHTML = `
+        <div class="knowledge-overview-sheet syn-leave-sheet">
+            <div class="knowledge-overview-header">
+                <div>
+                    <span class="knowledge-overview-kicker">Leaving Fluency</span>
+                    <h2 id="synLeaveConfirmTitle">No card for “<span class="syn-leave-word"></span>”</h2>
+                </div>
+                <button type="button" class="knowledge-overview-close" aria-label="Cancel" data-syn-leave="cancel">&times;</button>
+            </div>
+            <p class="syn-leave-body">This word isn't in your deck, so there's no card to open.
+                Continuing leaves the app and opens SpanishDict in a new tab.</p>
+            <div class="syn-leave-actions">
+                <button type="button" class="auth-cancel-btn" data-syn-leave="cancel">Cancel</button>
+                <button type="button" class="auth-submit-btn" data-syn-leave="continue">Continue</button>
+            </div>
+        </div>`;
+    modal.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const action = event.target.closest('[data-syn-leave]')?.dataset.synLeave;
+        if (action === 'continue') {
+            const url = _synLeaveTargetUrl;
+            closeSynLeaveConfirm();
+            // Opened from inside this click handler, so it stays a user
+            // gesture and is not treated as an unsolicited popup.
+            if (url) window.open(url, '_blank', 'noopener');
+            return;
+        }
+        // Cancel button, close button, or a tap on the backdrop itself.
+        if (action === 'cancel' || event.target === modal) closeSynLeaveConfirm();
+    });
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function closeSynLeaveConfirm() {
+    _synLeaveTargetUrl = null;
+    const modal = document.getElementById('synLeaveConfirmModal');
+    if (!modal) return;
+    modal.hidden = true;
+    document.removeEventListener('keydown', _synLeaveKeydown, true);
+}
+
+function confirmLeaveForSpanishDict(word, url) {
+    const modal = ensureSynLeaveConfirmModal();
+    _synLeaveTargetUrl = url;
+    modal.querySelector('.syn-leave-word').textContent = word;
+    modal.hidden = false;
+    // Capture phase: the card's global keyboard shortcuts must not act on the
+    // Escape that dismisses this dialog.
+    document.addEventListener('keydown', _synLeaveKeydown, true);
+    modal.querySelector('[data-syn-leave="continue"]')?.focus();
 }
 
 // Sense-assignment provenance panel (JST diagnostic). Lists each meaning with
@@ -5334,6 +5503,7 @@ window.toggleSynonymsPanel = toggleSynonymsPanel;
 window.revealWildTranslation = revealWildTranslation;
 window.selectSynonymsTab = selectSynonymsTab;
 window.jumpToSynonym = jumpToSynonym;
+window.closeSynLeaveConfirm = closeSynLeaveConfirm;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
 window.setupKeyboardShortcuts = setupKeyboardShortcuts;
@@ -5484,7 +5654,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260805k';
+const ASSET_VERSION = '20260805l';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -1,8 +1,8 @@
 // Granular sense / expression knowledge layered over whole-card progress.
 // Whole-card answers are the baseline; only explicit row-level answers create
 // ItemProgress records. The newest card-level or item-level event wins.
-import './state.js?v=20260805k';
-import { sendOrQueue } from './sync-queue.js?v=20260805k';
+import './state.js?v=20260805l';
+import { sendOrQueue } from './sync-queue.js?v=20260805l';
 
 const KNOWLEDGE_SCHEMA_VERSION = 1;
 
@@ -544,6 +544,7 @@ function showKnowledgeOverview(event) {
     if (!card) return;
     const modal = ensureKnowledgeOverviewModal();
     renderKnowledgeOverview(card);
+    modal.classList.remove('is-closing');
     modal.hidden = false;
     document.body.classList.add('knowledge-overview-open');
     modal.querySelector('.knowledge-overview-close')?.focus();
@@ -552,8 +553,37 @@ function showKnowledgeOverview(event) {
 function closeKnowledgeOverview(event) {
     event?.stopPropagation();
     const modal = document.getElementById('knowledgeOverviewModal');
-    if (modal) modal.hidden = true;
     document.body.classList.remove('knowledge-overview-open');
+    if (!modal || modal.hidden) return;
+    const sheet = modal.querySelector('.knowledge-overview-sheet');
+    const finish = ({ requireClosing = false } = {}) => {
+        // A reopen during the exit animation clears `is-closing`; the pending
+        // animationend/timeout must not then hide the freshly opened sheet.
+        if (requireClosing && !modal.classList.contains('is-closing')) return;
+        modal.hidden = true;
+        modal.classList.remove('is-closing');
+    };
+    // The sheet exits back through the top edge it entered from; hide it only
+    // once that animation has played (or immediately for reduced motion).
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    if (!sheet || reducedMotion) {
+        finish();
+        return;
+    }
+    modal.classList.add('is-closing');
+    let settled = false;
+    const settle = () => {
+        if (settled) return;
+        settled = true;
+        sheet.removeEventListener('animationend', onAnimationEnd);
+        finish({ requireClosing: true });
+    };
+    const onAnimationEnd = animationEvent => {
+        if (animationEvent.target !== sheet) return;
+        settle();
+    };
+    sheet.addEventListener('animationend', onAnimationEnd);
+    setTimeout(settle, 400);
 }
 
 function focusKnowledgeOverviewItem(event, index) {

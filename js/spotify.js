@@ -1,6 +1,6 @@
 // Spotify OAuth PKCE + Web Playback SDK for in-browser playback.
 // Key functions: spotifyLogin(), spotifyPlayTrack(trackId, positionMs), isSpotifyConnected().
-import './state.js?v=20260805k';
+import './state.js?v=20260805l';
 
 const SPOTIFY_SCOPES = 'streaming user-modify-playback-state user-read-playback-state user-read-email user-read-private';
 const _isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -301,6 +301,12 @@ async function initSpotifyPlayer() {
         console.log('Spotify player ready, device:', device_id);
         _deviceId = device_id;
         _playerReady = true;
+    });
+
+    // The only signal that audio has actually begun (a Web API 204 merely means
+    // the command was accepted), so it is what clears the button's loading ring.
+    _player.addListener('player_state_changed', (state) => {
+        if (state && state.paused === false) _endButtonLoading();
     });
 
     _player.addListener('not_ready', ({ device_id }) => {
@@ -802,9 +808,265 @@ window.addEventListener('pagehide', () => cancelSpotifySnippet(true));
     }
 })();
 
+// --- Spotify button UI: loading ring + long-press autoplay popover ---
+//
+// The button markup itself is rendered by flashcards.js / about-example.js.
+// Everything interactive about it lives here so the behaviour is identical
+// wherever a `.spotify-btn` appears, and so the loading state can be driven by
+// the real playback signals this module already owns.
+
+const SPOTIFY_LONG_PRESS_MS = 500;
+// Playback can legitimately take a few seconds (token refresh, device
+// handoff, track load). This is only a failsafe so the ring can never spin
+// forever if a signal never arrives.
+const SPOTIFY_LOADING_MAX_MS = 15000;
+// Once the play command is accepted the SDK's player_state_changed normally
+// lands within a second; this bounds the wait when it doesn't.
+const SPOTIFY_LOADING_ACCEPTED_MS = 4000;
+const AUTOPLAY_PREF_KEY = 'fluency_global_study_defaults_v1';
+const AUTOPLAY_PREF_NAME = 'lyricAutoplay';
+
+let _loadingBtn = null;
+let _loadingTimer = null;
+let _pressTimer = null;
+let _pressFired = false;
+let _autoplayPopover = null;
+let _autoplayPopoverAnchor = null;
+
+function _startButtonLoading(btn) {
+    if (!btn) return;
+    _endButtonLoading();
+    _loadingBtn = btn;
+    btn.classList.add('spotify-loading');
+    _loadingTimer = setTimeout(() => _endButtonLoading(), SPOTIFY_LOADING_MAX_MS);
+}
+
+function _endButtonLoading() {
+    if (_loadingTimer) clearTimeout(_loadingTimer);
+    _loadingTimer = null;
+    if (_loadingBtn) _loadingBtn.classList.remove('spotify-loading');
+    // Belt and braces: a card re-render can replace the node we were holding.
+    document.querySelectorAll('.spotify-btn.spotify-loading')
+        .forEach(el => el.classList.remove('spotify-loading'));
+    _loadingBtn = null;
+}
+
+// Mobile Connect has no state callback, so the accepted play command is the
+// best available start signal there. Desktop waits for player_state_changed
+// (see initSpotifyPlayer) with this as the upper bound.
+function _playCommandAccepted() {
+    if (!_loadingBtn) return;
+    if (_isMobile) { _endButtonLoading(); return; }
+    if (_loadingTimer) clearTimeout(_loadingTimer);
+    _loadingTimer = setTimeout(() => _endButtonLoading(), SPOTIFY_LOADING_ACCEPTED_MS);
+}
+
+async function _playTrackWithLoadingState(trackId, positionMs, options = {}) {
+    // Autoplay snippets drive their own indicator on the autoplay control.
+    if (options.fromSnippet) return spotifyPlayTrack(trackId, positionMs, options);
+    try {
+        const ok = await spotifyPlayTrack(trackId, positionMs, options);
+        // A tap on the already-playing track pauses it — nothing is starting,
+        // so the ring must not linger.
+        if (ok && _isPlaying) _playCommandAccepted();
+        else _endButtonLoading();
+        return ok;
+    } catch (error) {
+        _endButtonLoading();
+        throw error;
+    }
+}
+
+// --- Autoplay preference (shares the standard study-defaults store) ---
+
+function _readStudyDefaults() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(AUTOPLAY_PREF_KEY) || 'null');
+        return saved && typeof saved === 'object' ? saved : {};
+    } catch (_) {
+        return {};
+    }
+}
+
+function _getAutoplayPref() {
+    return _readStudyDefaults()[AUTOPLAY_PREF_NAME] === true;
+}
+
+function _setAutoplayPref(value) {
+    const saved = _readStudyDefaults();
+    saved[AUTOPLAY_PREF_NAME] = !!value;
+    try {
+        localStorage.setItem(AUTOPLAY_PREF_KEY, JSON.stringify(saved));
+    } catch (_) { /* private mode — the session state still applies */ }
+}
+
+function _autoplayIsLive() {
+    return !!document.querySelector('.spotify-btn.autoplay-active')
+        || !!document.querySelector('#exampleAutoplayBtn.is-active');
+}
+
+// --- Long-press popover ---
+
+function _closeAutoplayPopover() {
+    if (!_autoplayPopover) return;
+    _autoplayPopover.remove();
+    _autoplayPopover = null;
+    _autoplayPopoverAnchor = null;
+    document.removeEventListener('click', _dismissAutoplayPopover, true);
+    window.removeEventListener('scroll', _closeAutoplayPopover, true);
+    window.removeEventListener('resize', _closeAutoplayPopover);
+}
+
+function _dismissAutoplayPopover(event) {
+    if (_autoplayPopover && _autoplayPopover.contains(event.target)) return;
+    // The finger release that *ended* the long press still emits a click on the
+    // anchor. Forgive exactly that one, or the popover closes the instant it opens.
+    if (_autoplayPopoverAnchor && _autoplayPopoverAnchor.contains(event.target)) {
+        _autoplayPopoverAnchor = null;
+        return;
+    }
+    _closeAutoplayPopover();
+}
+
+function _renderAutoplayPopoverState() {
+    if (!_autoplayPopover) return;
+    const on = _getAutoplayPref();
+    const toggle = _autoplayPopover.querySelector('.spotify-autoplay-toggle');
+    toggle.classList.toggle('is-on', on);
+    toggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    toggle.querySelector('.spotify-autoplay-toggle-label').textContent =
+        on ? 'Autoplay on' : 'Autoplay off';
+}
+
+function _openAutoplayPopover(btn) {
+    _closeAutoplayPopover();
+    _autoplayPopoverAnchor = btn;
+    const popover = document.createElement('div');
+    popover.className = 'spotify-autoplay-popover';
+    popover.setAttribute('role', 'dialog');
+    popover.setAttribute('aria-label', 'Lyric autoplay');
+    popover.innerHTML = `
+        <span class="spotify-autoplay-popover-text">Autoplay each lyric example on this card in turn.</span>
+        <button type="button" class="spotify-autoplay-toggle">
+            <span class="spotify-autoplay-toggle-dot" aria-hidden="true"></span>
+            <span class="spotify-autoplay-toggle-label"></span>
+        </button>`;
+    document.body.appendChild(popover);
+    _autoplayPopover = popover;
+    _renderAutoplayPopoverState();
+
+    // Fixed positioning keeps this independent of whatever the credit strip's
+    // containing block happens to be on either card surface.
+    const rect = btn.getBoundingClientRect();
+    const width = popover.offsetWidth;
+    const left = Math.min(
+        Math.max(8, rect.left + rect.width / 2 - width / 2),
+        Math.max(8, window.innerWidth - width - 8)
+    );
+    let top = rect.top - popover.offsetHeight - 10;
+    if (top < 8) top = Math.min(rect.bottom + 10, window.innerHeight - popover.offsetHeight - 8);
+    popover.style.left = `${Math.round(left)}px`;
+    popover.style.top = `${Math.round(top)}px`;
+
+    popover.querySelector('.spotify-autoplay-toggle').addEventListener('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        const next = !_getAutoplayPref();
+        _setAutoplayPref(next);
+        _renderAutoplayPopoverState();
+        // Apply the choice to the card in front of the learner right now; the
+        // toggle itself is the user gesture playback needs.
+        if (next !== _autoplayIsLive()) window.toggleExampleAutoplay?.(event);
+        btn.classList.toggle('autoplay-active', next && _autoplayIsLive());
+    });
+
+    // Same dismiss contract as the lookup sheet: anything outside closes it.
+    setTimeout(() => {
+        document.addEventListener('click', _dismissAutoplayPopover, true);
+        window.addEventListener('scroll', _closeAutoplayPopover, true);
+        window.addEventListener('resize', _closeAutoplayPopover);
+    }, 0);
+}
+
+// --- Press handling ---
+
+function _eligibleSpotifyButton(target) {
+    const btn = target?.closest?.('.spotify-btn');
+    if (!btn || btn.tagName !== 'BUTTON') return null;
+    return btn;
+}
+
+function _pressStart(event) {
+    const btn = _eligibleSpotifyButton(event.target);
+    if (!btn) return;
+    clearTimeout(_pressTimer);
+    _pressFired = false;
+    // The About tour's replica card has no live deck behind it, so a
+    // long-press there would have nothing to toggle.
+    if (btn.closest('.about-example-card-inner')) return;
+    _pressTimer = setTimeout(() => {
+        _pressFired = true;
+        _openAutoplayPopover(btn);
+    }, SPOTIFY_LONG_PRESS_MS);
+}
+
+function _pressEnd() {
+    clearTimeout(_pressTimer);
+    _pressTimer = null;
+}
+
+document.addEventListener('pointerdown', _pressStart, true);
+document.addEventListener('pointerup', _pressEnd, true);
+document.addEventListener('pointercancel', _pressEnd, true);
+document.addEventListener('pointerleave', _pressEnd, true);
+// A long-press on touch otherwise raises the OS callout over our popover.
+document.addEventListener('contextmenu', (event) => {
+    if (_eligibleSpotifyButton(event.target)) event.preventDefault();
+});
+
+// Start the ring on the actual activation, not on press, so holding the button
+// for the popover never flashes a loading state.
+document.addEventListener('click', (event) => {
+    const btn = _eligibleSpotifyButton(event.target);
+    if (!btn || _pressFired) return;
+    _startButtonLoading(btn);
+}, true);
+
+// flashcards.js wires the button's inline handlers to these globals. Its own
+// long-press toggled autoplay directly; it is superseded here by the popover,
+// so the press hooks become no-ops and activation only has to keep the
+// stray post-long-press click from playing the track.
+const _flashcardsSpotifyActivate = typeof window.spotifyBtnActivate === 'function'
+    ? window.spotifyBtnActivate
+    : null;
+
+window.spotifyBtnPressStart = () => {};
+window.spotifyBtnPressEnd = () => {};
+window.spotifyBtnActivate = function (event, trackId, positionMs) {
+    event?.stopPropagation();
+    if (event?.cancelable) event.preventDefault();
+    _pressEnd();
+    if (_pressFired) {
+        _pressFired = false;
+        _endButtonLoading();
+        return;
+    }
+    // On touch this runs from ontouchend, whose preventDefault suppresses the
+    // click the delegated listener above would have seen — so start the ring
+    // here too rather than only on desktop.
+    _startButtonLoading(_eligibleSpotifyButton(event?.target));
+    if (_flashcardsSpotifyActivate) {
+        _flashcardsSpotifyActivate(event, trackId, positionMs);
+        return;
+    }
+    _playTrackWithLoadingState(trackId, positionMs);
+};
+
+window.spotifyAutoplayPreference = _getAutoplayPref;
+
 // Expose on window for inline onclick handlers
 window.spotifyLogin = spotifyLogin;
-window.spotifyPlayTrack = spotifyPlayTrack;
+window.spotifyPlayTrack = _playTrackWithLoadingState;
 window.spotifyPlaySnippet = spotifyPlaySnippet;
 window.cancelSpotifySnippet = cancelSpotifySnippet;
 window.spotifySnippetSupported = spotifySnippetSupported;

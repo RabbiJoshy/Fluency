@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260805k';
+import './state.js?v=20260805l';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -48,6 +48,50 @@ function syncStudyPreferenceControls() {
         button.classList.toggle('selected', selected);
         button.setAttribute('aria-pressed', selected ? 'true' : 'false');
     });
+    updateCognateSensitivityVisibility();
+}
+
+// The sensitivity threshold only means anything while cognates are actually
+// being excluded, and only for languages that carry cognate scores. Hide the
+// whole row (and any explanation it had open) otherwise.
+function updateCognateSensitivityVisibility() {
+    const row = document.getElementById('cognateSensitivityRow');
+    if (!row) return;
+    const visible = Boolean(cognateFieldAvailable && excludeCognates);
+    row.style.display = visible ? 'flex' : 'none';
+    document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn').forEach(b => {
+        b.classList.toggle('selected', Math.abs(parseFloat(b.dataset.threshold) - cognateThreshold) < 1e-6);
+    });
+    if (!visible) closeSettingExplanation(document.getElementById('cognateSensitivityInfoBtn'));
+}
+
+function closeSettingExplanation(infoBtn) {
+    if (!infoBtn) return;
+    infoBtn.setAttribute('aria-expanded', 'false');
+    const inline = infoBtn.closest('.settings-default-row')?.querySelector('.settings-row-explanation');
+    if (inline) inline.hidden = true;
+    const controlled = infoBtn.getAttribute('aria-controls');
+    const extra = controlled ? document.getElementById(controlled) : null;
+    if (extra) extra.hidden = true;
+}
+
+// One "?" per study preference. It reveals that setting's one-line
+// description in place; rows that also point at a longer block via
+// aria-controls open both together.
+function setupSettingExplanations() {
+    document.querySelectorAll('.settings-default-row .settings-info-btn').forEach(btn => {
+        btn.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const row = this.closest('.settings-default-row');
+            const inline = row?.querySelector('.settings-row-explanation');
+            const controlled = this.getAttribute('aria-controls');
+            const extra = controlled ? document.getElementById(controlled) : null;
+            const shouldOpen = this.getAttribute('aria-expanded') !== 'true';
+            if (inline) inline.hidden = !shouldOpen;
+            if (extra) extra.hidden = !shouldOpen;
+            this.setAttribute('aria-expanded', String(shouldOpen));
+        });
+    });
 }
 
 function saveGlobalStudyPreference(setting, value) {
@@ -79,6 +123,7 @@ async function refreshAfterGlobalStudyDefaultChange() {
 
 function setupGlobalStudyDefaults() {
     syncStudyPreferenceControls();
+    setupSettingExplanations();
     document.querySelectorAll('.global-study-default-btn').forEach(button => {
         button.addEventListener('click', async function() {
             const setting = this.dataset.setting;
@@ -1437,13 +1482,9 @@ function setupCognateToggle() {
             if (excludeCognates) _refreshAfterCognateChange();
         });
     });
-    const sensitivityInfoBtn = document.getElementById('cognateSensitivityInfoBtn');
-    const sensitivityExplanation = document.getElementById('cognateSensitivityExplanation');
-    sensitivityInfoBtn?.addEventListener('click', function() {
-        const shouldOpen = sensitivityExplanation.hidden;
-        sensitivityExplanation.hidden = !shouldOpen;
-        this.setAttribute('aria-expanded', String(shouldOpen));
-    });
+    // The sensitivity row's "?" is wired by setupSettingExplanations(), which
+    // opens both its one-line description and the longer aria-controls block.
+    updateCognateSensitivityVisibility();
 }
 
 function _refreshAfterCognateChange() {
@@ -1457,6 +1498,7 @@ function _refreshAfterCognateChange() {
         renderRangeSelector().catch(err => console.error('Error rendering ranges:', err));
     }
     updateExclusionBars();
+    updateCognateSensitivityVisibility();
 }
 
 function setupLemmaToggle() {
@@ -2073,21 +2115,9 @@ function showSettingsModalWithTab(tabName, { singleTab = false } = {}) {
         refreshSetToggle.style.display = 'none';
     }
 
-    // Show cognate sensitivity row only when the active language has
-    // cognate-score data — otherwise the threshold is meaningless.
-    const cognateSensRow = document.getElementById('cognateSensitivityRow');
-    if (cognateSensRow) {
-        cognateSensRow.style.display = cognateFieldAvailable ? 'flex' : 'none';
-        // Reflect current threshold in the segmented control.
-        document.querySelectorAll('#cognateSensitivitySelector .cognate-sens-btn').forEach(b => {
-            b.classList.toggle('selected', Math.abs(parseFloat(b.dataset.threshold) - cognateThreshold) < 1e-6);
-        });
-        if (!cognateFieldAvailable) {
-            const explanation = document.getElementById('cognateSensitivityExplanation');
-            if (explanation) explanation.hidden = true;
-            document.getElementById('cognateSensitivityInfoBtn')?.setAttribute('aria-expanded', 'false');
-        }
-    }
+    // Sensitivity only applies while cognates are being excluded on a
+    // language that has cognate-score data; reflects the live threshold too.
+    updateCognateSensitivityVisibility();
 
     // Update account tab with current user
     const userBadge = currentUser ? (currentUser.isGuest ? 'GUEST' : currentUser.initials) : 'GUEST';
