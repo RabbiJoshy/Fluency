@@ -452,7 +452,7 @@ function renderKnowledgeOverviewButton(card) {
     if (summary.total === 0) return '';
     const label = `${summary.learned} of ${summary.total} known`;
     return `<button type="button" class="ref-tile knowledge-overview-trigger" aria-label="Open meanings and expressions knowledge: ${label}" onclick="showKnowledgeOverview(event)">
-        <svg width="24" height="24" viewBox="0 0 42 42" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 42 42" aria-hidden="true">
             <rect x="1" y="1" width="40" height="40" rx="7" class="knowledge-overview-icon-bg"/>
             <path d="M12 13.5h18M12 21h18M12 28.5h11" class="knowledge-overview-icon-lines"/>
             <path d="m27 29 2.4 2.4L34 26.8" class="knowledge-overview-icon-check"/>

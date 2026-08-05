@@ -1883,6 +1883,35 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 8px 10px;
+            position: relative;
+        }
+
+        /* JST-only debugging flag: report a card issue, or pull up sense
+           provenance (prompt/model/run) when it exists. Pushed to the far
+           right of the headword row, small and quiet enough to stay out
+           of everyone else's way (never rendered for non-JST accounts). */
+        .jst-flag-btn {
+            position: relative;
+            flex: 0 0 auto;
+            margin-left: auto;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+        }
+        .jst-flag-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .jst-flag-sheet {
+            top: calc(100% + 8px);
+            bottom: auto;
         }
 
         /* `flex: 0 1 auto` lets the scroll region take its natural height
@@ -3384,7 +3413,7 @@
             width: 100%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 10px;
             position: relative;
         }
         @media (min-width: 390px) {
@@ -3400,17 +3429,20 @@
             }
         }
 
+        /* Provenance + flag moved off this row entirely (top-right of the
+           headword now), so it's never more than 4 tiles — a bit taller
+           with bigger icons fits comfortably without risking wrap. */
         .ref-tile {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            min-height: 58px;
-            padding: 8px 4px;
+            gap: 5px;
+            min-height: 72px;
+            padding: 10px 6px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             color: #e6eaf0;
         }

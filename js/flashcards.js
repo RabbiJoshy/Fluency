@@ -3176,6 +3176,23 @@ function updateCard({ announceHeadword = false } = {}) {
            </div>`
         : '';
 
+    // JST-scoped debugging flag: report a card issue, or pull up sense
+    // provenance (prompt/model/run) when the data exists. Pinned to the
+    // top-right of the headword row so it stays out of the way for every
+    // other account (margin-left: auto pushes it to the row's far edge).
+    const cardHasProvenance = (card.meanings || []).some(m => m.prompt_id);
+    const jstFlagButtonHTML = (currentUser && currentUser.initials === 'JST' && !card.isChainChild)
+        ? `<button type="button" class="jst-flag-btn" title="JST debug tools" aria-label="JST debug tools" onclick="event.stopPropagation(); toggleCardOptionsSheet(event);">
+            <svg width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 27V6"></path><path d="M8 7h15l-3 6 3 6H8"></path>
+            </svg>
+        </button>
+        <div class="lookup-sheet jst-flag-sheet" id="cardOptionsSheet" hidden>
+            ${cardHasProvenance ? `<a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); toggleProvenancePanel();">Data & model info</a>` : ''}
+            <a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); showFlagMenu();">Report a card issue</a>
+        </div>`
+        : '';
+
     // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
     // on narrow viewports) so the header grows by a reasonable amount
     // rather than adding a full line of whitespace each wrap. Single-line
@@ -3189,6 +3206,7 @@ function updateCard({ announceHeadword = false } = {}) {
                 <div class="back-headword-row">
                     <span class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
                     ${backPosLegendHTML}
+                    ${jstFlagButtonHTML}
                 </div>
                 ${backGrammarHTML}
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
@@ -4132,7 +4150,7 @@ function updateCard({ announceHeadword = false } = {}) {
 
     if (isVerb) {
         backHTML += `<button class="ref-tile ref-conj-btn" onclick="toggleConjugationTable()">
-            <svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
                 <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3" fill="#000000">
                     <text x="16" y="11">-AR</text>
@@ -4147,7 +4165,7 @@ function updateCard({ announceHeadword = false } = {}) {
     const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
     if (hasSynonyms) {
         backHTML += `<button class="ref-tile ref-syn-btn" onclick="toggleSynonymsPanel()">
-            <svg width="24" height="24" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
                 <text x="16" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#000000">≈</text>
             </svg>
@@ -4167,7 +4185,7 @@ function updateCard({ announceHeadword = false } = {}) {
         .filter(([key]) => key !== 'wordReference' && key !== 'conjugation');
     if (lookupLinks.length > 0) {
         backHTML += `<button class="ref-tile ref-lookup-btn" onclick="event.stopPropagation(); toggleLookupSheet(event);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -4179,34 +4197,8 @@ function updateCard({ announceHeadword = false } = {}) {
         </div>`;
     }
 
-    // Sense-assignment provenance: which prompt/model/run produced each sense.
-    // JST-gated diagnostic (mirrors the report tool) — surfaces the prompt_id +
-    // timestamp so a stale/bad translation can be traced to its exact run.
-    if (currentUser && currentUser.initials === 'JST'
-        && (card.meanings || []).some(m => m.prompt_id)) {
-        backHTML += `<button class="ref-icon-btn ref-prov-btn" title="Sense provenance (prompt · model · run)" aria-label="Sense provenance" onclick="event.stopPropagation(); toggleProvenancePanel();">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="16" cy="16" r="11"></circle><path d="M16 14.5v7"></path><circle cx="16" cy="10.5" r="0.6" fill="currentColor" stroke="none"></circle>
-            </svg>
-        </button>`;
-    }
-
-    // The flag opens a small choice sheet (mirrors "Look up") instead of
-    // jumping straight to the audit modal. POS info — previously its own
-    // popup triggered by tapping a POS pill — lives here now too, since
-    // pill taps toggle verb morphology instead (see back-pos-legend above).
-    // JST-gated because the FlaggedWords backend is currently an owner tool.
-    if (currentUser && currentUser.initials === 'JST') {
-        backHTML += `<button class="ref-icon-btn ref-meta-btn" title="Card options" aria-label="Card options" onclick="event.stopPropagation(); toggleCardOptionsSheet(event);">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M8 27V6"></path><path d="M8 7h15l-3 6 3 6H8"></path>
-            </svg>
-        </button>
-        <div class="lookup-sheet" id="cardOptionsSheet" hidden>
-            ${activeBackPos ? `<a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); showPOSInfo(event, '${activeBackPos}');">About this part of speech</a>` : ''}
-            <a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); showFlagMenu();">Report a card issue</a>
-        </div>`;
-    }
+    // Provenance + flag both moved to the top-right of the headword row
+    // (see jstFlagButtonHTML above) — no longer part of this bottom row.
 
     backHTML += `</div>`;
 
@@ -5225,7 +5217,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260803e';
+const ASSET_VERSION = '20260804f';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
