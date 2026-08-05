@@ -2302,20 +2302,6 @@ function adaptiveRowTextClass(...parts) {
     return 'row-text-sm';
 }
 
-function toggleMorphAlternatives(event) {
-    event?.preventDefault?.();
-    event?.stopPropagation?.();
-    const wrap = event?.currentTarget?.closest?.('.morph-strip-wrap');
-    const alternatives = wrap?.querySelector('.morph-alternatives');
-    if (!wrap || !alternatives) return;
-    const shouldOpen = alternatives.hidden;
-    alternatives.hidden = !shouldOpen;
-    wrap.classList.toggle('is-open', shouldOpen);
-    wrap.querySelectorAll('.morph-pill-toggle, .morph-more-toggle').forEach(button => {
-        button.setAttribute('aria-expanded', String(shouldOpen));
-    });
-}
-
 function getExampleProductionForm(card, meaning, example, targetSentence) {
     const sentence = String(targetSentence || '').replace(/<[^>]*>/g, '');
     if (!sentence || !card) return '';
@@ -2463,23 +2449,32 @@ function isTrivialCanonicalRelation(surface, canonical) {
  * canonical card word and retain only forms whose relationship is not an
  * obvious plural or one-letter elision.
  */
+// Both faces answer the same question — which spellings are worth learning —
+// so both apply the same informativeness filter. The front used to skip it
+// entirely and render every recorded form, which turned a headword into a
+// pile-up ("vamo | vamoh | vamos | vamo'"). MAX_DISPLAY_VARIANTS caps what
+// survives: past three the row stops reading as a word and starts reading as
+// a list.
+const MAX_DISPLAY_VARIANTS = 3;
 function buildVariantDisplay(card, { back = false } = {}) {
     const forms = getVariantForms(card);
     if (!forms || forms.length === 0) return null;
 
-    let displayForms = forms;
-    if (back) {
-        const canonical = String(card.displaySurface || card.targetWord || '').trim();
-        const canonicalFolded = foldSurfaceForm(canonical);
-        const informative = forms.filter(form =>
-            foldSurfaceForm(form) !== canonicalFolded
-            && !isTrivialCanonicalRelation(form, canonical)
-        );
-        if (informative.length === 0) return null;
-        displayForms = [canonical, ...informative];
-    }
+    const canonical = String(card.displaySurface || card.targetWord || '').trim();
+    const canonicalFolded = foldSurfaceForm(canonical);
+    const informative = forms.filter(form =>
+        foldSurfaceForm(form) !== canonicalFolded
+        && !isTrivialCanonicalRelation(form, canonical)
+    );
+    if (informative.length === 0) return null;
 
-    displayForms = [...new Set(displayForms.filter(Boolean))];
+    // The back leads with the canonical card word; the front keeps the
+    // corpus order it was recorded in, with the primary form first.
+    let displayForms = back
+        ? [canonical, ...informative]
+        : [...forms.filter(form => foldSurfaceForm(form) === canonicalFolded), ...informative];
+
+    displayForms = [...new Set(displayForms.filter(Boolean))].slice(0, MAX_DISPLAY_VARIANTS);
     if (displayForms.length < 2) return null;
     return displayForms.join('<span class="variant-sep">|</span>');
 }
@@ -2590,7 +2585,11 @@ function startPhraseChain(items) {
     currentExampleIndex = 0;
     currentMWEIndex = 0;
     currentGroupSelection = null;
-    document.getElementById('flashcard').classList.remove('flipped');
+    // The phrase summary has no front face worth showing — its "prompt" is the
+    // parent word the learner just answered. Open straight onto the back
+    // instead of asking for a flip that reveals nothing new. flipCard() also
+    // refuses to turn a chain card back over.
+    document.getElementById('flashcard').classList.add('flipped');
     updateCard({ announceHeadword: true });
 }
 
@@ -2606,6 +2605,18 @@ function recordChainChildResult(item, isCorrect) {
         .filter(k => k.cycleIndex === item.subIndex);
     if (knowledgeItems.length === 0) return;
     saveKnowledgeProgress(parentCard, knowledgeItems, isCorrect);
+}
+
+// Leaves the chain without grading it — the learner scrubbed to another card
+// instead of swiping the summary. The temp card must come off `flashcards` on
+// the way out or it survives as a phantom slot at the end of the deck (and, in
+// the scrubber, as an unreachable extra number). Always the last element, so
+// splicing it cannot shift any real card's index.
+function abandonPhraseChain() {
+    if (!flashcards[currentIndex]?.isChainChild) return;
+    flashcards.splice(currentIndex, 1);
+    cardChainQueue = [];
+    cardChainReturnIndex = -1;
 }
 
 // Grades every phrase in the summary at once (the single swipe covers the
@@ -2876,63 +2887,41 @@ function updateCard({ announceHeadword = false } = {}) {
         return labels[String(pos || '').toUpperCase()]
             || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
     };
-    const renderMorphStrip = (tokenClasses = 'card-pos pos-verb') => {
+    // Morphology no longer occupies the card. It used to render as a permanent
+    // (or toggled-in-place) strip that reflowed the header around it and needed
+    // its own reveal control; now the verb POS pill is the only trigger and the
+    // grammar arrives as a popover anchored under that pill. Each analysis is
+    // one plain row — several rows when the form is genuinely ambiguous
+    // ("habla" as both indicative and imperative) — instead of per-token pills
+    // with a separate "+" expander.
+    const renderMorphPopover = () => {
         if (!morphLabels.length) return '';
-        const primary = morphLabels[0];
-        const alternatives = morphLabels.slice(1);
-        const tokensFor = label => ({
-            person: label.person,
-            tense: visibleMorphTense(label, morphLabels),
-            mood: label.mood,
-        });
-        const primaryTokens = tokensFor(primary);
-        const alternativeTokens = alternatives.map(tokensFor);
-        const fullLabels = morphLabels.map(item => [
-            item.person,
-            visibleMorphTense(item, morphLabels),
-            item.mood
-        ].filter(Boolean).join(' · '));
-        let interactiveTokenCount = 0;
-        const renderPrimaryToken = (key, token) => {
-            if (!token) return '';
-            const hasAlternative = alternativeTokens.some(alt => alt[key] !== token);
-            if (!hasAlternative) {
-                return `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`;
-            }
-            interactiveTokenCount += 1;
-            return `<button type="button" class="${tokenClasses} morphology-pill morph-pill-toggle" aria-label="${escapeCardText(token)}. Show morphology alternatives" aria-expanded="false" onclick="toggleMorphAlternatives(event)">${escapeCardText(token)}<span class="morph-pill-plus" aria-hidden="true">+</span></button>`;
-        };
-        const primaryHTML = Object.entries(primaryTokens)
-            .map(([key, token]) => renderPrimaryToken(key, token))
-            .join('');
-        const fallbackToggle = alternatives.length && !interactiveTokenCount
-            ? `<button type="button" class="morph-more-toggle" aria-label="Show morphology alternatives" aria-expanded="false" onclick="toggleMorphAlternatives(event)">+</button>`
-            : '';
-        const alternativesHTML = alternatives.length
-            ? `<span class="morph-alternatives" hidden>
-                ${alternatives.map(label => {
-                    const tokens = tokensFor(label);
-                    return `<span class="morph-strip-row morph-alternative-row">
-                        ${Object.values(tokens).filter(Boolean)
-                            .map(token => `<span class="${tokenClasses} morphology-pill">${escapeCardText(token)}</span>`)
-                            .join('')}
-                    </span>`;
-                }).join('')}
-            </span>`
-            : '';
-        return `<span class="morph-strip-wrap" aria-label="Morphology: ${escapeCardText(fullLabels.join('; '))}" title="${escapeCardText(fullLabels.join('; '))}">
-            <span class="morph-strip">
-                <span class="morph-strip-row morph-primary-row">${primaryHTML}${fallbackToggle}</span>
-                ${alternativesHTML}
-            </span>
-        </span>`;
+        const rows = morphLabels.map((label, index) => {
+            const tokens = [label.person, visibleMorphTense(label, morphLabels), label.mood]
+                .filter(Boolean);
+            if (!tokens.length) return '';
+            return `<li class="morph-pop-row${index === 0 ? ' is-primary' : ''}">
+                ${tokens.map(token =>
+                    `<span class="morph-pop-token">${escapeCardText(token)}</span>`).join('')}
+            </li>`;
+        }).filter(Boolean).join('');
+        if (!rows) return '';
+        const heading = morphLabels.length > 1 ? 'Possible forms' : 'Form';
+        return `<div class="morph-popover" hidden role="dialog" aria-label="Verb morphology">
+            <div class="morph-pop-title">${heading}</div>
+            <ul class="morph-pop-list">${rows}</ul>
+        </div>`;
     };
+    // Mirrors the back face: a verb pill is a press-to-reveal control for its
+    // morphology rather than a permanent strip. The grammar is available on
+    // demand instead of competing with the headword on every card.
     const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
         const hasMorph = includeMorph && isVerbPos(pos) && morphLabels.length > 0;
-        return `<span class="front-pos-unit${hasMorph ? ' has-morphology' : ''}">
-            <span class="${pillClass} ${getPosColorClass(pos)}">${posDisplayName(pos)}</span>
-            ${hasMorph ? renderMorphStrip(`${pillClass} ${getPosColorClass(pos)}`) : ''}
-        </span>`;
+        const colour = getPosColorClass(pos);
+        const pill = hasMorph
+            ? `<button type="button" class="${pillClass} ${colour} has-morph-toggle" aria-expanded="false" aria-label="${posDisplayName(pos)}. Show verb morphology" onclick="toggleMorphPopover(event)">${posDisplayName(pos)}</button>`
+            : `<span class="${pillClass} ${colour}">${posDisplayName(pos)}</span>`;
+        return `<span class="front-pos-unit">${pill}${hasMorph ? renderMorphPopover() : ''}</span>`;
     };
 
     if (flippedFrontMeanings) {
@@ -3067,17 +3056,21 @@ function updateCard({ announceHeadword = false } = {}) {
         frontRankingEl.style.display = 'flex';
     } else if (vocabularyRank !== undefined) {
         let freqHtml = '';
+        // The count and the rank are the figures worth reading; the wording
+        // around them and the total-vocabulary denominator are context. Only
+        // the former get the bold white treatment.
         if (card.corpusCount) {
+            const count = `<strong class="card-stat-value">${Number(card.corpusCount).toLocaleString()}</strong>`;
             if (activeArtist) {
-                freqHtml = `<span class="card-freq-label">Lyric lines: ${Number(card.corpusCount).toLocaleString()}</span>`;
+                freqHtml = `<span class="card-freq-label">Lyric lines: ${count}</span>`;
             } else {
-                freqHtml = `<button class="card-freq-btn" onclick="window.showFreqInfo(event, ${card.corpusCount})" aria-label="Spoken frequency info">Frequency: ${Number(card.corpusCount).toLocaleString()}/million</button>`;
+                freqHtml = `<button class="card-freq-btn" onclick="window.showFreqInfo(event, ${card.corpusCount})" aria-label="Spoken frequency info">Frequency: ${count}/million</button>`;
             }
         }
         const denominator = vocabularySize ? ` / ${vocabularySize.toLocaleString()}` : '';
         const rankLabel = card.artistVocabularyScope === 'extra' ? 'Extra rank' : 'Vocabulary rank';
         frontRankingEl.innerHTML =
-            `<span class="card-rank-label">${rankLabel}: ${Number(vocabularyRank).toLocaleString()}${denominator}</span>${freqHtml}`;
+            `<span class="card-rank-label">${rankLabel}: <strong class="card-stat-value">${Number(vocabularyRank).toLocaleString()}</strong>${denominator}</span>${freqHtml}`;
         frontRankingEl.style.display = 'flex';
     } else {
         frontRankingEl.style.display = 'none';
@@ -3135,7 +3128,6 @@ function updateCard({ announceHeadword = false } = {}) {
     // their POS colour through the surrounding section, so repeating the pill
     // above every section would add labels without adding information.
     let backPosLegendHTML = '';
-    let backMorphologyHTML = '';
     let activeBackPos = null;
     let hasBackPosTabs = false;
     if ((card.isMultiMeaning && card.meanings) || card.partOfSpeech) {
@@ -3181,12 +3173,14 @@ function updateCard({ announceHeadword = false } = {}) {
                 if (!pillHasMorph) {
                     return `<span class="card-pos ${getPosColorClass(pos)}"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</span>`;
                 }
-                return `<button type="button" class="card-pos has-morph-toggle ${getPosColorClass(pos)}" aria-expanded="${card._showBackMorphology ? 'true' : 'false'}" aria-label="${posDisplayName(pos)}. Show verb morphology" onclick="toggleBackMorphology(event)"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>`;
+                // The popover rides inside the pill's own wrapper so it can be
+                // positioned against it without measuring anything.
+                return `<span class="back-pos-unit">
+                    <button type="button" class="card-pos has-morph-toggle ${getPosColorClass(pos)}" aria-expanded="false" aria-label="${posDisplayName(pos)}. Show verb morphology" onclick="toggleMorphPopover(event)"><span class="back-pos-dot" aria-hidden="true"></span>${posDisplayName(pos)}</button>
+                    ${renderMorphPopover()}
+                </span>`;
             });
-            backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose part of speech</span>' : ''}${posPills.join('')}</div>`;
-            if (isVerbPos(activeBackPos) && morphLabels.length > 0 && card._showBackMorphology) {
-                backMorphologyHTML = `<div class="back-morphology-row">${renderMorphStrip('card-pos pos-verb')}</div>`;
-            }
+            backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose</span>' : ''}${posPills.join('')}</div>`;
         }
     }
 
@@ -3195,9 +3189,9 @@ function updateCard({ announceHeadword = false } = {}) {
     // and drop to its own line only when it doesn't. The lemma/citation, if
     // any, is the secondary line beneath, with verb morphology inline to
     // its right (not stacked on its own row).
-    const backGrammarHTML = (backCitationHTML || backMorphologyHTML)
+    const backGrammarHTML = backCitationHTML
         ? `<div class="back-grammar-block">
-                <div class="back-lemma-row">${backCitationHTML}${backMorphologyHTML}</div>
+                <div class="back-lemma-row">${backCitationHTML}</div>
            </div>`
         : '';
 
@@ -4148,37 +4142,15 @@ function updateCard({ announceHeadword = false } = {}) {
         // No external reference links on the phrase-summary card — every
         // phrase's own content is already shown in the scrollable list.
     } else {
-    // Four labelled tiles instead of a row of icon-only buttons — a name
-    // under each icon reads faster than a strip of near-identical circles.
-    // The tile grid is dropped entirely on small phones (see @media in
+    // Labelled tiles rather than a strip of near-identical circles — a name
+    // under each icon reads faster. Fixed order left to right: known,
+    // synonyms, conjugate. Look up is emitted last and pinned to the right
+    // edge (see .ref-lookup-btn's auto margin), so its position never shifts
+    // with how many of the optional tiles a given card happens to have.
+    // The tile row is dropped entirely on small phones (see @media in
     // style.css); the handoff row / example already earn that vertical
     // space there.
     backHTML += `<div class="links-section" id="linksSection">`;
-
-    if (isVerb) {
-        backHTML += `<button class="ref-tile ref-conj-btn" onclick="toggleConjugationTable()">
-            <svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
-                <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.2" text-anchor="middle" letter-spacing="0.3" fill="#000000">
-                    <text x="16" y="11">-AR</text>
-                    <text x="16" y="20">-ER</text>
-                    <text x="16" y="29">-IR</text>
-                </g>
-            </svg>
-            <span class="ref-tile-label">Conjugate</span>
-        </button>`;
-    }
-
-    const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
-    if (hasSynonyms) {
-        backHTML += `<button class="ref-tile ref-syn-btn" onclick="toggleSynonymsPanel()">
-            <svg width="30" height="30" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="0" y="0" width="32" height="32" rx="5" fill="#ffffff"/>
-                <text x="16" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#000000">≈</text>
-            </svg>
-            <span class="ref-tile-label">Synonyms</span>
-        </button>`;
-    }
 
     // Granular sense/expression knowledge belongs in one card-wide overview,
     // not a persistent two-button strip under every meaning. The compact
@@ -4186,13 +4158,36 @@ function updateCard({ announceHeadword = false } = {}) {
     // space from the ordinary study flow.
     backHTML += renderKnowledgeOverviewButton(card);
 
+    const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
+    if (hasSynonyms) {
+        backHTML += `<button class="ref-tile ref-syn-btn" onclick="toggleSynonymsPanel()">
+            <svg class="ref-tile-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <text x="16" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="30" text-anchor="middle" fill="currentColor">≈</text>
+            </svg>
+            <span class="ref-tile-label">Synonyms</span>
+        </button>`;
+    }
+
+    if (isVerb) {
+        backHTML += `<button class="ref-tile ref-conj-btn" onclick="toggleConjugationTable()">
+            <svg class="ref-tile-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="9.4" text-anchor="middle" letter-spacing="0.3" fill="currentColor">
+                    <text x="16" y="10.5">-AR</text>
+                    <text x="16" y="20">-ER</text>
+                    <text x="16" y="29.5">-IR</text>
+                </g>
+            </svg>
+            <span class="ref-tile-label">Conjugate</span>
+        </button>`;
+    }
+
     // Every external reference collapses into one "Look up" tile that opens
     // a small sheet — replaces the old per-favicon icon strip.
     const lookupLinks = Object.entries(card.links)
         .filter(([key]) => key !== 'wordReference' && key !== 'conjugation');
     if (lookupLinks.length > 0) {
         backHTML += `<button class="ref-tile ref-lookup-btn" onclick="event.stopPropagation(); toggleLookupSheet(event);">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="ref-tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -4200,7 +4195,7 @@ function updateCard({ announceHeadword = false } = {}) {
             <span class="ref-tile-label">Look up</span>
         </button>
         <div class="lookup-sheet" id="lookupSheet" hidden>
-            ${lookupLinks.map(([key, url]) => `<a href="${url}" target="_blank" class="lookup-sheet-link">${linkTitles[key] || key}</a>`).join('')}
+            ${lookupLinks.map(([key, url]) => `<a href="${url}" target="_blank" rel="noopener" class="lookup-sheet-icon" title="${linkTitles[key] || key}" aria-label="${linkTitles[key] || key}">${linkIcons[key] || `<span class="lookup-sheet-initial">${(linkTitles[key] || key).charAt(0)}</span>`}</a>`).join('')}
         </div>`;
     }
 
@@ -4334,11 +4329,20 @@ function updateCard({ announceHeadword = false } = {}) {
     document.getElementById('prevBtnFrontMobile').disabled = isPrevDisabled;
     document.getElementById('nextBtnFrontMobile').disabled = isNextDisabled;
 
+    // The phrase summary is a temporary card appended past the end of the deck
+    // (see startPhraseChain). Scrubbing to it would send the marker to the far
+    // end of the set and straight back again, which reads as a glitch rather
+    // than as progress. Both scrubbers instead hold the parent's position and
+    // recolour that marker for the duration of the chain.
+    const onPhraseCard = card.isChainChild === true && cardChainReturnIndex >= 0;
+    const scrubCount = onPhraseCard ? flashcards.length - 1 : flashcards.length;
+    const scrubIndex = onPhraseCard ? cardChainReturnIndex : currentIndex;
+
     // Numbered active-set scrubber. It mirrors the level picker: the current
     // position is magnified, while any visible number can be selected directly.
     const progressSegments = document.getElementById('deckProgressSegments');
     if (progressSegments) {
-        const segmentCount = flashcards.length;
+        const segmentCount = scrubCount;
         if (progressSegments.childElementCount !== segmentCount) {
             progressSegments.replaceChildren(...Array.from({ length: segmentCount }, (_, i) => {
                 const segment = document.createElement('button');
@@ -4356,24 +4360,29 @@ function updateCard({ announceHeadword = false } = {}) {
             }));
         }
         Array.from(progressSegments.children).forEach((segment, i) => {
-            const distance = Math.abs(i - currentIndex);
+            const distance = Math.abs(i - scrubIndex);
             const result = stats.cardStats[i] || null;
             const hasCorrect = Number(result?.correct || 0) > 0;
             const hasIncorrect = Number(result?.incorrect || 0) > 0;
             const resultState = hasCorrect && hasIncorrect
                 ? 'mixed'
                 : (hasCorrect ? 'correct' : (hasIncorrect ? 'incorrect' : 'unanswered'));
+            const isScrubCurrent = i === scrubIndex;
             segment.classList.toggle('is-visited', stats.studied.has(i));
-            segment.classList.toggle('is-current', i === currentIndex);
+            segment.classList.toggle('is-current', isScrubCurrent);
+            // The marker stays put; its colour is what says "you're in phrases".
+            segment.classList.toggle('is-phrases', onPhraseCard && isScrubCurrent);
             segment.classList.toggle('is-result-correct', resultState === 'correct');
             segment.classList.toggle('is-result-incorrect', resultState === 'incorrect');
             segment.classList.toggle('is-result-mixed', resultState === 'mixed');
             segment.dataset.distance = String(Math.min(distance, 4));
             segment.dataset.result = resultState;
-            segment.setAttribute('aria-current', i === currentIndex ? 'step' : 'false');
-            segment.setAttribute('aria-label', `Go to card ${i + 1} of ${segmentCount} · ${resultState}`);
+            segment.setAttribute('aria-current', isScrubCurrent ? 'step' : 'false');
+            segment.setAttribute('aria-label', onPhraseCard && isScrubCurrent
+                ? `Card ${i + 1} of ${segmentCount} · phrases`
+                : `Go to card ${i + 1} of ${segmentCount} · ${resultState}`);
         });
-        const currentSegment = progressSegments.children[currentIndex];
+        const currentSegment = progressSegments.children[scrubIndex];
         if (currentSegment && !progressSegments.dataset.userScrolling) {
             requestAnimationFrame(() => currentSegment.scrollIntoView({
                 behavior: _deckScrubberActive ? 'auto' : 'smooth', block: 'nearest', inline: 'center'
@@ -4387,7 +4396,7 @@ function updateCard({ announceHeadword = false } = {}) {
     // set up once in initializeApp() (see #cardBackPips wiring).
     const cardBackPips = document.getElementById('cardBackPips');
     if (cardBackPips) {
-        const pipCount = flashcards.length;
+        const pipCount = scrubCount;
         if (cardBackPips.childElementCount !== pipCount) {
             cardBackPips.replaceChildren(...Array.from({ length: pipCount }, (_, i) => {
                 const pip = document.createElement('div');
@@ -4397,21 +4406,24 @@ function updateCard({ announceHeadword = false } = {}) {
             }));
         }
         Array.from(cardBackPips.children).forEach((pip, i) => {
-            const isCurrent = i === currentIndex;
+            const isCurrent = i === scrubIndex;
             pip.classList.toggle('is-current', isCurrent);
+            pip.classList.toggle('is-phrases', onPhraseCard && isCurrent);
             pip.classList.toggle('is-visited', !isCurrent && stats.studied.has(i));
             pip.textContent = isCurrent ? String(i + 1) : '';
         });
-        cardBackPips.setAttribute('aria-label', `Card ${currentIndex + 1} of ${pipCount}`);
+        cardBackPips.setAttribute('aria-label', onPhraseCard
+            ? `Card ${scrubIndex + 1} of ${pipCount} · phrases`
+            : `Card ${scrubIndex + 1} of ${pipCount}`);
     }
 
     // Drive ghost card visibility based on how many real cards exist behind each side
     const cardContainer = document.querySelector('.card-container');
     if (cardContainer) {
-        cardContainer.classList.toggle('at-deck-start',   currentIndex === 0);
-        cardContainer.classList.toggle('at-deck-start-2', currentIndex === 1);
-        cardContainer.classList.toggle('at-deck-end',     currentIndex === flashcards.length - 1);
-        cardContainer.classList.toggle('at-deck-end-2',   currentIndex === flashcards.length - 2);
+        cardContainer.classList.toggle('at-deck-start',   scrubIndex === 0);
+        cardContainer.classList.toggle('at-deck-start-2', scrubIndex === 1);
+        cardContainer.classList.toggle('at-deck-end',     scrubIndex === scrubCount - 1);
+        cardContainer.classList.toggle('at-deck-end-2',   scrubIndex === scrubCount - 2);
     }
 
     // Setup outside nav buttons (desktop)
@@ -4455,6 +4467,10 @@ function updateCard({ announceHeadword = false } = {}) {
 }
 
 function flipCard() {
+    // Chain children are back-only: there is no front content, so every flip
+    // route (tap, keyboard, control button) is a no-op rather than a turn
+    // onto a blank face.
+    if (flashcards[currentIndex]?.isChainChild) return;
     stopExampleAutoplay(true);
     const flashcardEl = document.getElementById('flashcard');
     const wasFlipped = flashcardEl.classList.contains('flipped');
@@ -4626,15 +4642,7 @@ function selectPartOfSpeech(event, meaningIndex, pos) {
     stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
     if (!card?.meanings?.[meaningIndex]) return;
-    // Pressing the already-active tab toggles verb morphology instead of
-    // doing nothing; switching to a different POS hides it again until
-    // pressed explicitly.
-    if (card._activePosTab === pos) {
-        card._showBackMorphology = !card._showBackMorphology;
-    } else {
-        card._activePosTab = pos;
-        card._showBackMorphology = false;
-    }
+    card._activePosTab = pos;
     currentGroupSelection = null;
     currentMeaningIndex = meaningIndex;
     currentExampleIndex = 0;
@@ -4645,12 +4653,38 @@ function selectPartOfSpeech(event, meaningIndex, pos) {
 
 // Single (non-tab) POS pill: toggles the hidden-by-default verb morphology
 // row beneath it. Only rendered as a button when morphology exists to show.
-function toggleBackMorphology(event) {
+// One handler for both faces. The popover is always the pill's own next
+// sibling, so there is no measuring, no card state, and no re-render — the old
+// version round-tripped through updateCard() to flip a flag, which rebuilt the
+// whole face just to reveal three words.
+function toggleMorphPopover(event) {
     event?.stopPropagation();
-    const card = flashcards[currentIndex];
-    if (!card) return;
-    card._showBackMorphology = !card._showBackMorphology;
-    updateCard();
+    event?.preventDefault();
+    const pill = event?.currentTarget;
+    const popover = pill?.parentElement?.querySelector('.morph-popover');
+    if (!popover) return;
+
+    const opening = popover.hidden;
+    document.querySelectorAll('.morph-popover').forEach(other => {
+        other.hidden = true;
+        other.parentElement?.querySelector('.has-morph-toggle')
+            ?.setAttribute('aria-expanded', 'false');
+    });
+    popover.hidden = !opening;
+    pill.setAttribute('aria-expanded', String(opening));
+
+    if (opening) {
+        // Same dismiss pattern as the lookup sheet: next outside click closes
+        // it. Deferred so this very click doesn't immediately dismiss.
+        setTimeout(() => {
+            document.addEventListener('click', function dismiss(e) {
+                if (popover.contains(e.target) || pill.contains(e.target)) return;
+                popover.hidden = true;
+                pill.setAttribute('aria-expanded', 'false');
+                document.removeEventListener('click', dismiss);
+            });
+        }, 0);
+    }
 }
 
 // The card-wide knowledge overview can jump directly to any individual item,
@@ -4760,18 +4794,27 @@ function _navCard(direction) {
     return true;
 }
 
+// Arrow/button navigation off an ungraded phrase card is an exit from the
+// chain, not a step within the deck array: the temp card sits past the end, so
+// plain index arithmetic would strand it. Resolve both directions against the
+// parent's real position and let goToDeckCard do the cleanup.
 function previousCard() {
+    if (flashcards[currentIndex]?.isChainChild) return goToDeckCard(cardChainReturnIndex);
     if (currentIndex > 0) _navCard('prev');
 }
 
 function nextCard() {
+    if (flashcards[currentIndex]?.isChainChild) return goToDeckCard(cardChainReturnIndex + 1);
     if (currentIndex < flashcards.length - 1) _navCard('next');
 }
 
 function goToDeckCard(index, { announceHeadword = true } = {}) {
     const nextIndex = Number(index);
-    if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= flashcards.length
-            || nextIndex === currentIndex) return;
+    if (!Number.isInteger(nextIndex) || nextIndex < 0) return;
+    // Drop the ungraded phrase card first: its slot is past the end of the real
+    // deck, so the bounds check below has to run against the restored length.
+    abandonPhraseChain();
+    if (nextIndex >= flashcards.length || nextIndex === currentIndex) return;
     stopExampleAutoplay(true);
     currentIndex = nextIndex;
     currentMeaningIndex = 0;
@@ -4981,46 +5024,67 @@ function buildSynonymsPanelHTML(synonyms, antonyms, headword) {
         const word = item && item.word ? item.word : '';
         if (!word) return '';
         const strength = item.strength === 2 ? 'syn-strong' : 'syn-weak';
-        const inDeck = !!findCardIdForWord(word);
-        const inDeckCls = inDeck ? ' syn-in-deck' : ' syn-external';
         const escaped = word.replace(/'/g, "\\'");
         const ctx = item.context ? `<span class="syn-context">${item.context}</span>` : '';
-        return `<a class="syn-item ${strength}${inDeckCls}" href="javascript:void(0)" onclick="jumpToSynonym('${escaped}')">
+        // Every row navigates, so every row gets the same affordance. The old
+        // accent outline on in-deck words read as "this one is special"
+        // rather than "this one is tappable", and dimming the rest made the
+        // majority look disabled.
+        return `<a class="syn-item ${strength}" href="javascript:void(0)" onclick="jumpToSynonym('${escaped}')">
             <span class="syn-word">${word}</span>${ctx}
+            <span class="syn-go" aria-hidden="true">›</span>
         </a>`;
     }
-    const synBlock = synonyms.length
-        ? `<div class="syn-section">
-                <div class="syn-section-title">Synonyms</div>
-                <div class="syn-list">${synonyms.map(renderItem).join('')}</div>
-            </div>`
-        : '';
-    const antBlock = antonyms.length
-        ? `<div class="syn-section">
-                <div class="syn-section-title">Antonyms</div>
-                <div class="syn-list">${antonyms.map(renderItem).join('')}</div>
-            </div>`
-        : '';
+    const tab = (id, label, items) => `
+        <button type="button" class="syn-tab" data-syn-tab="${id}"
+                onclick="selectSynonymsTab(event, '${id}')">
+            ${label}<span class="syn-tab-count">${items.length}</span>
+        </button>`;
+    const panelFor = (id, items, empty) => `
+        <div class="syn-panel" data-syn-panel="${id}">
+            ${items.length
+                ? `<div class="syn-list">${items.map(renderItem).join('')}</div>`
+                : `<p class="syn-empty">${empty}</p>`}
+        </div>`;
+
     return `
         <div id="synonymsPanel" class="synonyms-panel">
-            <button class="conj-close-btn" onclick="toggleSynonymsPanel()" aria-label="Close">&times;</button>
-            <div class="conj-header">
-                <div class="conj-title">
-                    <span class="conj-infinitive">${headwordLower}</span>
+            <button class="syn-close-btn" onclick="toggleSynonymsPanel()" aria-label="Close">&times;</button>
+            <div class="syn-header">
+                <span class="syn-headword">${headwordLower}</span>
+                <div class="syn-tabs" role="tablist">
+                    ${tab('synonyms', 'Synonyms', synonyms)}
+                    ${tab('antonyms', 'Antonyms', antonyms)}
                 </div>
             </div>
             <div class="syn-body">
-                ${synBlock}
-                ${antBlock}
+                ${panelFor('synonyms', synonyms, 'No synonyms recorded for this word.')}
+                ${panelFor('antonyms', antonyms, 'No antonyms recorded for this word.')}
             </div>
         </div>
     `;
 }
 
+// Opens on whichever tab actually has content, so a word with only antonyms
+// doesn't present an empty panel on open.
+function selectSynonymsTab(event, tabId) {
+    event?.stopPropagation();
+    const panel = document.getElementById('synonymsPanel');
+    if (!panel) return;
+    panel.querySelectorAll('[data-syn-tab]').forEach(button =>
+        button.classList.toggle('selected', button.dataset.synTab === tabId));
+    panel.querySelectorAll('[data-syn-panel]').forEach(section =>
+        section.classList.toggle('selected', section.dataset.synPanel === tabId));
+}
+
 function toggleSynonymsPanel() {
     const panel = document.getElementById('synonymsPanel');
-    if (panel) {
-        panel.classList.toggle('visible');
+    if (!panel) return;
+    const opening = !panel.classList.contains('visible');
+    panel.classList.toggle('visible');
+    if (opening && !panel.querySelector('[data-syn-tab].selected')) {
+        const hasSynonyms = panel.querySelector('[data-syn-panel="synonyms"] .syn-item');
+        selectSynonymsTab(null, hasSynonyms ? 'synonyms' : 'antonyms');
     }
 }
 
@@ -5049,6 +5113,7 @@ window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
 window.loadConjugatedEnglishData = loadConjugatedEnglishData;
 window.toggleSynonymsPanel = toggleSynonymsPanel;
+window.selectSynonymsTab = selectSynonymsTab;
 window.jumpToSynonym = jumpToSynonym;
 window.initializeApp = initializeApp;
 window.setupSwipeGestures = setupSwipeGestures;
@@ -5058,7 +5123,6 @@ window.recordCardResult = recordCardResult;
 window.showFloatingBtns = showFloatingBtns;
 window.goBackToSetup = goBackToSetup;
 window.updateCard = updateCard;
-window.toggleMorphAlternatives = toggleMorphAlternatives;
 window.flipCard = flipCard;
 window.cycleExample = cycleExample;
 window.cycleExampleForward = cycleExampleForward;
@@ -5072,7 +5136,7 @@ window.cycleMWEForward = cycleMWEForward;
 window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
 window.selectPartOfSpeech = selectPartOfSpeech;
-window.toggleBackMorphology = toggleBackMorphology;
+window.toggleMorphPopover = toggleMorphPopover;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
@@ -5201,7 +5265,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260805a';
+const ASSET_VERSION = '20260805g';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

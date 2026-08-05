@@ -5,7 +5,7 @@
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v194';
+const CACHE_NAME = 'flashcards-v200';
 const SHELL_CACHE_PREFIX = 'flashcards-v';
 const CONTENT_CACHE_PREFIX = 'fluency-content-';
 const CONTENT_STAGING_PREFIX = `${CONTENT_CACHE_PREFIX}staging-`;
@@ -13,7 +13,7 @@ const CONTENT_STAGING_PREFIX = `${CONTENT_CACHE_PREFIX}staging-`;
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260805a';
+const ASSET_VERSION = '20260805g';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -24,7 +24,7 @@ const ASSET_VERSION = '20260805a';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/css/style.css',
+  `/css/style.css?v=${ASSET_VERSION}`,
   '/config/config.json',
   '/config/cefr_levels.json',
   '/config/artists.json',
@@ -51,9 +51,15 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', event => {
+  // `cache: 'reload'` bypasses the browser HTTP cache for every precache
+  // fetch. Without it, addAll() is free to satisfy an unchanged URL from disk,
+  // so bumping CACHE_NAME re-cached the same stale bytes. That is invisible
+  // for the ?v=-tagged modules and was silently fatal for the entries without
+  // a version tag — index.html, the config JSONs, and (until now) style.css.
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(
+      urlsToCache.map(url => new Request(url, { cache: 'reload' }))
+    ))
   );
 });
 

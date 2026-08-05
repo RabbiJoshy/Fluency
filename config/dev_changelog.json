@@ -2,6 +2,27 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-05",
+      "commit": "pending",
+      "summary": "Bottom link row is bare icons at a readable size; POS pills own the top-right corner",
+      "details": [
+        "Conjugate, Synonyms and the knowledge map lose the white plate behind their glyphs — every tile is now just an icon and a label, matching Look up; labels go 12px→13.5px",
+        "The gap between the example box and the link row drops from 15px to 6px",
+        "POS pills are 10% larger and stay in the top-right corner even when a word has two or three parts of speech; the chooser hint sits in the gap directly above them and reads just \"Choose\"",
+        "The set scrubber no longer jumps to the end of the set and back when phrases open — it holds the word's own position and that number turns violet for as long as you're in phrases; phrase cards also open straight onto the back instead of showing a front that only repeated the word you just answered",
+        "Merge Lemmas silently did nothing on any route that skipped the setup panel (Continue set, direct deck start) — the card kept its surface form and the front listed every recorded spelling of the word. The front now also filters and caps that list the way the back always did",
+        "Bottom link row is a fixed order — known, synonyms, conjugate — with Look up pinned to the right edge instead of sliding with the tile count; Look up now pops the SpanishDict/Reverso icons up as circles above it rather than opening a text dropdown",
+        "The front POS pill moves to the card's top-right corner, matching the back, and verb morphology is hidden until you press the pill",
+        "Continue set is now per-deck: opening Bad Bunny offers your Bad Bunny set instead of resuming a Speech set and redirecting you there. The landing still offers whatever you studied last",
+        "Verb morphology no longer takes up space on the card: pressing the verb POS pill opens a small popover under it listing the possible forms, on both faces. The old in-place strip, its \"+\" expander and the hidden toggle on re-pressing an active POS tab are gone",
+        "Front of card: the lyric-line count, spoken frequency and vocabulary rank are bold white, while the wording and the \"/ total vocabulary\" denominator stay muted; the POS pill sits in the top-right corner as intended",
+        "Bottom link icons are 50% larger again",
+        "Synonyms opens as a full-card panel with Synonyms/Antonyms tabs and a larger close button. Every entry now carries the same tappable styling and a chevron — previously in-deck words got an accent outline that read as \"special\" and everything else was dimmed to look disabled",
+        "Fixed the reason CSS changes kept not appearing: css/style.css was the only boot asset with no ?v= cache-buster, and the service worker's precache could satisfy the unchanged URL straight from the browser's disk cache. New JS was running against an old stylesheet — which is why the POS pill stayed at the bottom of the card and the link icons appeared to change size at random. The stylesheet is now versioned like every module, and install force-refreshes every precached file",
+        "Cache v194→v200 / assets 20260805a→20260805g"
+      ]
+    },
+    {
       "date": "2026-08-04",
       "commit": "8e3d7efb",
       "summary": "Card-back controls are simpler: fewer buttons, morphology on demand, footer pinned in place",

@@ -5,13 +5,50 @@ import './state.js?v=20260803c';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
-function getLastStudySession() {
+function readStudySession(key) {
     try {
-        const parsed = JSON.parse(localStorage.getItem(LAST_STUDY_SESSION_KEY) || 'null');
+        const parsed = JSON.parse(localStorage.getItem(key) || 'null');
         return parsed && parsed.range && Array.isArray(parsed.order) ? parsed : null;
     } catch (error) {
         return null;
     }
+}
+
+// Scope key for a saved session. Same inputs as getProgressScopeKey so a
+// snapshot and the progress rows it will resume against agree on what
+// "this deck" means.
+function studySessionScope({ mode, artistSlug, artistSlugs, language }) {
+    return window.getProgressScopeKey?.({ mode, artistSlug, artistSlugs, language })
+        || `${mode || 'speech'}:${artistSlug || language || ''}`;
+}
+
+// The deck the learner has explicitly opened, or null on a bare landing.
+// Only an artist counts as explicit: arriving with no parameters is the
+// landing, where offering whatever was studied last is the desired behaviour.
+// A restored `selectedLanguage` is not an explicit choice and must not scope
+// the prompt, or landing would stop offering a saved Lyrics set.
+function activeStudySessionScope() {
+    if (!activeArtist) return null;
+    return studySessionScope({
+        mode: 'lyrics',
+        artistSlug: window._urlArtistSlug || null,
+        artistSlugs: (window._selectedArtistSlugs || []).slice(),
+        language: activeArtist.language || selectedLanguage
+    });
+}
+
+// Resume resolution. Inside a deck, only that deck's own saved session is
+// offered — previously the single global snapshot could send a learner who had
+// just opened Bad Bunny into a Speech set, redirecting the URL to get there.
+function getLastStudySession() {
+    const scope = activeStudySessionScope();
+    if (!scope) return readStudySession(LAST_STUDY_SESSION_KEY);
+    const scoped = readStudySession(`${LAST_STUDY_SESSION_KEY}:${scope}`);
+    if (scoped) return scoped;
+    // Pre-migration sessions only exist under the global key; use one only
+    // when it already belongs to the deck in front of the learner.
+    const latest = readStudySession(LAST_STUDY_SESSION_KEY);
+    return latest && studySessionScope(latest) === scope ? latest : null;
 }
 
 function renderResumeLastSetCard() {
@@ -84,7 +121,16 @@ function renderResumeLastSetCard() {
 }
 
 function clearStudySessionSnapshot() {
-    try { localStorage.removeItem(LAST_STUDY_SESSION_KEY); } catch (_) {}
+    // Both copies have to go. Dropping only the global key would leave the
+    // scoped one behind, and a finished set would keep being offered every
+    // time the learner reopened that deck.
+    try {
+        const previous = readStudySession(LAST_STUDY_SESSION_KEY);
+        localStorage.removeItem(LAST_STUDY_SESSION_KEY);
+        if (previous) localStorage.removeItem(`${LAST_STUDY_SESSION_KEY}:${studySessionScope(previous)}`);
+        const scope = activeStudySessionScope();
+        if (scope) localStorage.removeItem(`${LAST_STUDY_SESSION_KEY}:${scope}`);
+    } catch (_) {}
     document.getElementById('resumeLastSetCard')?.remove();
 }
 
@@ -134,7 +180,13 @@ function saveStudySessionSnapshot() {
         order: flashcards.map(item => item.fullId)
     };
     try {
-        localStorage.setItem(LAST_STUDY_SESSION_KEY, JSON.stringify(snapshot));
+        const serialized = JSON.stringify(snapshot);
+        // Global key = "most recent anywhere", which is what the landing
+        // offers. The scoped copy is what a deck resumes from, so switching
+        // between Bad Bunny and Speech no longer overwrites the other's
+        // place in its set.
+        localStorage.setItem(LAST_STUDY_SESSION_KEY, serialized);
+        localStorage.setItem(`${LAST_STUDY_SESSION_KEY}:${studySessionScope(snapshot)}`, serialized);
     } catch (error) {
         // Storage can be unavailable in hardened/private contexts.
     }
@@ -1271,12 +1323,18 @@ async function loadVocabularyData(rangeString, opts = {}) {
         // Single/multi-artist selection shares one source so setup ranges and
         // the committed deck see identical merged entries and examples.
         const vocabularyData = await fetchActiveVocabularyData(langConfig);
-        if (opts.resumeSnapshot) {
-            lemmaFieldAvailable = vocabularyData.some(item => item.hasOwnProperty('most_frequent_lemma_instance'));
-            cognateFieldAvailable = vocabularyData.some(item =>
-                (item.cognate_score > 0) || item.cognet_cognate || item.is_transparent_cognate
-            );
-        }
+        // Derived from the data we already hold, so it costs nothing to keep
+        // current on every deck build. It used to be recomputed only for
+        // resume snapshots, which left it at its `false` default on any route
+        // that skipped the setup panel (Continue set, direct deck start). A
+        // false flag silently disables Merge Lemmas while the toggle still
+        // reads "on": buildCardFormModel gets mergedLemma: false, so the card
+        // keeps its surface form and the front falls through to the unmerged
+        // variant list — every recorded spelling of the word.
+        lemmaFieldAvailable = vocabularyData.some(item => item.hasOwnProperty('most_frequent_lemma_instance'));
+        cognateFieldAvailable = vocabularyData.some(item =>
+            (item.cognate_score > 0) || item.cognet_cognate || item.is_transparent_cognate
+        );
         if (useLemmaMode) await ensureLemmaPoolingData(langConfig);
         cachedVocabularyData = vocabularyData;
 

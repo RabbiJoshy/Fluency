@@ -19,28 +19,28 @@
          weights = fewer round trips to fonts.gstatic.com on cold start. -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260805g">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260805a">
-    <link rel="modulepreload" href="js/state.js?v=20260805a">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260805a">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260805a">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260805a">
-    <link rel="modulepreload" href="js/speech.js?v=20260805a">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260805a">
-    <link rel="modulepreload" href="js/auth.js?v=20260805a">
-    <link rel="modulepreload" href="js/estimation.js?v=20260805a">
-    <link rel="modulepreload" href="js/config.js?v=20260805a">
-    <link rel="modulepreload" href="js/progress.js?v=20260805a">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260805a">
-    <link rel="modulepreload" href="js/ui.js?v=20260805a">
-    <link rel="modulepreload" href="js/vocab.js?v=20260805a">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260805a">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260805a">
+    <link rel="modulepreload" href="js/main.js?v=20260805g">
+    <link rel="modulepreload" href="js/state.js?v=20260805g">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260805g">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260805g">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260805g">
+    <link rel="modulepreload" href="js/speech.js?v=20260805g">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260805g">
+    <link rel="modulepreload" href="js/auth.js?v=20260805g">
+    <link rel="modulepreload" href="js/estimation.js?v=20260805g">
+    <link rel="modulepreload" href="js/config.js?v=20260805g">
+    <link rel="modulepreload" href="js/progress.js?v=20260805g">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260805g">
+    <link rel="modulepreload" href="js/ui.js?v=20260805g">
+    <link rel="modulepreload" href="js/vocab.js?v=20260805g">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260805g">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260805g">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -505,8 +505,13 @@
                                 <div class="card-meanings-front" id="frontMeanings"></div>
                                 <div class="card-lemma" id="frontLemma"></div>
                                 <div class="card-morph" id="frontMorph"></div>
-                                <div class="card-pos-list" id="frontPOS"></div>
                             </button>
+                            <!-- POS pill(s) sit in the card's top-right corner, matching the
+                                 back face. Deliberately a sibling of #flipBtn rather than a
+                                 child: the pill is a real button (morphology toggle), and a
+                                 button nested inside the flip button would both be invalid
+                                 and turn every pill press into a card flip. -->
+                            <div class="card-pos-list" id="frontPOS"></div>
                             <div class="card-ranking" id="frontRanking"></div>
                             <!-- Desktop: Left/right nav buttons (hidden on desktop, moved outside card) -->
                             <div class="desktop-nav-row desktop-front-nav-hidden" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 50%; transform: translateY(-50%); left: 0; padding: 0 20px; z-index: 5; pointer-events: none;">
@@ -1226,6 +1231,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260805a"></script>
+    <script type="module" src="js/main.js?v=20260805g"></script>
 </body>
 </html>
