@@ -10,8 +10,15 @@
     const error = params.get('error');
 
     if (error || !code) {
-        document.body.textContent = 'Spotify auth error: ' + (error || 'no code received') + '. Full URL: ' + window.location.href;
+        const message = 'Spotify auth error: ' + (error || 'no code received');
+        document.body.textContent = message + '. Full URL: ' + window.location.href;
         console.error('Spotify callback error:', error, 'Full params:', window.location.search);
+        // Surface the real reason in the opener's console too — the popup
+        // usually closes/gets replaced before anyone reads this page, so
+        // "Login failed or cancelled" was the only thing visible before.
+        if (window.opener) {
+            window.opener.postMessage({ type: 'spotify-auth-error', error: message }, '*');
+        }
         return;
     }
 
@@ -83,7 +90,11 @@
     } catch (err) {
         document.body.textContent = 'Auth failed: ' + err.message;
         console.error('Spotify token exchange error:', err);
-        setTimeout(() => { window.location.href = '/'; }, 3000);
+        if (window.opener) {
+            window.opener.postMessage({ type: 'spotify-auth-error', error: 'Token exchange failed: ' + err.message }, '*');
+        } else {
+            setTimeout(() => { window.location.href = '/'; }, 3000);
+        }
     }
 })();
 </script>

@@ -1976,34 +1976,6 @@
             position: relative;
         }
 
-        /* JST-only debugging flag: report a card issue, or pull up sense
-           provenance (prompt/model/run) when it exists. Pushed to the far
-           right of the headword row, small and quiet enough to stay out
-           of everyone else's way (never rendered for non-JST accounts). */
-        .jst-flag-btn {
-            position: relative;
-            flex: 0 0 auto;
-            margin-left: auto;
-            width: 38px;
-            height: 38px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 9px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            color: rgba(255, 255, 255, 0.55);
-            cursor: pointer;
-        }
-        .jst-flag-btn:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.12);
-        }
-        .jst-flag-sheet {
-            top: calc(100% + 8px);
-            bottom: auto;
-        }
-
         /* `flex: 0 1 auto` lets the scroll region take its natural height
            instead of greedily filling the card. With `margin-top: auto`
            here and `margin-bottom: auto` on the LAST child of the block

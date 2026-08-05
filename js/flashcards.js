@@ -1154,21 +1154,34 @@ function initializeApp() {
             ? `${targetLanguage} → English`
             : `English → ${targetLanguage}`;
         const icon = body => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
+        const entries = [
+            { label: 'Main menu', iconHTML: icon('<path d="M9 7H5v12h12v-4"></path><path d="m9 11-4-4 4-4"></path><path d="M5 7h9a5 5 0 0 1 5 5"></path>'), onSelect: () => goBackToSetup() },
+            { label: switchOrderLabel, iconHTML: icon('<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>'), onSelect: () => flipDirection() },
+            { label: speechEnabled ? 'Mute automatic speech' : 'Enable automatic speech', iconHTML: speechEnabled
+                ? icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path>')
+                : icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 10 5 5"></path><path d="m21 10-5 5"></path>'), onSelect: () => toggleAutoSpeak() },
+            { label: 'Set progress', iconHTML: icon('<path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path>'), onSelect: () => showStatsModal() },
+            { label: 'Study preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModalWithTab('study', { singleTab: true }) }
+        ];
+        // JST-only debugging entries — folded in here instead of a second,
+        // separate button on the card, so there's only ever one settings
+        // control. "Data & model info" only appears when the current card
+        // actually carries provenance (prompt/model/run) data.
+        if (currentUser && currentUser.initials === 'JST') {
+            const debugCard = flashcards[currentIndex];
+            const hasProvenance = debugCard && (debugCard.meanings || []).some(m => m.prompt_id);
+            if (hasProvenance) {
+                entries.push({ label: 'Data & model info', iconHTML: icon('<circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path>'), onSelect: () => window.toggleProvenancePanel?.() });
+            }
+            entries.push({ label: 'Report a card issue', iconHTML: icon('<path d="M5 21V4"></path><path d="M5 5h11l-2 4 2 4H5"></path>'), onSelect: () => window.showFlagMenu?.() });
+        }
         window.showRadialPicker({
             id: 'studyRadialPicker',
             ariaLabel: 'Study options',
             hubHTML: 'Study<br>options',
             closeLabel: 'Tap to close',
             className: 'study-radial-picker',
-            entries: [
-                { label: 'Main menu', iconHTML: icon('<path d="M9 7H5v12h12v-4"></path><path d="m9 11-4-4 4-4"></path><path d="M5 7h9a5 5 0 0 1 5 5"></path>'), onSelect: () => goBackToSetup() },
-                { label: switchOrderLabel, iconHTML: icon('<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>'), onSelect: () => flipDirection() },
-                { label: speechEnabled ? 'Mute automatic speech' : 'Enable automatic speech', iconHTML: speechEnabled
-                    ? icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="M15 9a4 4 0 0 1 0 6"></path><path d="M18 6a8 8 0 0 1 0 12"></path>')
-                    : icon('<path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 10 5 5"></path><path d="m21 10-5 5"></path>'), onSelect: () => toggleAutoSpeak() },
-                { label: 'Set progress', iconHTML: icon('<path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path>'), onSelect: () => showStatsModal() },
-                { label: 'Study preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModalWithTab('study', { singleTab: true }) }
-            ]
+            entries
         });
     };
 
@@ -2720,7 +2733,19 @@ function updateCard({ announceHeadword = false } = {}) {
     let frontText, backWord, backTranslation, exampleSentence, exampleTranslation;
     let flippedFrontMeanings = null; // structured front for EN→Target multi-meaning
 
-    if (card.isMultiMeaning) {
+    if (card.isChainChild) {
+        // Phrase-summary chain-child cards render entirely through
+        // renderPhraseSummaryBack() further down and carry no real
+        // meanings (phraseSummaryCard() sets meanings: []). Skip the
+        // meaning-driven computation below entirely instead of crashing
+        // on an undefined currentMeaning (card.meanings[0]) — the front
+        // still shows the parent word so it isn't blank before flipping.
+        frontText = card.chainParentWord || '';
+        backWord = card.chainParentWord || '';
+        backTranslation = '';
+        exampleSentence = '';
+        exampleTranslation = '';
+    } else if (card.isMultiMeaning) {
         // Multi-meaning format
         if (isFlipped && !card.searchExamplesOnly && !card.translationUnavailable) {
             // English → Target language: build structured front with POS badges
@@ -3176,23 +3201,6 @@ function updateCard({ announceHeadword = false } = {}) {
            </div>`
         : '';
 
-    // JST-scoped debugging flag: report a card issue, or pull up sense
-    // provenance (prompt/model/run) when the data exists. Pinned to the
-    // top-right of the headword row so it stays out of the way for every
-    // other account (margin-left: auto pushes it to the row's far edge).
-    const cardHasProvenance = (card.meanings || []).some(m => m.prompt_id);
-    const jstFlagButtonHTML = (currentUser && currentUser.initials === 'JST' && !card.isChainChild)
-        ? `<button type="button" class="jst-flag-btn" title="JST debug tools" aria-label="JST debug tools" onclick="event.stopPropagation(); toggleCardOptionsSheet(event);">
-            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M8 27V6"></path><path d="M8 7h15l-3 6 3 6H8"></path>
-            </svg>
-        </button>
-        <div class="lookup-sheet jst-flag-sheet" id="cardOptionsSheet" hidden>
-            ${cardHasProvenance ? `<a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); toggleProvenancePanel();">Data & model info</a>` : ''}
-            <a href="#" class="lookup-sheet-link" onclick="event.preventDefault(); event.stopPropagation(); hideCardOptionsSheet(); showFlagMenu();">Report a card issue</a>
-        </div>`
-        : '';
-
     // line-height: 1.1 keeps multi-line wraps tight (long word + lemma
     // on narrow viewports) so the header grows by a reasonable amount
     // rather than adding a full line of whitespace each wrap. Single-line
@@ -3206,7 +3214,6 @@ function updateCard({ announceHeadword = false } = {}) {
                 <div class="back-headword-row">
                     <span class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
                     ${backPosLegendHTML}
-                    ${jstFlagButtonHTML}
                 </div>
                 ${backGrammarHTML}
                 <button type="button" class="back-direction-option" id="backDirectionOption" hidden onclick="event.stopPropagation(); flipDirection()">${isFlipped ? `${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)} → English` : `English → ${escapeCardText(config.languages[selectedLanguage]?.name || selectedLanguage)}`} <span aria-hidden="true">⇄</span></button>
@@ -4197,8 +4204,9 @@ function updateCard({ announceHeadword = false } = {}) {
         </div>`;
     }
 
-    // Provenance + flag both moved to the top-right of the headword row
-    // (see jstFlagButtonHTML above) — no longer part of this bottom row.
+    // Provenance + flag ("Data & model info" / "Report a card issue") now
+    // live inside the study-options gear menu (see showStudyMenu in
+    // initializeApp) instead of a second button on the card.
 
     backHTML += `</div>`;
 
@@ -5036,30 +5044,6 @@ function toggleLookupSheet(event) {
 }
 window.toggleLookupSheet = toggleLookupSheet;
 
-// Small sheet offering "About this part of speech" / "Report a card issue",
-// opened from the flag icon — same dismiss pattern as the lookup sheet.
-function toggleCardOptionsSheet(event) {
-    event?.stopPropagation();
-    const sheet = document.getElementById('cardOptionsSheet');
-    if (!sheet) return;
-    const opening = sheet.hidden;
-    sheet.hidden = !opening;
-    if (opening) {
-        setTimeout(() => {
-            document.addEventListener('click', function dismiss(e) {
-                if (!sheet.contains(e.target)) sheet.hidden = true;
-                document.removeEventListener('click', dismiss);
-            });
-        }, 0);
-    }
-}
-function hideCardOptionsSheet() {
-    const sheet = document.getElementById('cardOptionsSheet');
-    if (sheet) sheet.hidden = true;
-}
-window.toggleCardOptionsSheet = toggleCardOptionsSheet;
-window.hideCardOptionsSheet = hideCardOptionsSheet;
-
 window.computeLinesUnderstood = computeLinesUnderstood;
 window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
@@ -5217,7 +5201,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260804h';
+const ASSET_VERSION = '20260804i';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -337,6 +337,12 @@ window.addEventListener('message', (event) => {
         localStorage.setItem('spotify_refresh_token', refresh_token);
         localStorage.setItem('spotify_token_expiry', token_expiry);
         console.log('Spotify tokens received from auth popup');
+    } else if (event.data && event.data.type === 'spotify-auth-error') {
+        // The popup previously just closed/navigated away silently on
+        // failure, so the only visible symptom here was the generic
+        // "Login failed or cancelled" — this surfaces the actual reason
+        // (redirect URI rejected, access denied, token exchange error, etc).
+        console.error('[Spotify] Auth failed:', event.data.error);
     }
 });
 
