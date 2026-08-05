@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "shardSize": 2000,
+  "perWord": 10,
+  "properNouns": 106,
+  "words": 10100,
+  "sentences": 68359,
+  "shards": [
+    {
+      "file": "backup_examples/backup_examples.000.json",
+      "shard": 0,
+      "rankStart": 1,
+      "rankEnd": 2000,
+      "words": 1958,
+      "sentences": 18742,
+      "bytes": 3299838
+    },
+    {
+      "file": "backup_examples/backup_examples.001.json",
+      "shard": 1,
+      "rankStart": 2001,
+      "rankEnd": 4000,
+      "words": 1877,
+      "sentences": 14500,
+      "bytes": 2682248
+    },
+    {
+      "file": "backup_examples/backup_examples.002.json",
+      "shard": 2,
+      "rankStart": 4001,
+      "rankEnd": 6000,
+      "words": 1737,
+      "sentences": 10480,
+      "bytes": 1958363
+    },
+    {
+      "file": "backup_examples/backup_examples.003.json",
+      "shard": 3,
+      "rankStart": 6001,
+      "rankEnd": 8000,
+      "words": 1578,
+      "sentences": 7467,
+      "bytes": 1409478
+    },
+    {
+      "file": "backup_examples/backup_examples.004.json",
+      "shard": 4,
+      "rankStart": 8001,
+      "rankEnd": 10000,
+      "words": 1533,
+      "sentences": 8044,
+      "bytes": 1472188
+    },
+    {
+      "file": "backup_examples/backup_examples.005.json",
+      "shard": 5,
+      "rankStart": 10001,
+      "rankEnd": 12000,
+      "words": 1417,
+      "sentences": 9126,
+      "bytes": 1668858
+    }
+  ]
+}
