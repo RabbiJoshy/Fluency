@@ -511,23 +511,15 @@
                 opacity: 0;
             }
 
-            /* Deck progress scrubber — sits above the card */
-            .deck-progress-track {
-                display: flex;
+            /* #deckProgressTrack is retired everywhere (see base rules);
+               .card-back-scrubber sits above the card in its place — same
+               order:-1 flex-item trick, sized to match. */
+            .card-back-scrubber {
                 position: relative;
-                top: auto;
-                left: auto;
-                transform: none;
                 order: -1;
-                flex: 0 0 50px;
+                flex: 0 0 auto;
                 width: min(540px, calc(100% - 32px));
-                height: 50px;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
                 pointer-events: auto;
-                transition: opacity 0.2s;
-                z-index: 8;
             }
             .card-container {
                 flex-direction: column;
@@ -536,8 +528,9 @@
                 padding: 20px 0;
             }
             /* fill styles live in the global block below so mobile shares them */
-            /* Hide progress + side zones while browsing an off-deck card */
-            .card-container:has(.card.is-stacked) .deck-progress-track,
+            /* Hide progress + side zones while browsing an off-deck card
+               (.card-back-scrubber's own is-stacked hide rule is universal —
+               see base rules — so only side-nav-zone needs it here). */
             .card-container:has(.card.is-stacked) .side-nav-zone {
                 opacity: 0;
                 pointer-events: none;
@@ -1792,11 +1785,124 @@
             padding-bottom: 4px;
         }
 
-        /* Inline set scrubber — mobile-only redesign of #deckProgressTrack,
-           sitting in the same reserved strip above the card (not on the
-           card face itself). Hidden by default; shown only on mobile. */
-        .card-back-scrubber {
+        /* Inline set scrubber — replaces #deckProgressTrack (retired below)
+           on both desktop and mobile, sitting in the same reserved strip
+           above the card. Shared layout here; positioning (absolute above
+           the card on mobile, order:-1 flex item on desktop) is set per
+           breakpoint further down. */
+        #deckProgressTrack {
             display: none;
+        }
+        .card-back-scrubber {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 52px;
+            padding: 6px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            transition: opacity 0.2s;
+            z-index: 12;
+        }
+        .card-container:has(.card.is-stacked) .card-back-scrubber {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cbs-strip {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            height: 52px;
+            gap: 4px;
+            padding: 0 3px;
+            box-sizing: border-box;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .cbs-chevron {
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+        }
+        .cbs-chevron-prev {
+            background: rgba(0, 212, 170, 0.14);
+            border: 1px solid rgba(0, 212, 170, 0.5);
+            color: #8ff5e2;
+        }
+        .cbs-chevron-next {
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .cbs-chevron:disabled {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.25);
+            cursor: default;
+        }
+
+        .cbs-pips {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            height: 44px;
+            gap: 3px;
+            touch-action: none;
+            cursor: pointer;
+        }
+
+        .cbp-pip {
+            flex: 1 1 0;
+            min-width: 0;
+            height: 22px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font: 700 13px/1 var(--font-data);
+            color: transparent;
+            transition: all 170ms cubic-bezier(0.2, 0.85, 0.25, 1.25);
+        }
+        .cbp-pip.is-visited {
+            background: rgba(0, 212, 170, 0.62);
+        }
+        .cbp-pip.is-current {
+            flex: 0 0 30px;
+            width: 30px;
+            height: 30px;
+            background: #00d4aa;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.22);
+            color: #04231d;
+        }
+
+        .cbs-gear {
+            flex: 0 0 48px;
+            width: 48px;
+            height: 48px;
+            border-radius: 11px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .cbs-gear svg {
+            width: 24px;
+            height: 24px;
         }
 
         .swipe-legend {
@@ -1894,12 +2000,12 @@
             position: relative;
             flex: 0 0 auto;
             margin-left: auto;
-            width: 28px;
-            height: 28px;
+            width: 38px;
+            height: 38px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 9px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.16);
             color: rgba(255, 255, 255, 0.55);
@@ -3432,6 +3538,8 @@
         /* Provenance + flag moved off this row entirely (top-right of the
            headword now), so it's never more than 4 tiles — a bit taller
            with bigger icons fits comfortably without risking wrap. */
+        /* No visible box — just the icon + label. The tile's own footprint
+           (padding, min-height) still stands in as the tap target. */
         .ref-tile {
             display: flex;
             flex-direction: column;
@@ -3440,8 +3548,8 @@
             gap: 5px;
             min-height: 72px;
             padding: 10px 6px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: transparent;
+            border: 1px solid transparent;
             border-radius: 12px;
             cursor: pointer;
             color: #e6eaf0;
@@ -10417,139 +10525,22 @@
                 max-height: none;
             }
 
-            /* #deckProgressTrack (segments + gear) is desktop-only now;
-               .card-back-scrubber below is its mobile redesign, sitting in
-               this same reserved strip above the card. */
-            #deckProgressTrack {
-                display: none;
-            }
-
             /* Hide prev/next arrows in mobile banner when on an off-deck card */
             .card.is-stacked .mobile-nav-row .nav-btn-inline {
                 visibility: hidden;
                 pointer-events: none;
             }
 
-            /* Inline set scrubber — sits above the card, in the same spot
-               #deckProgressTrack used to occupy (position:absolute,
-               top:10px). One 52px row: an inset strip (chevrons + pips)
-               plus a separate gear tile. */
+            /* Mobile-specific positioning only — shared layout/appearance
+               rules for .card-back-scrubber and its children live in the
+               base stylesheet now, shared with desktop. */
             .card-back-scrubber {
-                display: flex;
                 position: absolute;
                 top: 10px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: calc(100% - 32px);
-                height: 52px;
-                align-items: center;
-                gap: 6px;
-                padding: 6px;
-                box-sizing: border-box;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
                 pointer-events: auto;
-                transition: opacity 0.2s;
-                z-index: 12;
-            }
-            .card-container:has(.card.is-stacked) .card-back-scrubber {
-                opacity: 0;
-                pointer-events: none;
-            }
-
-            .cbs-strip {
-                display: flex;
-                align-items: center;
-                flex: 1;
-                height: 52px;
-                gap: 4px;
-                padding: 0 3px;
-                box-sizing: border-box;
-                border-radius: 12px;
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.14);
-            }
-
-            .cbs-chevron {
-                flex: 0 0 44px;
-                width: 44px;
-                height: 44px;
-                border-radius: 10px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 24px;
-                line-height: 1;
-                cursor: pointer;
-                transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-            }
-            .cbs-chevron-prev {
-                background: rgba(0, 212, 170, 0.14);
-                border: 1px solid rgba(0, 212, 170, 0.5);
-                color: #8ff5e2;
-            }
-            .cbs-chevron-next {
-                background: rgba(255, 255, 255, 0.09);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                color: #fff;
-            }
-            .cbs-chevron:disabled {
-                background: rgba(255, 255, 255, 0.04);
-                border-color: rgba(255, 255, 255, 0.1);
-                color: rgba(255, 255, 255, 0.25);
-                cursor: default;
-            }
-
-            .cbs-pips {
-                display: flex;
-                align-items: center;
-                flex: 1;
-                height: 44px;
-                gap: 3px;
-                touch-action: none;
-                cursor: pointer;
-            }
-
-            .cbp-pip {
-                flex: 1 1 0;
-                min-width: 0;
-                height: 22px;
-                border-radius: 999px;
-                background: rgba(255, 255, 255, 0.15);
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                font: 700 13px/1 var(--font-data);
-                color: transparent;
-                transition: all 170ms cubic-bezier(0.2, 0.85, 0.25, 1.25);
-            }
-            .cbp-pip.is-visited {
-                background: rgba(0, 212, 170, 0.62);
-            }
-            .cbp-pip.is-current {
-                flex: 0 0 30px;
-                width: 30px;
-                height: 30px;
-                background: #00d4aa;
-                box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.22);
-                color: #04231d;
-            }
-
-            .cbs-gear {
-                flex: 0 0 48px;
-                width: 48px;
-                height: 48px;
-                border-radius: 11px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.16);
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                color: rgba(255, 255, 255, 0.85);
-            }
-            .cbs-gear svg {
-                width: 24px;
-                height: 24px;
             }
 
             .card-word {

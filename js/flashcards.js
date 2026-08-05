@@ -3183,7 +3183,7 @@ function updateCard({ announceHeadword = false } = {}) {
     const cardHasProvenance = (card.meanings || []).some(m => m.prompt_id);
     const jstFlagButtonHTML = (currentUser && currentUser.initials === 'JST' && !card.isChainChild)
         ? `<button type="button" class="jst-flag-btn" title="JST debug tools" aria-label="JST debug tools" onclick="event.stopPropagation(); toggleCardOptionsSheet(event);">
-            <svg width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M8 27V6"></path><path d="M8 7h15l-3 6 3 6H8"></path>
             </svg>
         </button>
@@ -5217,7 +5217,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260804f';
+const ASSET_VERSION = '20260804g';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
