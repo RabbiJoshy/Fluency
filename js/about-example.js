@@ -207,181 +207,254 @@ const ABOUT_EXAMPLE_CARDS = {
         ],
     },
 };
-
 // ---------------------------------------------------------------------------
-// Steps — what the tour actually walks through.
+// Decks and their annotations
 // ---------------------------------------------------------------------------
 //
-// `anchor` on each note is a CSS selector resolved inside the rendered card;
-// the first match gets a numbered badge and lights up when its note is
-// hovered. Steps 1–3 are the same Lyrics card at three depths (front, sense
-// list, lyric evidence) so the tour reads as one card being explored rather
-// than three unrelated screenshots. Step 4 switches deck to show what changes
-// when the examples come from subtitles instead of songs.
+// Two things are being selected independently, and conflating them was the
+// first version's mistake:
+//
+//   * The DECK (Lyrics / Speech) — chosen by the tab. This is the only thing
+//     the tab does.
+//   * The FACE (back / front) — chosen by flipping the card, like anywhere
+//     else in the app.
+//
+// Annotations belong to a FACE, not to a tab step. Flip the card and the whole
+// numbered set is replaced by the one describing the side now showing;
+// otherwise the labels stay behind pointing at elements that turned away.
+//
+// The back opens by default. It carries the senses, the shares and the
+// evidence — everything the app is actually for. The front is a prompt.
+//
+// `anchor` is a CSS selector resolved inside the rendered card; `side` puts
+// the note in the left or right column and pins its badge to the matching edge
+// of the element, so a badge never has to cross the card to reach its note.
 
-const ABOUT_EXAMPLE_STEPS = [
+const ABOUT_EXAMPLE_DECKS = [
     {
-        id: 'front',
+        id: 'lyrics',
         card: 'fuego',
-        face: 'front',
+        tab: 'Lyrics',
         eyebrow: 'Lyrics · Bad Bunny',
-        title: 'The front: one word, and why it’s here',
-        blurb: 'Cards are ordered by how often the word actually appears in the '
-             + 'catalogue, so the front carries the evidence for its position in the deck.',
-        notes: [
-            {
-                anchor: '.card-word',
-                title: 'The word',
-                text: 'The Spanish word on its own. Try to recall the meaning before flipping — '
-                    + 'that retrieval attempt is the part that makes it stick.',
+        faces: {
+            back: {
+                title: 'Every meaning, and the lyric that proves it',
+                blurb: 'Most words don’t have one translation. Rather than picking a winner '
+                     + 'and hiding the rest, the card shows the split the pipeline measured — '
+                     + 'and each meaning carries a real line that uses it.',
+                notes: [
+                    {
+                        side: 'left',
+                        anchor: '.back-headword',
+                        title: 'The word',
+                        text: 'Repeated at the top of the back so you keep your place while reading down.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.back-pos-legend',
+                        title: 'Part of speech',
+                        text: 'Colour-coded and consistent across the app. The same hue tints the '
+                            + 'sense rows and the highlighted word in the lyric below.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.meanings-scroll .meaning-row:nth-child(1)',
+                        title: 'The dominant sense',
+                        text: '“fire” accounts for roughly 70% of the times this word is used across '
+                            + 'the catalogue. The highlighted row is the one currently selected.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.meanings-scroll .meaning-row:nth-child(2)',
+                        title: 'The other senses',
+                        text: 'Tap any row to switch to it — the lyric below changes to one where '
+                            + 'that meaning is the one being used. Try “light”.',
+                        interactive: true,
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.meaning-context',
+                        title: 'Disambiguating context',
+                        text: 'Where two senses share a translation, the dictionary context that '
+                            + 'separates them is shown alongside it.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.about-example-pct',
+                        title: 'The share',
+                        text: 'Worked out by classifying every line in the catalogue that contains '
+                            + 'the word, so it reflects this artist’s usage rather than a general '
+                            + 'dictionary ordering.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.example-word-highlight',
+                        title: 'The word in context',
+                        text: 'Highlighted inside the line so you can see the shape it takes in real '
+                            + 'use, including any inflected or elided form.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.translation',
+                        title: 'The line, translated',
+                        text: 'Underneath, so the meaning of the whole line is available without '
+                            + 'leaving the card.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.example-song-credit',
+                        title: 'The source',
+                        text: 'The track the line comes from, plus featured vocalists where the line '
+                            + 'isn’t sung by the lead artist.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.spotify-btn',
+                        title: 'Play it — for real',
+                        text: 'This button is live. It plays the track in your own Spotify, seeked to '
+                            + 'the exact moment the line is sung. You’ll be asked to connect Spotify '
+                            + 'the first time; Premium is required for in-app playback.',
+                        interactive: true,
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.example-counter-group',
+                        title: 'More evidence',
+                        text: 'Where a sense has several lines, tap the lyric itself to cycle through '
+                            + 'them. Seeing the same word in three different songs beats seeing it once.',
+                        interactive: true,
+                    },
+                ],
             },
-            {
-                anchor: '.card-pos-list',
-                title: 'Part of speech',
-                text: 'Colour-coded and consistent across the app: nouns, verbs, adjectives and '
-                    + 'function words each keep their own hue on every card.',
+            front: {
+                title: 'The front: one word, and why it’s here',
+                blurb: 'Cards are ordered by how often the word actually appears in the catalogue, '
+                     + 'so the front carries the evidence for its position in the deck.',
+                notes: [
+                    {
+                        side: 'left',
+                        anchor: '.card-word',
+                        title: 'The word',
+                        text: 'On its own. Try to recall the meaning before flipping back — that '
+                            + 'retrieval attempt is the part that makes it stick.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.card-rank-label',
+                        title: 'Vocabulary rank',
+                        text: '363rd most frequent word in the artist’s catalogue. Rank is the deck’s '
+                            + 'ordering — you meet high-frequency words first because they pay off first.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.card-pos-list',
+                        title: 'Part of speech',
+                        text: 'The same pill as the back, in the same colour, in the card’s top-right '
+                            + 'corner on both faces.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.card-freq-label',
+                        title: 'Lyric lines',
+                        text: 'How many lines across the catalogue contain this word. In Speech mode '
+                            + 'this is replaced by frequency per million subtitle words.',
+                    },
+                ],
             },
-            {
-                anchor: '.card-rank-label',
-                title: 'Vocabulary rank',
-                text: '363rd most frequent word in the artist’s catalogue. Rank is the deck’s '
-                    + 'ordering — you meet high-frequency words first because they pay off first.',
-            },
-            {
-                anchor: '.card-freq-label',
-                title: 'Lyric lines',
-                text: 'How many lines across the catalogue contain this word. In Speech mode this '
-                    + 'is replaced by frequency per million subtitle words.',
-            },
-            {
-                anchor: '.about-example-flip-hint',
-                title: 'Flip it',
-                text: 'Tap the card to turn it over. Go ahead — this one is live.',
-                interactive: true,
-            },
-        ],
+        },
     },
-    {
-        id: 'senses',
-        card: 'fuego',
-        face: 'back',
-        eyebrow: 'Lyrics · Bad Bunny',
-        title: 'The back: every meaning, with its share',
-        blurb: 'Most words don’t have one translation. Rather than picking a winner and hiding '
-             + 'the rest, the card shows the split the pipeline measured — and each meaning '
-             + 'carries its own evidence.',
-        notes: [
-            {
-                anchor: '.back-headword',
-                title: 'The word again',
-                text: 'Repeated at the top of the back so you keep your place while reading down.',
-            },
-            {
-                anchor: '.meanings-scroll .meaning-row:nth-child(1)',
-                title: 'The dominant sense',
-                text: '“fire” accounts for roughly 70% of the times this word is used across '
-                    + 'the catalogue. The highlighted row is the one currently selected.',
-            },
-            {
-                anchor: '.meanings-scroll .meaning-row:nth-child(2)',
-                title: 'The other senses',
-                text: 'Tap any row to switch to it — the example below changes to a lyric where '
-                    + 'that meaning is the one being used. Try “light”.',
-                interactive: true,
-            },
-            {
-                anchor: '.meaning-context',
-                title: 'Disambiguating context',
-                text: 'Where two senses share a translation, the dictionary context that separates '
-                    + 'them is shown alongside it.',
-            },
-            {
-                anchor: '.about-example-pct',
-                title: 'The share',
-                text: 'Worked out by classifying every line in the catalogue that contains the word, '
-                    + 'so it reflects this artist’s usage rather than a general dictionary ordering.',
-            },
-        ],
-    },
-    {
-        id: 'lyric',
-        card: 'fuego',
-        face: 'back',
-        eyebrow: 'Lyrics · Bad Bunny',
-        title: 'The evidence: a real line, on the real track',
-        blurb: 'Every meaning is shown inside a lyric that actually uses it. The lyric is not '
-             + 'decoration — it’s the thing that anchors the word to something you already know.',
-        notes: [
-            {
-                anchor: '.example-word-highlight',
-                title: 'The word in context',
-                text: 'Highlighted inside the line so you can see the shape it takes in real use, '
-                    + 'including any inflected or elided form.',
-            },
-            {
-                anchor: '.translation',
-                title: 'The line, translated',
-                text: 'Underneath, so the meaning of the whole line is available without leaving '
-                    + 'the card.',
-            },
-            {
-                anchor: '.example-song-credit',
-                title: 'The source',
-                text: 'The track the line comes from, plus featured vocalists where the line isn’t '
-                    + 'sung by the lead artist.',
-            },
-            {
-                anchor: '.spotify-btn',
-                title: 'Play it — for real',
-                text: 'This button is live. It plays the track in your own Spotify, seeked to the '
-                    + 'exact moment the line is sung. You’ll be asked to connect Spotify the first '
-                    + 'time; Premium is required for in-app playback.',
-                interactive: true,
-            },
-            {
-                anchor: '.example-counter-group',
-                title: 'More evidence',
-                text: 'Where a sense has several lines, tap the lyric itself to cycle through them. '
-                    + 'Seeing the same word in three different songs beats seeing it once.',
-                interactive: true,
-            },
-        ],
-    },
+
     {
         id: 'speech',
         card: 'aunque',
-        face: 'back',
+        tab: 'Speech',
         eyebrow: 'Speech',
-        title: 'Same card, different corpus',
-        blurb: 'Speech decks are built the same way, from subtitle dialogue rather than lyrics. '
-             + 'The anatomy is identical — only where the examples come from changes.',
-        notes: [
-            {
-                anchor: '.back-headword',
-                title: 'A function word, up front',
-                text: 'Themed courses bury words like <em>aunque</em> behind vocabulary about food '
-                    + 'and travel. Ordering by frequency brings it forward, because it’s how ideas '
-                    + 'get joined together.',
+        faces: {
+            back: {
+                title: 'Same card, different corpus',
+                blurb: 'Speech decks are built the same way, from subtitle dialogue rather than '
+                     + 'lyrics. The anatomy is identical — only where the examples come from changes.',
+                notes: [
+                    {
+                        side: 'left',
+                        anchor: '.back-headword',
+                        title: 'A function word, up front',
+                        text: 'Themed courses bury words like <em>aunque</em> behind vocabulary about '
+                            + 'food and travel. Ordering by frequency brings it forward, because it’s '
+                            + 'how ideas get joined together.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.meanings-scroll',
+                        title: 'Three ways to translate it',
+                        text: 'Roughly 50% <em>even though</em>, 30% <em>although</em>, 20% '
+                            + '<em>even if</em> — each with a sentence where that reading is the one '
+                            + 'that fits. Tap a row to see its example.',
+                        interactive: true,
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.about-example-pct',
+                        title: 'The same shares',
+                        text: 'Measured the same way, over subtitle lines instead of lyric lines.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.example-word-highlight',
+                        title: 'The same highlighting',
+                        text: 'The studied word is marked inside the sentence exactly as it is on a '
+                            + 'lyric card.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.example-song-credit',
+                        title: 'Subtitle sourcing',
+                        text: 'No track credit here: the line comes from OpenSubtitles or Tatoeba, '
+                            + 'chosen to sit near your current level so a rare word isn’t hidden '
+                            + 'inside a rarer sentence.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.sentence',
+                        title: 'Everything else is identical',
+                        text: 'Same sense rows, same flip, same tap-to-cycle. Learn the card once and '
+                            + 'both decks read the same way.',
+                    },
+                ],
             },
-            {
-                anchor: '.meanings-scroll',
-                title: 'Three ways to translate it',
-                text: 'Roughly 50% <em>even though</em>, 30% <em>although</em>, 20% <em>even if</em> — '
-                    + 'each with a sentence where that reading is the one that fits.',
+            front: {
+                title: 'The front, in Speech mode',
+                blurb: 'Identical to a Lyrics card, with one substitution: the corpus statistic.',
+                notes: [
+                    {
+                        side: 'left',
+                        anchor: '.card-word',
+                        title: 'The word',
+                        text: 'Same prompt, same recall attempt, whichever deck you are in.',
+                    },
+                    {
+                        side: 'left',
+                        anchor: '.card-rank-label',
+                        title: 'Vocabulary rank',
+                        text: '429th most frequent word in Spanish subtitle dialogue — which is why '
+                            + 'you meet it long before most themed courses would introduce it.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.card-pos-list',
+                        title: 'Part of speech',
+                        text: 'Conjunctions get their own colour, as every part of speech does.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.card-freq-label',
+                        title: 'Frequency, not line count',
+                        text: 'Occurrences per million subtitle words. This is the statistic that '
+                            + 'replaces “lyric lines” outside artist decks.',
+                    },
+                ],
             },
-            {
-                anchor: '.example-song-credit',
-                title: 'Subtitle sourcing',
-                text: 'No track credit here: the line comes from OpenSubtitles or Tatoeba, chosen to '
-                    + 'sit near your current level so a rare word isn’t hidden inside a rarer sentence.',
-            },
-            {
-                anchor: '.sentence',
-                title: 'Everything else is the same',
-                text: 'Same sense rows, same highlighting, same tap-to-cycle. Learn the card once '
-                    + 'and both decks read identically.',
-            },
-        ],
+        },
     },
 ];
 
@@ -556,27 +629,46 @@ function renderBack(card, selectedIdx, exampleIdx) {
         </div>`;
 }
 
+
 // ---------------------------------------------------------------------------
 // Walkthrough controller
 // ---------------------------------------------------------------------------
 
 const state = {
-    stepIndex: 0,
-    flipped: false,
+    deckIndex: 0,
+    // The back opens first, deliberately: it holds the senses, the shares and
+    // the evidence. The front is a prompt with a rank on it.
+    flipped: true,
     meaningIndex: 0,
     exampleIndex: 0,
     activeNote: -1,
 };
 
-function currentStep() {
-    return ABOUT_EXAMPLE_STEPS[state.stepIndex];
+function currentDeck() {
+    return ABOUT_EXAMPLE_DECKS[state.deckIndex];
 }
 
 function currentCard() {
-    return ABOUT_EXAMPLE_CARDS[currentStep().card];
+    return ABOUT_EXAMPLE_CARDS[currentDeck().card];
 }
 
-// Full rebuild — used when the step (and possibly the card) changes.
+// The annotation set is a property of the face on show, not of the tab. This
+// is the whole reason flipping re-renders the notes.
+function currentFace() {
+    return currentDeck().faces[state.flipped ? 'back' : 'front'];
+}
+
+// Left column first, then right, so the numbers run in reading order and each
+// badge sits on the same side as the note explaining it.
+function orderedNotes() {
+    const notes = currentFace().notes;
+    return [
+        ...notes.filter(n => n.side !== 'right'),
+        ...notes.filter(n => n.side === 'right'),
+    ];
+}
+
+// Full rebuild — used when the deck changes.
 function renderCard() {
     const stage = document.getElementById('aboutExampleStage');
     if (!stage) return;
@@ -592,7 +684,8 @@ function renderCard() {
 
     wireCardShell(stage);
     wireBack(stage);
-    syncFlipHint(stage);
+    renderFaceCopy();
+    renderNotes();
     placeMarkers();
 }
 
@@ -609,6 +702,29 @@ function refreshBack() {
     placeMarkers();
 }
 
+// Flipping is a face change, so the annotations change with it: new copy, new
+// numbered set, badges re-placed on the side now showing.
+function flipCardFace() {
+    const stage = document.getElementById('aboutExampleStage');
+    const cardEl = stage?.querySelector('.card');
+    if (!cardEl) return;
+
+    state.flipped = !state.flipped;
+    state.activeNote = -1;
+    cardEl.classList.toggle('flipped', state.flipped);
+
+    // Clear the outgoing badges immediately — leaving them on screen through
+    // the 0.6s flip is exactly the "labels in the wrong place" problem.
+    const layer = document.getElementById('aboutExampleMarkers');
+    if (layer) layer.innerHTML = '';
+
+    renderFaceCopy();
+    renderNotes();
+    syncFlipButton();
+    // Re-place once the transform has settled, so boxes are measured flat.
+    setTimeout(placeMarkers, 640);
+}
+
 function wireCardShell(stage) {
     const cardEl = stage.querySelector('.card');
     if (!cardEl) return;
@@ -620,12 +736,7 @@ function wireCardShell(stage) {
         if (e.target.closest('.spotify-btn')) return;
         if (e.target.closest('.meaning-row')) return;
         if (e.target.closest('.sentence[data-about-example-cycle="1"]')) return;
-        state.flipped = !state.flipped;
-        cardEl.classList.toggle('flipped', state.flipped);
-        syncFlipHint(stage);
-        // Badges belong to whichever face is now showing; re-place them once
-        // the flip has finished so they land on settled boxes.
-        setTimeout(placeMarkers, 620);
+        flipCardFace();
     });
 }
 
@@ -680,47 +791,53 @@ function wireBack(stage) {
     }
 }
 
-// The "tap to flip" nudge is only honest while the front is showing.
-function syncFlipHint(stage) {
-    const hint = stage.querySelector('.about-example-flip-hint');
-    if (hint) hint.style.display = state.flipped ? 'none' : '';
+function syncFlipButton() {
+    const btn = document.getElementById('aboutExampleFlip');
+    if (!btn) return;
+    btn.textContent = state.flipped ? '⟲  Show the front' : '⟲  Show the back';
 }
 
-// Numbered badges are positioned from the target's measured box rather than
-// hard-coded offsets, so they stay correct when a sense row wraps, the lyric
-// runs to two lines, or the viewport is narrow.
+// ---------------------------------------------------------------------------
+// Annotations
+// ---------------------------------------------------------------------------
+
+// Badges are positioned from each target's measured box rather than hard-coded
+// offsets, so they stay correct when a sense row wraps, the lyric runs to two
+// lines, or the viewport narrows. A left-column note pins its badge to the
+// element's left edge and a right-column note to its right edge, so no badge
+// has to cross the card to reach the note it belongs to.
 function placeMarkers() {
     const stage = document.getElementById('aboutExampleStage');
     const layer = document.getElementById('aboutExampleMarkers');
     if (!stage || !layer) return;
     layer.innerHTML = '';
 
-    const step = currentStep();
     const stageRect = stage.getBoundingClientRect();
 
-    step.notes.forEach((note, i) => {
+    orderedNotes().forEach((note, i) => {
         const target = stage.querySelector(note.anchor);
         if (!target) return;
         target.classList.add('about-example-anchored');
         target.dataset.aboutExampleNote = String(i);
 
         // Both faces are always in the DOM (backface-visibility does the
-        // hiding), and both report real boxes. Badge only what's face-up,
-        // or a visitor who flips mid-step gets front-face numbers floating
-        // over the back of the card.
+        // hiding) and both report real boxes. Only badge what is face-up.
         const onBack = !!target.closest('.card-back');
         if (onBack !== state.flipped) return;
 
         const rect = target.getBoundingClientRect();
         if (!rect.width && !rect.height) return;
 
+        const onRight = note.side === 'right';
         const marker = document.createElement('button');
         marker.type = 'button';
-        marker.className = 'about-example-marker';
+        marker.className = `about-example-marker ${onRight ? 'is-right' : 'is-left'}`;
         marker.dataset.note = String(i);
         marker.textContent = String(i + 1);
         marker.setAttribute('aria-label', `Annotation ${i + 1}: ${note.title}`);
-        marker.style.left = `${rect.left - stageRect.left - 11}px`;
+        marker.style.left = onRight
+            ? `${rect.right - stageRect.left - 5}px`
+            : `${rect.left - stageRect.left - 17}px`;
         marker.style.top = `${rect.top - stageRect.top + rect.height / 2 - 11}px`;
         marker.addEventListener('mouseenter', () => setActiveNote(i));
         marker.addEventListener('mouseleave', () => setActiveNote(-1));
@@ -748,72 +865,82 @@ function setActiveNote(index) {
     });
 }
 
-function renderNotes() {
-    const step = currentStep();
-    const host = document.getElementById('aboutExampleNotes');
+function renderFaceCopy() {
+    const deck = currentDeck();
+    const face = currentFace();
+    const host = document.getElementById('aboutExampleIntro');
     if (!host) return;
-
     host.innerHTML = `
-        <div class="about-example-eyebrow">${esc(step.eyebrow)}</div>
-        <h3 class="about-example-title">${step.title}</h3>
-        <p class="about-example-blurb">${step.blurb}</p>
-        <ol class="about-example-note-list">
-            ${step.notes.map((n, i) => `
-                <li class="about-example-note" data-note="${i}">
-                    <span class="about-example-note-num">${i + 1}</span>
-                    <div>
-                        <strong>${n.title}${n.interactive ? '<span class="about-example-try">try it</span>' : ''}</strong>
-                        <span>${n.text}</span>
-                    </div>
-                </li>`).join('')}
-        </ol>`;
-
-    host.querySelectorAll('.about-example-note').forEach((el) => {
-        const i = Number(el.dataset.note);
-        el.addEventListener('mouseenter', () => setActiveNote(i));
-        el.addEventListener('mouseleave', () => setActiveNote(-1));
-    });
+        <div class="about-example-eyebrow">${esc(deck.eyebrow)} · ${state.flipped ? 'back of card' : 'front of card'}</div>
+        <h3 class="about-example-title">${face.title}</h3>
+        <p class="about-example-blurb">${face.blurb}</p>`;
 }
 
-function renderProgress() {
-    const host = document.getElementById('aboutExampleProgress');
+function noteHTML(note, index) {
+    return `
+        <li class="about-example-note" data-note="${index}">
+            <span class="about-example-note-num">${index + 1}</span>
+            <div>
+                <strong>${note.title}${note.interactive ? '<span class="about-example-try">try it</span>' : ''}</strong>
+                <span>${note.text}</span>
+            </div>
+        </li>`;
+}
+
+function renderNotes() {
+    const left = document.getElementById('aboutExampleNotesLeft');
+    const right = document.getElementById('aboutExampleNotesRight');
+    if (!left || !right) return;
+
+    const notes = orderedNotes();
+    const leftHTML = [];
+    const rightHTML = [];
+    notes.forEach((note, i) => {
+        (note.side === 'right' ? rightHTML : leftHTML).push(noteHTML(note, i));
+    });
+
+    left.innerHTML = `<ol class="about-example-note-list">${leftHTML.join('')}</ol>`;
+    right.innerHTML = `<ol class="about-example-note-list">${rightHTML.join('')}</ol>`;
+
+    document.getElementById('aboutExampleModal')
+        ?.querySelectorAll('.about-example-note')
+        .forEach((el) => {
+            const i = Number(el.dataset.note);
+            el.addEventListener('mouseenter', () => setActiveNote(i));
+            el.addEventListener('mouseleave', () => setActiveNote(-1));
+        });
+}
+
+// ---------------------------------------------------------------------------
+// Deck tabs
+// ---------------------------------------------------------------------------
+
+function renderTabs() {
+    const host = document.getElementById('aboutExampleTabs');
     if (!host) return;
-    host.innerHTML = ABOUT_EXAMPLE_STEPS.map((s, i) => `
-        <button type="button" class="about-example-pip${i === state.stepIndex ? ' is-current' : ''}"
-                data-step="${i}" aria-label="Step ${i + 1}: ${esc(s.title)}"
-                ${i === state.stepIndex ? 'aria-current="step"' : ''}></button>`).join('');
-    host.querySelectorAll('.about-example-pip').forEach((pip) => {
-        pip.addEventListener('click', () => goToStep(Number(pip.dataset.step)));
+    host.innerHTML = ABOUT_EXAMPLE_DECKS.map((d, i) => `
+        <button type="button" class="about-example-tab${i === state.deckIndex ? ' is-current' : ''}"
+                data-deck="${i}" role="tab" aria-selected="${i === state.deckIndex}">${esc(d.tab)}</button>`).join('');
+    host.querySelectorAll('.about-example-tab').forEach((tab) => {
+        tab.addEventListener('click', () => selectDeck(Number(tab.dataset.deck)));
     });
-
-    const back = document.getElementById('aboutExamplePrev');
-    const next = document.getElementById('aboutExampleNext');
-    if (back) back.disabled = state.stepIndex === 0;
-    if (next) {
-        const last = state.stepIndex === ABOUT_EXAMPLE_STEPS.length - 1;
-        next.textContent = last ? 'Back to About' : 'Next →';
-        next.classList.toggle('is-finish', last);
-    }
 }
 
-function goToStep(index) {
-    if (index < 0 || index >= ABOUT_EXAMPLE_STEPS.length) return;
-    state.stepIndex = index;
-    const step = currentStep();
-
-    // Every step resets the card to its first sense and first example. It's
-    // tempting to preserve whatever the visitor selected while exploring the
-    // previous step, but a step's annotations are written against a known
-    // card state — leave "light" selected (one example, no counter) and the
-    // next step's note about cycling examples points at nothing.
+// Switching decks resets the card to its first sense and first example. The
+// annotations are written against a known card state — leave "light" selected
+// (one example, no counter) and the note about cycling points at nothing.
+// Face is deliberately NOT reset: if you were reading the front, you stay on
+// the front and get the other deck's front.
+function selectDeck(index) {
+    if (index < 0 || index >= ABOUT_EXAMPLE_DECKS.length || index === state.deckIndex) return;
+    state.deckIndex = index;
     state.meaningIndex = 0;
     state.exampleIndex = 0;
-    state.flipped = step.face === 'back';
     state.activeNote = -1;
 
-    renderProgress();
-    renderNotes();
+    renderTabs();
     renderCard();
+    syncFlipButton();
 
     const body = document.getElementById('aboutExampleBody');
     if (body) body.scrollTop = 0;
@@ -825,19 +952,19 @@ function goToStep(index) {
 
 let _resizeHandler = null;
 
-function openAboutExample(startStep = 0) {
+function openAboutExample(deckIndex = 0) {
     const modal = document.getElementById('aboutExampleModal');
     if (!modal) return;
     modal.classList.remove('hidden');
-    state.stepIndex = startStep;
-    state.flipped = ABOUT_EXAMPLE_STEPS[startStep].face === 'back';
+    state.deckIndex = deckIndex;
+    state.flipped = true;
     state.meaningIndex = 0;
     state.exampleIndex = 0;
     state.activeNote = -1;
 
-    renderProgress();
-    renderNotes();
+    renderTabs();
     renderCard();
+    syncFlipButton();
 
     if (!_resizeHandler) {
         _resizeHandler = () => placeMarkers();
@@ -863,18 +990,18 @@ function setupAboutExample() {
     modal.dataset.ready = '1';
 
     document.getElementById('closeAboutExampleModal')?.addEventListener('click', closeAboutExample);
-    document.getElementById('aboutExamplePrev')?.addEventListener('click', () => goToStep(state.stepIndex - 1));
-    document.getElementById('aboutExampleNext')?.addEventListener('click', () => {
-        if (state.stepIndex === ABOUT_EXAMPLE_STEPS.length - 1) closeAboutExample();
-        else goToStep(state.stepIndex + 1);
-    });
+    document.getElementById('aboutExampleFlip')?.addEventListener('click', flipCardFace);
 
-    // Arrow keys page through steps; Escape closes. Only while open.
+    // Escape closes; left/right switch decks; space flips, as it does in study.
     document.addEventListener('keydown', (e) => {
         if (modal.classList.contains('hidden')) return;
         if (e.key === 'Escape') closeAboutExample();
-        else if (e.key === 'ArrowRight') goToStep(state.stepIndex + 1);
-        else if (e.key === 'ArrowLeft') goToStep(state.stepIndex - 1);
+        else if (e.key === 'ArrowRight') selectDeck(state.deckIndex + 1);
+        else if (e.key === 'ArrowLeft') selectDeck(state.deckIndex - 1);
+        else if (e.key === ' ' && !e.target.closest('button')) {
+            e.preventDefault();
+            flipCardFace();
+        }
     });
 }
 

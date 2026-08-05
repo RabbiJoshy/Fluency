@@ -4,14 +4,16 @@
     {
       "date": "2026-08-05",
       "commit": "pending",
-      "summary": "About gains \"See Example\" — an annotated walkthrough of real cards, with working Spotify",
+      "summary": "About gains \"See Example\" — a real card, annotated on both sides, with working Spotify",
       "details": [
-        "Four steps: the front of a Lyrics card, its sense list and shares, the lyric evidence, then the same anatomy on a Speech card",
-        "Every annotated element gets a numbered badge measured from its own box, so the numbers stay put when rows wrap or the viewport narrows",
+        "Opens on the BACK of the card: senses, shares and lyric evidence all visible at once, which is what the app is actually for",
+        "Annotations belong to the face, not the tab — flipping the card swaps the whole numbered set, so labels never linger over the side that turned away",
+        "Notes run down both sides of a centred card; each badge pins to the edge nearest its own note instead of crossing the card",
+        "The tab now only switches deck (Lyrics / Speech); face is chosen by flipping, as everywhere else in the app",
         "The card is the real one: same classes, same inline styles, and the back-face layout rules are now shared with #backContent rather than copied, so the replica can't drift",
         "The Spotify button is live — real track ids and lyric timestamps, routed through spotifyPlayTrack(), login hand-off included",
-        "Flip, sense selection and tap-to-cycle all work; nothing writes progress or touches deck state, so it runs for logged-out visitors on ?about=1",
-        "Cache v202→v203 / assets 20260805i→20260805j"
+        "Nothing writes progress or touches deck state, so it runs for logged-out visitors on ?about=1",
+        "Cache v202→v204 / assets 20260805i→20260805k"
       ]
     },
     {

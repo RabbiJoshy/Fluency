@@ -700,19 +700,25 @@
                     <span class="about-example-kicker">See Example</span>
                     <span class="about-example-sub">An annotated walkthrough of a real card</span>
                 </div>
+                <!-- The tabs switch DECK (Lyrics / Speech) and nothing else.
+                     Which face you are reading is decided by flipping the
+                     card, and the annotations follow the face. -->
+                <div class="about-example-tabs" id="aboutExampleTabs" role="tablist" aria-label="Deck"></div>
                 <button class="modal-close about-example-close" id="closeAboutExampleModal" aria-label="Close walkthrough">✕</button>
             </div>
             <div class="about-example-body" id="aboutExampleBody">
-                <div class="about-example-stage-wrap">
-                    <div class="about-example-stage" id="aboutExampleStage"></div>
-                    <div class="about-example-markers" id="aboutExampleMarkers" aria-hidden="true"></div>
+                <div class="about-example-intro" id="aboutExampleIntro"></div>
+                <div class="about-example-columns">
+                    <div class="about-example-notes about-example-notes-left" id="aboutExampleNotesLeft"></div>
+                    <div class="about-example-stage-col">
+                        <div class="about-example-stage-wrap">
+                            <div class="about-example-stage" id="aboutExampleStage"></div>
+                            <div class="about-example-markers" id="aboutExampleMarkers" aria-hidden="true"></div>
+                        </div>
+                        <button type="button" class="about-example-flip" id="aboutExampleFlip">⟲  Show the front</button>
+                    </div>
+                    <div class="about-example-notes about-example-notes-right" id="aboutExampleNotesRight"></div>
                 </div>
-                <div class="about-example-notes" id="aboutExampleNotes"></div>
-            </div>
-            <div class="about-example-footer">
-                <button type="button" class="about-example-nav" id="aboutExamplePrev">← Back</button>
-                <div class="about-example-progress" id="aboutExampleProgress" role="group" aria-label="Walkthrough steps"></div>
-                <button type="button" class="about-example-nav primary" id="aboutExampleNext">Next →</button>
             </div>
         </div>
     </div>

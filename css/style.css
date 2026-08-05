@@ -11207,13 +11207,37 @@
 
 .about-example-body {
     flex: 1 1 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
-    gap: 28px;
-    align-items: start;
-    padding: 26px 24px;
+    padding: 22px 24px 30px;
     overflow-y: auto;
     overscroll-behavior: contain;
+}
+
+/* Face copy sits above the card, centred, because it describes the whole
+   face rather than either column of notes. */
+.about-example-intro {
+    max-width: 720px;
+    margin: 0 auto 22px;
+    text-align: center;
+}
+
+/* Card centred with a column of notes either side. The side columns are
+   equal-width so the card lands on the real centre line of the modal, not
+   wherever the longer column pushes it. */
+.about-example-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 30px;
+    align-items: start;
+    justify-content: center;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.about-example-stage-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
 }
 
 /* The stage is the positioning context for the numbered badges, which are
@@ -11237,9 +11261,9 @@
 /* -------- Size overrides so a viewport-scale .card fits the stage --------- */
 
 .about-example-card-inner {
-    width: 360px;
+    width: 396px;
     max-width: 100%;
-    height: 520px;
+    height: 572px;
     perspective: 1200px;
     position: relative;
 }
@@ -11335,6 +11359,15 @@
     background: var(--accent-amber);
 }
 
+/* Set by placeMarkers() from the note's `side`. The offset itself is applied
+   inline (it depends on the measured box); these exist so the badge can be
+   styled per side if it ever needs to be, and so the DOM says which column a
+   badge belongs to. */
+.about-example-marker.is-left,
+.about-example-marker.is-right {
+    z-index: 21;
+}
+
 /* Ring the annotated element itself. outline (not border) so no card element
    changes size when it lights up. */
 .about-example-anchored.is-annotation-active {
@@ -11347,7 +11380,18 @@
 
 .about-example-notes {
     min-width: 0;
+    max-width: 420px;
     color: var(--text-secondary);
+}
+
+/* Hug the card: the left column's notes sit against their badges on the
+   card's left edge, the right column's against its right edge. */
+.about-example-notes-left {
+    justify-self: end;
+}
+
+.about-example-notes-right {
+    justify-self: start;
 }
 
 .about-example-eyebrow {
@@ -11361,7 +11405,7 @@
 
 .about-example-title {
     font-family: var(--font-emphasis);
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0 0 10px;
@@ -11447,21 +11491,43 @@
     vertical-align: middle;
 }
 
-/* -------- Footer / step nav ----------------------------------------------- */
+/* -------- Deck tabs and the flip control --------------------------------- */
+/* The tabs choose the DECK. They deliberately do not choose a face — that is
+   the card's job, and the annotations follow whichever side is showing. */
 
-.about-example-footer {
-    flex: 0 0 auto;
+.about-example-tabs {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 14px 20px;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-secondary);
+    gap: 4px;
+    padding: 4px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
 }
 
-.about-example-nav {
-    padding: 9px 18px;
+.about-example-tab {
+    padding: 7px 20px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-emphasis);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.about-example-tab:hover {
+    color: var(--text-secondary);
+}
+
+.about-example-tab.is-current {
+    background: var(--accent-primary);
+    color: var(--accent-primary-text);
+}
+
+.about-example-flip {
+    padding: 9px 20px;
     border-radius: 999px;
     border: 1px solid var(--border-light);
     background: transparent;
@@ -11470,66 +11536,64 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+    transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.about-example-nav:hover:not(:disabled) {
+.about-example-flip:hover {
     background: var(--bg-tertiary);
     border-color: var(--text-muted);
-}
-
-.about-example-nav:disabled {
-    opacity: 0.35;
-    cursor: default;
-}
-
-.about-example-nav.primary,
-.about-example-nav.is-finish {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
-    color: var(--accent-primary-text);
-}
-
-.about-example-progress {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.about-example-pip {
-    width: 9px;
-    height: 9px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: var(--border-light);
-    cursor: pointer;
-    transition: background 0.15s ease, transform 0.15s ease;
-}
-
-.about-example-pip.is-current {
-    background: var(--accent-primary);
-    transform: scale(1.35);
 }
 
 /* -------- Narrow viewports ------------------------------------------------ */
 /* Stack the card above its notes. The badges stay anchored because they are
    positioned from measured boxes and re-placed on resize. */
 
-@media (max-width: 900px) {
-    .about-example-body {
+@media (max-width: 1180px) {
+    /* Card first, then both note columns stacked beneath it. Badges stay
+       anchored because they are positioned from measured boxes and re-placed
+       on resize. */
+    .about-example-columns {
         grid-template-columns: minmax(0, 1fr);
-        gap: 22px;
-        padding: 18px 14px;
+        gap: 20px;
+        justify-items: center;
+    }
+
+    .about-example-stage-col {
+        order: -1;
+    }
+
+    .about-example-notes,
+    .about-example-notes-left,
+    .about-example-notes-right {
+        justify-self: center;
+        max-width: 560px;
+        width: 100%;
+    }
+
+    /* Two stacked <ol>s would restart the visual rhythm; keeping them
+       adjacent with no gap reads as one continuous list. */
+    .about-example-notes-left .about-example-note-list {
+        padding-bottom: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .about-example-body {
+        padding: 16px 12px 24px;
+    }
+
+    .about-example-header {
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     .about-example-card-inner {
-        width: 320px;
-        height: 480px;
+        width: 340px;
+        height: 512px;
     }
 
     .about-example-title {
-        font-size: 20px;
+        font-size: 21px;
     }
 
     .about-example-blurb {
