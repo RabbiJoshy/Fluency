@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260805h';
-import './speech.js?v=20260805h';
+import './state.js?v=20260805j';
+import './speech.js?v=20260805j';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260805h';
+} from './example-personalisation.js?v=20260805j';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2042,9 +2042,10 @@ function handleSwipeAction(result) {
     // in case it mutates card state.
     const swipedCard = flashcards[currentIndex];
     const isChainChild = swipedCard?.isChainChild === true;
-    const chainToStart = (phrasesModeEnabled && !isChainChild && cardNavStack.length === 0 && result === 'correct')
-        ? collectChainItems(swipedCard)
-        : [];
+    // Both children hang off the same toggle: one switch decides whether a
+    // correct answer hands off to follow-up cards at all.
+    const mayChain = phrasesModeEnabled && !isChainChild
+        && cardNavStack.length === 0 && result === 'correct';
 
     // Record the result
     recordCardResult(result);
@@ -2057,21 +2058,27 @@ function handleSwipeAction(result) {
     }
 
     // Wait for animation to complete, then move to next card
-    setTimeout(() => {
+    setTimeout(async () => {
         card.classList.remove('swipe-correct', 'swipe-incorrect');
         card.style.transform = '';
 
-        // The single swipe on the phrase-summary card grades every phrase at
-        // once and continues to the next real deck card.
+        // One swipe on a chain child grades that child (phrases only) and
+        // either moves to the next child or returns to the deck.
         if (isChainChild) {
             finishPhraseChain(result === 'correct');
             return;
         }
 
-        // Starting a new phrase chain off the just-graded parent card.
-        if (chainToStart.length > 0) {
-            startPhraseChain(chainToStart);
-            return;
+        // Starting a chain off the just-graded parent card. Building the plan
+        // awaits a shard fetch the first time a level is opened; it is
+        // memoised after that, and a failed fetch yields an empty plan rather
+        // than blocking the swipe.
+        if (mayChain) {
+            const children = await buildCardChildren(swipedCard);
+            if (children.length > 0) {
+                startCardChain(children);
+                return;
+            }
         }
 
         // If we're on a linked card (nav stack), go back instead of advancing
@@ -2080,22 +2087,25 @@ function handleSwipeAction(result) {
             return;
         }
 
-        // Move to next card
-        if (currentIndex < flashcards.length - 1) {
-            currentIndex++;
-            currentSentenceIndex = 0; // Reset sentence index for new card
-            currentMeaningIndex = 0; // Reset meaning index for new card
-            currentExampleIndex = 0; // Reset example index for new card
-            currentMWEIndex = 0;
-            currentGroupSelection = null;
-            updateCard({ announceHeadword: true });
-            // Always show front side of next card
-            document.getElementById('flashcard').classList.remove('flipped');
-        } else {
-            // End of deck - show options
-            showEndOfDeckOptions();
-        }
+        advanceToNextDeckCard();
     }, 300);
+}
+
+// Plain forward step through the deck, shared by the ordinary swipe path and
+// by the chain unwinding after its last child.
+function advanceToNextDeckCard() {
+    if (currentIndex < flashcards.length - 1) {
+        currentIndex++;
+        currentSentenceIndex = 0;
+        currentMeaningIndex = 0;
+        currentExampleIndex = 0;
+        currentMWEIndex = 0;
+        currentGroupSelection = null;
+        updateCard({ announceHeadword: true });
+        document.getElementById('flashcard').classList.remove('flipped');
+    } else {
+        showEndOfDeckOptions();
+    }
 }
 
 function recordCardResult(result) {
@@ -2618,7 +2628,10 @@ async function loadBackupExampleShard(rank) {
 function backupExampleIdsFor(card) {
     const ids = [card.id].filter(Boolean);
     if (!card.mergedLemma || !card.lemma) return ids;
-    const source = window._cachedVocabularyData || [];
+    // The full source array, not the filtered deck: siblings of a merged lemma
+    // are excluded from the deck by definition, and their sentences are
+    // exactly what pooling is after.
+    const source = cachedVocabularyData || [];
     for (const item of source) {
         if (item.lemma === card.lemma && item.id && !ids.includes(item.id)) ids.push(item.id);
     }
@@ -2701,24 +2714,58 @@ function revealWildTranslation(event, index) {
 // swipe there re-triggered collectChainItems and started an identical
 // summary card again (an infinite loop). Finishing now behaves like the
 // parent's own correct swipe just kept going before reaching the next card.
-function startPhraseChain(items) {
-    cardChainQueue = items;
-    cardChainReturnIndex = currentIndex;
+// The ordered plan for one parent card. Phrases come first because they are
+// graded content the learner owes an answer on; the sentence list is reading,
+// so it reads better as the last thing before moving on. A child that has
+// nothing to show is simply absent from the plan.
+async function buildCardChildren(card) {
+    const children = [];
+    const phrases = collectChainItems(card);
+    if (phrases.length > 0) children.push({ type: 'phrases', items: phrases });
+    const sentences = await collectBackupExamples(card);
+    if (sentences.length > 0) children.push({ type: 'examples', sentences });
+    return children;
+}
 
-    const tempIndex = flashcards.length;
-    flashcards.push(phraseSummaryCard(items));
+function startCardChain(children) {
+    cardChainChildren = children;
+    cardChainIndex = -1;
+    cardChainReturnIndex = currentIndex;
+    // The temp slot is appended once and reused by each child in turn, so the
+    // deck length is the same whichever child is showing and the scrubber's
+    // flashcards.length - 1 arithmetic holds throughout.
+    flashcards.push(null);
+    advanceCardChain();
+}
+
+// Swaps the temp slot to the next child, or unwinds the chain when the plan is
+// exhausted. Returns false once there is nothing left to show.
+function advanceCardChain() {
+    const parentCard = flashcards[cardChainReturnIndex];
+    cardChainIndex += 1;
+    const child = cardChainChildren[cardChainIndex];
+    if (!child || !parentCard) return false;
+
+    cardChainQueue = child.type === 'phrases' ? child.items : [];
+    cardChainExamples = child.type === 'examples' ? child.sentences : [];
+
+    const tempIndex = flashcards.length - 1;
+    flashcards[tempIndex] = child.type === 'phrases'
+        ? phraseSummaryCard(child.items)
+        : examplesChildCard(parentCard);
 
     currentIndex = tempIndex;
     currentMeaningIndex = 0;
     currentExampleIndex = 0;
     currentMWEIndex = 0;
     currentGroupSelection = null;
-    // The phrase summary has no front face worth showing — its "prompt" is the
+    // Chain children have no front face worth showing — the prompt was the
     // parent word the learner just answered. Open straight onto the back
-    // instead of asking for a flip that reveals nothing new. flipCard() also
+    // rather than asking for a flip that reveals nothing new. flipCard() also
     // refuses to turn a chain card back over.
     document.getElementById('flashcard').classList.add('flipped');
     updateCard({ announceHeadword: true });
+    return true;
 }
 
 // Records one item's grade against the same per-meaning knowledge store the
@@ -2744,6 +2791,9 @@ function abandonPhraseChain() {
     if (!flashcards[currentIndex]?.isChainChild) return;
     flashcards.splice(currentIndex, 1);
     cardChainQueue = [];
+    cardChainExamples = [];
+    cardChainChildren = [];
+    cardChainIndex = 0;
     cardChainReturnIndex = -1;
 }
 
@@ -2751,12 +2801,21 @@ function abandonPhraseChain() {
 // whole card) and resumes exactly where the parent would have left off had
 // it not had any phrases — the next real deck card, or end-of-deck.
 function finishPhraseChain(isCorrect) {
+    // Only the phrase child carries gradeable items; the sentence list is
+    // reading, so swiping it records nothing.
     for (const item of cardChainQueue) recordChainChildResult(item, isCorrect);
+
+    // Hand over to the next child before unwinding, so a word with both
+    // phrases and sentences shows them in sequence off one parent answer.
+    if (advanceCardChain()) return;
 
     const tempIndex = currentIndex;
     flashcards.splice(tempIndex, 1);
     const resumeIndex = cardChainReturnIndex + 1;
     cardChainQueue = [];
+    cardChainExamples = [];
+    cardChainChildren = [];
+    cardChainIndex = 0;
     cardChainReturnIndex = -1;
 
     if (resumeIndex < flashcards.length) {
@@ -3329,7 +3388,9 @@ function updateCard({ announceHeadword = false } = {}) {
     // cards are unaffected — line-height only matters when there are two
     // or more rendered lines.
     let backHTML = card.isChainChild
-        ? renderPhraseSummaryBack(card)
+        ? (card.chainChildKind === 'examples'
+            ? renderExamplesChildBack(card)
+            : renderPhraseSummaryBack(card))
         : `
         <div class="back-header">
             <div class="flip-back-area" id="flipBackArea">
@@ -5241,6 +5302,7 @@ window.loadSpanishRanks = loadSpanishRanks;
 window.loadConjugationData = loadConjugationData;
 window.loadConjugatedEnglishData = loadConjugatedEnglishData;
 window.toggleSynonymsPanel = toggleSynonymsPanel;
+window.revealWildTranslation = revealWildTranslation;
 window.selectSynonymsTab = selectSynonymsTab;
 window.jumpToSynonym = jumpToSynonym;
 window.initializeApp = initializeApp;
@@ -5393,7 +5455,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260805h';
+const ASSET_VERSION = '20260805j';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

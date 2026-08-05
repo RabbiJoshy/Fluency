@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-08-02",
+  "contentVersion": "2026-08-05",
   "generatedAt": "2026-08-02T00:00:00Z",
   "sources": [
     {
@@ -9,13 +9,56 @@
       "scope": "language",
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
-      "contentVersion": "2026-08-03-spanishdict-v2",
-      "storageBytes": 26435208,
-      "transferBytes": 4745745,
+      "contentVersion": "2026-08-05-backup-examples",
+      "storageBytes": 38927562,
+      "transferBytes": 38927562,
       "dependencies": [],
       "files": [
-        {"path": "Data/Spanish/vocabulary.index.json", "bytes": 17829503, "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"},
-        {"path": "Data/Spanish/vocabulary.examples.json", "bytes": 8605705, "sha256": "1cd6373e99c7421c531ee6a2c1342ab8cacc50b3cd6c1252f44cacd822ca7fe0"}
+        {
+          "path": "Data/Spanish/vocabulary.index.json",
+          "bytes": 17829503,
+          "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"
+        },
+        {
+          "path": "Data/Spanish/vocabulary.examples.json",
+          "bytes": 8605705,
+          "sha256": "1cd6373e99c7421c531ee6a2c1342ab8cacc50b3cd6c1252f44cacd822ca7fe0"
+        },
+        {
+          "path": "Data/Spanish/vocabulary.backup_examples.index.json",
+          "bytes": 1381,
+          "sha256": "ebb402a72180f5b0cb21112c1e75f12c2a1ba5b79e1be74c292d89a6a26d79f0"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/backup_examples.000.json",
+          "bytes": 3299838,
+          "sha256": "eae8515d2519e958b518c8430df96f01fe00737456f3771ce74cbe6eb9df799c"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/backup_examples.001.json",
+          "bytes": 2682248,
+          "sha256": "19caf51a2299ced6b3fa8256dcb9d0e23c0d47ecbc13029f8596454281fbece9"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/backup_examples.002.json",
+          "bytes": 1958363,
+          "sha256": "60b75b6003c8dc08ff1ffcad241b38827a76f693d12756a7ab1bc665cf91d37a"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/backup_examples.003.json",
+          "bytes": 1409478,
+          "sha256": "b80ebda1e90910b215a13fae4a587031c03cc28f257ea35c183cb74928e54597"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/backup_examples.004.json",
+          "bytes": 1472188,
+          "sha256": "0b4247db3711112dac7b27af1ea429cd6818aba1d9d704b75c1c33c90437070e"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/backup_examples.005.json",
+          "bytes": 1668858,
+          "sha256": "9bbb5efb3e787b66869dfce3acaf633c36d72e13fbcb986e5a4ff24f2c3e3d35"
+        }
       ]
     },
     {
@@ -29,8 +72,16 @@
       "transferBytes": 2329812,
       "dependencies": [],
       "files": [
-        {"path": "Data/French/vocabulary.index.json", "bytes": 3470720, "sha256": "14a588f6ca006e1f03d45208c48ebb3fd49ae0f789818e456cebcba5fba824b6"},
-        {"path": "Data/French/vocabulary.examples.json", "bytes": 9694152, "sha256": "6a7c1b37b991262c313a2fccd75ac9ec06490abf5fe17d5063acd3fe8ba21154"}
+        {
+          "path": "Data/French/vocabulary.index.json",
+          "bytes": 3470720,
+          "sha256": "14a588f6ca006e1f03d45208c48ebb3fd49ae0f789818e456cebcba5fba824b6"
+        },
+        {
+          "path": "Data/French/vocabulary.examples.json",
+          "bytes": 9694152,
+          "sha256": "6a7c1b37b991262c313a2fccd75ac9ec06490abf5fe17d5063acd3fe8ba21154"
+        }
       ]
     },
     {
@@ -43,11 +94,25 @@
       "contentVersion": "2026-08-02",
       "storageBytes": 41534624,
       "transferBytes": 5989778,
-      "dependencies": ["shared-spanish-artist"],
+      "dependencies": [
+        "shared-spanish-artist"
+      ],
       "files": [
-        {"path": "Artists/spanish/vocabulary_master.json", "bytes": 6611927, "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"},
-        {"path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json", "bytes": 13975209, "sha256": "901022718d307bc8732e87d3945b5257b93d4410065d6b3139796afac3a367e8"},
-        {"path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json", "bytes": 20947488, "sha256": "2689d361ab4f2fa12a719361d2eb2d2e6b07cd38e6fb527a3e576147326fd567"}
+        {
+          "path": "Artists/spanish/vocabulary_master.json",
+          "bytes": 6611927,
+          "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"
+        },
+        {
+          "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
+          "bytes": 13975209,
+          "sha256": "901022718d307bc8732e87d3945b5257b93d4410065d6b3139796afac3a367e8"
+        },
+        {
+          "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
+          "bytes": 20947488,
+          "sha256": "2689d361ab4f2fa12a719361d2eb2d2e6b07cd38e6fb527a3e576147326fd567"
+        }
       ]
     },
     {
@@ -60,11 +125,25 @@
       "contentVersion": "2026-08-02",
       "storageBytes": 17357760,
       "transferBytes": 2358865,
-      "dependencies": ["shared-spanish-artist"],
+      "dependencies": [
+        "shared-spanish-artist"
+      ],
       "files": [
-        {"path": "Artists/spanish/vocabulary_master.json", "bytes": 6611927, "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"},
-        {"path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json", "bytes": 4622930, "sha256": "4710183cfb60d9c5733f87a2cd5dac6aaa8a364a089203d738fdba5984741d82"},
-        {"path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json", "bytes": 6122903, "sha256": "393d0ffe3422d051c0da1bc07bdc5ea8cf6df0575f4b0706e2d70fcfaf488ebd"}
+        {
+          "path": "Artists/spanish/vocabulary_master.json",
+          "bytes": 6611927,
+          "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"
+        },
+        {
+          "path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
+          "bytes": 4622930,
+          "sha256": "4710183cfb60d9c5733f87a2cd5dac6aaa8a364a089203d738fdba5984741d82"
+        },
+        {
+          "path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
+          "bytes": 6122903,
+          "sha256": "393d0ffe3422d051c0da1bc07bdc5ea8cf6df0575f4b0706e2d70fcfaf488ebd"
+        }
       ]
     },
     {
@@ -77,11 +156,25 @@
       "contentVersion": "2026-08-02",
       "storageBytes": 20911451,
       "transferBytes": 2866752,
-      "dependencies": ["shared-spanish-artist"],
+      "dependencies": [
+        "shared-spanish-artist"
+      ],
       "files": [
-        {"path": "Artists/spanish/vocabulary_master.json", "bytes": 6611927, "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"},
-        {"path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json", "bytes": 6137196, "sha256": "79a173a6cc6a25daadab57be669a7463f271091377047ffeb0801551a0e36f0b"},
-        {"path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json", "bytes": 8162328, "sha256": "61d82fb46bd6130a96d7cc279f7698c27f72194899ba7e15c0b554885427ca1c"}
+        {
+          "path": "Artists/spanish/vocabulary_master.json",
+          "bytes": 6611927,
+          "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"
+        },
+        {
+          "path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
+          "bytes": 6137196,
+          "sha256": "79a173a6cc6a25daadab57be669a7463f271091377047ffeb0801551a0e36f0b"
+        },
+        {
+          "path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
+          "bytes": 8162328,
+          "sha256": "61d82fb46bd6130a96d7cc279f7698c27f72194899ba7e15c0b554885427ca1c"
+        }
       ]
     }
   ]

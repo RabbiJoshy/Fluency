@@ -122,6 +122,13 @@ export const state = {
     // restores the pinned meanings-tray behavior.
     cardChainQueue: [],
     cardChainReturnIndex: -1,
+    // A parent card can hand off to more than one child in sequence (phrases,
+    // then sense-free corpus sentences). `cardChainChildren` is the ordered
+    // plan, `cardChainIndex` the position in it, and the two payload arrays
+    // hold whatever the currently rendered child needs.
+    cardChainChildren: [],
+    cardChainIndex: 0,
+    cardChainExamples: [],
     phrasesModeEnabled: true,
 
     // Level estimation
