@@ -4,6 +4,8 @@ Most vocabulary apps teach by theme (colours, at the airport, in the kitchen) an
 
 This app takes the opposite approach: it turns speech and song lyrics into flashcards, starts with the words that occur most often, and teaches them through material you already care about.
 
+[See Example](example://walkthrough)
+
 That brings small linking words to the front instead of burying them behind themed vocabulary. Words like *aunque* are essential for following how ideas fit together, but are easy to overlook in a lesson about food or travel. The app separates its uses — about 50% *even though*, 30% *although* and 20% *even if* in the Speech examples — and shows each one with a sentence where that meaning fits.
 
 ### Speech

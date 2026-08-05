@@ -5,6 +5,7 @@
   "properNouns": 106,
   "words": 10100,
   "sentences": 68359,
+  "shardIndexFile": "backup_examples/shard_index.json",
   "shards": [
     {
       "file": "backup_examples/backup_examples.000.json",

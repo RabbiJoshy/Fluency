@@ -4,6 +4,19 @@
     {
       "date": "2026-08-05",
       "commit": "pending",
+      "summary": "About gains \"See Example\" — an annotated walkthrough of real cards, with working Spotify",
+      "details": [
+        "Four steps: the front of a Lyrics card, its sense list and shares, the lyric evidence, then the same anatomy on a Speech card",
+        "Every annotated element gets a numbered badge measured from its own box, so the numbers stay put when rows wrap or the viewport narrows",
+        "The card is the real one: same classes, same inline styles, and the back-face layout rules are now shared with #backContent rather than copied, so the replica can't drift",
+        "The Spotify button is live — real track ids and lyric timestamps, routed through spotifyPlayTrack(), login hand-off included",
+        "Flip, sense selection and tap-to-cycle all work; nothing writes progress or touches deck state, so it runs for logged-out visitors on ?about=1",
+        "Cache v202→v203 / assets 20260805i→20260805j"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "commit": "pending",
       "summary": "Unified every cache-busting tag so edits stop arriving late or not at all",
       "details": [
         "19 module-to-module imports had drifted two days behind main.js, leaving three separate copies of state.js loaded at once — the module cache keys by URL, so a stale tag is a second module, not a second reference",

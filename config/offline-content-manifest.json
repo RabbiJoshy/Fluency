@@ -9,9 +9,9 @@
       "scope": "language",
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
-      "contentVersion": "2026-08-05-backup-examples",
-      "storageBytes": 38927562,
-      "transferBytes": 38927562,
+      "contentVersion": "2026-08-05-backup-examples-2",
+      "storageBytes": 39038719,
+      "transferBytes": 39038719,
       "dependencies": [],
       "files": [
         {
@@ -26,8 +26,8 @@
         },
         {
           "path": "Data/Spanish/vocabulary.backup_examples.index.json",
-          "bytes": 1381,
-          "sha256": "ebb402a72180f5b0cb21112c1e75f12c2a1ba5b79e1be74c292d89a6a26d79f0"
+          "bytes": 1437,
+          "sha256": "b97204be94e2fc22ba4b46e1d4605cedcf347aa672ae038e6e83fdc822222d9f"
         },
         {
           "path": "Data/Spanish/backup_examples/backup_examples.000.json",
@@ -58,6 +58,11 @@
           "path": "Data/Spanish/backup_examples/backup_examples.005.json",
           "bytes": 1668858,
           "sha256": "9bbb5efb3e787b66869dfce3acaf633c36d72e13fbcb986e5a4ff24f2c3e3d35"
+        },
+        {
+          "path": "Data/Spanish/backup_examples/shard_index.json",
+          "bytes": 111101,
+          "sha256": "48daa11336a6a1a7a329cb943475cbcc533c890e1ed5e0e16a2a65495b12a398"
         }
       ]
     },

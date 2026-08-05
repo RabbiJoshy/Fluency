@@ -1965,7 +1965,8 @@
            #backContent sits inside .card-back and is the actual flex column
            container — updateCard() writes all rows directly into it, so the
            flex-child rules target its direct children. */
-        #backContent {
+        #backContent,
+        .about-example-card-inner .card-details {
             display: flex;
             flex-direction: column;
             flex: 1 1 auto;
@@ -1974,7 +1975,8 @@
             row-gap: 10px;
         }
 
-        #backContent > .back-header {
+        #backContent > .back-header,
+        .about-example-card-inner .card-details > .back-header {
             flex: 0 0 auto;
             width: 100%;
             margin-bottom: 0 !important;
@@ -2000,7 +2002,8 @@
            to the mid-card gap. When content fills the card, the auto
            margins collapse and the existing scroll-cap / overflow-y
            behaviour takes over unchanged. */
-        #backContent > .meanings-scroll {
+        #backContent > .meanings-scroll,
+        .about-example-card-inner .card-details > .meanings-scroll {
             flex: 0 1 auto;
             min-height: 0;           /* required for overflow in a flex child */
             width: 100%;
@@ -2022,7 +2025,8 @@
         /* Pinned tray for MWE / CLITIC rows — only rendered when "Phrases
            mode" is off (js/ui.js); when on, those entries leave silently as
            chained child cards instead (collectChainItems in flashcards.js). */
-        #backContent > .meanings-tray {
+        #backContent > .meanings-tray,
+        .about-example-card-inner .card-details > .meanings-tray {
             flex: 0 0 auto;
             width: 100%;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -2110,6 +2114,70 @@
             border-left: 5px solid #14b8a6;
             border-radius: 10px;
         }
+        /* ---- "In the wild" sentence list (second chain child) ---------- */
+        .wild-scroll {
+            gap: 8px;
+        }
+        .wild-row {
+            display: block;
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.045);
+            color: inherit;
+            font: inherit;
+            text-align: left;
+            cursor: pointer;
+            transition: background 150ms ease, border-color 150ms ease;
+        }
+        .wild-row:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .wild-row.is-revealed {
+            border-color: rgba(var(--accent-phrases-rgb), 0.5);
+        }
+        .wild-target {
+            color: #fff;
+            font-family: var(--font-reading);
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+        .wild-english {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+            color: #e6eaf0;
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.35;
+        }
+        .wild-english[hidden] {
+            display: none;
+        }
+        /* Says how much of the sentence is already behind the learner. Quiet
+           on purpose — it is provenance, not a score. */
+        .wild-badge {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(var(--accent-phrases-rgb), 0.18);
+            color: #cdc3fb;
+            font-family: var(--font-data);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .wild-badge--new {
+            background: rgba(255, 255, 255, 0.09);
+            color: var(--text-muted);
+        }
+
         .phrase-example-target {
             font-size: 16px;
             font-weight: 500;
@@ -2258,7 +2326,8 @@
            last sense/MWE and the example box is the row's own
            margin-bottom (6px) — matching sense-to-sense spacing, as
            requested. */
-        #backContent > .sentence {
+        #backContent > .sentence,
+        .about-example-card-inner .card-details > .sentence {
             flex: 0 0 auto;
             width: 100%;
             margin-top: 0;
@@ -2273,7 +2342,8 @@
         /* Pinned to the bottom of the card at all times — the auto top
            margin absorbs whatever slack is left above it, instead of the
            row's position drifting with how tall the example sentence is. */
-        #backContent > .links-section {
+        #backContent > .links-section,
+        .about-example-card-inner .card-details > .links-section {
             flex: 0 0 auto;
             margin-top: auto;
             margin-bottom: 0;
@@ -11006,4 +11076,463 @@
     border-color: color-mix(in srgb, var(--warning) 42%, var(--border-color));
     color: #f9c96e;
     background: color-mix(in srgb, var(--warning) 9%, transparent);
+}
+
+/* ===========================================================================
+   About → "See Example": annotated card walkthrough
+   ===========================================================================
+   The card inside .about-example-stage is built by js/about-example.js from
+   the app's own class names, so almost everything it looks like is inherited
+   from the real flashcard rules further up this file. The rules below cover
+   only three things: the entry button in the About copy, the modal chrome
+   around the card, and the SIZE overrides that make a viewport-scale .card
+   sit inside a fixed stage. Nothing here restyles the card itself — if it
+   did, the walkthrough would stop being a replica the moment the real card
+   changed. */
+
+/* -------- Entry button in the About copy --------------------------------- */
+
+.about-see-example-btn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 460px;
+    margin: 22px auto 26px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent-primary) 16%, var(--bg-card)),
+        var(--bg-card));
+    border: 1px solid color-mix(in srgb, var(--accent-primary) 40%, var(--border-color));
+    border-radius: 14px;
+    color: var(--text-primary);
+    font-family: var(--font-emphasis);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.about-see-example-btn:hover,
+.about-see-example-btn:focus-visible {
+    transform: translateY(-1px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+.about-see-example-icon {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    color: var(--accent-primary-text);
+    font-size: 13px;
+    /* The glyph's own bearing sits it left of centre in a circle. */
+    padding-left: 2px;
+}
+
+.about-see-example-label {
+    flex: 1 1 auto;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.about-see-example-hint {
+    flex: 0 0 100%;
+    order: 3;
+    color: var(--text-muted);
+    font-family: var(--font-reading);
+    font-size: 12px;
+    padding-left: 46px;
+    margin-top: -6px;
+}
+
+/* -------- Modal chrome ---------------------------------------------------- */
+
+/* Full-bleed, like .about-project-modal — this opens on top of the About
+   modal, so it has to cover it rather than sit in a card on top of it.
+   Scrolling belongs to .about-example-body: the header and step footer stay
+   pinned while the card and its notes scroll between them. */
+.about-example-modal {
+    display: flex;
+    flex-direction: column;
+    max-width: none;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border: none;
+    border-radius: 0;
+    background: var(--bg-primary);
+    padding: 0;
+    overflow: hidden;
+}
+
+.about-example-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    flex: 0 0 auto;
+}
+
+.about-example-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.about-example-kicker {
+    font-family: var(--font-emphasis);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.about-example-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.about-example-close {
+    position: static;
+    flex: 0 0 auto;
+}
+
+.about-example-body {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding: 26px 24px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* The stage is the positioning context for the numbered badges, which are
+   placed from measured element boxes rather than fixed offsets. */
+.about-example-stage-wrap {
+    position: relative;
+    justify-self: center;
+}
+
+.about-example-stage {
+    position: relative;
+}
+
+.about-example-markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+}
+
+/* -------- Size overrides so a viewport-scale .card fits the stage --------- */
+
+.about-example-card-inner {
+    width: 360px;
+    max-width: 100%;
+    height: 520px;
+    perspective: 1200px;
+    position: relative;
+}
+
+.about-example-card-inner .card {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: none;
+    position: relative;
+    cursor: pointer;
+    /* The live card sets touch-action: none for swipe grading. There is no
+       swipe here, and inheriting it would eat page scrolling on a phone,
+       where the card covers most of the screen. */
+    touch-action: auto;
+}
+
+.about-example-card-inner .card-front {
+    justify-content: center;
+    padding: 30px 22px;
+}
+
+.about-example-card-inner .card-back {
+    justify-content: flex-start;
+    padding: 24px 18px 20px;
+}
+
+.about-example-card-inner .card-word {
+    font-size: 50px;
+}
+
+/* The back's flex column, its scroll region and its sentence row are shared
+   with the live card via the widened `#backContent, .about-example-card-inner
+   .card-details` selectors above — nothing about that layout is restated here.
+   The one genuine difference: the replica has no `.links-section`, and that row
+   is what normally carries `margin-top: auto` and pins the lower block to the
+   bottom of the card. Hand that job to the sentence so the example still sits
+   where a learner expects to find it. */
+.about-example-card-inner .card-details > .sentence {
+    margin-top: auto;
+}
+
+/* Live cards leave the ranking pinned to the card's lower edge; keep that,
+   but stop it colliding with the flip hint below it. */
+.about-example-card-inner .card-ranking {
+    bottom: 46px;
+}
+
+.about-example-flip-hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+    animation: about-example-hint-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes about-example-hint-pulse {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 0.9; }
+}
+
+/* -------- Numbered badges and the elements they point at ----------------- */
+
+.about-example-marker {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid var(--bg-primary);
+    background: var(--accent-blue);
+    color: #06121f;
+    font-family: var(--font-data);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    pointer-events: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.about-example-marker.is-active {
+    transform: scale(1.25);
+    background: var(--accent-amber);
+}
+
+/* Ring the annotated element itself. outline (not border) so no card element
+   changes size when it lights up. */
+.about-example-anchored.is-annotation-active {
+    outline: 2px solid var(--accent-amber);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+/* -------- Notes column ---------------------------------------------------- */
+
+.about-example-notes {
+    min-width: 0;
+    color: var(--text-secondary);
+}
+
+.about-example-eyebrow {
+    font-family: var(--font-data);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 6px;
+}
+
+.about-example-title {
+    font-family: var(--font-emphasis);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.about-example-blurb {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 20px;
+}
+
+.about-example-note-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-example-note {
+    display: flex;
+    gap: 12px;
+    padding: 11px 13px;
+    background: var(--bg-secondary);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.about-example-note.is-active {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-amber);
+}
+
+.about-example-note-num {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    color: #06121f;
+    font-family: var(--font-data);
+    font-size: 12px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+}
+
+.about-example-note.is-active .about-example-note-num {
+    background: var(--accent-amber);
+}
+
+.about-example-note strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.about-example-note span:not(.about-example-note-num):not(.about-example-try) {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+}
+
+.about-example-try {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-green) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-green) 45%, transparent);
+    color: var(--accent-green);
+    font-family: var(--font-data);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* -------- Footer / step nav ----------------------------------------------- */
+
+.about-example-footer {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 20px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.about-example-nav {
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border-light);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-emphasis);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.about-example-nav:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    border-color: var(--text-muted);
+}
+
+.about-example-nav:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.about-example-nav.primary,
+.about-example-nav.is-finish {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary-text);
+}
+
+.about-example-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-example-pip {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--border-light);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.about-example-pip.is-current {
+    background: var(--accent-primary);
+    transform: scale(1.35);
+}
+
+/* -------- Narrow viewports ------------------------------------------------ */
+/* Stack the card above its notes. The badges stay anchored because they are
+   positioned from measured boxes and re-placed on resize. */
+
+@media (max-width: 900px) {
+    .about-example-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding: 18px 14px;
+    }
+
+    .about-example-card-inner {
+        width: 320px;
+        height: 480px;
+    }
+
+    .about-example-title {
+        font-size: 20px;
+    }
+
+    .about-example-blurb {
+        font-size: 14px;
+    }
 }

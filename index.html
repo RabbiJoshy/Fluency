@@ -19,28 +19,29 @@
          weights = fewer round trips to fonts.gstatic.com on cold start. -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
-    <link rel="stylesheet" href="css/style.css?v=20260805h">
+    <link rel="stylesheet" href="css/style.css?v=20260805k">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260805h">
-    <link rel="modulepreload" href="js/state.js?v=20260805h">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260805h">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260805h">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260805h">
-    <link rel="modulepreload" href="js/speech.js?v=20260805h">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260805h">
-    <link rel="modulepreload" href="js/auth.js?v=20260805h">
-    <link rel="modulepreload" href="js/estimation.js?v=20260805h">
-    <link rel="modulepreload" href="js/config.js?v=20260805h">
-    <link rel="modulepreload" href="js/progress.js?v=20260805h">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260805h">
-    <link rel="modulepreload" href="js/ui.js?v=20260805h">
-    <link rel="modulepreload" href="js/vocab.js?v=20260805h">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260805h">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260805h">
+    <link rel="modulepreload" href="js/main.js?v=20260805k">
+    <link rel="modulepreload" href="js/state.js?v=20260805k">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260805k">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260805k">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260805k">
+    <link rel="modulepreload" href="js/speech.js?v=20260805k">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260805k">
+    <link rel="modulepreload" href="js/auth.js?v=20260805k">
+    <link rel="modulepreload" href="js/about-example.js?v=20260805k">
+    <link rel="modulepreload" href="js/estimation.js?v=20260805k">
+    <link rel="modulepreload" href="js/config.js?v=20260805k">
+    <link rel="modulepreload" href="js/progress.js?v=20260805k">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260805k">
+    <link rel="modulepreload" href="js/ui.js?v=20260805k">
+    <link rel="modulepreload" href="js/vocab.js?v=20260805k">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260805k">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260805k">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -689,6 +690,33 @@
         </div>
     </div>
 
+    <!-- See Example: annotated walkthrough of real cards. Content is rendered
+         by js/about-example.js; the card inside #aboutExampleStage reuses the
+         app's own .card CSS so it is a true replica rather than a mock-up. -->
+    <div id="aboutExampleModal" class="modal hidden">
+        <div class="modal-content fullscreen-modal about-example-modal">
+            <div class="about-example-header">
+                <div class="about-example-header-text">
+                    <span class="about-example-kicker">See Example</span>
+                    <span class="about-example-sub">An annotated walkthrough of a real card</span>
+                </div>
+                <button class="modal-close about-example-close" id="closeAboutExampleModal" aria-label="Close walkthrough">✕</button>
+            </div>
+            <div class="about-example-body" id="aboutExampleBody">
+                <div class="about-example-stage-wrap">
+                    <div class="about-example-stage" id="aboutExampleStage"></div>
+                    <div class="about-example-markers" id="aboutExampleMarkers" aria-hidden="true"></div>
+                </div>
+                <div class="about-example-notes" id="aboutExampleNotes"></div>
+            </div>
+            <div class="about-example-footer">
+                <button type="button" class="about-example-nav" id="aboutExamplePrev">← Back</button>
+                <div class="about-example-progress" id="aboutExampleProgress" role="group" aria-label="Walkthrough steps"></div>
+                <button type="button" class="about-example-nav primary" id="aboutExampleNext">Next →</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Deck Complete Modal -->
     <div id="deckCompleteModal" class="modal hidden">
         <div class="modal-content deck-complete-content">
@@ -1069,6 +1097,13 @@
                         </div>
                     </div>
                     <div class="settings-default-row settings-default-row-explained">
+                        <span>Extra examples <small>Adds corpus sentences after the word, so you see it used outside this deck. Lyrics decks are often thin even on common words.</small></span>
+                        <div class="group-size-selector settings-toggle" role="group" aria-label="Extra examples setting">
+                            <button type="button" class="group-size-btn global-study-default-btn" data-setting="extraExamples" data-value="off" aria-pressed="false">Off</button>
+                            <button type="button" class="group-size-btn global-study-default-btn selected" data-setting="extraExamples" data-value="on" aria-pressed="true">On</button>
+                        </div>
+                    </div>
+                    <div class="settings-default-row settings-default-row-explained">
                         <span>Phrases mode <small>On sends Expressions/clitics after the word as their own card; off keeps them on the word's back.</small></span>
                         <div class="group-size-selector settings-toggle" role="group" aria-label="Phrases mode setting">
                             <button type="button" class="group-size-btn global-study-default-btn" data-setting="phrasesMode" data-value="off" aria-pressed="false">Off</button>
@@ -1231,6 +1266,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260805h"></script>
+    <script type="module" src="js/main.js?v=20260805k"></script>
 </body>
 </html>

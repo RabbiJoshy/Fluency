@@ -1,7 +1,7 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
-import './state.js?v=20260805h';
-import { dbGet, dbPut } from './offline-db.js?v=20260805h';
+import './state.js?v=20260805k';
+import { dbGet, dbPut } from './offline-db.js?v=20260805k';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
 // enqueues to IndexedDB when offline/failed. The overlay helpers keep
 // un-synced card and granular knowledge answers visible after a Sheets reload.
@@ -10,7 +10,7 @@ import {
     applyPendingProgressOverlay,
     applyPendingItemProgressOverlay,
     applyPendingMetaProgressOverlay
-} from './sync-queue.js?v=20260805h';
+} from './sync-queue.js?v=20260805k';
 
 async function loadSecrets() {
     const controller = new AbortController();
@@ -900,6 +900,17 @@ function renderMarkdown(md) {
                 + '<figcaption>' + alt + '</figcaption>'
                 + '</figure>';
         });
+        // example://walkthrough — opens the annotated "See Example" tour
+        // (js/about-example.js). Written as an ordinary Markdown link in
+        // about.md so its position and wording stay editable there, but
+        // rendered as a button because it triggers a modal rather than
+        // navigating anywhere.
+        out = out.replace(/\[([^\]]+)\]\(example:\/\/[^)]*\)/g,
+            '<button type="button" class="about-see-example-btn" onclick="window.openAboutExample && window.openAboutExample()">'
+            + '<span class="about-see-example-icon" aria-hidden="true">▶</span>'
+            + '<span class="about-see-example-label">$1</span>'
+            + '<span class="about-see-example-hint">Annotated walkthrough · Spotify playback is live</span>'
+            + '</button>');
         out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
             '<a href="$2" target="_blank" rel="noopener">$1</a>');
         out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');

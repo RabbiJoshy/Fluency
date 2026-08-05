@@ -465,9 +465,19 @@ def main():
             "bytes": path.stat().st_size,
         })
 
-    # The app derives its shard from a card's 1-based deck position:
-    #   shard = floor((rank - 1) / shardSize)
-    # so no per-word lookup table has to ship.
+    # Ship an explicit word-id -> shard map rather than making the app derive
+    # the shard from a card's deck position. Position arithmetic only works for
+    # the deck this file was built from: artist decks share the same word-id
+    # space but order their entries differently, so the same id sits at a
+    # different position and the derived shard was simply wrong. The map is a
+    # few tens of KB and makes lookup deck-agnostic.
+    shard_by_id = {}
+    for shard_index, payload in shards.items():
+        for word_id in payload:
+            shard_by_id[word_id] = shard_index
+    index_path = shard_dir / "shard_index.json"
+    with open(index_path, "w", encoding="utf-8") as handle:
+        json.dump(shard_by_id, handle, ensure_ascii=False, separators=(",", ":"))
     manifest = {
         "schemaVersion": 1,
         "shardSize": args.shard_size,
@@ -475,6 +485,7 @@ def main():
         "properNouns": len(proper_nouns),
         "words": covered_words,
         "sentences": total,
+        "shardIndexFile": "backup_examples/shard_index.json",
         "shards": manifest_shards,
     }
     with open(manifest_path, "w", encoding="utf-8") as handle:

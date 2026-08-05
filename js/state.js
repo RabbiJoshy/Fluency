@@ -130,6 +130,7 @@ export const state = {
     cardChainIndex: 0,
     cardChainExamples: [],
     phrasesModeEnabled: true,
+    extraExamplesEnabled: true,
 
     // Level estimation
     estimationState: {

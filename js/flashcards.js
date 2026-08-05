@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260805j';
-import './speech.js?v=20260805j';
+import './state.js?v=20260805k';
+import './speech.js?v=20260805k';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260805j';
+} from './example-personalisation.js?v=20260805k';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2042,9 +2042,10 @@ function handleSwipeAction(result) {
     // in case it mutates card state.
     const swipedCard = flashcards[currentIndex];
     const isChainChild = swipedCard?.isChainChild === true;
-    // Both children hang off the same toggle: one switch decides whether a
-    // correct answer hands off to follow-up cards at all.
-    const mayChain = phrasesModeEnabled && !isChainChild
+    // Phrases and Extra examples are independent study settings, so the chain
+    // may run with either, both, or neither. buildCardChildren consults each
+    // one separately.
+    const mayChain = (phrasesModeEnabled || extraExamplesEnabled) && !isChainChild
         && cardNavStack.length === 0 && result === 'correct';
 
     // Record the result
@@ -2586,34 +2587,61 @@ function renderPhraseSummaryBack(card) {
 // ---------------------------------------------------------------------------
 const _backupExampleShards = new Map();   // shard index -> {wordId: [sentence]}
 let _backupExampleManifest = null;
+let _backupExampleShardById = null;       // wordId -> shard index
 let _backupExampleUnavailable = false;
 
+// Always the language directory, never the artist one. Artist decks share the
+// same word-id space as the language deck (4,479 of 4,481 overlapping ids
+// resolve to the same word), so a lyrics card can read the language's corpus
+// sentences directly — which is the point: a lyrics deck is often thin even on
+// common words, and seeing a word used outside it is most of the value.
 function backupExampleBaseDir() {
     const indexPath = config?.languages?.[selectedLanguage]?.indexPath || '';
     return indexPath.slice(0, indexPath.lastIndexOf('/') + 1);
 }
 
-async function loadBackupExampleShard(rank) {
-    if (_backupExampleUnavailable || !Number.isFinite(rank)) return null;
+// Resolves shards by word id, not by deck position. Position arithmetic only
+// held for the deck the shards were built from: an artist deck orders the same
+// ids differently, so the derived shard was wrong and the card silently showed
+// nothing. The id map costs ~44 KB gzipped once per session.
+async function loadBackupExampleShardForIds(wordIds) {
+    if (_backupExampleUnavailable || !wordIds.length) return null;
     const base = backupExampleBaseDir();
     if (!base) return null;
     try {
-        if (!_backupExampleManifest) {
-            const response = await fetch(`${base}vocabulary.backup_examples.index.json`);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            _backupExampleManifest = await response.json();
+        if (!_backupExampleShardById) {
+            const manifestResponse = await fetch(`${base}vocabulary.backup_examples.index.json`);
+            if (!manifestResponse.ok) throw new Error(`HTTP ${manifestResponse.status}`);
+            _backupExampleManifest = await manifestResponse.json();
+            const indexFile = _backupExampleManifest.shardIndexFile;
+            if (!indexFile) throw new Error('manifest has no shardIndexFile');
+            const indexResponse = await fetch(`${base}${indexFile}`);
+            if (!indexResponse.ok) throw new Error(`HTTP ${indexResponse.status}`);
+            _backupExampleShardById = await indexResponse.json();
         }
-        const size = _backupExampleManifest.shardSize || 2000;
-        const shardIndex = Math.floor((rank - 1) / size);
-        if (_backupExampleShards.has(shardIndex)) return _backupExampleShards.get(shardIndex);
-        const entry = (_backupExampleManifest.shards || [])
-            .find(item => item.shard === shardIndex);
-        if (!entry) return null;
-        const response = await fetch(`${base}${entry.file}`);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const payload = await response.json();
-        _backupExampleShards.set(shardIndex, payload);
-        return payload;
+        // A merged lemma family can straddle shards, so gather every shard the
+        // requested ids land in.
+        const needed = new Set();
+        for (const id of wordIds) {
+            const shard = _backupExampleShardById[id];
+            if (shard !== undefined) needed.add(shard);
+        }
+        if (needed.size === 0) return {};
+        const merged = {};
+        for (const shardIndex of needed) {
+            let payload = _backupExampleShards.get(shardIndex);
+            if (!payload) {
+                const entry = (_backupExampleManifest.shards || [])
+                    .find(item => item.shard === shardIndex);
+                if (!entry) continue;
+                const response = await fetch(`${base}${entry.file}`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                payload = await response.json();
+                _backupExampleShards.set(shardIndex, payload);
+            }
+            Object.assign(merged, payload);
+        }
+        return merged;
     } catch (error) {
         // A missing layer is not an error worth blocking study for — the child
         // simply doesn't offer itself.
@@ -2639,12 +2667,13 @@ function backupExampleIdsFor(card) {
 }
 
 async function collectBackupExamples(card) {
-    const rank = Number(card?.rank);
-    const shard = await loadBackupExampleShard(rank);
+    if (!extraExamplesEnabled) return [];
+    const ids = backupExampleIdsFor(card);
+    const shard = await loadBackupExampleShardForIds(ids);
     if (!shard) return [];
     const seen = new Set();
     const out = [];
-    for (const id of backupExampleIdsFor(card)) {
+    for (const id of ids) {
         for (const sentence of (shard[id] || [])) {
             if (seen.has(sentence.id)) continue;
             seen.add(sentence.id);
@@ -2720,7 +2749,7 @@ function revealWildTranslation(event, index) {
 // nothing to show is simply absent from the plan.
 async function buildCardChildren(card) {
     const children = [];
-    const phrases = collectChainItems(card);
+    const phrases = phrasesModeEnabled ? collectChainItems(card) : [];
     if (phrases.length > 0) children.push({ type: 'phrases', items: phrases });
     const sentences = await collectBackupExamples(card);
     if (sentences.length > 0) children.push({ type: 'examples', sentences });
@@ -5455,7 +5484,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260805j';
+const ASSET_VERSION = '20260805k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
