@@ -1,18 +1,18 @@
-import './state.js?v=20260805l';
-import './offline-db.js?v=20260805l';
-import './sync-queue.js?v=20260805l';
-import { initOfflineContent } from './offline-content.js?v=20260805l';
-import './speech.js?v=20260805l';
-import './artist-ui.js?v=20260805l';
-import './auth.js?v=20260805l';
-import './about-example.js?v=20260805l';
-import './estimation.js?v=20260805l';
-import './config.js?v=20260805l';
-import './progress.js?v=20260805l';
-import './knowledge.js?v=20260805l';
-import './ui.js?v=20260805l';
-import './vocab.js?v=20260805l';
-import './flashcards.js?v=20260805l';
+import './state.js?v=20260805m';
+import './offline-db.js?v=20260805m';
+import './sync-queue.js?v=20260805m';
+import { initOfflineContent } from './offline-content.js?v=20260805m';
+import './speech.js?v=20260805m';
+import './artist-ui.js?v=20260805m';
+import './auth.js?v=20260805m';
+import './about-example.js?v=20260805m';
+import './estimation.js?v=20260805m';
+import './config.js?v=20260805m';
+import './progress.js?v=20260805m';
+import './knowledge.js?v=20260805m';
+import './ui.js?v=20260805m';
+import './vocab.js?v=20260805m';
+import './flashcards.js?v=20260805m';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -21,7 +21,7 @@ import './flashcards.js?v=20260805l';
 const _initialParams = new URLSearchParams(window.location.search);
 const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260805l').catch(error => {
+    ? import('./spotify.js?v=20260805m').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -293,7 +293,7 @@ loadConfig().then(async () => {
         try {
             selectedLanguage = 'spanish';
             applyLanguageColorTheme();
-            const speechVnext = await import('./speech-vnext.js?v=20260805l');
+            const speechVnext = await import('./speech-vnext.js?v=20260805m');
             await speechVnext.startSpeechVnext();
         } catch (error) {
             console.error('Speech vNext preview failed to load:', error);

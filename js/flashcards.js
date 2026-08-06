@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260805l';
-import './speech.js?v=20260805l';
+import './state.js?v=20260805m';
+import './speech.js?v=20260805m';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260805l';
+} from './example-personalisation.js?v=20260805m';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2786,24 +2786,24 @@ function renderExamplesChildBack(card) {
             </div>`;
     }
     const rows = sentences.map((sentence, index) => {
-        // Collapsed, the row is just the sentence — a count of unknown words
-        // told the learner nothing they could act on. Expanded, it gives the
-        // translation and glosses the words they have not met yet, which is
-        // the thing that was actually missing.
+        // Collapsed, a row is the sentence plus the words the learner has not
+        // met yet, glossed inline — that is the part they cannot work out for
+        // themselves. Expanding adds the sentence translation, which they can
+        // often infer once the unknown words are named.
         const glosses = Array.isArray(sentence.new) ? sentence.new : [];
-        const glossHTML = glosses.length
-            ? `<div class="wild-gloss">
-                    ${glosses.map(([word, translation]) => `<div class="wild-gloss-row">
+        const newHTML = glosses.length
+            ? `<div class="wild-new"><span class="wild-new-label">New words:</span>
+                    ${glosses.map(([word, translation]) => `<span class="wild-gloss-item">
                         <span class="wild-gloss-word">${escapeCardText(word)}</span>
                         <span class="wild-gloss-translation">${escapeCardText(translation)}</span>
-                    </div>`).join('')}
+                    </span>`).join('')}
                </div>`
             : '';
         return `<button type="button" class="wild-row" aria-expanded="false" onclick="revealWildTranslation(event, ${index})">
             <div class="wild-target">${escapeCardText(sentence.target)}</div>
+            ${newHTML}
             <div class="wild-reveal" id="wildReveal${index}" hidden>
                 <div class="wild-english">${escapeCardText(sentence.english)}</div>
-                ${glossHTML}
             </div>
         </button>`;
     }).join('');
@@ -5654,7 +5654,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260805l';
+const ASSET_VERSION = '20260805m';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
