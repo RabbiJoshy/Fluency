@@ -62,12 +62,13 @@ from util_sense_ids import carry_sense_identity, merge_sense_identity
 # Default language; overridden by --language at runtime.
 NORMAL_MODE_LANGUAGE = "spanish"
 
-STEP_VERSION = 4
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples split, hex IDs, lemma-proportional counts",
     2: "group per-sense assignments by sense_idx so foreign-sid fallbacks don't duplicate meanings",
     3: "carry stable sense-menu IDs and aliases into learner-facing meanings",
     4: "assemble regular plural twins under one lemma and carry derivational relation metadata",
+    5: "keep orphan clitic forms as their own cards, stamped with clitic_memberships",
 }
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -139,6 +140,55 @@ _CLARIFICATION_STARTERS = {
 }
 
 _PAREN_RE = re.compile(r'\s*\(([^()]*(?:\([^()]*\)[^()]*)*)\)')
+
+
+# Clitic pronouns, longest-first, mirroring `splitAttachedClitics()` in
+# js/flashcards.js so the pronouns recorded here match what the card renders.
+_ORPHAN_DIRECT = ("los", "las", "lo", "la")
+_ORPHAN_INDIRECT = ("nos", "les", "me", "te", "se", "os", "le")
+_ORPHAN_SINGLE = ("nos", "les", "los", "las", "me", "te", "se", "os", "lo", "la", "le")
+
+
+def split_attached_clitics(form):
+    """Split a surface form into (stem, [clitics]) — port of the front end's
+    `splitAttachedClitics`, so pipeline and card agree on the analysis."""
+    stem = (form or "").strip().lower()
+    if not stem:
+        return "", []
+    clitics = []
+    direct = next((c for c in _ORPHAN_DIRECT if stem.endswith(c)), None)
+    if direct:
+        clitics.insert(0, direct)
+        stem = stem[:-len(direct)]
+        indirect = next((c for c in _ORPHAN_INDIRECT if stem.endswith(c)), None)
+        if indirect:
+            clitics.insert(0, indirect)
+            stem = stem[:-len(indirect)]
+    else:
+        single = next((c for c in _ORPHAN_SINGLE if stem.endswith(c)), None)
+        if single:
+            clitics.append(single)
+            stem = stem[:-len(single)]
+    return stem, clitics
+
+
+def orphan_clitic_analysis(word, base_form):
+    """Analyse an orphan clitic form whose base verb is absent from the corpus.
+
+    Returns {"base_verb", "pronouns"} when `word` really is verb+clitic, else
+    None. `clitic_merge` is built from Wiktionary "combined with" glosses,
+    which mis-fire on plurals and nouns (`animales`, `criminales`, `combate`
+    all route to a bogus base `voseo`). The POS guard is that the base must
+    look like a Spanish infinitive (-ar/-er/-ir) and at least one clitic
+    pronoun must actually be attached.
+    """
+    base = (base_form or "").lower()
+    if not base.endswith(("ar", "er", "ir")) or len(base) < 3:
+        return None
+    stem, clitics = split_attached_clitics(word)
+    if not clitics or len(stem) < 3:
+        return None
+    return {"base_verb": base, "pronouns": clitics}
 
 
 def clean_translation(gloss):
@@ -542,11 +592,13 @@ def main():
     routing_path = LAYERS / "word_routing.json"
     clitic_merge_map = {}  # word -> base_form
     clitic_keep_set = set()
+    clitic_orphan_set = set()  # clitic forms whose base verb isn't in the corpus
     if routing_path.exists():
         with open(routing_path, encoding="utf-8") as f:
             routing = json.load(f)
         clitic_merge_map = routing.get("clitic_merge", {})
         clitic_keep_set = set(routing.get("clitic_keep", []))
+        clitic_orphan_set = {w.lower() for w in routing.get("clitic_orphans", [])}
         print(f"\n  word_routing: {len(clitic_merge_map)} clitic_merge, "
               f"{len(clitic_keep_set)} clitic_keep")
     else:
@@ -575,6 +627,12 @@ def main():
     clitic_merged_words = set()
     clitic_data = {}
     id_migration = {}
+    # Orphan clitics: the base verb never occurs bare in the corpus, so there
+    # is no card to merge into. Rather than invent one, keep the clitic's own
+    # card and stamp it with clitic metadata (same `clitic_memberships` shape
+    # artist mode puts on base verbs) so the front end's `describeCliticForm`
+    # can explain the form instead of showing a bare, unexplained card.
+    orphan_clitic_info = {}
 
     for wl, base_form in clitic_merge_map.items():
         entry = inv_by_word.get(wl)
@@ -582,6 +640,10 @@ def main():
             continue
         base_entry = inv_by_word.get(base_form)
         if not base_entry:
+            analysis = orphan_clitic_analysis(wl, base_form)
+            if analysis and (not clitic_orphan_set or wl in clitic_orphan_set):
+                analysis["corpus_count"] = entry.get("corpus_count", 0)
+                orphan_clitic_info[wl] = analysis
             continue
 
         # Add clitic count to base
@@ -616,6 +678,9 @@ def main():
 
     if clitic_data:
         print(f"  {len(clitic_data)} clitic forms merged into base verbs")
+    if orphan_clitic_info:
+        print(f"  {len(orphan_clitic_info)} orphan clitic forms kept as their own "
+              f"cards, annotated with base verb + pronouns")
 
     # Build vocabulary
     print("\nAssembling vocabulary...")
@@ -1010,8 +1075,38 @@ def main():
                 if sd_conj and sd_conj != lemma:
                     related_lemma = sd_conj
 
+            # Orphan clitic annotation. The membership points at this card's
+            # own surface form (the base verb has no card), which is exactly
+            # what `describeCliticForm` needs: it splits the form, compares
+            # the stem to the card's lemma, and labels it infinitive /
+            # gerund / command + pronoun.
+            # A surface word can yield one card per lemma; annotate only the
+            # card whose lemma is the base verb (falling back to the first
+            # lemma) so the count isn't repeated across sibling cards.
+            clitic_memberships = None
+            orphan_info = orphan_clitic_info.get(wl)
+            if orphan_info:
+                base_verb = orphan_info["base_verb"]
+                annotated_lemma = base_verb if base_verb in lemmas else lemmas[0]
+                if lemma != annotated_lemma:
+                    orphan_info = None
+            if orphan_info:
+                clitic_translation = ""
+                for m in meanings_lean:
+                    if m.get("translation"):
+                        clitic_translation = m["translation"]
+                        break
+                clitic_memberships = [{
+                    "form": word,
+                    "translation": clitic_translation,
+                    "corpus_count": orphan_info.get("corpus_count", entry_count),
+                    "base_verb": orphan_info["base_verb"],
+                    "pronouns": orphan_info["pronouns"],
+                }]
+
             # Collect the entry (sort and compute most_frequent later)
             all_entries.append({
+                "clitic_memberships": clitic_memberships,
                 "word": word,
                 "lemma": lemma,
                 "id": hex_id,
@@ -1121,6 +1216,8 @@ def main():
                 mono_entry["cognet_cognate"] = True
         if e["mwe_memberships"]:
             mono_entry["mwe_memberships"] = e["mwe_memberships"]
+        if e.get("clitic_memberships"):
+            mono_entry["clitic_memberships"] = e["clitic_memberships"]
         if e["morphology"]:
             mono_entry["morphology"] = e["morphology"]
         if e.get("synonyms"):
@@ -1152,6 +1249,8 @@ def main():
                 idx_entry["cognet_cognate"] = True
         if e["mwe_memberships"]:
             idx_entry["mwe_memberships"] = e["mwe_memberships"]
+        if e.get("clitic_memberships"):
+            idx_entry["clitic_memberships"] = e["clitic_memberships"]
         if e["morphology"]:
             idx_entry["morphology"] = e["morphology"]
         if e.get("synonyms"):

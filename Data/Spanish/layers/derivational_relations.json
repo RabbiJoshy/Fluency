@@ -2,7 +2,7 @@
   "_meta": {
     "step_name": "build_derivational_relations",
     "step_version": 1,
-    "generated_at": 1785188530
+    "generated_at": 1786026820
   },
   "relations": {
     "abuelita": {
@@ -79,6 +79,14 @@
         "NOUN"
       ]
     },
+    "bacanísimo": {
+      "base_lemma": "bacano",
+      "relation": "superlative",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "bajito": {
       "base_lemma": "bajo",
       "relation": "diminutive",
@@ -132,6 +140,14 @@
         "NOUN"
       ]
     },
+    "bellaquito": {
+      "base_lemma": "bellaco",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "besito": {
       "base_lemma": "beso",
       "relation": "diminutive",
@@ -148,6 +164,14 @@
         "NOUN"
       ]
     },
+    "bizcochito": {
+      "base_lemma": "bizcocho",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "blanquita": {
       "base_lemma": "blanca",
       "relation": "diminutive",
@@ -159,6 +183,11 @@
       "pos": [
         "NOUN"
       ]
+    },
+    "blanquitas": {
+      "base_lemma": "blanca",
+      "relation": "diminutive",
+      "source": "suffix-only"
     },
     "blanquito": {
       "base_lemma": "blanco",
@@ -188,6 +217,14 @@
       ],
       "pos": [
         "NOUN"
+      ]
+    },
+    "botecitos": {
+      "base_lemma": "bote",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "buenísimo": {
@@ -221,6 +258,22 @@
       ],
       "pos": [
         "NOUN"
+      ]
+    },
+    "calladitas": {
+      "base_lemma": "callado",
+      "relation": "diminutive",
+      "source": "suffix-only"
+    },
+    "calladito": {
+      "base_lemma": "callado",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "quiet"
+      ],
+      "pos": [
+        "ADJ"
       ]
     },
     "camita": {
@@ -271,6 +324,11 @@
         "NOUN"
       ]
     },
+    "cartitas": {
+      "base_lemma": "carta",
+      "relation": "diminutive",
+      "source": "suffix-only"
+    },
     "casita": {
       "base_lemma": "casa",
       "relation": "diminutive",
@@ -309,6 +367,11 @@
         "X"
       ]
     },
+    "chichito": {
+      "base_lemma": "chicho",
+      "relation": "diminutive",
+      "source": "suffix-only"
+    },
     "chiquitito": {
       "base_lemma": "chiquito",
       "relation": "diminutive",
@@ -344,6 +407,14 @@
       ],
       "pos": [
         "NOUN"
+      ]
+    },
+    "cinturita": {
+      "base_lemma": "cintura",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "clarito": {
@@ -382,6 +453,11 @@
       "pos": [
         "NOUN"
       ]
+    },
+    "cuerpecito": {
+      "base_lemma": "cuerpo",
+      "relation": "diminutive",
+      "source": "suffix-only"
     },
     "culito": {
       "base_lemma": "culo",
@@ -475,6 +551,11 @@
         "NOUN"
       ]
     },
+    "faldita": {
+      "base_lemma": "falda",
+      "relation": "diminutive",
+      "source": "suffix-only"
+    },
     "florcita": {
       "base_lemma": "flor",
       "relation": "diminutive",
@@ -484,6 +565,22 @@
       ],
       "shared_gloss_tokens": [
         "flower"
+      ],
+      "pos": [
+        "NOUN"
+      ]
+    },
+    "fotito": {
+      "base_lemma": "foto",
+      "relation": "diminutive",
+      "source": "suffix-only"
+    },
+    "fotitos": {
+      "base_lemma": "foto",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "little photos or pictures"
       ],
       "pos": [
         "NOUN"
@@ -499,6 +596,17 @@
       "pos": [
         "NOUN",
         "X"
+      ]
+    },
+    "gatitos": {
+      "base_lemma": "gatos",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "men"
+      ],
+      "pos": [
+        "NOUN"
       ]
     },
     "gomita": {
@@ -526,6 +634,14 @@
       "pos": [
         "NOUN",
         "PHRASE"
+      ]
+    },
+    "güirita": {
+      "base_lemma": "güira",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "hermanita": {
@@ -597,10 +713,27 @@
       "relation": "diminutive",
       "source": "suffix+english-gloss",
       "shared_gloss_tokens": [
+        "identical",
         "same"
       ],
       "pos": [
         "ADJ"
+      ]
+    },
+    "jefecitos": {
+      "base_lemma": "jefe",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
+    "jevito": {
+      "base_lemma": "jevo",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "jovencito": {
@@ -616,6 +749,22 @@
         "NOUN"
       ]
     },
+    "juguetito": {
+      "base_lemma": "juguete",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
+    "loquillo": {
+      "base_lemma": "loco",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "loquito": {
       "base_lemma": "loco",
       "relation": "diminutive",
@@ -626,6 +775,14 @@
       "pos": [
         "ADJ",
         "NOUN"
+      ]
+    },
+    "loquitos": {
+      "base_lemma": "loco",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "manito": {
@@ -640,6 +797,14 @@
         "NOUN"
       ]
     },
+    "miradita": {
+      "base_lemma": "mirada",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "mismísimo": {
       "base_lemma": "mismo",
       "relation": "superlative",
@@ -649,6 +814,17 @@
       ],
       "pos": [
         "ADJ"
+      ]
+    },
+    "morenito": {
+      "base_lemma": "moreno",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "brunette"
+      ],
+      "pos": [
+        "NOUN"
       ]
     },
     "muchísimo": {
@@ -688,6 +864,14 @@
         "NOUN"
       ]
     },
+    "nietecitos": {
+      "base_lemma": "nieto",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "niñita": {
       "base_lemma": "niña",
       "relation": "diminutive",
@@ -720,6 +904,14 @@
         "NOUN"
       ]
     },
+    "noviecita": {
+      "base_lemma": "novia",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "noviecito": {
       "base_lemma": "novio",
       "relation": "diminutive",
@@ -746,6 +938,22 @@
         "NOUN"
       ]
     },
+    "panticito": {
+      "base_lemma": "panti",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
+    "parejitas": {
+      "base_lemma": "pareja",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "pasito": {
       "base_lemma": "paso",
       "relation": "diminutive",
@@ -758,6 +966,14 @@
       ],
       "pos": [
         "NOUN"
+      ]
+    },
+    "pastillita": {
+      "base_lemma": "pastilla",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "pelito": {
@@ -822,6 +1038,17 @@
       ],
       "pos": [
         "ADV",
+        "NOUN"
+      ]
+    },
+    "piquito": {
+      "base_lemma": "pico",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "evidence_glosses": [
+        "a small kiss"
+      ],
+      "pos": [
         "NOUN"
       ]
     },
@@ -905,6 +1132,14 @@
         "NOUN"
       ]
     },
+    "risitos": {
+      "base_lemma": "risa",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "ropita": {
       "base_lemma": "ropa",
       "relation": "diminutive",
@@ -948,6 +1183,14 @@
         "NOUN"
       ]
     },
+    "semillita": {
+      "base_lemma": "semilla",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
+      ]
+    },
     "señorita": {
       "base_lemma": "señora",
       "relation": "diminutive",
@@ -981,6 +1224,14 @@
       ],
       "pos": [
         "NOUN"
+      ]
+    },
+    "tanguillo": {
+      "base_lemma": "tango",
+      "relation": "diminutive",
+      "source": "suffix-only",
+      "pos": [
+        "X"
       ]
     },
     "tempranito": {
@@ -1059,6 +1310,17 @@
         "X"
       ]
     },
+    "tranquilito": {
+      "base_lemma": "tranquilo",
+      "relation": "diminutive",
+      "source": "suffix+english-gloss",
+      "shared_gloss_tokens": [
+        "calm"
+      ],
+      "pos": [
+        "ADJ"
+      ]
+    },
     "velita": {
       "base_lemma": "vela",
       "relation": "diminutive",
@@ -1072,6 +1334,11 @@
       "pos": [
         "NOUN"
       ]
+    },
+    "verdecitos": {
+      "base_lemma": "verde",
+      "relation": "diminutive",
+      "source": "suffix-only"
     },
     "vestidito": {
       "base_lemma": "vestido",

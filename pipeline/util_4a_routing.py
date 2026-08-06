@@ -48,10 +48,17 @@ def strip_clitic_pronouns(word, clitic_list=None):
 
 
 def decompose_gerund_clitic(word, known_words):
-    """Decompose a gerund+clitic form into base infinitive.
+    """Decompose a gerund+clitic or infinitive+clitic form into its infinitive.
 
     Returns (base_infinitive, is_reflexive) if decomposable, else None.
-    E.g., 'dándote' → ('dar', False), 'ahogándome' → ('ahogar', False).
+    E.g., 'dándote' → ('dar', False), 'ahogándome' → ('ahogar', False),
+    'alejarte' → ('alejar', False), 'dármelo' → ('dar', False).
+
+    Infinitive+enclitic needs no ending surgery — the enclitic is simply
+    appended ('alejar' + 'te') — but a two-clitic stack takes a written
+    accent ('dármelo'), which `_strip_acute` removes before the -ar/-er/-ir
+    test. The infinitive must exist in `known_words`, which is what keeps
+    accidental -te/-le nouns ('combate', 'animales') out.
     """
     wl = word.lower()
     remaining = wl
@@ -68,7 +75,9 @@ def decompose_gerund_clitic(word, known_words):
             break
 
     if not clitics:
-        return None
+        # The gerund stripper needs a 5+ char stem; short infinitives
+        # ('verlo', 'darte') never get past it, so hand them straight over.
+        return decompose_infinitive_clitic(word, known_words)
 
     clean = _strip_acute(remaining)
     if clean.endswith("ando"):
@@ -78,10 +87,108 @@ def decompose_gerund_clitic(word, known_words):
     elif clean.endswith("endo"):
         infinitive = clean[:-4] + "er"
     else:
-        return None
+        return decompose_infinitive_clitic(word, known_words)
 
     if infinitive in known_words:
         return (infinitive, "se" in clitics)
+    return decompose_infinitive_clitic(word, known_words)
+
+
+# Infinitives short enough to fall under `_MIN_INFINITIVE_LEN`. Without this
+# list, `darme`/`verlo` would be dropped; with a length floor alone, nouns
+# like `parte` would be mis-split into `par` + `te`.
+_SHORT_INFINITIVES = frozenset({"ir", "dar", "ver", "ser", "oir"})
+_MIN_INFINITIVE_LEN = 4
+
+# Verb evidence for the infinitive branch.
+#
+# `known_words` is the union of every known Spanish *surface form*, so mere
+# membership proves nothing about verbhood: stripping "nos" off `cuernos`
+# leaves `cuer` and "te" off `fuerte` leaves `fuer`, both of which are real
+# surface entries ending in -er, and both were merged as infinitives. The
+# candidate must instead be a verb in its own right — either a lemma with a
+# conjugation table, or tagged unambiguously as a verb by spanish_forms
+# (`fuer` is "noun,verb", so requiring an exact "verb" tag rejects it).
+#
+# Fails CLOSED: if neither source can be read the infinitive branch simply
+# does not fire, restoring the pre-existing gerund-only behaviour rather than
+# admitting the false positives this guard exists to stop.
+_verb_lemmas = None          # set of infinitives with a conjugation table
+_verb_pos = None             # {form: pos-string} from spanish_forms
+_verb_data_loaded = False
+
+
+def _load_verb_evidence(conjugations_path=None, spanish_forms_path=None):
+    """Lazily load the verb lookups the infinitive guard needs (once)."""
+    global _verb_lemmas, _verb_pos, _verb_data_loaded
+    if _verb_data_loaded:
+        return
+    _verb_data_loaded = True
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    layers = os.path.join(root, "Data", "Spanish", "layers")
+    conj = conjugations_path or os.path.join(layers, "conjugations.json")
+    forms = spanish_forms_path or os.path.join(layers, "spanish_forms.json")
+    try:
+        with open(conj, encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            _verb_lemmas = {k.lower() for k in data}
+    except (OSError, ValueError):
+        pass
+    try:
+        with open(forms, encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            _verb_pos = data
+    except (OSError, ValueError):
+        pass
+
+
+def _is_known_infinitive(candidate):
+    """True when `candidate` has real evidence of being a verb infinitive."""
+    _load_verb_evidence()
+    if _verb_lemmas and candidate in _verb_lemmas:
+        return True
+    if _verb_pos is not None:
+        # Exact match only: an ambiguous "noun,verb" tag is not evidence.
+        return str(_verb_pos.get(candidate, "")).strip().lower() == "verb"
+    return False
+
+
+def decompose_infinitive_clitic(word, known_words):
+    """Decompose an infinitive+enclitic form into its infinitive.
+
+    Returns (base_infinitive, is_reflexive) or None. E.g. 'alejarte' →
+    ('alejar', False), 'dármelo' → ('dar', False), 'ponerse' → ('poner', True).
+
+    Unlike the gerund case there is no ending to rebuild — the enclitic is
+    appended to the bare infinitive — but a two-clitic stack adds a written
+    accent ('dármelo'), so accents are stripped before the -ar/-er/-ir test.
+    Four guards keep noun lookalikes out: the infinitive must be in
+    `known_words`, must be at least `_MIN_INFINITIVE_LEN` characters (or a
+    known short infinitive), each strip must leave a real stem behind, and
+    `_is_known_infinitive` must find actual verb evidence for it — surface-form
+    membership alone admits `cuernos`→`cuer` and `fuerte`→`fuer`.
+    """
+    remaining = word.lower()
+    clitics = []
+    for _ in range(2):  # max 2 clitics (e.g. dármelo)
+        matched = False
+        for pron in _CLITIC_PRONOUNS:
+            if remaining.endswith(pron) and len(remaining) - len(pron) >= 3:
+                remaining = remaining[:-len(pron)]
+                clitics.insert(0, pron)
+                matched = True
+                break
+        if not matched:
+            break
+        candidate = _strip_acute(remaining)
+        if not candidate.endswith(("ar", "er", "ir")):
+            continue
+        if len(candidate) < _MIN_INFINITIVE_LEN and candidate not in _SHORT_INFINITIVES:
+            continue
+        if candidate in known_words and _is_known_infinitive(candidate):
+            return (candidate, "se" in clitics)
     return None
 
 
@@ -213,19 +320,25 @@ _DERIVATION_RULES = [
     ("ísimas", 3, ("as", "a")),
     ("ísimo", 3, ("o", "")),
     ("ísima", 3, ("a", "")),
-    # Diminutives: -ecito family (monosyllabic/short bases)
-    ("ecitos", 2, ("es", "s", "")),
-    ("ecitas", 2, ("as", "es", "")),
+    # Diminutives: -ecito family, singular (monosyllabic/short bases)
     ("ecito", 2, ("e", "", "o")),
     ("ecita", 2, ("a", "e", "")),
     # Diminutives: -cito family (bases ending in consonant)
-    ("citos", 3, ("es", "s", "")),
-    ("citas", 3, ("as", "s", "")),
+    # Plural diminutives list singular base endings after the plural ones: the
+    # singular lemma is often the only known form (fotitos -> foto). Gender is
+    # tried before the opposite gender (papitas -> papa, not papo).
+    ("citos", 3, ("es", "s", "", "o", "a", "e")),
+    ("citas", 3, ("as", "s", "", "a", "o", "e")),
     ("cito", 3, ("", "e", "n")),
     ("cita", 3, ("a", "", "e")),
+    # Diminutives: -ecito family, plural. Ordered after -cito so that the
+    # longer-stem -cito reading still wins where it resolves (bebecitas ->
+    # bebe, not bebo); -ecito only fires as the fallback (nietecitos -> nieto).
+    ("ecitos", 2, ("es", "s", "", "o", "a", "e")),
+    ("ecitas", 2, ("as", "es", "", "a", "o", "e")),
     # Diminutives: -ito/-ita
-    ("itos", 3, ("os", "es", "s", "")),
-    ("itas", 3, ("as", "es", "s", "")),
+    ("itos", 3, ("os", "es", "s", "", "o", "a", "e")),
+    ("itas", 3, ("as", "es", "s", "", "a", "o", "e")),
     ("ito", 3, ("o", "e", "")),
     ("ita", 3, ("a", "e", "")),
     # Diminutives: -illo/-illa

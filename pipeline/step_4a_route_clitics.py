@@ -40,9 +40,10 @@ from util_4a_routing import (  # noqa: E402
 )
 
 # Bump when routing categories, clitic detection, or output schema change.
-STEP_VERSION = 1
+STEP_VERSION = 2
 STEP_VERSION_NOTES = {
     1: "clitic_merge + clitic_keep + exclude categories + gerund decomposition",
+    2: "infinitive+enclitic decomposition (alejarte → alejar) alongside gerunds",
 }
 
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"

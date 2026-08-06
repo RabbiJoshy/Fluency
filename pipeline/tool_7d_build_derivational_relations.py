@@ -71,12 +71,16 @@ def _tokens(gloss):
 def _collect_glosses(master, normal_vocab):
     glosses = defaultdict(set)
     poses = defaultdict(set)
+    flags = defaultdict(set)
     for entry in list(master.values()) + list(normal_vocab):
         if not isinstance(entry, dict):
             continue
         lemma = (entry.get("lemma") or entry.get("word") or "").strip().lower()
         if not lemma:
             continue
+        for key in ("is_propernoun", "is_english", "is_noise", "is_interjection"):
+            if entry.get(key):
+                flags[lemma].add(key)
         senses = entry.get("senses") or entry.get("meanings") or []
         for sense in senses:
             if not isinstance(sense, dict):
@@ -87,11 +91,43 @@ def _collect_glosses(master, normal_vocab):
             pos = (sense.get("pos") or "").strip().upper()
             if pos:
                 poses[lemma].add(pos)
-    return glosses, poses
+    return glosses, poses, flags
+
+
+# Guards for the gloss-free branch (see ``_suffix_only_ok``). Without English
+# evidence the only defence against junk pairs is morphological/lexical shape.
+MIN_BASE_LENGTH = 4
+MIN_SUFFIX_GROWTH = 2
+_BAD_FLAGS = frozenset({"is_propernoun", "is_english", "is_noise", "is_interjection"})
+
+
+def _suffix_only_ok(lemma, base, poses, flags):
+    """Defensive checks for accepting a relation with no gloss evidence.
+
+    Suppresses the junk class that surfaces once the gloss gate is relaxed:
+    proper nouns (``antillas -> antes``, ``benito -> beno``), English/noise
+    tokens and over-short truncations (``digitos -> dig``).
+    """
+    if len(base) < MIN_BASE_LENGTH:
+        return False
+    if len(lemma) - len(base) < MIN_SUFFIX_GROWTH:
+        return False
+    if (flags.get(lemma) or set()) & _BAD_FLAGS:
+        return False
+    if (flags.get(base) or set()) & _BAD_FLAGS:
+        return False
+    # "X" is the placeholder POS on an unanalysed sense, not a real tag; a
+    # gloss-free derived form is usually X-only, so comparing it would reject
+    # everything.
+    derived_pos = (poses.get(lemma) or set()) - {"X"}
+    base_pos = (poses.get(base) or set()) - {"X"}
+    if derived_pos and base_pos and not (derived_pos & base_pos):
+        return False
+    return True
 
 
 def build_relations(master, normal_vocab, curation):
-    glosses, poses = _collect_glosses(master, normal_vocab)
+    glosses, poses, flags = _collect_glosses(master, normal_vocab)
     known_lemmas = set(glosses) | {
         (entry.get("lemma") or entry.get("word") or "").strip().lower()
         for entry in master.values() if isinstance(entry, dict)
@@ -114,13 +150,23 @@ def build_relations(master, normal_vocab, curation):
         shared_tokens = sorted(set().union(*(_tokens(g) for g in derived_glosses))
                                & set().union(*(_tokens(g) for g in base_glosses))) \
             if derived_glosses and base_glosses else []
+        source = "suffix+english-gloss"
         if not marker_evidence and not shared_tokens:
-            continue
+            # Split gate. "No glosses on the derived form" is not the same as
+            # "glosses that disagree". Keep the strict rejection for the latter
+            # (bolsillo/bolso, bocadillo/bocado, amarillo/amar), but let a
+            # gloss-free derived form through on suffix evidence alone when the
+            # base is glossed and the defensive checks pass.
+            if derived_glosses or not base_glosses:
+                continue
+            if not _suffix_only_ok(lemma, base, poses, flags):
+                continue
+            source = "suffix-only"
         relation = "superlative" if "isim" in _fold(lemma) else "diminutive"
         record = {
             "base_lemma": base,
             "relation": relation,
-            "source": "suffix+english-gloss",
+            "source": source,
         }
         if marker_evidence:
             record["evidence_glosses"] = marker_evidence[:3]
