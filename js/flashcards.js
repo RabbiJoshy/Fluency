@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260805m';
-import './speech.js?v=20260805m';
+import './state.js?v=20260805p';
+import './speech.js?v=20260805p';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260805m';
+} from './example-personalisation.js?v=20260805p';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -324,11 +324,6 @@ function compactMorphLabels(morphologyRows) {
     });
 }
 
-function visibleMorphTense(label, labels) {
-    const distinctTenses = new Set(labels.map(item => item.tense).filter(Boolean));
-    return label.tense === 'present' && distinctTenses.size <= 1 ? '' : label.tense;
-}
-
 const CLITIC_ROLES = {
     me: 'me / myself',
     te: 'you / yourself',
@@ -601,6 +596,41 @@ function shrinkToFit(el, minPx) {
     while (size > minPx && el.scrollWidth > el.clientWidth) {
         size -= 2;
         el.style.fontSize = size + 'px';
+    }
+    el.style.whiteSpace = prevWS;
+}
+
+// The back headword shares its line with the POS pill(s) in the top right.
+// Character count alone cannot decide whether they collide — a wide pill
+// ("preposition", or a multi-POS tab group) crowds even a short word, while
+// "noun" leaves plenty — so the headword's larger baseline is capped against
+// the width the legend actually occupies rather than guessed from length.
+// Without this the legend wrapped to a second line and the header grew.
+// Two passes: the first shrink frees width, which may let a legend that had
+// wrapped internally lay itself out narrower, so the budget is re-measured.
+function fitBackHeadword(root) {
+    const el = root?.querySelector('.back-headword');
+    const row = el?.closest('.back-headword-row');
+    if (!el || !row) return;
+    const legend = row.querySelector('.back-pos-legend');
+    if (!legend) return;
+    const minPx = 24;
+    const gapPx = 12;
+    const prevWS = el.style.whiteSpace;
+    el.style.whiteSpace = 'nowrap';
+    for (let pass = 0; pass < 2; pass++) {
+        const budget = row.clientWidth - legend.offsetWidth - gapPx;
+        // Zero/negative means the card isn't laid out yet (hidden container);
+        // leave the baseline alone rather than shrinking against a bad read.
+        if (budget <= 0) break;
+        let size = parseFloat(el.style.fontSize)
+            || parseFloat(getComputedStyle(el).fontSize);
+        if (!size) break;
+        while (size > minPx && el.scrollWidth > budget) {
+            size -= 2;
+            el.style.fontSize = size + 'px';
+        }
+        if (el.scrollWidth <= budget) break;
     }
     el.style.whiteSpace = prevWS;
 }
@@ -3197,26 +3227,55 @@ function updateCard({ announceHeadword = false } = {}) {
     // Morphology no longer occupies the card. It used to render as a permanent
     // (or toggled-in-place) strip that reflowed the header around it and needed
     // its own reveal control; now the verb POS pill is the only trigger and the
-    // grammar arrives as a popover anchored under that pill. Each analysis is
-    // one plain row — several rows when the form is genuinely ambiguous
-    // ("habla" as both indicative and imperative) — instead of per-token pills
-    // with a separate "+" expander.
+    // grammar arrives as a popover anchored under that pill.
+    //
+    // Each analysis is ONE row that owns both halves: the Spanish subject on
+    // the left, the tense/mood it belongs to on the right. Person and tense
+    // used to render as sibling pills, which read as two independent facts and
+    // made "Yo | present | imperative" ambiguous once a second analysis was
+    // listed. The tense is therefore always spelled out here — the implicit
+    // "present" shorthand is correct on the card face but destroys the pairing
+    // inside a list of competing readings. Extra complete analyses stay behind
+    // a "+" so the preferred reading is never buried.
+    const describeMorphForm = label => {
+        const mood = label.mood
+            || (label.moodCode === 'indicativo' ? 'indicative' : '');
+        return [label.tense, mood].filter(Boolean).join(' ')
+            || label.grammar
+            || 'base form';
+    };
     const renderMorphPopover = () => {
         if (!morphLabels.length) return '';
-        const rows = morphLabels.map((label, index) => {
-            const tokens = [label.person, visibleMorphTense(label, morphLabels), label.mood]
-                .filter(Boolean);
-            if (!tokens.length) return '';
-            return `<li class="morph-pop-row${index === 0 ? ' is-primary' : ''}">
-                ${tokens.map(token =>
-                    `<span class="morph-pop-token">${escapeCardText(token)}</span>`).join('')}
+        const renderRow = (label, isPrimary) => {
+            const form = describeMorphForm(label);
+            if (!label.person && !form) return null;
+            const subject = label.person
+                ? `<span class="morph-pop-subject">${escapeCardText(label.person)}</span>`
+                : '<span class="morph-pop-subject is-empty" aria-hidden="true">—</span>';
+            return `<li class="morph-pop-row${isPrimary ? ' is-primary' : ''}">
+                ${subject}
+                <span class="morph-pop-form">${escapeCardText(form)}</span>
             </li>`;
-        }).filter(Boolean).join('');
-        if (!rows) return '';
-        const heading = morphLabels.length > 1 ? 'Possible forms' : 'Form';
+        };
+        const usable = morphLabels.filter(label => renderRow(label, false));
+        if (!usable.length) return '';
+        const primary = renderRow(usable[0], true);
+        const alternatives = usable.slice(1).map(label => renderRow(label, false));
+        const altCount = alternatives.length;
+        const altBlock = altCount
+            ? `<button type="button" class="morph-pop-more" aria-expanded="false"
+                    aria-label="Show ${altCount} other possible reading${altCount > 1 ? 's' : ''}"
+                    onclick="toggleMorphAlternatives(event)">
+                    <span class="morph-pop-more-sign" aria-hidden="true">+</span>
+                    ${altCount} other reading${altCount > 1 ? 's' : ''}
+                </button>
+                <ul class="morph-pop-list morph-pop-alts" hidden>${alternatives.join('')}</ul>`
+            : '';
+        const heading = altCount ? 'Preferred reading' : 'Form';
         return `<div class="morph-popover" hidden role="dialog" aria-label="Verb morphology">
             <div class="morph-pop-title">${heading}</div>
-            <ul class="morph-pop-list">${rows}</ul>
+            <ul class="morph-pop-list">${primary}</ul>
+            ${altBlock}
         </div>`;
     };
     // Mirrors the back face: a verb pill is a press-to-reveal control for its
@@ -3412,6 +3471,15 @@ function updateCard({ announceHeadword = false } = {}) {
         backDerivationHTML = `<div class="back-derivation-line"><span>${relationLabel}</span><strong>${escapeCardText(derivation.base_lemma)}</strong></div>`;
     }
     const backWordLength = backWordText.replace(/<[^>]+>/g, '').length;
+    // Headword baseline on the back, raised from 42. The old length ramp is
+    // kept as a cheap first guess so a very long word never renders huge for
+    // one frame, but it is deliberately generous: the authoritative cap is
+    // fitBackHeadword(), which measures the room the top-right POS pill(s)
+    // actually leave and steps this down only as far as that requires.
+    const BACK_HEADWORD_MAX = 48;
+    const backHeadwordSize = backWordLength > 14
+        ? Math.max(26, BACK_HEADWORD_MAX - (backWordLength - 14) * 1.6)
+        : BACK_HEADWORD_MAX;
 
     // Build homograph chip HTML if siblings exist
     let homographChipHTML = '';
@@ -3515,7 +3583,7 @@ function updateCard({ announceHeadword = false } = {}) {
         <div class="back-header">
             <div class="flip-back-area" id="flipBackArea">
                 <div class="back-headword-row">
-                    <span class="back-headword" style="font-size: ${backWordLength > 16 ? Math.max(26, 42 - (backWordLength - 12) * 1.5) : 42}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
+                    <span class="back-headword" style="font-size: ${backHeadwordSize}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
                     ${backPosLegendHTML}
                 </div>
                 ${backGrammarHTML}
@@ -4565,6 +4633,9 @@ function updateCard({ announceHeadword = false } = {}) {
     if (backDomChanged) {
         const backEl = document.getElementById('backContent');
         if (backEl) {
+            // Cap the headword against the POS pill first: it can change the
+            // header's height, which the scroll-cap measurement below reads.
+            fitBackHeadword(backEl);
             // Two-phase: collect overflowing rows in a read-only pass, then
             // add the .is-clamped class in a separate write pass. Mixing
             // reads and writes per row would force layout flush per row;
@@ -4996,6 +5067,25 @@ function toggleMorphPopover(event) {
     }
 }
 
+// The "+" inside the morphology popover reveals the remaining complete
+// analyses. They are whole coupled rows (subject + tense/mood), never loose
+// tokens, so expanding cannot make it ambiguous which person belongs to which
+// tense. Local DOM toggle only — no re-render, and the outside-click dismiss
+// installed by toggleMorphPopover() ignores clicks inside the popover.
+function toggleMorphAlternatives(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+    const button = event?.currentTarget;
+    const list = button?.parentElement?.querySelector('.morph-pop-alts');
+    if (!list) return;
+    const opening = list.hidden;
+    list.hidden = !opening;
+    button.setAttribute('aria-expanded', String(opening));
+    button.classList.toggle('is-open', opening);
+    const sign = button.querySelector('.morph-pop-more-sign');
+    if (sign) sign.textContent = opening ? '−' : '+';
+}
+
 // The card-wide knowledge overview can jump directly to any individual item,
 // including a later Expression/clitic in a shared cycling row. Stamp the same
 // explicit-selection key as a sub-row click so updateCard() does not
@@ -5341,8 +5431,16 @@ function closeSynLeaveConfirm() {
     _synLeaveTargetUrl = null;
     const modal = document.getElementById('synLeaveConfirmModal');
     if (!modal) return;
-    modal.hidden = true;
     document.removeEventListener('keydown', _synLeaveKeydown, true);
+    // This sheet now enters from the top with the shared knowledge-overview
+    // animation, so it has to leave the same way instead of vanishing.
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { modal.hidden = true; modal.classList.remove('is-closing'); return; }
+    modal.classList.add('is-closing');
+    setTimeout(() => {
+        modal.hidden = true;
+        modal.classList.remove('is-closing');
+    }, 180);
 }
 
 function confirmLeaveForSpanishDict(word, url) {
@@ -5526,6 +5624,7 @@ window.cycleMWEBackward = cycleMWEBackward;
 window.selectMeaning = selectMeaning;
 window.selectPartOfSpeech = selectPartOfSpeech;
 window.toggleMorphPopover = toggleMorphPopover;
+window.toggleMorphAlternatives = toggleMorphAlternatives;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
@@ -5654,7 +5753,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260805m';
+const ASSET_VERSION = '20260805p';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

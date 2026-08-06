@@ -1,6 +1,6 @@
 // Spotify OAuth PKCE + Web Playback SDK for in-browser playback.
 // Key functions: spotifyLogin(), spotifyPlayTrack(trackId, positionMs), isSpotifyConnected().
-import './state.js?v=20260805m';
+import './state.js?v=20260805p';
 
 const SPOTIFY_SCOPES = 'streaming user-modify-playback-state user-read-playback-state user-read-email user-read-private';
 const _isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -305,8 +305,13 @@ async function initSpotifyPlayer() {
 
     // The only signal that audio has actually begun (a Web API 204 merely means
     // the command was accepted), so it is what clears the button's loading ring.
+    // It is also the truth for the "playing" ripple: the SDK reports pause,
+    // track end, and any externally driven change here, so the animation
+    // follows real audio rather than our own optimistic flags.
     _player.addListener('player_state_changed', (state) => {
-        if (state && state.paused === false) _endButtonLoading();
+        const playing = !!state && state.paused === false;
+        _setPlayingIndicator(playing);
+        if (playing) _endButtonLoading();
     });
 
     _player.addListener('not_ready', ({ device_id }) => {
@@ -396,7 +401,7 @@ async function spotifyPlayTrack(trackId, positionMs, options = {}) {
             } else if (_player) {
                 _player.pause();
             }
-            _isPlaying = false;
+            _setPlaying(false);
             _debugLog('Paused');
         } else {
             if (_isMobile) {
@@ -409,7 +414,7 @@ async function spotifyPlayTrack(trackId, positionMs, options = {}) {
             } else if (_player) {
                 _player.resume();
             }
-            _isPlaying = true;
+            _setPlaying(true);
             _debugLog('Resumed');
         }
         return true;
@@ -529,7 +534,7 @@ async function _playViaConnect(trackId, positionMs, token, retry = {}) {
         if (resp.status === 204 || resp.status === 202) {
             _debugLog('Connect: playing OK');
             _currentTrackId = trackId;
-            _isPlaying = true;
+            _setPlaying(true);
             return true;
         }
 
@@ -615,7 +620,7 @@ async function _playViaSdk(trackId, positionMs, token) {
         if (resp.status === 204 || resp.status === 202) {
             console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms in browser`);
             _currentTrackId = trackId;
-            _isPlaying = true;
+            _setPlaying(true);
             _sdkPlaybackActivated = true;
             return true;
         }
@@ -638,7 +643,7 @@ async function _playViaSdk(trackId, positionMs, token) {
             if (retry.status === 204 || retry.status === 202) {
                 console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms (after refresh)`);
                 _currentTrackId = trackId;
-                _isPlaying = true;
+                _setPlaying(true);
                 _sdkPlaybackActivated = true;
                 return true;
             }
@@ -660,6 +665,8 @@ async function _playViaSdk(trackId, positionMs, token) {
 
 async function spotifyPausePlayback(clearTrack = false) {
     if (!_isPlaying) {
+        // Nothing to pause, but never leave the playing ripple behind.
+        _setPlayingIndicator(false);
         if (clearTrack) _currentTrackId = null;
         return true;
     }
@@ -678,7 +685,7 @@ async function spotifyPausePlayback(clearTrack = false) {
         } else {
             return false;
         }
-        _isPlaying = false;
+        _setPlaying(false);
         if (clearTrack) _currentTrackId = null;
         return true;
     } catch (error) {
@@ -701,7 +708,7 @@ async function cancelSpotifySnippet(pause = true, clearTrack = true) {
         await spotifyPausePlayback(clearTrack);
     } else if (clearTrack) {
         _currentTrackId = null;
-        _isPlaying = false;
+        _setPlaying(false);
     }
 }
 
@@ -710,7 +717,7 @@ async function _resumeCurrentSdkTrackAt(positionMs) {
     try {
         await _player.seek(positionMs);
         await _player.resume();
-        _isPlaying = true;
+        _setPlaying(true);
         _debugLog('SDK: reused current track @' + positionMs + 'ms');
         return true;
     } catch (error) {
@@ -828,6 +835,9 @@ const AUTOPLAY_PREF_NAME = 'lyricAutoplay';
 
 let _loadingBtn = null;
 let _loadingTimer = null;
+// The button the learner last activated — remembered past _endButtonLoading()
+// so the playing indicator knows which button owns the audio.
+let _activatedBtn = null;
 let _pressTimer = null;
 let _pressFired = false;
 let _autoplayPopover = null;
@@ -837,6 +847,10 @@ function _startButtonLoading(btn) {
     if (!btn) return;
     _endButtonLoading();
     _loadingBtn = btn;
+    _activatedBtn = btn;
+    // The two states are mutually exclusive: a new tap is "starting", not
+    // "playing", so any lingering ripple goes now.
+    _setPlayingIndicator(false);
     btn.classList.add('spotify-loading');
     _loadingTimer = setTimeout(() => _endButtonLoading(), SPOTIFY_LOADING_MAX_MS);
 }
@@ -849,6 +863,36 @@ function _endButtonLoading() {
     document.querySelectorAll('.spotify-btn.spotify-loading')
         .forEach(el => el.classList.remove('spotify-loading'));
     _loadingBtn = null;
+}
+
+// --- "Audio is playing right now" indicator ---
+// Visually distinct from the loading ring (ripples radiating outward vs one
+// sweeping arc) and mutually exclusive with it. Driven only by the real
+// playback signals below, never by the tap.
+
+function _playingTargetButton() {
+    if (_loadingBtn && _loadingBtn.isConnected) return _loadingBtn;
+    if (_activatedBtn && _activatedBtn.isConnected) return _activatedBtn;
+    // Autoplay snippets never go through the loading state; when the card shows
+    // exactly one Spotify button there is no ambiguity about which one to mark.
+    const all = document.querySelectorAll('.spotify-btn');
+    return all.length === 1 ? all[0] : null;
+}
+
+function _setPlayingIndicator(on) {
+    const target = on ? _playingTargetButton() : null;
+    // Card re-renders replace button nodes, so clear by query rather than
+    // trusting a retained reference.
+    document.querySelectorAll('.spotify-btn.spotify-playing')
+        .forEach(el => { if (el !== target) el.classList.remove('spotify-playing'); });
+    if (target) target.classList.add('spotify-playing');
+}
+
+// Single writer for _isPlaying so the animation can never drift from the
+// real playback state.
+function _setPlaying(value) {
+    _isPlaying = value;
+    _setPlayingIndicator(value);
 }
 
 // Mobile Connect has no state callback, so the accepted play command is the

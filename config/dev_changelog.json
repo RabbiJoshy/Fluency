@@ -4,6 +4,36 @@
     {
       "date": "2026-08-05",
       "commit": "pending",
+      "summary": "Card typography, morphology rows, a playing animation, and a top-entering leave dialog",
+      "details": [
+        "Italic sub-senses are no longer shaved on the right — italic glyphs lean past their advance width, and every clip box was sized from that width; the fix adds a sliver of trailing space on the italic spans themselves",
+        "Headword is bigger on both faces (64→70px front, 42→48 back), with a measured step-down so a long word shrinks only as far as the POS pill actually demands",
+        "Card back's top control row lost its divider line and most of its padding; chevrons, pips and gear all grew into the reclaimed space",
+        "Morphology popover now shows one row per complete reading — Spanish subject chip paired with the tense it belongs to — instead of loose pills that left person and tense unlinked; extra readings sit behind a + control",
+        "Spotify button ripples outward while audio is actually playing, driven by real playback state, and clears on pause, track end and snippet stop",
+        "Child cards from search or synonyms get a full 44px exit button instead of a 28px ghost; POS pills step down on those cards so the two don't overlap",
+        "The leaving-Fluency confirmation now drops in from the top like the other sheets, and animates back out the same way",
+        "Card flagging: any successful flag now closes the sheet, and a failure shows the actual error instead of a generic message",
+        "Cache v207→v208 / assets 20260805n→20260805p"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "commit": "pending",
+      "summary": "See Example: rewritten for someone who has never used the app, and less chrome",
+      "details": [
+        "Every title, summary and note rewritten in plain English — no \"pipeline\", \"corpus\", \"sense\" or \"deck\"; a stranger reading it should follow how the app works",
+        "Lyrics/Speech tabs moved to the header's left edge; the \"See Example\" banner is gone — it only told you what you had just clicked",
+        "The ✕ exits the whole detour to the app rather than dropping you back on the About page you passed through",
+        "Dropped the \"Bad Bunny · front of card\" line: the tab says which deck, the card says which side",
+        "Cut the \"disambiguating context\" note and tightened the rest",
+        "Annotations are now even on both sides of the card — 5/5 on the Lyrics back, 3/3 on Speech",
+        "Cache v207→v208 / assets 20260805n→o"
+      ]
+    },
+    {
+      "date": "2026-08-05",
+      "commit": "pending",
       "summary": "Card-surface polish pass: long-press popovers, Spotify loading ring, settings split into Deck vs Learning",
       "details": [
         "Settings → Study is now two labelled groups: Deck Settings (what ends up in the deck) and Learning Settings (how cards are presented)",

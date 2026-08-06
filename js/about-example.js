@@ -235,129 +235,116 @@ const ABOUT_EXAMPLE_DECKS = [
         id: 'lyrics',
         card: 'fuego',
         tab: 'Lyrics',
-        eyebrow: 'Lyrics · Bad Bunny',
         faces: {
             back: {
-                title: 'Every meaning, and the lyric that proves it',
-                blurb: 'Most words don’t have one translation. Rather than picking a winner '
-                     + 'and hiding the rest, the card shows the split the pipeline measured — '
-                     + 'and each meaning carries a real line that uses it.',
+                title: 'What the app actually teaches you',
+                blurb: 'This is the answer side of a flashcard. Instead of giving one '
+                     + 'translation and hiding the rest, it shows every meaning the word has, '
+                     + 'how often each one is really used, and a line from a song using it.',
                 notes: [
                     {
                         side: 'left',
                         anchor: '.back-headword',
                         title: 'The word',
-                        text: 'Repeated at the top of the back so you keep your place while reading down.',
+                        text: 'Repeated at the top so you keep your place reading down.',
                     },
                     {
                         side: 'right',
                         anchor: '.back-pos-legend',
                         title: 'Part of speech',
-                        text: 'Colour-coded and consistent across the app. The same hue tints the '
-                            + 'sense rows and the highlighted word in the lyric below.',
+                        text: 'Noun, verb, adjective and so on — each with its own colour. The '
+                            + 'same colour tints the rows below and the word in the lyric.',
                     },
                     {
                         side: 'left',
                         anchor: '.meanings-scroll .meaning-row:nth-child(1)',
-                        title: 'The dominant sense',
-                        text: '“fire” accounts for roughly 70% of the times this word is used across '
-                            + 'the catalogue. The highlighted row is the one currently selected.',
+                        title: 'Its most common meaning',
+                        text: '“fire” is how this word is used about 70% of the time across his '
+                            + 'songs. The highlighted row is the one you’re looking at.',
                     },
                     {
                         side: 'left',
                         anchor: '.meanings-scroll .meaning-row:nth-child(2)',
-                        title: 'The other senses',
-                        text: 'Tap any row to switch to it — the lyric below changes to one where '
-                            + 'that meaning is the one being used. Try “light”.',
+                        title: 'Its other meanings',
+                        text: 'Tap one to switch. The lyric underneath changes to a line where '
+                            + 'that meaning is the one being used.',
                         interactive: true,
-                    },
-                    {
-                        side: 'left',
-                        anchor: '.meaning-context',
-                        title: 'Disambiguating context',
-                        text: 'Where two senses share a translation, the dictionary context that '
-                            + 'separates them is shown alongside it.',
                     },
                     {
                         side: 'right',
                         anchor: '.about-example-pct',
-                        title: 'The share',
-                        text: 'Worked out by classifying every line in the catalogue that contains '
-                            + 'the word, so it reflects this artist’s usage rather than a general '
-                            + 'dictionary ordering.',
+                        title: 'How often each is used',
+                        text: 'Every line in his songs containing this word was read and sorted '
+                            + 'by meaning, so these are his real proportions — not a dictionary’s '
+                            + 'ordering.',
                     },
                     {
                         side: 'right',
                         anchor: '.example-word-highlight',
-                        title: 'The word in context',
-                        text: 'Highlighted inside the line so you can see the shape it takes in real '
-                            + 'use, including any inflected or elided form.',
+                        title: 'The word in a real line',
+                        text: 'Marked inside the lyric, in whatever form it takes there.',
                     },
                     {
-                        side: 'right',
+                        side: 'left',
                         anchor: '.translation',
-                        title: 'The line, translated',
-                        text: 'Underneath, so the meaning of the whole line is available without '
-                            + 'leaving the card.',
+                        title: 'The line in English',
+                        text: 'So the whole lyric makes sense without looking anything up.',
                     },
                     {
                         side: 'left',
                         anchor: '.example-song-credit',
-                        title: 'The source',
-                        text: 'The track the line comes from, plus featured vocalists where the line '
-                            + 'isn’t sung by the lead artist.',
+                        title: 'Which song it’s from',
+                        text: 'Plus any guest artist singing that line.',
                     },
                     {
                         side: 'right',
                         anchor: '.spotify-btn',
-                        title: 'Play it — for real',
-                        text: 'This button is live. It plays the track in your own Spotify, seeked to '
-                            + 'the exact moment the line is sung. You’ll be asked to connect Spotify '
-                            + 'the first time; Premium is required for in-app playback.',
+                        title: 'Play it — really',
+                        text: 'A working button. It plays the song in your own Spotify, starting '
+                            + 'at the second that line is sung. Spotify Premium required.',
                         interactive: true,
                     },
                     {
                         side: 'right',
                         anchor: '.example-counter-group',
-                        title: 'More evidence',
-                        text: 'Where a sense has several lines, tap the lyric itself to cycle through '
-                            + 'them. Seeing the same word in three different songs beats seeing it once.',
+                        title: 'More than one example',
+                        text: 'Where a meaning turns up in several songs, tap the lyric to move '
+                            + 'through them.',
                         interactive: true,
                     },
                 ],
             },
             front: {
-                title: 'The front: one word, and why it’s here',
-                blurb: 'Cards are ordered by how often the word actually appears in the catalogue, '
-                     + 'so the front carries the evidence for its position in the deck.',
+                title: 'The question side',
+                blurb: 'You see the word on its own and try to recall it. The two figures '
+                     + 'underneath say how common it is, which is how the app decides the order '
+                     + 'you meet words in.',
                 notes: [
                     {
                         side: 'left',
                         anchor: '.card-word',
                         title: 'The word',
-                        text: 'On its own. Try to recall the meaning before flipping back — that '
-                            + 'retrieval attempt is the part that makes it stick.',
+                        text: 'Try to recall what it means before turning the card over. The '
+                            + 'effort of remembering is what makes it stick.',
                     },
                     {
                         side: 'left',
                         anchor: '.card-rank-label',
-                        title: 'Vocabulary rank',
-                        text: '363rd most frequent word in the artist’s catalogue. Rank is the deck’s '
-                            + 'ordering — you meet high-frequency words first because they pay off first.',
+                        title: 'How common it is',
+                        text: 'The 363rd most-used word across his songs. Words are taught in '
+                            + 'that order — the ones you’ll hear most, first.',
                     },
                     {
                         side: 'right',
                         anchor: '.card-pos-list',
                         title: 'Part of speech',
-                        text: 'The same pill as the back, in the same colour, in the card’s top-right '
-                            + 'corner on both faces.',
+                        text: 'Same label, same colour, same corner on both sides of the card.',
                     },
                     {
                         side: 'right',
                         anchor: '.card-freq-label',
-                        title: 'Lyric lines',
-                        text: 'How many lines across the catalogue contain this word. In Speech mode '
-                            + 'this is replaced by frequency per million subtitle words.',
+                        title: 'How much evidence there is',
+                        text: 'The number of lines in his songs that use this word.',
                     },
                 ],
             },
@@ -368,89 +355,88 @@ const ABOUT_EXAMPLE_DECKS = [
         id: 'speech',
         card: 'aunque',
         tab: 'Speech',
-        eyebrow: 'Speech',
         faces: {
             back: {
-                title: 'Same card, different corpus',
-                blurb: 'Speech decks are built the same way, from subtitle dialogue rather than '
-                     + 'lyrics. The anatomy is identical — only where the examples come from changes.',
+                title: 'The same card, built from film and TV dialogue',
+                blurb: 'Not everyone wants to learn from music. The other set of cards is built '
+                     + 'from subtitles instead, and works identically — only the example '
+                     + 'sentences come from somewhere else.',
                 notes: [
                     {
                         side: 'left',
                         anchor: '.back-headword',
-                        title: 'A function word, up front',
-                        text: 'Themed courses bury words like <em>aunque</em> behind vocabulary about '
-                            + 'food and travel. Ordering by frequency brings it forward, because it’s '
-                            + 'how ideas get joined together.',
+                        title: 'A small connecting word',
+                        text: 'Courses built around topics — food, travel, the airport — leave '
+                            + 'words like <em>aunque</em> until late. Teaching by how common a '
+                            + 'word is puts it early, because it’s how sentences get joined '
+                            + 'together.',
                     },
                     {
                         side: 'left',
                         anchor: '.meanings-scroll',
                         title: 'Three ways to translate it',
-                        text: 'Roughly 50% <em>even though</em>, 30% <em>although</em>, 20% '
-                            + '<em>even if</em> — each with a sentence where that reading is the one '
-                            + 'that fits. Tap a row to see its example.',
+                        text: 'About 50% <em>even though</em>, 30% <em>although</em>, 20% '
+                            + '<em>even if</em> — each with a sentence where that reading is the '
+                            + 'right one.',
                         interactive: true,
-                    },
-                    {
-                        side: 'right',
-                        anchor: '.about-example-pct',
-                        title: 'The same shares',
-                        text: 'Measured the same way, over subtitle lines instead of lyric lines.',
-                    },
-                    {
-                        side: 'right',
-                        anchor: '.example-word-highlight',
-                        title: 'The same highlighting',
-                        text: 'The studied word is marked inside the sentence exactly as it is on a '
-                            + 'lyric card.',
                     },
                     {
                         side: 'left',
                         anchor: '.example-song-credit',
-                        title: 'Subtitle sourcing',
-                        text: 'No track credit here: the line comes from OpenSubtitles or Tatoeba, '
-                            + 'chosen to sit near your current level so a rare word isn’t hidden '
-                            + 'inside a rarer sentence.',
+                        title: 'Where the sentence is from',
+                        text: 'No song here. Lines come from film and TV subtitles, picked to sit '
+                            + 'near your level so a hard word isn’t buried in a harder sentence.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.about-example-pct',
+                        title: 'The same proportions',
+                        text: 'Measured the same way, over lines of dialogue instead of lyrics.',
+                    },
+                    {
+                        side: 'right',
+                        anchor: '.example-word-highlight',
+                        title: 'The same marking',
+                        text: 'The word you’re learning is highlighted inside the sentence, '
+                            + 'exactly as on a song card.',
                     },
                     {
                         side: 'right',
                         anchor: '.sentence',
-                        title: 'Everything else is identical',
-                        text: 'Same sense rows, same flip, same tap-to-cycle. Learn the card once and '
-                            + 'both decks read the same way.',
+                        title: 'Everything else is the same',
+                        text: 'Same rows, same flip, same tap for another example.',
                     },
                 ],
             },
             front: {
-                title: 'The front, in Speech mode',
-                blurb: 'Identical to a Lyrics card, with one substitution: the corpus statistic.',
+                title: 'The question side, away from music',
+                blurb: 'Identical to a song card, with one number swapped.',
                 notes: [
                     {
                         side: 'left',
                         anchor: '.card-word',
                         title: 'The word',
-                        text: 'Same prompt, same recall attempt, whichever deck you are in.',
+                        text: 'The same prompt, whichever set of cards you’re in.',
                     },
                     {
                         side: 'left',
                         anchor: '.card-rank-label',
-                        title: 'Vocabulary rank',
-                        text: '429th most frequent word in Spanish subtitle dialogue — which is why '
-                            + 'you meet it long before most themed courses would introduce it.',
+                        title: 'How common it is',
+                        text: 'The 429th most-used word in Spanish film and TV dialogue — far '
+                            + 'earlier than a topic-based course would reach it.',
                     },
                     {
                         side: 'right',
                         anchor: '.card-pos-list',
                         title: 'Part of speech',
-                        text: 'Conjunctions get their own colour, as every part of speech does.',
+                        text: 'Connecting words get their own colour, as every type does.',
                     },
                     {
                         side: 'right',
                         anchor: '.card-freq-label',
-                        title: 'Frequency, not line count',
-                        text: 'Occurrences per million subtitle words. This is the statistic that '
-                            + 'replaces “lyric lines” outside artist decks.',
+                        title: 'The figure that changes',
+                        text: 'How often it appears per million words of dialogue. On a song card '
+                            + 'this slot counts lyric lines instead.',
                     },
                 ],
             },
@@ -866,12 +852,14 @@ function setActiveNote(index) {
 }
 
 function renderFaceCopy() {
-    const deck = currentDeck();
     const face = currentFace();
     const host = document.getElementById('aboutExampleIntro');
     if (!host) return;
+    // No "Lyrics · Bad Bunny · back of card" line. The tab already says which
+    // deck, and the card in front of you already says which side you are
+    // looking at; restating both costs a row of vertical space and tells the
+    // reader nothing they can't see.
     host.innerHTML = `
-        <div class="about-example-eyebrow">${esc(deck.eyebrow)} · ${state.flipped ? 'back of card' : 'front of card'}</div>
         <h3 class="about-example-title">${face.title}</h3>
         <p class="about-example-blurb">${face.blurb}</p>`;
 }
@@ -972,6 +960,10 @@ function openAboutExample(deckIndex = 0) {
     }
 }
 
+// The ✕ is an exit from the whole detour, not one step back up a stack of
+// modals. Someone who has read the walkthrough wants the app, not the About
+// page they passed through to get here — so close both. For a logged-out
+// visitor that lands on the sign-in screen, which is still the way in.
 function closeAboutExample() {
     const modal = document.getElementById('aboutExampleModal');
     if (!modal) return;
@@ -981,6 +973,9 @@ function closeAboutExample() {
     if (_resizeHandler) {
         window.removeEventListener('resize', _resizeHandler);
         _resizeHandler = null;
+    }
+    if (typeof window.hideAboutProjectModal === 'function') {
+        window.hideAboutProjectModal();
     }
 }
 

@@ -1363,6 +1363,9 @@ function showFlagMenu() {
 }
 
 function hideFlagMenu() {
+    // Drop any pending auto-close so it can't fire onto a sheet the learner has
+    // already reopened.
+    if (_simpleFlagCloseTimer) { clearTimeout(_simpleFlagCloseTimer); _simpleFlagCloseTimer = null; }
     const pop = document.getElementById('flagMenu');
     if (!pop) return;
     pop.hidden = true;
@@ -1515,32 +1518,12 @@ function flagMenuConfirm() {
     const pop = document.getElementById('flagMenu');
     if (!pop) return;
     const closeBtn = document.getElementById('flagMenuClose');
-    const confirmBtn = document.getElementById('flagMenuConfirm');
     const content = document.getElementById('flagMenuContent');
-    const note = document.getElementById('flagMenuNote');
-    const noteBack = document.getElementById('flagMenuNoteBack');
-    const noteSend = document.getElementById('flagMenuNoteSend');
+    // The target/category matrix that used to live in this sheet is gone from
+    // the markup; only the close/backdrop/Escape controls below are still real.
+    // Its confirm/note-send/note-back bindings were no-ops against a DOM that no
+    // longer has those ids, so they are not re-registered here.
     if (closeBtn) closeBtn.addEventListener('click', hideFlagMenu);
-    if (confirmBtn) confirmBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        flagMenuConfirm();
-    });
-    if (noteBack) noteBack.addEventListener('click', () => {
-        _flagTarget = 'pairing';
-        _flagCategory = 'matching';
-        const noteSection = document.getElementById('flagMenuNoteSection');
-        if (noteSection) noteSection.open = false;
-        _renderFlagMenu();
-        document.getElementById('flagMenuQuickSection')?.scrollIntoView({ block: 'start' });
-    });
-    if (noteSend) noteSend.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (!note?.value.trim()) return;
-        flagMenuConfirm();
-    });
-    if (note) {
-        note.addEventListener('input', _updateFlagConfirmState);
-    }
     document.addEventListener('click', (e) => {
         if (pop.hidden) return;
         if (content && content.contains(e.target)) return;
@@ -1704,10 +1687,16 @@ async function _sendSimpleFlag(target, options = {}) {
             pairing: 'Sense–meaning pairing flag sent.', card: 'Whole-card flag sent.'
         };
         _simpleFlagStatus(labels[target] || 'Flag sent.');
+        // Every successful flag ends the interaction — the sheet closes itself
+        // once the confirmation has been on screen long enough to read.
+        if (_simpleFlagCloseTimer) clearTimeout(_simpleFlagCloseTimer);
+        _simpleFlagCloseTimer = setTimeout(hideFlagMenu, 900);
         return true;
     } catch (error) {
         console.error('Could not save audit flag', error);
-        _simpleFlagStatus('This flag could not be saved. Please try again.', true);
+        // Surface the real reason: a silent failure here is indistinguishable
+        // from the sheet being broken.
+        _simpleFlagStatus(`Could not save this flag — ${error?.message || error}`, true);
         return false;
     } finally {
         _simpleFlagBusy = false;
@@ -1784,11 +1773,9 @@ function showSimpleFlagMenu() {
         if (button) _sendSimpleFlag('pairing', { meaningIndex: Number(button.dataset.flagSense) });
         else if (posButton) _sendSimpleFlag('sense-pos', { meaningIndex: Number(posButton.dataset.flagSensePos) });
     });
-    document.getElementById('flagWholeCard')?.addEventListener('click', async () => {
-        if (await _sendSimpleFlag('card')) {
-            _simpleFlagCloseTimer = setTimeout(hideFlagMenu, 1100);
-        }
-    });
+    // _sendSimpleFlag() owns the close for every target now, so this only needs
+    // to raise the flag.
+    document.getElementById('flagWholeCard')?.addEventListener('click', () => _sendSimpleFlag('card'));
 })();
 
 window.showFlagMenu = showSimpleFlagMenu;

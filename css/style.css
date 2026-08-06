@@ -207,28 +207,41 @@
             display: none;
         }
 
-        /* X button shown when browsing a card via search/synonym/lyric jump */
+        /* X button shown when browsing a card via search/synonym/lyric jump.
+           This is the only way back out of a child card, so it is a full
+           44x44 touch target — the old 28px disc was below the minimum and
+           easy to miss on a phone — and it is legible rather than ghosted. */
         .stacked-exit-btn {
             display: none;
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 10px;
+            right: 10px;
             z-index: 6;
-            width: 28px;
-            height: 28px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            min-height: 44px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            color: rgba(255, 255, 255, 0.78);
             cursor: pointer;
             align-items: center;
             justify-content: center;
             padding: 0;
-            transition: background 0.15s, color 0.15s;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.15s, color 0.15s, transform 0.12s;
         }
         .stacked-exit-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.24);
+            color: #fff;
+        }
+        .stacked-exit-btn:active {
+            transform: scale(0.94);
+        }
+        .stacked-exit-btn:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.75);
+            outline-offset: 2px;
         }
         .card.is-stacked .stacked-exit-btn {
             display: flex;
@@ -1800,14 +1813,18 @@
         #deckProgressTrack {
             display: none;
         }
+        /* Top control row. The hairline divider and the 6px inset were both
+           spending height on nothing: the strip already has its own outline,
+           so it reads as a separate band without a rule under it. The height
+           they freed goes straight into the controls (see .cbs-strip /
+           .cbs-chevron / .cbs-gear stretching to fill this row). */
         .card-back-scrubber {
             display: flex;
             align-items: center;
             gap: 6px;
             height: 52px;
-            padding: 6px;
+            padding: 1px 2px;
             box-sizing: border-box;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
             transition: opacity 0.2s;
             z-index: 12;
         }
@@ -1820,7 +1837,11 @@
             display: flex;
             align-items: center;
             flex: 1;
-            height: 52px;
+            /* Fill whatever the row leaves rather than a fixed 52px. Capped so
+               the taller mobile rail (74px) doesn't stretch the controls into
+               a slab. */
+            height: 100%;
+            max-height: 62px;
             gap: 4px;
             padding: 0 3px;
             box-sizing: border-box;
@@ -1830,14 +1851,17 @@
         }
 
         .cbs-chevron {
-            flex: 0 0 44px;
-            width: 44px;
-            height: 44px;
+            flex: 0 0 50px;
+            width: 50px;
+            /* Stretch to the strip's inner height instead of a fixed 44px —
+               the reclaimed divider/padding space becomes tap target. */
+            height: calc(100% - 6px);
+            min-height: 44px;
             border-radius: 10px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             line-height: 1;
             cursor: pointer;
             transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
@@ -1859,7 +1883,8 @@
             display: flex;
             align-items: center;
             flex: 1;
-            height: 44px;
+            height: calc(100% - 6px);
+            min-height: 44px;
             gap: 3px;
             touch-action: none;
             cursor: pointer;
@@ -1868,7 +1893,7 @@
         .cbp-pip {
             flex: 1 1 0;
             min-width: 0;
-            height: 22px;
+            height: 26px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.15);
             display: inline-flex;
@@ -1883,9 +1908,9 @@
             background: rgba(255, 255, 255, 0.4);
         }
         .cbp-pip.is-current {
-            flex: 0 0 30px;
-            width: 30px;
-            height: 30px;
+            flex: 0 0 34px;
+            width: 34px;
+            height: 34px;
             background: #ffffff;
             box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.22);
             color: #1a1f26;
@@ -1899,9 +1924,11 @@
         }
 
         .cbs-gear {
-            flex: 0 0 48px;
-            width: 48px;
-            height: 48px;
+            flex: 0 0 56px;
+            width: 56px;
+            /* Matches .cbs-strip so the two sit on the same top/bottom line. */
+            height: 100%;
+            max-height: 62px;
             border-radius: 11px;
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid rgba(255, 255, 255, 0.16);
@@ -1911,8 +1938,8 @@
             color: rgba(255, 255, 255, 0.85);
         }
         .cbs-gear svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
         }
 
         /* Redundant on every breakpoint now — swiping already means grade,
@@ -2435,6 +2462,8 @@
             font-size: var(--row-secondary-size, 15px);
             font-style: italic;
             font-weight: 550;
+            /* Same italic overhang reservation as .meaning-context. */
+            padding-inline-end: 0.16em;
         }
 
         /* `.card-details strong` appears later in this stylesheet and uses
@@ -2452,6 +2481,8 @@
             font-style: italic;
             font-weight: 500;
             line-height: 1.25;
+            /* Same italic overhang reservation as .meaning-context. */
+            padding-inline-end: 0.16em;
         }
 
         /* Content-aware typography: short rows fill the available card width
@@ -2542,6 +2573,15 @@
             font-weight: 400;
             opacity: 0.6;
             font-style: italic;
+            /* Italic glyphs lean past their advance width, but every box that
+               clips this text is measured from that advance width: the 3-line
+               `-webkit-box` clamp on .meaning-row-translation (overflow:hidden),
+               the sub-sense cells' own overflow:hidden, and the max-content
+               grid tracks they sit in. The result was a ~2-3px shave off the
+               last italic character on the right edge. Reserving a sliver of
+               trailing inline space puts the overhang inside every one of
+               those boxes. Inline padding, so no row height changes. */
+            padding-inline-end: 0.16em;
         }
 
         .meaning-context .ctx-expand {
@@ -2585,7 +2625,10 @@
 
         .card-word {
             font-family: var(--font-emphasis);
-            font-size: 64px;
+            /* Headword baseline, front face. shrinkToFit() below still steps
+               long prompts down to one line, so raising the ceiling only
+               affects words that already had room to spare. */
+            font-size: 70px;
             font-weight: 700;
             margin-bottom: 8px;
             color: #fff;
@@ -2603,7 +2646,7 @@
 
         .card-lemma {
             font-family: var(--font-reading);
-            font-size: 32px;
+            font-size: 35px;
             color: color-mix(in srgb, rgb(var(--card-pos-rgb, var(--accent-primary-rgb))) 64%, var(--text-primary));
             text-align: center;
             margin-bottom: 10px;
@@ -2696,6 +2739,17 @@
                 right: 20px;
             }
         }
+        /* On a child card (search/synonym/lyric jump) the 44px exit disc owns
+           this corner, so the POS pills drop below it rather than underneath
+           it. Ordinary cards have no exit button and keep the higher position. */
+        .card.is-stacked .card-pos-list {
+            top: 62px;
+        }
+        @media (max-width: 767px) {
+            .card.is-stacked .card-pos-list {
+                top: 58px;
+            }
+        }
         .card-pos-list .card-pos {
             margin-bottom: 0;
             /* Same scale as the back legend's pills, which are 10% up on the
@@ -2745,7 +2799,7 @@
             right: 0;
             z-index: 30;
             min-width: max-content;
-            max-width: 240px;
+            max-width: 288px;
             padding: 10px 12px;
             background: #1b232e;
             border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
@@ -2772,25 +2826,71 @@
             padding: 0;
             list-style: none;
         }
+        /* One row = one complete analysis. The subject chip and the tense it
+           belongs to are bound inside a single bordered row, so two competing
+           readings can never be misread as four independent pills. */
         .morph-pop-row {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            padding: 5px 7px;
+            border: 1px solid color-mix(in srgb, currentColor 26%, transparent);
+            border-radius: 10px;
+            background: color-mix(in srgb, currentColor 7%, transparent);
         }
-        /* Every listed analysis is real; the first is only the preferred one,
-           so the others are dimmed rather than hidden behind another control. */
-        .morph-pop-row:not(.is-primary) {
-            opacity: 0.62;
+        .morph-pop-row.is-primary {
+            border-color: color-mix(in srgb, currentColor 48%, transparent);
+            background: color-mix(in srgb, currentColor 13%, transparent);
         }
-        .morph-pop-token {
+        .morph-pop-subject {
+            flex: 0 0 auto;
             padding: 4px 9px;
             border: 1px solid color-mix(in srgb, currentColor 42%, transparent);
             border-radius: 999px;
-            background: color-mix(in srgb, currentColor 15%, transparent);
+            background: color-mix(in srgb, currentColor 18%, transparent);
             color: #fff;
             font: 600 13px/1 var(--font-reading);
             white-space: nowrap;
+        }
+        .morph-pop-subject.is-empty {
+            opacity: 0.45;
+        }
+        .morph-pop-form {
+            flex: 1 1 auto;
+            color: #fff;
+            font: 500 13px/1.2 var(--font-reading);
+        }
+        /* The preferred reading stays first and undimmed; the rest live behind
+           this "+" instead of competing with it. */
+        .morph-pop-more {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            margin-top: 7px;
+            padding: 6px 8px;
+            border: 1px dashed color-mix(in srgb, currentColor 40%, transparent);
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-muted);
+            font: 600 11px/1 var(--font-data);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .morph-pop-more-sign {
+            font: 700 14px/1 var(--font-data);
+            color: #fff;
+        }
+        .morph-pop-more.is-open {
+            border-style: solid;
+        }
+        .morph-pop-alts {
+            margin-top: 6px;
+        }
+        .morph-pop-alts[hidden] {
+            display: none;
         }
         @keyframes morph-popover-in {
             from { opacity: 0; transform: translateY(-6px) scale(0.96); }
@@ -5073,19 +5173,20 @@
         }
         /* The knowledge overview is a TOP sheet: it hangs from the top edge and
            drops down, and it leaves the same way. The syn-leave confirmation
-           borrows this chrome but stays centred, hence the :not() scoping. */
-        .knowledge-overview-modal:not(.syn-leave-modal) {
+           borrows this chrome and now shares the same top entrance, so every
+           sheet built on it arrives from the same edge. */
+        .knowledge-overview-modal {
             place-items: start center;
             padding-top: max(20px, env(safe-area-inset-top));
         }
-        .knowledge-overview-modal:not(.syn-leave-modal) .knowledge-overview-sheet {
+        .knowledge-overview-modal .knowledge-overview-sheet {
             animation: knowledgeOverviewDropIn 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
         }
-        .knowledge-overview-modal:not(.syn-leave-modal).is-closing {
+        .knowledge-overview-modal.is-closing {
             animation: knowledgeOverviewBackdropOut 170ms linear both;
             pointer-events: none;
         }
-        .knowledge-overview-modal:not(.syn-leave-modal).is-closing .knowledge-overview-sheet {
+        .knowledge-overview-modal.is-closing .knowledge-overview-sheet {
             animation: knowledgeOverviewDropOut 170ms cubic-bezier(0.4, 0, 1, 1) both;
         }
         @keyframes knowledgeOverviewDropIn {
@@ -5109,10 +5210,10 @@
             to { opacity: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .knowledge-overview-modal:not(.syn-leave-modal),
-            .knowledge-overview-modal:not(.syn-leave-modal).is-closing,
-            .knowledge-overview-modal:not(.syn-leave-modal) .knowledge-overview-sheet,
-            .knowledge-overview-modal:not(.syn-leave-modal).is-closing .knowledge-overview-sheet {
+            .knowledge-overview-modal,
+            .knowledge-overview-modal.is-closing,
+            .knowledge-overview-modal .knowledge-overview-sheet,
+            .knowledge-overview-modal.is-closing .knowledge-overview-sheet {
                 animation: none;
             }
         }
@@ -5334,7 +5435,10 @@
                 margin-left: 15px;
             }
             /* Top sheet on mobile: flush to the top edge, rounded on the
-               bottom, entering and leaving through the top edge. */
+               bottom, entering and leaving through the top edge. The syn-leave
+               confirmation is a short dialog, not an inventory, so it keeps the
+               compact drop-in from the shared block above rather than becoming
+               a full-bleed sheet. */
             .knowledge-overview-modal:not(.syn-leave-modal) {
                 place-items: start center;
                 padding: 0;
@@ -6951,6 +7055,48 @@
             @keyframes spotify-loading-pulse {
                 from { opacity: 0.25; }
                 to { opacity: 1; }
+            }
+        }
+
+        /* Steady "audio is playing right now" state. Deliberately a different
+           idiom from the loading ring above: instead of one arc sweeping around
+           the circle, concentric rings ripple outward from the logo's edge —
+           the standard sound-radiating visualisation. Two pseudo-elements run
+           the same 1.7s ripple half a cycle apart, so at 54px there is always
+           one ring mid-flight and the pair reads as sound rather than as a
+           spinner. The logo itself never scales or moves.
+           :not(.spotify-loading) keeps the two states mutually exclusive in CSS
+           as well as in spotify.js, so ::after can never be claimed by both. */
+        .spotify-btn.spotify-playing:not(.spotify-loading)::before,
+        .spotify-btn.spotify-playing:not(.spotify-loading)::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 50%;
+            border: 2px solid rgba(29, 185, 84, 0.85);
+            opacity: 0;
+            pointer-events: none;
+            animation: spotify-playing-ripple 1.7s cubic-bezier(0.22, 0.6, 0.35, 1) infinite;
+        }
+        .spotify-btn.spotify-playing:not(.spotify-loading)::after {
+            animation-delay: 0.85s;
+        }
+        @keyframes spotify-playing-ripple {
+            0% { transform: scale(0.94); opacity: 0; }
+            15% { opacity: 0.9; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        /* Reduced motion: keep the meaning (a green ring = playing), drop the
+           travel — one static ring, second element suppressed. */
+        @media (prefers-reduced-motion: reduce) {
+            .spotify-btn.spotify-playing:not(.spotify-loading)::before {
+                animation: none;
+                transform: none;
+                opacity: 0.9;
+            }
+            .spotify-btn.spotify-playing:not(.spotify-loading)::after {
+                animation: none;
+                opacity: 0;
             }
         }
 
@@ -11052,7 +11198,7 @@
             }
 
             .card-word {
-                font-size: 48px;
+                font-size: 54px;
             }
 
             .action-btn {
@@ -11504,29 +11650,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 16px 20px;
+    padding: 10px 16px;
     border-bottom: 1px solid var(--border-color);
     background: var(--bg-secondary);
     flex: 0 0 auto;
-}
-
-.about-example-header-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-}
-
-.about-example-kicker {
-    font-family: var(--font-emphasis);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.about-example-sub {
-    font-size: 12px;
-    color: var(--text-muted);
 }
 
 .about-example-close {
@@ -11536,7 +11663,7 @@
 
 .about-example-body {
     flex: 1 1 auto;
-    padding: 22px 24px 30px;
+    padding: 16px 24px 26px;
     overflow-y: auto;
     overscroll-behavior: contain;
 }
@@ -11544,8 +11671,8 @@
 /* Face copy sits above the card, centred, because it describes the whole
    face rather than either column of notes. */
 .about-example-intro {
-    max-width: 720px;
-    margin: 0 auto 22px;
+    max-width: 760px;
+    margin: 0 auto 16px;
     text-align: center;
 }
 
@@ -11627,13 +11754,14 @@
 /* The back's flex column, its scroll region and its sentence row are shared
    with the live card via the widened `#backContent, .about-example-card-inner
    .card-details` selectors above — nothing about that layout is restated here.
-   The one genuine difference: the replica has no `.links-section`, and that row
-   is what normally carries `margin-top: auto` and pins the lower block to the
-   bottom of the card. Hand that job to the sentence so the example still sits
-   where a learner expects to find it. */
-.about-example-card-inner .card-details > .sentence {
-    margin-top: auto;
-}
+
+   The replica has no `.links-section`, the row that normally carries
+   `margin-top: auto` and pushes everything below the senses to the foot of the
+   card. That job is deliberately NOT reassigned to the sentence: on a live card
+   the gap is filled by the links row, but here it would be empty space holding
+   the lyric away from the meaning it belongs to. The lyric is evidence for the
+   selected sense, so it reads directly beneath it and the slack falls to the
+   bottom of the card instead. */
 
 /* Live cards leave the ranking pinned to the card's lower edge; keep that,
    but stop it colliding with the flip hint below it. */
@@ -11723,29 +11851,20 @@
     justify-self: start;
 }
 
-.about-example-eyebrow {
-    font-family: var(--font-data);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-primary);
-    margin-bottom: 6px;
-}
-
 .about-example-title {
     font-family: var(--font-emphasis);
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 10px;
+    margin: 0 0 6px;
     line-height: 1.2;
 }
 
 .about-example-blurb {
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14.5px;
+    line-height: 1.55;
     color: var(--text-muted);
-    margin: 0 0 20px;
+    margin: 0;
 }
 
 .about-example-note-list {
