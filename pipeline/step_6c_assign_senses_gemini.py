@@ -75,6 +75,109 @@ def _format_sense_line(idx, label, sense):
     return base
 
 
+def _format_example_line(idx, ex, indent="  "):
+    """Format one example line for a Gemini prompt.
+
+    Shape: ``  1. [VERB] Mira dónde yo estoy  |  Look where I am``
+
+    The ``[POS]`` tag comes from ``example_pos.json`` (per-example spaCy tag,
+    stamped onto the example dict in ``main()``). It is deliberately a HINT,
+    never a filter — the full menu is still shown so the model can override a
+    wrong tag. Degrades to the old untagged shape when ``pos`` is absent.
+    """
+    spa = ex.get("spanish") or ex.get("target") or ""
+    eng = ex.get("english") or ""
+    pos = str(ex.get("pos") or "").strip().upper()
+    tag = "[%s] " % pos if pos else ""
+    line = "%s%d. %s%s" % (indent, idx, tag, spa)
+    if eng:
+        line += "  |  " + eng
+    return line
+
+
+# ---------------------------------------------------------------------------
+# Shared prompt blocks
+# ---------------------------------------------------------------------------
+# These three blocks encode the anti-over-translation contract and are reused
+# verbatim by every prompt in this file (classify-or-propose, single gap-fill,
+# batch gap-fill) so the paths cannot drift apart.
+#
+# Background (2026-08-07 rewrite): Gemini was rendering the sense of the CLAUSE
+# or what the phrase REFERS TO instead of translating the headword, and was
+# inventing senses even when the SpanishDict menu already carried a correct one
+# (culito "ass" → shipped "young women"; andar "to hang out with" → shipped
+# "to be on the loose"; subir "to raise" → shipped "to become outdated"). The
+# fix is ordering (menu first, free-form reading never), an explicit
+# word-not-clause rule with worked negatives, and a justification requirement
+# before any off-menu proposal.
+
+GLOSS_RULE_BLOCK = (
+    "TRANSLATE THE WORD, NOT THE LINE.\n"
+    "A gloss is an English translation of the headword itself — what a"
+    " bilingual dictionary prints next to it. It is NOT a description of what"
+    " the line is about, who it refers to, or what it implies. The line can be"
+    " about anything; the WORD still means what it means.\n"
+    "  \"Los culito' y los culote'\"  ->  culito = \"ass\"."
+    " NOT \"young women\" — the line refers to women, but that is the"
+    " referent of the phrase, not a translation of culito.\n"
+    "  \"Sube ese culo y to's comentan\"  ->  subir = \"to raise\" / \"to go"
+    " up\". NOT \"to become outdated\".\n"
+    "  \"el punto y los saco'\"  ->  sacar = \"to take out\". NOT \"to"
+    " ejaculate\".\n"
+    "  \"Anda con la amiga siempre arrebatá'\"  ->  andar (con) = \"to hang"
+    " out with\". NOT \"to be on the loose\".\n"
+    "A gloss is 1-4 words, lowercase, no trailing period, no explanation."
+    " Never write a sentence. Never write \"used to ...\", \"refers to ...\","
+    " \"a person who ...\", \"especially when ...\"."
+)
+
+MENU_FIRST_BLOCK = (
+    "PREFER THE MENU — IT IS THE DEFAULT ANSWER.\n"
+    "The menu is a real bilingual dictionary. Start from it: read the senses"
+    " and ask \"does one of these translate this WORD as it is used here?\""
+    " Do not first decide what the line means and then judge the menu against"
+    " that reading — that is how correct senses get rejected.\n"
+    "A BROADER menu sense that is CORRECT beats a NARROWER invented one that"
+    " is punchier. Flashcard space is limited, and a slightly general true"
+    " gloss teaches the learner more than a precise wrong one. Figurative,"
+    " vulgar or intensified usage of an ordinary sense is still that sense.\n"
+    "Going off-menu is the EXCEPTION, not a peer option. Before proposing"
+    " anything you MUST name the closest menu sense and state in a few words"
+    " why it fails. \"A more idiomatic wording exists\" and \"the translation"
+    " used a different English word\" are NOT reasons. Only genuine regional"
+    " slang or figurative usage the dictionary really lacks qualifies."
+)
+
+POS_HINT_BLOCK = (
+    "PER-EXAMPLE [POS] TAGS ARE EVIDENCE, NOT A FILTER.\n"
+    "Example lines may carry a [POS] tag from an automatic tagger describing"
+    " how the word is used in THAT line. The FULL menu is shown on purpose —"
+    " including senses of other parts of speech — because the tagger is"
+    " sometimes wrong. Use the tag to break ties (\"mira\" tagged [VERB] is"
+    " the verb mirar \"to look at\"; tagged [NOUN] it is the noun mira"
+    " \"sight\"), and override it when the line clearly disagrees."
+)
+
+
+# The English on each line is a scraped LYRIC translation — idiomatic, sung,
+# often a paraphrase. Treating it as ground truth is what produced
+# `sube` -> "to shake" (the translator wrote "Shake that ass"; the word is
+# still subir, "to raise"). It is evidence about the situation, not a gloss of
+# the headword.
+TRANSLATION_AID_BLOCK = (
+    "THE ENGLISH LINE IS AN AID, NOT THE ANSWER.\n"
+    "Those translations are idiomatic lyric translations. They paraphrase,"
+    " they pick vivid wording, and they sometimes translate the whole phrase"
+    " rather than the word. Use them to understand the situation, then"
+    " translate the SPANISH word yourself. Do NOT back-form a gloss out of"
+    " whichever English word happens to sit in that position.\n"
+    "  \"Sube ese culo\" translated as \"Shake that ass\"  ->  subir is still"
+    " \"to raise\" / \"to go up\". NOT \"to shake\" — the translator chose"
+    " livelier wording; the verb did not change meaning.\n"
+    "When the English and the Spanish disagree, trust the Spanish and the menu."
+)
+
+
 # ---------------------------------------------------------------------------
 # Spanish Wiktionary dialect supplement (inlined from bench_gapfill)
 # ---------------------------------------------------------------------------
@@ -171,43 +274,7 @@ def classify_batch_gemini(words_data, api_key, gemini_model):
     from google import genai
     client = genai.Client(api_key=api_key)
 
-    prompt_parts = [
-        "You are classifying Spanish vocabulary from song lyrics.",
-        "For each word below, assign each numbered example to the best-matching"
-        " sense (0-indexed). If both an English sense and a Spanish [ES] sense"
-        " cover the same meaning, prefer the English one.",
-        "",
-        "Substitution test: for each example, mentally substitute the sense"
-        " definition into the English translation. Does it still convey the"
-        " right meaning? If not, try other senses. Pick the sense whose"
-        " definition makes the substituted sentence make sense, even if the"
-        " translator used a different English word.",
-        "Example: 'I have the shaved bug' + sense 'penis' — substituting"
-        " 'penis' makes more sense than 'bug' in this context → pick 'penis'.",
-        "",
-    ]
-
-    for wi, wd in enumerate(words_data):
-        prompt_parts.append('--- Word %d: "%s" (lemma: %s) ---' % (
-            wi + 1, wd["word"], wd["lemma"]))
-        prompt_parts.append("Senses:")
-        for si, s in enumerate(wd["senses"]):
-            label = "[ES] " if s.get("is_spanish") else ""
-            prompt_parts.append(_format_sense_line(si, label, s))
-        prompt_parts.append("Examples:")
-        for ei, ex in enumerate(wd["examples"]):
-            spa = ex.get("spanish", "")
-            eng = ex.get("english", "")
-            prompt_parts.append("  %d. %s | %s" % (ei + 1, spa, eng))
-        prompt_parts.append("")
-
-    prompt_parts.append("Return a JSON array with one object per word:")
-    prompt_parts.append(json.dumps([{
-        "word": "example",
-        "assignments": {"1": 0, "2": 1},
-    }], indent=2))
-
-    prompt = "\n".join(prompt_parts)
+    prompt = build_classify_prompt(words_data)
 
     for attempt in range(5):
         try:
@@ -237,6 +304,52 @@ def classify_batch_gemini(words_data, api_key, gemini_model):
     return None
 
 
+def build_classify_prompt(words_data):
+    """Build the exact prompt string sent by ``classify_batch_gemini``."""
+    prompt_parts = [
+        "You are classifying Spanish vocabulary from song lyrics.",
+        "For each word below, assign each numbered example to the best-matching"
+        " sense (0-indexed). If both an English sense and a Spanish [ES] sense"
+        " cover the same meaning, prefer the English one.",
+        "",
+        "Substitution test: for each example, mentally substitute the sense"
+        " definition into the English translation. Does it still convey the"
+        " right meaning? If not, try other senses. Pick the sense whose"
+        " definition makes the substituted sentence make sense, even if the"
+        " translator used a different English word.",
+        "Example: 'I have the shaved bug' + sense 'penis' — substituting"
+        " 'penis' makes more sense than 'bug' in this context → pick 'penis'.",
+        "",
+        # You are picking, never inventing, on this path — but the same
+        # word-not-clause failure applies, and the per-example [POS] tag is the
+        # cheapest tiebreak available.
+        GLOSS_RULE_BLOCK,
+        "",
+        (POS_HINT_BLOCK + "\n\n" + TRANSLATION_AID_BLOCK),
+        "",
+    ]
+
+    for wi, wd in enumerate(words_data):
+        prompt_parts.append('--- Word %d: "%s" (lemma: %s) ---' % (
+            wi + 1, wd["word"], wd["lemma"]))
+        prompt_parts.append("Senses:")
+        for si, s in enumerate(wd["senses"]):
+            label = "[ES] " if s.get("is_spanish") else ""
+            prompt_parts.append(_format_sense_line(si, label, s))
+        prompt_parts.append("Examples:")
+        for ei, ex in enumerate(wd["examples"], start=1):
+            prompt_parts.append(_format_example_line(ei, ex))
+        prompt_parts.append("")
+
+    prompt_parts.append("Return a JSON array with one object per word:")
+    prompt_parts.append(json.dumps([{
+        "word": "example",
+        "assignments": {"1": 0, "2": 1},
+    }], indent=2))
+
+    return "\n".join(prompt_parts)
+
+
 _DEFINITIONAL_MARKERS = (
     "often used", "often referring", "often refers", "typically refers",
     "used to express", "used to indicate", "used as a", "used in",
@@ -244,6 +357,11 @@ _DEFINITIONAL_MARKERS = (
     "a person who", "someone who", "something that",
     "the act of", "the state of", "the practice of",
     "may refer to", "can mean", "refers to",
+    # 2026-08-07: prose that slipped past the original set — the `rrear`
+    # failure shipped "To dance, especially in a provocative way."
+    "especially", "particularly", "in a way", "in the sense",
+    "denoting", "characterized by", "relating to", "used for",
+    "the quality of", "the fact of", "an expression",
 )
 
 
@@ -275,6 +393,11 @@ def _is_definitional(text):
         return True
     # Ends with period and has multiple clauses (definition-style).
     if s.endswith(".") and ("," in s and len(s.split()) > 4):
+        return True
+    # Sentence-cased AND terminated — dictionary-entry punctuation. Glosses are
+    # lowercase fragments; proper-noun descriptions ("Brazilian footballer")
+    # are capitalised but unterminated, so this only catches real prose.
+    if s.endswith(".") and s[0].isupper():
         return True
     return False
 
@@ -325,57 +448,82 @@ def _repair_proposed_sense(word, lemma, examples, bad_answer, api_key, gemini_mo
         return None
 
 
-def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
-    """Ask Gemini: pick a sense or propose a new one. Returns result dict."""
-    from google import genai
-    client = genai.Client(api_key=api_key)
+def build_gap_fill_prompt(word, lemma, senses, examples):
+    """Build the exact prompt string sent by ``gap_fill_gemini``.
 
+    Menu-first ordering (2026-08-07). The old prompt opened with "determine
+    what X actually means in this artist's usage" and returned
+    ``actual_meaning`` as its first field, which anchored the model on a
+    contextual interpretation BEFORE it read the menu; the substitution test
+    then judged real dictionary senses against that over-fitted reading and
+    they "failed". ``actual_meaning`` is gone. The model now reads the menu
+    first, and must name the closest sense + why it fails before it is allowed
+    to propose anything.
+    """
     menu_lines = []
     for i, s in enumerate(senses):
         label = "[ES] " if s.get("is_spanish") else ""
         menu_lines.append("%d. %s[%s] %s" % (i + 1, label, s["pos"],
                                               s["translation"]))
-    menu = "\n".join(menu_lines)
+    menu = "\n".join(menu_lines) if menu_lines else "  (none)"
 
-    lines = []
-    for i, ex in enumerate(examples):
-        eng = ex.get("english", "")
-        spa = ex.get("spanish", "")
-        lines.append("%d. %s | %s" % (i + 1, spa, eng))
+    lines = [_format_example_line(i, ex, indent="")
+             for i, ex in enumerate(examples, start=1)]
 
-    prompt = (
+    return (
         'You are helping build a Spanish vocabulary flashcard app for learners.'
         ' The word is "%s" (lemma: %s).\n\n'
-        'Step 1: Read these example lyrics and determine what "%s" actually'
-        ' means in this artist\'s usage:\n%s\n\n'
-        'Step 2: Check whether any of these dictionary senses is close enough'
-        ' that a learner reading it on a flashcard would understand the word'
-        ' in these lyrics.\n'
+        '%s\n\n'
+        '%s\n\n'
+        '%s\n\n'
+        'STEP 1 — READ THE MENU FIRST. These are the dictionary senses'
+        ' available for this word:\n%s\n'
         'If both an English sense and a Spanish [ES] sense cover the same'
-        ' meaning, prefer the English one.\n%s\n\n'
-        'Test each sense: take the English translation of one example lyric'
-        ' and substitute the dictionary definition for the word. Write out'
-        ' the substituted sentence. Does it still convey what the artist'
-        ' means?\n\n'
-        'If the best sense passes this test, the word is covered — even if'
-        ' the usage is more figurative or intense. Flashcard space is limited,'
-        ' so don\'t propose new senses when existing ones work.\n\n'
-        'Step 3: If NO sense passes the substitution test, propose ONE short'
-        ' flashcard translation and ONE best-guess lemma/headword.\n\n'
+        ' meaning, prefer the English one.\n\n'
+        'STEP 2 — Here are the lyric lines the word appears in, as'
+        ' `[POS] spanish | english`:\n%s\n\n'
+        'STEP 3 — For the best-fitting menu sense, run the substitution test:'
+        ' take one English lyric line and substitute that sense for the word.'
+        ' Write out the substituted sentence. Ask whether the sense TRANSLATES'
+        ' THE WORD, not whether it restates the line. A sense passes even when'
+        ' the usage is more figurative, vulgar or intense than the dictionary'
+        ' wording, and even when the translator chose a different English word.\n\n'
+        'STEP 4 — Only if NO menu sense translates the word do you propose one.'
+        ' You must fill in "closest_menu_sense_index" and "why_menu_fails"'
+        ' first. If the menu is empty, propose directly.\n\n'
         'Return JSON:\n'
         '{\n'
-        '  "actual_meaning": "<what the word means in these lyrics, 2-5 words>",\n'
-        '  "substitution_example": "<pick one English lyric and substitute the best dictionary definition>",\n'
-        '  "substitution_works": <true if the substituted sentence conveys the right meaning>,\n'
+        '  "closest_menu_sense_index": <1-indexed number of the closest menu sense, or null if the menu is empty>,\n'
+        '  "substitution_example": "<that English lyric with the closest menu sense substituted in>",\n'
+        '  "substitution_works": <true if the substituted sentence still translates the word correctly>,\n'
         '  "covered_by_existing": <true if substitution works, false if not>,\n'
-        '  "best_sense_index": <1-indexed number of the best matching sense, or null>,\n'
+        '  "best_sense_index": <1-indexed number of the best matching sense if covered, else null>,\n'
         '  "english_translation": "<if best sense is Spanish [ES], provide 2-5 word English translation; else null>",\n'
-        '  "proposed_sense": "<short flashcard-friendly English translation if not covered, else null>",\n'
+        '  "pos_verdict": "<if you picked a menu sense whose POS is wrong for these lines, the POS you believe is correct; else null>",\n'
+        '  "why_menu_fails": "<only if NOT covered: a few words on why the closest menu sense fails; else null>",\n'
+        '  "proposed_sense": "<only if NOT covered: a 1-4 word English gloss of the WORD, lowercase, no period; else null>",\n'
         '  "proposed_pos": "<POS tag if proposing: NOUN/VERB/ADJ/ADV/INTJ, else null>",\n'
         '  "proposed_lemma": "<best-guess Spanish lemma/headword if proposing, else null>",\n'
         '  "examples_needing_new_sense": <count of examples that need the new sense, 0 if covered>\n'
         '}'
-    ) % (word, lemma, word, "\n".join(lines), menu)
+    ) % (word, lemma, GLOSS_RULE_BLOCK, MENU_FIRST_BLOCK, (POS_HINT_BLOCK + "\n\n" + TRANSLATION_AID_BLOCK),
+         menu, "\n".join(lines))
+
+
+def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
+    """Ask Gemini: pick a sense or propose a new one. Returns result dict.
+
+    Response keys consumed downstream are unchanged: ``covered_by_existing``,
+    ``best_sense_index``, ``english_translation``, ``proposed_sense``,
+    ``proposed_pos``, ``proposed_lemma``, ``examples_needing_new_sense``.
+    ``actual_meaning`` is deliberately gone (it anchored the menu check);
+    ``closest_menu_sense_index``, ``why_menu_fails`` and ``pos_verdict`` are
+    new audit-only additions.
+    """
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    prompt = build_gap_fill_prompt(word, lemma, senses, examples)
 
     for attempt in range(5):
         try:
@@ -404,15 +552,41 @@ def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
     return None
 
 
-def gap_fill_batch_gemini(words_data, api_key, gemini_model):
-    """Ask Gemini to propose or reuse one sense for a batch of gap-fill words."""
-    from google import genai
-    client = genai.Client(api_key=api_key)
+def build_gap_fill_batch_prompt(words_data):
+    """Build the exact prompt string sent by ``gap_fill_batch_gemini``.
 
+    Kept in lockstep with ``build_gap_fill_prompt`` so the batch path cannot
+    drift from the single path: menu first, translate the word not the line,
+    justify before inventing, per-example [POS] as a hint.
+    """
     prompt_parts = [
         "You are helping build a Spanish vocabulary flashcard app for learners.",
-        "For each word below, decide whether the examples are covered by an existing",
-        "dictionary sense menu. If not, propose ONE short flashcard-friendly sense.",
+        "",
+        GLOSS_RULE_BLOCK,
+        "",
+        MENU_FIRST_BLOCK,
+        "",
+        (POS_HINT_BLOCK + "\n\n" + TRANSLATION_AID_BLOCK),
+        "",
+        "For each word below, in this order:",
+        "1. READ THE CANDIDATE SENSES FIRST. Ask whether one of them translates"
+        " the WORD as it is used in the example lines. Do not first decide what"
+        " the lines mean and then judge the menu against that reading.",
+        "2. Record \"closest_menu_sense_index\" — the 1-indexed sense you"
+        " compared against, whether you keep it or reject it (null if the menu"
+        " is empty).",
+        "3. If it translates the word, set \"covered_by_existing\": true and"
+        " \"best_sense_index\" to it. Figurative, vulgar or intensified usage"
+        " of an ordinary sense is still that sense.",
+        "4. ONLY if no candidate sense translates the word, set"
+        " \"covered_by_existing\": false, fill \"why_menu_fails\" with a few"
+        " words on why the closest sense fails, and propose ONE gloss of 1-4"
+        " words in \"proposed_sense\" (lowercase, no trailing period, no"
+        " explanation) plus \"proposed_pos\" and \"proposed_lemma\".",
+        "5. If you keep a menu sense but its POS is wrong for these lines, set"
+        " \"pos_verdict\" to the POS you believe is correct (recorded for human"
+        " audit only) — do NOT reject the menu and invent instead.",
+        "Example lines are shown as `[POS] spanish | english`.",
         "Return a JSON array with one object per word.",
         "",
     ]
@@ -429,22 +603,38 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
             prompt_parts.append("Candidate senses: (none)")
         prompt_parts.append("Examples:")
         for ei, ex in enumerate(wd["examples"], start=1):
-            prompt_parts.append("  %d. %s | %s" % (
-                ei, ex.get("spanish", ""), ex.get("english", "")))
+            prompt_parts.append(_format_example_line(ei, ex))
         prompt_parts.append("")
 
     prompt_parts.append("Return JSON like:")
     prompt_parts.append(json.dumps([{
         "word": "example",
+        "closest_menu_sense_index": 2,
         "covered_by_existing": False,
         "best_sense_index": None,
         "english_translation": None,
+        "pos_verdict": None,
+        "why_menu_fails": "menu only has the literal sense",
         "proposed_sense": "short meaning",
         "proposed_pos": "NOUN",
         "proposed_lemma": "hablar"
     }], indent=2))
 
-    prompt = "\n".join(prompt_parts)
+    return "\n".join(prompt_parts)
+
+
+def gap_fill_batch_gemini(words_data, api_key, gemini_model):
+    """Ask Gemini to propose or reuse one sense for a batch of gap-fill words.
+
+    Response keys consumed downstream are unchanged (``word``,
+    ``proposed_sense``, ``proposed_pos``, ``proposed_lemma``);
+    ``closest_menu_sense_index``, ``why_menu_fails`` and ``pos_verdict`` are
+    new audit-only additions that the caller ignores.
+    """
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    prompt = build_gap_fill_batch_prompt(words_data)
 
     for attempt in range(5):
         try:
@@ -511,45 +701,36 @@ def _dominant_pos(senses):
     return counts.most_common(1)[0][0] if counts else None
 
 
-def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context):
-    """Unified classify-or-propose classifier for the SpanishDict path.
+def build_classify_or_propose_prompt(words_data, artist_context):
+    """Build the exact prompt string sent by ``classify_or_propose_batch``.
 
-    Per word, per example: pick the menu sense id that fits IN CONTEXT, or —
-    when NO menu sense matches the usage — set sense=null and propose a short
-    gloss (with a register tag + optional multi-word construction). This one
-    call unifies classification, insufficiency detection, and gap-fill.
-
-    words_data: [{word, lemma, senses, ids, examples}] where senses[i] is a
-    sense dict and ids[i] is its menu sense id (parallel lists). examples is
-    [{spanish, english}, ...]. A word with an empty menu (zero-sense gap-fill
-    candidate) is fully supported — every example resolves to a proposal.
-
-    Returns a list of per-word dicts:
-        [{"word": w,
-          "calls": [{"example": 1, "sense": "<id|null>",
-                     "proposed": "<gloss|null>", "type": "<tag|null>",
-                     "construction": "<phrase|null>"}, ...]}, ...]
-    or None on unrecoverable failure.
+    Split out so ``--dry-run-prompt`` can dump the real payload without an API
+    call. Any change here changes what the model actually receives.
     """
-    from google import genai
-    client = genai.Client(api_key=api_key)
-
-    # LOCKED prompt — validated on real Bad Bunny data (scratchpad/eval30.py,
-    # suff_eval*.py). Do not reword without re-running the sufficiency evals.
-    # Deliberate additive extension 2026-07-27: a proper_noun type + PROPN pos +
-    # "describe, don't translate" instruction. Gemini was already recognising
-    # names but, lacking a slot, wrote "proper noun" into the gloss; this gives
-    # it the slot and asks for a short description instead. Re-run the sufficiency
-    # evals if you touch the classification wording above this addition.
+    # Prompt revised 2026-08-07 (over-translation fix). The 2026-07-22/27
+    # classification + proper-noun wording is preserved verbatim below; what
+    # changed is ORDER (menu-first) plus three shared blocks that state the
+    # word-not-clause rule, the burden of proof for going off-menu, and how to
+    # read the per-example [POS] tag. Re-run the sufficiency evals
+    # (scratchpad/eval30.py, suff_eval*.py) before trusting a full run.
     header = (
         "You are building a Spanish vocabulary flashcard app from song lyrics"
         " (%s). Expect regional slang and figurative usage.\n"
         "Each word comes with a dictionary sense menu and example lines shown"
-        " as `spanish | english translation`.\n"
-        "For EACH example, pick the menu sense id that fits the word's meaning"
-        " IN CONTEXT — the English translation shows the real meaning"
-        " (substitution test).\n"
-        "Read the CONSTRUCTION, not just the word: a reflexive pronoun"
+        " as `[POS] spanish | english translation`.\n"
+        "\n"
+        "%s\n"
+        "\n"
+        "%s\n"
+        "\n"
+        "%s\n"
+        "\n"
+        "PROCEDURE, in this order, for EACH example:\n"
+        "1. Read the menu. Pick the menu sense id that translates the WORD as"
+        " used in that line. The English translation shows the real meaning"
+        " (substitution test), but you are translating the headword, not"
+        " restating the line.\n"
+        "2. Read the CONSTRUCTION, not just the word: a reflexive pronoun"
         " (me/te/se), an attached clitic, or a following particle can change"
         " meaning — subir \"to go up\" vs subirse \"to get on\"; dejar \"to"
         " let\" vs \"dejar de\" \"to stop\"; \"darse cuenta\" \"to realize\";"
@@ -557,15 +738,21 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
         " the construction produces. When the meaning comes from a multi-word"
         " construction, name it in \"construction\" (e.g. \"dejar de\", \"hacer"
         " coro\"), else null.\n"
-        "PREFER a menu sense whenever an ordinary sense reasonably fits — do"
-        " NOT go off-menu just because a punchier gloss exists. Only when NO"
-        " menu sense fits the contextual meaning (usually regional"
-        " slang/figurative the dictionary lacks) set \"sense\": null,"
-        " \"proposed\": a 2-5 word gloss, \"type\":"
+        "3. Record the id you compared against in \"closest\" — ALWAYS, whether"
+        " you keep it or reject it.\n"
+        "4. Only if NO menu sense fits the contextual meaning (usually"
+        " regional slang/figurative the dictionary lacks) set \"sense\": null,"
+        " \"proposed\": a 1-4 word gloss, \"why_not_menu\": a few words on why"
+        " the sense in \"closest\" fails, \"type\":"
         " slang|regional|figurative|vulgar|loanword|proper_noun|other, and"
         " \"pos\": the part of speech of the proposed meaning (one of NOUN,"
         " VERB, ADJ, ADV, INTJ, PROPN)."
-        " Else proposed/type/pos null.\n"
+        " Else proposed/why_not_menu/type/pos null.\n"
+        "5. If you pick a menu sense but its [POS] is wrong for this line (the"
+        " menu gave you a noun and this is clearly a verb, or vice versa),"
+        " still pick the best sense AND set \"pos_verdict\" to the POS you"
+        " believe is correct. This is recorded for human audit; it is not a"
+        " licence to reject the menu and invent instead. Else null.\n"
         "If the word is a PROPER NOUN (a person, place, brand, song, or title),"
         " set \"type\": proper_noun and \"pos\": PROPN, and make \"proposed\" a"
         " SHORT description of who/what it refers to (e.g. \"Brazilian"
@@ -573,10 +760,12 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
         " Juan\") — NEVER the literal words \"proper noun\"/\"proper name\" and"
         " NEVER a translation.\n"
         "Return ONLY JSON: [{\"word\":\"x\",\"calls\":[{\"example\":1,"
-        "\"sense\":\"<id|null>\",\"proposed\":\"<gloss|null>\","
+        "\"sense\":\"<id|null>\",\"closest\":\"<id>\","
+        "\"proposed\":\"<gloss|null>\",\"why_not_menu\":\"<reason|null>\","
         "\"type\":\"<tag|null>\",\"pos\":\"<NOUN|VERB|ADJ|ADV|INTJ|PROPN|null>\","
+        "\"pos_verdict\":\"<NOUN|VERB|ADJ|ADV|INTJ|PROPN|null>\","
         "\"construction\":\"<phrase|null>\"}]}]"
-    ) % artist_context
+    ) % (artist_context, GLOSS_RULE_BLOCK, MENU_FIRST_BLOCK, (POS_HINT_BLOCK + "\n\n" + TRANSLATION_AID_BLOCK))
 
     prompt_parts = [header, "", "WORDS:"]
     for wd in words_data:
@@ -596,12 +785,40 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
             prompt_parts.append("  (none)")
         prompt_parts.append("Examples:")
         for ei, ex in enumerate(wd.get("examples") or [], start=1):
-            spa = ex.get("spanish", "")
-            eng = ex.get("english", "")
-            prompt_parts.append("  %d. %s%s" % (
-                ei, spa, ("  |  " + eng) if eng else ""))
+            prompt_parts.append(_format_example_line(ei, ex))
 
-    prompt = "\n".join(prompt_parts)
+    return "\n".join(prompt_parts)
+
+
+def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context):
+    """Unified classify-or-propose classifier for the SpanishDict path.
+
+    Per word, per example: pick the menu sense id that fits IN CONTEXT, or —
+    when NO menu sense matches the usage — set sense=null and propose a short
+    gloss (with a register tag + optional multi-word construction). This one
+    call unifies classification, insufficiency detection, and gap-fill.
+
+    words_data: [{word, lemma, senses, ids, examples}] where senses[i] is a
+    sense dict and ids[i] is its menu sense id (parallel lists). examples is
+    [{spanish, english, pos}, ...] — `pos` is the optional per-example spaCy
+    tag, rendered as a hint. A word with an empty menu (zero-sense gap-fill
+    candidate) is fully supported — every example resolves to a proposal.
+
+    Returns a list of per-word dicts:
+        [{"word": w,
+          "calls": [{"example": 1, "sense": "<id|null>", "closest": "<id>",
+                     "proposed": "<gloss|null>", "why_not_menu": "<reason|null>",
+                     "type": "<tag|null>", "pos": "<POS|null>",
+                     "pos_verdict": "<POS|null>",
+                     "construction": "<phrase|null>"}, ...]}, ...]
+    or None on unrecoverable failure. `closest`, `why_not_menu` and
+    `pos_verdict` are new audit-only fields; the caller ignores unknown keys,
+    so an older model that omits them still parses.
+    """
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    prompt = build_classify_or_propose_prompt(words_data, artist_context)
 
     for attempt in range(5):
         try:
@@ -659,6 +876,30 @@ def classify_keyword(examples, senses):
                 best_idx = si
         assignments.append(best_idx)
     return assignments
+
+
+def _dump_prompts_and_exit(label, batch_size, records, build_prompt):
+    """Print the exact prompt payload for each batch, then exit(0).
+
+    Used by --dry-run-prompt. Nothing is sent to Gemini and no layer file is
+    written — the process ends here so a dry run can never mutate state.
+    """
+    print("\n" + "=" * 72)
+    print("DRY RUN — %s: %d record(s), batches of %d. NO API CALL." % (
+        label, len(records), batch_size))
+    print("=" * 72)
+    if not records:
+        print("(no records reached this path — check --word / routing filters)")
+    for start in range(0, len(records), batch_size):
+        batch = records[start:start + batch_size]
+        print("\n" + "-" * 72)
+        print("BATCH %d  words: %s" % (start // batch_size + 1,
+                                       [r.get("word") for r in batch]))
+        print("-" * 72)
+        print(build_prompt(batch))
+    print("\n" + "=" * 72)
+    print("DRY RUN COMPLETE — exiting without writing anything.")
+    sys.exit(0)
 
 
 def normalize_assignment_methods(word_data, default_method):
@@ -738,6 +979,12 @@ def main():
                              "indices for the same method are skipped and only "
                              "the new ones are sent to Gemini." %
                              DEFAULT_MAX_EXAMPLES_PER_WORD)
+    parser.add_argument("--dry-run-prompt", action="store_true",
+                        help="Build the batches exactly as a real run would, "
+                             "print the EXACT prompt payload Gemini would "
+                             "receive, and exit without calling the API or "
+                             "writing any layer file. Pair with --word/--force "
+                             "to inspect specific words. No API key needed.")
     parser.add_argument("--gemini-workers", type=int, default=1,
                         help="Concurrent Gemini batches for the SpanishDict "
                              "classify-or-propose path (default 1). Checkpoints "
@@ -776,13 +1023,14 @@ def main():
         gemini_model = SD_DEFAULT_MODEL
     else:
         gemini_model = "gemini-3.5-flash-lite"
-    if use_gemini:
+    if use_gemini and not args.dry_run_prompt:
         api_key = os.environ.get("GEMINI_API_KEY", "")
         if not api_key:
             print("ERROR: Set GEMINI_API_KEY env var (or use --no-gemini)")
             sys.exit(1)
     else:
-        api_key = None
+        # --dry-run-prompt never reaches an API call, so no key is required.
+        api_key = os.environ.get("GEMINI_API_KEY", "") or None
 
     # Load word inventory + examples + translations
     print("Loading layers...")
@@ -1159,6 +1407,13 @@ def main():
             skipped_priority += 1
             continue
 
+        # Per-example spaCy POS tags. Hoisted above the example-build loop so
+        # each example dict can carry its own tag into the prompt (see
+        # _format_example_line). Previously this was computed after the loop
+        # and used only for menu filtering, so the per-example POS signal never
+        # reached Gemini at all.
+        precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
+
         examples = []
         abs_indices = []
         for abs_i, ex in selected:
@@ -1179,14 +1434,14 @@ def main():
                 eng = eng_obj.get("english", "") if isinstance(eng_obj, dict) else (eng_obj or "")
             song_label = ex.get("title") or ex.get("source", "")
             examples.append({"spanish": spa, "english": eng,
-                             "song": song_label, "id": ex.get("id", "")})
+                             "song": song_label, "id": ex.get("id", ""),
+                             "pos": precomputed.get(abs_i)})
             abs_indices.append(abs_i)
 
         if not examples:
             no_examples += 1
             continue
 
-        precomputed = {int(k): v for k, v in example_pos.get(word, {}).items()}
         wl_key = "%s|%s" % (word, lemma)
         mf = master_flags.get(wl_key, {})
         # is_noise replaces is_interjection in schema_v2; read both for
@@ -1389,6 +1644,15 @@ def main():
         multi_sense_queue = []
         no_senses_queue = []
 
+        if args.dry_run_prompt:
+            _dump_prompts_and_exit(
+                "classify-or-propose", SD_CLASSIFY_BATCH_SIZE, records,
+                lambda batch: build_classify_or_propose_prompt(
+                    [{"word": r["word"], "lemma": r["lemma"],
+                      "senses": r["senses"], "ids": r["ids"],
+                      "examples": r["examples"]} for r in batch],
+                    artist_context))
+
         if records:
             print("\n" + "=" * 60)
             print("CLASSIFY-OR-PROPOSE %d SpanishDict words (%s, batches of %d)" % (
@@ -1433,6 +1697,10 @@ def main():
                     id_set = set(r["ids"])
                     menu_buckets = {}   # sid -> [abs_idx]
                     proposed_map = {}   # gloss -> {examples, type, construction, ex}
+                    # POS disagreements the model reported on MENU picks. Audit
+                    # only — see the pos_verdict note below.
+                    pos_verdicts = {}   # sid -> {verdict_pos: [abs_idx]}
+                    _VALID_POS = {"NOUN", "VERB", "ADJ", "ADV", "INTJ", "PROPN"}
                     for call in calls:
                         if not isinstance(call, dict):
                             continue
@@ -1453,6 +1721,27 @@ def main():
                                 sid = r["ids"][int(s)]
                         if sid is not None:
                             menu_buckets.setdefault(sid, []).append(abs_i)
+                            # Optional POS override on a menu pick. Recorded,
+                            # never applied — the sense's POS is the menu's
+                            # structural property (it drives sense ids, lemma
+                            # routing in step_7a and card grouping in step_8b),
+                            # so silently rewriting it from a model opinion
+                            # would desync sense_assignments from sense_menu.
+                            # The value exists so the model has a way to say
+                            # "you gave me a noun, this is a verb" WITHOUT
+                            # having to reject the menu and invent — which was
+                            # the over-translation behaviour itself.
+                            verdict = str(call.get("pos_verdict") or "").strip().upper()
+                            menu_pos = ""
+                            try:
+                                menu_pos = str(
+                                    r["senses"][r["ids"].index(sid)].get("pos") or ""
+                                ).strip().upper()
+                            except (ValueError, IndexError, AttributeError):
+                                pass
+                            if verdict in _VALID_POS and verdict != menu_pos:
+                                pos_verdicts.setdefault(sid, {}).setdefault(
+                                    verdict, []).append(abs_i)
                         elif r["allow_propose"] and call.get("proposed"):
                             gloss = str(call["proposed"]).strip()
                             if not gloss:
@@ -1480,7 +1769,15 @@ def main():
                             freq = len(eis) / total if total else 0
                             if total >= 5 and freq < 0.05:
                                 continue
-                            items.append({"sense": sid, "examples": eis})
+                            item = {"sense": sid, "examples": eis}
+                            if sid in pos_verdicts:
+                                # Audit-only: {"VERB": [3, 7]} — the POS the
+                                # model believes those examples really are.
+                                item["pos_verdict"] = {
+                                    p: sorted(set(v))
+                                    for p, v in pos_verdicts[sid].items()
+                                }
+                            items.append(item)
                         if items:
                             word_out[my_method] = items
                             batch_classified_total += 1
@@ -1490,10 +1787,28 @@ def main():
                         # meaning ("attractive" -> ADJ); fall back to the word's
                         # dominant menu POS only when it's missing/invalid.
                         fallback_pos = _dominant_pos(r["senses"]) or "NOUN"
-                        _valid_pos = {"NOUN", "VERB", "ADJ", "ADV", "INTJ", "PROPN"}
+                        _valid_pos = _VALID_POS
                         for gloss, pm in proposed_map.items():
                             prop_pos = str(pm.get("pos") or "").strip().upper()
                             pos = prop_pos if prop_pos in _valid_pos else fallback_pos
+                            # Prose guard. This path never ran the definitional
+                            # check that the legacy gap-fill path has always
+                            # run, which is how "To dance, especially in a
+                            # provocative way." shipped for `rrear`. Proper-noun
+                            # descriptions are exempt: they are supposed to
+                            # describe rather than gloss.
+                            if pm.get("type") != "proper_noun" and _is_definitional(gloss):
+                                repaired = _repair_proposed_sense(
+                                    word, r["lemma"], r["examples"], gloss,
+                                    api_key, gemini_model)
+                                if repaired and repaired.get("proposed_sense"):
+                                    new_gloss = str(repaired["proposed_sense"]).strip()
+                                    rp = str(repaired.get("proposed_pos") or "").strip().upper()
+                                    print("    repaired %r: %r → %r" % (
+                                        word, gloss[:50], new_gloss))
+                                    gloss = new_gloss
+                                    if rp in _valid_pos:
+                                        pos = rp
                             sense_list = [{"pos": pos, "translation": gloss,
                                            "source": "gap-fill"}]
                             sid = list(assign_sense_ids(sense_list).keys())[0]
@@ -1616,6 +1931,12 @@ def main():
     if args.skip_classification:
         print("\n  Skipping multi-sense classification (--skip-classification)")
         multi_sense_queue = []
+    if multi_sense_queue and args.dry_run_prompt and use_gemini:
+        _dump_prompts_and_exit(
+            "classify (wiktionary)", BATCH_SIZE,
+            [{"word": w, "lemma": l, "senses": s, "examples": ex}
+             for w, l, s, ex, ids, abs_idx in multi_sense_queue],
+            lambda batch: build_classify_prompt(batch))
     if multi_sense_queue:
         print("\n" + "=" * 60)
         if use_gemini:
@@ -1741,6 +2062,12 @@ def main():
     if args.skip_gap_fill:
         print("\n  Skipping gap-fill (--skip-gap-fill)")
         no_senses_queue = []
+    if no_senses_queue and use_gemini and args.dry_run_prompt:
+        _dump_prompts_and_exit(
+            "gap-fill (wiktionary)", GAP_FILL_BATCH_SIZE,
+            [{"word": w, "lemma": l, "senses": [], "examples": ex}
+             for w, l, ex, abs_idx in no_senses_queue],
+            build_gap_fill_batch_prompt)
     if no_senses_queue and use_gemini:
         print("\n" + "=" * 60)
         print("GAP-FILL %d words without sense-menu entry" % len(no_senses_queue))
