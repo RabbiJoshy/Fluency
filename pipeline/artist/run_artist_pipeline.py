@@ -81,6 +81,14 @@ def _step_2_args(args, artist_dir):
 def _step_2b_args(args, artist_dir):
     return _base_args(artist_dir) + ["--align"]
 
+def _step_2c_args(args, artist_dir):
+    # Runs for real inside the orchestrator (the step's own default is dry-run,
+    # which is the right default for a hand-run audit but a no-op here).
+    # --force is intentionally NOT wired through: the orchestrator's --force is
+    # documented as a step-6 reclassify switch, and re-asking settled elisions
+    # should be a deliberate standalone run.
+    return _base_args(artist_dir) + ["--apply"]
+
 def _step_3_args(args, artist_dir):
     return _base_args(artist_dir) + ["--language", args.language]
 
@@ -154,6 +162,10 @@ def _step_defs_spanish(vocab_file):
         {"num": "2b", "label": "Scrape Genius translations",
          "script": "step_1b_scrape_translations.py", "args_fn": _step_2b_args,
          "input": None, "output": "data/input/translations/aligned_translations.json", "needs_api_key": False},
+        {"num": "2c", "label": "Resolve ambiguous elisions with Gemini (writes elision_mapping.json)",
+         "script": "step_2c_resolve_elisions_gemini.py", "args_fn": _step_2c_args,
+         "input": "data/word_counts/vocab_evidence.json",
+         "output": "data/elision_merge/gemini_elision_report.json", "needs_api_key": True},
         {"num": 3, "label": "Merge elisions",
          "script": "step_3a_merge_elisions.py", "args_fn": _step_3_args,
          "input": "data/word_counts/vocab_evidence.json",

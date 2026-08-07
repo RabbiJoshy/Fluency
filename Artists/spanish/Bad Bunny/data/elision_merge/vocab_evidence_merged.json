@@ -129361,6 +129361,92 @@
     }
   },
   {
+    "word": "perdido",
+    "corpus_count": 10,
+    "song_count": 8,
+    "song_ids": [
+      "11296730",
+      "2914746",
+      "3193669",
+      "3703524",
+      "4179002",
+      "7401420",
+      "9123229",
+      "9614081"
+    ],
+    "examples": [
+      {
+        "id": "4179002:10",
+        "line": "Y no sé si me raptaron o estoy perdido",
+        "title": "RLNDT",
+        "surface": "perdido"
+      },
+      {
+        "id": "11296730:28",
+        "line": "Allá abajo (Allá abajo), allá abajo (Allá abajo) no se me ha perdido na' (Na')",
+        "title": "CAFé CON RON",
+        "vocalists": [
+          "Los Pleneros de la Cresta",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "perdido"
+      },
+      {
+        "id": "9123229:28",
+        "line": "¿Dónde está ese totito? Que lleva tiempo perdido",
+        "title": "WHERE SHE GOES",
+        "surface": "perdido"
+      },
+      {
+        "id": "3703524:56",
+        "line": "Que haberte perdido me iba causar tanto dolor (Uoh)",
+        "title": "Triste",
+        "vocalists": [
+          "Bryant Myers"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "perdido"
+      },
+      {
+        "id": "2914746:44",
+        "line": "Me duele haber perdido una mujer incomparable",
+        "title": "Soy Culpable",
+        "surface": "perdido"
+      },
+      {
+        "id": "7401420:11",
+        "line": "Pasaste a ser un día perdido en mi agenda",
+        "title": "Pin",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "perdido"
+      },
+      {
+        "id": "9614081:47",
+        "line": "Yo he perdido amore', he perdido dinero",
+        "title": "NADIE SABE",
+        "surface": "perdido"
+      },
+      {
+        "id": "3193669:41",
+        "line": "Como Jordan, no he perdi'o una final",
+        "title": "El Ganador (Remix)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "perdi'o"
+      }
+    ],
+    "variants": {
+      "perdido": 9,
+      "perdi'o": 1
+    }
+  },
+  {
     "word": "sentimientos",
     "corpus_count": 10,
     "song_count": 10,
@@ -135580,77 +135666,6 @@
     ]
   },
   {
-    "word": "perdido",
-    "corpus_count": 9,
-    "song_count": 7,
-    "song_ids": [
-      "11296730",
-      "2914746",
-      "3703524",
-      "4179002",
-      "7401420",
-      "9123229",
-      "9614081"
-    ],
-    "examples": [
-      {
-        "id": "4179002:10",
-        "line": "Y no sé si me raptaron o estoy perdido",
-        "title": "RLNDT",
-        "surface": "perdido"
-      },
-      {
-        "id": "11296730:28",
-        "line": "Allá abajo (Allá abajo), allá abajo (Allá abajo) no se me ha perdido na' (Na')",
-        "title": "CAFé CON RON",
-        "vocalists": [
-          "Los Pleneros de la Cresta",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "perdido"
-      },
-      {
-        "id": "9123229:28",
-        "line": "¿Dónde está ese totito? Que lleva tiempo perdido",
-        "title": "WHERE SHE GOES",
-        "surface": "perdido"
-      },
-      {
-        "id": "3703524:56",
-        "line": "Que haberte perdido me iba causar tanto dolor (Uoh)",
-        "title": "Triste",
-        "vocalists": [
-          "Bryant Myers"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "perdido"
-      },
-      {
-        "id": "2914746:44",
-        "line": "Me duele haber perdido una mujer incomparable",
-        "title": "Soy Culpable",
-        "surface": "perdido"
-      },
-      {
-        "id": "7401420:11",
-        "line": "Pasaste a ser un día perdido en mi agenda",
-        "title": "Pin",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "perdido"
-      },
-      {
-        "id": "9614081:47",
-        "line": "Yo he perdido amore', he perdido dinero",
-        "title": "NADIE SABE",
-        "surface": "perdido"
-      }
-    ]
-  },
-  {
     "word": "perdón",
     "corpus_count": 9,
     "song_count": 9,
@@ -138301,6 +138316,96 @@
     "variants": {
       "atreve'": 8,
       "atreves": 1
+    }
+  },
+  {
+    "word": "desnuda",
+    "corpus_count": 9,
+    "song_count": 7,
+    "song_ids": [
+      "2962706",
+      "3007462",
+      "3039781",
+      "3133285",
+      "3176704",
+      "3825550",
+      "5614024"
+    ],
+    "examples": [
+      {
+        "id": "3176704:7",
+        "line": "Explícale lo que sientes cuando estás desnuda (Woh, oh, oh)",
+        "title": "Explícale",
+        "vocalists": [
+          "Yandel"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnuda"
+      },
+      {
+        "id": "5614024:2",
+        "line": "Hoy la noche se acaba, tú desnuda en mi cama (Cama)",
+        "title": "Hasta Que Dios Diga",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnuda"
+      },
+      {
+        "id": "3133285:82",
+        "line": "Ella desnuda, me mata",
+        "title": "Solita",
+        "vocalists": [
+          "Wisin"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnuda"
+      },
+      {
+        "id": "3007462:48",
+        "line": "Con una mirada se me desnuda",
+        "title": "Me Llueven 2",
+        "vocalists": [
+          "Denyerkin"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnuda"
+      },
+      {
+        "id": "2962706:47",
+        "line": "Espérame desnuda (Espérame desnuda)",
+        "title": "Demonia Baila",
+        "vocalists": [
+          "Jantony"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnuda"
+      },
+      {
+        "id": "3825550:79",
+        "line": "De ti desnuda en el piso",
+        "title": "Polaroid (Remix)",
+        "vocalists": [
+          "Myke Towers"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnuda"
+      },
+      {
+        "id": "3039781:45",
+        "line": "Diablo, chica, desnu'a tú te ves bien rica",
+        "title": "Un Ratito Más",
+        "vocalists": [
+          "Bryant Myers"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "desnu'a"
+      }
+    ],
+    "variants": {
+      "desnuda": 8,
+      "desnu'a": 1
     }
   },
   {
@@ -142106,81 +142211,6 @@
       }
     ],
     "display_form": "de'o"
-  },
-  {
-    "word": "desnuda",
-    "corpus_count": 8,
-    "song_count": 6,
-    "song_ids": [
-      "2962706",
-      "3007462",
-      "3133285",
-      "3176704",
-      "3825550",
-      "5614024"
-    ],
-    "examples": [
-      {
-        "id": "3176704:7",
-        "line": "Explícale lo que sientes cuando estás desnuda (Woh, oh, oh)",
-        "title": "Explícale",
-        "vocalists": [
-          "Yandel"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnuda"
-      },
-      {
-        "id": "5614024:2",
-        "line": "Hoy la noche se acaba, tú desnuda en mi cama (Cama)",
-        "title": "Hasta Que Dios Diga",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnuda"
-      },
-      {
-        "id": "3133285:82",
-        "line": "Ella desnuda, me mata",
-        "title": "Solita",
-        "vocalists": [
-          "Wisin"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnuda"
-      },
-      {
-        "id": "3007462:48",
-        "line": "Con una mirada se me desnuda",
-        "title": "Me Llueven 2",
-        "vocalists": [
-          "Denyerkin"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnuda"
-      },
-      {
-        "id": "2962706:47",
-        "line": "Espérame desnuda (Espérame desnuda)",
-        "title": "Demonia Baila",
-        "vocalists": [
-          "Jantony"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnuda"
-      },
-      {
-        "id": "3825550:79",
-        "line": "De ti desnuda en el piso",
-        "title": "Polaroid (Remix)",
-        "vocalists": [
-          "Myke Towers"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnuda"
-      }
-    ]
   },
   {
     "word": "destino",
@@ -197551,6 +197581,75 @@
     }
   },
   {
+    "word": "vestido",
+    "corpus_count": 5,
+    "song_count": 5,
+    "song_ids": [
+      "3006211",
+      "3041103",
+      "3092934",
+      "3256611",
+      "7967941"
+    ],
+    "examples": [
+      {
+        "id": "7967941:13",
+        "line": "Búscame, ya estoy vestido",
+        "title": "Otro Atardecer",
+        "vocalists": [
+          "Bad Bunny",
+          "Bad Bunny",
+          "The Marías"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "vestido"
+      },
+      {
+        "id": "3041103:10",
+        "line": "Te encanta que te toque y te quite el vestido (Vestido, vestido)",
+        "title": "Prohibido",
+        "vocalists": [
+          "Bad Bunny",
+          "Lary Over"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "vestido"
+      },
+      {
+        "id": "3092934:56",
+        "line": "Qué bello el vestido (Ey)",
+        "title": "Move Your Body",
+        "surface": "vestido"
+      },
+      {
+        "id": "3256611:81",
+        "line": "Ando con Blanca vesti'o 'e negro, levantando al que se acueste (prrr)",
+        "title": "El Combo Me Llama 2",
+        "vocalists": [
+          "Noriel",
+          "Miky Woodz"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "vesti'o"
+      },
+      {
+        "id": "3006211:45",
+        "line": "Los carros pa'l trabajo y completo vestí'o 'e negro",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Darell"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "vestí'o"
+      }
+    ],
+    "variants": {
+      "vestido": 3,
+      "vesti'o": 1,
+      "vestí'o": 1
+    }
+  },
+  {
     "word": "abraza",
     "corpus_count": 4,
     "song_count": 4,
@@ -220288,62 +220387,6 @@
     }
   },
   {
-    "word": "vestido",
-    "corpus_count": 4,
-    "song_count": 4,
-    "song_ids": [
-      "3006211",
-      "3041103",
-      "3092934",
-      "7967941"
-    ],
-    "examples": [
-      {
-        "id": "7967941:13",
-        "line": "Búscame, ya estoy vestido",
-        "title": "Otro Atardecer",
-        "vocalists": [
-          "Bad Bunny",
-          "Bad Bunny",
-          "The Marías"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "vestido"
-      },
-      {
-        "id": "3041103:10",
-        "line": "Te encanta que te toque y te quite el vestido (Vestido, vestido)",
-        "title": "Prohibido",
-        "vocalists": [
-          "Bad Bunny",
-          "Lary Over"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "vestido"
-      },
-      {
-        "id": "3092934:56",
-        "line": "Qué bello el vestido (Ey)",
-        "title": "Move Your Body",
-        "surface": "vestido"
-      },
-      {
-        "id": "3006211:45",
-        "line": "Los carros pa'l trabajo y completo vestí'o 'e negro",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Darell"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "vestí'o"
-      }
-    ],
-    "variants": {
-      "vestido": 3,
-      "vestí'o": 1
-    }
-  },
-  {
     "word": "viejas",
     "corpus_count": 4,
     "song_count": 4,
@@ -221420,6 +221463,67 @@
     "variants": {
       "marido": 2,
       "marí'o": 2
+    }
+  },
+  {
+    "word": "metido",
+    "corpus_count": 4,
+    "song_count": 4,
+    "song_ids": [
+      "2871746",
+      "2925348",
+      "3041103",
+      "3048221"
+    ],
+    "examples": [
+      {
+        "id": "3041103:14",
+        "line": "Son mas de cien veces que ya te lo he metido (Carbon, bebé)",
+        "title": "Prohibido",
+        "vocalists": [
+          "Bad Bunny",
+          "Lary Over"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "metido"
+      },
+      {
+        "id": "2871746:20",
+        "line": "No he metido un gol (Metido un gol)",
+        "title": "Tu No Vive Así",
+        "vocalists": [
+          "Bad Bunny",
+          "Arcángel"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "metido"
+      },
+      {
+        "id": "3048221:120",
+        "line": "Yo dándote bicho y tu novio meti'o en Planet Fitness",
+        "title": "Me Mata",
+        "vocalists": [
+          "Bad Bunny",
+          "Arcángel"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "meti'o"
+      },
+      {
+        "id": "2925348:43",
+        "line": "El carro siempre con Armor All, metí'o en el mall",
+        "title": "Ahora Soy Peor",
+        "vocalists": [
+          "Lil Santana"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "metí'o"
+      }
+    ],
+    "variants": {
+      "metido": 2,
+      "meti'o": 1,
+      "metí'o": 1
     }
   },
   {
@@ -249814,54 +249918,6 @@
     }
   },
   {
-    "word": "metido",
-    "corpus_count": 3,
-    "song_count": 3,
-    "song_ids": [
-      "2871746",
-      "2925348",
-      "3041103"
-    ],
-    "examples": [
-      {
-        "id": "3041103:14",
-        "line": "Son mas de cien veces que ya te lo he metido (Carbon, bebé)",
-        "title": "Prohibido",
-        "vocalists": [
-          "Bad Bunny",
-          "Lary Over"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "metido"
-      },
-      {
-        "id": "2871746:20",
-        "line": "No he metido un gol (Metido un gol)",
-        "title": "Tu No Vive Así",
-        "vocalists": [
-          "Bad Bunny",
-          "Arcángel"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "metido"
-      },
-      {
-        "id": "2925348:43",
-        "line": "El carro siempre con Armor All, metí'o en el mall",
-        "title": "Ahora Soy Peor",
-        "vocalists": [
-          "Lil Santana"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "metí'o"
-      }
-    ],
-    "variants": {
-      "metido": 2,
-      "metí'o": 1
-    }
-  },
-  {
     "word": "mets",
     "corpus_count": 3,
     "song_count": 3,
@@ -250752,6 +250808,45 @@
     "variants": {
       "premio'": 2,
       "premios": 1
+    }
+  },
+  {
+    "word": "prendido",
+    "corpus_count": 3,
+    "song_count": 3,
+    "song_ids": [
+      "2829388",
+      "2951579",
+      "4179009"
+    ],
+    "examples": [
+      {
+        "id": "2829388:31",
+        "line": "El aire prendí'o y comoquiera hace calor (Hace calor)",
+        "title": "Diles",
+        "surface": "prendí'o"
+      },
+      {
+        "id": "4179009:3",
+        "line": "Que el coro ya 'tá prendí'o",
+        "title": "La Romana",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "prendí'o"
+      },
+      {
+        "id": "2951579:15",
+        "line": "Es que en la guagua siempre he prendi'o más de dos, ah (Yeh)",
+        "title": "Me Importa Un Carajo",
+        "surface": "prendi'o"
+      }
+    ],
+    "display_form": "prendí'o",
+    "variants": {
+      "prendí'o": 2,
+      "prendi'o": 1
     }
   },
   {
@@ -284105,34 +284200,6 @@
     ]
   },
   {
-    "word": "prendido",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "2829388",
-      "4179009"
-    ],
-    "examples": [
-      {
-        "id": "2829388:31",
-        "line": "El aire prendí'o y comoquiera hace calor (Hace calor)",
-        "title": "Diles",
-        "surface": "prendí'o"
-      },
-      {
-        "id": "4179009:3",
-        "line": "Que el coro ya 'tá prendí'o",
-        "title": "La Romana",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "prendí'o"
-      }
-    ],
-    "display_form": "prendí'o"
-  },
-  {
     "word": "prepara",
     "corpus_count": 2,
     "song_count": 2,
@@ -295915,6 +295982,38 @@
     ]
   },
   {
+    "word": "acostumbrado",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3804898",
+      "5629827"
+    ],
+    "examples": [
+      {
+        "id": "3804898:17",
+        "line": "Ya estoy acostumbra'o a estar siempre en el cielo, ey (Ey)",
+        "title": "Estamos Bien",
+        "surface": "acostumbra'o"
+      },
+      {
+        "id": "5629827:9",
+        "line": "Estamo' sonando y no se han acostumbra'u",
+        "title": "Flow Exagerao",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "acostumbra'u"
+      }
+    ],
+    "display_form": "acostumbra'o",
+    "variants": {
+      "acostumbra'o": 1,
+      "acostumbra'u": 1
+    }
+  },
+  {
     "word": "acuerdes",
     "corpus_count": 2,
     "song_count": 2,
@@ -296184,6 +296283,44 @@
     "variants": {
       "apague'": 1,
       "apagues": 1
+    }
+  },
+  {
+    "word": "apretadito",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "5002336",
+      "7934367"
+    ],
+    "examples": [
+      {
+        "id": "5002336:35",
+        "line": "Apreta'íto y bien suda'o como en Copacabana",
+        "title": "Cántalo",
+        "vocalists": [
+          "Bad Bunny",
+          "Ricky Martin",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "surface": "apreta'íto"
+      },
+      {
+        "id": "7934367:39",
+        "line": "Y con tu totito rosita y apretaíto'",
+        "title": "Me Gusta (Remix)",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "apretaíto'"
+      }
+    ],
+    "display_form": "apreta'íto",
+    "variants": {
+      "apreta'íto": 1,
+      "apretaíto'": 1
     }
   },
   {
@@ -299059,6 +299196,79 @@
     "variants": {
       "meta'": 1,
       "metas": 1
+    }
+  },
+  {
+    "word": "metida",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3007462",
+      "3048221"
+    ],
+    "examples": [
+      {
+        "id": "3007462:54",
+        "line": "Tengo caleta' meti'a en un monte",
+        "title": "Me Llueven 2",
+        "vocalists": [
+          "Químico Ultra Mega"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "meti'a"
+      },
+      {
+        "id": "3048221:75",
+        "line": "Se pasa metida en YouPorn, buscando aprenderse to'itas las pose'",
+        "title": "Me Mata",
+        "vocalists": [
+          "Brytiago"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "metida"
+      }
+    ],
+    "display_form": "meti'a",
+    "variants": {
+      "meti'a": 1,
+      "metida": 1
+    }
+  },
+  {
+    "word": "montado",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3256611",
+      "9614087"
+    ],
+    "examples": [
+      {
+        "id": "9614087:42",
+        "line": "Ando con dos culo' monta'o en un Jesko",
+        "title": "MERCEDES CAROTA",
+        "vocalists": [
+          "YOVNGCHIMI"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "monta'o"
+      },
+      {
+        "id": "3256611:111",
+        "line": "Sigo monta'u en el crucero, mi combo va primero",
+        "title": "El Combo Me Llama 2",
+        "vocalists": [
+          "Pusho",
+          "Daddy Yankee"
+        ],
+        "sung_by_primary_artist": false,
+        "surface": "monta'u"
+      }
+    ],
+    "display_form": "monta'o",
+    "variants": {
+      "monta'o": 1,
+      "monta'u": 1
     }
   },
   {
@@ -302394,43 +302604,6 @@
         "line": "Ay, yo con cualquiera me puedo acostar",
         "title": "BAILE INoLVIDABLE",
         "surface": "acostar"
-      }
-    ]
-  },
-  {
-    "word": "acostumbrado",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3804898"
-    ],
-    "examples": [
-      {
-        "id": "3804898:17",
-        "line": "Ya estoy acostumbra'o a estar siempre en el cielo, ey (Ey)",
-        "title": "Estamos Bien",
-        "surface": "acostumbra'o"
-      }
-    ],
-    "display_form": "acostumbra'o"
-  },
-  {
-    "word": "acostumbra'u",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5629827"
-    ],
-    "examples": [
-      {
-        "id": "5629827:9",
-        "line": "Estamo' sonando y no se han acostumbra'u",
-        "title": "Flow Exagerao",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "acostumbra'u"
       }
     ]
   },
@@ -305865,7 +306038,7 @@
     ]
   },
   {
-    "word": "amaneci'o",
+    "word": "amanecido",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -305883,7 +306056,8 @@
         "sung_by_primary_artist": true,
         "surface": "amaneci'o"
       }
-    ]
+    ],
+    "display_form": "amaneci'o"
   },
   {
     "word": "amaneciendo",
@@ -307951,28 +308125,6 @@
     "display_form": "apreta'o"
   },
   {
-    "word": "apreta'íto",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5002336"
-    ],
-    "examples": [
-      {
-        "id": "5002336:35",
-        "line": "Apreta'íto y bien suda'o como en Copacabana",
-        "title": "Cántalo",
-        "vocalists": [
-          "Bad Bunny",
-          "Ricky Martin",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "apreta'íto"
-      }
-    ]
-  },
-  {
     "word": "apretados",
     "corpus_count": 1,
     "song_count": 1,
@@ -307992,26 +308144,6 @@
       }
     ],
     "display_form": "apretao'"
-  },
-  {
-    "word": "apretaíto'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "7934367"
-    ],
-    "examples": [
-      {
-        "id": "7934367:39",
-        "line": "Y con tu totito rosita y apretaíto'",
-        "title": "Me Gusta (Remix)",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "apretaíto'"
-      }
-    ]
   },
   {
     "word": "apretones",
@@ -317946,7 +318078,7 @@
     "display_form": "calla'"
   },
   {
-    "word": "calla'íta",
+    "word": "calladita",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -317963,7 +318095,8 @@
         "sung_by_primary_artist": true,
         "surface": "calla'íta"
       }
-    ]
+    ],
+    "display_form": "calla'íta"
   },
   {
     "word": "callados",
@@ -325985,7 +326118,7 @@
     ]
   },
   {
-    "word": "compra'u",
+    "word": "comprado",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -326002,7 +326135,8 @@
         "sung_by_primary_artist": true,
         "surface": "compra'u"
       }
-    ]
+    ],
+    "display_form": "compra'u"
   },
   {
     "word": "comprara",
@@ -334668,26 +334802,6 @@
       }
     ],
     "display_form": "desnu'"
-  },
-  {
-    "word": "desnu'a",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3039781"
-    ],
-    "examples": [
-      {
-        "id": "3039781:45",
-        "line": "Diablo, chica, desnu'a tú te ves bien rica",
-        "title": "Un Ratito Más",
-        "vocalists": [
-          "Bryant Myers"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "desnu'a"
-      }
-    ]
   },
   {
     "word": "desnu'itos",
@@ -365105,7 +365219,7 @@
     ]
   },
   {
-    "word": "lambi'a",
+    "word": "lambida",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -365123,7 +365237,8 @@
         "sung_by_primary_artist": false,
         "surface": "lambi'a"
       }
-    ]
+    ],
+    "display_form": "lambi'a"
   },
   {
     "word": "lambiendo",
@@ -373893,47 +374008,6 @@
     ]
   },
   {
-    "word": "meti'a",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3007462"
-    ],
-    "examples": [
-      {
-        "id": "3007462:54",
-        "line": "Tengo caleta' meti'a en un monte",
-        "title": "Me Llueven 2",
-        "vocalists": [
-          "Químico Ultra Mega"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "meti'a"
-      }
-    ]
-  },
-  {
-    "word": "meti'o",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3048221"
-    ],
-    "examples": [
-      {
-        "id": "3048221:120",
-        "line": "Yo dándote bicho y tu novio meti'o en Planet Fitness",
-        "title": "Me Mata",
-        "vocalists": [
-          "Bad Bunny",
-          "Arcángel"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "meti'o"
-      }
-    ]
-  },
-  {
     "word": "metiche",
     "corpus_count": 1,
     "song_count": 1,
@@ -373950,26 +374024,6 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "metiche"
-      }
-    ]
-  },
-  {
-    "word": "metida",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3048221"
-    ],
-    "examples": [
-      {
-        "id": "3048221:75",
-        "line": "Se pasa metida en YouPorn, buscando aprenderse to'itas las pose'",
-        "title": "Me Mata",
-        "vocalists": [
-          "Brytiago"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "metida"
       }
     ]
   },
@@ -375809,48 +375863,6 @@
       }
     ],
     "display_form": "monstruo'"
-  },
-  {
-    "word": "montado",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "9614087"
-    ],
-    "examples": [
-      {
-        "id": "9614087:42",
-        "line": "Ando con dos culo' monta'o en un Jesko",
-        "title": "MERCEDES CAROTA",
-        "vocalists": [
-          "YOVNGCHIMI"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "monta'o"
-      }
-    ],
-    "display_form": "monta'o"
-  },
-  {
-    "word": "monta'u",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3256611"
-    ],
-    "examples": [
-      {
-        "id": "3256611:111",
-        "line": "Sigo monta'u en el crucero, mi combo va primero",
-        "title": "El Combo Me Llama 2",
-        "vocalists": [
-          "Pusho",
-          "Daddy Yankee"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "monta'u"
-      }
-    ]
   },
   {
     "word": "montaba",
@@ -383100,7 +383112,7 @@
     ]
   },
   {
-    "word": "para'ita",
+    "word": "paradita",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -383117,7 +383129,8 @@
         "sung_by_primary_artist": true,
         "surface": "para'ita"
       }
-    ]
+    ],
+    "display_form": "para'ita"
   },
   {
     "word": "paraba",
@@ -385868,26 +385881,6 @@
         "line": "Yo sé lo que tenía, lo que no sabía e' qué se sentía perderlo",
         "title": "Yo No Soy Celoso",
         "surface": "perderlo"
-      }
-    ]
-  },
-  {
-    "word": "perdi'o",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3193669"
-    ],
-    "examples": [
-      {
-        "id": "3193669:41",
-        "line": "Como Jordan, no he perdi'o una final",
-        "title": "El Ganador (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "surface": "perdi'o"
       }
     ]
   },
@@ -390203,22 +390196,6 @@
         ],
         "sung_by_primary_artist": false,
         "surface": "prendi"
-      }
-    ]
-  },
-  {
-    "word": "prendi'o",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2951579"
-    ],
-    "examples": [
-      {
-        "id": "2951579:15",
-        "line": "Es que en la guagua siempre he prendi'o más de dos, ah (Yeh)",
-        "title": "Me Importa Un Carajo",
-        "surface": "prendi'o"
       }
     ]
   },
@@ -416656,27 +416633,6 @@
         ],
         "sung_by_primary_artist": true,
         "surface": "verás"
-      }
-    ]
-  },
-  {
-    "word": "vesti'o",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3256611"
-    ],
-    "examples": [
-      {
-        "id": "3256611:81",
-        "line": "Ando con Blanca vesti'o 'e negro, levantando al que se acueste (prrr)",
-        "title": "El Combo Me Llama 2",
-        "vocalists": [
-          "Noriel",
-          "Miky Woodz"
-        ],
-        "sung_by_primary_artist": false,
-        "surface": "vesti'o"
       }
     ]
   },

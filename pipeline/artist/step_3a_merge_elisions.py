@@ -64,7 +64,7 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 7
+STEP_VERSION = 8
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
@@ -79,6 +79,12 @@ STEP_VERSION_NOTES = {
        "exact after elision normalization",
     7: "+ apostrophe-less d-elision (metíos → metidos), guarded so it only "
        "fires when the surface is not itself a known Spanish form",
+    8: "+ extended d-elision families, each validated against spanish_forms and "
+       "labelled separately (d_elision_unaccented: meti'o → metido; "
+       "d_elision_u_final: acostumbra'u → acostumbrado; d_elision_diminutive: "
+       "apreta'íto → apretadito; d_elision_ustem: desnu'a → desnuda). "
+       "double_elision now also chains through the extended + bare rules "
+       "(apretaíto' → apretadito). Trailing-apostrophe tiebreaker unchanged.",
 }
 
 # ---------------------------------------------------------------------------
@@ -290,6 +296,60 @@ D_ELISION_RULES = [
 
 D_ELISION_EXCEPTIONS = frozenset()
 
+# ---------------------------------------------------------------------------
+# Extended d-elision families (v8). Same phenomenon as D_ELISION_RULES — an
+# intervocalic /d/ dropped in the lyric — but three spellings the original
+# rules miss:
+#
+#   * unaccented -i' spellings. The originals require a written accent
+#     (`metí'o`), but Genius transcribes `meti'o` / `perdi'o` / `lambi'a`
+#     just as often.
+#   * the Caribbean u-final variant of -ado: `acostumbra'u`, `monta'u`.
+#   * a diminutive stacked on top of the elision (`apreta'íto`,
+#     `calla'íta`, `para'ita`, `desnu'itos`), plus plain u-stem forms
+#     (`desnu'a` → desnuda).
+#
+# Unlike the trailing-apostrophe tiebreaker, these are unambiguous: the
+# apostrophe sits between two vowels, so only /d/ can have been dropped.
+# Every restoration is still validated against spanish_forms before it is
+# emitted, so a nonsense stem can never invent a lemma. Ordered
+# longest-suffix-first (plural before singular).
+_EXT_APOS = "['’]"
+
+
+def _ext(suffix_re, restored, family):
+    return (re.compile(r"^(.+)" + suffix_re + r"$"), restored, family)
+
+
+D_ELISION_EXT_RULES = [
+    # -- diminutive stacked on the elision: apreta'íto -> apretadito ---------
+    _ext("a" + _EXT_APOS + "[íi]tos", "aditos", "d_elision_diminutive"),
+    _ext("a" + _EXT_APOS + "[íi]tas", "aditas", "d_elision_diminutive"),
+    _ext("a" + _EXT_APOS + "[íi]to", "adito", "d_elision_diminutive"),
+    _ext("a" + _EXT_APOS + "[íi]ta", "adita", "d_elision_diminutive"),
+    _ext("u" + _EXT_APOS + "[íi]tos", "uditos", "d_elision_diminutive"),
+    _ext("u" + _EXT_APOS + "[íi]tas", "uditas", "d_elision_diminutive"),
+    _ext("u" + _EXT_APOS + "[íi]to", "udito", "d_elision_diminutive"),
+    _ext("u" + _EXT_APOS + "[íi]ta", "udita", "d_elision_diminutive"),
+    _ext("[íi]" + _EXT_APOS + "[íi]tos", "iditos", "d_elision_diminutive"),
+    _ext("[íi]" + _EXT_APOS + "[íi]tas", "iditas", "d_elision_diminutive"),
+    _ext("[íi]" + _EXT_APOS + "[íi]to", "idito", "d_elision_diminutive"),
+    _ext("[íi]" + _EXT_APOS + "[íi]ta", "idita", "d_elision_diminutive"),
+    # -- Caribbean u-final -ado: acostumbra'u -> acostumbrado ---------------
+    _ext("a" + _EXT_APOS + "us", "ados", "d_elision_u_final"),
+    _ext("a" + _EXT_APOS + "u", "ado", "d_elision_u_final"),
+    # -- unaccented -i' spellings: meti'o -> metido -------------------------
+    _ext("i" + _EXT_APOS + "os", "idos", "d_elision_unaccented"),
+    _ext("i" + _EXT_APOS + "as", "idas", "d_elision_unaccented"),
+    _ext("i" + _EXT_APOS + "o", "ido", "d_elision_unaccented"),
+    _ext("i" + _EXT_APOS + "a", "ida", "d_elision_unaccented"),
+    # -- u-stem forms: desnu'a -> desnuda -----------------------------------
+    _ext("u" + _EXT_APOS + "os", "udos", "d_elision_ustem"),
+    _ext("u" + _EXT_APOS + "as", "udas", "d_elision_ustem"),
+    _ext("u" + _EXT_APOS + "o", "udo", "d_elision_ustem"),
+    _ext("u" + _EXT_APOS + "a", "uda", "d_elision_ustem"),
+]
+
 # Apostrophe-less d-elision. The rules above all require the apostrophe the
 # lyric usually keeps (arrebata'o), but Genius transcriptions frequently drop
 # it too, leaving a bare `metíos` / `arrebataos` / `exagerao`. Those never match
@@ -411,10 +471,34 @@ def bare_d_elision_canonical(word, known_set):
     return None
 
 
-def double_elision_canonical(word):
-    """Chain: `parao'` → `parao` → `parado`.
+def d_elision_ext_canonical(word, known_set):
+    """Extended d-elision families (unaccented -i', -a'u, diminutive, u-stem).
+
+    Returns ``(canonical, display, family)`` or None. Unlike
+    :func:`d_elision_canonical`, every restoration is validated against the
+    canonical Spanish form table, because these patterns are looser: only a
+    candidate Spanish already has is emitted, so a nonsense stem can never
+    invent a lemma. `family` is carried into the merge_type/stats label so
+    each rule set stays auditable and revertible on its own.
+    """
+    if not known_set or word in D_ELISION_EXCEPTIONS:
+        return None
+    for pattern, suffix, family in D_ELISION_EXT_RULES:
+        m = pattern.match(word)
+        if m:
+            candidate = m.group(1) + suffix
+            if candidate in known_set:
+                return (candidate, word, family)
+    return None
+
+
+def double_elision_canonical(word, known_set=None):
+    """Chain: `parao'` → `parao` → `parado`, `apretaíto'` → `apretadito`.
 
     A word ending in `'` where the stripped stem is itself a d-elision target.
+    When `known_set` is supplied the stripped stem is also run through the
+    extended and bare (apostrophe-less) d-elision rules — both validate their
+    own output — so `apretaíto'` no longer stops halfway.
     Returns (canonical, display) or None. Display is the original double-elided
     form.
     """
@@ -424,6 +508,13 @@ def double_elision_canonical(word):
     d = d_elision_canonical(stripped)
     if d:
         return (d[0], word)
+    if known_set:
+        ext = d_elision_ext_canonical(stripped, known_set)
+        if ext:
+            return (ext[0], word)
+        bare = bare_d_elision_canonical(stripped, known_set)
+        if bare:
+            return (bare[0], word)
     return None
 
 
@@ -519,7 +610,9 @@ def merge_evidence(data, targets, known_vocab):
     groups = defaultdict(lambda: {"count": 0, "examples": [], "display_form": None,
                                   "variants": {}, "song_ids": set()})
 
-    stats = {"mapping": 0, "d_elision": 0, "double_elision": 0, "trailing_apos": 0,
+    stats = {"mapping": 0, "d_elision": 0, "d_elision_unaccented": 0,
+             "d_elision_u_final": 0, "d_elision_diminutive": 0,
+             "d_elision_ustem": 0, "double_elision": 0, "trailing_apos": 0,
              "bare_d_elision": 0, "unmerged": 0}
 
     for entry in data:
@@ -585,9 +678,14 @@ def merge_evidence(data, targets, known_vocab):
                 key, display = d[0], d[1]
                 source = "d_elision"
             else:
+                # Extended d-elision families (unaccented -i', -a'u,
+                # diminutive, u-stem). Validated, so they run before the
+                # looser trailing-apostrophe tiebreaker.
+                ext = d_elision_ext_canonical(word, load_spanish_forms())
+                if ext:
+                    key, display, source = ext[0], ext[1], ext[2]
                 # Try double-elision: parao' → parado
-                dd = double_elision_canonical(word)
-                if dd:
+                elif (dd := double_elision_canonical(word, load_spanish_forms())):
                     key, display = dd[0], dd[1]
                     source = "double_elision"
                 else:
@@ -851,7 +949,9 @@ def main():
     print(f"\nWrote {len(merged)} entries -> {OUT_PATH}")
     print(f"  Reduced by {len(data) - len(merged)} entries")
     print(f"  Merge sources:")
-    for k in ("mapping", "d_elision", "double_elision", "trailing_apos", "unmerged"):
+    for k in ("mapping", "d_elision", "d_elision_unaccented", "d_elision_u_final",
+              "d_elision_diminutive", "d_elision_ustem", "double_elision",
+              "trailing_apos", "bare_d_elision", "unmerged"):
         print(f"    {k}: {stats.get(k, 0)}")
     if AMBIGUOUS_ELISIONS:
         print(f"  Ambiguous elision method: {DISAMBIG_METHOD}")
