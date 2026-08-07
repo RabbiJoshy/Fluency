@@ -1,18 +1,18 @@
-import './state.js?v=20260805p';
-import './offline-db.js?v=20260805p';
-import './sync-queue.js?v=20260805p';
-import { initOfflineContent } from './offline-content.js?v=20260805p';
-import './speech.js?v=20260805p';
-import './artist-ui.js?v=20260805p';
-import './auth.js?v=20260805p';
-import './about-example.js?v=20260805p';
-import './estimation.js?v=20260805p';
-import './config.js?v=20260805p';
-import './progress.js?v=20260805p';
-import './knowledge.js?v=20260805p';
-import './ui.js?v=20260805p';
-import './vocab.js?v=20260805p';
-import './flashcards.js?v=20260805p';
+import './state.js?v=20260806d';
+import './offline-db.js?v=20260806d';
+import './sync-queue.js?v=20260806d';
+import { initOfflineContent } from './offline-content.js?v=20260806d';
+import './speech.js?v=20260806d';
+import './artist-ui.js?v=20260806d';
+import './auth.js?v=20260806d';
+import './about-example.js?v=20260806d';
+import './estimation.js?v=20260806d';
+import './config.js?v=20260806d';
+import './progress.js?v=20260806d';
+import './knowledge.js?v=20260806d';
+import './ui.js?v=20260806d';
+import './vocab.js?v=20260806d';
+import './flashcards.js?v=20260806d';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -21,7 +21,7 @@ import './flashcards.js?v=20260805p';
 const _initialParams = new URLSearchParams(window.location.search);
 const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260805p').catch(error => {
+    ? import('./spotify.js?v=20260806d').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -293,7 +293,7 @@ loadConfig().then(async () => {
         try {
             selectedLanguage = 'spanish';
             applyLanguageColorTheme();
-            const speechVnext = await import('./speech-vnext.js?v=20260805p');
+            const speechVnext = await import('./speech-vnext.js?v=20260806d');
             await speechVnext.startSpeechVnext();
         } catch (error) {
             console.error('Speech vNext preview failed to load:', error);
@@ -888,7 +888,15 @@ async function jumpToFoundWord(entry) {
             console.error('Find-word: popupFoundWord failed', e);
             document.getElementById('findWordModal')?.classList.remove('hidden');
             const statusEl = document.getElementById('findWordStatus');
-            if (statusEl) statusEl.textContent = 'Could not open card.';
+            // Name the actual failure. A bare "Could not open card" is
+            // indistinguishable between a missing entry, a lazy-module load
+            // failure, and a render exception — and on a phone there is no
+            // console to check, so the reason has to reach the sheet itself.
+            if (statusEl) {
+                const where = String(e?.stack || '').split('\n')[1]?.trim() || '';
+                statusEl.textContent = `Could not open card — ${e?.message || e}`
+                    + (where ? ` (${where.slice(0, 80)})` : '');
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 // Granular sense / expression knowledge layered over whole-card progress.
 // Whole-card answers are the baseline; only explicit row-level answers create
 // ItemProgress records. The newest card-level or item-level event wins.
-import './state.js?v=20260805p';
-import { sendOrQueue } from './sync-queue.js?v=20260805p';
+import './state.js?v=20260806d';
+import { sendOrQueue } from './sync-queue.js?v=20260806d';
 
 const KNOWLEDGE_SCHEMA_VERSION = 1;
 
@@ -449,7 +449,11 @@ function knowledgeSectionLabel(type) {
 function renderKnowledgeOverviewButton(card) {
     if (!currentUser || currentUser.isGuest) return '';
     const summary = getCardKnowledgeSummary(card);
-    if (summary.total === 0) return '';
+    // A single-item card has nothing to break down: "0/1 known" restates the
+    // whole-card answer the learner is about to give, and the overview it
+    // opens would list one row. The tile only earns its place once the card
+    // carries more than one meaning/Expression/attached form.
+    if (summary.total <= 1) return '';
     const label = `${summary.learned} of ${summary.total} known`;
     return `<button type="button" class="ref-tile knowledge-overview-trigger" aria-label="Open meanings and expressions knowledge: ${label}" onclick="showKnowledgeOverview(event)">
         <svg class="ref-tile-icon" viewBox="10 10 26 26" aria-hidden="true">

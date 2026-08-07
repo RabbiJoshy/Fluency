@@ -25,17 +25,21 @@ const CONJ_PRONOUNS_FULL = ['yo', 'tú', 'él / ella', 'nosotros', 'vosotros', '
 // tense names from verbecc). `CONJ_TENSE_DISPLAY` below maps each Spanish
 // key to a short English label for the toggle buttons.
 const CONJ_MOOD_GROUPS = {
+    // Moods stay distinguishable inside the VERB colour family rather than
+    // borrowing blue/purple/pink, which read as unrelated categories on a
+    // panel that is entirely about one verb. Hue steps within the green,
+    // not a change of colour.
     'Indicative': {
         tenses: ['Presente', 'Pretérito', 'Imperfecto', 'Futuro', 'Condicional'],
-        accent: 'rgba(74, 158, 255, 0.6)',   // blue
+        accent: 'rgba(0, 212, 170, 0.72)',   // core verb green
     },
     'Subjunctive': {
         tenses: ['Subj. Presente', 'Subj. Imperfecto', 'Subj. Futuro'],
-        accent: 'rgba(168, 85, 247, 0.6)',   // purple
+        accent: 'rgba(52, 211, 153, 0.62)',  // emerald
     },
     'Imperative': {
         tenses: ['Imperativo', 'Imp. Negativo'],
-        accent: 'rgba(236, 72, 153, 0.6)',   // pink
+        accent: 'rgba(13, 148, 136, 0.72)',  // deep teal
     },
 };
 const CONJ_MOOD_ORDER = ['Indicative', 'Subjunctive', 'Imperative'];
@@ -155,7 +159,7 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
     }
     const orphanTenses = tenseNames.filter(t => !seen.has(t));
     if (orphanTenses.length) {
-        grouped.push({ mood: 'Other', accent: 'rgba(255,255,255,0.3)', tenses: orphanTenses });
+        grouped.push({ mood: 'Other', accent: 'rgba(148, 163, 184, 0.55)', tenses: orphanTenses });
     }
 
     // The mood that owns the default tense is the one we open on.
@@ -213,9 +217,10 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
     }
 
     // --- Header block ---
-    // Infinitive + translation on top; -ar/-er/-ir type badge on the right;
-    // non-finite forms (gerund + past participle) pinned underneath so
-    // they're visible regardless of which tense is currently showing.
+    // Infinitive + translation on top; -ar/-er/-ir type badge on the right.
+    // The gerund and past participle are reference detail rather than a
+    // paradigm the learner is drilling, so they sit in a quiet strip below
+    // the table instead of competing with the headword.
     const infEnd = infinitive.slice(-2).toUpperCase();
     const typeBadge = ['AR', 'ER', 'IR'].includes(infEnd)
         ? `<span class="conj-type-badge">-${infEnd}</span>`
@@ -265,7 +270,6 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
                     ${typeBadge}
                 </div>
                 ${translation ? `<div class="conj-translation">${translation}</div>` : ''}
-                ${nonFiniteHTML}
             </div>
             ${moodToggleHTML}
             <div class="conj-tense-toggles">
@@ -274,6 +278,7 @@ function buildConjugationTableHTML(conjEntry, targetWord, lemma, opts) {
             <div class="conj-tables-wrap">
                 ${tenseTables}
             </div>
+            ${nonFiniteHTML}
             ${sdLinkHTML}
         </div>
     `;
@@ -320,11 +325,30 @@ function switchConjMood(moodName) {
 // (without a card change) are pure CSS toggle. Card changes blow away the
 // DOM, so the next open hits the cache and rebuilds-from-cache instead of
 // re-running the templating.
+// The panel covers the whole viewport, not just the card. It cannot do that
+// from inside the card: .card-face clips its children and the card carries a
+// 3D flip transform, which makes even position:fixed resolve against the card
+// rather than the viewport. So it is hosted on <body> while open and stowed
+// back into the card's back face when closed, where updateCard() owns it.
+function hostConjPanelFullScreen(panel) {
+    if (panel.parentElement !== document.body) document.body.appendChild(panel);
+}
+
+function stowConjPanel(panel) {
+    const host = document.getElementById('backContent');
+    if (host && panel.parentElement !== host) host.appendChild(panel);
+}
+
 async function toggleConjugationTable() {
     const panel = document.getElementById('conjugationTable');
     if (!panel) return;
     if (panel.classList.contains('visible')) {
         panel.classList.remove('visible');
+        // Wait out the slide-out before re-parenting: moving it mid-transition
+        // restarts layout inside the card and the panel jumps.
+        setTimeout(() => {
+            if (!panel.classList.contains('visible')) stowConjPanel(panel);
+        }, 260);
         return;
     }
     if (!panel.firstChild) {
@@ -369,9 +393,11 @@ async function toggleConjugationTable() {
     // requestAnimationFrame guards against browsers optimising away the
     // slide-in transition on a freshly-injected node (no committed layout
     // means the transition's "from" state isn't observed).
+    hostConjPanelFullScreen(panel);
     requestAnimationFrame(() => panel.classList.add('visible'));
 }
 
 window.toggleConjugationTable = toggleConjugationTable;
+window.stowConjPanel = stowConjPanel;
 window.switchConjMood = switchConjMood;
 window.switchConjTense = switchConjTense;

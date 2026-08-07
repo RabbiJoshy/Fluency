@@ -243,8 +243,12 @@
             outline: 2px solid rgba(255, 255, 255, 0.75);
             outline-offset: 2px;
         }
+        /* Retired: the way out of a child card is now the labelled "Back to …"
+           control in the top bar (.cbs-return), which says where it returns to
+           instead of making the learner infer it from an X. Kept in the markup
+           because the same ids are wired as navigateBack() targets. */
         .card.is-stacked .stacked-exit-btn {
-            display: flex;
+            display: none;
         }
         /* Chain-child cards carry their own exit affordance in the
            breadcrumb header — the generic round X would double up. */
@@ -548,9 +552,9 @@
                 padding: 20px 0;
             }
             /* fill styles live in the global block below so mobile shares them */
-            /* Hide progress + side zones while browsing an off-deck card
-               (.card-back-scrubber's own is-stacked hide rule is universal —
-               see base rules — so only side-nav-zone needs it here). */
+            /* Side zones stay hidden while browsing an off-deck card. The top
+               bar itself no longer hides: it now carries the "Back to …"
+               return control (see .cbs-return in the base rules). */
             .card-container:has(.card.is-stacked) .side-nav-zone {
                 opacity: 0;
                 pointer-events: none;
@@ -1821,16 +1825,78 @@
         .card-back-scrubber {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             height: 52px;
-            padding: 1px 2px;
+            /* No outer inset: the strip and gear draw their own edges, so this
+               padding only shrank the controls inside a row whose height is
+               already fixed. */
+            padding: 0;
             box-sizing: border-box;
             transition: opacity 0.2s;
             z-index: 12;
         }
-        .card-container:has(.card.is-stacked) .card-back-scrubber {
-            opacity: 0;
-            pointer-events: none;
+        /* A child card keeps this bar — it is where the return control lives.
+           The pip row and the card chevrons are what get hidden, since neither
+           addresses a card in the active set from here. */
+        .card-container:has(.card.is-stacked) .cbs-pips,
+        .card-container:has(.card.is-stacked) .cbs-chevron {
+            display: none;
+        }
+
+        /* Return control on a child card. Fills the space the pips vacate, so
+           the target is the width of the strip rather than a 44px disc. */
+        .cbs-return {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            height: calc(100% - 4px);
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            cursor: pointer;
+            text-align: left;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .cbs-return[hidden] {
+            display: none;
+        }
+        .cbs-return:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+        .cbs-return:active {
+            background: rgba(255, 255, 255, 0.22);
+        }
+        .cbs-return-arrow {
+            flex: 0 0 auto;
+            font-size: 26px;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .cbs-return-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            line-height: 1.15;
+        }
+        .cbs-return-kicker {
+            font: 600 10.5px/1 var(--font-data);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .cbs-return-label {
+            font: 650 16px/1.2 var(--font-reading);
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .cbs-strip {
@@ -1842,8 +1908,8 @@
                a slab. */
             height: 100%;
             max-height: 62px;
-            gap: 4px;
-            padding: 0 3px;
+            gap: 3px;
+            padding: 0 2px;
             box-sizing: border-box;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.05);
@@ -1855,7 +1921,7 @@
             width: 50px;
             /* Stretch to the strip's inner height instead of a fixed 44px —
                the reclaimed divider/padding space becomes tap target. */
-            height: calc(100% - 6px);
+            height: calc(100% - 4px);
             min-height: 44px;
             border-radius: 10px;
             display: inline-flex;
@@ -1883,7 +1949,7 @@
             display: flex;
             align-items: center;
             flex: 1;
-            height: calc(100% - 6px);
+            height: calc(100% - 4px);
             min-height: 44px;
             gap: 3px;
             touch-action: none;
@@ -2102,6 +2168,13 @@
             border-top: none;
             padding-top: 0;
         }
+        /* .phrase-summary-item is a column flex container, so the badge and its
+           provenance pill need their own row wrapper — as bare flex children
+           they would stack vertically. */
+        .phrase-badge-row {
+            display: flex;
+            align-items: center;
+        }
         .phrase-kind-badge {
             display: inline-block;
             font-size: 10.5px;
@@ -2113,6 +2186,30 @@
             border: 1px solid rgba(20, 184, 166, 0.55);
             color: #7ce6d8;
         }
+        /* Build-provenance letter, JST account only. Deliberately quieter than
+           .phrase-kind-badge and than the POS colour treatment: no fill, thin
+           border, low-opacity ink. It is a diagnostic sitting next to learner
+           content and must not read as part of it. */
+        .phrase-source-pill {
+            display: inline-block;
+            margin-left: 5px;
+            min-width: 16px;
+            font-size: 9.5px;
+            font-weight: 700;
+            line-height: 14px;
+            text-align: center;
+            padding: 0 3px;
+            border-radius: 4px;
+            border: 1px solid currentColor;
+            background: transparent;
+            opacity: 0.55;
+            vertical-align: 1px;
+        }
+        .phrase-source-wiktionary   { color: #9fb4d8; }  /* W — Wiktionary */
+        .phrase-source-spanishdict  { color: #d8b48c; }  /* S — SpanishDict */
+        .phrase-source-corpus       { color: #a8d29a; }  /* C — corpus / PMI */
+        .phrase-source-curated      { color: #c9a3d8; }  /* K — curated family */
+        .phrase-source-construction { color: #8fc6cd; }  /* T — construction template */
         .phrase-expression {
             font-family: var(--font-reading);
             font-size: 20px;
@@ -2141,6 +2238,95 @@
             border-left: 5px solid #14b8a6;
             border-radius: 10px;
         }
+        /* ---- Attached-pronoun group (one block per base verb) -----------
+           The header names the verb and says only "+ pronominal" — reflexive
+           vs dative is not reliably known, so it must not be asserted. Each
+           attached pronoun keeps its own translation, role detail and
+           examples. Colour follows the CLITIC POS theme (.pos-clitic). */
+        .clitic-group-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px;
+        }
+        .clitic-group-suffix {
+            font-family: var(--font-data);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #fdba74;
+        }
+        .clitic-group-rows {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 2px;
+        }
+        .clitic-row {
+            width: 100%;
+            padding: 8px 0 8px 10px;
+            border-left: 3px solid rgba(249, 115, 22, 0.55);
+        }
+        .clitic-row-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .clitic-row-key {
+            flex: 0 0 auto;
+            font-family: var(--font-reading);
+            font-size: 17px;
+            font-weight: 700;
+            color: #fdba74;
+        }
+        .clitic-row-translation {
+            flex: 1 1 auto;
+            min-width: 0;
+            font-family: var(--font-reading);
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #fff;
+        }
+        .clitic-row-detail {
+            margin-top: 2px;
+            font-size: 12.5px;
+            font-style: italic;
+            line-height: 1.35;
+            color: #b9c2cd;
+        }
+        .clitic-more-toggle {
+            flex: 0 0 auto;
+            padding: 2px 8px;
+            border: 1px solid rgba(249, 115, 22, 0.5);
+            border-radius: 999px;
+            background: rgba(249, 115, 22, 0.12);
+            color: #fdba74;
+            font-family: var(--font-data);
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .clitic-more-toggle:hover {
+            background: rgba(249, 115, 22, 0.22);
+        }
+        .clitic-more[hidden] {
+            display: none;
+        }
+        .clitic-example {
+            border-left-color: #f97316;
+        }
+        .clitic-example + .clitic-example {
+            margin-top: 6px;
+        }
+        .clitic-form-hit {
+            color: #fdba74;
+            font-weight: 700;
+        }
+
         /* ---- "In the wild" sentence list (second chain child) ----------
            Collapsed rows are a plain reading list. Opening one grows it into
            the translation plus a gloss of the words the learner has not met
@@ -2739,17 +2925,9 @@
                 right: 20px;
             }
         }
-        /* On a child card (search/synonym/lyric jump) the 44px exit disc owns
-           this corner, so the POS pills drop below it rather than underneath
-           it. Ordinary cards have no exit button and keep the higher position. */
-        .card.is-stacked .card-pos-list {
-            top: 62px;
-        }
-        @media (max-width: 767px) {
-            .card.is-stacked .card-pos-list {
-                top: 58px;
-            }
-        }
+        /* Child cards used to push the POS pills down 62px to clear the exit
+           disc in this corner. That control now lives in the top bar, so the
+           corner is free and every card keeps the same pill position. */
         .card-pos-list .card-pos {
             margin-bottom: 0;
             /* Same scale as the back legend's pills, which are 10% up on the
@@ -7253,6 +7431,10 @@
            Synonyms panel reuses the same layout (slide-in, header, close
            button) so the two share these selectors. Synonym-specific
            rules live further down. */
+        .conjugation-panel {
+            /* VERB green — every accent inside the panel derives from this. */
+            --conj-accent: 0, 212, 170;
+        }
         .conjugation-panel,
         .synonyms-panel {
             position: absolute;
@@ -7283,6 +7465,49 @@
         .synonyms-panel.visible {
             transform: translateX(0);
             visibility: visible;
+        }
+
+        /* ---- Conjugation panel, full-viewport ------------------------------
+           While open the panel is re-parented to <body> (see
+           hostConjPanelFullScreen in flashcards-conj.js) so it can cover the
+           whole screen: inside the card it was clipped by .card-face's
+           overflow and positioned against the card's 3D transform. Everything
+           below only applies once it is a direct child of <body>. */
+        body > .conjugation-panel {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100dvh;
+            max-width: none;
+            border-radius: 0;
+            padding: 18px 20px calc(20px + env(safe-area-inset-bottom));
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            z-index: 3000;
+            /* The verb POS colour drives every accent in here. */
+            --conj-accent: 0, 212, 170;
+        }
+        body > .conjugation-panel .conj-tables-wrap {
+            /* Claim the space a full screen provides. Centring the short table
+               in it, or pinning it to the top, both left a large void; the
+               rows grow instead, so the extra height becomes legibility. */
+            flex: 1 1 auto;
+            align-items: stretch;
+            margin-top: 18px;
+        }
+        body > .conjugation-panel .conj-table {
+            font-size: 20px;
+            /* Rows share the wrap's height between them. */
+            height: 100%;
+            max-height: 420px;
+        }
+        body > .conjugation-panel .conj-form {
+            font-size: 26px;
+            padding: 14px 16px 14px 8px;
+        }
+        body > .conjugation-panel .conj-pronoun {
+            font-size: 16px;
+            padding: 14px 18px 14px 16px;
         }
 
         /* Sense-assignment provenance panel (JST diagnostic). Toggled via
@@ -7528,20 +7753,34 @@
 
         /* ---- Header: infinitive + type badge, translation, non-finite
            forms — all centred. Close button floats top-right out of flow. */
+        /* Real 48px target. At 22px in a 4x8 pad this was the smallest control
+           on a full-screen sheet whose only job it could not do was close. */
         .conj-close-btn {
             position: absolute;
-            top: 10px;
-            right: 12px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 22px;
+            top: 12px;
+            right: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: var(--text-primary);
+            font-size: 32px;
             cursor: pointer;
-            padding: 4px 8px;
+            padding: 0;
             line-height: 1;
             z-index: 2;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.15s ease, transform 0.12s ease;
         }
-        .conj-close-btn:hover { color: var(--text-primary); }
+        .conj-close-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+        }
+        .conj-close-btn:active { transform: scale(0.94); }
 
         .conj-header {
             margin-bottom: 16px;
@@ -7574,18 +7813,21 @@
             letter-spacing: 0.5px;
             padding: 4px 10px;
             border-radius: 5px;
-            background: rgba(var(--accent-primary-rgb), 0.22);
-            color: var(--accent-primary);
-            border: 1px solid rgba(var(--accent-primary-rgb), 0.35);
+            background: rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.24);
+            color: #66e4cc;
+            border: 1px solid rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.4);
         }
 
-        /* Non-finite forms pinned in the header, centred. */
+        /* Non-finite forms. Reference detail, so they sit below the paradigm
+           behind a divider rather than in the header beside the infinitive. */
         .conj-nonfinite {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-top: 12px;
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
         .conj-nf-item {
             display: inline-flex;
@@ -7596,8 +7838,8 @@
             background: rgba(255,255,255,0.04);
         }
         .conj-nf-item.is-active {
-            background: rgba(var(--accent-primary-rgb), 0.18);
-            box-shadow: inset 0 0 0 1px rgba(var(--accent-primary-rgb), 0.45);
+            background: rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.2);
+            box-shadow: inset 0 0 0 1px rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.5);
         }
         .conj-nf-label {
             font-size: 11px;
@@ -7707,16 +7949,27 @@
         .conj-table tr:nth-child(even) td {
             background: rgba(255,255,255,0.02);
         }
+        /* The row the card's own form lives in. This is the single fact the
+           learner opened the panel to locate, so it is a filled green block
+           with a rail and a glow, not a 14%-alpha tint that reads as striping. */
         .conj-table tr.conj-active td {
-            background: rgba(var(--accent-primary-rgb), 0.14);
+            background: rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.3);
         }
         .conj-table tr.conj-active td:first-child {
-            border-radius: 6px 0 0 6px;
-            box-shadow: inset 1px 0 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 1px 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 -1px 0 rgba(var(--accent-primary-rgb), 0.45);
+            border-radius: 8px 0 0 8px;
+            box-shadow: inset 4px 0 0 rgb(var(--conj-accent, var(--accent-primary-rgb))),
+                        inset 0 2px 0 rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.75),
+                        inset 0 -2px 0 rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.75);
         }
         .conj-table tr.conj-active td:last-child {
-            border-radius: 0 6px 6px 0;
-            box-shadow: inset -1px 0 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 1px 0 rgba(var(--accent-primary-rgb), 0.45), inset 0 -1px 0 rgba(var(--accent-primary-rgb), 0.45);
+            border-radius: 0 8px 8px 0;
+            box-shadow: inset -2px 0 0 rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.75),
+                        inset 0 2px 0 rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.75),
+                        inset 0 -2px 0 rgba(var(--conj-accent, var(--accent-primary-rgb)), 0.75);
+        }
+        .conj-table tr.conj-active .conj-pronoun {
+            color: #eafffa;
+            font-weight: 700;
         }
         .conj-table tr.conj-active .conj-stem,
         .conj-table tr.conj-active .conj-ending {
@@ -7832,7 +8085,11 @@
             opacity: 0.7;
         }
         .conj-ending {
-            color: var(--accent-primary);
+            /* The endings are the pattern the table exists to show, so they
+               carry the VERB colour like everything else in this panel. They
+               used to take the app's orange-red accent, which fought the
+               green mood/active-row treatment around them. */
+            color: rgb(var(--conj-accent, var(--accent-primary-rgb)));
             font-weight: 600;
         }
         .conj-ending-full {

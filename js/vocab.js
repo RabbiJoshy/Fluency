@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260805p';
+import './state.js?v=20260806d';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -1678,6 +1678,10 @@ async function loadVocabularyData(rangeString, opts = {}) {
                         // Renderer prefers real over heuristic.
                         context: mwe.context || '',
                         context_heuristic: mwe.context_heuristic || '',
+                        // Build-time provenance (wiktionary / spanishdict /
+                        // artist-*). Empty for decks assembled before the
+                        // stamp existed; the renderer shows no pill then.
+                        source: mwe.source || '',
                         examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }]
                     });
                 }
@@ -2479,6 +2483,7 @@ function synthesizeSpecialMeanings(item, meanings) {
                 songCount: Number(mwe.num_songs) || 0,
                 context: mwe.context || '',
                 context_heuristic: mwe.context_heuristic || '',
+                source: mwe.source || '',
                 examples: matched.length > 0 ? matched : [{ spanish: '', english: '' }],
             };
         });

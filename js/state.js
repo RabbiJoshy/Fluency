@@ -115,6 +115,14 @@ export const state = {
     // Lyric breakdown
     cardNavStack: [],
     cachedVocabularyData: null,
+    // Derived indexes over cachedVocabularyData. They live here, not as
+    // module-level `let`s, because both sides of the lazy split touch them:
+    // the lyric-breakdown modal builds them, updateCard()'s homograph chips
+    // read them, and goBackToSetup() clears them. A module-local declaration
+    // in either file is invisible to the other and throws a ReferenceError
+    // under module strict mode.
+    fullVocabLookup: null,
+    vocabByIdLookup: null,
 
     // Phrase/clitic chaining — MWE/CLITIC entries a parent card hands off to
     // a single scrollable summary card shown after the parent is marked

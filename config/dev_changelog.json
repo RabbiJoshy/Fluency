@@ -2,6 +2,28 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-06",
+      "commit": "pending",
+      "summary": "Repair two dead references left by the lazy-module split, and stop a failed search card from stranding the deck",
+      "details": [
+        "updateCard() called getVocabByIdLookup() and goBackToSetup() cleared two lookup caches that only existed inside the lazily loaded modal module — both threw ReferenceError; the caches now live in shared state and the lookup is owned by the core file",
+        "Homograph 'also:' chips were the visible casualty of the first one; no current Spanish or artist deck ships homograph ids, so it had been latent since April",
+        "If a search result fails to render, the temporary card and nav-stack entry are now rolled back to the card you were on instead of leaving the deck pointed at a card that never drew",
+        "The find-word sheet now names the actual failure instead of a bare 'Could not open card' — the reason is readable on a phone with no console",
+        "Child cards from search or synonyms lost the floating X: the way out is now a 'Back to <word>' control filling the top bar, which names the card it returns to instead of leaving you to infer it",
+        "That top bar stays on child cards (it used to fade out entirely); the pip row and card chevrons hide instead, since neither addresses a card in the active set from there",
+        "Top bar reclaimed its outer inset and trimmed its gaps, so the chevrons, pips and gear all grew into the row's fixed height",
+        "POS pills sit in the same top-right corner on every card — child cards no longer push them down 62px to clear an exit disc that is gone",
+        "The x/y known tile is hidden on single-meaning cards, where it only restated the whole-card answer",
+        "The English→Spanish front was the one face that put its POS pill inside the meaning row, halfway down the card, and force-hid the corner element — that was the pill that kept reappearing at the bottom; both directions now render into the same top-right corner, verified by measuring it at 30px from top and right",
+        "Verb conjugation panel now covers the whole screen: it is re-parented to the body while open, because inside the card it was clipped by the face and positioned against the card's 3D flip transform",
+        "Conjugation colours moved into the VERB green — moods are hue steps within that family instead of blue/purple/pink, and the endings no longer take the app's orange-red accent",
+        "The row holding the card's own form is now a filled green block with a 4px rail, not a 14%-alpha tint that read as striping; close button is a 48px disc instead of a 22px glyph",
+        "Gerund and past participle dropped out of the header into a quiet strip below the paradigm; table rows grew into the height a full screen provides",
+        "Cache v210→v212 / assets 20260806b→20260806d"
+      ]
+    },
+    {
       "date": "2026-08-05",
       "commit": "pending",
       "summary": "Card typography, morphology rows, a playing animation, and a top-entering leave dialog",

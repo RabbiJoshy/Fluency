@@ -131,19 +131,12 @@ function showPOSInfo(event, pos, pct) {
 // Triggered by tapping the example in artist-mode card view.
 // ---------------------------------------------------------------------------
 
-// Module-level cache for full vocab lookup (not in state — doesn't need proxy)
-let fullVocabLookup = null;
-let vocabByIdLookup = null;
-
-function getVocabByIdLookup() {
-    if (vocabByIdLookup) return vocabByIdLookup;
-    if (!cachedVocabularyData) return new Map();
-    vocabByIdLookup = new Map();
-    for (const entry of cachedVocabularyData) {
-        if (entry.id) vocabByIdLookup.set(entry.id, entry);
-    }
-    return vocabByIdLookup;
-}
+// fullVocabLookup / vocabByIdLookup are state.js entries reached through the
+// globalThis proxy. They used to be module-level `let`s here, which left core
+// flashcards.js — the file that clears them in goBackToSetup() and reads the
+// id index for homograph chips — referring to names that exist nowhere.
+// getVocabByIdLookup() now lives in core for the same reason; this module
+// calls it through the global.
 
 // Common Spanish elisions: elided form → possible full forms
 const ELISION_MAP = {
@@ -744,8 +737,7 @@ async function popupFoundWord(entry, opts) {
         } else {
             // Deck loaded — append temp card and push current position onto nav stack.
             const tempIndex = flashcards.length;
-            flashcards.push(tempCard);
-            cardNavStack.push({
+            const restore = {
                 index: currentIndex,
                 meaningIndex: currentMeaningIndex,
                 exampleIndex: currentExampleIndex,
@@ -753,14 +745,32 @@ async function popupFoundWord(entry, opts) {
                 tempCard: true,
                 tempIndex: tempIndex,
                 reopenSearchOnBack: reopenSearchOnBack
-            });
+            };
+            flashcards.push(tempCard);
+            cardNavStack.push(restore);
             currentIndex = tempIndex;
             currentMeaningIndex = 0;
             currentExampleIndex = 0;
             currentMWEIndex = 0;
             const fc = document.getElementById('flashcard');
             if (startFlipped) fc.classList.add('flipped'); else fc.classList.remove('flipped');
-            window.updateCard();
+            try {
+                window.updateCard();
+            } catch (renderError) {
+                // A render exception used to leave the deck pointed at a card
+                // that never drew: the study card underneath was gone, the nav
+                // stack had grown, and only Back could recover. Undo the whole
+                // push so the learner is returned to the card they were on and
+                // the search sheet can explain what failed.
+                flashcards.splice(tempIndex, 1);
+                if (cardNavStack[cardNavStack.length - 1] === restore) cardNavStack.pop();
+                currentIndex = restore.index;
+                currentMeaningIndex = restore.meaningIndex;
+                currentExampleIndex = restore.exampleIndex;
+                currentMWEIndex = restore.mweIndex;
+                try { window.updateCard(); } catch (e) { console.error('Restore after failed popup also failed', e); }
+                throw renderError;
+            }
         }
         if (findModal) findModal.classList.add('hidden');
     } finally {
