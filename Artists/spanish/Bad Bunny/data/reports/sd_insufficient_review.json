@@ -3,7 +3,7 @@
     "source": "spanishdict",
     "classifier": "classify-or-propose",
     "model": "gemini-3.5-flash-lite",
-    "count": 1803
+    "count": 1812
   },
   "items": [
     {
@@ -125,6 +125,16 @@
       "corpus_count": 124,
       "example": "Baby, tú sabes que por ti me voy a toda",
       "translation": "Baby, you know I'd do anything for you"
+    },
+    {
+      "word": "sí",
+      "lemma": "sí",
+      "proposed": "herself",
+      "type": "figurative",
+      "construction": "de sí misma",
+      "corpus_count": 111,
+      "example": "Mujer que vive segura de sí misma, es toda una diosa",
+      "translation": "A woman who lives confident in herself is a goddess"
     },
     {
       "word": "casa",
@@ -1135,6 +1145,16 @@
       "corpus_count": 24,
       "example": "Muchas prendas en diamante' y no brillan como yo (No brillan como yo)",
       "translation": "Lots of girls in diamonds and they don't shine like me (They don't shine like me)"
+    },
+    {
+      "word": "tanto",
+      "lemma": "tanto",
+      "proposed": "meanwhile",
+      "type": "figurative",
+      "construction": "mientras tanto",
+      "corpus_count": 24,
+      "example": "Mientras tanto yo lo sigo rulin después de cenar en Sophia (Mmm)",
+      "translation": "Meanwhile, I keep on rolling after dinner at Sophia's (Mmm)"
     },
     {
       "word": "pelo",
@@ -6035,6 +6055,36 @@
       "corpus_count": 5,
       "example": "Quiere que me la lleve aparte, yos",
       "translation": "She wants me to take her aside, yo'"
+    },
+    {
+      "word": "perderse",
+      "lemma": "perderse",
+      "proposed": "to lose someone",
+      "type": "slang",
+      "construction": "perderse",
+      "corpus_count": 5,
+      "example": "Porque puede perderse",
+      "translation": "Because she might lose you"
+    },
+    {
+      "word": "perderse",
+      "lemma": "perderse",
+      "proposed": "to miss out",
+      "type": "regional",
+      "construction": "perderse",
+      "corpus_count": 5,
+      "example": "Y tú estás perderse",
+      "translation": "And you're missing out"
+    },
+    {
+      "word": "guillarse",
+      "lemma": "guillarse",
+      "proposed": "to show off",
+      "type": "slang",
+      "construction": "guillarse",
+      "corpus_count": 5,
+      "example": "Si tiene' ese bum-bum, guillarse, ¡buoh!",
+      "translation": "If you have that ass, shake it, buoh!"
     },
     {
       "word": "abusadora",
@@ -12325,6 +12375,46 @@
       "corpus_count": 2,
       "example": "Hijueputa mal nacidos (Ah)",
       "translation": "Born a motherfucker, born bad (Ah)"
+    },
+    {
+      "word": "consolarse",
+      "lemma": "consolarse",
+      "proposed": "to comfort oneself",
+      "type": "figurative",
+      "construction": "consolarse",
+      "corpus_count": 2,
+      "example": "Ya voy pa' probarte, no estoy pa' consolarse (No)",
+      "translation": "I'm coming to test you, I'm not here to console you (No)"
+    },
+    {
+      "word": "alejarse",
+      "lemma": "alejarse",
+      "proposed": "to stay away",
+      "type": "figurative",
+      "construction": "alejarse",
+      "corpus_count": 2,
+      "example": "Wow, qué obra de arte, sé que prometí que iba a alejarse",
+      "translation": "Wow, what a work of art, I know I promised I'd stay away"
+    },
+    {
+      "word": "alejarse",
+      "lemma": "alejarse",
+      "proposed": "to get away",
+      "type": "figurative",
+      "construction": "alejarse",
+      "corpus_count": 2,
+      "example": "alejarse de ti fue como un Demerol que me alivia todo el dolor",
+      "translation": "Getting away from you was like Demerol that relieves all my pain"
+    },
+    {
+      "word": "alejarse",
+      "lemma": "alejarse",
+      "proposed": "to push away",
+      "type": "figurative",
+      "construction": "alejarse",
+      "corpus_count": 2,
+      "example": "Por más que traten de alejarse",
+      "translation": "No matter how much they try to push you away"
     },
     {
       "word": "abajé",

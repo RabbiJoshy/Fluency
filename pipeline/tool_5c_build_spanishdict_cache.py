@@ -77,6 +77,14 @@ def load_inventory_words(inventory_path):
 
 
 def fetch_surface(query):
+    """Fetch one surface.
+
+    Elision normalisation needs no second query: SpanishDict restores an
+    apostrophe-elided spelling server-side and echoes the restored form in
+    ``possible_results[].result`` (``desnu'a`` -> ``desnuda`` -> ``desnudar``).
+    Accepting that echo is ``should_keep_possible_result``'s job — see its
+    docstring. The cache key stays the elided surface either way.
+    """
     session = build_session()
     component = fetch_spanishdict_component(session, query)
     return query, build_surface_entry(query, component), extract_phrases(component)

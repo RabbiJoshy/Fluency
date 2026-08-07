@@ -1,200 +1,10 @@
 {
   "_meta": {
     "note": "Entries whose SpanishDict headwords fail the live plausibility guard. requery = fixable by asking a restored spelling; quarantine = SD has no real entry, drop the menu. Over-rejection is expected — review before acting.",
-    "artist_scope": null,
-    "scanned": 5686
+    "artist_scope": "Artists/spanish/Bad Bunny",
+    "scanned": 3490
   },
   "requery": [
-    {
-      "surface": "pa'",
-      "bogus_headwords": [
-        "p.a."
-      ],
-      "candidates": [
-        "paes",
-        "pas",
-        "par",
-        "paz"
-      ]
-    },
-    {
-      "surface": "alocá'",
-      "bogus_headwords": [
-        "alocar",
-        "alocarse"
-      ],
-      "candidates": [
-        "alocás",
-        "alocar"
-      ]
-    },
-    {
-      "surface": "despechá'",
-      "bogus_headwords": [
-        "despechar"
-      ],
-      "candidates": [
-        "despechás",
-        "despechar"
-      ]
-    },
-    {
-      "surface": "curarno'",
-      "bogus_headwords": [
-        "curar",
-        "curarse"
-      ],
-      "candidates": [
-        "curarnos"
-      ]
-    },
-    {
-      "surface": "ata'a",
-      "bogus_headwords": [
-        "-ata"
-      ],
-      "candidates": [
-        "atada",
-        "atara"
-      ]
-    },
-    {
-      "surface": "fundía'",
-      "bogus_headwords": [
-        "fundir",
-        "fundirse"
-      ],
-      "candidates": [
-        "fundías"
-      ]
-    },
-    {
-      "surface": "guardao'",
-      "bogus_headwords": [
-        "guarda"
-      ],
-      "candidates": [
-        "guardaos"
-      ]
-    },
-    {
-      "surface": "hidratá'",
-      "bogus_headwords": [
-        "hidratar"
-      ],
-      "candidates": [
-        "hidratás",
-        "hidratar"
-      ]
-    },
-    {
-      "surface": "hospedá'",
-      "bogus_headwords": [
-        "hospedar",
-        "hospedarse"
-      ],
-      "candidates": [
-        "hospedás",
-        "hospedar"
-      ]
-    },
-    {
-      "surface": "inmortale'",
-      "bogus_headwords": [
-        "inmortal"
-      ],
-      "candidates": [
-        "inmortales"
-      ]
-    },
-    {
-      "surface": "lil'",
-      "bogus_headwords": [
-        "lily"
-      ],
-      "candidates": [
-        "lilas"
-      ]
-    },
-    {
-      "surface": "mora'os",
-      "bogus_headwords": [
-        "morar"
-      ],
-      "candidates": [
-        "morados",
-        "moraros",
-        "moraos"
-      ]
-    },
-    {
-      "surface": "na'ita",
-      "bogus_headwords": [
-        "nadita"
-      ],
-      "candidates": [
-        "nadita"
-      ]
-    },
-    {
-      "surface": "nue'",
-      "bogus_headwords": [
-        "nuez"
-      ],
-      "candidates": [
-        "nuer",
-        "nuez",
-        "nueve"
-      ]
-    },
-    {
-      "surface": "pasá'",
-      "bogus_headwords": [
-        "pasar",
-        "pasarse"
-      ],
-      "candidates": [
-        "pasás",
-        "pasar"
-      ]
-    },
-    {
-      "surface": "pesao'",
-      "bogus_headwords": [
-        "pesa"
-      ],
-      "candidates": [
-        "pesaos"
-      ]
-    },
-    {
-      "surface": "planificamo'",
-      "bogus_headwords": [
-        "planificar"
-      ],
-      "candidates": [
-        "planificamos"
-      ]
-    },
-    {
-      "surface": "quie'",
-      "bogus_headwords": [
-        "quien"
-      ],
-      "candidates": [
-        "quier"
-      ]
-    },
-    {
-      "surface": "corona'a",
-      "bogus_headwords": [
-        "corona"
-      ],
-      "candidates": [
-        "coronada",
-        "coronara"
-      ]
-    },
     {
       "surface": "desnu'a",
       "bogus_headwords": [
@@ -206,323 +16,6 @@
       ]
     },
     {
-      "surface": "distrae'",
-      "bogus_headwords": [
-        "distraer",
-        "distraerse"
-      ],
-      "candidates": [
-        "distraes",
-        "distraer",
-        "distraed"
-      ]
-    },
-    {
-      "surface": "hackeá'",
-      "bogus_headwords": [
-        "hackear"
-      ],
-      "candidates": [
-        "hackeás",
-        "hackear"
-      ]
-    },
-    {
-      "surface": "olvi'ando",
-      "bogus_headwords": [
-        "olvidar",
-        "olvidarse"
-      ],
-      "candidates": [
-        "olvidando"
-      ]
-    },
-    {
-      "surface": "pa'llá",
-      "bogus_headwords": [
-        "pallar"
-      ],
-      "candidates": [
-        "pallá"
-      ]
-    },
-    {
-      "surface": "rue'a",
-      "bogus_headwords": [
-        "rueda"
-      ],
-      "candidates": [
-        "rueda"
-      ]
-    },
-    {
-      "surface": "verda'",
-      "bogus_headwords": [
-        "verdad"
-      ],
-      "candidates": [
-        "verdad"
-      ]
-    },
-    {
-      "surface": "alarga'",
-      "bogus_headwords": [
-        "alargar",
-        "alargarse"
-      ],
-      "candidates": [
-        "alargados",
-        "alargadas",
-        "alargado",
-        "alargada",
-        "alargas",
-        "alargar",
-        "alargad"
-      ]
-    },
-    {
-      "surface": "arro'",
-      "bogus_headwords": [
-        "arroz"
-      ],
-      "candidates": [
-        "arroz"
-      ]
-    },
-    {
-      "surface": "blindá'",
-      "bogus_headwords": [
-        "blindar"
-      ],
-      "candidates": [
-        "blindás",
-        "blindar"
-      ]
-    },
-    {
-      "surface": "detra'",
-      "bogus_headwords": [
-        "detraer"
-      ],
-      "candidates": [
-        "detraes",
-        "detras"
-      ]
-    },
-    {
-      "surface": "enfermeda'",
-      "bogus_headwords": [
-        "enfermedad"
-      ],
-      "candidates": [
-        "enfermedad"
-      ]
-    },
-    {
-      "surface": "equi'",
-      "bogus_headwords": [
-        "equi-"
-      ],
-      "candidates": [
-        "equis"
-      ]
-    },
-    {
-      "surface": "i'ma",
-      "bogus_headwords": [
-        "IM"
-      ],
-      "candidates": [
-        "irma"
-      ]
-    },
-    {
-      "surface": "motele'",
-      "bogus_headwords": [
-        "mote"
-      ],
-      "candidates": [
-        "moteles"
-      ]
-    },
-    {
-      "surface": "lao'",
-      "bogus_headwords": [
-        "la"
-      ],
-      "candidates": [
-        "laos"
-      ]
-    },
-    {
-      "surface": "demasia'os",
-      "bogus_headwords": [
-        "demasiado"
-      ],
-      "candidates": [
-        "demasiados"
-      ]
-    },
-    {
-      "surface": "nublá'",
-      "bogus_headwords": [
-        "nublar",
-        "nublarse"
-      ],
-      "candidates": [
-        "nublás",
-        "nublar"
-      ]
-    },
-    {
-      "surface": "partie'",
-      "bogus_headwords": [
-        "party"
-      ],
-      "candidates": [
-        "parties"
-      ]
-    },
-    {
-      "surface": "rebelá'",
-      "bogus_headwords": [
-        "rebelar",
-        "rebelarse"
-      ],
-      "candidates": [
-        "rebelás",
-        "rebelar"
-      ]
-    },
-    {
-      "surface": "babeá'",
-      "bogus_headwords": [
-        "babear",
-        "babearse"
-      ],
-      "candidates": [
-        "babeás",
-        "babear"
-      ]
-    },
-    {
-      "surface": "clube'",
-      "bogus_headwords": [
-        "club"
-      ],
-      "candidates": [
-        "clubes"
-      ]
-    },
-    {
-      "surface": "cohíba'",
-      "bogus_headwords": [
-        "cohibir",
-        "cohibirse"
-      ],
-      "candidates": [
-        "cohíbas"
-      ]
-    },
-    {
-      "surface": "de'o",
-      "bogus_headwords": [
-        "de"
-      ],
-      "candidates": [
-        "dedo",
-        "dedeo"
-      ]
-    },
-    {
-      "surface": "descarrilá'",
-      "bogus_headwords": [
-        "descarrilar",
-        "descarrilarse"
-      ],
-      "candidates": [
-        "descarrilás",
-        "descarrilar"
-      ]
-    },
-    {
-      "surface": "enterao'",
-      "bogus_headwords": [
-        "enterar",
-        "enterarse"
-      ],
-      "candidates": [
-        "enteraos"
-      ]
-    },
-    {
-      "surface": "extensione'",
-      "bogus_headwords": [
-        "extensión"
-      ],
-      "candidates": [
-        "extensiones"
-      ]
-    },
-    {
-      "surface": "favore'",
-      "bogus_headwords": [
-        "favor"
-      ],
-      "candidates": [
-        "favores"
-      ]
-    },
-    {
-      "surface": "forrá'",
-      "bogus_headwords": [
-        "forrar",
-        "forrarse"
-      ],
-      "candidates": [
-        "forrás",
-        "forrar"
-      ]
-    },
-    {
-      "surface": "grandota'",
-      "bogus_headwords": [
-        "grandote"
-      ],
-      "candidates": [
-        "grandotas"
-      ]
-    },
-    {
-      "surface": "hacerno'",
-      "bogus_headwords": [
-        "hacer",
-        "hacerse"
-      ],
-      "candidates": [
-        "hacernos"
-      ]
-    },
-    {
-      "surface": "meterno'",
-      "bogus_headwords": [
-        "meter",
-        "meterse"
-      ],
-      "candidates": [
-        "meternos"
-      ]
-    },
-    {
-      "surface": "opcione'",
-      "bogus_headwords": [
-        "opción"
-      ],
-      "candidates": [
-        "opciones"
-      ]
-    },
-    {
       "surface": "po'l",
       "bogus_headwords": [
         "pool"
@@ -531,78 +24,13 @@
         "podal",
         "pol"
       ]
-    },
-    {
-      "surface": "pu'",
-      "bogus_headwords": [
-        "put"
-      ],
-      "candidates": [
-        "pudas",
-        "pudo",
-        "puda",
-        "pues",
-        "pus",
-        "pud"
-      ]
-    },
-    {
-      "surface": "rete'",
-      "bogus_headwords": [
-        "rete-"
-      ],
-      "candidates": [
-        "retes"
-      ]
-    },
-    {
-      "surface": "transmisione'",
-      "bogus_headwords": [
-        "transmisión"
-      ],
-      "candidates": [
-        "transmisiones"
-      ]
-    },
-    {
-      "surface": "vaciao'",
-      "bogus_headwords": [
-        "vacía"
-      ],
-      "candidates": [
-        "vaciaos"
-      ]
     }
   ],
   "quarantine": [
     {
-      "surface": "kil",
-      "bogus_headwords": [
-        "kill"
-      ]
-    },
-    {
-      "surface": "sandungueo",
-      "bogus_headwords": [
-        "sandunguero"
-      ]
-    },
-    {
       "surface": "rulin",
       "bogus_headwords": [
         "ruin"
-      ]
-    },
-    {
-      "surface": "llévamelo",
-      "bogus_headwords": [
-        "llévame"
-      ]
-    },
-    {
-      "surface": "córtala",
-      "bogus_headwords": [
-        "¡Cortala!"
       ]
     },
     {
@@ -625,26 +53,6 @@
       ]
     },
     {
-      "surface": "mundi",
-      "bogus_headwords": [
-        "mundo"
-      ]
-    },
-    {
-      "surface": "vvs",
-      "bogus_headwords": [
-        "ir",
-        "irse"
-      ]
-    },
-    {
-      "surface": "enterraor",
-      "bogus_headwords": [
-        "enterrar",
-        "enterrarse"
-      ]
-    },
-    {
       "surface": "jajaja",
       "bogus_headwords": [
         "¡Jajaja!"
@@ -657,33 +65,15 @@
       ]
     },
     {
-      "surface": "nihil",
-      "bogus_headwords": [
-        "nihil obstat"
-      ]
-    },
-    {
       "surface": "roleta",
       "bogus_headwords": [
         "ruleta"
       ]
     },
     {
-      "surface": "sein",
-      "bogus_headwords": [
-        "sin"
-      ]
-    },
-    {
       "surface": "todito",
       "bogus_headwords": [
         "torito"
-      ]
-    },
-    {
-      "surface": "angelada",
-      "bogus_headwords": [
-        "angulado"
       ]
     },
     {
@@ -706,53 +96,10 @@
       ]
     },
     {
-      "surface": "somethin'",
-      "bogus_headwords": [
-        "something"
-      ],
-      "candidates": []
-    },
-    {
       "surface": "dolce",
       "bogus_headwords": [
         "dulce",
         "dulces"
-      ]
-    },
-    {
-      "surface": "ncia",
-      "bogus_headwords": [
-        "necio"
-      ]
-    },
-    {
-      "surface": "popstar",
-      "bogus_headwords": [
-        "pop star"
-      ]
-    },
-    {
-      "surface": "pámpara",
-      "bogus_headwords": [
-        "pámpana"
-      ]
-    },
-    {
-      "surface": "quédatelo",
-      "bogus_headwords": [
-        "quédate"
-      ]
-    },
-    {
-      "surface": "rendre",
-      "bogus_headwords": [
-        "render"
-      ]
-    },
-    {
-      "surface": "sío",
-      "bogus_headwords": [
-        "sí"
       ]
     },
     {
@@ -768,21 +115,9 @@
       ]
     },
     {
-      "surface": "canelita",
-      "bogus_headwords": [
-        "canaleta"
-      ]
-    },
-    {
       "surface": "cartier",
       "bogus_headwords": [
         "carrier"
-      ]
-    },
-    {
-      "surface": "cristalito",
-      "bogus_headwords": [
-        "cristalino"
       ]
     },
     {
@@ -798,62 +133,10 @@
       ]
     },
     {
-      "surface": "palgo",
-      "bogus_headwords": [
-        "palo",
-        "palos"
-      ]
-    },
-    {
-      "surface": "dispo",
-      "bogus_headwords": [
-        "disco"
-      ]
-    },
-    {
-      "surface": "slo",
-      "bogus_headwords": [
-        "s"
-      ]
-    },
-    {
       "surface": "bellaquera",
       "bogus_headwords": [
         "bellaquería"
       ]
-    },
-    {
-      "surface": "cantito",
-      "bogus_headwords": [
-        "cañita"
-      ]
-    },
-    {
-      "surface": "flipear",
-      "bogus_headwords": [
-        "flipar",
-        "fliparse"
-      ]
-    },
-    {
-      "surface": "quie",
-      "bogus_headwords": [
-        "que"
-      ]
-    },
-    {
-      "surface": "boujee",
-      "bogus_headwords": [
-        "bougie"
-      ]
-    },
-    {
-      "surface": "conectao'",
-      "bogus_headwords": [
-        "conectar",
-        "conectarse"
-      ],
-      "candidates": []
     },
     {
       "surface": "cuki",
@@ -862,34 +145,9 @@
       ]
     },
     {
-      "surface": "frontea",
-      "bogus_headwords": [
-        "frontera"
-      ]
-    },
-    {
-      "surface": "metíos",
-      "bogus_headwords": [
-        "metro"
-      ]
-    },
-    {
       "surface": "mojaítas",
       "bogus_headwords": [
         "mojaíta"
-      ]
-    },
-    {
-      "surface": "nakey",
-      "bogus_headwords": [
-        "naked"
-      ]
-    },
-    {
-      "surface": "ricota",
-      "bogus_headwords": [
-        "rico",
-        "ricos"
       ]
     },
     {
@@ -905,21 +163,9 @@
       ]
     },
     {
-      "surface": "bubis",
-      "bogus_headwords": [
-        "bub"
-      ]
-    },
-    {
       "surface": "buenas",
       "bogus_headwords": [
         "buenas noches"
-      ]
-    },
-    {
-      "surface": "capsu",
-      "bogus_headwords": [
-        "caps"
       ]
     },
     {
@@ -934,12 +180,6 @@
       "bogus_headwords": [
         "enchufar",
         "enchufarse"
-      ]
-    },
-    {
-      "surface": "facey",
-      "bogus_headwords": [
-        "face"
       ]
     },
     {
@@ -968,27 +208,9 @@
       ]
     },
     {
-      "surface": "tryna",
-      "bogus_headwords": [
-        "trino"
-      ]
-    },
-    {
-      "surface": "algare",
-      "bogus_headwords": [
-        "alga"
-      ]
-    },
-    {
       "surface": "blin",
       "bogus_headwords": [
         "blind"
-      ]
-    },
-    {
-      "surface": "boci",
-      "bogus_headwords": [
-        "boca"
       ]
     },
     {
@@ -997,19 +219,6 @@
         "cannot"
       ],
       "candidates": []
-    },
-    {
-      "surface": "chó",
-      "bogus_headwords": [
-        "¡Cho!"
-      ]
-    },
-    {
-      "surface": "concocí",
-      "bogus_headwords": [
-        "conocer",
-        "conocerse"
-      ]
     },
     {
       "surface": "cógelo",
@@ -1024,36 +233,10 @@
       ]
     },
     {
-      "surface": "difficulté",
-      "bogus_headwords": [
-        "difficult"
-      ]
-    },
-    {
-      "surface": "esboca",
-      "bogus_headwords": [
-        "esbozar"
-      ]
-    },
-    {
       "surface": "feca",
       "bogus_headwords": [
         "fecha",
         "fechas"
-      ]
-    },
-    {
-      "surface": "fecas",
-      "bogus_headwords": [
-        "fechas",
-        "fecha"
-      ]
-    },
-    {
-      "surface": "frik",
-      "bogus_headwords": [
-        "freír",
-        "freírse"
       ]
     },
     {
@@ -1069,51 +252,9 @@
       ]
     },
     {
-      "surface": "naqui",
-      "bogus_headwords": [
-        "jaque"
-      ]
-    },
-    {
-      "surface": "naturola",
-      "bogus_headwords": [
-        "natura"
-      ]
-    },
-    {
-      "surface": "oah",
-      "bogus_headwords": [
-        "oh"
-      ]
-    },
-    {
-      "surface": "posi",
-      "bogus_headwords": [
-        "post"
-      ]
-    },
-    {
-      "surface": "psycha",
-      "bogus_headwords": [
-        "psycho"
-      ]
-    },
-    {
       "surface": "refe",
       "bogus_headwords": [
         "refer"
-      ]
-    },
-    {
-      "surface": "satita",
-      "bogus_headwords": [
-        "salita"
-      ]
-    },
-    {
-      "surface": "sextape",
-      "bogus_headwords": [
-        "sex tape"
       ]
     },
     {
@@ -1124,65 +265,15 @@
       ]
     },
     {
-      "surface": "todita",
-      "bogus_headwords": [
-        "todi"
-      ]
-    },
-    {
-      "surface": "truquito",
-      "bogus_headwords": [
-        "traquita"
-      ]
-    },
-    {
-      "surface": "vf",
-      "bogus_headwords": [
-        "ir",
-        "irse"
-      ]
-    },
-    {
-      "surface": "espaldita",
-      "bogus_headwords": [
-        "espadita"
-      ]
-    },
-    {
-      "surface": "estilla",
-      "bogus_headwords": [
-        "estallar"
-      ]
-    },
-    {
       "surface": "fendi",
       "bogus_headwords": [
         "fend for oneself"
       ]
     },
     {
-      "surface": "flowcito",
-      "bogus_headwords": [
-        "florcita"
-      ]
-    },
-    {
       "surface": "fotitos",
       "bogus_headwords": [
         "fotuto"
-      ]
-    },
-    {
-      "surface": "gon'",
-      "bogus_headwords": [
-        "gone"
-      ],
-      "candidates": []
-    },
-    {
-      "surface": "islita",
-      "bogus_headwords": [
-        "isleta"
       ]
     },
     {
@@ -1219,68 +310,6 @@
       "surface": "maelo",
       "bogus_headwords": [
         "mae"
-      ]
-    },
-    {
-      "surface": "pa'bajo",
-      "bogus_headwords": [
-        "para abajo"
-      ],
-      "candidates": []
-    },
-    {
-      "surface": "pesitos",
-      "bogus_headwords": [
-        "perito"
-      ]
-    },
-    {
-      "surface": "poppin'",
-      "bogus_headwords": [
-        "pop"
-      ],
-      "candidates": []
-    },
-    {
-      "surface": "rapidito",
-      "bogus_headwords": [
-        "rapidity"
-      ]
-    },
-    {
-      "surface": "sr",
-      "bogus_headwords": [
-        "Sr."
-      ]
-    },
-    {
-      "surface": "ud",
-      "bogus_headwords": [
-        "Ud."
-      ]
-    },
-    {
-      "surface": "dr",
-      "bogus_headwords": [
-        "Dr."
-      ]
-    },
-    {
-      "surface": "sra",
-      "bogus_headwords": [
-        "Sra."
-      ]
-    },
-    {
-      "surface": "srta",
-      "bogus_headwords": [
-        "Srta."
-      ]
-    },
-    {
-      "surface": "uds",
-      "bogus_headwords": [
-        "Uds."
       ]
     },
     {
@@ -1739,104 +768,10 @@
       ]
     },
     {
-      "surface": "saoco",
-      "bogus_headwords": [
-        "saco"
-      ]
-    },
-    {
-      "surface": "chiquiti",
-      "bogus_headwords": [
-        "chiquito"
-      ]
-    },
-    {
-      "surface": "qui",
-      "bogus_headwords": [
-        "que"
-      ]
-    },
-    {
-      "surface": "tiri",
-      "bogus_headwords": [
-        "tirar",
-        "tirarse"
-      ]
-    },
-    {
-      "surface": "afilaos",
-      "bogus_headwords": [
-        "afilar",
-        "afilarse"
-      ]
-    },
-    {
-      "surface": "brazucas",
-      "bogus_headwords": [
-        "bazucar"
-      ]
-    },
-    {
       "surface": "co",
       "bogus_headwords": [
         "co-"
       ]
-    },
-    {
-      "surface": "coste",
-      "bogus_headwords": [
-        "costo"
-      ]
-    },
-    {
-      "surface": "entrometes",
-      "bogus_headwords": [
-        "entrometerse"
-      ]
-    },
-    {
-      "surface": "espinada",
-      "bogus_headwords": [
-        "espinaca"
-      ]
-    },
-    {
-      "surface": "improvisa",
-      "bogus_headwords": [
-        "improvisar"
-      ]
-    },
-    {
-      "surface": "jonda",
-      "bogus_headwords": [
-        "joda"
-      ]
-    },
-    {
-      "surface": "pegaditos",
-      "bogus_headwords": [
-        "pegadizo"
-      ]
-    },
-    {
-      "surface": "printeado",
-      "bogus_headwords": [
-        "pintear"
-      ]
-    },
-    {
-      "surface": "sakura",
-      "bogus_headwords": [
-        "saturar",
-        "saturarse"
-      ]
-    },
-    {
-      "surface": "what's",
-      "bogus_headwords": [
-        "what is"
-      ],
-      "candidates": []
     },
     {
       "surface": "amiri",
@@ -1855,166 +790,6 @@
       "bogus_headwords": [
         "fenny"
       ]
-    },
-    {
-      "surface": "grra",
-      "bogus_headwords": [
-        "gorra"
-      ]
-    },
-    {
-      "surface": "gyoza",
-      "bogus_headwords": [
-        "gozar"
-      ]
-    },
-    {
-      "surface": "lala",
-      "bogus_headwords": [
-        "la"
-      ]
-    },
-    {
-      "surface": "michu",
-      "bogus_headwords": [
-        "micha"
-      ]
-    },
-    {
-      "surface": "nda",
-      "bogus_headwords": [
-        "nada"
-      ]
-    },
-    {
-      "surface": "ninow",
-      "bogus_headwords": [
-        "niño"
-      ]
-    },
-    {
-      "surface": "porfa",
-      "bogus_headwords": [
-        "¡Porfa!"
-      ]
-    },
-    {
-      "surface": "pushin'",
-      "bogus_headwords": [
-        "pushing"
-      ],
-      "candidates": []
-    },
-    {
-      "surface": "quicky",
-      "bogus_headwords": [
-        "quickly"
-      ]
-    },
-    {
-      "surface": "sho",
-      "bogus_headwords": [
-        "¡Sho!"
-      ]
-    },
-    {
-      "surface": "vv",
-      "bogus_headwords": [
-        "ir",
-        "irse"
-      ]
-    },
-    {
-      "surface": "boceteo",
-      "bogus_headwords": [
-        "boceto"
-      ]
-    },
-    {
-      "surface": "connaisseur",
-      "bogus_headwords": [
-        "connoisseur"
-      ]
-    },
-    {
-      "surface": "creatina",
-      "bogus_headwords": [
-        "create"
-      ]
-    },
-    {
-      "surface": "enchula",
-      "bogus_headwords": [
-        "enchufar",
-        "enchufarse"
-      ]
-    },
-    {
-      "surface": "maura",
-      "bogus_headwords": [
-        "maduro"
-      ]
-    },
-    {
-      "surface": "pama",
-      "bogus_headwords": [
-        "para"
-      ]
-    },
-    {
-      "surface": "periquera",
-      "bogus_headwords": [
-        "periquearse"
-      ]
-    },
-    {
-      "surface": "posteás",
-      "bogus_headwords": [
-        "poster"
-      ]
-    },
-    {
-      "surface": "pérate",
-      "bogus_headwords": [
-        "pirate"
-      ]
-    },
-    {
-      "surface": "rankeo",
-      "bogus_headwords": [
-        "rank",
-        "ranks"
-      ]
-    },
-    {
-      "surface": "risitos",
-      "bogus_headwords": [
-        "ricito"
-      ]
-    },
-    {
-      "surface": "status",
-      "bogus_headwords": [
-        "estatus"
-      ]
-    },
-    {
-      "surface": "tonka",
-      "bogus_headwords": [
-        "tonto"
-      ]
-    },
-    {
-      "surface": "vice",
-      "bogus_headwords": [
-        "vice-"
-      ]
-    },
-    {
-      "surface": "yeca",
-      "bogus_headwords": [
-        "yuca"
-      ]
     }
   ],
   "degraded": [
@@ -2031,69 +806,15 @@
       ]
     },
     {
-      "surface": "poderle",
-      "rejected": [
-        "poderes"
-      ]
-    },
-    {
       "surface": "ten",
       "rejected": [
         "tens"
       ]
     },
     {
-      "surface": "haberle",
-      "rejected": [
-        "haberes"
-      ]
-    },
-    {
-      "surface": "poderla",
-      "rejected": [
-        "poderes"
-      ]
-    },
-    {
-      "surface": "poderte",
-      "rejected": [
-        "poderes"
-      ]
-    },
-    {
-      "surface": "podrá'",
-      "rejected": [
-        "poderes"
-      ]
-    },
-    {
-      "surface": "mean",
-      "rejected": [
-        "means"
-      ]
-    },
-    {
       "surface": "diablos",
       "rejected": [
         "¡Diablos!"
-      ]
-    },
-    {
-      "surface": "titereo",
-      "rejected": [
-        "títeres"
-      ]
-    },
-    {
-      "surface": "andábamo'",
-      "rejected": [
-        "andares"
-      ]
-    },
-    {
-      "surface": "fiele'",
-      "rejected": [
-        "fiel"
       ]
     },
     {
@@ -2136,72 +857,6 @@
       "surface": "saturar",
       "rejected": [
         "saturarse"
-      ]
-    },
-    {
-      "surface": "anudar",
-      "rejected": [
-        "anudarse"
-      ]
-    },
-    {
-      "surface": "cotizar",
-      "rejected": [
-        "cotizarse"
-      ]
-    },
-    {
-      "surface": "disfrazar",
-      "rejected": [
-        "disfrazarse"
-      ]
-    },
-    {
-      "surface": "estremecer",
-      "rejected": [
-        "estremecerse"
-      ]
-    },
-    {
-      "surface": "humillar",
-      "rejected": [
-        "humillarse"
-      ]
-    },
-    {
-      "surface": "inspirar",
-      "rejected": [
-        "inspirarse"
-      ]
-    },
-    {
-      "surface": "asociar",
-      "rejected": [
-        "asociarse"
-      ]
-    },
-    {
-      "surface": "descoser",
-      "rejected": [
-        "descoserse"
-      ]
-    },
-    {
-      "surface": "farrear",
-      "rejected": [
-        "farrearse"
-      ]
-    },
-    {
-      "surface": "pronunciar",
-      "rejected": [
-        "pronunciarse"
-      ]
-    },
-    {
-      "surface": "saciar",
-      "rejected": [
-        "saciarse"
       ]
     }
   ]

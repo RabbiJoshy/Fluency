@@ -34,124 +34,67 @@
 // About copy already discusses. Percentages are the deck's own sense splits.
 
 const ABOUT_EXAMPLE_CARDS = {
-    fuego: {
+    // Chosen for the quality of its sense assignment, not at random. `fuego`
+    // was here first and read badly: its "light (for smoking)" row was
+    // illustrated by "Fuego, desde que te vi me puse roja" and its "passion"
+    // row by "me voy a fuego" — an idiom meaning "I go all out". Both are
+    // real output of the current classifier, and a visitor who reads the
+    // English can see they don't demonstrate the meaning claimed. A showcase
+    // has to be a case the system gets right; `cielo` splits cleanly into two
+    // concrete meanings a non-Spanish-speaker can check from the translation
+    // alone. Revisit when sense assignment improves.
+    cielo: {
         mode: 'lyrics',
-        word: 'fuego',
+        word: 'cielo',
         pos: 'NOUN',
-        rank: 363,
-        corpusCount: 32,
+        rank: 344,
+        corpusCount: 33,
         meanings: [
             {
                 pos: 'NOUN',
-                translation: 'fire',
-                context: 'element',
+                translation: 'heaven',
+                context: 'religious',
                 pct: 70,
                 examples: [
                     {
-                        target: 'Donde hubo fuego, cenizas quedan',
-                        english: 'Where there was fire, ashes remain',
-                        song: 'X ÚLTIMA VEZ',
-                        trackId: '48AJSd42lXpicsGqcgopof',
-                        positionMs: 136010,
+                        target: 'El cielo en el infierno, nadie va a entender',
+                        english: 'Heaven in hell, no one will understand',
+                        song: 'Volando (Remix)',
+                        trackId: '0G2zPzWqVjR68iNPmx2TBe',
+                        positionMs: 220310,
                         vocalists: 'Bad Bunny',
                     },
                     {
-                        target: 'Y le prendiera fuego al que criticaba si repetía',
-                        english: "And I'd set fire to anyone who criticised if I repeated myself",
-                        song: 'YO VISTO ASÍ',
-                        trackId: '5fROvzNghPid8mbKNDYvpJ',
-                        positionMs: 135380,
+                        target: 'Lo subo al cielo, yo soy su Messiah',
+                        english: 'I take him to heaven, I am his Messiah',
+                        song: 'LA NOCHE DE ANOCHE',
+                        trackId: '2XIc1pqjXV3Cr2BQUGNBck',
+                        positionMs: 137190,
+                        vocalists: 'ROSALÍA',
+                    },
+                    {
+                        target: 'Ya estoy acostumbra’o a estar siempre en el cielo',
+                        english: 'I’m already used to always being in heaven',
+                        song: 'Estamos Bien',
+                        trackId: '2OWVCFTolecLiGZPquvWvT',
+                        positionMs: 68170,
                         vocalists: null,
                     },
-                    {
-                        target: 'A ti te gusta lo malo, irte a fuego conmigo',
-                        english: 'You like the bad stuff, going wild with me',
-                        song: 'Gato de Noche',
-                        trackId: '54ELExv56KCAB4UP9cOCzC',
-                        positionMs: 20040,
-                        vocalists: 'Bad Bunny',
-                    },
                 ],
             },
             {
                 pos: 'NOUN',
-                translation: 'light',
-                context: 'for smoking',
-                pct: 20,
+                translation: 'sky',
+                context: 'firmament',
+                pct: 30,
                 examples: [
                     {
-                        target: 'Fuego, desde que te vi me puse roja',
-                        english: 'Fire — since I saw you I blushed',
-                        song: 'PERFuMITO NUEVO',
-                        trackId: '1Q9Efnm5csdCMFynISxL2x',
-                        positionMs: 114800,
-                        vocalists: 'RaiNao',
-                    },
-                ],
-            },
-            {
-                pos: 'NOUN',
-                translation: 'passion',
-                context: 'emotion',
-                pct: 10,
-                examples: [
-                    {
-                        target: 'Y me voy a fuego, cuando se decide',
-                        english: 'And I go all out, when it’s decided',
-                        song: 'Satisfacción',
-                        trackId: '21WvAGxPUNJARcZoSqswd7',
-                        positionMs: 130310,
-                        vocalists: 'Arcángel',
-                    },
-                ],
-            },
-        ],
-    },
-
-    como: {
-        mode: 'lyrics',
-        word: 'como',
-        pos: 'CCONJ',
-        rank: 26,
-        corpusCount: 291,
-        meanings: [
-            {
-                pos: 'CCONJ',
-                translation: 'like',
-                context: 'used to express comparison',
-                pct: 90,
-                examples: [
-                    {
-                        target: 'La luna nos quiere ver como nos tocamo’ los tres',
-                        english: 'The moon wants to see the three of us touching each other',
-                        song: 'Fantasía',
-                        trackId: '72BQwM1wnBQCbjwjRu1rmF',
-                        positionMs: 39000,
-                        vocalists: 'Alex Sensation & Bad Bunny',
-                    },
-                    {
-                        target: 'Hoy se vale to’-to’, como Calle 13',
-                        english: 'Today anything goes, like Calle 13',
-                        song: 'Dame Algo',
-                        trackId: '4ByaTrfoYbXrmlbsTG8MTD',
-                        positionMs: 40630,
-                        vocalists: 'Bad Bunny',
-                    },
-                ],
-            },
-            {
-                pos: 'CCONJ',
-                translation: 'how',
-                context: 'used with verbs of perception',
-                pct: 10,
-                examples: [
-                    {
-                        target: 'Como no sabía qué cartera comprarte, te las compré to’as',
-                        english: "Since I didn't know which bag to buy you, I bought you all of them",
-                        song: 'Give It Up',
-                        trackId: '5dhOWHLE6k2uBeKRwDOniw',
-                        positionMs: 112100,
-                        vocalists: 'Bad Bunny',
+                        target: 'Y ver pa’l cielo a ver si te veo caer',
+                        english: 'And I look to the sky to see if I see you fall',
+                        song: 'BAILE INoLVIDABLE',
+                        trackId: '2lTm559tuIvatlT1u0JYG2',
+                        positionMs: 118690,
+                        vocalists: null,
                     },
                 ],
             },
@@ -207,6 +150,7 @@ const ABOUT_EXAMPLE_CARDS = {
         ],
     },
 };
+
 // ---------------------------------------------------------------------------
 // Decks and their annotations
 // ---------------------------------------------------------------------------
@@ -233,7 +177,7 @@ const ABOUT_EXAMPLE_CARDS = {
 const ABOUT_EXAMPLE_DECKS = [
     {
         id: 'lyrics',
-        card: 'fuego',
+        card: 'cielo',
         tab: 'Lyrics',
         faces: {
             back: {
@@ -259,8 +203,8 @@ const ABOUT_EXAMPLE_DECKS = [
                         side: 'left',
                         anchor: '.meanings-scroll .meaning-row:nth-child(1)',
                         title: 'Its most common meaning',
-                        text: '“fire” is how this word is used about 70% of the time across his '
-                            + 'songs. The highlighted row is the one you’re looking at.',
+                        text: '“heaven” is how this word is used about 70% of the time across '
+                            + 'his songs. The highlighted row is the one you’re looking at.',
                     },
                     {
                         side: 'left',
@@ -331,7 +275,7 @@ const ABOUT_EXAMPLE_DECKS = [
                         side: 'left',
                         anchor: '.card-rank-label',
                         title: 'How common it is',
-                        text: 'The 363rd most-used word across his songs. Words are taught in '
+                        text: 'The 344th most-used word across his songs. Words are taught in '
                             + 'that order — the ones you’ll hear most, first.',
                     },
                     {
@@ -855,13 +799,16 @@ function renderFaceCopy() {
     const face = currentFace();
     const host = document.getElementById('aboutExampleIntro');
     if (!host) return;
-    // No "Lyrics · Bad Bunny · back of card" line. The tab already says which
-    // deck, and the card in front of you already says which side you are
-    // looking at; restating both costs a row of vertical space and tells the
-    // reader nothing they can't see.
+    // The title is a lead-in to the summary, not a heading over it — one
+    // line instead of two, because the card and its annotations have to share
+    // the screen. No "Lyrics · Bad Bunny · back of card" line either: the tab
+    // already says which deck, and the card in front of you already says
+    // which side you are looking at.
     host.innerHTML = `
-        <h3 class="about-example-title">${face.title}</h3>
-        <p class="about-example-blurb">${face.blurb}</p>`;
+        <p class="about-example-blurb">
+            <strong class="about-example-lede">${face.title}</strong>
+            ${face.blurb}
+        </p>`;
 }
 
 function noteHTML(note, index) {
@@ -960,10 +907,9 @@ function openAboutExample(deckIndex = 0) {
     }
 }
 
-// The ✕ is an exit from the whole detour, not one step back up a stack of
-// modals. Someone who has read the walkthrough wants the app, not the About
-// page they passed through to get here — so close both. For a logged-out
-// visitor that lands on the sign-in screen, which is still the way in.
+// The ✕ returns to About, which is where the walkthrough was opened from and
+// where the rest of the project write-up still is. Closing straight through to
+// the app would drop a reader out of the page they were part-way through.
 function closeAboutExample() {
     const modal = document.getElementById('aboutExampleModal');
     if (!modal) return;
@@ -973,9 +919,6 @@ function closeAboutExample() {
     if (_resizeHandler) {
         window.removeEventListener('resize', _resizeHandler);
         _resizeHandler = null;
-    }
-    if (typeof window.hideAboutProjectModal === 'function') {
-        window.hideAboutProjectModal();
     }
 }
 

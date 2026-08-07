@@ -11,7 +11,11 @@ Five phases, one source of truth for "known Spanish", no heuristic detectors:
                                 cognates.drop split off to exclude.cognate,
                                 rest go to classifier by POS
   Phase 3: Clitic + derivation  (strip clitic, check base in verb forms;
-                                or resolve diminutive/superlative)
+                                or resolve diminutive/superlative). Runs on
+                                Phase 2's leftovers AND reclaims from Phase 2 —
+                                spanish_forms lists enclitic surfaces and
+                                diminutives as headwords, so ordering alone
+                                used to hide them from this phase forever.
   Phase 4: English fallback     (en_50k for words not in spanish_forms)
   Phase 5: Frequency floor
            → everything else   → sense_discovery
@@ -71,8 +75,11 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta  # noqa: E402
 from pipeline.util_4a_routing import (  # noqa: E402
     clitic_roles,
+    decompose_gerund_clitic,
+    is_reflexive_candidate,
     load_spanishdict_parents,
     prefers_reflexive_parent,
+    reflexive_parent,
     resolve_derivation,
 )
 
@@ -81,7 +88,7 @@ from util_1a_artist_config import (  # noqa: E402
     add_artist_arg, load_shared_list, load_curation_section, SHARED_DIR,
 )
 
-STEP_VERSION = 6
+STEP_VERSION = 7
 STEP_VERSION_NOTES = {
     1: "initial: 6 phases with heuristic detectors",
     2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
@@ -92,6 +99,13 @@ STEP_VERSION_NOTES = {
        "used when SD publishes that headword, and the undecidable infinitive/gerund "
        "case (alejarme vs verte) is broken by SD's own entry sizes instead of being "
        "flatly treated as an object; emits clitic_roles (pronoun + role per form)",
+    7: "Phase 3 no longer only sees Phase 2's leftovers: clitic decomposition "
+       "(now stack-aware via decompose_gerund_clitic) and transparent-diminutive "
+       "resolution reclaim words spanish_forms had already claimed as known "
+       "surfaces (decírtelo, bájatelo, pasarla, fotito). Guarded — the clitic "
+       "override rides util_4a_routing's existing verb/accent/POS tests, and the "
+       "derivation override additionally requires a non-lexicalised surface "
+       "(absent from es_50k, not a conjugated form, not -ill-, POS-preserving)",
 }
 
 # Bumped whenever the output JSON schema changes in a way consumers must
@@ -395,8 +409,8 @@ def _choose_clitic_lemma(clitic, host_entries, spanish_forms, lemma_freq,
     return plain_lemma
 
 
-def _record_clitic_roles(role_map, word, parent, clitic):
-    """Preserve the pronoun and its grammatical role alongside the parent.
+def _record_clitic_roles(role_map, word, parent, clitics):
+    """Preserve the pronouns and their grammatical roles alongside the parent.
 
     ``strip_clitic`` only returns the lemma it picked, but the *why* — which
     pronoun was attached and whether it is the subject reflexivised or an
@@ -404,15 +418,91 @@ def _record_clitic_roles(role_map, word, parent, clitic):
     only ``{form: parent}`` would throw that away, so it is written into
     ``word_routing.json`` as ``clitic_roles`` instead of being recomputed
     (and re-guessed) downstream.
+
+    ``clitics`` is a list because a stack of two (``dármelo``) is normal; the
+    single-clitic callers pass a one-element list.
     """
-    reflexive = parent.endswith("se") and clitic in _REFLEXIVE_CLITICS
+    reflexive = parent.endswith("se") and is_reflexive_candidate(clitics)
     role_map[word] = {
         "parent": parent,
         "base": parent[:-2] if reflexive else parent,
-        "clitics": [clitic],
-        "roles": clitic_roles([clitic], reflexive=reflexive),
+        "clitics": list(clitics),
+        "roles": clitic_roles(list(clitics), reflexive=reflexive),
         "reflexive": reflexive,
     }
+
+
+# ---------------------------------------------------------------------------
+# Multi-clitic decomposition (the Phase-2 override)
+# ---------------------------------------------------------------------------
+
+_GERUND_STEMS = ("ando", "iendo", "endo")
+
+
+def _host_reflexive_verdict(word, clitics, lemma, conj_reverse):
+    """Person-agreement verdict for a decomposed clitic host: True/False/None.
+
+    Same three-valued contract as ``_clitic_is_reflexive`` — the difference is
+    only that the host is recovered from the surface (``decompose_gerund_clitic``
+    hands back the lemma, not the host it stripped). An infinitive or gerund has
+    no subject to agree with, so it stays undecidable and SpanishDict's entry
+    sizes break the tie in ``reflexive_parent``; an imperative host is decided by
+    matching the pronoun's person against the conjugation analysis.
+    """
+    if not is_reflexive_candidate(clitics):
+        return False
+    host = word.lower()
+    for cl in reversed(clitics):
+        if host.endswith(cl):
+            host = host[:-len(cl)]
+    host = _strip_acute(host)
+    if host == lemma or host.endswith(_GERUND_STEMS):
+        return None
+    want_person = _REFLEXIVE_CLITIC_PERSON.get(clitics[0])
+    if want_person is None:
+        return True if clitics[0] == "se" else False
+    saw_imperative = False
+    for e in (conj_reverse or {}).get(host) or ():
+        if not isinstance(e, dict):
+            continue
+        if str(e.get("mood", "")).strip().lower() != "imperativo":
+            continue
+        saw_imperative = True
+        if str(e.get("person", "")).strip().lower() == want_person:
+            return True
+    return False if saw_imperative else None
+
+
+def decompose_clitic_form(word, known_forms, conj_reverse, sd_parents):
+    """Full clitic decomposition → (parent_lemma, [clitics]) or None.
+
+    Wraps ``decompose_gerund_clitic`` (gerund → infinitive → affirmative
+    imperative, up to two enclitics) and then applies the same parent-selection
+    rule ``strip_clitic`` uses, so a form found here lands on exactly the lemma
+    it would have landed on had ``strip_clitic`` been able to see it.
+
+    Differs from ``strip_clitic`` in two ways that matter: it handles enclitic
+    *stacks* (``bájatelo``, ``comérmela``, ``pregúntaselo`` — ``strip_clitic``
+    peels one pronoun and gives up), and its guards are morphological rather
+    than "the surface is unknown", so it can be run on words ``spanish_forms``
+    already recognises.
+
+    Returns None when the decomposition would be a no-op (``pasarse`` →
+    ``pasarse``): a pronominal infinitive is already its own lemma and must
+    keep its own card rather than merge into itself.
+    """
+    result = decompose_gerund_clitic(word, known_forms)
+    if not result:
+        return None
+    lemma, clitics = result
+    if not clitics:
+        return None
+    decided = _host_reflexive_verdict(word, clitics, lemma, conj_reverse)
+    parent = reflexive_parent(lemma, clitics, sd_parents, decided=decided,
+                              known_lemmas=known_forms)
+    if parent == word.lower():
+        return None
+    return (parent, clitics)
 
 
 # ---------------------------------------------------------------------------
@@ -694,7 +784,7 @@ def main():
             if split is not None:
                 base, clitic = split
                 buckets["clitic_merge"][w] = base
-                _record_clitic_roles(clitic_role_map, w, base, clitic)
+                _record_clitic_roles(clitic_role_map, w, base, [clitic])
                 trail[w]["bucket"] = "clitic_merge"
                 trail[w]["clitic_base"] = base
                 trail[w]["clitic_pronoun"] = clitic
@@ -733,34 +823,79 @@ def main():
     print(f"  Normal vocab: {len(buckets['normal_vocab'])}  Conjugation: {len(buckets['conjugation'])}")
 
     # ------------------------------------------------------------------
-    # Phase 3 — Clitic + derivation (on words NOT recognized by Phase 2)
+    # Phase 3 — Clitic + derivation
+    #
+    # 3a/3b run on what Phase 2 left; 3a2/3b2 then *reclaim* from Phase 2's
+    # classifier buckets. The reclaim passes exist because Phase 2 is a plain
+    # membership test against spanish_forms, and spanish_forms lists plenty of
+    # enclitic surfaces (`decírtelo`, `pasarla`) and diminutives (`fotito`) as
+    # headwords in their own right. Ordering alone therefore hid them from
+    # Phase 3 forever — the morphology was never even attempted.
     # ------------------------------------------------------------------
     print("\n--- Phase 3: Clitic + derivation ---")
 
-    # 3a. Clitic: one rule.
+    known_forms_set = set(spanish_forms.keys())
+
+    def _merge_clitic(w, base, clitics, source):
+        buckets["clitic_merge"][w] = base
+        _record_clitic_roles(clitic_role_map, w, base, clitics)
+        trail[w]["bucket"] = "clitic_merge"
+        trail[w]["clitic_base"] = base
+        trail[w]["clitic_pronoun"] = clitics[0] if len(clitics) == 1 else "+".join(clitics)
+        trail[w]["clitic_roles"] = clitic_role_map[w]["roles"]
+        trail[w]["source"] = source
+
+    # 3a. Clitic: one rule, then the multi-clitic decomposer as a fallback.
+    #     `strip_clitic` peels a single pronoun, so a stack (`bájatelo`,
+    #     `pónteme`, `échasela`) fell through to the frequency floor and was
+    #     dropped. `decompose_clitic_form` handles stacks and keeps the same
+    #     parent-selection rule.
     clitic_count = 0
+    stacked_count = 0
     for w in list(remaining):
         result = strip_clitic(w, verb_forms, conj_reverse,
                               spanish_forms=spanish_forms, lemma_freq=lemma_freq,
                               sd_parents=sd_parents)
-        if result is None:
+        if result is not None:
+            base, clitic = result
+            _merge_clitic(w, base, [clitic], "strip_clitic")
+            remaining.discard(w)
+            clitic_count += 1
             continue
-        base, clitic = result
-        buckets["clitic_merge"][w] = base
-        _record_clitic_roles(clitic_role_map, w, base, clitic)
-        trail[w]["bucket"] = "clitic_merge"
-        trail[w]["clitic_base"] = base
-        trail[w]["clitic_pronoun"] = clitic
-        trail[w]["clitic_roles"] = clitic_role_map[w]["roles"]
+        decomposed = decompose_clitic_form(w, known_forms_set, conj_reverse,
+                                           sd_parents)
+        if decomposed is None:
+            continue
+        base, clitics = decomposed
+        _merge_clitic(w, base, clitics, "decompose_stack")
         remaining.discard(w)
         clitic_count += 1
-    print(f"  Clitic merges: {clitic_count}")
+        stacked_count += 1
+    print(f"  Clitic merges: {clitic_count} ({stacked_count} via multi-clitic decomposition)")
+
+    # 3a2. Reclaim clitic forms Phase 2 claimed as "known Spanish".
+    #      Conditional on the decomposition actually succeeding under
+    #      util_4a_routing's own guards (`_is_known_infinitive`, the written
+    #      accent requirement, the exact-"verb" POS test) — never a blanket
+    #      override, so genuine inflections keep Phase 2's verdict: `hablas` is
+    #      a form of `hablar`, not `habla`+`s`, and no decomposition fires on it.
+    reclaimed_clitic = 0
+    for bucket_name in ("conjugation", "normal_vocab"):
+        for w in sorted(buckets[bucket_name]):
+            decomposed = decompose_clitic_form(w, known_forms_set, conj_reverse,
+                                               sd_parents)
+            if decomposed is None:
+                continue
+            base, clitics = decomposed
+            buckets[bucket_name].discard(w)   # keeps the buckets disjoint
+            _merge_clitic(w, base, clitics, f"reclaimed_from_{bucket_name}")
+            reclaimed_clitic += 1
+    print(f"  Clitic reclaims from Phase 2: {reclaimed_clitic}")
     _reflexive_parents = sum(1 for v in clitic_role_map.values() if v["reflexive"])
     print(f"    → {_reflexive_parents} routed to a SpanishDict -se parent")
 
     # 3b. Derivation (diminutive / superlative) — reuse existing resolver
     deriv_count = 0
-    known_forms_set = set(spanish_forms.keys())
     for w in list(remaining):
         base = resolve_derivation(w, known_forms_set)
         if base:
@@ -770,6 +905,52 @@ def main():
             remaining.discard(w)
             deriv_count += 1
     print(f"  Derivations:   {deriv_count}")
+
+    # 3b2. Reclaim *transparent* diminutives Phase 2 claimed.
+    #      `resolve_derivation` is a suffix stripper with no verb/POS evidence
+    #      behind it, so unlike the clitic branch it cannot simply be re-run on
+    #      dictionary-known words: it happily produces amarillo→amaro,
+    #      crédito→credo, delito→delo, visita→visa. Four guards restrict the
+    #      override to derivations that are still productive rather than
+    #      lexicalised:
+    #        (i)   not an -ill-/-ill- surface. That family is lexicalised almost
+    #              without exception (bolsillo, cuchillo, pastilla, rodilla,
+    #              mantequilla, pesadilla, castillo) and the productive
+    #              diminutive in this corpus is -ito/-cito/-ecito.
+    #        (ii)  the surface is absent from es_50k. A diminutive common enough
+    #              to earn its own frequency entry has become its own word —
+    #              crédito, delito, visita, favorito, bonito, mosquito,
+    #              señorita, burrito, perito — and must keep its own card.
+    #              `fotito` is not in es_50k; `foto` is.
+    #        (iii) the surface is not itself a conjugated form. `deleito`,
+    #              `limita`, `repito`, `visito` are 1s/3s verb forms, not
+    #              diminutives of `dele`/`lima`/`repo`/`viso`.
+    #        (iv)  base and surface share a NON-VERB part of speech. A diminutive
+    #              keeps its base's POS and is never formed on a conjugated verb,
+    #              so noun→verb hops (delito→delo, dígitos→digo, jefecitos→jefees)
+    #              and verb-only agreements (agüita→agüe, the subjunctive of
+    #              aguar, rather than agua) are stripper artefacts.
+    reclaimed_deriv = 0
+    for bucket_name in ("conjugation", "normal_vocab"):
+        for w in sorted(buckets[bucket_name]):
+            if w.endswith(("illo", "illa", "illos", "illas")):
+                continue
+            if w in lemma_freq or w in conj_reverse:
+                continue
+            base = resolve_derivation(w, known_forms_set)
+            if not base or base == w:
+                continue
+            shared_pos = ((spanish_forms.get(w) or set())
+                          & (spanish_forms.get(base) or set())) - {"verb"}
+            if not shared_pos:
+                continue
+            buckets[bucket_name].discard(w)   # keeps the buckets disjoint
+            buckets["derivation"][w] = base
+            trail[w]["bucket"] = "derivation"
+            trail[w]["derivation_base"] = base
+            trail[w]["source"] = f"reclaimed_from_{bucket_name}"
+            reclaimed_deriv += 1
+    print(f"  Derivation reclaims from Phase 2: {reclaimed_deriv}")
 
     # 3c. Elision mapping skip forms — words step 3 chose to leave alone
     if os.path.exists(ELISION_MAPPING_PATH):

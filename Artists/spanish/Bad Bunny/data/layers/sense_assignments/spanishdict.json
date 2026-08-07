@@ -4465,7 +4465,8 @@
       {
         "sense": "0a1",
         "examples": [
-          0
+          0,
+          5
         ],
         "example_ids": [
           "5305051:38"
@@ -4491,6 +4492,7 @@
       {
         "sense": "fda",
         "examples": [
+          2,
           6,
           9
         ],
@@ -4500,6 +4502,17 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      },
+      {
+        "sense": "8aa",
+        "examples": [
+          7
+        ],
+        "example_ids": [
+          "5305036:65"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ]
   },
@@ -8948,6 +8961,17 @@
           "3753517:132",
           "5557738:10"
         ]
+      },
+      {
+        "sense": "55d",
+        "examples": [
+          5
+        ],
+        "example_ids": [
+          "2962706:6"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ],
     "spanishdict-flash-lite": [
@@ -8963,6 +8987,24 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "bb5",
+        "pos": "INTJ",
+        "translation": "herself",
+        "lemma": "sí",
+        "examples": [
+          3
+        ],
+        "type": "figurative",
+        "construction": "de sí misma",
+        "example_ids": [
+          "3162779:13"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ]
   },
@@ -9964,7 +10006,10 @@
         "sense": "220",
         "examples": [
           0,
+          4,
           5,
+          6,
+          7,
           8
         ],
         "example_ids": [
@@ -10965,6 +11010,17 @@
           "4179012:52",
           "5002336:15"
         ]
+      },
+      {
+        "sense": "b71",
+        "examples": [
+          3
+        ],
+        "example_ids": [
+          "6855744:26"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ],
     "spanishdict-flash-lite": [
@@ -10973,7 +11029,8 @@
         "examples": [
           0,
           4,
-          8
+          8,
+          9
         ],
         "example_ids": [
           "6192613:40",
@@ -13523,6 +13580,35 @@
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
       }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "590",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9
+        ],
+        "example_ids": [
+          "11292695:19",
+          "6211043:21",
+          "3075944:21",
+          "2924481:15",
+          "7967941:14",
+          "9614068:35",
+          "2978566:27",
+          "5305015:3",
+          "9614083:12"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
+      }
     ]
   },
   "ojos": {
@@ -14821,6 +14907,7 @@
           0,
           1,
           2,
+          3,
           4,
           5,
           6,
@@ -14845,7 +14932,8 @@
       {
         "sense": "f4c",
         "examples": [
-          3
+          3,
+          8
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z",
@@ -19169,6 +19257,17 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      },
+      {
+        "sense": "870",
+        "examples": [
+          7
+        ],
+        "example_ids": [
+          "5305015:15"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ]
   },
@@ -20771,6 +20870,17 @@
           "3176687:29",
           "5305018:24"
         ]
+      },
+      {
+        "sense": "023",
+        "examples": [
+          8
+        ],
+        "example_ids": [
+          "5305018:24"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ],
     "spanishdict-flash-lite": [
@@ -22528,6 +22638,7 @@
       {
         "sense": "dd7",
         "examples": [
+          4,
           5
         ],
         "example_ids": [
@@ -26225,7 +26336,8 @@
         "sense": "1db",
         "examples": [
           2,
-          3
+          3,
+          5
         ],
         "example_ids": [
           "7967978:5",
@@ -26432,10 +26544,12 @@
         "sense": "a2f",
         "examples": [
           1,
+          2,
           3,
           4,
           5,
           6,
+          7,
           8,
           9
         ],
@@ -27975,7 +28089,8 @@
       {
         "sense": "420",
         "examples": [
-          1
+          1,
+          9
         ],
         "example_ids": [
           "7967959:24"
@@ -27993,6 +28108,19 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      },
+      {
+        "sense": "4204",
+        "examples": [
+          4,
+          8
+        ],
+        "example_ids": [
+          "8915218:23",
+          "3167974:18"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ]
   },
@@ -37593,6 +37721,7 @@
       {
         "sense": "ea7",
         "examples": [
+          2,
           3,
           7
         ],
@@ -37602,6 +37731,26 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "gap-fill": [
+      {
+        "sense": "24c",
+        "pos": "ADV",
+        "translation": "meanwhile",
+        "lemma": "tanto",
+        "examples": [
+          5,
+          6
+        ],
+        "type": "figurative",
+        "construction": "mientras tanto",
+        "example_ids": [
+          "9237319:38",
+          "3208907:30"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ]
   },
@@ -41123,6 +41272,21 @@
           "7257949:20",
           "2976831:83"
         ]
+      }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "2fb",
+        "examples": [
+          2,
+          3
+        ],
+        "example_ids": [
+          "7257949:20",
+          "2976831:83"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:40Z"
       }
     ]
   },
@@ -324215,6 +324379,23 @@
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
       }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "46c",
+        "examples": [
+          1,
+          2,
+          3
+        ],
+        "example_ids": [
+          "6862415:9",
+          "5305013:68",
+          "2962706:72"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T03:10Z"
+      }
     ]
   },
   "extraer": {
@@ -325275,6 +325456,33 @@
         ],
         "prompt_id": "legacy-unknown",
         "run_ts": "2026-05-02T10:27Z"
+      }
+    ],
+    "spanishdict-auto": [
+      {
+        "sense": "f40",
+        "examples": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "example_ids": [
+          "3253426:53",
+          "11304595:21",
+          "3870990:71",
+          "6211037:11",
+          "9025881:8",
+          "11292695:1",
+          "5113818:1",
+          "11292773:31"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T03:10Z"
       }
     ]
   },
@@ -327501,6 +327709,142 @@
         ],
         "prompt_id": "sd-cop-v3",
         "run_ts": "2026-07-31T20:09Z"
+      }
+    ]
+  },
+  "consolarse": {
+    "gap-fill": [
+      {
+        "sense": "85c",
+        "pos": "VERB",
+        "translation": "to comfort oneself",
+        "lemma": "consolarse",
+        "examples": [
+          0
+        ],
+        "type": "figurative",
+        "construction": "consolarse",
+        "example_ids": [
+          "3431731:31"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T03:10Z"
+      }
+    ]
+  },
+  "perderse": {
+    "gap-fill": [
+      {
+        "sense": "1a3",
+        "pos": "VERB",
+        "translation": "to lose someone",
+        "lemma": "perderse",
+        "examples": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "slang",
+        "construction": "perderse",
+        "example_ids": [
+          "5305007:8",
+          "9614103:33",
+          "3652331:54",
+          "11289772:30",
+          "3703524:47"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T03:10Z"
+      },
+      {
+        "sense": "425",
+        "pos": "VERB",
+        "translation": "to miss out",
+        "lemma": "perderse",
+        "examples": [
+          5
+        ],
+        "type": "regional",
+        "construction": "perderse",
+        "example_ids": [
+          "5553950:5"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T03:10Z"
+      }
+    ]
+  },
+  "guillarse": {
+    "gap-fill": [
+      {
+        "sense": "1b9",
+        "pos": "VERB",
+        "translation": "to show off",
+        "lemma": "guillarse",
+        "examples": [
+          0
+        ],
+        "type": "slang",
+        "construction": "guillarse",
+        "example_ids": [
+          "5305013:106"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T03:10Z"
+      }
+    ]
+  },
+  "alejarse": {
+    "gap-fill": [
+      {
+        "sense": "0fa",
+        "pos": "VERB",
+        "translation": "to stay away",
+        "lemma": "alejarse",
+        "examples": [
+          0
+        ],
+        "type": "figurative",
+        "construction": "alejarse",
+        "example_ids": [
+          "11292695:2"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:55Z"
+      },
+      {
+        "sense": "1a5",
+        "pos": "VERB",
+        "translation": "to get away",
+        "lemma": "alejarse",
+        "examples": [
+          1
+        ],
+        "type": "figurative",
+        "construction": "alejarse",
+        "example_ids": [
+          "2925348:28"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:55Z"
+      },
+      {
+        "sense": "f25",
+        "pos": "VERB",
+        "translation": "to push away",
+        "lemma": "alejarse",
+        "examples": [
+          2
+        ],
+        "type": "figurative",
+        "construction": "alejarse",
+        "example_ids": [
+          "3101741:10"
+        ],
+        "prompt_id": "sd-cop-v3",
+        "run_ts": "2026-08-07T14:55Z"
       }
     ]
   }

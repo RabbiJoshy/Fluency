@@ -542,6 +542,60 @@ def is_plausible_headword(surface, headword, surface_relation="", conj_lemmas=No
     return False
 
 
+# ---------------------------------------------------------------------------
+# Elision restoration (dictionary lookup only).
+#
+# Reggaeton / Caribbean orthography marks a dropped final segment with an
+# apostrophe (``curarno'``, ``hidratá'``, ``inmortale'``, ``desnu'a``).
+# SpanishDict has no dictionary entry under the elided spelling, but its
+# resolver *does* restore it server-side and says so: the disambiguation hints
+# in ``possible_results`` come back with ``result`` set to the restored
+# spelling (``desnuda`` / ``desnudá``) and ``headword`` set to the real lemma
+# (``desnudar``, ``desnudo``). Recognising that echo is all the normalisation
+# this needs — no second query, and the surface itself is never rewritten, so
+# the card's identity stays the elided form as it appears in the lyrics.
+#
+# The same restoration proposals are implemented independently in
+# ``tool_5c_triage_fuzzy_headwords.py`` (the diagnostic, deliberately kept
+# standalone so it keeps reporting on its own).
+# ---------------------------------------------------------------------------
+
+# Segments that actually go missing, longest first so ``-do`` beats ``-d``.
+_ELISION_RESTORATIONS = ("dos", "das", "do", "da", "os", "as", "es", "s", "r", "d", "z", "ve")
+
+def restoration_candidates(surface):
+    """Propose full spellings for an apostrophe-elided surface, unvetted.
+
+    ``curarno'`` -> curarnos, ``hidratá'`` -> hidratar, ``inmortale'`` ->
+    inmortales, ``na'ita`` -> nadita. Priority order; caller vets.
+    """
+    if not surface or "'" not in surface:
+        return []
+    out = []
+    if surface.endswith("'"):
+        stem = surface[:-1]
+        for suffix in _ELISION_RESTORATIONS:
+            out.append(stem + suffix)
+        # The accent often only marked the stress the dropped 'r' carried.
+        out.append(_deaccent(stem) + "r")
+        # Last: the bare stem. SpanishDict itself normalises `hidratá'` to
+        # `hidrata` and `pa'` to `pa`, so the stem must be recognised as a
+        # restoration even though nothing was added back.
+        out.append(stem)
+        out.append(_deaccent(stem))
+    else:
+        head, _, tail = surface.partition("'")
+        for filler in ("d", "da", "de", "r", "ra"):
+            out.append(head + filler + tail)
+        out.append(head + tail)
+    seen, unique = set(), []
+    for cand in out:
+        if cand and cand != surface and cand not in seen:
+            seen.add(cand)
+            unique.append(cand)
+    return unique
+
+
 def build_menu_analyses(surface, surface_cache, headword_cache, include_redirects=True,
                         quarantine=None):
     """Build the analyses list for one surface word from the shared SpanishDict cache.
@@ -891,12 +945,41 @@ def extract_possible_results(component):
     return out
 
 
+def _is_elision_restoration_of(written_form, surface):
+    """True when ``written_form`` is the restored spelling of an elided ``surface``.
+
+    SpanishDict resolves an apostrophe-elided query server-side and echoes the
+    *restored* spelling back in ``result`` — ``desnu'a`` comes back as
+    ``desnuda`` / ``desnudá`` pointing at ``desnudar``/``desnudo``,
+    ``curarno'`` as ``curarnos`` pointing at ``curar``. Compared deaccented,
+    since the echo may carry the accent the elision dropped.
+    """
+    if "'" not in (surface or "") and "’" not in (surface or ""):
+        return False
+    target = _deaccent(written_form)
+    if not target:
+        return False
+    return any(_deaccent(c) == target for c in restoration_candidates(surface))
+
+
 def should_keep_possible_result(surface, result):
+    """Filter SpanishDict's disambiguation hints down to ones about this query.
+
+    The echoed ``result`` normally equals the query. The exception is elided
+    reggaeton spelling: SD restores it before answering, so requiring an exact
+    match silently discarded every morphological pointer for that whole class
+    of words — and without those pointers the plausibility guard had nothing
+    vouching for the headwords and quarantined the entire menu (``desnu'a``,
+    ``curarno'``, ``inmortale'``, ``alocá'``). Accepting SD's own restoration
+    is what makes the DICTIONARY LOOKUP use the normalised spelling; the cache
+    key, the menu key, and therefore the card's identity all stay the elided
+    surface as it appears in the lyrics.
+    """
     headword = (result.get("headword") or "").strip()
     written_form = (result.get("result") or "").strip()
     if not headword:
         return False
-    if written_form != surface:
+    if written_form != surface and not _is_elision_restoration_of(written_form, surface):
         return False
     if "." in headword:
         return False

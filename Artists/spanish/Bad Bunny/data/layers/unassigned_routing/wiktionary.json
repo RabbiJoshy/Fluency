@@ -83,10 +83,10 @@
     3,
     4,
     7,
-    8
+    9
   ],
   "odio|odio": [
-    9
+    8
   ],
   "tan|tanto": [
     0,
@@ -110,20 +110,16 @@
   "bajo|bajar": [
     0,
     1,
-    2
-  ],
-  "bajo|bajo": [
+    2,
     5
   ],
   "beso|beso": [
     1,
     2,
     5,
+    6,
     8,
     9
-  ],
-  "beso|besar": [
-    6
   ],
   "cuarto|cuarto": [
     0,
@@ -134,12 +130,12 @@
   "vino|vino": [
     0,
     2,
-    3,
-    4,
-    8
+    3
   ],
   "vino|venir": [
-    7
+    4,
+    7,
+    8
   ],
   "claro|claro": [
     0,
@@ -152,8 +148,10 @@
     1,
     2,
     3,
+    7
+  ],
+  "gana|ganar": [
     4,
-    7,
     9
   ],
   "cuidado|cuidado": [
@@ -259,11 +257,11 @@
     0,
     1,
     6,
-    7
+    8
   ],
   "llena|llenar": [
     2,
-    8
+    7
   ],
   "pare|parar": [
     0,
@@ -861,10 +859,8 @@
   ],
   "calle|calle": [
     0,
+    1,
     2
-  ],
-  "calle|callar": [
-    1
   ],
   "fue|ir": [
     0,
@@ -1205,7 +1201,9 @@
   ],
   "vivo|vivir": [
     0,
-    1,
+    1
+  ],
+  "vivo|vivo": [
     2
   ],
   "mientras|mientras": [
@@ -1244,10 +1242,10 @@
     2
   ],
   "paso|paso": [
-    0,
-    1
+    0
   ],
   "paso|pasar": [
+    1,
     2
   ],
   "verdad|verdad": [
@@ -1351,10 +1349,10 @@
     2,
     8
   ],
-  "nota|nota": [
+  "nota|notar": [
     0
   ],
-  "nota|notar": [
+  "nota|nota": [
     1,
     2
   ],
@@ -2149,11 +2147,11 @@
     2
   ],
   "falta|falta": [
-    0
+    0,
+    2
   ],
   "falta|faltar": [
-    1,
-    2
+    1
   ],
   "moda|moda": [
     0,
@@ -2182,10 +2180,10 @@
   ],
   "tiro|tirar": [
     0,
-    1
+    2
   ],
   "tiro|tiro": [
-    2
+    1
   ],
   "toco|tocar": [
     0,
@@ -2275,14 +2273,14 @@
   ],
   "pelo|pelo": [
     0,
-    1
-  ],
-  "pelo|pelar": [
+    1,
     2
   ],
   "suelta|suelto": [
     0,
-    1,
+    1
+  ],
+  "suelta|soltar": [
     2
   ],
   "das|dar": [

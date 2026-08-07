@@ -36,6 +36,7 @@ from util_5c_sense_menu_format import (
 from util_5c_spanishdict import (
     SPANISHDICT_SURFACE_CACHE, SPANISHDICT_HEADWORD_CACHE, SPANISHDICT_STATUS,
     build_menu_analyses, load_json,
+    is_plausible_headword, _surface_conjugation_lemmas,
 )
 
 # Per-source path helpers
@@ -991,6 +992,79 @@ def _artist_cache_state(artist_dir: Path):
     return (status.get("artists") or {}).get(artist_key) or {}
 
 
+def purge_implausible_menu_entries(menu, surface_cache, quarantine=None):
+    """Re-vet already-built menu entries against the live plausibility guard.
+
+    ``build_menu_analyses`` quarantines fuzzy-match damage at build time, so a
+    *fresh* menu never carries an implausible headword. Carried-over entries
+    are the gap: artist mode seeds ``output`` from ``existing_menu`` and skips
+    any word already present, so a menu built before the guard existed keeps
+    its damage forever — and even ``--force`` cannot clear it, because a word
+    whose analyses all fail simply ``continue``s, leaving the stale entry in
+    place (and a word no longer in the surface cache is never even eligible).
+
+    This pass closes that gap without a re-scrape. Per surface:
+
+    * every analysis whose headword fails the guard is removed — so where a
+      surface has competing analyses and only one is fuzzy damage
+      (``fotito`` -> [``fotuto``, ``fotito``]) the plausible one wins;
+    * if that empties the surface, the whole entry is dropped, which is the
+      pipeline's existing "no usable menu" state: the word routes to
+      sense_discovery and a model invents senses from real examples, rather
+      than being classified against a meaningless menu.
+
+    A fuzzy match is never evidence, so nothing here is repaired in place — it
+    is only removed, with provenance appended to ``quarantine``.
+
+    **Only surfaces present in ``surface_cache`` are re-vetted.** For a surface
+    the cache no longer holds we have strictly *less* evidence than the build
+    that produced the entry did — no ``possible_results`` conjugation pointers,
+    and the menu format does not preserve ``surface_relation`` — so a rejection
+    would be an artefact of missing data, not of fuzzy damage. Measured on the
+    committed menus, vetting cache-less surfaces wrongly drops ordinary
+    morphology (``pasaste``->pasar, ``sucedió``->suceder, ``fea``->feo,
+    ``francesa``->francés). Those surfaces are left alone; re-scraping them
+    puts them back in the cache and back in scope.
+    """
+    dropped, degraded = [], []
+    for word in list(menu.keys()):
+        analyses = menu.get(word)
+        if not isinstance(analyses, list) or not analyses:
+            continue
+        entry = surface_cache.get(word)
+        if not isinstance(entry, dict):
+            continue
+        # Same inputs the live build uses — SD's own conjugation pointers
+        # vouch for stem-changing paradigms.
+        conj_lemmas = _surface_conjugation_lemmas(entry.get("possible_results"))
+        kept = []
+        for analysis in analyses:
+            if not isinstance(analysis, dict):
+                kept.append(analysis)
+                continue
+            if is_plausible_headword(
+                word, analysis.get("headword"),
+                surface_relation=analysis.get("surface_relation", ""),
+                conj_lemmas=conj_lemmas,
+            ):
+                kept.append(analysis)
+            elif quarantine is not None:
+                quarantine.append({
+                    "surface": word,
+                    "headword": (analysis.get("headword") or "").strip(),
+                    "reason": "stale_implausible_headword",
+                })
+        if len(kept) == len(analyses):
+            continue
+        if kept:
+            menu[word] = kept
+            degraded.append(word)
+        else:
+            del menu[word]
+            dropped.append(word)
+    return dropped, degraded
+
+
 def build_spanishdict_menu(
     vocab,
     output_file,
@@ -1000,6 +1074,7 @@ def build_spanishdict_menu(
     max_words=None,
     force=False,
     include_redirects=True,
+    purge_stale=True,
 ):
     """Build sense menu from SpanishDict shared caches.
 
@@ -1079,6 +1154,14 @@ def build_spanishdict_menu(
         if len(normalized) >= 2:
             multi_analysis += 1
 
+    # Re-vet entries inherited from a previous build (see
+    # ``purge_implausible_menu_entries``). Freshly built words are already
+    # guarded, so this only ever touches carried-over damage.
+    purged_dropped, purged_degraded = [], []
+    if purge_stale:
+        purged_dropped, purged_degraded = purge_implausible_menu_entries(
+            output, surface_cache, quarantine=quarantined)
+
     # Write output
     output_file.parent.mkdir(parents=True, exist_ok=True)
     print(f"\nWriting {output_file}...")
@@ -1112,6 +1195,13 @@ def build_spanishdict_menu(
         print(f"Skipped (existing):  {skipped_existing:>6}")
     if skipped_uncached:
         print(f"Skipped (uncached):  {skipped_uncached:>6}")
+    if purge_stale:
+        print(f"Purged stale menus:  {len(purged_dropped):>6}  (all headwords implausible -> sense_discovery)")
+        print(f"Purged stale senses: {len(purged_degraded):>6}  (kept the plausible analysis)")
+        if purged_dropped:
+            print(f"  dropped sample: {purged_dropped[:12]}")
+        if purged_degraded:
+            print(f"  degraded sample: {purged_degraded[:12]}")
     print(f"With 2+ analyses:    {multi_analysis:>6}  (homographs)")
     print(f"Total senses added:  {total_senses:>6}")
     print(f"Total menu entries:  {len(output):>6}")
@@ -1163,6 +1253,10 @@ def main():
                         help="Artist mode: include clitic_merge words (skipped by default)")
     parser.add_argument("--no-redirects", action="store_true",
                         help="Only use the direct surface-page dictionary analyses")
+    parser.add_argument("--keep-stale-menu", action="store_true",
+                        help="Skip re-vetting menu entries inherited from a previous "
+                             "build against the headword plausibility guard "
+                             "(diagnostic escape hatch; leaves fuzzy-match damage in place)")
     parser.add_argument("--allow-incomplete-cache", action="store_true",
                         help="Artist mode: allow building from a partial shared cache")
     args = parser.parse_args()
@@ -1235,6 +1329,7 @@ def main():
             max_words=args.max_words,
             force=args.force,
             include_redirects=not args.no_redirects,
+            purge_stale=not args.keep_stale_menu,
         )
         return
 
@@ -1260,6 +1355,7 @@ def main():
             word_filter=args.word or None,
             max_words=args.max_words,
             include_redirects=not args.no_redirects,
+            purge_stale=not args.keep_stale_menu,
         )
         return
 

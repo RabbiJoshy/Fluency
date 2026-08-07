@@ -11911,20 +11911,21 @@
     overflow: hidden;
 }
 
-.about-example-header {
-    display: flex;
+/* Deck switch | summary | exit, on one line. This replaced a separate header
+   band above a centred summary block: two rows of chrome for three controls,
+   on a screen that has to hold a full-size card and ten annotations. */
+.about-example-topbar {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-    flex: 0 0 auto;
+    gap: 20px;
+    margin-bottom: 14px;
 }
 
 .about-example-close {
     position: static;
     flex: 0 0 auto;
+    justify-self: end;
 }
 
 .about-example-body {
@@ -11937,8 +11938,7 @@
 /* Face copy sits above the card, centred, because it describes the whole
    face rather than either column of notes. */
 .about-example-intro {
-    max-width: 760px;
-    margin: 0 auto 16px;
+    min-width: 0;
     text-align: center;
 }
 
@@ -12117,13 +12117,18 @@
     justify-self: start;
 }
 
-.about-example-title {
+.about-example-lede {
     font-family: var(--font-emphasis);
-    font-size: 23px;
-    font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 6px;
-    line-height: 1.2;
+    font-weight: 700;
+}
+
+/* The em dash is punctuation between lede and summary, so it belongs to the
+   stylesheet rather than to the copy — the strings stay clean sentences. */
+.about-example-lede::after {
+    content: " —";
+    color: var(--text-muted);
+    font-weight: 400;
 }
 
 .about-example-blurb {
@@ -12296,21 +12301,25 @@
         padding: 16px 12px 24px;
     }
 
-    .about-example-header {
-        flex-wrap: wrap;
-        gap: 10px;
+    /* Three cells will not fit across a phone. Controls keep the top line,
+       the summary drops beneath them and spans the full width — still one
+       block of chrome, just folded. */
+    .about-example-topbar {
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        gap: 10px 12px;
     }
+
+    .about-example-topbar .about-example-tabs { grid-area: 1 / 1; }
+    .about-example-topbar .about-example-close { grid-area: 1 / 2; }
+    .about-example-topbar .about-example-intro { grid-area: 2 / 1 / 3 / 3; }
 
     .about-example-card-inner {
         width: 340px;
         height: 512px;
     }
 
-    .about-example-title {
-        font-size: 21px;
-    }
-
     .about-example-blurb {
-        font-size: 14px;
+        font-size: 13.5px;
     }
 }

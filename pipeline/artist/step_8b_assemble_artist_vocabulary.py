@@ -1626,7 +1626,20 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 entry["synonyms"] = syn_entry["synonyms"]
             if syn_entry.get("antonyms"):
                 entry["antonyms"] = syn_entry["antonyms"]
+            # Derivational relation (diminutive / superlative / …). The layer
+            # is keyed by lemma, so the lemma is the primary key. But a card
+            # whose lemma is wrong or missing (e.g. `fotito` carrying a stale
+            # fuzzy-scrape lemma `fotuto`) would silently lose a relation that
+            # exists under its surface form — so fall back to the surface form.
+            # The fallback is guarded: never stamp a relation whose base is the
+            # card's own lemma or its own surface form (circular).
             derivation_relation = derivation_relations.get(lemma_lower)
+            if not derivation_relation:
+                fallback = derivation_relations.get(wl)
+                if fallback:
+                    base = (fallback.get("base_lemma") or "").lower()
+                    if base and base != lemma_lower and base != wl:
+                        derivation_relation = fallback
             if derivation_relation:
                 entry["derivation_relation"] = derivation_relation
 

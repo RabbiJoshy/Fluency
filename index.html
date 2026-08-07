@@ -706,17 +706,20 @@
          app's own .card CSS so it is a true replica rather than a mock-up. -->
     <div id="aboutExampleModal" class="modal hidden">
         <div class="modal-content fullscreen-modal about-example-modal">
-            <!-- Deck switch left, exit right, nothing between them. A banner
-                 reading "See Example" told the reader only what they had just
-                 clicked. The tabs choose DECK (Lyrics / Speech) alone; which
-                 face you are reading is decided by flipping the card, and the
-                 annotations follow the face. -->
-            <div class="about-example-header">
-                <div class="about-example-tabs" id="aboutExampleTabs" role="tablist" aria-label="Deck"></div>
-                <button class="modal-close about-example-close" id="closeAboutExampleModal" aria-label="Back to the app" title="Back to the app">✕</button>
-            </div>
             <div class="about-example-body" id="aboutExampleBody">
-                <div class="about-example-intro" id="aboutExampleIntro"></div>
+                <!-- One row, not a banner above a summary: deck switch left,
+                     the summary itself in the middle, exit right. Vertical
+                     space is the scarce thing here — the card and its
+                     annotations have to fit on screen together, so nothing
+                     gets a whole band of its own.
+                     The tabs choose DECK (Lyrics / Speech) alone; which face
+                     you are reading is decided by flipping the card, and the
+                     annotations follow the face. -->
+                <div class="about-example-topbar">
+                    <div class="about-example-tabs" id="aboutExampleTabs" role="tablist" aria-label="Deck"></div>
+                    <div class="about-example-intro" id="aboutExampleIntro"></div>
+                    <button class="modal-close about-example-close" id="closeAboutExampleModal" aria-label="Back to About" title="Back to About">✕</button>
+                </div>
                 <div class="about-example-columns">
                     <div class="about-example-notes about-example-notes-left" id="aboutExampleNotesLeft"></div>
                     <div class="about-example-stage-col">

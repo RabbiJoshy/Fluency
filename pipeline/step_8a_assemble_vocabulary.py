@@ -1035,7 +1035,19 @@ def main():
             syn_entry = synonyms_layer.get(lemma.lower()) or {}
             synonyms_list = syn_entry.get("synonyms") or None
             antonyms_list = syn_entry.get("antonyms") or None
+            # Derivational relation (diminutive / superlative / …). Keyed by
+            # lemma, so the lemma stays the primary key; fall back to the
+            # surface form when the card's lemma is wrong or absent, since the
+            # relation layer may only know the surface form. Guarded so we
+            # never stamp a circular relation (base == this card's own lemma
+            # or its own surface form).
             derivation_relation = derivation_relations.get(lemma.lower())
+            if not derivation_relation:
+                _deriv_fallback = derivation_relations.get(wl)
+                if _deriv_fallback:
+                    _base = (_deriv_fallback.get("base_lemma") or "").lower()
+                    if _base and _base != lemma.lower() and _base != wl:
+                        derivation_relation = _deriv_fallback
 
             # Cognate signals (keyed by word|lemma)
             cognate_obj = cognates.get(key)
