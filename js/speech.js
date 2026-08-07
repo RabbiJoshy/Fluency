@@ -1,4 +1,4 @@
-import './state.js?v=20260806d';
+import './state.js?v=20260806e';
 
 // Speak a word in the target language. The optional completion callback lets
 // lyric autoplay wait for the English sense label before starting its first

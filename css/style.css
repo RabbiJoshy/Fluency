@@ -11568,7 +11568,13 @@
             z-index: 0;
         }
 
-        body.artist-mode .card-face > * {
+        /* Lift the face's own children above the ::after artwork overlay.
+           This used to be a blanket `position: relative`, which silently
+           reverted every child that positions itself absolutely: the POS pill
+           left the top-right corner and fell back into flow at the bottom of
+           the card, in lyrics mode only. Elements that own their positioning
+           are excluded and get their stacking order below instead. */
+        body.artist-mode .card-face > *:not(.card-pos-list):not(.card-ranking):not(.card-tint):not(.stacked-exit-btn) {
             position: relative;
             z-index: 1;
         }
@@ -11577,8 +11583,11 @@
             z-index: 5;
         }
 
-        body.artist-mode .card-ranking {
-            position: absolute;
+        /* Absolutely positioned by their own rules — only the layer they sit
+           on needs restating here. .card-tint keeps its own z-index: 50. */
+        body.artist-mode .card-pos-list,
+        body.artist-mode .card-ranking,
+        body.artist-mode .stacked-exit-btn {
             z-index: 5;
         }
 

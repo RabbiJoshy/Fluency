@@ -4,6 +4,17 @@
     {
       "date": "2026-08-06",
       "commit": "pending",
+      "summary": "Lyrics mode was reverting the POS pill's position",
+      "details": [
+        "body.artist-mode set position: relative on every direct child of the card face to lift them above the album-artwork overlay. That silently reverted any child positioning itself absolutely — the POS pill left the top-right corner and fell back into flow at the bottom of the card, in lyrics mode only, which is why the corner fix appeared to work in Speech and not in Lyrics",
+        "Children that own their positioning (POS pills, ranking, tint, exit button) are excluded from that rule and get their stacking layer stated directly instead",
+        "The ranking line had already been patched individually for the same cause; the general fix covers the rest",
+        "Cache v212→v213 / assets 20260806d→20260806e"
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "commit": "pending",
       "summary": "Repair two dead references left by the lazy-module split, and stop a failed search card from stranding the deck",
       "details": [
         "updateCard() called getVocabByIdLookup() and goBackToSetup() cleared two lookup caches that only existed inside the lazily loaded modal module — both threw ReferenceError; the caches now live in shared state and the lookup is owned by the core file",
