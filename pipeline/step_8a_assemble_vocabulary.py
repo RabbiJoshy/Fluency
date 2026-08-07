@@ -984,8 +984,14 @@ def main():
                         mwe_entry["context"] = mwe["context"]
                     if mwe.get("context_heuristic"):
                         mwe_entry["context_heuristic"] = mwe["context_heuristic"]
-                    if mwe.get("source"):
-                        mwe_entry["source"] = mwe["source"]
+                    # Provenance, stamped into the deck because the front end
+                    # never reads layer files. mwe_phrases.json is written by
+                    # two builders: step_5d_build_mwes (Wiktionary, which now
+                    # stamps itself) and tool_5d_build_spanishdict_mwes (which
+                    # already stamped "spanishdict"). An unstamped row can only
+                    # come from a layer built before step_5d started stamping,
+                    # and that layer is Wiktionary-only by construction.
+                    mwe_entry["source"] = mwe.get("source") or "wiktionary"
                     mwe_memberships.append(mwe_entry)
                     expr_lower = mwe["expression"].lower()
                     matched_exs = [

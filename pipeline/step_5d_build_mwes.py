@@ -175,7 +175,12 @@ def main():
                     continue
 
                 translation = d.get("english", "") or d.get("translation", "") or ""
-                mwe_entry = {"expression": dword}
+                # Everything this builder emits comes from the kaikki
+                # Wiktionary dump. Stamping it explicitly (rather than leaving
+                # provenance implicit in "which script wrote the layer") is what
+                # lets the assembler and the card UI tell it apart from the
+                # SpanishDict phrases that share this same layer file.
+                mwe_entry = {"expression": dword, "source": "wiktionary"}
                 if translation:
                     mwe_entry["translation"] = translation
 
@@ -216,7 +221,7 @@ def main():
 
         existing = {m["expression"].lower() for m in mwe_by_word[best_word]}
         if key not in existing:
-            mwe_entry = {"expression": sp["expression"]}
+            mwe_entry = {"expression": sp["expression"], "source": "wiktionary"}
             if sp["translation"]:
                 mwe_entry["translation"] = sp["translation"]
             mwe_by_word[best_word].append(mwe_entry)

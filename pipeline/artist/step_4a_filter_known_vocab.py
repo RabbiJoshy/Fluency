@@ -69,20 +69,29 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta  # noqa: E402
-from pipeline.util_4a_routing import resolve_derivation  # noqa: E402
+from pipeline.util_4a_routing import (  # noqa: E402
+    clitic_roles,
+    load_spanishdict_parents,
+    prefers_reflexive_parent,
+    resolve_derivation,
+)
 
 sys.path.insert(0, _THIS_DIR)
 from util_1a_artist_config import (  # noqa: E402
     add_artist_arg, load_shared_list, load_curation_section, SHARED_DIR,
 )
 
-STEP_VERSION = 5
+STEP_VERSION = 6
 STEP_VERSION_NOTES = {
     1: "initial: 6 phases with heuristic detectors",
     2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
     3: "simplified: canonical spanish_forms.json; dropped spaCy/cap-ratio/regex-interj/suffix-rule; one clitic rule",
     4: "schema_version 2: bucket renames (biencoder→classifier, gemini→sense_discovery, interjections→noise); cognate flattened; derivation hoisted to derivation_map; sectioned curation files (proper_nouns/cognates/noise have drop+keep)",
     5: "clitic-aware lemma selection: reflexive enclitics (te/se/nos + person-agreeing) prefer the -se lemma when it exists in spanish_forms; object enclitics (lo/la/le/… and non-agreeing me) keep the plain lemma; multi-lemma bases (sentar/sentir) pick by es_50k frequency, not entries[0]",
+    6: "SpanishDict headwords own the clitic parent inventory: a -se parent is only "
+       "used when SD publishes that headword, and the undecidable infinitive/gerund "
+       "case (alejarme vs verte) is broken by SD's own entry sizes instead of being "
+       "flatly treated as an object; emits clitic_roles (pronoun + role per form)",
 }
 
 # Bumped whenever the output JSON schema changes in a way consumers must
@@ -131,6 +140,9 @@ _OBJECT_ONLY_CLITICS = frozenset({"lo", "la", "le", "los", "las", "les"})
 # have no 1s form — which is exactly why `siénteme`, `párame`, `pónme`, … are
 # all objects ("feel me", "stop me", "put on me"), not reflexives.
 _REFLEXIVE_CLITIC_PERSON = {"me": "1s", "te": "2s", "nos": "1p", "os": "2p"}
+# The full person-agreeing paradigm — `se` plus the four above. A `-se` parent
+# is only ever reached through one of these.
+_REFLEXIVE_CLITICS = frozenset({"me", "te", "se", "nos", "os"})
 # Safety-net: any word with 3+ consecutive identical letters is noise
 # (jajajajajajaja, brrrrr, woooo, aaaahhhh).
 _REPEAT_RE = re.compile(r"(.)\1{2,}")
@@ -207,22 +219,23 @@ _CLITIC_HOST_MOODS = frozenset({"imperativo", "infinitivo", "gerundio"})
 def _clitic_is_reflexive(clitic, host_entries):
     """Is this enclitic functioning reflexively (→ prefer the -se lemma)?
 
-    Deliberately conservative: only fires where the reflexive reading is
-    structurally forced, so it never turns a dative-object form into a -se
-    lemma (``decirte`` "to tell you" must stay ``decir``, not ``decirse``).
+    Three-valued: True / False / **None = the surface cannot tell**.
 
     - Object-only pronouns (lo/la/le/los/las/les) are never reflexive.
     - ``se`` as an enclitic is inherently reflexive/pronominal
       (``comerse``, ``irse``, ``agárrense``, ``vendiéndose``).
-    - me/te/nos/os are reflexive ONLY on an imperative whose person matches
-      the pronoun. On a tú/usted/ustedes/nosotros imperative an object of the
-      same person as the subject can only be reflexive (``múdate`` = "move
+    - me/te/nos/os are reflexive on an imperative whose person matches the
+      pronoun. On a tú/usted/ustedes/nosotros imperative an object of the same
+      person as the subject can only be reflexive (``múdate`` = "move
       yourself", ``cuídense`` = "take care of yourselves"). ``me`` (1s) can
-      never match an imperative, so ``siénteme`` / ``pónme`` stay objects.
-    - Enclitics on an *infinitive* or *gerund* are left as objects: there
-      ``te`` is ambiguous between reflexive (``bañarte``) and dative object
-      (``decirte``, ``contarte``, ``escribirte``), with no structural signal
-      to tell them apart, so we keep the plain lemma (matches prior behaviour).
+      never match an imperative, so ``siénteme`` / ``pónme`` / ``perdóname``
+      are decided objects.
+    - On an *infinitive* or *gerund* there is no subject to agree with, so the
+      pronoun is genuinely ambiguous between reflexive (``bañarte``,
+      ``alejarme``) and object (``decirte``, ``verte``). We return None and let
+      SpanishDict's parent inventory break the tie in ``_choose_clitic_lemma``
+      — the old code returned a flat False here, which is what merged
+      ``alejarme`` onto the plain transitive ``alejar``.
     """
     if clitic in _OBJECT_ONLY_CLITICS:
         return False
@@ -231,14 +244,20 @@ def _clitic_is_reflexive(clitic, host_entries):
     want_person = _REFLEXIVE_CLITIC_PERSON.get(clitic)
     if want_person is None:
         return False
+    saw_imperative = False
     for e in host_entries:
-        if e.get("mood") == "imperativo" and e.get("person") == want_person:
+        if e.get("mood") != "imperativo":
+            continue
+        saw_imperative = True
+        if e.get("person") == want_person:
             return True
-    return False
+    if saw_imperative:
+        return False  # imperative with a mismatched person: decided object
+    return None       # infinitive / gerund only: undecidable
 
 
 def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None,
-                 lemma_freq=None):
+                 lemma_freq=None, sd_parents=None):
     """Return (lemma, clitic) if word is verb+clitic, else None.
 
     Imperatives drop an accent when clitics attach (baja → bájame). Try the
@@ -302,7 +321,8 @@ def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None,
                     if not host_entries:
                         continue
                     lemma = _choose_clitic_lemma(
-                        clitic, host_entries, spanish_forms, lemma_freq)
+                        clitic, host_entries, spanish_forms, lemma_freq,
+                        sd_parents=sd_parents)
                     if lemma:
                         return (lemma, clitic)
                 elif candidate in verb_forms:
@@ -310,14 +330,31 @@ def strip_clitic(word, verb_forms, conj_reverse=None, spanish_forms=None,
     return None
 
 
-def _choose_clitic_lemma(clitic, host_entries, spanish_forms, lemma_freq):
+def _choose_clitic_lemma(clitic, host_entries, spanish_forms, lemma_freq,
+                         sd_parents=None):
     # type: (...) -> Optional[str]
     """Pick the best lemma for a clitic host, or None if none available.
 
     (b-i) Only lemmas with a clitic-host entry for this surface are
     candidates (``host_entries`` is already mood-filtered). (b-ii) Ties break
-    on ``lemma_freq``. (a) A reflexive enclitic prefers the ``-se`` lemma when
-    ``spanish_forms`` knows it.
+    on ``lemma_freq``.
+
+    (a) **Which lemma may own a card is SpanishDict's call.** A ``-se`` parent
+    is only ever returned when SpanishDict publishes that headword, so we never
+    route a form to a card with no dictionary entry behind it. Within that
+    inventory:
+
+      * a decided reflexive (``se``, or a person-matched imperative) takes the
+        ``-se`` parent — ``múdate`` → ``mudarse``, ``agárrense`` → ``agarrarse``;
+      * a decided object keeps the plain lemma — ``muéveme`` → ``mover``,
+        ``perdóname`` → ``perdonar``;
+      * the undecidable infinitive/gerund case defers to
+        ``prefers_reflexive_parent``, i.e. SpanishDict's own entry sizes.
+        ``alejarme`` → ``alejarse`` (SD: alejar 3 senses, alejarse 5) while
+        ``verte`` → ``ver`` (SD: ver 24, verse 6).
+
+    With no SpanishDict cache available, falls back to the previous
+    ``spanish_forms``-existence test for decided reflexives only.
     """
     candidate_lemmas = []
     for e in host_entries:
@@ -332,11 +369,50 @@ def _choose_clitic_lemma(clitic, host_entries, spanish_forms, lemma_freq):
     # result is deterministic when no frequency data is present.
     plain_lemma = max(candidate_lemmas, key=lambda lm: freq.get(lm, 0))
 
-    if spanish_forms is not None and _clitic_is_reflexive(clitic, host_entries):
-        reflexive_lemma = plain_lemma + "se"
-        if reflexive_lemma in spanish_forms:
+    decided = _clitic_is_reflexive(clitic, host_entries)
+    if decided is False:
+        return plain_lemma
+    reflexive_lemma = plain_lemma + "se"
+
+    if decided is True:
+        # Structurally forced reflexive. SpanishDict is the preferred parent
+        # inventory, but its cache only covers the surfaces we have queried, so
+        # spanish_forms stays as the backstop — otherwise a cache miss would
+        # *demote* forms that already resolve correctly (``ahórrate`` →
+        # ``ahorrarse``, ``asómate`` → ``asomarse``, ``comprarse``).
+        if reflexive_lemma in (sd_parents or ()):
             return reflexive_lemma
+        if spanish_forms is not None and reflexive_lemma in spanish_forms:
+            return reflexive_lemma
+        return plain_lemma
+
+    # Undecidable (infinitive / gerund host). Only SpanishDict may promote
+    # here, and only when its pronominal entry outweighs the plain one — this
+    # is the one place a guess would be silently wrong, so nothing weaker than
+    # a published, dominant SpanishDict entry is allowed to make the call.
+    if sd_parents and prefers_reflexive_parent(plain_lemma, sd_parents):
+        return reflexive_lemma
     return plain_lemma
+
+
+def _record_clitic_roles(role_map, word, parent, clitic):
+    """Preserve the pronoun and its grammatical role alongside the parent.
+
+    ``strip_clitic`` only returns the lemma it picked, but the *why* — which
+    pronoun was attached and whether it is the subject reflexivised or an
+    object — is what the front end's ``describeCliticForm()`` renders. Keeping
+    only ``{form: parent}`` would throw that away, so it is written into
+    ``word_routing.json`` as ``clitic_roles`` instead of being recomputed
+    (and re-guessed) downstream.
+    """
+    reflexive = parent.endswith("se") and clitic in _REFLEXIVE_CLITICS
+    role_map[word] = {
+        "parent": parent,
+        "base": parent[:-2] if reflexive else parent,
+        "clitics": [clitic],
+        "roles": clitic_roles([clitic], reflexive=reflexive),
+        "reflexive": reflexive,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -414,6 +490,14 @@ def main():
             conj_reverse = json.load(f)
         print(f"  conjugation_reverse: {len(conj_reverse)} forms")
 
+    # SpanishDict headwords = the parent inventory. Decides which lemmas may
+    # own a card, so a clitic form is only ever routed to a `-se` parent
+    # SpanishDict actually publishes. Read from the committed caches; no
+    # network. Empty → _choose_clitic_lemma falls back to spanish_forms.
+    sd_parents = load_spanishdict_parents()
+    print(f"  spanishdict parents: {len(sd_parents)} headwords "
+          f"({sum(1 for h in sd_parents if h.endswith('se'))} pronominal)")
+
     # Curations — sectioned files (drop + keep in one file).
     # Each curation has a "drop" list (words to filter into a bucket) and a
     # "keep" list (override — words that look like the filtered category but
@@ -456,6 +540,8 @@ def main():
         "clitic_merge": {},           # word -> (base, clitic_pronoun)
     }
     trail = {w: {"freq": word_freq[w]} for w in artist_words}
+    # {form: {parent, base, clitics, roles, reflexive}} — see _record_clitic_roles.
+    clitic_role_map = {}
 
     # ------------------------------------------------------------------
     # Phase 1 — Curated drops + obvious-noise regex + Wikt all-PROPN
@@ -603,13 +689,16 @@ def main():
         # surfaces and indicative bases out.
         if conj_reverse and pos == {"verb"} and w not in conj_reverse:
             split = strip_clitic(w, verb_forms, conj_reverse,
-                                 spanish_forms=spanish_forms, lemma_freq=lemma_freq)
+                                 spanish_forms=spanish_forms, lemma_freq=lemma_freq,
+                                 sd_parents=sd_parents)
             if split is not None:
                 base, clitic = split
                 buckets["clitic_merge"][w] = base
+                _record_clitic_roles(clitic_role_map, w, base, clitic)
                 trail[w]["bucket"] = "clitic_merge"
                 trail[w]["clitic_base"] = base
                 trail[w]["clitic_pronoun"] = clitic
+                trail[w]["clitic_roles"] = clitic_role_map[w]["roles"]
                 trail[w]["source"] = "wikt_only_clitic"
                 remaining.discard(w)
                 wikt_only_clitic_count += 1
@@ -652,17 +741,22 @@ def main():
     clitic_count = 0
     for w in list(remaining):
         result = strip_clitic(w, verb_forms, conj_reverse,
-                              spanish_forms=spanish_forms, lemma_freq=lemma_freq)
+                              spanish_forms=spanish_forms, lemma_freq=lemma_freq,
+                              sd_parents=sd_parents)
         if result is None:
             continue
         base, clitic = result
         buckets["clitic_merge"][w] = base
+        _record_clitic_roles(clitic_role_map, w, base, clitic)
         trail[w]["bucket"] = "clitic_merge"
         trail[w]["clitic_base"] = base
         trail[w]["clitic_pronoun"] = clitic
+        trail[w]["clitic_roles"] = clitic_role_map[w]["roles"]
         remaining.discard(w)
         clitic_count += 1
     print(f"  Clitic merges: {clitic_count}")
+    _reflexive_parents = sum(1 for v in clitic_role_map.values() if v["reflexive"])
+    print(f"    → {_reflexive_parents} routed to a SpanishDict -se parent")
 
     # 3b. Derivation (diminutive / superlative) — reuse existing resolver
     deriv_count = 0
@@ -807,6 +901,10 @@ def main():
         "derivation_map": buckets["derivation"],
         "sense_discovery": sense_discovery,
         "clitic_merge": buckets["clitic_merge"],
+        # Pronoun + role annotation per clitic form. Wiktionary/verbecc decided
+        # the parent; this is the grammar that decision was based on, kept so
+        # the deck can describe the form instead of re-guessing it.
+        "clitic_roles": {w: clitic_role_map[w] for w in sorted(clitic_role_map)},
         # clitic_orphans / clitic_keep are populated by NORMAL-MODE
         # step_4a_route_clitics and consumed by step_8a/step_8b. Artist mode
         # moved tier-3 logic into step_8b so we always write empty lists for
@@ -822,6 +920,8 @@ def main():
             "sense_discovery": len(sense_discovery),
             "cognate": len(buckets["cognate"]),
             "clitic_merge": len(buckets["clitic_merge"]),
+            "clitic_reflexive_parents": sum(
+                1 for v in clitic_role_map.values() if v["reflexive"]),
             "clitic_keep": 0,
             "min_freq": args.min_freq,
         },

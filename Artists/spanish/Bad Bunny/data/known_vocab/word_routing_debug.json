@@ -362,6 +362,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "abrir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -374,6 +380,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "abrir",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -678,6 +690,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acabarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -760,6 +778,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acariciar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -792,6 +816,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acariciar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1019,6 +1049,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acicalarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1211,6 +1247,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acostar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1223,6 +1265,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acostar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1274,6 +1322,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acostumbrar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1326,6 +1380,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acostarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1525,6 +1585,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "activarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -1679,6 +1745,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acordarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1691,6 +1763,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acostarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1703,6 +1781,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acostarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1726,6 +1810,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "acercarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1932,6 +2022,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "admirar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1954,6 +2050,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "admitir",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -1966,6 +2068,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "admitir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2279,6 +2387,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "agarrar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2309,6 +2423,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "agarrarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -2435,6 +2555,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "agradecer",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2591,6 +2717,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "aguantar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2603,6 +2735,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "aguantar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2658,6 +2796,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "aguantarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2690,6 +2834,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "agarrar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2769,6 +2919,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ahogar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -2832,6 +2988,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ahorrarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -3225,8 +3387,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "alejar",
+    "clitic_base": "alejarse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -3237,8 +3405,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "alejar",
+    "clitic_base": "alejarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -3996,6 +4170,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "amanecer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -4158,6 +4338,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "amarrarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -4170,6 +4356,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "amarrar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -4234,6 +4426,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "amar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -4542,6 +4740,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "amarrarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -5525,6 +5729,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "aplicar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -5682,6 +5892,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "aprenderse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -5888,6 +6104,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "aprovechar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -6561,6 +6783,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "arreglar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -6573,6 +6801,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "arreglarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -7148,6 +7382,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "asomarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -7369,6 +7609,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "atender",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -7442,6 +7688,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "atrapar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -7615,6 +7867,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "atrapar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8021,6 +8279,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "avisar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -8032,6 +8296,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "avisar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8153,6 +8423,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ayudar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8257,6 +8533,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "azotar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8547,6 +8829,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bailar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8618,6 +8906,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bailar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8720,6 +9014,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bajar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -8732,6 +9032,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bajar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -9673,6 +9979,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bañarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -9685,6 +9997,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bañar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -9881,6 +10199,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "beber",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -9893,6 +10217,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "beber",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -10574,6 +10904,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "besar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -10586,6 +10922,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "besar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -10598,6 +10940,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "besarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -10610,6 +10958,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "besar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -10740,6 +11094,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "besar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -12155,6 +12515,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "borrar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -12167,6 +12533,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "borrar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -12265,6 +12637,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "botar",
     "clitic_pronoun": "las",
+    "clitic_roles": [
+      {
+        "pronoun": "las",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13541,6 +13919,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13553,6 +13937,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13565,6 +13955,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13577,6 +13973,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13620,6 +14022,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13632,6 +14040,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13746,6 +14160,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bailar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13758,6 +14178,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bailar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13767,6 +14193,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bajar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -13778,6 +14210,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bajar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13794,6 +14232,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "bajar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -13832,6 +14276,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "besar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13882,6 +14332,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13894,6 +14350,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -13906,6 +14368,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "buscarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -14462,6 +14930,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "caerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -14695,6 +15169,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "calentar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -14717,6 +15197,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "calentar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -14729,6 +15215,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "calentar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -14836,6 +15328,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "calentar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -14844,6 +15342,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "calentarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -14949,6 +15453,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "callar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -15195,6 +15705,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cambiar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -15207,6 +15723,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cambiar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -15229,6 +15751,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cambiar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -16318,6 +16846,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "capturar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -16984,6 +17518,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "casar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -16996,6 +17536,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "casarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -17166,6 +17712,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "castigar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -17424,6 +17976,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cazar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -17634,6 +18192,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "celebrar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -18602,6 +19166,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chequearse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -18997,6 +19567,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chingar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -19009,6 +19585,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chingar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -19097,6 +19679,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chingarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -19635,6 +20223,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chupar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -19647,6 +20241,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chupar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -19666,6 +20266,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "chupar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -20231,6 +20837,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "clavar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -20243,6 +20855,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "clavar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21002,6 +21620,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "colar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21475,8 +22099,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "comer",
+    "clitic_base": "comerse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21487,8 +22117,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "comer",
+    "clitic_base": "comerse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21501,6 +22137,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21511,8 +22153,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "comer",
+    "clitic_base": "comerse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21648,8 +22296,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "comer",
+    "clitic_base": "comerse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21660,8 +22314,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "comer",
+    "clitic_base": "comerse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21756,6 +22416,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comparar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21768,6 +22434,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "compararse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21960,6 +22632,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "complacer",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -21983,6 +22661,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "complacer",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22238,6 +22922,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22250,6 +22940,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22272,6 +22968,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22284,6 +22986,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22327,6 +23035,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprender",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22391,6 +23105,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22551,8 +23271,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "concentrar",
+    "clitic_base": "concentrarse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22618,6 +23344,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "conceder",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22822,6 +23554,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "confesar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -22939,6 +23677,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "confesar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -22970,6 +23714,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "conformar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -23242,6 +23992,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "conocer",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -23254,6 +24010,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "conocer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -23266,6 +24028,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "conocer",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -23411,6 +24179,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "conquistar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -23512,8 +24286,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "consolar",
+    "clitic_base": "consolarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -23668,6 +24448,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "contar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -24004,6 +24790,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "contestar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -24025,6 +24817,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "convencerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -24224,6 +25022,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "convencer",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -24331,6 +25135,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "copiar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -24653,6 +25463,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "correr",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -24846,6 +25662,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cortarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -24915,6 +25737,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "coser",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -25477,6 +26305,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "creer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -25905,6 +26739,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "crucificar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -26020,6 +26860,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "creer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -26617,6 +27463,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cuidar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27015,6 +27867,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "curar",
     "clitic_pronoun": "las",
+    "clitic_roles": [
+      {
+        "pronoun": "las",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27197,6 +28055,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "contar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27209,6 +28073,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "contar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27221,6 +28091,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "contar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27233,6 +28109,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cuidarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27259,6 +28141,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cagarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27292,6 +28180,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "cantar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27351,6 +28245,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "coger",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27363,6 +28263,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "coger",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27416,6 +28322,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "comprar",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -27535,6 +28447,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -27650,6 +28568,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27662,6 +28586,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27688,6 +28618,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -27700,6 +28636,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28126,6 +29068,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28138,6 +29086,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28150,6 +29104,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28162,6 +29122,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28174,6 +29140,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28273,6 +29245,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dedicar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28332,6 +29310,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dedicar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -28443,6 +29427,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28505,6 +29495,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28517,6 +29513,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28529,6 +29531,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28551,6 +29559,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -28563,6 +29577,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -29015,6 +30035,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "demostrar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -29077,6 +30103,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -29089,6 +30121,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -29509,6 +30547,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "desaparecerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30024,6 +31068,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "deshacer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30304,6 +31354,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "despeinar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30385,6 +31441,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "despertar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30546,8 +31608,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "desquitar",
+    "clitic_base": "desquitarse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30746,6 +31814,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "detener",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30798,6 +31872,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "detonar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30847,6 +31927,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "devorar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30899,6 +31985,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "devolverse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30911,6 +32003,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "devolver",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -30923,6 +32021,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "devorar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -31473,6 +32577,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -31485,6 +32595,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -31508,6 +32624,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -31530,6 +32652,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -31907,6 +33035,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "disculpar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -32000,6 +33134,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "disfrutar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -32009,6 +33149,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "disfrutarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -32087,6 +33233,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "disparar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -32632,6 +33784,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dominar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33452,6 +34610,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33464,6 +34628,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33476,6 +34646,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33488,6 +34664,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "darse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33500,6 +34682,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33548,6 +34736,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33560,6 +34754,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33572,6 +34772,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33584,6 +34790,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33596,6 +34808,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33608,6 +34826,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "dejar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33617,6 +34841,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "devorar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -33662,6 +34892,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "decir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33873,6 +35109,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "echar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -33885,6 +35127,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "echar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -34339,6 +35587,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "elevar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -34787,6 +36041,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "empatarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35096,6 +36356,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enamorar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35108,6 +36374,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enamorar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35120,6 +36392,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enamorar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35142,6 +36420,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enamorarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35255,6 +36539,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "encajar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35434,6 +36724,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "encerrar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35446,6 +36742,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "encerrar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35585,6 +36887,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "encerrarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -35692,8 +37000,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "encontrar",
+    "clitic_base": "encontrarse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -35706,6 +37020,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "encontrarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36044,6 +37364,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enganchar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36106,6 +37432,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "engañar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36206,6 +37538,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enloquecer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36486,6 +37824,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enrolar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36548,6 +37892,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enseñar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36570,6 +37920,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enseñar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36653,6 +38009,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ensuciar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36768,6 +38130,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enterarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -36864,6 +38232,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enterrar",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37076,6 +38450,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "entrar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37109,6 +38489,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "entregar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37350,6 +38736,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "envidiar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37362,6 +38754,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "envidiar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37481,6 +38879,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "envolver",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37562,6 +38966,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enviar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -37573,6 +38983,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "enviar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37709,6 +39125,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "equivocarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37731,6 +39153,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "equivocarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -37849,6 +39277,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "erizar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38317,8 +39751,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "esconder",
+    "clitic_base": "esconderse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38331,6 +39771,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "esconderse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38384,8 +39830,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "esconder",
+    "clitic_base": "esconderse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38559,6 +40011,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "escribir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38571,6 +40029,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "escribir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38727,8 +40191,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "escuchar",
+    "clitic_base": "escucharse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -38893,6 +40363,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "escaparse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -38944,6 +40420,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "esforzar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -39321,6 +40803,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "esperar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -39384,6 +40872,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "esperar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -39471,6 +40965,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "esperar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -39536,6 +41036,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "esquivar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -40067,6 +41573,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "estrenar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -40110,6 +41622,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "estrujar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -40763,6 +42281,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "excitar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41045,6 +42569,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "explicar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41177,6 +42707,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "explotar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41189,6 +42725,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "explotar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41221,6 +42763,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "explicar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41233,6 +42781,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "explicar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41376,6 +42930,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "extraer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41462,6 +43022,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "extrañar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41474,6 +43040,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "extrañar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -41832,6 +43404,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "fallar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -44334,6 +45912,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "frontear",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44360,6 +45944,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "frontear",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44368,6 +45958,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "frontear",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44408,6 +46004,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "frontear",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -44860,8 +46462,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "fumar",
+    "clitic_base": "fumarse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -44872,8 +46480,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "fumar",
+    "clitic_base": "fumarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -44946,8 +46560,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "fumar",
+    "clitic_base": "fumarse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -44960,6 +46580,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "fumarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -45504,6 +47130,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ganar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -45526,6 +47158,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ganar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -45946,6 +47584,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "gastar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -47037,6 +48681,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "gozarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -47113,6 +48763,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "grabarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -47125,6 +48781,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "grabar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -47167,6 +48829,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "grabar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -47722,6 +49390,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "gritar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -48256,6 +49930,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "gustar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48353,6 +50033,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "guardar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48392,8 +50078,14 @@
   "guíllate": {
     "freq": 5,
     "bucket": "clitic_merge",
-    "clitic_base": "guillar",
+    "clitic_base": "guillarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -48463,6 +50155,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "gastar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -48571,6 +50269,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "haber",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48583,6 +50287,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "haber",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48688,6 +50398,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hablar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48700,6 +50416,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hablar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48773,6 +50495,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hablar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48785,6 +50513,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hablar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48899,6 +50633,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48911,6 +50651,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48923,6 +50669,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48935,6 +50687,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48947,6 +50705,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48959,6 +50723,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -48971,6 +50741,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -49014,6 +50790,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -49026,6 +50808,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -49038,6 +50826,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -49504,6 +51298,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -49516,6 +51316,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -49528,6 +51334,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hacerse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -50213,6 +52025,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hipnotizar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51042,6 +52860,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hundir",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51052,8 +52876,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "hundir",
+    "clitic_base": "hundirse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51066,6 +52896,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hundirse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51163,6 +52999,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hablar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51175,6 +53017,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "hablar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51414,6 +53262,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ignorar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51690,6 +53544,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "imaginar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51712,6 +53572,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "imaginarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51751,6 +53617,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "imitar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51814,6 +53686,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "implantar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51907,6 +53785,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "importar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -51919,6 +53803,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "importar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -52418,6 +54308,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "informar",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -53378,6 +55274,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "invitar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -53438,6 +55340,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "invitar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -53446,6 +55354,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "invitar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -53543,6 +55457,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ir",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -53555,6 +55475,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -53567,6 +55493,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "irse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -53579,6 +55511,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -53905,6 +55843,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "jalar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -54588,6 +56532,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "joder",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -54600,6 +56550,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "joder",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -55245,8 +57201,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "juntar",
+    "clitic_base": "juntarse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -55451,6 +57413,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "justificar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -55510,6 +57478,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "jugarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -55557,6 +57531,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "joder",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -56216,6 +58196,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "lamber",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -57148,6 +59134,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "levantar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -57844,6 +59836,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -57856,6 +59854,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -57868,6 +59872,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -57932,6 +59942,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -57944,6 +59960,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58117,6 +60139,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llegar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58139,6 +60167,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llegar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58270,6 +60304,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llenar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58404,6 +60444,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llevar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58426,6 +60472,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llevarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58438,6 +60490,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llevar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58722,6 +60780,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58734,6 +60798,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58746,6 +60816,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llamarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58776,6 +60852,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "llevar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58858,6 +60940,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "localizar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -58993,6 +61081,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "lograr",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -59767,6 +61861,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "librar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -60658,6 +62758,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "maltratarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -60762,6 +62868,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mamar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -61060,6 +63172,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mandar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -61072,6 +63190,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mandar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -61184,6 +63308,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "manejar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -61422,6 +63552,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mantener",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62085,6 +64221,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "martillar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62427,6 +64569,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "matar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62439,6 +64587,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "matar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62451,6 +64605,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "matar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62473,6 +64633,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "matar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62624,6 +64790,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "matar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -62921,6 +65093,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "medicar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63479,6 +65657,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "menear",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63791,6 +65975,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63803,6 +65993,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63815,6 +66011,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63827,6 +66029,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63839,6 +66047,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meterse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63851,6 +66065,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63958,6 +66178,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63970,6 +66196,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -63982,6 +66214,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -64744,6 +66982,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -64756,6 +67000,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -64768,6 +67018,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -64780,6 +67036,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -64845,6 +67107,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -65175,6 +67443,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "modelar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -65284,6 +67558,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mojar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -65456,6 +67736,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "molestar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -65525,6 +67811,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "molestarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -65785,6 +68077,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "montarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -65989,6 +68287,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "morder",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66106,8 +68410,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "morir",
+    "clitic_base": "morirse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66118,8 +68428,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "morir",
+    "clitic_base": "morirse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66132,6 +68448,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "morirse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66407,6 +68729,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66419,6 +68747,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66431,6 +68765,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "moverse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66443,6 +68783,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66520,6 +68866,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66532,6 +68884,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -66705,6 +69063,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mudar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67160,6 +69524,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "multiplicar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67243,8 +69613,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "morir",
+    "clitic_base": "morirse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67384,6 +69760,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "morderse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67395,6 +69777,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67404,6 +69792,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mover",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67415,6 +69809,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "moverse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67499,6 +69899,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mandar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67510,6 +69916,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mandar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67598,6 +70010,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meterse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67610,6 +70028,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meter",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67622,6 +70046,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "meterse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67711,6 +70141,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67723,6 +70159,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67732,6 +70174,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mojar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -67750,6 +70198,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "montarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -67759,6 +70213,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "mudarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -70141,6 +72601,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "odiar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -70153,6 +72619,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "odiar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -70263,6 +72735,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ofender",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -70619,8 +73097,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "olvidar",
+    "clitic_base": "olvidarse",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -70641,8 +73125,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "olvidar",
+    "clitic_base": "olvidarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -70746,6 +73236,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "olvidar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -70758,6 +73254,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "olvidarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -71306,6 +73808,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "orar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -72532,6 +75040,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "papar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -72765,6 +75279,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "parar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -73048,6 +75568,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "parir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -73330,6 +75856,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "partir",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -73616,6 +76148,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pasear",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -73908,6 +76446,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "patear",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -74313,6 +76857,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pedir",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -74515,6 +77065,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pegar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -74546,6 +77102,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "peinarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -74724,6 +77286,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pelear",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -74736,6 +77304,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pelear",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75122,6 +77696,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pensar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75134,6 +77714,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pensar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75165,6 +77751,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pensar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75381,6 +77973,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perder",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75393,6 +77991,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perder",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75403,8 +78007,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "perder",
+    "clitic_base": "perderse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75484,8 +78094,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "perder",
+    "clitic_base": "perderse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75538,6 +78154,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perdonar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75631,6 +78253,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perdonar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75643,6 +78271,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perdonar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -75951,6 +78585,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perrear",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -76109,6 +78749,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "perseguir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -76634,6 +79280,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pichar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76652,6 +79304,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pichar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76676,6 +79334,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pichear",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76716,6 +79380,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pichar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76734,6 +79404,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pichear",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -76884,6 +79560,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pedir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -76896,6 +79578,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pedir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -77226,6 +79914,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pillar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -77775,6 +80469,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pensar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -78312,6 +81012,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poder",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78770,6 +81476,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78782,6 +81494,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78794,6 +81512,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78806,6 +81530,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78818,6 +81548,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78898,6 +81634,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78910,6 +81652,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78922,6 +81670,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -78934,6 +81688,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ponerse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -79151,6 +81911,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "portarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79163,6 +81929,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "portar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79649,6 +82421,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "preguntar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79671,6 +82449,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "preguntar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79714,6 +82498,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "preguntar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79746,6 +82536,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "preguntar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79868,6 +82664,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "prender",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -79967,6 +82769,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "prender",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80091,6 +82899,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "prepararse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80313,6 +83127,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "presumir",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80377,6 +83197,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "preñar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80741,6 +83567,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "probar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80753,6 +83585,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "probar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80765,6 +83603,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "probar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -80777,6 +83621,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "probar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -81314,6 +84164,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "proteger",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -81455,6 +84311,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "prender",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -81463,6 +84325,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "prenderse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82223,6 +85091,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pagar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82242,6 +85116,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "parar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82260,6 +85140,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "partir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82311,6 +85197,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pegarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82363,6 +85255,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pedir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82372,6 +85270,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "pedir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82396,6 +85300,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ponerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82408,6 +85318,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ponerse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82417,6 +85333,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "poner",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82434,6 +85356,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "portarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82443,6 +85371,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "posar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -82600,6 +85534,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quedar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82612,6 +85552,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quedar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82634,6 +85580,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quedarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82646,6 +85598,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quedar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -82904,8 +85862,14 @@
       "verb"
     ],
     "bucket": "clitic_merge",
-    "clitic_base": "quemar",
+    "clitic_base": "quemarse",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83046,6 +86010,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "querer",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83058,6 +86028,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "querer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83439,6 +86415,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83451,6 +86433,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83473,6 +86461,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83485,6 +86479,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83642,6 +86642,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quedarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83654,6 +86660,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quedarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83688,6 +86700,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83700,6 +86718,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -83712,6 +86736,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "quitarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -84515,6 +87545,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "recetar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -84668,6 +87704,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "reconocer",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -84720,6 +87762,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "recordar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -84890,6 +87938,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "recuperar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -84912,6 +87966,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "recordarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -85162,6 +88222,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "regalar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -85469,6 +88535,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "relajar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -85578,6 +88650,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "relajarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -85745,6 +88823,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "repartir",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -85794,6 +88878,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "repetir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -85993,6 +89083,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "rescatar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -86076,6 +89172,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "resolver",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -86128,6 +89230,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "respetar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -86469,6 +89577,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "retirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -86575,6 +89689,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "retratar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -86695,6 +89815,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "retirarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -87472,6 +90598,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "robar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -87662,6 +90794,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "rogar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -87963,6 +91101,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "romper",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -87975,6 +91119,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "romperse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -87987,6 +91137,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "romper",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -88195,6 +91351,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "roncar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88203,6 +91365,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "roncar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88211,6 +91379,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "roncar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88252,6 +91426,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "roncar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -88893,6 +92073,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "rogar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89008,6 +92194,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "robar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89068,6 +92260,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "saber",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89254,6 +92452,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sacar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89266,6 +92470,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sacar",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89278,6 +92488,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sacar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89290,6 +92506,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sacar",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89302,6 +92524,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sacar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89314,6 +92542,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sacar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -89937,6 +93171,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "saludar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -90533,6 +93773,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "secar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -90652,6 +93898,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "secuestrar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91351,6 +94603,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sentarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91416,6 +94674,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sentir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91428,6 +94692,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sentirse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91440,6 +94710,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sentir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91510,6 +94786,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "separar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -91701,6 +94983,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ser",
     "clitic_pronoun": "le",
+    "clitic_roles": [
+      {
+        "pronoun": "le",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91713,6 +95001,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ser",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -91735,6 +95029,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ser",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -93014,6 +96314,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sentir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -93541,6 +96847,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "soltarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -93553,6 +96865,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "soltar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -93756,6 +97074,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sonreír",
     "clitic_pronoun": "les",
+    "clitic_roles": [
+      {
+        "pronoun": "les",
+        "role": "indirect"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -94000,6 +97324,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "sorprender",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -94223,6 +97553,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "soñar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -94418,6 +97754,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "stalkear",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -94775,6 +98117,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "subirse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -95815,6 +99163,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "surfear",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -95934,6 +99288,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "soltar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -95943,6 +99303,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "soltarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -96088,6 +99454,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "seguir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -96100,6 +99472,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "seguir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -96109,6 +99487,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "seguirse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -96185,6 +99569,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "subir",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -96197,6 +99587,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "subir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -96209,6 +99605,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "subirse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -97234,6 +100636,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tener",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -97246,6 +100654,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tener",
     "clitic_pronoun": "las",
+    "clitic_roles": [
+      {
+        "pronoun": "las",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -97258,6 +100672,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tener",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -97270,6 +100690,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tener",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -97880,6 +101306,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "textear",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -97912,6 +101344,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "textear",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98652,6 +102090,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "lo",
+    "clitic_roles": [
+      {
+        "pronoun": "lo",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98664,6 +102108,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98676,6 +102126,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98698,6 +102154,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98811,6 +102273,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98823,6 +102291,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -98876,6 +102350,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tentar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -99012,6 +102492,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -99024,6 +102510,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -99058,6 +102550,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocar",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -99070,6 +102568,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocarse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -99082,6 +102586,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -100160,6 +103670,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "traer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -100641,6 +104157,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tratar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101152,6 +104674,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tronchar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101297,6 +104825,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "traer",
     "clitic_pronoun": "las",
+    "clitic_roles": [
+      {
+        "pronoun": "las",
+        "role": "direct"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -101308,6 +104842,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "traer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101320,6 +104860,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "traerse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101332,6 +104878,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "traer",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101350,6 +104902,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tratar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101366,6 +104924,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "treparse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -101533,6 +105097,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tumbar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101545,6 +105115,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tumbar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101854,6 +105430,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "taparse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101919,6 +105501,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101931,6 +105519,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101943,6 +105537,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101955,6 +105555,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tirar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101987,6 +105593,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -101999,6 +105611,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tocarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -102039,6 +105657,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "tumbar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -102383,6 +106007,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "untar",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -102544,6 +106174,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "usar",
     "clitic_pronoun": "las",
+    "clitic_roles": [
+      {
+        "pronoun": "las",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -103745,6 +107381,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "venderse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -103957,6 +107599,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "venir",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -103969,6 +107617,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "venirse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -103981,6 +107635,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "venir",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -104033,6 +107693,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "venirse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -104203,7 +107869,7 @@
   "verdecitos": {
     "freq": 1,
     "bucket": "derivation",
-    "derivation_base": "verdes",
+    "derivation_base": "verdees",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -104271,6 +107937,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ver",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -104283,6 +107955,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ver",
     "clitic_pronoun": "los",
+    "clitic_roles": [
+      {
+        "pronoun": "los",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -104306,6 +107984,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ver",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -104332,6 +108016,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "verse",
     "clitic_pronoun": "se",
+    "clitic_roles": [
+      {
+        "pronoun": "se",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": true
@@ -104394,6 +108084,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ver",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -105399,6 +109095,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "visitar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -105681,6 +109383,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "ver",
     "clitic_pronoun": "nos",
+    "clitic_roles": [
+      {
+        "pronoun": "nos",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -105851,6 +109559,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "volver",
     "clitic_pronoun": "la",
+    "clitic_roles": [
+      {
+        "pronoun": "la",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -105863,6 +109577,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "volver",
     "clitic_pronoun": "las",
+    "clitic_roles": [
+      {
+        "pronoun": "las",
+        "role": "direct"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -105875,6 +109595,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "volver",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -106331,6 +110057,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "virarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -106342,6 +110074,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "vestirse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -107655,6 +111393,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "echar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -107674,6 +111418,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "echarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -107844,6 +111594,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "oír",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false
@@ -107933,6 +111689,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "untarse",
     "clitic_pronoun": "te",
+    "clitic_roles": [
+      {
+        "pronoun": "te",
+        "role": "reflexive"
+      }
+    ],
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -107944,6 +111706,12 @@
     "bucket": "clitic_merge",
     "clitic_base": "usar",
     "clitic_pronoun": "me",
+    "clitic_roles": [
+      {
+        "pronoun": "me",
+        "role": "object"
+      }
+    ],
     "source": "wikt_only_clitic",
     "in_spanish_forms": true,
     "in_en_50k": false

@@ -2,9 +2,22 @@
 
 Provides:
   - Clitic pronoun stripping + gerund decomposition
-  - Wiktionary clitic-data loader
+  - Wiktionary clitic-data loader (base + attached pronouns + their roles)
+  - SpanishDict parent inventory (which lemmas may own a card)
   - Three-tier clitic classification (clitic_merge / clitic_keep)
   - Morphological derivation resolver (diminutive / superlative)
+
+Division of labour between the two dictionaries:
+
+  * **Wiktionary** routes. Its `form-of` entries say which verb a clitic form
+    belongs to, which pronouns are attached, and — via the `accusative` /
+    `dative` / `object-*-person` / `reflexive` tags — what each pronoun is
+    doing. That annotation is preserved end to end; the front end's
+    `describeCliticForm()` depends on it.
+  * **SpanishDict** owns the parent inventory. A clitic form may only be given
+    a `-se` parent card when SpanishDict actually publishes a `-se` headword,
+    and SpanishDict's own entry sizes break the tie in the one case morphology
+    cannot decide (see `prefers_reflexive_parent`).
 """
 
 import gzip
@@ -19,6 +32,18 @@ import unicodedata
 
 # Longest first to avoid partial matches.
 _CLITIC_PRONOUNS = ("nos", "les", "los", "las", "me", "te", "se", "lo", "la", "le")
+
+# Pronouns that agree in person with the subject and can therefore be
+# reflexive. Spanish reflexives are NOT just `se` — `me`/`te`/`nos`/`os` are the
+# 1s/2s/1p/2p members of the same paradigm, which is why a literal `"se" in
+# clitics` test mis-files `alejarme` as a plain object form.
+_REFLEXIVE_CLITICS = frozenset({"me", "te", "se", "nos", "os"})
+# Third-person object pronouns, which can never be reflexive.
+_ACCUSATIVE_CLITICS = frozenset({"lo", "la", "los", "las"})
+_DATIVE_CLITICS = frozenset({"le", "les"})
+
+# Person (and number) each agreeing pronoun demands of the subject.
+CLITIC_PERSON = {"me": "1s", "te": "2s", "nos": "1p", "os": "2p"}
 
 
 def _strip_acute(s):
@@ -50,9 +75,11 @@ def strip_clitic_pronouns(word, clitic_list=None):
 def decompose_gerund_clitic(word, known_words):
     """Decompose a gerund+clitic or infinitive+clitic form into its infinitive.
 
-    Returns (base_infinitive, is_reflexive) if decomposable, else None.
-    E.g., 'dándote' → ('dar', False), 'ahogándome' → ('ahogar', False),
-    'alejarte' → ('alejar', False), 'dármelo' → ('dar', False).
+    Returns (base_infinitive, [attached clitics]) if decomposable, else None.
+    E.g., 'dándote' → ('dar', ['te']), 'ahogándome' → ('ahogar', ['me']),
+    'alejarte' → ('alejar', ['te']), 'dármelo' → ('dar', ['me', 'lo']).
+    The clitic list is what lets the caller derive each pronoun's role
+    positionally when Wiktionary has no entry for the form.
 
     Infinitive+enclitic needs no ending surgery — the enclitic is simply
     appended ('alejar' + 'te') — but a two-clitic stack takes a written
@@ -90,7 +117,7 @@ def decompose_gerund_clitic(word, known_words):
         return decompose_infinitive_clitic(word, known_words)
 
     if infinitive in known_words:
-        return (infinitive, "se" in clitics)
+        return (infinitive, list(clitics))
     return decompose_infinitive_clitic(word, known_words)
 
 
@@ -158,8 +185,9 @@ def _is_known_infinitive(candidate):
 def decompose_infinitive_clitic(word, known_words):
     """Decompose an infinitive+enclitic form into its infinitive.
 
-    Returns (base_infinitive, is_reflexive) or None. E.g. 'alejarte' →
-    ('alejar', False), 'dármelo' → ('dar', False), 'ponerse' → ('poner', True).
+    Returns (base_infinitive, [attached clitics]) or None. E.g. 'alejarte' →
+    ('alejar', ['te']), 'dármelo' → ('dar', ['me', 'lo']), 'ponerse' →
+    ('poner', ['se']).
 
     Unlike the gerund case there is no ending to rebuild — the enclitic is
     appended to the bare infinitive — but a two-clitic stack adds a written
@@ -188,13 +216,229 @@ def decompose_infinitive_clitic(word, known_words):
         if len(candidate) < _MIN_INFINITIVE_LEN and candidate not in _SHORT_INFINITIVES:
             continue
         if candidate in known_words and _is_known_infinitive(candidate):
-            return (candidate, "se" in clitics)
+            return (candidate, list(clitics))
     return None
+
+
+# ---------------------------------------------------------------------------
+# Clitic roles
+# ---------------------------------------------------------------------------
+
+def clitic_roles(clitics, reflexive=False, tags=()):
+    """Grammatical role of every pronoun in an enclitic cluster.
+
+    Returns a list of ``{"pronoun": str, "role": str}`` parallel to `clitics`,
+    where role is one of ``reflexive`` / ``direct`` / ``indirect`` / ``object``
+    (``object`` = a lone 1st/2nd-person pronoun whose case the surface form
+    does not determine: `verte` is "see you", but nothing in the string says
+    accusative rather than dative).
+
+    Roles come from Wiktionary's own tags when the caller passes them, and are
+    otherwise derived positionally. Spanish clitic clusters are strictly
+    ordered **se > 2nd > 1st > 3rd**, so in a two-pronoun stack the last slot
+    is the direct object and everything before it the indirect object —
+    `dármelo` is me (indirect) + lo (direct), which is exactly how Wiktionary
+    glosses it. This is the fallback used for forms our own
+    `decompose_infinitive_clitic` found but Wiktionary has no entry for.
+    """
+    tagset = set(tags or ())
+    n = len(clitics)
+    out = []
+    for i, cl in enumerate(clitics):
+        if cl in _ACCUSATIVE_CLITICS:
+            role = "direct"
+        elif cl in _DATIVE_CLITICS:
+            role = "indirect"
+        elif n > 1 and i < n - 1:
+            role = "indirect"          # cluster order: non-final slot is IO
+        elif cl == "se" or (reflexive and cl in _REFLEXIVE_CLITICS):
+            role = "reflexive"
+        elif "accusative" in tagset:
+            role = "direct"
+        elif "dative" in tagset:
+            role = "indirect"
+        else:
+            role = "object"
+        out.append({"pronoun": cl, "role": role})
+    return out
+
+
+def is_reflexive_candidate(clitics):
+    """True when the cluster *could* be reflexive: one agreeing pronoun only.
+
+    A second object pronoun rules it out — `dármelo` has me as a dative object
+    alongside accusative lo, so it belongs to `dar`, never to `darse`.
+    """
+    return len(clitics) == 1 and clitics[0] in _REFLEXIVE_CLITICS
+
+
+# ---------------------------------------------------------------------------
+# SpanishDict parent inventory
+# ---------------------------------------------------------------------------
+
+_SD_PARENTS_CACHE = {}
+
+
+def load_spanishdict_parents(sd_dir=None):
+    """Every lemma SpanishDict publishes a dictionary entry for.
+
+    Returns ``{headword: sense_count}``. This is the *parent inventory*: a
+    clitic form only gets a `-se` parent card when SpanishDict actually has a
+    `-se` headword, so `alejar` and `alejarse` are two parents while a verb
+    SpanishDict only lists plainly stays one. Reads the committed caches
+    (`headword_cache.json`, `surface_cache.json`) — never scrapes.
+
+    Headwords reached from a *different* query surface are vetted with
+    `util_5c_spanishdict.is_plausible_headword`, the live fuzzy-headword guard,
+    so a bad SpanishDict redirect cannot invent a parent. Keys of
+    `headword_cache.json` are SpanishDict's own entry names and are trusted
+    directly. Missing caches → empty dict, and every caller falls back to its
+    previous behaviour.
+    """
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    sd_dir = sd_dir or os.path.join(root, "Data", "Spanish", "Senses", "spanishdict")
+    if sd_dir in _SD_PARENTS_CACHE:
+        return _SD_PARENTS_CACHE[sd_dir]
+
+    try:
+        import sys
+        if os.path.join(root, "pipeline") not in sys.path:
+            sys.path.insert(0, os.path.join(root, "pipeline"))
+        from util_5c_spanishdict import is_plausible_headword
+    except Exception:
+        is_plausible_headword = None
+
+    parents = {}
+
+    def _absorb(query, payload, trust):
+        for analysis in payload.get("dictionary_analyses") or []:
+            hw = (analysis.get("headword") or "").strip().lower()
+            if not hw:
+                continue
+            if not trust and hw != query and is_plausible_headword is not None:
+                if not is_plausible_headword(query, hw):
+                    continue
+            count = len(analysis.get("senses") or [])
+            if count >= parents.get(hw, -1):
+                parents[hw] = count
+
+    for filename, trust in (("headword_cache.json", True),
+                            ("surface_cache.json", False)):
+        path = os.path.join(sd_dir, filename)
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            continue
+        if not isinstance(data, dict):
+            continue
+        for query, payload in data.items():
+            if isinstance(payload, dict):
+                _absorb((query or "").strip().lower(), payload, trust)
+
+    _SD_PARENTS_CACHE[sd_dir] = parents
+    return parents
+
+
+def prefers_reflexive_parent(base, sd_parents):
+    """Should an ambiguous infinitive/gerund enclitic take the `-se` parent?
+
+    `alejarme` and `verte` are morphologically identical — infinitive + a lone
+    person-agreeing pronoun — and no signal in either string says whether the
+    pronoun is the subject reflexivised (`alejarse`, "to move away") or a plain
+    object (`ver` + te, "to see you"). Person agreement, which settles the
+    imperative cases, needs a subject an infinitive does not have.
+
+    So SpanishDict breaks the tie with its own entry structure: the pronominal
+    entry wins only when it is *richer* than the plain one. SpanishDict gives
+    alejar 3 senses and alejarse 5 (pronominal is the main reading → promote),
+    but ver 24 and verse 6, decir 16 and decirse 3, dar 38 and darse 9
+    (pronominal is a minor sub-entry → keep the plain parent). Strictly
+    greater, so a 1-vs-1 tie like amar/amarse stays plain.
+
+    Returns False when SpanishDict has no `-se` headword at all.
+    """
+    if not sd_parents:
+        return False
+    reflexive = base + "se"
+    if reflexive not in sd_parents:
+        return False
+    return sd_parents[reflexive] > sd_parents.get(base, 0)
+
+
+def reflexive_parent(base, clitics, sd_parents, decided=None, known_lemmas=None):
+    """The lemma a clitic form should hang under: `base` or `base + "se"`.
+
+    `decided` is the caller's person-agreement verdict for hosts where it can
+    be computed (True = the pronoun must be reflexive, False = it must be an
+    object, None = undecidable, i.e. an infinitive or gerund). `se` is always
+    reflexive.
+
+    A *decided* reflexive takes the `-se` parent whenever SpanishDict or
+    `known_lemmas` knows it; the SpanishDict cache only covers surfaces we have
+    queried, so gating it on SpanishDict alone would demote forms that already
+    resolve correctly. An *undecidable* host is the one case where a guess is
+    silently wrong either way, so only SpanishDict may promote it, and only
+    when its pronominal entry outweighs the plain one.
+    """
+    if not is_reflexive_candidate(clitics):
+        return base
+    reflexive = base + "se"
+    if decided is True or clitics[0] == "se":
+        if reflexive in (sd_parents or ()) or reflexive in (known_lemmas or ()):
+            return reflexive
+        return base
+    if decided is False:
+        return base
+    return reflexive if prefers_reflexive_parent(base, sd_parents) else base
 
 
 # ---------------------------------------------------------------------------
 # Wiktionary clitic-data loader
 # ---------------------------------------------------------------------------
+
+_SUBJECT_PERSON_TAGS = {"first-person": "1", "second-person": "2",
+                        "third-person": "3"}
+_OBJECT_PERSON_TAGS = {"object-first-person": "1", "object-second-person": "2",
+                       "object-third-person": "3"}
+# Hosts whose subject person the form itself does not express.
+_UNDECIDABLE_HOSTS = frozenset({"infinitive", "gerund", "participle"})
+
+
+def _person_agreement(tags, clitics):
+    """True/False/None: does the lone pronoun agree with the stated subject?
+
+    Wiktionary spells out both sides for finite forms — `perdóname` is
+    `second-person singular imperative` with `object-first-person
+    object-singular`, so subject 2s vs object 1s: the pronoun is an object, and
+    `perdonarse` would be wrong. `múdate` is 2s/2s and must be reflexive.
+    Infinitives and gerunds carry no subject, so the question is undecidable
+    and the caller falls back to the SpanishDict tie-break.
+    """
+    if not is_reflexive_candidate(clitics):
+        return False
+    if clitics[0] == "se":
+        return True
+    if tags & _UNDECIDABLE_HOSTS:
+        return None
+    subject = next((v for t, v in _SUBJECT_PERSON_TAGS.items() if t in tags), None)
+    if subject is None:
+        return None
+    number = "p" if "plural" in tags else "s" if "singular" in tags else None
+    obj = next((v for t, v in _OBJECT_PERSON_TAGS.items() if t in tags), None)
+    obj_number = ("p" if "object-plural" in tags
+                  else "s" if "object-singular" in tags else None)
+    if obj is None:
+        want = CLITIC_PERSON.get(clitics[0])
+        if not want:
+            return False
+        obj, obj_number = want[0], want[1]
+    if number is None or obj_number is None:
+        return subject == obj
+    return (subject, number) == (obj, obj_number)
+
 
 def load_wiktionary_clitic_data(path):
     """Load clitic map + reflexive verbs + propn set from Wiktionary JSONL.
@@ -202,10 +446,22 @@ def load_wiktionary_clitic_data(path):
     Returns (word_set, all_propn, clitic_map, verbs_with_refl_senses):
       word_set: all lowercase word forms that have any entry.
       all_propn: words where EVERY entry has pos="name" (proper nouns).
-      clitic_map: {clitic_word: (base_verb, [clitics], is_reflexive)} for
-                  form-of entries with clitic pronouns ("combined with").
+      clitic_map: {clitic_word: info} for form-of entries with clitic pronouns
+                  ("combined with"), where info is a dict:
+                    base      — the verb the form belongs to
+                    clitics   — attached pronouns, in surface order
+                    roles     — [{"pronoun", "role"}] parallel to `clitics`
+                    reflexive — True / False / None (None = undecidable host)
+                    tags      — the raw Wiktionary tags, kept for debugging
       verbs_with_refl_senses: base verbs with non-form-of senses tagged
                               'reflexive' or 'pronominal'.
+
+    `reflexive` is deliberately three-valued. The old code collapsed it to
+    ``"reflexive" in tags or "se" in clitics``, which is a literal-`se` test:
+    Spanish reflexives agree in person, so `alejarme` (me = 1s reflexive) came
+    out False and merged onto the plain transitive `alejar`. Person agreement
+    now decides wherever Wiktionary states the subject, and `None` marks the
+    infinitive/gerund cases the string genuinely cannot settle.
     """
     from collections import defaultdict
     word_poses = defaultdict(set)
@@ -235,10 +491,22 @@ def load_wiktionary_clitic_data(path):
                         if links and isinstance(links[0], list):
                             base = links[0][0].lower()
                             clitics = [l[0].lower() for l in links[1:]
-                                       if isinstance(l, list)]
-                            is_refl = "reflexive" in tags or "se" in clitics
-                            if base and base != wl:
-                                clitic_map[wl] = (base, clitics, is_refl)
+                                       if isinstance(l, list)
+                                       and l[0].lower() in _CLITIC_PRONOUNS]
+                            if not base or base == wl or not clitics:
+                                continue
+                            if "reflexive" in tags:
+                                is_refl = True
+                            else:
+                                is_refl = _person_agreement(tags, clitics)
+                            clitic_map[wl] = {
+                                "base": base,
+                                "clitics": clitics,
+                                "roles": clitic_roles(
+                                    clitics, reflexive=bool(is_refl), tags=tags),
+                                "reflexive": is_refl,
+                                "tags": sorted(tags),
+                            }
 
     words = set(word_poses.keys())
     all_propn = {w for w, poses in word_poses.items()
@@ -250,43 +518,85 @@ def load_wiktionary_clitic_data(path):
 # Three-tier clitic classification
 # ---------------------------------------------------------------------------
 
-def classify_clitics(words, clitic_map, verbs_with_refl, known_for_gerund):
-    """Build clitic_merge / clitic_orphans / clitic_keep for `words`.
+def classify_clitics(words, clitic_map, verbs_with_refl, known_for_gerund,
+                     sd_parents=None):
+    """Build clitic_merge / clitic_orphans / clitic_keep / clitic_info.
 
     Args:
         words: set of lowercase surface forms to classify.
         clitic_map: from `load_wiktionary_clitic_data`.
-        verbs_with_refl: from `load_wiktionary_clitic_data`.
+        verbs_with_refl: from `load_wiktionary_clitic_data`. No longer gates
+                    tier 3 — SpanishDict's parent inventory does — but kept in
+                    the signature because callers report it.
         known_for_gerund: set of known Spanish forms used to validate
                           gerund-decomposition candidates (usually
                           `words | conj_forms | wikt_words`).
+        sd_parents: from `load_spanishdict_parents`. Decides which lemmas may
+                    own a card. Omit (or pass an empty dict) and the `-se`
+                    promotion is disabled entirely — the pre-SpanishDict
+                    behaviour, minus the literal-`se` misfiling.
 
-    Returns (clitic_merge, clitic_orphans, clitic_keep, gerund_added):
+    Returns (clitic_merge, clitic_orphans, clitic_keep, gerund_added, clitic_info):
       clitic_merge: {word: base_form}  (tier 1+2)
       clitic_orphans: [word]  (subset of clitic_merge mapped to a synthetic infinitive)
-      clitic_keep: set[word]  (tier 3)
+      clitic_keep: set[word]  (tier 3 — the form keeps its own card)
       gerund_added: int (count of programmatic gerund+clitic detections)
+      clitic_info: {word: {parent, clitics, roles, reflexive, source}} — the
+                   pronoun/role annotation, preserved for the deck so the front
+                   end can keep describing each form.
+
+    A form is kept as its own card (tier 3) when it routes to a `-se` parent
+    SpanishDict publishes and the base has a Wiktionary reflexive sense. That
+    replaces the old literal-`se` gate, under which `irse`/`ponerse` were kept
+    but `alejarme`/`alejarte` silently merged into the plain transitive verb.
     """
     clitic_merge = {}
     clitic_orphans = []
     clitic_keep = set()
+    clitic_info = {}
 
-    # Wiktionary-listed clitic forms (tier 1/2/3)
-    for w in words:
-        if w not in clitic_map:
-            continue
-        base_inf, clitics, is_refl = clitic_map[w]
-        if is_refl and base_inf in verbs_with_refl:
+    def _place(w, base_inf, clitics, roles, is_refl, source):
+        parent = reflexive_parent(base_inf, clitics, sd_parents, decided=is_refl,
+                                  known_lemmas=known_for_gerund)
+        reflexive = parent.endswith("se") and parent != base_inf
+        if reflexive:
+            roles = clitic_roles(clitics, reflexive=True)
+        clitic_info[w] = {
+            "parent": parent,
+            "base": base_inf,
+            "clitics": list(clitics),
+            "roles": roles,
+            "reflexive": reflexive,
+            "source": source,
+        }
+        if reflexive:
+            # Routed to a `-se` parent, so it is a pronominal use and belongs on
+            # its own card rather than folded into the plain transitive verb.
+            # The old gate was `is_refl and base_inf in verbs_with_refl`, with
+            # `is_refl` meaning "the literal string 'se' is attached" — which
+            # kept `irse`/`ponerse` but merged `alejarme` into `alejar`.
             clitic_keep.add(w)
-            continue
+            return
         stripped = strip_clitic_pronouns(w, clitics)
         if stripped in words:
             clitic_merge[w] = stripped
+        elif parent in words:
+            clitic_merge[w] = parent
         else:
-            clitic_merge[w] = base_inf
+            clitic_merge[w] = parent
             clitic_orphans.append(w)
 
-    # Programmatic gerund+clitic detection (catches forms not in Wiktionary)
+    # Wiktionary-listed clitic forms (tier 1/2/3)
+    for w in words:
+        info = clitic_map.get(w)
+        if not info:
+            continue
+        _place(w, info["base"], info["clitics"], info["roles"],
+               info["reflexive"], "wiktionary")
+
+    # Programmatic gerund+clitic detection (catches forms not in Wiktionary).
+    # No Wiktionary entry means no tags, so roles are derived positionally and
+    # person agreement is unknown — exactly the undecidable case.
     gerund_added = 0
     for w in words:
         if w in clitic_merge or w in clitic_keep:
@@ -294,19 +604,13 @@ def classify_clitics(words, clitic_map, verbs_with_refl, known_for_gerund):
         result = decompose_gerund_clitic(w, known_for_gerund)
         if not result:
             continue
-        base_inf, is_refl = result
-        if is_refl and base_inf in verbs_with_refl:
-            clitic_keep.add(w)
-        else:
-            stripped = strip_clitic_pronouns(w)
-            if stripped in words:
-                clitic_merge[w] = stripped
-            else:
-                clitic_merge[w] = base_inf
-                clitic_orphans.append(w)
+        base_inf, clitics = result
+        is_refl = True if clitics == ["se"] else None
+        _place(w, base_inf, clitics, clitic_roles(clitics, reflexive=bool(is_refl)),
+               is_refl, "decomposed")
         gerund_added += 1
 
-    return clitic_merge, clitic_orphans, clitic_keep, gerund_added
+    return clitic_merge, clitic_orphans, clitic_keep, gerund_added, clitic_info
 
 
 # ---------------------------------------------------------------------------

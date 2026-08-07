@@ -2428,7 +2428,12 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             idx_entry["mwe_memberships"] = [
                 {**{"expression": mwe["expression"],
                     "translation": mwe.get("translation", ""),
-                    "source": mwe.get("source", "artist")},
+                    # Already stamped by the annotation pass above (which
+                    # defaults the unstamped shared layer to "wiktionary"), so
+                    # this fallback should never fire. Kept identical to that
+                    # default so a hand-edited entry cannot mint a bogus
+                    # artist/corpus provenance for a dictionary phrase.
+                    "source": mwe.get("source") or "wiktionary"},
                  **{key: mwe[key] for key in (
                      "family", "variants", "variant_counts", "count",
                      "occurrence_count", "num_songs") if mwe.get(key) not in (None, "", [], {})},

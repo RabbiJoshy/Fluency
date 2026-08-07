@@ -36,14 +36,17 @@ sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_pipeline_meta import make_meta  # noqa: E402
 from util_4a_routing import (  # noqa: E402
     classify_clitics,
+    load_spanishdict_parents,
     load_wiktionary_clitic_data,
 )
 
 # Bump when routing categories, clitic detection, or output schema change.
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "clitic_merge + clitic_keep + exclude categories + gerund decomposition",
     2: "infinitive+enclitic decomposition (alejarte → alejar) alongside gerunds",
+    3: "SpanishDict headwords own the parent inventory (replaces the literal-`se` "
+       "reflexive test); Wiktionary keeps routing + pronoun roles, emitted as clitic_roles",
 }
 
 INVENTORY_FILE = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "word_inventory.json"
@@ -71,9 +74,14 @@ def main():
     print(f"  Wiktionary: {len(wikt_words)} words, {len(clitic_map)} clitic forms, "
           f"{len(verbs_with_refl)} verbs with reflexive senses")
 
+    sd_parents = load_spanishdict_parents()
+    print(f"  SpanishDict parents: {len(sd_parents)} headwords "
+          f"({sum(1 for h in sd_parents if h.endswith('se'))} pronominal)")
+
     known_for_gerund = inv_words | conj_forms | wikt_words
-    clitic_merge, clitic_orphans, clitic_keep, gerund_added = classify_clitics(
+    clitic_merge, clitic_orphans, clitic_keep, gerund_added, clitic_info = classify_clitics(
         inv_words, clitic_map, verbs_with_refl, known_for_gerund,
+        sd_parents=sd_parents,
     )
 
     print("\n--- Clitic Routing ---")
@@ -88,11 +96,17 @@ def main():
         "clitic_merge": dict(sorted(clitic_merge.items())),
         "clitic_orphans": sorted(clitic_orphans),
         "clitic_keep": sorted(clitic_keep),
+        # Pronoun + role annotation for every detected form. Wiktionary's tags
+        # where it has an entry, positional otherwise. Downstream consumers and
+        # the front end's describeCliticForm() rely on this surviving.
+        "clitic_roles": {w: clitic_info[w] for w in sorted(clitic_info)},
         "stats": {
             "inventory_words": len(inv_words),
             "wikt_clitic_forms": len(clitic_map),
             "clitic_merge": len(clitic_merge),
             "clitic_keep": len(clitic_keep),
+            "clitic_reflexive_parents": sum(
+                1 for v in clitic_info.values() if v["reflexive"]),
             "gerund_programmatic": gerund_added,
         },
     }
