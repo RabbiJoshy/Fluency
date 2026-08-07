@@ -104,7 +104,8 @@ def decompose_gerund_clitic(word, known_words):
     if not clitics:
         # The gerund stripper needs a 5+ char stem; short infinitives
         # ('verlo', 'darte') never get past it, so hand them straight over.
-        return decompose_infinitive_clitic(word, known_words)
+        return (decompose_infinitive_clitic(word, known_words)
+                or decompose_imperative_clitic(word, known_words))
 
     clean = _strip_acute(remaining)
     if clean.endswith("ando"):
@@ -114,11 +115,13 @@ def decompose_gerund_clitic(word, known_words):
     elif clean.endswith("endo"):
         infinitive = clean[:-4] + "er"
     else:
-        return decompose_infinitive_clitic(word, known_words)
+        return (decompose_infinitive_clitic(word, known_words)
+                or decompose_imperative_clitic(word, known_words))
 
     if infinitive in known_words:
         return (infinitive, list(clitics))
-    return decompose_infinitive_clitic(word, known_words)
+    return (decompose_infinitive_clitic(word, known_words)
+            or decompose_imperative_clitic(word, known_words))
 
 
 # Infinitives short enough to fall under `_MIN_INFINITIVE_LEN`. Without this
@@ -142,12 +145,14 @@ _MIN_INFINITIVE_LEN = 4
 # admitting the false positives this guard exists to stop.
 _verb_lemmas = None          # set of infinitives with a conjugation table
 _verb_pos = None             # {form: pos-string} from spanish_forms
+_conj_reverse = None         # {form: [{lemma, mood, tense, person}, ...]}
 _verb_data_loaded = False
 
 
-def _load_verb_evidence(conjugations_path=None, spanish_forms_path=None):
+def _load_verb_evidence(conjugations_path=None, spanish_forms_path=None,
+                        conj_reverse_path=None):
     """Lazily load the verb lookups the infinitive guard needs (once)."""
-    global _verb_lemmas, _verb_pos, _verb_data_loaded
+    global _verb_lemmas, _verb_pos, _conj_reverse, _verb_data_loaded
     if _verb_data_loaded:
         return
     _verb_data_loaded = True
@@ -155,6 +160,8 @@ def _load_verb_evidence(conjugations_path=None, spanish_forms_path=None):
     layers = os.path.join(root, "Data", "Spanish", "layers")
     conj = conjugations_path or os.path.join(layers, "conjugations.json")
     forms = spanish_forms_path or os.path.join(layers, "spanish_forms.json")
+    reverse = conj_reverse_path or os.path.join(layers,
+                                                "conjugation_reverse.json")
     try:
         with open(conj, encoding="utf-8") as f:
             data = json.load(f)
@@ -167,6 +174,13 @@ def _load_verb_evidence(conjugations_path=None, spanish_forms_path=None):
             data = json.load(f)
         if isinstance(data, dict):
             _verb_pos = data
+    except (OSError, ValueError):
+        pass
+    try:
+        with open(reverse, encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            _conj_reverse = data
     except (OSError, ValueError):
         pass
 
@@ -217,6 +231,132 @@ def decompose_infinitive_clitic(word, known_words):
             continue
         if candidate in known_words and _is_known_infinitive(candidate):
             return (candidate, list(clitics))
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Affirmative imperative + enclitic
+# ---------------------------------------------------------------------------
+
+# `conjugation_reverse.json` stores moods as Spanish strings ("imperativo",
+# "indicativo", ...). The English spelling is accepted too so a future
+# regenerated layer cannot silently switch the branch off.
+_IMPERATIVE_MOODS = frozenset({"imperativo", "imperative"})
+_AFFIRMATIVE_TENSES = frozenset({"afirmativo", "affirmative"})
+_MIN_IMPERATIVE_STEM = 3
+# Tags that mark a surface as an ordinary content word rather than a verb form.
+# On the accent path these veto the decomposition: `escándalo` ("scandal") is
+# tagged "noun,verb" and would otherwise strip to `escanda` + `lo`.
+_NON_VERB_POS = frozenset({"noun", "adj", "adv", "name", "num", "pron"})
+
+
+def _imperative_lemma(candidate):
+    """Lemma of `candidate` when it is an affirmative imperative form.
+
+    Deliberately mood-restricted: `conjugation_reverse` lists `lleva` as both
+    `imperativo/afirmativo/2s` and `indicativo/presente/3s`, and only the first
+    reading can host an enclitic. Accepting any finite form would let ordinary
+    3s-present nouns-in-disguise through. `tense` must be `afirmativo` too —
+    a negative imperative takes *pro*clitics ("no me lo lleves"), never
+    enclitics.
+
+    A 2s ("tú") reading wins over the 3s/3p ("usted"/"ustedes") ones when both
+    exist, because it is overwhelmingly the commoner host and it breaks
+    genuinely ambiguous stems the right way: `cree` is `crear` in the usted
+    slot but `creer` in the tú slot, and `créeme` is "believe me".
+    """
+    _load_verb_evidence()
+    if not _conj_reverse:
+        return None
+    fallback = None
+    for analysis in _conj_reverse.get(candidate) or ():
+        if not isinstance(analysis, dict):
+            continue
+        if str(analysis.get("mood", "")).strip().lower() not in _IMPERATIVE_MOODS:
+            continue
+        if str(analysis.get("tense", "")).strip().lower() not in _AFFIRMATIVE_TENSES:
+            continue
+        lemma = str(analysis.get("lemma", "")).strip().lower()
+        if not lemma:
+            continue
+        if str(analysis.get("person", "")).strip().lower() == "2s":
+            return lemma
+        if fallback is None:
+            fallback = lemma
+    return fallback
+
+
+def _imperative_host_allowed(word, host):
+    """False when `word` is more plausibly an ordinary word than a clitic form.
+
+    The imperative branch is the loosest of the three — its host is a short
+    finite form, so plain nouns strip into real verbs: `combate` → `comba`
+    (a form of `combar`), `parte` → `par`, `dale` → `da`. Two signals keep them
+    out:
+
+    * **Written accent.** An enclitic stack shifts the stress past the
+      antepenult, so the host *must* take a written accent that the bare
+      imperative does not have: `córtala`, `llévamelo`, `ándale`. That accent is
+      positive morphological evidence, strong enough to override a merely
+      *non-nominal* ambiguity (`ándale` is tagged "intj,verb"). It is not strong
+      enough to override a noun/adjective reading: `escándalo` is "noun,verb"
+      and must not become `escanda` + `lo`.
+    * **Unambiguous verbhood otherwise.** With no accent to appeal to, the whole
+      surface must be tagged exactly "verb" in `spanish_forms`. That rejects
+      `combate`/`parte` ("noun,verb"), `arte` ("noun") and `dale`
+      ("intj,verb"), and — by requiring a tag at all — every unknown surface.
+    """
+    _load_verb_evidence()
+    wl = word.lower()
+    # A surface that is *itself* a conjugated form is that form, not a host
+    # plus enclitic: `ganase`/`mandase` are imperfect subjunctives, not
+    # `gana`+`se`; `revelo` is 1s of `revelar`, not `reve`+`lo`; `fallaste` is
+    # a preterite. `conjugation_reverse` never lists enclitic forms, so this
+    # costs the branch nothing real (only genuinely ambiguous surfaces such as
+    # `salte`, which is also `saltar`, are conceded to the simpler reading).
+    if _conj_reverse and wl in _conj_reverse:
+        return False
+    pos = str((_verb_pos or {}).get(wl, "") or "").strip().lower()
+    tags = {t.strip() for t in pos.split(",") if t.strip()}
+    if _strip_acute(host) != host:
+        return not (tags & _NON_VERB_POS)
+    return tags == {"verb"}
+
+
+def decompose_imperative_clitic(word, known_words):
+    """Decompose an affirmative-imperative+enclitic form into its lemma.
+
+    Returns (lemma, [attached clitics]) or None — the *infinitive*, matching
+    `decompose_gerund_clitic` / `decompose_infinitive_clitic`, so every caller
+    keeps getting a lemma it can hang a card on. E.g. 'córtala' → ('cortar',
+    ['la']), 'llévamelo' → ('llevar', ['me', 'lo']), 'ándale' → ('andar',
+    ['le']).
+
+    Tried only after the gerund and infinitive branches fail. The host is the
+    accentless remainder after up to two enclitics come off, resolved through
+    `conjugation_reverse` and restricted to the imperative mood; see
+    `_imperative_host_allowed` for the false-positive guard.
+    """
+    remaining = word.lower()
+    clitics = []
+    for _ in range(2):  # max 2 clitics (e.g. llévamelo)
+        matched = False
+        for pron in _CLITIC_PRONOUNS:
+            if (remaining.endswith(pron)
+                    and len(remaining) - len(pron) >= _MIN_IMPERATIVE_STEM):
+                remaining = remaining[:-len(pron)]
+                clitics.insert(0, pron)
+                matched = True
+                break
+        if not matched:
+            break
+        candidate = _strip_acute(remaining)
+        lemma = _imperative_lemma(candidate)
+        if not lemma:
+            continue
+        if not _imperative_host_allowed(word, remaining):
+            return None
+        return (lemma, list(clitics))
     return None
 
 
