@@ -1,0 +1,8333 @@
+{
+  "que": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "PRON",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "me": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "no": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV",
+    "9": "ADV"
+  },
+  "y": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "la": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "PRON",
+    "6": "DET",
+    "7": "DET",
+    "8": "PRON",
+    "9": "DET"
+  },
+  "a": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "yo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "tú": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "de": {
+    "0": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "el": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "te": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "lo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "en": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "se": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "para": {
+    "0": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "es": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "mi": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "ey": {
+    "0": "INTJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ"
+  },
+  "por": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "con": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP",
+    "6": "ADP",
+    "7": "ADP",
+    "8": "ADP",
+    "9": "ADP"
+  },
+  "pero": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "quiero": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "qué": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "DET",
+    "4": "DET",
+    "5": "PRON",
+    "6": "DET",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "DET"
+  },
+  "un": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "como": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "si": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ",
+    "8": "CCONJ",
+    "9": "CCONJ"
+  },
+  "más": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV",
+    "8": "ADV"
+  },
+  "le": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON",
+    "9": "PRON"
+  },
+  "voy": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB",
+    "9": "VERB"
+  },
+  "las": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "ti": {
+    "0": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON"
+  },
+  "los": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "tu": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET",
+    "9": "DET"
+  },
+  "al": {
+    "0": "DET",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP"
+  },
+  "una": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "DET",
+    "8": "DET"
+  },
+  "todo": {
+    "0": "PRON",
+    "1": "DET",
+    "2": "PRON",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET",
+    "6": "DET",
+    "7": "PRON"
+  },
+  "estoy": {
+    "1": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "noche": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "sé": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "ya": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV",
+    "7": "ADV"
+  },
+  "tengo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "cuando": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ"
+  },
+  "soy": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB",
+    "8": "VERB"
+  },
+  "baby": {
+    "0": "INTJ",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "ADV",
+    "6": "NOUN"
+  },
+  "mí": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON"
+  },
+  "conmigo": {
+    "0": "PRON",
+    "1": "ADV",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON"
+  },
+  "cómo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON"
+  },
+  "nos": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON"
+  },
+  "porque": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ",
+    "4": "CCONJ",
+    "5": "CCONJ",
+    "6": "CCONJ",
+    "7": "CCONJ"
+  },
+  "solo": {
+    "0": "ADV",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADV",
+    "4": "ADV",
+    "5": "ADV",
+    "6": "ADV"
+  },
+  "ves": {
+    "0": "VERB"
+  },
+  "estás": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "está": {
+    "0": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "7": "VERB"
+  },
+  "mar": {
+    "0": "NOUN"
+  },
+  "nadie": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON",
+    "8": "PRON"
+  },
+  "va": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB",
+    "7": "VERB"
+  },
+  "ella": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON"
+  },
+  "frente": {
+    "0": "NOUN"
+  },
+  "otra": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "DET",
+    "3": "DET"
+  },
+  "vamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "nada": {
+    "0": "NOUN",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON"
+  },
+  "contigo": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON",
+    "6": "PRON",
+    "7": "PRON"
+  },
+  "eso": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON",
+    "3": "PRON",
+    "4": "PRON",
+    "5": "PRON"
+  },
+  "hay": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "quiere": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "sabes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "después": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "eres": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB"
+  },
+  "esa": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET"
+  },
+  "ese": {
+    "0": "DET",
+    "1": "PRON",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET"
+  },
+  "hoy": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "rico": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "tienes": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "antes": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "todas": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "PRON",
+    "4": "DET",
+    "5": "DET"
+  },
+  "ahora": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "ay": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ",
+    "3": "INTJ"
+  },
+  "bien": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "del": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP"
+  },
+  "desde": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP",
+    "4": "ADP",
+    "5": "ADP"
+  },
+  "dime": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "ha": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "peak": {
+    "0": "NOUN"
+  },
+  "su": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET",
+    "4": "DET",
+    "5": "DET"
+  },
+  "tiempo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN",
+    "5": "NOUN"
+  },
+  "ve": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "ver": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "verde": {
+    "0": "ADJ"
+  },
+  "vida": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN",
+    "3": "NOUN",
+    "4": "INTJ"
+  },
+  "luz": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "estamos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "amor": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "cabrón": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cama": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "discoteca": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "déjate": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "este": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET"
+  },
+  "fue": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "hicimos": {
+    "0": "VERB"
+  },
+  "loca": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ",
+    "4": "ADJ"
+  },
+  "seguir": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "siempre": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "lejos": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "aquí": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "bebé": {
+    "0": "NOUN",
+    "3": "NOUN"
+  },
+  "cuánto": {
+    "0": "PRON",
+    "1": "DET"
+  },
+  "dame": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "dios": {
+    "0": "INTJ"
+  },
+  "dónde": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "eh": {
+    "0": "INTJ",
+    "1": "ADJ",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "hace": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB"
+  },
+  "hago": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "hasta": {
+    "0": "ADP",
+    "1": "ADP",
+    "2": "ADP",
+    "3": "ADP"
+  },
+  "mío": {
+    "0": "PRON"
+  },
+  "nunca": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "sin": {
+    "0": "ADP",
+    "1": "ADP",
+    "3": "ADP"
+  },
+  "sola": {
+    "0": "ADJ",
+    "1": "ADJ",
+    "2": "ADJ",
+    "3": "ADJ"
+  },
+  "también": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV",
+    "4": "ADV"
+  },
+  "tan": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV",
+    "3": "ADV"
+  },
+  "tiene": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "vaina": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "ven": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "wuh": {
+    "0": "NOUN"
+  },
+  "yah": {
+    "0": "INTJ"
+  },
+  "él": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "somos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "les": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "ojos": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "3": "NOUN",
+    "4": "NOUN"
+  },
+  "ah": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "INTJ"
+  },
+  "aunque": {
+    "0": "CCONJ",
+    "1": "CCONJ",
+    "2": "CCONJ",
+    "3": "CCONJ"
+  },
+  "casa": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "complico": {
+    "0": "VERB"
+  },
+  "cuál": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "da": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "dale": {
+    "0": "INTJ",
+    "1": "INTJ",
+    "2": "VERB"
+  },
+  "diste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "esperando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "esto": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "gata": {
+    "0": "NOUN"
+  },
+  "gusta": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "he": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "invitan": {
+    "0": "VERB"
+  },
+  "llegar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "llevar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "meta": {
+    "0": "NOUN"
+  },
+  "mis": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET",
+    "3": "DET"
+  },
+  "mundo": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "nena": {
+    "0": "NOUN"
+  },
+  "ni": {
+    "0": "ADV",
+    "1": "CCONJ",
+    "2": "CCONJ"
+  },
+  "pues": {
+    "0": "CCONJ"
+  },
+  "salimos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sea": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "tener": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB"
+  },
+  "tentado": {
+    "0": "ADJ"
+  },
+  "tus": {
+    "0": "DET",
+    "1": "DET",
+    "2": "DET"
+  },
+  "vuelva": {
+    "0": "VERB"
+  },
+  "yeah": {
+    "0": "INTJ"
+  },
+  "amigos": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "fuimos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "quieres": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "acá": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "ahí": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "algo": {
+    "0": "PRON",
+    "1": "PRON",
+    "2": "PRON"
+  },
+  "allá": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "ando": {
+    "0": "VERB",
+    "1": "NOUN",
+    "2": "VERB"
+  },
+  "apaga": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "así": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "besas": {
+    "0": "VERB"
+  },
+  "chance": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cheki": {
+    "0": "NOUN"
+  },
+  "corazón": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "cosa": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "despido": {
+    "0": "VERB"
+  },
+  "dijo": {
+    "0": "VERB"
+  },
+  "disco": {
+    "0": "NOUN",
+    "2": "NOUN"
+  },
+  "donde": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "día": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "encima": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "escapó": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "espero": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "esta": {
+    "0": "PRON",
+    "1": "DET",
+    "2": "DET"
+  },
+  "estaba": {
+    "0": "VERB"
+  },
+  "fuego": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "fuiste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "fumando": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "gente": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "gustas": {
+    "0": "VERB"
+  },
+  "hacer": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hacerlo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hubiera": {
+    "0": "VERB"
+  },
+  "ido": {
+    "0": "VERB"
+  },
+  "llegan": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "locura": {
+    "0": "NOUN"
+  },
+  "mami": {
+    "1": "NOUN",
+    "2": "INTJ"
+  },
+  "mate": {
+    "0": "NOUN"
+  },
+  "mejor": {
+    "0": "ADJ",
+    "1": "ADV",
+    "2": "ADJ"
+  },
+  "menos": {
+    "0": "ADV",
+    "1": "ADV",
+    "2": "ADV"
+  },
+  "mucho": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "ninguna": {
+    "0": "DET",
+    "1": "PRON"
+  },
+  "nuestro": {
+    "0": "DET",
+    "1": "PRON"
+  },
+  "o": {
+    "0": "CCONJ",
+    "1": "CCONJ"
+  },
+  "otro": {
+    "0": "DET",
+    "1": "PRON"
+  },
+  "party": {
+    "0": "NOUN",
+    "2": "NOUN"
+  },
+  "pedí": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "peligrosa": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "pensando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pide": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "pongo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "pude": {
+    "0": "VERB"
+  },
+  "saben": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ser": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "siento": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "sigo": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "sol": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "soltera": {
+    "0": "ADJ"
+  },
+  "son": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "tanto": {
+    "0": "NOUN",
+    "1": "ADV"
+  },
+  "vez": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "vuelve": {
+    "0": "VERB"
+  },
+  "woh": {
+    "0": "INTJ"
+  },
+  "única": {
+    "1": "ADJ"
+  },
+  "botellas": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "canciones": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "dimos": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "ganas": {
+    "0": "NOUN",
+    "1": "NOUN",
+    "2": "NOUN"
+  },
+  "hacemos": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "has": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pasado": {
+    "0": "NOUN",
+    "1": "ADJ",
+    "2": "VERB"
+  },
+  "ustedes": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "actitud": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "adiós": {
+    "0": "INTJ",
+    "1": "NOUN"
+  },
+  "afuera": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "amanezca": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "atenta": {
+    "0": "ADJ"
+  },
+  "bailando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bailar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "bellaca": {
+    "0": "ADJ"
+  },
+  "booty": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "buena": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "bueno": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "buscando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "buscar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cambió": {
+    "0": "VERB"
+  },
+  "campeón": {
+    "0": "NOUN"
+  },
+  "celular": {
+    "0": "NOUN"
+  },
+  "cerca": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "clima": {
+    "0": "NOUN"
+  },
+  "conocido": {
+    "0": "VERB"
+  },
+  "contacto": {
+    "0": "NOUN"
+  },
+  "convierto": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "cáele": {
+    "0": "VERB"
+  },
+  "darte": {
+    "0": "VERB"
+  },
+  "decirle": {
+    "0": "VERB"
+  },
+  "dejar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "desastre": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "descontrola": {
+    "0": "VERB"
+  },
+  "dice": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dije": {
+    "0": "VERB"
+  },
+  "disimular": {
+    "0": "VERB"
+  },
+  "distraído": {
+    "0": "ADJ"
+  },
+  "doce": {
+    "0": "NUM"
+  },
+  "duro": {
+    "0": "ADV",
+    "1": "ADJ"
+  },
+  "dándote": {
+    "0": "VERB"
+  },
+  "dímelo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "encanta": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "explico": {
+    "0": "VERB"
+  },
+  "feeling": {
+    "0": "NOUN"
+  },
+  "fiesta": {
+    "0": "NOUN"
+  },
+  "for": {
+    "0": "ADP"
+  },
+  "foto": {
+    "0": "NOUN"
+  },
+  "fui": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "full": {
+    "0": "ADJ",
+    "1": "NOUN"
+  },
+  "gustan": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "haga": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "hice": {
+    "0": "VERB"
+  },
+  "hizo": {
+    "0": "VERB"
+  },
+  "ja": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "jaque": {
+    "0": "NOUN"
+  },
+  "jugás": {
+    "0": "NOUN"
+  },
+  "lady": {
+    "0": "NOUN"
+  },
+  "llama": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "llamo": {
+    "0": "VERB"
+  },
+  "llamé": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "mas": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "mal": {
+    "0": "ADV"
+  },
+  "mamita": {
+    "1": "INTJ"
+  },
+  "man": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "marido": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "merezco": {
+    "0": "VERB"
+  },
+  "mirando": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "miren": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "misma": {
+    "0": "DET",
+    "1": "ADJ"
+  },
+  "mismo": {
+    "0": "DET",
+    "1": "PRON"
+  },
+  "mm": {
+    "0": "INTJ"
+  },
+  "modo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "molesta": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "morena": {
+    "0": "NOUN"
+  },
+  "mueve": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "mujer": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "muy": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "mírame": {
+    "0": "VERB"
+  },
+  "música": {
+    "1": "NOUN"
+  },
+  "noches": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "nombre": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "notó": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "novio": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "olvido": {
+    "0": "VERB"
+  },
+  "par": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pared": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pasa": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pasarla": {
+    "0": "VERB"
+  },
+  "pecar": {
+    "0": "VERB"
+  },
+  "pendientes": {
+    "0": "NOUN",
+    "1": "ADJ"
+  },
+  "perro": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "personal": {
+    "0": "ADJ"
+  },
+  "pido": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pista": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "polvo": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "pon": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "pone": {
+    "0": "VERB"
+  },
+  "primero": {
+    "0": "ADV",
+    "1": "ADV"
+  },
+  "puso": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quien": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "quieras": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quién": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "ratatá": {
+    "0": "ADJ"
+  },
+  "real": {
+    "0": "ADJ"
+  },
+  "regálame": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rey": {
+    "0": "NOUN"
+  },
+  "rica": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "ritmo": {
+    "0": "NOUN"
+  },
+  "rompe": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "rompiendo": {
+    "0": "VERB"
+  },
+  "sabor": {
+    "0": "NOUN"
+  },
+  "sensación": {
+    "0": "NOUN",
+    "1": "NOUN"
+  },
+  "sexo": {
+    "0": "NOUN"
+  },
+  "shorty": {
+    "1": "NOUN"
+  },
+  "sigue": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "solas": {
+    "0": "NOUN"
+  },
+  "solitas": {
+    "0": "ADJ"
+  },
+  "solos": {
+    "0": "ADJ"
+  },
+  "suena": {
+    "0": "VERB"
+  },
+  "suficiente": {
+    "0": "ADJ",
+    "1": "ADJ"
+  },
+  "supiste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "sí": {
+    "0": "INTJ",
+    "1": "INTJ"
+  },
+  "tal": {
+    "0": "NOUN"
+  },
+  "tocarte": {
+    "0": "PRON"
+  },
+  "tras": {
+    "0": "ADP"
+  },
+  "tuviste": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "uh": {
+    "1": "INTJ"
+  },
+  "usted": {
+    "0": "PRON",
+    "1": "PRON"
+  },
+  "van": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vea": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "viendo": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "vive": {
+    "0": "VERB"
+  },
+  "volvemos": {
+    "0": "VERB"
+  },
+  "dos": {
+    "0": "NUM",
+    "1": "NUM"
+  },
+  "heridas": {
+    "0": "NOUN"
+  },
+  "pones": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "quiénes": {
+    "0": "PRON"
+  },
+  "sigues": {
+    "0": "VERB"
+  },
+  "toda": {
+    "0": "DET",
+    "1": "DET"
+  },
+  "abajo": {
+    "0": "ADV"
+  },
+  "aburro": {
+    "0": "VERB"
+  },
+  "acaban": {
+    "0": "VERB"
+  },
+  "acabó": {
+    "0": "VERB"
+  },
+  "acelera": {
+    "0": "VERB"
+  },
+  "aclarar": {
+    "0": "VERB"
+  },
+  "activa": {
+    "0": "VERB"
+  },
+  "actuar": {
+    "0": "VERB"
+  },
+  "acumulado": {
+    "0": "ADJ"
+  },
+  "adicción": {
+    "0": "NOUN"
+  },
+  "agosto": {
+    "0": "NOUN"
+  },
+  "ajá": {
+    "0": "INTJ"
+  },
+  "alejando": {
+    "0": "VERB"
+  },
+  "alguien": {
+    "0": "PRON"
+  },
+  "algunos": {
+    "0": "PRON"
+  },
+  "amiga": {
+    "0": "NOUN"
+  },
+  "amigas": {
+    "0": "NOUN"
+  },
+  "amores": {
+    "0": "NOUN"
+  },
+  "andaba": {
+    "0": "VERB"
+  },
+  "apagues": {
+    "0": "VERB"
+  },
+  "apareciste": {
+    "0": "VERB"
+  },
+  "apareció": {
+    "0": "VERB"
+  },
+  "apariencia": {
+    "0": "NOUN"
+  },
+  "apellido": {
+    "0": "NOUN"
+  },
+  "apretadita": {
+    "0": "ADJ"
+  },
+  "aprieto": {
+    "0": "VERB"
+  },
+  "aprovecha": {
+    "0": "VERB"
+  },
+  "aquella": {
+    "0": "DET"
+  },
+  "arrebátate": {
+    "0": "VERB"
+  },
+  "arrestar": {
+    "0": "VERB"
+  },
+  "arriba": {
+    "0": "ADV"
+  },
+  "arte": {
+    "0": "NOUN"
+  },
+  "ascensor": {
+    "0": "NOUN"
+  },
+  "aseguro": {
+    "0": "VERB"
+  },
+  "asimilar": {
+    "0": "VERB"
+  },
+  "aterrizado": {
+    "0": "VERB"
+  },
+  "atrevida": {
+    "0": "ADJ"
+  },
+  "atrevido": {
+    "0": "ADJ"
+  },
+  "atrevo": {
+    "0": "VERB"
+  },
+  "avión": {
+    "0": "NOUN"
+  },
+  "año": {
+    "0": "NOUN"
+  },
+  "babies": {
+    "0": "NOUN"
+  },
+  "baila": {
+    "0": "VERB"
+  },
+  "bailaste": {
+    "0": "VERB"
+  },
+  "baile": {
+    "0": "VERB"
+  },
+  "bailo": {
+    "0": "VERB"
+  },
+  "bajamos": {
+    "0": "VERB"
+  },
+  "bajan": {
+    "0": "VERB"
+  },
+  "baje": {
+    "0": "VERB"
+  },
+  "bajo": {
+    "0": "ADP"
+  },
+  "bandida": {
+    "0": "NOUN"
+  },
+  "bastante": {
+    "0": "ADV"
+  },
+  "bebe": {
+    "0": "VERB"
+  },
+  "bebiendo": {
+    "0": "VERB"
+  },
+  "bellaqueos": {
+    "0": "NOUN"
+  },
+  "besar": {
+    "0": "VERB"
+  },
+  "besaste": {
+    "0": "VERB"
+  },
+  "besito": {
+    "0": "NOUN"
+  },
+  "bloque": {
+    "0": "NOUN"
+  },
+  "bonita": {
+    "0": "ADJ"
+  },
+  "borrado": {
+    "0": "VERB"
+  },
+  "borraré": {
+    "0": "VERB"
+  },
+  "botelleo": {
+    "0": "NOUN"
+  },
+  "bregando": {
+    "0": "VERB"
+  },
+  "brillando": {
+    "0": "VERB"
+  },
+  "brújula": {
+    "0": "NOUN"
+  },
+  "cabe": {
+    "0": "VERB"
+  },
+  "cabecea": {
+    "0": "VERB"
+  },
+  "cachetes": {
+    "0": "NOUN"
+  },
+  "cadera": {
+    "0": "NOUN"
+  },
+  "caduquen": {
+    "0": "VERB"
+  },
+  "caemos": {
+    "0": "VERB"
+  },
+  "caigo": {
+    "0": "VERB"
+  },
+  "calentando": {
+    "0": "VERB"
+  },
+  "calentándote": {
+    "0": "VERB"
+  },
+  "cambie": {
+    "0": "VERB"
+  },
+  "caminante": {
+    "0": "NOUN"
+  },
+  "canción": {
+    "0": "NOUN"
+  },
+  "cansa": {
+    "0": "VERB"
+  },
+  "carajo": {
+    "0": "NOUN"
+  },
+  "carro": {
+    "0": "NOUN"
+  },
+  "caso": {
+    "0": "VERB"
+  },
+  "caí": {
+    "0": "VERB"
+  },
+  "celosa": {
+    "0": "ADJ"
+  },
+  "cerquita": {
+    "0": "ADJ"
+  },
+  "chingar": {
+    "0": "VERB"
+  },
+  "chingarte": {
+    "0": "INTJ"
+  },
+  "chiquitita": {
+    "0": "NOUN"
+  },
+  "choco": {
+    "0": "VERB"
+  },
+  "choque": {
+    "0": "VERB"
+  },
+  "cien": {
+    "0": "NUM"
+  },
+  "cinco": {
+    "0": "NUM"
+  },
+  "cintura": {
+    "0": "NOUN"
+  },
+  "cinturón": {
+    "0": "NOUN"
+  },
+  "clase": {
+    "0": "NOUN"
+  },
+  "coincidimos": {
+    "0": "VERB"
+  },
+  "colores": {
+    "0": "NOUN"
+  },
+  "combo": {
+    "0": "NOUN"
+  },
+  "comerme": {
+    "0": "VERB"
+  },
+  "comido": {
+    "0": "VERB"
+  },
+  "comoquiera": {
+    "0": "NOUN"
+  },
+  "competencia": {
+    "0": "NOUN"
+  },
+  "completa": {
+    "0": "ADJ"
+  },
+  "compone": {
+    "0": "VERB"
+  },
+  "compositor": {
+    "0": "NOUN"
+  },
+  "comprando": {
+    "0": "VERB"
+  },
+  "compromete": {
+    "0": "VERB"
+  },
+  "condición": {
+    "0": "NOUN"
+  },
+  "conecta": {
+    "0": "VERB"
+  },
+  "confesarte": {
+    "0": "VERB"
+  },
+  "confianza": {
+    "0": "NOUN"
+  },
+  "conocen": {
+    "0": "VERB"
+  },
+  "conocí": {
+    "0": "VERB"
+  },
+  "conozco": {
+    "0": "VERB"
+  },
+  "conquistarte": {
+    "0": "VERB"
+  },
+  "conquistándome": {
+    "0": "VERB"
+  },
+  "consistencia": {
+    "0": "NOUN"
+  },
+  "construcción": {
+    "0": "NOUN"
+  },
+  "contestaste": {
+    "0": "VERB"
+  },
+  "contesto": {
+    "0": "VERB"
+  },
+  "convertí": {
+    "0": "VERB"
+  },
+  "coqueta": {
+    "0": "NOUN"
+  },
+  "cortecito": {
+    "0": "NOUN"
+  },
+  "cosas": {
+    "0": "NOUN"
+  },
+  "cualquier": {
+    "0": "DET"
+  },
+  "cuela": {
+    "0": "VERB"
+  },
+  "cuello": {
+    "0": "NOUN"
+  },
+  "cuenta": {
+    "0": "VERB"
+  },
+  "cuerpo": {
+    "0": "NOUN"
+  },
+  "cuida": {
+    "0": "VERB"
+  },
+  "cuido": {
+    "0": "VERB"
+  },
+  "culo": {
+    "0": "NOUN"
+  },
+  "cuquen": {
+    "0": "VERB"
+  },
+  "dan": {
+    "0": "VERB"
+  },
+  "dando": {
+    "0": "VERB"
+  },
+  "darme": {
+    "0": "VERB"
+  },
+  "das": {
+    "0": "VERB"
+  },
+  "dato": {
+    "0": "NOUN"
+  },
+  "dañar": {
+    "0": "VERB"
+  },
+  "dañaron": {
+    "0": "VERB"
+  },
+  "dedo": {
+    "0": "NOUN"
+  },
+  "debility": {
+    "0": "NOUN"
+  },
+  "decir": {
+    "0": "VERB"
+  },
+  "deja": {
+    "0": "VERB"
+  },
+  "dejaste": {
+    "0": "VERB"
+  },
+  "deje": {
+    "0": "VERB"
+  },
+  "demasiado": {
+    "0": "ADV"
+  },
+  "demás": {
+    "0": "PRON"
+  },
+  "dentro": {
+    "0": "ADV"
+  },
+  "deporte": {
+    "0": "NOUN"
+  },
+  "desaparezco": {
+    "0": "VERB"
+  },
+  "descuido": {
+    "0": "NOUN"
+  },
+  "desea": {
+    "0": "VERB"
+  },
+  "deseo": {
+    "0": "NOUN"
+  },
+  "desespero": {
+    "0": "VERB"
+  },
+  "desnuda": {
+    "0": "ADJ"
+  },
+  "despedida": {
+    "0": "NOUN"
+  },
+  "despeluquen": {
+    "0": "VERB"
+  },
+  "despertaste": {
+    "0": "VERB"
+  },
+  "despreocúpate": {
+    "0": "VERB"
+  },
+  "despídete": {
+    "0": "VERB"
+  },
+  "destendida": {
+    "0": "ADJ"
+  },
+  "detrás": {
+    "0": "ADV"
+  },
+  "devorándonos": {
+    "0": "VERB"
+  },
+  "dices": {
+    "0": "VERB"
+  },
+  "diciéndoselo": {
+    "0": "VERB"
+  },
+  "dieron": {
+    "0": "VERB"
+  },
+  "diga": {
+    "0": "VERB"
+  },
+  "digo": {
+    "0": "VERB"
+  },
+  "dilema": {
+    "0": "NOUN"
+  },
+  "dinero": {
+    "0": "NOUN"
+  },
+  "dinosaurs": {
+    "0": "NOUN"
+  },
+  "dio": {
+    "0": "VERB"
+  },
+  "disfruta": {
+    "0": "VERB"
+  },
+  "diva": {
+    "0": "NOUN"
+  },
+  "dolido": {
+    "0": "VERB"
+  },
+  "dolor": {
+    "0": "NOUN"
+  },
+  "drive": {
+    "0": "NOUN"
+  },
+  "dura": {
+    "0": "VERB"
+  },
+  "dé": {
+    "0": "VERB"
+  },
+  "días": {
+    "0": "NOUN"
+  },
+  "e'perado": {
+    "0": "ADJ"
+  },
+  "echa": {
+    "0": "VERB"
+  },
+  "echamos": {
+    "0": "VERB"
+  },
+  "eduquen": {
+    "0": "VERB"
+  },
+  "ellos": {
+    "0": "PRON"
+  },
+  "embichar": {
+    "0": "VERB"
+  },
+  "embobado": {
+    "0": "ADJ"
+  },
+  "emocionen": {
+    "0": "VERB"
+  },
+  "empalagando": {
+    "0": "VERB"
+  },
+  "empezó": {
+    "0": "VERB"
+  },
+  "enamorando": {
+    "0": "VERB"
+  },
+  "enamoré": {
+    "0": "VERB"
+  },
+  "encantaría": {
+    "0": "VERB"
+  },
+  "encontrado": {
+    "0": "VERB"
+  },
+  "encontré": {
+    "0": "VERB"
+  },
+  "ende": {
+    "0": "NOUN"
+  },
+  "endulza": {
+    "0": "VERB"
+  },
+  "enero": {
+    "0": "NOUN"
+  },
+  "engreído": {
+    "0": "NOUN"
+  },
+  "enredamos": {
+    "0": "VERB"
+  },
+  "entendemos": {
+    "0": "VERB"
+  },
+  "entender": {
+    "0": "VERB"
+  },
+  "entendido": {
+    "0": "VERB"
+  },
+  "entendí": {
+    "0": "VERB"
+  },
+  "entero": {
+    "0": "ADJ"
+  },
+  "entiende": {
+    "0": "VERB"
+  },
+  "entiendo": {
+    "0": "VERB"
+  },
+  "entonces": {
+    "0": "ADV"
+  },
+  "entra": {
+    "0": "VERB"
+  },
+  "entramos": {
+    "0": "VERB"
+  },
+  "entre": {
+    "0": "ADP"
+  },
+  "entrego": {
+    "0": "VERB"
+  },
+  "enviciaste": {
+    "0": "VERB"
+  },
+  "era": {
+    "0": "VERB"
+  },
+  "esas": {
+    "0": "DET"
+  },
+  "escaleras": {
+    "0": "NOUN"
+  },
+  "escapado": {
+    "0": "VERB"
+  },
+  "escribe": {
+    "0": "VERB"
+  },
+  "escribió": {
+    "0": "VERB"
+  },
+  "escuchar": {
+    "0": "VERB"
+  },
+  "escuchas": {
+    "0": "VERB"
+  },
+  "escucho": {
+    "0": "VERB"
+  },
+  "escuela": {
+    "0": "NOUN"
+  },
+  "esos": {
+    "0": "DET"
+  },
+  "espera": {
+    "0": "VERB"
+  },
+  "espere": {
+    "0": "VERB"
+  },
+  "esquives": {
+    "0": "VERB"
+  },
+  "estas": {
+    "0": "DET"
+  },
+  "estan": {
+    "0": "VERB"
+  },
+  "estar": {
+    "0": "VERB"
+  },
+  "estarías": {
+    "0": "VERB"
+  },
+  "estos": {
+    "0": "DET"
+  },
+  "estrés": {
+    "0": "NOUN"
+  },
+  "están": {
+    "0": "VERB"
+  },
+  "estés": {
+    "0": "VERB"
+  },
+  "evitar": {
+    "0": "VERB"
+  },
+  "ex": {
+    "0": "ADJ"
+  },
+  "explícitos": {
+    "0": "ADJ"
+  },
+  "extinguieron": {
+    "0": "VERB"
+  },
+  "fallarle": {
+    "0": "VERB"
+  },
+  "falta": {
+    "0": "NOUN"
+  },
+  "fama": {
+    "0": "NOUN"
+  },
+  "fatality": {
+    "0": "NOUN"
+  },
+  "favorita": {
+    "0": "NOUN"
+  },
+  "fe": {
+    "0": "NOUN"
+  },
+  "feo": {
+    "0": "ADJ"
+  },
+  "fichar": {
+    "0": "VERB"
+  },
+  "fiera": {
+    "0": "NOUN"
+  },
+  "fila": {
+    "0": "NOUN"
+  },
+  "filosofía": {
+    "0": "NOUN"
+  },
+  "fin": {
+    "0": "NOUN"
+  },
+  "final": {
+    "0": "NOUN"
+  },
+  "flow": {
+    "0": "NOUN"
+  },
+  "frontear": {
+    "0": "VERB"
+  },
+  "fuera": {
+    "0": "VERB"
+  },
+  "fumemos": {
+    "0": "VERB"
+  },
+  "fumé": {
+    "0": "VERB"
+  },
+  "funcionamos": {
+    "0": "VERB"
+  },
+  "fácil": {
+    "0": "ADJ"
+  },
+  "gana": {
+    "0": "VERB"
+  },
+  "ganan": {
+    "0": "VERB"
+  },
+  "gimiéndome": {
+    "0": "VERB"
+  },
+  "glopeta": {
+    "0": "NOUN"
+  },
+  "gloria": {
+    "0": "NOUN"
+  },
+  "gocen": {
+    "0": "VERB"
+  },
+  "golosina": {
+    "0": "ADJ"
+  },
+  "graba": {
+    "0": "VERB"
+  },
+  "grabando": {
+    "0": "VERB"
+  },
+  "grita": {
+    "0": "VERB"
+  },
+  "guarda": {
+    "0": "VERB"
+  },
+  "guardado": {
+    "0": "ADJ"
+  },
+  "gustaban": {
+    "0": "VERB"
+  },
+  "gustamos": {
+    "0": "VERB"
+  },
+  "gustando": {
+    "0": "VERB"
+  },
+  "gusté": {
+    "0": "VERB"
+  },
+  "gánster": {
+    "0": "NOUN"
+  },
+  "género": {
+    "0": "NOUN"
+  },
+  "haber": {
+    "0": "VERB"
+  },
+  "habido": {
+    "0": "VERB"
+  },
+  "habla": {
+    "0": "VERB"
+  },
+  "hablen": {
+    "0": "VERB"
+  },
+  "habría": {
+    "0": "VERB"
+  },
+  "había": {
+    "0": "VERB"
+  },
+  "haces": {
+    "0": "VERB"
+  },
+  "hacerle": {
+    "0": "VERB"
+  },
+  "hacerles": {
+    "0": "VERB"
+  },
+  "hacernos": {
+    "0": "VERB"
+  },
+  "hagas": {
+    "0": "VERB"
+  },
+  "hard": {
+    "0": "NOUN"
+  },
+  "haría": {
+    "0": "VERB"
+  },
+  "hermosa": {
+    "0": "ADJ"
+  },
+  "hierba": {
+    "0": "NOUN"
+  },
+  "high": {
+    "0": "NOUN"
+  },
+  "himnos": {
+    "0": "NOUN"
+  },
+  "hipnotizada": {
+    "0": "ADJ"
+  },
+  "hombre": {
+    "0": "NOUN"
+  },
+  "horas": {
+    "0": "NOUN"
+  },
+  "importan": {
+    "0": "VERB"
+  },
+  "importes": {
+    "0": "VERB"
+  },
+  "incomode": {
+    "0": "VERB"
+  },
+  "inevitable": {
+    "0": "ADJ"
+  },
+  "inmediato": {
+    "0": "NOUN"
+  },
+  "insanity": {
+    "0": "NOUN"
+  },
+  "insistas": {
+    "0": "VERB"
+  },
+  "instante": {
+    "0": "NOUN"
+  },
+  "inteligencia": {
+    "0": "NOUN"
+  },
+  "intentan": {
+    "0": "VERB"
+  },
+  "intentando": {
+    "0": "VERB"
+  },
+  "intento": {
+    "0": "VERB"
+  },
+  "invitó": {
+    "0": "VERB"
+  },
+  "irnos": {
+    "0": "VERB"
+  },
+  "irse": {
+    "0": "VERB"
+  },
+  "iría": {
+    "0": "VERB"
+  },
+  "jaja": {
+    "0": "ADV"
+  },
+  "jaló": {
+    "0": "VERB"
+  },
+  "jangueando": {
+    "0": "VERB"
+  },
+  "jefe": {
+    "0": "NOUN"
+  },
+  "jode": {
+    "0": "VERB"
+  },
+  "jodido": {
+    "0": "ADJ"
+  },
+  "jodidos": {
+    "0": "ADJ"
+  },
+  "juguetones": {
+    "0": "ADJ"
+  },
+  "juro": {
+    "0": "VERB"
+  },
+  "labios": {
+    "0": "NOUN"
+  },
+  "lado": {
+    "0": "NOUN"
+  },
+  "lean": {
+    "0": "VERB"
+  },
+  "legal": {
+    "0": "ADJ"
+  },
+  "lento": {
+    "0": "ADJ"
+  },
+  "letras": {
+    "0": "NOUN"
+  },
+  "liga": {
+    "0": "NOUN"
+  },
+  "lista": {
+    "0": "NOUN"
+  },
+  "llamas": {
+    "0": "VERB"
+  },
+  "llega": {
+    "0": "VERB"
+  },
+  "llega'te": {
+    "0": "VERB"
+  },
+  "llego": {
+    "0": "VERB"
+  },
+  "llegó": {
+    "0": "VERB"
+  },
+  "lleno": {
+    "0": "ADJ"
+  },
+  "lleva": {
+    "0": "VERB"
+  },
+  "llevan": {
+    "0": "VERB"
+  },
+  "llevo": {
+    "0": "VERB"
+  },
+  "llevé": {
+    "0": "VERB"
+  },
+  "llevó": {
+    "0": "VERB"
+  },
+  "llorar": {
+    "0": "VERB"
+  },
+  "loco": {
+    "0": "ADJ"
+  },
+  "locotrón": {
+    "0": "NOUN"
+  },
+  "locuras": {
+    "0": "NOUN"
+  },
+  "loquito": {
+    "0": "ADJ"
+  },
+  "luego": {
+    "0": "ADV"
+  },
+  "lugar": {
+    "0": "NOUN"
+  },
+  "luna": {
+    "0": "NOUN"
+  },
+  "lástima": {
+    "0": "NOUN"
+  },
+  "líos": {
+    "0": "NOUN"
+  },
+  "lúcete": {
+    "0": "ADV"
+  },
+  "mai": {
+    "0": "INTJ"
+  },
+  "maldito": {
+    "0": "ADJ"
+  },
+  "maleantes": {
+    "0": "ADJ"
+  },
+  "malgastaste": {
+    "0": "VERB"
+  },
+  "malicia": {
+    "0": "NOUN"
+  },
+  "mamá": {
+    "0": "NOUN"
+  },
+  "mandé": {
+    "0": "VERB"
+  },
+  "mandó": {
+    "0": "VERB"
+  },
+  "manejo": {
+    "0": "NOUN"
+  },
+  "manual": {
+    "0": "NOUN"
+  },
+  "maquillar": {
+    "0": "VERB"
+  },
+  "mari": {
+    "0": "NOUN"
+  },
+  "mata": {
+    "0": "VERB"
+  },
+  "matando": {
+    "0": "VERB"
+  },
+  "material": {
+    "0": "NOUN"
+  },
+  "maté": {
+    "0": "VERB"
+  },
+  "menor": {
+    "0": "ADJ"
+  },
+  "mentir": {
+    "0": "VERB"
+  },
+  "merece": {
+    "0": "VERB"
+  },
+  "mete": {
+    "0": "VERB"
+  },
+  "meter": {
+    "0": "VERB"
+  },
+  "metí": {
+    "0": "VERB"
+  },
+  "mezclamos": {
+    "0": "VERB"
+  },
+  "micro": {
+    "0": "NOUN"
+  },
+  "miel": {
+    "0": "NOUN"
+  },
+  "milly": {
+    "0": "NOUN"
+  },
+  "mirar": {
+    "0": "VERB"
+  },
+  "mirarlo": {
+    "0": "VERB"
+  },
+  "miro": {
+    "0": "VERB"
+  },
+  "mirándome": {
+    "0": "VERB"
+  },
+  "mirándonos": {
+    "0": "VERB"
+  },
+  "mirándote": {
+    "0": "VERB"
+  },
+  "misiones": {
+    "0": "NOUN"
+  },
+  "mmm": {
+    "0": "INTJ"
+  },
+  "moja'íta": {
+    "0": "ADJ"
+  },
+  "mojarte": {
+    "0": "VERB"
+  },
+  "mordido": {
+    "0": "NOUN"
+  },
+  "motiva": {
+    "0": "VERB"
+  },
+  "motociclista": {
+    "0": "ADJ"
+  },
+  "mucha": {
+    "0": "DET"
+  },
+  "muchas": {
+    "0": "DET"
+  },
+  "muerdes": {
+    "0": "VERB"
+  },
+  "muerden": {
+    "0": "VERB"
+  },
+  "muere": {
+    "0": "VERB"
+  },
+  "muerte": {
+    "0": "NOUN"
+  },
+  "mujerón": {
+    "0": "NOUN"
+  },
+  "muévelo": {
+    "0": "VERB"
+  },
+  "muñeca": {
+    "0": "NOUN"
+  },
+  "mándame": {
+    "0": "VERB"
+  },
+  "mía": {
+    "0": "PRON"
+  },
+  "móntate": {
+    "0": "VERB"
+  },
+  "nacido": {
+    "0": "VERB"
+  },
+  "necesita": {
+    "0": "VERB"
+  },
+  "nice": {
+    "0": "ADJ"
+  },
+  "niega": {
+    "0": "VERB"
+  },
+  "nivel": {
+    "0": "NOUN"
+  },
+  "niveles": {
+    "0": "NOUN"
+  },
+  "norte": {
+    "0": "NOUN"
+  },
+  "nota": {
+    "0": "NOUN"
+  },
+  "noté": {
+    "0": "VERB"
+  },
+  "novia": {
+    "0": "NOUN"
+  },
+  "nube": {
+    "0": "NOUN"
+  },
+  "número": {
+    "0": "NOUN"
+  },
+  "números": {
+    "0": "NOUN"
+  },
+  "obra": {
+    "0": "NOUN"
+  },
+  "oh": {
+    "0": "INTJ"
+  },
+  "ojalá": {
+    "0": "INTJ"
+  },
+  "ojitos": {
+    "0": "NOUN"
+  },
+  "olvidan": {
+    "0": "VERB"
+  },
+  "on": {
+    "0": "ADP"
+  },
+  "orillita": {
+    "0": "NOUN"
+  },
+  "oído": {
+    "0": "NOUN"
+  },
+  "oíste": {
+    "0": "VERB"
+  },
+  "pagando": {
+    "0": "VERB"
+  },
+  "parar": {
+    "0": "VERB"
+  },
+  "parece": {
+    "0": "VERB"
+  },
+  "pareces": {
+    "0": "VERB"
+  },
+  "parecemos": {
+    "0": "VERB"
+  },
+  "parezca": {
+    "0": "VERB"
+  },
+  "paro": {
+    "0": "VERB"
+  },
+  "partes": {
+    "0": "NOUN"
+  },
+  "pasajera": {
+    "0": "ADJ"
+  },
+  "pasan": {
+    "0": "VERB"
+  },
+  "pasando": {
+    "0": "VERB"
+  },
+  "pasar": {
+    "0": "VERB"
+  },
+  "pasen": {
+    "0": "VERB"
+  },
+  "paso": {
+    "0": "VERB"
+  },
+  "pasó": {
+    "0": "VERB"
+  },
+  "pegando": {
+    "0": "VERB"
+  },
+  "pegarte": {
+    "0": "VERB"
+  },
+  "pegue": {
+    "0": "VERB"
+  },
+  "peine": {
+    "0": "NOUN"
+  },
+  "penas": {
+    "0": "NOUN"
+  },
+  "penetra": {
+    "0": "VERB"
+  },
+  "pensar": {
+    "0": "VERB"
+  },
+  "pensaste": {
+    "0": "VERB"
+  },
+  "pensé": {
+    "0": "VERB"
+  },
+  "perdiendo": {
+    "0": "VERB"
+  },
+  "perdiste": {
+    "0": "VERB"
+  },
+  "perdona": {
+    "0": "VERB"
+  },
+  "perdí": {
+    "0": "VERB"
+  },
+  "permití": {
+    "0": "VERB"
+  },
+  "perreando": {
+    "0": "VERB"
+  },
+  "perréame": {
+    "0": "VERB"
+  },
+  "pertenece": {
+    "0": "VERB"
+  },
+  "pichear": {
+    "0": "VERB"
+  },
+  "pides": {
+    "0": "VERB"
+  },
+  "pinta": {
+    "0": "NOUN"
+  },
+  "piquete": {
+    "0": "NOUN"
+  },
+  "pirata": {
+    "0": "NOUN"
+  },
+  "pistolas": {
+    "0": "NOUN"
+  },
+  "plan": {
+    "0": "NOUN"
+  },
+  "playa": {
+    "0": "NOUN"
+  },
+  "pocas": {
+    "0": "PRON"
+  },
+  "poco": {
+    "0": "PRON"
+  },
+  "policía": {
+    "0": "NOUN"
+  },
+  "ponerte": {
+    "0": "VERB"
+  },
+  "ponértelo": {
+    "0": "VERB"
+  },
+  "porno": {
+    "0": "NOUN"
+  },
+  "porte": {
+    "0": "NOUN"
+  },
+  "poses": {
+    "0": "NOUN"
+  },
+  "posiciones": {
+    "0": "NOUN"
+  },
+  "prefieres": {
+    "0": "VERB"
+  },
+  "pregunta": {
+    "0": "VERB"
+  },
+  "premio": {
+    "0": "NOUN"
+  },
+  "premios": {
+    "0": "NOUN"
+  },
+  "preocupes": {
+    "0": "VERB"
+  },
+  "prepa": {
+    "0": "NOUN"
+  },
+  "presentarte": {
+    "0": "VERB"
+  },
+  "presento": {
+    "0": "VERB"
+  },
+  "primer": {
+    "0": "ADJ"
+  },
+  "privacidad": {
+    "0": "NOUN"
+  },
+  "probable": {
+    "0": "ADJ"
+  },
+  "problema": {
+    "0": "NOUN"
+  },
+  "prometes": {
+    "0": "VERB"
+  },
+  "propósito": {
+    "0": "NOUN"
+  },
+  "pudiera": {
+    "0": "VERB"
+  },
+  "pueden": {
+    "0": "VERB"
+  },
+  "puedo": {
+    "0": "VERB"
+  },
+  "puertas": {
+    "0": "NOUN"
+  },
+  "puesta": {
+    "0": "ADJ"
+  },
+  "puto": {
+    "0": "ADJ"
+  },
+  "quality": {
+    "0": "NOUN"
+  },
+  "quedan": {
+    "0": "VERB"
+  },
+  "quedaste": {
+    "0": "VERB"
+  },
+  "quedó": {
+    "0": "VERB"
+  },
+  "querías": {
+    "0": "VERB"
+  },
+  "quise": {
+    "0": "VERB"
+  },
+  "quita": {
+    "0": "VERB"
+  },
+  "quitar": {
+    "0": "ADJ"
+  },
+  "quito": {
+    "0": "VERB"
+  },
+  "raptar": {
+    "0": "VERB"
+  },
+  "rastro": {
+    "0": "NOUN"
+  },
+  "rato": {
+    "0": "NOUN"
+  },
+  "raza": {
+    "0": "NOUN"
+  },
+  "razón": {
+    "0": "NOUN"
+  },
+  "realidad": {
+    "0": "NOUN"
+  },
+  "reality": {
+    "0": "NOUN"
+  },
+  "recordarte": {
+    "0": "VERB"
+  },
+  "recuerda": {
+    "0": "VERB"
+  },
+  "recuerdo": {
+    "0": "NOUN"
+  },
+  "redes": {
+    "0": "NOUN"
+  },
+  "regalando": {
+    "0": "VERB"
+  },
+  "reggaetón": {
+    "0": "NOUN"
+  },
+  "regresar": {
+    "0": "VERB"
+  },
+  "relaciones": {
+    "0": "NOUN"
+  },
+  "retira": {
+    "0": "VERB"
+  },
+  "robar": {
+    "0": "VERB"
+  },
+  "robaría": {
+    "0": "VERB"
+  },
+  "robe": {
+    "0": "VERB"
+  },
+  "robo": {
+    "0": "VERB"
+  },
+  "roce": {
+    "0": "NOUN"
+  },
+  "rojos": {
+    "0": "ADJ"
+  },
+  "rompimos": {
+    "0": "VERB"
+  },
+  "rosa": {
+    "0": "NOUN"
+  },
+  "ruido": {
+    "0": "NOUN"
+  },
+  "sabe": {
+    "0": "VERB"
+  },
+  "saber": {
+    "0": "VERB"
+  },
+  "sabiendo": {
+    "0": "VERB"
+  },
+  "saca": {
+    "0": "VERB"
+  },
+  "sal": {
+    "0": "NOUN"
+  },
+  "salga": {
+    "0": "VERB"
+  },
+  "salir": {
+    "0": "VERB"
+  },
+  "sanan": {
+    "0": "VERB"
+  },
+  "saque": {
+    "0": "VERB"
+  },
+  "sartén": {
+    "0": "NOUN"
+  },
+  "secreto": {
+    "0": "NOUN"
+  },
+  "secuela": {
+    "0": "NOUN"
+  },
+  "secuestro": {
+    "0": "VERB"
+  },
+  "seguramente": {
+    "0": "ADV"
+  },
+  "seguridad": {
+    "0": "NOUN"
+  },
+  "seguro": {
+    "0": "ADJ"
+  },
+  "semejante": {
+    "0": "DET"
+  },
+  "sencilla": {
+    "0": "ADJ"
+  },
+  "sentado": {
+    "0": "ADJ"
+  },
+  "sentido": {
+    "0": "VERB"
+  },
+  "sepa": {
+    "0": "VERB"
+  },
+  "sepas": {
+    "0": "VERB"
+  },
+  "serio": {
+    "0": "ADJ"
+  },
+  "será": {
+    "0": "VERB"
+  },
+  "setas": {
+    "0": "NOUN"
+  },
+  "shh": {
+    "0": "INTJ"
+  },
+  "sicarios": {
+    "0": "NOUN"
+  },
+  "sido": {
+    "0": "VERB"
+  },
+  "siendo": {
+    "0": "VERB"
+  },
+  "siga": {
+    "0": "VERB"
+  },
+  "siguen": {
+    "0": "VERB"
+  },
+  "sino": {
+    "0": "CCONJ"
+  },
+  "sirven": {
+    "0": "VERB"
+  },
+  "size": {
+    "0": "NOUN"
+  },
+  "so": {
+    "0": "CCONJ"
+  },
+  "soledad": {
+    "0": "NOUN"
+  },
+  "sorprende": {
+    "0": "VERB"
+  },
+  "sospecha": {
+    "0": "VERB"
+  },
+  "sube": {
+    "0": "VERB"
+  },
+  "subimos": {
+    "0": "VERB"
+  },
+  "sucedido": {
+    "0": "ADJ"
+  },
+  "sus": {
+    "0": "DET"
+  },
+  "suya": {
+    "0": "DET"
+  },
+  "sólo": {
+    "0": "ADV"
+  },
+  "tanque": {
+    "0": "NOUN"
+  },
+  "tatuaje": {
+    "0": "NOUN"
+  },
+  "taza": {
+    "0": "NOUN"
+  },
+  "temas": {
+    "0": "NOUN"
+  },
+  "tenemos": {
+    "0": "VERB"
+  },
+  "tenerte": {
+    "0": "VERB"
+  },
+  "tera": {
+    "0": "NOUN"
+  },
+  "termine": {
+    "0": "VERB"
+  },
+  "terraza": {
+    "0": "NOUN"
+  },
+  "testigo": {
+    "0": "NOUN"
+  },
+  "timidez": {
+    "0": "NOUN"
+  },
+  "tiras": {
+    "0": "VERB"
+  },
+  "tiro": {
+    "0": "VERB"
+  },
+  "tiró": {
+    "0": "VERB"
+  },
+  "tocándote": {
+    "0": "VERB"
+  },
+  "tocó": {
+    "0": "VERB"
+  },
+  "todavía": {
+    "0": "ADV"
+  },
+  "todos": {
+    "0": "PRON"
+  },
+  "toma": {
+    "0": "VERB"
+  },
+  "tomamos": {
+    "0": "VERB"
+  },
+  "tomando": {
+    "0": "VERB"
+  },
+  "top": {
+    "0": "NOUN"
+  },
+  "tope": {
+    "0": "NOUN"
+  },
+  "tortura": {
+    "0": "VERB"
+  },
+  "toto": {
+    "0": "NOUN"
+  },
+  "traba": {
+    "0": "NOUN"
+  },
+  "tranquila": {
+    "0": "ADJ"
+  },
+  "tratando": {
+    "0": "VERB"
+  },
+  "tratar": {
+    "0": "VERB"
+  },
+  "traten": {
+    "0": "VERB"
+  },
+  "trato": {
+    "0": "NOUN"
+  },
+  "traído": {
+    "0": "VERB"
+  },
+  "tres": {
+    "0": "NUM"
+  },
+  "tuya": {
+    "0": "PRON"
+  },
+  "tímida": {
+    "0": "ADJ"
+  },
+  "tírate": {
+    "0": "VERB"
+  },
+  "tóxicos": {
+    "0": "ADJ"
+  },
+  "uah": {
+    "0": "NOUN"
+  },
+  "usar": {
+    "0": "VERB"
+  },
+  "vacaciones": {
+    "0": "NOUN"
+  },
+  "vacilo": {
+    "0": "VERB"
+  },
+  "vale": {
+    "0": "VERB"
+  },
+  "valor": {
+    "0": "NOUN"
+  },
+  "varear": {
+    "0": "VERB"
+  },
+  "varios": {
+    "0": "DET"
+  },
+  "vas": {
+    "0": "VERB"
+  },
+  "veas": {
+    "0": "VERB"
+  },
+  "vendidos": {
+    "0": "ADJ"
+  },
+  "vengas": {
+    "0": "VERB"
+  },
+  "ventana": {
+    "0": "NOUN"
+  },
+  "veo": {
+    "0": "VERB"
+  },
+  "verano": {
+    "0": "NOUN"
+  },
+  "verte": {
+    "0": "VERB"
+  },
+  "veía": {
+    "0": "VERB"
+  },
+  "vi": {
+    "0": "VERB"
+  },
+  "viajo": {
+    "0": "VERB"
+  },
+  "videos": {
+    "0": "NOUN"
+  },
+  "vienes": {
+    "0": "VERB"
+  },
+  "viernes": {
+    "0": "NOUN"
+  },
+  "viniéndote": {
+    "0": "VERB"
+  },
+  "vino": {
+    "0": "NOUN"
+  },
+  "violento": {
+    "0": "ADJ"
+  },
+  "virales": {
+    "0": "ADJ"
+  },
+  "vista": {
+    "0": "NOUN"
+  },
+  "vitrina": {
+    "0": "NOUN"
+  },
+  "volando": {
+    "0": "VERB"
+  },
+  "vueltas": {
+    "0": "NOUN"
+  },
+  "vuelto": {
+    "0": "VERB"
+  },
+  "vuelvo": {
+    "0": "VERB"
+  },
+  "vídeo": {
+    "0": "NOUN"
+  },
+  "yeh": {
+    "0": "ADV"
+  },
+  "yuh": {
+    "0": "INTJ"
+  },
+  "última": {
+    "0": "ADJ"
+  },
+  "único": {
+    "0": "ADJ"
+  },
+  "mover": {
+    "0": "VERB"
+  },
+  "dar": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB",
+    "3": "VERB",
+    "4": "VERB",
+    "5": "VERB",
+    "6": "VERB"
+  },
+  "presentar": {
+    "0": "VERB"
+  },
+  "confesar": {
+    "0": "VERB"
+  },
+  "despedirse": {
+    "0": "VERB"
+  },
+  "regalar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "tocar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "dejarse": {
+    "0": "VERB",
+    "1": "VERB",
+    "2": "VERB"
+  },
+  "conquistar": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "calentar": {
+    "0": "VERB"
+  },
+  "pegar": {
+    "0": "VERB"
+  },
+  "mandar": {
+    "0": "VERB"
+  },
+  "poner": {
+    "0": "VERB",
+    "1": "VERB"
+  },
+  "comerse": {
+    "0": "VERB"
+  },
+  "devorar": {
+    "0": "VERB"
+  },
+  "tirarse": {
+    "0": "VERB"
+  },
+  "ir": {
+    "0": "VERB"
+  },
+  "fallar": {
+    "0": "VERB"
+  },
+  "recordar": {
+    "0": "VERB"
+  },
+  "montarse": {
+    "0": "VERB"
+  },
+  "venir": {
+    "0": "VERB"
+  },
+  "mojar": {
+    "0": "VERB"
+  },
+  "gemir": {
+    "0": "VERB"
+  },
+  "arrebatarse": {
+    "0": "VERB"
+  },
+  "caer": {
+    "0": "VERB"
+  },
+  "lucirse": {
+    "0": "VERB"
+  },
+  "perrear": {
+    "0": "VERB"
+  },
+  "_example_ids": {
+    "que": [
+      "10304179:7",
+      "10489180:33",
+      "10627178:1",
+      "1556090:7",
+      "5302840:3",
+      "5751052:4",
+      "5960780:18",
+      "6211036:3",
+      "6838492:6",
+      "9991217:5"
+    ],
+    "me": [
+      "10471373:7",
+      "10919676:4",
+      "1469974:6",
+      "3687950:9",
+      "5302840:2",
+      "5302844:7",
+      "5751052:10",
+      "5929713:21",
+      "5960780:54",
+      "8417047:7"
+    ],
+    "no": [
+      "10304179:7",
+      "10489180:14",
+      "1556090:7",
+      "3687950:17",
+      "5302844:8",
+      "5929713:61",
+      "6211036:3",
+      "6838492:7",
+      "8417047:2",
+      "9991217:5"
+    ],
+    "y": [
+      "10471373:45",
+      "10627178:32",
+      "10919676:9",
+      "1469974:16",
+      "1556090:5",
+      "5302840:5",
+      "5751052:20",
+      "5960780:25",
+      "6211036:3",
+      "9991217:8"
+    ],
+    "la": [
+      "10304179:9",
+      "10471373:30",
+      "10489180:12",
+      "10627178:1",
+      "10919676:2",
+      "1469974:13",
+      "3687950:18",
+      "5929713:21",
+      "6838492:34",
+      "8417047:6"
+    ],
+    "a": [
+      "10304179:12",
+      "10489180:14",
+      "10627178:1",
+      "1556090:6",
+      "5302840:2",
+      "5751052:10",
+      "5960780:24",
+      "6211036:19",
+      "6838492:14",
+      "9991217:3"
+    ],
+    "yo": [
+      "10471373:48",
+      "10919676:4",
+      "1469974:10",
+      "3687950:8",
+      "5302840:5",
+      "5302844:33",
+      "5751052:13",
+      "5929713:11",
+      "5960780:26",
+      "8417047:37"
+    ],
+    "tú": [
+      "10304179:5",
+      "10627178:11",
+      "1469974:23",
+      "3687950:5",
+      "5302844:29",
+      "5929713:11",
+      "6211036:48",
+      "6838492:51",
+      "8417047:15",
+      "9991217:8"
+    ],
+    "de": [
+      "10304179:9",
+      "10471373:31",
+      "10627178:14",
+      "10919676:10",
+      "1556090:3",
+      "5302840:1",
+      "5302844:7",
+      "5960780:56",
+      "6211036:13",
+      "6838492:11"
+    ],
+    "el": [
+      "10471373:1",
+      "10489180:31",
+      "10919676:12",
+      "1469974:28",
+      "1556090:3",
+      "3687950:21",
+      "5302844:21",
+      "5929713:45",
+      "8417047:6",
+      "9991217:42"
+    ],
+    "te": [
+      "10304179:7",
+      "10489180:30",
+      "10627178:32",
+      "5302840:5",
+      "5751052:2",
+      "5929713:46",
+      "5960780:30",
+      "6211036:16",
+      "6838492:4",
+      "9991217:2"
+    ],
+    "lo": [
+      "10471373:2",
+      "10489180:32",
+      "1469974:26",
+      "1556090:9",
+      "3687950:5",
+      "5302840:2",
+      "5302844:18",
+      "5751052:22",
+      "6211036:3",
+      "8417047:2"
+    ],
+    "en": [
+      "10304179:37",
+      "10471373:46",
+      "10919676:4",
+      "1469974:26",
+      "3687950:18",
+      "5302844:7",
+      "5929713:21",
+      "6838492:7",
+      "8417047:6",
+      "9991217:16"
+    ],
+    "se": [
+      "10304179:37",
+      "10627178:14",
+      "1469974:13",
+      "3687950:12",
+      "5302840:3",
+      "5929713:23",
+      "5960780:34",
+      "6211036:5",
+      "6838492:30",
+      "9991217:16"
+    ],
+    "para": [
+      "10471373:9",
+      "10489180:31",
+      "10627178:30",
+      "10919676:12",
+      "5302840:3",
+      "5302844:11",
+      "5929713:9",
+      "5960780:25",
+      "8417047:34",
+      "9991217:13"
+    ],
+    "es": [
+      "10471373:1",
+      "10489180:12",
+      "10627178:9",
+      "10919676:9",
+      "1469974:10",
+      "1556090:18",
+      "3687950:9",
+      "5929713:47",
+      "5960780:34",
+      "8417047:7"
+    ],
+    "mi": [
+      "10471373:27",
+      "10489180:35",
+      "10627178:4",
+      "10919676:3",
+      "1556090:1",
+      "5302840:29",
+      "5302844:5",
+      "6211036:14",
+      "6838492:23",
+      "8417047:33"
+    ],
+    "ey": [
+      "10489180:13",
+      "5302840:25",
+      "5302844:11",
+      "6211036:13",
+      "6838492:17",
+      "8417047:13",
+      "9991217:1"
+    ],
+    "por": [
+      "10304179:6",
+      "10471373:29",
+      "10489180:11",
+      "1469974:24",
+      "1556090:9",
+      "3687950:12",
+      "5302840:16",
+      "5302844:8",
+      "5929713:26",
+      "9991217:20"
+    ],
+    "con": [
+      "10304179:22",
+      "10471373:18",
+      "10489180:35",
+      "10627178:10",
+      "1469974:23",
+      "3687950:22",
+      "5929713:9",
+      "5960780:24",
+      "6211036:14",
+      "8417047:36"
+    ],
+    "pero": [
+      "10471373:1",
+      "1556090:9",
+      "3687950:44",
+      "5302840:14",
+      "5751052:3",
+      "5929713:10",
+      "5960780:30",
+      "6211036:15",
+      "6838492:8",
+      "8417047:2"
+    ],
+    "quiero": [
+      "10304179:13",
+      "10471373:29",
+      "10627178:10",
+      "10919676:3",
+      "1556090:9",
+      "3687950:5",
+      "5302844:33",
+      "5960780:18",
+      "6838492:12",
+      "9991217:3"
+    ],
+    "qué": [
+      "10489180:1",
+      "10627178:18",
+      "10919676:11",
+      "1469974:23",
+      "1556090:3",
+      "5302840:35",
+      "5751052:12",
+      "5960780:2",
+      "6211036:48",
+      "8417047:32"
+    ],
+    "un": [
+      "10304179:5",
+      "10489180:33",
+      "10627178:14",
+      "10919676:4",
+      "1556090:6",
+      "5302840:11",
+      "5302844:19",
+      "5929713:52",
+      "5960780:9",
+      "9991217:46"
+    ],
+    "como": [
+      "10304179:29",
+      "10471373:31",
+      "10489180:14",
+      "10627178:14",
+      "10919676:2",
+      "1469974:7",
+      "5302844:29",
+      "5929713:28",
+      "5960780:33",
+      "6211036:8"
+    ],
+    "si": [
+      "10304179:5",
+      "10471373:4",
+      "10919676:11",
+      "1469974:26",
+      "3687950:22",
+      "5302840:29",
+      "5302844:20",
+      "5929713:23",
+      "8417047:8",
+      "9991217:5"
+    ],
+    "más": [
+      "10471373:28",
+      "3687950:9",
+      "5302840:1",
+      "5302844:8",
+      "5929713:13",
+      "5960780:22",
+      "6211036:31",
+      "6838492:4",
+      "9991217:61"
+    ],
+    "le": [
+      "10304179:23",
+      "10627178:2",
+      "1469974:14",
+      "3687950:21",
+      "5302844:8",
+      "5751052:21",
+      "5929713:10",
+      "5960780:31",
+      "6211036:17",
+      "8417047:13"
+    ],
+    "voy": [
+      "10304179:33",
+      "10489180:32",
+      "1469974:24",
+      "1556090:7",
+      "3687950:4",
+      "5302840:2",
+      "6211036:20",
+      "6838492:15",
+      "8417047:36",
+      "9991217:3"
+    ],
+    "las": [
+      "10471373:51",
+      "10627178:11",
+      "10919676:15",
+      "1469974:11",
+      "3687950:10",
+      "5302840:1",
+      "5302844:20",
+      "5929713:13",
+      "5960780:25",
+      "9991217:20"
+    ],
+    "ti": [
+      "10471373:24",
+      "1556090:4",
+      "3687950:44",
+      "5929713:43",
+      "6838492:62",
+      "8417047:37",
+      "9991217:13"
+    ],
+    "los": [
+      "10304179:9",
+      "10489180:19",
+      "1469974:14",
+      "1556090:19",
+      "5302840:10",
+      "5929713:52",
+      "5960780:24",
+      "6211036:13",
+      "8417047:32",
+      "9991217:15"
+    ],
+    "tu": [
+      "10471373:45",
+      "10489180:35",
+      "10627178:31",
+      "1469974:23",
+      "5302844:19",
+      "5929713:48",
+      "5960780:36",
+      "6838492:36",
+      "8417047:8",
+      "9991217:32"
+    ],
+    "al": [
+      "10919676:5",
+      "5302844:20",
+      "5960780:28",
+      "8417047:8",
+      "9991217:15"
+    ],
+    "una": [
+      "10471373:31",
+      "10627178:29",
+      "1469974:10",
+      "3687950:19",
+      "5302844:27",
+      "5751052:4",
+      "5929713:43",
+      "5960780:30",
+      "8417047:7"
+    ],
+    "todo": [
+      "10304179:37",
+      "10919676:10",
+      "3687950:5",
+      "5302844:53",
+      "5960780:35",
+      "6211036:32",
+      "8417047:2",
+      "9991217:42"
+    ],
+    "estoy": [
+      "10304179:11",
+      "10489180:36",
+      "1556090:6",
+      "5929713:60",
+      "6211036:54",
+      "6838492:33",
+      "8417047:8",
+      "9991217:13"
+    ],
+    "noche": [
+      "5929713:25",
+      "5960780:45",
+      "6838492:30",
+      "8417047:45",
+      "9991217:17"
+    ],
+    "sé": [
+      "10304179:7",
+      "10489180:30",
+      "1556090:14",
+      "3687950:8",
+      "5751052:4",
+      "5929713:11",
+      "6838492:6",
+      "8417047:18"
+    ],
+    "ya": [
+      "10304179:39",
+      "10627178:30",
+      "5302840:14",
+      "5302844:26",
+      "6211036:17",
+      "6838492:39",
+      "8417047:18",
+      "9991217:59"
+    ],
+    "tengo": [
+      "10304179:5",
+      "10471373:15",
+      "10489180:33",
+      "3687950:37",
+      "5302844:27",
+      "5929713:11",
+      "5960780:12",
+      "6838492:21"
+    ],
+    "cuando": [
+      "1469974:10",
+      "3687950:37",
+      "5751052:26",
+      "5929713:10",
+      "8417047:11"
+    ],
+    "soy": [
+      "10471373:49",
+      "1556090:3",
+      "5302840:35",
+      "5929713:49",
+      "5960780:37",
+      "6211036:18",
+      "6838492:65",
+      "8417047:22",
+      "9991217:36"
+    ],
+    "baby": [
+      "10304179:6",
+      "10919676:27",
+      "5302844:30",
+      "5929713:12",
+      "5960780:26",
+      "6838492:42",
+      "9991217:17"
+    ],
+    "mí": [
+      "10471373:27",
+      "3687950:5",
+      "5302840:6",
+      "5751052:10",
+      "5929713:10",
+      "8417047:7",
+      "9991217:20"
+    ],
+    "conmigo": [
+      "10304179:31",
+      "10489180:7",
+      "10627178:3",
+      "10919676:3",
+      "5751052:14",
+      "5929713:25",
+      "9991217:5"
+    ],
+    "cómo": [
+      "10304179:36",
+      "10471373:47",
+      "10489180:30",
+      "5302840:5",
+      "5960780:14",
+      "6211036:40",
+      "6838492:4",
+      "8417047:7"
+    ],
+    "nos": [
+      "10304179:5",
+      "10919676:13",
+      "5302840:1",
+      "5751052:9",
+      "5929713:59",
+      "6838492:30",
+      "8417047:2",
+      "9991217:44"
+    ],
+    "porque": [
+      "10471373:24",
+      "1469974:13",
+      "1556090:14",
+      "3687950:37",
+      "5302840:13",
+      "5929713:26",
+      "6211036:22",
+      "6838492:23"
+    ],
+    "solo": [
+      "10304179:6",
+      "10471373:25",
+      "3687950:18",
+      "5302840:29",
+      "5929713:27",
+      "8417047:34",
+      "9991217:6"
+    ],
+    "ves": [
+      "5302844:12"
+    ],
+    "estás": [
+      "10471373:29",
+      "10489180:20",
+      "10627178:32",
+      "6838492:64",
+      "9991217:2"
+    ],
+    "está": [
+      "10471373:26",
+      "10489180:16",
+      "10627178:2",
+      "1469974:23",
+      "1556090:4",
+      "5302840:13",
+      "5960780:36",
+      "6838492:45",
+      "8417047:31"
+    ],
+    "mar": [
+      "10919676:5",
+      "9991217:70"
+    ],
+    "nadie": [
+      "10471373:2",
+      "10919676:2",
+      "1469974:39",
+      "3687950:22",
+      "5302844:5",
+      "5929713:26",
+      "6211036:33",
+      "8417047:13",
+      "9991217:16"
+    ],
+    "va": [
+      "10489180:14",
+      "10627178:1",
+      "3687950:12",
+      "5302844:5",
+      "5929713:9",
+      "6211036:21",
+      "6838492:22",
+      "9991217:5"
+    ],
+    "ella": [
+      "10304179:27",
+      "10489180:20",
+      "10627178:10",
+      "1469974:28",
+      "5929713:24"
+    ],
+    "frente": [
+      "10919676:5"
+    ],
+    "otra": [
+      "10489180:9",
+      "5960780:18",
+      "6838492:42",
+      "9991217:38"
+    ],
+    "vamos": [
+      "10304179:5",
+      "5302840:28",
+      "6211036:19",
+      "6838492:43",
+      "8417047:5"
+    ],
+    "nada": [
+      "10304179:8",
+      "10471373:28",
+      "1469974:7",
+      "3687950:9",
+      "6838492:22",
+      "9991217:5"
+    ],
+    "contigo": [
+      "10304179:10",
+      "10489180:34",
+      "10919676:12",
+      "1469974:12",
+      "3687950:24",
+      "5302844:7",
+      "8417047:33",
+      "9991217:8"
+    ],
+    "eso": [
+      "10471373:29",
+      "1469974:10",
+      "1556090:9",
+      "5302840:16",
+      "6838492:64",
+      "8417047:3"
+    ],
+    "hay": [
+      "10471373:47",
+      "1556090:19",
+      "3687950:44",
+      "5302844:11",
+      "5929713:46",
+      "6838492:13"
+    ],
+    "quiere": [
+      "10304179:21",
+      "1469974:13",
+      "5751052:14",
+      "8417047:11",
+      "9991217:43"
+    ],
+    "sabes": [
+      "10304179:30",
+      "5960780:41",
+      "6838492:25",
+      "9991217:59"
+    ],
+    "después": [
+      "10304179:9",
+      "10489180:21",
+      "10919676:5",
+      "3687950:38",
+      "5302840:9"
+    ],
+    "eres": [
+      "10304179:34",
+      "10471373:48",
+      "3687950:39",
+      "6211036:49",
+      "8417047:19",
+      "9991217:13"
+    ],
+    "esa": [
+      "10471373:27",
+      "10627178:1",
+      "6838492:30",
+      "9991217:16"
+    ],
+    "ese": [
+      "10471373:10",
+      "10627178:16",
+      "1556090:16",
+      "5302844:14",
+      "5960780:12",
+      "6838492:44"
+    ],
+    "hoy": [
+      "10489180:20",
+      "1556090:19",
+      "5302840:2",
+      "5960780:34",
+      "8417047:46"
+    ],
+    "rico": [
+      "10471373:30",
+      "5302840:6",
+      "5751052:12",
+      "5960780:2",
+      "6838492:45"
+    ],
+    "tienes": [
+      "10304179:30",
+      "10471373:1",
+      "3687950:5",
+      "5929713:57",
+      "6838492:5"
+    ],
+    "antes": [
+      "10489180:6",
+      "5929713:22",
+      "5960780:1",
+      "6211036:9",
+      "8417047:4"
+    ],
+    "todas": [
+      "10919676:15",
+      "1469974:11",
+      "5302840:34",
+      "5751052:11",
+      "6211036:17",
+      "9991217:20"
+    ],
+    "ahora": [
+      "10304179:12",
+      "6211036:13",
+      "6838492:17",
+      "9991217:44"
+    ],
+    "ay": [
+      "10471373:7",
+      "10489180:27",
+      "5751052:12",
+      "6838492:18"
+    ],
+    "bien": [
+      "10489180:35",
+      "5302844:18",
+      "5929713:57",
+      "6211036:54",
+      "6838492:44"
+    ],
+    "del": [
+      "10627178:9",
+      "1469974:3",
+      "1556090:18",
+      "5960780:32",
+      "9991217:15"
+    ],
+    "desde": [
+      "10304179:7",
+      "5302844:13",
+      "5929713:8",
+      "6211036:40",
+      "6838492:24",
+      "8417047:23"
+    ],
+    "dime": [
+      "10304179:5",
+      "10471373:1",
+      "5929713:55",
+      "6838492:14",
+      "9991217:2"
+    ],
+    "ha": [
+      "10471373:2",
+      "5929713:48",
+      "6838492:4"
+    ],
+    "peak": [
+      "6211036:44"
+    ],
+    "su": [
+      "10304179:22",
+      "5929713:9",
+      "5960780:57",
+      "6838492:23",
+      "8417047:35",
+      "9991217:16"
+    ],
+    "tiempo": [
+      "10304179:12",
+      "3687950:8",
+      "5929713:4",
+      "5960780:8",
+      "6838492:49",
+      "8417047:20"
+    ],
+    "tra": [
+      "9991217:77"
+    ],
+    "ve": [
+      "10304179:35",
+      "10919676:2",
+      "5302844:13"
+    ],
+    "ver": [
+      "10304179:12",
+      "10919676:12",
+      "1556090:3",
+      "5960780:59",
+      "6838492:14"
+    ],
+    "verde": [
+      "10304179:38"
+    ],
+    "vida": [
+      "10304179:22",
+      "10471373:30",
+      "1469974:7",
+      "1556090:18",
+      "5929713:11"
+    ],
+    "luz": [
+      "10304179:39",
+      "1469974:30"
+    ],
+    "estamos": [
+      "10489180:2",
+      "1469974:53",
+      "5302840:10",
+      "9991217:44"
+    ],
+    "amor": [
+      "10471373:46",
+      "1556090:18",
+      "8417047:6"
+    ],
+    "cabrón": [
+      "6211036:36",
+      "9991217:17"
+    ],
+    "cama": [
+      "10304179:37",
+      "5929713:28",
+      "8417047:6"
+    ],
+    "discoteca": [
+      "10627178:18",
+      "5960780:66"
+    ],
+    "déjate": [
+      "10627178:17",
+      "5960780:59",
+      "9991217:4"
+    ],
+    "este": [
+      "3687950:40",
+      "6211036:31",
+      "6838492:21",
+      "8417047:38"
+    ],
+    "fue": [
+      "10304179:22",
+      "10919676:4",
+      "5751052:4",
+      "6211036:36"
+    ],
+    "hicimos": [
+      "10919676:10"
+    ],
+    "loca": [
+      "1469974:5",
+      "3687950:38",
+      "5929713:23",
+      "5960780:36",
+      "9991217:19"
+    ],
+    "seguir": [
+      "3687950:7",
+      "5302840:30",
+      "6211036:44"
+    ],
+    "siempre": [
+      "10471373:26",
+      "5302844:10",
+      "5929713:10",
+      "6211036:21"
+    ],
+    "lejos": [
+      "10304179:11",
+      "5302844:13",
+      "6211036:13",
+      "9991217:2"
+    ],
+    "aquí": [
+      "5302840:29",
+      "5302844:21",
+      "5929713:61"
+    ],
+    "balvin": [
+      "5302840:4",
+      "5302844:49",
+      "5929713:80",
+      "6838492:3"
+    ],
+    "bebé": [
+      "10489180:31",
+      "5751052:3",
+      "5960780:3",
+      "8417047:45"
+    ],
+    "cuánto": [
+      "5960780:18",
+      "8417047:20"
+    ],
+    "dame": [
+      "10471373:25",
+      "5960780:30",
+      "6838492:40",
+      "9991217:46"
+    ],
+    "dios": [
+      "5751052:12"
+    ],
+    "dónde": [
+      "5960780:11",
+      "6838492:14",
+      "9991217:2"
+    ],
+    "eh": [
+      "10304179:41",
+      "10471373:25",
+      "5751052:14",
+      "6211036:35"
+    ],
+    "hace": [
+      "1469974:26",
+      "1556090:16",
+      "3687950:18",
+      "5302844:18",
+      "5929713:50"
+    ],
+    "hago": [
+      "10489180:11",
+      "1469974:12",
+      "3687950:18",
+      "6211036:6"
+    ],
+    "hasta": [
+      "10627178:10",
+      "5302840:16",
+      "5960780:3",
+      "6211036:17"
+    ],
+    "mío": [
+      "5751052:12"
+    ],
+    "nunca": [
+      "1469974:7",
+      "1556090:17",
+      "5929713:46",
+      "6211036:40",
+      "8417047:45"
+    ],
+    "sin": [
+      "5302844:21",
+      "6211036:18",
+      "6838492:21",
+      "8417047:34"
+    ],
+    "slow": [
+      "10471373:23"
+    ],
+    "sola": [
+      "3687950:6",
+      "5302840:34",
+      "6838492:39",
+      "9991217:45"
+    ],
+    "también": [
+      "10471373:15",
+      "5302844:34",
+      "5751052:7",
+      "6211036:15",
+      "6838492:27"
+    ],
+    "tan": [
+      "10489180:16",
+      "1556090:4",
+      "3687950:2",
+      "8417047:35"
+    ],
+    "tiene": [
+      "10471373:3",
+      "3687950:20",
+      "5960780:57",
+      "6838492:10"
+    ],
+    "vaina": [
+      "1469974:10",
+      "3687950:38"
+    ],
+    "ven": [
+      "10919676:2",
+      "5302844:29",
+      "5751052:20",
+      "9991217:46"
+    ],
+    "wuh": [
+      "5302844:7"
+    ],
+    "yah": [
+      "5302840:50",
+      "5929713:2"
+    ],
+    "él": [
+      "1556090:2",
+      "5751052:20",
+      "6211036:15"
+    ],
+    "somos": [
+      "5929713:27",
+      "6211036:40",
+      "8417047:18",
+      "9991217:59"
+    ],
+    "les": [
+      "5302840:4",
+      "5302844:8",
+      "6211036:11"
+    ],
+    "ojos": [
+      "10304179:9",
+      "10919676:2",
+      "5751052:6",
+      "5929713:3",
+      "5960780:26"
+    ],
+    "ah": [
+      "10471373:44",
+      "10627178:29",
+      "6211036:12"
+    ],
+    "aunque": [
+      "10489180:12",
+      "3687950:3",
+      "5960780:17",
+      "6838492:52"
+    ],
+    "brum": [
+      "1469974:26"
+    ],
+    "casa": [
+      "5302840:34",
+      "5302844:5",
+      "9991217:16"
+    ],
+    "cha": [
+      "10489180:58"
+    ],
+    "chiqui": [
+      "10489180:58"
+    ],
+    "complico": [
+      "5302840:5"
+    ],
+    "cuál": [
+      "10471373:1",
+      "5929713:59"
+    ],
+    "da": [
+      "3687950:11",
+      "5302844:8",
+      "9991217:11"
+    ],
+    "dale": [
+      "10627178:16",
+      "5302844:23",
+      "6211036:53"
+    ],
+    "diste": [
+      "10304179:39",
+      "5960780:54"
+    ],
+    "esperando": [
+      "10489180:36",
+      "10627178:32"
+    ],
+    "esto": [
+      "1556090:7",
+      "6838492:42"
+    ],
+    "gata": [
+      "9991217:16"
+    ],
+    "gusta": [
+      "10627178:2",
+      "1469974:16",
+      "5302840:6"
+    ],
+    "he": [
+      "10471373:6",
+      "1469974:7",
+      "6838492:50",
+      "8417047:29"
+    ],
+    "invitan": [
+      "5302840:31"
+    ],
+    "llegar": [
+      "10919676:12",
+      "5302844:11",
+      "5929713:22",
+      "5960780:24"
+    ],
+    "llevar": [
+      "10627178:17",
+      "9991217:4"
+    ],
+    "meta": [
+      "10627178:31"
+    ],
+    "mis": [
+      "10471373:18",
+      "10919676:2",
+      "5751052:11",
+      "6211036:17"
+    ],
+    "mundo": [
+      "1469974:56",
+      "3687950:43",
+      "5960780:27",
+      "6211036:32"
+    ],
+    "nena": [
+      "10627178:1",
+      "9991217:7"
+    ],
+    "ni": [
+      "5929713:26",
+      "6211036:36",
+      "6838492:41"
+    ],
+    "pues": [
+      "6838492:4"
+    ],
+    "salimos": [
+      "10919676:5",
+      "5302840:9"
+    ],
+    "sea": [
+      "10489180:32",
+      "10919676:3",
+      "1469974:12",
+      "5960780:17"
+    ],
+    "tener": [
+      "10304179:13",
+      "5751052:14",
+      "5929713:14",
+      "5960780:60"
+    ],
+    "tentado": [
+      "5929713:60"
+    ],
+    "tus": [
+      "5302844:34",
+      "5751052:6",
+      "5929713:11"
+    ],
+    "vuelva": [
+      "5960780:18"
+    ],
+    "yeah": [
+      "1469974:4"
+    ],
+    "amigos": [
+      "10489180:54",
+      "5929713:27"
+    ],
+    "fuimos": [
+      "10919676:5",
+      "5302840:1",
+      "5751052:9"
+    ],
+    "quieres": [
+      "5302844:20",
+      "6838492:32",
+      "9991217:8"
+    ],
+    "acá": [
+      "5302844:11",
+      "5751052:20"
+    ],
+    "ahí": [
+      "10919676:4",
+      "3687950:6",
+      "5929713:54"
+    ],
+    "algo": [
+      "1556090:14",
+      "5929713:5",
+      "8417047:21"
+    ],
+    "allá": [
+      "10304179:6",
+      "5302840:31",
+      "9991217:47"
+    ],
+    "alright": [
+      "10919676:1"
+    ],
+    "ando": [
+      "1469974:27",
+      "5302840:10",
+      "6838492:28"
+    ],
+    "apaga": [
+      "6211036:9",
+      "9991217:4"
+    ],
+    "así": [
+      "10489180:16",
+      "10919676:2",
+      "5960780:55"
+    ],
+    "besas": [
+      "10471373:7"
+    ],
+    "brr": [
+      "5960780:37",
+      "9991217:9"
+    ],
+    "chance": [
+      "10471373:25",
+      "9991217:46"
+    ],
+    "cheki": [
+      "6211036:34"
+    ],
+    "corazón": [
+      "10471373:45",
+      "1556090:1"
+    ],
+    "cosa": [
+      "10489180:11",
+      "5751052:4"
+    ],
+    "despido": [
+      "1556090:11"
+    ],
+    "dijo": [
+      "5751052:10"
+    ],
+    "disco": [
+      "5929713:9",
+      "5960780:25",
+      "6211036:31"
+    ],
+    "donde": [
+      "10919676:4",
+      "1469974:12"
+    ],
+    "día": [
+      "10489180:33",
+      "10919676:11",
+      "9991217:42"
+    ],
+    "encima": [
+      "5960780:35",
+      "6838492:42",
+      "9991217:40"
+    ],
+    "escapó": [
+      "10627178:3",
+      "9991217:16"
+    ],
+    "espero": [
+      "10471373:4",
+      "10489180:32",
+      "5302844:25"
+    ],
+    "esta": [
+      "10489180:7",
+      "6211036:30",
+      "9991217:17"
+    ],
+    "estaba": [
+      "10304179:10",
+      "5751052:2"
+    ],
+    "fuego": [
+      "10489180:4",
+      "1469974:1"
+    ],
+    "fuiste": [
+      "5751052:5",
+      "6838492:24"
+    ],
+    "fumando": [
+      "10304179:25",
+      "5302840:12",
+      "5960780:23"
+    ],
+    "gente": [
+      "5302840:30",
+      "6211036:30"
+    ],
+    "glock": [
+      "10627178:14"
+    ],
+    "gustas": [
+      "3687950:9"
+    ],
+    "hacer": [
+      "10304179:30",
+      "6838492:22"
+    ],
+    "hacerlo": [
+      "6838492:45",
+      "8417047:5"
+    ],
+    "hubiera": [
+      "10489180:6"
+    ],
+    "ido": [
+      "6838492:4"
+    ],
+    "j": [
+      "5302844:49",
+      "6838492:3"
+    ],
+    "llegan": [
+      "5302840:33",
+      "5302844:9"
+    ],
+    "locura": [
+      "5929713:15"
+    ],
+    "mami": [
+      "10471373:49",
+      "1469974:25",
+      "9991217:2"
+    ],
+    "mate": [
+      "10304179:27"
+    ],
+    "mejor": [
+      "1556090:14",
+      "5302844:11",
+      "5929713:5"
+    ],
+    "menos": [
+      "10471373:50",
+      "3687950:22",
+      "5960780:9"
+    ],
+    "mucho": [
+      "10471373:29",
+      "6838492:65"
+    ],
+    "ninguna": [
+      "6211036:30",
+      "6838492:37"
+    ],
+    "nuestro": [
+      "5929713:47",
+      "8417047:31"
+    ],
+    "o": [
+      "5929713:44",
+      "6838492:5"
+    ],
+    "otro": [
+      "5960780:54",
+      "6838492:17"
+    ],
+    "party": [
+      "10919676:4",
+      "5302840:9",
+      "5302844:4"
+    ],
+    "pedí": [
+      "5302840:33",
+      "6838492:7"
+    ],
+    "peligrosa": [
+      "10489180:10",
+      "10627178:29"
+    ],
+    "pensando": [
+      "10304179:8",
+      "8417047:39"
+    ],
+    "pide": [
+      "10627178:12",
+      "5302840:30",
+      "5929713:13"
+    ],
+    "pongo": [
+      "10471373:27",
+      "6211036:2",
+      "8417047:15"
+    ],
+    "pude": [
+      "5751052:22"
+    ],
+    "saben": [
+      "5302840:35",
+      "6211036:40"
+    ],
+    "ser": [
+      "10471373:39",
+      "3687950:2",
+      "6211036:20"
+    ],
+    "siento": [
+      "1469974:10",
+      "3687950:45",
+      "9991217:2"
+    ],
+    "sigo": [
+      "5302840:16",
+      "5929713:26",
+      "9991217:42"
+    ],
+    "sol": [
+      "10919676:12",
+      "1556090:16",
+      "6211036:9"
+    ],
+    "soltera": [
+      "6838492:28"
+    ],
+    "son": [
+      "10304179:4",
+      "1469974:14",
+      "5302840:1"
+    ],
+    "tanto": [
+      "5929713:59",
+      "8417047:8"
+    ],
+    "vez": [
+      "10489180:21",
+      "8417047:5"
+    ],
+    "vuelve": [
+      "5929713:10"
+    ],
+    "woh": [
+      "1469974:2",
+      "6838492:36"
+    ],
+    "única": [
+      "10471373:27",
+      "3687950:19"
+    ],
+    "botellas": [
+      "5302840:38",
+      "5751052:8"
+    ],
+    "canciones": [
+      "5751052:11",
+      "6211036:6"
+    ],
+    "dimos": [
+      "6838492:30",
+      "8417047:2"
+    ],
+    "ganas": [
+      "10471373:15",
+      "10489180:18",
+      "5929713:45"
+    ],
+    "hacemos": [
+      "1469974:26",
+      "5929713:21",
+      "8417047:7"
+    ],
+    "has": [
+      "10489180:42",
+      "6838492:48"
+    ],
+    "pasado": [
+      "10471373:17",
+      "10919676:11",
+      "6838492:53"
+    ],
+    "ustedes": [
+      "5302840:2",
+      "6211036:41"
+    ],
+    "actitud": [
+      "1469974:29",
+      "6838492:26"
+    ],
+    "adiós": [
+      "1556090:10",
+      "8417047:37"
+    ],
+    "afuera": [
+      "1556090:5",
+      "5302844:25"
+    ],
+    "amanezca": [
+      "5302840:16",
+      "5960780:16"
+    ],
+    "atenta": [
+      "9991217:7"
+    ],
+    "bailando": [
+      "10489180:7",
+      "5960780:16"
+    ],
+    "bailar": [
+      "5751052:24",
+      "6211036:2"
+    ],
+    "bellaca": [
+      "10304179:36"
+    ],
+    "booker": [
+      "6211036:24"
+    ],
+    "booty": [
+      "5302844:14",
+      "6838492:21"
+    ],
+    "buena": [
+      "1469974:23",
+      "5302840:14"
+    ],
+    "bueno": [
+      "1556090:18",
+      "3687950:8"
+    ],
+    "buscando": [
+      "10304179:7",
+      "5751052:2"
+    ],
+    "buscar": [
+      "5302840:9",
+      "5751052:26"
+    ],
+    "cambió": [
+      "6838492:23"
+    ],
+    "campeón": [
+      "6211036:24"
+    ],
+    "celular": [
+      "9991217:4"
+    ],
+    "cerca": [
+      "10489180:10",
+      "1556090:4"
+    ],
+    "clima": [
+      "6838492:45"
+    ],
+    "conocido": [
+      "10489180:6"
+    ],
+    "contacto": [
+      "8417047:8"
+    ],
+    "convierto": [
+      "10471373:45",
+      "5302844:7"
+    ],
+    "cáele": [
+      "10304179:28"
+    ],
+    "darte": [
+      "1469974:24"
+    ],
+    "decirle": [
+      "5751052:27"
+    ],
+    "dejar": [
+      "5751052:23",
+      "5929713:11"
+    ],
+    "desastre": [
+      "10304179:22",
+      "8417047:18"
+    ],
+    "desconfigu": [
+      "10471373:7"
+    ],
+    "descontrola": [
+      "1469974:8"
+    ],
+    "dice": [
+      "10304179:3",
+      "5929713:11"
+    ],
+    "dije": [
+      "5751052:21"
+    ],
+    "disimular": [
+      "3687950:17"
+    ],
+    "distraído": [
+      "6838492:9"
+    ],
+    "doce": [
+      "5302840:1"
+    ],
+    "duro": [
+      "1469974:16",
+      "3687950:21"
+    ],
+    "dándote": [
+      "9991217:38"
+    ],
+    "dímelo": [
+      "10471373:70",
+      "5929713:86"
+    ],
+    "encanta": [
+      "5929713:21",
+      "8417047:7"
+    ],
+    "explico": [
+      "5302840:5"
+    ],
+    "feeling": [
+      "10304179:30"
+    ],
+    "fiesta": [
+      "5302840:14"
+    ],
+    "for": [
+      "9991217:13"
+    ],
+    "foto": [
+      "5929713:22"
+    ],
+    "fui": [
+      "5751052:26",
+      "6211036:7"
+    ],
+    "full": [
+      "1469974:27",
+      "5302844:9"
+    ],
+    "gu": [
+      "10471373:7"
+    ],
+    "guro": [
+      "10471373:7"
+    ],
+    "gustan": [
+      "1469974:14",
+      "5960780:31"
+    ],
+    "haga": [
+      "10627178:30",
+      "8417047:38"
+    ],
+    "hice": [
+      "10304179:27"
+    ],
+    "hizo": [
+      "5751052:21"
+    ],
+    "ja": [
+      "6211036:26",
+      "9991217:64"
+    ],
+    "jaque": [
+      "10304179:27"
+    ],
+    "josé": [
+      "5302840:4",
+      "6838492:18"
+    ],
+    "jugás": [
+      "9991217:7"
+    ],
+    "ken": [
+      "5302844:33",
+      "6211036:7"
+    ],
+    "krippy": [
+      "5960780:23",
+      "8417047:15"
+    ],
+    "lady": [
+      "3687950:8"
+    ],
+    "like": [
+      "9991217:13"
+    ],
+    "llama": [
+      "5302840:29",
+      "8417047:11"
+    ],
+    "llamo": [
+      "5929713:46"
+    ],
+    "llamé": [
+      "5960780:54",
+      "6838492:62"
+    ],
+    "ma": [
+      "10627178:35"
+    ],
+    "mas": [
+      "3687950:46",
+      "6838492:14"
+    ],
+    "mal": [
+      "10471373:10"
+    ],
+    "mamita": [
+      "10627178:31",
+      "9991217:43"
+    ],
+    "man": [
+      "5302844:49",
+      "6838492:3"
+    ],
+    "marido": [
+      "10489180:37",
+      "6838492:5"
+    ],
+    "merezco": [
+      "1556090:7"
+    ],
+    "mirando": [
+      "6838492:65",
+      "8417047:17"
+    ],
+    "miren": [
+      "10627178:1",
+      "5302844:11"
+    ],
+    "misma": [
+      "5302844:6",
+      "5929713:47"
+    ],
+    "mismo": [
+      "5960780:37",
+      "6838492:47"
+    ],
+    "mj": [
+      "9991217:61"
+    ],
+    "mm": [
+      "5302840:25"
+    ],
+    "modo": [
+      "5302840:10",
+      "9991217:18"
+    ],
+    "molesta": [
+      "5302840:13",
+      "6211036:28"
+    ],
+    "morena": [
+      "6211036:34"
+    ],
+    "mueve": [
+      "10627178:16",
+      "9991217:15"
+    ],
+    "mujer": [
+      "10919676:3",
+      "5960780:36"
+    ],
+    "muy": [
+      "10471373:30",
+      "6838492:25"
+    ],
+    "mírame": [
+      "6211036:48"
+    ],
+    "música": [
+      "1469974:3",
+      "3687950:18"
+    ],
+    "noches": [
+      "1469974:11",
+      "5960780:52"
+    ],
+    "nombre": [
+      "10489180:35",
+      "6211036:21"
+    ],
+    "notó": [
+      "5751052:22",
+      "9991217:16"
+    ],
+    "novio": [
+      "10304179:22",
+      "6838492:48"
+    ],
+    "olvido": [
+      "6838492:11"
+    ],
+    "ozuna": [
+      "5929713:78",
+      "5960780:4"
+    ],
+    "par": [
+      "5960780:29",
+      "6838492:13"
+    ],
+    "pared": [
+      "10471373:31",
+      "1469974:13"
+    ],
+    "pasa": [
+      "5302844:27",
+      "5929713:25"
+    ],
+    "pasarla": [
+      "5302840:6"
+    ],
+    "pecar": [
+      "5929713:60"
+    ],
+    "pendientes": [
+      "5960780:28",
+      "6838492:13"
+    ],
+    "perro": [
+      "5302844:7",
+      "5960780:37"
+    ],
+    "personal": [
+      "6838492:6"
+    ],
+    "pido": [
+      "10471373:25",
+      "6211036:40"
+    ],
+    "pista": [
+      "5302844:52",
+      "6838492:17"
+    ],
+    "polvo": [
+      "10304179:23",
+      "8417047:13"
+    ],
+    "pon": [
+      "8417047:15",
+      "9991217:18"
+    ],
+    "pone": [
+      "10489180:12"
+    ],
+    "primero": [
+      "10471373:27",
+      "6838492:63"
+    ],
+    "puso": [
+      "10627178:20",
+      "5302840:14"
+    ],
+    "quien": [
+      "5929713:49",
+      "6838492:17"
+    ],
+    "quieras": [
+      "10627178:12",
+      "5929713:53"
+    ],
+    "quién": [
+      "1556090:3",
+      "5302840:4"
+    ],
+    "ratatá": [
+      "1469974:10"
+    ],
+    "rd": [
+      "1469974:56",
+      "8417047:16"
+    ],
+    "real": [
+      "10304179:4",
+      "5960780:3"
+    ],
+    "regálame": [
+      "6838492:12",
+      "8417047:45"
+    ],
+    "repeat": [
+      "6211036:53",
+      "8417047:14"
+    ],
+    "rey": [
+      "6211036:24"
+    ],
+    "rica": [
+      "10489180:16",
+      "10627178:18"
+    ],
+    "ritmo": [
+      "9991217:15"
+    ],
+    "rompe": [
+      "5960780:24",
+      "9991217:36"
+    ],
+    "rompiendo": [
+      "5302844:51"
+    ],
+    "sabor": [
+      "5960780:61"
+    ],
+    "sensación": [
+      "10627178:9",
+      "8417047:32"
+    ],
+    "sexo": [
+      "8417047:33"
+    ],
+    "shorty": [
+      "10304179:21",
+      "1469974:30"
+    ],
+    "sigue": [
+      "10627178:9",
+      "5929713:6"
+    ],
+    "solas": [
+      "1469974:9"
+    ],
+    "solitas": [
+      "5302840:34"
+    ],
+    "solos": [
+      "10919676:8"
+    ],
+    "suena": [
+      "10489180:35",
+      "9991217:61"
+    ],
+    "suficiente": [
+      "1556090:19",
+      "6838492:51"
+    ],
+    "supiste": [
+      "1556090:1",
+      "8417047:48"
+    ],
+    "sí": [
+      "6211036:18",
+      "8417047:47"
+    ],
+    "t": [
+      "6211036:24"
+    ],
+    "tal": [
+      "10489180:21"
+    ],
+    "ten": [
+      "5302844:20"
+    ],
+    "tiktok": [
+      "9991217:15"
+    ],
+    "tocarte": [
+      "5929713:60"
+    ],
+    "tras": [
+      "3687950:4"
+    ],
+    "tuviste": [
+      "1556090:3",
+      "6838492:49"
+    ],
+    "uh": [
+      "1469974:58",
+      "5302844:48"
+    ],
+    "usted": [
+      "10304179:8",
+      "10489180:10"
+    ],
+    "van": [
+      "10489180:33",
+      "6211036:20"
+    ],
+    "vea": [
+      "10919676:13",
+      "5929713:56"
+    ],
+    "viendo": [
+      "5960780:24",
+      "9991217:44"
+    ],
+    "vive": [
+      "5960780:56"
+    ],
+    "volvemos": [
+      "8417047:8"
+    ],
+    "dos": [
+      "10489180:19",
+      "1556090:19"
+    ],
+    "heridas": [
+      "10471373:18"
+    ],
+    "pones": [
+      "5929713:51",
+      "9991217:20"
+    ],
+    "quiénes": [
+      "9991217:59"
+    ],
+    "sigues": [
+      "6838492:5"
+    ],
+    "toda": [
+      "1556090:18",
+      "5929713:25"
+    ],
+    "abajo": [
+      "9991217:47"
+    ],
+    "aburro": [
+      "6211036:17"
+    ],
+    "acaban": [
+      "8417047:32"
+    ],
+    "acabó": [
+      "6838492:30"
+    ],
+    "acelera": [
+      "5302844:23"
+    ],
+    "aclarar": [
+      "6838492:13"
+    ],
+    "activa": [
+      "5929713:45"
+    ],
+    "actuar": [
+      "10489180:30"
+    ],
+    "acumulado": [
+      "5960780:12"
+    ],
+    "acura": [
+      "5929713:21"
+    ],
+    "adicción": [
+      "8417047:33"
+    ],
+    "agosto": [
+      "6838492:62"
+    ],
+    "ajá": [
+      "5929713:82"
+    ],
+    "ak": [
+      "5960780:35"
+    ],
+    "alejando": [
+      "9991217:44"
+    ],
+    "alguien": [
+      "1556090:15"
+    ],
+    "algunos": [
+      "5302840:12"
+    ],
+    "amiga": [
+      "5929713:9"
+    ],
+    "amigas": [
+      "5302844:34"
+    ],
+    "amores": [
+      "8417047:34"
+    ],
+    "andaba": [
+      "10304179:7"
+    ],
+    "apagues": [
+      "6211036:9"
+    ],
+    "apareciste": [
+      "6838492:62"
+    ],
+    "apareció": [
+      "6838492:63"
+    ],
+    "apariencia": [
+      "5960780:56"
+    ],
+    "apellido": [
+      "10489180:35"
+    ],
+    "apretadita": [
+      "5929713:25"
+    ],
+    "aprieto": [
+      "5929713:23"
+    ],
+    "aprovecha": [
+      "6838492:43"
+    ],
+    "aquella": [
+      "5960780:53"
+    ],
+    "arrebátate": [
+      "10304179:31"
+    ],
+    "arrestar": [
+      "5302840:15"
+    ],
+    "arriba": [
+      "6211036:13"
+    ],
+    "arte": [
+      "10471373:31"
+    ],
+    "ascensor": [
+      "6211036:10"
+    ],
+    "aseguro": [
+      "10471373:48"
+    ],
+    "asimilar": [
+      "10471373:16"
+    ],
+    "aterrizado": [
+      "10471373:6"
+    ],
+    "atrevida": [
+      "5929713:44"
+    ],
+    "atrevido": [
+      "6838492:6"
+    ],
+    "atrevo": [
+      "10489180:19"
+    ],
+    "avenida": [
+      "9991217:70"
+    ],
+    "avión": [
+      "9991217:18"
+    ],
+    "año": [
+      "6211036:31"
+    ],
+    "babe": [
+      "5751052:2"
+    ],
+    "babies": [
+      "5960780:28"
+    ],
+    "bad": [
+      "6211036:36"
+    ],
+    "baila": [
+      "3687950:21"
+    ],
+    "bailaste": [
+      "5960780:53"
+    ],
+    "baile": [
+      "6211036:3"
+    ],
+    "bailo": [
+      "3687950:24"
+    ],
+    "bajamos": [
+      "5960780:30"
+    ],
+    "bajan": [
+      "10627178:11"
+    ],
+    "baje": [
+      "1469974:28"
+    ],
+    "bajo": [
+      "10471373:26"
+    ],
+    "bakin'": [
+      "6211036:41"
+    ],
+    "bandida": [
+      "8417047:19"
+    ],
+    "barbasol": [
+      "6211036:11"
+    ],
+    "bastante": [
+      "10471373:17"
+    ],
+    "bebe": [
+      "5960780:34"
+    ],
+    "bebiendo": [
+      "5960780:32"
+    ],
+    "beethoven": [
+      "5960780:37"
+    ],
+    "bellaqueos": [
+      "8417047:12"
+    ],
+    "ben": [
+      "5302844:31"
+    ],
+    "benz": [
+      "5302844:32"
+    ],
+    "besar": [
+      "10489180:15"
+    ],
+    "besaste": [
+      "8417047:23"
+    ],
+    "besito": [
+      "10489180:11"
+    ],
+    "bichota": [
+      "8417047:50"
+    ],
+    "bloque": [
+      "10627178:9"
+    ],
+    "bonita": [
+      "3687950:20"
+    ],
+    "borrado": [
+      "8417047:29"
+    ],
+    "borraré": [
+      "8417047:8"
+    ],
+    "boston": [
+      "6838492:63"
+    ],
+    "botelleo": [
+      "5960780:28"
+    ],
+    "boza": [
+      "10471373:70"
+    ],
+    "brad": [
+      "9991217:32"
+    ],
+    "bregando": [
+      "10304179:10"
+    ],
+    "brillando": [
+      "10304179:11"
+    ],
+    "bruk": [
+      "10919676:36"
+    ],
+    "brújula": [
+      "6838492:23"
+    ],
+    "bunny": [
+      "6211036:36"
+    ],
+    "cabe": [
+      "6838492:37"
+    ],
+    "cabecea": [
+      "9991217:34"
+    ],
+    "cachetes": [
+      "9991217:15"
+    ],
+    "cadenas": [
+      "5302844:31"
+    ],
+    "cadera": [
+      "5302844:19"
+    ],
+    "caduquen": [
+      "6211036:6"
+    ],
+    "caemos": [
+      "5929713:54"
+    ],
+    "caigo": [
+      "6838492:40"
+    ],
+    "calentando": [
+      "5751052:9"
+    ],
+    "calentándote": [
+      "9991217:39"
+    ],
+    "cambie": [
+      "1469974:15"
+    ],
+    "caminante": [
+      "5960780:32"
+    ],
+    "cana": [
+      "8417047:16"
+    ],
+    "canción": [
+      "5929713:43"
+    ],
+    "cansa": [
+      "5929713:14"
+    ],
+    "carajo": [
+      "5302844:20"
+    ],
+    "carro": [
+      "1469974:26"
+    ],
+    "caso": [
+      "10489180:34"
+    ],
+    "caí": [
+      "10471373:17"
+    ],
+    "cel": [
+      "8417047:36"
+    ],
+    "celosa": [
+      "10489180:12"
+    ],
+    "celu": [
+      "9991217:18"
+    ],
+    "cerquita": [
+      "3687950:37"
+    ],
+    "chamaquito": [
+      "6211036:40"
+    ],
+    "che": [
+      "5929713:80"
+    ],
+    "chichar": [
+      "6211036:17"
+    ],
+    "chingar": [
+      "9991217:3"
+    ],
+    "chingarte": [
+      "10471373:28"
+    ],
+    "chiquitita": [
+      "10627178:13"
+    ],
+    "choco": [
+      "1469974:25"
+    ],
+    "choque": [
+      "10627178:10"
+    ],
+    "cien": [
+      "5302844:19"
+    ],
+    "cinco": [
+      "5929713:49"
+    ],
+    "cintura": [
+      "5929713:23"
+    ],
+    "cinturón": [
+      "10471373:46"
+    ],
+    "city": [
+      "8417047:17"
+    ],
+    "claros": [
+      "5929713:3"
+    ],
+    "clase": [
+      "6838492:36"
+    ],
+    "coco": [
+      "6211036:41"
+    ],
+    "coincidimos": [
+      "5751052:3"
+    ],
+    "colores": [
+      "5302844:2"
+    ],
+    "combo": [
+      "10304179:4"
+    ],
+    "comerme": [
+      "10489180:19"
+    ],
+    "comido": [
+      "6838492:51"
+    ],
+    "comoquiera": [
+      "3687950:3"
+    ],
+    "competencia": [
+      "5960780:57"
+    ],
+    "completa": [
+      "10627178:30"
+    ],
+    "compone": [
+      "6211036:29"
+    ],
+    "compositor": [
+      "6211036:28"
+    ],
+    "comprando": [
+      "9991217:42"
+    ],
+    "compromete": [
+      "3687950:22"
+    ],
+    "condición": [
+      "10471373:27"
+    ],
+    "conecta": [
+      "10627178:14"
+    ],
+    "conejo": [
+      "6211036:12"
+    ],
+    "confesarte": [
+      "10471373:29"
+    ],
+    "confianza": [
+      "8417047:13"
+    ],
+    "confundía'": [
+      "10304179:25"
+    ],
+    "conocen": [
+      "5302840:2"
+    ],
+    "conocí": [
+      "5929713:8"
+    ],
+    "conozco": [
+      "6838492:27"
+    ],
+    "conquistarte": [
+      "10489180:31"
+    ],
+    "conquistándome": [
+      "5751052:5"
+    ],
+    "consistencia": [
+      "5960780:55"
+    ],
+    "construcción": [
+      "10471373:26"
+    ],
+    "contestaste": [
+      "5960780:54"
+    ],
+    "contesto": [
+      "6211036:14"
+    ],
+    "convertí": [
+      "6211036:27"
+    ],
+    "coqueta": [
+      "10627178:20"
+    ],
+    "corleone": [
+      "5929713:50"
+    ],
+    "cortecito": [
+      "10627178:2"
+    ],
+    "cosas": [
+      "6838492:13"
+    ],
+    "cris": [
+      "9991217:61"
+    ],
+    "crush": [
+      "6211036:17"
+    ],
+    "cualquier": [
+      "10489180:11"
+    ],
+    "cuela": [
+      "6211036:33"
+    ],
+    "cuello": [
+      "10304179:11"
+    ],
+    "cuenta": [
+      "10304179:22"
+    ],
+    "cuerpo": [
+      "6838492:44"
+    ],
+    "cuida": [
+      "8417047:10"
+    ],
+    "cuido": [
+      "5929713:28"
+    ],
+    "culo": [
+      "10627178:31"
+    ],
+    "cuquen": [
+      "6211036:4"
+    ],
+    "curo": [
+      "10471373:8"
+    ],
+    "dan": [
+      "5929713:45"
+    ],
+    "dando": [
+      "10627178:2"
+    ],
+    "darme": [
+      "1556090:15"
+    ],
+    "das": [
+      "6838492:19"
+    ],
+    "dato": [
+      "6838492:39"
+    ],
+    "dañar": [
+      "10471373:18"
+    ],
+    "dañaron": [
+      "10471373:8"
+    ],
+    "dedo": [
+      "5960780:30"
+    ],
+    "debility": [
+      "5929713:51"
+    ],
+    "decir": [
+      "1556090:7"
+    ],
+    "deja": [
+      "10304179:34"
+    ],
+    "dejaste": [
+      "5960780:62"
+    ],
+    "deje": [
+      "8417047:11"
+    ],
+    "demasiado": [
+      "5302844:18"
+    ],
+    "demás": [
+      "3687950:10"
+    ],
+    "dentro": [
+      "8417047:37"
+    ],
+    "deporte": [
+      "6838492:21"
+    ],
+    "desaparezco": [
+      "1556090:6"
+    ],
+    "descuido": [
+      "10489180:36"
+    ],
+    "desea": [
+      "1469974:11"
+    ],
+    "deseo": [
+      "5929713:45"
+    ],
+    "desespero": [
+      "3687950:45"
+    ],
+    "desnuda": [
+      "8417047:36"
+    ],
+    "despedida": [
+      "8417047:13"
+    ],
+    "despeluquen": [
+      "6211036:3"
+    ],
+    "despertaste": [
+      "5302844:26"
+    ],
+    "despreocúpate": [
+      "10304179:32"
+    ],
+    "despídete": [
+      "8417047:36"
+    ],
+    "destendida": [
+      "8417047:11"
+    ],
+    "detrás": [
+      "3687950:7"
+    ],
+    "devorándonos": [
+      "5929713:48"
+    ],
+    "diablo": [
+      "1469974:23"
+    ],
+    "dices": [
+      "5929713:47"
+    ],
+    "diciéndoselo": [
+      "5929713:4"
+    ],
+    "dieron": [
+      "6838492:39"
+    ],
+    "diga": [
+      "10919676:11"
+    ],
+    "digo": [
+      "8417047:37"
+    ],
+    "dilema": [
+      "5929713:59"
+    ],
+    "dinero": [
+      "3687950:42"
+    ],
+    "dinosaurs": [
+      "6211036:8"
+    ],
+    "dio": [
+      "8417047:2"
+    ],
+    "discoteka'": [
+      "5960780:24"
+    ],
+    "disfruta": [
+      "1469974:16"
+    ],
+    "diva": [
+      "6838492:44"
+    ],
+    "dm": [
+      "6211036:14"
+    ],
+    "dolido": [
+      "6838492:52"
+    ],
+    "dolor": [
+      "10471373:52"
+    ],
+    "drive": [
+      "5302844:27"
+    ],
+    "drums": [
+      "8417047:51"
+    ],
+    "dura": [
+      "10471373:52"
+    ],
+    "dynell": [
+      "5929713:85"
+    ],
+    "dé": [
+      "1469974:16"
+    ],
+    "días": [
+      "9991217:44"
+    ],
+    "e'perado": [
+      "10471373:50"
+    ],
+    "e'to": [
+      "1469974:7"
+    ],
+    "echa": [
+      "5302844:13"
+    ],
+    "echamos": [
+      "10304179:23"
+    ],
+    "eduquen": [
+      "6211036:5"
+    ],
+    "elena": [
+      "10471373:71"
+    ],
+    "ellos": [
+      "6838492:41"
+    ],
+    "embichar": [
+      "6211036:16"
+    ],
+    "embobado": [
+      "10471373:3"
+    ],
+    "emma": [
+      "5751052:10"
+    ],
+    "emocionen": [
+      "6211036:30"
+    ],
+    "empalagando": [
+      "6838492:64"
+    ],
+    "empezó": [
+      "10489180:3"
+    ],
+    "enamorando": [
+      "9991217:42"
+    ],
+    "enamoré": [
+      "10919676:4"
+    ],
+    "encantaría": [
+      "5960780:14"
+    ],
+    "encontrado": [
+      "10471373:2"
+    ],
+    "encontré": [
+      "10304179:7"
+    ],
+    "ende": [
+      "10471373:50"
+    ],
+    "endulza": [
+      "1556090:16"
+    ],
+    "enero": [
+      "6838492:62"
+    ],
+    "engreído": [
+      "6838492:47"
+    ],
+    "enredamos": [
+      "10304179:6"
+    ],
+    "entendemos": [
+      "8417047:6"
+    ],
+    "entender": [
+      "1556090:1"
+    ],
+    "entendido": [
+      "10489180:42"
+    ],
+    "entendí": [
+      "1556090:19"
+    ],
+    "entero": [
+      "3687950:43"
+    ],
+    "entiende": [
+      "10471373:49"
+    ],
+    "entiendo": [
+      "5929713:58"
+    ],
+    "entonces": [
+      "5302840:16"
+    ],
+    "entra": [
+      "3687950:38"
+    ],
+    "entramos": [
+      "5960780:25"
+    ],
+    "entre": [
+      "5751052:8"
+    ],
+    "entrego": [
+      "3687950:24"
+    ],
+    "enviciaste": [
+      "8417047:24"
+    ],
+    "era": [
+      "5960780:2"
+    ],
+    "esas": [
+      "6838492:35"
+    ],
+    "escaleras": [
+      "5302844:21"
+    ],
+    "escapado": [
+      "10919676:12"
+    ],
+    "escribe": [
+      "6211036:30"
+    ],
+    "escribió": [
+      "5751052:10"
+    ],
+    "escuchar": [
+      "6211036:21"
+    ],
+    "escuchas": [
+      "1556090:4"
+    ],
+    "escucho": [
+      "5929713:43"
+    ],
+    "escuela": [
+      "6211036:32"
+    ],
+    "esos": [
+      "10489180:33"
+    ],
+    "espera": [
+      "1556090:14"
+    ],
+    "espere": [
+      "10471373:4"
+    ],
+    "esquives": [
+      "3687950:3"
+    ],
+    "estas": [
+      "10489180:18"
+    ],
+    "estan": [
+      "5302840:39"
+    ],
+    "estar": [
+      "9991217:45"
+    ],
+    "estarías": [
+      "10489180:7"
+    ],
+    "ester": [
+      "5929713:56"
+    ],
+    "estos": [
+      "10304179:37"
+    ],
+    "estrés": [
+      "10304179:23"
+    ],
+    "están": [
+      "5302840:34"
+    ],
+    "estés": [
+      "8417047:39"
+    ],
+    "eternity": [
+      "5929713:47"
+    ],
+    "evitar": [
+      "5751052:22"
+    ],
+    "ex": [
+      "10304179:22"
+    ],
+    "explícitos": [
+      "8417047:35"
+    ],
+    "expósito": [
+      "5929713:56"
+    ],
+    "extinguieron": [
+      "6211036:8"
+    ],
+    "fallarle": [
+      "10471373:47"
+    ],
+    "falta": [
+      "8417047:38"
+    ],
+    "fama": [
+      "6838492:10"
+    ],
+    "fatality": [
+      "5929713:48"
+    ],
+    "favorita": [
+      "3687950:39"
+    ],
+    "fe": [
+      "10489180:33"
+    ],
+    "feka": [
+      "6211036:49"
+    ],
+    "feo": [
+      "5960780:29"
+    ],
+    "fichar": [
+      "6211036:20"
+    ],
+    "fiera": [
+      "5302844:26"
+    ],
+    "fila": [
+      "6211036:33"
+    ],
+    "filosofía": [
+      "10471373:48"
+    ],
+    "fin": [
+      "8417047:35"
+    ],
+    "final": [
+      "5929713:14"
+    ],
+    "flow": [
+      "5302840:11"
+    ],
+    "floyymenor": [
+      "9991217:60"
+    ],
+    "frontear": [
+      "6211036:53"
+    ],
+    "fuera": [
+      "10919676:12"
+    ],
+    "fumemos": [
+      "10304179:33"
+    ],
+    "fumé": [
+      "10304179:9"
+    ],
+    "funcionamos": [
+      "8417047:1"
+    ],
+    "futuro": [
+      "1469974:3"
+    ],
+    "fácil": [
+      "3687950:2"
+    ],
+    "g": [
+      "10304179:4"
+    ],
+    "gana": [
+      "5960780:58"
+    ],
+    "ganan": [
+      "5302844:10"
+    ],
+    "gangsters": [
+      "5960780:31"
+    ],
+    "gimiéndome": [
+      "9991217:41"
+    ],
+    "glopeta": [
+      "10627178:29"
+    ],
+    "gloria": [
+      "1469974:6"
+    ],
+    "gocen": [
+      "5302840:3"
+    ],
+    "golosina": [
+      "6838492:64"
+    ],
+    "gotay": [
+      "5929713:86"
+    ],
+    "graba": [
+      "10304179:38"
+    ],
+    "grabando": [
+      "8417047:36"
+    ],
+    "grita": [
+      "1469974:29"
+    ],
+    "guarda": [
+      "8417047:38"
+    ],
+    "guardado": [
+      "10471373:1"
+    ],
+    "guayarte": [
+      "9991217:46"
+    ],
+    "gustaban": [
+      "5751052:11"
+    ],
+    "gustamos": [
+      "5929713:59"
+    ],
+    "gustando": [
+      "10471373:29"
+    ],
+    "gusté": [
+      "5751052:13"
+    ],
+    "gánster": [
+      "8417047:19"
+    ],
+    "género": [
+      "6211036:7"
+    ],
+    "haber": [
+      "5302844:5"
+    ],
+    "habido": [
+      "6838492:8"
+    ],
+    "habla": [
+      "10304179:22"
+    ],
+    "hablen": [
+      "6211036:14"
+    ],
+    "habría": [
+      "10919676:11"
+    ],
+    "había": [
+      "1556090:2"
+    ],
+    "haces": [
+      "5929713:53"
+    ],
+    "hacerle": [
+      "6211036:32"
+    ],
+    "hacerles": [
+      "6211036:38"
+    ],
+    "hacernos": [
+      "10919676:17"
+    ],
+    "had": [
+      "6211036:7"
+    ],
+    "hagas": [
+      "5929713:11"
+    ],
+    "hard": [
+      "5302844:27"
+    ],
+    "haría": [
+      "10471373:46"
+    ],
+    "haters": [
+      "10304179:37"
+    ],
+    "hermosa": [
+      "10489180:12"
+    ],
+    "hierba": [
+      "10304179:9"
+    ],
+    "high": [
+      "5929713:50"
+    ],
+    "hijueputa": [
+      "6211036:54"
+    ],
+    "hijueputas": [
+      "6211036:4"
+    ],
+    "himnos": [
+      "6211036:6"
+    ],
+    "hipnotizada": [
+      "10304179:39"
+    ],
+    "hombre": [
+      "3687950:40"
+    ],
+    "horas": [
+      "5929713:13"
+    ],
+    "hyde": [
+      "5929713:83"
+    ],
+    "héctor": [
+      "5960780:24"
+    ],
+    "importan": [
+      "3687950:10"
+    ],
+    "importes": [
+      "6838492:22"
+    ],
+    "incomode": [
+      "5960780:35"
+    ],
+    "inevitable": [
+      "10919676:17"
+    ],
+    "inmediato": [
+      "6838492:40"
+    ],
+    "insanity": [
+      "5929713:51"
+    ],
+    "insistas": [
+      "6838492:18"
+    ],
+    "instante": [
+      "5960780:9"
+    ],
+    "inteligencia": [
+      "5960780:58"
+    ],
+    "intentan": [
+      "6838492:41"
+    ],
+    "intentando": [
+      "8417047:21"
+    ],
+    "intento": [
+      "3687950:12"
+    ],
+    "invitó": [
+      "5751052:24"
+    ],
+    "irnos": [
+      "8417047:4"
+    ],
+    "irse": [
+      "6211036:37"
+    ],
+    "iría": [
+      "1556090:17"
+    ],
+    "it": [
+      "10471373:23"
+    ],
+    "jaja": [
+      "8417047:48"
+    ],
+    "jaló": [
+      "5751052:20"
+    ],
+    "jangueando": [
+      "10489180:20"
+    ],
+    "je": [
+      "5929713:88"
+    ],
+    "jefe": [
+      "6211036:20"
+    ],
+    "jode": [
+      "5960780:34"
+    ],
+    "jodido": [
+      "6838492:10"
+    ],
+    "jodidos": [
+      "8417047:31"
+    ],
+    "juguetones": [
+      "1469974:14"
+    ],
+    "juro": [
+      "6211036:16"
+    ],
+    "kanye": [
+      "10304179:29"
+    ],
+    "labios": [
+      "10304179:36"
+    ],
+    "lado": [
+      "1556090:6"
+    ],
+    "lean": [
+      "6211036:5"
+    ],
+    "legal": [
+      "5302840:15"
+    ],
+    "lento": [
+      "5751052:21"
+    ],
+    "letras": [
+      "5929713:49"
+    ],
+    "liga": [
+      "6838492:42"
+    ],
+    "lista": [
+      "3687950:39"
+    ],
+    "llamas": [
+      "5929713:54"
+    ],
+    "lleca": [
+      "5960780:23"
+    ],
+    "llega": [
+      "5929713:44"
+    ],
+    "llega'te": [
+      "10471373:30"
+    ],
+    "llego": [
+      "3687950:23"
+    ],
+    "llegó": [
+      "8417047:35"
+    ],
+    "lleno": [
+      "10304179:11"
+    ],
+    "lleva": [
+      "1469974:6"
+    ],
+    "llevan": [
+      "5302844:19"
+    ],
+    "llevo": [
+      "5929713:4"
+    ],
+    "llevé": [
+      "6211036:32"
+    ],
+    "llevó": [
+      "6211036:36"
+    ],
+    "llorar": [
+      "1556090:7"
+    ],
+    "lmg": [
+      "10304179:3"
+    ],
+    "loba": [
+      "1469974:38"
+    ],
+    "loco": [
+      "5302840:2"
+    ],
+    "locotrón": [
+      "9991217:19"
+    ],
+    "locuras": [
+      "5929713:11"
+    ],
+    "loquito": [
+      "5929713:57"
+    ],
+    "luego": [
+      "5751052:13"
+    ],
+    "lugar": [
+      "10471373:39"
+    ],
+    "luna": [
+      "10919676:9"
+    ],
+    "lástima": [
+      "1556090:10"
+    ],
+    "líos": [
+      "8417047:32"
+    ],
+    "lúcete": [
+      "10304179:31"
+    ],
+    "mai": [
+      "6838492:34"
+    ],
+    "maldito": [
+      "6211036:12"
+    ],
+    "maleantes": [
+      "5960780:31"
+    ],
+    "maleanteo": [
+      "5960780:27"
+    ],
+    "malgastaste": [
+      "8417047:20"
+    ],
+    "malicia": [
+      "8417047:24"
+    ],
+    "mamá": [
+      "5302840:29"
+    ],
+    "mandé": [
+      "10627178:30"
+    ],
+    "mandó": [
+      "5751052:26"
+    ],
+    "manejo": [
+      "6211036:14"
+    ],
+    "manual": [
+      "10489180:31"
+    ],
+    "maquillar": [
+      "3687950:20"
+    ],
+    "mari": [
+      "5302840:12"
+    ],
+    "maría": [
+      "10304179:25"
+    ],
+    "mata": [
+      "3687950:21"
+    ],
+    "matando": [
+      "9991217:64"
+    ],
+    "material": [
+      "5960780:58"
+    ],
+    "maté": [
+      "10304179:10"
+    ],
+    "maybach": [
+      "5302844:32"
+    ],
+    "menor": [
+      "9991217:37"
+    ],
+    "mentir": [
+      "10471373:24"
+    ],
+    "merece": [
+      "5929713:5"
+    ],
+    "mete": [
+      "3687950:21"
+    ],
+    "meter": [
+      "10304179:33"
+    ],
+    "metí": [
+      "6211036:17"
+    ],
+    "mezclamos": [
+      "10304179:38"
+    ],
+    "miami": [
+      "10471373:26"
+    ],
+    "micro": [
+      "10627178:10"
+    ],
+    "miel": [
+      "5960780:61"
+    ],
+    "milly": [
+      "6211036:18"
+    ],
+    "mirar": [
+      "10489180:33"
+    ],
+    "mirarlo": [
+      "5751052:23"
+    ],
+    "miro": [
+      "6211036:13"
+    ],
+    "mirándome": [
+      "5960780:26"
+    ],
+    "mirándonos": [
+      "5960780:29"
+    ],
+    "mirándote": [
+      "5960780:26"
+    ],
+    "misiones": [
+      "9991217:20"
+    ],
+    "mmm": [
+      "10489180:21"
+    ],
+    "moja'íta": [
+      "8417047:39"
+    ],
+    "mojarte": [
+      "9991217:47"
+    ],
+    "mordido": [
+      "5960780:29"
+    ],
+    "motiva": [
+      "6838492:44"
+    ],
+    "motociclista": [
+      "6838492:19"
+    ],
+    "muah": [
+      "9991217:78"
+    ],
+    "mucha": [
+      "5960780:58"
+    ],
+    "muchas": [
+      "6838492:19"
+    ],
+    "muerdes": [
+      "10304179:36"
+    ],
+    "muerden": [
+      "10304179:37"
+    ],
+    "muere": [
+      "1469974:13"
+    ],
+    "muerte": [
+      "5960780:3"
+    ],
+    "mujerón": [
+      "10471373:47"
+    ],
+    "muévelo": [
+      "9991217:34"
+    ],
+    "muñeca": [
+      "10627178:18"
+    ],
+    "mándame": [
+      "9991217:14"
+    ],
+    "mía": [
+      "5929713:11"
+    ],
+    "móntate": [
+      "5302844:28"
+    ],
+    "nacido": [
+      "6838492:48"
+    ],
+    "navidad": [
+      "6838492:7"
+    ],
+    "necesita": [
+      "3687950:40"
+    ],
+    "negrito": [
+      "5929713:3"
+    ],
+    "nice": [
+      "6838492:35"
+    ],
+    "niega": [
+      "8417047:13"
+    ],
+    "nike": [
+      "6838492:35"
+    ],
+    "nivel": [
+      "5960780:57"
+    ],
+    "niveles": [
+      "5302844:11"
+    ],
+    "norte": [
+      "6838492:23"
+    ],
+    "nota": [
+      "5929713:10"
+    ],
+    "noté": [
+      "5751052:6"
+    ],
+    "novia": [
+      "10489180:12"
+    ],
+    "nube": [
+      "10471373:5"
+    ],
+    "número": [
+      "5960780:54"
+    ],
+    "números": [
+      "6211036:5"
+    ],
+    "obra": [
+      "10471373:31"
+    ],
+    "oh": [
+      "1469974:2"
+    ],
+    "ojalá": [
+      "10919676:11"
+    ],
+    "ojitos": [
+      "10489180:33"
+    ],
+    "olvidan": [
+      "8417047:12"
+    ],
+    "on": [
+      "8417047:51"
+    ],
+    "only": [
+      "9991217:14"
+    ],
+    "orillita": [
+      "8417047:10"
+    ],
+    "orión": [
+      "10471373:46"
+    ],
+    "oído": [
+      "9991217:41"
+    ],
+    "oíste": [
+      "5960780:3"
+    ],
+    "pagando": [
+      "6211036:37"
+    ],
+    "panamá": [
+      "10471373:69"
+    ],
+    "papi": [
+      "6838492:25"
+    ],
+    "parar": [
+      "5302840:28"
+    ],
+    "parece": [
+      "5929713:14"
+    ],
+    "pareces": [
+      "6838492:19"
+    ],
+    "parecemos": [
+      "5302840:11"
+    ],
+    "parezca": [
+      "6838492:52"
+    ],
+    "paro": [
+      "5960780:52"
+    ],
+    "partes": [
+      "9991217:47"
+    ],
+    "pasa'te": [
+      "10471373:30"
+    ],
+    "pasajera": [
+      "5960780:17"
+    ],
+    "pasan": [
+      "5929713:13"
+    ],
+    "pasando": [
+      "10627178:1"
+    ],
+    "pasar": [
+      "9991217:5"
+    ],
+    "pasen": [
+      "10489180:31"
+    ],
+    "paso": [
+      "10304179:8"
+    ],
+    "pasó": [
+      "9991217:17"
+    ],
+    "pegando": [
+      "6211036:38"
+    ],
+    "pegarte": [
+      "10471373:31"
+    ],
+    "pegue": [
+      "1469974:13"
+    ],
+    "peine": [
+      "10627178:14"
+    ],
+    "pelúa": [
+      "6211036:2"
+    ],
+    "penas": [
+      "5302844:20"
+    ],
+    "penetra": [
+      "5929713:49"
+    ],
+    "pensar": [
+      "3687950:18"
+    ],
+    "pensaste": [
+      "8417047:22"
+    ],
+    "pensé": [
+      "1556090:17"
+    ],
+    "perdiendo": [
+      "5929713:6"
+    ],
+    "perdiste": [
+      "6838492:16"
+    ],
+    "perdona": [
+      "6838492:6"
+    ],
+    "perdí": [
+      "6838492:9"
+    ],
+    "permití": [
+      "5929713:53"
+    ],
+    "perreando": [
+      "5960780:28"
+    ],
+    "perréame": [
+      "5960780:33"
+    ],
+    "pertenece": [
+      "5929713:7"
+    ],
+    "pichear": [
+      "6211036:15"
+    ],
+    "pides": [
+      "10471373:4"
+    ],
+    "pin": [
+      "6838492:40"
+    ],
+    "pinta": [
+      "5960780:55"
+    ],
+    "piquete": [
+      "3687950:21"
+    ],
+    "piqué": [
+      "5929713:28"
+    ],
+    "pirata": [
+      "10471373:45"
+    ],
+    "pistolas": [
+      "5960780:25"
+    ],
+    "pitt": [
+      "9991217:32"
+    ],
+    "plan": [
+      "10304179:5"
+    ],
+    "platón": [
+      "10471373:48"
+    ],
+    "playa": [
+      "8417047:16"
+    ],
+    "pocas": [
+      "6838492:36"
+    ],
+    "poco": [
+      "10304179:38"
+    ],
+    "policía": [
+      "5302840:13"
+    ],
+    "ponerte": [
+      "5302844:30"
+    ],
+    "ponértelo": [
+      "10627178:12"
+    ],
+    "porno": [
+      "8417047:7"
+    ],
+    "porte": [
+      "6838492:20"
+    ],
+    "poses": [
+      "10919676:15"
+    ],
+    "posiciones": [
+      "1469974:15"
+    ],
+    "prefieres": [
+      "9991217:45"
+    ],
+    "pregunta": [
+      "6211036:39"
+    ],
+    "premio": [
+      "6211036:28"
+    ],
+    "premios": [
+      "6211036:36"
+    ],
+    "preocupes": [
+      "10304179:32"
+    ],
+    "prepa": [
+      "6211036:11"
+    ],
+    "presentarte": [
+      "10489180:37"
+    ],
+    "presento": [
+      "5302840:4"
+    ],
+    "pri": [
+      "10471373:29"
+    ],
+    "primer": [
+      "10489180:36"
+    ],
+    "privacidad": [
+      "5929713:52"
+    ],
+    "probable": [
+      "1556090:8"
+    ],
+    "problema": [
+      "5929713:58"
+    ],
+    "prometes": [
+      "3687950:22"
+    ],
+    "promo": [
+      "6211036:38"
+    ],
+    "propósito": [
+      "5929713:55"
+    ],
+    "pudiera": [
+      "5960780:8"
+    ],
+    "pueden": [
+      "5302840:15"
+    ],
+    "puedo": [
+      "10471373:39"
+    ],
+    "puertas": [
+      "10627178:11"
+    ],
+    "puesta": [
+      "8417047:14"
+    ],
+    "punta": [
+      "8417047:16"
+    ],
+    "puto": [
+      "6211036:31"
+    ],
+    "quality": [
+      "5929713:50"
+    ],
+    "quedan": [
+      "6838492:35"
+    ],
+    "quedaste": [
+      "5960780:51"
+    ],
+    "quedó": [
+      "5960780:11"
+    ],
+    "querías": [
+      "5751052:7"
+    ],
+    "quise": [
+      "6211036:16"
+    ],
+    "quita": [
+      "3687950:38"
+    ],
+    "quitar": [
+      "10489180:32"
+    ],
+    "quito": [
+      "10304179:23"
+    ],
+    "químico": [
+      "5929713:83"
+    ],
+    "raptar": [
+      "9991217:3"
+    ],
+    "rastro": [
+      "6838492:9"
+    ],
+    "rato": [
+      "6838492:38"
+    ],
+    "raza": [
+      "5302844:7"
+    ],
+    "razón": [
+      "5960780:30"
+    ],
+    "realidad": [
+      "5960780:56"
+    ],
+    "reality": [
+      "5929713:52"
+    ],
+    "recordarte": [
+      "5960780:52"
+    ],
+    "recuerda": [
+      "5929713:43"
+    ],
+    "recuerdo": [
+      "5960780:12"
+    ],
+    "redes": [
+      "5929713:26"
+    ],
+    "regalando": [
+      "9991217:42"
+    ],
+    "reggaetón": [
+      "5302840:3"
+    ],
+    "regresar": [
+      "5960780:8"
+    ],
+    "relaciones": [
+      "5751052:14"
+    ],
+    "retira": [
+      "6211036:19"
+    ],
+    "richard": [
+      "6211036:18"
+    ],
+    "robar": [
+      "3687950:19"
+    ],
+    "robaría": [
+      "10471373:45"
+    ],
+    "robe": [
+      "5960780:36"
+    ],
+    "robo": [
+      "9991217:37"
+    ],
+    "roce": [
+      "5302840:1"
+    ],
+    "rojos": [
+      "10304179:9"
+    ],
+    "rompimos": [
+      "6211036:10"
+    ],
+    "rosa": [
+      "3687950:19"
+    ],
+    "rosé": [
+      "5751052:8"
+    ],
+    "ruido": [
+      "1556090:5"
+    ],
+    "rulay": [
+      "10489180:2"
+    ],
+    "sabe": [
+      "5960780:57"
+    ],
+    "saber": [
+      "6838492:32"
+    ],
+    "sabiendo": [
+      "5929713:7"
+    ],
+    "saca": [
+      "6838492:38"
+    ],
+    "safari": [
+      "5302840:10"
+    ],
+    "sal": [
+      "1556090:16"
+    ],
+    "salga": [
+      "1556090:16"
+    ],
+    "salir": [
+      "5751052:24"
+    ],
+    "sanan": [
+      "10471373:51"
+    ],
+    "santa": [
+      "6838492:7"
+    ],
+    "saque": [
+      "10304179:24"
+    ],
+    "sartén": [
+      "5302844:30"
+    ],
+    "secreto": [
+      "10471373:1"
+    ],
+    "secuela": [
+      "6211036:32"
+    ],
+    "secuestro": [
+      "5929713:61"
+    ],
+    "seguramente": [
+      "10489180:7"
+    ],
+    "seguridad": [
+      "5302844:9"
+    ],
+    "seguro": [
+      "10471373:39"
+    ],
+    "semejante": [
+      "10471373:47"
+    ],
+    "sencilla": [
+      "3687950:20"
+    ],
+    "sentado": [
+      "10471373:4"
+    ],
+    "sentido": [
+      "1469974:7"
+    ],
+    "sepa": [
+      "1556090:15"
+    ],
+    "sepas": [
+      "9991217:79"
+    ],
+    "serena": [
+      "9991217:69"
+    ],
+    "serio": [
+      "8417047:21"
+    ],
+    "será": [
+      "8417047:33"
+    ],
+    "setas": [
+      "5960780:25"
+    ],
+    "shakira": [
+      "5929713:28"
+    ],
+    "shh": [
+      "6211036:17"
+    ],
+    "sicarios": [
+      "5302840:11"
+    ],
+    "sido": [
+      "10489180:5"
+    ],
+    "siendo": [
+      "6838492:47"
+    ],
+    "siga": [
+      "5302840:28"
+    ],
+    "siguen": [
+      "6211036:33"
+    ],
+    "sino": [
+      "10489180:9"
+    ],
+    "sirven": [
+      "8417047:34"
+    ],
+    "size": [
+      "6838492:37"
+    ],
+    "sky": [
+      "5302844:51"
+    ],
+    "so": [
+      "6211036:30"
+    ],
+    "soledad": [
+      "10304179:10"
+    ],
+    "sorprende": [
+      "10471373:50"
+    ],
+    "sospecha": [
+      "5929713:26"
+    ],
+    "sube": [
+      "5929713:10"
+    ],
+    "subimos": [
+      "6211036:10"
+    ],
+    "sucedido": [
+      "6838492:11"
+    ],
+    "sur": [
+      "1469974:28"
+    ],
+    "sus": [
+      "6211036:30"
+    ],
+    "suya": [
+      "10489180:12"
+    ],
+    "switchear": [
+      "6211036:19"
+    ],
+    "sólo": [
+      "1556090:5"
+    ],
+    "take": [
+      "10471373:23"
+    ],
+    "tanque": [
+      "1469974:27"
+    ],
+    "tate": [
+      "9991217:26"
+    ],
+    "tatuaje": [
+      "10304179:3"
+    ],
+    "taza": [
+      "5302844:6"
+    ],
+    "tego": [
+      "5302840:3"
+    ],
+    "temas": [
+      "6211036:38"
+    ],
+    "tenemos": [
+      "5929713:52"
+    ],
+    "tenerte": [
+      "10471373:15"
+    ],
+    "tenqui": [
+      "6211036:40"
+    ],
+    "tera": [
+      "5302844:27"
+    ],
+    "termine": [
+      "8417047:45"
+    ],
+    "terraza": [
+      "5302844:4"
+    ],
+    "testigo": [
+      "10919676:9"
+    ],
+    "the": [
+      "8417047:51"
+    ],
+    "tigueres": [
+      "5302840:10"
+    ],
+    "timidez": [
+      "10304179:34"
+    ],
+    "tiras": [
+      "3687950:23"
+    ],
+    "tiro": [
+      "9991217:20"
+    ],
+    "tiró": [
+      "6211036:11"
+    ],
+    "tocándote": [
+      "9991217:39"
+    ],
+    "tocó": [
+      "5302840:30"
+    ],
+    "todavía": [
+      "10471373:6"
+    ],
+    "todos": [
+      "10304179:4"
+    ],
+    "toma": [
+      "3687950:8"
+    ],
+    "tomamos": [
+      "5302844:6"
+    ],
+    "tomando": [
+      "5302840:12"
+    ],
+    "top": [
+      "5302844:21"
+    ],
+    "tope": [
+      "10627178:11"
+    ],
+    "tortura": [
+      "5929713:22"
+    ],
+    "toto": [
+      "10627178:16"
+    ],
+    "traba": [
+      "5929713:46"
+    ],
+    "trajaja": [
+      "9991217:77"
+    ],
+    "tranquila": [
+      "10627178:11"
+    ],
+    "tratando": [
+      "6211036:32"
+    ],
+    "tratar": [
+      "10489180:14"
+    ],
+    "traten": [
+      "5302844:8"
+    ],
+    "trato": [
+      "6838492:41"
+    ],
+    "traído": [
+      "6838492:7"
+    ],
+    "tres": [
+      "10304179:23"
+    ],
+    "tuya": [
+      "5929713:44"
+    ],
+    "tíguere'": [
+      "1469974:14"
+    ],
+    "tímida": [
+      "10489180:17"
+    ],
+    "tírate": [
+      "5302844:30"
+    ],
+    "tóxicos": [
+      "8417047:34"
+    ],
+    "uah": [
+      "5960780:33"
+    ],
+    "ubi": [
+      "9991217:14"
+    ],
+    "uff": [
+      "5302844:22"
+    ],
+    "usar": [
+      "6211036:18"
+    ],
+    "ustes": [
+      "9991217:43"
+    ],
+    "vacaciones": [
+      "6838492:63"
+    ],
+    "vacilo": [
+      "6838492:17"
+    ],
+    "vale": [
+      "3687950:42"
+    ],
+    "valor": [
+      "1556090:3"
+    ],
+    "varear": [
+      "8417047:16"
+    ],
+    "varios": [
+      "10304179:29"
+    ],
+    "vas": [
+      "5929713:61"
+    ],
+    "veas": [
+      "6211036:54"
+    ],
+    "vendidos": [
+      "6211036:31"
+    ],
+    "venezuela": [
+      "10471373:69"
+    ],
+    "vengas": [
+      "6838492:26"
+    ],
+    "ventana": [
+      "8417047:17"
+    ],
+    "veo": [
+      "10489180:30"
+    ],
+    "verano": [
+      "10489180:3"
+    ],
+    "verte": [
+      "6838492:12"
+    ],
+    "veía": [
+      "10304179:12"
+    ],
+    "vi": [
+      "10919676:4"
+    ],
+    "viajo": [
+      "3687950:43"
+    ],
+    "videos": [
+      "5929713:56"
+    ],
+    "vienes": [
+      "8417047:47"
+    ],
+    "viernes": [
+      "5960780:34"
+    ],
+    "viniéndote": [
+      "9991217:40"
+    ],
+    "vino": [
+      "5302840:12"
+    ],
+    "violento": [
+      "5302840:11"
+    ],
+    "virales": [
+      "6211036:37"
+    ],
+    "vista": [
+      "6838492:16"
+    ],
+    "vitrina": [
+      "6838492:65"
+    ],
+    "volando": [
+      "9991217:44"
+    ],
+    "vueltas": [
+      "6838492:19"
+    ],
+    "vuelto": [
+      "5929713:48"
+    ],
+    "vuelvo": [
+      "10304179:12"
+    ],
+    "vvs": [
+      "10304179:11"
+    ],
+    "vídeo": [
+      "8417047:38"
+    ],
+    "west": [
+      "10304179:29"
+    ],
+    "yankee": [
+      "6211036:19"
+    ],
+    "yasso": [
+      "5929713:87"
+    ],
+    "yeh": [
+      "5929713:80"
+    ],
+    "yuh": [
+      "10919676:36"
+    ],
+    "última": [
+      "8417047:5"
+    ],
+    "único": [
+      "10471373:49"
+    ],
+    "calentar": [
+      "9991217:39"
+    ],
+    "dar": [
+      "10471373:25",
+      "1469974:24",
+      "1556090:15",
+      "5960780:30",
+      "6838492:40",
+      "9991217:38",
+      "9991217:46"
+    ],
+    "venir": [
+      "9991217:40"
+    ],
+    "conquistar": [
+      "10489180:31",
+      "5751052:5"
+    ],
+    "fallar": [
+      "10471373:47"
+    ],
+    "confesar": [
+      "10471373:29"
+    ],
+    "poner": [
+      "10627178:12",
+      "5302844:30"
+    ],
+    "montarse": [
+      "5302844:28"
+    ],
+    "dejarse": [
+      "10627178:17",
+      "5960780:59",
+      "9991217:4"
+    ],
+    "mojar": [
+      "9991217:47"
+    ],
+    "recordar": [
+      "5960780:52"
+    ],
+    "pegar": [
+      "10471373:31"
+    ],
+    "regalar": [
+      "6838492:12",
+      "8417047:45"
+    ],
+    "presentar": [
+      "10489180:37"
+    ],
+    "comerse": [
+      "10489180:19"
+    ],
+    "tocar": [
+      "5929713:60",
+      "9991217:39"
+    ],
+    "tirarse": [
+      "5302844:30"
+    ],
+    "mover": [
+      "9991217:34"
+    ],
+    "devorar": [
+      "5929713:48"
+    ],
+    "despedirse": [
+      "8417047:36"
+    ],
+    "ir": [
+      "8417047:4"
+    ],
+    "mandar": [
+      "9991217:14"
+    ],
+    "guayar": [
+      "9991217:46"
+    ],
+    "lucirse": [
+      "10304179:31"
+    ],
+    "arrebatarse": [
+      "10304179:31"
+    ],
+    "perrear": [
+      "5960780:33"
+    ],
+    "caer": [
+      "10304179:28"
+    ],
+    "gemir": [
+      "9991217:41"
+    ]
+  },
+  "_meta": {
+    "step_name": "tag_example_pos",
+    "step_version": 2,
+    "generated_at": 1786146927,
+    "tool_versions": {
+      "spacy_model": "dep_news_trf"
+    }
+  }
+}

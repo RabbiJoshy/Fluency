@@ -11,10 +11,10 @@
       "OASIS (2019) [with J Balvin]": "Artists/spanish/Bad Bunny/Images/OASIS.png",
       "YHLQMDLG (2020)": "Artists/spanish/Bad Bunny/Images/YHLQMDLG.png",
       "LAS QUE NO IBAN A SALIR (2020)": "Artists/spanish/Bad Bunny/Images/LAS_QUE_NO_IBAN_A_SALIR.jpg",
-      "EL \u00daLTIMO TOUR DEL MUNDO (2020)": "Artists/spanish/Bad Bunny/Images/EL_ULTIMO_TOUR_DEL_MUNDO.png",
+      "EL ÚLTIMO TOUR DEL MUNDO (2020)": "Artists/spanish/Bad Bunny/Images/EL_ULTIMO_TOUR_DEL_MUNDO.png",
       "UN VERANO SIN TI (2022)": "Artists/spanish/Bad Bunny/Images/UN_VERANO_SIN_TI.png",
-      "NADIE SABE LO QUE VA A PASAR MA\u00d1ANA (2023)": "Artists/spanish/Bad Bunny/Images/NADIE_SABE_LO_QUE_VA_A_PASAR_MANANA.png",
-      "DEB\u00cd TIRAR M\u00c1S FOTOS (2025)": "Artists/spanish/Bad Bunny/Images/DEBI_TIRAR_MAS_FOTOS.png",
+      "NADIE SABE LO QUE VA A PASAR MAÑANA (2023)": "Artists/spanish/Bad Bunny/Images/NADIE_SABE_LO_QUE_VA_A_PASAR_MANANA.png",
+      "DEBÍ TIRAR MÁS FOTOS (2025)": "Artists/spanish/Bad Bunny/Images/DEBI_TIRAR_MAS_FOTOS.png",
       "Singles & Other Tracks": "Artists/spanish/Bad Bunny/Images/SINGLES.jpg"
     },
     "defaultAlbumArt": "Artists/spanish/Bad Bunny/Images/SINGLES.jpg",
@@ -68,5 +68,17 @@
       "secondary": "#EF4135"
     },
     "maxLevel": 4000
+  },
+  "spanish-test-playlist": {
+    "name": "Spanish Test Playlist",
+    "language": "spanish",
+    "masterPath": "Artists/spanish/vocabulary_master.json",
+    "indexPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
+    "examplesPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
+    "colorTheme": {
+      "primary": "#10B981",
+      "secondary": "#6EE7B7"
+    },
+    "maxLevel": 1200
   }
 }

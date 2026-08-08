@@ -1,0 +1,13 @@
+{
+  "name": "Spanish Test Playlist",
+  "language": "spanish",
+  "genius_query": "Spanish Test Playlist",
+  "vocabulary_file": "SpanishTestPlaylistvocabulary.json",
+  "index_file": "SpanishTestPlaylistvocabulary.index.json",
+  "examples_file": "SpanishTestPlaylistvocabulary.examples.json",
+  "artist_context": "Mixed-artist playlist of Spanish-language songs selected for pipeline testing",
+  "source_type": "spotify_playlist",
+  "spotify_playlist_url": "https://open.spotify.com/playlist/6mxPYnExfvVJ67Hovc0U65",
+  "spotify_playlist_id": "6mxPYnExfvVJ67Hovc0U65",
+  "batch_glob_rel": "lyrics/spanish/*.json"
+}

@@ -1,0 +1,111 @@
+{
+  "run_at": "2026-08-07T23:43:50Z",
+  "model": "gemini-3.5-flash-lite",
+  "min_confidence": 0.75,
+  "merges": 5,
+  "skips": 1,
+  "no_candidate_words": [
+    "apretaíta'",
+    "bakin'",
+    "discoteka'",
+    "mordío'",
+    "tíguere'"
+  ],
+  "proposals": [
+    {
+      "word": "confundía'",
+      "candidates": [
+        "confundías",
+        "confundían"
+      ],
+      "decision": "abstain",
+      "choice": null,
+      "confidence": 0.0,
+      "reason": "Ambiguous subject agreement with feminine participle or imperfect verb.",
+      "corpus_count": 1,
+      "evidence": [
+        "La tengo confundía' fumando maría"
+      ]
+    },
+    {
+      "word": "importe'",
+      "candidates": [
+        "importes",
+        "importen"
+      ],
+      "decision": "merge",
+      "choice": "importes",
+      "confidence": 0.95,
+      "reason": "Preceded by 'me', addressing 'tú' (me importe' -> importes).",
+      "corpus_count": 1,
+      "evidence": [
+        "Nada va a hacer que me importe'"
+      ]
+    },
+    {
+      "word": "misione'",
+      "candidates": [
+        "misiones",
+        "misionen"
+      ],
+      "decision": "merge",
+      "choice": "misiones",
+      "confidence": 0.9,
+      "reason": "Plural noun following determiner 'toa' las'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'"
+      ]
+    },
+    {
+      "word": "muerde'",
+      "candidates": [
+        "muerdes",
+        "muerden"
+      ],
+      "decision": "merge",
+      "choice": "muerdes",
+      "confidence": 0.95,
+      "reason": "Addressed to 'tú' ('tú eres' ... te muerde').",
+      "corpus_count": 1,
+      "evidence": [
+        "Que tú eres bellaca por cómo los labios te muerde'"
+      ]
+    },
+    {
+      "word": "pena'",
+      "candidates": [
+        "penas",
+        "penad",
+        "penar",
+        "penal",
+        "penan"
+      ],
+      "decision": "merge",
+      "choice": "penas",
+      "confidence": 0.9,
+      "reason": "Plural noun after 'las' ('las pena'').",
+      "corpus_count": 1,
+      "evidence": [
+        "Al carajo las pena', si quieres más, ten"
+      ]
+    },
+    {
+      "word": "promete'",
+      "candidates": [
+        "prometes",
+        "prometed",
+        "prometer",
+        "prometen"
+      ],
+      "decision": "merge",
+      "choice": "prometes",
+      "confidence": 0.95,
+      "reason": "Addressed to 'tú' ('si tú le promete'').",
+      "corpus_count": 1,
+      "evidence": [
+        "Con nadie se compromete y meno' si tú le promete'"
+      ]
+    }
+  ]
+}

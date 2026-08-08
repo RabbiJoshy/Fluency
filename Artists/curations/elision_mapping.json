@@ -33819,5 +33819,152 @@
     "display_form": "to'itas",
     "target_lemma": "todito",
     "note": "manual override (internal apostrophe: to' = tod-)"
+  },
+  {
+    "action": "skip",
+    "merge_type": "gemini_elision",
+    "provenance": "gemini_elision",
+    "word": "confundía'",
+    "note": "Gemini abstained: Ambiguous subject agreement with feminine participle or imperfect verb.",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-07T23:43:50Z",
+      "step_version": 1,
+      "confidence": 0.0,
+      "candidates": [
+        "confundías",
+        "confundían"
+      ],
+      "reason": "Ambiguous subject agreement with feminine participle or imperfect verb.",
+      "corpus_count": 1,
+      "evidence": [
+        "La tengo confundía' fumando maría"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "importe'",
+    "target_word": "importes",
+    "display_form": "importe'",
+    "target_lemma": "importar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-07T23:43:50Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "importes",
+        "importen"
+      ],
+      "reason": "Preceded by 'me', addressing 'tú' (me importe' -> importes).",
+      "corpus_count": 1,
+      "evidence": [
+        "Nada va a hacer que me importe'"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "misione'",
+    "target_word": "misiones",
+    "display_form": "misione'",
+    "target_lemma": "misionar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-07T23:43:50Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "misiones",
+        "misionen"
+      ],
+      "reason": "Plural noun following determiner 'toa' las'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "muerde'",
+    "target_word": "muerdes",
+    "display_form": "muerde'",
+    "target_lemma": "morder",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-07T23:43:50Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "muerdes",
+        "muerden"
+      ],
+      "reason": "Addressed to 'tú' ('tú eres' ... te muerde').",
+      "corpus_count": 1,
+      "evidence": [
+        "Que tú eres bellaca por cómo los labios te muerde'"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "pena'",
+    "target_word": "penas",
+    "display_form": "pena'",
+    "target_lemma": "penar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-07T23:43:50Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "penas",
+        "penad",
+        "penar",
+        "penal",
+        "penan"
+      ],
+      "reason": "Plural noun after 'las' ('las pena'').",
+      "corpus_count": 1,
+      "evidence": [
+        "Al carajo las pena', si quieres más, ten"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "promete'",
+    "target_word": "prometes",
+    "display_form": "promete'",
+    "target_lemma": "prometer",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-07T23:43:50Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "prometes",
+        "prometed",
+        "prometer",
+        "prometen"
+      ],
+      "reason": "Addressed to 'tú' ('si tú le promete'').",
+      "corpus_count": 1,
+      "evidence": [
+        "Con nadie se compromete y meno' si tú le promete'"
+      ]
+    }
   }
 ]

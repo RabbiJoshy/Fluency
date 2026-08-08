@@ -1,0 +1,1900 @@
+{
+  "schema_version": 2,
+  "exclude": {
+    "english": [
+      "ak",
+      "alright",
+      "babe",
+      "babies",
+      "baby",
+      "bad",
+      "bakin'",
+      "beethoven",
+      "ben",
+      "booty",
+      "bunny",
+      "chance",
+      "city",
+      "corleone",
+      "cris",
+      "crush",
+      "dinosaurs",
+      "dm",
+      "drive",
+      "drums",
+      "estrés",
+      "eternity",
+      "fatality",
+      "feeling",
+      "flow",
+      "for",
+      "glock",
+      "had",
+      "hard",
+      "haters",
+      "high",
+      "hyde",
+      "insanity",
+      "it",
+      "kanye",
+      "ken",
+      "krippy",
+      "lady",
+      "like",
+      "man",
+      "milly",
+      "mj",
+      "nice",
+      "on",
+      "only",
+      "party",
+      "peak",
+      "promo",
+      "quality",
+      "rd",
+      "reality",
+      "repeat",
+      "rosé",
+      "shorty",
+      "size",
+      "sky",
+      "slow",
+      "take",
+      "tate",
+      "the",
+      "top",
+      "vídeo",
+      "west",
+      "yuh"
+    ],
+    "cognate": [
+      "combo",
+      "diva",
+      "gangsters",
+      "pin",
+      "reggaetón"
+    ],
+    "proper_nouns": [
+      "balvin",
+      "benz",
+      "booker",
+      "boston",
+      "brad",
+      "emma",
+      "ester",
+      "héctor",
+      "josé",
+      "miami",
+      "nike",
+      "orión",
+      "ozuna",
+      "pitt",
+      "richard",
+      "shakira",
+      "tego",
+      "tiktok",
+      "venezuela"
+    ],
+    "noise": [
+      "ah",
+      "ay",
+      "brr",
+      "eh",
+      "ey",
+      "gu",
+      "j",
+      "ja",
+      "jaja",
+      "je",
+      "ma",
+      "mm",
+      "mmm",
+      "muah",
+      "oh",
+      "pri",
+      "shh",
+      "t",
+      "tera",
+      "tra",
+      "uah",
+      "uff",
+      "uh",
+      "woh",
+      "wuh",
+      "yah",
+      "yeah",
+      "yeh"
+    ],
+    "low_frequency": [
+      "acura",
+      "barbasol",
+      "bellaqueos",
+      "bichota",
+      "botelleo",
+      "bruk",
+      "cuquen",
+      "debility",
+      "despeluquen",
+      "discoteka'",
+      "dynell",
+      "e'perado",
+      "e'to",
+      "embichar",
+      "feka",
+      "floyymenor",
+      "frontear",
+      "glopeta",
+      "gotay",
+      "llega'te",
+      "lmg",
+      "locotrón",
+      "maleanteo",
+      "maybach",
+      "moja'íta",
+      "pasa'te",
+      "pelúa",
+      "rulay",
+      "switchear",
+      "tenqui",
+      "tigueres",
+      "trajaja",
+      "tíguere'",
+      "ustes",
+      "vvs",
+      "yasso"
+    ]
+  },
+  "classifier": {
+    "normal_vocab": [
+      "a",
+      "actitud",
+      "acá",
+      "adicción",
+      "adiós",
+      "ahora",
+      "ahí",
+      "al",
+      "algo",
+      "alguien",
+      "algunos",
+      "allá",
+      "amigos",
+      "amor",
+      "amores",
+      "antes",
+      "apariencia",
+      "aquí",
+      "arte",
+      "ascensor",
+      "aunque",
+      "avión",
+      "año",
+      "bandida",
+      "bastante",
+      "bellaca",
+      "besito",
+      "bien",
+      "bonita",
+      "botellas",
+      "boza",
+      "brújula",
+      "buena",
+      "bueno",
+      "cabrón",
+      "cachetes",
+      "cadenas",
+      "cadera",
+      "cama",
+      "caminante",
+      "campeón",
+      "cana",
+      "canciones",
+      "canción",
+      "carajo",
+      "carro",
+      "cel",
+      "celosa",
+      "celu",
+      "celular",
+      "cha",
+      "che",
+      "chiqui",
+      "cien",
+      "cinco",
+      "cintura",
+      "cinturón",
+      "claros",
+      "clase",
+      "clima",
+      "comoquiera",
+      "competencia",
+      "compositor",
+      "con",
+      "condición",
+      "conejo",
+      "confianza",
+      "conmigo",
+      "consistencia",
+      "construcción",
+      "contigo",
+      "coqueta",
+      "corazón",
+      "cualquier",
+      "cuando",
+      "cuello",
+      "cuerpo",
+      "culo",
+      "cuál",
+      "cuánto",
+      "cómo",
+      "de",
+      "dedo",
+      "del",
+      "demasiado",
+      "demás",
+      "desastre",
+      "desde",
+      "después",
+      "detrás",
+      "diablo",
+      "dilema",
+      "dinero",
+      "dios",
+      "discoteca",
+      "doce",
+      "dolor",
+      "donde",
+      "dos",
+      "día",
+      "días",
+      "dónde",
+      "el",
+      "elena",
+      "ella",
+      "ellos",
+      "en",
+      "ende",
+      "enero",
+      "entonces",
+      "esa",
+      "esas",
+      "escaleras",
+      "ese",
+      "eso",
+      "esos",
+      "esta",
+      "estas",
+      "este",
+      "esto",
+      "estos",
+      "ex",
+      "explícitos",
+      "fama",
+      "favorita",
+      "feo",
+      "fiera",
+      "fiesta",
+      "filosofía",
+      "fin",
+      "final",
+      "foto",
+      "frente",
+      "fuego",
+      "full",
+      "futuro",
+      "fácil",
+      "g",
+      "gata",
+      "gente",
+      "gloria",
+      "golosina",
+      "gánster",
+      "género",
+      "hasta",
+      "hermosa",
+      "hijueputa",
+      "hijueputas",
+      "himnos",
+      "hombre",
+      "horas",
+      "hoy",
+      "inevitable",
+      "inmediato",
+      "instante",
+      "inteligencia",
+      "jefe",
+      "juguetones",
+      "la",
+      "labios",
+      "lado",
+      "las",
+      "le",
+      "legal",
+      "lejos",
+      "lento",
+      "les",
+      "letras",
+      "lleca",
+      "lo",
+      "loba",
+      "loca",
+      "loco",
+      "locura",
+      "locuras",
+      "loquito",
+      "los",
+      "luego",
+      "lugar",
+      "luna",
+      "luz",
+      "lástima",
+      "líos",
+      "mai",
+      "mal",
+      "maleantes",
+      "mami",
+      "mamita",
+      "manual",
+      "mar",
+      "mari",
+      "maría",
+      "mas",
+      "material",
+      "me",
+      "mejor",
+      "menor",
+      "menos",
+      "mi",
+      "micro",
+      "miel",
+      "mis",
+      "misma",
+      "mismo",
+      "modo",
+      "morena",
+      "motociclista",
+      "mucha",
+      "muchas",
+      "mucho",
+      "muerte",
+      "mujer",
+      "mujerón",
+      "mundo",
+      "muy",
+      "muñeca",
+      "más",
+      "mí",
+      "música",
+      "nadie",
+      "navidad",
+      "negrito",
+      "nena",
+      "ni",
+      "ninguna",
+      "nivel",
+      "no",
+      "noche",
+      "noches",
+      "norte",
+      "nos",
+      "nube",
+      "nuestro",
+      "nunca",
+      "número",
+      "números",
+      "o",
+      "ojitos",
+      "ojos",
+      "otra",
+      "otro",
+      "panamá",
+      "papi",
+      "par",
+      "pared",
+      "pasajera",
+      "peligrosa",
+      "pendientes",
+      "perro",
+      "personal",
+      "piquete",
+      "pirata",
+      "pistolas",
+      "plan",
+      "platón",
+      "playa",
+      "pocas",
+      "poco",
+      "policía",
+      "polvo",
+      "por",
+      "porno",
+      "porque",
+      "premios",
+      "prepa",
+      "primer",
+      "primero",
+      "privacidad",
+      "probable",
+      "problema",
+      "propósito",
+      "puertas",
+      "pues",
+      "puto",
+      "que",
+      "quien",
+      "quién",
+      "quiénes",
+      "qué",
+      "químico",
+      "rato",
+      "raza",
+      "razón",
+      "real",
+      "realidad",
+      "redes",
+      "rey",
+      "rica",
+      "rico",
+      "ritmo",
+      "rojos",
+      "rosa",
+      "ruido",
+      "sabor",
+      "safari",
+      "santa",
+      "sartén",
+      "secuela",
+      "seguramente",
+      "seguridad",
+      "semejante",
+      "sencilla",
+      "sensación",
+      "setas",
+      "si",
+      "sicarios",
+      "siempre",
+      "sin",
+      "sino",
+      "so",
+      "sol",
+      "sola",
+      "soledad",
+      "solo",
+      "solos",
+      "soltera",
+      "su",
+      "suficiente",
+      "sur",
+      "sus",
+      "suya",
+      "sí",
+      "sólo",
+      "tal",
+      "también",
+      "tan",
+      "tanto",
+      "tatuaje",
+      "te",
+      "terraza",
+      "testigo",
+      "ti",
+      "tiempo",
+      "timidez",
+      "toda",
+      "todas",
+      "todavía",
+      "todo",
+      "todos",
+      "toto",
+      "tras",
+      "tres",
+      "tu",
+      "tus",
+      "tuya",
+      "tímida",
+      "tóxicos",
+      "tú",
+      "ubi",
+      "un",
+      "usted",
+      "ustedes",
+      "vaina",
+      "valor",
+      "varios",
+      "ventana",
+      "verano",
+      "verde",
+      "vez",
+      "vida",
+      "videos",
+      "viernes",
+      "vitrina",
+      "y",
+      "ya",
+      "yankee",
+      "yo",
+      "él",
+      "última",
+      "única",
+      "único"
+    ],
+    "conjugation": [
+      "abajo",
+      "aburro",
+      "acaban",
+      "acabó",
+      "acelera",
+      "aclarar",
+      "activa",
+      "actuar",
+      "acumulado",
+      "afuera",
+      "agosto",
+      "ajá",
+      "alejando",
+      "amanezca",
+      "amiga",
+      "amigas",
+      "andaba",
+      "ando",
+      "apaga",
+      "apagues",
+      "apareciste",
+      "apareció",
+      "apellido",
+      "aprieto",
+      "aprovecha",
+      "aquella",
+      "arrestar",
+      "arriba",
+      "aseguro",
+      "asimilar",
+      "así",
+      "atenta",
+      "aterrizado",
+      "atrevida",
+      "atrevido",
+      "atrevo",
+      "avenida",
+      "baila",
+      "bailando",
+      "bailar",
+      "bailaste",
+      "baile",
+      "bailo",
+      "bajamos",
+      "bajan",
+      "baje",
+      "bajo",
+      "bebe",
+      "bebiendo",
+      "bebé",
+      "besar",
+      "besas",
+      "besaste",
+      "bloque",
+      "borrado",
+      "borraré",
+      "bregando",
+      "brillando",
+      "buscando",
+      "buscar",
+      "cabe",
+      "cabecea",
+      "caduquen",
+      "caemos",
+      "caigo",
+      "calentando",
+      "cambie",
+      "cambió",
+      "cansa",
+      "casa",
+      "caso",
+      "caí",
+      "cerca",
+      "chichar",
+      "chingar",
+      "choco",
+      "choque",
+      "coco",
+      "coincidimos",
+      "colores",
+      "comido",
+      "como",
+      "completa",
+      "complico",
+      "compone",
+      "comprando",
+      "compromete",
+      "conecta",
+      "conocen",
+      "conocido",
+      "conocí",
+      "conozco",
+      "contacto",
+      "contestaste",
+      "contesto",
+      "convertí",
+      "convierto",
+      "cosa",
+      "cosas",
+      "cuela",
+      "cuenta",
+      "cuida",
+      "cuido",
+      "curo",
+      "da",
+      "dale",
+      "dan",
+      "dando",
+      "das",
+      "dato",
+      "dañar",
+      "dañaron",
+      "decir",
+      "deja",
+      "dejar",
+      "dejaste",
+      "deje",
+      "dentro",
+      "deporte",
+      "desaparezco",
+      "descontrola",
+      "descuido",
+      "desea",
+      "deseo",
+      "desespero",
+      "desnuda",
+      "despedida",
+      "despertaste",
+      "despido",
+      "despreocúpate",
+      "destendida",
+      "dice",
+      "dices",
+      "diciéndoselo",
+      "dieron",
+      "diga",
+      "digo",
+      "dije",
+      "dijo",
+      "dimos",
+      "dio",
+      "disco",
+      "disfruta",
+      "disimular",
+      "diste",
+      "distraído",
+      "dolido",
+      "dura",
+      "duro",
+      "dé",
+      "dímelo",
+      "echa",
+      "echamos",
+      "eduquen",
+      "embobado",
+      "emocionen",
+      "empalagando",
+      "empezó",
+      "enamorando",
+      "enamoré",
+      "encanta",
+      "encantaría",
+      "encima",
+      "encontrado",
+      "encontré",
+      "endulza",
+      "engreído",
+      "enredamos",
+      "entendemos",
+      "entender",
+      "entendido",
+      "entendí",
+      "entero",
+      "entiende",
+      "entiendo",
+      "entra",
+      "entramos",
+      "entre",
+      "entrego",
+      "enviciaste",
+      "era",
+      "eres",
+      "es",
+      "escapado",
+      "escapó",
+      "escribe",
+      "escribió",
+      "escuchar",
+      "escuchas",
+      "escucho",
+      "escuela",
+      "espera",
+      "esperando",
+      "espere",
+      "espero",
+      "esquives",
+      "estaba",
+      "estamos",
+      "estan",
+      "estar",
+      "estarías",
+      "estoy",
+      "está",
+      "están",
+      "estás",
+      "estés",
+      "evitar",
+      "explico",
+      "extinguieron",
+      "falta",
+      "fe",
+      "fichar",
+      "fila",
+      "fue",
+      "fuera",
+      "fui",
+      "fuimos",
+      "fuiste",
+      "fumando",
+      "fumemos",
+      "fumé",
+      "funcionamos",
+      "gana",
+      "ganan",
+      "ganas",
+      "gocen",
+      "graba",
+      "grabando",
+      "grita",
+      "guarda",
+      "guardado",
+      "gusta",
+      "gustaban",
+      "gustamos",
+      "gustan",
+      "gustando",
+      "gustas",
+      "gusté",
+      "ha",
+      "haber",
+      "habido",
+      "habla",
+      "hablen",
+      "habría",
+      "había",
+      "hace",
+      "hacemos",
+      "hacer",
+      "haces",
+      "haga",
+      "hagas",
+      "hago",
+      "haría",
+      "has",
+      "hay",
+      "he",
+      "heridas",
+      "hice",
+      "hicimos",
+      "hierba",
+      "hipnotizada",
+      "hizo",
+      "hubiera",
+      "ido",
+      "importan",
+      "importes",
+      "incomode",
+      "insistas",
+      "intentan",
+      "intentando",
+      "intento",
+      "invitan",
+      "invitó",
+      "iría",
+      "jaló",
+      "jangueando",
+      "jaque",
+      "jode",
+      "jodido",
+      "jodidos",
+      "jugás",
+      "juro",
+      "lean",
+      "liga",
+      "lista",
+      "llama",
+      "llamas",
+      "llamo",
+      "llamé",
+      "llega",
+      "llegan",
+      "llegar",
+      "llego",
+      "llegó",
+      "lleno",
+      "lleva",
+      "llevan",
+      "llevar",
+      "llevo",
+      "llevé",
+      "llevó",
+      "llorar",
+      "maldito",
+      "malgastaste",
+      "malicia",
+      "mamá",
+      "mandé",
+      "mandó",
+      "manejo",
+      "maquillar",
+      "marido",
+      "mata",
+      "matando",
+      "mate",
+      "maté",
+      "mentir",
+      "merece",
+      "merezco",
+      "meta",
+      "mete",
+      "meter",
+      "metí",
+      "mezclamos",
+      "mirando",
+      "mirar",
+      "miren",
+      "miro",
+      "misiones",
+      "molesta",
+      "mordido",
+      "motiva",
+      "muerden",
+      "muerdes",
+      "muere",
+      "mueve",
+      "mía",
+      "mío",
+      "nacido",
+      "nada",
+      "necesita",
+      "niega",
+      "niveles",
+      "nombre",
+      "nota",
+      "noté",
+      "notó",
+      "novia",
+      "novio",
+      "obra",
+      "ojalá",
+      "olvidan",
+      "olvido",
+      "oído",
+      "oíste",
+      "pagando",
+      "para",
+      "parar",
+      "parece",
+      "parecemos",
+      "pareces",
+      "parezca",
+      "paro",
+      "partes",
+      "pasa",
+      "pasado",
+      "pasan",
+      "pasando",
+      "pasar",
+      "pasen",
+      "paso",
+      "pasó",
+      "pecar",
+      "pedí",
+      "pegando",
+      "pegue",
+      "peine",
+      "penas",
+      "penetra",
+      "pensando",
+      "pensar",
+      "pensaste",
+      "pensé",
+      "perdiendo",
+      "perdiste",
+      "perdona",
+      "perdí",
+      "permití",
+      "pero",
+      "perreando",
+      "pertenece",
+      "pichear",
+      "pide",
+      "pides",
+      "pido",
+      "pinta",
+      "piqué",
+      "pista",
+      "pon",
+      "pone",
+      "pones",
+      "pongo",
+      "porte",
+      "poses",
+      "posiciones",
+      "prefieres",
+      "pregunta",
+      "premio",
+      "preocupes",
+      "presento",
+      "prometes",
+      "pude",
+      "pudiera",
+      "pueden",
+      "puedo",
+      "puesta",
+      "punta",
+      "puso",
+      "quedan",
+      "quedaste",
+      "quedó",
+      "querías",
+      "quieras",
+      "quiere",
+      "quieres",
+      "quiero",
+      "quise",
+      "quita",
+      "quitar",
+      "quito",
+      "raptar",
+      "rastro",
+      "recuerda",
+      "recuerdo",
+      "regalando",
+      "regresar",
+      "relaciones",
+      "retira",
+      "robar",
+      "robaría",
+      "robe",
+      "robo",
+      "roce",
+      "rompe",
+      "rompiendo",
+      "rompimos",
+      "sabe",
+      "saben",
+      "saber",
+      "sabes",
+      "sabiendo",
+      "saca",
+      "sal",
+      "salga",
+      "salimos",
+      "salir",
+      "sanan",
+      "saque",
+      "se",
+      "sea",
+      "secreto",
+      "secuestro",
+      "seguir",
+      "seguro",
+      "sentado",
+      "sentido",
+      "sepa",
+      "sepas",
+      "ser",
+      "serena",
+      "serio",
+      "será",
+      "sexo",
+      "sido",
+      "siendo",
+      "siento",
+      "siga",
+      "sigo",
+      "sigue",
+      "siguen",
+      "sigues",
+      "sirven",
+      "solas",
+      "somos",
+      "son",
+      "sorprende",
+      "sospecha",
+      "soy",
+      "sube",
+      "subimos",
+      "sucedido",
+      "suena",
+      "supiste",
+      "sé",
+      "tanque",
+      "taza",
+      "temas",
+      "ten",
+      "tenemos",
+      "tener",
+      "tengo",
+      "tentado",
+      "termine",
+      "tiene",
+      "tienes",
+      "tiras",
+      "tiro",
+      "tiró",
+      "tocó",
+      "toma",
+      "tomamos",
+      "tomando",
+      "tope",
+      "tortura",
+      "traba",
+      "tranquila",
+      "tratando",
+      "tratar",
+      "traten",
+      "trato",
+      "traído",
+      "tuviste",
+      "una",
+      "usar",
+      "va",
+      "vacaciones",
+      "vacilo",
+      "vale",
+      "vamos",
+      "van",
+      "varear",
+      "vas",
+      "ve",
+      "vea",
+      "veas",
+      "ven",
+      "vendidos",
+      "vengas",
+      "veo",
+      "ver",
+      "ves",
+      "veía",
+      "vi",
+      "viajo",
+      "viendo",
+      "vienes",
+      "vino",
+      "violento",
+      "virales",
+      "vista",
+      "vive",
+      "volando",
+      "volvemos",
+      "voy",
+      "vueltas",
+      "vuelto",
+      "vuelva",
+      "vuelve",
+      "vuelvo"
+    ],
+    "elision": [
+      "confundía'"
+    ]
+  },
+  "derivation_map": {
+    "cortecito": "corte",
+    "apretadita": "apretada",
+    "cerquita": "cerca",
+    "chamaquito": "chamaco",
+    "chiquitita": "chiquita",
+    "expósito": "expos",
+    "orillita": "orilla",
+    "solitas": "solas"
+  },
+  "sense_discovery": [
+    "brum",
+    "cheki",
+    "guro",
+    "ratatá",
+    "desconfigu"
+  ],
+  "clitic_merge": {
+    "calentándote": "calentar",
+    "dame": "dar",
+    "hacerles": "hacer",
+    "viniéndote": "venir",
+    "mírame": "mirar",
+    "conquistarte": "conquistar",
+    "hacerle": "hacer",
+    "fallarle": "fallar",
+    "mirarlo": "mirar",
+    "dime": "decir",
+    "confesarte": "confesar",
+    "hacerlo": "hacer",
+    "ponerte": "poner",
+    "móntate": "montarse",
+    "irse": "irse",
+    "déjate": "dejarse",
+    "decirle": "decir",
+    "hacernos": "hacer",
+    "mojarte": "mojar",
+    "recordarte": "recordar",
+    "chingarte": "chingar",
+    "pegarte": "pegar",
+    "regálame": "regalar",
+    "presentarte": "presentar",
+    "comerme": "comerse",
+    "dándote": "dar",
+    "mirándonos": "mirar",
+    "tocándote": "tocar",
+    "tírate": "tirarse",
+    "darme": "dar",
+    "muévelo": "mover",
+    "tenerte": "tener",
+    "mirándote": "mirar",
+    "devorándonos": "devorar",
+    "despídete": "despedirse",
+    "irnos": "ir",
+    "mirándome": "mirar",
+    "darte": "dar",
+    "verte": "ver",
+    "mándame": "mandar",
+    "conquistándome": "conquistar",
+    "tocarte": "tocar",
+    "guayarte": "guayar",
+    "lúcete": "lucirse",
+    "arrebátate": "arrebatarse",
+    "perréame": "perrear",
+    "cáele": "caer",
+    "gimiéndome": "gemir",
+    "pasarla": "pasar",
+    "ponértelo": "poner"
+  },
+  "clitic_roles": {
+    "arrebátate": {
+      "parent": "arrebatarse",
+      "base": "arrebatar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "calentándote": {
+      "parent": "calentar",
+      "base": "calentar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "chingarte": {
+      "parent": "chingar",
+      "base": "chingar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "comerme": {
+      "parent": "comerse",
+      "base": "comer",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "confesarte": {
+      "parent": "confesar",
+      "base": "confesar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "conquistarte": {
+      "parent": "conquistar",
+      "base": "conquistar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "conquistándome": {
+      "parent": "conquistar",
+      "base": "conquistar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "cáele": {
+      "parent": "caer",
+      "base": "caer",
+      "clitics": [
+        "le"
+      ],
+      "roles": [
+        {
+          "pronoun": "le",
+          "role": "indirect"
+        }
+      ],
+      "reflexive": false
+    },
+    "dame": {
+      "parent": "dar",
+      "base": "dar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "darme": {
+      "parent": "dar",
+      "base": "dar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "darte": {
+      "parent": "dar",
+      "base": "dar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "decirle": {
+      "parent": "decir",
+      "base": "decir",
+      "clitics": [
+        "le"
+      ],
+      "roles": [
+        {
+          "pronoun": "le",
+          "role": "indirect"
+        }
+      ],
+      "reflexive": false
+    },
+    "despídete": {
+      "parent": "despedirse",
+      "base": "despedir",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "devorándonos": {
+      "parent": "devorar",
+      "base": "devorar",
+      "clitics": [
+        "nos"
+      ],
+      "roles": [
+        {
+          "pronoun": "nos",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "dime": {
+      "parent": "decir",
+      "base": "decir",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "dándote": {
+      "parent": "dar",
+      "base": "dar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "déjate": {
+      "parent": "dejarse",
+      "base": "dejar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "fallarle": {
+      "parent": "fallar",
+      "base": "fallar",
+      "clitics": [
+        "le"
+      ],
+      "roles": [
+        {
+          "pronoun": "le",
+          "role": "indirect"
+        }
+      ],
+      "reflexive": false
+    },
+    "gimiéndome": {
+      "parent": "gemir",
+      "base": "gemir",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "guayarte": {
+      "parent": "guayar",
+      "base": "guayar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "hacerle": {
+      "parent": "hacer",
+      "base": "hacer",
+      "clitics": [
+        "le"
+      ],
+      "roles": [
+        {
+          "pronoun": "le",
+          "role": "indirect"
+        }
+      ],
+      "reflexive": false
+    },
+    "hacerles": {
+      "parent": "hacer",
+      "base": "hacer",
+      "clitics": [
+        "les"
+      ],
+      "roles": [
+        {
+          "pronoun": "les",
+          "role": "indirect"
+        }
+      ],
+      "reflexive": false
+    },
+    "hacerlo": {
+      "parent": "hacer",
+      "base": "hacer",
+      "clitics": [
+        "lo"
+      ],
+      "roles": [
+        {
+          "pronoun": "lo",
+          "role": "direct"
+        }
+      ],
+      "reflexive": false
+    },
+    "hacernos": {
+      "parent": "hacer",
+      "base": "hacer",
+      "clitics": [
+        "nos"
+      ],
+      "roles": [
+        {
+          "pronoun": "nos",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "irnos": {
+      "parent": "ir",
+      "base": "ir",
+      "clitics": [
+        "nos"
+      ],
+      "roles": [
+        {
+          "pronoun": "nos",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "irse": {
+      "parent": "irse",
+      "base": "ir",
+      "clitics": [
+        "se"
+      ],
+      "roles": [
+        {
+          "pronoun": "se",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "lúcete": {
+      "parent": "lucirse",
+      "base": "lucir",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "mirarlo": {
+      "parent": "mirar",
+      "base": "mirar",
+      "clitics": [
+        "lo"
+      ],
+      "roles": [
+        {
+          "pronoun": "lo",
+          "role": "direct"
+        }
+      ],
+      "reflexive": false
+    },
+    "mirándome": {
+      "parent": "mirar",
+      "base": "mirar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "mirándonos": {
+      "parent": "mirar",
+      "base": "mirar",
+      "clitics": [
+        "nos"
+      ],
+      "roles": [
+        {
+          "pronoun": "nos",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "mirándote": {
+      "parent": "mirar",
+      "base": "mirar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "mojarte": {
+      "parent": "mojar",
+      "base": "mojar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "muévelo": {
+      "parent": "mover",
+      "base": "mover",
+      "clitics": [
+        "lo"
+      ],
+      "roles": [
+        {
+          "pronoun": "lo",
+          "role": "direct"
+        }
+      ],
+      "reflexive": false
+    },
+    "mándame": {
+      "parent": "mandar",
+      "base": "mandar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "mírame": {
+      "parent": "mirar",
+      "base": "mirar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "móntate": {
+      "parent": "montarse",
+      "base": "montar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "pasarla": {
+      "parent": "pasar",
+      "base": "pasar",
+      "clitics": [
+        "la"
+      ],
+      "roles": [
+        {
+          "pronoun": "la",
+          "role": "direct"
+        }
+      ],
+      "reflexive": false
+    },
+    "pegarte": {
+      "parent": "pegar",
+      "base": "pegar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "perréame": {
+      "parent": "perrear",
+      "base": "perrear",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "ponerte": {
+      "parent": "poner",
+      "base": "poner",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "ponértelo": {
+      "parent": "poner",
+      "base": "poner",
+      "clitics": [
+        "te",
+        "lo"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "indirect"
+        },
+        {
+          "pronoun": "lo",
+          "role": "direct"
+        }
+      ],
+      "reflexive": false
+    },
+    "presentarte": {
+      "parent": "presentar",
+      "base": "presentar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "recordarte": {
+      "parent": "recordar",
+      "base": "recordar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "regálame": {
+      "parent": "regalar",
+      "base": "regalar",
+      "clitics": [
+        "me"
+      ],
+      "roles": [
+        {
+          "pronoun": "me",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "tenerte": {
+      "parent": "tener",
+      "base": "tener",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "tocarte": {
+      "parent": "tocar",
+      "base": "tocar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "tocándote": {
+      "parent": "tocar",
+      "base": "tocar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "tírate": {
+      "parent": "tirarse",
+      "base": "tirar",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "reflexive"
+        }
+      ],
+      "reflexive": true
+    },
+    "verte": {
+      "parent": "ver",
+      "base": "ver",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    },
+    "viniéndote": {
+      "parent": "venir",
+      "base": "venir",
+      "clitics": [
+        "te"
+      ],
+      "roles": [
+        {
+          "pronoun": "te",
+          "role": "object"
+        }
+      ],
+      "reflexive": false
+    }
+  },
+  "clitic_orphans": [],
+  "clitic_keep": [],
+  "stats": {
+    "input_words": 1145,
+    "exclude": 152,
+    "classifier": 930,
+    "derivation_map": 8,
+    "sense_discovery": 5,
+    "cognate": 5,
+    "clitic_merge": 50,
+    "clitic_reflexive_parents": 8,
+    "clitic_keep": 0,
+    "min_freq": 2
+  },
+  "_meta": {
+    "step_name": "filter_known_vocab",
+    "step_version": 7,
+    "generated_at": 1786146921
+  }
+}

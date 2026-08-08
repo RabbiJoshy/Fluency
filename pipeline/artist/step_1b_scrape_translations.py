@@ -102,13 +102,53 @@ class ETATracker(object):
 # Helpers
 # ---------------------------------------------------------------------------
 
-def load_all_song_ids(artist_dir):
-    """Load every song record from batch_*.json files.  Returns list of dicts."""
-    batch_dir = os.path.join(artist_dir, "data", "input", "batches")
+def load_all_song_ids(artist_dir, batch_glob_rel=None):
+    """Load every song record for this artist.  Returns list of dicts.
+
+    Artist-mode decks store songs one of two ways, and this step must read both
+    or it silently scrapes nothing:
+
+      * `data/input/batches/batch_*.json` — the Genius-artist layout, where a
+        discography is paged into numbered batches.
+      * whatever `batch_glob_rel` in artist.json points at — the playlist
+        layout, where each song is its own file named after the track
+        ("Amarillo - J Balvin.json").
+
+    Reading only the first pattern is what left SpanishTestPlaylist with an
+    empty aligned_translations.json, which then failed step 6 far downstream.
+    """
     songs = []
-    for path in sorted(glob.glob(os.path.join(batch_dir, "batch_*.json"))):
-        with open(path, "r", encoding="utf-8") as f:
-            songs.extend(json.load(f))
+    seen_ids = set()
+
+    if batch_glob_rel is None:
+        # Read it here rather than threading it through every caller — both
+        # call sites want the same answer and one of them has no config handy.
+        try:
+            with open(os.path.join(artist_dir, "artist.json"), encoding="utf-8") as f:
+                batch_glob_rel = json.load(f).get("batch_glob_rel")
+        except (OSError, ValueError):
+            batch_glob_rel = None
+
+    patterns = [os.path.join(artist_dir, "data", "input", "batches", "batch_*.json")]
+    if batch_glob_rel:
+        patterns.append(os.path.join(artist_dir, batch_glob_rel))
+
+    for pattern in patterns:
+        for path in sorted(glob.glob(pattern)):
+            with open(path, "r", encoding="utf-8") as f:
+                payload = json.load(f)
+            # Batch files hold a list; a per-song file may hold either a
+            # one-element list or a bare object.
+            records = payload if isinstance(payload, list) else [payload]
+            for record in records:
+                if not isinstance(record, dict):
+                    continue
+                song_id = record.get("id")
+                if song_id is not None and song_id in seen_ids:
+                    continue
+                if song_id is not None:
+                    seen_ids.add(song_id)
+                songs.append(record)
     return songs
 
 
@@ -503,13 +543,14 @@ def build_aligned_translations(artist_dir, max_diff_pct=0.10):
     with open(trans_path, "r", encoding="utf-8") as f:
         translations = json.load(f)
 
-    # Load Spanish lyrics from batch files
+    # Load Spanish lyrics. Goes through load_all_song_ids so the playlist
+    # layout (one file per track) is picked up as well as batch_*.json —
+    # reading only the latter aligned zero songs for SpanishTestPlaylist even
+    # though 15 translations had been scraped.
     all_songs = {}
-    batch_dir = os.path.join(artist_dir, "data", "input", "batches")
-    for path in sorted(glob.glob(os.path.join(batch_dir, "batch_*.json"))):
-        with open(path, "r", encoding="utf-8") as f:
-            for song in json.load(f):
-                all_songs[str(song["id"])] = song
+    for song in load_all_song_ids(artist_dir):
+        if song.get("id") is not None:
+            all_songs[str(song["id"])] = song
 
     songs_out = {}
     index = {}
@@ -635,6 +676,31 @@ def run_alignment(artist_dir):
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
     print("Wrote %s" % out_path)
+
+    # Also emit the layer form step 6 reads. The flat index built above is
+    # already {spanish: english}; the layer just tags each with its source.
+    # Only the French chain wrote this file, so a Spanish artist reached step 6
+    # with it missing and the run aborted there — long after the real problem.
+    # Existing entries are preserved so a Google-translate backfill
+    # (tool_1b_translate_sentences_google) is not clobbered by a re-align.
+    layer_path = os.path.join(artist_dir, "data", "layers", "example_translations.json")
+    os.makedirs(os.path.dirname(layer_path), exist_ok=True)
+    existing = {}
+    if os.path.exists(layer_path):
+        try:
+            with open(layer_path, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+        except ValueError:
+            existing = {}
+    added = 0
+    for spanish, english in result.get("index", {}).items():
+        if not spanish or not english or spanish in existing:
+            continue
+        existing[spanish] = {"english": english, "source": "genius"}
+        added += 1
+    with open(layer_path, "w", encoding="utf-8") as f:
+        json.dump(existing, f, ensure_ascii=False)
+    print("Wrote %s (%d new, %d total)" % (layer_path, added, len(existing)))
 
 
 def print_summary(translations, total_songs):

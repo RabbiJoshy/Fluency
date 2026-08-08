@@ -71,7 +71,9 @@ def _base_args(artist_dir):
 
 def _step_2_args(args, artist_dir):
     lang = args.language
-    batch_glob = os.path.join(artist_dir, _LANG_DEFAULTS[lang]["batch_glob_rel"])
+    batch_glob_rel = (getattr(args, "_artist_batch_glob_rel", None)
+                      or _LANG_DEFAULTS[lang]["batch_glob_rel"])
+    batch_glob = os.path.join(artist_dir, batch_glob_rel)
     return _base_args(artist_dir) + [
         "--batch_glob", batch_glob,
         "--out", os.path.join(artist_dir, "data", "word_counts", "vocab_evidence.json"),
@@ -406,6 +408,9 @@ def main():
         args.classifier = _LANG_DEFAULTS[language]["default_classifier"]
     # spaCy model: CLI > artist.json > language default. Resolved by _spacy_model_for().
     args._artist_spacy_model = config.get("spacy_model")
+    # Playlist-backed artists can point step 2 at per-song JSON files instead
+    # of the language's normal catalogue batch layout.
+    args._artist_batch_glob_rel = config.get("batch_glob_rel")
 
     STEPS = build_steps(config["vocabulary_file"], language=language)
 

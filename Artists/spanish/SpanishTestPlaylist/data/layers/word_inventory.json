@@ -1,0 +1,6174 @@
+[
+  {
+    "word": "que",
+    "corpus_count": 168,
+    "song_count": 17
+  },
+  {
+    "word": "me",
+    "corpus_count": 123,
+    "song_count": 17
+  },
+  {
+    "word": "no",
+    "corpus_count": 112,
+    "song_count": 15
+  },
+  {
+    "word": "y",
+    "corpus_count": 104,
+    "song_count": 17
+  },
+  {
+    "word": "la",
+    "corpus_count": 90,
+    "song_count": 16
+  },
+  {
+    "word": "a",
+    "corpus_count": 82,
+    "song_count": 15
+  },
+  {
+    "word": "yo",
+    "corpus_count": 81,
+    "song_count": 17
+  },
+  {
+    "word": "tú",
+    "corpus_count": 70,
+    "song_count": 14
+  },
+  {
+    "word": "de",
+    "corpus_count": 68,
+    "song_count": 16
+  },
+  {
+    "word": "el",
+    "corpus_count": 67,
+    "song_count": 16
+  },
+  {
+    "word": "te",
+    "corpus_count": 66,
+    "song_count": 15
+  },
+  {
+    "word": "lo",
+    "corpus_count": 65,
+    "song_count": 16
+  },
+  {
+    "word": "en",
+    "corpus_count": 62,
+    "song_count": 16
+  },
+  {
+    "word": "se",
+    "corpus_count": 47,
+    "song_count": 12
+  },
+  {
+    "word": "para",
+    "corpus_count": 45,
+    "song_count": 16,
+    "display_form": "pa'",
+    "variants": {
+      "pa'": 31,
+      "para": 14
+    }
+  },
+  {
+    "word": "es",
+    "corpus_count": 41,
+    "song_count": 15,
+    "display_form": "e'",
+    "variants": {
+      "es": 30,
+      "e'": 11
+    }
+  },
+  {
+    "word": "mi",
+    "corpus_count": 37,
+    "song_count": 15
+  },
+  {
+    "word": "ey",
+    "corpus_count": 34,
+    "song_count": 7
+  },
+  {
+    "word": "por",
+    "corpus_count": 30,
+    "song_count": 13
+  },
+  {
+    "word": "con",
+    "corpus_count": 28,
+    "song_count": 12
+  },
+  {
+    "word": "pero",
+    "corpus_count": 26,
+    "song_count": 11
+  },
+  {
+    "word": "quiero",
+    "corpus_count": 26,
+    "song_count": 10
+  },
+  {
+    "word": "qué",
+    "corpus_count": 26,
+    "song_count": 11
+  },
+  {
+    "word": "un",
+    "corpus_count": 24,
+    "song_count": 13
+  },
+  {
+    "word": "como",
+    "corpus_count": 23,
+    "song_count": 10
+  },
+  {
+    "word": "si",
+    "corpus_count": 23,
+    "song_count": 12
+  },
+  {
+    "word": "más",
+    "corpus_count": 23,
+    "song_count": 9,
+    "display_form": "má'",
+    "variants": {
+      "más": 17,
+      "má'": 6
+    }
+  },
+  {
+    "word": "le",
+    "corpus_count": 22,
+    "song_count": 10
+  },
+  {
+    "word": "voy",
+    "corpus_count": 22,
+    "song_count": 11
+  },
+  {
+    "word": "las",
+    "corpus_count": 22,
+    "song_count": 10,
+    "display_form": "la'",
+    "variants": {
+      "las": 19,
+      "la'": 3
+    }
+  },
+  {
+    "word": "ti",
+    "corpus_count": 21,
+    "song_count": 7
+  },
+  {
+    "word": "los",
+    "corpus_count": 20,
+    "song_count": 10,
+    "display_form": "lo'",
+    "variants": {
+      "los": 17,
+      "lo'": 3
+    }
+  },
+  {
+    "word": "tu",
+    "corpus_count": 19,
+    "song_count": 10
+  },
+  {
+    "word": "al",
+    "corpus_count": 18,
+    "song_count": 5
+  },
+  {
+    "word": "una",
+    "corpus_count": 18,
+    "song_count": 9
+  },
+  {
+    "word": "todo",
+    "corpus_count": 18,
+    "song_count": 8,
+    "display_form": "to'",
+    "variants": {
+      "to'": 14,
+      "todo": 4
+    }
+  },
+  {
+    "word": "estoy",
+    "corpus_count": 16,
+    "song_count": 8,
+    "display_form": "'toy"
+  },
+  {
+    "word": "noche",
+    "corpus_count": 16,
+    "song_count": 5
+  },
+  {
+    "word": "sé",
+    "corpus_count": 16,
+    "song_count": 8
+  },
+  {
+    "word": "ya",
+    "corpus_count": 16,
+    "song_count": 8
+  },
+  {
+    "word": "tengo",
+    "corpus_count": 15,
+    "song_count": 8
+  },
+  {
+    "word": "cuando",
+    "corpus_count": 14,
+    "song_count": 5
+  },
+  {
+    "word": "soy",
+    "corpus_count": 14,
+    "song_count": 9
+  },
+  {
+    "word": "baby",
+    "corpus_count": 13,
+    "song_count": 7
+  },
+  {
+    "word": "mí",
+    "corpus_count": 13,
+    "song_count": 7
+  },
+  {
+    "word": "conmigo",
+    "corpus_count": 12,
+    "song_count": 7
+  },
+  {
+    "word": "cómo",
+    "corpus_count": 12,
+    "song_count": 8
+  },
+  {
+    "word": "nos",
+    "corpus_count": 12,
+    "song_count": 8,
+    "display_form": "no'"
+  },
+  {
+    "word": "porque",
+    "corpus_count": 12,
+    "song_count": 8
+  },
+  {
+    "word": "solo",
+    "corpus_count": 12,
+    "song_count": 7
+  },
+  {
+    "word": "ves",
+    "corpus_count": 12,
+    "song_count": 1,
+    "display_form": "ve'"
+  },
+  {
+    "word": "estás",
+    "corpus_count": 12,
+    "song_count": 5,
+    "display_form": "está'",
+    "variants": {
+      "está'": 7,
+      "estás": 5
+    }
+  },
+  {
+    "word": "está",
+    "corpus_count": 11,
+    "song_count": 9
+  },
+  {
+    "word": "mar",
+    "corpus_count": 11,
+    "song_count": 2
+  },
+  {
+    "word": "nadie",
+    "corpus_count": 11,
+    "song_count": 9
+  },
+  {
+    "word": "va",
+    "corpus_count": 11,
+    "song_count": 8
+  },
+  {
+    "word": "ella",
+    "corpus_count": 10,
+    "song_count": 5
+  },
+  {
+    "word": "frente",
+    "corpus_count": 10,
+    "song_count": 1
+  },
+  {
+    "word": "otra",
+    "corpus_count": 10,
+    "song_count": 4
+  },
+  {
+    "word": "vamos",
+    "corpus_count": 10,
+    "song_count": 5,
+    "display_form": "vamo'",
+    "variants": {
+      "vamo'": 8,
+      "vamos": 2
+    }
+  },
+  {
+    "word": "nada",
+    "corpus_count": 10,
+    "song_count": 6,
+    "display_form": "na'",
+    "variants": {
+      "na'": 7,
+      "nada": 3
+    }
+  },
+  {
+    "word": "contigo",
+    "corpus_count": 9,
+    "song_count": 8
+  },
+  {
+    "word": "eso",
+    "corpus_count": 9,
+    "song_count": 6
+  },
+  {
+    "word": "hay",
+    "corpus_count": 9,
+    "song_count": 6
+  },
+  {
+    "word": "quiere",
+    "corpus_count": 9,
+    "song_count": 5
+  },
+  {
+    "word": "sabes",
+    "corpus_count": 9,
+    "song_count": 4,
+    "display_form": "sabe'"
+  },
+  {
+    "word": "después",
+    "corpus_count": 9,
+    "song_count": 5,
+    "display_form": "despué'",
+    "variants": {
+      "después": 6,
+      "despué'": 3
+    }
+  },
+  {
+    "word": "eres",
+    "corpus_count": 9,
+    "song_count": 6,
+    "display_form": "ere'",
+    "variants": {
+      "ere'": 5,
+      "eres": 4
+    }
+  },
+  {
+    "word": "esa",
+    "corpus_count": 8,
+    "song_count": 4
+  },
+  {
+    "word": "ese",
+    "corpus_count": 8,
+    "song_count": 6
+  },
+  {
+    "word": "hoy",
+    "corpus_count": 8,
+    "song_count": 5
+  },
+  {
+    "word": "rico",
+    "corpus_count": 8,
+    "song_count": 5
+  },
+  {
+    "word": "tienes",
+    "corpus_count": 8,
+    "song_count": 5,
+    "display_form": "tiene'",
+    "variants": {
+      "tiene'": 6,
+      "tienes": 2
+    }
+  },
+  {
+    "word": "antes",
+    "corpus_count": 8,
+    "song_count": 5,
+    "display_form": "ante'",
+    "variants": {
+      "ante'": 4,
+      "antes": 4
+    }
+  },
+  {
+    "word": "todas",
+    "corpus_count": 8,
+    "song_count": 6,
+    "display_form": "toa'",
+    "variants": {
+      "toa'": 4,
+      "todas": 2,
+      "to'as": 1,
+      "toda'": 1
+    }
+  },
+  {
+    "word": "ahora",
+    "corpus_count": 7,
+    "song_count": 4
+  },
+  {
+    "word": "ay",
+    "corpus_count": 7,
+    "song_count": 4
+  },
+  {
+    "word": "bien",
+    "corpus_count": 7,
+    "song_count": 5
+  },
+  {
+    "word": "del",
+    "corpus_count": 7,
+    "song_count": 5
+  },
+  {
+    "word": "desde",
+    "corpus_count": 7,
+    "song_count": 6
+  },
+  {
+    "word": "dime",
+    "corpus_count": 7,
+    "song_count": 5
+  },
+  {
+    "word": "ha",
+    "corpus_count": 7,
+    "song_count": 3
+  },
+  {
+    "word": "peak",
+    "corpus_count": 7,
+    "song_count": 1
+  },
+  {
+    "word": "su",
+    "corpus_count": 7,
+    "song_count": 6
+  },
+  {
+    "word": "tiempo",
+    "corpus_count": 7,
+    "song_count": 6
+  },
+  {
+    "word": "tra",
+    "corpus_count": 7,
+    "song_count": 1
+  },
+  {
+    "word": "ve",
+    "corpus_count": 7,
+    "song_count": 3
+  },
+  {
+    "word": "ver",
+    "corpus_count": 7,
+    "song_count": 5
+  },
+  {
+    "word": "verde",
+    "corpus_count": 7,
+    "song_count": 1
+  },
+  {
+    "word": "vida",
+    "corpus_count": 7,
+    "song_count": 5
+  },
+  {
+    "word": "luz",
+    "corpus_count": 7,
+    "song_count": 2,
+    "variants": {
+      "luz": 6,
+      "lu'": 1
+    }
+  },
+  {
+    "word": "estamos",
+    "corpus_count": 7,
+    "song_count": 4,
+    "display_form": "estamo'",
+    "variants": {
+      "estamo'": 4,
+      "estamos": 3
+    }
+  },
+  {
+    "word": "amor",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "cabrón",
+    "corpus_count": 6,
+    "song_count": 2
+  },
+  {
+    "word": "cama",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "discoteca",
+    "corpus_count": 6,
+    "song_count": 2
+  },
+  {
+    "word": "déjate",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "este",
+    "corpus_count": 6,
+    "song_count": 4
+  },
+  {
+    "word": "fue",
+    "corpus_count": 6,
+    "song_count": 4
+  },
+  {
+    "word": "hicimos",
+    "corpus_count": 6,
+    "song_count": 1
+  },
+  {
+    "word": "loca",
+    "corpus_count": 6,
+    "song_count": 5
+  },
+  {
+    "word": "seguir",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "siempre",
+    "corpus_count": 6,
+    "song_count": 4
+  },
+  {
+    "word": "lejos",
+    "corpus_count": 6,
+    "song_count": 4,
+    "display_form": "lejo'",
+    "variants": {
+      "lejo'": 3,
+      "lejos": 3
+    }
+  },
+  {
+    "word": "aquí",
+    "corpus_count": 5,
+    "song_count": 3
+  },
+  {
+    "word": "balvin",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "bebé",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "cuánto",
+    "corpus_count": 5,
+    "song_count": 2
+  },
+  {
+    "word": "dame",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "dios",
+    "corpus_count": 5,
+    "song_count": 1,
+    "display_form": "dio'"
+  },
+  {
+    "word": "dónde",
+    "corpus_count": 5,
+    "song_count": 3
+  },
+  {
+    "word": "eh",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "hace",
+    "corpus_count": 5,
+    "song_count": 5
+  },
+  {
+    "word": "hago",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "hasta",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "mío",
+    "corpus_count": 5,
+    "song_count": 1
+  },
+  {
+    "word": "nunca",
+    "corpus_count": 5,
+    "song_count": 5
+  },
+  {
+    "word": "sin",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "slow",
+    "corpus_count": 5,
+    "song_count": 1
+  },
+  {
+    "word": "sola",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "también",
+    "corpus_count": 5,
+    "song_count": 5
+  },
+  {
+    "word": "tan",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "tiene",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "vaina",
+    "corpus_count": 5,
+    "song_count": 2
+  },
+  {
+    "word": "ven",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "wuh",
+    "corpus_count": 5,
+    "song_count": 1
+  },
+  {
+    "word": "yah",
+    "corpus_count": 5,
+    "song_count": 2
+  },
+  {
+    "word": "él",
+    "corpus_count": 5,
+    "song_count": 3
+  },
+  {
+    "word": "somos",
+    "corpus_count": 5,
+    "song_count": 4,
+    "display_form": "somo'",
+    "variants": {
+      "somo'": 4,
+      "somos": 1
+    }
+  },
+  {
+    "word": "les",
+    "corpus_count": 5,
+    "song_count": 3,
+    "display_form": "le'",
+    "variants": {
+      "les": 3,
+      "le'": 2
+    }
+  },
+  {
+    "word": "ojos",
+    "corpus_count": 5,
+    "song_count": 5,
+    "display_form": "ojo'",
+    "variants": {
+      "ojo'": 3,
+      "ojos": 2
+    }
+  },
+  {
+    "word": "ah",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "aunque",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "brum",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "casa",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "cha",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "chiqui",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "complico",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "cuál",
+    "corpus_count": 4,
+    "song_count": 2
+  },
+  {
+    "word": "da",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "dale",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "diste",
+    "corpus_count": 4,
+    "song_count": 2
+  },
+  {
+    "word": "esperando",
+    "corpus_count": 4,
+    "song_count": 2
+  },
+  {
+    "word": "esto",
+    "corpus_count": 4,
+    "song_count": 2
+  },
+  {
+    "word": "gata",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "gusta",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "he",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "invitan",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "llegar",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "llevar",
+    "corpus_count": 4,
+    "song_count": 2
+  },
+  {
+    "word": "meta",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "mis",
+    "corpus_count": 4,
+    "song_count": 4,
+    "display_form": "mi'"
+  },
+  {
+    "word": "mundo",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "nena",
+    "corpus_count": 4,
+    "song_count": 2
+  },
+  {
+    "word": "ni",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "pues",
+    "corpus_count": 4,
+    "song_count": 1,
+    "display_form": "pue'"
+  },
+  {
+    "word": "salimos",
+    "corpus_count": 4,
+    "song_count": 2,
+    "display_form": "salimo'"
+  },
+  {
+    "word": "sea",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "tener",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "tentado",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "tus",
+    "corpus_count": 4,
+    "song_count": 3,
+    "display_form": "tu'"
+  },
+  {
+    "word": "vuelva",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "yeah",
+    "corpus_count": 4,
+    "song_count": 1
+  },
+  {
+    "word": "amigos",
+    "corpus_count": 4,
+    "song_count": 2,
+    "display_form": "amigo'",
+    "variants": {
+      "amigos": 3,
+      "amigo'": 1
+    }
+  },
+  {
+    "word": "fuimos",
+    "corpus_count": 4,
+    "song_count": 3,
+    "display_form": "fuimo'",
+    "variants": {
+      "fuimo'": 2,
+      "fuimos": 2
+    }
+  },
+  {
+    "word": "quieres",
+    "corpus_count": 4,
+    "song_count": 3,
+    "display_form": "quiere'",
+    "variants": {
+      "quiere'": 2,
+      "quieres": 2
+    }
+  },
+  {
+    "word": "acá",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "ahí",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "algo",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "allá",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "alright",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "ando",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "apaga",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "así",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "besas",
+    "corpus_count": 3,
+    "song_count": 1,
+    "display_form": "besa'"
+  },
+  {
+    "word": "brr",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "chance",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "cheki",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "corazón",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "cosa",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "despido",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "dijo",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "disco",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "donde",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "día",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "encima",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "escapó",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "espero",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "esta",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "estaba",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "fuego",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "fuiste",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "fumando",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "gente",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "glock",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "gustas",
+    "corpus_count": 3,
+    "song_count": 1,
+    "display_form": "gusta'"
+  },
+  {
+    "word": "hacer",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "hacerlo",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "hubiera",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "ido",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "j",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "llegan",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "locura",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "mami",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "mate",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "mejor",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "menos",
+    "corpus_count": 3,
+    "song_count": 3,
+    "display_form": "meno'"
+  },
+  {
+    "word": "mucho",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "ninguna",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "nuestro",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "o",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "otro",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "party",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "pedí",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "peligrosa",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "pensando",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "pide",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "pongo",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "pude",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "saben",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "ser",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "siento",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "sigo",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "sol",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "soltera",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "son",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "tanto",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "vez",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "vuelve",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "woh",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "única",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "botellas",
+    "corpus_count": 3,
+    "song_count": 2,
+    "display_form": "botella'",
+    "variants": {
+      "botellas": 2,
+      "botella'": 1
+    }
+  },
+  {
+    "word": "canciones",
+    "corpus_count": 3,
+    "song_count": 2,
+    "display_form": "cancione'",
+    "variants": {
+      "cancione'": 2,
+      "canciones": 1
+    }
+  },
+  {
+    "word": "dimos",
+    "corpus_count": 3,
+    "song_count": 2,
+    "display_form": "dimo'",
+    "variants": {
+      "dimo'": 2,
+      "dimos": 1
+    }
+  },
+  {
+    "word": "ganas",
+    "corpus_count": 3,
+    "song_count": 3,
+    "display_form": "gana'",
+    "variants": {
+      "ganas": 2,
+      "gana'": 1
+    }
+  },
+  {
+    "word": "hacemos",
+    "corpus_count": 3,
+    "song_count": 3,
+    "display_form": "hacemo'",
+    "variants": {
+      "hacemos": 2,
+      "hacemo'": 1
+    }
+  },
+  {
+    "word": "has",
+    "corpus_count": 3,
+    "song_count": 2,
+    "display_form": "ha'",
+    "variants": {
+      "has": 2,
+      "ha'": 1
+    }
+  },
+  {
+    "word": "pasado",
+    "corpus_count": 3,
+    "song_count": 3,
+    "variants": {
+      "pasado": 2,
+      "pasa'o": 1
+    }
+  },
+  {
+    "word": "ustedes",
+    "corpus_count": 3,
+    "song_count": 2,
+    "display_form": "ustede'",
+    "variants": {
+      "ustede'": 2,
+      "ustedes": 1
+    }
+  },
+  {
+    "word": "actitud",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "adiós",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "adió'"
+  },
+  {
+    "word": "afuera",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "amanezca",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "atenta",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "bailando",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "bailar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "bellaca",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "booker",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "booty",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "buena",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "bueno",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "buscando",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "buscar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "cambió",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "campeón",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "celular",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "cerca",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "clima",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "conocido",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "contacto",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "convierto",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "cáele",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "darte",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "decirle",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "dejar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "desastre",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "desconfigu",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "descontrola",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "dice",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "dije",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "disimular",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "distraído",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "doce",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "duro",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "dándote",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "dímelo",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "encanta",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "explico",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "feeling",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "fiesta",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "for",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "foto",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "fui",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "full",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "gu",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "guro",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "gustan",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "haga",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "hice",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "hizo",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "ja",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "jaque",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "josé",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "jugás",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "jugá'"
+  },
+  {
+    "word": "ken",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "krippy",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "lady",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "like",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "llama",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "llamo",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "llamé",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "ma",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "mas",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "ma'"
+  },
+  {
+    "word": "mal",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "mamita",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "man",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "marido",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "merezco",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "mirando",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "miren",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "misma",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "mismo",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "mj",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "mm",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "modo",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "molesta",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "morena",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "mueve",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "mujer",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "muy",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "mírame",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "música",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "noches",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "noche'"
+  },
+  {
+    "word": "nombre",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "notó",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "novio",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "olvido",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "ozuna",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "par",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pared",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pasa",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pasarla",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "pecar",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "pendientes",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "pendiente'"
+  },
+  {
+    "word": "perro",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "personal",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "pido",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pista",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "polvo",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pon",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pone",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "primero",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "puso",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "quien",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "quieras",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "quiera'"
+  },
+  {
+    "word": "quién",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "ratatá",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "rd",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "real",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "regálame",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "repeat",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "rey",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "rica",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "ritmo",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "rompe",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "rompiendo",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "sabor",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "sensación",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "sexo",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "shorty",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "sigue",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "solas",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "sola'"
+  },
+  {
+    "word": "solitas",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "solos",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "solo'"
+  },
+  {
+    "word": "suena",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "suficiente",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "supiste",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "sí",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "t",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "tal",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "ten",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "tiktok",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "tocarte",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "tras",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "tuviste",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "uh",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "usted",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "van",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "vea",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "viendo",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "vive",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "volvemos",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "volvemo'"
+  },
+  {
+    "word": "dos",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "do'",
+    "variants": {
+      "do'": 1,
+      "dos": 1
+    }
+  },
+  {
+    "word": "heridas",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "herida'",
+    "variants": {
+      "herida'": 1,
+      "heridas": 1
+    }
+  },
+  {
+    "word": "pones",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "pone'",
+    "variants": {
+      "pone'": 1,
+      "pones": 1
+    }
+  },
+  {
+    "word": "quiénes",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "quiéne'",
+    "variants": {
+      "quiéne'": 1,
+      "quiénes": 1
+    }
+  },
+  {
+    "word": "sigues",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "sigue'",
+    "variants": {
+      "sigue'": 1,
+      "sigues": 1
+    }
+  },
+  {
+    "word": "toda",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "to'a",
+    "variants": {
+      "to'a": 1,
+      "toda": 1
+    }
+  },
+  {
+    "word": "abajo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "aburro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acaban",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acabó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acelera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "aclarar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "activa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "actuar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acumulado",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acura",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "adicción",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "agosto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ajá",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ak",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "alejando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "alguien",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "algunos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "alguno'"
+  },
+  {
+    "word": "amiga",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "amigas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "amiga'"
+  },
+  {
+    "word": "amores",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "amore'"
+  },
+  {
+    "word": "andaba",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "apagues",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "apague'"
+  },
+  {
+    "word": "apareciste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "apareció",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "apariencia",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "apellido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "apretadita",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "apretaíta'"
+  },
+  {
+    "word": "aprieto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "aprovecha",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "aquella",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "arrebátate",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "arrestar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "arriba",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "arte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ascensor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "aseguro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "asimilar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "aterrizado",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "aterriza'o"
+  },
+  {
+    "word": "atrevida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "atrevido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "atrevo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "avenida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "avión",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "año",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "babe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "babies",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "babie'"
+  },
+  {
+    "word": "bad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "baila",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bailaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "baile",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bailo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bajamos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "bajamo'"
+  },
+  {
+    "word": "bajan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "baje",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bajo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bakin'",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bandida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "barbasol",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bastante",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bebe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bebiendo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "beethoven",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bellaqueos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "bellaqueo'"
+  },
+  {
+    "word": "ben",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "benz",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "besar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "besaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "besito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bichota",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bloque",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bonita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "borrado",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "borraré",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "boston",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "botelleo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "boza",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "brad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bregando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "brillando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bruk",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "brújula",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "bunny",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cabe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cabecea",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cachetes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "cachete'"
+  },
+  {
+    "word": "cadenas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "cadena'"
+  },
+  {
+    "word": "cadera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caduquen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caemos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "caemo'"
+  },
+  {
+    "word": "caigo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "calentando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "calentándote",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cambie",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caminante",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cana",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "canción",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cansa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "carajo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "carro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caso",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caí",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cel",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "celosa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "celu",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cerquita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chamaquito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "che",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chichar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chingar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chingarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chiquitita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "choco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "choque",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cien",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cinco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cintura",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cinturón",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "city",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "claros",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "claro'"
+  },
+  {
+    "word": "clase",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "coco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "coincidimos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "colores",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "combo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "comerme",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "comido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "comoquiera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "competencia",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "completa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "compone",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "compositor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "comprando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "compromete",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "condición",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conecta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conejo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "confesarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "confianza",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "confundía'",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conocen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conocí",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conozco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conquistarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conquistándome",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "consistencia",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "construcción",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "contestaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "contesto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "convertí",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "coqueta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "corleone",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cortecito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cosas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "cosa'"
+  },
+  {
+    "word": "cris",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "crush",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cualquier",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuela",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuello",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuenta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuerpo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "culo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cuquen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "curo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "darme",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "das",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "da'"
+  },
+  {
+    "word": "dato",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dañar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dañaron",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dedo",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "de'o"
+  },
+  {
+    "word": "debility",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "decir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "deja",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dejaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "deje",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "demasiado",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "demás",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "demá'"
+  },
+  {
+    "word": "dentro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "deporte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "desaparezco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "descuido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "desea",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "deseo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "desespero",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "desnuda",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despedida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despeluquen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despertaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despreocúpate",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despídete",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "destendida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "detrás",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "detrá'"
+  },
+  {
+    "word": "devorándonos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "diablo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dices",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "dice'"
+  },
+  {
+    "word": "diciéndoselo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dieron",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "diga",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "digo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dilema",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dinero",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dinosaurs",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dio",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "discoteka'",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "disfruta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "diva",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dm",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dolido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dolor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "drive",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "drums",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dura",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dynell",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dé",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "días",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "día'"
+  },
+  {
+    "word": "e'perado",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "e'to",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "echa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "echamos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "echamo'"
+  },
+  {
+    "word": "eduquen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "elena",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ellos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "ello'"
+  },
+  {
+    "word": "embichar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "embobado",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "emboba'o"
+  },
+  {
+    "word": "emma",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "emocionen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "empalagando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "empezó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "enamorando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "enamoré",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "encantaría",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "encontrado",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "encontra'o"
+  },
+  {
+    "word": "encontré",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ende",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "endulza",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "enero",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "engreído",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "enredamos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "enredamo'"
+  },
+  {
+    "word": "entendemos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entender",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entendido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entendí",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entero",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entiende",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entiendo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entonces",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "entonce'"
+  },
+  {
+    "word": "entra",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entramos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "entramo'"
+  },
+  {
+    "word": "entre",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entrego",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "enviciaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "era",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "esas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "esa'"
+  },
+  {
+    "word": "escaleras",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "escalera'"
+  },
+  {
+    "word": "escapado",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "escapa'o"
+  },
+  {
+    "word": "escribe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "escribió",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "escuchar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "escuchas",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "escucho",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "escuela",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "esos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "eso'"
+  },
+  {
+    "word": "espera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "espere",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "esquives",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "estas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "esta'"
+  },
+  {
+    "word": "estan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "estar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "estarías",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ester",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "estos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "esto'"
+  },
+  {
+    "word": "estrés",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "están",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "estés",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "esté'"
+  },
+  {
+    "word": "eternity",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "evitar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ex",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "explícitos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "expósito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "extinguieron",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fallarle",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "falta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fama",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fatality",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "favorita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "feka",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "feo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fichar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fiera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fila",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "filosofía",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fin",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "final",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "flow",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "floyymenor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "frontear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fuera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fumemos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fumé",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "funcionamos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "futuro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fácil",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "g",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gana",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ganan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gangsters",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gimiéndome",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "glopeta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gloria",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gocen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "golosina",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gotay",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "graba",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "grabando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "grita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "guarda",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "guardado",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "guarda'o"
+  },
+  {
+    "word": "guayarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gustaban",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gustamos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gustando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gusté",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gánster",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "género",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "haber",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "habido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "habla",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hablen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "habría",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "había",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "haces",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "hace'"
+  },
+  {
+    "word": "hacerle",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hacerles",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "hacerle'"
+  },
+  {
+    "word": "hacernos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "hacerno'"
+  },
+  {
+    "word": "had",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hagas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "haga'"
+  },
+  {
+    "word": "hard",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "haría",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "haters",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "hater'"
+  },
+  {
+    "word": "hermosa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hierba",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "high",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hijueputa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hijueputas",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "himnos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "himno'"
+  },
+  {
+    "word": "hipnotizada",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hombre",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "horas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "hora'"
+  },
+  {
+    "word": "hyde",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "héctor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "importan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "importes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "importe'"
+  },
+  {
+    "word": "incomode",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "inevitable",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "inmediato",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "insanity",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "insistas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "insista'"
+  },
+  {
+    "word": "instante",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "inteligencia",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "intentan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "intentando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "intento",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "invitó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "irnos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "irse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "iría",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "it",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jaja",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jaló",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jangueando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "je",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jefe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jode",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jodido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "jodidos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "jodío'"
+  },
+  {
+    "word": "juguetones",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "juguetone'"
+  },
+  {
+    "word": "juro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "kanye",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "labios",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "labio'"
+  },
+  {
+    "word": "lado",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lean",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "legal",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lento",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "letras",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "letra'"
+  },
+  {
+    "word": "liga",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lista",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llamas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "llama'"
+  },
+  {
+    "word": "lleca",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llega",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llega'te",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llego",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llegó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lleno",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lleva",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llevan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llevo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llevé",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llevó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llorar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lmg",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "loba",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "loco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "locotrón",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "locuras",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "loquito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "luego",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lugar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "luna",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lástima",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "líos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "lío'"
+  },
+  {
+    "word": "lúcete",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mai",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maldito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maleantes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "maleante'"
+  },
+  {
+    "word": "maleanteo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "malgastaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "malicia",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mamá",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mandé",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mandó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "manejo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "manual",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maquillar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mari",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maría",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mata",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "matando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "material",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maté",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maybach",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "menor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mentir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "merece",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mete",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "meter",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "metí",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mezclamos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "mezclamo'"
+  },
+  {
+    "word": "miami",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "micro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "miel",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "milly",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mirar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mirarlo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "miro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mirándome",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mirándonos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "mirándono'"
+  },
+  {
+    "word": "mirándote",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "misiones",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "misione'"
+  },
+  {
+    "word": "mmm",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "moja'íta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mojarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mordido",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "mordío'"
+  },
+  {
+    "word": "motiva",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "motociclista",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "muah",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mucha",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "muchas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "mucha'"
+  },
+  {
+    "word": "muerdes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "muerde'"
+  },
+  {
+    "word": "muerden",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "muere",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "muerte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mujerón",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "muévelo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "muñeca",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mándame",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mía",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "móntate",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "nacido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "navidad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "necesita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "negrito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "nice",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "niega",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "nike",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "nivel",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "niveles",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "nivele'"
+  },
+  {
+    "word": "norte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "nota",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "noté",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "novia",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "nube",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "número",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "números",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "número'"
+  },
+  {
+    "word": "obra",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "oh",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ojalá",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ojitos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "ojito'"
+  },
+  {
+    "word": "olvidan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "on",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "only",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "orillita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "orión",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "oído",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "oíste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pagando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "panamá",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "papi",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "parar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "parece",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pareces",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "parece'"
+  },
+  {
+    "word": "parecemos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "parecemo'"
+  },
+  {
+    "word": "parezca",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "paro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "partes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "parte'"
+  },
+  {
+    "word": "pasa'te",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pasajera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pasan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pasando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pasar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pasen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "paso",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pasó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pegando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pegarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pegue",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "peine",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pelúa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "penas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "pena'"
+  },
+  {
+    "word": "penetra",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pensar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pensaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pensé",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perdiendo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perdiste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perdona",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perdí",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "permití",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perreando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perréame",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pertenece",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pichear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pides",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "pide'"
+  },
+  {
+    "word": "pin",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pinta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "piquete",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "piqué",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pirata",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pistolas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "pistola'"
+  },
+  {
+    "word": "pitt",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "plan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "platón",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "playa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pocas",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "poco",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "policía",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ponerte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ponértelo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "porno",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "porte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "poses",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "pose'"
+  },
+  {
+    "word": "posiciones",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "posicione'"
+  },
+  {
+    "word": "prefieres",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "prefiere'"
+  },
+  {
+    "word": "pregunta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "premio",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "premios",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "premio'"
+  },
+  {
+    "word": "preocupes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "preocupe'"
+  },
+  {
+    "word": "prepa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "presentarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "presento",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pri",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "primer",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "privacidad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "probable",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "problema",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "prometes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "promete'"
+  },
+  {
+    "word": "promo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "propósito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pudiera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pueden",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "puedo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "puertas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "puerta'"
+  },
+  {
+    "word": "puesta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "punta",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "puto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quality",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quedan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quedaste",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quedó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "querías",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "quería'"
+  },
+  {
+    "word": "quise",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quita",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quitar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "quito",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "químico",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "raptar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "rastro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "rato",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "raza",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "razón",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "realidad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "reality",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recordarte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recuerda",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recuerdo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "redes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "rede'"
+  },
+  {
+    "word": "regalando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "reggaetón",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "regresar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "relaciones",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "relacione'"
+  },
+  {
+    "word": "retira",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "richard",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "robar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "robaría",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "robe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "robo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "roce",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "rojos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "rojo'"
+  },
+  {
+    "word": "rompimos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "rompimo'"
+  },
+  {
+    "word": "rosa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "rosé",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ruido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "rulay",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sabe",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "saber",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sabiendo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "saca",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "safari",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sal",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "salga",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "salir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sanan",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "santa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "saque",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sartén",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "secreto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "secuela",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "secuestro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "seguramente",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "seguridad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "seguro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "semejante",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sencilla",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sentado",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sentido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sepa",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sepas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "sepa'"
+  },
+  {
+    "word": "serena",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "serio",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "será",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "setas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "seta'"
+  },
+  {
+    "word": "shakira",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "shh",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sicarios",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "sicario'"
+  },
+  {
+    "word": "sido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "siendo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "siga",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "siguen",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sino",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sirven",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "size",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sky",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "so",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "soledad",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sorprende",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sospecha",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sube",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "subimos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "subimo'"
+  },
+  {
+    "word": "sucedido",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sur",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sus",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "su'"
+  },
+  {
+    "word": "suya",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "switchear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "sólo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "take",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tanque",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tate",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tatuaje",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "taza",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tego",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "temas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "tema'"
+  },
+  {
+    "word": "tenemos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "tenemo'"
+  },
+  {
+    "word": "tenerte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tenqui",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tera",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "termine",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "terraza",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "testigo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "the",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tigueres",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "tiguere'"
+  },
+  {
+    "word": "timidez",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tiras",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "tira'"
+  },
+  {
+    "word": "tiro",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tiró",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tocándote",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tocó",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "todavía",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "todos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "todo'"
+  },
+  {
+    "word": "toma",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tomamos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "tomamo'"
+  },
+  {
+    "word": "tomando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "top",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tope",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tortura",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "toto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "traba",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "trajaja",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tranquila",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tratando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tratar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "traten",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "trato",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "traído",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tres",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "tre'"
+  },
+  {
+    "word": "tuya",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tíguere'",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tímida",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tírate",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tóxicos",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "uah",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ubi",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "uff",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "usar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ustes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "uste'"
+  },
+  {
+    "word": "vacaciones",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "vacacione'"
+  },
+  {
+    "word": "vacilo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vale",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "valor",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "varear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "varios",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "va'"
+  },
+  {
+    "word": "veas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "vea'"
+  },
+  {
+    "word": "vendidos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "vendío'"
+  },
+  {
+    "word": "venezuela",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vengas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "venga'"
+  },
+  {
+    "word": "ventana",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "veo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "verano",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "verte",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "veía",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vi",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "viajo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "videos",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "video'"
+  },
+  {
+    "word": "vienes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "viene'"
+  },
+  {
+    "word": "viernes",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "vierne'"
+  },
+  {
+    "word": "viniéndote",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vino",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "violento",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "virales",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "virale'"
+  },
+  {
+    "word": "vista",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vitrina",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "volando",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vueltas",
+    "corpus_count": 1,
+    "song_count": 1,
+    "display_form": "vuelta'"
+  },
+  {
+    "word": "vuelto",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vuelvo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vvs",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "vídeo",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "west",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "yankee",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "yasso",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "yeh",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "yuh",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "última",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "único",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "calentar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dar",
+    "corpus_count": 5,
+    "song_count": 4
+  },
+  {
+    "word": "venir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conquistar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fallar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "confesar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "poner",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "montarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dejarse",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "mojar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recordar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pegar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "regalar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "presentar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "comerse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tocar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tirarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mover",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "devorar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despedirse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mandar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "guayar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lucirse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "arrebatarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perrear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caer",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "gemir",
+    "corpus_count": 1,
+    "song_count": 1
+  }
+]

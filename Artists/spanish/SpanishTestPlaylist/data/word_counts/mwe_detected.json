@@ -1,0 +1,1535 @@
+{
+  "mwes": [
+    {
+      "expression": "ir a + infinitive",
+      "translation": "go or be going to + verb",
+      "count": 19,
+      "occurrence_count": 20,
+      "num_songs": 8,
+      "examples": [
+        {
+          "id": "5302840:28",
+          "line": "Que siga la fiesta, no vamo' a parar (Wuh)",
+          "title": "Amarillo",
+          "matched_variant": "vamos a parar",
+          "matched_surface": "vamo' a parar"
+        },
+        {
+          "id": "5302840:32",
+          "line": "Y vamo' a seguir",
+          "title": "Amarillo",
+          "matched_variant": "vamos a seguir",
+          "matched_surface": "vamo' a seguir"
+        },
+        {
+          "id": "6211036:15",
+          "line": "Pero él también va a pichear",
+          "title": "BOOKER T",
+          "matched_variant": "va a pichear",
+          "matched_surface": "va a pichear"
+        },
+        {
+          "id": "6211036:20",
+          "line": "Voy a ser el jefe, me van a fichar (Ey)",
+          "title": "BOOKER T",
+          "matched_variant": "voy a ser",
+          "matched_surface": "Voy a ser"
+        },
+        {
+          "id": "6211036:21",
+          "line": "Mi nombre por siempre se va a escuchar (Uh, uh, uh)",
+          "title": "BOOKER T",
+          "matched_variant": "va a escuchar",
+          "matched_surface": "va a escuchar"
+        }
+      ],
+      "variants": [
+        "voy a",
+        "va a",
+        "vamos a",
+        "van a"
+      ],
+      "variant_counts": {
+        "voy a": 9,
+        "va a": 6,
+        "vamos a": 3,
+        "van a": 2
+      },
+      "family": "ir a + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "saber que",
+      "translation": "know that",
+      "count": 12,
+      "occurrence_count": 13,
+      "num_songs": 8,
+      "examples": [
+        {
+          "id": "5960780:57",
+          "line": "Sabe que a su nivel no tiene competencia (Competencia)",
+          "title": "Antes",
+          "matched_variant": "sabe que",
+          "matched_surface": "Sabe que"
+        },
+        {
+          "id": "5751052:22",
+          "line": "Yo sé que lo notó y no pude evitar",
+          "title": "Ay, DiOs Mío!",
+          "matched_variant": "sé que",
+          "matched_surface": "sé que"
+        },
+        {
+          "id": "5929713:7",
+          "line": "Sabiendo que no me pertenece (Pertenece)",
+          "title": "Una Locura",
+          "matched_variant": "sabiendo que",
+          "matched_surface": "Sabiendo que"
+        },
+        {
+          "id": "1556090:14",
+          "line": "Porque sé que me espera algo mejor",
+          "title": "Me Voy",
+          "matched_variant": "sé que",
+          "matched_surface": "sé que"
+        },
+        {
+          "id": "6838492:6",
+          "line": "Sé que es personal, perdona lo atrevido (No)",
+          "title": "Qué Más Pues?",
+          "matched_variant": "sé que",
+          "matched_surface": "Sé que"
+        }
+      ],
+      "variants": [
+        "sé que",
+        "sabe que",
+        "sabiendo que"
+      ],
+      "variant_counts": {
+        "sé que": 10,
+        "sabe que": 1,
+        "sabiendo que": 1
+      },
+      "family": "saber que",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "querer que",
+      "translation": "want someone to",
+      "count": 12,
+      "occurrence_count": 12,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "5960780:18",
+          "line": "No sabe' cuánto quiero que vuelva otra",
+          "title": "Antes",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que"
+        },
+        {
+          "id": "10304179:21",
+          "line": "La shorty quiere que la mate (Que la mate)",
+          "title": "Tengo Un Plan",
+          "matched_variant": "quiere que",
+          "matched_surface": "quiere que"
+        },
+        {
+          "id": "5960780:22",
+          "line": "No sabe' cuánto quiero que vuelva otra noche más (Brr)",
+          "title": "Antes",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que"
+        },
+        {
+          "id": "10304179:24",
+          "line": "Y no quiere que la saque (Que la saque)",
+          "title": "Tengo Un Plan",
+          "matched_variant": "quiere que",
+          "matched_surface": "quiere que"
+        },
+        {
+          "id": "5960780:41",
+          "line": "No sabe' cuánto quiero que vuelva otra noche de",
+          "title": "Antes",
+          "matched_variant": "quiero que",
+          "matched_surface": "quiero que"
+        }
+      ],
+      "variants": [
+        "quiere que",
+        "quiero que"
+      ],
+      "variant_counts": {
+        "quiere que": 7,
+        "quiero que": 5
+      },
+      "family": "querer que",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "de ti",
+      "translation": "about you, of you",
+      "count": 9,
+      "occurrence_count": 10,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "1556090:4",
+          "line": "¿Por qué no escuchas lo que está tan cerca de ti?",
+          "title": "Me Voy",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti"
+        },
+        {
+          "id": "1556090:11",
+          "line": "Me despido de ti y me voy",
+          "title": "Me Voy",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti"
+        },
+        {
+          "id": "1556090:13",
+          "line": "Me despido de ti",
+          "title": "Me Voy",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti"
+        },
+        {
+          "id": "1556090:17",
+          "line": "Yo que pensé, nunca me iría de ti",
+          "title": "Me Voy",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti"
+        },
+        {
+          "id": "1556090:26",
+          "line": "Me despido de ti y",
+          "title": "Me Voy",
+          "matched_variant": "de ti",
+          "matched_surface": "de ti"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "tú eres",
+      "translation": "you are (elided)",
+      "count": 8,
+      "occurrence_count": 8,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "6211036:49",
+          "line": "Cabrón, tú eres feka",
+          "title": "BOOKER T",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú eres"
+        },
+        {
+          "id": "9991217:13",
+          "line": "Tú ere' like for me y yo 'toy pa' ti",
+          "title": "Gata Only",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'"
+        },
+        {
+          "id": "9991217:32",
+          "line": "Tú ere' like for me, yo tu Brad Pitt",
+          "title": "Gata Only",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'"
+        },
+        {
+          "id": "10304179:34",
+          "line": "Tú ere' bellaca, deja la timidez",
+          "title": "Tengo Un Plan",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'"
+        },
+        {
+          "id": "10304179:36",
+          "line": "Que tú eres bellaca por cómo los labios te muerde'",
+          "title": "Tengo Un Plan",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú eres"
+        }
+      ],
+      "variants": [
+        "tú ere'"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "para que",
+      "translation": "so that, in order to",
+      "count": 7,
+      "occurrence_count": 7,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "5302840:3",
+          "line": "Reggaetón de Tego pa' que se lo gocen (Ey)",
+          "title": "Amarillo",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que"
+        },
+        {
+          "id": "5960780:35",
+          "line": "El AK encima pa' que to' el que me incomode (Me incomode)",
+          "title": "Antes",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que"
+        },
+        {
+          "id": "6211036:5",
+          "line": "Lean los números pa' que se eduquen (Wuh)",
+          "title": "BOOKER T",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que"
+        },
+        {
+          "id": "6211036:6",
+          "line": "Yo no hago cancione', hago himnos pa' que no caduquen (Ey)",
+          "title": "BOOKER T",
+          "matched_variant": "para que",
+          "matched_surface": "pa' que"
+        },
+        {
+          "id": "6211036:54",
+          "line": "Pa' que veas que estoy bien hijueputa",
+          "title": "BOOKER T",
+          "matched_variant": "para que",
+          "matched_surface": "Pa' que"
+        }
+      ],
+      "variants": [
+        "pa' que"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "te quiero",
+      "translation": "I love you / I want you",
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "9991217:3",
+          "line": "Te quiero chingar, te voy a raptar",
+          "title": "Gata Only",
+          "matched_variant": "te quiero",
+          "matched_surface": "Te quiero"
+        },
+        {
+          "id": "10304179:13",
+          "line": "Te quiero tener (Quiero tener)",
+          "title": "Tengo Un Plan",
+          "matched_variant": "te quiero",
+          "matched_surface": "Te quiero"
+        },
+        {
+          "id": "5302844:33",
+          "line": "Yo te quiero pa' Ken (Wuh, wuh)",
+          "title": "Verde",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero"
+        },
+        {
+          "id": "10471373:9",
+          "line": "Yo te quiero pa' mí, lo ju-u-uro",
+          "title": "orióN",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero"
+        },
+        {
+          "id": "10471373:18",
+          "line": "Y con mis herida' no te quiero dañar",
+          "title": "orióN",
+          "matched_variant": "te quiero",
+          "matched_surface": "te quiero"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "no sé",
+      "translation": "I don't know",
+      "count": 6,
+      "occurrence_count": 6,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "5751052:4",
+          "line": "Fue una cosa que yo no sé",
+          "title": "Ay, DiOs Mío!",
+          "matched_variant": "no sé",
+          "matched_surface": "no sé"
+        },
+        {
+          "id": "10489180:30",
+          "line": "Y yo te veo y no sé cómo actuar",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "no sé",
+          "matched_surface": "no sé"
+        },
+        {
+          "id": "10304179:7",
+          "line": "Yo no sé que andaba buscando, solo sé que desde que te encontré",
+          "title": "Tengo Un Plan",
+          "matched_variant": "no sé",
+          "matched_surface": "no sé"
+        },
+        {
+          "id": "3687950:17",
+          "line": "Me gustas tú na' má', no sé disimular",
+          "title": "Vaina Loca",
+          "matched_variant": "no sé",
+          "matched_surface": "no sé"
+        },
+        {
+          "id": "3687950:24",
+          "line": "No sé disimular, bailo contigo y yo me entrego",
+          "title": "Vaina Loca",
+          "matched_variant": "no sé",
+          "matched_surface": "No sé"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "es que",
+      "translation": "it's that (elided)",
+      "count": 5,
+      "occurrence_count": 5,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "6211036:29",
+          "line": "Pero es que ya nadie compone",
+          "title": "BOOKER T",
+          "matched_variant": "es que",
+          "matched_surface": "es que"
+        },
+        {
+          "id": "9991217:17",
+          "line": "E' que conmigo la baby esta noche la pasó cabrón",
+          "title": "Gata Only",
+          "matched_variant": "es que",
+          "matched_surface": "E' que"
+        },
+        {
+          "id": "3687950:9",
+          "line": "Es que me gustas tú na' más",
+          "title": "Vaina Loca",
+          "matched_variant": "es que",
+          "matched_surface": "Es que"
+        },
+        {
+          "id": "3687950:39",
+          "line": "Es que en mi lista tú eres la favorita",
+          "title": "Vaina Loca",
+          "matched_variant": "es que",
+          "matched_surface": "Es que"
+        },
+        {
+          "id": "10471373:4",
+          "line": "E' que si me pide' que te espere, te espero sentado",
+          "title": "orióN",
+          "matched_variant": "es que",
+          "matched_surface": "E' que"
+        }
+      ],
+      "variants": [
+        "e' que"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "por eso",
+      "translation": "that's why, for that reason",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "5302840:16",
+          "line": "Por eso yo sigo hasta que amanezca, entonce' (Yah)",
+          "title": "Amarillo",
+          "matched_variant": "por eso",
+          "matched_surface": "Por eso"
+        },
+        {
+          "id": "1556090:9",
+          "line": "Pero no lo quiero, por eso me voy",
+          "title": "Me Voy",
+          "matched_variant": "por eso",
+          "matched_surface": "por eso"
+        },
+        {
+          "id": "8417047:3",
+          "line": "Por eso nos vamos (Nos vamos)",
+          "title": "X SI VOLVEMOS",
+          "matched_variant": "por eso",
+          "matched_surface": "Por eso"
+        },
+        {
+          "id": "10471373:29",
+          "line": "Pri, tú me está' gustando mucho, por eso quiero confesarte",
+          "title": "orióN",
+          "matched_variant": "por eso",
+          "matched_surface": "por eso"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "desde que",
+      "translation": "since, ever since",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 4,
+      "examples": [
+        {
+          "id": "6838492:24",
+          "line": "Cambió desde que te fuiste tú",
+          "title": "Qué Más Pues?",
+          "matched_variant": "desde que",
+          "matched_surface": "desde que"
+        },
+        {
+          "id": "10304179:7",
+          "line": "Yo no sé que andaba buscando, solo sé que desde que te encontré",
+          "title": "Tengo Un Plan",
+          "matched_variant": "desde que",
+          "matched_surface": "desde que"
+        },
+        {
+          "id": "5929713:8",
+          "line": "Y desde que la conocí",
+          "title": "Una Locura",
+          "matched_variant": "desde que",
+          "matched_surface": "desde que"
+        },
+        {
+          "id": "8417047:23",
+          "line": "Pero desde que me besaste",
+          "title": "X SI VOLVEMOS",
+          "matched_variant": "desde que",
+          "matched_surface": "desde que"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "todas las",
+      "translation": "all the (fem., elided)",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "9991217:20",
+          "line": "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'",
+          "title": "Gata Only",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las"
+        },
+        {
+          "id": "9991217:47",
+          "line": "Allá abajo mojarte toa' las parte'",
+          "title": "Gata Only",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las"
+        },
+        {
+          "id": "1469974:11",
+          "line": "To'as la' noche' ella me desea",
+          "title": "Una Vaina Loca",
+          "matched_variant": "todas las",
+          "matched_surface": "To'as la'"
+        },
+        {
+          "id": "10919676:15",
+          "line": "Toa' las pose', hicimos to' (Oh-oh)",
+          "title": "frente al mar",
+          "matched_variant": "todas las",
+          "matched_surface": "Toa' las"
+        }
+      ],
+      "variants": [
+        "to'as las",
+        "toa' las"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "me gusta",
+      "translation": "I like",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "5302840:6",
+          "line": "Que a mí me gusta pasarla rico? (Eh, eh)",
+          "title": "Amarillo",
+          "matched_variant": "me gusta",
+          "matched_surface": "me gusta"
+        },
+        {
+          "id": "1469974:16",
+          "line": "Y le gusta y disfruta, duro quiere que le dé",
+          "title": "Una Vaina Loca",
+          "matched_variant": "le gusta",
+          "matched_surface": "le gusta"
+        },
+        {
+          "id": "5302840:8",
+          "line": "A mí me gusta pasarla rico (Yah)",
+          "title": "Amarillo",
+          "matched_variant": "me gusta",
+          "matched_surface": "me gusta"
+        },
+        {
+          "id": "10627178:2",
+          "line": "Me gusta el cortecito que le está dando",
+          "title": "PELIGROSA",
+          "matched_variant": "me gusta",
+          "matched_surface": "Me gusta"
+        }
+      ],
+      "variants": [
+        "me gusta",
+        "le gusta"
+      ],
+      "variant_counts": {
+        "me gusta": 3,
+        "le gusta": 1
+      },
+      "family": "gustar",
+      "source": "artist-curated"
+    },
+    {
+      "expression": "por qué",
+      "translation": "why",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "1556090:1",
+          "line": "¿Por qué no supiste entender a mi corazón?",
+          "title": "Me Voy",
+          "matched_variant": "por qué",
+          "matched_surface": "Por qué"
+        },
+        {
+          "id": "1556090:3",
+          "line": "¿Por qué no tuviste el valor de ver quién soy?",
+          "title": "Me Voy",
+          "matched_variant": "por qué",
+          "matched_surface": "Por qué"
+        },
+        {
+          "id": "1556090:4",
+          "line": "¿Por qué no escuchas lo que está tan cerca de ti?",
+          "title": "Me Voy",
+          "matched_variant": "por qué",
+          "matched_surface": "Por qué"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "a ver",
+      "translation": "let's see",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "5960780:59",
+          "line": "A ver, déjate ver (Déjate ver)",
+          "title": "Antes",
+          "matched_variant": "a ver",
+          "matched_surface": "A ver"
+        },
+        {
+          "id": "6838492:14",
+          "line": "Ma', ¿qué lo que? (¿Qué lo que?) ¿Dónde estás? Dime, a ver (Dime, a ver)",
+          "title": "Qué Más Pues?",
+          "matched_variant": "a ver",
+          "matched_surface": "a ver"
+        },
+        {
+          "id": "10304179:12",
+          "line": "Tiempo no te veía y ahora que te vuelvo a ver",
+          "title": "Tengo Un Plan",
+          "matched_variant": "a ver",
+          "matched_surface": "a ver"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "hasta que",
+      "translation": "until",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "5302840:16",
+          "line": "Por eso yo sigo hasta que amanezca, entonce' (Yah)",
+          "title": "Amarillo",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que"
+        },
+        {
+          "id": "5960780:16",
+          "line": "Bailando hasta que amanezca (Hasta que amanezca)",
+          "title": "Antes",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que"
+        },
+        {
+          "id": "10627178:10",
+          "line": "Yo quiero con ella hasta que la micro choque",
+          "title": "PELIGROSA",
+          "matched_variant": "hasta que",
+          "matched_surface": "hasta que"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "no hay",
+      "translation": "there isn't, there's no",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "1556090:19",
+          "line": "Hoy entendí que no hay suficiente para los dos",
+          "title": "Me Voy",
+          "matched_variant": "no hay",
+          "matched_surface": "no hay"
+        },
+        {
+          "id": "3687950:44",
+          "line": "Si es por ti, no hay pero",
+          "title": "Vaina Loca",
+          "matched_variant": "no hay",
+          "matched_surface": "no hay"
+        },
+        {
+          "id": "10471373:47",
+          "line": "No hay cómo fallarle a semejante mujerón",
+          "title": "orióN",
+          "matched_variant": "no hay",
+          "matched_surface": "No hay"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "a mí me",
+      "translation": "to me (emphatic)",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "5302840:6",
+          "line": "Que a mí me gusta pasarla rico? (Eh, eh)",
+          "title": "Amarillo",
+          "matched_variant": "a mí me",
+          "matched_surface": "a mí me"
+        },
+        {
+          "id": "5302840:8",
+          "line": "A mí me gusta pasarla rico (Yah)",
+          "title": "Amarillo",
+          "matched_variant": "a mí me",
+          "matched_surface": "A mí me"
+        },
+        {
+          "id": "8417047:7",
+          "line": "Es una porno, a mí me encanta cómo lo hacemos",
+          "title": "X SI VOLVEMOS",
+          "matched_variant": "a mí me",
+          "matched_surface": "a mí me"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "me voy",
+      "translation": "I'm leaving",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "1556090:9",
+          "line": "Pero no lo quiero, por eso me voy",
+          "title": "Me Voy",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        },
+        {
+          "id": "1556090:11",
+          "line": "Me despido de ti y me voy",
+          "title": "Me Voy",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        },
+        {
+          "id": "1556090:28",
+          "line": "Y me voy",
+          "title": "Me Voy",
+          "matched_variant": "me voy",
+          "matched_surface": "me voy"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "se ve",
+      "translation": "looks, appears",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "10304179:35",
+          "line": "De lejos se ve, eh-eh (Ah)",
+          "title": "Tengo Un Plan",
+          "matched_variant": "se ve",
+          "matched_surface": "se ve"
+        },
+        {
+          "id": "5302844:13",
+          "line": "Echa pa' acá, que desde lejos se ve",
+          "title": "Verde",
+          "matched_variant": "se ve",
+          "matched_surface": "se ve"
+        },
+        {
+          "id": "5302844:14",
+          "line": "Ese booty desde lejos se ve",
+          "title": "Verde",
+          "matched_variant": "se ve",
+          "matched_surface": "se ve"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "decir que",
+      "translation": "say that",
+      "count": 3,
+      "occurrence_count": 3,
+      "num_songs": 3,
+      "examples": [
+        {
+          "id": "1556090:7",
+          "line": "No voy a llorar y decir que no merezco esto",
+          "title": "Me Voy",
+          "matched_variant": "decir que",
+          "matched_surface": "decir que"
+        },
+        {
+          "id": "5929713:47",
+          "line": "Tú misma me dices que lo nuestro es eternity",
+          "title": "Una Locura",
+          "matched_variant": "dices que",
+          "matched_surface": "dices que"
+        }
+      ],
+      "variants": [
+        "decir que",
+        "dices que",
+        "dijo que"
+      ],
+      "variant_counts": {
+        "decir que": 1,
+        "dices que": 1,
+        "dijo que": 1
+      },
+      "family": "decir que",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "para qué",
+      "translation": "what for",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5302840:35",
+          "line": "Si saben cómo soy, ¿para qué me invitan?",
+          "title": "Amarillo",
+          "matched_variant": "para qué",
+          "matched_surface": "para qué"
+        },
+        {
+          "id": "5302840:36",
+          "line": "¿Pa' qué me invitan? (Tú sabe')",
+          "title": "Amarillo",
+          "matched_variant": "para qué",
+          "matched_surface": "Pa' qué"
+        }
+      ],
+      "variants": [
+        "pa' qué"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "por más que",
+      "translation": "no matter how much",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "3687950:12",
+          "line": "Que por más que intento no se va",
+          "title": "Vaina Loca",
+          "matched_variant": "por más que",
+          "matched_surface": "por más que"
+        },
+        {
+          "id": "5302844:8",
+          "line": "Por más que le traten no les da (Ey, wuh)",
+          "title": "Verde",
+          "matched_variant": "por más que",
+          "matched_surface": "Por más que"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "lo nuestro",
+      "translation": "our thing, what we have",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5929713:15",
+          "line": "Lo nuestro es una locura (Locura)",
+          "title": "Una Locura",
+          "matched_variant": "lo nuestro",
+          "matched_surface": "Lo nuestro"
+        },
+        {
+          "id": "5929713:47",
+          "line": "Tú misma me dices que lo nuestro es eternity",
+          "title": "Una Locura",
+          "matched_variant": "lo nuestro",
+          "matched_surface": "lo nuestro"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "después de",
+      "translation": "after",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "5302840:9",
+          "line": "Despué' de las doce salimo' a buscar el party (Party)",
+          "title": "Amarillo",
+          "matched_variant": "después de",
+          "matched_surface": "Despué' de"
+        },
+        {
+          "id": "10304179:9",
+          "line": "Tengo los ojo' rojo' despué' de la hierba que yo fumé",
+          "title": "Tengo Un Plan",
+          "matched_variant": "después de",
+          "matched_surface": "despué' de"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "se va",
+      "translation": "leaves, goes away",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "5929713:9",
+          "line": "Se va con su amiga pa' la disco",
+          "title": "Una Locura",
+          "matched_variant": "se va",
+          "matched_surface": "Se va"
+        },
+        {
+          "id": "3687950:12",
+          "line": "Que por más que intento no se va",
+          "title": "Vaina Loca",
+          "matched_variant": "se va",
+          "matched_surface": "se va"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "todo el mundo",
+      "translation": "everybody",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "5960780:27",
+          "line": "To' el mundo en el maleanteo (Maleanteo)",
+          "title": "Antes",
+          "matched_variant": "todo el mundo",
+          "matched_surface": "To' el mundo"
+        },
+        {
+          "id": "6211036:32",
+          "line": "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela",
+          "title": "BOOKER T",
+          "matched_variant": "todo el mundo",
+          "matched_surface": "to' el mundo"
+        }
+      ],
+      "variants": [
+        "to' el mundo"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "toda la",
+      "translation": "all the (fem. sg., elided)",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "1556090:18",
+          "line": "Que es amor del bueno, de toda la vida, pero",
+          "title": "Me Voy",
+          "matched_variant": "toda la",
+          "matched_surface": "toda la"
+        },
+        {
+          "id": "5929713:25",
+          "line": "Se pasa to'a la noche apretaíta' conmigo (Conmigo)",
+          "title": "Una Locura",
+          "matched_variant": "toda la",
+          "matched_surface": "to'a la"
+        }
+      ],
+      "variants": [
+        "to'a la"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "la disco",
+      "translation": "the club",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "5960780:25",
+          "line": "Entramo' pa' la disco, las pistola' y las seta' (Brr)",
+          "title": "Antes",
+          "matched_variant": "la disco",
+          "matched_surface": "la disco"
+        },
+        {
+          "id": "5929713:9",
+          "line": "Se va con su amiga pa' la disco",
+          "title": "Una Locura",
+          "matched_variant": "la disco",
+          "matched_surface": "la disco"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "por ahí",
+      "translation": "around there, out and about",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "3687950:6",
+          "line": "Y tú tan sola por ahí",
+          "title": "Vaina Loca",
+          "matched_variant": "por ahí",
+          "matched_surface": "por ahí"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "a lo loco",
+      "translation": "wildly, recklessly",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5302840:2",
+          "line": "Hoy voy a lo loco, ustede' me conocen (Me conocen)",
+          "title": "Amarillo",
+          "matched_variant": "a lo loco",
+          "matched_surface": "a lo loco"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "lo que sea",
+      "translation": "whatever",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "10489180:32",
+          "line": "Espero lo que sea, yo no me voy a quitar",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "lo que sea",
+          "matched_surface": "lo que sea"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "antes que",
+      "translation": "before",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6211036:9",
+          "line": "Antes que me apague' se apaga el sol",
+          "title": "BOOKER T",
+          "matched_variant": "antes que",
+          "matched_surface": "Antes que"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "a ti te",
+      "translation": "to you (emphatic)",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6838492:62",
+          "line": "Yo a ti te llamé en agosto, apareciste en enero",
+          "title": "Qué Más Pues?",
+          "matched_variant": "a ti te",
+          "matched_surface": "a ti te"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "me dice",
+      "translation": "tells me",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5929713:11",
+          "line": "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)",
+          "title": "Una Locura",
+          "matched_variant": "me dice",
+          "matched_surface": "Me dice"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "te juro",
+      "translation": "I swear to you",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6211036:16",
+          "line": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
+          "title": "BOOKER T",
+          "matched_variant": "te juro",
+          "matched_surface": "Te juro"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "dime si",
+      "translation": "tell me if",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "9991217:11",
+          "line": "Dime si se da",
+          "title": "Gata Only",
+          "matched_variant": "dime si",
+          "matched_surface": "Dime si"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "todo lo que",
+      "translation": "everything that",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "3687950:5",
+          "line": "Tú tienes todo lo que quiero para mí",
+          "title": "Vaina Loca",
+          "matched_variant": "todo lo que",
+          "matched_surface": "todo lo que"
+        }
+      ],
+      "variants": [
+        "to' lo que"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "tú sabes",
+      "translation": "you know (elided)",
+      "count": 1,
+      "occurrence_count": 2,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "9991217:59",
+          "line": "Ya tú sabe' quiéne', ya tú sabe' quiénes somo' (Ey)",
+          "title": "Gata Only",
+          "matched_variant": "tú sabes",
+          "matched_surface": "tú sabe'"
+        }
+      ],
+      "variants": [
+        "tú sabe'"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "la nota",
+      "translation": "the vibe, the high",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5929713:10",
+          "line": "Pero cuando le sube la nota siempre vuelve a mí",
+          "title": "Una Locura",
+          "matched_variant": "la nota",
+          "matched_surface": "la nota"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "esta noche",
+      "translation": "tonight",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "9991217:17",
+          "line": "E' que conmigo la baby esta noche la pasó cabrón",
+          "title": "Gata Only",
+          "matched_variant": "esta noche",
+          "matched_surface": "esta noche"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "un flow",
+      "translation": "a style, a vibe",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5302840:11",
+          "line": "Y con un flow violento que parecemo' sicario'",
+          "title": "Amarillo",
+          "matched_variant": "un flow",
+          "matched_surface": "un flow"
+        }
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "tener que + infinitive",
+      "translation": "have to + verb",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "5929713:11",
+          "line": "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)",
+          "title": "Una Locura",
+          "matched_variant": "tengo que dejar",
+          "matched_surface": "tengo que dejar"
+        }
+      ],
+      "variants": [
+        "tengo que"
+      ],
+      "variant_counts": {
+        "tengo que": 1
+      },
+      "family": "tener que + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "haber que + infinitive",
+      "translation": "one must + verb",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6838492:13",
+          "line": "Que hay que aclarar par de cosas pendiente' (Oh)",
+          "title": "Qué Más Pues?",
+          "matched_variant": "hay que aclarar",
+          "matched_surface": "hay que aclarar"
+        }
+      ],
+      "variants": [
+        "hay que"
+      ],
+      "variant_counts": {
+        "hay que": 1
+      },
+      "family": "haber que + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "volver a + infinitive",
+      "translation": "do + verb again",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "10304179:12",
+          "line": "Tiempo no te veía y ahora que te vuelvo a ver",
+          "title": "Tengo Un Plan",
+          "matched_variant": "vuelvo a ver",
+          "matched_surface": "vuelvo a ver"
+        }
+      ],
+      "variants": [
+        "vuelvo a"
+      ],
+      "variant_counts": {
+        "vuelvo a": 1
+      },
+      "family": "volver a + infinitive",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "jurar que",
+      "translation": "swear that",
+      "count": 1,
+      "occurrence_count": 1,
+      "num_songs": 1,
+      "examples": [
+        {
+          "id": "6211036:16",
+          "line": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
+          "title": "BOOKER T",
+          "matched_variant": "juro que",
+          "matched_surface": "juro que"
+        }
+      ],
+      "variants": [
+        "juro que"
+      ],
+      "variant_counts": {
+        "juro que": 1
+      },
+      "family": "jurar que",
+      "source": "artist-construction"
+    },
+    {
+      "expression": "yo hago lo que",
+      "translation": "I do what(ever)",
+      "count": 0,
+      "occurrence_count": 0,
+      "num_songs": 0,
+      "examples": [],
+      "source": "artist-curated"
+    }
+  ],
+  "pmi_detected": [],
+  "patterns": [
+    {
+      "expression": "[PRON] va a",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "te va a": 3,
+        "se va a": 1
+      },
+      "examples": [
+        {
+          "id": "6211036:21",
+          "line": "Mi nombre por siempre se va a escuchar (Uh, uh, uh)",
+          "title": "BOOKER T",
+          "matched_variant": "se va a",
+          "matched_surface": "se va a"
+        },
+        {
+          "id": "9991217:5",
+          "line": "Que si está' conmigo no te va a pasar na'",
+          "title": "Gata Only",
+          "matched_variant": "te va a",
+          "matched_surface": "te va a"
+        },
+        {
+          "id": "10489180:14",
+          "line": "No te va a tratar como yo",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "te va a",
+          "matched_surface": "te va a"
+        },
+        {
+          "id": "10489180:15",
+          "line": "No te va a besar como yo",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "te va a",
+          "matched_surface": "te va a"
+        }
+      ]
+    },
+    {
+      "expression": "[PRON] voy a",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_variants": 3,
+      "num_songs": 4,
+      "variants": {
+        "te voy a": 2,
+        "me voy a": 1,
+        "lo voy a": 1
+      },
+      "examples": [
+        {
+          "id": "9991217:3",
+          "line": "Te quiero chingar, te voy a raptar",
+          "title": "Gata Only",
+          "matched_variant": "te voy a",
+          "matched_surface": "te voy a"
+        },
+        {
+          "id": "10471373:24",
+          "line": "Porque a ti no te voy a mentir, no",
+          "title": "orióN",
+          "matched_variant": "te voy a",
+          "matched_surface": "te voy a"
+        },
+        {
+          "id": "10489180:32",
+          "line": "Espero lo que sea, yo no me voy a quitar",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "me voy a",
+          "matched_surface": "me voy a"
+        },
+        {
+          "id": "10304179:33",
+          "line": "Despué' que fumemos, te lo vo'a meter",
+          "title": "Tengo Un Plan",
+          "matched_variant": "lo voy a",
+          "matched_surface": "lo vo'a"
+        }
+      ]
+    },
+    {
+      "expression": "no [PRON] va",
+      "count": 4,
+      "occurrence_count": 4,
+      "num_variants": 2,
+      "num_songs": 3,
+      "variants": {
+        "no te va": 3,
+        "no se va": 1
+      },
+      "examples": [
+        {
+          "id": "9991217:5",
+          "line": "Que si está' conmigo no te va a pasar na'",
+          "title": "Gata Only",
+          "matched_variant": "no te va",
+          "matched_surface": "no te va"
+        },
+        {
+          "id": "10489180:14",
+          "line": "No te va a tratar como yo",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "no te va",
+          "matched_surface": "No te va"
+        },
+        {
+          "id": "10489180:15",
+          "line": "No te va a besar como yo",
+          "title": "Si Antes Te Hubiera Conocido",
+          "matched_variant": "no te va",
+          "matched_surface": "No te va"
+        },
+        {
+          "id": "3687950:12",
+          "line": "Que por más que intento no se va",
+          "title": "Vaina Loca",
+          "matched_variant": "no se va",
+          "matched_surface": "no se va"
+        }
+      ]
+    }
+  ],
+  "candidates": [],
+  "stats": {
+    "confirmed_count": 47,
+    "pmi_detected_count": 0,
+    "patterns_count": 3,
+    "candidate_count": 0
+  }
+}
