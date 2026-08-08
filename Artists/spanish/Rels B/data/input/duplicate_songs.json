@@ -1,0 +1,13 @@
+{
+  "description": "Rels B corpus deduplication and exclusion list",
+  "duplicates": {},
+  "placeholders": [],
+  "non_spanish": {
+    "description": "Songs excluded because they are not primarily in Spanish",
+    "songs": {}
+  },
+  "non_songs": {
+    "description": "Entries excluded because they are not actual songs",
+    "songs": {}
+  }
+}

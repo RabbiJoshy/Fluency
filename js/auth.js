@@ -1,7 +1,7 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
-import './state.js?v=20260806e';
-import { dbGet, dbPut } from './offline-db.js?v=20260806e';
+import './state.js?v=20260807a';
+import { dbGet, dbPut } from './offline-db.js?v=20260807a';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
 // enqueues to IndexedDB when offline/failed. The overlay helpers keep
 // un-synced card and granular knowledge answers visible after a Sheets reload.
@@ -10,7 +10,7 @@ import {
     applyPendingProgressOverlay,
     applyPendingItemProgressOverlay,
     applyPendingMetaProgressOverlay
-} from './sync-queue.js?v=20260806e';
+} from './sync-queue.js?v=20260807a';
 
 async function loadSecrets() {
     const controller = new AbortController();

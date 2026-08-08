@@ -1,0 +1,14 @@
+{
+  "name": "J Balvin",
+  "language": "spanish",
+  "genius_query": "J Balvin",
+  "vocabulary_file": "JBalvinvocabulary.json",
+  "index_file": "JBalvinvocabulary.index.json",
+  "examples_file": "JBalvinvocabulary.examples.json",
+  "artist_context": "Colombian reggaeton and Latin urban music"
+}
+
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py \
+  --artist "J Balvin" \
+  --dry-run
+
