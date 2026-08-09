@@ -43,6 +43,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-09 — Make active-set progress auditable and preserve exact lyric surfaces
+
+- Commit `28a379f3`; front-end cache `flashcards-v217` / `20260809a`.
+- Replaced the active set's aggregate statistics sheet with one expandable row per picked card. Each card shows its current-set result and exact in-session attempt times, saved whole-card and sense/expression totals, cross-mode history, SRS stage, and every latest timestamp the consolidated Progress sheet retains. The UI explicitly says that older per-answer timestamps do not exist in the current sheet contract.
+- Added Ctrl+S for Study progress and Ctrl+P for the restricted Study preferences sheet. Owner audit shortcuts now use Ctrl+F for an immediate whole-card flag and Ctrl+Shift+F for the detailed menu; text inputs keep their normal keyboard behavior.
+- Every flag route now closes at the send gesture and confirms the saved/queued type in an external toast. Failures use a distinct “Flag not sent” state instead of claiming success.
+- Found that artist normalization already retained exact occurrence spellings and fed restored canonical text to POS/WSD, but step 8 dropped `surface` from assigned compact examples. Builder v13 now preserves non-canonical occurrence surfaces; 5,363 exact surfaces were backfilled into the shipped Bad Bunny example shard without adopting unrelated local rebuild differences. The frontend highlights that evidence first, treats straight/curly apostrophes equivalently, and no longer renders clitic/conjugation arrays as headword variant piles. Non-obvious counted elision pairs such as `para | pa'` and `nada | na'` remain available.
+- Verification: 24 current Node tests pass; the same five pre-existing stale `ui-refinements` assertions remain and are documented above. All 29 focused Evidence Store/identity/surface Python tests pass; every JS module and service worker parses; changelog, offline manifest, and 18.9 MB compact Bad Bunny example JSON validate; offline sizes/checksums match; cache versions are in lockstep; `git diff --check` passes. GitHub search found no indexed overlapping issue.
+
 ### 2026-08-08 — Keep Learn New limited to genuinely unseen cards
 
 - Commit `cfcf5b88`; front-end cache `flashcards-v216` / `20260808d`.

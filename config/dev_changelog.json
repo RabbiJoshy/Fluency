@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-09",
-      "commit": "pending",
+      "commit": "28a379f3",
       "summary": "Card history, instant flags, and exact lyric-form highlighting",
       "details": [
         "Study progress now lists every card in the active set; each row expands to current-set attempts plus the cumulative totals and latest timestamps retained by the Progress sheet",
