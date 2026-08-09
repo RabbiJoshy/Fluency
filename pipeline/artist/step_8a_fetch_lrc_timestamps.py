@@ -17,6 +17,7 @@ Usage (from project root):
 import argparse
 import concurrent.futures
 import difflib
+import glob as glob_module
 import json
 import os
 import re
@@ -38,11 +39,12 @@ if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "LRCLIB synced lyrics + best-line matching",
     2: "+ infer end_ms from the next raw LRC boundary (including empty rows) "
        "or track duration for the final line",
+    3: "+ use each lyric file's artist for LRCLIB playlist-track searches",
 }
 
 # Thread-safe throttle for API requests
@@ -204,6 +206,44 @@ def load_or_fetch(artist_name, track_name, cache_dir, force_refetch):
     return response
 
 
+def load_song_artists(artist_dir):
+    """Return lyric-file artist metadata keyed by title.
+
+    A conventional artist deck can continue to use ``artist.json``'s ``name``
+    for every LRCLIB query. Playlist decks, however, contain one lyric JSON per
+    track and each record identifies its actual performer. Read that metadata
+    here rather than inferring it from a filename, then let callers fall back
+    to the configured name when no usable per-song artist is available.
+    """
+    song_artists = {}
+    # Playlists declare their lyric-file layout in artist.json. The default
+    # retains compatibility with artist decks that predate batch_glob_rel.
+    try:
+        config = load_artist_config(artist_dir)
+    except (OSError, ValueError):
+        config = {}
+    lyrics_pattern = os.path.join(
+        artist_dir, config.get("batch_glob_rel", os.path.join("lyrics", "*", "*.json"))
+    )
+    for path in sorted(glob_module.glob(lyrics_pattern)):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                payload = json.load(f)
+        except (OSError, ValueError) as exc:
+            print("    WARN: could not read lyric metadata '%s': %s" % (path, exc))
+            continue
+
+        records = payload if isinstance(payload, list) else [payload]
+        for record in records:
+            if not isinstance(record, dict):
+                continue
+            title = record.get("title")
+            artist = record.get("artist")
+            if title and artist:
+                song_artists[title] = artist
+    return song_artists
+
+
 # ---------------------------------------------------------------------------
 # Matching
 # ---------------------------------------------------------------------------
@@ -305,6 +345,8 @@ def main():
     with open(examples_path, "r", encoding="utf-8") as f:
         examples_raw = json.load(f)
 
+    song_artists = load_song_artists(artist_dir)
+
     # Collect unique songs and their example lines
     songs = {}  # song_name -> set of spanish lines
     for word, word_examples in examples_raw.items():
@@ -318,6 +360,13 @@ def main():
         len(songs),
         sum(len(lines) for lines in songs.values()),
     ))
+    if config.get("source_type", "").endswith("_playlist"):
+        missing_artists = sorted(set(songs) - set(song_artists))
+        if missing_artists:
+            print("WARN: playlist tracks without lyric-file artist metadata "
+                  "will use the deck name: %s" % ", ".join(missing_artists))
+        else:
+            print("Playlist metadata supplies an artist for every song.")
 
     # Ensure cache directory exists
     cache_dir = os.path.join(artist_dir, "data", "lrclib_cache")
@@ -335,7 +384,8 @@ def main():
     responses = {}  # song_name -> API response
 
     def fetch_song(song_name):
-        return song_name, load_or_fetch(artist_name, song_name, cache_dir, args.force_refetch)
+        query_artist = song_artists.get(song_name, artist_name)
+        return song_name, load_or_fetch(query_artist, song_name, cache_dir, args.force_refetch)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = {executor.submit(fetch_song, s): s for s in sorted_songs}

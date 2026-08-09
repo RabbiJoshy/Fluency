@@ -6032,52 +6032,7 @@
     "song_count": 1
   },
   {
-    "word": "calentar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "dar",
-    "corpus_count": 5,
-    "song_count": 4
-  },
-  {
-    "word": "venir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "conquistar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "fallar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "confesar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "poner",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "montarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "dejarse",
-    "corpus_count": 6,
-    "song_count": 3
-  },
-  {
-    "word": "mojar",
+    "word": "mover",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -6087,7 +6042,7 @@
     "song_count": 1
   },
   {
-    "word": "pegar",
+    "word": "fallar",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -6097,7 +6052,37 @@
     "song_count": 2
   },
   {
-    "word": "presentar",
+    "word": "mojar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "calentar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "devorar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "poner",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dar",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "despedirse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "montarse",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -6112,22 +6097,7 @@
     "song_count": 1
   },
   {
-    "word": "tirarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "mover",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "devorar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "despedirse",
+    "word": "confesar",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -6137,7 +6107,37 @@
     "song_count": 1
   },
   {
+    "word": "conquistar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dejarse",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "tirarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
     "word": "mandar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "venir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "presentar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "pegar",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -6147,7 +6147,12 @@
     "song_count": 1
   },
   {
-    "word": "lucirse",
+    "word": "perrear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gemir",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -6157,18 +6162,13 @@
     "song_count": 1
   },
   {
-    "word": "perrear",
+    "word": "lucirse",
     "corpus_count": 1,
     "song_count": 1
   },
   {
     "word": "caer",
     "corpus_count": 2,
-    "song_count": 1
-  },
-  {
-    "word": "gemir",
-    "corpus_count": 1,
     "song_count": 1
   }
 ]

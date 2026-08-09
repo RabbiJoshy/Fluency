@@ -39,7 +39,7 @@ test('reviewed candidate frames are attached to their exact target sense', async
         json('Data/Spanish/personalised_example_frames.json'),
         json(`Data/Spanish/runs/normal_mode/${active.run_id}/manifest.json`),
     ]);
-    assert.equal(active.run_id, '2026-08-03_spanishdict_examples_v2');
+    assert.equal(active.run_id, '2026-08-08_spanishdict_examples_v3_cross_mode_ids');
     assert.equal(bank.status, 'beta_consensus_and_reviewed_generation');
     assert.equal(bank.frames.length, 27);
     assert.equal(manifest.metrics.personalised_frames, bank.frames.length);

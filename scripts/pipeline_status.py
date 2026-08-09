@@ -43,9 +43,12 @@ EXPECTED_SOURCES = ("spanishdict", "wiktionary")
 
 def discover_artists():
     out = []
-    for sub in sorted((PROJECT_ROOT / "Artists").iterdir()):
-        if sub.is_dir() and (sub / "data").is_dir():
-            out.append((sub.name, sub))
+    artists_root = PROJECT_ROOT / "Artists"
+    if not artists_root.is_dir():
+        return out
+    for config_path in sorted(artists_root.glob("*/*/artist.json")):
+        artist_dir = config_path.parent
+        out.append((artist_dir.name, artist_dir))
     return out
 
 
@@ -179,14 +182,33 @@ STEPS = [
     {
         "id": "2a_inventory",
         "label": "2a build_inventory / count_words",
-        "current_version": 1,
-        "notes": {1: "initial versioned schema"},
+        # Artist output is immediately replaced by the profile materializer;
+        # the distinct 2e row owns that version stamp. Normal mode remains an
+        # existence check until per-mode versions are supported here.
+        "current_version": None,
         "depends_on": ["1a_lyrics"],  # artist-only; resolves no-op for normal mode
         "artist_output": "data/word_counts/vocab_evidence.json",
         "normal_output": "layers/word_inventory.json",
         "extra_outputs": [
             {"label_suffix": "mwe_detected", "artist": "data/word_counts/mwe_detected.json"},
         ],
+    },
+    {
+        "id": "2d_vocal_artifacts",
+        "label": "2d classify_vocal_artifacts",
+        "current_version": None,
+        "depends_on": ["2a_inventory"],
+        "artist_output": "data/evidence/overlays/vocal_artifact",
+        "normal_output": None,
+    },
+    {
+        "id": "2e_corpus_view",
+        "label": "2e materialize_corpus",
+        "current_version": 1,
+        "notes": {1: "strict neutral parity + occurrence-level artifact policy"},
+        "depends_on": ["2a_inventory", "2d_vocal_artifacts"],
+        "artist_output": "data/word_counts/vocab_evidence.json",
+        "normal_output": None,
     },
 
     # Phase 3 — Normalize (artist only)
@@ -195,7 +217,7 @@ STEPS = [
         "label": "3a merge_elisions",
         "current_version": 1,
         "notes": {1: "s/d-elision merge with corpus_count summing"},
-        "depends_on": ["2a_inventory"],
+        "depends_on": ["2a_inventory", "2e_corpus_view"],
         "artist_output": "data/elision_merge/vocab_evidence_merged.json",
         "normal_output": None,
     },

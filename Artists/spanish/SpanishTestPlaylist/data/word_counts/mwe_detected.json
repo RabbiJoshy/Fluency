@@ -12,35 +12,49 @@
           "line": "Que siga la fiesta, no vamo' a parar (Wuh)",
           "title": "Amarillo",
           "matched_variant": "vamos a parar",
-          "matched_surface": "vamo' a parar"
+          "matched_surface": "vamo' a parar",
+          "segment_id": "seg_c083f04967bbc3678c432395"
         },
         {
           "id": "5302840:32",
           "line": "Y vamo' a seguir",
           "title": "Amarillo",
           "matched_variant": "vamos a seguir",
-          "matched_surface": "vamo' a seguir"
+          "matched_surface": "vamo' a seguir",
+          "segment_id": "seg_bf0b6b5e825ea23680881fb8"
         },
         {
           "id": "6211036:15",
           "line": "Pero él también va a pichear",
           "title": "BOOKER T",
           "matched_variant": "va a pichear",
-          "matched_surface": "va a pichear"
+          "matched_surface": "va a pichear",
+          "segment_id": "seg_e6cf91f952e93ed0c470d97e",
+          "occurrence_ids": [
+            "occ_6a0b40e471afac660900fc67"
+          ]
         },
         {
           "id": "6211036:20",
           "line": "Voy a ser el jefe, me van a fichar (Ey)",
           "title": "BOOKER T",
           "matched_variant": "voy a ser",
-          "matched_surface": "Voy a ser"
+          "matched_surface": "Voy a ser",
+          "segment_id": "seg_962ed584aadf77843cad0757",
+          "occurrence_ids": [
+            "occ_9193339be006fb9895c95fdd"
+          ]
         },
         {
           "id": "6211036:21",
           "line": "Mi nombre por siempre se va a escuchar (Uh, uh, uh)",
           "title": "BOOKER T",
           "matched_variant": "va a escuchar",
-          "matched_surface": "va a escuchar"
+          "matched_surface": "va a escuchar",
+          "segment_id": "seg_ea41ee041d7b5483c07334df",
+          "occurrence_ids": [
+            "occ_35dc9c8479f70cd3d76ea0b4"
+          ]
         }
       ],
       "variants": [
@@ -70,35 +84,55 @@
           "line": "Sabe que a su nivel no tiene competencia (Competencia)",
           "title": "Antes",
           "matched_variant": "sabe que",
-          "matched_surface": "Sabe que"
+          "matched_surface": "Sabe que",
+          "segment_id": "seg_b270536d28cb5f40ab74e45a",
+          "occurrence_ids": [
+            "occ_5264d37aeee5ddb8a68f19a3"
+          ]
         },
         {
           "id": "5751052:22",
           "line": "Yo sé que lo notó y no pude evitar",
           "title": "Ay, DiOs Mío!",
           "matched_variant": "sé que",
-          "matched_surface": "sé que"
+          "matched_surface": "sé que",
+          "segment_id": "seg_caf3dcd09d95ee2c0269d721",
+          "occurrence_ids": [
+            "occ_0989d73cd87bbd18766d70f4"
+          ]
         },
         {
           "id": "5929713:7",
           "line": "Sabiendo que no me pertenece (Pertenece)",
           "title": "Una Locura",
           "matched_variant": "sabiendo que",
-          "matched_surface": "Sabiendo que"
+          "matched_surface": "Sabiendo que",
+          "segment_id": "seg_3d34479eda879e8f78a32715",
+          "occurrence_ids": [
+            "occ_8681e855bda051d441ab48a1"
+          ]
         },
         {
           "id": "1556090:14",
           "line": "Porque sé que me espera algo mejor",
           "title": "Me Voy",
           "matched_variant": "sé que",
-          "matched_surface": "sé que"
+          "matched_surface": "sé que",
+          "segment_id": "seg_82d98373b37f4c30fc6709bb",
+          "occurrence_ids": [
+            "occ_1bfde1fd855cb8e4f0b7aae4"
+          ]
         },
         {
           "id": "6838492:6",
           "line": "Sé que es personal, perdona lo atrevido (No)",
           "title": "Qué Más Pues?",
           "matched_variant": "sé que",
-          "matched_surface": "Sé que"
+          "matched_surface": "Sé que",
+          "segment_id": "seg_39aee870c94222892a93f557",
+          "occurrence_ids": [
+            "occ_76ddd59ebd798626ee2d10b9"
+          ]
         }
       ],
       "variants": [
@@ -126,35 +160,55 @@
           "line": "No sabe' cuánto quiero que vuelva otra",
           "title": "Antes",
           "matched_variant": "quiero que",
-          "matched_surface": "quiero que"
+          "matched_surface": "quiero que",
+          "segment_id": "seg_2f9612b27d4b173e65ca6502",
+          "occurrence_ids": [
+            "occ_67165643c68ff2271333ec97"
+          ]
         },
         {
           "id": "10304179:21",
           "line": "La shorty quiere que la mate (Que la mate)",
           "title": "Tengo Un Plan",
           "matched_variant": "quiere que",
-          "matched_surface": "quiere que"
+          "matched_surface": "quiere que",
+          "segment_id": "seg_e8383dc45bb31d13abbe3bc2",
+          "occurrence_ids": [
+            "occ_4407e7d5667943aab55ecfef"
+          ]
         },
         {
           "id": "5960780:22",
           "line": "No sabe' cuánto quiero que vuelva otra noche más (Brr)",
           "title": "Antes",
           "matched_variant": "quiero que",
-          "matched_surface": "quiero que"
+          "matched_surface": "quiero que",
+          "segment_id": "seg_641489e70be36f34249a544f",
+          "occurrence_ids": [
+            "occ_3a141b92e095fbf0a752975e"
+          ]
         },
         {
           "id": "10304179:24",
           "line": "Y no quiere que la saque (Que la saque)",
           "title": "Tengo Un Plan",
           "matched_variant": "quiere que",
-          "matched_surface": "quiere que"
+          "matched_surface": "quiere que",
+          "segment_id": "seg_1709002f3ea87dbad288898e",
+          "occurrence_ids": [
+            "occ_c4363e38de478d1fece1c57c"
+          ]
         },
         {
           "id": "5960780:41",
           "line": "No sabe' cuánto quiero que vuelva otra noche de",
           "title": "Antes",
           "matched_variant": "quiero que",
-          "matched_surface": "quiero que"
+          "matched_surface": "quiero que",
+          "segment_id": "seg_01d77e19059543d822d80e73",
+          "occurrence_ids": [
+            "occ_3a6803ff8d3bd30cc1266827"
+          ]
         }
       ],
       "variants": [
@@ -180,35 +234,55 @@
           "line": "¿Por qué no escuchas lo que está tan cerca de ti?",
           "title": "Me Voy",
           "matched_variant": "de ti",
-          "matched_surface": "de ti"
+          "matched_surface": "de ti",
+          "segment_id": "seg_03fff9d042a70aa1cfd12536",
+          "occurrence_ids": [
+            "occ_c8bcc5b316f1a8b7e6813a2b"
+          ]
         },
         {
           "id": "1556090:11",
           "line": "Me despido de ti y me voy",
           "title": "Me Voy",
           "matched_variant": "de ti",
-          "matched_surface": "de ti"
+          "matched_surface": "de ti",
+          "segment_id": "seg_7b17138f5fe0df146510a2b5",
+          "occurrence_ids": [
+            "occ_0865f4e826bb074308e2b347"
+          ]
         },
         {
           "id": "1556090:13",
           "line": "Me despido de ti",
           "title": "Me Voy",
           "matched_variant": "de ti",
-          "matched_surface": "de ti"
+          "matched_surface": "de ti",
+          "segment_id": "seg_27883b3fb49d9bf1320063b0",
+          "occurrence_ids": [
+            "occ_f1d95c8577f5c6e2661328b2"
+          ]
         },
         {
           "id": "1556090:17",
           "line": "Yo que pensé, nunca me iría de ti",
           "title": "Me Voy",
           "matched_variant": "de ti",
-          "matched_surface": "de ti"
+          "matched_surface": "de ti",
+          "segment_id": "seg_f9ff28bb2fd93d60bd322e7b",
+          "occurrence_ids": [
+            "occ_75b59c74c9e79fc48da22edf"
+          ]
         },
         {
           "id": "1556090:26",
           "line": "Me despido de ti y",
           "title": "Me Voy",
           "matched_variant": "de ti",
-          "matched_surface": "de ti"
+          "matched_surface": "de ti",
+          "segment_id": "seg_821adc35782debf44cee7b52",
+          "occurrence_ids": [
+            "occ_456e1e95e3695c87c24ee5c8"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -225,35 +299,55 @@
           "line": "Cabrón, tú eres feka",
           "title": "BOOKER T",
           "matched_variant": "tú eres",
-          "matched_surface": "tú eres"
+          "matched_surface": "tú eres",
+          "segment_id": "seg_115d4c73a75cd8f06f145cd3",
+          "occurrence_ids": [
+            "occ_eebb1f64759ad515b9d42deb"
+          ]
         },
         {
           "id": "9991217:13",
           "line": "Tú ere' like for me y yo 'toy pa' ti",
           "title": "Gata Only",
           "matched_variant": "tú eres",
-          "matched_surface": "Tú ere'"
+          "matched_surface": "Tú ere'",
+          "segment_id": "seg_47cf2cd254cc0678b77d7b66",
+          "occurrence_ids": [
+            "occ_26bff5ae510fd72a5cb91761"
+          ]
         },
         {
           "id": "9991217:32",
           "line": "Tú ere' like for me, yo tu Brad Pitt",
           "title": "Gata Only",
           "matched_variant": "tú eres",
-          "matched_surface": "Tú ere'"
+          "matched_surface": "Tú ere'",
+          "segment_id": "seg_b3f69ac3aa18d18ce20a5911",
+          "occurrence_ids": [
+            "occ_d612ac7395b3ee6ec46c6cbf"
+          ]
         },
         {
           "id": "10304179:34",
           "line": "Tú ere' bellaca, deja la timidez",
           "title": "Tengo Un Plan",
           "matched_variant": "tú eres",
-          "matched_surface": "Tú ere'"
+          "matched_surface": "Tú ere'",
+          "segment_id": "seg_03c131f9d51544afe4dd0e1a",
+          "occurrence_ids": [
+            "occ_0faa3803736bb0789d46a461"
+          ]
         },
         {
           "id": "10304179:36",
           "line": "Que tú eres bellaca por cómo los labios te muerde'",
           "title": "Tengo Un Plan",
           "matched_variant": "tú eres",
-          "matched_surface": "tú eres"
+          "matched_surface": "tú eres",
+          "segment_id": "seg_af940e8b58d0225454b05c0b",
+          "occurrence_ids": [
+            "occ_de0d42833b5686f2a3581073"
+          ]
         }
       ],
       "variants": [
@@ -273,35 +367,40 @@
           "line": "Reggaetón de Tego pa' que se lo gocen (Ey)",
           "title": "Amarillo",
           "matched_variant": "para que",
-          "matched_surface": "pa' que"
+          "matched_surface": "pa' que",
+          "segment_id": "seg_3e00cf9239a2e90fe11c16aa"
         },
         {
           "id": "5960780:35",
           "line": "El AK encima pa' que to' el que me incomode (Me incomode)",
           "title": "Antes",
           "matched_variant": "para que",
-          "matched_surface": "pa' que"
+          "matched_surface": "pa' que",
+          "segment_id": "seg_94fecaa8fb8c35c5470ec738"
         },
         {
           "id": "6211036:5",
           "line": "Lean los números pa' que se eduquen (Wuh)",
           "title": "BOOKER T",
           "matched_variant": "para que",
-          "matched_surface": "pa' que"
+          "matched_surface": "pa' que",
+          "segment_id": "seg_80a23632a75a053da7c173f8"
         },
         {
           "id": "6211036:6",
           "line": "Yo no hago cancione', hago himnos pa' que no caduquen (Ey)",
           "title": "BOOKER T",
           "matched_variant": "para que",
-          "matched_surface": "pa' que"
+          "matched_surface": "pa' que",
+          "segment_id": "seg_671a8ee60a71b3c7431e7ee7"
         },
         {
           "id": "6211036:54",
           "line": "Pa' que veas que estoy bien hijueputa",
           "title": "BOOKER T",
           "matched_variant": "para que",
-          "matched_surface": "Pa' que"
+          "matched_surface": "Pa' que",
+          "segment_id": "seg_144e017918495028fafe0bbd"
         }
       ],
       "variants": [
@@ -321,35 +420,56 @@
           "line": "Te quiero chingar, te voy a raptar",
           "title": "Gata Only",
           "matched_variant": "te quiero",
-          "matched_surface": "Te quiero"
+          "matched_surface": "Te quiero",
+          "segment_id": "seg_5643160b364d8e5f9e88561f",
+          "occurrence_ids": [
+            "occ_60263aeb7975b9016408890e",
+            "occ_55ed1e43b1866e54d0a3a108"
+          ]
         },
         {
           "id": "10304179:13",
           "line": "Te quiero tener (Quiero tener)",
           "title": "Tengo Un Plan",
           "matched_variant": "te quiero",
-          "matched_surface": "Te quiero"
+          "matched_surface": "Te quiero",
+          "segment_id": "seg_d7fd478a66a0f94741d1a54c",
+          "occurrence_ids": [
+            "occ_66271a9b132fbeb5eec265f4"
+          ]
         },
         {
           "id": "5302844:33",
           "line": "Yo te quiero pa' Ken (Wuh, wuh)",
           "title": "Verde",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_c70f50b2062c27fe90097384",
+          "occurrence_ids": [
+            "occ_3954621e9a457feee0b92ea5"
+          ]
         },
         {
           "id": "10471373:9",
           "line": "Yo te quiero pa' mí, lo ju-u-uro",
           "title": "orióN",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_649b424bdfd59dd3871ee916",
+          "occurrence_ids": [
+            "occ_dae830784b869ded4fda99a2"
+          ]
         },
         {
           "id": "10471373:18",
           "line": "Y con mis herida' no te quiero dañar",
           "title": "orióN",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_4931453fe634e53afdbd470f",
+          "occurrence_ids": [
+            "occ_b955dcbd3db00c3a71bbfe07"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -366,35 +486,55 @@
           "line": "Fue una cosa que yo no sé",
           "title": "Ay, DiOs Mío!",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_b4a72e7347e0e875e4c9a504",
+          "occurrence_ids": [
+            "occ_b536ea4357eddcc350fa8a8b"
+          ]
         },
         {
           "id": "10489180:30",
           "line": "Y yo te veo y no sé cómo actuar",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_f4449f3959e890b2b9b91e8d",
+          "occurrence_ids": [
+            "occ_aef35d2bc3bf7c77f3cd07b8"
+          ]
         },
         {
           "id": "10304179:7",
           "line": "Yo no sé que andaba buscando, solo sé que desde que te encontré",
           "title": "Tengo Un Plan",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_a32bbe1fbb7775ef7a85c9a0",
+          "occurrence_ids": [
+            "occ_ae8fdbc55dd3f6fc3dadf14b"
+          ]
         },
         {
           "id": "3687950:17",
           "line": "Me gustas tú na' má', no sé disimular",
           "title": "Vaina Loca",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_56ed90ab51843eafe6336186",
+          "occurrence_ids": [
+            "occ_8038f97637da2b76fc72108a"
+          ]
         },
         {
           "id": "3687950:24",
           "line": "No sé disimular, bailo contigo y yo me entrego",
           "title": "Vaina Loca",
           "matched_variant": "no sé",
-          "matched_surface": "No sé"
+          "matched_surface": "No sé",
+          "segment_id": "seg_23b97027e420571f2c46676e",
+          "occurrence_ids": [
+            "occ_a3cd4bb2fa2a4422109f44c2"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -411,35 +551,49 @@
           "line": "Pero es que ya nadie compone",
           "title": "BOOKER T",
           "matched_variant": "es que",
-          "matched_surface": "es que"
+          "matched_surface": "es que",
+          "segment_id": "seg_c89ac06a71c281dac4d3247c",
+          "occurrence_ids": [
+            "occ_fcbb885a889cd6bd5f99ef67"
+          ]
         },
         {
           "id": "9991217:17",
           "line": "E' que conmigo la baby esta noche la pasó cabrón",
           "title": "Gata Only",
           "matched_variant": "es que",
-          "matched_surface": "E' que"
+          "matched_surface": "E' que",
+          "segment_id": "seg_4cadbb2cc2e07e043f7f427f"
         },
         {
           "id": "3687950:9",
           "line": "Es que me gustas tú na' más",
           "title": "Vaina Loca",
           "matched_variant": "es que",
-          "matched_surface": "Es que"
+          "matched_surface": "Es que",
+          "segment_id": "seg_ae352c930830ad2847b7cab2",
+          "occurrence_ids": [
+            "occ_d91868d0c6cfdcf5d5610192"
+          ]
         },
         {
           "id": "3687950:39",
           "line": "Es que en mi lista tú eres la favorita",
           "title": "Vaina Loca",
           "matched_variant": "es que",
-          "matched_surface": "Es que"
+          "matched_surface": "Es que",
+          "segment_id": "seg_719886c1b33ecc751f214f0f",
+          "occurrence_ids": [
+            "occ_68403acb44db021bc25a80cd"
+          ]
         },
         {
           "id": "10471373:4",
           "line": "E' que si me pide' que te espere, te espero sentado",
           "title": "orióN",
           "matched_variant": "es que",
-          "matched_surface": "E' que"
+          "matched_surface": "E' que",
+          "segment_id": "seg_3175c7b595be54c896eb35e0"
         }
       ],
       "variants": [
@@ -459,28 +613,44 @@
           "line": "Por eso yo sigo hasta que amanezca, entonce' (Yah)",
           "title": "Amarillo",
           "matched_variant": "por eso",
-          "matched_surface": "Por eso"
+          "matched_surface": "Por eso",
+          "segment_id": "seg_c9acc8d7f34568d6cc86a434",
+          "occurrence_ids": [
+            "occ_17763fa3e9c874efe66092a9"
+          ]
         },
         {
           "id": "1556090:9",
           "line": "Pero no lo quiero, por eso me voy",
           "title": "Me Voy",
           "matched_variant": "por eso",
-          "matched_surface": "por eso"
+          "matched_surface": "por eso",
+          "segment_id": "seg_6936d174173508bf891be27c",
+          "occurrence_ids": [
+            "occ_334c09b7b915ae508573f1da"
+          ]
         },
         {
           "id": "8417047:3",
           "line": "Por eso nos vamos (Nos vamos)",
           "title": "X SI VOLVEMOS",
           "matched_variant": "por eso",
-          "matched_surface": "Por eso"
+          "matched_surface": "Por eso",
+          "segment_id": "seg_bf21c73379115183742d5f6f",
+          "occurrence_ids": [
+            "occ_2139aebac5af200eeee8a9d7"
+          ]
         },
         {
           "id": "10471373:29",
           "line": "Pri, tú me está' gustando mucho, por eso quiero confesarte",
           "title": "orióN",
           "matched_variant": "por eso",
-          "matched_surface": "por eso"
+          "matched_surface": "por eso",
+          "segment_id": "seg_31814c3bf5d17ced7731c019",
+          "occurrence_ids": [
+            "occ_146a1eee40ede3f857079941"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -497,28 +667,44 @@
           "line": "Cambió desde que te fuiste tú",
           "title": "Qué Más Pues?",
           "matched_variant": "desde que",
-          "matched_surface": "desde que"
+          "matched_surface": "desde que",
+          "segment_id": "seg_d9477f113d9ebb14469ec09e",
+          "occurrence_ids": [
+            "occ_e6bf275acb1aa390932dc7ce"
+          ]
         },
         {
           "id": "10304179:7",
           "line": "Yo no sé que andaba buscando, solo sé que desde que te encontré",
           "title": "Tengo Un Plan",
           "matched_variant": "desde que",
-          "matched_surface": "desde que"
+          "matched_surface": "desde que",
+          "segment_id": "seg_a32bbe1fbb7775ef7a85c9a0",
+          "occurrence_ids": [
+            "occ_c8748462a7594d8235379f92"
+          ]
         },
         {
           "id": "5929713:8",
           "line": "Y desde que la conocí",
           "title": "Una Locura",
           "matched_variant": "desde que",
-          "matched_surface": "desde que"
+          "matched_surface": "desde que",
+          "segment_id": "seg_1da989a6c7ed47bcc29e7d54",
+          "occurrence_ids": [
+            "occ_ceb251b540b1411243cf7c57"
+          ]
         },
         {
           "id": "8417047:23",
           "line": "Pero desde que me besaste",
           "title": "X SI VOLVEMOS",
           "matched_variant": "desde que",
-          "matched_surface": "desde que"
+          "matched_surface": "desde que",
+          "segment_id": "seg_cbce5d30dd84d62763855a17",
+          "occurrence_ids": [
+            "occ_fa7d370145936a91edbff2e2"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -535,28 +721,32 @@
           "line": "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'",
           "title": "Gata Only",
           "matched_variant": "todas las",
-          "matched_surface": "toa' las"
+          "matched_surface": "toa' las",
+          "segment_id": "seg_94cee8f04992ee05c04ea939"
         },
         {
           "id": "9991217:47",
           "line": "Allá abajo mojarte toa' las parte'",
           "title": "Gata Only",
           "matched_variant": "todas las",
-          "matched_surface": "toa' las"
+          "matched_surface": "toa' las",
+          "segment_id": "seg_e7bf63cab1dd1b7d155c4a2f"
         },
         {
           "id": "1469974:11",
           "line": "To'as la' noche' ella me desea",
           "title": "Una Vaina Loca",
           "matched_variant": "todas las",
-          "matched_surface": "To'as la'"
+          "matched_surface": "To'as la'",
+          "segment_id": "seg_468b3342d5589d312ab45456"
         },
         {
           "id": "10919676:15",
           "line": "Toa' las pose', hicimos to' (Oh-oh)",
           "title": "frente al mar",
           "matched_variant": "todas las",
-          "matched_surface": "Toa' las"
+          "matched_surface": "Toa' las",
+          "segment_id": "seg_3738bc2f56c851338fbdc7ac"
         }
       ],
       "variants": [
@@ -577,28 +767,45 @@
           "line": "Que a mí me gusta pasarla rico? (Eh, eh)",
           "title": "Amarillo",
           "matched_variant": "me gusta",
-          "matched_surface": "me gusta"
+          "matched_surface": "me gusta",
+          "segment_id": "seg_b029f124da1970b5f7c4b87c",
+          "occurrence_ids": [
+            "occ_3ab0c7c91424fc624d96bc15"
+          ]
         },
         {
           "id": "1469974:16",
           "line": "Y le gusta y disfruta, duro quiere que le dé",
           "title": "Una Vaina Loca",
           "matched_variant": "le gusta",
-          "matched_surface": "le gusta"
+          "matched_surface": "le gusta",
+          "segment_id": "seg_b7fcf42ab67ffc8b0ee81aad",
+          "occurrence_ids": [
+            "occ_b2262c27a0ede253441d6749",
+            "occ_07eebf0842d9a09bf1b9cd9e"
+          ]
         },
         {
           "id": "5302840:8",
           "line": "A mí me gusta pasarla rico (Yah)",
           "title": "Amarillo",
           "matched_variant": "me gusta",
-          "matched_surface": "me gusta"
+          "matched_surface": "me gusta",
+          "segment_id": "seg_5d08cd3418c5f997e5d24d30",
+          "occurrence_ids": [
+            "occ_a078d0dfc6952f270f20456b"
+          ]
         },
         {
           "id": "10627178:2",
           "line": "Me gusta el cortecito que le está dando",
           "title": "PELIGROSA",
           "matched_variant": "me gusta",
-          "matched_surface": "Me gusta"
+          "matched_surface": "Me gusta",
+          "segment_id": "seg_1aa880e0bd3ecf5ca8c2788d",
+          "occurrence_ids": [
+            "occ_448d98f4f004f59d2eaae3ad"
+          ]
         }
       ],
       "variants": [
@@ -624,21 +831,33 @@
           "line": "¿Por qué no supiste entender a mi corazón?",
           "title": "Me Voy",
           "matched_variant": "por qué",
-          "matched_surface": "Por qué"
+          "matched_surface": "Por qué",
+          "segment_id": "seg_d472b3e8f2dcaff3035c9e44",
+          "occurrence_ids": [
+            "occ_ac1827581321bd41c2db8811"
+          ]
         },
         {
           "id": "1556090:3",
           "line": "¿Por qué no tuviste el valor de ver quién soy?",
           "title": "Me Voy",
           "matched_variant": "por qué",
-          "matched_surface": "Por qué"
+          "matched_surface": "Por qué",
+          "segment_id": "seg_6406b84e744a2ba0e5ae4ac8",
+          "occurrence_ids": [
+            "occ_afd9fcf11da58f6fc5f310e6"
+          ]
         },
         {
           "id": "1556090:4",
           "line": "¿Por qué no escuchas lo que está tan cerca de ti?",
           "title": "Me Voy",
           "matched_variant": "por qué",
-          "matched_surface": "Por qué"
+          "matched_surface": "Por qué",
+          "segment_id": "seg_03fff9d042a70aa1cfd12536",
+          "occurrence_ids": [
+            "occ_2457e0071e3727309bf4128d"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -655,21 +874,33 @@
           "line": "A ver, déjate ver (Déjate ver)",
           "title": "Antes",
           "matched_variant": "a ver",
-          "matched_surface": "A ver"
+          "matched_surface": "A ver",
+          "segment_id": "seg_1acb5b5a0d07534135a47b5b",
+          "occurrence_ids": [
+            "occ_185d0b6356e6d2feb110a4fc"
+          ]
         },
         {
           "id": "6838492:14",
           "line": "Ma', ¿qué lo que? (¿Qué lo que?) ¿Dónde estás? Dime, a ver (Dime, a ver)",
           "title": "Qué Más Pues?",
           "matched_variant": "a ver",
-          "matched_surface": "a ver"
+          "matched_surface": "a ver",
+          "segment_id": "seg_322c36b21040f26b9d71e0b9",
+          "occurrence_ids": [
+            "occ_6661a54683c26515d4351ebc"
+          ]
         },
         {
           "id": "10304179:12",
           "line": "Tiempo no te veía y ahora que te vuelvo a ver",
           "title": "Tengo Un Plan",
           "matched_variant": "a ver",
-          "matched_surface": "a ver"
+          "matched_surface": "a ver",
+          "segment_id": "seg_2173ac17e29ff0074b82f5fc",
+          "occurrence_ids": [
+            "occ_e69727f6eb68536aa156d833"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -686,21 +917,33 @@
           "line": "Por eso yo sigo hasta que amanezca, entonce' (Yah)",
           "title": "Amarillo",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_c9acc8d7f34568d6cc86a434",
+          "occurrence_ids": [
+            "occ_5093264735d4cf4abebf3cc7"
+          ]
         },
         {
           "id": "5960780:16",
           "line": "Bailando hasta que amanezca (Hasta que amanezca)",
           "title": "Antes",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_b5d0491ed9f46b8f66176b8f",
+          "occurrence_ids": [
+            "occ_0cdee00c4087c40130a59b9b"
+          ]
         },
         {
           "id": "10627178:10",
           "line": "Yo quiero con ella hasta que la micro choque",
           "title": "PELIGROSA",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_ad11e24058c96ff44ee2c7f0",
+          "occurrence_ids": [
+            "occ_c988e90fa48ab4d61ab0e01f"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -717,21 +960,33 @@
           "line": "Hoy entendí que no hay suficiente para los dos",
           "title": "Me Voy",
           "matched_variant": "no hay",
-          "matched_surface": "no hay"
+          "matched_surface": "no hay",
+          "segment_id": "seg_1acfe59c4afb9b71f7b8907a",
+          "occurrence_ids": [
+            "occ_2de3b0c7855fa58e87a63f1e"
+          ]
         },
         {
           "id": "3687950:44",
           "line": "Si es por ti, no hay pero",
           "title": "Vaina Loca",
           "matched_variant": "no hay",
-          "matched_surface": "no hay"
+          "matched_surface": "no hay",
+          "segment_id": "seg_47be6ecc4b2e315abb5c3ae7",
+          "occurrence_ids": [
+            "occ_d9781a30e3ef1afa35589dcc"
+          ]
         },
         {
           "id": "10471373:47",
           "line": "No hay cómo fallarle a semejante mujerón",
           "title": "orióN",
           "matched_variant": "no hay",
-          "matched_surface": "No hay"
+          "matched_surface": "No hay",
+          "segment_id": "seg_110116a5ec86fa2298cd965d",
+          "occurrence_ids": [
+            "occ_7ad629b81bb6b5f5b2738039"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -748,21 +1003,33 @@
           "line": "Que a mí me gusta pasarla rico? (Eh, eh)",
           "title": "Amarillo",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_b029f124da1970b5f7c4b87c",
+          "occurrence_ids": [
+            "occ_6afe42ed855cb84f623c3a6f"
+          ]
         },
         {
           "id": "5302840:8",
           "line": "A mí me gusta pasarla rico (Yah)",
           "title": "Amarillo",
           "matched_variant": "a mí me",
-          "matched_surface": "A mí me"
+          "matched_surface": "A mí me",
+          "segment_id": "seg_5d08cd3418c5f997e5d24d30",
+          "occurrence_ids": [
+            "occ_96a98e4111681ec25a2e1e88"
+          ]
         },
         {
           "id": "8417047:7",
           "line": "Es una porno, a mí me encanta cómo lo hacemos",
           "title": "X SI VOLVEMOS",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_23f4e2074721be1e57944772",
+          "occurrence_ids": [
+            "occ_d7e443006742352eb1a53362"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -779,21 +1046,34 @@
           "line": "Pero no lo quiero, por eso me voy",
           "title": "Me Voy",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_6936d174173508bf891be27c",
+          "occurrence_ids": [
+            "occ_7b324d5839b451172b46de0e"
+          ]
         },
         {
           "id": "1556090:11",
           "line": "Me despido de ti y me voy",
           "title": "Me Voy",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_7b17138f5fe0df146510a2b5",
+          "occurrence_ids": [
+            "occ_028bb1e07ecceb8442e87f0b",
+            "occ_7212ccdd603407df89288f98"
+          ]
         },
         {
           "id": "1556090:28",
           "line": "Y me voy",
           "title": "Me Voy",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_846ec2848f6bc905a462be85",
+          "occurrence_ids": [
+            "occ_81d7aaca68633bb7bcd35531"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -810,21 +1090,33 @@
           "line": "De lejos se ve, eh-eh (Ah)",
           "title": "Tengo Un Plan",
           "matched_variant": "se ve",
-          "matched_surface": "se ve"
+          "matched_surface": "se ve",
+          "segment_id": "seg_da1ef3185bda57ef1b602314",
+          "occurrence_ids": [
+            "occ_d25f4946680a32ea08a1f993"
+          ]
         },
         {
           "id": "5302844:13",
           "line": "Echa pa' acá, que desde lejos se ve",
           "title": "Verde",
           "matched_variant": "se ve",
-          "matched_surface": "se ve"
+          "matched_surface": "se ve",
+          "segment_id": "seg_5a873aba555578f57fd25777",
+          "occurrence_ids": [
+            "occ_a79cd9f930852953354d3993"
+          ]
         },
         {
           "id": "5302844:14",
           "line": "Ese booty desde lejos se ve",
           "title": "Verde",
           "matched_variant": "se ve",
-          "matched_surface": "se ve"
+          "matched_surface": "se ve",
+          "segment_id": "seg_a371243056a7a795ab114fb0",
+          "occurrence_ids": [
+            "occ_7cdfbcc4b44f95f7782279ad"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -841,14 +1133,22 @@
           "line": "No voy a llorar y decir que no merezco esto",
           "title": "Me Voy",
           "matched_variant": "decir que",
-          "matched_surface": "decir que"
+          "matched_surface": "decir que",
+          "segment_id": "seg_4e66fe859f05c376267c8da5",
+          "occurrence_ids": [
+            "occ_279d3555d0ef98785b0af7f9"
+          ]
         },
         {
           "id": "5929713:47",
           "line": "Tú misma me dices que lo nuestro es eternity",
           "title": "Una Locura",
           "matched_variant": "dices que",
-          "matched_surface": "dices que"
+          "matched_surface": "dices que",
+          "segment_id": "seg_f68169009a03b33704b8a572",
+          "occurrence_ids": [
+            "occ_b4adc3e85a084c2cb4cf981c"
+          ]
         }
       ],
       "variants": [
@@ -876,14 +1176,19 @@
           "line": "Si saben cómo soy, ¿para qué me invitan?",
           "title": "Amarillo",
           "matched_variant": "para qué",
-          "matched_surface": "para qué"
+          "matched_surface": "para qué",
+          "segment_id": "seg_6a79f4f58aba3e6166e3b206",
+          "occurrence_ids": [
+            "occ_441a4bc2fd00cb63eea99147"
+          ]
         },
         {
           "id": "5302840:36",
           "line": "¿Pa' qué me invitan? (Tú sabe')",
           "title": "Amarillo",
           "matched_variant": "para qué",
-          "matched_surface": "Pa' qué"
+          "matched_surface": "Pa' qué",
+          "segment_id": "seg_a4beddf1779f7210d3c7ed15"
         }
       ],
       "variants": [
@@ -903,14 +1208,22 @@
           "line": "Que por más que intento no se va",
           "title": "Vaina Loca",
           "matched_variant": "por más que",
-          "matched_surface": "por más que"
+          "matched_surface": "por más que",
+          "segment_id": "seg_10bee9c03b5844afa6c6aeb5",
+          "occurrence_ids": [
+            "occ_94b6784af8a9aa89fddf872d"
+          ]
         },
         {
           "id": "5302844:8",
           "line": "Por más que le traten no les da (Ey, wuh)",
           "title": "Verde",
           "matched_variant": "por más que",
-          "matched_surface": "Por más que"
+          "matched_surface": "Por más que",
+          "segment_id": "seg_ff42b3d267481a5d671ac6c4",
+          "occurrence_ids": [
+            "occ_cc9b5ca601f679e0f84c797a"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -927,14 +1240,22 @@
           "line": "Lo nuestro es una locura (Locura)",
           "title": "Una Locura",
           "matched_variant": "lo nuestro",
-          "matched_surface": "Lo nuestro"
+          "matched_surface": "Lo nuestro",
+          "segment_id": "seg_856d068a54cd6900e4302351",
+          "occurrence_ids": [
+            "occ_107fb3fa52aac1584145cfbb"
+          ]
         },
         {
           "id": "5929713:47",
           "line": "Tú misma me dices que lo nuestro es eternity",
           "title": "Una Locura",
           "matched_variant": "lo nuestro",
-          "matched_surface": "lo nuestro"
+          "matched_surface": "lo nuestro",
+          "segment_id": "seg_f68169009a03b33704b8a572",
+          "occurrence_ids": [
+            "occ_7b0ae408070bf3496975c813"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -951,14 +1272,16 @@
           "line": "Despué' de las doce salimo' a buscar el party (Party)",
           "title": "Amarillo",
           "matched_variant": "después de",
-          "matched_surface": "Despué' de"
+          "matched_surface": "Despué' de",
+          "segment_id": "seg_5e0518479e010c6ae2cc35ca"
         },
         {
           "id": "10304179:9",
           "line": "Tengo los ojo' rojo' despué' de la hierba que yo fumé",
           "title": "Tengo Un Plan",
           "matched_variant": "después de",
-          "matched_surface": "despué' de"
+          "matched_surface": "despué' de",
+          "segment_id": "seg_79bb6b94be098cd1dba0c299"
         }
       ],
       "source": "artist-curated"
@@ -975,14 +1298,22 @@
           "line": "Se va con su amiga pa' la disco",
           "title": "Una Locura",
           "matched_variant": "se va",
-          "matched_surface": "Se va"
+          "matched_surface": "Se va",
+          "segment_id": "seg_60296b0e538fa5efe193bc08",
+          "occurrence_ids": [
+            "occ_0f1f54d2b2506b26367ba780"
+          ]
         },
         {
           "id": "3687950:12",
           "line": "Que por más que intento no se va",
           "title": "Vaina Loca",
           "matched_variant": "se va",
-          "matched_surface": "se va"
+          "matched_surface": "se va",
+          "segment_id": "seg_10bee9c03b5844afa6c6aeb5",
+          "occurrence_ids": [
+            "occ_40c28687f9b90ff5297a203f"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -999,14 +1330,16 @@
           "line": "To' el mundo en el maleanteo (Maleanteo)",
           "title": "Antes",
           "matched_variant": "todo el mundo",
-          "matched_surface": "To' el mundo"
+          "matched_surface": "To' el mundo",
+          "segment_id": "seg_56c97bbb59c230cd565687fc"
         },
         {
           "id": "6211036:32",
           "line": "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela",
           "title": "BOOKER T",
           "matched_variant": "todo el mundo",
-          "matched_surface": "to' el mundo"
+          "matched_surface": "to' el mundo",
+          "segment_id": "seg_1729272144c4e8149945ccc0"
         }
       ],
       "variants": [
@@ -1026,14 +1359,19 @@
           "line": "Que es amor del bueno, de toda la vida, pero",
           "title": "Me Voy",
           "matched_variant": "toda la",
-          "matched_surface": "toda la"
+          "matched_surface": "toda la",
+          "segment_id": "seg_5e06a604596affaa188cb91c",
+          "occurrence_ids": [
+            "occ_07c68be0d416a9454e4caaa9"
+          ]
         },
         {
           "id": "5929713:25",
           "line": "Se pasa to'a la noche apretaíta' conmigo (Conmigo)",
           "title": "Una Locura",
           "matched_variant": "toda la",
-          "matched_surface": "to'a la"
+          "matched_surface": "to'a la",
+          "segment_id": "seg_055950502423da0cfb955786"
         }
       ],
       "variants": [
@@ -1053,14 +1391,22 @@
           "line": "Entramo' pa' la disco, las pistola' y las seta' (Brr)",
           "title": "Antes",
           "matched_variant": "la disco",
-          "matched_surface": "la disco"
+          "matched_surface": "la disco",
+          "segment_id": "seg_59255f3d557be5235c8c3a97",
+          "occurrence_ids": [
+            "occ_f4b2250c9fcd454404d0833f"
+          ]
         },
         {
           "id": "5929713:9",
           "line": "Se va con su amiga pa' la disco",
           "title": "Una Locura",
           "matched_variant": "la disco",
-          "matched_surface": "la disco"
+          "matched_surface": "la disco",
+          "segment_id": "seg_60296b0e538fa5efe193bc08",
+          "occurrence_ids": [
+            "occ_8ac8fb46463bf4a17a0c208f"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1077,7 +1423,11 @@
           "line": "Y tú tan sola por ahí",
           "title": "Vaina Loca",
           "matched_variant": "por ahí",
-          "matched_surface": "por ahí"
+          "matched_surface": "por ahí",
+          "segment_id": "seg_56759ca77c3fb2c5f6757efe",
+          "occurrence_ids": [
+            "occ_b7df2a1c797b7adb9d74737f"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1094,7 +1444,11 @@
           "line": "Hoy voy a lo loco, ustede' me conocen (Me conocen)",
           "title": "Amarillo",
           "matched_variant": "a lo loco",
-          "matched_surface": "a lo loco"
+          "matched_surface": "a lo loco",
+          "segment_id": "seg_fda6a294ecd134b6ef0d4a54",
+          "occurrence_ids": [
+            "occ_aafefeeb6f0091fd71ccc0fc"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1111,7 +1465,11 @@
           "line": "Espero lo que sea, yo no me voy a quitar",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "lo que sea",
-          "matched_surface": "lo que sea"
+          "matched_surface": "lo que sea",
+          "segment_id": "seg_87ba37c027b8eb58b2c8d811",
+          "occurrence_ids": [
+            "occ_1c8942d66df0cbd8e9881a12"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1128,7 +1486,11 @@
           "line": "Antes que me apague' se apaga el sol",
           "title": "BOOKER T",
           "matched_variant": "antes que",
-          "matched_surface": "Antes que"
+          "matched_surface": "Antes que",
+          "segment_id": "seg_1387108315c130dd3598ae04",
+          "occurrence_ids": [
+            "occ_4780a7376be2693e19fe32c8"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1145,7 +1507,11 @@
           "line": "Yo a ti te llamé en agosto, apareciste en enero",
           "title": "Qué Más Pues?",
           "matched_variant": "a ti te",
-          "matched_surface": "a ti te"
+          "matched_surface": "a ti te",
+          "segment_id": "seg_8ee00a864778847f9f6669f1",
+          "occurrence_ids": [
+            "occ_df92bebdbd672acede2f9fc5"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1162,7 +1528,11 @@
           "line": "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)",
           "title": "Una Locura",
           "matched_variant": "me dice",
-          "matched_surface": "Me dice"
+          "matched_surface": "Me dice",
+          "segment_id": "seg_fef50b1a9a0c7fd5d475a011",
+          "occurrence_ids": [
+            "occ_4a8393757d61a5b18b38635d"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1179,7 +1549,11 @@
           "line": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
           "title": "BOOKER T",
           "matched_variant": "te juro",
-          "matched_surface": "Te juro"
+          "matched_surface": "Te juro",
+          "segment_id": "seg_6f9f259776045edbf613efd6",
+          "occurrence_ids": [
+            "occ_0634ebb5933b7f1d0612c21a"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1196,7 +1570,11 @@
           "line": "Dime si se da",
           "title": "Gata Only",
           "matched_variant": "dime si",
-          "matched_surface": "Dime si"
+          "matched_surface": "Dime si",
+          "segment_id": "seg_5797e576aa9addc518e8114f",
+          "occurrence_ids": [
+            "occ_deff23da1dbbb8f1b6bb737e"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1213,7 +1591,11 @@
           "line": "Tú tienes todo lo que quiero para mí",
           "title": "Vaina Loca",
           "matched_variant": "todo lo que",
-          "matched_surface": "todo lo que"
+          "matched_surface": "todo lo que",
+          "segment_id": "seg_7cfc5d0d82933e52324cfe5c",
+          "occurrence_ids": [
+            "occ_15b64425ffbc7fb80e8dd4b8"
+          ]
         }
       ],
       "variants": [
@@ -1233,7 +1615,12 @@
           "line": "Ya tú sabe' quiéne', ya tú sabe' quiénes somo' (Ey)",
           "title": "Gata Only",
           "matched_variant": "tú sabes",
-          "matched_surface": "tú sabe'"
+          "matched_surface": "tú sabe'",
+          "segment_id": "seg_0860df6475bad8827667197d",
+          "occurrence_ids": [
+            "occ_b3b9bd978f54bb1720722c00",
+            "occ_3fc77940d71fa217d3e249ae"
+          ]
         }
       ],
       "variants": [
@@ -1253,7 +1640,11 @@
           "line": "Pero cuando le sube la nota siempre vuelve a mí",
           "title": "Una Locura",
           "matched_variant": "la nota",
-          "matched_surface": "la nota"
+          "matched_surface": "la nota",
+          "segment_id": "seg_c00cadb83305479c48445221",
+          "occurrence_ids": [
+            "occ_155e5944ca7df346c8ab7468"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1270,7 +1661,11 @@
           "line": "E' que conmigo la baby esta noche la pasó cabrón",
           "title": "Gata Only",
           "matched_variant": "esta noche",
-          "matched_surface": "esta noche"
+          "matched_surface": "esta noche",
+          "segment_id": "seg_4cadbb2cc2e07e043f7f427f",
+          "occurrence_ids": [
+            "occ_a9225aa04bc57139664b46a6"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1287,7 +1682,11 @@
           "line": "Y con un flow violento que parecemo' sicario'",
           "title": "Amarillo",
           "matched_variant": "un flow",
-          "matched_surface": "un flow"
+          "matched_surface": "un flow",
+          "segment_id": "seg_3211f3dfb7e51868ebf7b4e6",
+          "occurrence_ids": [
+            "occ_ea2a010d8db1496caf5298a9"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1304,7 +1703,11 @@
           "line": "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)",
           "title": "Una Locura",
           "matched_variant": "tengo que dejar",
-          "matched_surface": "tengo que dejar"
+          "matched_surface": "tengo que dejar",
+          "segment_id": "seg_fef50b1a9a0c7fd5d475a011",
+          "occurrence_ids": [
+            "occ_f4997b288f6cc6413f8d3c3b"
+          ]
         }
       ],
       "variants": [
@@ -1328,7 +1731,11 @@
           "line": "Que hay que aclarar par de cosas pendiente' (Oh)",
           "title": "Qué Más Pues?",
           "matched_variant": "hay que aclarar",
-          "matched_surface": "hay que aclarar"
+          "matched_surface": "hay que aclarar",
+          "segment_id": "seg_80f314b5f1b12a2ed3cb5fb4",
+          "occurrence_ids": [
+            "occ_3c46c1e4266b60794e268b8c"
+          ]
         }
       ],
       "variants": [
@@ -1352,7 +1759,11 @@
           "line": "Tiempo no te veía y ahora que te vuelvo a ver",
           "title": "Tengo Un Plan",
           "matched_variant": "vuelvo a ver",
-          "matched_surface": "vuelvo a ver"
+          "matched_surface": "vuelvo a ver",
+          "segment_id": "seg_2173ac17e29ff0074b82f5fc",
+          "occurrence_ids": [
+            "occ_0f4b2b310bc820b8ecb741e3"
+          ]
         }
       ],
       "variants": [
@@ -1376,7 +1787,11 @@
           "line": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
           "title": "BOOKER T",
           "matched_variant": "juro que",
-          "matched_surface": "juro que"
+          "matched_surface": "juro que",
+          "segment_id": "seg_6f9f259776045edbf613efd6",
+          "occurrence_ids": [
+            "occ_575d2bbb4d50781e0aecf299"
+          ]
         }
       ],
       "variants": [
@@ -1416,28 +1831,44 @@
           "line": "Mi nombre por siempre se va a escuchar (Uh, uh, uh)",
           "title": "BOOKER T",
           "matched_variant": "se va a",
-          "matched_surface": "se va a"
+          "matched_surface": "se va a",
+          "segment_id": "seg_ea41ee041d7b5483c07334df",
+          "occurrence_ids": [
+            "occ_d9a9d18f28899817e6d94a47"
+          ]
         },
         {
           "id": "9991217:5",
           "line": "Que si está' conmigo no te va a pasar na'",
           "title": "Gata Only",
           "matched_variant": "te va a",
-          "matched_surface": "te va a"
+          "matched_surface": "te va a",
+          "segment_id": "seg_15e54601e1a1219c4df2bf76",
+          "occurrence_ids": [
+            "occ_985a4b70adb99c65c3935afb"
+          ]
         },
         {
           "id": "10489180:14",
           "line": "No te va a tratar como yo",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "te va a",
-          "matched_surface": "te va a"
+          "matched_surface": "te va a",
+          "segment_id": "seg_d2e3abe31ea26011cfa8528b",
+          "occurrence_ids": [
+            "occ_591a9a494c52efff4936b85d"
+          ]
         },
         {
           "id": "10489180:15",
           "line": "No te va a besar como yo",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "te va a",
-          "matched_surface": "te va a"
+          "matched_surface": "te va a",
+          "segment_id": "seg_947151d9a8661de8b4aebea5",
+          "occurrence_ids": [
+            "occ_6317b1159d81d42896c52a7e"
+          ]
         }
       ]
     },
@@ -1458,28 +1889,45 @@
           "line": "Te quiero chingar, te voy a raptar",
           "title": "Gata Only",
           "matched_variant": "te voy a",
-          "matched_surface": "te voy a"
+          "matched_surface": "te voy a",
+          "segment_id": "seg_5643160b364d8e5f9e88561f",
+          "occurrence_ids": [
+            "occ_60263aeb7975b9016408890e",
+            "occ_55ed1e43b1866e54d0a3a108"
+          ]
         },
         {
           "id": "10471373:24",
           "line": "Porque a ti no te voy a mentir, no",
           "title": "orióN",
           "matched_variant": "te voy a",
-          "matched_surface": "te voy a"
+          "matched_surface": "te voy a",
+          "segment_id": "seg_78d957c6f4b399c1d2146dd3",
+          "occurrence_ids": [
+            "occ_517fa8fe305858a1a77a776e"
+          ]
         },
         {
           "id": "10489180:32",
           "line": "Espero lo que sea, yo no me voy a quitar",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "me voy a",
-          "matched_surface": "me voy a"
+          "matched_surface": "me voy a",
+          "segment_id": "seg_87ba37c027b8eb58b2c8d811",
+          "occurrence_ids": [
+            "occ_8be4e3952a1145b771a50115"
+          ]
         },
         {
           "id": "10304179:33",
           "line": "Despué' que fumemos, te lo vo'a meter",
           "title": "Tengo Un Plan",
           "matched_variant": "lo voy a",
-          "matched_surface": "lo vo'a"
+          "matched_surface": "lo vo'a",
+          "segment_id": "seg_a2b695d89b63a455c1149e6d",
+          "occurrence_ids": [
+            "occ_461bd9203c0a5a2d080f3db7"
+          ]
         }
       ]
     },
@@ -1499,28 +1947,44 @@
           "line": "Que si está' conmigo no te va a pasar na'",
           "title": "Gata Only",
           "matched_variant": "no te va",
-          "matched_surface": "no te va"
+          "matched_surface": "no te va",
+          "segment_id": "seg_15e54601e1a1219c4df2bf76",
+          "occurrence_ids": [
+            "occ_dd2a77981a6b8e78cc83100a"
+          ]
         },
         {
           "id": "10489180:14",
           "line": "No te va a tratar como yo",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "no te va",
-          "matched_surface": "No te va"
+          "matched_surface": "No te va",
+          "segment_id": "seg_d2e3abe31ea26011cfa8528b",
+          "occurrence_ids": [
+            "occ_91959642f4061cf3b4f4f0b7"
+          ]
         },
         {
           "id": "10489180:15",
           "line": "No te va a besar como yo",
           "title": "Si Antes Te Hubiera Conocido",
           "matched_variant": "no te va",
-          "matched_surface": "No te va"
+          "matched_surface": "No te va",
+          "segment_id": "seg_947151d9a8661de8b4aebea5",
+          "occurrence_ids": [
+            "occ_74cdaf7f77aeccda9ba7f301"
+          ]
         },
         {
           "id": "3687950:12",
           "line": "Que por más que intento no se va",
           "title": "Vaina Loca",
           "matched_variant": "no se va",
-          "matched_surface": "no se va"
+          "matched_surface": "no se va",
+          "segment_id": "seg_10bee9c03b5844afa6c6aeb5",
+          "occurrence_ids": [
+            "occ_e32c38ef5fb82d21e3f9ea91"
+          ]
         }
       ]
     }

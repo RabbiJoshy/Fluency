@@ -11,6 +11,9 @@ Conventions
   modes use the same implementation).
 - Every versioned step writes either an inline `_meta` block or a
   `<output>.meta.json` sidecar via `pipeline/util_pipeline_meta.py`.
+- Existing artists can seed immutable compatibility history with
+  `pipeline/artist/tool_migrate_evidence_store.py`; this never changes the
+  source layer JSON.
 
 ---
 
@@ -42,11 +45,39 @@ Conventions
     `Artists/curations/{proper_nouns,interjections,skip_mwes,…}.json`
   - Normal: `Data/Spanish/corpora/frequency/*.csv` and `spanish_ranks.json`
 - **Outputs**:
-  - Artist: `data/word_counts/vocab_evidence.json`, `data/word_counts/mwe_detected.json`
+  - Artist: `data/word_counts/vocab_evidence.json`, `data/word_counts/mwe_detected.json`,
+    plus immutable `data/evidence/ledger/runs/<run_id>/{segments,occurrences}.jsonl`,
+    normalization/corpus-membership overlays, manifests, immutable neutral
+    compatibility baselines, and `profiles/current.json`
   - Normal: `layers/word_inventory.json`
 - **Depends on**: `1a_lyrics` (artist only; no-op on normal)
 - **Notes**: Artist version strips `[...]`/`(...)` bracket content before counting
-  (ad-libs, echoes, section tags). Normal version seeds from frequency list.
+  (ad-libs, echoes, section tags). The untouched source line still survives in
+  the evidence ledger. Normal version seeds from frequency list.
+
+### `2d_vocal_artifacts` — classify lyric vocal artifacts (artist only)
+- **Script**: `pipeline/artist/step_2d_classify_vocal_artifacts.py`
+- **Inputs**: active segment/occurrence ledger and an optional language lexicon
+- **Outputs**: immutable `data/evidence/overlays/vocal_artifact/<run_id>.jsonl`
+  claims plus a selected method run in `profiles/current.json`
+- **Depends on**: `2a_inventory`
+- **Notes**: The initial provider-neutral rules adapter labels only conservative
+  bracketed adlibs, short hyphen stutters, and unknown suffix echoes following a
+  known word. Claims describe occurrences; the profile separately decides which
+  labels are excluded. `--policy off` records evidence without changing output.
+
+### `2e_corpus_view` — materialize the active corpus profile (artist only)
+- **Script**: `pipeline/artist/step_2e_materialize_corpus.py`
+- **Inputs**: active ledger, normalization/membership claims, selected
+  vocal-artifact claims and profile policy
+- **Outputs**: `data/word_counts/vocab_evidence.json` plus an immutable
+  `vocab_evidence_materialized` snapshot
+- **Depends on**: `2a_inventory`, `2d_vocal_artifacts`
+- **Notes**: Before applying any exclusion, the script materializes a neutral
+  view and requires exact semantic equality with step 2a's immutable baseline.
+  It then removes only the selected segment/occurrence IDs and preserves stable
+  example references. Downstream compatibility steps therefore consume a view
+  of the ledger without changing the app-facing deck contract.
 
 ---
 
@@ -57,7 +88,7 @@ Conventions
 - **Inputs**: `data/word_counts/vocab_evidence.json`,
   `Artists/curations/elision_mapping.json`
 - **Outputs**: `data/elision_merge/vocab_evidence_merged.json` (adds `surface` field on examples)
-- **Depends on**: `2a_inventory`
+- **Depends on**: `2a_inventory`, `2e_corpus_view`
 
 ---
 
@@ -98,6 +129,8 @@ Conventions
   - Normal: `layers/word_inventory.json`, `corpora/{tatoeba,opensubtitles,…}`
 - **Outputs**: `data/layers/examples_raw.json` (both);
   artist also rewrites `data/layers/word_inventory.json`
+- **Stable references**: artist examples carry additive `segment_id` and target
+  `occurrence_ids`; the historical `id` and list position remain during migration.
 - **Depends on**: `2a_inventory`, `3a_elisions`, `4a_routing`
 - **Normal-only flags**: `--max-lines N` caps OpenSubtitles scan (default 5M).
 
@@ -144,7 +177,8 @@ Conventions
 - **Inputs**: `layers/examples_raw.json`, spaCy `es_dep_news_trf` (falls back to `es_core_news_*`)
 - **Outputs**: `layers/example_pos.json` (`{word: {idx: POS}, _example_ids: {...}, _meta: {...}}`)
 - **Depends on**: `5a_examples`
-- **Notes**: Incremental; skips words whose example IDs haven't changed. `--force` retags all.
+- **Notes**: Incremental and order-sensitive; a reorder retags because POS output
+  is still numerically keyed. `--force` retags all.
 
 ### `6a_assignments` — sense assignments per source
 - **Scripts** (both modes now dispatch through a shared pipeline):
@@ -173,11 +207,16 @@ Conventions
 - **Scripts**:
   - Artist: `pipeline/artist/step_7a_map_senses_to_lemmas.py`
   - Normal: `pipeline/step_7a_map_senses_to_lemmas.py`
-- **Inputs**: `layers/sense_assignments/<source>.json`, `layers/sense_menu/<source>.json`,
+- **Inputs**: `layers/sense_assignments/<source>.json`, optional
+  `layers/sense_menu/<source>.json`,
   `layers/example_pos.json` (artist; for unassigned-example routing)
 - **Outputs**: `layers/sense_assignments_lemma/<source>.json`,
-  `layers/unassigned_routing/<source>.json` (artist only)
+  `layers/unassigned_routing/<source>.json` (artist only), and
+  `layers/unassigned_routing_evidence/<source>.json` (stable segment/occurrence refs)
 - **Depends on**: `6a_assignments`, `5c_sense_menu`
+- **Notes**: A menu-free adapter is valid when assignment rows provide inline
+  `lemma`, `pos`, and `translation`. Assignment resolution is occurrence-ID
+  first, then stable segment ID, with numeric indices as legacy fallback only.
 
 ### `7b_rerank` — ranking + easiness (artist only)
 - **Script**: `pipeline/artist/step_7b_rerank.py`
@@ -216,6 +255,10 @@ Conventions
   `{Name}vocabulary.index.json`, `{Name}vocabulary.examples.json`,
   `data/layers/clitic_forms.json`, `data/layers/archive/clitic_id_migration.json`
 - **Depends on**: `7a_lemma_assignments`, `7b_rerank`, `8a_lrc`
+- **Identity**: assembly resolves assigned/routed examples by stable ID and uses
+  `Artists/{lang}/evidence/registries/{cards,senses}.json` so lemma, provider,
+  or gloss-method changes can add aliases/labels without automatically changing
+  learner-facing card or sense progress IDs.
 
 ### `8c_master` — merge artist monoliths into shared master
 - **Script**: `pipeline/artist/tool_8c_merge_to_master.py`

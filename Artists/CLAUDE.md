@@ -30,8 +30,29 @@ The orchestrator (`run_artist_pipeline.py`) walks `Artists/*/*/artist.json` and 
 
 Each step produces its own **layer file** in `data/layers/`. No step mutates another step's output. The builder assembles all layers into the final front-end files.
 
+The canonical corpus base is now `data/evidence/`: immutable segment and raw
+token-occurrence run shards, versioned claims, manifests, and one small active
+profile. `data/layers/` remains the compatibility surface during migration.
+Every artist example carries additive `segment_id`/`occurrence_ids`; downstream
+code must resolve those before the historical list index.
+
+For an artist created before this contract, first archive its current mutable
+layers without changing them:
+
+```bash
+.venv/bin/python3 pipeline/artist/tool_migrate_evidence_store.py \
+  --artist-dir "Artists/{lang}/{Name}"
 ```
-Steps 2-5: Corpus processing → word_inventory.json, examples_raw.json
+
+Then rerun artist step 2 to create the segment/occurrence ledger and use
+`pipeline/tool_6a_migrate_example_ids.py --artist-dir ...` to upgrade assignment
+references. Use `--dry-run` on either migration tool to inspect scope first.
+
+```
+Step 2a:   Source scan        → evidence ledger + immutable neutral baseline
+Step 2d:   Vocal artifacts    → occurrence-level adlib/echo/stutter claims
+Step 2e:   Active view        → parity-checked compatibility word evidence
+Steps 3-5: Corpus processing  → normalized/routed compatibility layers
 Step 6:    Gemini analysis    → senses_gemini.json, sense_assignments.json, example_translations.json
 Step 7:    Ranking            → ranking.json
 Step 8:    LRC timestamps     → lyrics_timestamps.json
@@ -42,13 +63,31 @@ Cognates use a shared layer (`Data/Spanish/layers/cognates.json`).
 
 This mirrors the normal-mode pipeline (`Data/Spanish/layers/`). Same layer concepts, different data sources.
 
+To audit the corpus cutover without touching senses or building a deck, run the
+neutral profile first and then the basic rules profile. The materializer refuses
+either run if its neutral view differs from step 2a's immutable baseline:
+
+```bash
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py \
+  --artist "{Name}" --to-step 2e --vocal-artifacts off
+.venv/bin/python3 pipeline/artist/run_artist_pipeline.py \
+  --artist "{Name}" --from-step 2d --to-step 2e --vocal-artifacts basic
+```
+
+After inspecting the word/count/example delta, resume at
+`step_3a_merge_elisions` (elision normalization) to rebuild the downstream
+layers and `step_8b_assemble_artist_vocabulary` (deck assembly). The browser
+continues to consume the same compact index/examples/master contract.
+
 ## Pipeline Steps
 
 | Step | Script | Output Layer | What it does |
 |------|--------|-------------|-------------|
 | 1 | `pipeline/artist/1_download_lyrics.py` | (batches) | Scrape lyrics + English translations from Genius API (`--no-translations` to skip) |
 | 1b | (manual) | `duplicate_songs.json` | Curate song exclusions — see `DEDUP_INSTRUCTIONS.md` |
-| 2 | `pipeline/artist/2_count_words.py` | `vocab_evidence.json`, `mwe_detected.json` | Tokenise, count, filter excluded songs, detect MWEs |
+| 2a | `pipeline/artist/step_2a_count_words.py` | ledger + neutral `vocab_evidence.json`, `mwe_detected.json` | Scan sources, tokenize, count, and freeze the neutral baseline |
+| 2d | `pipeline/artist/step_2d_classify_vocal_artifacts.py` | `overlays/vocal_artifact/<run>.jsonl` | Record conservative occurrence-level adlib/echo/stutter claims; policy may be `off` or `basic` |
+| 2e | `pipeline/artist/step_2e_materialize_corpus.py` | `vocab_evidence.json` | Require neutral parity, then materialize the profile-selected corpus view |
 | 2b | `pipeline/artist/2b_scrape_translations.py` | `aligned_translations.json` | Extract translations from batches + align Spanish↔English lines |
 | 3 | `pipeline/artist/3_merge_elisions.py` | `vocab_evidence_merged.json` | Merge Caribbean elisions (e.g. pa' → para) |
 | 4 | `pipeline/artist/4_filter_known_vocab.py` | `word_routing.json` | Classify words by treatment. 5 phases. schema_v2 output: `exclude.*`, `classifier.*`, `derivation_map`, `sense_discovery`, `clitic_merge`/`clitic_orphans`/`clitic_keep`. See `pipeline/CLAUDE.md` for the full schema. |
@@ -85,7 +124,9 @@ All layers live in `Artists/{lang}/{Name}/data/layers/`. Schemas parallel normal
 | Layer | Schema | Normal-Mode Parallel |
 |-------|--------|---------------------|
 | `word_inventory.json` | `[{word, corpus_count, display_form, variants}]` | `word_inventory.json` |
-| `examples_raw.json` | `{bare_word: [{id, spanish, title, surface?}]}` | `examples_raw.json` |
+| `examples_raw.json` | `{bare_word: [{id, segment_id, occurrence_ids, spanish, title, surface?}]}` | `examples_raw.json` |
+| `../evidence/ledger/runs/<run>/segments.jsonl` | immutable source segments | shared evidence contract |
+| `../evidence/ledger/runs/<run>/occurrences.jsonl` | immutable raw token uses | shared evidence contract |
 | `example_pos.json` | `{bare_word: {"idx": "POS", ...}, _example_ids: {...}}` | (none) |
 | `example_translations.json` | `{spanish_text_line: {english, source}}` | (baked into examples in normal mode) |
 | `senses_gemini.json` | `{word\|lemma: [{pos, translation, source}]}` (old) | `senses_wiktionary.json` |
@@ -94,6 +135,7 @@ All layers live in `Artists/{lang}/{Name}/data/layers/`. Schemas parallel normal
 | `sense_assignments.json` | `{word: [{sense_idx, examples, method}]}` (old) | `sense_assignments.json` (now uses unified format) |
 | `sense_assignments_lemma/<source>.json` | `{word\|lemma: {method: [{sense, examples}]}}` | (none) — step 7a output |
 | `unassigned_routing/<source>.json` | `{word\|lemma: [raw_example_idx, ...]}` | (none) — step 7a output |
+| `unassigned_routing_evidence/<source>.json` | `{word\|lemma: [{example_id, occurrence_ids, example_index}]}` | stable companion |
 | `translation_scores.json` | `{spanish_line: {score: 1-5}}` | (none) — consumed by builder |
 | `cognates.json` | `{word\|lemma: true}` (legacy per-artist; shared layer preferred) | `cognates.json` |
 | `ranking.json` | `{order: [words], easiness: {word: {m: [[scores]]}}}` | (none) |
@@ -103,9 +145,15 @@ All layers live in `Artists/{lang}/{Name}/data/layers/`. Schemas parallel normal
 
 ## Shared Master Vocabulary
 
-**`Artists/vocabulary_master.json`** — single source of truth for word identity and senses across all artists.
+**`Artists/{lang}/vocabulary_master.json`** remains the materialized master used
+by the app. **`Artists/{lang}/evidence/registries/cards.json`** is the durable
+identity registry: surface and lemma are aliases, not primary identity.
+`senses.json` beside it preserves per-card sense IDs across provider or gloss
+changes; ambiguous sense splits remain explicit migration decisions.
 
-- Keyed by 6-char hex ID (`md5(word|lemma)[:6]`, with suffix rehash for rare collisions)
+- Existing 6-char IDs are seeded unchanged for progress compatibility. New
+  fallbacks retain the legacy format, but registered IDs are no longer
+  recomputed merely because a lemma/gloss method changes.
 - Each entry: `{word, lemma, senses: [{pos, translation}], flags, mwe_memberships}`
 - Senses accumulate across artists — a new artist's Gemini run can discover new senses
 - The **builder** handles master integration (ID assignment, sense merging, flag union)

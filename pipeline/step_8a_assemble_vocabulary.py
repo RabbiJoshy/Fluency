@@ -88,6 +88,58 @@ def _bind_paths(language):
     WIKTIONARY_RAW = PROJECT_ROOT / "Data" / lang_dir / "Senses" / "wiktionary" / f"kaikki-{language}.jsonl.gz"
 
 
+def load_artist_master_ids(language):
+    """Return canonical artist IDs by ``(word, lemma)``.
+
+    Normal and artist decks share learner progress. Reserve the existing artist
+    master IDs so a rare six-character hash collision cannot give the same
+    ``word|lemma`` pair a different fallback ID in normal mode.  Older master
+    files can contain stale duplicate records from an earlier independent
+    collision-resolution pass; when that happens, the IDs in the current
+    artist vocabularies are authoritative because those are the IDs learners
+    already have in progress data.
+    """
+    if language != "spanish":
+        return {}
+    path = PROJECT_ROOT / "Artists" / "spanish" / "vocabulary_master.json"
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        master = json.load(f)
+    canonical_ids = {}
+    duplicate_pairs = set()
+    for item_id, entry in master.items():
+        pair = (entry.get("word"), entry.get("lemma"))
+        if not all(pair):
+            continue
+        if pair in canonical_ids and canonical_ids[pair] != item_id:
+            duplicate_pairs.add(pair)
+            continue
+        canonical_ids[pair] = item_id
+
+    # Artist monoliths carry the live IDs.  Prefer their unanimous value for
+    # any stale duplicate in the master, without renumbering artist decks.
+    artist_ids = defaultdict(set)
+    for vocab_path in (PROJECT_ROOT / "Artists" / language).glob("*/*vocabulary.json"):
+        with open(vocab_path, encoding="utf-8") as f:
+            for entry in json.load(f):
+                pair = (entry.get("word"), entry.get("lemma"))
+                if all(pair) and entry.get("id"):
+                    artist_ids[pair].add(entry["id"])
+    conflicts = []
+    for pair in duplicate_pairs:
+        live_ids = artist_ids[pair]
+        if len(live_ids) == 1:
+            canonical_ids[pair] = next(iter(live_ids))
+        elif len(live_ids) > 1:
+            conflicts.append((pair, sorted(live_ids)))
+    if duplicate_pairs:
+        print("  Artist master duplicates resolved from live decks: %d" % len(duplicate_pairs))
+    if conflicts:
+        raise ValueError("Artist vocabularies disagree on IDs: %s" % conflicts)
+    return canonical_ids
+
+
 def load_clitic_map(path):
     """Scan Wiktionary JSONL for verb+clitic form-of entries.
 
@@ -626,7 +678,7 @@ def main():
     # Apply clitic merge routing
     clitic_merged_words = set()
     clitic_data = {}
-    id_migration = {}
+    normal_id_migration = {}
     # Orphan clitics: the base verb never occurs bare in the corpus, so there
     # is no card to merge into. Rather than invent one, keep the clitic's own
     # card and stamp it with clitic metadata (same `clitic_memberships` shape
@@ -684,7 +736,23 @@ def main():
 
     # Build vocabulary
     print("\nAssembling vocabulary...")
-    used_ids = set()  # track hex IDs for collision avoidance
+    canonical_artist_ids = load_artist_master_ids(NORMAL_MODE_LANGUAGE)
+    canonical_id_owners = {
+        item_id: pair for pair, item_id in canonical_artist_ids.items()
+    }
+    # Reserve artist IDs before assigning normal-only pairs. A shared pair may
+    # claim its own reservation; every other pair must choose a distinct ID.
+    used_ids = set(canonical_id_owners)
+    old_ids_by_pair = {}
+    old_index_path = OUTPUT_DIR / "vocabulary.index.json"
+    if old_index_path.exists():
+        with open(old_index_path, encoding="utf-8") as f:
+            for old_entry in json.load(f):
+                pair = (old_entry.get("word"), old_entry.get("lemma"))
+                if pair[0] and pair[1] and old_entry.get("id"):
+                    old_ids_by_pair[pair] = old_entry["id"]
+    id_migration = {}
+    print("  Canonical artist IDs reserved: %d" % len(canonical_artist_ids))
     all_entries = []   # (word, lemma, corpus_count, entry_dict) for sorting
     stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0,
              "with_morphology": 0, "with_synonyms": 0, "clitic_merged": len(clitic_data)}
@@ -754,7 +822,13 @@ def main():
             key = "%s|%s" % (wl, lemma)
 
             # Generate hex ID at assembly time
-            hex_id = make_stable_id(wl, lemma, used_ids)
+            pair = (wl, lemma)
+            hex_id = canonical_artist_ids.get(pair)
+            if hex_id is None:
+                hex_id = make_stable_id(wl, lemma, used_ids)
+            old_id = old_ids_by_pair.get(pair)
+            if old_id and old_id != hex_id:
+                normal_id_migration[old_id] = hex_id
             used_ids.add(hex_id)
 
             # Look up senses
@@ -1309,6 +1383,33 @@ def main():
     with open(examples_path, "w", encoding="utf-8") as f:
         json.dump(examples_out, f, ensure_ascii=False)
     write_sidecar(examples_path, make_meta("assemble_vocabulary", STEP_VERSION))
+
+    migration_path = OUTPUT_DIR / "id_migration.json"
+    if normal_id_migration or migration_path.exists():
+        existing_migration = {}
+        if migration_path.exists():
+            with open(migration_path, encoding="utf-8") as f:
+                existing_migration = json.load(f)
+        existing_migration.update(normal_id_migration)
+
+        # A rebuild can correct an ID assigned by an earlier rebuild.  Persist
+        # every legacy ID's final destination rather than a chain, because the
+        # browser migration makes one lookup per stored progress key.
+        def resolve_migration_target(item_id):
+            seen = set()
+            while item_id in existing_migration and item_id not in seen:
+                seen.add(item_id)
+                item_id = existing_migration[item_id]
+            return item_id
+
+        existing_migration = {
+            old_id: resolve_migration_target(new_id)
+            for old_id, new_id in existing_migration.items()
+        }
+        with open(migration_path, "w", encoding="utf-8") as f:
+            json.dump(existing_migration, f, ensure_ascii=False, indent=2)
+        print("ID migration: %d normal IDs -> canonical artist IDs (%s)" % (
+            len(normal_id_migration), migration_path))
 
     # Report
     print(f"\n{'='*55}")

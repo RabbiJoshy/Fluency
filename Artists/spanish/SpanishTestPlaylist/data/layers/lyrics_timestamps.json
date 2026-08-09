@@ -1,10 +1,2580 @@
 {
   "_meta": {
     "songs_queried": 17,
-    "songs_with_lrc": 0,
-    "lines_matched": 0,
-    "lines_with_end": 0,
+    "songs_with_lrc": 17,
+    "lines_matched": 507,
+    "lines_with_end": 507,
     "lines_total": 552
   },
-  "timestamps": {}
+  "timestamps": {
+    "Amarillo": {
+      "Saben quién es Balvin, les presento a José (Wuh)": {
+        "ms": 18010,
+        "confidence": "exact",
+        "end_ms": 20850
+      },
+      "Sola la casa y están todas solitas (Ey)": {
+        "ms": 98360,
+        "confidence": "exact",
+        "end_ms": 101070
+      },
+      "Que a mí me gusta pasarla rico? (Eh, eh)": {
+        "ms": 23950,
+        "confidence": "exact",
+        "end_ms": 26850
+      },
+      "Si saben cómo soy, ¿para qué me invitan?": {
+        "ms": 101070,
+        "confidence": "exact",
+        "end_ms": 103710
+      },
+      "Me invitan por aquí, me invitan por allá (Ya tú chabe')": {
+        "ms": 91040,
+        "confidence": "exact",
+        "end_ms": 94300
+      },
+      "Aquí solo se para si llama mi mamá": {
+        "ms": 86030,
+        "confidence": "exact",
+        "end_ms": 88350
+      },
+      "Son más de las doce, nos fuimos de roce": {
+        "ms": 1410,
+        "confidence": "exact",
+        "end_ms": 13210
+      },
+      "Que siga la fiesta, no vamo' a parar (Wuh)": {
+        "ms": 84750,
+        "confidence": "exact",
+        "end_ms": 86030
+      },
+      "Hoy me tocó seguir, la gente pide más": {
+        "ms": 88350,
+        "confidence": "exact",
+        "end_ms": 91040
+      },
+      "Reggaetón de Tego pa' que se lo gocen (Ey)": {
+        "ms": 16080,
+        "confidence": "exact",
+        "end_ms": 18010
+      },
+      "Hoy voy a lo loco, ustede' me conocen (Me conocen)": {
+        "ms": 13210,
+        "confidence": "exact",
+        "end_ms": 16080
+      },
+      "Despué' de las doce salimo' a buscar el party (Party)": {
+        "ms": 32080,
+        "confidence": "exact",
+        "end_ms": 35020
+      },
+      "Ando con lo' tiguere', estamo' en modo safari (Brr)": {
+        "ms": 35020,
+        "confidence": "exact",
+        "end_ms": 37120
+      },
+      "Y yo no me complico (Eh), ¿cómo te explico (Eh)": {
+        "ms": 20850,
+        "confidence": "exact",
+        "end_ms": 23950
+      },
+      "Yah, yah, yah, yah": {
+        "ms": 137180,
+        "confidence": "fuzzy",
+        "end_ms": 139860
+      },
+      "Sola la casa y estan todas solitas (Wuh)": {
+        "ms": 98360,
+        "confidence": "fuzzy",
+        "end_ms": 101070
+      },
+      "Yo tomando vino y alguno' fumando mari": {
+        "ms": 37120,
+        "confidence": "substring",
+        "end_ms": 42030
+      },
+      "La' botella' llegan y no las pedí": {
+        "ms": 94300,
+        "confidence": "substring",
+        "end_ms": 98360
+      },
+      "La policía está molesta porque": {
+        "ms": 42030,
+        "confidence": "substring",
+        "end_ms": 47380
+      },
+      "Ya se puso buena la fiesta, pero": {
+        "ms": 42030,
+        "confidence": "substring",
+        "end_ms": 47380
+      },
+      "Las botellas llegan y no las pedí (Tú lo sabe')": {
+        "ms": 105080,
+        "confidence": "substring",
+        "end_ms": 109450
+      },
+      "Por eso yo sigo hasta que amanezca, entonce' (Yah)": {
+        "ms": 47380,
+        "confidence": "substring",
+        "end_ms": 52430
+      },
+      "Y con un flow violento que parecemo' sicario'": {
+        "ms": 37120,
+        "confidence": "substring",
+        "end_ms": 42030
+      },
+      "Estamo' legal, no me pueden arrestar": {
+        "ms": 47380,
+        "confidence": "substring",
+        "end_ms": 52430
+      }
+    },
+    "Antes": {
+      "Perréame como ante', uah": {
+        "ms": 77250,
+        "confidence": "exact",
+        "end_ms": 81160
+      },
+      "Y yo soy má' perro que el mismo Beethoven (Brr), brr": {
+        "ms": 88550,
+        "confidence": "exact",
+        "end_ms": 91830
+      },
+      "No sabe' cuánto quiero que vuelva otra noche más (Brr)": {
+        "ms": 46950,
+        "confidence": "exact",
+        "end_ms": 50940
+      },
+      "Bebiendo del caminante": {
+        "ms": 74920,
+        "confidence": "exact",
+        "end_ms": 77250
+      },
+      "Gangsters, le gustan lo' maleante'": {
+        "ms": 71280,
+        "confidence": "exact",
+        "end_ms": 74920
+      },
+      "Al meno' un instante (Baby)": {
+        "ms": 16190,
+        "confidence": "exact",
+        "end_ms": 19250
+      },
+      "Que me dejaste": {
+        "ms": 151430,
+        "confidence": "exact",
+        "end_ms": 154440
+      },
+      "Qué rico era ante'": {
+        "ms": 1610,
+        "confidence": "exact",
+        "end_ms": 4670
+      },
+      "Par de mordío' mirándono' feo": {
+        "ms": 66590,
+        "confidence": "exact",
+        "end_ms": 68250
+      },
+      "Tu mujer 'tá loca de que yo me la robe (Me la robe)": {
+        "ms": 86150,
+        "confidence": "exact",
+        "end_ms": 88550
+      },
+      "To' el mundo en el maleanteo (Maleanteo)": {
+        "ms": 61380,
+        "confidence": "exact",
+        "end_ms": 63160
+      },
+      "Ozuna": {
+        "ms": 7290,
+        "confidence": "exact",
+        "end_ms": 8290
+      },
+      "Vive la realidad, no vive de apariencia (Nah-ah)": {
+        "ms": 135060,
+        "confidence": "exact",
+        "end_ms": 137620
+      },
+      "El sabor a miel (Sabor a miel)": {
+        "ms": 148970,
+        "confidence": "exact",
+        "end_ms": 151430
+      },
+      "Real hasta la muerte, ¿oíste, bebé?": {
+        "ms": 4670,
+        "confidence": "exact",
+        "end_ms": 7290
+      },
+      "De to' la' noche' no paro de yo recordarte (Recordarte)": {
+        "ms": 124320,
+        "confidence": "exact",
+        "end_ms": 127410
+      },
+      "Sabe que a su nivel no tiene competencia (Competencia)": {
+        "ms": 137620,
+        "confidence": "exact",
+        "end_ms": 139930
+      },
+      "No sabe' cuánto quiero que vuelva otra noche má' (Ah)": {
+        "ms": 108450,
+        "confidence": "exact",
+        "end_ms": 112330
+      },
+      "El AK encima pa' que to' el que me incomode (Me incomode)": {
+        "ms": 83710,
+        "confidence": "exact",
+        "end_ms": 86150
+      },
+      "Hoy e' otra noche de discoteca (Discoteca)": {
+        "ms": 161550,
+        "confidence": "exact",
+        "end_ms": 164690
+      },
+      "Así con la pinta, pero e' consistencia (Consistencia)": {
+        "ms": 132640,
+        "confidence": "exact",
+        "end_ms": 135060
+      },
+      "Ante'": {
+        "ms": 230,
+        "confidence": "exact",
+        "end_ms": 1610
+      },
+      "Aquella noche me bailaste (Me bailaste)": {
+        "ms": 127410,
+        "confidence": "exact",
+        "end_ms": 129210
+      },
+      "Ese recuerdo lo tengo acumulado (Acumulado)": {
+        "ms": 22000,
+        "confidence": "exact",
+        "end_ms": 25590
+      },
+      "Y las babie' perreando y pendiente' al botelleo (Al botelleo)": {
+        "ms": 63160,
+        "confidence": "exact",
+        "end_ms": 66590
+      },
+      "Bailando hasta que amanezca (Hasta que amanezca)": {
+        "ms": 31950,
+        "confidence": "exact",
+        "end_ms": 34520
+      },
+      "Me diste otro número, te llamé y no contestaste": {
+        "ms": 129210,
+        "confidence": "exact",
+        "end_ms": 132640
+      },
+      "A ver, déjate ver (Déjate ver)": {
+        "ms": 142930,
+        "confidence": "exact",
+        "end_ms": 146310
+      },
+      "No sabe' cuánto quiero que vuelva otra noche de": {
+        "ms": 98290,
+        "confidence": "exact",
+        "end_ms": 101820
+      },
+      "No sabe' cuánto quiero que vuelva otra": {
+        "ms": 36910,
+        "confidence": "exact",
+        "end_ms": 39630
+      },
+      "¿Dónde te quedaste? (¿Dónde te quedaste?)": {
+        "ms": 122670,
+        "confidence": "exact",
+        "end_ms": 124320
+      },
+      "Pero dame una razón y te bajamo' el de'o (Brr)": {
+        "ms": 68250,
+        "confidence": "exact",
+        "end_ms": 71280
+      },
+      "Hoy es vierne', hoy se bebe y se jode (Se jode)": {
+        "ms": 81160,
+        "confidence": "exact",
+        "end_ms": 83710
+      },
+      "Entramo' pa' la disco, las pistola' y las seta' (Brr)": {
+        "ms": 55250,
+        "confidence": "exact",
+        "end_ms": 57600
+      },
+      "Tú mirándome a los ojo' y yo mirándote las te-te-, baby": {
+        "ms": 57600,
+        "confidence": "exact",
+        "end_ms": 61380
+      },
+      "¿Y en dónde quedó?": {
+        "ms": 20350,
+        "confidence": "exact",
+        "end_ms": 22000
+      },
+      "Aunque la noche sea pasajera (Pasajera)": {
+        "ms": 44670,
+        "confidence": "exact",
+        "end_ms": 46950
+      },
+      "Fumando krippy en la lleca (En la lleca)": {
+        "ms": 50940,
+        "confidence": "exact",
+        "end_ms": 52710
+      },
+      "No le gana material, mucha inteligencia": {
+        "ms": 139930,
+        "confidence": "exact",
+        "end_ms": 142930
+      },
+      "Que quiero tener (Que quiero tener)": {
+        "ms": 146310,
+        "confidence": "exact",
+        "end_ms": 148970
+      },
+      "Si pudiera regresar el tiempo (Woh-oh-oh-oh)": {
+        "ms": 14030,
+        "confidence": "exact",
+        "end_ms": 16190
+      },
+      "No sabe' cómo me encantaría (Eh-eh, eh)": {
+        "ms": 27120,
+        "confidence": "exact",
+        "end_ms": 29780
+      },
+      "Viendo llegar a Héctor con los rompe discoteka' (Discoteka')": {
+        "ms": 52710,
+        "confidence": "fuzzy",
+        "end_ms": 55250
+      }
+    },
+    "Ay, DiOs Mío!": {
+      "Entre botellas de Rosé": {
+        "ms": 26420,
+        "confidence": "exact",
+        "end_ms": 28820
+      },
+      "Él me invitó a salir a bailar (Ah-ah)": {
+        "ms": 75630,
+        "confidence": "exact",
+        "end_ms": 77960
+      },
+      "Que tú querías y yo también": {
+        "ms": 23210,
+        "confidence": "exact",
+        "end_ms": 26420
+      },
+      "Él me jaló y me dijo: \"Ven pa'cá\" (Oh; ah)": {
+        "ms": 64640,
+        "confidence": "exact",
+        "end_ms": 66710
+      },
+      "Pero cuando coincidimos, bebé": {
+        "ms": 12720,
+        "confidence": "exact",
+        "end_ms": 15370
+      },
+      "Que conmigo quiere tener relaciones, eh": {
+        "ms": 45640,
+        "confidence": "exact",
+        "end_ms": 50110
+      },
+      "Nos fuimos calentando": {
+        "ms": 28820,
+        "confidence": "exact",
+        "end_ms": 32400
+      },
+      "Yo sé que lo notó y no pude evitar": {
+        "ms": 69350,
+        "confidence": "exact",
+        "end_ms": 72180
+      },
+      "Y en tus ojos yo lo noté": {
+        "ms": 20700,
+        "confidence": "exact",
+        "end_ms": 23210
+      },
+      "Tú fuiste conquistándome": {
+        "ms": 18190,
+        "confidence": "exact",
+        "end_ms": 20700
+      },
+      "Fue una cosa que yo no sé": {
+        "ms": 15370,
+        "confidence": "exact",
+        "end_ms": 18190
+      },
+      "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)": {
+        "ms": 72180,
+        "confidence": "exact",
+        "end_ms": 75630
+      },
+      "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"": {
+        "ms": 39660,
+        "confidence": "exact",
+        "end_ms": 43160
+      },
+      "Cuando me fui él me mandó a buscar (Oh)": {
+        "ms": 80550,
+        "confidence": "exact",
+        "end_ms": 82890
+      },
+      "Emma me escribió (Oh), y me dijo a mí (A mí)": {
+        "ms": 141660,
+        "confidence": "fuzzy",
+        "end_ms": 144480
+      },
+      "Yo no te estaba buscando, babe": {
+        "ms": 10040,
+        "confidence": "fuzzy",
+        "end_ms": 12720
+      },
+      "Yo le dije \"lento\", y me hizo tra-tra": {
+        "ms": 66710,
+        "confidence": "fuzzy",
+        "end_ms": 69350
+      },
+      "Y yo no pude, no (No), decirle que no": {
+        "ms": 82890,
+        "confidence": "fuzzy",
+        "end_ms": 88420
+      },
+      "Luego me dijo (Oh) que le gusté yo (-té yo)": {
+        "ms": 43160,
+        "confidence": "fuzzy",
+        "end_ms": 45640
+      },
+      "Que le gustaban toda' mis cancione' (Eh, eh)": {
+        "ms": 35290,
+        "confidence": "fuzzy",
+        "end_ms": 39660
+      }
+    },
+    "BOOKER T": {
+      "Estoy en mi peak, ja (Estoy en mi peak)": {
+        "ms": 77670,
+        "confidence": "exact",
+        "end_ms": 79790
+      },
+      "Te juro que yo no me quise embichar, ey (Ah, ah, ah)": {
+        "ms": 52150,
+        "confidence": "exact",
+        "end_ms": 54550
+      },
+      "Mírame en lo que me convertí (Mírame, mírame)": {
+        "ms": 79790,
+        "confidence": "exact",
+        "end_ms": 83600
+      },
+      "Mi nombre por siempre se va a escuchar (Uh, uh, uh)": {
+        "ms": 64780,
+        "confidence": "exact",
+        "end_ms": 66560
+      },
+      "Cheki, morena, cheki": {
+        "ms": 101090,
+        "confidence": "exact",
+        "end_ms": 103120
+      },
+      "Voy a ser el jefe, me van a fichar (Ey)": {
+        "ms": 62520,
+        "confidence": "exact",
+        "end_ms": 64780
+      },
+      "El prepa que les tiró Barbasol": {
+        "ms": 39890,
+        "confidence": "exact",
+        "end_ms": 42430
+      },
+      "Ah, maldito Conejo": {
+        "ms": 42430,
+        "confidence": "exact",
+        "end_ms": 43880
+      },
+      "Le' molesta mi premio de compositor": {
+        "ms": 83600,
+        "confidence": "exact",
+        "end_ms": 85690
+      },
+      "Soy un rey, campeón, Booker T (Wuh, wuh, wuh), ey, ey": {
+        "ms": 71030,
+        "confidence": "exact",
+        "end_ms": 75220
+      },
+      "La gente se pregunta cómo (¿Cómo?)": {
+        "ms": 113630,
+        "confidence": "exact",
+        "end_ms": 115590
+      },
+      "Porque estoy en mi peak (Ey)": {
+        "ms": 66560,
+        "confidence": "exact",
+        "end_ms": 68910
+      },
+      "Yo soy coco, ustede' bakin' (Wuh)": {
+        "ms": 122150,
+        "confidence": "exact",
+        "end_ms": 124250
+      },
+      "Cheki, morena, eh": {
+        "ms": 103120,
+        "confidence": "exact",
+        "end_ms": 105080
+      },
+      "Subimo' y rompimo' el ascensor (Ah)": {
+        "ms": 38760,
+        "confidence": "exact",
+        "end_ms": 39890
+      },
+      "En este género yo fui un Hadōken (Ey, ey, ey)": {
+        "ms": 29940,
+        "confidence": "exact",
+        "end_ms": 33380
+      },
+      "Siguen en la fila, nadie se me cuela (Ey)": {
+        "ms": 98500,
+        "confidence": "exact",
+        "end_ms": 101090
+      },
+      "El disco más vendío' de este puto año (Ey)": {
+        "ms": 91980,
+        "confidence": "fuzzy",
+        "end_ms": 94860
+      },
+      "Ustedes pagando pa' irse virale' (Ey)": {
+        "ms": 108920,
+        "confidence": "fuzzy",
+        "end_ms": 111020
+      },
+      "Yo pegando temas sin hacerle' promo (Promo)": {
+        "ms": 111020,
+        "confidence": "fuzzy",
+        "end_ms": 113630
+      },
+      "Y yo sí soy milly sin usar Richard (Ey)": {
+        "ms": 58560,
+        "confidence": "fuzzy",
+        "end_ms": 60480
+      },
+      "Y vo'a seguir en mi peak, cabrón, ey": {
+        "ms": 127750,
+        "confidence": "fuzzy",
+        "end_ms": 130110
+      },
+      "Pero es que ya nadie compone": {
+        "ms": 85690,
+        "confidence": "fuzzy",
+        "end_ms": 87730
+      },
+      "Pero él también va a pichear": {
+        "ms": 50730,
+        "confidence": "fuzzy",
+        "end_ms": 52150
+      },
+      "Yankee se retira y vamo' a switchear (Ah; uh)": {
+        "ms": 60480,
+        "confidence": "fuzzy",
+        "end_ms": 62520
+      },
+      "Antes que me apague' se apaga el sol": {
+        "ms": 36580,
+        "confidence": "fuzzy",
+        "end_ms": 38760
+      },
+      "Cabrón, tú eres feka": {
+        "ms": 142490,
+        "confidence": "fuzzy",
+        "end_ms": 144020
+      },
+      "Yo no hago cancione', hago himnos pa' que no caduquen (Ey)": {
+        "ms": 25720,
+        "confidence": "fuzzy",
+        "end_ms": 29940
+      },
+      "Mírame, ¿que tú qué?, ¿que tú qué? (Nah-nah) Nah-nah": {
+        "ms": 138490,
+        "confidence": "fuzzy",
+        "end_ms": 141950
+      },
+      "Ahora los miro de arriba y de lejo', ey": {
+        "ms": 43880,
+        "confidence": "fuzzy",
+        "end_ms": 46470
+      },
+      "Y se extinguieron como los dinosaurs (Prr; ah)": {
+        "ms": 33380,
+        "confidence": "fuzzy",
+        "end_ms": 36580
+      },
+      "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela": {
+        "ms": 96240,
+        "confidence": "substring",
+        "end_ms": 98500
+      },
+      "Bad Bunny se llevó to' los premio' y el cabrón ni fue (Eh)": {
+        "ms": 107350,
+        "confidence": "substring",
+        "end_ms": 108920
+      },
+      "Le metí a toa' mis crush, shh, ya me aburro hasta 'e chichar (Ay, rra)": {
+        "ms": 56900,
+        "confidence": "substring",
+        "end_ms": 58560
+      },
+      "No contesto DM, no, hablen con mi manejo": {
+        "ms": 46470,
+        "confidence": "substring",
+        "end_ms": 48650
+      },
+      "Ninguna 'e esta gente escribe en sus canciones, so no se emocionen (Uh)": {
+        "ms": 89830,
+        "confidence": "substring",
+        "end_ms": 91980
+      },
+      "Y el que no baile que lo despeluquen (Ey)": {
+        "ms": 16730,
+        "confidence": "substring",
+        "end_ms": 20900
+      },
+      "Desde chamaquito saben cómo somo', nunca pido tenqui": {
+        "ms": 115590,
+        "confidence": "substring",
+        "end_ms": 117670
+      }
+    },
+    "Gata Only": {
+      "Dime si se da": {
+        "ms": 37040,
+        "confidence": "exact",
+        "end_ms": 40140
+      },
+      "Te quiero chingar, te voy a raptar": {
+        "ms": 21190,
+        "confidence": "exact",
+        "end_ms": 23550
+      },
+      "Gata, tú está' only, mándame tu ubi": {
+        "ms": 45180,
+        "confidence": "exact",
+        "end_ms": 47340
+      },
+      "(Ah-ah-ah-ah-ah-ah-ah-ah-ah) FloyyMenor": {
+        "ms": 137350,
+        "confidence": "exact",
+        "end_ms": 138540
+      },
+      "Gata, pon el celu en modo avión": {
+        "ms": 60720,
+        "confidence": "exact",
+        "end_ms": 63140
+      },
+      "Tú mi loca y yo tu locotrón": {
+        "ms": 63140,
+        "confidence": "exact",
+        "end_ms": 65260
+      },
+      "Solo déjate llevar": {
+        "ms": 29690,
+        "confidence": "exact",
+        "end_ms": 31650
+      },
+      "Tú ere' like for me y yo 'toy pa' ti": {
+        "ms": 42750,
+        "confidence": "fuzzy",
+        "end_ms": 45180
+      },
+      "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'": {
+        "ms": 65260,
+        "confidence": "fuzzy",
+        "end_ms": 68980
+      },
+      "Déjate llevar, apaga el celular": {
+        "ms": 23550,
+        "confidence": "fuzzy",
+        "end_ms": 25880
+      },
+      "'Tate atenta a la jugá'": {
+        "ms": 31650,
+        "confidence": "fuzzy",
+        "end_ms": 34240
+      },
+      "Mueve los cachete' al ritmo del TikTok": {
+        "ms": 47340,
+        "confidence": "fuzzy",
+        "end_ms": 50910
+      },
+      "Mami, te siento lejo', dime dónde está'": {
+        "ms": 18400,
+        "confidence": "fuzzy",
+        "end_ms": 21190
+      },
+      "Nena, atenta a la jugá'": {
+        "ms": 31650,
+        "confidence": "fuzzy",
+        "end_ms": 34240
+      },
+      "Que yo quiero contigo y tú quiere' conmigo (": {
+        "ms": 34240,
+        "confidence": "fuzzy",
+        "end_ms": 37040
+      },
+      "Que si está' conmigo no te va a pasar na'": {
+        "ms": 25880,
+        "confidence": "fuzzy",
+        "end_ms": 29690
+      },
+      "Muévelo, cabecea al ritmo del TikTok": {
+        "ms": 47340,
+        "confidence": "fuzzy",
+        "end_ms": 50910
+      },
+      "E' que conmigo la baby esta noche la pasó cabrón": {
+        "ms": 55820,
+        "confidence": "fuzzy",
+        "end_ms": 60720
+      },
+      "Brr": {
+        "ms": 130820,
+        "confidence": "substring",
+        "end_ms": 133910
+      },
+      "Ey": {
+        "ms": 133910,
+        "confidence": "substring",
+        "end_ms": 137350
+      },
+      "Conmigo esa gata se escapó y en su casa nadie lo notó": {
+        "ms": 50910,
+        "confidence": "substring",
+        "end_ms": 53570
+      }
+    },
+    "Me Voy": {
+      "Lo que había en él": {
+        "ms": 17380,
+        "confidence": "exact",
+        "end_ms": 19750
+      },
+      "Que estoy a un lado desaparezco para ti": {
+        "ms": 34280,
+        "confidence": "exact",
+        "end_ms": 40140
+      },
+      "Me despido de ti y me voy": {
+        "ms": 57850,
+        "confidence": "exact",
+        "end_ms": 61460
+      },
+      "Alguien que sepa darme amor": {
+        "ms": 85860,
+        "confidence": "exact",
+        "end_ms": 89320
+      },
+      "Sólo el ruido de afuera y yo": {
+        "ms": 30620,
+        "confidence": "exact",
+        "end_ms": 34280
+      },
+      "Porque sé que me espera algo mejor": {
+        "ms": 81350,
+        "confidence": "exact",
+        "end_ms": 85860
+      },
+      "Qué lástima, pero adiós": {
+        "ms": 54170,
+        "confidence": "exact",
+        "end_ms": 57850
+      },
+      "De ese que endulza la sal y hace que salga el sol": {
+        "ms": 89320,
+        "confidence": "exact",
+        "end_ms": 95790
+      },
+      "Pero no lo quiero, por eso me voy": {
+        "ms": 49670,
+        "confidence": "fuzzy",
+        "end_ms": 54170
+      },
+      "¿Por qué no tuviste el valor de ver quién soy?": {
+        "ms": 19750,
+        "confidence": "fuzzy",
+        "end_ms": 26190
+      },
+      "¿Por qué no supiste entender a mi corazón?": {
+        "ms": 12940,
+        "confidence": "fuzzy",
+        "end_ms": 17380
+      },
+      "Hoy entendí que no hay suficiente para los dos": {
+        "ms": 103250,
+        "confidence": "fuzzy",
+        "end_ms": 110040
+      },
+      "¿Por qué no escuchas lo que está tan cerca de ti?": {
+        "ms": 26190,
+        "confidence": "fuzzy",
+        "end_ms": 30620
+      },
+      "Porque es probable que lo merezco": {
+        "ms": 46350,
+        "confidence": "substring",
+        "end_ms": 47530
+      },
+      "No voy a llorar y decir que no merezco esto": {
+        "ms": 40140,
+        "confidence": "substring",
+        "end_ms": 43180
+      }
+    },
+    "PELIGROSA": {
+      "Conmigo ella se escapó (Ah-ah-ah)": {
+        "ms": 23230,
+        "confidence": "exact",
+        "end_ms": 25630
+      },
+      "Yo quiero con ella hasta que la micro choque": {
+        "ms": 39940,
+        "confidence": "exact",
+        "end_ms": 42360
+      },
+      "Me gusta el cortecito que le está dando": {
+        "ms": 20860,
+        "confidence": "exact",
+        "end_ms": 23230
+      },
+      "Mamita, que tu culo es la meta": {
+        "ms": 100920,
+        "confidence": "exact",
+        "end_ms": 103170
+      },
+      "Y, ma, déjate llevar": {
+        "ms": 57100,
+        "confidence": "exact",
+        "end_ms": 61250
+      },
+      "Peligrosa como mi Glock": {
+        "ms": 25630,
+        "confidence": "exact",
+        "end_ms": 28040
+      },
+      "En la discoteca, qué rica muñeca": {
+        "ms": 61250,
+        "confidence": "exact",
+        "end_ms": 66940
+      },
+      "La nena me sigue, es la sensación del bloque": {
+        "ms": 37680,
+        "confidence": "exact",
+        "end_ms": 39940
+      },
+      "Nena, dale, mueve ese toto (¡Prr!)": {
+        "ms": 54770,
+        "confidence": "exact",
+        "end_ms": 57100
+      },
+      "En la discoteca se puso coqueta": {
+        "ms": 70750,
+        "confidence": "exact",
+        "end_ms": 76070
+      },
+      "Miren a esa nena, la que va pasando": {
+        "ms": 18480,
+        "confidence": "fuzzy",
+        "end_ms": 20860
+      },
+      "Y tú está' esperando a que te lo meta": {
+        "ms": 103170,
+        "confidence": "fuzzy",
+        "end_ms": 108420
+      },
+      "Pide lo que quiera', que lo que quiero yo es ponértelo": {
+        "ms": 44900,
+        "confidence": "fuzzy",
+        "end_ms": 46870
+      },
+      "Ah, y peligrosa como una glopeta": {
+        "ms": 96280,
+        "confidence": "fuzzy",
+        "end_ms": 98660
+      },
+      "Ma, 'tá esperando a que se lo meta": {
+        "ms": 111260,
+        "confidence": "fuzzy",
+        "end_ms": 117000
+      },
+      "Ya la mandé pa' que se haga completa": {
+        "ms": 98660,
+        "confidence": "fuzzy",
+        "end_ms": 100920
+      },
+      "Se conecta como un peine 'e 30 a la Glock": {
+        "ms": 50280,
+        "confidence": "fuzzy",
+        "end_ms": 52610
+      },
+      "Tú tranquila, las puerta' bajan a tope": {
+        "ms": 42360,
+        "confidence": "fuzzy",
+        "end_ms": 44900
+      },
+      "Chiquitita como mi Glock": {
+        "ms": 46870,
+        "confidence": "substring",
+        "end_ms": 50280
+      }
+    },
+    "Qué Más Pues?": {
+      "Ninguna cabe en tu size": {
+        "ms": 101830,
+        "confidence": "exact",
+        "end_ms": 104060
+      },
+      "Ay, José, no me insista'": {
+        "ms": 52250,
+        "confidence": "exact",
+        "end_ms": 53940
+      },
+      "¿Sigue' soltera o ya tiene' marido? (Wuh)": {
+        "ms": 10940,
+        "confidence": "exact",
+        "end_ms": 13670
+      },
+      "Baby, esto ya es otra liga, pero tú estás por encima, ey": {
+        "ms": 112330,
+        "confidence": "exact",
+        "end_ms": 117720
+      },
+      "Tengo este booty sin hacer deporte (No, no, no)": {
+        "ms": 58570,
+        "confidence": "exact",
+        "end_ms": 61570
+      },
+      "Y me está' empalagando y eso que no e' golosina": {
+        "ms": 197260,
+        "confidence": "exact",
+        "end_ms": 201870
+      },
+      "J Balvin, man": {
+        "ms": 7230,
+        "confidence": "exact",
+        "end_ms": 9030
+      },
+      "Dime, mai, ¿qué e' la que hay? (Hay, hay)": {
+        "ms": 94160,
+        "confidence": "exact",
+        "end_ms": 96600
+      },
+      "Pero no me olvido de lo sucedido (Ey, ey)": {
+        "ms": 25260,
+        "confidence": "exact",
+        "end_ms": 28900
+      },
+      "Te perdí el rastro por distraído (Wuh)": {
+        "ms": 20380,
+        "confidence": "exact",
+        "end_ms": 22830
+      },
+      "Que hay que aclarar par de cosas pendiente' (Oh)": {
+        "ms": 33570,
+        "confidence": "exact",
+        "end_ms": 37780
+      },
+      "Cambió desde que te fuiste tú": {
+        "ms": 66170,
+        "confidence": "exact",
+        "end_ms": 68470
+      },
+      "No me venga' con esa actitud": {
+        "ms": 71080,
+        "confidence": "exact",
+        "end_ms": 73130
+      },
+      "Ellos intentan y yo ni trato": {
+        "ms": 109890,
+        "confidence": "exact",
+        "end_ms": 112330
+      },
+      "Sé que es personal, perdona lo atrevido (No)": {
+        "ms": 13670,
+        "confidence": "exact",
+        "end_ms": 15650
+      },
+      "Porque mi brújula ya cambió su norte (¡Wuh!)": {
+        "ms": 63140,
+        "confidence": "exact",
+        "end_ms": 66170
+      },
+      "Que estás sola, ya me dieron el dato (Dato)": {
+        "ms": 105460,
+        "confidence": "exact",
+        "end_ms": 107410
+      },
+      "Tú de vacacione' en Boston y otro apareció primero": {
+        "ms": 192370,
+        "confidence": "exact",
+        "end_ms": 197260
+      },
+      "Vamo' a hacerlo, aprovecha el clima (J Balvin)": {
+        "ms": 117720,
+        "confidence": "exact",
+        "end_ms": 122570
+      },
+      "Me tuviste mucho tiempo, fuiste distraído": {
+        "ms": 138090,
+        "confidence": "exact",
+        "end_ms": 140300
+      },
+      "Y ahora, ¿qué más pues? Me he ido": {
+        "ms": 140300,
+        "confidence": "exact",
+        "end_ms": 142790
+      },
+      "Y de lo pasado yo no me olvido": {
+        "ms": 147370,
+        "confidence": "exact",
+        "end_ms": 151230
+      },
+      "Tú sigues siendo el mismo engreído": {
+        "ms": 133440,
+        "confidence": "exact",
+        "end_ms": 135630
+      },
+      "Tú estás bien diva y ese cuerpo que motiva, baby": {
+        "ms": 122570,
+        "confidence": "exact",
+        "end_ms": 127420
+      },
+      "Tú mucho me está' mirando y eso que no soy vitrina": {
+        "ms": 201870,
+        "confidence": "exact",
+        "end_ms": 205370
+      },
+      "Que esa la conozco yo también": {
+        "ms": 73130,
+        "confidence": "exact",
+        "end_ms": 75330
+      },
+      "Esa' Nike te quedan nice (Ah)": {
+        "ms": 96600,
+        "confidence": "exact",
+        "end_ms": 99270
+      },
+      "Aunque no parezca, esto me ha dolido": {
+        "ms": 145160,
+        "confidence": "exact",
+        "end_ms": 147370
+      },
+      "Ninguna con este porte": {
+        "ms": 56150,
+        "confidence": "exact",
+        "end_ms": 58570
+      },
+      "Yo a ti te llamé en agosto, apareciste en enero": {
+        "ms": 188100,
+        "confidence": "exact",
+        "end_ms": 192370
+      },
+      "¿Qué más pues? ¿Cómo te ha ido? (Eh)": {
+        "ms": 9030,
+        "confidence": "exact",
+        "end_ms": 10940
+      },
+      "Se acabó lo que esa noche nos dimo', ey": {
+        "ms": 79660,
+        "confidence": "exact",
+        "end_ms": 82320
+      },
+      "Regálame otra noche, quiero verte": {
+        "ms": 28900,
+        "confidence": "exact",
+        "end_ms": 33570
+      },
+      "Vamos a hacerlo, que está rico el clima": {
+        "ms": 127420,
+        "confidence": "exact",
+        "end_ms": 131830
+      },
+      "Nada va a hacer que me importe'": {
+        "ms": 61570,
+        "confidence": "exact",
+        "end_ms": 63140
+      },
+      "Dame el PIN, yo te caigo de inmediato (Inmediato)": {
+        "ms": 107410,
+        "confidence": "exact",
+        "end_ms": 109890
+      },
+      "Ya es suficiente lo que tú ha' comido (Ah)": {
+        "ms": 142790,
+        "confidence": "exact",
+        "end_ms": 145160
+      },
+      "Pero, ¿qué más pues? ¿Qué ha habido? (¿Qué ha habido?)": {
+        "ms": 17990,
+        "confidence": "exact",
+        "end_ms": 20380
+      },
+      "Saca un rato": {
+        "ms": 104060,
+        "confidence": "fuzzy",
+        "end_ms": 105460
+      },
+      "Papi y eso lo sabe' muy bien": {
+        "ms": 68470,
+        "confidence": "fuzzy",
+        "end_ms": 71080
+      },
+      "Pa', ¿qué lo que? Sé que quieres saber": {
+        "ms": 84570,
+        "confidence": "fuzzy",
+        "end_ms": 88420
+      },
+      "Y ahora no ando soltera para ti, no, ey": {
+        "ms": 75330,
+        "confidence": "fuzzy",
+        "end_ms": 77880
+      },
+      "La fama esto me tiene jodido": {
+        "ms": 22830,
+        "confidence": "fuzzy",
+        "end_ms": 25260
+      },
+      "No es personal, pa' novio no has nacido": {
+        "ms": 135630,
+        "confidence": "fuzzy",
+        "end_ms": 138090
+      },
+      "Woh, de tu clase ya pocas hay (Ah, ah, ah)": {
+        "ms": 99270,
+        "confidence": "fuzzy",
+        "end_ms": 101830
+      },
+      "Das muchas vuelta', parece' motociclista, ey": {
+        "ms": 53940,
+        "confidence": "fuzzy",
+        "end_ms": 56150
+      },
+      "Te pedí en Navidad y Santa no te ha traído (Ey)": {
+        "ms": 15650,
+        "confidence": "fuzzy",
+        "end_ms": 17990
+      },
+      "Ahora e' con otro con quien vacilo en la pista, ey": {
+        "ms": 49100,
+        "confidence": "fuzzy",
+        "end_ms": 52250
+      },
+      "Dónde estoy (-o-o-o-o-oy)": {
+        "ms": 88420,
+        "confidence": "substring",
+        "end_ms": 94160
+      },
+      "Que yo voy (Wuh), voy (Lady, lady)": {
+        "ms": 40510,
+        "confidence": "substring",
+        "end_ms": 45670
+      }
+    },
+    "Si Antes Te Hubiera Conocido": {
+      "Por un besito hago cualquier cosa": {
+        "ms": 39630,
+        "confidence": "exact",
+        "end_ms": 43220
+      },
+      "Si antes te hubiera conocido?": {
+        "ms": 21240,
+        "confidence": "exact",
+        "end_ms": 26090
+      },
+      "Espero lo que sea, yo no me voy a quitar": {
+        "ms": 100670,
+        "confidence": "exact",
+        "end_ms": 104120
+      },
+      "Sino como otra cosa": {
+        "ms": 32990,
+        "confidence": "exact",
+        "end_ms": 35750
+      },
+      "No has entendido que": {
+        "ms": 136560,
+        "confidence": "exact",
+        "end_ms": 138650
+      },
+      "No te va a besar como yo": {
+        "ms": 50640,
+        "confidence": "exact",
+        "end_ms": 52380
+      },
+      "Mi nombre suena bien con tu apellido": {
+        "ms": 110970,
+        "confidence": "exact",
+        "end_ms": 114560
+      },
+      "Ella es tímida y yo no": {
+        "ms": 54340,
+        "confidence": "exact",
+        "end_ms": 55940
+      },
+      "¿Qué hubiera sido": {
+        "ms": 18550,
+        "confidence": "exact",
+        "end_ms": 21240
+      },
+      "No te va a tratar como yo": {
+        "ms": 48880,
+        "confidence": "exact",
+        "end_ms": 50640
+      },
+      "Usted cerca me pone peligrosa": {
+        "ms": 35750,
+        "confidence": "exact",
+        "end_ms": 39630
+      },
+      "Yo me caso contigo": {
+        "ms": 108020,
+        "confidence": "exact",
+        "end_ms": 110970
+      },
+      "Y yo te veo y no sé cómo actuar": {
+        "ms": 93560,
+        "confidence": "exact",
+        "end_ms": 96880
+      },
+      "Ay, si antes te hubiera conocido?": {
+        "ms": 80500,
+        "confidence": "exact",
+        "end_ms": 85960
+      },
+      "No como amigos, no, no, no": {
+        "ms": 166560,
+        "confidence": "exact",
+        "end_ms": 171320
+      },
+      "Hoy estás jangueando con ella": {
+        "ms": 59990,
+        "confidence": "exact",
+        "end_ms": 61850
+      },
+      "Tengo fe que esos ojito' un día me van a mirar": {
+        "ms": 104120,
+        "confidence": "exact",
+        "end_ms": 108020
+      },
+      "No está tan rica así como yo": {
+        "ms": 52380,
+        "confidence": "exact",
+        "end_ms": 54340
+      },
+      "Empezó el verano": {
+        "ms": 1680,
+        "confidence": "fuzzy",
+        "end_ms": 6000
+      },
+      "'Toy esperando el primer descuido": {
+        "ms": 114560,
+        "confidence": "fuzzy",
+        "end_ms": 118040
+      },
+      "Me atrevo a comerme los do'": {
+        "ms": 58090,
+        "confidence": "fuzzy",
+        "end_ms": 59990
+      },
+      "Pero, mmm, después tal vez no": {
+        "ms": 61850,
+        "confidence": "fuzzy",
+        "end_ms": 63440
+      },
+      "Bebé, pa' conquistarte que me pasen el manual": {
+        "ms": 96880,
+        "confidence": "fuzzy",
+        "end_ms": 100670
+      },
+      "Con esta' ganas que tengo yo": {
+        "ms": 55940,
+        "confidence": "fuzzy",
+        "end_ms": 58090
+      },
+      "Pa' presentarte como mi marido": {
+        "ms": 118040,
+        "confidence": "fuzzy",
+        "end_ms": 122860
+      },
+      "La novia suya me pone celosa y aunque es hermosa": {
+        "ms": 43220,
+        "confidence": "substring",
+        "end_ms": 46440
+      },
+      "¡Ey!": {
+        "ms": 76550,
+        "confidence": "substring",
+        "end_ms": 78550
+      },
+      "Seguramente, estarías bailando esta conmigo": {
+        "ms": 26090,
+        "confidence": "substring",
+        "end_ms": 28540
+      },
+      "Fuego": {
+        "ms": 1680,
+        "confidence": "substring",
+        "end_ms": 6000
+      }
+    },
+    "Tengo Un Plan": {
+      "Mi tatuaje dice LMG (LMG, LMG)": {
+        "ms": 7170,
+        "confidence": "exact",
+        "end_ms": 9440
+      },
+      "Y no quiere que la saque (Que la saque)": {
+        "ms": 84060,
+        "confidence": "exact",
+        "end_ms": 86330
+      },
+      "La shorty quiere que la mate (Que la mate)": {
+        "ms": 74430,
+        "confidence": "exact",
+        "end_ms": 76990
+      },
+      "A ella le hice un jaque mate (Un jaque mate)": {
+        "ms": 90740,
+        "confidence": "exact",
+        "end_ms": 93520
+      },
+      "Tengo varios feeling como Kanye West": {
+        "ms": 96570,
+        "confidence": "exact",
+        "end_ms": 98880
+      },
+      "Todos en mi combo son Real G (Real G, Real G, baby, eh-eh)": {
+        "ms": 11870,
+        "confidence": "exact",
+        "end_ms": 14270
+      },
+      "Te quiero tener (Quiero tener)": {
+        "ms": 55610,
+        "confidence": "exact",
+        "end_ms": 58090
+      },
+      "Tengo un plan, dime tú si nos vamo' (Nos vamo')": {
+        "ms": 18280,
+        "confidence": "fuzzy",
+        "end_ms": 22930
+      },
+      "Solo cáele, cáele (Eh-eh)": {
+        "ms": 93520,
+        "confidence": "fuzzy",
+        "end_ms": 96570
+      },
+      "Arrebátate conmigo, vamo' lúcete": {
+        "ms": 101000,
+        "confidence": "fuzzy",
+        "end_ms": 103240
+      },
+      "No te preocupe', despreocúpate": {
+        "ms": 103240,
+        "confidence": "fuzzy",
+        "end_ms": 105900
+      },
+      "Tú tiene' el feeling tú lo sabe' hacer": {
+        "ms": 98880,
+        "confidence": "fuzzy",
+        "end_ms": 101000
+      },
+      "Tú ere' bellaca, deja la timidez": {
+        "ms": 108370,
+        "confidence": "fuzzy",
+        "end_ms": 110660
+      },
+      "La tengo confundía' fumando maría": {
+        "ms": 86330,
+        "confidence": "fuzzy",
+        "end_ms": 88740
+      },
+      "De lejos se ve, eh-eh (Ah)": {
+        "ms": 110660,
+        "confidence": "fuzzy",
+        "end_ms": 113070
+      },
+      "Baby, por allá solo tú y yo y nos enredamo' (Nos enredamo')": {
+        "ms": 22930,
+        "confidence": "fuzzy",
+        "end_ms": 27730
+      },
+      "Despué' que fumemos, te lo vo'a meter": {
+        "ms": 105900,
+        "confidence": "fuzzy",
+        "end_ms": 108370
+      },
+      "Que tú eres bellaca por cómo los labios te muerde'": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "'Toy brillando de lejo' el cuello, lo tengo lleno en VVS": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Ya hipnotizada fue que tú me diste luz verde": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Nada estaba pensando, ahora solo paso pensando en usted": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "'Taba bregando solo y contigo la soledad la maté": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Tiempo no te veía y ahora que te vuelvo a ver": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Mezclamo' la graba con un poco de la verde": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Me habla de su vida, me cuenta con el ex novio fue un desastre (Desastre)": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Te tengo en mi cama y todo esto' haters se muerden": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Le quito el estrés, polvo echamos tre'": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Yo no sé que andaba buscando, solo sé que desde que te encontré": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Luz verde, baby, tú me diste luz verde, eh": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      },
+      "Tengo los ojo' rojo' despué' de la hierba que yo fumé": {
+        "ms": 9440,
+        "confidence": "substring",
+        "end_ms": 11870
+      }
+    },
+    "Una Locura": {
+      "Me encanta cuando lo hacemo' en la Acura (En la Acura)": {
+        "ms": 59410,
+        "confidence": "exact",
+        "end_ms": 62090
+      },
+      "Lo nuestro es una locura (Locura)": {
+        "ms": 43330,
+        "confidence": "exact",
+        "end_ms": 46660
+      },
+      "Se va con su amiga pa' la disco": {
+        "ms": 24040,
+        "confidence": "exact",
+        "end_ms": 26150
+      },
+      "Estoy tentado a tocarte, tentado a pecar": {
+        "ms": 159890,
+        "confidence": "exact",
+        "end_ms": 162970
+      },
+      "O una foto tuya atrevida que me llega a mí": {
+        "ms": 116480,
+        "confidence": "exact",
+        "end_ms": 119210
+      },
+      "Llevo tiempo diciéndoselo (Oh, oh; oh)": {
+        "ms": 11030,
+        "confidence": "exact",
+        "end_ms": 13640
+      },
+      "Solo somo' amigo' (Oh-oh)": {
+        "ms": 74820,
+        "confidence": "exact",
+        "end_ms": 76480
+      },
+      "Yah": {
+        "ms": 5160,
+        "confidence": "exact",
+        "end_ms": 6620
+      },
+      "Dímelo, Gotay": {
+        "ms": 223510,
+        "confidence": "exact",
+        "end_ms": 225120
+      },
+      "Siempre que escucho una canción que me recuerda a ti": {
+        "ms": 113730,
+        "confidence": "exact",
+        "end_ms": 116480
+      },
+      "Corleone cuando te lo hace e' high quality": {
+        "ms": 134050,
+        "confidence": "exact",
+        "end_ms": 136440
+      },
+      "Tú misma me dices que lo nuestro es eternity": {
+        "ms": 125050,
+        "confidence": "exact",
+        "end_ms": 127970
+      },
+      "Sabiendo que no me pertenece (Pertenece)": {
+        "ms": 19150,
+        "confidence": "exact",
+        "end_ms": 21990
+      },
+      "Porque devorándonos se ha vuelto tu fatality": {
+        "ms": 127970,
+        "confidence": "exact",
+        "end_ms": 130630
+      },
+      "Por mí te secuestro y de aquí no te vas": {
+        "ms": 162970,
+        "confidence": "exact",
+        "end_ms": 165050
+      },
+      "Dynell": {
+        "ms": 223250,
+        "confidence": "exact",
+        "end_ms": 223510
+      },
+      "El Negrito Ojo' Claro'": {
+        "ms": 6620,
+        "confidence": "exact",
+        "end_ms": 11030
+      },
+      "No entiendo cuál es el problema": {
+        "ms": 154430,
+        "confidence": "exact",
+        "end_ms": 156400
+      },
+      "En el cinco letras soy quien te penetra (-tra)": {
+        "ms": 130630,
+        "confidence": "exact",
+        "end_ms": 134050
+      },
+      "Te pones insanity porque soy tu debility": {
+        "ms": 136440,
+        "confidence": "exact",
+        "end_ms": 139330
+      },
+      "Nadie sospecha porque ni por las rede' la sigo (La sigo)": {
+        "ms": 72030,
+        "confidence": "exact",
+        "end_ms": 74820
+      },
+      "Dime cuál es tu propósito": {
+        "ms": 147910,
+        "confidence": "exact",
+        "end_ms": 150120
+      },
+      "Tú mi locura, baby (Baby)": {
+        "ms": 35060,
+        "confidence": "exact",
+        "end_ms": 36950
+      },
+      "Perdiendo su tiempo sigue": {
+        "ms": 16790,
+        "confidence": "exact",
+        "end_ms": 19150
+      },
+      "Pasan las horas y más me pide más (Me pide más)": {
+        "ms": 36950,
+        "confidence": "exact",
+        "end_ms": 40320
+      },
+      "Ozuna (Baby)": {
+        "ms": 208410,
+        "confidence": "exact",
+        "end_ms": 209760
+      },
+      "Y desde que la conocí": {
+        "ms": 21990,
+        "confidence": "exact",
+        "end_ms": 24040
+      },
+      "Pero cuando le sube la nota siempre vuelve a mí": {
+        "ms": 26150,
+        "confidence": "exact",
+        "end_ms": 29800
+      },
+      "Si nos gustamos tanto, ¿cuál es el dilema? (Dime, dime)": {
+        "ms": 156400,
+        "confidence": "exact",
+        "end_ms": 159890
+      },
+      "No se cansa, parece no tener final": {
+        "ms": 40320,
+        "confidence": "exact",
+        "end_ms": 43330
+      },
+      "Que algo mejor se merece (Se merece)": {
+        "ms": 13640,
+        "confidence": "exact",
+        "end_ms": 16790
+      },
+      "Se vuelve loca si le aprieto la cintura (Eh-eh)": {
+        "ms": 65260,
+        "confidence": "exact",
+        "end_ms": 67690
+      },
+      "Que vea tus videos como Ester Expósito": {
+        "ms": 150120,
+        "confidence": "fuzzy",
+        "end_ms": 152730
+      },
+      "En privacidad lo' que tenemo' e' un reality": {
+        "ms": 139330,
+        "confidence": "fuzzy",
+        "end_ms": 142140
+      },
+      "Me tienes bien loquito": {
+        "ms": 152730,
+        "confidence": "fuzzy",
+        "end_ms": 154430
+      },
+      "J-J Balvin, yeh, Che (Chencho Corleone)": {
+        "ms": 212500,
+        "confidence": "fuzzy",
+        "end_ms": 218270
+      },
+      "Ella e' mi baby (Baby)": {
+        "ms": 67690,
+        "confidence": "fuzzy",
+        "end_ms": 68970
+      },
+      "Me activa el deseo, de ti me dan ganas": {
+        "ms": 119210,
+        "confidence": "fuzzy",
+        "end_ms": 122370
+      },
+      "Hace' con tu vida lo que quiera' y yo lo permití": {
+        "ms": 142140,
+        "confidence": "fuzzy",
+        "end_ms": 145000
+      },
+      "Hyde \"El Químico\"": {
+        "ms": 221190,
+        "confidence": "fuzzy",
+        "end_ms": 223250
+      },
+      "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)": {
+        "ms": 168010,
+        "confidence": "fuzzy",
+        "end_ms": 171430
+      },
+      "Ante' de llegar con la foto me tortura (Me tortura)": {
+        "ms": 62090,
+        "confidence": "fuzzy",
+        "end_ms": 65260
+      },
+      "Pero tú me llama' o yo te llamo y le caemo' ahí": {
+        "ms": 145000,
+        "confidence": "fuzzy",
+        "end_ms": 147910
+      },
+      "Se pasa to'a la noche apretaíta' conmigo (Conmigo)": {
+        "ms": 68970,
+        "confidence": "fuzzy",
+        "end_ms": 72030
+      },
+      "Como Piqué y Shakira, yo en mi cama la cuido (Oh-oh)": {
+        "ms": 76480,
+        "confidence": "fuzzy",
+        "end_ms": 79460
+      },
+      "Ajá": {
+        "ms": 218270,
+        "confidence": "substring",
+        "end_ms": 221190
+      },
+      "Yasso": {
+        "ms": 225120,
+        "confidence": "substring",
+        "end_ms": 226990
+      },
+      "Je": {
+        "ms": 225120,
+        "confidence": "substring",
+        "end_ms": 226990
+      }
+    },
+    "Una Vaina Loca": {
+      "Una vaina loca": {
+        "ms": 89660,
+        "confidence": "exact",
+        "end_ms": 92320
+      },
+      "Cuando estamos a solas": {
+        "ms": 99960,
+        "confidence": "exact",
+        "end_ms": 103350
+      },
+      "Contigo yo lo hago donde sea": {
+        "ms": 26670,
+        "confidence": "exact",
+        "end_ms": 28770
+      },
+      "Ando con el tanque full": {
+        "ms": 65850,
+        "confidence": "exact",
+        "end_ms": 67530
+      },
+      "Nadie como ella en mi vida (Mambo bacano)": {
+        "ms": 94590,
+        "confidence": "exact",
+        "end_ms": 98030
+      },
+      "Cuando yo siento eso es una vaina ratatá": {
+        "ms": 19550,
+        "confidence": "fuzzy",
+        "end_ms": 24790
+      },
+      "Nunca he sentido nada como e'to en mi vida": {
+        "ms": 11230,
+        "confidence": "fuzzy",
+        "end_ms": 15360
+      },
+      "Ella quiere que baje pa'l sur": {
+        "ms": 67530,
+        "confidence": "fuzzy",
+        "end_ms": 69570
+      },
+      "De RD para el mundo": {
+        "ms": 140410,
+        "confidence": "fuzzy",
+        "end_ms": 144440
+      },
+      "Cuando te choco, mami, tum-tum-tum-tum": {
+        "ms": 61640,
+        "confidence": "fuzzy",
+        "end_ms": 63380
+      },
+      "Si lo hacemos en mi carro hace brum-brum-brum-brum": {
+        "ms": 63380,
+        "confidence": "fuzzy",
+        "end_ms": 65850
+      },
+      "Yo voy a darte por tu bum-bum-bum-bum": {
+        "ms": 59590,
+        "confidence": "fuzzy",
+        "end_ms": 61640
+      },
+      "La música del futuro": {
+        "ms": 4740,
+        "confidence": "fuzzy",
+        "end_ms": 7660
+      },
+      "To'as la' noche' ella me desea": {
+        "ms": 24790,
+        "confidence": "fuzzy",
+        "end_ms": 26670
+      },
+      "Cuando estamo' a solas": {
+        "ms": 99960,
+        "confidence": "fuzzy",
+        "end_ms": 103350
+      },
+      "Quiere que la cambie de posicione'": {
+        "ms": 35030,
+        "confidence": "fuzzy",
+        "end_ms": 36720
+      },
+      "Le gustan los tíguere' que son juguetone'": {
+        "ms": 114810,
+        "confidence": "fuzzy",
+        "end_ms": 116990
+      },
+      "Shorty, voy a darte lu'": {
+        "ms": 71580,
+        "confidence": "fuzzy",
+        "end_ms": 73260
+      },
+      "Ella me descontrola": {
+        "ms": 98030,
+        "confidence": "fuzzy",
+        "end_ms": 99960
+      },
+      "Diablo, qué buena tú 'tá con tu pum-pum-pum-pum": {
+        "ms": 57330,
+        "confidence": "fuzzy",
+        "end_ms": 59590
+      },
+      "Y le gusta y disfruta, duro quiere que le dé": {
+        "ms": 118770,
+        "confidence": "substring",
+        "end_ms": 121020
+      },
+      "Que me lleva a la gloria": {
+        "ms": 7660,
+        "confidence": "substring",
+        "end_ms": 11230
+      },
+      "Fuego": {
+        "ms": 1770,
+        "confidence": "substring",
+        "end_ms": 4740
+      },
+      "Se muere porque quiere que la pegue a la pared": {
+        "ms": 28770,
+        "confidence": "substring",
+        "end_ms": 30770
+      }
+    },
+    "Vaina Loca": {
+      "No va a ser tan fácil (Fácil, fácil)": {
+        "ms": 9360,
+        "confidence": "exact",
+        "end_ms": 12290
+      },
+      "Yo viajo el mundo entero": {
+        "ms": 114340,
+        "confidence": "exact",
+        "end_ms": 115410
+      },
+      "Es que en mi lista tú eres la favorita": {
+        "ms": 106640,
+        "confidence": "exact",
+        "end_ms": 109340
+      },
+      "Porque cuando te tengo cerquita": {
+        "ms": 101350,
+        "confidence": "exact",
+        "end_ms": 103940
+      },
+      "La música que hago solo en ti me hace pensar (¡Woh, oh!)": {
+        "ms": 53300,
+        "confidence": "exact",
+        "end_ms": 56110
+      },
+      "Detrás de ti voy a seguir": {
+        "ms": 23960,
+        "confidence": "exact",
+        "end_ms": 26240
+      },
+      "Me entra una vaina loca que después no se me quita": {
+        "ms": 103940,
+        "confidence": "exact",
+        "end_ms": 106640
+      },
+      "Tras de ti, voy tras de ti (¡Ti, yeah!)": {
+        "ms": 14780,
+        "confidence": "exact",
+        "end_ms": 17600
+      },
+      "Tú eres la única que este hombre necesita": {
+        "ms": 109340,
+        "confidence": "exact",
+        "end_ms": 111940
+      },
+      "Sencilla, bonita; no se tiene que maquillar": {
+        "ms": 58690,
+        "confidence": "exact",
+        "end_ms": 61110
+      },
+      "Única, una rosa; yo me la quiero robar (Baby)": {
+        "ms": 56110,
+        "confidence": "exact",
+        "end_ms": 58690
+      },
+      "Si es por ti, no hay pero": {
+        "ms": 115410,
+        "confidence": "exact",
+        "end_ms": 117170
+      },
+      "Y tú tan sola por ahí": {
+        "ms": 21290,
+        "confidence": "exact",
+        "end_ms": 23960
+      },
+      "No me importan las demás": {
+        "ms": 32190,
+        "confidence": "exact",
+        "end_ms": 34640
+      },
+      "Vale más que el dinero": {
+        "ms": 113280,
+        "confidence": "exact",
+        "end_ms": 114340
+      },
+      "Tiene lo que quiero (Woh); me tira', que yo le llego (Yeah, eh)": {
+        "ms": 66200,
+        "confidence": "exact",
+        "end_ms": 68830
+      },
+      "Tú tienes todo lo que quiero para mí": {
+        "ms": 17600,
+        "confidence": "exact",
+        "end_ms": 21290
+      },
+      "Yo sé que lo bueno toma tiempo, lady": {
+        "ms": 26240,
+        "confidence": "exact",
+        "end_ms": 29390
+      },
+      "Me gustas tú na' má', no sé disimular": {
+        "ms": 50340,
+        "confidence": "exact",
+        "end_ms": 53300
+      },
+      "Siento que por ti desespero": {
+        "ms": 117170,
+        "confidence": "exact",
+        "end_ms": 119520
+      },
+      "No sé disimular, bailo contigo y yo me entrego": {
+        "ms": 68830,
+        "confidence": "exact",
+        "end_ms": 71350
+      },
+      "Que por más que intento no se va": {
+        "ms": 37200,
+        "confidence": "exact",
+        "end_ms": 39860
+      },
+      "Es que me gustas tú na' más": {
+        "ms": 29390,
+        "confidence": "exact",
+        "end_ms": 32190
+      },
+      "Una vaina loca que me da": {
+        "ms": 34640,
+        "confidence": "exact",
+        "end_ms": 37200
+      },
+      "Con nadie se compromete y meno' si tú le promete'": {
+        "ms": 63720,
+        "confidence": "fuzzy",
+        "end_ms": 66200
+      },
+      "Cuando no te tengo, ma'": {
+        "ms": 119520,
+        "confidence": "fuzzy",
+        "end_ms": 121620
+      },
+      "Aunque me esquives, comoquiera": {
+        "ms": 12290,
+        "confidence": "fuzzy",
+        "end_ms": 14780
+      },
+      "Me mata el piquete, baila duro y le mete": {
+        "ms": 61110,
+        "confidence": "fuzzy",
+        "end_ms": 63720
+      }
+    },
+    "Verde": {
+      "Sky Rompiendo": {
+        "ms": 125320,
+        "confidence": "exact",
+        "end_ms": 127710
+      },
+      "J Balvin, man": {
+        "ms": 122750,
+        "confidence": "exact",
+        "end_ms": 123970
+      },
+      "Tomamo' en la misma taza": {
+        "ms": 15270,
+        "confidence": "exact",
+        "end_ms": 17190
+      },
+      "Tus amigas también, wuh": {
+        "ms": 79520,
+        "confidence": "exact",
+        "end_ms": 81150
+      },
+      "Como tú no se ven (Wuh, wuh)": {
+        "ms": 72380,
+        "confidence": "exact",
+        "end_ms": 73360
+      },
+      "Uff (Ah)": {
+        "ms": 60970,
+        "confidence": "exact",
+        "end_ms": 62550
+      },
+      "Colores": {
+        "ms": 4860,
+        "confidence": "exact",
+        "end_ms": 7810
+      },
+      "Al carajo las pena', si quieres más, ten": {
+        "ms": 54820,
+        "confidence": "exact",
+        "end_ms": 57190
+      },
+      "Que te espero afuera (Aquí)": {
+        "ms": 64440,
+        "confidence": "exact",
+        "end_ms": 66310
+      },
+      "Llegan full de seguridad (Yeah, yeah)": {
+        "ms": 23490,
+        "confidence": "exact",
+        "end_ms": 25720
+      },
+      "No va haber nadie en mi casa": {
+        "ms": 12510,
+        "confidence": "exact",
+        "end_ms": 15270
+      },
+      "Las cadenas de Ben (Wuh, wuh)": {
+        "ms": 75780,
+        "confidence": "exact",
+        "end_ms": 77240
+      },
+      "Es un Maybach, no un Benz (Wuh, wuh)": {
+        "ms": 77240,
+        "confidence": "exact",
+        "end_ms": 78280
+      },
+      "Hay party en la terraza, ey": {
+        "ms": 10430,
+        "confidence": "exact",
+        "end_ms": 12510
+      },
+      "Baby, tírate pa' ponerte en el sartén (Wuh, wuh)": {
+        "ms": 73360,
+        "confidence": "exact",
+        "end_ms": 75780
+      },
+      "Uh": {
+        "ms": 121550,
+        "confidence": "exact",
+        "end_ms": 122750
+      },
+      "Contigo me convierto en perro 'e raza, wuh (Grr)": {
+        "ms": 17190,
+        "confidence": "exact",
+        "end_ms": 20890
+      },
+      "Dale, móntate, ven (Wuh, wuh)": {
+        "ms": 71000,
+        "confidence": "exact",
+        "end_ms": 72380
+      },
+      "Echa pa' acá, que desde lejos se ve": {
+        "ms": 35640,
+        "confidence": "exact",
+        "end_ms": 38300
+      },
+      "Rompiendo en to'": {
+        "ms": 130510,
+        "confidence": "exact",
+        "end_ms": 133390
+      },
+      "Yo te quiero pa' Ken (Wuh, wuh)": {
+        "ms": 78280,
+        "confidence": "exact",
+        "end_ms": 79520
+      },
+      "Pasa hard drive, aquí tengo una tera (Ching)": {
+        "ms": 68360,
+        "confidence": "exact",
+        "end_ms": 71000
+      },
+      "En la pista": {
+        "ms": 127710,
+        "confidence": "exact",
+        "end_ms": 130510
+      },
+      "Sin escalera', aquí en el top ten, ey": {
+        "ms": 57190,
+        "confidence": "exact",
+        "end_ms": 60970
+      },
+      "Ese booty desde lejos se ve": {
+        "ms": 38300,
+        "confidence": "exact",
+        "end_ms": 40990
+      },
+      "Ya que despertaste la fiera (Hmm)": {
+        "ms": 66310,
+        "confidence": "exact",
+        "end_ms": 68360
+      },
+      "Ganan siempre, todo se le' da (Wuh, wuh, wuh, wuh)": {
+        "ms": 25720,
+        "confidence": "fuzzy",
+        "end_ms": 27830
+      },
+      "Y tu cadera se llevan un cien": {
+        "ms": 52710,
+        "confidence": "fuzzy",
+        "end_ms": 54820
+      },
+      "Por más que le traten no les da (Ey, wuh)": {
+        "ms": 20890,
+        "confidence": "fuzzy",
+        "end_ms": 23490
+      },
+      "Lo hace bien, demasiado bien": {
+        "ms": 50920,
+        "confidence": "fuzzy",
+        "end_ms": 52710
+      },
+      "Dale, acelera (Acelera)": {
+        "ms": 62550,
+        "confidence": "fuzzy",
+        "end_ms": 64440
+      },
+      "Hay niveles pa' llegar, mejor no miren pa' acá, ey": {
+        "ms": 27830,
+        "confidence": "fuzzy",
+        "end_ms": 30780
+      },
+      "Tú lo ve', tú lo ve', tú lo ve', tú lo ve, tú lo ve', tú lo ve, tú lo ve'": {
+        "ms": 30780,
+        "confidence": "substring",
+        "end_ms": 32750
+      }
+    },
+    "X SI VOLVEMOS": {
+      "No funcionamos (No funcionamos)": {
+        "ms": 11240,
+        "confidence": "exact",
+        "end_ms": 14000
+      },
+      "Por la orillita, se me cuida (Ey)": {
+        "ms": 42810,
+        "confidence": "exact",
+        "end_ms": 45170
+      },
+      "No sé cuánto tiempo malgastaste": {
+        "ms": 71690,
+        "confidence": "exact",
+        "end_ms": 73820
+      },
+      "Guarda este vídeo para cuando te haga falta": {
+        "ms": 134920,
+        "confidence": "exact",
+        "end_ms": 137750
+      },
+      "Pero desde que me besaste": {
+        "ms": 79920,
+        "confidence": "exact",
+        "end_ms": 82710
+      },
+      "Yo te digo adiós dentro de ti": {
+        "ms": 132480,
+        "confidence": "exact",
+        "end_ms": 134920
+      },
+      "Pero antes de irnos": {
+        "ms": 19370,
+        "confidence": "exact",
+        "end_ms": 21010
+      },
+      "Vamo' a hacerlo por última vez, bebé (Bebé)": {
+        "ms": 21010,
+        "confidence": "exact",
+        "end_ms": 24680
+      },
+      "¿Será que el sexo contigo es mi adicción?": {
+        "ms": 115580,
+        "confidence": "exact",
+        "end_ms": 118760
+      },
+      "No borraré tu contacto y estoy al tanto por si volvemos": {
+        "ms": 34710,
+        "confidence": "exact",
+        "end_ms": 40630
+      },
+      "Con mi malicia te enviciaste": {
+        "ms": 82710,
+        "confidence": "exact",
+        "end_ms": 84520
+      },
+      "O-O-Ovy On The Drums": {
+        "ms": 185330,
+        "confidence": "exact",
+        "end_ms": 187540
+      },
+      "Pero qué sensación cuando en la cama se acaban los líos": {
+        "ms": 110400,
+        "confidence": "exact",
+        "end_ms": 115580
+      },
+      "En la ventana mirando la city": {
+        "ms": 62680,
+        "confidence": "exact",
+        "end_ms": 64150
+      },
+      "Con La Bichota": {
+        "ms": 183650,
+        "confidence": "exact",
+        "end_ms": 185330
+      },
+      "A nadie de confianza se le niega un polvo de despedida, ey": {
+        "ms": 51090,
+        "confidence": "exact",
+        "end_ms": 54190
+      },
+      "Pero llama cuando quiere que te deje la cama destendida": {
+        "ms": 45170,
+        "confidence": "exact",
+        "end_ms": 48390
+      },
+      "Que en el amor no, pero en la cama nos entendemos (Oh)": {
+        "ms": 24680,
+        "confidence": "exact",
+        "end_ms": 29950
+      },
+      "Para varear, en la playa en RD, Punta Cana (Ah, ah)": {
+        "ms": 60030,
+        "confidence": "exact",
+        "end_ms": 62680
+      },
+      "Es una porno, a mí me encanta cómo lo hacemos": {
+        "ms": 29950,
+        "confidence": "exact",
+        "end_ms": 34710
+      },
+      "Somos tan explícitos, pero llegó a su fin (So nasty)": {
+        "ms": 123680,
+        "confidence": "exact",
+        "end_ms": 129440
+      },
+      "Los bellaqueo' no se olvidan (No se olvidan; ey)": {
+        "ms": 48390,
+        "confidence": "exact",
+        "end_ms": 51090
+      },
+      "Por eso nos vamos (Nos vamos)": {
+        "ms": 16560,
+        "confidence": "exact",
+        "end_ms": 19370
+      },
+      "Intentando algo serio": {
+        "ms": 73820,
+        "confidence": "exact",
+        "end_ms": 75980
+      },
+      "Ya sé que no soy lo que pensaste (Eh-eh)": {
+        "ms": 77450,
+        "confidence": "fuzzy",
+        "end_ms": 79920
+      },
+      "Amores tóxicos solo sirven pa' sin-": {
+        "ms": 118760,
+        "confidence": "fuzzy",
+        "end_ms": 123680
+      },
+      "Nuestro amor 'tá jodío'": {
+        "ms": 107750,
+        "confidence": "fuzzy",
+        "end_ms": 110400
+      },
+      "Yo soy bandida, y tú ere' gánster": {
+        "ms": 69200,
+        "confidence": "fuzzy",
+        "end_ms": 71690
+      },
+      "¿Sí vienes?": {
+        "ms": 175920,
+        "confidence": "fuzzy",
+        "end_ms": 177540
+      },
+      "Y estés moja'íta pensando en mí": {
+        "ms": 137750,
+        "confidence": "fuzzy",
+        "end_ms": 142170
+      },
+      "Despídete desnuda, con mi cel te voy grabando": {
+        "ms": 129440,
+        "confidence": "fuzzy",
+        "end_ms": 132480
+      },
+      "No he borrado tu contacto y estoy al tanto por si volvemos": {
+        "ms": 34710,
+        "confidence": "fuzzy",
+        "end_ms": 40630
+      },
+      "Jaja, tú supiste": {
+        "ms": 177540,
+        "confidence": "fuzzy",
+        "end_ms": 181080
+      },
+      "Yo estoy puesta pa'l repeat (Repeat)": {
+        "ms": 54190,
+        "confidence": "fuzzy",
+        "end_ms": 57220
+      },
+      "Tú pon la cama, que yo pongo el krippy (Krippy)": {
+        "ms": 57220,
+        "confidence": "fuzzy",
+        "end_ms": 60030
+      },
+      "Lo dimos todo, pero no se nos dio (No)": {
+        "ms": 14000,
+        "confidence": "fuzzy",
+        "end_ms": 16560
+      },
+      "Hoy es noche de sexo": {
+        "ms": 172790,
+        "confidence": "fuzzy",
+        "end_ms": 175920
+      },
+      "Ya sé que en el amor somo' un desastre (-tre)": {
+        "ms": 66440,
+        "confidence": "fuzzy",
+        "end_ms": 69200
+      },
+      "Bebé, regálame una noche que no termine nunca": {
+        "ms": 165280,
+        "confidence": "substring",
+        "end_ms": 169940
+      }
+    },
+    "frente al mar": {
+      "Yo la vi en un party, ahí fue donde me enamoré": {
+        "ms": 20500,
+        "confidence": "exact",
+        "end_ms": 25520
+      },
+      "Donde nadie nos vea": {
+        "ms": 63660,
+        "confidence": "exact",
+        "end_ms": 66550
+      },
+      "Frente al mar, baby, frente al mar (Oh-oh-oh)": {
+        "ms": 87480,
+        "confidence": "exact",
+        "end_ms": 92650
+      },
+      "Alright": {
+        "ms": 5230,
+        "confidence": "exact",
+        "end_ms": 10980
+      },
+      "La quiero conmigo, quiero que sea mi mujer (Mujer)": {
+        "ms": 15830,
+        "confidence": "exact",
+        "end_ms": 20500
+      },
+      "Frente al mar, solos frente al mar (Oh-oh-oh)": {
+        "ms": 39380,
+        "confidence": "exact",
+        "end_ms": 44550
+      },
+      "Nadie la ve así como mis ojos la ven": {
+        "ms": 10980,
+        "confidence": "exact",
+        "end_ms": 15830
+      },
+      "La luna es testigo, tú y yo frente al mar (Yuh, bruk)": {
+        "ms": 44550,
+        "confidence": "exact",
+        "end_ms": 49390
+      },
+      "Me fuera escapa'o contigo pa' ver llegar el sol (Pa' ver, ver, pa' ver, ver)": {
+        "ms": 58970,
+        "confidence": "fuzzy",
+        "end_ms": 63660
+      },
+      "Hicimos de to', hicimos de to', hicimos de to' (Hicimo' de to')": {
+        "ms": 49390,
+        "confidence": "fuzzy",
+        "end_ms": 54430
+      },
+      "Ojalá que un día diga qué habría pasa'o si no": {
+        "ms": 54430,
+        "confidence": "fuzzy",
+        "end_ms": 58970
+      },
+      "Después que salimo', fuimo' frente al mar (Oh-oh)": {
+        "ms": 25520,
+        "confidence": "fuzzy",
+        "end_ms": 30030
+      },
+      "Toa' las pose', hicimos to' (Oh-oh)": {
+        "ms": 68730,
+        "confidence": "fuzzy",
+        "end_ms": 71450
+      },
+      "Fue inevitable hacerno' de to'": {
+        "ms": 73740,
+        "confidence": "fuzzy",
+        "end_ms": 75600
+      }
+    },
+    "orióN": {
+      "Si te dañaron yo te cu-cu-curo": {
+        "ms": 28640,
+        "confidence": "exact",
+        "end_ms": 30770
+      },
+      "Solo dame chance para asimilar": {
+        "ms": 49010,
+        "confidence": "exact",
+        "end_ms": 53860
+      },
+      "Porque a ti no te voy a mentir, no": {
+        "ms": 86190,
+        "confidence": "exact",
+        "end_ms": 89370
+      },
+      "Que en el pasado me caí bastante": {
+        "ms": 53860,
+        "confidence": "exact",
+        "end_ms": 58190
+      },
+      "Venezuela y Panamá": {
+        "ms": 231170,
+        "confidence": "exact",
+        "end_ms": 234350
+      },
+      "Y te haría el amor en el cinturón de Orión": {
+        "ms": 157390,
+        "confidence": "exact",
+        "end_ms": 159850
+      },
+      "Dímelo, Boza": {
+        "ms": 234350,
+        "confidence": "exact",
+        "end_ms": 236950
+      },
+      "Puedo ser tu lugar seguro": {
+        "ms": 133630,
+        "confidence": "exact",
+        "end_ms": 136510
+      },
+      "Elena": {
+        "ms": 236950,
+        "confidence": "exact",
+        "end_ms": 238500
+      },
+      "Me convierto en pirata y robaría tu corazón": {
+        "ms": 153880,
+        "confidence": "fuzzy",
+        "end_ms": 157390
+      },
+      "E' que si me pide' que te espere, te espero sentado": {
+        "ms": 17970,
+        "confidence": "fuzzy",
+        "end_ms": 21490
+      },
+      "Que nadie lo ha encontra'o": {
+        "ms": 12350,
+        "confidence": "fuzzy",
+        "end_ms": 14590
+      },
+      "Ay, si me besa' me desconfigu-gu-guro": {
+        "ms": 26200,
+        "confidence": "fuzzy",
+        "end_ms": 28640
+      },
+      "Por ende, el meno' e'perado te sorprende": {
+        "ms": 167340,
+        "confidence": "fuzzy",
+        "end_ms": 169720
+      },
+      "Te aseguro que ere' mi filosofía y yo Platón": {
+        "ms": 162150,
+        "confidence": "fuzzy",
+        "end_ms": 164500
+      },
+      "Yo te quiero pa' mí, lo ju-u-uro": {
+        "ms": 30770,
+        "confidence": "fuzzy",
+        "end_ms": 33170
+      },
+      "Y todavía no he aterriza'o": {
+        "ms": 23580,
+        "confidence": "fuzzy",
+        "end_ms": 26200
+      },
+      "Tú me tiene' en una nube": {
+        "ms": 21490,
+        "confidence": "fuzzy",
+        "end_ms": 23580
+      },
+      "Y con mis herida' no te quiero dañar": {
+        "ms": 58190,
+        "confidence": "fuzzy",
+        "end_ms": 63440
+      },
+      "De tenerte también tengo gana'": {
+        "ms": 45080,
+        "confidence": "fuzzy",
+        "end_ms": 49010
+      },
+      "Pero dime cuál es el secreto que tiene' guarda'o": {
+        "ms": 8900,
+        "confidence": "fuzzy",
+        "end_ms": 12350
+      },
+      "Y eso me tiene emboba'o (Ah)": {
+        "ms": 14590,
+        "confidence": "fuzzy",
+        "end_ms": 17970
+      },
+      "Yo quiero take it slow, slow, slow, slow, slow": {
+        "ms": 81610,
+        "confidence": "fuzzy",
+        "end_ms": 86190
+      },
+      "No hay cómo fallarle a semejante mujerón": {
+        "ms": 159850,
+        "confidence": "fuzzy",
+        "end_ms": 162150
+      },
+      "Solo dame chance, te pido, eh": {
+        "ms": 89370,
+        "confidence": "fuzzy",
+        "end_ms": 91990
+      },
+      "Me tiene' mal con ese cu-l-o": {
+        "ms": 33170,
+        "confidence": "fuzzy",
+        "end_ms": 35070
+      },
+      "Entiende que yo soy único, mami": {
+        "ms": 164500,
+        "confidence": "fuzzy",
+        "end_ms": 167340
+      },
+      "Me pongo primero a mí, esa e' mi única condición": {
+        "ms": 96710,
+        "confidence": "substring",
+        "end_ms": 99420
+      },
+      "Quiero pegarte a la pared como una obra de arte": {
+        "ms": 114710,
+        "confidence": "substring",
+        "end_ms": 116340
+      },
+      "Y que las heridas sanan": {
+        "ms": 169720,
+        "confidence": "substring",
+        "end_ms": 172600
+      },
+      "Mi corazón está como Miami, siempre bajo construcción": {
+        "ms": 91990,
+        "confidence": "substring",
+        "end_ms": 94820
+      },
+      "El dolor no dura siempre": {
+        "ms": 169720,
+        "confidence": "substring",
+        "end_ms": 172600
+      }
+    }
+  }
 }

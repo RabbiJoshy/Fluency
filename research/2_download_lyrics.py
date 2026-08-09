@@ -73,6 +73,14 @@ def safe_filename(title, artist):
     return name + ".json"
 
 
+def get_song_id(song):
+    """Return a song ID across LyricsGenius object versions."""
+    song_id = getattr(song, "id", None)
+    if song_id is None and hasattr(song, "to_dict"):
+        song_id = song.to_dict().get("id")
+    return song_id
+
+
 def download_one(track, out_dir):
     """Download lyrics for a single track. Returns (title, artist, status)."""
     title = track["title"]
@@ -84,12 +92,16 @@ def download_one(track, out_dir):
     if not song:
         return (title, artist, "MISS")
 
-    lyrics = scrape_lyrics(genius, song.id)
+    song_id = get_song_id(song)
+    if song_id is None:
+        return (title, artist, "NO_ID")
+
+    lyrics = scrape_lyrics(genius, song_id)
     if not lyrics:
         return (title, artist, "NO_LYRICS")
 
     song_data = {
-        "id": song.id,
+        "id": song_id,
         "title": title,
         "artist": artist,
         "url": song.url,

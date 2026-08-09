@@ -5,6 +5,42 @@
 
 This folder uses a phase-based naming scheme shared across normal mode and artist mode.
 
+## Canonical evidence contract
+
+Artist mode is migrating from word-first mutable layers to the shared primitives
+in `util_evidence_store.py`. Step 2 writes immutable segment/occurrence run shards
+and versioned overlay claims while continuing to materialize the legacy JSON
+layers. Do not use lyric line number, example array index, current lemma text, or
+gloss text as a new primary identity.
+
+- Raw source identity: `segment_id` → frozen `occurrence_id` → revisable
+  `analysis_unit_id`.
+- Derived decisions are claims with method/run provenance and semantic input
+  fingerprints. A new method coexists with old evidence; profiles resolve it.
+- `step_2d_classify_vocal_artifacts.py` writes descriptive occurrence claims;
+  `step_2e_materialize_corpus.py` applies the selected policy only after a
+  strict behavior-neutral parity check. Keep model judgment separate from the
+  exclusion policy, and never turn a mixed-use surface into a type-level drop.
+- Legacy JSON producers use `archive_json_artifact()` until converted to claim
+  writers. Never remove that bridge from a mutable/`--force` output unless its
+  replacement records an immutable run with equivalent dependencies.
+- `example_ids` must remain positionally aligned with `examples`. Prefer
+  `occurrence_refs`; then persisted segment IDs; use numeric indices only for
+  unmigrated input.
+- A sense menu is optional. WSD adapters accept an inventory object or `null`;
+  menu-free claims must carry enough inline sense metadata to render.
+- Custom classifier IDs are ranked through
+  `data/evidence/profiles/current.json.method_priorities`; do not require a
+  Gemini-named method or add every experimental adapter to a global constant.
+- Card identity is persisted by `util_identity_registry.py`; lemma/surface
+  changes add aliases or explicit merge/split migrations rather than silently
+  resetting progress.
+- Sense identity uses the same registry boundary. Provider IDs and current
+  gloss/POS/context are mutable references; never mint learner progress identity
+  directly from newly cleaned gloss text once a registered sense exists.
+- Speech/parallel corpora may use the same segment/occurrence envelope and
+  `aligned_texts`, but Speech is not yet an Evidence Store consumer.
+
 ## Naming
 
 - `step_<phase><letter>_*.py` — Active pipeline steps that an orchestrator can call directly.

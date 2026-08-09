@@ -46,7 +46,8 @@ def artist_sense_menu_path(layers_dir, source="wiktionary", prefer_new=True):
     new_path = os.path.join(layers_dir, "sense_menu", "%s.json" % source)
     if prefer_new or os.path.exists(new_path):
         return new_path
-    return os.path.join(layers_dir, _ARTIST_MENU_LEGACY[source])
+    legacy_name = _ARTIST_MENU_LEGACY.get(source)
+    return os.path.join(layers_dir, legacy_name) if legacy_name else new_path
 
 
 def artist_sense_assignments_path(layers_dir, source="wiktionary", prefer_new=True):
@@ -54,7 +55,8 @@ def artist_sense_assignments_path(layers_dir, source="wiktionary", prefer_new=Tr
     new_path = os.path.join(layers_dir, "sense_assignments", "%s.json" % source)
     if prefer_new or os.path.exists(new_path):
         return new_path
-    return os.path.join(layers_dir, _ARTIST_ASSIGNMENTS_LEGACY[source])
+    legacy_name = _ARTIST_ASSIGNMENTS_LEGACY.get(source)
+    return os.path.join(layers_dir, legacy_name) if legacy_name else new_path
 
 
 def artist_sense_assignments_lemma_path(layers_dir, source="wiktionary", prefer_new=True):

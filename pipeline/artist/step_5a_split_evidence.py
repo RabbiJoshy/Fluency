@@ -23,6 +23,7 @@ import os
 import re
 import sys
 import argparse
+import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from util_1a_artist_config import add_artist_arg, load_artist_config
@@ -34,11 +35,13 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 # Bump when split-evidence logic or output schema changes.
-STEP_VERSION = 3
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "split merged evidence into word_inventory + examples_raw, clitic orphan handling",
     2: "+ carry full-corpus distinct song_count into word_inventory",
     3: "+ retain vocalist provenance and stamp Spotify/variant example priority metadata",
+    4: "+ retain per-track Spotify IDs and artists from playlist tracks.json",
+    5: "+ carry stable segment/occurrence ledger references into legacy examples",
 }
 
 _VARIANT_TITLE_RE = re.compile(
@@ -46,9 +49,51 @@ _VARIANT_TITLE_RE = re.compile(
     re.IGNORECASE,
 )
 _EXAMPLE_META_KEYS = (
-    "surface", "vocalists", "sung_by_primary_artist",
-    "spotify_available", "is_variant",
+    "surface", "segment_id", "occurrence_ids",
+    "vocalists", "sung_by_primary_artist",
+    "artist", "spotify_track_id", "spotify_available", "is_variant",
 )
+
+
+def _track_key(value):
+    """Normalize a Spotify/Genius title for playlist matching."""
+    text = unicodedata.normalize("NFD", str(value or ""))
+    text = "".join(char for char in text if not unicodedata.combining(char))
+    return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+
+
+def load_playlist_track_metadata(artist_dir):
+    """Read ``tracks.json`` as normalized title -> artist/Spotify-ID data.
+
+    This source comes directly from Spotify before lyric scraping.  If a
+    playlist contains the same title by different artists, omit that ambiguous
+    title rather than attaching a wrong track to an example.
+    """
+    tracks_path = os.path.join(artist_dir, "tracks.json")
+    if not os.path.isfile(tracks_path):
+        return {}
+    with open(tracks_path, "r", encoding="utf-8") as f:
+        tracks = json.load(f).get("tracks", [])
+
+    by_title = {}
+    ambiguous_titles = set()
+    for track in tracks:
+        title_key = _track_key(track.get("title"))
+        track_id = track.get("spotify_id")
+        if not title_key or not track_id:
+            continue
+        metadata = {
+            "artist": track.get("artist", ""),
+            "spotify_track_id": track_id,
+        }
+        existing = by_title.get(title_key)
+        if existing and existing != metadata:
+            ambiguous_titles.add(title_key)
+        else:
+            by_title[title_key] = metadata
+    for title_key in ambiguous_titles:
+        by_title.pop(title_key, None)
+    return by_title
 
 
 def main():
@@ -66,6 +111,7 @@ def main():
     if os.path.isfile(spotify_path):
         with open(spotify_path, "r", encoding="utf-8") as f:
             spotify_tracks = json.load(f)
+    playlist_track_metadata = load_playlist_track_metadata(artist_dir)
 
     print(f"Loading {merged_path}...")
     with open(merged_path, "r", encoding="utf-8") as f:
@@ -107,7 +153,14 @@ def main():
 
         for example in raw_examples:
             title = example.get("title", "")
-            example["spotify_available"] = bool(spotify_tracks.get(title))
+            playlist_track = playlist_track_metadata.get(_track_key(title))
+            if playlist_track:
+                example["artist"] = playlist_track["artist"]
+                example["spotify_track_id"] = playlist_track["spotify_track_id"]
+            else:
+                example.pop("spotify_track_id", None)
+            example["spotify_available"] = bool(
+                example.get("spotify_track_id") or spotify_tracks.get(title))
             example["is_variant"] = bool(_VARIANT_TITLE_RE.search(title))
 
         new_by_id = {ex["id"]: ex for ex in raw_examples}

@@ -73,6 +73,7 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta  # noqa: E402
+from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 from pipeline.util_4a_routing import (  # noqa: E402
     clitic_roles,
     decompose_gerund_clitic,
@@ -88,7 +89,7 @@ from util_1a_artist_config import (  # noqa: E402
     add_artist_arg, load_shared_list, load_curation_section, SHARED_DIR,
 )
 
-STEP_VERSION = 7
+STEP_VERSION = 8
 STEP_VERSION_NOTES = {
     1: "initial: 6 phases with heuristic detectors",
     2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
@@ -106,6 +107,7 @@ STEP_VERSION_NOTES = {
        "override rides util_4a_routing's existing verb/accent/POS tests, and the "
        "derivation override additionally requires a non-lexicalised surface "
        "(absent from es_50k, not a conjugated form, not -ill-, POS-preserving)",
+    8: "archive every content-distinct routing/noise output as an immutable evidence run",
 }
 
 # Bumped whenever the output JSON schema changes in a way consumers must
@@ -1110,6 +1112,14 @@ def main():
     }
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
+    archive_json_artifact(
+        os.path.join(artist_dir, "data", "evidence"),
+        "word_routing",
+        output,
+        language=os.path.basename(os.path.dirname(artist_dir)) or "und",
+        adapter={"name": "artist-step-4a", "version": STEP_VERSION},
+        config={"min_frequency": args.min_freq},
+    )
     print(f"Wrote {output_path}")
 
     # Debug dump

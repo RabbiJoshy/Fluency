@@ -12,6 +12,61 @@ Companion to [pipeline_schemas.md](pipeline_schemas.md) (which describes _what e
 - `|` inside a key = compound key (`word|lemma`, surface|lemma).
 - Snippets are trimmed examples, not full records.
 
+## Evidence Store v1 — canonical Artist corpus base
+
+Artist step 2 now dual-writes a language-neutral, occurrence-first evidence
+store under `Artists/{lang}/{Name}/data/evidence/`. The historical word-keyed
+JSON files remain compatibility materializations while downstream steps migrate.
+The store is one logical ledger but physically sharded, so no giant mutable JSON
+file must be rewritten.
+
+```text
+data/evidence/
+  ledger/runs/<run_id>/{segments.jsonl,occurrences.jsonl,manifest.json}
+  overlays/<layer>/<run_id>.jsonl
+  snapshots/<legacy-layer>/runs/<run_id>/{artifact.json,manifest.json}
+  profiles/current.json
+  migrations/legacy_example_ids.json
+```
+
+- A `segment_id` identifies one persisted source line independent of its lyric
+  line number. Repeated identical chorus lines remain distinct segments.
+- An `occurrence_id` identifies one frozen raw token use inside a segment.
+  Revised elision/tokenization logic emits new analysis-unit claims; it does not
+  rewrite raw occurrences.
+- Overlay claims carry method/run provenance, semantic input fingerprints,
+  confidence, and assert/abstain/retract operations. Competing methods coexist;
+  a build profile chooses the active view.
+- `overlays/vocal_artifact/<run_id>.jsonl` carries occurrence-level descriptive
+  labels such as `adlib`, `echo`, and `stutter`. Classification is deliberately
+  separate from `profiles/current.json.policies.vocal_artifact.excluded_labels`:
+  selecting another method or turning the policy off never destroys evidence.
+- `step_2e_materialize_corpus` first proves a no-exclusion view equals the
+  immutable step-2 baseline, then writes `vocab_evidence.json` from the active
+  profile. All later legacy layers and the compact app deck therefore inherit
+  exact occurrence-level exclusions without loading the ledger in the browser.
+- Compatibility producers not yet converted to granular claims (currently
+  elision, routing/noise, POS, menus, and assignment JSON) archive every
+  content-distinct output as a content-addressed snapshot before advancing the
+  profile pointer. A force rerun therefore does not erase the prior result.
+- `profiles/current.json.method_priorities` may rank any adapter method ID, so a
+  local/non-Gemini classifier does not require hard-coding its name in assembly.
+- Removing a source line writes a tombstone in the next snapshot. Re-adding it
+  restores the same identity when it can be reconciled; history is not deleted.
+- Language is part of base identity. A sense inventory may be SpanishDict,
+  Wiktionary, another provider, or `null`.
+- `Artists/{lang}/evidence/registries/cards.json` owns card identity separately
+  from mutable surface/lemma properties. Exact aliases, occurrence overlap, and
+  explicit merge migrations preserve learner progress; ambiguous splits are not
+  guessed.
+- `Artists/{lang}/evidence/registries/senses.json` likewise owns per-card sense
+  identity; provider IDs and gloss/POS/context revisions become aliases/labels.
+  Occurrence overlap can reconcile a changed provider, while ambiguous splits
+  require an explicit progress migration.
+
+The same segment/occurrence envelope can accept Speech or parallel-corpus input
+(`aligned_texts` on a segment), but Speech has not been rebuilt onto this store.
+
 ## Mode-branch summary
 
 Most files have the **same shape** in normal mode (`Data/Spanish/layers/`) and artist mode (`Artists/<Name>/data/layers/`). Differences called out below:
@@ -27,6 +82,7 @@ Most files have the **same shape** in normal mode (`Data/Spanish/layers/`) and a
 | `sense_assignments/<source>.json` | same shape |
 | `sense_assignments_lemma/<source>.json` | same shape |
 | `unassigned_routing/<source>.json` | artist-only |
+| `unassigned_routing_evidence/<source>.json` | artist-only stable-ID companion |
 | `clitic_forms.json` | same shape |
 | `ranking.json` | artist-only |
 | `lyrics_timestamps.json` | artist-only |
@@ -79,7 +135,13 @@ Location: `Artists/<Name>/data/word_counts/vocab_evidence.json`
     "word": "amor",
     "corpus_count": 342,
     "examples": [
-      { "id": "0", "line": "Mi amor eterno", "title": "Song Name" }
+      {
+        "id": "0",
+        "line": "Mi amor eterno",
+        "title": "Song Name",
+        "segment_id": "seg_...",
+        "occurrence_ids": ["occ_..."]
+      }
     ]
   }
 ]
@@ -168,7 +230,14 @@ Keyed by **bare word** (the surface-stripped lookup form).
 ```jsonc
 {
   "amor": [
-    { "id": "t123", "spanish": "Mi amor eterno", "title": "Song", "surface": "amor" }
+    {
+      "id": "t123",
+      "segment_id": "seg_...",
+      "occurrence_ids": ["occ_..."],
+      "spanish": "Mi amor eterno",
+      "title": "Song",
+      "surface": "amor"
+    }
   ]
 }
 ```
@@ -279,7 +348,7 @@ Bare-word-keyed. Per example index, a POS string. `_example_ids` tracks which ex
 {
   "amor": { "0": "NOUN", "1": "NOUN", "2": "NOUN" },
   "_example_ids": { "amor": ["t123", "t456"] },
-  "_meta":        { "step": "tool_6a_tag_example_pos", "version": 2, ... }
+  "_meta":        { "step": "tool_6a_tag_example_pos", "version": 4, ... }
 }
 ```
 
@@ -293,13 +362,21 @@ Raw-line keyed.
 `source` ∈ `genius | gemini | google`.
 
 ## `sense_assignments/<source>.json`
-Unified method-keyed format. Bare-word → method → list of `{sense, examples}` records.
-`examples` is a list of **indices into** `examples_raw.json[<word>]`.
+Unified method-keyed format. Bare-word → method → assignment records. The
+integer `examples` list remains for compatibility; `example_ids` is positionally
+aligned and stable `occurrence_refs` is authoritative when present.
 
 ```jsonc
 {
   "amor": {
-    "spanishdict-keyword":  [{ "sense": "64a", "examples": [0, 1, 5, 7] }],
+    "spanishdict-keyword":  [{
+      "sense": "64a",
+      "examples": [0, 1],
+      "example_ids": ["seg_a", "seg_b"],
+      "occurrence_refs": [
+        {"occurrence_id": "occ_a", "example_id": "seg_a", "example_index": 0}
+      ]
+    }],
     "spanishdict-biencoder":[{ "sense": "807", "examples": [2, 3] }]
   }
 }
@@ -325,6 +402,17 @@ Records raw example indices that had no POS-compatible sense during lemma split 
 ```jsonc
 {
   "que|que": [1, 3, 6, 7]
+}
+```
+
+## `unassigned_routing_evidence/<source>.json` *(artist-only)*
+Stable companion materialized back to indices by the current builder.
+
+```jsonc
+{
+  "que|que": [
+    {"example_index": 1, "example_id": "seg_a", "occurrence_ids": ["occ_a"]}
+  ]
 }
 ```
 

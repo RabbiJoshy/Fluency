@@ -28,7 +28,12 @@ import json
 import re
 from pathlib import Path
 
-from util_6a_method_priority import METHOD_PRIORITY
+try:  # Package import in tests/tools; script import in pipeline entry points.
+    from .util_6a_method_priority import METHOD_PRIORITY
+    from .util_evidence_store import archive_json_artifact
+except ImportError:  # pragma: no cover - exercised by direct script execution
+    from util_6a_method_priority import METHOD_PRIORITY
+    from util_evidence_store import archive_json_artifact
 
 
 # A proposed gloss is a proper-noun *label* — not a translation — when Gemini
@@ -216,10 +221,93 @@ def dump_assignments(word_dict, path):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(serialized, f, ensure_ascii=False, indent=2)
+    path_obj = Path(path).resolve()
+    if (path_obj.parent.name in ("sense_assignments", "sense_assignments_lemma")
+            and path_obj.parent.parent.name == "layers"):
+        evidence_dir = path_obj.parents[2] / "evidence"
+        language = "und"
+        if len(path_obj.parents) > 4 and path_obj.parents[2].name == "data":
+            language = path_obj.parents[4].name
+        elif len(path_obj.parents) > 2:
+            language = path_obj.parents[2].name
+        archive_json_artifact(
+            evidence_dir,
+            "%s/%s" % (path_obj.parent.name, path_obj.stem),
+            serialized,
+            language=language,
+            adapter={"name": "dump_assignments", "version": 1},
+        )
+
+
+def example_identity(example):
+    """Primary identity for a teaching example, with legacy compatibility."""
+    if not isinstance(example, dict):
+        return None
+    return example.get("segment_id") or example.get("id")
+
+
+def index_examples_by_identity(examples):
+    """Index both ledger and legacy IDs during the additive migration."""
+    result = {}
+    for example in examples or []:
+        if not isinstance(example, dict):
+            continue
+        for identity in (example.get("segment_id"), example.get("id")):
+            if identity:
+                result.setdefault(identity, example)
+    return result
+
+
+def resolve_example_reference(entry, examples, identity_index=None):
+    """Resolve an assignment row without silently trusting a stale index.
+
+    Once a stable ID is present it is authoritative: if that source segment no
+    longer exists, return ``None`` rather than falling back to a numeric index
+    which may now name a different lyric. Index-only legacy rows continue to
+    work until migrated.
+    """
+    if isinstance(entry, dict):
+        stable_identity = entry.get("ex_id") or entry.get("example_id")
+        ex_idx = entry.get("ex_idx")
+    else:
+        stable_identity = None
+        ex_idx = entry
+    if stable_identity:
+        identity_index = identity_index or index_examples_by_identity(examples)
+        return identity_index.get(stable_identity)
+    if isinstance(ex_idx, int) and 0 <= ex_idx < len(examples):
+        return examples[ex_idx]
+    return None
+
+
+def resolve_routing_references(entries, examples):
+    """Materialize stable unassigned-routing rows as current legacy indices."""
+    identity_index = {
+        identity: index
+        for index, example in enumerate(examples or [])
+        if isinstance(example, dict)
+        for identity in (example.get("segment_id"), example.get("id"))
+        if identity
+    }
+    resolved = []
+    for entry in entries or []:
+        if isinstance(entry, dict):
+            stable_identity = entry.get("example_id") or entry.get("segment_id")
+            if stable_identity:
+                index = identity_index.get(stable_identity)
+                if index is not None:
+                    resolved.append(index)
+                continue
+            index = entry.get("example_index")
+        else:
+            index = entry
+        if isinstance(index, int) and 0 <= index < len(examples):
+            resolved.append(index)
+    return list(dict.fromkeys(resolved))
 
 
 def stamp_example_ids(assignments_out, examples_raw):
-    """Add 'example_ids' to every new assignment item that lacks it.
+    """Add stable example/occurrence references to new assignment items.
 
     Call on assignments_out just before merging into the on-disk file.
     Idempotent — items already carrying example_ids are left untouched.
@@ -228,22 +316,49 @@ def stamp_example_ids(assignments_out, examples_raw):
     examples_raw    : {word: [{id, target, english, ...}]}  — the full
                       examples_raw.json dict loaded earlier in the caller.
                       Each example must already have an 'id' field (Phase 1).
+                      Artist evidence may additionally carry ``occurrence_ids``.
     """
     for word, methods in assignments_out.items():
         word_examples = examples_raw.get(word, [])
-        idx_to_id = {i: ex.get("id") for i, ex in enumerate(word_examples)}
+        idx_to_id = {i: example_identity(ex) for i, ex in enumerate(word_examples)}
 
         items_iter = (
             methods.values() if isinstance(methods, dict) else [methods]
         )
         for item_list in items_iter:
             for item in item_list or []:
-                if not isinstance(item, dict) or "example_ids" in item:
+                if not isinstance(item, dict):
                     continue
-                item["example_ids"] = [
-                    idx_to_id[i] for i in item.get("examples") or []
-                    if i in idx_to_id and idx_to_id[i]
+                example_indices = [
+                    i for i in (item.get("examples") or []) if isinstance(i, int)
                 ]
+                if "example_ids" not in item:
+                    # Preserve positional alignment even for malformed legacy
+                    # examples. A missing ID must not shift every later ID onto
+                    # the wrong integer index.
+                    item["example_ids"] = [idx_to_id.get(i) for i in example_indices]
+
+                if "occurrence_refs" not in item:
+                    refs = []
+                    for ex_idx in example_indices:
+                        if not (0 <= ex_idx < len(word_examples)):
+                            continue
+                        example = word_examples[ex_idx]
+                        for occurrence_id in example.get("occurrence_ids") or []:
+                            if not occurrence_id:
+                                continue
+                            refs.append({
+                                "occurrence_id": occurrence_id,
+                                "example_id": example_identity(example),
+                                "example_index": ex_idx,
+                            })
+                    if refs:
+                        # The flat field is convenient for audits/adapters; the
+                        # structured refs retain the compatibility example join.
+                        item["occurrence_refs"] = refs
+                        item["occurrence_ids"] = list(dict.fromkeys(
+                            ref["occurrence_id"] for ref in refs
+                        ))
 
 
 def stamp_provenance(assignments_out, prompt_id, run_ts):
@@ -272,17 +387,19 @@ def stamp_provenance(assignments_out, prompt_id, run_ts):
                     item["run_ts"] = run_ts
 
 
-def resolve_best_per_example(word_data, min_priority=0):
+def resolve_best_per_example(word_data, min_priority=0, method_priority=None):
     """Resolve per-example winners from a word's {method: [items]} dict.
 
-    For each example index encountered, picks the highest-priority (method,
-    sense) pairing that claimed it. Lower-priority conflicting claims are
-    dropped; non-conflicting claims from different methods are all kept.
+    For each occurrence (or stable example ID, then legacy index) encountered,
+    picks the highest-priority method/sense pairing that claimed it.
 
     ``min_priority``: methods with priority strictly below this value are
     ignored entirely — their claims don't participate in the resolution and
     the examples they'd have covered become unclaimed (eligible for the
     remainder/orphan pool in the builder). Default 0 keeps every method.
+
+    ``method_priority`` optionally overlays the built-in priorities, allowing
+    an active evidence profile to rank arbitrary adapter method IDs.
 
     Returns ``{sense_id: [{"ex_idx": int, "method": str}, ...]}`` with
     example lists sorted by ex_idx. The result groups per-sense so an
@@ -295,10 +412,13 @@ def resolve_best_per_example(word_data, min_priority=0):
     if not isinstance(word_data, dict) or not word_data:
         return {}
 
-    # ex_idx -> (priority, method, sense_id, ex_id_or_None, prompt_id, run_ts)
+    # Stable evidence identity ->
+    # (priority, method, sense_id, ex_idx, ex_id, occurrence_id, prompt_id, run_ts)
+    priority_map = dict(METHOD_PRIORITY)
+    priority_map.update(method_priority or {})
     best = {}
     for method, items in word_data.items():
-        prio = METHOD_PRIORITY.get(method, 0)
+        prio = priority_map.get(method, 0)
         # Auto-assignments (single-sense words) are exempt from the
         # min-priority filter: they're "trivially correct" (only one
         # sense exists) rather than "low-quality classification", so
@@ -327,22 +447,70 @@ def resolve_best_per_example(word_data, min_priority=0):
                 for i, ex in enumerate(examples)
                 if i < len(example_ids) and example_ids[i]
             }
-            for ex_idx in examples:
-                existing = best.get(ex_idx)
+            occurrence_refs = item.get("occurrence_refs") or []
+            evidence_rows = []
+            if occurrence_refs:
+                for ref in occurrence_refs:
+                    if not isinstance(ref, dict) or not ref.get("occurrence_id"):
+                        continue
+                    evidence_rows.append((
+                        ("occurrence", ref["occurrence_id"]),
+                        ref.get("example_index"),
+                        ref.get("example_id"),
+                        ref["occurrence_id"],
+                    ))
+            else:
+                for ex_idx in examples:
+                    ex_id = idx_to_id.get(ex_idx)
+                    evidence_rows.append((
+                        (("example", ex_id) if ex_id else ("index", ex_idx)),
+                        ex_idx,
+                        ex_id,
+                        None,
+                    ))
+
+            for evidence_key, ex_idx, ex_id, occurrence_id in evidence_rows:
+                existing = best.get(evidence_key)
                 if existing is None or prio > existing[0]:
-                    best[ex_idx] = (prio, method, sid, idx_to_id.get(ex_idx),
-                                    prompt_id, run_ts)
+                    best[evidence_key] = (
+                        prio, method, sid, ex_idx, ex_id, occurrence_id,
+                        prompt_id, run_ts,
+                    )
 
     # Regroup by sense_id with ex_idx-sorted example lists.
     out = {}
-    for ex_idx in sorted(best.keys()):
-        _, method, sid, ex_id, prompt_id, run_ts = best[ex_idx]
-        entry = {"ex_idx": ex_idx, "method": method}
+    grouped = {}
+    for evidence_key in sorted(best.keys(), key=lambda value: canonical_evidence_key(value)):
+        (_, method, sid, ex_idx, ex_id, occurrence_id,
+         prompt_id, run_ts) = best[evidence_key]
+        display_key = (sid, ex_id if ex_id else ("index", ex_idx), method,
+                       prompt_id, run_ts)
+        entry = grouped.get(display_key)
+        if entry is None:
+            entry = {"ex_idx": ex_idx, "method": method}
+            grouped[display_key] = entry
         if ex_id:
             entry["ex_id"] = ex_id
+        if occurrence_id:
+            entry.setdefault("occurrence_ids", []).append(occurrence_id)
         if prompt_id:
             entry["prompt_id"] = prompt_id
         if run_ts:
             entry["run_ts"] = run_ts
+    for (sid, _display, _method, _prompt, _run), entry in grouped.items():
+        if entry.get("occurrence_ids"):
+            entry["occurrence_ids"] = sorted(set(entry["occurrence_ids"]))
         out.setdefault(sid, []).append(entry)
+    for entries in out.values():
+        entries.sort(key=lambda entry: (
+            str(entry.get("ex_id") or ""),
+            entry.get("ex_idx") if isinstance(entry.get("ex_idx"), int) else -1,
+        ))
     return out
+
+
+def canonical_evidence_key(value):
+    """Stable cross-type sort key for an internal evidence identity tuple."""
+    if isinstance(value, tuple):
+        return "%s:%s" % (value[0], value[1])
+    return str(value)

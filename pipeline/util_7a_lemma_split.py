@@ -95,21 +95,73 @@ def merge_items(existing, incoming):
         sense = item.get("sense")
         if not sense:
             continue
-        examples = sorted(set(item.get("examples", [])))
         if sense not in merged:
-            merged[sense] = {"sense": sense, "examples": examples}
+            merged[sense] = {"sense": sense, "_evidence": {}}
             # Preserve all non-example fields from the first item seen.
             for k, v in item.items():
-                if k not in ("sense", "examples"):
+                if k not in (
+                    "sense", "examples", "example_ids",
+                    "occurrence_refs", "occurrence_ids",
+                ):
                     merged[sense][k] = v
             order.append(sense)
         else:
-            merged[sense]["examples"] = sorted(set(merged[sense]["examples"]) | set(examples))
             # Backfill any field the earlier item lacked (don't overwrite).
             for k, v in item.items():
-                if k not in ("sense", "examples") and k not in merged[sense]:
+                if k not in (
+                    "sense", "examples", "example_ids",
+                    "occurrence_refs", "occurrence_ids",
+                ) and k not in merged[sense]:
                     merged[sense][k] = v
-    return [merged[sense] for sense in order]
+
+        # Numeric indices are compatibility coordinates, not identity. Keep the
+        # aligned stable ID when present so a reorder cannot attach it to a
+        # different example. Repeated observations of the same stable ID merge
+        # even if their legacy numeric indices differ.
+        examples = item.get("examples") or []
+        example_ids = item.get("example_ids") or []
+        evidence = merged[sense]["_evidence"]
+        for position, ex_idx in enumerate(examples):
+            ex_id = example_ids[position] if position < len(example_ids) else None
+            key = ("example", ex_id) if ex_id else ("index", ex_idx)
+            evidence.setdefault(key, {"ex_idx": ex_idx, "ex_id": ex_id})
+
+        refs = merged[sense].setdefault("occurrence_refs", [])
+        seen_occurrences = {
+            ref.get("occurrence_id") for ref in refs if isinstance(ref, dict)
+        }
+        for ref in item.get("occurrence_refs") or []:
+            occurrence_id = ref.get("occurrence_id") if isinstance(ref, dict) else None
+            if occurrence_id and occurrence_id not in seen_occurrences:
+                refs.append(deepcopy(ref))
+                seen_occurrences.add(occurrence_id)
+
+        occurrence_ids = merged[sense].setdefault("occurrence_ids", [])
+        for occurrence_id in item.get("occurrence_ids") or []:
+            if occurrence_id and occurrence_id not in occurrence_ids:
+                occurrence_ids.append(occurrence_id)
+
+    result = []
+    for sense in order:
+        item = merged[sense]
+        evidence = list(item.pop("_evidence").values())
+        evidence.sort(key=lambda row: (
+            row["ex_idx"] if isinstance(row.get("ex_idx"), int) else -1,
+            str(row.get("ex_id") or ""),
+        ))
+        item["examples"] = [row["ex_idx"] for row in evidence]
+        if any(row.get("ex_id") for row in evidence):
+            item["example_ids"] = [row.get("ex_id") for row in evidence]
+        for ref in item.get("occurrence_refs") or []:
+            occurrence_id = ref.get("occurrence_id") if isinstance(ref, dict) else None
+            if occurrence_id and occurrence_id not in item.setdefault("occurrence_ids", []):
+                item["occurrence_ids"].append(occurrence_id)
+        if not item.get("occurrence_refs"):
+            item.pop("occurrence_refs", None)
+        if not item.get("occurrence_ids"):
+            item.pop("occurrence_ids", None)
+        result.append(item)
+    return result
 
 
 def merge_method_maps(existing, incoming):

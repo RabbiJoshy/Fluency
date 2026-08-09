@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "run_id": "2026-08-03_spanishdict_examples_v2",
+  "run_id": "2026-08-08_spanishdict_examples_v3_cross_mode_ids",
   "role": "active_candidate",
   "parent_run": "2026-05-02_legacy_gemini",
   "note": "SpanishDict exact-sense examples plus reviewed offline personalisation, with provisional legacy sense weights."

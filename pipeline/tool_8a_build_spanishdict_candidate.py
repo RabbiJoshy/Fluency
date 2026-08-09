@@ -60,6 +60,21 @@ def file_record(path: Path, relative_to: Path = ROOT) -> dict[str, Any]:
     }
 
 
+def materialize_or_reference(source: Path, destination: Path,
+                             resource_path: Path | None) -> dict[str, Any]:
+    """Copy a run artifact unless an immutable prior run has identical bytes."""
+    if resource_path and resource_path.is_file() and sha256(resource_path) == sha256(source):
+        record = file_record(resource_path)
+        record["storage"] = "reference"
+        return record
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, destination)
+    record = file_record(destination, destination.parent.parent if destination.parent.name == "sense_menu" else destination.parent)
+    record["path"] = destination.name if destination.parent.name != "sense_menu" else "sense_menu/" + destination.name
+    record["storage"] = "local"
+    return record
+
+
 def content_id(spanish: str, english: str) -> str:
     material = f"{spanish.strip()}\n{english.strip()}".encode("utf-8")
     return hashlib.sha256(material).hexdigest()[:12]
@@ -279,6 +294,10 @@ def main() -> None:
     parser.add_argument("--frame-bank", type=Path, default=DEFAULT_FRAME_BANK)
     parser.add_argument("--extract-audited-frames", action="store_true")
     parser.add_argument("--activate", action="store_true")
+    parser.add_argument(
+        "--resource-run",
+        help="Prior immutable run whose byte-identical menu/frame assets may be referenced",
+    )
     args = parser.parse_args()
 
     if args.extract_audited_frames:
@@ -311,11 +330,23 @@ def main() -> None:
     run_menu = run_root / "sense_menu" / "spanishdict.json"
     run_frames = run_root / "personalised_example_frames.json"
     run_root.mkdir(parents=True)
-    run_menu.parent.mkdir(parents=True)
     shutil.copy2(index_path, run_index)
-    shutil.copy2(menu_path, run_menu)
-    shutil.copy2(args.frame_bank, run_frames)
     write_json(run_examples, candidate, compact=True)
+
+    resource_root = (
+        SPANISH / "runs" / "normal_mode" / args.resource_run
+        if args.resource_run else None
+    )
+    menu_record = materialize_or_reference(
+        menu_path,
+        run_menu,
+        resource_root / "sense_menu" / "spanishdict.json" if resource_root else None,
+    )
+    frames_record = materialize_or_reference(
+        args.frame_bank,
+        run_frames,
+        resource_root / "personalised_example_frames.json" if resource_root else None,
+    )
 
     manifest = {
         "schema_version": 1,
@@ -334,8 +365,12 @@ def main() -> None:
         "parent_run": "2026-05-02_legacy_gemini",
         "parent_manifest_sha256": sha256(legacy_manifest_path),
         "artifacts": {
-            path.relative_to(run_root).as_posix(): file_record(path, run_root)
-            for path in (run_index, run_examples, run_menu, run_frames)
+            "vocabulary.index.json": {
+                **file_record(run_index, run_root), "storage": "local"},
+            "vocabulary.examples.json": {
+                **file_record(run_examples, run_root), "storage": "local"},
+            "sense_menu/spanishdict.json": menu_record,
+            "personalised_example_frames.json": frames_record,
         },
         "metrics": stats,
         "invariants": [

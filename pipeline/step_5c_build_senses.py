@@ -48,13 +48,15 @@ from util_5c_sense_paths import sense_menu_path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from util_evidence_store import archive_json_artifact  # noqa: E402
 
-STEP_VERSION = 2
+STEP_VERSION = 3
 STEP_VERSION_NOTES = {
     1: "wiktionary + spanishdict sense menus, cross-POS dedup, sense cap",
     2: "wiktionary: preserve raw_gloss/topics/qualifier/examples; derive context; "
        "follow form-of redirects alongside bare-form senses; comma form-of pattern; "
        "allow single-char glosses (je → I)",
+    3: "archive every content-distinct sense menu as an immutable evidence run",
 }
 
 # Bumped whenever the shape of the pickled load_wiktionary cache changes.
@@ -1168,6 +1170,14 @@ def build_spanishdict_menu(
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     write_sidecar(output_file, make_meta("build_senses", STEP_VERSION, extra={"source": "spanishdict"}))
+    archive_json_artifact(
+        output_file.parents[2] / "evidence",
+        "sense_menu/spanishdict",
+        output,
+        language="und",
+        adapter={"name": "build-senses", "version": STEP_VERSION},
+        config={"source": "spanishdict"},
+    )
 
     # Quarantine sidecar (provenance): record every headword the plausibility
     # guard rejected as an implausible SpanishDict fuzzy match, rather than
@@ -1540,6 +1550,14 @@ def main():
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     write_sidecar(output_file, make_meta("build_senses", STEP_VERSION, extra={"source": args.sense_source}))
+    archive_json_artifact(
+        output_file.parents[2] / "evidence",
+        "sense_menu/%s" % args.sense_source,
+        output,
+        language=args.language,
+        adapter={"name": "build-senses", "version": STEP_VERSION},
+        config={"source": args.sense_source},
+    )
 
     # Report
     total = len(vocab)

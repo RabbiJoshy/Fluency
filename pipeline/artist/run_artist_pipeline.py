@@ -80,6 +80,12 @@ def _step_2_args(args, artist_dir):
         "--mwe-out", os.path.join(artist_dir, "data", "word_counts", "mwe_detected.json"),
     ]
 
+def _step_2d_args(args, artist_dir):
+    return _base_args(artist_dir) + ["--policy", args.vocal_artifacts]
+
+def _step_2e_args(args, artist_dir):
+    return _base_args(artist_dir)
+
 def _step_2b_args(args, artist_dir):
     return _base_args(artist_dir) + ["--align"]
 
@@ -161,6 +167,14 @@ def _step_defs_spanish(vocab_file):
         {"num": 2, "label": "Tokenise, count words, detect MWEs",
          "script": "step_2a_count_words.py", "args_fn": _step_2_args,
          "input": None, "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
+        {"num": "2d", "label": "Classify occurrence-level vocal artifacts",
+         "script": "step_2d_classify_vocal_artifacts.py", "args_fn": _step_2d_args,
+         "input": "data/evidence/profiles/current.json",
+         "output": "data/evidence/overlays/vocal_artifact", "needs_api_key": False},
+        {"num": "2e", "label": "Materialize active evidence profile (strict parity)",
+         "script": "step_2e_materialize_corpus.py", "args_fn": _step_2e_args,
+         "input": "data/evidence/profiles/current.json",
+         "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
         {"num": "2b", "label": "Scrape Genius translations",
          "script": "step_1b_scrape_translations.py", "args_fn": _step_2b_args,
          "input": None, "output": "data/input/translations/aligned_translations.json", "needs_api_key": False},
@@ -220,6 +234,14 @@ def _step_defs_french(vocab_file):
         {"num": 2, "label": "Tokenise, count words, detect MWEs",
          "script": "step_2a_count_words.py", "args_fn": _step_2_args,
          "input": None, "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
+        {"num": "2d", "label": "Classify occurrence-level vocal artifacts",
+         "script": "step_2d_classify_vocal_artifacts.py", "args_fn": _step_2d_args,
+         "input": "data/evidence/profiles/current.json",
+         "output": "data/evidence/overlays/vocal_artifact", "needs_api_key": False},
+        {"num": "2e", "label": "Materialize active evidence profile (strict parity)",
+         "script": "step_2e_materialize_corpus.py", "args_fn": _step_2e_args,
+         "input": "data/evidence/profiles/current.json",
+         "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
         {"num": "2b", "label": "Align English translations to French lines",
          "script": "step_2b_align_translations_fr.py", "args_fn": _step_2b_fr_args,
          "input": None, "output": "data/layers/example_translations.json", "needs_api_key": False},
@@ -374,6 +396,10 @@ def main():
                              "step_6c serial; try 2-4 if your quota allows it.")
     parser.add_argument("--words-only", action="store_true",
                         help="Step 6: run word analysis but skip sentence translation.")
+    parser.add_argument("--vocal-artifacts", choices=["off", "basic"], default="basic",
+                        help="Occurrence-level vocal-artifact policy. 'basic' "
+                             "records and excludes only conservative adlib/echo/stutter "
+                             "rules; 'off' records the run but materializes parity.")
     args = parser.parse_args()
 
     # Resolve artist name → directory. A value containing a path separator is
@@ -435,6 +461,7 @@ def main():
     print("Artist dir: %s" % artist_dir)
     print("Language:   %s" % language)
     print("Classifier: %s" % args.classifier)
+    print("Vocal artifacts: %s" % args.vocal_artifacts)
     print("spaCy:      %s" % _spacy_model_for(args))
     print("Steps: %s" % " -> ".join(str(s["num"]) for s in steps_to_run))
     if args.dry_run:

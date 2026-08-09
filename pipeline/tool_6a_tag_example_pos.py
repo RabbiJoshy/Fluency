@@ -27,16 +27,29 @@ if PROJECT_ROOT not in sys.path:
 
 from pipeline.util_6a_pos_menu_filter import load_spacy, tag_examples
 from pipeline.util_pipeline_meta import make_meta
+from pipeline.util_evidence_store import archive_json_artifact
 
 # Bump when tagging logic or model family changes in a way that invalidates
 # previously tagged outputs.
-STEP_VERSION = 2
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "legacy es_core_news_* models",
     2: "es_dep_news_trf transformer default",
+    3: "order-sensitive stable example identity signatures",
+    4: "archive every content-distinct POS output as an immutable evidence run",
 }
 
 NORMAL_LAYERS = Path(PROJECT_ROOT) / "Data" / "Spanish" / "layers"
+
+
+def example_id_signature(examples):
+    """Return the ordered example identity sequence used for freshness.
+
+    POS output is indexed by legacy list position. Sorting this signature made
+    a pure reorder look unchanged even though every numeric POS key could now
+    name a different lyric line.
+    """
+    return [example.get("segment_id") or example.get("id", "") for example in examples]
 
 
 def resolve_paths(artist_dir):
@@ -84,7 +97,7 @@ def main():
     words_to_tag = {}
     skipped = 0
     for word, examples in examples_data.items():
-        current_ids = sorted(ex.get("id", "") for ex in examples)
+        current_ids = example_id_signature(examples)
         prev_id_list = prev_ids.get(word)
         if not args.force and prev_id_list == current_ids and word in prev_output:
             skipped += 1
@@ -140,7 +153,7 @@ def main():
     # Store example ID signatures for next incremental run
     id_index = {}
     for word, examples in examples_data.items():
-        id_index[word] = sorted(ex.get("id", "") for ex in examples)
+        id_index[word] = example_id_signature(examples)
     output["_example_ids"] = id_index
     output["_meta"] = make_meta(
         "tag_example_pos",
@@ -150,6 +163,15 @@ def main():
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+    archive_json_artifact(
+        output_path.parent.parent / "evidence",
+        "example_pos",
+        output,
+        language=(Path(args.artist_dir).resolve().parent.name
+                  if args.artist_dir else "spanish"),
+        adapter={"name": "tag-example-pos", "version": STEP_VERSION},
+        config={"spacy_model": nlp.meta.get("name", "unknown")},
+    )
 
     reserved_keys = {"_example_ids", "_meta"}
     total_words = sum(1 for k in output if k not in reserved_keys)

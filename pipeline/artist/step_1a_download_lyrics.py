@@ -82,6 +82,16 @@ def fetch_batch_song_metas(genius_client, artist_id, page, per_page=25):
     return res.get("songs", []), res.get("next_page")
 
 
+def get_artist_id(artist):
+    """Return an artist ID across LyricsGenius object versions."""
+    artist_id = getattr(artist, "id", None)
+    if artist_id is None and hasattr(artist, "to_dict"):
+        artist_id = artist.to_dict().get("id")
+    if artist_id is None:
+        raise RuntimeError("Resolved Genius artist did not include an ID")
+    return artist_id
+
+
 def song_meta_to_record(meta, lyrics):
     # type: (Dict, Optional[str]) -> Dict[str, Any]
     """Build a JSON-serializable record from song metadata + scraped lyrics."""
@@ -169,12 +179,12 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
     if not artist_stub:
         raise RuntimeError("Could not resolve artist: %s" % artist_query)
 
-    artist_id = artist_stub.id
+    artist_id = get_artist_id(artist_stub)
     artist_name = artist_stub.name
     print("Artist: %s (ID: %d)" % (artist_name, artist_id))
 
     out_dir = Path(OUT_DIR)
-    out_dir.mkdir(exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     progress_path = out_dir / "done_song_ids.json"
     done_ids = load_done_ids(progress_path)
@@ -194,7 +204,12 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
             print("No null-lyrics songs found to retry")
 
     page = start_page
-    batch_num = 1
+    existing_batch_nums = []
+    for path in out_dir.glob("batch_*_page_*.json"):
+        match = re.match(r"batch_(\d+)_page_\d+\.json$", path.name)
+        if match:
+            existing_batch_nums.append(int(match.group(1)))
+    batch_num = max(existing_batch_nums, default=0) + 1
     total_new = 0
 
     while page:
@@ -213,11 +228,12 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
                 len(pre_skipped),
                 ", ".join(m.get("title", "?")[:30] for m in pre_skipped[:3])))
 
-        if not metas:
+        if not metas and not pre_skipped:
             page = next_page
             continue
 
         batch = []
+        page_done_ids = set()
         skipped_count = 0
         for m in metas:
             song_id = m["id"]
@@ -236,8 +252,7 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
             batch.append(rec)
             total_new += 1
 
-            done_ids.add(song_id)
-            save_done_ids(progress_path, done_ids)
+            page_done_ids.add(song_id)
 
         # Also check pre-skipped songs — scrape and keep if artist in lyrics
         for m in pre_skipped:
@@ -261,14 +276,19 @@ def download_artist_lyrics(artist_query, batch_size=25, start_page=1,
                 skipped_count += 1
                 print("    Skipped (not by/featuring %s)" % artist_name)
 
-            done_ids.add(song_id)
-            save_done_ids(progress_path, done_ids)
+            page_done_ids.add(song_id)
 
         if batch:
             batch_file = out_dir / ("batch_%03d_page_%d.json" % (batch_num, page))
             batch_file.write_text(json.dumps(batch, ensure_ascii=False, indent=2))
             print("Saved %d songs -> %s" % (len(batch), batch_file))
             batch_num += 1
+
+        # Commit progress only after the page's batch has been written. If the
+        # process is interrupted mid-page, every song on that page is retried
+        # instead of being marked done without a corresponding saved record.
+        done_ids.update(page_done_ids)
+        save_done_ids(progress_path, done_ids)
 
         if skipped_count:
             print("  (%d songs skipped this page)" % skipped_count)

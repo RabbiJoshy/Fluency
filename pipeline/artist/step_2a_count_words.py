@@ -48,10 +48,11 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 8
+STEP_VERSION = 10
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
@@ -68,6 +69,10 @@ STEP_VERSION_NOTES = {
        "and retain exact MWE matches for deterministic artist assembly",
     8: "+ match translated phrase lexicons and explicit lemma/construction templates; "
        "keep untranslated PMI/pattern discovery out of learner-facing rows",
+    9: "+ dual-write the language-agnostic segment/occurrence evidence ledger and "
+       "attach stable segment/occurrence references to legacy teaching examples",
+    10: "+ retain non-counting/ad-lib-only source lines and the exact legacy "
+        "surface/batch metadata needed for behavior-neutral profile materialization",
 }
 
 try:
@@ -589,6 +594,7 @@ def build_counts_and_candidates(
     mwe_map: Dict[str, List[str]] = None,
     elision_map: Dict[str, str] = None,
     primary_artist: str = "",
+    ledger=None,
 ) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int], Dict[str, Any], Dict[str, set]]:
     """
     Returns:
@@ -654,8 +660,6 @@ def build_counts_and_candidates(
             # Strip ad-libs/brackets for counting; keep original for examples
             count_text = strip_adlibs(line_text)
             raw_toks = tokenize(count_text) if count_text else []
-            if not raw_toks:
-                continue
             # Apply multi-word elision splits (preserves surface on each token)
             expanded = expand_tokens(raw_toks, mwe_map) if mwe_map else [(t, t) for t in raw_toks]
             if mwe_map:
@@ -663,24 +667,53 @@ def build_counts_and_candidates(
                     1 for t in raw_toks if t in mwe_map
                 )
             norm_toks = [w for w, _ in expanded]
-            lid_stats["lines_total"] += 1
-            if lid_detector is not None:
-                if len(norm_toks) >= _MIN_TOKENS_FOR_LID:
-                    if _is_english_line(lid_detector, line_text):
-                        lid_stats["lines_skipped"] += 1
-                        continue
-                else:
-                    lid_stats["lines_below_min_tokens"] += 1
-            # word_surfaces: first surface seen for each normalized word on this line
-            word_surfaces: Dict[str, str] = {}
-            for w, surface in expanded:
-                if w not in word_surfaces:
-                    word_surfaces[w] = surface
             normalized_vocalists = {_normalized_artist_name(name) for name in vocalists}
             sung_by_primary = bool(primary_name and any(
                 primary_name == singer or primary_name in singer
                 for singer in normalized_vocalists
             ))
+            if raw_toks:
+                lid_stats["lines_total"] += 1
+            excluded_as_english = False
+            if raw_toks and lid_detector is not None:
+                if len(norm_toks) >= _MIN_TOKENS_FOR_LID:
+                    if _is_english_line(lid_detector, line_text):
+                        lid_stats["lines_skipped"] += 1
+                        excluded_as_english = True
+                else:
+                    lid_stats["lines_below_min_tokens"] += 1
+            if ledger is not None:
+                ledger_tokens = []
+                for canonical, source_surface in tokenize_with_surfaces(count_text):
+                    ledger_tokens.append({
+                        "surface": source_surface,
+                        "forms": list(mwe_map.get(canonical, [canonical])),
+                        "legacy_surface": canonical,
+                    })
+                ledger.observe_line(
+                    song_id,
+                    title,
+                    line_no,
+                    line_text,
+                    ledger_tokens,
+                    included=not excluded_as_english,
+                    exclusion_reason=("english_line" if excluded_as_english else None),
+                    vocalists=vocalists,
+                    sung_by_primary_artist=sung_by_primary,
+                    batch_index=batch_i,
+                )
+            # Ad-lib-only and other currently non-counting lines still belong
+            # in the immutable source ledger so later classifiers can inspect
+            # them. They simply have no active normalization units yet.
+            if not raw_toks:
+                continue
+            if excluded_as_english:
+                continue
+            # word_surfaces: first surface seen for each normalized word on this line
+            word_surfaces: Dict[str, str] = {}
+            for w, surface in expanded:
+                if w not in word_surfaces:
+                    word_surfaces[w] = surface
             lines.append((line_no, line_text, expanded, word_surfaces,
                           vocalists, sung_by_primary))
 
@@ -745,6 +778,11 @@ def build_counts_and_candidates(
                                     "matched_variant": ng,
                                     "matched_surface": " ".join(surface_parts),
                                 }
+                                if ledger is not None:
+                                    evidence.update(ledger.example_refs(
+                                        song_id, title, line_no, line_text,
+                                        chunk_toks[i],
+                                    ))
                                 if vocalists:
                                     evidence["vocalists"] = list(vocalists)
                                     evidence["sung_by_primary_artist"] = sung_by_primary
@@ -816,6 +854,10 @@ def build_counts_and_candidates(
                     "song_title": title,
                     "surface": surface,
                 }
+                if ledger is not None:
+                    candidate.update(ledger.example_refs(
+                        song_id, title, line_no, line_text, w,
+                    ))
                 if vocalists:
                     candidate["vocalists"] = vocalists
                     candidate["sung_by_primary_artist"] = sung_by_primary
@@ -926,6 +968,10 @@ def to_evidence_json(
             if ex.get("vocalists"):
                 rec["vocalists"] = ex["vocalists"]
                 rec["sung_by_primary_artist"] = bool(ex.get("sung_by_primary_artist"))
+            if ex.get("segment_id"):
+                rec["segment_id"] = ex["segment_id"]
+            if ex.get("occurrence_ids"):
+                rec["occurrence_ids"] = list(ex["occurrence_ids"])
             ex_list.append(rec)
         song_ids = sorted(word_songs.get(word, set()), key=str)
         out.append({
@@ -1645,9 +1691,16 @@ def main():
         print(f"Loaded {len(elision_map)} single-word elision targets for n-gram normalization")
 
     artist_config = load_artist_config(args.artist_dir)
+    from util_2a_corpus_ledger import ArtistCorpusLedger
+    ledger = ArtistCorpusLedger(
+        args.artist_dir,
+        artist_config.get("language") or "und",
+        artist_name=artist_config.get("name", ""),
+    )
     counts, candidates, lid_stats, ngram_data, word_songs = build_counts_and_candidates(
         songs, lid_detector=lid_detector, mwe_map=mwe_map, elision_map=elision_map,
         primary_artist=artist_config.get("name", ""),
+        ledger=ledger,
     )
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
     out_list = to_evidence_json(counts, selected, word_songs)
@@ -1657,7 +1710,28 @@ def main():
         json.dump(out_list, f, ensure_ascii=False, indent=2)
     write_sidecar(args.out, make_meta("count_words", STEP_VERSION))
 
+    ledger_summary = ledger.finalize(config={
+        "step_version": STEP_VERSION,
+        "language": artist_config.get("language") or "und",
+        "line_detection": not args.no_lid,
+        "max_examples": args.max_examples,
+        "multi_word_elisions": mwe_map,
+    })
+    archive_json_artifact(
+        os.path.join(args.artist_dir, "data", "evidence"),
+        "vocab_evidence_baseline",
+        out_list,
+        language=artist_config.get("language") or "und",
+        adapter={"name": "artist-step-2a-baseline", "version": STEP_VERSION},
+        inputs={"ledger_run": ledger_summary["run_id"]},
+        config={"max_examples": args.max_examples},
+    )
+
     print(f"Wrote {len(out_list):,} words -> {args.out}")
+    print(
+        "  Evidence ledger: %(segments)d segments, %(occurrences)d occurrences, "
+        "%(tombstones)d tombstones -> %(run_id)s" % ledger_summary
+    )
     if lid_stats["lines_skipped"] > 0:
         eligible = lid_stats["lines_total"] - lid_stats["lines_below_min_tokens"]
         pct = lid_stats["lines_skipped"] / eligible * 100 if eligible else 0
@@ -1785,6 +1859,15 @@ def main():
     os.makedirs(os.path.dirname(mwe_out_path), exist_ok=True)
     with open(mwe_out_path, "w", encoding="utf-8") as f:
         json.dump(mwe_output, f, ensure_ascii=False, indent=2)
+    archive_json_artifact(
+        os.path.join(args.artist_dir, "data", "evidence"),
+        "mwe_detection_baseline",
+        mwe_output,
+        language=artist_config.get("language") or "und",
+        adapter={"name": "artist-step-2a-mwe", "version": STEP_VERSION},
+        inputs={"ledger_run": ledger_summary["run_id"]},
+        config={"mwe_schema": 1},
+    )
     print(f"  MWE: {len(confirmed)} translated/constructed, "
           f"{len(pmi_detected)} translated PMI, {len(pmi_candidates)} review candidates, "
           f"{len(patterns)} clitic diagnostics -> {mwe_out_path}")

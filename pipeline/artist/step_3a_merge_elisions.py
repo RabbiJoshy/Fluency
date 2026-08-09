@@ -63,8 +63,9 @@ _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 
-STEP_VERSION = 8
+STEP_VERSION = 9
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
@@ -85,6 +86,7 @@ STEP_VERSION_NOTES = {
        "apreta'íto → apretadito; d_elision_ustem: desnu'a → desnuda). "
        "double_elision now also chains through the extended + bare rules "
        "(apretaíto' → apretadito). Trailing-apostrophe tiebreaker unchanged.",
+    9: "+ archive every content-distinct normalization output as an immutable evidence run",
 }
 
 # ---------------------------------------------------------------------------
@@ -916,6 +918,14 @@ def main():
         write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION,
                                           extra={"language": "french",
                                                  "apos_phrase_index_size": len(apos_index)}))
+        archive_json_artifact(
+            Path(PIPELINE_DIR) / "data" / "evidence",
+            "elision_normalization",
+            merged,
+            language=args.language,
+            adapter={"name": "artist-step-3a", "version": STEP_VERSION},
+            config={"apos_phrase_index_size": len(apos_index)},
+        )
 
         print(f"\nWrote {len(merged)} entries -> {OUT_PATH}")
         print(f"  Reduced by {len(data) - len(merged)} entries")
@@ -945,6 +955,14 @@ def main():
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(merged, f, ensure_ascii=False, indent=2)
     write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION))
+    archive_json_artifact(
+        Path(PIPELINE_DIR) / "data" / "evidence",
+        "elision_normalization",
+        merged,
+        language=args.language,
+        adapter={"name": "artist-step-3a", "version": STEP_VERSION},
+        config={"ambiguous_elision_method": DISAMBIG_METHOD},
+    )
 
     print(f"\nWrote {len(merged)} entries -> {OUT_PATH}")
     print(f"  Reduced by {len(data) - len(merged)} entries")

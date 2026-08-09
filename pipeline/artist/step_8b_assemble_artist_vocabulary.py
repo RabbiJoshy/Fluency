@@ -21,6 +21,7 @@ import re
 import subprocess
 import sys
 import argparse
+from pathlib import Path
 
 from util_1a_artist_config import (add_artist_arg, load_artist_config, load_shared_dict,
                             normalize_translation, METHOD_PRIORITY, best_method_priority,
@@ -36,7 +37,10 @@ if _PROJECT_ROOT not in sys.path:
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import (load_assignments, resolve_best_per_example,  # noqa: E402
                                                 is_proper_noun_gloss, is_proper_noun_sense,
-                                                carry_sense_tags, normalize_pos)
+                                                carry_sense_tags, normalize_pos,
+                                                index_examples_by_identity,
+                                                resolve_example_reference,
+                                                resolve_routing_references)
 from pipeline.util_6a_prompt_registry import load_registry, capability_tier  # noqa: E402
 from pipeline.util_7a_lemma_split import (  # noqa: E402
     _is_phrase_only_self_analysis,
@@ -48,12 +52,16 @@ from pipeline.util_sense_ids import (  # noqa: E402
     make_generated_sense_id,
     merge_sense_identity,
 )
+from pipeline.util_identity_registry import (  # noqa: E402
+    CardIdentityRegistry,
+    SenseIdentityRegistry,
+)
 from pipeline.util_5c_spanishdict import (  # noqa: E402
     SPANISHDICT_SURFACE_CACHE,
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 8
+STEP_VERSION = 12
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
@@ -65,6 +73,10 @@ STEP_VERSION_NOTES = {
     7: "+ preserve stable sense-menu IDs through meanings, sense cycles, and shared master; "
        "mint durable fallback IDs for legacy master-only senses",
     8: "+ assemble regular plural twins under one lemma and carry derivational relation metadata",
+    9: "+ preserve per-song artist and Spotify track IDs for playlist playback",
+    10: "+ resolve assigned and routed examples by persisted segment ID before legacy list index",
+    11: "+ persist card identity independently from mutable surface/lemma analysis",
+    12: "+ persist sense identity independently from mutable menu source, gloss, POS, and context labels",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -79,6 +91,7 @@ KEYWORD_PRIORITY_THRESHOLD = 15  # keyword and pos-keyword
 
 _EXAMPLE_PRIORITY_KEYS = (
     "vocalists", "sung_by_primary_artist", "spotify_available", "is_variant",
+    "artist", "spotify_track_id",
 )
 
 
@@ -87,6 +100,17 @@ def _copy_example_priority(raw_example, output_example):
     for key in _EXAMPLE_PRIORITY_KEYS:
         if key in raw_example:
             output_example[key] = raw_example[key]
+
+
+def _copy_example_identity_evidence(raw_example, output_example):
+    """Carry private evidence IDs until persistent sense identity resolves."""
+    evidence_ids = list(raw_example.get("occurrence_ids") or [])
+    if not evidence_ids:
+        fallback = raw_example.get("segment_id") or raw_example.get("id")
+        if fallback:
+            evidence_ids.append(fallback)
+    if evidence_ids:
+        output_example["_identity_evidence"] = evidence_ids
 
 
 def _copy_timestamp(timestamp_entry, output_example):
@@ -233,22 +257,96 @@ def _ensure_sense_in_group(group, sid, meta):
     return True
 
 
+def _build_menu_free_groups(word, lemma_assignments, min_priority,
+                            method_priorities):
+    """Materialize inline word|lemma assignments without a dictionary menu."""
+    groups = []
+    prefix = word + "|"
+    for lemma_key, raw_group_assignments in (lemma_assignments or {}).items():
+        if not lemma_key.startswith(prefix) or not raw_group_assignments:
+            continue
+        methods = (raw_group_assignments if isinstance(raw_group_assignments, dict)
+                   else {"legacy": raw_group_assignments})
+        per_sense = resolve_best_per_example(
+            methods,
+            min_priority=min_priority,
+            method_priority=method_priorities,
+        )
+        sid_meta = _collect_sid_meta(methods, per_sense)
+        group = {
+            "lemma": lemma_key.split("|", 1)[1],
+            "sense_by_id": {},
+            "word_senses": [],
+            "assignments": [],
+        }
+        for sid, ex_list in per_sense.items():
+            if not _ensure_sense_in_group(group, sid, sid_meta.get(sid)):
+                continue
+            item = {
+                "sense_idx": list(group["sense_by_id"].keys()).index(sid),
+                "sense": sid,
+                "examples": ex_list,
+            }
+            item.update(sid_meta.get(sid, {}))
+            group["assignments"].append(item)
+        if group["assignments"]:
+            groups.append(group)
+    return groups
+
+
 # ---------------------------------------------------------------------------
 # ID assignment (same logic as 6_llm_analyze.py)
 # ---------------------------------------------------------------------------
 
-def assign_ids_from_master(entries, master):
-    """Assign 6-char hex IDs. Existing words reuse master IDs, new words get fresh ones."""
+def assign_ids_from_master(entries, master, registry_path=None, language="und"):
+    """Assign legacy card IDs through a persistent identity registry."""
     wl_to_id = {}
+    wl_to_ids = {}
     for mid, mentry in master.items():
-        wl_to_id[(mentry["word"], mentry["lemma"])] = mid
+        pair = (mentry["word"], mentry["lemma"])
+        wl_to_id[pair] = mid
+        wl_to_ids.setdefault(pair, []).append(mid)
 
-    used = set(master.keys())
+    registry = CardIdentityRegistry.load(registry_path, language) if registry_path else None
+    if registry:
+        for pair, legacy_ids in wl_to_ids.items():
+            # Some historical masters contain duplicate IDs for one word|lemma.
+            # Preserve the registry's existing owner, or seed the same last-ID
+            # winner the legacy builder used, and record every duplicate as an
+            # explicit progress migration instead of crashing or renumbering.
+            canonical_id = registry.resolve(
+                pair[0], pair[1], allow_inference=False) or legacy_ids[-1]
+            registry.seed(canonical_id, pair[0], pair[1])
+            wl_to_id[pair] = canonical_id
+            for duplicate_id in legacy_ids:
+                if duplicate_id == canonical_id:
+                    continue
+                duplicate = registry.records.setdefault(duplicate_id, {
+                    "card_id": duplicate_id,
+                    "aliases": [],
+                    "evidence_ids": [],
+                })
+                duplicate["status"] = "merged"
+                duplicate["superseded_by"] = canonical_id
+                migration = {
+                    "kind": "legacy_duplicate",
+                    "from": duplicate_id,
+                    "to": canonical_id,
+                    "reason": "duplicate word|lemma in materialized master",
+                }
+                if migration not in registry.migrations:
+                    registry.migrations.append(migration)
+
+    used = set(master.keys()) | (set(registry.records) if registry else set())
+    claimed_ids = set()
+    surface_counts = {}
+    for candidate in entries:
+        surface = str(candidate.get("word") or "").strip().lower()
+        surface_counts[surface] = surface_counts.get(surface, 0) + 1
     for entry in entries:
         wl = (entry["word"], entry["lemma"])
-        if wl in wl_to_id:
-            entry["id"] = wl_to_id[wl]
-        else:
+        preferred_id = wl_to_id.get(wl)
+        if preferred_id is None:
             h = hashlib.md5((entry["word"] + "|" + entry["lemma"]).encode("utf-8")).hexdigest()
             final_id = h[:6]
             if final_id in used:
@@ -262,8 +360,111 @@ def assign_ids_from_master(entries, master):
                     while format(val % 0xFFFFFF, '06x') in used:
                         val += 1
                     final_id = format(val % 0xFFFFFF, '06x')
-            used.add(final_id)
-            entry["id"] = final_id
+            preferred_id = final_id
+
+        evidence_ids = entry.pop("_identity_evidence", [])
+        if registry:
+            entry["id"] = registry.assign(
+                entry["word"],
+                entry["lemma"],
+                evidence_ids=evidence_ids,
+                preferred_id=preferred_id,
+                claimed_ids=claimed_ids,
+                allow_inference=(surface_counts.get(
+                    str(entry.get("word") or "").strip().lower(), 0
+                ) == 1),
+            )
+        else:
+            entry["id"] = preferred_id
+        used.add(entry["id"])
+        claimed_ids.add(entry["id"])
+
+    if registry:
+        registry.save(registry_path)
+
+
+def _card_registry_context(layers_dir):
+    """Return the shared per-language registry path without assuming Spanish."""
+    layers_path = Path(layers_dir).resolve()
+    for parent in layers_path.parents:
+        if parent.name != "Artists":
+            continue
+        relative = layers_path.relative_to(parent)
+        if relative.parts:
+            language = relative.parts[0].lower()
+            return parent / relative.parts[0] / "evidence" / "registries" / "cards.json", language
+    return layers_path / "evidence" / "registries" / "cards.json", "und"
+
+
+def _stabilize_sense_identities(entries, master, registry_path, language):
+    """Resolve mutable menu/gloss rows onto persistent per-card sense IDs."""
+    registry = SenseIdentityRegistry.load(registry_path, language)
+    for card_id, master_entry in master.items():
+        for sense in master_entry.get("senses") or []:
+            if sense.get("pos") in ("X", "SENSE_CYCLE"):
+                continue
+            sense_id = sense.get("sense_id") or make_generated_sense_id(
+                "artist-master",
+                card_id,
+                master_entry.get("word"),
+                master_entry.get("lemma"),
+                sense.get("pos"),
+                sense.get("translation"),
+                sense.get("context"),
+            )
+            if not sense.get("sense_id"):
+                sense["sense_id"] = sense_id
+            registry.seed(
+                sense_id,
+                card_id,
+                sense.get("pos"),
+                sense.get("translation"),
+                sense.get("context"),
+                external_ids=sense.get("sense_id_aliases") or [],
+            )
+
+    for entry in entries:
+        candidates = []
+        candidate_meanings = []
+        for meaning in entry.get("meanings") or []:
+            evidence_ids = []
+            for example in meaning.get("examples") or []:
+                evidence_ids.extend(example.pop("_identity_evidence", []) or [])
+            if (meaning.get("pos") in ("X", "SENSE_CYCLE")
+                    or not (meaning.get("translation") or "").strip()):
+                continue
+            preferred_id = meaning.get("sense_id") or make_generated_sense_id(
+                "artist-sense",
+                entry.get("id"),
+                meaning.get("pos"),
+                meaning.get("translation"),
+                meaning.get("context"),
+            )
+            candidates.append({
+                "preferred_id": preferred_id,
+                "external_ids": list(meaning.get("sense_id_aliases") or []),
+                "pos": meaning.get("pos"),
+                "translation": meaning.get("translation"),
+                "context": meaning.get("context"),
+                "evidence_ids": list(dict.fromkeys(evidence_ids)),
+            })
+            candidate_meanings.append(meaning)
+
+        resolved_ids = registry.reconcile(entry["id"], candidates)
+        for meaning, candidate, canonical_id in zip(
+                candidate_meanings, candidates, resolved_ids):
+            aliases = list(dict.fromkeys(
+                [meaning.get("sense_id"), candidate.get("preferred_id")]
+                + list(meaning.get("sense_id_aliases") or [])
+                + list(candidate.get("external_ids") or [])
+            ))
+            meaning["sense_id"] = canonical_id
+            aliases = [value for value in aliases if value and value != canonical_id]
+            if aliases:
+                meaning["sense_id_aliases"] = aliases
+            else:
+                meaning.pop("sense_id_aliases", None)
+    registry.save(registry_path)
 
 
 
@@ -533,6 +734,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     """
     # Load all layers
     print("Loading layers...")
+    profile_path = os.path.join(
+        os.path.dirname(layers_dir), "evidence", "profiles", "current.json")
+    evidence_profile = load_layer(
+        profile_path, "evidence_profile", required=False) or {}
+    method_priorities = evidence_profile.get("method_priorities") or {}
     inventory = load_layer(os.path.join(layers_dir, "word_inventory.json"), "word_inventory")
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
@@ -560,6 +766,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         print("  sense_assignments_lemma: (not found, skipping)")
     unassigned_routing_path = artist_unassigned_routing_path(layers_dir, sense_source)
     unassigned_routing = load_layer(unassigned_routing_path, "unassigned_routing", required=False) or {}
+    unassigned_routing_evidence = load_layer(
+        os.path.join(layers_dir, "unassigned_routing_evidence", sense_source + ".json"),
+        "unassigned_routing_evidence", required=False,
+    ) or {}
 
     # Auto-invoke: if menu exists but no assignments, run keyword assignment + lemma mapping
     if senses and not assignments:
@@ -986,12 +1196,20 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             for lemma_key, group in lemma_key_to_group.items():
                 raw_group_assignments = lemma_assignments.get(lemma_key, {})
                 if isinstance(raw_group_assignments, dict) and raw_group_assignments:
-                    per_sense = resolve_best_per_example(raw_group_assignments, min_priority=min_priority)
+                    per_sense = resolve_best_per_example(
+                        raw_group_assignments,
+                        min_priority=min_priority,
+                        method_priority=method_priorities,
+                    )
                     sid_meta = _collect_sid_meta(raw_group_assignments, per_sense)
                 elif isinstance(raw_group_assignments, list) and raw_group_assignments:
                     # Legacy flat-list fallback: treat as one pseudo-method.
                     as_dict = {"legacy": raw_group_assignments}
-                    per_sense = resolve_best_per_example(as_dict, min_priority=min_priority)
+                    per_sense = resolve_best_per_example(
+                        as_dict,
+                        min_priority=min_priority,
+                        method_priority=method_priorities,
+                    )
                     sid_meta = _collect_sid_meta(as_dict, per_sense)
                 else:
                     continue
@@ -1007,11 +1225,19 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     group["assignments"].append(entry)
         elif has_word_assignments and grouped:
             if isinstance(raw_assignments, dict):
-                per_sense = resolve_best_per_example(raw_assignments, min_priority=min_priority)
+                per_sense = resolve_best_per_example(
+                    raw_assignments,
+                    min_priority=min_priority,
+                    method_priority=method_priorities,
+                )
                 sid_meta = _collect_sid_meta(raw_assignments, per_sense)
             else:
                 as_dict = {"legacy": raw_assignments}
-                per_sense = resolve_best_per_example(as_dict, min_priority=min_priority)
+                per_sense = resolve_best_per_example(
+                    as_dict,
+                    min_priority=min_priority,
+                    method_priority=method_priorities,
+                )
                 sid_meta = _collect_sid_meta(as_dict, per_sense)
             for sid, ex_list in per_sense.items():
                 group = sid_to_group.get(sid)
@@ -1025,37 +1251,64 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 entry.update(sid_meta.get(sid, {}))
                 group["assignments"].append(entry)
         elif not grouped:
-            fallback_analysis = resolve_analysis_for_assignments(senses, word, raw_assignments)
-            word_senses_raw = fallback_analysis.get("senses")
-            # Build per-sense assignments preserving inline metadata (pos,
-            # translation, lemma, source) — used by the gap-fill branch when
-            # there's no menu entry.
-            fallback_assignments = []
-            if isinstance(raw_assignments, dict) and raw_assignments:
-                per_sense = resolve_best_per_example(raw_assignments, min_priority=min_priority)
-                sid_meta = _collect_sid_meta(raw_assignments, per_sense)
-                for sid, ex_list in per_sense.items():
-                    entry = {"sense": sid, "examples": ex_list}
-                    entry.update(sid_meta.get(sid, {}))
-                    fallback_assignments.append(entry)
-            elif isinstance(raw_assignments, list):
-                fallback_assignments = raw_assignments
-            grouped = [{
-                "lemma": fallback_analysis.get("headword", fallback_analysis.get("lemma", word)),
-                "sense_by_id": word_senses_raw if isinstance(word_senses_raw, dict) else {},
-                "word_senses": list(word_senses_raw.values()) if isinstance(word_senses_raw, dict) else (word_senses_raw or []),
-                "assignments": fallback_assignments,
-            }]
+            # A menu-free adapter may already have split its inline claims onto
+            # word|lemma keys. Build those groups directly so its lemma is not
+            # replaced by the surface word merely because no dictionary menu
+            # exists.
+            grouped = _build_menu_free_groups(
+                word,
+                lemma_assignments,
+                min_priority,
+                method_priorities,
+            )
+
+            if not grouped:
+                fallback_analysis = resolve_analysis_for_assignments(
+                    senses, word, raw_assignments)
+                word_senses_raw = fallback_analysis.get("senses")
+                # Build per-sense assignments preserving inline metadata (pos,
+                # translation, lemma, source) — used by gap-fill without menu.
+                fallback_assignments = []
+                if isinstance(raw_assignments, dict) and raw_assignments:
+                    per_sense = resolve_best_per_example(
+                        raw_assignments,
+                        min_priority=min_priority,
+                        method_priority=method_priorities,
+                    )
+                    sid_meta = _collect_sid_meta(raw_assignments, per_sense)
+                    for sid, ex_list in per_sense.items():
+                        entry = {"sense": sid, "examples": ex_list}
+                        entry.update(sid_meta.get(sid, {}))
+                        fallback_assignments.append(entry)
+                elif isinstance(raw_assignments, list):
+                    fallback_assignments = raw_assignments
+                grouped = [{
+                    "lemma": fallback_analysis.get(
+                        "headword", fallback_analysis.get("lemma", word)),
+                    "sense_by_id": (
+                        word_senses_raw if isinstance(word_senses_raw, dict) else {}),
+                    "word_senses": (
+                        list(word_senses_raw.values())
+                        if isinstance(word_senses_raw, dict)
+                        else (word_senses_raw or [])),
+                    "assignments": fallback_assignments,
+                }]
 
         # Get raw examples for this word
         raw_examples = examples_raw.get(word, [])
+        raw_examples_by_id = index_examples_by_identity(raw_examples)
 
         # Apply POS-based unassigned-example routing from step 7a.
         # For each group (analysis), attach the list of raw-example indices
         # that step 7a routed to that lemma_key based on spaCy POS matching.
         for g in grouped:
             lemma_key = "%s|%s" % (word, g.get("lemma", word))
-            g["unassigned_ex_indices"] = unassigned_routing.get(lemma_key, [])
+            stable_rows = unassigned_routing_evidence.get(lemma_key)
+            if stable_rows is not None:
+                g["unassigned_ex_indices"] = resolve_routing_references(
+                    stable_rows, raw_examples)
+            else:
+                g["unassigned_ex_indices"] = unassigned_routing.get(lemma_key, [])
 
         if has_word_assignments:
             # Emit a card if the group has either keyword assignments or
@@ -1128,9 +1381,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             ex_method = None
                             ex_prompt_id = None
                             ex_run_ts = None
-                        if ex_idx is None or ex_idx >= len(raw_examples):
+                        raw_ex = resolve_example_reference(
+                            entry, raw_examples, raw_examples_by_id)
+                        if raw_ex is None:
                             continue
-                        raw_ex = raw_examples[ex_idx]
                         if is_dropped_example(word, raw_ex):
                             continue
                         spanish = raw_ex.get("spanish", "")
@@ -1160,6 +1414,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         if isinstance(score_entry, dict) and "score" in score_entry:
                             ex_dict["translation_quality"] = score_entry["score"]
                         _copy_example_priority(raw_ex, ex_dict)
+                        _copy_example_identity_evidence(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
                         meaning_examples.append(ex_dict)
@@ -1246,6 +1501,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             "translation_source": trans_info.get("source", ""),
                         }
                         _copy_example_priority(raw_ex, ex_dict)
+                        _copy_example_identity_evidence(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
                         ex_pos = word_pos_data.get(str(ex_idx))
@@ -1326,6 +1582,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "translation_source": trans_info.get("source", ""),
                     }
                     _copy_example_priority(raw_ex, ex_dict)
+                    _copy_example_identity_evidence(raw_ex, ex_dict)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                     _copy_timestamp(ts_entry, ex_dict)
                     all_examples.append(ex_dict)
@@ -1443,9 +1700,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             ex_method = None
                             ex_prompt_id = None
                             ex_run_ts = None
-                        if ex_idx is None or ex_idx >= len(raw_examples):
+                        raw_ex = resolve_example_reference(
+                            entry, raw_examples, raw_examples_by_id)
+                        if raw_ex is None:
                             continue
-                        raw_ex = raw_examples[ex_idx]
                         if is_dropped_example(word, raw_ex):
                             continue
                         spanish = raw_ex.get("spanish", "")
@@ -1466,6 +1724,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                                 ex_dict["run_ts"] = ex_run_ts
                             prov_candidates.append((ex_run_ts or "", ex_prompt_id, ex_run_ts))
                         _copy_example_priority(raw_ex, ex_dict)
+                        _copy_example_identity_evidence(raw_ex, ex_dict)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
                         meaning_examples.append(ex_dict)
@@ -1513,6 +1772,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         "translation_source": trans_info.get("source", ""),
                     }
                     _copy_example_priority(raw_ex, ex_dict)
+                    _copy_example_identity_evidence(raw_ex, ex_dict)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                     _copy_timestamp(ts_entry, ex_dict)
                     fallback_examples.append(ex_dict)
@@ -1585,6 +1845,23 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
 
             has_wikt = bool(word_senses and word_assignments and isinstance(raw_assignments, dict))
             wl = word.lower()
+            identity_evidence = []
+            for assignment in word_assignments:
+                for example_ref in assignment.get("examples") or []:
+                    if not isinstance(example_ref, dict):
+                        continue
+                    identity_evidence.extend(example_ref.get("occurrence_ids") or [])
+                    if not example_ref.get("occurrence_ids") and example_ref.get("ex_id"):
+                        identity_evidence.append(example_ref["ex_id"])
+            for routed_index in group.get("unassigned_ex_indices") or []:
+                if not isinstance(routed_index, int) or not (0 <= routed_index < len(raw_examples)):
+                    continue
+                routed_example = raw_examples[routed_index]
+                identity_evidence.extend(routed_example.get("occurrence_ids") or [])
+                if not routed_example.get("occurrence_ids"):
+                    routed_identity = routed_example.get("segment_id") or routed_example.get("id")
+                    if routed_identity:
+                        identity_evidence.append(routed_identity)
             entry = {
                 "id": "",
                 "word": word,
@@ -1602,6 +1879,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 "is_transparent_cognate": wl in skip_cognate,
                 "corpus_count": group_counts[g_idx] if g_idx < len(group_counts) else 0,
                 "_has_wikt_assignments": has_wikt,
+                "_identity_evidence": list(dict.fromkeys(identity_evidence)),
             }
             # Unified tag category → front-end groups Extra by this.
             _cat = word_categories.get(wl)
@@ -1851,7 +2129,19 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         best["most_frequent_lemma_instance"] = True
 
     # --- Master vocabulary integration ---
-    assign_ids_from_master(entries, master)
+    registry_path, registry_language = _card_registry_context(layers_dir)
+    assign_ids_from_master(
+        entries,
+        master,
+        registry_path=registry_path,
+        language=registry_language,
+    )
+    _stabilize_sense_identities(
+        entries,
+        master,
+        registry_path.with_name("senses.json"),
+        registry_language,
+    )
 
     # Ensure each clitic has its own stub master entry so the clitic-layer
     # writer (below) can map clitic_word → master ID. Without this, only
@@ -2000,6 +2290,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         m["senses"] = _deduped
 
         existing_keys = set(_seen.keys())
+        existing_by_sense_id = {}
+        for stored_sense in m["senses"]:
+            for sense_id in [stored_sense.get("sense_id")] + list(
+                    stored_sense.get("sense_id_aliases") or []):
+                if sense_id:
+                    existing_by_sense_id[sense_id] = stored_sense
         for meaning in entry_meanings:
             pos = normalize_pos(meaning.get("pos", "X")) or "X"
             if pos in ("X", "SENSE_CYCLE"):
@@ -2007,6 +2303,33 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             translation = meaning.get("translation", "")
             context = meaning.get("context")
             key = (pos, normalize_translation(translation), (context or "").strip().lower())
+            incoming_ids = [meaning.get("sense_id")] + list(
+                meaning.get("sense_id_aliases") or [])
+            identity_match = next((
+                existing_by_sense_id[sense_id]
+                for sense_id in incoming_ids
+                if sense_id in existing_by_sense_id
+            ), None)
+            if identity_match is not None:
+                # Same persisted sense, revised label. The previous labels live
+                # in the immutable menu/sense registry history; the active
+                # master view should show the currently selected description.
+                identity_match["pos"] = pos
+                identity_match["translation"] = translation
+                if context:
+                    identity_match["context"] = context
+                else:
+                    identity_match.pop("context", None)
+                if meaning.get("source"):
+                    identity_match["source"] = meaning["source"]
+                merge_sense_identity(identity_match, meaning)
+                carry_sense_tags(identity_match, meaning)
+                existing_keys.add(key)
+                _seen[key] = identity_match
+                for sense_id in incoming_ids:
+                    if sense_id:
+                        existing_by_sense_id[sense_id] = identity_match
+                continue
             if key in existing_keys:
                 existing_sense = _seen[key]
                 merge_sense_identity(existing_sense, meaning)
@@ -2027,6 +2350,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             m["senses"].append(s_entry)
             existing_keys.add(key)
             _seen[key] = s_entry
+            for sense_id in [s_entry.get("sense_id")] + list(
+                    s_entry.get("sense_id_aliases") or []):
+                if sense_id:
+                    existing_by_sense_id[sense_id] = s_entry
             new_senses += 1
 
     # Some legacy union senses exist only in the shared master and therefore
@@ -2569,9 +2896,11 @@ def main():
     parser.add_argument("--master-path", type=str, default=None,
                         help="Path to shared master vocabulary (default: "
                              "Artists/<lang>/vocabulary_master.json, derived from --artist-dir)")
-    parser.add_argument("--sense-source", choices=["gemini", "wiktionary", "wiktionary-gemini", "spanishdict"],
-                        default="spanishdict",
-                        help="Which sense layers to use (default: spanishdict)")
+    parser.add_argument(
+        "--sense-source", default="spanishdict",
+        help="Sense adapter/source filename stem (default: spanishdict). Custom "
+             "and menu-free sources are accepted when their assignment layer exists.",
+    )
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards, but unassigned examples are dropped)")

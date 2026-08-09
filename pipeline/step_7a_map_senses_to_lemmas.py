@@ -14,7 +14,8 @@ If `--artist-dir PATH` is given, operates against that artist's layers
 instead of normal mode's `Data/Spanish/layers`.
 
 Inputs:
-    {layers}/sense_menu/{source}.json
+    {layers}/sense_menu/{source}.json         (optional when assignments carry
+                                               inline lemma/sense definitions)
     {layers}/sense_assignments/{source}.json
     {layers}/examples_raw.json               (optional — if missing, routing
                                                output is empty)
@@ -25,6 +26,7 @@ Inputs:
 Outputs:
     {layers}/sense_assignments_lemma/{source}.json
     {layers}/unassigned_routing/{source}.json
+    {layers}/unassigned_routing_evidence/{source}.json
 """
 
 import argparse
@@ -33,19 +35,32 @@ import os
 import sys
 from pathlib import Path
 
-from util_7a_lemma_split import split_word_assignments, merge_method_maps
-from util_5c_sense_menu_format import normalize_artist_sense_menu
-from util_5c_sense_paths import (sense_menu_path, sense_assignments_path,
-                                  sense_assignments_lemma_path, discover_sources)
-from util_6a_assignment_format import load_assignments, dump_assignments
-from util_pipeline_meta import make_meta, write_sidecar
+try:
+    from .util_7a_lemma_split import split_word_assignments, merge_method_maps
+    from .util_5c_sense_menu_format import normalize_artist_sense_menu
+    from .util_5c_sense_paths import (sense_menu_path, sense_assignments_path,
+                                      sense_assignments_lemma_path, discover_sources)
+    from .util_6a_assignment_format import (load_assignments, dump_assignments,
+                                             example_identity)
+    from .util_pipeline_meta import make_meta, write_sidecar
+    from .util_evidence_store import archive_json_artifact
+except ImportError:  # pragma: no cover - direct script execution
+    from util_7a_lemma_split import split_word_assignments, merge_method_maps
+    from util_5c_sense_menu_format import normalize_artist_sense_menu
+    from util_5c_sense_paths import (sense_menu_path, sense_assignments_path,
+                                      sense_assignments_lemma_path, discover_sources)
+    from util_6a_assignment_format import (load_assignments, dump_assignments,
+                                            example_identity)
+    from util_pipeline_meta import make_meta, write_sidecar
+    from util_evidence_store import archive_json_artifact
 
-STEP_VERSION = 4
+STEP_VERSION = 5
 STEP_VERSION_NOTES = {
     1: "split surface-word assignments onto word|lemma keys, multi-source merge",
     2: "route phrasebook self-analyses into inventory known_lemmas[0]",
     3: "unified normal/artist mode with POS-routed unassigned bucket",
     4: "consolidate regular plural self-headwords onto an explicit singular analysis without changing sense IDs",
+    5: "support menu-free inline senses and emit stable unassigned-routing evidence",
 }
 
 
@@ -170,16 +185,22 @@ def process_source(source, layers_dir: Path, known_lemmas_by_word, examples_raw,
     assignments_file = sense_assignments_path(layers_dir, source)
     output_file = sense_assignments_lemma_path(layers_dir, source)
     routing_file = layers_dir / "unassigned_routing" / ("%s.json" % source)
+    routing_evidence_file = (
+        layers_dir / "unassigned_routing_evidence" / ("%s.json" % source)
+    )
 
-    if not menu_file.exists():
-        print(f"  WARNING: sense menu not found for {source}: {menu_file}")
-        return
     if not assignments_file.exists():
         print(f"  WARNING: assignments not found for {source}: {assignments_file}")
         return
 
-    with open(menu_file, encoding="utf-8") as f:
-        menu = normalize_artist_sense_menu(json.load(f))
+    if menu_file.exists():
+        with open(menu_file, encoding="utf-8") as f:
+            menu = normalize_artist_sense_menu(json.load(f))
+    else:
+        # Classifiers/adapters may carry complete inline sense definitions.
+        # The shared split utility then falls back to word|inline_lemma.
+        menu = {}
+        print(f"  [{source}] no sense menu; using inline assignment senses")
     assignments = load_assignments(assignments_file)
 
     remapped = {}
@@ -220,6 +241,22 @@ def process_source(source, layers_dir: Path, known_lemmas_by_word, examples_raw,
 
     # Deduplicate routing indices per lemma (sorted for stability).
     routing = {k: sorted(set(v)) for k, v in routing.items() if v}
+    routing_evidence = {}
+    for lemma_key, indices in routing.items():
+        surface_word = lemma_key.split("|", 1)[0]
+        word_examples = examples_raw.get(surface_word, [])
+        rows = []
+        for index in indices:
+            if not isinstance(index, int) or not (0 <= index < len(word_examples)):
+                continue
+            example = word_examples[index]
+            rows.append({
+                "example_index": index,
+                "example_id": example_identity(example),
+                "occurrence_ids": list(example.get("occurrence_ids") or []),
+            })
+        if rows:
+            routing_evidence[lemma_key] = rows
 
     output_file.parent.mkdir(parents=True, exist_ok=True)
     dump_assignments(remapped, output_file)
@@ -230,6 +267,30 @@ def process_source(source, layers_dir: Path, known_lemmas_by_word, examples_raw,
         json.dump(routing, f, ensure_ascii=False, indent=2)
     write_sidecar(routing_file, make_meta("map_senses_to_lemmas", STEP_VERSION,
                                           extra={"source": source, "output": "unassigned_routing"}))
+
+    routing_evidence_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(routing_evidence_file, "w", encoding="utf-8") as f:
+        json.dump(routing_evidence, f, ensure_ascii=False, indent=2)
+    write_sidecar(
+        routing_evidence_file,
+        make_meta("map_senses_to_lemmas", STEP_VERSION, extra={
+            "source": source,
+            "output": "unassigned_routing_evidence",
+        }),
+    )
+    evidence_dir = layers_dir.parent / "evidence"
+    archive_json_artifact(
+        evidence_dir,
+        "unassigned_routing/%s" % source,
+        routing,
+        adapter={"name": "map-senses-to-lemmas", "version": STEP_VERSION},
+    )
+    archive_json_artifact(
+        evidence_dir,
+        "unassigned_routing_evidence/%s" % source,
+        routing_evidence,
+        adapter={"name": "map-senses-to-lemmas", "version": STEP_VERSION},
+    )
 
     print(f"  [{source}] {assignments_file.name} -> {output_file}")
     print(f"    input keys: {len(assignments)}, output keys: {len(remapped)}, "
