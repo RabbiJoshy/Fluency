@@ -19,29 +19,29 @@
          weights = fewer round trips to fonts.gstatic.com on cold start. -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
-    <link rel="stylesheet" href="css/style.css?v=20260808d">
+    <link rel="stylesheet" href="css/style.css?v=20260809a">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260808d">
-    <link rel="modulepreload" href="js/state.js?v=20260808d">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260808d">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260808d">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260808d">
-    <link rel="modulepreload" href="js/speech.js?v=20260808d">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260808d">
-    <link rel="modulepreload" href="js/auth.js?v=20260808d">
-    <link rel="modulepreload" href="js/about-example.js?v=20260808d">
-    <link rel="modulepreload" href="js/estimation.js?v=20260808d">
-    <link rel="modulepreload" href="js/config.js?v=20260808d">
-    <link rel="modulepreload" href="js/progress.js?v=20260808d">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260808d">
-    <link rel="modulepreload" href="js/ui.js?v=20260808d">
-    <link rel="modulepreload" href="js/vocab.js?v=20260808d">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260808d">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260808d">
+    <link rel="modulepreload" href="js/main.js?v=20260809a">
+    <link rel="modulepreload" href="js/state.js?v=20260809a">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260809a">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260809a">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260809a">
+    <link rel="modulepreload" href="js/speech.js?v=20260809a">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260809a">
+    <link rel="modulepreload" href="js/auth.js?v=20260809a">
+    <link rel="modulepreload" href="js/about-example.js?v=20260809a">
+    <link rel="modulepreload" href="js/estimation.js?v=20260809a">
+    <link rel="modulepreload" href="js/config.js?v=20260809a">
+    <link rel="modulepreload" href="js/progress.js?v=20260809a">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260809a">
+    <link rel="modulepreload" href="js/ui.js?v=20260809a">
+    <link rel="modulepreload" href="js/vocab.js?v=20260809a">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260809a">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260809a">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -192,13 +192,31 @@
                 <kbd class="kb-key" title="Back to menu">Esc</kbd>
                 <span class="kb-hint">menu</span>
             </div>
-            <div class="kb-section">
+            <div class="kb-section kb-command-section">
+                <div class="kb-row">
+                    <kbd class="kb-key combo" title="Open study progress">Ctrl S</kbd>
+                    <span class="kb-hint">progress</span>
+                </div>
+                <div class="kb-row">
+                    <kbd class="kb-key combo" title="Open study preferences">Ctrl P</kbd>
+                    <span class="kb-hint">preferences</span>
+                </div>
+            </div>
+            <div class="kb-section kb-command-section kb-flag-section">
                 <button id="cardMetaBtn" class="kb-key kb-info-btn" title="Report a card issue" aria-label="Report a card issue">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M5 21V4"></path><path d="M5 5h11l-2 4 2 4H5"></path>
                     </svg>
                 </button>
-                <span class="kb-hint">report</span>
+                <span class="kb-hint">flag menu</span>
+                <div class="kb-row">
+                    <kbd class="kb-key combo" title="Flag the whole card">Ctrl F</kbd>
+                    <span class="kb-hint">whole card</span>
+                </div>
+                <div class="kb-row">
+                    <kbd class="kb-key combo" title="Open the flag menu">Ctrl Shift F</kbd>
+                    <span class="kb-hint">flag menu</span>
+                </div>
             </div>
         </div>
     </div>
@@ -252,6 +270,14 @@
                 <button class="card-meta-flag-btn flag-whole-card-btn" id="flagWholeCard" type="button">Flag whole card</button>
             </div>
         </div>
+    </div>
+
+    <div id="flagSentToast" class="flag-sent-toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+        <span class="flag-sent-toast-icon" aria-hidden="true">✓</span>
+        <span class="flag-sent-toast-copy">
+            <strong id="flagSentToastTitle">Flag sent</strong>
+            <span id="flagSentToastType"></span>
+        </span>
     </div>
 
     <div class="container">
@@ -994,36 +1020,12 @@
     <div id="statsModal" class="modal hidden">
         <div class="modal-content progress-modal-content">
             <div class="modal-header">
-                <h3>Your Progress<span id="statsSetLabel" style="margin-left: 8px; color: var(--text-muted); font-weight: normal;"></span></h3>
+                <h3>Study progress<span id="statsSetLabel" style="margin-left: 8px; color: var(--text-muted); font-weight: normal;"></span></h3>
                 <button class="modal-close" id="closeStatsModal">✕</button>
             </div>
-            <div class="stats-body">
-                <div class="stat-row" id="previouslyKnownRow" style="display: none;">
-                    <span style="color: var(--text-muted);">Already seen:</span>
-                    <span id="previouslyKnownCount" style="color: var(--text-muted);">0</span>
-                </div>
-                <div class="stat-row">
-                    <span style="color: var(--accent-green);">✓ Correct:</span>
-                    <span id="correctCount" style="color: var(--accent-green);">0</span>
-                </div>
-                <div class="stat-row">
-                    <span style="color: var(--error);">✗ Incorrect:</span>
-                    <span id="incorrectCount" style="color: var(--error);">0</span>
-                </div>
-                <div class="stat-row">
-                    <span style="color: var(--text-muted);">⊘ Skipped:</span>
-                    <span id="skippedCount" style="color: var(--text-muted);">0</span>
-                </div>
-                <div class="stat-row">
-                    <span>Accuracy:</span>
-                    <span id="accuracyPercent">-</span>
-                </div>
-                <details id="wordListDetails" style="margin-top: 12px;">
-                    <summary style="cursor: pointer; padding: 8px 0; color: var(--accent-primary); font-weight: 500;">
-                        View all words in this set
-                    </summary>
-                    <ol id="wordListBody" style="margin: 8px 0 0; padding-left: 28px; font-size: 0.9em; max-height: 280px; overflow-y: auto;"></ol>
-                </details>
+            <div class="stats-body active-set-progress-body">
+                <p class="active-set-progress-intro">Every card in this set is shown below. Expand one to see this session’s attempts and all card-history timestamps retained by Progress.</p>
+                <div id="activeSetProgressList" class="active-set-progress-list"></div>
             </div>
         </div>
     </div>
@@ -1337,6 +1339,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260808d"></script>
+    <script type="module" src="js/main.js?v=20260809a"></script>
 </body>
 </html>

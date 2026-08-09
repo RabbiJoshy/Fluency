@@ -593,6 +593,7 @@ Same `{ id: { m: [[...]] } }` outer shape as normal mode, but example records ha
           "song":               "3006211",
           "song_name":          "47 (Remix)",
           "spanish":            "Soy aguardiente...",
+          "surface":            "aguardiente'", // ? exact non-canonical occurrence spelling
           "english":            "I'm aguardiente...",
           "translation_source": "gemini",
           "assignment_method":  "spanishdict-keyword",
@@ -604,7 +605,7 @@ Same `{ id: { m: [[...]] } }` outer shape as normal mode, but example records ha
   }
 }
 ```
-**Front-end gotcha:** normal-mode example records use `target`/`english`, artist-mode use `spanish`/`english`. Same `english` key in both; the Spanish side differs.
+**Front-end gotcha:** normal-mode example records use `target`/`english`, artist-mode use `spanish`/`english`. Same `english` key in both; the Spanish side differs. Artist `surface` is emitted only when the exact lyric occurrence differs from the restored canonical word used by POS/WSD; highlighting must prefer it and must not infer the restoration from the sentence.
 
 ## `Artists/vocabulary_master.json`
 Shared across all artists. Id-keyed.

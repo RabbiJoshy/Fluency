@@ -61,7 +61,7 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 12
+STEP_VERSION = 13
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
@@ -77,6 +77,7 @@ STEP_VERSION_NOTES = {
     10: "+ resolve assigned and routed examples by persisted segment ID before legacy list index",
     11: "+ persist card identity independently from mutable surface/lemma analysis",
     12: "+ persist sense identity independently from mutable menu source, gloss, POS, and context labels",
+    13: "+ carry exact occurrence surface into compact examples for evidence-backed highlighting",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -111,6 +112,20 @@ def _copy_example_identity_evidence(raw_example, output_example):
             evidence_ids.append(fallback)
     if evidence_ids:
         output_example["_identity_evidence"] = evidence_ids
+
+
+def _copy_example_surface(raw_example, output_example, canonical_word=""):
+    """Carry a non-canonical lyric spelling into the app-facing example.
+
+    POS and sense assignment operate on ``canonical_word``; ``surface`` is the
+    immutable occurrence spelling the learner actually sees. Keeping the two
+    fields separate lets the frontend highlight an elision without treating it
+    as a second card or reconstructing it heuristically from the sentence.
+    """
+    surface = str(raw_example.get("surface") or "").strip()
+    canonical = str(canonical_word or "").strip()
+    if surface and (not canonical or surface.casefold() != canonical.casefold()):
+        output_example["surface"] = surface
 
 
 def _copy_timestamp(timestamp_entry, output_example):
@@ -1012,6 +1027,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     "english": trans_info.get("english", ""),
                 }
                 _copy_example_priority(ex, ex_dict)
+                _copy_example_surface(ex, ex_dict, clitic_word)
                 ts_entry = ts_map.get(ex.get("title", ""), {}).get(spanish)
                 _copy_timestamp(ts_entry, ex_dict)
                 resolved_examples.append(ex_dict)
@@ -1415,6 +1431,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             ex_dict["translation_quality"] = score_entry["score"]
                         _copy_example_priority(raw_ex, ex_dict)
                         _copy_example_identity_evidence(raw_ex, ex_dict)
+                        _copy_example_surface(raw_ex, ex_dict, word)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
                         meaning_examples.append(ex_dict)
@@ -1502,6 +1519,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         }
                         _copy_example_priority(raw_ex, ex_dict)
                         _copy_example_identity_evidence(raw_ex, ex_dict)
+                        _copy_example_surface(raw_ex, ex_dict, word)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
                         ex_pos = word_pos_data.get(str(ex_idx))
@@ -1583,6 +1601,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     }
                     _copy_example_priority(raw_ex, ex_dict)
                     _copy_example_identity_evidence(raw_ex, ex_dict)
+                    _copy_example_surface(raw_ex, ex_dict, word)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                     _copy_timestamp(ts_entry, ex_dict)
                     all_examples.append(ex_dict)
@@ -1725,6 +1744,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             prov_candidates.append((ex_run_ts or "", ex_prompt_id, ex_run_ts))
                         _copy_example_priority(raw_ex, ex_dict)
                         _copy_example_identity_evidence(raw_ex, ex_dict)
+                        _copy_example_surface(raw_ex, ex_dict, word)
                         ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                         _copy_timestamp(ts_entry, ex_dict)
                         meaning_examples.append(ex_dict)
@@ -1773,6 +1793,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     }
                     _copy_example_priority(raw_ex, ex_dict)
                     _copy_example_identity_evidence(raw_ex, ex_dict)
+                    _copy_example_surface(raw_ex, ex_dict, word)
                     ts_entry = ts_map.get(raw_ex.get("title", ""), {}).get(spanish)
                     _copy_timestamp(ts_entry, ex_dict)
                     fallback_examples.append(ex_dict)
@@ -2850,8 +2871,7 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
                     "english": english,
                     "source_mode": "lyrics",
                 }
-                if raw_example.get("surface") and raw_example.get("surface") != entry.get("word"):
-                    formatted["pooledFrom"] = raw_example["surface"]
+                _copy_example_surface(raw_example, formatted, entry.get("word", ""))
                 if translation_source:
                     formatted["translation_source"] = translation_source
                 _copy_example_priority(raw_example, formatted)

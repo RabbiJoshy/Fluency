@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260808d';
+import './state.js?v=20260809a';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -2432,108 +2432,150 @@ function updateTotalStatsButtonVisibility() {
 }
 
 function updateStatsModal() {
-    const previouslyKnown = stats.previouslyKnown || 0;
-
     const labelEl = document.getElementById('statsSetLabel');
     if (labelEl) labelEl.textContent = stats.setLabel ? `· ${stats.setLabel}` : '';
-
-    const prevRow = document.getElementById('previouslyKnownRow');
-    if (prevRow) {
-        if (previouslyKnown > 0) {
-            prevRow.style.display = '';
-            document.getElementById('previouslyKnownCount').textContent = previouslyKnown;
-        } else {
-            prevRow.style.display = 'none';
-        }
-    }
-
-    // Unique-card answer counts. correct/incorrect = unique cards that got an
-    // answer this session. skipped = cards the user navigated AWAY from without
-    // answering (visited but no answer, and not the card currently on screen).
-    // Cards never visited at all aren't counted as skipped — they're just
-    // remaining work.
-    let correctCards = 0;
-    let incorrectCards = 0;
-    const answered = new Set();
-    Object.entries(stats.cardStats || {}).forEach(([idx, cs]) => {
-        if (cs.correct > 0) {
-            correctCards++;
-            answered.add(Number(idx));
-        } else if (cs.incorrect > 0) {
-            incorrectCards++;
-            answered.add(Number(idx));
-        }
-    });
-    let skipped = 0;
-    if (stats.studied && stats.studied.forEach) {
-        stats.studied.forEach(idx => {
-            if (idx !== currentIndex && !answered.has(idx)) skipped++;
-        });
-    }
-
-    document.getElementById('correctCount').textContent = correctCards;
-    document.getElementById('incorrectCount').textContent = incorrectCards;
-    document.getElementById('skippedCount').textContent = skipped;
-
-    const answeredCards = correctCards + incorrectCards;
-    const accuracy = answeredCards > 0 ? Math.round((correctCards / answeredCards) * 100) : 0;
-    document.getElementById('accuracyPercent').textContent = answeredCards > 0 ? accuracy + '%' : '-';
-
-    renderStatsWordList(answered);
+    renderActiveSetProgress();
 }
 
-function renderStatsWordList(answeredIndexSet) {
-    const body = document.getElementById('wordListBody');
-    const details = document.getElementById('wordListDetails');
-    if (!body || !details) return;
+function formatStudyProgressTimestamp(value) {
+    if (!value) return '—';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '—';
+    return new Intl.DateTimeFormat('en-GB', {
+        day: '2-digit', month: '2-digit', year: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(date).replace(',', '');
+}
+
+function getActiveSetCardResult(inDeckIdx, session) {
+    const correct = Number(session?.correct || 0);
+    const incorrect = Number(session?.incorrect || 0);
+    const attempts = Array.isArray(session?.attempts) ? session.attempts : [];
+    if (correct > 0 && incorrect > 0) {
+        const latest = attempts.at(-1)?.result;
+        return { key: 'mixed', label: latest === 'incorrect' ? 'Mixed · latest incorrect' : 'Mixed · latest correct' };
+    }
+    if (correct > 0) return { key: 'correct', label: 'Correct' };
+    if (incorrect > 0) return { key: 'incorrect', label: 'Incorrect' };
+    if (inDeckIdx === -1) return { key: 'known', label: 'Already seen' };
+    if (inDeckIdx === currentIndex) return { key: 'current', label: 'Current' };
+    if (stats.studied?.has?.(inDeckIdx)) return { key: 'skipped', label: 'Skipped' };
+    return { key: 'unanswered', label: 'Not answered' };
+}
+
+function _studyProgressEl(tag, className, text) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined) el.textContent = text;
+    return el;
+}
+
+function _appendStudyProgressDatum(host, label, value, valueClass = '') {
+    const row = _studyProgressEl('div', 'active-set-history-row');
+    row.append(
+        _studyProgressEl('span', 'active-set-history-label', label),
+        _studyProgressEl('span', `active-set-history-value ${valueClass}`.trim(), value)
+    );
+    host.appendChild(row);
+}
+
+function _appendSavedProgressRecord(host, label, record) {
+    const card = _studyProgressEl('div', 'active-set-saved-record');
+    card.appendChild(_studyProgressEl('strong', 'active-set-saved-record-title', label));
+    _appendStudyProgressDatum(card, 'Answers', `${Number(record.correct || 0)} correct · ${Number(record.wrong || 0)} wrong`);
+    _appendStudyProgressDatum(card, 'Latest correct', formatStudyProgressTimestamp(record.lastCorrect), 'active-set-history-time');
+    _appendStudyProgressDatum(card, 'Latest incorrect', formatStudyProgressTimestamp(record.lastWrong), 'active-set-history-time');
+    _appendStudyProgressDatum(card, 'Latest seen', formatStudyProgressTimestamp(record.lastSeen), 'active-set-history-time');
+    _appendStudyProgressDatum(card, 'SRS stage', String(Number(record.srsStage || 0)));
+    host.appendChild(card);
+}
+
+function renderActiveSetProgress() {
+    const host = document.getElementById('activeSetProgressList');
+    if (!host) return;
+    host.innerHTML = '';
 
     const words = stats.allWords || [];
     if (words.length === 0) {
-        details.style.display = 'none';
+        host.appendChild(_studyProgressEl('p', 'active-set-progress-empty', 'No cards are loaded in this set.'));
         return;
     }
-    details.style.display = '';
 
-    // Active deck ids → flashcards index, so we can flag which item is the
-    // current card and which session-answered cards correspond.
+    // A picked Learn New set includes both its active cards and cards removed
+    // because they are already complete. Keep both visible here so this panel
+    // can answer “have I done this card before?” without hiding the evidence.
     const activeIdToIndex = new Map();
     flashcards.forEach((c, i) => {
         if (c && c.id) activeIdToIndex.set(c.id, i);
         if (c && c.fullId) activeIdToIndex.set(c.fullId, i);
     });
 
-    body.innerHTML = '';
-    for (const w of words) {
-        const li = document.createElement('li');
-        li.style.padding = '3px 0';
+    words.forEach((w, position) => {
+        const fullId = getWordId(w);
         const inDeckIdx = activeIdToIndex.has(w.id) ? activeIdToIndex.get(w.id) : -1;
+        const session = inDeckIdx >= 0 ? (stats.cardStats || {})[inDeckIdx] : null;
+        const result = getActiveSetCardResult(inDeckIdx, session);
+        const details = _studyProgressEl('details', `active-set-card-progress is-${result.key}`);
+        details.dataset.cardId = fullId;
+        if (inDeckIdx === currentIndex) details.open = true;
 
-        let marker = '';
-        let color = '';
-        if (inDeckIdx === -1) {
-            // Not in active deck → previously mastered (filtered out).
-            marker = '✓';
-            color = 'var(--text-muted)';
-        } else if (inDeckIdx === currentIndex) {
-            marker = '▶';
-            color = 'var(--accent-primary)';
+        const summary = _studyProgressEl('summary', 'active-set-card-summary');
+        summary.appendChild(_studyProgressEl('span', 'active-set-card-number', String(position + 1)));
+        const identity = _studyProgressEl('span', 'active-set-card-identity');
+        identity.appendChild(_studyProgressEl('strong', 'active-set-card-word', w.word || '(untitled card)'));
+        if (w.translation) identity.appendChild(_studyProgressEl('small', 'active-set-card-translation', w.translation));
+        summary.append(identity, _studyProgressEl('span', `active-set-card-result is-${result.key}`, result.label));
+        details.appendChild(summary);
+
+        const body = _studyProgressEl('div', 'active-set-card-history');
+        const sessionSection = _studyProgressEl('section', 'active-set-history-section');
+        sessionSection.appendChild(_studyProgressEl('h4', '', 'This open set'));
+        const attempts = Array.isArray(session?.attempts) ? session.attempts : [];
+        if (attempts.length) {
+            attempts.forEach((attempt, index) => {
+                const label = attempt.result === 'correct' ? 'Correct' : 'Incorrect';
+                _appendStudyProgressDatum(sessionSection, `Attempt ${index + 1} · ${label}`, formatStudyProgressTimestamp(attempt.at), 'active-set-history-time');
+            });
         } else {
-            const cs = (stats.cardStats || {})[inDeckIdx];
-            if (cs && cs.correct > 0) { marker = '✓'; color = 'var(--accent-green)'; }
-            else if (cs && cs.incorrect > 0) { marker = '✗'; color = 'var(--error)'; }
-            else if (answeredIndexSet && answeredIndexSet.has && answeredIndexSet.has(inDeckIdx)) {
-                marker = '·'; color = '';
-            } else if (stats.studied && stats.studied.has && stats.studied.has(inDeckIdx)) {
-                marker = '⊘'; color = 'var(--text-muted)';
-            } else {
-                marker = '·'; color = '';
-            }
+            sessionSection.appendChild(_studyProgressEl('p', 'active-set-history-empty', 'No answer recorded in this open set.'));
         }
-        if (color) li.style.color = color;
-        const translation = w.translation ? ` — ${w.translation}` : '';
-        li.textContent = `${marker} ${w.word}${translation}`;
-        body.appendChild(li);
-    }
+        body.appendChild(sessionSection);
+
+        const modeIds = [{ id: fullId, label: activeArtist ? 'Lyrics card' : 'Speech card' }];
+        const crossModeId = getCrossModeId(fullId);
+        if (crossModeId) modeIds.push({ id: crossModeId, label: activeArtist ? 'Speech card' : 'Lyrics card' });
+        const savedRecords = modeIds.filter(({ id }) => progressData?.[id]);
+        const savedSection = _studyProgressEl('section', 'active-set-history-section');
+        savedSection.appendChild(_studyProgressEl('h4', '', 'Saved card progress'));
+        if (savedRecords.length) {
+            savedRecords.forEach(({ id, label }) => _appendSavedProgressRecord(savedSection, label, progressData[id]));
+        } else {
+            savedSection.appendChild(_studyProgressEl('p', 'active-set-history-empty', 'No saved card history yet.'));
+        }
+        body.appendChild(savedSection);
+
+        const parentIds = new Set(modeIds.map(({ id }) => id));
+        const savedItems = Object.values(itemProgressData || {})
+            .filter(item => parentIds.has(item?.parentWordId))
+            .sort((a, b) => String(a.label || '').localeCompare(String(b.label || '')));
+        if (savedItems.length) {
+            const itemSection = _studyProgressEl('section', 'active-set-history-section');
+            itemSection.appendChild(_studyProgressEl('h4', '', 'Saved sense and expression progress'));
+            savedItems.forEach(item => {
+                const type = item.itemType === 'mwe' || item.itemType === 'expression' ? 'Expression' : 'Sense';
+                _appendSavedProgressRecord(itemSection, `${type} · ${item.label || 'Unnamed'}`, item);
+            });
+            body.appendChild(itemSection);
+        }
+
+        body.appendChild(_studyProgressEl(
+            'p',
+            'active-set-history-retention',
+            'Progress keeps cumulative totals and the latest correct, incorrect, and seen times—not a timestamp for every older answer.'
+        ));
+        details.appendChild(body);
+        host.appendChild(details);
+    });
 }
 
 

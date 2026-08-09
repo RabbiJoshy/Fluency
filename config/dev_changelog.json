@@ -2,6 +2,18 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-09",
+      "commit": "pending",
+      "summary": "Card history, instant flags, and exact lyric-form highlighting",
+      "details": [
+        "Study progress now lists every card in the active set; each row expands to current-set attempts plus the cumulative totals and latest timestamps retained by the Progress sheet",
+        "Ctrl+S opens Study progress, Ctrl+P opens Study preferences, Ctrl+F sends a whole-card flag, and Ctrl+Shift+F opens the detailed flag menu",
+        "Every flag closes its menu at the send gesture and confirms the saved or queued flag type in a small toast",
+        "Artist examples now carry their exact occurrence spelling into the compact deck, so elisions such as cometamo' highlight in the lyric while canonical POS and sense analysis stay clean; clitic/conjugation form lists no longer pile onto the headword",
+        "Cache v216→v217 / assets 20260808d→20260809a"
+      ]
+    },
+    {
       "date": "2026-08-08",
       "commit": "cfcf5b88",
       "summary": "Learn New now opens only genuinely unseen cards",

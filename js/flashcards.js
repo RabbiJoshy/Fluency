@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260808d';
-import './speech.js?v=20260808d';
+import './state.js?v=20260809a';
+import './speech.js?v=20260809a';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260808d';
+} from './example-personalisation.js?v=20260809a';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2013,6 +2013,26 @@ function setupKeyboardShortcuts() {
         const _flagMenuEl = document.getElementById('flagMenu');
         if (_flagMenuEl && !_flagMenuEl.hidden) return;
 
+        const commandModifier = e.ctrlKey || e.metaKey;
+        const commandKey = String(e.key || '').toLowerCase();
+        const canFlag = Boolean(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
+        if (commandModifier && !e.altKey && commandKey === 's' && !e.shiftKey) {
+            e.preventDefault();
+            showStatsModal();
+            return;
+        }
+        if (commandModifier && !e.altKey && commandKey === 'p' && !e.shiftKey) {
+            e.preventDefault();
+            showSettingsModalWithTab('study', { singleTab: true });
+            return;
+        }
+        if (commandModifier && !e.altKey && commandKey === 'f' && canFlag) {
+            e.preventDefault();
+            if (e.shiftKey) window.showFlagMenu?.();
+            else window.sendWholeCardFlag?.();
+            return;
+        }
+
         // Left arrow = previous card
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
@@ -2068,8 +2088,8 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             handleSwipeAction('incorrect');
         }
-        // F = flag erroneous data (debugging — desktop only, no on-screen control)
-        else if (e.key === 'f' || e.key === 'F') {
+        // Legacy single-key shortcut retained for the owner audit workflow.
+        else if ((e.key === 'f' || e.key === 'F') && canFlag) {
             e.preventDefault();
             handleFlagAction();
         }
@@ -2230,8 +2250,15 @@ function recordCardResult(result) {
     // a phrase isn't a deck word, so it shouldn't inflate "X/Y correct".
     if (cardNavStack.length === 0 && !flashcards[currentIndex]?.isChainChild) {
         if (!stats.cardStats[currentIndex]) {
-            stats.cardStats[currentIndex] = { correct: 0, incorrect: 0 };
+            stats.cardStats[currentIndex] = { correct: 0, incorrect: 0, attempts: [] };
         }
+        if (!Array.isArray(stats.cardStats[currentIndex].attempts)) {
+            stats.cardStats[currentIndex].attempts = [];
+        }
+        stats.cardStats[currentIndex].attempts.push({
+            result: isCorrect ? 'correct' : 'incorrect',
+            at: new Date().toISOString()
+        });
         if (isCorrect) {
             stats.correct++;
             stats.cardStats[currentIndex].correct++;
@@ -2355,13 +2382,11 @@ const MIN_VARIANT_COUNT = 2;
 function getVariantForms(card) {
     if (!card.variants) return null;
 
-    // Clitic/conjugation layers sometimes provide a plain array rather than
-    // the counted object used by corpus variants. Preserve its source order.
+    // Plain arrays are clitic/conjugation families, not alternative spellings
+    // the learner needs piled onto the card headword. Their exact form is
+    // already taught in the expression chain and highlighted in its evidence.
     if (Array.isArray(card.variants)) {
-        const forms = [...new Set(card.variants
-            .map(form => String(form || '').trim())
-            .filter(Boolean))];
-        return forms.length > 0 ? forms : null;
+        return null;
     }
 
     const entries = Object.entries(card.variants);
@@ -2380,6 +2405,40 @@ function foldSurfaceForm(value) {
         .replace(/[\u0300-\u036f]/g, '')
         .toLocaleLowerCase('es')
         .trim();
+}
+
+function exampleOccurrenceSurfaceRegex(form, flags = 'giu') {
+    const normalized = String(form || '').trim();
+    if (!normalized) return null;
+    const body = normalized
+        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        .replace(/[’']/g, "[’']")
+        .replace(/\s+/g, '\\s+');
+    return _cachedRegex(`(?<![\\p{L}\\p{N}])(${body})(?![\\p{L}\\p{N}])`, flags);
+}
+
+function getExampleOccurrenceSurface(card, example, sentence) {
+    // `surface` is the immutable lyric spelling attached to this occurrence;
+    // `pooledFrom` is the canonical sibling form that contributed the example
+    // to a merged lemma. Prefer what was actually sung, then preserve legacy
+    // decks through their pooled/card fallbacks.
+    const candidates = [
+        example?.surface,
+        example?.matched_surface,
+        example?.pooledFrom,
+        card?.representativeSurface,
+        card?.targetWord
+    ];
+    const seen = new Set();
+    for (const candidate of candidates) {
+        const form = String(candidate || '').trim();
+        const key = foldSurfaceForm(form);
+        if (!form || seen.has(key)) continue;
+        seen.add(key);
+        const regex = exampleOccurrenceSurfaceRegex(form, 'iu');
+        if (regex?.test(String(sentence || ''))) return form;
+    }
+    return '';
 }
 
 // 18px-wide slot on the left of every sense row. Selected rows get a teal
@@ -4487,21 +4546,23 @@ function updateCard({ announceHeadword = false } = {}) {
                         regex, '<span class="example-word-highlight">$1</span>');
                 }
             } else {
-                // In Merge Lemmas mode a pooled example may come from a
-                // sibling form (quieres on the quiero/querer card). Highlight
-                // the form that is actually evidenced by this sentence rather
-                // than searching only for the host card's surface word.
-                const pooledForm = currentExample?.pooledFrom
-                    && (useLemmaMode || currentExample?.source_mode === 'speech')
-                    ? currentExample.pooledFrom
-                    : '';
-                const word = pooledForm || card.targetWord;
-                const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const regex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${escaped})(?![\\p{L}\\p{N}])`, 'giu');
-                displayTargetSentence = displayTargetSentence.replace(regex,
-                    pooledForm
-                        ? '<span class="example-word-highlight example-pooled-form" title="Inflected form in this merged-lemma example">$1</span>'
-                        : '<span class="example-word-highlight">$1</span>');
+                // Highlight the exact occurrence spelling supplied by the
+                // evidence layer. POS and sense work used its restored
+                // canonical form, but the sentence still contains what was
+                // sung (cometamo’, pa’, vo’a, etc.).
+                const occurrenceSurface = getExampleOccurrenceSurface(
+                    card, currentExample, displayTargetSentence);
+                const regex = exampleOccurrenceSurfaceRegex(occurrenceSurface);
+                if (regex) {
+                    const nonCanonical = foldSurfaceForm(occurrenceSurface)
+                        !== foldSurfaceForm(card.targetWord);
+                    displayTargetSentence = displayTargetSentence.replace(
+                        regex,
+                        nonCanonical
+                            ? '<span class="example-word-highlight example-pooled-form" title="Recorded form in this example">$1</span>'
+                            : '<span class="example-word-highlight">$1</span>'
+                    );
+                }
             }
 
             // SpanishDict context can specify a companion word or phrase,
@@ -5972,7 +6033,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260808d';
+const ASSET_VERSION = '20260809a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
@@ -6004,7 +6065,7 @@ const stubFor = (name, loader) => {
     window[name] = fn;
 };
 
-['showFlagMenu', 'hideFlagMenu',
+['showFlagMenu', 'hideFlagMenu', 'sendWholeCardFlag',
  'showPOSInfo',
  'showLyricBreakdown', 'hideLyricBreakdown',
  'showWordPopup', 'hideWordPopup',

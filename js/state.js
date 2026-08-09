@@ -24,9 +24,8 @@ export const state = {
         total: 0,
         cardStats: {},
         // Set sizing: how many words the user picked vs. how many are in the
-        // active deck after filtering out previously-seen words. Lets the
-        // stats modal show "3 of 4 correct (21 already seen)" instead
-        // of an isolated 3/4 that hides the larger set the user chose.
+        // active deck after filtering out previously-seen words. The active-set
+        // history uses this to retain previously completed cards in its audit.
         setSize: 0,
         previouslyKnown: 0,
         // Display label of the picked range, e.g. "475-499". Shown as the
@@ -42,7 +41,7 @@ export const state = {
         studyMode: 'new',
         levelNumber: null,
         // Snapshot of every word in the picked range (active + previously
-        // mastered), so the stats modal can show the full list. Each entry:
+        // mastered), so the active-set history can show the full list. Each entry:
         // { id, word, translation, displayRank }.
         allWords: []
     },

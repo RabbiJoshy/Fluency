@@ -1373,9 +1373,6 @@ function showFlagMenu() {
 }
 
 function hideFlagMenu() {
-    // Drop any pending auto-close so it can't fire onto a sheet the learner has
-    // already reopened.
-    if (_simpleFlagCloseTimer) { clearTimeout(_simpleFlagCloseTimer); _simpleFlagCloseTimer = null; }
     const pop = document.getElementById('flagMenu');
     if (!pop) return;
     pop.hidden = true;
@@ -1548,11 +1545,11 @@ function flagMenuConfirm() {
 // ---------------------------------------------------------------------------
 // Simplified audit flow. The previous target/category matrix remains above for
 // payload compatibility, but this is the only UI exposed to the learner.
-// Every action has one explicit send gesture; successful non-card flags keep
-// the sheet open, while the whole-card action confirms and then closes.
+// Every action has one explicit send gesture, closes the sheet immediately,
+// and confirms the durable save/queue result in a global toast.
 // ---------------------------------------------------------------------------
 let _simpleFlagBusy = false;
-let _simpleFlagCloseTimer = null;
+let _flagSentToastTimer = null;
 
 function _simpleFlagStatus(message, isError = false) {
     const status = document.getElementById('flagMenuStatus');
@@ -1560,6 +1557,27 @@ function _simpleFlagStatus(message, isError = false) {
     status.hidden = false;
     status.textContent = message;
     status.classList.toggle('is-error', isError);
+}
+
+function showFlagSentToast(typeLabel, isError = false) {
+    const toast = document.getElementById('flagSentToast');
+    const title = document.getElementById('flagSentToastTitle');
+    const type = document.getElementById('flagSentToastType');
+    const icon = toast?.querySelector('.flag-sent-toast-icon');
+    if (!toast || !title || !type) return;
+    if (_flagSentToastTimer) clearTimeout(_flagSentToastTimer);
+    title.textContent = isError ? 'Flag not sent' : 'Flag sent';
+    type.textContent = typeLabel;
+    if (icon) icon.textContent = isError ? '×' : '✓';
+    toast.classList.toggle('is-error', isError);
+    toast.hidden = false;
+    // Restart the entrance transition even when two flags are sent quickly.
+    toast.classList.remove('is-visible');
+    requestAnimationFrame(() => toast.classList.add('is-visible'));
+    _flagSentToastTimer = setTimeout(() => {
+        toast.classList.remove('is-visible');
+        setTimeout(() => { toast.hidden = true; }, 220);
+    }, 1800);
 }
 
 function _simpleFlagExample(meaning, index) {
@@ -1676,37 +1694,30 @@ async function _sendSimpleFlag(target, options = {}) {
     if (_simpleFlagBusy) return false;
     const card = _flagMenuCard();
     if (!card || typeof flagWord !== 'function') return false;
+    const labels = {
+        note: 'Note', propernoun: 'Proper noun', english: 'English', cognate: 'Cognate',
+        lemma: 'Wrong lemma', elision: 'Wrong elision correction',
+        'card-pos': 'Wrong card POS', 'sense-pos': 'Wrong sense POS',
+        pairing: 'Sense–meaning pairing', card: 'Whole card'
+    };
+    const typeLabel = labels[target] || 'Card issue';
+    const fieldPath = _simpleFlagPath(target, options.meaningIndex || 0);
+    const report = _simpleFlagReport(target, options);
+    const fields = _simpleFlagFields(target, options);
     _simpleFlagBusy = true;
     document.getElementById('flagMenuContent')?.classList.add('is-sending');
+    hideFlagMenu();
     try {
-        const ok = await flagWord(
-            card,
-            _simpleFlagPath(target, options.meaningIndex || 0),
-            _simpleFlagReport(target, options),
-            _simpleFlagFields(target, options)
-        );
+        const ok = await flagWord(card, fieldPath, report, fields);
         if (!ok) {
-            _simpleFlagStatus('This flag could not be saved. Please sign in and try again.', true);
+            showFlagSentToast(typeLabel, true);
             return false;
         }
-        const labels = {
-            note: 'Note sent.', propernoun: 'Proper noun flag sent.', english: 'English flag sent.',
-            cognate: 'Cognate flag sent.', lemma: 'Wrong lemma flag sent.',
-            elision: 'Wrong elision correction flag sent.',
-            'card-pos': 'Wrong card POS flag sent.', 'sense-pos': 'Wrong sense POS flag sent.',
-            pairing: 'Sense–meaning pairing flag sent.', card: 'Whole-card flag sent.'
-        };
-        _simpleFlagStatus(labels[target] || 'Flag sent.');
-        // Every successful flag ends the interaction — the sheet closes itself
-        // once the confirmation has been on screen long enough to read.
-        if (_simpleFlagCloseTimer) clearTimeout(_simpleFlagCloseTimer);
-        _simpleFlagCloseTimer = setTimeout(hideFlagMenu, 900);
+        showFlagSentToast(typeLabel);
         return true;
     } catch (error) {
         console.error('Could not save audit flag', error);
-        // Surface the real reason: a silent failure here is indistinguishable
-        // from the sheet being broken.
-        _simpleFlagStatus(`Could not save this flag — ${error?.message || error}`, true);
+        showFlagSentToast(typeLabel, true);
         return false;
     } finally {
         _simpleFlagBusy = false;
@@ -1738,7 +1749,6 @@ function showSimpleFlagMenu() {
     const pop = document.getElementById('flagMenu');
     const card = _flagMenuCard();
     if (!pop || !card) return;
-    if (_simpleFlagCloseTimer) clearTimeout(_simpleFlagCloseTimer);
     document.getElementById('flagMenuTitle').textContent = `Flag: ${card.targetWord || card.word || 'card'}`;
     document.getElementById('flagMenuMainView').hidden = false;
     document.getElementById('flagMenuSensesView').hidden = true;
@@ -1788,8 +1798,13 @@ function showSimpleFlagMenu() {
     document.getElementById('flagWholeCard')?.addEventListener('click', () => _sendSimpleFlag('card'));
 })();
 
+function sendWholeCardFlag() {
+    return _sendSimpleFlag('card');
+}
+
 window.showFlagMenu = showSimpleFlagMenu;
 window.hideFlagMenu = hideFlagMenu;
+window.sendWholeCardFlag = sendWholeCardFlag;
 window.flagMenuNav = flagMenuNav;
 window.flagMenuSelect = flagMenuSelect;
 window.flagMenuConfirm = flagMenuConfirm;

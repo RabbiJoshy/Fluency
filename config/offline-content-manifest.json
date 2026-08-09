@@ -96,9 +96,9 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "bad-bunny",
-      "contentVersion": "2026-08-02",
-      "storageBytes": 40667910,
-      "transferBytes": 5989778,
+      "contentVersion": "2026-08-09",
+      "storageBytes": 39546455,
+      "transferBytes": 5786533,
       "dependencies": [
         "shared-spanish-artist"
       ],
@@ -115,8 +115,8 @@
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
-          "bytes": 20000351,
-          "sha256": "b90645cfc58f890bc4c0ce84b444011bf5836021dce795acee0924b96a5efb3f"
+          "bytes": 18878896,
+          "sha256": "a9a50a987c7b552cbaebfef0a13fc091e024c6a20e1000e1fe21a5ebca5320b6"
         }
       ]
     },

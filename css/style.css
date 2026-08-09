@@ -774,6 +774,21 @@
             padding: 8px 26px;
         }
 
+        .kb-command-section {
+            width: 100%;
+            gap: 6px;
+        }
+        .kb-command-section .kb-row {
+            width: 100%;
+            justify-content: space-between;
+        }
+        .kb-key.combo {
+            min-width: 0;
+            padding: 5px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+        }
+
         .kb-plus {
             color: rgba(255, 255, 255, 0.3);
             font-size: 9px;
@@ -1507,6 +1522,59 @@
             background: color-mix(in srgb, var(--error) 10%, var(--bg-tertiary));
             color: color-mix(in srgb, var(--error) 74%, white);
         }
+        .flag-sent-toast {
+            position: fixed;
+            top: max(18px, env(safe-area-inset-top));
+            left: 50%;
+            z-index: 240;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            min-width: min(82vw, 250px);
+            padding: 12px 15px;
+            border: 1px solid color-mix(in srgb, var(--success) 45%, var(--border-color));
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--bg-card) 92%, var(--success) 8%);
+            color: var(--text-primary);
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.32);
+            opacity: 0;
+            transform: translate(-50%, -12px) scale(0.97);
+            transition: opacity 160ms ease, transform 180ms ease;
+            pointer-events: none;
+        }
+        .flag-sent-toast[hidden] { display: none; }
+        .flag-sent-toast.is-visible {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+        }
+        .flag-sent-toast.is-error {
+            border-color: color-mix(in srgb, var(--error) 50%, var(--border-color));
+            background: color-mix(in srgb, var(--bg-card) 92%, var(--error) 8%);
+        }
+        .flag-sent-toast-icon {
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--success) 18%, transparent);
+            color: var(--success);
+            font-weight: 800;
+        }
+        .flag-sent-toast.is-error .flag-sent-toast-icon {
+            background: color-mix(in srgb, var(--error) 18%, transparent);
+            color: var(--error);
+        }
+        .flag-sent-toast-copy {
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            gap: 2px;
+            font: 12px/1.25 var(--font-emphasis);
+        }
+        .flag-sent-toast-copy strong { font-size: 13px; }
+        .flag-sent-toast-copy > span { color: var(--text-muted); }
         .flag-simple-note-section {
             margin-top: 0 !important;
         }
@@ -9331,6 +9399,171 @@
             margin: 2px 0 0;
             font-family: var(--font-emphasis);
             letter-spacing: -0.02em;
+        }
+        #statsModal .progress-modal-content {
+            width: min(94vw, 680px);
+            max-width: 680px;
+        }
+        .active-set-progress-body {
+            margin-top: 6px;
+        }
+        .active-set-progress-intro {
+            margin: 0 0 14px;
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        .active-set-progress-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .active-set-progress-empty,
+        .active-set-history-empty {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+        .active-set-card-progress {
+            overflow: clip;
+            border: 1px solid var(--border-color);
+            border-radius: 13px;
+            background: color-mix(in srgb, var(--bg-tertiary) 72%, transparent);
+        }
+        .active-set-card-progress[open] {
+            border-color: color-mix(in srgb, var(--accent-primary) 32%, var(--border-color));
+            background: color-mix(in srgb, var(--bg-tertiary) 88%, transparent);
+        }
+        .active-set-card-summary {
+            display: grid;
+            grid-template-columns: 30px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 12px;
+            cursor: pointer;
+            list-style: none;
+        }
+        .active-set-card-summary::-webkit-details-marker { display: none; }
+        .active-set-card-number {
+            display: grid;
+            place-items: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--text-muted) 11%, transparent);
+            color: var(--text-muted);
+            font: 700 10px/1 var(--font-data);
+        }
+        .active-set-card-identity {
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .active-set-card-word {
+            overflow: hidden;
+            color: var(--text-primary);
+            font: 700 14px/1.2 var(--font-emphasis);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .active-set-card-translation {
+            overflow: hidden;
+            color: var(--text-muted);
+            font-size: 11px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .active-set-card-result {
+            padding: 5px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            color: var(--text-muted);
+            font: 700 10px/1.2 var(--font-data);
+            white-space: nowrap;
+        }
+        .active-set-card-result.is-correct {
+            border-color: color-mix(in srgb, var(--success) 38%, var(--border-color));
+            background: color-mix(in srgb, var(--success) 10%, transparent);
+            color: var(--success);
+        }
+        .active-set-card-result.is-incorrect {
+            border-color: color-mix(in srgb, var(--error) 42%, var(--border-color));
+            background: color-mix(in srgb, var(--error) 9%, transparent);
+            color: var(--error);
+        }
+        .active-set-card-result.is-mixed {
+            border-color: color-mix(in srgb, #f0b35a 45%, var(--border-color));
+            background: color-mix(in srgb, #f0b35a 10%, transparent);
+            color: #f0b35a;
+        }
+        .active-set-card-result.is-current {
+            border-color: color-mix(in srgb, var(--accent-primary) 45%, var(--border-color));
+            background: color-mix(in srgb, var(--accent-primary) 10%, transparent);
+            color: var(--accent-primary);
+        }
+        .active-set-card-history {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 0 12px 13px 52px;
+        }
+        .active-set-history-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        .active-set-history-section h4 {
+            margin: 0 0 2px;
+            color: var(--text-primary);
+            font: 700 11px/1.25 var(--font-emphasis);
+            text-transform: none;
+        }
+        .active-set-history-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.35;
+        }
+        .active-set-history-value {
+            color: var(--text-primary);
+            text-align: right;
+        }
+        .active-set-history-time { font-family: var(--font-data); }
+        .active-set-saved-record {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 9px 10px;
+            border-radius: 10px;
+            background: color-mix(in srgb, var(--bg-card) 60%, transparent);
+        }
+        .active-set-saved-record-title {
+            color: var(--accent-primary);
+            font-size: 11px;
+        }
+        .active-set-history-retention {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 10px;
+            line-height: 1.45;
+        }
+        @media (max-width: 520px) {
+            .active-set-card-summary {
+                grid-template-columns: 26px minmax(0, 1fr);
+            }
+            .active-set-card-result {
+                grid-column: 2;
+                justify-self: start;
+            }
+            .active-set-card-history { padding-left: 48px; }
+            .active-set-history-row { flex-direction: column; gap: 2px; }
+            .active-set-history-value { text-align: left; }
         }
         .progress-modal-explainer {
             margin: 0 0 16px;
