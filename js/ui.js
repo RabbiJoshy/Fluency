@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260808c';
+import './state.js?v=20260808d';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -1704,6 +1704,55 @@ function applyLanguageColorTheme() {
 
 const STABLE_SET_SLOT_COUNT = 20;
 
+function getSetupLearningState(item, { seenLemmas = new Set(), estimatedIds = null, estimate = 0 } = {}) {
+    if (!currentUser || currentUser.isGuest || !progressData) return false;
+
+    const wordId = getWordId(item);
+    const crossModeId = getCrossModeId(wordId);
+    const relatedIds = crossModeId ? [wordId, crossModeId] : [wordId];
+    const recordedStates = relatedIds.map(id => getWordProgressState(id));
+    const recorded = recordedStates.find(state => state?.needsReview)
+        || recordedStates.find(state => state?.seen)
+        || recordedStates[0];
+    const reviewInfo = relatedIds
+        .map(id => getWordKnowledgeReviewInfo(id))
+        .find(info => info?.needsReview);
+
+    // A real answer is more specific than the estimated starting level;
+    // in particular, a later wrong must remain reviewable. Setup and deck
+    // construction must inspect the same current/cross-mode identities.
+    if (reviewInfo) {
+        return {
+            ...recorded,
+            seen: true,
+            needsReview: true,
+            learned: false,
+            reviewReason: reviewInfo.reason,
+            reviewAt: reviewInfo.reviewAt
+        };
+    }
+    if (recorded?.seen) return recorded;
+    if (relatedIds.some(id => wordHasKnowledgeProgress(id))) {
+        return { ...recorded, seen: true };
+    }
+
+    // Merge Lemmas treats progress on any surface form as progress on the
+    // shared lemma. This is the same set used by Learn New during deck build,
+    // so the button count cannot advertise cards that will then be removed.
+    if (seenLemmas.has(item.lemma)) {
+        return { ...recorded, seen: true, needsReview: false, learned: true, inheritedLemma: true };
+    }
+
+    if (activeArtist) {
+        if (item.id && estimatedIds?.has(item.id)) {
+            return { seen: true, needsReview: false, learned: true, estimated: true };
+        }
+    } else if (item.rank <= estimate) {
+        return { seen: true, needsReview: false, learned: true, estimated: true };
+    }
+    return recorded;
+}
+
 async function renderRangeSelector() {
     const langConfig = config.languages[selectedLanguage];
     const container = document.getElementById('rangeSelector');
@@ -1770,36 +1819,7 @@ async function renderRangeSelector() {
     const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
         ? await buildEstimatedKnownIds(estimate)
         : null;
-    const getLearningState = item => {
-        if (!currentUser || currentUser.isGuest || !progressData) return false;
-        const wordId = getWordId(item);
-        const recorded = getWordProgressState(wordId);
-        const reviewInfo = getWordKnowledgeReviewInfo(wordId);
-        // A real answer is more specific than the estimated starting level;
-        // in particular, a later wrong must remain reviewable.
-        if (reviewInfo.needsReview) {
-            return {
-                ...recorded,
-                seen: true,
-                needsReview: true,
-                learned: false,
-                reviewReason: reviewInfo.reason,
-                reviewAt: reviewInfo.reviewAt
-            };
-        }
-        if (recorded.seen) return recorded;
-        if (wordHasKnowledgeProgress(wordId)) {
-            return { ...recorded, seen: true };
-        }
-        if (activeArtist) {
-            if (item.id && estimatedIds?.has(item.id)) {
-                return { seen: true, needsReview: false, learned: true, estimated: true };
-            }
-        } else if (item.rank <= estimate) {
-            return { seen: true, needsReview: false, learned: true, estimated: true };
-        }
-        return recorded;
-    };
+    const seenLemmas = await window.buildSeenLemmaSet?.(vocabularyData) || new Set();
 
     // Sets use fixed baseline slots. Filters can make a set shorter, but
     // never refill it from its neighbour; this preserves membership, progress,
@@ -1811,7 +1831,11 @@ async function renderRangeSelector() {
             const rank = rankOf(item);
             return rank >= start && rank < end;
         });
-        const states = words.map(getLearningState);
+        const states = words.map(item => getSetupLearningState(item, {
+            seenLemmas,
+            estimatedIds,
+            estimate
+        }));
         const seenCount = states.filter(state => state?.seen).length;
         const reviewCount = states.filter(state => state?.needsReview).length;
         const dueCount = states.filter(state => state?.reviewReason === 'due').length;

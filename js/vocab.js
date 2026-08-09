@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260808c';
+import './state.js?v=20260808d';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -1489,25 +1489,16 @@ async function loadVocabularyData(rangeString, opts = {}) {
         }
 
         // Resolve an empty selection before attaching examples and building
-        // cards. A newly-completed advertised set falls back to the same deck
-        // as an explicit "Study Again" tap; genuinely empty ranges still stop.
-        if (filteredData.length === 0 && studyMode === 'new' && allInRange.length > 0) {
-            // A background progress refresh can finish after the set controls
-            // render. If every advertised "new" card became seen meanwhile,
-            // honour the learner's attempt to open the set by falling back to
-            // the existing Study Again behavior instead of showing a dead-end
-            // completion alert.
-            filteredData = allInRange.slice();
-            studyMode = 'all';
-            stats.studyMode = 'all';
-            excludedMastered = 0;
-        }
+        // cards. Progress can refresh between rendering a Learn New button and
+        // tapping it; never turn that action into an implicit Study Again that
+        // unexpectedly opens the complete set.
         if (filteredData.length === 0) {
             const emptyMessage = studyMode === 'review'
                 ? 'No cards need review in this level with the current settings.'
                 : 'No unseen flashcards remain in this set with the current settings.';
             alert(emptyMessage);
             document.getElementById('loadingMessage').style.display = 'none';
+            if (studyMode === 'new') await window.renderRangeSelector?.();
             return;
         }
 
@@ -2618,6 +2609,7 @@ window.getWordId = getWordId;
 window.getCrossModeId = getCrossModeId;
 window.isWordKnown = isWordKnown;
 window.buildEstimatedKnownIds = buildEstimatedKnownIds;
+window.buildSeenLemmaSet = buildSeenLemmaSet;
 window.LANG_CODES = LANG_CODES;
 window.buildFilteredVocab = buildFilteredVocab;
 window.assignStableVocabularyRanks = assignStableVocabularyRanks;

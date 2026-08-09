@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-08",
+      "commit": "pending",
+      "summary": "Learn New now opens only genuinely unseen cards",
+      "details": [
+        "Set counts now use the same cross-artist, cross-mode, and Merge Lemmas progress rules as final deck construction, so the advertised new-card count matches the cards that open",
+        "If progress finishes the advertised cards before the tap completes, Learn New reports that the set is complete and refreshes setup instead of silently opening the full set as Study Again",
+        "Cache v215→v216 / assets 20260808c→20260808d"
+      ]
+    },
+    {
+      "date": "2026-08-08",
       "commit": "62148235",
       "summary": "Artist decks now build from versioned lyric evidence",
       "details": [
