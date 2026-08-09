@@ -2,6 +2,37 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-08",
+      "commit": "62148235",
+      "summary": "Artist decks now build from versioned lyric evidence",
+      "details": [
+        "Spanish Test Playlist now has a stable ledger of 980 lyric segments and 6,897 exact token occurrences; the shipped deck was rebuilt from its active evidence profile and added to the offline catalogue",
+        "A conservative, replaceable vocal-artifact layer recorded 832 adlib/stutter claims; strict neutral parity stayed exact, and the basic policy currently changes no vocabulary because the legacy tokenizer already ignored those occurrences",
+        "The exact local SpanishDict menu and assignment inputs were frozen as hashed immutable snapshots, with all 2,170 assignment records linked to stable occurrences",
+        "Cache v214→v215 / assets 20260808b→20260808c"
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "commit": "f65eb1ed",
+      "summary": "Spotify playback now works for mixed-artist playlist cards",
+      "details": [
+        "Playlist examples retain the exact Spotify track ID and the song's real artist from the playlist source, so the play button no longer tries to look up the playlist name as though it were an artist",
+        "Spanish Test Playlist rebuilt with 2,042 linked lyric examples across its 17 source tracks; non-lyric support examples stay non-playable by design",
+        "Cache v213→v214 / assets 20260808a→20260808b"
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "commit": "f65eb1ed",
+      "summary": "Shared Spanish word identity and merged-lemma learning now carry across Lyrics and Speech",
+      "details": [
+        "Normal Spanish now reuses the active artist ID for every shared surface-and-lemma pair, including the rare six-character hash-collision cases; legacy normal IDs migrate directly to their final shared ID",
+        "Learn New checks the other mode as well as the current deck, and Merge Lemmas also excludes a lemma already seen through a different artist or Speech form — so a known tocar no longer returns as a new playlist card",
+        "Cache v212→v213 / assets 20260807a→20260808a"
+      ]
+    },
+    {
       "date": "2026-08-06",
       "commit": "pending",
       "summary": "Lyrics mode was reverting the POS pill's position",

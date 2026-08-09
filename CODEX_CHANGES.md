@@ -32,8 +32,24 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Source setup keeps parsed indexes by data path and shares one source/settings/examples-keyed filtered vocabulary across level, progress, exclusion, and set UI. Artist frequency extraction must use that same canonical loader rather than parsing the index independently.
 - Google Sheets schema v4 has one discriminated `Progress` tab for word, sense, MWE, clitic, and metadata rows, plus the separate `FlaggedWords` tab. Speech/Lyrics are a `Mode`, item rows use `ParentWordId`, and artist-specific routing metadata carries a `Source`; the automatic migration retains the old three progress tabs as `*_legacy` backups and accepts cached v3 clients during rollout.
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
+- Artist corpus evidence now has a language-neutral segment/occurrence ledger contract. Mutable normalization, routing, POS, lemma, and sense decisions address persisted evidence IDs; model methods coexist under an active profile; card identity is registered separately from mutable lemma/gloss properties. The artist orchestrator now inserts a provider-neutral occurrence-level vocal-artifact claim run and a strict-parity active-view materializer before legacy normalization, so compact app decks can be rebuilt from the ledger without making the browser load it. Classification labels remain separate from exclusion policy.
+
+## Open handoff notes
+
+- Spanish Test Playlist is the first live Evidence Store consumer. Its active basic vocal-artifact profile currently materializes the same 1,184 words / 3,941 tokens as the neutral baseline because the legacy tokenizer already excluded every claimed adlib/stutter normalization. A future classifier can add a competing claim run or change policy without replacing the source ledger.
+- The playlist's ignored working SpanishDict menu and assignments are now recoverable through committed immutable snapshots selected by `data/evidence/profiles/current.json`; do not reintroduce those large mutable inputs as the only replay source.
+- Speech-shaped parallel segments are accepted and tested by the shared contract, but Speech and Normal Mode have not been migrated to use the Artist evidence store or card registry.
+- `tests/ui-refinements.test.mjs` has five stale assertions against the current `HEAD` UI (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names). The cutover changed those files only for cache tags or playlist Spotify IDs, so this unrelated test debt was left out of the release rather than rewriting UI behavior here.
 
 ## Codex task history
+
+### 2026-08-08 — Put Artist Evidence Store into the live deck path
+
+- Commits `62148235` and `f65eb1ed`; front-end cache `flashcards-v215` / `20260808c`.
+- Made Spanish Test Playlist the first shipped Evidence Store consumer: 980 stable lyric segments, 6,897 raw occurrences, immutable normalization/membership runs, and an active conservative vocal-artifact run with 832 adlib/stutter claims. The strict no-filter projection exactly matches the old 1,184-word / 3,941-token counter, and the basic policy currently produces the same vocabulary because all claimed normalized artifacts were already ignored by the legacy tokenizer.
+- Froze the previously ignored SpanishDict menu and both assignment layers as hashed snapshots, linked all 2,170 assignment records to stable occurrences, and persisted card/sense registries so future lyric, lemma, WSD, provider, and language changes can coexist without renumbering learner progress.
+- Rebuilt the 1,125-card playlist deck from the active profile, preserved reviewed Normal-mode personalisation in immutable run `2026-08-08_spanishdict_examples_v3_cross_mode_ids`, shared word progress across Speech/Lyrics, retained exact playlist Spotify track IDs, and added the playlist to the verified offline catalogue.
+- Verification: 70 shared + 34 Artist Python tests; 13 personalisation/offline/Speech Node tests; JavaScript and Python syntax checks; strict neutral materialization parity; 2,170/2,170 occurrence-linked assignment audit; exact offline sizes/checksums; valid JSON; cache-version lockstep; `git diff --check`. The five pre-existing stale UI assertions are recorded above and were not treated as cutover regressions.
 
 ### 2026-08-03 — Benchmark word alignment and semantic exact-leaf validation
 
