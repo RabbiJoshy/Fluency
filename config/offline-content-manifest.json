@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-08-05",
-  "generatedAt": "2026-08-02T00:00:00Z",
+  "contentVersion": "2026-08-08-evidence-store-1",
+  "generatedAt": "2026-08-08T00:00:00Z",
   "sources": [
     {
       "id": "language-spanish",
@@ -10,19 +10,19 @@
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
       "contentVersion": "2026-08-05-backup-examples-3",
-      "storageBytes": 40337022,
+      "storageBytes": 40429240,
       "transferBytes": 40337022,
       "dependencies": [],
       "files": [
         {
           "path": "Data/Spanish/vocabulary.index.json",
-          "bytes": 17829503,
-          "sha256": "66e57a5259024e0ed949e31842d7a6445df527c9c6b6194abb2031fe63f78d12"
+          "bytes": 17907089,
+          "sha256": "394eef6d7d7bae3e884fe9666e4ea71fabde5c253e812943621a67fc8568a24c"
         },
         {
           "path": "Data/Spanish/vocabulary.examples.json",
-          "bytes": 8605705,
-          "sha256": "1cd6373e99c7421c531ee6a2c1342ab8cacc50b3cd6c1252f44cacd822ca7fe0"
+          "bytes": 8620337,
+          "sha256": "1a468edc02e9719810ba16a440d9cabe6b0a4d0383e531baf9d4b25543bfd644"
         },
         {
           "path": "Data/Spanish/vocabulary.backup_examples.index.json",
@@ -97,7 +97,7 @@
       "language": "spanish",
       "artist": "bad-bunny",
       "contentVersion": "2026-08-02",
-      "storageBytes": 41534624,
+      "storageBytes": 40667910,
       "transferBytes": 5989778,
       "dependencies": [
         "shared-spanish-artist"
@@ -105,18 +105,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6611927,
-          "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"
+          "bytes": 6687347,
+          "sha256": "60a89a2547b0758a29e607f144a4224cc1e781d1765839e9b0ab4f2840ad03d4"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
-          "bytes": 13975209,
-          "sha256": "901022718d307bc8732e87d3945b5257b93d4410065d6b3139796afac3a367e8"
+          "bytes": 13980212,
+          "sha256": "96dc81ac140bcad11c505bb5293de72c7949bee43cf2bee03d5bc5f1df7af328"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
-          "bytes": 20947488,
-          "sha256": "2689d361ab4f2fa12a719361d2eb2d2e6b07cd38e6fb527a3e576147326fd567"
+          "bytes": 20000351,
+          "sha256": "b90645cfc58f890bc4c0ce84b444011bf5836021dce795acee0924b96a5efb3f"
         }
       ]
     },
@@ -128,7 +128,7 @@
       "language": "spanish",
       "artist": "rosalia",
       "contentVersion": "2026-08-02",
-      "storageBytes": 17357760,
+      "storageBytes": 17433180,
       "transferBytes": 2358865,
       "dependencies": [
         "shared-spanish-artist"
@@ -136,8 +136,8 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6611927,
-          "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"
+          "bytes": 6687347,
+          "sha256": "60a89a2547b0758a29e607f144a4224cc1e781d1765839e9b0ab4f2840ad03d4"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
@@ -159,7 +159,7 @@
       "language": "spanish",
       "artist": "young-miko",
       "contentVersion": "2026-08-02",
-      "storageBytes": 20911451,
+      "storageBytes": 20986871,
       "transferBytes": 2866752,
       "dependencies": [
         "shared-spanish-artist"
@@ -167,8 +167,8 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6611927,
-          "sha256": "b23d0ec2fd02c2f3ec824a8471ddc35bc19298d0be186fe8821d5f1165b65cb6"
+          "bytes": 6687347,
+          "sha256": "60a89a2547b0758a29e607f144a4224cc1e781d1765839e9b0ab4f2840ad03d4"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
@@ -179,6 +179,37 @@
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
           "bytes": 8162328,
           "sha256": "61d82fb46bd6130a96d7cc279f7698c27f72194899ba7e15c0b554885427ca1c"
+        }
+      ]
+    },
+    {
+      "id": "artist-spanish-test-playlist",
+      "name": "Spanish Test Playlist",
+      "scope": "artist",
+      "scopeLabel": "Lyrics · shared Spanish meanings included",
+      "language": "spanish",
+      "artist": "spanish-test-playlist",
+      "contentVersion": "2026-08-08-evidence-store-1",
+      "storageBytes": 10890339,
+      "transferBytes": 10890339,
+      "dependencies": [
+        "shared-spanish-artist"
+      ],
+      "files": [
+        {
+          "path": "Artists/spanish/vocabulary_master.json",
+          "bytes": 6687347,
+          "sha256": "60a89a2547b0758a29e607f144a4224cc1e781d1765839e9b0ab4f2840ad03d4"
+        },
+        {
+          "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
+          "bytes": 1676973,
+          "sha256": "f8fcf5c3d62cf934ba4ce8c8af96cbda6e378d9f59a246be0a63fa749bd33fc4"
+        },
+        {
+          "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
+          "bytes": 2526019,
+          "sha256": "910867fabf3566deed4270e44e7aa27c84d0e1c40586a003e4550dd498de5a97"
         }
       ]
     }

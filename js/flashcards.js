@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260807a';
-import './speech.js?v=20260807a';
+import './state.js?v=20260808c';
+import './speech.js?v=20260808c';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260807a';
+} from './example-personalisation.js?v=20260808c';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -776,7 +776,12 @@ function exampleSungByActiveArtist(example) {
 }
 
 function getSpotifyTrackIdForExample(example) {
-    if (!example || !example.song_name || !window._spotifyTracks) return null;
+    if (!example || !example.song_name) return null;
+    // Playlist builds carry the exact source Spotify track ID. This avoids
+    // resolving a mixed playlist against its deck name (and avoids a race
+    // with the legacy global mapping fetch).
+    if (example.spotify_track_id) return example.spotify_track_id;
+    if (!window._spotifyTracks) return null;
     let artistName = null;
     if (example.artist) {
         artistName = window._allArtistsConfig?.[example.artist]?.name || null;
@@ -5967,7 +5972,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260807a';
+const ASSET_VERSION = '20260808c';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

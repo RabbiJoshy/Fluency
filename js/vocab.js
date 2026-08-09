@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260807a';
+import './state.js?v=20260808c';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -343,6 +343,60 @@ async function buildEstimatedKnownIds(estimate) {
 
     window._estimatedKnownIdsCache = { key: cacheKey, ids };
     return ids;
+}
+
+async function buildSeenLemmaSet(vocabData) {
+    if (!useLemmaMode || !lemmaFieldAvailable || !progressData) return new Set();
+
+    const lemmaById = new Map();
+    const addEntries = entries => {
+        for (const entry of entries || []) {
+            if (entry?.id && entry?.lemma) lemmaById.set(entry.id, entry.lemma);
+        }
+    };
+    addEntries(vocabData);
+    addEntries(Object.entries(window._cachedMasterVocab || {}).map(([id, entry]) => ({
+        ...entry, id
+    })));
+
+    // The current artist master covers artist decks. Add the normal index so
+    // normal-only surface forms also contribute to a merged lemma's history.
+    if (activeArtist) {
+        const normalConfig = window._normalModeLangConfigs?.[selectedLanguage];
+        if (normalConfig) addEntries(await fetchAndJoinIndex(normalConfig));
+    }
+
+    const seenLemmas = new Set();
+    const mark = (fullId, state) => {
+        if (!state?.seen || !fullId) return;
+        const lemma = lemmaById.get(fullId.slice(3));
+        if (lemma) seenLemmas.add(lemma);
+    };
+    for (const [fullId, progress] of Object.entries(progressData)) {
+        if (progress?.language === selectedLanguage) {
+            mark(fullId, getProgressState(progress));
+        }
+    }
+    for (const progress of Object.values(itemProgressData || {})) {
+        if (progress?.language === selectedLanguage) {
+            mark(progress.parentWordId, getProgressState(progress));
+        }
+    }
+    return seenLemmas;
+}
+
+function relatedWordIds(fullId) {
+    const crossId = getCrossModeId(fullId);
+    return crossId ? [fullId, crossId] : [fullId];
+}
+
+function hasRelatedWordProgress(fullId) {
+    return relatedWordIds(fullId).some(id =>
+        getWordProgressState(id).seen || wordHasKnowledgeProgress(id));
+}
+
+function relatedWordNeedsReview(fullId) {
+    return relatedWordIds(fullId).some(id => wordNeedsKnowledgeReview(id));
 }
 
 /**
@@ -1397,6 +1451,9 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 const estimatedIds = activeArtist && studyMode === 'new'
                     ? await buildEstimatedKnownIds(estimate)
                     : null;
+                const seenLemmas = studyMode === 'new'
+                    ? await buildSeenLemmaSet(vocabularyData)
+                    : new Set();
 
                 filteredData = filteredData.filter(item => {
                     // Never filter out a word the caller explicitly asked to
@@ -1405,16 +1462,16 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     if (includeWordId && (itemId === includeWordId || item.id === includeWordId)) {
                         return true;
                     }
-                    const progressState = getWordProgressState(itemId);
-                    if (studyMode === 'review') return wordNeedsKnowledgeReview(itemId);
+                    const hasRelatedProgress = hasRelatedWordProgress(itemId);
+                    if (studyMode === 'review') return relatedWordNeedsReview(itemId);
                     if (studyMode === 'all') return true;
 
-                    const coveredByEstimate = !progressState.seen && (activeArtist
+                    const coveredByEstimate = !hasRelatedProgress && (activeArtist
                         ? (item.id && estimatedIds?.has(item.id))
                         : item.rank <= estimate);
                     return !coveredByEstimate
-                        && !progressState.seen
-                        && !wordHasKnowledgeProgress(itemId);
+                        && !hasRelatedProgress
+                        && !seenLemmas.has(item.lemma);
                 });
                 excludedMastered = beforeFiltered - filteredData.length;
                 if (studyMode === 'review') {
