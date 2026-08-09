@@ -43,6 +43,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-08 — Keep Learn New limited to genuinely unseen cards
+
+- Commit `cfcf5b88`; front-end cache `flashcards-v216` / `20260808d`.
+- Fixed the mismatch Josh found after shared Spanish progress shipped: setup counted only the current card identity, while final deck construction also removed cross-mode and same-lemma progress. A button could therefore advertise two new cards, filter both at launch, and trigger the old empty-selection fallback that silently opened the entire set as Study Again.
+- Setup now uses the same current/cross-mode IDs and merged-lemma history as deck construction. A late progress refresh that empties a Learn New request reports completion and refreshes the set controls; only an explicit Study Again action can open the full set.
+- Verification: two executable regressions covering same-artist, cross-mode, inherited-lemma, and review precedence plus the no-full-set invariant; 15 focused routing/offline/personalisation/Speech tests; syntax checks for every JavaScript module and service worker; valid changelog JSON; cache-version lockstep; `git diff --check`. The five already-recorded stale UI assertions remain unchanged. GitHub search found no indexed overlapping issue, and issue creation/update remains blocked because the GitHub CLI is unavailable.
+
 ### 2026-08-08 — Put Artist Evidence Store into the live deck path
 
 - Commits `62148235` and `f65eb1ed`; front-end cache `flashcards-v215` / `20260808c`.

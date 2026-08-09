@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-08",
-      "commit": "pending",
+      "commit": "cfcf5b88",
       "summary": "Learn New now opens only genuinely unseen cards",
       "details": [
         "Set counts now use the same cross-artist, cross-mode, and Merge Lemmas progress rules as final deck construction, so the advertised new-card count matches the cards that open",
