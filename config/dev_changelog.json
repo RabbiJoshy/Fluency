@@ -2,6 +2,97 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-12",
+      "commit": "1e6b70b6",
+      "summary": "Artists can share a standardized slang sense register",
+      "details": [
+        "Added configurable artist sense_registers: tagged artists contribute provenance-backed proposed meanings to one deduplicated reggaeton menu instead of repeatedly inventing near-identical slang glosses",
+        "Exact cross-artist song lines reuse their established registered sense without a model call; new contexts receive the shared candidates and still require POS filtering or WSD",
+        "Single-sense auto assignment now abstains on trusted POS conflicts and credited-performer name collisions: mari resolves to marijuana, feka to fake, and Boza no longer displays rope",
+        "JST provenance distinguishes SpanishDict auto, POS-filtered auto and shared-register exact reuse; active shared release cache flashcards-v224 / assets 20260812c"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "commit": "1e6b70b6",
+      "summary": "Unresolved lyric forms no longer masquerade as core Spanish",
+      "details": [
+        "Artist routing now labels low-frequency abstentions as unresolved instead of treating absence of an exclusion as positive core evidence",
+        "Unresolved forms appear in Artist Extra under Needs classification, while validated Spanish conjugations and derivations remain in Main",
+        "Elision normalization now restores unique internal-apostrophe candidates and validated diminutive d-elisions, using local grammar for ambiguous forms and abstaining without it",
+        "Cache v221→v222 / assets 20260811c→20260812a"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "commit": "1e6b70b6",
+      "summary": "SpanishDict auto decisions can no longer appear as Gemini errors",
+      "details": [
+        "The provenance panel now labels deterministic single-menu assignments as SpanishDict auto · no model call",
+        "Older deck examples repair their meaning provenance at load time, removing stale Gemini prompt, run and AI-proposal stamps whenever the evidence method is spanishdict-auto or another auto method",
+        "New deck assembly already excludes model provenance from auto evidence; this frontend guard makes the historical Spanish Test Playlist data equally unambiguous",
+        "Cache v220→v221 / assets 20260811b→20260811c"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "commit": "1e6b70b6",
+      "summary": "JST sense provenance is back, with card markers for Gemini-proposed definitions",
+      "details": [
+        "Restored Data & model info as an always-available JST Study option and restored Command-I on desktop; deterministic senses now explain their evidence instead of hiding the panel",
+        "Marked only definitions Gemini proposed outside the SpanishDict menu with a subtle JST-only AI pill on the back of the relevant sense",
+        "Rebuilt Bad Bunny, Rosalía and Young Miko with explicit proposal provenance: 160, 41 and 85 marked senses respectively",
+        "Refreshed offline deck integrity data; Cache v219→v220 / assets 20260811a→20260811b"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "commit": "1e6b70b6",
+      "summary": "Known Gemini 3.1 evidence now replaces unknown-provenance Artist sense assignments",
+      "details": [
+        "Accepted the named sd-lexical-v2-g31 prompt alongside the earlier validated Gemini 3.1 prompt, preferring the newer contract when both claim an occurrence",
+        "Projected every new assignment into stable word-and-lemma card identities with zero loss: 3,078 Bad Bunny, 48 Rosalía and 124 Young Miko occurrence references",
+        "Rebuilt all three live split decks and the shared Spanish Artist master; inspector data now carries the exact prompt ID and run timestamp for the new evidence",
+        "Refreshed offline deck sizes and integrity hashes; Cache v218→v219 / assets 20260809b→20260811a"
+      ]
+    },
+    {
+      "date": "2026-08-09",
+      "commit": "1e6b70b6",
+      "summary": "Artist sense evidence is separated from tagging and ready for a clean Gemini 3.1 rerun",
+      "details": [
+        "Archived unprovenanced legacy Gemini picks from active Artist decks without deleting them; named Gemini 3.1/3.5 evidence remains eligible",
+        "Safely retained exact occurrences where current POS and menu leave one possible sense or two independent older methods agree",
+        "The new sd-lexical-v1-g31 prompt still proposes genuinely missing slang glosses, while proper nouns, tags, constructions and vocal artifacts stay in their own evidence layers",
+        "Restored elisions at ledger ingestion before artifact classification, routing, POS and WSD; the later compatibility pass now makes zero vocabulary changes across all three artists",
+        "Prepared a no-API plan for exactly 5,202 word records and 16,303 unresolved examples across Bad Bunny, Rosalía and Young Miko; every record has a menu and no Gemini request was made"
+      ]
+    },
+    {
+      "date": "2026-08-09",
+      "commit": "1e6b70b6",
+      "summary": "Spanish artist ledgers are live; Bad Bunny now rebuilds deterministically before sense assignment",
+      "details": [
+        "Migrated Bad Bunny, Rosalía, Young Miko, J Balvin and Rels B into immutable lyric occurrence ledgers with independently rerunnable normalization, vocal-artifact, POS and downstream layers",
+        "Rebuilt and shipped Bad Bunny, Rosalía and Young Miko decks through the ledger freshness contract while preserving reusable historical sense decisions; no Gemini request was made",
+        "Bad Bunny's conservative basic policy removed 13,275 adlib, echo and stutter occurrences; a dry prompt audit records exactly which examples and candidate words would differ before any future Gemini rerun",
+        "Fixed stable sense-ID handling and reduced the full Bad Bunny identity/deck assembly from a stalled quadratic run to under one minute; refreshed offline deck hashes"
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "commit": "1e6b70b6",
+      "summary": "See Example: one row of chrome, and a showcase word the classifier actually gets right",
+      "details": [
+        "Header band removed. Deck toggle, summary and ✕ now share a single row, so the card and its annotations fit on screen together",
+        "The face title is the opening clause of the summary rather than a heading above it — one line instead of two",
+        "✕ returns to the About page it was opened from, not through to the app",
+        "Showcase card swapped fuego → cielo. fuego's \"light (for smoking)\" row was illustrated by \"desde que te vi me puse roja\" and \"passion\" by an idiom meaning \"I go all out\" — real classifier output, but a reader checking the English can see they don't show the meaning claimed",
+        "cielo splits cleanly into heaven 70% / sky 30%, both provable from the translation alone. Still entirely real deck data: rank, line count, lyrics and timestamps all read out of the built deck",
+        "Cache v217→v218 / assets 20260809a→b"
+      ]
+    },
+    {
       "date": "2026-08-09",
       "commit": "28a379f3",
       "summary": "Card history, instant flags, and exact lyric-form highlighting",

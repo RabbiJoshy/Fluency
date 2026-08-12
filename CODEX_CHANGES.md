@@ -36,12 +36,67 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Open handoff notes
 
-- Spanish Test Playlist is the first live Evidence Store consumer. Its active basic vocal-artifact profile currently materializes the same 1,184 words / 3,941 tokens as the neutral baseline because the legacy tokenizer already excluded every claimed adlib/stutter normalization. A future classifier can add a competing claim run or change policy without replacing the source ledger.
+- The accepted pipeline, app, compact decks, assignments, and register are protected by release commit `1e6b70b6`. Large local Evidence Store ledgers and generated candidate previews remain deliberately outside Git; closing this chat does not remove those local artifacts.
+- Spanish Test Playlist, Bad Bunny, Rosalía, Young Miko, J Balvin, and Rels B now have Evidence Store ledgers. Bad Bunny, Rosalía, and Young Miko have been rebuilt into the live compact app decks; J Balvin and Rels B have deterministic inventory/POS checkpoints but still need SpanishDict cache coverage and sense work before they become configured live sources.
+- The large artist evidence directories total roughly 3 GB and Git LFS is not installed. They remain local pending an explicit artifact-storage/compression decision; do not attempt to push the raw 100+ MB J Balvin normalization shards to ordinary GitHub storage.
 - The playlist's ignored working SpanishDict menu and assignments are now recoverable through committed immutable snapshots selected by `data/evidence/profiles/current.json`; do not reintroduce those large mutable inputs as the only replay source.
 - Speech-shaped parallel segments are accepted and tested by the shared contract, but Speech and Normal Mode have not been migrated to use the Artist evidence store or card registry.
 - `tests/ui-refinements.test.mjs` has five stale assertions against the current `HEAD` UI (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names). The cutover changed those files only for cache tags or playlist Spotify IDs, so this unrelated test debt was left out of the release rather than rewriting UI behavior here.
 
 ## Codex task history
+
+### 2026-08-12 — Standardize reusable slang senses across tagged artists
+
+- Commit `1e6b70b6`; active shared front-end cache `flashcards-v224` / `20260812c`.
+- Added configurable `sense_registers` to artist configuration and seeded a `reggaeton` register with Bad Bunny, J Balvin, Young Miko, and Spanish Test Playlist. Its derived 1,357-word / 1,665-sense inventory clusters near-duplicate same-POS proposals while retaining the contributing artist, method, prompt, run, example, and occurrence provenance.
+- Register senses supplement SpanishDict only for words present in the target inventory. Identical cross-artist Genius song lines can reuse one registered sense as deterministic `shared-register-auto`; different contexts merely receive the standardized candidates and remain eligible for POS filtering or WSD. Gemini now treats deterministic `*-auto` coverage as already handled, reserving calls for unresolved occurrences.
+- Tightened single-sense automatic assignment: trusted occurrence POS can veto an incompatible menu sense, and an exact full credited-performer match vetoes an unrelated common-noun reading. The assembly fallback applies the same name guard so an unassigned example cannot restore the rejected sense.
+- Rebuilt Spanish Test Playlist without an API call. `mari` now uses registered NOUN “marijuana” via POS auto, `feka` reuses registered ADJ “fake” from its identical Bad Bunny line, and `Boza` is a proper-name Extra card with no “rope” meaning. Thirteen exact cross-artist lines were reused deterministically.
+- Fixed an existing classifier identity bug that converted explicit provider/register sense mappings to value lists and re-hashed their IDs, plus a stale-assignment sanitizer bug that reloaded discarded state and incorrectly treated inline discovered senses as menu-stale.
+- Verification: focused register/config/POS/menu/deck tests, exact target-card assertions, zero duplicate deck IDs, JavaScript syntax and provenance tests, JSON validation, offline checksum validation, cache-version lockstep, and diff whitespace validation.
+
+### 2026-08-12 — Replace risky lyric overrides with deterministic elision and abstention rules
+
+- Commit `1e6b70b6`; front-end cache `flashcards-v222` / `20260812a`.
+- Added high-precision internal-apostrophe restoration: a form is rewritten only when inserting one consonant at the apostrophe yields one known Spanish form. Contextual checks resolve otherwise ambiguous past-tense, adjective, and plural cases; diminutive `d` elisions validate against their base adjective; unsupported forms abstain.
+- Rebuilt Spanish Test Playlist from its occurrence ledger without a Gemini/API call. The audited lyric forms now resolve as `uste'`→`usted`, `e'to`→`esto`, `moja'íta`→`mojadita`, `e'perado`→`esperado`, `llega'te`→`llegaste`, `pasa'te`→`pasaste`, `tíguere'`→`tigueres`, and `discoteka'`→`discotecas`, while the exact lyric surfaces remain in occurrence evidence.
+- Stopped treating low-frequency routing abstentions as positive `core` evidence. The compact artist index now carries artist-local classification, and 26 unresolved playlist forms appear in Artist Extra as **Needs classification**; validated conjugations and derivations remain in Main.
+- Guarded SpanishDict's malformed `usted` page, which embeds the plural `ustedes` analysis beside the exact singular entry and previously produced a duplicate card identity. The rebuilt monolith and compact index contain zero duplicate IDs.
+- Verification: 23 SpanishDict guard cases, 42 focused normalization/evidence/tag tests, seven Node routing/offline tests, JavaScript syntax checks, JSON validation, exact offline manifest sizes/checksums, cache-version lockstep, and diff whitespace validation.
+
+### 2026-08-11 — Prevent deterministic SpanishDict assignments from appearing model-authored
+
+- Commit `1e6b70b6`; front-end cache `flashcards-v221` / `20260811c`.
+- The JST provenance panel now identifies `spanishdict-auto` and other `*-auto` methods as “SpanishDict auto · no model call,” including the deterministic single-menu explanation.
+- Added a historical-data guard while split examples are attached: if every evidenced assignment method for a sense is automatic, the card adopts that method and discards any stale prompt ID, run timestamp, or model-proposed flag. This corrects old Spanish Test Playlist rows without reclassifying or rebuilding their senses.
+- Verification: focused executable regression for stale `sd-cop-v3` stamps, provenance/shortcut tests, JavaScript parsing, cache-version lockstep, and diff whitespace validation.
+
+### 2026-08-11 — Restore JST provenance inspection and identify model-proposed definitions
+
+- Commit `1e6b70b6`; front-end cache `flashcards-v220` / `20260811b`.
+- Restored the owner-only Data & model info Study option and Command-I shortcut. The panel is created lazily if auth arrived after the card rendered, opens the card back directly, and lists deterministic/retained senses instead of disappearing whenever a card lacks model provenance.
+- Added an owner-only `AI` pill beside definitions Gemini proposed outside SpanishDict's supplied menu. The deck builder now emits an aligned `sense_model_proposed` flag from authoritative `lexical-gap-fill-*` assignment methods; it does not guess from missing source fields or apply the marker to ordinary model-selected SpanishDict senses.
+- Rebuilt the three live Artist split decks. The shipped indexes mark 160 Bad Bunny, 41 Rosalía, and 85 Young Miko senses, while all stamped model provenance remains limited to the accepted named `sd-lexical-v1-g31` and `sd-lexical-v2-g31` prompts.
+- Verification: 17 focused Python tests, five focused Node tests, JavaScript syntax checks, rebuilt-deck flag/prompt audits, offline integrity checks, asset-version lockstep, and diff whitespace validation.
+
+### 2026-08-09 — Split lexical WSD from tagging and prepare the Gemini 3.1 rerun
+
+- Commit `1e6b70b6`; pipeline/data change only, so no front-end cache bump.
+- Registered `sd-lexical-v1-g31` for `gemini-3.1-flash-lite`. The prompt now owns only menu selection and genuinely missing lexical glosses (including slang); proper nouns, usage tags, POS, vocal artifacts, and construction-only meanings stay in their separate evidence layers. Invalid output and excluded/construction-only material abstain instead of silently falling back to sense zero.
+- Activated prompt-tier 20 as the Artist deck floor, leaving older `legacy-unknown` assignments archived but recoverable. Deterministic auto decisions no longer masquerade as Gemini provenance, and prompt/model-scoped checkpoints cannot resume across a different run identity.
+- Retained occurrence-level legacy evidence only when the current menu/POS leaves one stable sense or two independent historical method families agree on the same still-valid sense. Retained 9,481 Bad Bunny, 1,374 Rosalía, and 1,694 Young Miko occurrences; Spanish Test Playlist needed none. Immutable claims, manifests, compatibility assignments, and audit reports were written without deleting source evidence.
+- Made elision restoration the first linguistic transform at ledger ingestion while preserving the raw lyric surface. Bad Bunny, Rosalía, and Young Miko were rerun through artifact classification, routing, inventory and incremental POS; the later compatibility elision pass reduced all three by zero entries, proving downstream inputs were already restored.
+- The final no-API Gemini plan contains exactly 5,202 word records / 16,303 unresolved examples: Bad Bunny 2,655 / 8,860, Rosalía 1,110 / 2,928, and Young Miko 1,437 / 4,515. All 5,202 resolve to existing menus; there are zero off-menu gap-fill prompts. No Gemini request was made.
+- Verification: 33 focused evidence/prompt/deck tests, Python compilation, idempotent retention rerun, three exact prompt-plan dry runs, and a parallel 10,908-card Bad Bunny preview. The preview contains retained deterministic/consensus examples and no `legacy-unknown` prompt provenance.
+
+### 2026-08-09 — Migrate Spanish artists and ship Bad Bunny from the evidence ledger
+
+- Commit `1e6b70b6`; data/offline release only, so the already-active front-end cache remains `flashcards-v218` / `20260809b`.
+- Migrated Bad Bunny, Rosalía, Young Miko, J Balvin, and Rels B to persisted segment/occurrence ledgers. Deterministic normalization, conservative vocal-artifact policy, elision merge, routing, inventory/example split, and POS layers can now be rerun independently without deleting prior evidence.
+- Rebuilt Bad Bunny only up to the Gemini boundary, without an API call. Its basic policy excluded 13,275 occurrences (11,742 adlib claims, 41 echo claims, and 2,171 stutter claims, with overlaps), POS retagged 218 changed/new word groups, and the structured dry-run audit records 3,548 prospective prompt records versus 3,587 before migration. Of common records, 2,441 differ only in harmless menu ordering; 152 have meaningful menu/example-selection changes, 56 leave and 17 enter the queue, and no retained stable example changed POS.
+- Preserved existing assignment decisions and reattached stable example/occurrence references where the new active example view still contains them. Fixed the SpanishDict prompt path so it preserves explicit sense IDs instead of regenerating collision-prone IDs from source order.
+- Put ledger freshness hashes into the deck build contract and promoted ledger-built Bad Bunny, Rosalía, and Young Miko compact decks. Fixed the card registry's quadratic index rebuild: the previously stalled Bad Bunny assembly now completes in about 49 seconds.
+- Verification: 35 focused evidence, identity, POS, deck-contract, and vocal-artifact tests; Python compilation; JSON validation of live master/deck/report files; refreshed offline sizes and SHA-256 hashes. No Gemini/API request was made.
 
 ### 2026-08-09 — Make active-set progress auditable and preserve exact lyric surfaces
 
@@ -983,3 +1038,27 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 - Commits `edb9b38`, `f648ba3`, `360d9d7`, `dc0c3a9`.
 - Captured the Notes-app backlog and judgment-dependent dependencies in `TODO.md`, then reconciled the smaller completed items against the implemented state.
+
+## 2026-08-12 — Claude, cross-boundary edit to `js/` and `css/` (agreed with Josh)
+
+Normally Claude stays on the engine side. Josh explicitly asked for these two.
+
+**`js/flashcards.js`**
+- `exampleProvenanceHTML()` — new. Renders where a corpus example came from. The
+  OpenSubtitles `title_id` is an IMDb id (OPUS layout `es/{year}/{imdb}/{sub}.xml.gz`),
+  so it links out directly; no local title table needed. Wired into
+  `exampleSourceLabel` as the fallback when the example is not artist/SpanishDict.
+- `buildProvenancePanelHTML()` — the Cmd-I panel now shows, per sense:
+  the **confidence** (`gap`, plus a high/medium/low band) and **the actual
+  sentences that sense was assigned to**, with their IMDb source and alignment
+  score. Previously it named a model but never showed the evidence it decided on.
+
+**`css/style.css`** — styles for `.prov-conf*` and `.prov-ex*`. The panel already
+scrolled (absolute inset-0 + `overflow-y:auto`); only iOS momentum scrolling added.
+
+Band cuts are absolute values transferred from the hand-labelled panel at
+`Data/Spanish/Intermediates/wsd_sense_harness`, not quantiles of a run:
+high = gap >= 0.035 (100% acceptable measured), medium >= 0.021 (91.9%).
+
+Cache: `CACHE_NAME` -> flashcards-v224, `ASSET_VERSION` -> 20260812c,
+`flashcards.js?v=` -> 20260812c in `js/main.js` and `index.html`.
