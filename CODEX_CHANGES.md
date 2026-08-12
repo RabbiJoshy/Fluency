@@ -47,7 +47,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ### 2026-08-12 — Replace mixed-scope curations and gate shared-register membership
 
-- Commit pending; front-end cache `flashcards-v225` / `20260812d`.
+- Commit `4f2e22ef`; front-end cache `flashcards-v225` / `20260812d`.
 - Compacted `elision_mapping.json` from 2,882 to 1,891 active records by deleting 971 consumer-inert `same_word_dup` rows, seven non-operative `skip` rows, and thirteen reviewed bad generated restorations. Trailing-apostrophe fallback now requires corpus attestation, resolves ambiguity only at fourfold frequency dominance, and protects already registered lyric lexemes such as `mai`.
 - Removed global noise/name drops for mixed lexical surfaces and recategorized definite English items. The occurrence-level vocal-artifact layer remains responsible for repeated, echoed, and hyphenated uses; a surface with lexical evidence is no longer erased everywhere.
 - Removed curated MWEs that contradicted skip policy, duplicated productive construction templates, or represented incomplete/dead fragments. Deck assembly now revalidates stale materialized curated MWEs against the current curated and skip files.

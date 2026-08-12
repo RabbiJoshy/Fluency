@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-12",
-      "commit": "pending",
+      "commit": "4f2e22ef",
       "summary": "Mixed lyric forms now use evidence-level rules, not global guesses",
       "details": [
         "Removed 978 inert elision records and 13 disproven suffix guesses; ambiguous apostrophe restoration now requires strong Spanish corpus frequency or an existing registered lexeme",
