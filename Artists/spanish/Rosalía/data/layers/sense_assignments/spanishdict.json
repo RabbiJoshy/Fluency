@@ -194,7 +194,17 @@
           "5461781:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_65d20676d48d7771dc8337a3",
+            "example_id": "seg_0c0b9f6c2f1d724768a60d21",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_65d20676d48d7771dc8337a3"
+        ]
       },
       {
         "sense": "8aa",
@@ -273,7 +283,23 @@
           "7791131:4"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_65d20676d48d7771dc8337a3",
+            "example_id": "seg_0c0b9f6c2f1d724768a60d21",
+            "example_index": 1
+          },
+          {
+            "occurrence_id": "occ_562e893daba0714c77e21b76",
+            "example_id": "seg_b667cfe630706e852bbbecca",
+            "example_index": 9
+          }
+        ],
+        "occurrence_ids": [
+          "occ_65d20676d48d7771dc8337a3",
+          "occ_562e893daba0714c77e21b76"
+        ]
       },
       {
         "sense": "8aa",
@@ -4626,7 +4652,17 @@
           "3964069:5"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_6390fc7416fb2db74056afe0",
+            "example_id": "seg_b1513273c0fdc6ae94e83f06",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_6390fc7416fb2db74056afe0"
+        ]
       }
     ]
   },
@@ -8345,7 +8381,17 @@
           "12548052:15"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_5937b0a986a5ae9e38ea7000",
+            "example_id": "seg_3d1a8c0e2f76cde76b733d5f",
+            "example_index": 7
+          }
+        ],
+        "occurrence_ids": [
+          "occ_5937b0a986a5ae9e38ea7000"
+        ]
       },
       {
         "sense": "843",
@@ -8381,7 +8427,29 @@
           "10615838:13"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_f01b44f0d2daaee299d5e25a",
+            "example_id": "seg_e6ace9a237c994493515471a",
+            "example_index": 5
+          },
+          {
+            "occurrence_id": "occ_3a5ed000b00f915d6f836143",
+            "example_id": "seg_120fa02096c898836d317597",
+            "example_index": 8
+          },
+          {
+            "occurrence_id": "occ_6fa24fa1674e4e3390df65a1",
+            "example_id": "seg_af200ccd94e3d97d71e87748",
+            "example_index": 9
+          }
+        ],
+        "occurrence_ids": [
+          "occ_f01b44f0d2daaee299d5e25a",
+          "occ_3a5ed000b00f915d6f836143",
+          "occ_6fa24fa1674e4e3390df65a1"
+        ]
       },
       {
         "sense": "fcc",
@@ -9504,7 +9572,17 @@
           "3814300:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_abee088771cea0da98c82b62",
+            "example_id": "seg_82a831ec5e174b1ff5c17308",
+            "example_index": 7
+          }
+        ],
+        "occurrence_ids": [
+          "occ_abee088771cea0da98c82b62"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -10689,7 +10767,23 @@
           "7515176:2"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_27b867c0fa32897191a896a9",
+            "example_id": "seg_febfce94fa6c7b324f9fb913",
+            "example_index": 1
+          },
+          {
+            "occurrence_id": "occ_959a805ebb4af98884a55199",
+            "example_id": "seg_fa9711dc8bd551969185dd48",
+            "example_index": 7
+          }
+        ],
+        "occurrence_ids": [
+          "occ_27b867c0fa32897191a896a9",
+          "occ_959a805ebb4af98884a55199"
+        ]
       },
       {
         "sense": "fe3",
@@ -15053,7 +15147,23 @@
           "9077775:23"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_d542402c753d23df47fff4e6",
+            "example_id": "seg_14762b12dff56b4f14efe1bd",
+            "example_index": 5
+          },
+          {
+            "occurrence_id": "occ_1cc19cd3eeaab1d448d7117f",
+            "example_id": "seg_3a54fc4098791dd152149b75",
+            "example_index": 8
+          }
+        ],
+        "occurrence_ids": [
+          "occ_d542402c753d23df47fff4e6",
+          "occ_1cc19cd3eeaab1d448d7117f"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -15281,7 +15391,17 @@
           "7515279:13"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_925352d9d49a88091ef3bc9a",
+            "example_id": "seg_7f15ec7465c7d4987ed86957",
+            "example_index": 8
+          }
+        ],
+        "occurrence_ids": [
+          "occ_925352d9d49a88091ef3bc9a"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -18601,7 +18721,17 @@
           "3036615:39"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_394f24355b083c9209767e52",
+            "example_id": "seg_098a829d4e03f1499911b538",
+            "example_index": 7
+          }
+        ],
+        "occurrence_ids": [
+          "occ_394f24355b083c9209767e52"
+        ]
       },
       {
         "sense": "d41",
@@ -20014,7 +20144,17 @@
           "4027739:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_665079d44242a49635a1c355",
+            "example_id": "seg_7be7565ec7a9129494e9a60c",
+            "example_index": 2
+          }
+        ],
+        "occurrence_ids": [
+          "occ_665079d44242a49635a1c355"
+        ]
       },
       {
         "sense": "a21",
@@ -22666,7 +22806,17 @@
           "10615838:6"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_dd12a65d5bf597f9a027fb3a",
+            "example_id": "seg_6c3b730c9ff7f03831a92de9",
+            "example_index": 8
+          }
+        ],
+        "occurrence_ids": [
+          "occ_dd12a65d5bf597f9a027fb3a"
+        ]
       },
       {
         "sense": "342",
@@ -23246,7 +23396,17 @@
           "3964062:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_418cc2f1a4633257edf3bf12",
+            "example_id": "seg_24be8e0c544b3a3d6b393eea",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_418cc2f1a4633257edf3bf12"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -23311,7 +23471,17 @@
           "3036615:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_176becea46adc42314797df9",
+            "example_id": "seg_6dd2c00ba11fab475ff92c59",
+            "example_index": 2
+          }
+        ],
+        "occurrence_ids": [
+          "occ_176becea46adc42314797df9"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -24484,7 +24654,17 @@
           "10615838:12"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_daab36604cf5e35489fea17b",
+            "example_id": "seg_d392bfcd34253400a77174d4",
+            "example_index": 8
+          }
+        ],
+        "occurrence_ids": [
+          "occ_daab36604cf5e35489fea17b"
+        ]
       }
     ],
     "pos-auto": [
@@ -38530,7 +38710,17 @@
           "4027739:6"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_e3264691fbdd1958144bf9d2",
+            "example_id": "seg_3a5001ae37ee85f380f6f019",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_e3264691fbdd1958144bf9d2"
+        ]
       }
     ]
   },
@@ -40245,7 +40435,17 @@
           "3814300:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_e3077f4a5ba34c1cdf626c64",
+            "example_id": "seg_82a831ec5e174b1ff5c17308",
+            "example_index": 2
+          }
+        ],
+        "occurrence_ids": [
+          "occ_e3077f4a5ba34c1cdf626c64"
+        ]
       },
       {
         "sense": "45c",
@@ -48642,7 +48842,23 @@
           "3066984:11"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_abd2936981a80f3a9fb6808f",
+            "example_id": "seg_52718ef66592177905e5c409",
+            "example_index": 4
+          },
+          {
+            "occurrence_id": "occ_958d7f0a4d712e2f563eed9a",
+            "example_id": "seg_52718ef66592177905e5c409",
+            "example_index": 4
+          }
+        ],
+        "occurrence_ids": [
+          "occ_abd2936981a80f3a9fb6808f",
+          "occ_958d7f0a4d712e2f563eed9a"
+        ]
       },
       {
         "sense": "5562",
@@ -54361,7 +54577,17 @@
           "3814300:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_f96ea0cd8889e016d105cb71",
+            "example_id": "seg_82a831ec5e174b1ff5c17308",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_f96ea0cd8889e016d105cb71"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -54804,7 +55030,17 @@
           "3814300:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_5af70693a2d5b5c3ff5c69a3",
+            "example_id": "seg_82a831ec5e174b1ff5c17308",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_5af70693a2d5b5c3ff5c69a3"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -54964,7 +55200,17 @@
           "3964062:2"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_ea28b815574cb9d815a1479d",
+            "example_id": "seg_4efe758bd9bdc49e8617deda",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_ea28b815574cb9d815a1479d"
+        ]
       },
       {
         "sense": "506",
@@ -55163,7 +55409,17 @@
           "3814300:2"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_5572440b0fb0d6d832495adb",
+            "example_id": "seg_2a066dc3897920c6b78b57c8",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_5572440b0fb0d6d832495adb"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -55501,7 +55757,17 @@
           "3964062:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_fbabc0696e3b4f92c2ae255d",
+            "example_id": "seg_d3cc005e4823d84e61262597",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_fbabc0696e3b4f92c2ae255d"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -57546,7 +57812,17 @@
           "10615838:9"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_d4d4ce2d35bb89648e8f8cbe",
+            "example_id": "seg_0ba2803b4b50634f92c3fd3a",
+            "example_index": 3
+          }
+        ],
+        "occurrence_ids": [
+          "occ_d4d4ce2d35bb89648e8f8cbe"
+        ]
       },
       {
         "sense": "bc5",
@@ -58659,7 +58935,17 @@
           "3036615:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_74e68372b01c9a8ca705f373",
+            "example_id": "seg_961883a2df5267ce4cbba935",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_74e68372b01c9a8ca705f373"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -63828,7 +64114,17 @@
           "10615838:20"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_c8d8b5a86f9ef9eaaf0819cc",
+            "example_id": "seg_e7e3b090585a89bba1ff5f25",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_c8d8b5a86f9ef9eaaf0819cc"
+        ]
       },
       {
         "sense": "a02",
@@ -68830,7 +69126,17 @@
           "3814300:20"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_8c857cf2691551c51085dbe8",
+            "example_id": "seg_eb02b6a7a50098c0848d6f2e",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_8c857cf2691551c51085dbe8"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -69133,7 +69439,17 @@
           "7515185:3"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_ceb14b538d0a7157b2a803a9",
+            "example_id": "seg_c3c818709ef9c023b1c6522e",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_ceb14b538d0a7157b2a803a9"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -69259,7 +69575,17 @@
           "7515185:4"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_9143c779d4b9bcf33b83c5d8",
+            "example_id": "seg_050cd972b47eadbf2f5d8eec",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_9143c779d4b9bcf33b83c5d8"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -70512,7 +70838,17 @@
           "3036615:40"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_286b92152ea0db53ebb1918d",
+            "example_id": "seg_2797a76ac5295e2dfe63debd",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_286b92152ea0db53ebb1918d"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -71703,6 +72039,33 @@
         ],
         "retention_run_id": "run_497da361574c7e114360f6b1"
       }
+    ],
+    "shared-register-auto": [
+      {
+        "sense": "register:reggaeton:71927472f6b6",
+        "examples": [
+          0
+        ],
+        "registers": [
+          "reggaeton"
+        ],
+        "supporting_artists": [
+          "Bad Bunny"
+        ],
+        "example_ids": [
+          "seg_1ad56adfa8fcb81f71151035"
+        ],
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_2ad5b9e8aa601eca835e842b",
+            "example_id": "seg_1ad56adfa8fcb81f71151035",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_2ad5b9e8aa601eca835e842b"
+        ]
+      }
     ]
   },
   "jurado": {
@@ -72879,7 +73242,23 @@
           "3964062:11"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_25da6e835b0fc1b30e09eebd",
+            "example_id": "seg_0556edcfbf5877a73666d9aa",
+            "example_index": 1
+          },
+          {
+            "occurrence_id": "occ_de45aac3fa951aca3fcd410b",
+            "example_id": "seg_37ee147d98143161236cc8d0",
+            "example_index": 2
+          }
+        ],
+        "occurrence_ids": [
+          "occ_25da6e835b0fc1b30e09eebd",
+          "occ_de45aac3fa951aca3fcd410b"
+        ]
       }
     ],
     "pos-auto": [
@@ -77679,7 +78058,17 @@
           "3964062:14"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_8f4f640f137f262c1761d6b3",
+            "example_id": "seg_734ef7d7f5a7411ec02d1283",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_8f4f640f137f262c1761d6b3"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -80221,7 +80610,17 @@
           "7515185:26"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_1f2cfd2b6021f0e7b3c816ae",
+            "example_id": "seg_d7f68d9438c8415c9db12123",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_1f2cfd2b6021f0e7b3c816ae"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -83618,7 +84017,17 @@
           "7515185:15"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_dc5f292daa507a0f368a92d1",
+            "example_id": "seg_798675381cbd36d3c7ebdfb4",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_dc5f292daa507a0f368a92d1"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -85098,7 +85507,17 @@
           "3036615:13"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_e2d59b5f945f5f4d926495bf",
+            "example_id": "seg_c48c83ab5e091891b12e3f22",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_e2d59b5f945f5f4d926495bf"
+        ]
       }
     ]
   },
@@ -85502,7 +85921,17 @@
           "7515185:34"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_41e105cd679505df50e9f322",
+            "example_id": "seg_b83f0a2cd1c9f112e7658009",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_41e105cd679505df50e9f322"
+        ]
       }
     ]
   },
@@ -87995,7 +88424,17 @@
           "4027739:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_a95ee39de850c9101c630b13",
+            "example_id": "seg_7be7565ec7a9129494e9a60c",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_a95ee39de850c9101c630b13"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -89260,7 +89699,17 @@
           "3964062:38"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_cf03e8c84c4a58e8a23938a7",
+            "example_id": "seg_6e694328eef9015f8cf3ce65",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_cf03e8c84c4a58e8a23938a7"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -89366,7 +89815,17 @@
           "3036615:10"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_69cfdaaf54a884e7dc8ba8ca",
+            "example_id": "seg_5b90524d78c8b6ca187988a1",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_69cfdaaf54a884e7dc8ba8ca"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -90304,7 +90763,17 @@
           "3964062:16"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_1fd81e7daa994a632cf6054a",
+            "example_id": "seg_c4d0acb538df53164a2961c7",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_1fd81e7daa994a632cf6054a"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -91937,7 +92406,17 @@
           "3036615:19"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_644d84eba4a08a3897b9cbef",
+            "example_id": "seg_d646385ec871dc7411d1651a",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_644d84eba4a08a3897b9cbef"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -91996,7 +92475,17 @@
           "3964062:21"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_5c35a155e4e89c23d7c1ac3d",
+            "example_id": "seg_b7e2baa25dd4724bf6dd17b4",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_5c35a155e4e89c23d7c1ac3d"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -92157,7 +92646,17 @@
           "3814300:4"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_4fb6b1e5e393e66c10c9e6ab",
+            "example_id": "seg_2b39b2b3af45459ae9c2bdd9",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_4fb6b1e5e393e66c10c9e6ab"
+        ]
       },
       {
         "sense": "80a",
@@ -93551,7 +94050,17 @@
           "10615838:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_685153b1261040e6b318e562",
+            "example_id": "seg_d377cf69aa1c33e4f638b2d8",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_685153b1261040e6b318e562"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -98121,7 +98630,17 @@
           "3814300:5"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_52d37df9a4f54860832306e1",
+            "example_id": "seg_b12be9faa2c1342932c605fd",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_52d37df9a4f54860832306e1"
+        ]
       },
       {
         "sense": "74d",
@@ -99974,7 +100493,17 @@
           "9077775:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_1939f7b12ef8452f74f25cd7",
+            "example_id": "seg_7fd38117546822ae48e46054",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_1939f7b12ef8452f74f25cd7"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -100510,7 +101039,17 @@
           "3814300:20"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_f5fe44a364857d6b2dcf5873",
+            "example_id": "seg_eb02b6a7a50098c0848d6f2e",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_f5fe44a364857d6b2dcf5873"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -100879,7 +101418,17 @@
           "9077775:24"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_d8dc1b982a1ec21dec5ba087",
+            "example_id": "seg_2870617b59f419c0e67bf529",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_d8dc1b982a1ec21dec5ba087"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -101201,7 +101750,17 @@
           "3814300:5"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_a1321d24f6364d0d509d074d",
+            "example_id": "seg_b12be9faa2c1342932c605fd",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_a1321d24f6364d0d509d074d"
+        ]
       }
     ]
   },
@@ -101216,7 +101775,17 @@
           "3814300:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_454dde9b9764cae5cc3107dc",
+            "example_id": "seg_9a02312f01d9b48593da68be",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_454dde9b9764cae5cc3107dc"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -101516,7 +102085,17 @@
           "3964069:6"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_6d41940accacd1f9d5c34a39",
+            "example_id": "seg_ca6c9a6779b7c37c947a1180",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_6d41940accacd1f9d5c34a39"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -101813,7 +102392,17 @@
           "3964062:12"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0edc5b65886b54c68fbeced7",
+            "example_id": "seg_71282532d1ac62aa529bf7ba",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0edc5b65886b54c68fbeced7"
+        ]
       }
     ],
     "lexical-gap-fill-g31": [
@@ -103489,7 +104078,17 @@
           "3036615:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_730985003bebc78d356eb3a3",
+            "example_id": "seg_78d9fb1b55eeb622a45161f4",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_730985003bebc78d356eb3a3"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -103663,7 +104262,17 @@
           "7515185:27"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_d4d415be854fef2d5cab1a1a",
+            "example_id": "seg_6657b2215307171a3d0ff101",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_d4d415be854fef2d5cab1a1a"
+        ]
       }
     ]
   },
@@ -103678,7 +104287,17 @@
           "7515185:26"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_7d503a172c5e1fade4fdea15",
+            "example_id": "seg_d7f68d9438c8415c9db12123",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_7d503a172c5e1fade4fdea15"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -103902,7 +104521,17 @@
           "3814300:7"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_8b23663a20c9c498233e8083",
+            "example_id": "seg_691fd1640d32d807d3195b4c",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_8b23663a20c9c498233e8083"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -105295,7 +105924,17 @@
           "3814300:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_bfd51f47cb2d3a33ab7850d8",
+            "example_id": "seg_9a02312f01d9b48593da68be",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_bfd51f47cb2d3a33ab7850d8"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -106163,7 +106802,17 @@
           "3036615:9"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_09f53c08ebc3d49670001e69",
+            "example_id": "seg_354cdc74ada436f6aac1bc22",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_09f53c08ebc3d49670001e69"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -106832,7 +107481,17 @@
           "7515185:29"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_b36acef7397a9e4a3d8cc42d",
+            "example_id": "seg_44c07742450339da665d42c5",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_b36acef7397a9e4a3d8cc42d"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -107156,7 +107815,17 @@
           "3964062:42"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_be07eac6e249f6cf7e4a5bd2",
+            "example_id": "seg_1c796065ba32433cd337f9ec",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_be07eac6e249f6cf7e4a5bd2"
+        ]
       }
     ]
   },
@@ -107385,7 +108054,17 @@
           "3036615:38"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_cc09a4f2d7178776b60fbe7a",
+            "example_id": "seg_7303a347ceb9fd17e2e49bec",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_cc09a4f2d7178776b60fbe7a"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -109952,7 +110631,17 @@
           "3036615:33"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_d9ebac768f0cae578a0ba260",
+            "example_id": "seg_460f2eb9115fc3118dc1837f",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_d9ebac768f0cae578a0ba260"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -109990,7 +110679,17 @@
           "10615838:7"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_e86b3fd357c81c0dc0d7f17b",
+            "example_id": "seg_98ac4c40d419e0c2d82eabc2",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_e86b3fd357c81c0dc0d7f17b"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -112953,7 +113652,17 @@
           "3964069:11"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0cdd0c9e16c45d3831c20988",
+            "example_id": "seg_a7eee39c799d737614b0d730",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0cdd0c9e16c45d3831c20988"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -113407,7 +114116,17 @@
           "3066984:4"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0728a1a652b9b47d46dc78d7",
+            "example_id": "seg_343302a9a06176955d917a33",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0728a1a652b9b47d46dc78d7"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -113752,7 +114471,17 @@
           "10615838:8"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_1c03cdba718649cf9d396458",
+            "example_id": "seg_c61db03f4b0acd460e85db10",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_1c03cdba718649cf9d396458"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -114226,7 +114955,17 @@
           "9077775:26"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_ee34036a04a010385a998cea",
+            "example_id": "seg_248fd8d1a9505b874c8423a8",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_ee34036a04a010385a998cea"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -114522,7 +115261,17 @@
           "3065897:31"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_d4d1f75f2efdab3f19cbfc56",
+            "example_id": "seg_a5d40f9617b295299d284fe5",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_d4d1f75f2efdab3f19cbfc56"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -116334,7 +117083,17 @@
           "9077775:25"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_74f361b4ab50143774fd7855",
+            "example_id": "seg_270ce0657f87e831e7485136",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_74f361b4ab50143774fd7855"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -118634,7 +119393,17 @@
           "3036615:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_ef4a798e90a42367de231ee8",
+            "example_id": "seg_78d9fb1b55eeb622a45161f4",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_ef4a798e90a42367de231ee8"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -119498,7 +120267,17 @@
           "3964069:10"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_ab70001e51406b32720e0e25",
+            "example_id": "seg_3d6a11b1a9fdb9566bc110f5",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_ab70001e51406b32720e0e25"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -120721,7 +121500,17 @@
           "3964062:19"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_36ab11a2ce81e2f78f21d5f4",
+            "example_id": "seg_11a22da5a10c7bfb6f8506a7",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_36ab11a2ce81e2f78f21d5f4"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -121229,7 +122018,17 @@
           "3814300:4"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_27ee22275bb33b99e37263ff",
+            "example_id": "seg_2b39b2b3af45459ae9c2bdd9",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_27ee22275bb33b99e37263ff"
+        ]
       }
     ]
   },
@@ -121577,7 +122376,17 @@
           "3036615:7"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_3a078666c9768501d005e7d9",
+            "example_id": "seg_45097482b4acca6a9d61edae",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_3a078666c9768501d005e7d9"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -122331,7 +123140,17 @@
           "3964062:36"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_3541f255b086b754c1fbb1bb",
+            "example_id": "seg_537ea34ad70e60ea7d09f532",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_3541f255b086b754c1fbb1bb"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -123839,7 +124658,17 @@
           "3964062:14"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_01994a1cbf44248a2248d9d6",
+            "example_id": "seg_734ef7d7f5a7411ec02d1283",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_01994a1cbf44248a2248d9d6"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -124067,7 +124896,17 @@
           "3814300:6"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_f120d2f310f6d3b54bd3a789",
+            "example_id": "seg_dfe8a0ff06842245986537b1",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_f120d2f310f6d3b54bd3a789"
+        ]
       }
     ]
   },
@@ -124317,7 +125156,17 @@
           "3814300:7"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_c8f79570815b33a03ff86fb8",
+            "example_id": "seg_691fd1640d32d807d3195b4c",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_c8f79570815b33a03ff86fb8"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -126552,7 +127401,17 @@
           "3964062:11"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_97ff3a394f3f6a71456d14fb",
+            "example_id": "seg_37ee147d98143161236cc8d0",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_97ff3a394f3f6a71456d14fb"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -126940,7 +127799,17 @@
           "3036615:23"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_dafb2df982383f0cfc1fff21",
+            "example_id": "seg_f71f10f0f36422cbef9d734f",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_dafb2df982383f0cfc1fff21"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -127705,6 +128574,33 @@
         ],
         "retention_run_id": "run_497da361574c7e114360f6b1"
       }
+    ],
+    "shared-register-auto": [
+      {
+        "sense": "register:reggaeton:be4d7f3ef398",
+        "examples": [
+          0
+        ],
+        "registers": [
+          "reggaeton"
+        ],
+        "supporting_artists": [
+          "Bad Bunny"
+        ],
+        "example_ids": [
+          "seg_455c4cfebc5afcf909b15c67"
+        ],
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_76e80f2a7423ebeecece78e5",
+            "example_id": "seg_455c4cfebc5afcf909b15c67",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_76e80f2a7423ebeecece78e5"
+        ]
+      }
     ]
   },
   "pensado": {
@@ -127765,7 +128661,17 @@
           "3036615:7"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_211c138e7f1ef106f3640f7a",
+            "example_id": "seg_45097482b4acca6a9d61edae",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_211c138e7f1ef106f3640f7a"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -128162,7 +129068,17 @@
           "10615838:9"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_539868b9c47029fdbd3d3400",
+            "example_id": "seg_0ba2803b4b50634f92c3fd3a",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_539868b9c47029fdbd3d3400"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -129542,7 +130458,17 @@
           "3036615:24"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_1f50ec5422a955e182cd3064",
+            "example_id": "seg_984c5770a5660e5a2e3cc686",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_1f50ec5422a955e182cd3064"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -130175,7 +131101,17 @@
           "3036615:12"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_6c0fa0ec3e1bb7d9626041fc",
+            "example_id": "seg_22e068d3e528e1e5cfd937b2",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_6c0fa0ec3e1bb7d9626041fc"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -130653,7 +131589,17 @@
           "3036615:39"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_9b54f855fffa14cbf97a54dc",
+            "example_id": "seg_098a829d4e03f1499911b538",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_9b54f855fffa14cbf97a54dc"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -131644,7 +132590,17 @@
           "3036615:16"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_9fa341b066ffda9d0cc0c348",
+            "example_id": "seg_cbec723d487067cc23842ca7",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_9fa341b066ffda9d0cc0c348"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -132134,7 +133090,17 @@
           "3036615:8"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_800eeb60bdd674dc25d86a77",
+            "example_id": "seg_d618e84100f17ccddb61b0f3",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_800eeb60bdd674dc25d86a77"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -132669,7 +133635,17 @@
           "3964062:21"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_73ce305fe860a009fc707938",
+            "example_id": "seg_b7e2baa25dd4724bf6dd17b4",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_73ce305fe860a009fc707938"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -132752,7 +133728,17 @@
           "3964062:40"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_785fe46fc82db056cfa9df76",
+            "example_id": "seg_86122d40f77dda5094fd705f",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_785fe46fc82db056cfa9df76"
+        ]
       }
     ]
   },
@@ -134861,7 +135847,17 @@
           "7515185:27"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_9e2d375f04b54a95ba929efe",
+            "example_id": "seg_6657b2215307171a3d0ff101",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_9e2d375f04b54a95ba929efe"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -134992,7 +135988,17 @@
           "10615838:13"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_63bbe2d0e18a20ef9aa34f8a",
+            "example_id": "seg_3d1a8c0e2f76cde76b733d5f",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_63bbe2d0e18a20ef9aa34f8a"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -135306,7 +136312,17 @@
           "3964062:17"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0e4da565d3a68da67622efc9",
+            "example_id": "seg_4053a2db1db55b5755740599",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0e4da565d3a68da67622efc9"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -136631,7 +137647,17 @@
           "3964062:42"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_2fc8d0f020213794bf194210",
+            "example_id": "seg_1c796065ba32433cd337f9ec",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_2fc8d0f020213794bf194210"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -136909,7 +137935,17 @@
           "7515185:33"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_8480ed7d25b5ca0b27c51f86",
+            "example_id": "seg_f6b0ab640503df75b0019830",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_8480ed7d25b5ca0b27c51f86"
+        ]
       }
     ],
     "lexical-gap-fill-g31": [
@@ -137192,7 +138228,17 @@
           "7515185:32"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_2081b47569f159a7c08128e9",
+            "example_id": "seg_7b54f07e97fa764fe52ceefb",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_2081b47569f159a7c08128e9"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -137205,7 +138251,17 @@
           "7515185:32"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_2081b47569f159a7c08128e9",
+            "example_id": "seg_7b54f07e97fa764fe52ceefb",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_2081b47569f159a7c08128e9"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -138893,7 +139949,17 @@
           "3964069:5"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_9abbda680ea8eaf2f637b384",
+            "example_id": "seg_b1513273c0fdc6ae94e83f06",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_9abbda680ea8eaf2f637b384"
+        ]
       }
     ],
     "spanishdict-auto": [
@@ -139620,7 +140686,17 @@
           "3964062:39"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_3bc4b177045587bbdfd6d6ab",
+            "example_id": "seg_1af0bdc3e8fcb79f816c893c",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_3bc4b177045587bbdfd6d6ab"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -139919,7 +140995,17 @@
           "9077775:21"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_686dafec708be0f2709b9b22",
+            "example_id": "seg_e7034f22d63b5f015bb271d9",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_686dafec708be0f2709b9b22"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -142841,7 +143927,47 @@
           "8173139:15"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_f18c2a2dcd636c11a0a66a4f",
+            "example_id": "seg_bfe70a59b27b823300be4880",
+            "example_index": 0
+          },
+          {
+            "occurrence_id": "occ_ed017d9a259ce4452a9eb51a",
+            "example_id": "seg_c6c61354de0a02b00bf43b69",
+            "example_index": 3
+          },
+          {
+            "occurrence_id": "occ_43edee9c5ac5a416a023dc07",
+            "example_id": "seg_d8b18c6578fbd03e77fd4fa4",
+            "example_index": 4
+          },
+          {
+            "occurrence_id": "occ_671664bde90dfced297e5487",
+            "example_id": "seg_2f406fb6c4604fe46706b431",
+            "example_index": 5
+          },
+          {
+            "occurrence_id": "occ_e6f02664fb41f7bcc554eb17",
+            "example_id": "seg_be6408364c928754617ff683",
+            "example_index": 7
+          },
+          {
+            "occurrence_id": "occ_03da92876b3eece2a1725bed",
+            "example_id": "seg_5b412d5df267bfd9db502fb1",
+            "example_index": 8
+          }
+        ],
+        "occurrence_ids": [
+          "occ_f18c2a2dcd636c11a0a66a4f",
+          "occ_ed017d9a259ce4452a9eb51a",
+          "occ_43edee9c5ac5a416a023dc07",
+          "occ_671664bde90dfced297e5487",
+          "occ_e6f02664fb41f7bcc554eb17",
+          "occ_03da92876b3eece2a1725bed"
+        ]
       },
       {
         "sense": "cc8",
@@ -142858,7 +143984,41 @@
           "7515185:1"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_57e1f8789a841fab10fc6101",
+            "example_id": "seg_4cafbc47e7a9b9025a2ef22e",
+            "example_index": 1
+          },
+          {
+            "occurrence_id": "occ_a421d56ea4d62d0211b8e49d",
+            "example_id": "seg_47844fb9954c54eb7325b8d7",
+            "example_index": 2
+          },
+          {
+            "occurrence_id": "occ_aea228d5fb3e50546ab0b7c4",
+            "example_id": "seg_7abf38ab23d057dc1d5ca207",
+            "example_index": 6
+          },
+          {
+            "occurrence_id": "occ_12d3935d4701dfbef45baef3",
+            "example_id": "seg_dc1ace926335f1a52e3a0d73",
+            "example_index": 9
+          },
+          {
+            "occurrence_id": "occ_8072edb9e13020fcf16c35b6",
+            "example_id": "seg_dc1ace926335f1a52e3a0d73",
+            "example_index": 9
+          }
+        ],
+        "occurrence_ids": [
+          "occ_57e1f8789a841fab10fc6101",
+          "occ_a421d56ea4d62d0211b8e49d",
+          "occ_aea228d5fb3e50546ab0b7c4",
+          "occ_12d3935d4701dfbef45baef3",
+          "occ_8072edb9e13020fcf16c35b6"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -143986,7 +145146,17 @@
           "7659063:1"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_678c322956e0f12880b2bdc0",
+            "example_id": "seg_122aa8ce4e3d840757c9558f",
+            "example_index": 8
+          }
+        ],
+        "occurrence_ids": [
+          "occ_678c322956e0f12880b2bdc0"
+        ]
       },
       {
         "sense": "b09",
@@ -144055,7 +145225,17 @@
           "6211010:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0bd4cf02f7a10de1c9ce9514",
+            "example_id": "seg_66846325ad681dad3c8b7480",
+            "example_index": 5
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0bd4cf02f7a10de1c9ce9514"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -144434,7 +145614,71 @@
           "2966663:14"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_365eda6d68459cc8dca94028",
+            "example_id": "seg_93148b205fc9b68c16c19dce",
+            "example_index": 0
+          },
+          {
+            "occurrence_id": "occ_b688c76a78024b7cdecdddce",
+            "example_id": "seg_b24792bf6c6038a089afa226",
+            "example_index": 1
+          },
+          {
+            "occurrence_id": "occ_1a6cb11e0f2d5f1ce3bd17cb",
+            "example_id": "seg_14762b12dff56b4f14efe1bd",
+            "example_index": 2
+          },
+          {
+            "occurrence_id": "occ_3db9d97a64d874e26723988d",
+            "example_id": "seg_cc8fad326be93839160ef905",
+            "example_index": 3
+          },
+          {
+            "occurrence_id": "occ_d11aeda4da85ae0e3e432254",
+            "example_id": "seg_841923c59e8e6ac570845b77",
+            "example_index": 4
+          },
+          {
+            "occurrence_id": "occ_15598b4169fd36b0aa20a2a7",
+            "example_id": "seg_513a40ccd901940c00d12de9",
+            "example_index": 5
+          },
+          {
+            "occurrence_id": "occ_ab26cde46bab477d587851c6",
+            "example_id": "seg_9b923d045408b8121f20bc48",
+            "example_index": 6
+          },
+          {
+            "occurrence_id": "occ_f15469177018a746f3a09982",
+            "example_id": "seg_09204ecd90c4e633f7e71b31",
+            "example_index": 7
+          },
+          {
+            "occurrence_id": "occ_45615962ada1e013d694fead",
+            "example_id": "seg_c4ffd87635cc49f589d07e28",
+            "example_index": 8
+          },
+          {
+            "occurrence_id": "occ_b7653594186ac42055de83e7",
+            "example_id": "seg_79f04fad77a5bd12b8b5548e",
+            "example_index": 9
+          }
+        ],
+        "occurrence_ids": [
+          "occ_365eda6d68459cc8dca94028",
+          "occ_b688c76a78024b7cdecdddce",
+          "occ_1a6cb11e0f2d5f1ce3bd17cb",
+          "occ_3db9d97a64d874e26723988d",
+          "occ_d11aeda4da85ae0e3e432254",
+          "occ_15598b4169fd36b0aa20a2a7",
+          "occ_ab26cde46bab477d587851c6",
+          "occ_f15469177018a746f3a09982",
+          "occ_45615962ada1e013d694fead",
+          "occ_b7653594186ac42055de83e7"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -144737,7 +145981,17 @@
           "11841928:8"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_32053f66438571b316c90bc4",
+            "example_id": "seg_46a2e8acc9d6d5a2944602b6",
+            "example_index": 6
+          }
+        ],
+        "occurrence_ids": [
+          "occ_32053f66438571b316c90bc4"
+        ]
       },
       {
         "sense": "c31",
@@ -145511,7 +146765,17 @@
           "12581294:24"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_399939a2013d140f7008a9c0",
+            "example_id": "seg_dab48b0971f0b209b706f957",
+            "example_index": 7
+          }
+        ],
+        "occurrence_ids": [
+          "occ_399939a2013d140f7008a9c0"
+        ]
       },
       {
         "sense": "150",
@@ -147840,7 +149104,17 @@
           "3964062:37"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0bf11520c3fbdcf419d51993",
+            "example_id": "seg_e7e3b090585a89bba1ff5f25",
+            "example_index": 6
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0bf11520c3fbdcf419d51993"
+        ]
       },
       {
         "sense": "ca7",
@@ -147893,7 +149167,17 @@
           "10615838:20"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_29c27226da5974f9c6408ed0",
+            "example_id": "seg_2ad5d20837ae7d0caa305f9d",
+            "example_index": 5
+          }
+        ],
+        "occurrence_ids": [
+          "occ_29c27226da5974f9c6408ed0"
+        ]
       },
       {
         "sense": "f16",
@@ -147990,7 +149274,17 @@
           "10615838:20"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_29c27226da5974f9c6408ed0",
+            "example_id": "seg_2ad5d20837ae7d0caa305f9d",
+            "example_index": 5
+          }
+        ],
+        "occurrence_ids": [
+          "occ_29c27226da5974f9c6408ed0"
+        ]
       },
       {
         "sense": "92b",
@@ -148064,7 +149358,17 @@
           "3964062:37"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_0bf11520c3fbdcf419d51993",
+            "example_id": "seg_e7e3b090585a89bba1ff5f25",
+            "example_index": 6
+          }
+        ],
+        "occurrence_ids": [
+          "occ_0bf11520c3fbdcf419d51993"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -149651,7 +150955,17 @@
           "7515185:5"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_bf55d8c94e5e54c3dd937080",
+            "example_id": "seg_78211e245438b64f174ea371",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_bf55d8c94e5e54c3dd937080"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -150309,7 +151623,17 @@
           "7515185:5"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_530b4f8f2922641ca362752f",
+            "example_id": "seg_78211e245438b64f174ea371",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_530b4f8f2922641ca362752f"
+        ]
       }
     ],
     "spanishdict-lexical-g31": [
@@ -153533,7 +154857,17 @@
           "7515185:35"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_5a7ef3e4a04307e80d5257dd",
+            "example_id": "seg_50c43e916c37339eef059268",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_5a7ef3e4a04307e80d5257dd"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -153546,7 +154880,17 @@
           "7515185:35"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_5a7ef3e4a04307e80d5257dd",
+            "example_id": "seg_50c43e916c37339eef059268",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_5a7ef3e4a04307e80d5257dd"
+        ]
       }
     ]
   },
@@ -155014,7 +156358,17 @@
           "3036615:10"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_4b9f285b4e7b2b4a6b9e775a",
+            "example_id": "seg_5b90524d78c8b6ca187988a1",
+            "example_index": 1
+          }
+        ],
+        "occurrence_ids": [
+          "occ_4b9f285b4e7b2b4a6b9e775a"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -157830,7 +159184,17 @@
           "7515279:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_259e5ffcaa9292eea5728315",
+            "example_id": "seg_31f04a4a5834567ede7c5645",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_259e5ffcaa9292eea5728315"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -157843,7 +159207,17 @@
           "7515279:22"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_259e5ffcaa9292eea5728315",
+            "example_id": "seg_31f04a4a5834567ede7c5645",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_259e5ffcaa9292eea5728315"
+        ]
       }
     ]
   },
@@ -157928,7 +159302,17 @@
           "7515185:30"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_38608cd0f1a702ef9540a26b",
+            "example_id": "seg_e48f143e6c08da2476940e5e",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_38608cd0f1a702ef9540a26b"
+        ]
       }
     ],
     "spanishdict-flash-lite": [
@@ -157941,7 +159325,17 @@
           "7515185:30"
         ],
         "prompt_id": "legacy-unknown",
-        "run_ts": "2026-05-02T10:27Z"
+        "run_ts": "2026-05-02T10:27Z",
+        "occurrence_refs": [
+          {
+            "occurrence_id": "occ_38608cd0f1a702ef9540a26b",
+            "example_id": "seg_e48f143e6c08da2476940e5e",
+            "example_index": 0
+          }
+        ],
+        "occurrence_ids": [
+          "occ_38608cd0f1a702ef9540a26b"
+        ]
       }
     ],
     "lexical-gap-fill-g31": [

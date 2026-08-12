@@ -798,11 +798,14 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "alarga'": {
+  "alargar": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "albinoni": {
@@ -2546,7 +2549,7 @@
   "baby": {
     "freq": 10,
     "bucket": "english",
-    "source": "english_loanwords",
+    "source": "curated_extra_english",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -6248,12 +6251,16 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "compa're": {
+  "compadre": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
+    "wikt_pos": [
+      "noun",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "compasión": {
     "freq": 1,
@@ -10584,13 +10591,6 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "e'to": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "ea": {
     "freq": 2,
     "wikt_pos": [
@@ -11584,15 +11584,8 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "entraña'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "entrañas": {
-    "freq": 1,
+    "freq": 2,
     "wikt_pos": [
       "noun",
       "verb"
@@ -12655,7 +12648,7 @@
     "in_en_50k": false
   },
   "esto": {
-    "freq": 7,
+    "freq": 8,
     "wikt_pos": [
       "pron"
     ],
@@ -14040,8 +14033,8 @@
   },
   "g": {
     "freq": 4,
-    "bucket": "proper_nouns",
-    "source": "caps_rate",
+    "bucket": "noise",
+    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -15972,8 +15965,8 @@
   },
   "i": {
     "freq": 15,
-    "bucket": "noise",
-    "source": "curated_noise",
+    "bucket": "english",
+    "source": "curated_extra_english",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -17182,11 +17175,8 @@
   },
   "l": {
     "freq": 1,
-    "wikt_pos": [
-      "character"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "noise",
+    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -21827,13 +21817,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "nue'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "nuestra": {
     "freq": 3,
     "wikt_pos": [
@@ -21895,6 +21878,16 @@
     "wikt_pos": [
       "adj",
       "name"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
+  "nuez": {
+    "freq": 1,
+    "wikt_pos": [
+      "noun"
     ],
     "bucket": "normal_vocab",
     "source": "spanish_forms",
@@ -22177,13 +22170,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "olvi'ando": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "olvida": {
     "freq": 3,
     "wikt_pos": [
@@ -22206,7 +22192,7 @@
     "in_en_50k": false
   },
   "olvidando": {
-    "freq": 1,
+    "freq": 2,
     "wikt_pos": [
       "verb"
     ],
@@ -23306,13 +23292,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "pe'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "pecado": {
     "freq": 1,
     "wikt_pos": [
@@ -23957,6 +23936,16 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": false
+  },
+  "pez": {
+    "freq": 1,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": true
   },
   "peñas": {
     "freq": 1,
@@ -24813,13 +24802,8 @@
   },
   "pr": {
     "freq": 1,
-    "wikt_pos": [
-      "conj",
-      "name",
-      "prep"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "noise",
+    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -24953,10 +24937,10 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "prenda'ita": {
+  "prendadita": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "derivation",
+    "derivation_base": "prendada",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -25481,13 +25465,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "pue'es": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "pueblo": {
     "freq": 1,
     "wikt_pos": [
@@ -25541,7 +25518,7 @@
     "in_en_50k": false
   },
   "puedes": {
-    "freq": 9,
+    "freq": 10,
     "wikt_pos": [
       "verb"
     ],
@@ -29017,10 +28994,10 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "señala'íto": {
+  "señaladito": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "derivation",
+    "derivation_base": "señalado",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -30127,8 +30104,13 @@
   },
   "ta": {
     "freq": 1,
-    "bucket": "noise",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "intj",
+      "name",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -31081,8 +31063,8 @@
   },
   "to": {
     "freq": 1,
-    "bucket": "noise",
-    "source": "curated_noise",
+    "bucket": "english",
+    "source": "en_50k",
     "in_spanish_forms": false,
     "in_en_50k": true
   },

@@ -49213,6 +49213,190 @@
     ]
   },
   {
+    "word": "estos",
+    "corpus_count": 51,
+    "song_count": 38,
+    "song_ids": [
+      "10901838",
+      "2829388",
+      "2871746",
+      "2915707",
+      "2976831",
+      "3005716",
+      "3006211",
+      "3015945",
+      "3016410",
+      "3048221",
+      "3059630",
+      "3075944",
+      "3256611",
+      "3289205",
+      "3334750",
+      "3431731",
+      "3542120",
+      "3640901",
+      "3726733",
+      "3928253",
+      "4179007",
+      "4706730",
+      "4763027",
+      "5210444",
+      "5305007",
+      "5305010",
+      "5318195",
+      "5529070",
+      "5529101",
+      "5629827",
+      "5629886",
+      "5629919",
+      "6852775",
+      "7967941",
+      "7967954",
+      "8598733",
+      "9246653",
+      "9614095"
+    ],
+    "examples": [
+      {
+        "id": "5210444:10",
+        "line": "Y, ¿dónde estará Dios metío' en estos momento'?",
+        "title": "6 Rings",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_3f1d645a95737772f21960cb",
+        "occurrence_ids": [
+          "occ_c9503d90cec44f2cc187824f"
+        ],
+        "surface": "estos"
+      },
+      {
+        "id": "3075944:41",
+        "line": "A estos bobos con la forty los espanto (Plo-plo)",
+        "title": "MIA",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_b9e3dbb2779f4dd888bc87f0",
+        "occurrence_ids": [
+          "occ_ab2e9ef540d70e12d9a1358b"
+        ],
+        "surface": "estos"
+      },
+      {
+        "id": "2829388:27",
+        "line": "Dile' a estos bobo' que no se comparen",
+        "title": "Diles",
+        "segment_id": "seg_5ece2a28d86361447c1b251e",
+        "occurrence_ids": [
+          "occ_7559e8fa37073aa41454262c"
+        ],
+        "surface": "estos"
+      },
+      {
+        "id": "5305010:34",
+        "line": "Y que está' cansá' de que esto' cabrone' te digan lo mismo",
+        "title": "A Tu Merced",
+        "surface": "esto'",
+        "segment_id": "seg_2edf214e5e109da87d8185fe",
+        "occurrence_ids": [
+          "occ_19cbe8723b01a34d11d6e985"
+        ]
+      },
+      {
+        "id": "7967941:21",
+        "line": "Ojalá un día de estos me escriba'",
+        "title": "Otro Atardecer",
+        "vocalists": [
+          "Bad Bunny",
+          "Bad Bunny",
+          "The Marías"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_94ad948b96b067eeb4469e73",
+        "occurrence_ids": [
+          "occ_3d5d70eccac72b8139f705fc"
+        ],
+        "surface": "estos"
+      },
+      {
+        "id": "7967954:6",
+        "line": "No te sorprenden to' estos bobo' con ticket (Ticket)",
+        "title": "Tarot",
+        "vocalists": [
+          "JHAYCO"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_062ec2edbd94cf661a5682bd",
+        "occurrence_ids": [
+          "occ_8822cedfdf73032fe8fb9fb6"
+        ],
+        "surface": "estos"
+      },
+      {
+        "id": "9614095:9",
+        "line": "Pero con esto' cabrones no, no me comparen, no",
+        "title": "CYBERTRUCK",
+        "surface": "esto'",
+        "segment_id": "seg_0f9e8083a5cb04c023f71999",
+        "occurrence_ids": [
+          "occ_20eb7de4298406e70eb06865"
+        ]
+      },
+      {
+        "id": "2976831:79",
+        "line": "La generación más poderosa que ha salío' en to' esto' año'",
+        "title": "Amigos y Enemigos (Remix)",
+        "surface": "esto'",
+        "vocalists": [
+          "Noriel",
+          "Almighty",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_373c53c5ead10ed6f45cd39b",
+        "occurrence_ids": [
+          "occ_4926b3cfbe991bcd8ed46cd2"
+        ]
+      },
+      {
+        "id": "3005716:22",
+        "line": "Que ninguno 'e estos cabrone' a mí me va a remplazar",
+        "title": "No Te Hagas",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_e751c830a63220ef70b1eed7",
+        "occurrence_ids": [
+          "occ_a9f2da1f704f1c3468765fd6"
+        ],
+        "surface": "estos"
+      },
+      {
+        "id": "9246653:97",
+        "line": "Hablamo' un día de esto' cuando nos encontremo'",
+        "title": "PASIEMPRE",
+        "surface": "esto'",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_d0df73c9b9e75bc4190a90ee",
+        "occurrence_ids": [
+          "occ_bf9c06d27588038e144e4ca3"
+        ]
+      }
+    ],
+    "display_form": "esto'",
+    "variants": {
+      "estos": 50,
+      "e'tos": 1
+    }
+  },
+  {
     "word": "carajo",
     "corpus_count": 50,
     "song_count": 40,
@@ -49401,186 +49585,6 @@
         "surface": "carajo"
       }
     ]
-  },
-  {
-    "word": "estos",
-    "corpus_count": 50,
-    "song_count": 38,
-    "song_ids": [
-      "10901838",
-      "2829388",
-      "2871746",
-      "2915707",
-      "2976831",
-      "3005716",
-      "3006211",
-      "3015945",
-      "3016410",
-      "3048221",
-      "3059630",
-      "3075944",
-      "3256611",
-      "3289205",
-      "3334750",
-      "3431731",
-      "3542120",
-      "3640901",
-      "3726733",
-      "3928253",
-      "4179007",
-      "4706730",
-      "4763027",
-      "5210444",
-      "5305007",
-      "5305010",
-      "5318195",
-      "5529070",
-      "5529101",
-      "5629827",
-      "5629886",
-      "5629919",
-      "6852775",
-      "7967941",
-      "7967954",
-      "8598733",
-      "9246653",
-      "9614095"
-    ],
-    "examples": [
-      {
-        "id": "5210444:10",
-        "line": "Y, ¿dónde estará Dios metío' en estos momento'?",
-        "title": "6 Rings",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_3f1d645a95737772f21960cb",
-        "occurrence_ids": [
-          "occ_c9503d90cec44f2cc187824f"
-        ],
-        "surface": "estos"
-      },
-      {
-        "id": "3075944:41",
-        "line": "A estos bobos con la forty los espanto (Plo-plo)",
-        "title": "MIA",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_b9e3dbb2779f4dd888bc87f0",
-        "occurrence_ids": [
-          "occ_ab2e9ef540d70e12d9a1358b"
-        ],
-        "surface": "estos"
-      },
-      {
-        "id": "2829388:27",
-        "line": "Dile' a estos bobo' que no se comparen",
-        "title": "Diles",
-        "segment_id": "seg_5ece2a28d86361447c1b251e",
-        "occurrence_ids": [
-          "occ_7559e8fa37073aa41454262c"
-        ],
-        "surface": "estos"
-      },
-      {
-        "id": "5305010:34",
-        "line": "Y que está' cansá' de que esto' cabrone' te digan lo mismo",
-        "title": "A Tu Merced",
-        "surface": "esto'",
-        "segment_id": "seg_2edf214e5e109da87d8185fe",
-        "occurrence_ids": [
-          "occ_19cbe8723b01a34d11d6e985"
-        ]
-      },
-      {
-        "id": "7967941:21",
-        "line": "Ojalá un día de estos me escriba'",
-        "title": "Otro Atardecer",
-        "vocalists": [
-          "Bad Bunny",
-          "Bad Bunny",
-          "The Marías"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_94ad948b96b067eeb4469e73",
-        "occurrence_ids": [
-          "occ_3d5d70eccac72b8139f705fc"
-        ],
-        "surface": "estos"
-      },
-      {
-        "id": "7967954:6",
-        "line": "No te sorprenden to' estos bobo' con ticket (Ticket)",
-        "title": "Tarot",
-        "vocalists": [
-          "JHAYCO"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_062ec2edbd94cf661a5682bd",
-        "occurrence_ids": [
-          "occ_8822cedfdf73032fe8fb9fb6"
-        ],
-        "surface": "estos"
-      },
-      {
-        "id": "9614095:9",
-        "line": "Pero con esto' cabrones no, no me comparen, no",
-        "title": "CYBERTRUCK",
-        "surface": "esto'",
-        "segment_id": "seg_0f9e8083a5cb04c023f71999",
-        "occurrence_ids": [
-          "occ_20eb7de4298406e70eb06865"
-        ]
-      },
-      {
-        "id": "2976831:79",
-        "line": "La generación más poderosa que ha salío' en to' esto' año'",
-        "title": "Amigos y Enemigos (Remix)",
-        "surface": "esto'",
-        "vocalists": [
-          "Noriel",
-          "Almighty",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_373c53c5ead10ed6f45cd39b",
-        "occurrence_ids": [
-          "occ_4926b3cfbe991bcd8ed46cd2"
-        ]
-      },
-      {
-        "id": "3005716:22",
-        "line": "Que ninguno 'e estos cabrone' a mí me va a remplazar",
-        "title": "No Te Hagas",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_e751c830a63220ef70b1eed7",
-        "occurrence_ids": [
-          "occ_a9f2da1f704f1c3468765fd6"
-        ],
-        "surface": "estos"
-      },
-      {
-        "id": "9246653:97",
-        "line": "Hablamo' un día de esto' cuando nos encontremo'",
-        "title": "PASIEMPRE",
-        "surface": "esto'",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_d0df73c9b9e75bc4190a90ee",
-        "occurrence_ids": [
-          "occ_bf9c06d27588038e144e4ca3"
-        ]
-      }
-    ],
-    "display_form": "esto'"
   },
   {
     "word": "luian",
@@ -91201,6 +91205,165 @@
     ]
   },
   {
+    "word": "normal",
+    "corpus_count": 22,
+    "song_count": 17,
+    "song_ids": [
+      "11292695",
+      "11292888",
+      "2935271",
+      "3001094",
+      "3928253",
+      "4179001",
+      "4179012",
+      "4662272",
+      "5185823",
+      "5305008",
+      "5305012",
+      "5305015",
+      "5320909",
+      "7420852",
+      "7927935",
+      "9614081",
+      "9614095"
+    ],
+    "examples": [
+      {
+        "id": "9614095:11",
+        "line": "Que ustede' saben ya que no soy normal",
+        "title": "CYBERTRUCK",
+        "segment_id": "seg_3f5e6c5447f0705637c27f13",
+        "occurrence_ids": [
+          "occ_ac3ab3872fc7a9d352a8b7b6"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "7927935:22",
+        "line": "Baby, esto no fue normal",
+        "title": "Un Ratito",
+        "segment_id": "seg_b493a82d3b0e2714d8ac52ac",
+        "occurrence_ids": [
+          "occ_e4ffeb461e5818ba56a5cc82"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "3928253:1",
+        "line": "[Letra de \"Bad Bunny: Problemas de un niño normal\"]Problemas de un niño normal:",
+        "title": "Bad Bunny: Problemas de un niño normal",
+        "segment_id": "seg_52ce6eca42d5bd83c8b06ed2",
+        "occurrence_ids": [
+          "occ_e9c0068331f95346be0e9e4c"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "5305012:7",
+        "line": "Luego lo sigo normal con mi vida",
+        "title": "Una Vez",
+        "vocalists": [
+          "Mora"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_42112fef95d518fef2466c89",
+        "occurrence_ids": [
+          "occ_cdf3465be10e9fd7e6082298"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "11292695:30",
+        "line": "'Tá cabrón que pa' ti es normal",
+        "title": "KLOuFRENS",
+        "vocalists": [
+          "Bad Bunny",
+          "De La Rose"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_07f52d53a8dd634413512c11",
+        "occurrence_ids": [
+          "occ_9406a9d714adcfa9a8157643"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "11292888:8",
+        "line": "Te olvidaste de mí, la seguiste normal, normal (Uh-uh-uh)",
+        "title": "KETU TeCRÉ",
+        "segment_id": "seg_d825fc79dfbc885bb2f4ec7e",
+        "occurrence_ids": [
+          "occ_8dacf766b4f6fabb56bb80e7",
+          "occ_9e1fbea02c768e6661b4d4ee"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "5185823:9",
+        "line": "Normal, yo sé que a vece' peleamo'",
+        "title": "Ignorantes",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_ae0403529a59871c75d440e8",
+        "occurrence_ids": [
+          "occ_97ab41037af62b5925a6a00a"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "4179001:5",
+        "line": "Yo le llego y normal, ey, me miran raro, eh",
+        "title": "Caro",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_a1912dacb9e77c1d2f1b31f8",
+        "occurrence_ids": [
+          "occ_37e862f3e118a651dab5f760"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "5305008:29",
+        "line": "Lo que pa' ti e' movie, pa' ella e' normal",
+        "title": "La Zona",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_299ba585fb4547d26383454f",
+        "occurrence_ids": [
+          "occ_60b285815cc64cf69f56a747"
+        ],
+        "surface": "normal"
+      },
+      {
+        "id": "7420852:21",
+        "line": "Normal, a mí no me venga' a llamar",
+        "title": "No Te Deseo el Mal",
+        "vocalists": [
+          "KAROL G",
+          "Eladio Carrión",
+          "Ambos",
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_ce96ddca7d2889c82b850e9d",
+        "occurrence_ids": [
+          "occ_3f3ce855b7d9090126e30895"
+        ],
+        "surface": "normal"
+      }
+    ],
+    "variants": {
+      "normal": 21,
+      "norma'": 1
+    }
+  },
+  {
     "word": "alma",
     "corpus_count": 21,
     "song_count": 20,
@@ -93210,160 +93373,6 @@
           "occ_f158a0ce32fbda05bd6b63c4"
         ],
         "surface": "mete"
-      }
-    ]
-  },
-  {
-    "word": "normal",
-    "corpus_count": 21,
-    "song_count": 16,
-    "song_ids": [
-      "11292695",
-      "11292888",
-      "2935271",
-      "3928253",
-      "4179001",
-      "4179012",
-      "4662272",
-      "5185823",
-      "5305008",
-      "5305012",
-      "5305015",
-      "5320909",
-      "7420852",
-      "7927935",
-      "9614081",
-      "9614095"
-    ],
-    "examples": [
-      {
-        "id": "9614095:11",
-        "line": "Que ustede' saben ya que no soy normal",
-        "title": "CYBERTRUCK",
-        "segment_id": "seg_3f5e6c5447f0705637c27f13",
-        "occurrence_ids": [
-          "occ_ac3ab3872fc7a9d352a8b7b6"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "7927935:22",
-        "line": "Baby, esto no fue normal",
-        "title": "Un Ratito",
-        "segment_id": "seg_b493a82d3b0e2714d8ac52ac",
-        "occurrence_ids": [
-          "occ_e4ffeb461e5818ba56a5cc82"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "3928253:1",
-        "line": "[Letra de \"Bad Bunny: Problemas de un niño normal\"]Problemas de un niño normal:",
-        "title": "Bad Bunny: Problemas de un niño normal",
-        "segment_id": "seg_52ce6eca42d5bd83c8b06ed2",
-        "occurrence_ids": [
-          "occ_e9c0068331f95346be0e9e4c"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "5305012:7",
-        "line": "Luego lo sigo normal con mi vida",
-        "title": "Una Vez",
-        "vocalists": [
-          "Mora"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_42112fef95d518fef2466c89",
-        "occurrence_ids": [
-          "occ_cdf3465be10e9fd7e6082298"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "11292695:30",
-        "line": "'Tá cabrón que pa' ti es normal",
-        "title": "KLOuFRENS",
-        "vocalists": [
-          "Bad Bunny",
-          "De La Rose"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_07f52d53a8dd634413512c11",
-        "occurrence_ids": [
-          "occ_9406a9d714adcfa9a8157643"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "11292888:8",
-        "line": "Te olvidaste de mí, la seguiste normal, normal (Uh-uh-uh)",
-        "title": "KETU TeCRÉ",
-        "segment_id": "seg_d825fc79dfbc885bb2f4ec7e",
-        "occurrence_ids": [
-          "occ_8dacf766b4f6fabb56bb80e7",
-          "occ_9e1fbea02c768e6661b4d4ee"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "5185823:9",
-        "line": "Normal, yo sé que a vece' peleamo'",
-        "title": "Ignorantes",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_ae0403529a59871c75d440e8",
-        "occurrence_ids": [
-          "occ_97ab41037af62b5925a6a00a"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "4179001:5",
-        "line": "Yo le llego y normal, ey, me miran raro, eh",
-        "title": "Caro",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_a1912dacb9e77c1d2f1b31f8",
-        "occurrence_ids": [
-          "occ_37e862f3e118a651dab5f760"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "5305008:29",
-        "line": "Lo que pa' ti e' movie, pa' ella e' normal",
-        "title": "La Zona",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_299ba585fb4547d26383454f",
-        "occurrence_ids": [
-          "occ_60b285815cc64cf69f56a747"
-        ],
-        "surface": "normal"
-      },
-      {
-        "id": "7420852:21",
-        "line": "Normal, a mí no me venga' a llamar",
-        "title": "No Te Deseo el Mal",
-        "vocalists": [
-          "KAROL G",
-          "Eladio Carrión",
-          "Ambos",
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_ce96ddca7d2889c82b850e9d",
-        "occurrence_ids": [
-          "occ_3f3ce855b7d9090126e30895"
-        ],
-        "surface": "normal"
       }
     ]
   },
@@ -126539,6 +126548,151 @@
     ]
   },
   {
+    "word": "mover",
+    "corpus_count": 15,
+    "song_count": 9,
+    "song_ids": [
+      "11292885",
+      "12488960",
+      "3167974",
+      "3359025",
+      "3523266",
+      "4662262",
+      "4763027",
+      "5553968",
+      "7967937"
+    ],
+    "examples": [
+      {
+        "id": "12488960:4",
+        "line": "La que ma' te gustan y te hacen mover (Skrr)",
+        "title": "Moda Te Mueve",
+        "segment_id": "seg_177b5bf040827e4b4d25c5d6",
+        "occurrence_ids": [
+          "occ_e445a593fe351490bd63563f"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "4662262:22",
+        "line": "Ni yo sin mover el burrito",
+        "title": "CUIDAO POR AHÍ",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_a7a8c55518b3acda076ee4c4",
+        "occurrence_ids": [
+          "occ_5da629c0f1d3216474b7df0c"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "7967937:12",
+        "line": "Cada vez que me miras, sin parar de mover las cadera', eh, eh",
+        "title": "Enséñame a Bailar",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_4a97efa78fbd09a18fcdf299",
+        "occurrence_ids": [
+          "occ_6d194b2650d0be7d22b4fbe0"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "11292885:48",
+        "line": "Si tú lo quiere', lo tiene' que mover",
+        "title": "NUEVAYoL",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_e5e7dc7efc3fdf4dad194e1c",
+        "occurrence_ids": [
+          "occ_ae2925897ff28786cedbd5f4"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "5553968:29",
+        "line": "Es el Nicky Jam pa' ponerte a mover",
+        "title": "BAD CON NICKY",
+        "vocalists": [
+          "Nicky Jam"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_ddcd83bffc1bfc0dc6ba1099",
+        "occurrence_ids": [
+          "occ_b549b5186a742b79a4a6b1b7"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "3359025:20",
+        "line": "Tú no sabes lo que es mover los cosos pa’ allá fuera",
+        "title": "Como Soy",
+        "vocalists": [
+          "Daddy Yankee"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_2249dee64ad82cf218199a41",
+        "occurrence_ids": [
+          "occ_5f72673ab76141fff6bbfa84"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "3167974:70",
+        "line": "Pa' que te puedes mover",
+        "title": "El Challet (Remix)",
+        "vocalists": [
+          "Jory Boy"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_64a2d46a762b5174702b1ddf",
+        "occurrence_ids": [
+          "occ_6f53bd5e09962caa344c16eb"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "3523266:100",
+        "line": "Yo les enseñé a toda' esa' bitche' a mover (Ah, ah)",
+        "title": "Loca (Remix)",
+        "vocalists": [
+          "Cazzu",
+          "KHEA"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_c936442dc2ad18aefa5d9e32",
+        "occurrence_ids": [
+          "occ_09e2a51c3f0a18ed09ab13c8"
+        ],
+        "surface": "mover"
+      },
+      {
+        "id": "4763027:43",
+        "line": "Hijo 'e puta, tú no eres bichote por mover dos zeta'",
+        "title": "Subimos de Rango",
+        "vocalists": [
+          "Omy de Oro"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_ca8181e66c70a625df36e6e1",
+        "occurrence_ids": [
+          "occ_648edb784f2f17be0d06c08c"
+        ],
+        "surface": "mover"
+      }
+    ],
+    "variants": {
+      "mover": 13,
+      "move'": 2
+    }
+  },
+  {
     "word": "alex",
     "corpus_count": 14,
     "song_count": 12,
@@ -135036,147 +135190,6 @@
           "occ_6cc37962af7dcc42e121910b"
         ],
         "surface": "mata"
-      }
-    ]
-  },
-  {
-    "word": "mover",
-    "corpus_count": 13,
-    "song_count": 9,
-    "song_ids": [
-      "11292885",
-      "12488960",
-      "3167974",
-      "3359025",
-      "3523266",
-      "4662262",
-      "4763027",
-      "5553968",
-      "7967937"
-    ],
-    "examples": [
-      {
-        "id": "12488960:4",
-        "line": "La que ma' te gustan y te hacen mover (Skrr)",
-        "title": "Moda Te Mueve",
-        "segment_id": "seg_177b5bf040827e4b4d25c5d6",
-        "occurrence_ids": [
-          "occ_e445a593fe351490bd63563f"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "4662262:22",
-        "line": "Ni yo sin mover el burrito",
-        "title": "CUIDAO POR AHÍ",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_a7a8c55518b3acda076ee4c4",
-        "occurrence_ids": [
-          "occ_5da629c0f1d3216474b7df0c"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "7967937:12",
-        "line": "Cada vez que me miras, sin parar de mover las cadera', eh, eh",
-        "title": "Enséñame a Bailar",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_4a97efa78fbd09a18fcdf299",
-        "occurrence_ids": [
-          "occ_6d194b2650d0be7d22b4fbe0"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "11292885:48",
-        "line": "Si tú lo quiere', lo tiene' que mover",
-        "title": "NUEVAYoL",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_e5e7dc7efc3fdf4dad194e1c",
-        "occurrence_ids": [
-          "occ_ae2925897ff28786cedbd5f4"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "5553968:29",
-        "line": "Es el Nicky Jam pa' ponerte a mover",
-        "title": "BAD CON NICKY",
-        "vocalists": [
-          "Nicky Jam"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_ddcd83bffc1bfc0dc6ba1099",
-        "occurrence_ids": [
-          "occ_b549b5186a742b79a4a6b1b7"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "3359025:20",
-        "line": "Tú no sabes lo que es mover los cosos pa’ allá fuera",
-        "title": "Como Soy",
-        "vocalists": [
-          "Daddy Yankee"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_2249dee64ad82cf218199a41",
-        "occurrence_ids": [
-          "occ_5f72673ab76141fff6bbfa84"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "3167974:70",
-        "line": "Pa' que te puedes mover",
-        "title": "El Challet (Remix)",
-        "vocalists": [
-          "Jory Boy"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_64a2d46a762b5174702b1ddf",
-        "occurrence_ids": [
-          "occ_6f53bd5e09962caa344c16eb"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "3523266:100",
-        "line": "Yo les enseñé a toda' esa' bitche' a mover (Ah, ah)",
-        "title": "Loca (Remix)",
-        "vocalists": [
-          "Cazzu",
-          "KHEA"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_c936442dc2ad18aefa5d9e32",
-        "occurrence_ids": [
-          "occ_09e2a51c3f0a18ed09ab13c8"
-        ],
-        "surface": "mover"
-      },
-      {
-        "id": "4763027:43",
-        "line": "Hijo 'e puta, tú no eres bichote por mover dos zeta'",
-        "title": "Subimos de Rango",
-        "vocalists": [
-          "Omy de Oro"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_ca8181e66c70a625df36e6e1",
-        "occurrence_ids": [
-          "occ_648edb784f2f17be0d06c08c"
-        ],
-        "surface": "mover"
       }
     ]
   },
@@ -146322,6 +146335,126 @@
     ]
   },
   {
+    "word": "viste",
+    "corpus_count": 12,
+    "song_count": 8,
+    "song_ids": [
+      "11292700",
+      "3006211",
+      "3104973",
+      "3495715",
+      "4558062",
+      "5305051",
+      "5557738",
+      "6855744"
+    ],
+    "examples": [
+      {
+        "id": "11292700:2",
+        "line": "Tú solo viste lo mejor de mí y no lo que yo sufría",
+        "title": "TURiSTA",
+        "segment_id": "seg_23d7cfd8d9409d78efcdfaaf",
+        "occurrence_ids": [
+          "occ_02ab0aacfd65c3782716dad8"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "6855744:28",
+        "line": "Vi que viste mi story y subiste una pa' mí",
+        "title": "Yonaguni",
+        "segment_id": "seg_90552c0611b1f564d45e23af",
+        "occurrence_ids": [
+          "occ_18aa32c75062afa64bc2b5c6"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "3104973:33",
+        "line": "Pa' ver lo que ha' puesto o si viste el mío",
+        "title": "Dime Si Vas A Volver",
+        "segment_id": "seg_1a775346219dfc96655fcd33",
+        "occurrence_ids": [
+          "occ_9253d71b9e2d6c969e4e0100"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "5305051:20",
+        "line": "Me fue cabrón, no sé si me viste en el Super Bowl",
+        "title": "˂3",
+        "segment_id": "seg_caf5104bf43b341ef7357768",
+        "occurrence_ids": [
+          "occ_b204f7db90b602d9100d6191"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "4558062:20",
+        "line": "Ella mata con traje y cuando se viste sport (Wuh)",
+        "title": "No Me Conoce (Remix)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_6e1d4a4a987804f34400624d",
+        "occurrence_ids": [
+          "occ_0f71f574abf88937004b0483"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "3495715:41",
+        "line": "¿Tú viste cómo el mundo se te fue al revé'?",
+        "title": "Te Boté (Remix)",
+        "vocalists": [
+          "Darell"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_19bcaf3a6af363ed9c745a1b",
+        "occurrence_ids": [
+          "occ_d8b848125c7100815c13debc"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "3006211:7",
+        "line": "¿Tú no viste las noticias, cabrón?",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Anuel AA",
+          "Ñengo Flow"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_6aa7c0c78100468c0f6a80d4",
+        "occurrence_ids": [
+          "occ_2a112bb3ceac1281b0d6c9b9"
+        ],
+        "surface": "viste"
+      },
+      {
+        "id": "5557738:23",
+        "line": "Y la muchacha fue donde mí y me sacó a bailar, y vi'te, yo no le vo'a decir que no (Ah)",
+        "title": "La Parabi",
+        "vocalists": [
+          "Bad Bunny",
+          "Bad Bunny",
+          "Randy Nota Loca"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_6daf98edf419456b9eba8f6f",
+        "occurrence_ids": [
+          "occ_541550a6343a5417ed8ce7ea"
+        ],
+        "surface": "vi'te"
+      }
+    ],
+    "variants": {
+      "viste": 11,
+      "vi'te": 1
+    }
+  },
+  {
     "word": "acostumbré",
     "corpus_count": 11,
     "song_count": 8,
@@ -156229,105 +156362,6 @@
           "occ_d6e94a2a6881796086349188"
         ],
         "surface": "vio"
-      }
-    ]
-  },
-  {
-    "word": "viste",
-    "corpus_count": 11,
-    "song_count": 7,
-    "song_ids": [
-      "11292700",
-      "3006211",
-      "3104973",
-      "3495715",
-      "4558062",
-      "5305051",
-      "6855744"
-    ],
-    "examples": [
-      {
-        "id": "11292700:2",
-        "line": "Tú solo viste lo mejor de mí y no lo que yo sufría",
-        "title": "TURiSTA",
-        "segment_id": "seg_23d7cfd8d9409d78efcdfaaf",
-        "occurrence_ids": [
-          "occ_02ab0aacfd65c3782716dad8"
-        ],
-        "surface": "viste"
-      },
-      {
-        "id": "6855744:28",
-        "line": "Vi que viste mi story y subiste una pa' mí",
-        "title": "Yonaguni",
-        "segment_id": "seg_90552c0611b1f564d45e23af",
-        "occurrence_ids": [
-          "occ_18aa32c75062afa64bc2b5c6"
-        ],
-        "surface": "viste"
-      },
-      {
-        "id": "3104973:33",
-        "line": "Pa' ver lo que ha' puesto o si viste el mío",
-        "title": "Dime Si Vas A Volver",
-        "segment_id": "seg_1a775346219dfc96655fcd33",
-        "occurrence_ids": [
-          "occ_9253d71b9e2d6c969e4e0100"
-        ],
-        "surface": "viste"
-      },
-      {
-        "id": "5305051:20",
-        "line": "Me fue cabrón, no sé si me viste en el Super Bowl",
-        "title": "˂3",
-        "segment_id": "seg_caf5104bf43b341ef7357768",
-        "occurrence_ids": [
-          "occ_b204f7db90b602d9100d6191"
-        ],
-        "surface": "viste"
-      },
-      {
-        "id": "4558062:20",
-        "line": "Ella mata con traje y cuando se viste sport (Wuh)",
-        "title": "No Me Conoce (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_6e1d4a4a987804f34400624d",
-        "occurrence_ids": [
-          "occ_0f71f574abf88937004b0483"
-        ],
-        "surface": "viste"
-      },
-      {
-        "id": "3495715:41",
-        "line": "¿Tú viste cómo el mundo se te fue al revé'?",
-        "title": "Te Boté (Remix)",
-        "vocalists": [
-          "Darell"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_19bcaf3a6af363ed9c745a1b",
-        "occurrence_ids": [
-          "occ_d8b848125c7100815c13debc"
-        ],
-        "surface": "viste"
-      },
-      {
-        "id": "3006211:7",
-        "line": "¿Tú no viste las noticias, cabrón?",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Anuel AA",
-          "Ñengo Flow"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_6aa7c0c78100468c0f6a80d4",
-        "occurrence_ids": [
-          "occ_2a112bb3ceac1281b0d6c9b9"
-        ],
-        "surface": "viste"
       }
     ]
   },
@@ -364249,30 +364283,6 @@
     ]
   },
   {
-    "word": "move'",
-    "corpus_count": 2,
-    "song_count": 1,
-    "song_ids": [
-      "11292885"
-    ],
-    "examples": [
-      {
-        "id": "11292885:53",
-        "line": "Lo tiene' que move'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'-ve'",
-        "title": "NUEVAYoL",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_05d72dc366e10fe3ccd16b93",
-        "occurrence_ids": [
-          "occ_84c0d066ca522d86faeb6626"
-        ],
-        "surface": "move'"
-      }
-    ]
-  },
-  {
     "word": "muchacho",
     "corpus_count": 2,
     "song_count": 1,
@@ -387673,7 +387683,164 @@
     ]
   },
   {
-    "word": "a'lante",
+    "word": "cagar",
+    "corpus_count": 2,
+    "song_count": 1,
+    "song_ids": [
+      "3006211"
+    ],
+    "examples": [
+      {
+        "id": "3006211:115",
+        "line": "Nosotro' somo' los verdadero' hijo e' puta', me vo'a caga' en la madre",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Anuel AA"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_5b20cb22ab9602bd69fe1f82",
+        "occurrence_ids": [
+          "occ_dc377a7b60f7c612047a9d42"
+        ],
+        "surface": "caga'"
+      }
+    ],
+    "display_form": "caga'",
+    "variants": {
+      "caga'": 1,
+      "cagar": 1
+    }
+  },
+  {
+    "word": "modelar",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3171036",
+      "3212029"
+    ],
+    "examples": [
+      {
+        "id": "3171036:27",
+        "line": "Te compro uno' Victoria', dime si los modela' (Huh!)",
+        "title": "Báilame (Remix)",
+        "vocalists": [
+          "Bad Bunny"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_5eda8f3befc4d2aaa6cc644a",
+        "occurrence_ids": [
+          "occ_2371862214cc1703db2f6d1b"
+        ],
+        "surface": "modela'"
+      },
+      {
+        "id": "3212029:29",
+        "line": "Dime si tú me va' a modelar los panties pink",
+        "title": "Pure",
+        "vocalists": [
+          "Bryant Myers"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_7d024d49aeb375ea6dbbaafd",
+        "occurrence_ids": [
+          "occ_a3cd9c1baa83f7f90058d940"
+        ],
+        "surface": "modelar"
+      }
+    ],
+    "display_form": "modela'",
+    "variants": {
+      "modela'": 1,
+      "modelar": 1
+    }
+  },
+  {
+    "word": "prenderlo",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3044908",
+      "7967958"
+    ],
+    "examples": [
+      {
+        "id": "3044908:70",
+        "line": "Pasa el fuego que voy a prende'lo",
+        "title": "Trepate",
+        "vocalists": [
+          "Sixto Rein"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_6d4471cff74bf22bd416150b",
+        "occurrence_ids": [
+          "occ_336fae23f743cebdbf121f8f"
+        ],
+        "surface": "prende'lo"
+      },
+      {
+        "id": "7967958:26",
+        "line": "Si Beto lo enrola voy a prenderlo, si traen perico vo'a huelerlo",
+        "title": "Yo No Soy Celoso",
+        "segment_id": "seg_e3b5b1b3ea430f8ffb95e955",
+        "occurrence_ids": [
+          "occ_3023018dac084d29020fc9f1"
+        ],
+        "surface": "prenderlo"
+      }
+    ],
+    "display_form": "prende'lo",
+    "variants": {
+      "prende'lo": 1,
+      "prenderlo": 1
+    }
+  },
+  {
+    "word": "varias",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "2503547",
+      "3006211"
+    ],
+    "examples": [
+      {
+        "id": "3006211:48",
+        "line": "Porque ahora no tengo una cone, cabrón, tengo varia'",
+        "title": "47 (Remix)",
+        "vocalists": [
+          "Darell"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_ed6933cabce93ffe402e5ce4",
+        "occurrence_ids": [
+          "occ_b061d78dde5880524aca1562"
+        ],
+        "surface": "varia'"
+      },
+      {
+        "id": "2503547:79",
+        "line": "Lo que no sabe es que como ella tengo varias",
+        "title": "Pa’ Que Le De (Remix)",
+        "vocalists": [
+          "Myke Towers"
+        ],
+        "sung_by_primary_artist": false,
+        "segment_id": "seg_550b1b295e6f3c30f7fc9b79",
+        "occurrence_ids": [
+          "occ_be35ea7ddedabf8ee92e57b6"
+        ],
+        "surface": "varias"
+      }
+    ],
+    "display_form": "varia'",
+    "variants": {
+      "varia'": 1,
+      "varias": 1
+    }
+  },
+  {
+    "word": "atlante",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -387694,7 +387861,8 @@
         ],
         "surface": "a'lante"
       }
-    ]
+    ],
+    "display_form": "a'lante"
   },
   {
     "word": "a'o",
@@ -387886,7 +388054,7 @@
     ]
   },
   {
-    "word": "abi'mo",
+    "word": "abismo",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -387907,7 +388075,8 @@
         ],
         "surface": "abi'mo"
       }
-    ]
+    ],
+    "display_form": "abi'mo"
   },
   {
     "word": "aboga",
@@ -399968,7 +400137,7 @@
     ]
   },
   {
-    "word": "bache'",
+    "word": "baches",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -399990,7 +400159,8 @@
         ],
         "surface": "bache'"
       }
-    ]
+    ],
+    "display_form": "bache'"
   },
   {
     "word": "back",
@@ -407586,30 +407756,6 @@
     ]
   },
   {
-    "word": "caga'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3006211"
-    ],
-    "examples": [
-      {
-        "id": "3006211:115",
-        "line": "Nosotro' somo' los verdadero' hijo e' puta', me vo'a caga' en la madre",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Anuel AA"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_5b20cb22ab9602bd69fe1f82",
-        "occurrence_ids": [
-          "occ_dc377a7b60f7c612047a9d42"
-        ],
-        "surface": "caga'"
-      }
-    ]
-  },
-  {
     "word": "cagaos",
     "corpus_count": 1,
     "song_count": 1,
@@ -407630,34 +407776,6 @@
         "occurrence_ids": [
           "occ_04d472a989f32703a6222f6b"
         ]
-      }
-    ]
-  },
-  {
-    "word": "cagar",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3006211"
-    ],
-    "examples": [
-      {
-        "id": "3006211:158",
-        "line": "Real G4 Life hasta que me maten, me vo'a cagar en la madre 'el diablo",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Anuel AA",
-          "Ñengo Flow",
-          "Bad Bunny",
-          "Casper Mágico",
-          "*Darell*"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_81b6e4161ed06dd77475cdb9",
-        "occurrence_ids": [
-          "occ_d48ace86c04e97866747d56f"
-        ],
-        "surface": "cagar"
       }
     ]
   },
@@ -428125,7 +428243,7 @@
     ]
   },
   {
-    "word": "desnu'itos",
+    "word": "desnuditos",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -428146,7 +428264,8 @@
         ],
         "surface": "desnu'itos"
       }
-    ]
+    ],
+    "display_form": "desnu'itos"
   },
   {
     "word": "desnudaste",
@@ -430223,7 +430342,7 @@
     ]
   },
   {
-    "word": "direccione'",
+    "word": "direcciones",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -430244,7 +430363,8 @@
         ],
         "surface": "direccione'"
       }
-    ]
+    ],
+    "display_form": "direccione'"
   },
   {
     "word": "director",
@@ -432784,30 +432904,6 @@
           "occ_48cae42483a4b0d96ee9eb9c"
         ],
         "surface": "e'puta"
-      }
-    ]
-  },
-  {
-    "word": "e'tos",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5318195"
-    ],
-    "examples": [
-      {
-        "id": "5318195:4",
-        "line": "A e'to' gallo' manilo' le' vamo' a tumbar la cresta",
-        "title": "Estamos Cabrón",
-        "surface": "e'to'",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_d13e0fa627e92f463449355f",
-        "occurrence_ids": [
-          "occ_9921736d69486a45e5419c3d"
-        ]
       }
     ]
   },
@@ -452673,7 +452769,7 @@
     ]
   },
   {
-    "word": "grita'la",
+    "word": "gritarla",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -452695,7 +452791,8 @@
         ],
         "surface": "grita'la"
       }
-    ]
+    ],
+    "display_form": "grita'la"
   },
   {
     "word": "gritamos",
@@ -455910,7 +456007,7 @@
     ]
   },
   {
-    "word": "hospeda'",
+    "word": "hospedar",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -455931,7 +456028,8 @@
         ],
         "surface": "hospeda'"
       }
-    ]
+    ],
+    "display_form": "hospeda'"
   },
   {
     "word": "hospital",
@@ -476418,54 +476516,6 @@
     ]
   },
   {
-    "word": "modela'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3171036"
-    ],
-    "examples": [
-      {
-        "id": "3171036:27",
-        "line": "Te compro uno' Victoria', dime si los modela' (Huh!)",
-        "title": "Báilame (Remix)",
-        "vocalists": [
-          "Bad Bunny"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_5eda8f3befc4d2aaa6cc644a",
-        "occurrence_ids": [
-          "occ_2371862214cc1703db2f6d1b"
-        ],
-        "surface": "modela'"
-      }
-    ]
-  },
-  {
-    "word": "modelar",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3212029"
-    ],
-    "examples": [
-      {
-        "id": "3212029:29",
-        "line": "Dime si tú me va' a modelar los panties pink",
-        "title": "Pure",
-        "vocalists": [
-          "Bryant Myers"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_7d024d49aeb375ea6dbbaafd",
-        "occurrence_ids": [
-          "occ_a3cd9c1baa83f7f90058d940"
-        ],
-        "surface": "modelar"
-      }
-    ]
-  },
-  {
     "word": "modeles",
     "corpus_count": 1,
     "song_count": 1,
@@ -476584,7 +476634,7 @@
     ]
   },
   {
-    "word": "moja'íta",
+    "word": "mojadita",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -476605,7 +476655,8 @@
         ],
         "surface": "moja'íta"
       }
-    ]
+    ],
+    "display_form": "moja'íta"
   },
   {
     "word": "mojado",
@@ -481629,30 +481680,6 @@
           "occ_ed758af1fa7035df08685d21"
         ],
         "surface": "noqueados"
-      }
-    ]
-  },
-  {
-    "word": "norma'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3001094"
-    ],
-    "examples": [
-      {
-        "id": "3001094:28",
-        "line": "En la cama no tenemo' norma' y se mata conmigo a toda' hora', eh-eh (Jajaja)",
-        "title": "Diabla (Remix)",
-        "vocalists": [
-          "Lary Over"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_1599cc5503358cfc01b75c1c",
-        "occurrence_ids": [
-          "occ_b64f28045d27e8475cbb6101"
-        ],
-        "surface": "norma'"
       }
     ]
   },
@@ -487292,7 +487319,7 @@
     ]
   },
   {
-    "word": "patea'la",
+    "word": "patearla",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -487314,7 +487341,8 @@
         ],
         "surface": "patea'la"
       }
-    ]
+    ],
+    "display_form": "patea'la"
   },
   {
     "word": "pateo",
@@ -494411,30 +494439,6 @@
     ]
   },
   {
-    "word": "prende'lo",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3044908"
-    ],
-    "examples": [
-      {
-        "id": "3044908:70",
-        "line": "Pasa el fuego que voy a prende'lo",
-        "title": "Trepate",
-        "vocalists": [
-          "Sixto Rein"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_6d4471cff74bf22bd416150b",
-        "occurrence_ids": [
-          "occ_336fae23f743cebdbf121f8f"
-        ],
-        "surface": "prende'lo"
-      }
-    ]
-  },
-  {
     "word": "prenden",
     "corpus_count": 1,
     "song_count": 1,
@@ -494451,26 +494455,6 @@
           "occ_88f64187d04a4b42c931b19f"
         ],
         "surface": "prenden"
-      }
-    ]
-  },
-  {
-    "word": "prenderlo",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "7967958"
-    ],
-    "examples": [
-      {
-        "id": "7967958:26",
-        "line": "Si Beto lo enrola voy a prenderlo, si traen perico vo'a huelerlo",
-        "title": "Yo No Soy Celoso",
-        "segment_id": "seg_e3b5b1b3ea430f8ffb95e955",
-        "occurrence_ids": [
-          "occ_3023018dac084d29020fc9f1"
-        ],
-        "surface": "prenderlo"
       }
     ]
   },
@@ -498630,7 +498614,7 @@
     ]
   },
   {
-    "word": "racin'",
+    "word": "racing",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -498651,7 +498635,8 @@
         ],
         "surface": "racin'"
       }
-    ]
+    ],
+    "display_form": "racin'"
   },
   {
     "word": "rack",
@@ -498981,7 +498966,7 @@
     ]
   },
   {
-    "word": "rapa'la",
+    "word": "raparla",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -499003,7 +498988,8 @@
         ],
         "surface": "rapa'la"
       }
-    ]
+    ],
+    "display_form": "rapa'la"
   },
   {
     "word": "raphy",
@@ -499207,7 +499193,7 @@
     ]
   },
   {
-    "word": "ratin'",
+    "word": "rating",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -499228,7 +499214,8 @@
         ],
         "surface": "ratin'"
       }
-    ]
+    ],
+    "display_form": "ratin'"
   },
   {
     "word": "ratón",
@@ -511939,7 +511926,7 @@
     ]
   },
   {
-    "word": "solare'",
+    "word": "solares",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -511960,7 +511947,8 @@
         ],
         "surface": "solare'"
       }
-    ]
+    ],
+    "display_form": "solare'"
   },
   {
     "word": "soldado",
@@ -525043,54 +525031,6 @@
     ]
   },
   {
-    "word": "varia'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3006211"
-    ],
-    "examples": [
-      {
-        "id": "3006211:48",
-        "line": "Porque ahora no tengo una cone, cabrón, tengo varia'",
-        "title": "47 (Remix)",
-        "vocalists": [
-          "Darell"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_ed6933cabce93ffe402e5ce4",
-        "occurrence_ids": [
-          "occ_b061d78dde5880524aca1562"
-        ],
-        "surface": "varia'"
-      }
-    ]
-  },
-  {
-    "word": "varias",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "2503547"
-    ],
-    "examples": [
-      {
-        "id": "2503547:79",
-        "line": "Lo que no sabe es que como ella tengo varias",
-        "title": "Pa’ Que Le De (Remix)",
-        "vocalists": [
-          "Myke Towers"
-        ],
-        "sung_by_primary_artist": false,
-        "segment_id": "seg_550b1b295e6f3c30f7fc9b79",
-        "occurrence_ids": [
-          "occ_be35ea7ddedabf8ee92e57b6"
-        ],
-        "surface": "varias"
-      }
-    ]
-  },
-  {
     "word": "vayamos",
     "corpus_count": 1,
     "song_count": 1,
@@ -526475,32 +526415,6 @@
           "occ_821739cf3db284863fcf506d"
         ],
         "surface": "veteranía"
-      }
-    ]
-  },
-  {
-    "word": "vi'te",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5557738"
-    ],
-    "examples": [
-      {
-        "id": "5557738:23",
-        "line": "Y la muchacha fue donde mí y me sacó a bailar, y vi'te, yo no le vo'a decir que no (Ah)",
-        "title": "La Parabi",
-        "vocalists": [
-          "Bad Bunny",
-          "Bad Bunny",
-          "Randy Nota Loca"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_6daf98edf419456b9eba8f6f",
-        "occurrence_ids": [
-          "occ_541550a6343a5417ed8ce7ea"
-        ],
-        "surface": "vi'te"
       }
     ]
   },

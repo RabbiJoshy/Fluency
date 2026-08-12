@@ -1,6 +1,9 @@
 {
-  "step_name": "build_senses",
-  "step_version": 2,
-  "generated_at": 1785530363,
-  "source": "spanishdict"
+  "step_name": "apply_shared_sense_registers",
+  "step_version": 1,
+  "generated_at": 1786496762,
+  "source": "spanishdict",
+  "sense_registers": [
+    "reggaeton"
+  ]
 }

@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from pipeline.artist.step_8b_assemble_artist_vocabulary import (
     active_evidence_build_contract,
+    _coalesce_card_identities,
 )
 from pipeline.artist.util_2b_evidence_view import corpus_profile_fingerprint
 from pipeline.util_pipeline_meta import (
@@ -117,6 +118,34 @@ class DeckEvidenceContractTests(unittest.TestCase):
             self.assertEqual(metadata["corpus_profile_hash"], "profile_hash")
             self.assertEqual(metadata["excluded_labels"], ["echo"])
             self.assertEqual(len(metadata["input_sha256"]), 64)
+
+    def test_card_alias_rows_coalesce_without_losing_senses_or_examples(self):
+        entries = [
+            {
+                "id": "abc123", "word": "van", "lemma": "ir",
+                "corpus_count": 4, "meanings": [{
+                    "sense_id": "go", "pos": "VERB", "translation": "to go",
+                    "frequency": "1.00", "examples": [{"occurrence_ids": ["occ_go"]}],
+                }],
+            },
+            {
+                "id": "abc123", "word": "van", "lemma": "van",
+                "related_lemma": "ir", "corpus_count": 1, "meanings": [{
+                    "sense_id": "vehicle", "pos": "NOUN", "translation": "van",
+                    "frequency": "1.00", "examples": [{"occurrence_ids": ["occ_van"]}],
+                }],
+            },
+        ]
+        master = {"abc123": {"word": "van", "lemma": "ir", "senses": []}}
+
+        merged = _coalesce_card_identities(entries, master)
+
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["lemma"], "ir")
+        self.assertEqual(merged[0]["corpus_count"], 5)
+        self.assertEqual({meaning["sense_id"] for meaning in merged[0]["meanings"]},
+                         {"go", "vehicle"})
+        self.assertNotIn("related_lemma", merged[0])
 
 
 if __name__ == "__main__":

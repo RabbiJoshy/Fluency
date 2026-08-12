@@ -42,6 +42,26 @@ _GLOSS_STOPWORDS = frozenset({
 _CURRENT_PROMPT_PREFIXES = ("sd-lexical-v1-", "sd-lexical-v2-")
 
 
+def _load_policy(language_dir, register):
+    path = Path(language_dir) / "sense_registers" / "policy.json"
+    if not path.exists():
+        return {}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return ((payload.get("registers") or {}).get(register) or {})
+
+
+def _member_role(policy, artist_name):
+    return str((policy.get("members") or {}).get(artist_name) or "contributor")
+
+
+def _is_contributor(policy, artist_name):
+    return _member_role(policy, artist_name) in {"contributor", "both"}
+
+
+def _is_consumer(policy, artist_name):
+    return _member_role(policy, artist_name) in {"consumer", "contributor", "both"}
+
+
 def _fold(value):
     value = unicodedata.normalize("NFKD", str(value or "").casefold())
     return "".join(ch for ch in value if not unicodedata.combining(ch)).strip()
@@ -198,7 +218,10 @@ def build_register(language_dir, register):
     if output_path.exists():
         existing = json.loads(output_path.read_text(encoding="utf-8"))
 
+    policy = _load_policy(language_dir, register)
     members = []
+    contributors = []
+    consumers = []
     rows = []
     for artist_dir in sorted(path for path in language_dir.iterdir() if path.is_dir()):
         config_path = artist_dir / "artist.json"
@@ -207,8 +230,25 @@ def build_register(language_dir, register):
         config = json.loads(config_path.read_text(encoding="utf-8"))
         if register not in (config.get("sense_registers") or []):
             continue
-        members.append(config.get("name") or artist_dir.name)
-        rows.extend(_proposal_rows(artist_dir))
+        artist_name = config.get("name") or artist_dir.name
+        members.append(artist_name)
+        if _is_consumer(policy, artist_name):
+            consumers.append(artist_name)
+        if _is_contributor(policy, artist_name):
+            contributors.append(artist_name)
+            artist_rows = _proposal_rows(artist_dir)
+            admission = policy.get("admission") or {}
+            allowed_types = {
+                str(value).casefold() for value in admission.get(
+                    "allowed_types", ALLOWED_LEXICAL_TYPES)
+            }
+            excluded_pos = {
+                str(value).upper() for value in admission.get(
+                    "excluded_pos", ("PROPN", "X"))
+            }
+            rows.extend(row for row in artist_rows
+                        if row["type"] in allowed_types
+                        and row["pos"] not in excluded_pos)
 
     senses = {}
     for cluster in _cluster_rows(rows):
@@ -226,7 +266,21 @@ def build_register(language_dir, register):
             else representative["translation"]
         )
         artists = sorted({row["artist"] for row in proposals})
-        evidence_count = sum(row["evidence_count"] for row in proposals)
+        occurrence_ids = {
+            occurrence_id for row in proposals
+            for occurrence_id in row.get("occurrence_ids") or []
+        }
+        example_ids = {
+            example_id for row in proposals
+            for example_id in row.get("example_ids") or []
+        }
+        evidence_count = (len(occurrence_ids) or len(example_ids)
+                          or max(row["evidence_count"] for row in proposals))
+        admission = policy.get("admission") or {}
+        min_occurrences = int(admission.get("minimum_distinct_occurrences", 1))
+        min_artists = int(admission.get("minimum_supporting_artists", 1))
+        status = ("established" if evidence_count >= min_occurrences
+                  or len(artists) >= min_artists else "provisional")
         tokens = frozenset(cluster["tokens"])
         sense_id = _existing_id(
             existing, register, cluster["word"], cluster["pos"], tokens)
@@ -247,6 +301,7 @@ def build_register(language_dir, register):
             "type": representative["type"],
             "supporting_artists": artists,
             "evidence_count": evidence_count,
+            "status": status,
             "provenance": provenance,
         })
 
@@ -255,6 +310,9 @@ def build_register(language_dir, register):
         "register": register,
         "language": language_dir.name,
         "members": sorted(members),
+        "contributors": sorted(contributors),
+        "consumers": sorted(consumers),
+        "policy": policy.get("admission") or {},
         "senses": {word: sorted(items, key=lambda s: (s["pos"], s["translation"]))
                    for word, items in sorted(senses.items())},
     }
@@ -308,11 +366,17 @@ def apply_registers_to_menu(artist_dir, menu, inventory_words=None):
         if not path.exists():
             continue
         payload = json.loads(path.read_text(encoding="utf-8"))
+        policy = _load_policy(artist_dir.parent, register)
+        artist_name = config.get("name") or artist_dir.name
+        if not _is_consumer(policy, artist_name):
+            continue
         for word, senses in (payload.get("senses") or {}).items():
             if allowed is not None and _fold(word) not in allowed:
                 continue
-            analyses = merged.setdefault(word, [])
             for candidate in senses:
+                if candidate.get("status", "established") != "established":
+                    continue
+                analyses = merged.setdefault(word, [])
                 sense_id = candidate["id"]
                 if any(sense_id in (analysis.get("senses") or {}) for analysis in analyses):
                     continue
@@ -356,8 +420,17 @@ def exact_register_assignments(artist_dir):
         if not path.exists():
             continue
         payload = json.loads(path.read_text(encoding="utf-8"))
+        policy = _load_policy(artist_dir.parent, register)
+        if not _is_consumer(policy, artist_name):
+            continue
+        allow_provisional = bool(
+            (policy.get("admission") or {}).get(
+                "allow_provisional_exact_line_reuse", False))
         for word, senses in (payload.get("senses") or {}).items():
             for sense in senses:
+                if (sense.get("status", "established") != "established"
+                        and not allow_provisional):
+                    continue
                 source_ids = set()
                 source_lines = set()
                 source_artists = set()

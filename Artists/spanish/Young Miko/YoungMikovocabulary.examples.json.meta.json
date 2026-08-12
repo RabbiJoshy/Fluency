@@ -1,7 +1,7 @@
 {
   "step_name": "assemble_artist_vocabulary",
-  "step_version": 15,
-  "generated_at": 1786482171,
+  "step_version": 17,
+  "generated_at": 1786497494,
   "ledger_run": "run_c5e460491cd359b3e686b435",
   "corpus_profile_hash": "sha256:ec4934ade41a453d9f6f6e345e274156159f82dd17064fc9f256be3ed7e5fd74",
   "excluded_labels": [
@@ -10,11 +10,11 @@
     "stutter"
   ],
   "layer_sha256": {
-    "word_inventory": "47b3a92d6781a1de6c80ec26d4bcfd3826b60457024c4f315382cce1d08905ed",
-    "examples_raw": "39f05bc463eb510de46e3078f861c77c23fea00030d3c51158997f14762a1d66",
+    "word_inventory": "c9c63f50715ae12ee3f0f913cc8c2205a8c84b9176c7242341b17bcec9ca91ff",
+    "examples_raw": "36dcd92ed999a1c67b99c11cfb4b6bdc047cd8921d0921aceddba6d83699be29",
     "example_pos": "da6ea21129a2dfc6a9bcf1fcb970f5325a4a2cbe0f73c548a47ac804f47b68dd",
-    "sense_assignments_lemma": "13504d31e4056c8c0e984c2a7e9396abb67c3e11c117c581fa1e70f0b58111a5",
-    "word_routing": "127ba935b20a7ebd678fda729709bf753b0012a012c8a60628d9abc7271da51a",
+    "sense_assignments_lemma": "d0b855f2ffaa4aa335473f11e9347c5f405bed84b68f357a4b0bf1583d1c6a62",
+    "word_routing": "fe05a0a2b03066735bb649131cc6c25f8cb7901e9615a63234755edbb19c6ba7",
     "ranking": "532307c7427420852d56dfbad38763f2eaf72363b6f1231d706dae24ec2cd779",
     "example_translations": "9d2e002f4608ca7f1f5ee4673642b7979d98f33102ac17aa72bc61f42ef67ccc",
     "mwe_detected": "d2e2a4bb2fbf538187eb655e0cbc6c305533f1f067848c3856353ff22c56b534"

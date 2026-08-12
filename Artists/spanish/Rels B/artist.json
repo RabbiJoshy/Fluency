@@ -5,5 +5,6 @@
   "vocabulary_file": "RelsBvocabulary.json",
   "index_file": "RelsBvocabulary.index.json",
   "examples_file": "RelsBvocabulary.examples.json",
-  "artist_context": "Spanish urban music, hip-hop, and R&B"
+  "artist_context": "Spanish urban music, hip-hop, and R&B",
+  "sense_registers": ["reggaeton"]
 }

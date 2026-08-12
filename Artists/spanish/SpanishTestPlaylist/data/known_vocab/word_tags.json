@@ -1,7 +1,7 @@
 {
   "que": {
     "category": "core",
-    "corpus_count": 168,
+    "corpus_count": 167,
     "tags": []
   },
   "me": {
@@ -11,17 +11,12 @@
   },
   "no": {
     "category": "core",
-    "corpus_count": 112,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
+    "corpus_count": 110,
+    "tags": []
   },
   "y": {
     "category": "core",
-    "corpus_count": 104,
+    "corpus_count": 103,
     "tags": []
   },
   "la": {
@@ -29,12 +24,12 @@
     "corpus_count": 90,
     "tags": []
   },
-  "a": {
+  "yo": {
     "category": "core",
-    "corpus_count": 82,
+    "corpus_count": 81,
     "tags": []
   },
-  "yo": {
+  "a": {
     "category": "core",
     "corpus_count": 81,
     "tags": []
@@ -125,7 +120,7 @@
   },
   "quiero": {
     "category": "core",
-    "corpus_count": 26,
+    "corpus_count": 25,
     "tags": []
   },
   "un": {
@@ -138,22 +133,17 @@
     "corpus_count": 23,
     "tags": []
   },
-  "más": {
-    "category": "core",
-    "corpus_count": 23,
-    "tags": []
-  },
   "como": {
     "category": "core",
     "corpus_count": 23,
     "tags": []
   },
-  "las": {
+  "le": {
     "category": "core",
     "corpus_count": 22,
     "tags": []
   },
-  "le": {
+  "más": {
     "category": "core",
     "corpus_count": 22,
     "tags": []
@@ -168,6 +158,11 @@
     "corpus_count": 21,
     "tags": []
   },
+  "las": {
+    "category": "core",
+    "corpus_count": 20,
+    "tags": []
+  },
   "los": {
     "category": "core",
     "corpus_count": 20,
@@ -178,12 +173,12 @@
     "corpus_count": 19,
     "tags": []
   },
-  "al": {
+  "todo": {
     "category": "core",
     "corpus_count": 18,
     "tags": []
   },
-  "todo": {
+  "al": {
     "category": "core",
     "corpus_count": 18,
     "tags": []
@@ -198,7 +193,7 @@
     "corpus_count": 16,
     "tags": []
   },
-  "noche": {
+  "estoy": {
     "category": "core",
     "corpus_count": 16,
     "tags": []
@@ -208,19 +203,14 @@
     "corpus_count": 16,
     "tags": []
   },
-  "estoy": {
+  "noche": {
     "category": "core",
-    "corpus_count": 16,
+    "corpus_count": 15,
     "tags": []
   },
   "tengo": {
     "category": "core",
     "corpus_count": 15,
-    "tags": []
-  },
-  "cuando": {
-    "category": "core",
-    "corpus_count": 14,
     "tags": []
   },
   "soy": {
@@ -242,12 +232,17 @@
       }
     ]
   },
+  "cuando": {
+    "category": "core",
+    "corpus_count": 13,
+    "tags": []
+  },
   "mí": {
     "category": "core",
     "corpus_count": 13,
     "tags": []
   },
-  "cómo": {
+  "nos": {
     "category": "core",
     "corpus_count": 12,
     "tags": []
@@ -257,17 +252,17 @@
     "corpus_count": 12,
     "tags": []
   },
-  "conmigo": {
-    "category": "core",
-    "corpus_count": 12,
-    "tags": []
-  },
-  "nos": {
+  "cómo": {
     "category": "core",
     "corpus_count": 12,
     "tags": []
   },
   "porque": {
+    "category": "core",
+    "corpus_count": 12,
+    "tags": []
+  },
+  "conmigo": {
     "category": "core",
     "corpus_count": 12,
     "tags": []
@@ -282,17 +277,12 @@
     "corpus_count": 12,
     "tags": []
   },
-  "mar": {
-    "category": "core",
-    "corpus_count": 11,
-    "tags": []
-  },
   "nadie": {
     "category": "core",
     "corpus_count": 11,
     "tags": []
   },
-  "va": {
+  "mar": {
     "category": "core",
     "corpus_count": 11,
     "tags": []
@@ -302,9 +292,9 @@
     "corpus_count": 11,
     "tags": []
   },
-  "otra": {
+  "va": {
     "category": "core",
-    "corpus_count": 10,
+    "corpus_count": 11,
     "tags": []
   },
   "frente": {
@@ -313,11 +303,6 @@
     "tags": []
   },
   "ella": {
-    "category": "core",
-    "corpus_count": 10,
-    "tags": []
-  },
-  "nada": {
     "category": "core",
     "corpus_count": 10,
     "tags": []
@@ -332,6 +317,21 @@
     "corpus_count": 10,
     "tags": []
   },
+  "nada": {
+    "category": "core",
+    "corpus_count": 10,
+    "tags": []
+  },
+  "otra": {
+    "category": "core",
+    "corpus_count": 9,
+    "tags": []
+  },
+  "después": {
+    "category": "core",
+    "corpus_count": 9,
+    "tags": []
+  },
   "eso": {
     "category": "core",
     "corpus_count": 9,
@@ -342,12 +342,7 @@
     "corpus_count": 9,
     "tags": []
   },
-  "después": {
-    "category": "core",
-    "corpus_count": 9,
-    "tags": []
-  },
-  "sabes": {
+  "eres": {
     "category": "core",
     "corpus_count": 9,
     "tags": []
@@ -357,14 +352,34 @@
     "corpus_count": 9,
     "tags": []
   },
+  "hay": {
+    "category": "core",
+    "corpus_count": 9,
+    "tags": []
+  },
   "quiere": {
     "category": "core",
     "corpus_count": 9,
     "tags": []
   },
-  "eres": {
+  "todas": {
     "category": "core",
-    "corpus_count": 9,
+    "corpus_count": 8,
+    "tags": []
+  },
+  "antes": {
+    "category": "core",
+    "corpus_count": 8,
+    "tags": []
+  },
+  "esa": {
+    "category": "core",
+    "corpus_count": 8,
+    "tags": []
+  },
+  "ese": {
+    "category": "core",
+    "corpus_count": 8,
     "tags": []
   },
   "rico": {
@@ -377,22 +392,7 @@
     "corpus_count": 8,
     "tags": []
   },
-  "antes": {
-    "category": "core",
-    "corpus_count": 8,
-    "tags": []
-  },
-  "ese": {
-    "category": "core",
-    "corpus_count": 8,
-    "tags": []
-  },
-  "todas": {
-    "category": "core",
-    "corpus_count": 8,
-    "tags": []
-  },
-  "esa": {
+  "tienes": {
     "category": "core",
     "corpus_count": 8,
     "tags": []
@@ -402,7 +402,7 @@
     "corpus_count": 8,
     "tags": []
   },
-  "tienes": {
+  "sabes": {
     "category": "core",
     "corpus_count": 8,
     "tags": []
@@ -445,6 +445,36 @@
       }
     ]
   },
+  "bien": {
+    "category": "core",
+    "corpus_count": 7,
+    "tags": []
+  },
+  "del": {
+    "category": "core",
+    "corpus_count": 7,
+    "tags": []
+  },
+  "ahora": {
+    "category": "core",
+    "corpus_count": 7,
+    "tags": []
+  },
+  "desde": {
+    "category": "core",
+    "corpus_count": 7,
+    "tags": []
+  },
+  "su": {
+    "category": "core",
+    "corpus_count": 7,
+    "tags": []
+  },
+  "tiempo": {
+    "category": "core",
+    "corpus_count": 7,
+    "tags": []
+  },
   "vida": {
     "category": "core",
     "corpus_count": 7,
@@ -460,32 +490,7 @@
     "corpus_count": 7,
     "tags": []
   },
-  "desde": {
-    "category": "core",
-    "corpus_count": 7,
-    "tags": []
-  },
-  "su": {
-    "category": "core",
-    "corpus_count": 7,
-    "tags": []
-  },
-  "ahora": {
-    "category": "core",
-    "corpus_count": 7,
-    "tags": []
-  },
-  "del": {
-    "category": "core",
-    "corpus_count": 7,
-    "tags": []
-  },
-  "bien": {
-    "category": "core",
-    "corpus_count": 7,
-    "tags": []
-  },
-  "tiempo": {
+  "mirar": {
     "category": "core",
     "corpus_count": 7,
     "tags": []
@@ -495,17 +500,12 @@
     "corpus_count": 7,
     "tags": []
   },
-  "mirar": {
-    "category": "core",
-    "corpus_count": 7,
-    "tags": []
-  },
   "ve": {
     "category": "core",
     "corpus_count": 7,
     "tags": []
   },
-  "loca": {
+  "amor": {
     "category": "core",
     "corpus_count": 6,
     "tags": []
@@ -515,7 +515,7 @@
     "corpus_count": 6,
     "tags": []
   },
-  "amor": {
+  "lejos": {
     "category": "core",
     "corpus_count": 6,
     "tags": []
@@ -525,12 +525,7 @@
     "corpus_count": 6,
     "tags": []
   },
-  "cabrón": {
-    "category": "core",
-    "corpus_count": 6,
-    "tags": []
-  },
-  "lejos": {
+  "discoteca": {
     "category": "core",
     "corpus_count": 6,
     "tags": []
@@ -540,7 +535,22 @@
     "corpus_count": 6,
     "tags": []
   },
-  "discoteca": {
+  "cabrón": {
+    "category": "core",
+    "corpus_count": 6,
+    "tags": []
+  },
+  "loca": {
+    "category": "core",
+    "corpus_count": 6,
+    "tags": []
+  },
+  "hicimos": {
+    "category": "core",
+    "corpus_count": 6,
+    "tags": []
+  },
+  "estamos": {
     "category": "core",
     "corpus_count": 6,
     "tags": []
@@ -550,7 +560,7 @@
     "corpus_count": 6,
     "tags": []
   },
-  "hicimos": {
+  "fue": {
     "category": "core",
     "corpus_count": 6,
     "tags": []
@@ -579,6 +589,20 @@
       }
     ]
   },
+  "yah": {
+    "category": "noise",
+    "corpus_count": 5,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "noise",
+        "source": "routing"
+      }
+    ]
+  },
   "wuh": {
     "category": "noise",
     "corpus_count": 5,
@@ -599,26 +623,7 @@
       }
     ]
   },
-  "yah": {
-    "category": "noise",
-    "corpus_count": 5,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "él": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "ojos": {
+  "tan": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
@@ -628,32 +633,7 @@
     "corpus_count": 5,
     "tags": []
   },
-  "nunca": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "cuánto": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "vaina": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "les": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "sin": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "tan": {
+  "ojos": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
@@ -663,12 +643,7 @@
     "corpus_count": 5,
     "tags": []
   },
-  "sola": {
-    "category": "core",
-    "corpus_count": 5,
-    "tags": []
-  },
-  "también": {
+  "nunca": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
@@ -678,17 +653,42 @@
     "corpus_count": 5,
     "tags": []
   },
-  "tener": {
+  "sola": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
   },
-  "tiene": {
+  "sin": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
   },
-  "hace": {
+  "vaina": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "él": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "también": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "esto": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "les": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "ven": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
@@ -708,7 +708,22 @@
     "corpus_count": 5,
     "tags": []
   },
+  "tiene": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
   "bebé": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "tener": {
+    "category": "core",
+    "corpus_count": 5,
+    "tags": []
+  },
+  "hace": {
     "category": "core",
     "corpus_count": 5,
     "tags": []
@@ -737,32 +752,22 @@
       }
     ]
   },
-  "tus": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
   "cha": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
   },
-  "esto": {
+  "nena": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
   },
-  "pues": {
+  "cuánto": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
   },
-  "cuál": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "mis": {
+  "mundo": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
@@ -772,7 +777,22 @@
     "corpus_count": 4,
     "tags": []
   },
-  "mundo": {
+  "mis": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "pues": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "tus": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "chiqui": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
@@ -787,22 +807,12 @@
     "corpus_count": 4,
     "tags": []
   },
+  "cuál": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
   "amigos": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "nena": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "chiqui": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "quieres": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
@@ -812,7 +822,7 @@
     "corpus_count": 4,
     "tags": []
   },
-  "esperando": {
+  "salimos": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
@@ -822,42 +832,12 @@
     "corpus_count": 4,
     "tags": []
   },
-  "meta": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "gusta": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "dale": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "vuelva": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "invitan": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
-  "tentado": {
-    "category": "core",
-    "corpus_count": 4,
-    "tags": []
-  },
   "casa": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
   },
-  "salimos": {
+  "da": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
@@ -867,7 +847,27 @@
     "corpus_count": 4,
     "tags": []
   },
-  "he": {
+  "tentado": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "meta": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "quieres": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "fuimos": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "esperando": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
@@ -877,18 +877,43 @@
     "corpus_count": 4,
     "tags": []
   },
+  "dale": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "sea": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "he": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "invitan": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
+  "gusta": {
+    "category": "core",
+    "corpus_count": 4,
+    "tags": []
+  },
   "brum": {
     "category": "core",
     "corpus_count": 4,
     "tags": []
   },
-  "glock": {
-    "category": "english",
+  "party": {
+    "category": "loanword",
     "corpus_count": 3,
     "tags": [
       {
-        "tag": "english",
-        "source": "en_50k_not_es"
+        "tag": "loanword",
+        "source": "english_loanwords"
       },
       {
         "tag": "english",
@@ -910,7 +935,7 @@
       }
     ]
   },
-  "party": {
+  "chance": {
     "category": "loanword",
     "corpus_count": 3,
     "tags": [
@@ -924,13 +949,13 @@
       }
     ]
   },
-  "chance": {
-    "category": "loanword",
+  "glock": {
+    "category": "english",
     "corpus_count": 3,
     "tags": [
       {
-        "tag": "loanword",
-        "source": "english_loanwords"
+        "tag": "english",
+        "source": "en_50k_not_es"
       },
       {
         "tag": "english",
@@ -972,27 +997,12 @@
       }
     ]
   },
-  "peligrosa": {
+  "ustedes": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "botellas": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "canciones": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "otro": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "esta": {
+  "día": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1012,42 +1022,12 @@
     "corpus_count": 3,
     "tags": []
   },
-  "sol": {
+  "única": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "o": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "locura": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "corazón": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "día": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "vez": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "soltera": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "mami": {
+  "usted": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1057,27 +1037,22 @@
     "corpus_count": 3,
     "tags": []
   },
-  "gente": {
+  "mami": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "única": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "nuestro": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "ninguna": {
+  "o": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
   "allá": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "canciones": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1092,17 +1067,27 @@
     "corpus_count": 3,
     "tags": []
   },
-  "ustedes": {
+  "peligrosa": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "mejor": {
+  "soltera": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "donde": {
+  "gente": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "corazón": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "vez": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1112,97 +1097,42 @@
     "corpus_count": 3,
     "tags": []
   },
-  "hubiera": {
+  "donde": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "sigo": {
+  "mejor": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "mate": {
+  "nuestro": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "pide": {
+  "otro": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "pedí": {
+  "locura": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "despido": {
+  "sol": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "encima": {
+  "ninguna": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "fuimos": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "disco": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "dimos": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "llegan": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "estamos": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "gustas": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "has": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "siento": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "ando": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "besas": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "así": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "ido": {
+  "esta": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1212,57 +1142,17 @@
     "corpus_count": 3,
     "tags": []
   },
-  "hacemos": {
+  "fumando": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "estaba": {
+  "hubiera": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "cosa": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "fuiste": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "son": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "vuelve": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "apaga": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "pude": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "dijo": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "pasar": {
-    "category": "core",
-    "corpus_count": 3,
-    "tags": []
-  },
-  "pensando": {
+  "encima": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1272,7 +1162,27 @@
     "corpus_count": 3,
     "tags": []
   },
-  "ganas": {
+  "apaga": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "hacemos": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "sigo": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "cosa": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "pensando": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1282,12 +1192,32 @@
     "corpus_count": 3,
     "tags": []
   },
-  "fumando": {
+  "así": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "saben": {
+  "son": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "dijo": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "besas": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "gustas": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "vuelve": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
@@ -1297,12 +1227,115 @@
     "corpus_count": 3,
     "tags": []
   },
+  "estaba": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "fuiste": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "saben": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "dimos": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "mate": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "pude": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "ganas": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "pasar": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "vuelva": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "disco": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "pasado": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "pide": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "ando": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "despido": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "siento": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "has": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
+  "ido": {
+    "category": "core",
+    "corpus_count": 3,
+    "tags": []
+  },
   "cheki": {
     "category": "core",
     "corpus_count": 3,
     "tags": []
   },
-  "mj": {
+  "lady": {
+    "category": "loanword",
+    "corpus_count": 2,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "word_eq_translation",
+        "source": "sense_menu"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "for": {
     "category": "english",
     "corpus_count": 2,
     "tags": [
@@ -1330,7 +1363,7 @@
       }
     ]
   },
-  "rd": {
+  "mj": {
     "category": "english",
     "corpus_count": 2,
     "tags": [
@@ -1344,38 +1377,10 @@
       }
     ]
   },
-  "like": {
-    "category": "loanword",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
   "krippy": {
     "category": "english",
     "corpus_count": 2,
     "tags": [
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "lady": {
-    "category": "loanword",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
       {
         "tag": "english",
         "source": "routing"
@@ -1438,7 +1443,25 @@
       }
     ]
   },
-  "for": {
+  "feeling": {
+    "category": "loanword",
+    "corpus_count": 2,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "word_eq_translation",
+        "source": "sense_menu"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "rd": {
     "category": "english",
     "corpus_count": 2,
     "tags": [
@@ -1452,41 +1475,17 @@
       }
     ]
   },
-  "feeling": {
-    "category": "loanword",
+  "ozuna": {
+    "category": "proper_noun",
     "corpus_count": 2,
     "tags": [
       {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
+        "tag": "proper_noun",
         "source": "routing"
       }
     ]
   },
   "josé": {
-    "category": "proper_noun",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "tiktok": {
-    "category": "proper_noun",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "ozuna": {
     "category": "proper_noun",
     "corpus_count": 2,
     "tags": [
@@ -1506,6 +1505,40 @@
       },
       {
         "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "tiktok": {
+    "category": "proper_noun",
+    "corpus_count": 2,
+    "tags": [
+      {
+        "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "gu": {
+    "category": "noise",
+    "corpus_count": 2,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "noise",
+        "source": "routing"
+      }
+    ]
+  },
+  "ja": {
+    "category": "noise",
+    "corpus_count": 2,
+    "tags": [
+      {
+        "tag": "noise",
         "source": "routing"
       }
     ]
@@ -1530,30 +1563,6 @@
       }
     ]
   },
-  "ja": {
-    "category": "noise",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "gu": {
-    "category": "noise",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
   "t": {
     "category": "noise",
     "corpus_count": 2,
@@ -1564,217 +1573,7 @@
       }
     ]
   },
-  "ma": {
-    "category": "noise",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "suficiente": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "clima": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "sensación": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "ritmo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "tras": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "misma": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "desastre": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "rey": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "modo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "campeón": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "bellaca": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "música": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "celular": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "full": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "tal": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "muy": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "quien": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "noches": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "actitud": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "toda": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
   "morena": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "usted": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "quién": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "doce": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "pendientes": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "sí": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "primero": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "mal": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "dos": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "adiós": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "mujer": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "bueno": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "perro": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "buena": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "par": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "real": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "personal": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "fiesta": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -1784,7 +1583,12 @@
     "corpus_count": 2,
     "tags": []
   },
-  "pared": {
+  "ma": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "adiós": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -1794,27 +1598,82 @@
     "corpus_count": 2,
     "tags": []
   },
-  "quiénes": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "mismo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
   "mas": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "rica": {
+  "fiesta": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "polvo": {
+  "suficiente": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "quién": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "sí": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "mujer": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "botellas": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "ritmo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "campeón": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "full": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "buena": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pendientes": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "modo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "celular": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "doce": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "rey": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -1824,137 +1683,147 @@
     "corpus_count": 2,
     "tags": []
   },
+  "sensación": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "polvo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "quien": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "misma": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "par": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "mal": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "música": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "rica": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "perro": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "muy": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "actitud": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "bueno": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "dos": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "tal": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "bellaca": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "desastre": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
   "solos": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "marido": {
+  "clima": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "disimular": {
+  "tras": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "llamo": {
+  "primero": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "olvido": {
+  "noches": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "quieras": {
+  "mismo": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "pecar": {
+  "quiénes": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "encanta": {
+  "real": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "bailar": {
+  "personal": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "amanezca": {
+  "toda": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "convierto": {
+  "pared": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "mirando": {
+  "pedí": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "supiste": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "llamé": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "rompiendo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "rompe": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "hizo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "van": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "bailando": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "nombre": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "sexo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "suena": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "distraído": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "molesta": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "novio": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "merezco": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "chingar": {
+  "llegan": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -1964,7 +1833,202 @@
     "corpus_count": 2,
     "tags": []
   },
-  "jugás": {
+  "molesta": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "rompe": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "llama": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "buscar": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "tuviste": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "puso": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "dejar": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "novio": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "sigue": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "sexo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "heridas": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "dice": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "disimular": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pecar": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "volvemos": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "cambió": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "dije": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "supiste": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pon": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pones": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "suena": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "duro": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "nombre": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pido": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "encanta": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "mueve": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "vive": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pasa": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "buscando": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "llamo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "chingar": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "conocido": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "bailando": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "notó": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pista": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "vea": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "mirando": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "dímelo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "amanezca": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "bailar": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -1979,82 +2043,17 @@
     "corpus_count": 2,
     "tags": []
   },
-  "cerca": {
+  "quieras": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "vive": {
+  "jugás": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "ven": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "contacto": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "ten": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "cambió": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "jaque": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "dije": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "mueve": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "pista": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "pon": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "duro": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "hice": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "puso": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "sigue": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "tuviste": {
+  "van": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -2064,97 +2063,22 @@
     "corpus_count": 2,
     "tags": []
   },
-  "buscando": {
+  "fui": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "descontrola": {
+  "merezco": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "pasa": {
+  "llamé": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
   },
-  "explico": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "vea": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "atenta": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "pone": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "conocido": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "solas": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "sea": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "buscar": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "llama": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "volvemos": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "viendo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "dejar": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "dímelo": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "heridas": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "notó": {
-    "category": "core",
-    "corpus_count": 2,
-    "tags": []
-  },
-  "dice": {
+  "ten": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -2164,7 +2088,82 @@
     "corpus_count": 2,
     "tags": []
   },
-  "desconfigu": {
+  "descontrola": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "atenta": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "hice": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "marido": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "viendo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "rompiendo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "pone": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "olvido": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "convierto": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "contacto": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "distraído": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "jaque": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "hizo": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "explico": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "cerca": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "ratatá": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
@@ -2174,10 +2173,43 @@
     "corpus_count": 2,
     "tags": []
   },
-  "ratatá": {
+  "tigueres": {
     "category": "core",
     "corpus_count": 2,
     "tags": []
+  },
+  "desconfigu": {
+    "category": "core",
+    "corpus_count": 2,
+    "tags": []
+  },
+  "babe": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "fatality": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
   },
   "only": {
     "category": "english",
@@ -2193,13 +2225,13 @@
       }
     ]
   },
-  "tate": {
-    "category": "english",
+  "vídeo": {
+    "category": "loanword",
     "corpus_count": 1,
     "tags": [
       {
-        "tag": "english",
-        "source": "en_50k_not_es"
+        "tag": "loanword",
+        "source": "english_loanwords"
       },
       {
         "tag": "english",
@@ -2207,59 +2239,7 @@
       }
     ]
   },
-  "beethoven": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "had": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "promo": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "size": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "dm": {
+  "drive": {
     "category": "english",
     "corpus_count": 1,
     "tags": [
@@ -2287,7 +2267,7 @@
       }
     ]
   },
-  "west": {
+  "had": {
     "category": "english",
     "corpus_count": 1,
     "tags": [
@@ -2301,7 +2281,293 @@
       }
     ]
   },
+  "ben": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "beethoven": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "hard": {
+    "category": "loanword",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
   "high": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "it": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "cris": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "bad": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "bakin'": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "corleone": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "sky": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "promo": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "take": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "drums": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "estrés": {
+    "category": "loanword",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "bunny": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "yuh": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "size": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "flow": {
+    "category": "loanword",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "crush": {
+    "category": "loanword",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "hyde": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "top": {
+    "category": "loanword",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "tate": {
     "category": "english",
     "corpus_count": 1,
     "tags": [
@@ -2325,6 +2591,34 @@
       }
     ]
   },
+  "insanity": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "eternity": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
   "reality": {
     "category": "loanword",
     "corpus_count": 1,
@@ -2332,62 +2626,6 @@
       {
         "tag": "loanword",
         "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "babies": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "bunny": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "take": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "drive": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
       },
       {
         "tag": "english",
@@ -2409,35 +2647,7 @@
       }
     ]
   },
-  "kanye": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "insanity": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "drums": {
+  "babies": {
     "category": "english",
     "corpus_count": 1,
     "tags": [
@@ -2479,241 +2689,49 @@
       }
     ]
   },
-  "yuh": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "on": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "flow": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "estrés": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "babe": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "top": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "bakin'": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "sky": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "nice": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "hyde": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "fatality": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "ben": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "it": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "hard": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "eternity": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "vídeo": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "bad": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
   "quality": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "dm": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "west": {
+    "category": "english",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "kanye": {
     "category": "english",
     "corpus_count": 1,
     "tags": [
@@ -2741,35 +2759,7 @@
       }
     ]
   },
-  "corleone": {
-    "category": "english",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "crush": {
-    "category": "loanword",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "loanword",
-        "source": "english_loanwords"
-      },
-      {
-        "tag": "english",
-        "source": "routing"
-      }
-    ]
-  },
-  "cris": {
+  "on": {
     "category": "english",
     "corpus_count": 1,
     "tags": [
@@ -2784,16 +2774,6 @@
     ]
   },
   "gangsters": {
-    "category": "cognate",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "cognate",
-        "source": "routing"
-      }
-    ]
-  },
-  "diva": {
     "category": "cognate",
     "corpus_count": 1,
     "tags": [
@@ -2823,6 +2803,16 @@
       }
     ]
   },
+  "diva": {
+    "category": "cognate",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "cognate",
+        "source": "routing"
+      }
+    ]
+  },
   "ester": {
     "category": "proper_noun",
     "corpus_count": 1,
@@ -2833,7 +2823,7 @@
       }
     ]
   },
-  "emma": {
+  "tego": {
     "category": "proper_noun",
     "corpus_count": 1,
     "tags": [
@@ -2843,7 +2833,21 @@
       }
     ]
   },
-  "venezuela": {
+  "pitt": {
+    "category": "proper_noun",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "héctor": {
     "category": "proper_noun",
     "corpus_count": 1,
     "tags": [
@@ -2863,7 +2867,45 @@
       }
     ]
   },
-  "nike": {
+  "shakira": {
+    "category": "proper_noun",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "benz": {
+    "category": "proper_noun",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "orión": {
+    "category": "proper_noun",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "emma": {
     "category": "proper_noun",
     "corpus_count": 1,
     "tags": [
@@ -2887,7 +2929,21 @@
       }
     ]
   },
-  "héctor": {
+  "brad": {
+    "category": "proper_noun",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "proper_noun",
+        "source": "routing"
+      }
+    ]
+  },
+  "lmg": {
     "category": "proper_noun",
     "corpus_count": 1,
     "tags": [
@@ -2897,7 +2953,7 @@
       }
     ]
   },
-  "orión": {
+  "venezuela": {
     "category": "proper_noun",
     "corpus_count": 1,
     "tags": [
@@ -2931,7 +2987,7 @@
       }
     ]
   },
-  "lmg": {
+  "nike": {
     "category": "proper_noun",
     "corpus_count": 1,
     "tags": [
@@ -2941,93 +2997,21 @@
       }
     ]
   },
-  "brad": {
-    "category": "proper_noun",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "benz": {
-    "category": "proper_noun",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "shakira": {
-    "category": "proper_noun",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "pitt": {
-    "category": "proper_noun",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "tego": {
-    "category": "proper_noun",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "proper_noun",
-        "source": "routing"
-      }
-    ]
-  },
-  "pri": {
+  "muah": {
     "category": "noise",
     "corpus_count": 1,
     "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
       {
         "tag": "noise",
         "source": "routing"
       }
     ]
   },
-  "je": {
-    "category": "noise",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "uff": {
+  "tera": {
     "category": "noise",
     "corpus_count": 1,
     "tags": [
@@ -3061,48 +3045,10 @@
       }
     ]
   },
-  "muah": {
+  "uff": {
     "category": "noise",
     "corpus_count": 1,
     "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "tera": {
-    "category": "noise",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "oh": {
-    "category": "noise",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "noise",
-        "source": "routing"
-      }
-    ]
-  },
-  "mmm": {
-    "category": "noise",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "english",
-        "source": "en_50k_not_es"
-      },
       {
         "tag": "noise",
         "source": "routing"
@@ -3133,17 +3079,51 @@
       }
     ]
   },
-  "bichota": {
-    "category": "unresolved",
+  "oh": {
+    "category": "noise",
     "corpus_count": 1,
     "tags": [
       {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
+        "tag": "noise",
+        "source": "routing"
       }
     ]
   },
-  "maleanteo": {
+  "pri": {
+    "category": "noise",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "noise",
+        "source": "routing"
+      }
+    ]
+  },
+  "mmm": {
+    "category": "noise",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "english",
+        "source": "en_50k_not_es"
+      },
+      {
+        "tag": "noise",
+        "source": "routing"
+      }
+    ]
+  },
+  "je": {
+    "category": "noise",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "noise",
+        "source": "routing"
+      }
+    ]
+  },
+  "debility": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3163,7 +3143,7 @@
       }
     ]
   },
-  "floyymenor": {
+  "maleanteo": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3173,27 +3153,7 @@
       }
     ]
   },
-  "acura": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "trajaja": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "cuquen": {
+  "switchear": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3213,7 +3173,27 @@
       }
     ]
   },
-  "dynell": {
+  "barbasol": {
+    "category": "unresolved",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
+  "bellaqueos": {
+    "category": "unresolved",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
+  "frontear": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3243,67 +3223,7 @@
       }
     ]
   },
-  "frontear": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "bellaqueos": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "pelúa": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "yasso": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "rulay": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "glopeta": {
-    "category": "unresolved",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "unresolved",
-        "source": "routing_low_frequency"
-      }
-    ]
-  },
-  "despeluquen": {
+  "botelleo": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3323,7 +3243,7 @@
       }
     ]
   },
-  "barbasol": {
+  "cuquen": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3333,7 +3253,7 @@
       }
     ]
   },
-  "vvs": {
+  "floyymenor": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3343,7 +3263,17 @@
       }
     ]
   },
-  "botelleo": {
+  "acura": {
+    "category": "unresolved",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
+  "glopeta": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3363,6 +3293,26 @@
       }
     ]
   },
+  "trajaja": {
+    "category": "unresolved",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
+  "bichota": {
+    "category": "unresolved",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
   "tenqui": {
     "category": "unresolved",
     "corpus_count": 1,
@@ -3373,7 +3323,7 @@
       }
     ]
   },
-  "debility": {
+  "vvs": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3383,7 +3333,7 @@
       }
     ]
   },
-  "switchear": {
+  "yasso": {
     "category": "unresolved",
     "corpus_count": 1,
     "tags": [
@@ -3393,87 +3343,37 @@
       }
     ]
   },
-  "número": {
-    "category": "core",
+  "dynell": {
+    "category": "unresolved",
     "corpus_count": 1,
-    "tags": []
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
   },
-  "cualquier": {
-    "category": "core",
+  "pelúa": {
+    "category": "unresolved",
     "corpus_count": 1,
-    "tags": []
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
   },
-  "seguridad": {
-    "category": "core",
+  "despeluquen": {
+    "category": "unresolved",
     "corpus_count": 1,
-    "tags": []
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
   },
-  "verano": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "nivel": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "micro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mujerón": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "luego": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "rojos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "varios": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "estos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "esas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "negrito": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "viernes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "premios": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bastante": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ex": {
+  "manual": {
     "category": "core",
     "corpus_count": 1,
     "tags": [
@@ -3483,87 +3383,12 @@
       }
     ]
   },
-  "sencilla": {
+  "lugar": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "fama": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tímida": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "enero": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "esos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "gloria": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "lento": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "coqueta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "inmediato": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "luna": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "motociclista": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "líos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "poco": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fin": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "legal": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "alguien": {
+  "algunos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -3573,247 +3398,37 @@
     "corpus_count": 1,
     "tags": []
   },
-  "pocas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dedo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "estas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "golosina": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "instante": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "detrás": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "futuro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "privacidad": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "comoquiera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "secuela": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cien": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "celosa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "maleantes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entonces": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bonita": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "canción": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "elena": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vitrina": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "químico": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ellos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "lleca": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "semejante": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "material": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "navidad": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "valor": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tatuaje": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "final": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
   "locuras": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "fácil": {
+  "mari": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "so": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "rato": {
+  "consistencia": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "explícitos": {
+  "miel": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "letras": {
+  "cintura": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "menor": {
+  "pocas": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "año": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "toto": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "redes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cel": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ruido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fiera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "besito": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cadera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "gánster": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "género": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "nube": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "boza": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cuerpo": {
+  "propósito": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -3828,142 +3443,52 @@
       }
     ]
   },
-  "muerte": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "feo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "puto": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "compositor": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dinero": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "porno": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sino": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "piquete": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ubi": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pasajera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "arte": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ende": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "adicción": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "loquito": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
   "ascensor": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "jefe": {
+  "seguramente": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "policía": {
+  "lento": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "platón": {
+  "sencilla": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "miel": {
+  "filosofía": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "lugar": {
+  "cadera": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "soledad": {
+  "cinturón": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "cadenas": {
+  "pirata": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "realidad": {
+  "cachetes": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "labios": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "inteligencia": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hijueputa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sartén": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ojitos": {
+  "rato": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -3973,87 +3498,72 @@
     "corpus_count": 1,
     "tags": []
   },
-  "testigo": {
+  "dilema": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "muchas": {
+  "caminante": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "confianza": {
+  "problema": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "himnos": {
+  "mucha": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "panamá": {
+  "ventana": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "lástima": {
+  "sicarios": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "playa": {
+  "menor": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "razón": {
+  "estas": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "safari": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "muñeca": {
+  "escaleras": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "pistolas": {
+  "premios": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "todos": {
+  "viernes": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "horas": {
+  "material": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "tóxicos": {
+  "privacidad": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "última": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mari": {
+  "yankee": {
     "category": "core",
     "corpus_count": 1,
     "tags": [
@@ -4068,52 +3578,12 @@
     "corpus_count": 1,
     "tags": []
   },
-  "consistencia": {
+  "lleca": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "demasiado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "loba": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "seguramente": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "setas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "carajo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dolor": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ventana": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "todavía": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mucha": {
+  "adicción": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -4123,207 +3593,37 @@
     "corpus_count": 1,
     "tags": []
   },
-  "construcción": {
+  "brújula": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "cinturón": {
+  "rojos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "bandida": {
+  "entonces": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "primer": {
+  "inteligencia": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "escaleras": {
+  "esas": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "tres": {
+  "muerte": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "plan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "algunos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "loco": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "filosofía": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "rosa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cachetes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pirata": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "problema": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "yankee": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "culo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "amores": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "competencia": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sur": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "números": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "manual": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": [
-      {
-        "tag": "word_eq_translation",
-        "source": "sense_menu"
-      }
-    ]
-  },
-  "carro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "puertas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "timidez": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sus": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "único": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "favorita": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "días": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "demás": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dilema": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "apariencia": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hijueputas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "terraza": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hombre": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "raza": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "propósito": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hermosa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "juguetones": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sólo": {
+  "maleantes": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -4333,37 +3633,47 @@
     "corpus_count": 1,
     "tags": []
   },
-  "clase": {
+  "terraza": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "prepa": {
+  "avión": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "cuello": {
+  "género": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "cintura": {
+  "compositor": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "videos": {
+  "letras": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "lado": {
+  "explícitos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "probable": {
+  "ubi": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cuerpo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "ex": {
     "category": "core",
     "corpus_count": 1,
     "tags": [
@@ -4373,32 +3683,217 @@
       }
     ]
   },
-  "avión": {
+  "ellos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "condición": {
+  "pistolas": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "caminante": {
+  "micro": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "claros": {
+  "comoquiera": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "santa": {
+  "bonita": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "brújula": {
+  "alguien": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tóxicos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "químico": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "todos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sino": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "horas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pasajera": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "hermosa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vitrina": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "golosina": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "competencia": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "coqueta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "labios": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "número": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "celosa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "feo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "inmediato": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sur": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "carro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "rosa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "testigo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "construcción": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "demás": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "soledad": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "policía": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "canción": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tres": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "demasiado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "puertas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "boza": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fácil": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "setas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bandida": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dedo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fiera": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "juguetones": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dinero": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "videos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -4408,1832 +3903,477 @@
     "corpus_count": 1,
     "tags": []
   },
+  "ende": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "clase": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "luego": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "realidad": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "motociclista": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "valor": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "varios": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "plan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "primer": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "nivel": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sus": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "semejante": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "safari": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gloria": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "porno": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mujerón": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "loba": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "toto": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "santa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "luna": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "confianza": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "líos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "última": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gánster": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tatuaje": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "apariencia": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cien": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "legal": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "secuela": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "año": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "negrito": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sartén": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "jefe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "detrás": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bastante": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "favorita": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "arte": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "so": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": [
+      {
+        "tag": "word_eq_translation",
+        "source": "sense_menu"
+      }
+    ]
+  },
+  "raza": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "final": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "claros": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "panamá": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "hombre": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cuello": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "himnos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "instante": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "verano": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "loco": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fin": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "poco": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cadenas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "ruido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "condición": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dolor": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "carajo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "muñeca": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "días": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "prepa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "timidez": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cel": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "futuro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "platón": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "lástima": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "único": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "probable": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "piquete": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "todavía": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "discotecas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "razón": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "elena": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "seguridad": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "besito": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fama": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "navidad": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
   "diablo": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "sicarios": {
+  "puto": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "apareciste": {
+  "loquito": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "cambie": {
+  "culo": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "compone": {
+  "enero": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "gocen": {
+  "ojitos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "traba": {
+  "esos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "sal": {
+  "muchas": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "engreído": {
+  "hijueputa": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "maté": {
+  "nube": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "quito": {
+  "playa": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "intento": {
+  "cualquier": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "gustaban": {
+  "amores": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "manejo": {
+  "tímida": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "muerden": {
+  "sólo": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "caí": {
+  "números": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "traído": {
+  "estos": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "saca": {
+  "lado": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "hablen": {
+  "redes": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "haber": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "recuerda": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "actuar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cabe": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "alejando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "endulza": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "jangueando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "embobado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "enredamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mandó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "retira": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mezclamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vengas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "jodido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "toma": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vista": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "rompimos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "serena": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hagas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "abajo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escapado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "quedó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dato": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tanque": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "motiva": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pueden": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "esquives": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "atrevo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mandé": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "comprando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "baje": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "lista": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pones": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "perdona": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "destendida": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "liga": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "maldito": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cuela": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "oído": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mía": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entendí": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "falta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llevo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hierba": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "puedo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dentro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sospecha": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pegue": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fe": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "malgastaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hay": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "salga": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "caso": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sorprende": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fumemos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "piqué": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "maquillar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "andaba": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "regalando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "asimilar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dura": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escribe": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "espera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "relaciones": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escuela": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cansa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cosas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "había": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "parecemos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "están": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sabe": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entendido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pagando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "rastro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "acumulado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cabecea": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "nacido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "recuerdo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dio": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "acabó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "jode": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "trato": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "penas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aburro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "caemos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sucedido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "regresar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "veo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "oíste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "gustamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "subimos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "diga": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vale": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "quedan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "era": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "grita": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "parar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "siguen": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "estar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "enamoré": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entramos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llegó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "veas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "saber": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pasen": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vienes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escucho": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "das": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "quedaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "serio": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "iría": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "extinguieron": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llevé": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "metí": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tratar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "quitar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "violento": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tiró": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sentido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "permití": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "diciéndoselo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "descuido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "gustando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pensar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "veía": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mete": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fila": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "partes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "penetra": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "besar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "enviciaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "baila": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tenemos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aseguro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "apareció": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "apagues": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fumé": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "insistas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "graba": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "activa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dices": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "varear": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "noté": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cuido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "atrevido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "desnuda": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "despreocúpate": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "preocupes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "calentando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "matando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "desea": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bajamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "curo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "completa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "deseo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vacilo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vuelto": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "deje": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dañar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "siendo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "olvidan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "peine": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aquella": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "grabando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bebiendo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "merece": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tortura": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dolido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "quita": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "volando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bebe": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vino": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "besaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "obra": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "borrado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "contestaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "caigo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "jodidos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "misiones": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "convertí": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "brillando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fichar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "invitó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "colores": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "será": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pudiera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escribió": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "porte": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "coco": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "conocen": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "muere": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "perdiste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sepas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vueltas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "robaría": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mordido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dé": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "caduquen": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bregando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "parezca": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entiendo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "comido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cuida": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "niega": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "arrestar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "estarías": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "conozco": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "intentan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "haría": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "perdiendo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "lleva": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pensé": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aprieto": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fue": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "habría": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "usar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "despertaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "acelera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "despedida": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pasó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "meter": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "atrevida": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pichear": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "haces": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sabiendo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "apellido": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mamá": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "evitar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "miro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escuchar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "querías": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "compromete": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "encontrado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pertenece": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "secreto": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "choco": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "seguro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entra": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "viajo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "conocí": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entrego": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "gusté": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "saque": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "virales": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "mata": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "importes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pasado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "encontré": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vacaciones": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "prefieres": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "posiciones": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "traten": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "premio": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "choque": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "amiga": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tranquila": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "funcionamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vendidos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bailaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sepa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "borraré": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tratando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "gana": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bajo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tomamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "acaban": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llego": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "parece": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pegando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "escuchas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tiras": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "vi": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pasan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fui": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dejaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "novia": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "poses": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pasando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "agosto": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tope": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "arriba": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "baile": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "desespero": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tiro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "chichar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pensaste": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "importan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sirven": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "amigas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pregunta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "presento": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "cuenta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "robe": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entre": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sanan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "enamorando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "nota": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dañaron": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "deporte": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "jaló": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "sube": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "empezó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "echa": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "salir": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entendemos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "desaparezco": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "paso": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "lean": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aclarar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "eduquen": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "taza": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "incomode": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "ganan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "estés": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "malicia": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "temas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "prometes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bailo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "siga": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bloque": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "intentando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "bajan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entiende": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "estan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "conecta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "robar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "echamos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llevan": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "habla": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "robo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "tomando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "fuera": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "raptar": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "secuestro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "muerdes": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pareces": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "guarda": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "paro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "espere": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llevó": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "disfruta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "necesita": {
+  "hijueputas": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -6243,22 +4383,57 @@
     "corpus_count": 1,
     "tags": []
   },
-  "perreando": {
+  "caigo": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "tocó": {
+  "mandé": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "da": {
+  "regresar": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "termine": {
+  "sido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "escribió": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vale": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "premio": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "piqué": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "penas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pasan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bajan": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -6268,112 +4443,12 @@
     "corpus_count": 1,
     "tags": []
   },
-  "emocionen": {
+  "encontrado": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "guardado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entender": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aterrizado": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "avenida": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "combo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "lleno": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pides": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "llamas": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "puesta": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "roce": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "deja": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "hipnotizada": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "entero": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "coincidimos": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "empalagando": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "digo": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "niveles": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "aprovecha": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "dieron": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "juro": {
-    "category": "core",
-    "corpus_count": 1,
-    "tags": []
-  },
-  "pinta": {
+  "atrevido": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -6383,32 +4458,272 @@
     "corpus_count": 1,
     "tags": []
   },
-  "perdí": {
+  "caí": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "contesto": {
+  "mandó": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "llorar": {
+  "dieron": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "ojalá": {
+  "paso": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "habido": {
+  "quitar": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "vuelvo": {
+  "tranquila": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "activa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "saque": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "atrevida": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "miro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "desespero": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "siendo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "estarías": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cabecea": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "quedó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "termine": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "robo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "raptar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "liga": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "guarda": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pasó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "abajo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "despertaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pareces": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "coco": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "veas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llevé": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aprieto": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tocó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "maquillar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "robe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "subimos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "toma": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sabiendo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "desaparezco": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "jodidos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "salga": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "embobado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pegando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "intento": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bailo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gustaban": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "chichar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "lean": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "hierba": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "disfruta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "están": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "robar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "falta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sal": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "echa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "misiones": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dolido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "enamorando": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
@@ -6418,22 +4733,1660 @@
     "corpus_count": 1,
     "tags": []
   },
+  "escucho": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "alejando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "borraré": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fumé": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sabe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "traído": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pasaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "porte": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "serena": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "enamoré": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "coincidimos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "siga": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "perreando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "destendida": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entendido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "prometes": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "acabó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "maldito": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mamá": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "grabando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "retira": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vista": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "matando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "jangueando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "hipnotizada": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dejaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mete": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "empezó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mezclamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tanque": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dato": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "acaban": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "muerden": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "arrestar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bebiendo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "apareció": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "emocionen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "despedida": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "diga": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llevo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "penetra": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "conocí": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mata": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pides": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "completa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "baila": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pinta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pasando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "extinguieron": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entre": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "será": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "veo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vienes": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "motiva": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "quedaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sucedido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aprovecha": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tope": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "desnuda": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "escapado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "roce": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gustamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "varear": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "insistas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cuido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "caduquen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fila": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bajo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "arriba": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "avenida": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "borrado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "amiga": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "niega": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "permití": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sepa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "escuchas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "nacido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vi": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "despreocúpate": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pensaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "parar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "esquives": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "necesita": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "conecta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "rastro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "escuchar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "enviciaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llorar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pensar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bailaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aburro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sorprende": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tratando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "encontré": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sirven": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "diciéndoselo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "lleva": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vacaciones": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llevan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "choco": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "ojalá": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "intentan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vuelvo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vacilo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "niveles": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pertenece": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entiendo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "prefieres": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "taza": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "endulza": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "iría": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "curo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "empalagando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "oíste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entendemos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "actuar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "noté": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tomando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "estar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dio": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "echamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "compromete": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dañaron": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "brillando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "atrevo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vueltas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "conozco": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fumemos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "besaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fichar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "volando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "conocen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "espera": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "hablen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "parece": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "esperado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "haces": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "manejo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "perdiendo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "apareciste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "posiciones": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "presento": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "saca": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "jode": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bloque": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "había": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "veía": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aseguro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entra": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "escuela": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sepas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cuenta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llego": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "lleno": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "temas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "partes": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "oído": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "grita": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "digo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "acumulado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cansa": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bregando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gusté": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "das": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "desea": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "perdona": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "novia": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mía": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cuela": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "usar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "apellido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "secuestro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tiro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cosas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "comido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "saber": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "deseo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "estés": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "solas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "colores": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "importes": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "ganan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "juro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "secreto": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gana": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "merece": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cuida": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "maté": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "meter": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "robaría": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "virales": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "rompimos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "muere": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sospecha": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llevó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "olvidan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "puesta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tortura": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "malicia": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "caso": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "deje": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "paro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "choque": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dé": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "habla": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "jodido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gocen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dices": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "trato": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cabe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "graba": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "agosto": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "importan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "incomode": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "querías": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "mordido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pudiera": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sube": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "peine": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "salir": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "viajo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llamas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "acelera": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tiras": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entero": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aclarar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tratar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vendidos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pensé": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "poses": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "baile": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "serio": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "besar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "gustando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entrego": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bebe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entramos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "deporte": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "invitó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "compone": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "preocupes": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "lista": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "asimilar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sentido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "combo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tenemos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "bajamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "funcionamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "relaciones": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aterrizado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "enredamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "traba": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "recuerdo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "malgastaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "quedan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "regalando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "contesto": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "era": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "haber": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "llegó": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "caemos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "traten": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "andaba": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dura": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entender": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "metí": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "comprando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "parezca": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "estan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "aquella": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "nota": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "contestaste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "baje": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "cambie": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "obra": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "siguen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "quita": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entendí": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pichear": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "hagas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "perdiste": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pagando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "quito": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pueden": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "jaló": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vengas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "calentando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "eduquen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "fuera": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "guardado": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dañar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "amigas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pasen": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "muerdes": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "seguro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tiró": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "tomamos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "descuido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "habría": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vuelto": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "evitar": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "puedo": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "apagues": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "convertí": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "espere": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "entiende": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "perdí": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "sanan": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vas": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "intentando": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "haría": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "dentro": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "violento": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pegue": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "recuerda": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "habido": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "vino": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "parecemos": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "pregunta": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "escribe": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
   "llega": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "tigueres": {
+  "engreído": {
     "category": "core",
     "corpus_count": 1,
     "tags": []
   },
-  "g": {
-    "category": "proper_noun",
+  "deja": {
+    "category": "core",
+    "corpus_count": 1,
+    "tags": []
+  },
+  "nice": {
+    "category": "loanword",
     "corpus_count": 0,
     "tags": [
       {
-        "tag": "proper_noun",
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
+        "source": "routing"
+      }
+    ]
+  },
+  "like": {
+    "category": "loanword",
+    "corpus_count": 0,
+    "tags": [
+      {
+        "tag": "loanword",
+        "source": "english_loanwords"
+      },
+      {
+        "tag": "english",
         "source": "routing"
       }
     ]
@@ -6448,7 +6401,37 @@
       }
     ]
   },
-  "maría": {
+  "g": {
+    "category": "noise",
+    "corpus_count": 0,
+    "tags": [
+      {
+        "tag": "noise",
+        "source": "routing"
+      }
+    ]
+  },
+  "confundía'": {
+    "category": "unresolved",
+    "corpus_count": 0,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
+  "rulay": {
+    "category": "unresolved",
+    "corpus_count": 0,
+    "tags": [
+      {
+        "tag": "unresolved",
+        "source": "routing_low_frequency"
+      }
+    ]
+  },
+  "conejo": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6458,37 +6441,17 @@
     "corpus_count": 0,
     "tags": []
   },
-  "discotecas": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
   "cana": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
   },
-  "conejo": {
+  "maría": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
   },
   "norte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "ajá": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "pasaste": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "esperado": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6503,72 +6466,7 @@
     "corpus_count": 0,
     "tags": []
   },
-  "confundía'": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "recordarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "tocarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "viniéndote": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "conquistándome": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "comerme": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "mirarlo": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "perréame": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "decirle": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "presentarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "móntate": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "guayarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "lúcete": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "arrebátate": {
+  "ajá": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6578,17 +6476,57 @@
     "corpus_count": 0,
     "tags": []
   },
-  "darte": {
+  "pegarte": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
   },
-  "mirándote": {
+  "ponértelo": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
   },
-  "irnos": {
+  "mojarte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "mirándome": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "arrebátate": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "viniéndote": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "déjate": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "mírame": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "recordarte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "guayarte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "despídete": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6598,12 +6536,52 @@
     "corpus_count": 0,
     "tags": []
   },
-  "verte": {
+  "presentarte": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
   },
-  "tírate": {
+  "cáele": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "perréame": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "hacernos": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "irse": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "dame": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "mirarlo": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "tocándote": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "hacerle": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "hacerlo": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6618,7 +6596,97 @@
     "corpus_count": 0,
     "tags": []
   },
-  "irse": {
+  "regálame": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "comerme": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "conquistarte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "dándote": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "lúcete": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "tírate": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "verte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "móntate": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "mándame": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "dime": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "darte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "muévelo": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "irnos": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "chingarte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "tocarte": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "mirándonos": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "hacerles": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "devorándonos": {
+    "category": "core",
+    "corpus_count": 0,
+    "tags": []
+  },
+  "mirándote": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6633,32 +6701,7 @@
     "corpus_count": 0,
     "tags": []
   },
-  "ponértelo": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "muévelo": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "despídete": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "pasarla": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "mírame": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "dame": {
+  "decirle": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
@@ -6668,92 +6711,12 @@
     "corpus_count": 0,
     "tags": []
   },
-  "dime": {
+  "conquistándome": {
     "category": "core",
     "corpus_count": 0,
     "tags": []
   },
-  "mándame": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "mojarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "conquistarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "tocándote": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "hacerlo": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "mirándome": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "devorándonos": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "hacerles": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "regálame": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "pegarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "chingarte": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "mirándonos": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "cáele": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "déjate": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "hacerle": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "dándote": {
-    "category": "core",
-    "corpus_count": 0,
-    "tags": []
-  },
-  "hacernos": {
+  "pasarla": {
     "category": "core",
     "corpus_count": 0,
     "tags": []

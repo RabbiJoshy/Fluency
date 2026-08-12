@@ -709,7 +709,7 @@
   "baby": {
     "freq": 13,
     "bucket": "english",
-    "source": "english_loanwords",
+    "source": "curated_extra_english",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -1975,8 +1975,8 @@
   },
   "confundía'": {
     "freq": 1,
-    "bucket": "elision",
-    "source": "elision_skip",
+    "bucket": "low_frequency",
+    "source": "freq<2",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4583,8 +4583,8 @@
   },
   "g": {
     "freq": 1,
-    "bucket": "proper_nouns",
-    "source": "caps_rate",
+    "bucket": "noise",
+    "source": "curated_noise",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -6238,8 +6238,11 @@
   },
   "ma": {
     "freq": 2,
-    "bucket": "noise",
-    "source": "curated_noise",
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },

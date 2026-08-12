@@ -122,6 +122,55 @@ class SharedSenseRegisterTest(unittest.TestCase):
             "bunny", {"pos": "NOUN", "translation": "rabbit"},
             {"artist": "Bad Bunny"}, "NOUN"))
 
+    def test_policy_quarantines_singletons_and_consumer_contributions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            language_dir = Path(tmp) / "spanish"
+            register_dir = language_dir / "sense_registers"
+            register_dir.mkdir(parents=True)
+            (register_dir / "policy.json").write_text(json.dumps({
+                "registers": {"reggaeton": {
+                    "members": {"Seed": "contributor", "Playlist": "consumer"},
+                    "admission": {
+                        "minimum_distinct_occurrences": 2,
+                        "minimum_supporting_artists": 2,
+                        "allow_provisional_exact_line_reuse": True,
+                    },
+                }},
+            }), encoding="utf-8")
+            seed = self._artist(language_dir, "Seed", "Seed", {
+                "feka": {"lexical-gap-fill-g31": [{
+                    "sense": "a", "pos": "ADJ", "translation": "fake",
+                    "lemma": "feka", "type": "slang", "examples": [0],
+                    "example_ids": ["song:1"], "prompt_id": "sd-lexical-v2-g31",
+                }]},
+            })
+            playlist = self._artist(language_dir, "Playlist", "Playlist", {
+                "pollute": {"lexical-gap-fill-g31": [{
+                    "sense": "b", "pos": "NOUN", "translation": "bad guess",
+                    "lemma": "pollute", "type": "slang", "examples": [0, 1],
+                    "example_ids": ["x:1", "x:2"],
+                    "prompt_id": "sd-lexical-v2-g31",
+                }]},
+            })
+            (seed / "data/layers/examples_raw.json").write_text(json.dumps({
+                "feka": [{"id": "song:1", "spanish": "Tú eres feka"}],
+            }), encoding="utf-8")
+            (playlist / "data/layers/examples_raw.json").write_text(json.dumps({
+                "feka": [{"id": "song:1", "spanish": "Tú eres feka"}],
+            }), encoding="utf-8")
+
+            _path, payload = build_register(language_dir, "reggaeton")
+            self.assertEqual(payload["contributors"], ["Seed"])
+            self.assertEqual(payload["consumers"], ["Playlist", "Seed"])
+            self.assertNotIn("pollute", payload["senses"])
+            self.assertEqual(payload["senses"]["feka"][0]["status"], "provisional")
+
+            menu, added = apply_registers_to_menu(playlist, {}, ["feka"])
+            self.assertEqual((menu, added), ({}, 0))
+            exact = exact_register_assignments(playlist)
+            self.assertEqual(
+                exact["feka"]["shared-register-auto"][0]["examples"], [0])
+
     def test_inline_discovered_sense_is_self_contained(self):
         item = {"sense": "not-in-menu", "pos": "ADJ", "translation": "fake"}
         valid_menu_ids = {"dictionary-id"}

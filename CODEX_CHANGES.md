@@ -45,6 +45,18 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-12 — Replace mixed-scope curations and gate shared-register membership
+
+- Commit pending; front-end cache `flashcards-v225` / `20260812d`.
+- Compacted `elision_mapping.json` from 2,882 to 1,891 active records by deleting 971 consumer-inert `same_word_dup` rows, seven non-operative `skip` rows, and thirteen reviewed bad generated restorations. Trailing-apostrophe fallback now requires corpus attestation, resolves ambiguity only at fourfold frequency dominance, and protects already registered lyric lexemes such as `mai`.
+- Removed global noise/name drops for mixed lexical surfaces and recategorized definite English items. The occurrence-level vocal-artifact layer remains responsible for repeated, echoed, and hyphenated uses; a surface with lexical evidence is no longer erased everywhere.
+- Removed curated MWEs that contradicted skip policy, duplicated productive construction templates, or represented incomplete/dead fragments. Deck assembly now revalidates stale materialized curated MWEs against the current curated and skip files.
+- Added register policy roles. Bad Bunny, J Balvin, Young Miko, and Rels B contribute to `reggaeton`; Rosalía and Spanish Test Playlist consume only. Two distinct occurrences or two contributors establish a menu candidate. Singletons remain provisional and can transfer only through one-sense exact-line reuse.
+- Defined non-transitive growth rules for future register members: consumer-first admission, independent multi-register thresholds, one vote per contributing artist, provenance-preserving disputed/retired states, and locale only as a ranking hint.
+- Coalesced historical analysis aliases that resolve to the same persistent card ID, preserving combined senses, examples, counts and provenance. Rebuilt the four live Spanish Artist decks without Gemini/API calls and refreshed offline integrity metadata.
+- Protected new evidence stores and disposable preview decks from accidental Git staging. The roughly 3.36 GB local archive is not an app-runtime dependency, but remains a moderate exact-rebuild/data-loss risk until copied to verified external artifact storage.
+- Final verification covers 59 focused Python contracts, compact JSON parsing, zero duplicate IDs, exact index/example alignment, routing/elision/register/MWE invariants, offline hashes, cache lockstep, and whitespace validation.
+
 ### 2026-08-12 — Standardize reusable slang senses across tagged artists
 
 - Commit `1e6b70b6`; active shared front-end cache `flashcards-v224` / `20260812c`.

@@ -1044,15 +1044,19 @@
     "song_count": 40
   },
   {
+    "word": "estos",
+    "corpus_count": 51,
+    "song_count": 38,
+    "display_form": "esto'",
+    "variants": {
+      "estos": 50,
+      "e'tos": 1
+    }
+  },
+  {
     "word": "carajo",
     "corpus_count": 50,
     "song_count": 40
-  },
-  {
-    "word": "estos",
-    "corpus_count": 50,
-    "song_count": 38,
-    "display_form": "esto'"
   },
   {
     "word": "luian",
@@ -2368,6 +2372,15 @@
     "song_count": 15
   },
   {
+    "word": "normal",
+    "corpus_count": 22,
+    "song_count": 17,
+    "variants": {
+      "normal": 21,
+      "norma'": 1
+    }
+  },
+  {
     "word": "alma",
     "corpus_count": 21,
     "song_count": 20
@@ -2432,11 +2445,6 @@
     "word": "mete",
     "corpus_count": 21,
     "song_count": 20
-  },
-  {
-    "word": "normal",
-    "corpus_count": 21,
-    "song_count": 16
   },
   {
     "word": "p",
@@ -3568,6 +3576,15 @@
     "song_count": 13
   },
   {
+    "word": "mover",
+    "corpus_count": 15,
+    "song_count": 9,
+    "variants": {
+      "mover": 13,
+      "move'": 2
+    }
+  },
+  {
     "word": "alex",
     "corpus_count": 14,
     "song_count": 12
@@ -3866,11 +3883,6 @@
     "word": "mata",
     "corpus_count": 13,
     "song_count": 12
-  },
-  {
-    "word": "mover",
-    "corpus_count": 13,
-    "song_count": 9
   },
   {
     "word": "moñas",
@@ -4267,6 +4279,15 @@
     "song_count": 9
   },
   {
+    "word": "viste",
+    "corpus_count": 12,
+    "song_count": 8,
+    "variants": {
+      "viste": 11,
+      "vi'te": 1
+    }
+  },
+  {
     "word": "acostumbré",
     "corpus_count": 11,
     "song_count": 8
@@ -4638,11 +4659,6 @@
     "word": "vio",
     "corpus_count": 11,
     "song_count": 9
-  },
-  {
-    "word": "viste",
-    "corpus_count": 11,
-    "song_count": 7
   },
   {
     "word": "acuerdo",
@@ -22449,11 +22465,6 @@
     "song_count": 2
   },
   {
-    "word": "move'",
-    "corpus_count": 2,
-    "song_count": 1
-  },
-  {
     "word": "muchacho",
     "corpus_count": 2,
     "song_count": 1
@@ -25808,9 +25819,50 @@
     "song_count": 2
   },
   {
-    "word": "a'lante",
+    "word": "cagar",
+    "corpus_count": 2,
+    "song_count": 1,
+    "display_form": "caga'",
+    "variants": {
+      "caga'": 1,
+      "cagar": 1
+    }
+  },
+  {
+    "word": "modelar",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "modela'",
+    "variants": {
+      "modela'": 1,
+      "modelar": 1
+    }
+  },
+  {
+    "word": "prenderlo",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "prende'lo",
+    "variants": {
+      "prende'lo": 1,
+      "prenderlo": 1
+    }
+  },
+  {
+    "word": "varias",
+    "corpus_count": 2,
+    "song_count": 2,
+    "display_form": "varia'",
+    "variants": {
+      "varia'": 1,
+      "varias": 1
+    }
+  },
+  {
+    "word": "atlante",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "a'lante"
   },
   {
     "word": "a'o",
@@ -25853,9 +25905,10 @@
     "song_count": 1
   },
   {
-    "word": "abi'mo",
+    "word": "abismo",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "abi'mo"
   },
   {
     "word": "aboga",
@@ -28456,9 +28509,10 @@
     "song_count": 1
   },
   {
-    "word": "bache'",
+    "word": "baches",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "bache'"
   },
   {
     "word": "back",
@@ -30103,17 +30157,7 @@
     "song_count": 1
   },
   {
-    "word": "caga'",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "cagaos",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "cagar",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -34535,9 +34579,10 @@
     "song_count": 1
   },
   {
-    "word": "desnu'itos",
+    "word": "desnuditos",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "desnu'itos"
   },
   {
     "word": "desnudaste",
@@ -34990,9 +35035,10 @@
     "song_count": 1
   },
   {
-    "word": "direccione'",
+    "word": "direcciones",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "direccione'"
   },
   {
     "word": "director",
@@ -35546,11 +35592,6 @@
   },
   {
     "word": "e'puta",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "e'tos",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -39834,9 +39875,10 @@
     "song_count": 1
   },
   {
-    "word": "grita'la",
+    "word": "gritarla",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "grita'la"
   },
   {
     "word": "gritamos",
@@ -40525,9 +40567,10 @@
     "song_count": 1
   },
   {
-    "word": "hospeda'",
+    "word": "hospedar",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "hospeda'"
   },
   {
     "word": "hospital",
@@ -44936,16 +44979,6 @@
     "song_count": 1
   },
   {
-    "word": "modela'",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "modelar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "modeles",
     "corpus_count": 1,
     "song_count": 1
@@ -44971,9 +45004,10 @@
     "song_count": 1
   },
   {
-    "word": "moja'íta",
+    "word": "mojadita",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "moja'íta"
   },
   {
     "word": "mojado",
@@ -46053,11 +46087,6 @@
   },
   {
     "word": "noqueados",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "norma'",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -47285,9 +47314,10 @@
     "song_count": 1
   },
   {
-    "word": "patea'la",
+    "word": "patearla",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "patea'la"
   },
   {
     "word": "pateo",
@@ -48829,17 +48859,7 @@
     "song_count": 1
   },
   {
-    "word": "prende'lo",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "prenden",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "prenderlo",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -49738,9 +49758,10 @@
     "song_count": 1
   },
   {
-    "word": "racin'",
+    "word": "racing",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "racin'"
   },
   {
     "word": "rack",
@@ -49813,9 +49834,10 @@
     "song_count": 1
   },
   {
-    "word": "rapa'la",
+    "word": "raparla",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "rapa'la"
   },
   {
     "word": "raphy",
@@ -49863,9 +49885,10 @@
     "song_count": 1
   },
   {
-    "word": "ratin'",
+    "word": "rating",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "ratin'"
   },
   {
     "word": "ratón",
@@ -52611,9 +52634,10 @@
     "song_count": 1
   },
   {
-    "word": "solare'",
+    "word": "solares",
     "corpus_count": 1,
-    "song_count": 1
+    "song_count": 1,
+    "display_form": "solare'"
   },
   {
     "word": "soldado",
@@ -55445,16 +55469,6 @@
     "song_count": 1
   },
   {
-    "word": "varia'",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "varias",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "vayamos",
     "corpus_count": 1,
     "song_count": 1
@@ -55748,11 +55762,6 @@
   },
   {
     "word": "veteranía",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "vi'te",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -56733,272 +56742,7 @@
     "song_count": 1
   },
   {
-    "word": "acercarse",
-    "corpus_count": 3,
-    "song_count": 3
-  },
-  {
-    "word": "conceder",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "estrujar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "olvidarse",
-    "corpus_count": 4,
-    "song_count": 2
-  },
-  {
-    "word": "fumarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "clavar",
-    "corpus_count": 3,
-    "song_count": 1
-  },
-  {
-    "word": "crucificar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "imaginar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "encerrar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "asomarse",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "esquivar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "oír",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "chingarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "conformar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "vestirse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "calentar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "chupar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "extraer",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "castigar",
-    "corpus_count": 3,
-    "song_count": 3
-  },
-  {
-    "word": "acostarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "ponerse",
-    "corpus_count": 3,
-    "song_count": 2
-  },
-  {
-    "word": "admitir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "medicar",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "devolverse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "gozarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "traerse",
-    "corpus_count": 3,
-    "song_count": 3
-  },
-  {
-    "word": "perseguir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "tronchar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "desquitarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "imaginarse",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "esforzar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "ofender",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "envidiar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "taparse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "atender",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "implantar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "deshacer",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "rescatar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "atrapar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "acordarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "elevar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "secuestrar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "hipnotizar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "erizar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "maltratarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "cagarse",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "perderse",
-    "corpus_count": 5,
-    "song_count": 5
-  },
-  {
-    "word": "agradecer",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "resolver",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "alejarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "botar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "complacer",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "entregar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "menear",
+    "word": "sorprender",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -57008,54 +56752,29 @@
     "song_count": 1
   },
   {
-    "word": "concentrarse",
+    "word": "extraer",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "venderse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "juntarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "informar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "ahorrarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "demostrar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "devorar",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "recetar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "acicalarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "enviar",
+    "word": "olvidarse",
     "corpus_count": 4,
-    "song_count": 4
+    "song_count": 3
+  },
+  {
+    "word": "perderse",
+    "corpus_count": 5,
+    "song_count": 5
+  },
+  {
+    "word": "admitir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "maltratarse",
+    "corpus_count": 1,
+    "song_count": 1
   },
   {
     "word": "rogar",
@@ -57063,172 +56782,12 @@
     "song_count": 1
   },
   {
-    "word": "manejar",
+    "word": "conformar",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "encajar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "devolver",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "colar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "tirarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "hundir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "lamber",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "consolarse",
-    "corpus_count": 2,
-    "song_count": 1
-  },
-  {
-    "word": "reconocer",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "admirar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "retirarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "portar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "echarse",
-    "corpus_count": 3,
-    "song_count": 3
-  },
-  {
-    "word": "librar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "regalar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "darse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "patear",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "dedicar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "localizar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "recordarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "mantener",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "cortarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "ahogar",
-    "corpus_count": 2,
-    "song_count": 1
-  },
-  {
-    "word": "coser",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "escucharse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "quemarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "excitar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "untar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "detener",
-    "corpus_count": 4,
-    "song_count": 3
-  },
-  {
-    "word": "repartir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "pegarse",
-    "corpus_count": 7,
-    "song_count": 6
-  },
-  {
-    "word": "relajarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "prepararse",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "enganchar",
+    "word": "envidiar",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -57238,32 +56797,12 @@
     "song_count": 1
   },
   {
-    "word": "sorprender",
+    "word": "elevar",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "presumir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "dominar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "disculpar",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "ignorar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "llamarse",
+    "word": "devolverse",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -57273,17 +56812,42 @@
     "song_count": 1
   },
   {
-    "word": "parir",
+    "word": "atrapar",
+    "corpus_count": 3,
+    "song_count": 1
+  },
+  {
+    "word": "patear",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "recuperar",
+    "word": "enviar",
+    "corpus_count": 4,
+    "song_count": 4
+  },
+  {
+    "word": "ponerse",
     "corpus_count": 3,
     "song_count": 2
   },
   {
-    "word": "comprender",
+    "word": "ofender",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "complacer",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "ahorrarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "juntarse",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -57293,8 +56857,483 @@
     "song_count": 1
   },
   {
+    "word": "retirarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "darse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "manejar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "escucharse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "entregar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "prepararse",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "comprender",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "crucificar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "asomarse",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "regalar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "alejarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "calentar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "chupar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "fumarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "venderse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "imaginarse",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "informar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "localizar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "untar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dominar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "secuestrar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "deshacer",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "repartir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "consolarse",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "vestirse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "llamarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "librar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "reconocer",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "demostrar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "traerse",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "agradecer",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cortarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conceder",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "admirar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "concentrarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "oír",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "devorar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "implantar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "encerrar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "echarse",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "atender",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acostarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acercarse",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "hipnotizar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "cagarse",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "ahogar",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "ignorar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dedicar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "esquivar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "excitar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "lamber",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "taparse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "relajarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "devolver",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "enganchar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "menear",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chingarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "tronchar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mantener",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "colar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "medicar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "resolver",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "presumir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "coser",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "castigar",
+    "corpus_count": 3,
+    "song_count": 3
+  },
+  {
+    "word": "tirarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "clavar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "disculpar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "pegarse",
+    "corpus_count": 7,
+    "song_count": 6
+  },
+  {
+    "word": "parir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "botar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "hundir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "imaginar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recuperar",
+    "corpus_count": 3,
+    "song_count": 2
+  },
+  {
+    "word": "quemarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recetar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "encajar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "rescatar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acordarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "portar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "gozarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "esforzar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "erizar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "perseguir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "acicalarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "desquitarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "estrujar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "recordarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "detener",
+    "corpus_count": 4,
+    "song_count": 3
+  },
+  {
+    "word": "treparse",
+    "corpus_count": 10,
+    "song_count": 7
+  },
+  {
+    "word": "jugarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "molestarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "chequearse",
+    "corpus_count": 6,
+    "song_count": 5
+  },
+  {
+    "word": "disfrutarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
     "word": "activarse",
     "corpus_count": 2,
+    "song_count": 1
+  },
+  {
+    "word": "virarse",
+    "corpus_count": 1,
     "song_count": 1
   },
   {
@@ -57303,12 +57342,7 @@
     "song_count": 1
   },
   {
-    "word": "disfrutarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "calentarse",
+    "word": "agarrarse",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -57318,38 +57352,13 @@
     "song_count": 1
   },
   {
-    "word": "encerrarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "guillarse",
-    "corpus_count": 5,
-    "song_count": 1
-  },
-  {
-    "word": "tentar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "untarse",
+    "word": "morderse",
     "corpus_count": 1,
     "song_count": 1
   },
   {
     "word": "papar",
     "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "treparse",
-    "corpus_count": 10,
-    "song_count": 7
-  },
-  {
-    "word": "proteger",
-    "corpus_count": 2,
     "song_count": 1
   },
   {
@@ -57363,32 +57372,12 @@
     "song_count": 1
   },
   {
-    "word": "posar",
+    "word": "untarse",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "seguirse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "jugarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "morderse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "virarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "molestarse",
+    "word": "tentar",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -57398,8 +57387,33 @@
     "song_count": 2
   },
   {
+    "word": "calentarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "encerrarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "seguirse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
     "word": "piquetear",
     "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "posar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "proteger",
+    "corpus_count": 2,
     "song_count": 1
   },
   {
@@ -57408,17 +57422,17 @@
     "song_count": 2
   },
   {
-    "word": "agarrarse",
+    "word": "guillarse",
+    "corpus_count": 5,
+    "song_count": 1
+  },
+  {
+    "word": "definir",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "chequearse",
-    "corpus_count": 6,
-    "song_count": 5
-  },
-  {
-    "word": "definir",
+    "word": "rapar",
     "corpus_count": 1,
     "song_count": 1
   }

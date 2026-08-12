@@ -1,9 +1,9 @@
 {
-  "step_name": "reconcile_sense_menu_ids",
+  "step_name": "apply_shared_sense_registers",
   "step_version": 1,
-  "generated_at": 1786293404,
-  "reference_menu": "/private/tmp/bad-bunny-prompt-before.t8iqTn/data/layers/sense_menu/spanishdict.json",
-  "reference_sha256": "c3378efc83ed417f15904a6eae9fc26fb5c8d4f5e2eda24af607c0a1cad4ddb2",
-  "input_sha256": "6dd303996b475f5feb32a5ac549c13d2d26cc36b89525978fc7dbaaf9024adf5",
-  "output_sha256": "60350d14085f59cfb8db8043b8590ce9c2f18250e71fd1f725f2d1e455c5127b"
+  "generated_at": 1786496688,
+  "source": "spanishdict",
+  "sense_registers": [
+    "reggaeton"
+  ]
 }

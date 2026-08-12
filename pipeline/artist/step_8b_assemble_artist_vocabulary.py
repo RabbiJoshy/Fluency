@@ -68,7 +68,7 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 16
+STEP_VERSION = 17
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
@@ -88,6 +88,7 @@ STEP_VERSION_NOTES = {
     14: "+ require active-ledger lineage on compatibility inputs and archive final deck projections",
     15: "+ require Gemini 3.1+ model evidence by default and consume structured occurrence-drop overrides",
     16: "+ suppress common-noun fallback meanings when every occurrence exactly names its credited artist",
+    17: "+ coalesce multiple analyses that resolve to one persistent card identity",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -485,6 +486,156 @@ def assign_ids_from_master(entries, master, registry_path=None, language="und"):
 
     if registry:
         registry.save(registry_path)
+
+
+def _coalesce_card_identities(entries, master):
+    """Merge candidate analyses that the identity registry resolves to one card.
+
+    A persistent card may intentionally own more than one historical
+    ``surface|lemma`` alias.  Those aliases are evidence about one learner
+    identity, not permission to emit duplicate index rows.  Preserve the
+    master-aligned analysis as the display row and union the evidence from all
+    aliases before master integration and split-file serialization.
+    """
+    grouped = {}
+    order = []
+    for entry in entries:
+        card_id = entry.get("id")
+        if card_id not in grouped:
+            grouped[card_id] = []
+            order.append(card_id)
+        grouped[card_id].append(entry)
+
+    def example_key(example):
+        occurrence_ids = tuple(sorted(str(value) for value in
+                                      (example.get("occurrence_ids") or []) if value))
+        return (
+            occurrence_ids,
+            str(example.get("occurrence_id") or ""),
+            str(example.get("ex_id") or example.get("id") or ""),
+            str(example.get("segment_id") or ""),
+            str(example.get("spanish") or example.get("text") or ""),
+        )
+
+    def meaning_ids(meaning):
+        return {
+            str(value) for value in
+            [meaning.get("sense_id")] + list(meaning.get("sense_id_aliases") or [])
+            if value
+        }
+
+    def meaning_key(meaning):
+        return (
+            normalize_pos(meaning.get("pos")),
+            normalize_translation(meaning.get("translation", "")),
+            str(meaning.get("context") or "").strip().casefold(),
+            bool(meaning.get("unassigned")),
+            str(meaning.get("cycle_pos") or ""),
+        )
+
+    merged_entries = []
+    duplicate_rows = 0
+    for card_id in order:
+        candidates = grouped[card_id]
+        if len(candidates) == 1:
+            merged_entries.append(candidates[0])
+            continue
+
+        duplicate_rows += len(candidates) - 1
+        canonical = master.get(card_id) or {}
+        canonical_pair = (
+            str(canonical.get("word") or "").casefold(),
+            str(canonical.get("lemma") or "").casefold(),
+        )
+        primary = next((entry for entry in candidates if (
+            str(entry.get("word") or "").casefold(),
+            str(entry.get("lemma") or "").casefold(),
+        ) == canonical_pair), None)
+        if primary is None:
+            primary = max(candidates, key=lambda entry: (
+                sum(len(meaning.get("examples") or [])
+                    for meaning in entry.get("meanings") or []),
+                int(entry.get("corpus_count") or 0),
+            ))
+
+        for incoming in candidates:
+            if incoming is primary:
+                continue
+            primary["corpus_count"] = (
+                int(primary.get("corpus_count") or 0)
+                + int(incoming.get("corpus_count") or 0)
+            )
+            for flag in ("is_english", "is_noise", "is_interjection",
+                         "is_propernoun", "is_transparent_cognate"):
+                primary[flag] = bool(primary.get(flag) or incoming.get(flag))
+            for field in ("variants",):
+                values = list(primary.get(field) or [])
+                for value in incoming.get(field) or []:
+                    if value not in values:
+                        values.append(value)
+                if values:
+                    primary[field] = values
+            if incoming.get("morphology"):
+                incoming_morphology = incoming["morphology"]
+                current_morphology = primary.get("morphology")
+                if isinstance(incoming_morphology, dict):
+                    if not isinstance(current_morphology, dict):
+                        current_morphology = {}
+                        primary["morphology"] = current_morphology
+                    current_morphology.update(incoming_morphology)
+                elif isinstance(incoming_morphology, list):
+                    if not isinstance(current_morphology, list):
+                        current_morphology = []
+                        primary["morphology"] = current_morphology
+                    for morphology in incoming_morphology:
+                        if morphology not in current_morphology:
+                            current_morphology.append(morphology)
+            primary.setdefault("_sense_provenance", {}).update(
+                incoming.get("_sense_provenance") or {})
+            if (not primary.get("related_lemma") and incoming.get("related_lemma")
+                    and incoming["related_lemma"] != primary.get("lemma")):
+                primary["related_lemma"] = incoming["related_lemma"]
+
+            for meaning in incoming.get("meanings") or []:
+                ids = meaning_ids(meaning)
+                match = next((existing for existing in primary.get("meanings") or []
+                              if ((ids and ids & meaning_ids(existing))
+                                  or meaning_key(existing) == meaning_key(meaning))), None)
+                if match is None:
+                    primary.setdefault("meanings", []).append(meaning)
+                    continue
+                aliases = list(match.get("sense_id_aliases") or [])
+                for alias in meaning.get("sense_id_aliases") or []:
+                    if alias not in aliases and alias != match.get("sense_id"):
+                        aliases.append(alias)
+                if meaning.get("sense_id") and meaning.get("sense_id") != match.get("sense_id"):
+                    if meaning["sense_id"] not in aliases:
+                        aliases.append(meaning["sense_id"])
+                if aliases:
+                    match["sense_id_aliases"] = aliases
+                seen_examples = {example_key(example)
+                                 for example in match.get("examples") or []}
+                for example in meaning.get("examples") or []:
+                    key = example_key(example)
+                    if key not in seen_examples:
+                        match.setdefault("examples", []).append(example)
+                        seen_examples.add(key)
+
+        frequency_meanings = [meaning for meaning in primary.get("meanings") or []
+                              if "frequency" in meaning]
+        total_examples = sum(len(meaning.get("examples") or [])
+                             for meaning in frequency_meanings)
+        if total_examples:
+            for meaning in frequency_meanings:
+                meaning["frequency"] = "%.2f" % (
+                    len(meaning.get("examples") or []) / total_examples)
+        if primary.get("related_lemma") == primary.get("lemma"):
+            primary.pop("related_lemma", None)
+        merged_entries.append(primary)
+
+    if duplicate_rows:
+        print("  Card identity coalescing: %d alias rows merged" % duplicate_rows)
+    return merged_entries
 
 
 def _card_registry_context(layers_dir):
@@ -997,6 +1148,23 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     artist_detected_path = os.path.join(os.path.dirname(layers_dir), "word_counts", "mwe_detected.json")
     artist_mwes_added = 0
     if os.path.isfile(artist_detected_path):
+        # Materialized MWE detections can outlive a curation edit.  Treat the
+        # current curated/skip files as the authority at assembly time so a
+        # removed phrase cannot remain learner-facing until the next complete
+        # lyric scan. Construction templates remain independently sourced.
+        curation_dir = os.path.join(project_root, "Artists", "curations")
+        with open(os.path.join(curation_dir, "curated_mwes.json"),
+                  encoding="utf-8") as f:
+            current_curated_mwes = {
+                key.casefold(): value for key, value in json.load(f).items()
+                if not key.startswith("_")
+            }
+        with open(os.path.join(curation_dir, "skip_mwes.json"),
+                  encoding="utf-8") as f:
+            skip_payload = json.load(f)
+        current_skip_mwes = {
+            str(value).casefold() for value in skip_payload.get("entries", [])
+        }
         with open(artist_detected_path, "r", encoding="utf-8") as f:
             detected = json.load(f)
         buckets = [
@@ -1007,6 +1175,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             for m in items:
                 expr = (m.get("expression") or "").strip()
                 translation = m.get("translation", "") or ""
+                if source == "artist-curated":
+                    expression_key = expr.casefold()
+                    if (expression_key not in current_curated_mwes
+                            or expression_key in current_skip_mwes):
+                        continue
+                    translation = current_curated_mwes[expression_key]
                 if not expr or not translation:
                     continue
                 entry = {
@@ -2325,6 +2499,18 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         registry_path=registry_path,
         language=registry_language,
     )
+    entries = _coalesce_card_identities(entries, master)
+    # Coalescing can combine corpus counts from aliases with different lemmas,
+    # so re-elect each lemma family's representative from the final rows.
+    lemma_groups = {}
+    for entry in entries:
+        lemma = entry.get("lemma", entry["word"]).lower()
+        lemma_groups.setdefault(lemma, []).append(entry)
+    for group in lemma_groups.values():
+        for entry in group:
+            entry["most_frequent_lemma_instance"] = False
+        max(group, key=lambda entry: entry.get("corpus_count", 0))[
+            "most_frequent_lemma_instance"] = True
     _stabilize_sense_identities(
         entries,
         master,

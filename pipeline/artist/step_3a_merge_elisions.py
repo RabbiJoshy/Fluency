@@ -570,9 +570,32 @@ def trailing_apos_restore(word, known_set):
     if not word.endswith("'") or len(word) < 3:
         return None
     stem = word[:-1]
+    if stem.casefold() in load_shared_lexemes():
+        return None
     hits = [stem + c for c in _TRAILING_APOS_RESTORES if (stem + c) in known_set]
+    frequencies = load_surface_frequency()
+    shared_lexemes = load_shared_lexemes()
+    registered_hits = [hit for hit in hits if hit.casefold() in shared_lexemes]
+    if len(registered_hits) == 1:
+        return (registered_hits[0], word)
     if len(hits) == 1:
-        return (hits[0], word)
+        # Broad form tables contain synthetic/foreign curiosities.  A fallback
+        # restoration must also have real corpus support.
+        if (frequencies.get(hits[0].casefold(), 0) > 0
+                or hits[0].casefold() in shared_lexemes):
+            return (hits[0], word)
+        return None
+    if len(hits) > 1:
+        ranked = sorted(
+            ((frequencies.get(hit.casefold(), 0), hit) for hit in hits),
+            reverse=True,
+        )
+        best_frequency, best = ranked[0]
+        runner_up = ranked[1][0]
+        # Fourfold dominance is intentionally conservative: it fixes obvious
+        # feliz/felis and usted/ustes cases but leaves real homographs to WSD.
+        if best_frequency > 0 and best_frequency >= max(4 * runner_up, 20):
+            return (best, word)
     return None
 
 
@@ -662,6 +685,8 @@ def load_known_vocab():
 
 
 _spanish_forms_cache = None
+_surface_frequency_cache = None
+_shared_lexeme_cache = None
 
 
 def load_spanish_forms():
@@ -680,6 +705,62 @@ def load_spanish_forms():
             with open(path, "r", encoding="utf-8") as f:
                 _spanish_forms_cache = frozenset(json.load(f))
     return _spanish_forms_cache
+
+
+def load_surface_frequency():
+    """Return the frequency list used to break ambiguous restorations.
+
+    ``spanish_forms`` is deliberately broad and contains rare names, foreign
+    forms and generated inflections.  Treating every member as equally likely
+    caused ``feli' -> felis`` and ``uste' -> ustes``.  The corpus wordlist lets
+    us choose only when one candidate is strongly attested; otherwise the
+    normalizer abstains and leaves the occurrence for later classification.
+    """
+    global _surface_frequency_cache
+    if _surface_frequency_cache is None:
+        path = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "es_50k_wordlist.txt")
+        frequencies = {}
+        if os.path.isfile(path):
+            with open(path, encoding="utf-8") as handle:
+                for line in handle:
+                    parts = line.strip().split()
+                    if len(parts) >= 2:
+                        try:
+                            frequencies[parts[0].casefold()] = int(parts[1])
+                        except ValueError:
+                            continue
+        _surface_frequency_cache = frequencies
+    return _surface_frequency_cache
+
+
+def load_shared_lexemes():
+    """Known artist lexemes whose apostrophe is stylistic, not restorative.
+
+    A registered lexical item such as Puerto Rican ``mai'`` must remain
+    ``mai``; the existence of obscure dictionary form ``mais`` is not evidence
+    that the lyric dropped an ``s``.  Only headwords already accepted into the
+    artist master or a shared register receive this protection.
+    """
+    global _shared_lexeme_cache
+    if _shared_lexeme_cache is None:
+        lexemes = set()
+        master_path = os.path.join(_PROJECT_ROOT, "Artists", "spanish",
+                                   "vocabulary_master.json")
+        if os.path.isfile(master_path):
+            with open(master_path, encoding="utf-8") as handle:
+                for card in json.load(handle).values():
+                    lexemes.add(str(card.get("word") or "").casefold())
+                    lexemes.add(str(card.get("lemma") or "").casefold())
+        register_dir = os.path.join(_PROJECT_ROOT, "Artists", "spanish",
+                                    "sense_registers")
+        if os.path.isdir(register_dir):
+            for filename in os.listdir(register_dir):
+                if not filename.endswith(".json") or filename == "policy.json":
+                    continue
+                with open(os.path.join(register_dir, filename), encoding="utf-8") as handle:
+                    lexemes.update((json.load(handle).get("senses") or {}).keys())
+        _shared_lexeme_cache = frozenset(word for word in lexemes if word)
+    return _shared_lexeme_cache
 
 
 def merge_evidence(data, targets, known_vocab):

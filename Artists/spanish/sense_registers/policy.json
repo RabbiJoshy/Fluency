@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "registers": {
+    "reggaeton": {
+      "description": "Shared Spanish urban/reggaeton lexical senses. Membership grants candidates, not automatic truth.",
+      "members": {
+        "Bad Bunny": "contributor",
+        "J Balvin": "contributor",
+        "Young Miko": "contributor",
+        "Rels B": "contributor",
+        "Rosalía": "consumer",
+        "Spanish Test Playlist": "consumer"
+      },
+      "admission": {
+        "minimum_distinct_occurrences": 2,
+        "minimum_supporting_artists": 2,
+        "allow_provisional_exact_line_reuse": true,
+        "allowed_types": [
+          "slang",
+          "regional",
+          "figurative",
+          "vulgar",
+          "loanword"
+        ],
+        "excluded_pos": [
+          "PROPN",
+          "X"
+        ],
+        "minimum_confidence": "accepted-model-policy",
+        "require_stable_sense_id": true,
+        "require_source_provenance": true
+      },
+      "conflict_resolution": {
+        "same_gloss_different_pos": "retain_as_separate_senses",
+        "near_duplicate_glosses": "cluster_but_preserve_source_sense_ids",
+        "contradictory_glosses": "retain_candidates_and_require_wsd",
+        "regional_conflict": "prefer_the_occurrence_artist_region_only_as_a_ranking_hint",
+        "manual_override": "may_reject_a_claim_but_must_not_rewrite_register_history"
+      },
+      "lifecycle": {
+        "provisional_to_established": "Recompute from distinct stable evidence; never promote from build count or duplicated playlists.",
+        "established_to_disputed": "Mark disputed when a reviewed flag disproves a claimed meaning or source type; stop new auto-reuse while preserving provenance.",
+        "disputed_to_retired": "Retire only after replacement or explicit review; keep aliases so existing cards and progress migrate deterministically.",
+        "membership_change": "Removing an artist stops future contribution and consumption but does not erase historical evidence."
+      },
+      "extension": {
+        "membership_is_explicit": true,
+        "artists_may_join_multiple_registers": true,
+        "no_automatic_genre_inference": true,
+        "consumer_probation": "Add a new artist as consumer first; promote to contributor only after its evidence quality and register fit are audited.",
+        "overlap_rule": "A candidate may be offered when artist and sense share at least one register; support remains attributed to its original register.",
+        "multi_register_rule": "Evidence from different registers cannot be pooled to cross an admission threshold unless policy explicitly declares those registers equivalent.",
+        "locale_rule": "Country, era and subgenre metadata may rank candidates but cannot assign them without occurrence evidence.",
+        "scale_rule": "At larger membership, cap any one artist at one supporting-artist vote and deduplicate syndicated or repeated lyric lines by stable occurrence lineage."
+      },
+      "rules": [
+        "Only contributors seed the register; consumers receive established candidates but cannot amplify them.",
+        "A sense becomes established after two distinct occurrences or support from two contributors.",
+        "A provisional singleton is never added to a new context's menu, but may be reused for the identical cross-artist lyric line when exactly one sense matches.",
+        "Proper names, constructions, empty glosses and POS-less proposals never enter the register.",
+        "Candidate availability never assigns a sense: POS filtering or WSD must still choose it unless exact-line reuse applies.",
+        "Evidence counts deduplicate stable occurrence IDs and example IDs so repeated builds and duplicate playlists cannot manufacture support.",
+        "Registers are not transitive: an artist sharing another register does not bridge its senses into reggaeton.",
+        "A new member begins as a consumer; contributor status is an explicit reviewed promotion, never a consequence of playlist size.",
+        "An artist may belong to multiple registers, but evidence and thresholds are computed independently inside each register.",
+        "Source model, named prompt, run timestamp, sense ID and stable occurrence lineage remain attached to every contributing claim.",
+        "A flag can make a sense disputed and suspend exact-line auto-reuse without deleting the historical claim or learner identity.",
+        "Register membership may rank a candidate menu but never override a stronger occurrence-level POS conflict."
+      ]
+    }
+  }
+}

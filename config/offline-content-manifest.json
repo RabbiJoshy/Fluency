@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-08-12-shared-sense-register-v1",
-  "generatedAt": "2026-08-12T00:34:58Z",
+  "contentVersion": "2026-08-12-principled-curations-v1",
+  "generatedAt": "2026-08-12T23:00:00Z",
   "sources": [
     {
       "id": "language-spanish",
@@ -96,8 +96,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "bad-bunny",
-      "contentVersion": "2026-08-11-g31-provenance",
-      "storageBytes": 37101657,
+      "contentVersion": "2026-08-12-principled-curations-v1",
+      "storageBytes": 34315217,
       "transferBytes": 5485087,
       "dependencies": [
         "shared-spanish-artist"
@@ -105,18 +105,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6723538,
-          "sha256": "4517c1e688de50f289b9ab653cf92173bb9e34672603b2cc4cbe59f60edadb9e"
+          "bytes": 6730974,
+          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
-          "bytes": 13049330,
-          "sha256": "1f6952487ca7cc13168a5e74de9a2afd78f97e84ca270ffe5c5b849216e19976"
+          "bytes": 13285745,
+          "sha256": "1b4a9c0cb12daf6bd0b2890063033efb76bdde9b66aa9774518e99c6c31694c0"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
-          "bytes": 17328789,
-          "sha256": "5ff49e904b270f19c2d25fb2cd3c98add9fcede0a263fddf1f682ca6deac72bb"
+          "bytes": 14298498,
+          "sha256": "61097bca6224e1b70c15be727d968ce34c27d6a9394b981f031442fc05bb67bc"
         }
       ]
     },
@@ -127,8 +127,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "rosalia",
-      "contentVersion": "2026-08-11-g31-provenance",
-      "storageBytes": 16449495,
+      "contentVersion": "2026-08-12-principled-curations-v1",
+      "storageBytes": 15291421,
       "transferBytes": 2199212,
       "dependencies": [
         "shared-spanish-artist"
@@ -136,18 +136,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6723538,
-          "sha256": "4517c1e688de50f289b9ab653cf92173bb9e34672603b2cc4cbe59f60edadb9e"
+          "bytes": 6730974,
+          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
-          "bytes": 4476696,
-          "sha256": "c4549f76d630540eac87ef340594ad266dad439ca78a832ea32d85a4f11cb645"
+          "bytes": 4530130,
+          "sha256": "9632ca8e950b5384dcd06a7f8b505a352c092b8f14f37799ddb370e433a1684a"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
-          "bytes": 5249261,
-          "sha256": "04958201380dbe1398bc8b02274d53d99eea724eb77b275087bdfba2d574d0dd"
+          "bytes": 4030317,
+          "sha256": "a35dda897eb454708bba23fd19893445109ce1d557e8a42efd1cfe4a5d7dc2ad"
         }
       ]
     },
@@ -158,8 +158,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "young-miko",
-      "contentVersion": "2026-08-11-g31-provenance",
-      "storageBytes": 19885074,
+      "contentVersion": "2026-08-12-principled-curations-v1",
+      "storageBytes": 18713485,
       "transferBytes": 2704075,
       "dependencies": [
         "shared-spanish-artist"
@@ -167,18 +167,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6723538,
-          "sha256": "4517c1e688de50f289b9ab653cf92173bb9e34672603b2cc4cbe59f60edadb9e"
+          "bytes": 6730974,
+          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
-          "bytes": 5920423,
-          "sha256": "c9a0bc9e491ac7d22636b8a19c2a203af22bac7899fee0f93343976ef6e8863d"
+          "bytes": 6023643,
+          "sha256": "c5cbab536a5d4d9635c869042e16c52d7f59be95dcef8ba25a9095d83a6b1ff8"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
-          "bytes": 7241113,
-          "sha256": "413d83edbb2639805a5e1fcc87bda93d4e18b56c91f383b3da134c1e5a64447a"
+          "bytes": 5958868,
+          "sha256": "3e0b1368778ecfc8003383e59e7272210b74e5a294f73558327cf5b227a14510"
         }
       ]
     },
@@ -189,27 +189,27 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "spanish-test-playlist",
-      "contentVersion": "2026-08-12-shared-sense-register-v1",
-      "storageBytes": 8202984,
-      "transferBytes": 8202984,
+      "contentVersion": "2026-08-12-principled-curations-v1",
+      "storageBytes": 8185028,
+      "transferBytes": 8185028,
       "dependencies": [
         "shared-spanish-artist"
       ],
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6723538,
-          "sha256": "4517c1e688de50f289b9ab653cf92173bb9e34672603b2cc4cbe59f60edadb9e"
+          "bytes": 6730974,
+          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
-          "bytes": 777774,
-          "sha256": "df117f33bb91ab12ae854b92efba271aef5cb447e92a725f84a6ba9a2f82a840"
+          "bytes": 778785,
+          "sha256": "029c5b0f9eacdb59f77af260cc28297539e3e1dab438c67f0421f0da67587716"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
-          "bytes": 701672,
-          "sha256": "8a9fbd4610ceae0a86e8df01b8f392655963ac69acfa5d014eb008b67a814706"
+          "bytes": 675269,
+          "sha256": "fa8aab87af63da67d98912beef6f1430078447990b4ca1213598a4c80121d49b"
         }
       ]
     }

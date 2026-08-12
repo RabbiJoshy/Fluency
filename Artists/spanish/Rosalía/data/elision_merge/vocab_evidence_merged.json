@@ -23172,6 +23172,117 @@
     ]
   },
   {
+    "word": "puedes",
+    "corpus_count": 10,
+    "song_count": 8,
+    "song_ids": [
+      "12650523",
+      "12660487",
+      "2966663",
+      "4151176",
+      "4496591",
+      "7515069",
+      "7659063",
+      "8416396"
+    ],
+    "examples": [
+      {
+        "id": "12650523:9",
+        "line": "Cuando salgo pa' la pista, puedes tu tener tu canasta",
+        "title": "Fire, Fire",
+        "segment_id": "seg_4914190c441b2b3f05259fc3",
+        "occurrence_ids": [
+          "occ_93db7141b2ef545902b7694a"
+        ],
+        "surface": "puedes"
+      },
+      {
+        "id": "7515069:13",
+        "line": "No pa' siempre puedes ser una estrella y brillar",
+        "title": "SAKURA",
+        "segment_id": "seg_8914880e1006c0a760fd9852",
+        "occurrence_ids": [
+          "occ_a8dc56de66d43bc1ff8facf8"
+        ],
+        "surface": "puedes"
+      },
+      {
+        "id": "4151176:21",
+        "line": "Pero no me puede' engañar",
+        "title": "Lo Presiento",
+        "surface": "puede'",
+        "segment_id": "seg_e662d8e6c90005e29a4063ac",
+        "occurrence_ids": [
+          "occ_cc8161292666d864d4a9dd78"
+        ]
+      },
+      {
+        "id": "4496591:52",
+        "line": "Que no lo puedes conseguir",
+        "title": "Un Millón de Veces",
+        "segment_id": "seg_b119caa9c7e961dc68294cfb",
+        "occurrence_ids": [
+          "occ_102b067c16f69cae9aa84275"
+        ],
+        "surface": "puedes"
+      },
+      {
+        "id": "2966663:3",
+        "line": "No puedes tratarme como a las demás",
+        "title": "Llámame Más Tarde",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_a51031d86b5c9b62b54f3c1a",
+        "occurrence_ids": [
+          "occ_42c5d8bab18de2938d85ad10"
+        ],
+        "surface": "puedes"
+      },
+      {
+        "id": "12660487:21",
+        "line": "Soy el laberinto del que no puedes salir",
+        "title": "Dios Es Un Stalker (Versión Física)",
+        "segment_id": "seg_556196d6f444563c5b69ad8d",
+        "occurrence_ids": [
+          "occ_eb2e2a9eeca40782b3ed4c7d"
+        ],
+        "surface": "puedes"
+      },
+      {
+        "id": "7659063:1",
+        "line": "Si no lo puedes tener lo tendrás que soltar",
+        "title": "COMO UN G",
+        "segment_id": "seg_fbf7a83615f976250ef855b8",
+        "occurrence_ids": [
+          "occ_3830e85e7e9dec04969d2a73"
+        ],
+        "surface": "puedes"
+      },
+      {
+        "id": "8416396:43",
+        "line": "Dicen de ella que no pue'es tenerla (No)",
+        "title": "Besos Moja2",
+        "vocalists": [
+          "ROSALÍA",
+          "Wisin"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_21f2ee407e715f4ee565791c",
+        "occurrence_ids": [
+          "occ_9c0c59c6f1da34f9706f5c52"
+        ],
+        "surface": "pue'es"
+      }
+    ],
+    "display_form": "puede'",
+    "variants": {
+      "puedes": 9,
+      "pue'es": 1
+    }
+  },
+  {
     "word": "ayer",
     "corpus_count": 9,
     "song_count": 3,
@@ -24047,97 +24158,6 @@
         "surface": "pena"
       }
     ]
-  },
-  {
-    "word": "puedes",
-    "corpus_count": 9,
-    "song_count": 7,
-    "song_ids": [
-      "12650523",
-      "12660487",
-      "2966663",
-      "4151176",
-      "4496591",
-      "7515069",
-      "7659063"
-    ],
-    "examples": [
-      {
-        "id": "12650523:9",
-        "line": "Cuando salgo pa' la pista, puedes tu tener tu canasta",
-        "title": "Fire, Fire",
-        "segment_id": "seg_4914190c441b2b3f05259fc3",
-        "occurrence_ids": [
-          "occ_93db7141b2ef545902b7694a"
-        ],
-        "surface": "puedes"
-      },
-      {
-        "id": "7515069:13",
-        "line": "No pa' siempre puedes ser una estrella y brillar",
-        "title": "SAKURA",
-        "segment_id": "seg_8914880e1006c0a760fd9852",
-        "occurrence_ids": [
-          "occ_a8dc56de66d43bc1ff8facf8"
-        ],
-        "surface": "puedes"
-      },
-      {
-        "id": "4151176:21",
-        "line": "Pero no me puede' engañar",
-        "title": "Lo Presiento",
-        "surface": "puede'",
-        "segment_id": "seg_e662d8e6c90005e29a4063ac",
-        "occurrence_ids": [
-          "occ_cc8161292666d864d4a9dd78"
-        ]
-      },
-      {
-        "id": "4496591:52",
-        "line": "Que no lo puedes conseguir",
-        "title": "Un Millón de Veces",
-        "segment_id": "seg_b119caa9c7e961dc68294cfb",
-        "occurrence_ids": [
-          "occ_102b067c16f69cae9aa84275"
-        ],
-        "surface": "puedes"
-      },
-      {
-        "id": "2966663:3",
-        "line": "No puedes tratarme como a las demás",
-        "title": "Llámame Más Tarde",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_a51031d86b5c9b62b54f3c1a",
-        "occurrence_ids": [
-          "occ_42c5d8bab18de2938d85ad10"
-        ],
-        "surface": "puedes"
-      },
-      {
-        "id": "12660487:21",
-        "line": "Soy el laberinto del que no puedes salir",
-        "title": "Dios Es Un Stalker (Versión Física)",
-        "segment_id": "seg_556196d6f444563c5b69ad8d",
-        "occurrence_ids": [
-          "occ_eb2e2a9eeca40782b3ed4c7d"
-        ],
-        "surface": "puedes"
-      },
-      {
-        "id": "7659063:1",
-        "line": "Si no lo puedes tener lo tendrás que soltar",
-        "title": "COMO UN G",
-        "segment_id": "seg_fbf7a83615f976250ef855b8",
-        "occurrence_ids": [
-          "occ_3830e85e7e9dec04969d2a73"
-        ],
-        "surface": "puedes"
-      }
-    ],
-    "display_form": "puede'"
   },
   {
     "word": "sale",
@@ -26405,6 +26425,98 @@
     ]
   },
   {
+    "word": "esto",
+    "corpus_count": 8,
+    "song_count": 6,
+    "song_ids": [
+      "4057969",
+      "4151176",
+      "4425584",
+      "5461781",
+      "6211010",
+      "7515069"
+    ],
+    "examples": [
+      {
+        "id": "4057969:17",
+        "line": "Esto está encendío, na, na, na, na",
+        "title": "Aute Cuture",
+        "segment_id": "seg_d892b30107f8e23e628022fe",
+        "occurrence_ids": [
+          "occ_db0cd74a5e72d54ac653ccb5"
+        ],
+        "surface": "esto"
+      },
+      {
+        "id": "4425584:6",
+        "line": "Esto es pa' que quede, lo que yo hago dura (Con altura)",
+        "title": "Con Altura",
+        "vocalists": [
+          "El Guincho",
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_2e889493950a5cd360f6dcd4",
+        "occurrence_ids": [
+          "occ_dad462104d2bafeb31d6b42c"
+        ],
+        "surface": "esto"
+      },
+      {
+        "id": "4151176:3",
+        "line": "Esto es pa' gozar, no hay sentimiento (Eh)",
+        "title": "Lo Presiento",
+        "segment_id": "seg_aff391f54d1042498ca64681",
+        "occurrence_ids": [
+          "occ_f70ff99eb49ebced9372d240"
+        ],
+        "surface": "esto"
+      },
+      {
+        "id": "7515069:26",
+        "line": "Que si estoy en esto es para romper",
+        "title": "SAKURA",
+        "segment_id": "seg_ea22218a4dd6e5b677eef298",
+        "occurrence_ids": [
+          "occ_8fd5e9595e646da954a92187"
+        ],
+        "surface": "esto"
+      },
+      {
+        "id": "6211010:1",
+        "line": "Yo sé que esto no volverá a pasar",
+        "title": "LA NOCHE DE ANOCHE",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_d0620a9bf66ea47402ea1327",
+        "occurrence_ids": [
+          "occ_0a769b74dbf38db7bc5ca4bd"
+        ],
+        "surface": "esto"
+      },
+      {
+        "id": "5461781:14",
+        "line": "E'to no dispara, la vacié",
+        "title": "TKN",
+        "vocalists": [
+          "ROSALÍA"
+        ],
+        "sung_by_primary_artist": true,
+        "segment_id": "seg_ca8e8797bd499089187148e3",
+        "occurrence_ids": [
+          "occ_da50169b03a02511395d4f0e"
+        ],
+        "surface": "e'to"
+      }
+    ],
+    "variants": {
+      "esto": 7,
+      "e'to": 1
+    }
+  },
+  {
     "word": "azúcar",
     "corpus_count": 7,
     "song_count": 6,
@@ -27167,79 +27279,6 @@
           "occ_6beca9beddfe21d95afe9bb6"
         ],
         "surface": "esquina"
-      }
-    ]
-  },
-  {
-    "word": "esto",
-    "corpus_count": 7,
-    "song_count": 5,
-    "song_ids": [
-      "4057969",
-      "4151176",
-      "4425584",
-      "6211010",
-      "7515069"
-    ],
-    "examples": [
-      {
-        "id": "4057969:17",
-        "line": "Esto está encendío, na, na, na, na",
-        "title": "Aute Cuture",
-        "segment_id": "seg_d892b30107f8e23e628022fe",
-        "occurrence_ids": [
-          "occ_db0cd74a5e72d54ac653ccb5"
-        ],
-        "surface": "esto"
-      },
-      {
-        "id": "4425584:6",
-        "line": "Esto es pa' que quede, lo que yo hago dura (Con altura)",
-        "title": "Con Altura",
-        "vocalists": [
-          "El Guincho",
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_2e889493950a5cd360f6dcd4",
-        "occurrence_ids": [
-          "occ_dad462104d2bafeb31d6b42c"
-        ],
-        "surface": "esto"
-      },
-      {
-        "id": "4151176:3",
-        "line": "Esto es pa' gozar, no hay sentimiento (Eh)",
-        "title": "Lo Presiento",
-        "segment_id": "seg_aff391f54d1042498ca64681",
-        "occurrence_ids": [
-          "occ_f70ff99eb49ebced9372d240"
-        ],
-        "surface": "esto"
-      },
-      {
-        "id": "7515069:26",
-        "line": "Que si estoy en esto es para romper",
-        "title": "SAKURA",
-        "segment_id": "seg_ea22218a4dd6e5b677eef298",
-        "occurrence_ids": [
-          "occ_8fd5e9595e646da954a92187"
-        ],
-        "surface": "esto"
-      },
-      {
-        "id": "6211010:1",
-        "line": "Yo sé que esto no volverá a pasar",
-        "title": "LA NOCHE DE ANOCHE",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_d0620a9bf66ea47402ea1327",
-        "occurrence_ids": [
-          "occ_0a769b74dbf38db7bc5ca4bd"
-        ],
-        "surface": "esto"
       }
     ]
   },
@@ -63303,6 +63342,78 @@
     ]
   },
   {
+    "word": "entrañas",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3065897",
+      "3345402"
+    ],
+    "examples": [
+      {
+        "id": "3065897:31",
+        "line": "Madre, tiene la reina de mi' entraña'",
+        "title": "Si Tú Supieras Compañero",
+        "segment_id": "seg_a5d40f9617b295299d284fe5",
+        "occurrence_ids": [
+          "occ_d4d1f75f2efdab3f19cbfc56"
+        ],
+        "surface": "entraña'"
+      },
+      {
+        "id": "3345402:31",
+        "line": "Las entrañas mías, por ti las daré",
+        "title": "Por Mi Puerta No Lo Pasen",
+        "segment_id": "seg_de13a5bda1ce2ef50c83db79",
+        "occurrence_ids": [
+          "occ_2f6c4acb5959a45906d811c6"
+        ],
+        "surface": "entrañas"
+      }
+    ],
+    "display_form": "entraña'",
+    "variants": {
+      "entraña'": 1,
+      "entrañas": 1
+    }
+  },
+  {
+    "word": "olvidando",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3065090",
+      "8173139"
+    ],
+    "examples": [
+      {
+        "id": "3065090:4",
+        "line": "Y a la memoria me trae' cosa' que estaba olvi'ando",
+        "title": "Catalina",
+        "segment_id": "seg_ea0b08cefff1c1f6b2598637",
+        "occurrence_ids": [
+          "occ_85e8ea21df7889971b4232b1"
+        ],
+        "surface": "olvi'ando"
+      },
+      {
+        "id": "8173139:5",
+        "line": "Que yo estoy ocupá' olvidando tus male'",
+        "title": "DESPECHÁ",
+        "segment_id": "seg_f328621138a1d5cddd1398a4",
+        "occurrence_ids": [
+          "occ_4d6b3c7cca19a84d18c4789b"
+        ],
+        "surface": "olvidando"
+      }
+    ],
+    "display_form": "olvi'ando",
+    "variants": {
+      "olvi'ando": 1,
+      "olvidando": 1
+    }
+  },
+  {
     "word": "aah",
     "corpus_count": 1,
     "song_count": 1,
@@ -64600,7 +64711,7 @@
     ]
   },
   {
-    "word": "alarga'",
+    "word": "alargar",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -64617,7 +64728,8 @@
         ],
         "surface": "alarga'"
       }
-    ]
+    ],
+    "display_form": "alarga'"
   },
   {
     "word": "albinoni",
@@ -72522,7 +72634,7 @@
     ]
   },
   {
-    "word": "compa're",
+    "word": "compadre",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -72539,7 +72651,8 @@
         ],
         "surface": "compa're"
       }
-    ]
+    ],
+    "display_form": "compa're"
   },
   {
     "word": "compasión",
@@ -78300,30 +78413,6 @@
     ]
   },
   {
-    "word": "e'to",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5461781"
-    ],
-    "examples": [
-      {
-        "id": "5461781:14",
-        "line": "E'to no dispara, la vacié",
-        "title": "TKN",
-        "vocalists": [
-          "ROSALÍA"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_ca8e8797bd499089187148e3",
-        "occurrence_ids": [
-          "occ_da50169b03a02511395d4f0e"
-        ],
-        "surface": "e'to"
-      }
-    ]
-  },
-  {
     "word": "easy",
     "corpus_count": 1,
     "song_count": 1,
@@ -79874,46 +79963,6 @@
           "occ_37cc978afb41056d39f15250"
         ],
         "surface": "entra"
-      }
-    ]
-  },
-  {
-    "word": "entraña'",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3065897"
-    ],
-    "examples": [
-      {
-        "id": "3065897:31",
-        "line": "Madre, tiene la reina de mi' entraña'",
-        "title": "Si Tú Supieras Compañero",
-        "segment_id": "seg_a5d40f9617b295299d284fe5",
-        "occurrence_ids": [
-          "occ_d4d1f75f2efdab3f19cbfc56"
-        ],
-        "surface": "entraña'"
-      }
-    ]
-  },
-  {
-    "word": "entrañas",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3345402"
-    ],
-    "examples": [
-      {
-        "id": "3345402:31",
-        "line": "Las entrañas mías, por ti las daré",
-        "title": "Por Mi Puerta No Lo Pasen",
-        "segment_id": "seg_de13a5bda1ce2ef50c83db79",
-        "occurrence_ids": [
-          "occ_2f6c4acb5959a45906d811c6"
-        ],
-        "surface": "entrañas"
       }
     ]
   },
@@ -93844,7 +93893,7 @@
     ]
   },
   {
-    "word": "nue'",
+    "word": "nuez",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -93861,7 +93910,8 @@
         ],
         "surface": "nue'"
       }
-    ]
+    ],
+    "display_form": "nue'"
   },
   {
     "word": "nuestras",
@@ -94269,46 +94319,6 @@
           "occ_cc1f9eb0f6fec58d8929b20e"
         ],
         "surface": "olivar"
-      }
-    ]
-  },
-  {
-    "word": "olvi'ando",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "3065090"
-    ],
-    "examples": [
-      {
-        "id": "3065090:4",
-        "line": "Y a la memoria me trae' cosa' que estaba olvi'ando",
-        "title": "Catalina",
-        "segment_id": "seg_ea0b08cefff1c1f6b2598637",
-        "occurrence_ids": [
-          "occ_85e8ea21df7889971b4232b1"
-        ],
-        "surface": "olvi'ando"
-      }
-    ]
-  },
-  {
-    "word": "olvidando",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "8173139"
-    ],
-    "examples": [
-      {
-        "id": "8173139:5",
-        "line": "Que yo estoy ocupá' olvidando tus male'",
-        "title": "DESPECHÁ",
-        "segment_id": "seg_f328621138a1d5cddd1398a4",
-        "occurrence_ids": [
-          "occ_4d6b3c7cca19a84d18c4789b"
-        ],
-        "surface": "olvidando"
       }
     ]
   },
@@ -95815,7 +95825,7 @@
     ]
   },
   {
-    "word": "pe'",
+    "word": "pez",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -95832,7 +95842,8 @@
         ],
         "surface": "pe'"
       }
-    ]
+    ],
+    "display_form": "pe'"
   },
   {
     "word": "pecado",
@@ -97756,7 +97767,7 @@
     ]
   },
   {
-    "word": "prenda'ita",
+    "word": "prendadita",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -97773,7 +97784,8 @@
         ],
         "surface": "prenda'ita"
       }
-    ]
+    ],
+    "display_form": "prenda'ita"
   },
   {
     "word": "prendado",
@@ -98545,31 +98557,6 @@
           "occ_fef8781af9c0285678aa79c9"
         ],
         "surface": "pude"
-      }
-    ]
-  },
-  {
-    "word": "pue'es",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "8416396"
-    ],
-    "examples": [
-      {
-        "id": "8416396:43",
-        "line": "Dicen de ella que no pue'es tenerla (No)",
-        "title": "Besos Moja2",
-        "vocalists": [
-          "ROSALÍA",
-          "Wisin"
-        ],
-        "sung_by_primary_artist": true,
-        "segment_id": "seg_21f2ee407e715f4ee565791c",
-        "occurrence_ids": [
-          "occ_9c0c59c6f1da34f9706f5c52"
-        ],
-        "surface": "pue'es"
       }
     ]
   },
@@ -103241,7 +103228,7 @@
     ]
   },
   {
-    "word": "señala'íto",
+    "word": "señaladito",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -103258,7 +103245,8 @@
         ],
         "surface": "señala'íto"
       }
-    ]
+    ],
+    "display_form": "señala'íto"
   },
   {
     "word": "señas",

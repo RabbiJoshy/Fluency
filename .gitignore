@@ -92,6 +92,23 @@ Artists/*/data/layers/sense_assignments/spanishdict.json
 Artists/*/*/data/layers/sense_assignments/spanishdict.json
 Artists/*/data/layers/sense_assignments_lemma/spanishdict.json
 Artists/*/*/data/layers/sense_assignments_lemma/spanishdict.json
+# Immutable evidence stores and model/build previews live in the external
+# artifact archive, not ordinary Git. Already-tracked historical evidence is
+# unaffected; this prevents new multi-GB runs being staged accidentally.
+Artists/*/*/data/evidence/
+Data/*/evidence/
+Artists/*/*/*_preview*.json
+Artists/*/*/*_preview*.json.meta.json
+Artists/*/*/*_ledger_candidate*.json
+Artists/*/*/*_ledger_candidate*.json.meta.json
+Artists/*/*/**/*_preview*.json
+Artists/*/*/**/*_preview*.json.meta.json
+Artists/*/*/**/*_ledger_candidate*.json
+Artists/*/*/**/*_ledger_candidate*.json.meta.json
+Artists/*/vocabulary_master_*_preview.json
+Artists/*/vocabulary_master_*_preview.json.meta.json
+Artists/*/vocabulary_master_*_ledger_candidate.json
+Artists/*/vocabulary_master_*_ledger_candidate.json.meta.json
 Artists/*/data/spotify_tracks.json
 Artists/*/*/data/spotify_tracks.json
 Artists/spotify_tracks.json

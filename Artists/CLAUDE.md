@@ -192,6 +192,14 @@ Artists/{lang}/{Name}/
   data/lrclib_cache/             # Step 9 LRCLIB response cache
 ```
 
+Shared sense-register participation is governed by
+`Artists/{lang}/sense_registers/policy.json`, not by genre inference. The
+artist's `sense_registers` list opts it in; policy assigns contributor versus
+consumer-only status and evidence thresholds. Never make a mixed playlist a
+contributor, count duplicate assignment methods as independent occurrences,
+or promote a singleton into unrelated contexts. Provisional senses may only
+transfer automatically on an exact full-line match with one unambiguous sense.
+
 ## Shared Curations
 
 `Artists/curations/` holds config shared across all artists:

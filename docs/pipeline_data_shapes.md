@@ -644,11 +644,33 @@ same-POS glosses, retains the original artist/method/prompt/occurrence
 provenance, and injects only locally occurring words into the target artist's
 SpanishDict menu. SpanishDict remains the base menu.
 
+Membership policy is separate from the artist tag and lives in
+`Artists/<language>/sense_registers/policy.json`. A member can be a
+`contributor` or a consumer only. For the reggaeton register, Bad Bunny,
+J Balvin, Young Miko, and Rels B contribute; Rosalía and Spanish Test Playlist
+consume without seeding. Contributions with two distinct stable occurrences
+or two supporting contributors are `established` and may enter another
+artist's menu. A singleton remains `provisional`: it is withheld from new
+contexts, but may support `shared-register-auto` when the complete lyric line
+matches exactly and only one registered sense matches. Evidence IDs are
+deduplicated before counting, so repeated runs and playlist copies cannot
+manufacture support.
+
 An exact cross-artist Genius song-line match may be assigned deterministically
 as `shared-register-auto`. A different lyric context merely receives the
 registered candidates and still needs POS filtering or WSD. This distinction
 prevents repeated proposal variants without treating a word's meaning as
 artist-invariant.
+
+Register growth is deliberately non-transitive. New artists enter as consumers
+and become contributors only after review; one artist supplies at most one
+supporting-artist vote. Artists may belong to multiple registers, but evidence
+thresholds are computed independently and cannot be pooled across overlapping
+genres. Locale, era, and subgenre can rank candidates, never assign them. A
+reviewed contradiction moves a sense to disputed status and suspends automatic
+reuse while retaining its source provenance and identity aliases. The policy
+file records the full conflict, lifecycle, and extension contract so expanding
+beyond the initial artists does not silently relax WSD precision.
 
 ## `Artists/vocabulary_master.json`
 Shared across all artists. Id-keyed.
