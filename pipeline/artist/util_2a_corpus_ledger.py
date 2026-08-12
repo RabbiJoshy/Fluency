@@ -31,10 +31,14 @@ from pipeline.util_evidence_store import (
 )
 
 
-ADAPTER_VERSION = 1
+ADAPTER_VERSION = 3
 PROFILE_SCHEMA = "fluency.evidence-profile/v1"
 LEGACY_MIGRATION_SCHEMA = "fluency.legacy-example-map/v1"
 _BRACKETED_SPAN_RE = re.compile(r"\[[^\]]*\]|\([^)]*\)")
+_LEGACY_TOKEN_CHARACTERS = frozenset(
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    "ÁÉÍÓÚÜÑáéíóúüñ'’"
+)
 
 _LANGUAGE_ALIASES = {
     "spanish": "es",
@@ -113,7 +117,7 @@ class ArtistCorpusLedger(object):
     def observe_line(self, song_id, title, line_no, line_text,
                      source_tokens, included=True, exclusion_reason=None,
                      vocalists=None, sung_by_primary_artist=False,
-                     batch_index=-1):
+                     batch_index=-1, song_order=-1):
         """Record a source line and its current deterministic token projection.
 
         ``source_tokens`` is a list of ``{surface, forms}`` rows.  Each row
@@ -134,6 +138,10 @@ class ArtistCorpusLedger(object):
         metadata = {
             "artist": self.artist_name,
             "batch_index": int(batch_index),
+            # Preserve the legacy scanner's exact source traversal order.
+            # document_id sorting is deterministic, but it is not equivalent
+            # when equally scored examples rely on Python's stable sort.
+            "song_order": int(song_order),
             "vocalists": list(vocalists or []),
             "sung_by_primary_artist": bool(sung_by_primary_artist),
         }
@@ -204,8 +212,39 @@ class ArtistCorpusLedger(object):
                 # unsupported internal character (Hadōken -> had + ken). Those
                 # legacy pieces are multiple revisable analysis units beneath
                 # one frozen raw occurrence, never new raw identities.
+                # Once a legacy tokenizer piece has already matched inside a
+                # frozen Unicode token, a following one-letter piece is an
+                # unambiguous continuation of that same source occurrence.
+                # This covers curly-apostrophe and unsupported-letter splits
+                # such as ``to’s -> to + s``, ``vo’a -> vo + a``, and
+                # ``Möet -> m + et``. Refusing the one-letter continuation
+                # previously consumed the rest of the candidate stream and
+                # silently dropped every later word on the lyric line.
+                one_letter_prefix = (
+                    raw_offset == 0
+                    and len(normalized_surface) == 1
+                    and len(raw_surface) > 1
+                    and raw_surface.startswith(normalized_surface)
+                )
+                # The historical Artist tokenizer recognizes a deliberately
+                # small Spanish/ASCII alphabet, whereas the frozen scanner
+                # correctly keeps every Unicode word whole.  A legacy token
+                # can therefore be a one-letter island inside one source word:
+                # ``ça`` -> ``a`` or a Latin Genius homoglyph embedded in a
+                # Cyrillic word.  This is safe to match only when the source
+                # token actually contains characters outside that old
+                # alphabet; a normal unmatched Spanish word cannot steal a
+                # later standalone ``a``/``y`` token.
+                one_letter_unicode_island = (
+                    raw_offset == 0
+                    and len(normalized_surface) == 1
+                    and normalized_surface in raw_surface
+                    and any(char not in _LEGACY_TOKEN_CHARACTERS
+                            for char in raw_surface)
+                )
                 found = (raw_surface.find(normalized_surface, raw_offset)
-                         if len(normalized_surface) >= 2 else -1)
+                         if raw_offset > 0 or len(normalized_surface) >= 2
+                         or one_letter_prefix or one_letter_unicode_island else -1)
                 if found >= 0:
                     occurrence = candidate
                     raw_offset = found + len(normalized_surface)

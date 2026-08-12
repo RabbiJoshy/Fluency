@@ -62,10 +62,14 @@ _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
-from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.util_pipeline_meta import (  # noqa: E402
+    dependency_metadata,
+    make_meta,
+    write_sidecar,
+)
 from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 
-STEP_VERSION = 9
+STEP_VERSION = 12
 STEP_VERSION_NOTES = {
     1: "s-elision + d-elision merge with corpus_count summing",
     2: "+ plural/feminine d-elision, double-elision chain (-ao' → -ao → -ado), trailing-apos tiebreaker",
@@ -87,6 +91,11 @@ STEP_VERSION_NOTES = {
        "double_elision now also chains through the extended + bare rules "
        "(apretaíto' → apretadito). Trailing-apostrophe tiebreaker unchanged.",
     9: "+ archive every content-distinct normalization output as an immutable evidence run",
+    10: "+ propagate ledger and corpus-profile dependency fingerprints",
+    11: "+ restore apostrophe-less diminutive d-elisions when the generated "
+        "inflection is absent from spanish_forms but its base adjective exists",
+    12: "+ conservative internal-apostrophe restoration: accept only a unique "
+        "known Spanish candidate, including k→c transcription variants",
 }
 
 # ---------------------------------------------------------------------------
@@ -364,11 +373,14 @@ D_ELISION_EXT_RULES = [
 # therefore fires ONLY when the surface is not itself a known Spanish form and
 # the restored candidate is one. On the Bad Bunny corpus that is 43 recoveries
 # with zero false positives; without the guard it is 135 corruptions.
+D_ELISION_BARE_DIMINUTIVE_RULES = [
+    (re.compile(r"^(.+)aítas$"), "aditas", "ado"),
+    (re.compile(r"^(.+)aítos$"), "aditos", "ado"),
+    (re.compile(r"^(.+)aíta$"), "adita", "ado"),
+    (re.compile(r"^(.+)aíto$"), "adito", "ado"),
+]
+
 D_ELISION_BARE_RULES = [
-    (re.compile(r"^(.+)aítas$"), "aditas"),
-    (re.compile(r"^(.+)aítos$"), "aditos"),
-    (re.compile(r"^(.+)aíta$"), "adita"),
-    (re.compile(r"^(.+)aíto$"), "adito"),
     (re.compile(r"^(.+)íos$"), "idos"),
     (re.compile(r"^(.+)ías$"), "idas"),
     (re.compile(r"^(.+)aos$"), "ados"),
@@ -381,6 +393,12 @@ D_ELISION_BARE_RULES = [
 # Trailing-apostrophe consonant candidates (s-elision is most common; others
 # cover verda' → verdad, die' → diez, comé' → comer).
 _TRAILING_APOS_RESTORES = ("s", "d", "z", "r", "l", "n")
+# Internal omissions are less phonologically constrained than final Caribbean
+# consonant deletion (e'perado could spell esperado or the rare emperado).
+# Generate the full consonant set, then let the known-form + uniqueness gates
+# do the conservative work.
+_INTERNAL_APOS_RESTORES = tuple("bcdfghjklmnñpqrstvwxyz")
+_SPANISH_APOSTROPHES = ("'", "\u2019")
 
 # ---------------------------------------------------------------------------
 # Ambiguous elisions — split per-example using the preceding word
@@ -464,6 +482,14 @@ def bare_d_elision_canonical(word, known_set):
     """
     if not known_set or word in D_ELISION_EXCEPTIONS or word in known_set:
         return None
+    # Generated diminutive gender/number forms are incomplete in
+    # spanish_forms. The accented `aít-` signature is specific enough to
+    # restore when its ordinary -ado base exists (mojaítas → mojaditas,
+    # with mojado validating the stem).
+    for pattern, suffix, base_suffix in D_ELISION_BARE_DIMINUTIVE_RULES:
+        match = pattern.match(word)
+        if match and match.group(1) + base_suffix in known_set:
+            return (match.group(1) + suffix, word)
     for pattern, suffix in D_ELISION_BARE_RULES:
         m = pattern.match(word)
         if m:
@@ -491,6 +517,18 @@ def d_elision_ext_canonical(word, known_set):
             candidate = m.group(1) + suffix
             if candidate in known_set:
                 return (candidate, word, family)
+            # spanish_forms deliberately contains attested/generated ordinary
+            # forms, not every productive diminutive.  The apostrophe pattern
+            # itself is specific, so validate the stem against its base
+            # adjective just as the apostrophe-less rule does.  This recovers
+            # moja'íta -> mojadita without accepting an arbitrary invented
+            # target.
+            if family == "d_elision_diminutive":
+                diminutive = re.match(r"^(.+)(ad|id|ud)it(?:o|a|os|as)$", candidate)
+                if diminutive:
+                    base = diminutive.group(1) + diminutive.group(2) + "o"
+                    if base in known_set:
+                        return (candidate, word, family)
     return None
 
 
@@ -533,6 +571,43 @@ def trailing_apos_restore(word, known_set):
         return None
     stem = word[:-1]
     hits = [stem + c for c in _TRAILING_APOS_RESTORES if (stem + c) in known_set]
+    if len(hits) == 1:
+        return (hits[0], word)
+    return None
+
+
+def internal_apos_candidates(word, known_set):
+    """Return minimal one-consonant restorations that are known Spanish.
+
+    Unlike the legacy generated mapping, this does not guess a suffix.  It
+    inserts one commonly elided consonant exactly where the transcription put
+    the apostrophe and returns every candidate present in ``known_set``.
+    A conservative orthographic variant also maps ``k`` to ``c`` before the
+    lookup (``discoteka'`` -> ``discotecas``); it is harmless unless the final
+    restored spelling is independently known Spanish.
+    """
+    if not known_set:
+        return []
+    normalized = word.replace("\u2019", "'")
+    if normalized.count("'") != 1 or len(normalized) < 3:
+        return []
+    apos_index = normalized.index("'")
+    bare = normalized.replace("'", "")
+    bases = {bare}
+    if "k" in bare:
+        bases.add(bare.replace("k", "c"))
+    hits = {
+        base[:apos_index] + consonant + base[apos_index:]
+        for base in bases
+        for consonant in _INTERNAL_APOS_RESTORES
+        if base[:apos_index] + consonant + base[apos_index:] in known_set
+    }
+    return sorted(hits)
+
+
+def internal_apos_restore(word, known_set):
+    """Restore an apostrophe-position consonant only when the result is unique."""
+    hits = internal_apos_candidates(word, known_set)
     if len(hits) == 1:
         return (hits[0], word)
     return None
@@ -692,7 +767,8 @@ def merge_evidence(data, targets, known_vocab):
                     source = "double_elision"
                 else:
                     # Try trailing-apos tiebreaker
-                    tap = trailing_apos_restore(word, known_vocab)
+                    tap = (trailing_apos_restore(word, known_vocab)
+                           or internal_apos_restore(word, known_vocab))
                     if tap:
                         key, display = tap[0], tap[1]
                         source = "trailing_apos"
@@ -915,8 +991,9 @@ def main():
         os.makedirs(os.path.dirname(str(OUT_PATH)), exist_ok=True)
         with open(OUT_PATH, "w", encoding="utf-8") as f:
             json.dump(merged, f, ensure_ascii=False, indent=2)
+        upstream = dependency_metadata(IN_PATH)
         write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION,
-                                          extra={"language": "french",
+                                          extra={**upstream, "language": "french",
                                                  "apos_phrase_index_size": len(apos_index)}))
         archive_json_artifact(
             Path(PIPELINE_DIR) / "data" / "evidence",
@@ -924,6 +1001,7 @@ def main():
             merged,
             language=args.language,
             adapter={"name": "artist-step-3a", "version": STEP_VERSION},
+            inputs=upstream,
             config={"apos_phrase_index_size": len(apos_index)},
         )
 
@@ -954,13 +1032,16 @@ def main():
     os.makedirs(os.path.dirname(str(OUT_PATH)), exist_ok=True)
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(merged, f, ensure_ascii=False, indent=2)
-    write_sidecar(OUT_PATH, make_meta("merge_elisions", STEP_VERSION))
+    upstream = dependency_metadata(IN_PATH)
+    write_sidecar(OUT_PATH, make_meta(
+        "merge_elisions", STEP_VERSION, extra=upstream))
     archive_json_artifact(
         Path(PIPELINE_DIR) / "data" / "evidence",
         "elision_normalization",
         merged,
         language=args.language,
         adapter={"name": "artist-step-3a", "version": STEP_VERSION},
+        inputs=upstream,
         config={"ambiguous_elision_method": DISAMBIG_METHOD},
     )
 

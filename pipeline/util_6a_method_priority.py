@@ -14,15 +14,33 @@ import hashlib
 # ---------------------------------------------------------------------------
 
 METHOD_PRIORITY = {
+    # Gemini embedding WSD: sense vector from the English gloss, nearest sense by
+    # cosine, with the two levers that survived the 2026-08-11 audit — the gap is
+    # taken between meanings rather than leaves, and a per-sense hubness offset
+    # measured offline against a fixed corpus is subtracted. Highest priority
+    # because it is the only method whose precision is measured on a held-out
+    # hand-labelled panel (Data/Spanish/Intermediates/wsd_sense_harness).
+    "spanishdict-embed-v1": 80,
+
+    # Lexical-only WSD (new evidence architecture). These method ids are kept
+    # distinct from historical classify-or-propose runs so their provenance
+    # cannot be collapsed by same-method/same-sense merging.
+    "spanishdict-lexical-g35": 74,
+    "lexical-gap-fill-g35": 75,
+    "spanishdict-lexical-g31-v2": 72,
+    "lexical-gap-fill-g31-v2": 73,
+    "spanishdict-lexical-g25-v2": 68,
+    "lexical-gap-fill-g25-v2": 69,
+    "spanishdict-lexical-g31": 70,
+    "lexical-gap-fill-g31": 71,
     "pos-flash-wiktionary": 60,       # POS-refined Gemini Flash
     "flash-wiktionary": 55,           # Gemini Flash classifier (artist)
     "spanishdict-flash": 55,          # Gemini Flash classifier (artist, SpanishDict menu)
     "pos-flash-lite-wiktionary": 52,  # POS-refined Gemini Flash Lite
     "flash-lite-wiktionary": 50,      # Gemini Flash Lite classifier (artist)
     "spanishdict-flash-lite": 50,     # Gemini Flash Lite classifier (artist, SpanishDict menu)
-    # gap-fill sits one tick ABOVE the flash-lite menu-pick. It is the
-    # classify-or-propose "menu is insufficient — here is the real meaning"
-    # verdict (the 3.1 off-menu signature: carries type/construction). When a
+    # Historical gap-fill sits one tick above its flash-lite menu-pick. It is
+    # the old classify-or-propose verdict and may carry type/construction. When a
     # proposal and a stale menu-pick both claim the same example, the proposal
     # wins instead of losing the old equal-priority tie on file order.
     "gap-fill": 51,                   # Gemini gap-fill / off-menu proposal
@@ -39,6 +57,10 @@ METHOD_PRIORITY = {
     # by step_6b (keyword + biencoder branches) and step_6c (Gemini
     # pre-filter).
     "pos-auto": 25,
+    # Exact source-line reuse from a configured cross-artist sense register.
+    # It is deterministic and stronger than POS-only auto-selection, while the
+    # register retains the original model/prompt provenance separately.
+    "shared-register-auto": 26,
     "pos-keyword-wiktionary": 15,     # POS-refined keyword
     "pos-keyword": 15,                # POS-refined keyword
     "keyword-wiktionary": 10,         # Keyword overlap (with Wiktionary senses)

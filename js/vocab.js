@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260809a';
+import './state.js?v=20260812c';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -422,10 +422,13 @@ function joinWithMaster(indexData, master) {
         const methods = idx.sense_methods || [];
         const promptIds = idx.sense_prompt_ids || [];
         const runTimes = idx.sense_run_ts || [];
+        const modelProposed = idx.sense_model_proposed || [];
         const freqs = idx.sense_frequencies || [];
         const meanings = [];
         (m.senses || []).forEach((sense, i) => {
             const freq = Number(freqs[i]) || 0;
+            const method = freq > 0 ? methods[i] : null;
+            const isAutomatic = isAutomaticSenseMethod(method);
             const meaning = {
                 pos: sense.pos,
                 translation: sense.translation,
@@ -434,10 +437,11 @@ function joinWithMaster(indexData, master) {
             };
             // Provenance (which prompt/model produced this sense) for the
             // card's info panel — resolved against window._promptRegistry.
-            if (freq > 0 && promptIds[i]) {
+            if (freq > 0 && promptIds[i] && !isAutomatic) {
                 meaning.prompt_id = promptIds[i];
                 if (runTimes[i]) meaning.run_ts = runTimes[i];
             }
+            if (freq > 0 && modelProposed[i]) meaning.model_proposed = true;
             if (sense.id || sense.sense_id) meaning.sense_id = sense.id || sense.sense_id;
             if (sense.sense_id_aliases?.length) meaning.sense_id_aliases = sense.sense_id_aliases;
             if (freq <= 0) {
@@ -452,7 +456,6 @@ function joinWithMaster(indexData, master) {
             // again in buildFilteredVocab(), so anything not carried explicitly
             // is silently dropped before it reaches the card.
             if (sense.type) meaning.type = sense.type;
-            const method = freq > 0 ? methods[i] : null;
             if (method) {
                 meaning.assignment_method = method;
             } else if (freq > 0 && idx.unassigned) {
@@ -523,7 +526,7 @@ function joinWithMaster(indexData, master) {
             // Pipeline-assigned Extra grouping key (core / single_occurrence /
             // english / loanword / proper_noun / cognate / noise / …). Drives
             // the Artist Extra category selector; absent → "All Extra" fallback.
-            extra_category: m.extra_category || null,
+            extra_category: idx.extra_category || m.extra_category || null,
             cognate_score: idx.cognate_score ?? m.cognate_score ?? (m.is_transparent_cognate ? 1 : 0),
             cognet_cognate: idx.cognet_cognate || m.cognet_cognate || false,
             corpus_count: idx.corpus_count || 0,
@@ -541,6 +544,21 @@ function joinWithMaster(indexData, master) {
         });
     }
     return result;
+}
+
+function isAutomaticSenseMethod(method) {
+    return typeof method === 'string' && method.endsWith('-auto');
+}
+
+function reconcileMeaningProvenanceFromExamples(meaning, examples) {
+    const methods = [...new Set((examples || [])
+        .map(example => example?.assignment_method)
+        .filter(Boolean))];
+    if (methods.length !== 1 || !isAutomaticSenseMethod(methods[0])) return;
+    meaning.assignment_method = methods[0];
+    delete meaning.prompt_id;
+    delete meaning.run_ts;
+    delete meaning.model_proposed;
 }
 
 /**
@@ -923,18 +941,20 @@ function artistLemmaEvidenceCount(item) {
 
 // Extra membership is by TAG, not frequency. Extra = anything the tagger
 // classified as not-core-Spanish (loanword / English / proper noun / cognate /
-// noise). Everything else — including one-off real Spanish words like `alguna`
-// / `adelante` — is core → Main. `single_occurrence` and the old
+// noise), plus unresolved routing abstentions. Everything else — including
+// one-off real Spanish words like `alguna` / `adelante` — is core → Main only
+// when the pipeline has positive lexical/morphological evidence. `single_occurrence` and the old
 // `lemma_example_count <= 1` frequency rule are retired (a rare word is still
 // real vocab; frequent loanwords like `baby` belong in Extra regardless of count).
 const ARTIST_EXTRA_CATEGORIES = new Set(
-    ['loanword', 'english', 'proper_noun', 'cognate', 'noise']);
+    ['loanword', 'english', 'proper_noun', 'cognate', 'noise', 'unresolved']);
 const ARTIST_MIN_SENSE_FREQ = 0.05;
 function artistItemMatchesScope(item) {
     if (!activeArtist) return true;
     const cat = String(item?.extra_category || '').toLowerCase();
-    // Fallback for entries not yet stamped: treat as core (Main), so nothing
-    // real is hidden before the tag store is fully carried through.
+    // Backward-compatible fallback for old unstamped entries. New routing must
+    // stamp uncertainty explicitly as `unresolved`; absence is not new proof
+    // that a token is core Spanish.
     const isExtra = ARTIST_EXTRA_CATEGORIES.has(cat);
     return artistVocabularyScope === 'extra' ? isExtra : !isExtra;
 }
@@ -961,6 +981,7 @@ const EXTRA_CATEGORY_LABELS = {
     noise: 'Interjections & filler',
     onomatopoeia: 'Sound words',
     abbreviation: 'Abbreviations',
+    unresolved: 'Needs classification',
     name: 'Names',
 };
 const EXTRA_CATEGORY_ALL_KEY = '__all_extra__';
@@ -1543,6 +1564,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                             // filtering cannot make the arrays drift apart.
                             const bucket = m._masterSenseIndex ?? i;
                             m.examples = ex.m[bucket] || [];
+                            reconcileMeaningProvenanceFromExamples(m, m.examples);
                         });
                     }
                     if (ex && ex.w && item.mwe_memberships) {
@@ -1630,6 +1652,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.prompt_id) meaning.prompt_id = m.prompt_id;
                 if (m.run_ts) meaning.run_ts = m.run_ts;
+                if (m.model_proposed) meaning.modelProposed = true;
                 if (m.source) meaning.source = m.source;
                 if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
                 if (m.sense_id_aliases?.length) meaning.senseIdAliases = m.sense_id_aliases;
@@ -2268,6 +2291,7 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                     entry.meanings.forEach((m, i) => {
                         const bucket = m._masterSenseIndex ?? i;
                         m.examples = ex.m[bucket] || [];
+                        reconcileMeaningProvenanceFromExamples(m, m.examples);
                     });
                 }
                 if (ex.w && entry.mwe_memberships) {
@@ -2319,6 +2343,7 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                                     existingM.prompt_id = newM.prompt_id;
                                     if (newM.run_ts) existingM.run_ts = newM.run_ts;
                                 }
+                                if (newM.model_proposed) existingM.model_proposed = true;
                             } else {
                                 const added = structuredClone(newM);
                                 added.examples = tagExamples(added.examples || []);

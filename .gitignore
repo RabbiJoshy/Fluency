@@ -119,3 +119,9 @@ _backups/
 **/routing_tags_dashboard.html
 gittoken.txt
 .venv39-old/
+
+# cached embedding vectors (rebuildable, ~110 MB)
+Data/Spanish/layers/sense_vectors/*.npy
+
+# layer snapshots (large, rebuildable rollback points)
+Data/Spanish/Intermediates/snapshots/

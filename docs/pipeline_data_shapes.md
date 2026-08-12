@@ -41,6 +41,20 @@ data/evidence/
   labels such as `adlib`, `echo`, and `stutter`. Classification is deliberately
   separate from `profiles/current.json.policies.vocal_artifact.excluded_labels`:
   selecting another method or turning the policy off never destroys evidence.
+- `overlays/usage_tag/<run_id>.jsonl` carries descriptive contextual labels
+  independently of sense assignment. The fixed v1 taxonomy is `slang`,
+  `regional`, `figurative`, `vulgar`, `idiom`, `loanword`, `proper_noun`,
+  `interjection`, and `onomatopoeia`. Historical Gemini `type` values are kept
+  with prompt/run provenance; `other` remains raw evidence instead of becoming
+  an unlimited catch-all tag. `construction`, `pos`, and `pos_verdict` remain
+  structured source assertions rather than new tag names.
+- `Artists/curations/usage_tag_overrides.json` supports both global and exact
+  occurrence corrections. A global correction is appropriate only when the
+  judgment is invariant across every use of the matched form. Occurrence
+  corrections target a persisted `occurrence_id`, apply after global
+  corrections, and are materialized separately under
+  `overlays/usage_tag_override/`; model evidence is never relabelled as human
+  curation.
 - `step_2e_materialize_corpus` first proves a no-exclusion view equals the
   immutable step-2 baseline, then writes `vocab_evidence.json` from the active
   profile. All later legacy layers and the compact app deck therefore inherit
@@ -572,6 +586,7 @@ Slim deck. **No `word`/`lemma`/`meanings` — those live in master.** Only artis
     "id":           "ed688d",
     "corpus_count": 5376,
     "most_frequent_lemma_instance": true,
+    "extra_category": "unresolved",       // ? explicit routing abstention; Artist Extra
     "sense_frequencies": [0.33, 0.17, 0.5],
     "sense_methods":     ["spanishdict-keyword", "spanishdict-keyword", "spanishdict-keyword"],
     "unassigned":        true,                // ? present only if some examples are unassigned
@@ -605,7 +620,35 @@ Same `{ id: { m: [[...]] } }` outer shape as normal mode, but example records ha
   }
 }
 ```
+
+`extra_category` is a routing result, not a frequency label. `core` means the
+pipeline has positive Spanish lexical/morphological evidence and belongs in
+Artist Main. `loanword`, `english`, `proper_noun`, `cognate`, `noise`, and
+`unresolved` belong in Artist Extra. `unresolved` specifically means routing
+abstained (typically a low-frequency form with no positive lexical evidence);
+it must not be silently promoted to `core`.
 **Front-end gotcha:** normal-mode example records use `target`/`english`, artist-mode use `spanish`/`english`. Same `english` key in both; the Spanish side differs. Artist `surface` is emitted only when the exact lyric occurrence differs from the restored canonical word used by POS/WSD; highlighting must prefer it and must not infer the restoration from the sentence.
+
+## Shared artist sense registers
+
+Artists opt into a configurable lexical register in `artist.json`:
+
+```json
+{ "sense_registers": ["reggaeton"] }
+```
+
+`pipeline/artist/tool_5d_build_shared_sense_registers.py` derives
+`Artists/<language>/sense_registers/<register>.json` from model-proposed lexical
+senses supported by member artists. The register clusters near-duplicate
+same-POS glosses, retains the original artist/method/prompt/occurrence
+provenance, and injects only locally occurring words into the target artist's
+SpanishDict menu. SpanishDict remains the base menu.
+
+An exact cross-artist Genius song-line match may be assigned deterministically
+as `shared-register-auto`. A different lyric context merely receives the
+registered candidates and still needs POS filtering or WSD. This distinction
+prevents repeated proposal variants without treating a word's meaning as
+artist-invariant.
 
 ## `Artists/vocabulary_master.json`
 Shared across all artists. Id-keyed.

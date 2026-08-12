@@ -1,5 +1,13 @@
 {
   "step_name": "split_evidence",
-  "step_version": 3,
-  "generated_at": 1785528982
+  "step_version": 6,
+  "generated_at": 1786402559,
+  "input_sha256": "8d2ae74a5f5e3a2ad27dc834903d04fd535a43031aa48c44f0ee125b12dd17af",
+  "ledger_run": "run_c9a215f57486286226ae22c9",
+  "corpus_profile_hash": "sha256:cfcdaf2a88a8959084f46fad4ca56373fd72115589201163bfeeec03067f6ad1",
+  "excluded_labels": [
+    "adlib",
+    "echo",
+    "stutter"
+  ]
 }

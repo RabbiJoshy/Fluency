@@ -164,7 +164,7 @@ def _spacy_model_for(args):
 def _step_defs_spanish(vocab_file):
     """Full Spanish artist pipeline (unchanged from pre-refactor behaviour)."""
     return [
-        {"num": 2, "label": "Tokenise, count words, detect MWEs",
+        {"num": 2, "label": "Tokenise, restore analysis forms, count words, detect MWEs",
          "script": "step_2a_count_words.py", "args_fn": _step_2_args,
          "input": None, "output": "data/word_counts/vocab_evidence.json", "needs_api_key": False},
         {"num": "2d", "label": "Classify occurrence-level vocal artifacts",
@@ -182,7 +182,7 @@ def _step_defs_spanish(vocab_file):
          "script": "step_2c_resolve_elisions_gemini.py", "args_fn": _step_2c_args,
          "input": "data/word_counts/vocab_evidence.json",
          "output": "data/elision_merge/gemini_elision_report.json", "needs_api_key": True},
-        {"num": 3, "label": "Merge elisions",
+        {"num": 3, "label": "Verify/materialize elision compatibility view",
          "script": "step_3a_merge_elisions.py", "args_fn": _step_3_args,
          "input": "data/word_counts/vocab_evidence.json",
          "output": "data/elision_merge/vocab_evidence_merged.json", "needs_api_key": False},

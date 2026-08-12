@@ -64,6 +64,16 @@ class CardIdentityRegistryTests(unittest.TestCase):
         self.assertEqual(loaded.records["222222"]["superseded_by"], "111111")
         self.assertEqual(loaded.resolve("voy", "voy"), "111111")
 
+    def test_cached_indexes_track_new_aliases_and_evidence(self):
+        registry = CardIdentityRegistry("spanish")
+        registry.seed("111111", "pa'", "para", ["occ-1"])
+        # Prime every lookup index before adding another record.
+        self.assertEqual(registry.resolve("pa'", "para"), "111111")
+        registry.seed("222222", "voy", "ir", ["occ-2"])
+
+        self.assertEqual(registry.resolve("voy", "ir"), "222222")
+        self.assertEqual(registry.resolve("vo'a", "ir", ["occ-2"]), "222222")
+
 
 class SenseIdentityRegistryTests(unittest.TestCase):
     def test_gloss_change_with_same_occurrence_preserves_sense_id(self):

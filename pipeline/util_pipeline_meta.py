@@ -15,6 +15,7 @@ Convention:
   the existing `updated_at` / `status` fields on each entry.
 """
 
+import hashlib
 import json
 import time
 from pathlib import Path
@@ -99,3 +100,19 @@ def read_generated_at(output_path):
         return int(Path(output_path).stat().st_mtime)
     except OSError:
         return 0
+
+
+def dependency_metadata(input_path):
+    """Return a cache/build contract for one upstream JSON artifact.
+
+    The byte hash catches any content change, while selected evidence fields
+    propagate the immutable corpus identity through legacy compatibility files.
+    """
+    path = Path(input_path)
+    payload = path.read_bytes()
+    result = {"input_sha256": hashlib.sha256(payload).hexdigest()}
+    upstream = read_meta(path) or {}
+    for key in ("ledger_run", "corpus_profile_hash", "excluded_labels"):
+        if key in upstream:
+            result[key] = upstream[key]
+    return result

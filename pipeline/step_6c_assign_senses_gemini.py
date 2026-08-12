@@ -17,7 +17,8 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", message=".*urllib3.*")
 
-import argparse, concurrent.futures, gzip, json, os, re, sys, time
+import argparse, concurrent.futures, gzip, hashlib, json, os, re, sys, time
+from collections import defaultdict
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,20 +35,93 @@ from util_1a_artist_config import (load_artist_config,
 from util_6a_method_priority import (METHOD_PRIORITY, best_method_priority,
                                      assign_sense_ids)
 from util_6a_assignment_format import (load_assignments, dump_assignments,
-                                        stamp_example_ids, stamp_provenance)
-from util_6a_prompt_registry import CURRENT_SD_PROMPT_ID
+                                        example_identity, stamp_example_ids,
+                                        stamp_provenance)
+from util_6a_prompt_registry import (
+    CURRENT_SD_POLICY_ID, CURRENT_SD_PROMPT_ID, load_prompt_policy,
+    load_registry,
+)
 from util_7a_lemma_split import merge_method_maps
 from util_5c_sense_paths import sense_menu_path, sense_assignments_path
 from util_6a_pos_menu_filter import (
     filter_senses_by_pos, filter_senses_by_precomputed_pos,
     sense_compatible_with_example_pos,
+    auto_sense_rejection_reason,
 )
+from util_4a_routing import resolve_derivation
 from util_5c_sense_menu_format import (
     normalize_artist_sense_menu, merge_analysis, get_analyses,
     collect_surface_analyses_from_shared_menu, flatten_analyses_with_ids,
     assign_analysis_sense_ids, extract_form_of_targets, extend_ids_for_extra_senses,
 )
 load_dotenv_from_project_root()
+
+
+def generation_config(gemini_model):
+    """Return JSON-generation settings compatible with the selected model.
+
+    Gemini 3.5+ deprecates sampling parameters such as ``temperature`` and may
+    reject them in future API versions. Older models still benefit from the
+    explicit deterministic setting used by the existing regression baseline.
+    """
+    config = {"response_mime_type": "application/json"}
+    match = re.match(r"^gemini-(\d+)\.(\d+)", str(gemini_model or ""))
+    if not match or (int(match.group(1)), int(match.group(2))) < (3, 5):
+        config["temperature"] = 0.0
+    return config
+
+
+def covered_example_indices(items, current_examples, allow_legacy_indices=True):
+    """Resolve assignment coverage against the current example list.
+
+    Stable example/occurrence references are authoritative. Numeric indices are
+    retained only as a compatibility fallback for assignment items that predate
+    stable evidence. This prevents an example reorder from both re-queuing work
+    already completed and, more importantly, treating a reused index as proof
+    that a different lyric was classified.
+    """
+    identity_to_indices = defaultdict(set)
+    occurrence_to_indices = defaultdict(set)
+    for index, example in enumerate(current_examples or []):
+        if not isinstance(example, dict):
+            continue
+        for identity in (example.get("segment_id"), example.get("id"),
+                         example_identity(example)):
+            if identity:
+                identity_to_indices[identity].add(index)
+        for occurrence_id in example.get("occurrence_ids") or []:
+            if occurrence_id:
+                occurrence_to_indices[occurrence_id].add(index)
+
+    covered = set()
+    for item in items or []:
+        if not isinstance(item, dict):
+            continue
+        stable_example_ids = {
+            value for value in (item.get("example_ids") or []) if value
+        }
+        stable_occurrence_ids = {
+            value for value in (item.get("occurrence_ids") or []) if value
+        }
+        for ref in item.get("occurrence_refs") or []:
+            if not isinstance(ref, dict):
+                continue
+            if ref.get("example_id"):
+                stable_example_ids.add(ref["example_id"])
+            if ref.get("occurrence_id"):
+                stable_occurrence_ids.add(ref["occurrence_id"])
+
+        has_stable_evidence = bool(stable_example_ids or stable_occurrence_ids)
+        for identity in stable_example_ids:
+            covered.update(identity_to_indices.get(identity, ()))
+        for occurrence_id in stable_occurrence_ids:
+            covered.update(occurrence_to_indices.get(occurrence_id, ()))
+
+        if not has_stable_evidence and allow_legacy_indices:
+            for index in item.get("examples") or []:
+                if isinstance(index, int) and 0 <= index < len(current_examples):
+                    covered.add(index)
+    return covered
 
 
 def _format_sense_line(idx, label, sense):
@@ -281,7 +355,7 @@ def classify_batch_gemini(words_data, api_key, gemini_model):
             response = client.models.generate_content(
                 model=gemini_model,
                 contents=prompt,
-                config={"temperature": 0.0, "response_mime_type": "application/json"},
+                config=generation_config(gemini_model),
             )
             return json.loads(response.text)
         except (json.JSONDecodeError, TypeError):
@@ -436,7 +510,7 @@ def _repair_proposed_sense(word, lemma, examples, bad_answer, api_key, gemini_mo
         response = client.models.generate_content(
             model=gemini_model,
             contents=prompt,
-            config={"temperature": 0.0, "response_mime_type": "application/json"},
+            config=generation_config(gemini_model),
         )
         data = json.loads(response.text)
         new_sense = data.get("proposed_sense")
@@ -530,7 +604,7 @@ def gap_fill_gemini(word, lemma, senses, examples, api_key, gemini_model):
             response = client.models.generate_content(
                 model=gemini_model,
                 contents=prompt,
-                config={"temperature": 0.0, "response_mime_type": "application/json"},
+                config=generation_config(gemini_model),
             )
             return json.loads(response.text)
         except (json.JSONDecodeError, TypeError):
@@ -641,7 +715,7 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
             response = client.models.generate_content(
                 model=gemini_model,
                 contents=prompt,
-                config={"temperature": 0.0, "response_mime_type": "application/json"},
+                config=generation_config(gemini_model),
             )
             return json.loads(response.text)
         except (json.JSONDecodeError, TypeError):
@@ -670,15 +744,77 @@ def gap_fill_batch_gemini(words_data, api_key, gemini_model):
 # proposal metadata) than the plain classifier, so we send fewer words per
 # call than BATCH_SIZE=50. The validated eval (scratchpad/eval30.py) used 10.
 SD_CLASSIFY_BATCH_SIZE = 10
-# Default model for the SpanishDict classify-or-propose path. On the gold set
-# SpanishDict classify-or-propose default. gemini-3.1-flash-lite scored 6/6
+# The validated 3.1 baseline scored 6/6
 # detection + 4/4 clean controls at flash-lite speed/price (2026-07-22 redesign,
-# docs/design/artist_pipeline_quality_audit.md); bumped to 3.5-flash-lite on
-# 2026-07-29 (newer flash-lite). Runs made under this default are stamped
+# docs/design/artist_pipeline_quality_audit.md). The lexical-only prompt moves
+# tagging/entity/construction decisions into separate layers. The revised 3.1
+# default keeps that validated model and adds exact output-completeness rules;
+# it is versioned separately so it cannot relabel the original 3.1 evidence.
+# Runs made under this default are stamped
 # prompt_id CURRENT_SD_PROMPT_ID (see util_6a_prompt_registry). Override with
 # --gemini-model (+ pass a matching --prompt-id so provenance stays accurate).
-SD_DEFAULT_MODEL = "gemini-3.5-flash-lite"
+SD_DEFAULT_MODEL = "gemini-3.1-flash-lite"
 DEFAULT_ARTIST_CONTEXT = "regional slang and figurative usage"
+
+
+def resolve_custom_menu_analyses(word, menu, routing_data=None,
+                                 conjugation_reverse=None):
+    """Resolve a restored surface to an existing provider menu analysis.
+
+    Elision restoration deliberately preserves inflection (``aprendi'o`` ->
+    ``aprendido``); this bridge performs the separate morphology step before
+    WSD. It never invents senses: every returned analysis already exists in
+    the active menu under a surface or stable headword.
+    """
+    direct = get_analyses(menu, word)
+    if direct:
+        return word, deepcopy(direct), "surface"
+
+    by_headword = defaultdict(list)
+    known = set(menu)
+    gender_alias = {}
+    for analyses in menu.values():
+        if not isinstance(analyses, list):
+            continue
+        for analysis in analyses:
+            if not isinstance(analysis, dict):
+                continue
+            headword = analysis.get("headword") or analysis.get("lemma")
+            if not headword:
+                continue
+            known.add(headword)
+            by_headword[headword].append(analysis)
+            poses = {str(s.get("pos") or "").upper()
+                     for s in (analysis.get("senses") or {}).values()
+                     if isinstance(s, dict)}
+            if headword.endswith("o") and "ADJ" in poses:
+                feminine = headword[:-1] + "a"
+                known.add(feminine)
+                gender_alias[feminine] = headword
+
+    candidates = []
+    derivation_map = (routing_data or {}).get("derivation_map") or {}
+    if derivation_map.get(word):
+        candidates.append((derivation_map[word], "routing_derivation"))
+    derived = resolve_derivation(word, known)
+    if derived:
+        candidates.append((derived, "morphological_derivation"))
+    for row in (conjugation_reverse or {}).get(word, []) or []:
+        if isinstance(row, dict) and row.get("lemma"):
+            candidates.append((row["lemma"], "conjugation"))
+    if word.endswith("se") and len(word) > 4:
+        candidates.append((word[:-2], "reflexive_infinitive"))
+
+    seen = set()
+    for candidate, reason in candidates:
+        candidate = gender_alias.get(candidate, candidate)
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        analyses = get_analyses(menu, candidate) or by_headword.get(candidate) or []
+        if analyses:
+            return candidate, deepcopy(analyses), reason
+    return word, [], None
 
 
 def _artist_context(config):
@@ -707,12 +843,10 @@ def build_classify_or_propose_prompt(words_data, artist_context):
     Split out so ``--dry-run-prompt`` can dump the real payload without an API
     call. Any change here changes what the model actually receives.
     """
-    # Prompt revised 2026-08-07 (over-translation fix). The 2026-07-22/27
-    # classification + proper-noun wording is preserved verbatim below; what
-    # changed is ORDER (menu-first) plus three shared blocks that state the
-    # word-not-clause rule, the burden of proof for going off-menu, and how to
-    # read the per-example [POS] tag. Re-run the sufficiency evals
-    # (scratchpad/eval30.py, suff_eval*.py) before trusting a full run.
+    # Lexical WSD contract (2026-08-09). Entity detection, usage tags,
+    # constructions and POS are independent upstream evidence layers. This
+    # prompt may propose a missing lexical slang gloss, but it must not turn a
+    # phrase meaning or proper-name description into a word sense.
     header = (
         "You are building a Spanish vocabulary flashcard app from song lyrics"
         " (%s). Expect regional slang and figurative usage.\n"
@@ -730,41 +864,38 @@ def build_classify_or_propose_prompt(words_data, artist_context):
         " used in that line. The English translation shows the real meaning"
         " (substitution test), but you are translating the headword, not"
         " restating the line.\n"
-        "2. Read the CONSTRUCTION, not just the word: a reflexive pronoun"
-        " (me/te/se), an attached clitic, or a following particle can change"
-        " meaning — subir \"to go up\" vs subirse \"to get on\"; dejar \"to"
-        " let\" vs \"dejar de\" \"to stop\"; \"darse cuenta\" \"to realize\";"
-        " set phrases like \"dar tabla\"/\"hacer coro\". Classify the meaning"
-        " the construction produces. When the meaning comes from a multi-word"
-        " construction, name it in \"construction\" (e.g. \"dejar de\", \"hacer"
-        " coro\"), else null.\n"
-        "3. Record the id you compared against in \"closest\" — ALWAYS, whether"
+        "2. The requested answer must be a lexical meaning of the HEADWORD."
+        " Context may disambiguate it, but never attach the meaning of a whole"
+        " phrase to one component word. If only a multi-word construction has"
+        " the requested meaning and no lexical menu sense is defensible,"
+        " abstain with construction_only.\n"
+        "3. Record the id you compared against in \"closest\" whenever a menu"
+        " exists, whether"
         " you keep it or reject it.\n"
         "4. Only if NO menu sense fits the contextual meaning (usually"
         " regional slang/figurative the dictionary lacks) set \"sense\": null,"
-        " \"proposed\": a 1-4 word gloss, \"why_not_menu\": a few words on why"
-        " the sense in \"closest\" fails, \"type\":"
-        " slang|regional|figurative|vulgar|loanword|proper_noun|other, and"
-        " \"pos\": the part of speech of the proposed meaning (one of NOUN,"
-        " VERB, ADJ, ADV, INTJ, PROPN)."
-        " Else proposed/why_not_menu/type/pos null.\n"
-        "5. If you pick a menu sense but its [POS] is wrong for this line (the"
-        " menu gave you a noun and this is clearly a verb, or vice versa),"
-        " still pick the best sense AND set \"pos_verdict\" to the POS you"
-        " believe is correct. This is recorded for human audit; it is not a"
-        " licence to reject the menu and invent instead. Else null.\n"
-        "If the word is a PROPER NOUN (a person, place, brand, song, or title),"
-        " set \"type\": proper_noun and \"pos\": PROPN, and make \"proposed\" a"
-        " SHORT description of who/what it refers to (e.g. \"Brazilian"
-        " footballer\", \"Snapchat, a messaging app\", \"a district in San"
-        " Juan\") — NEVER the literal words \"proper noun\"/\"proper name\" and"
-        " NEVER a translation.\n"
+        " \"proposed\": a 1-4 word lexical gloss, \"why_not_menu\": a few"
+        " words on why the sense in \"closest\" fails, and \"proposed_pos\":"
+        " NOUN|VERB|ADJ|ADV|INTJ. A genuine lexical slang meaning missing from"
+        " the dictionary is valid here even though slang TAGGING belongs to a"
+        " separate layer. Else proposed/why_not_menu/proposed_pos null.\n"
+        "5. Proper names, noise/adlibs/echoes, foreign-language material, and"
+        " construction-only meanings are not WSD decisions. Set sense and"
+        " proposed null and set \"abstain_reason\" to proper_noun, noise,"
+        " foreign, construction_only, or insufficient_context. Do not describe"
+        " the entity and do not invent a phrase gloss. Otherwise"
+        " abstain_reason is null.\n"
+        "6. Return EXACTLY one call for every numbered example, in order and"
+        " with no duplicates. A non-null sense MUST copy one shown menu id"
+        " verbatim. If sense is null, supply either a valid proposed lexical"
+        " gloss OR an abstain_reason; never leave sense, proposed, and"
+        " abstain_reason all null.\n"
         "Return ONLY JSON: [{\"word\":\"x\",\"calls\":[{\"example\":1,"
         "\"sense\":\"<id|null>\",\"closest\":\"<id>\","
         "\"proposed\":\"<gloss|null>\",\"why_not_menu\":\"<reason|null>\","
-        "\"type\":\"<tag|null>\",\"pos\":\"<NOUN|VERB|ADJ|ADV|INTJ|PROPN|null>\","
-        "\"pos_verdict\":\"<NOUN|VERB|ADJ|ADV|INTJ|PROPN|null>\","
-        "\"construction\":\"<phrase|null>\"}]}]"
+        "\"proposed_pos\":\"<NOUN|VERB|ADJ|ADV|INTJ|null>\","
+        "\"abstain_reason\":\"<proper_noun|noise|foreign|construction_only|"
+        "insufficient_context|null>\"}]}]"
     ) % (artist_context, GLOSS_RULE_BLOCK, MENU_FIRST_BLOCK, (POS_HINT_BLOCK + "\n\n" + TRANSLATION_AID_BLOCK))
 
     prompt_parts = [header, "", "WORDS:"]
@@ -795,8 +926,7 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
 
     Per word, per example: pick the menu sense id that fits IN CONTEXT, or —
     when NO menu sense matches the usage — set sense=null and propose a short
-    gloss (with a register tag + optional multi-word construction). This one
-    call unifies classification, insufficiency detection, and gap-fill.
+    lexical gloss. Tagging, entities and constructions are separate layers.
 
     words_data: [{word, lemma, senses, ids, examples}] where senses[i] is a
     sense dict and ids[i] is its menu sense id (parallel lists). examples is
@@ -808,12 +938,9 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
         [{"word": w,
           "calls": [{"example": 1, "sense": "<id|null>", "closest": "<id>",
                      "proposed": "<gloss|null>", "why_not_menu": "<reason|null>",
-                     "type": "<tag|null>", "pos": "<POS|null>",
-                     "pos_verdict": "<POS|null>",
-                     "construction": "<phrase|null>"}, ...]}, ...]
-    or None on unrecoverable failure. `closest`, `why_not_menu` and
-    `pos_verdict` are new audit-only fields; the caller ignores unknown keys,
-    so an older model that omits them still parses.
+                     "proposed_pos": "<POS|null>",
+                     "abstain_reason": "<reason|null>"}, ...]}, ...]
+    or None on unrecoverable failure.
     """
     from google import genai
     client = genai.Client(api_key=api_key)
@@ -825,7 +952,7 @@ def classify_or_propose_batch(words_data, api_key, gemini_model, artist_context)
             response = client.models.generate_content(
                 model=gemini_model,
                 contents=prompt,
-                config={"temperature": 0.0, "response_mime_type": "application/json"},
+                config=generation_config(gemini_model),
             )
             return json.loads(response.text)
         except (json.JSONDecodeError, TypeError):
@@ -878,7 +1005,8 @@ def classify_keyword(examples, senses):
     return assignments
 
 
-def _dump_prompts_and_exit(label, batch_size, records, build_prompt):
+def _dump_prompts_and_exit(label, batch_size, records, build_prompt,
+                           plan_path=None):
     """Print the exact prompt payload for each batch, then exit(0).
 
     Used by --dry-run-prompt. Nothing is sent to Gemini and no layer file is
@@ -890,6 +1018,41 @@ def _dump_prompts_and_exit(label, batch_size, records, build_prompt):
     print("=" * 72)
     if not records:
         print("(no records reached this path — check --word / routing filters)")
+    if plan_path:
+        batches = []
+        for start in range(0, len(records), batch_size):
+            batch = records[start:start + batch_size]
+            prompt = build_prompt(batch)
+            batches.append({
+                "batch": start // batch_size + 1,
+                "words": [record.get("word") for record in batch],
+                "prompt_sha256": hashlib.sha256(
+                    prompt.encode("utf-8")).hexdigest(),
+            })
+        record_rows = []
+        for record in records:
+            prompt = build_prompt([record])
+            record_rows.append({
+                **record,
+                "prompt_sha256": hashlib.sha256(
+                    prompt.encode("utf-8")).hexdigest(),
+            })
+        payload = {
+            "schema": "fluency.gemini-prompt-plan/v1",
+            "label": label,
+            "batch_size": batch_size,
+            "records": record_rows,
+            "batches": batches,
+        }
+        output_path = Path(plan_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+        print("Prompt plan: %d records / %d batches -> %s" % (
+            len(record_rows), len(batches), output_path))
+        print("DRY RUN COMPLETE — exiting without writing assignment layers.")
+        sys.exit(0)
     for start in range(0, len(records), batch_size):
         batch = records[start:start + batch_size]
         print("\n" + "-" * 72)
@@ -909,6 +1072,25 @@ def normalize_assignment_methods(word_data, default_method):
     if isinstance(word_data, list):
         return {default_method: word_data}
     return {}
+
+
+def _checkpoint_path(layers_dir, assignments_file, prompt_id, gemini_model):
+    """Return a run-scoped checkpoint path.
+
+    A checkpoint made by another prompt/model must never mark words complete
+    for this run. Keep the readable assignment stem and add a short digest of
+    the semantic run identity.
+    """
+    identity = json.dumps({
+        "assignments_file": assignments_file,
+        "prompt_id": prompt_id,
+        "gemini_model": gemini_model,
+    }, sort_keys=True).encode("utf-8")
+    digest = hashlib.sha256(identity).hexdigest()[:12]
+    return os.path.join(
+        layers_dir,
+        ".%s.%s.checkpoint.json" % (Path(assignments_file).stem, digest),
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -936,6 +1118,15 @@ def main():
                              "run writes (joins into config/prompt_registry.json). "
                              "Mint a new registry entry when the prompt or model "
                              "changes, then pass its id here. Default: %(default)s.")
+    parser.add_argument("--prompt-policy", default=CURRENT_SD_POLICY_ID,
+                        help="Named acceptance policy used to decide which "
+                             "existing model claims count as completed. "
+                             "Default: %(default)s.")
+    parser.add_argument("--replace-prompt-id", action="append", default=[],
+                        help="Process only current examples carrying this old "
+                             "prompt id (repeatable). Stable example or "
+                             "occurrence identity is required; numeric-only "
+                             "legacy rows are never targeted.")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument("--normal-slang-only", action="store_true",
                         help="Only process normal-mode words that have eswiktionary dialect senses")
@@ -985,6 +1176,10 @@ def main():
                              "receive, and exit without calling the API or "
                              "writing any layer file. Pair with --word/--force "
                              "to inspect specific words. No API key needed.")
+    parser.add_argument("--prompt-plan-json", default=None,
+                        help="With --dry-run-prompt, write a structured no-API "
+                             "plan with per-record and per-batch prompt hashes "
+                             "instead of printing the full prompts.")
     parser.add_argument("--gemini-workers", type=int, default=1,
                         help="Concurrent Gemini batches for the SpanishDict "
                              "classify-or-propose path (default 1). Checkpoints "
@@ -996,6 +1191,8 @@ def main():
     if args.gemini_workers < 1:
         print("ERROR: --gemini-workers must be >= 1")
         sys.exit(1)
+    if args.prompt_plan_json and not args.dry_run_prompt:
+        parser.error("--prompt-plan-json requires --dry-run-prompt")
 
     is_artist = args.artist_dir is not None
     if is_artist:
@@ -1023,6 +1220,22 @@ def main():
         gemini_model = SD_DEFAULT_MODEL
     else:
         gemini_model = "gemini-3.5-flash-lite"
+    prompt_registry = load_registry()
+    prompt_policy = load_prompt_policy(args.prompt_policy)
+    if not prompt_policy:
+        parser.error("--prompt-policy %r is not registered" % args.prompt_policy)
+    accepted_model_prompt_ids = frozenset(
+        prompt_policy.get("accepted_prompt_ids") or [])
+    if use_gemini:
+        prompt_entry = prompt_registry.get(args.prompt_id)
+        if not prompt_entry:
+            parser.error("--prompt-id %r is not registered" % args.prompt_id)
+        registered_model = prompt_entry.get("model")
+        if registered_model and registered_model != "unknown" and registered_model != gemini_model:
+            parser.error(
+                "--prompt-id %s is registered for %s, not %s; mint a new "
+                "prompt id instead of mislabelling the run" % (
+                    args.prompt_id, registered_model, gemini_model))
     if use_gemini and not args.dry_run_prompt:
         api_key = os.environ.get("GEMINI_API_KEY", "")
         if not api_key:
@@ -1183,6 +1396,13 @@ def main():
                 skip_set.update(clitic_merge.keys())
         print("  Skip words (from step 4): %d" % len(skip_set))
 
+    conjugation_reverse = {}
+    if custom_menu_mode:
+        conjugation_path = PROJECT_ROOT / "Data" / "Spanish" / "layers" / "conjugation_reverse.json"
+        if conjugation_path.is_file():
+            with open(conjugation_path, encoding="utf-8") as handle:
+                conjugation_reverse = json.load(handle)
+
     # Layer-derived skip: English loanwords identified by Wiktionary
     # etymology (tool_4a_build_english_loanwords.py). These are surface
     # forms that Wiktionary explicitly marks as "borrowed from English"
@@ -1227,6 +1447,8 @@ def main():
     skipped_priority = 0
     pos_filtered_count = 0
     pos_single_sense_count = 0
+    auto_vetoed_examples = 0
+    auto_vetoed_words = set()
 
     # Load existing assignments for priority checking + gap-fill reuse
     existing_assigns = {}
@@ -1246,6 +1468,14 @@ def main():
         my_method = args.keyword_method_name
     elif custom_menu_mode and not use_gemini:
         my_method = "spanishdict-keyword"
+    elif custom_menu_mode and args.prompt_id == "sd-lexical-v1-g31":
+        my_method = "spanishdict-lexical-g31"
+    elif custom_menu_mode and args.prompt_id == "sd-lexical-v2-g35":
+        my_method = "spanishdict-lexical-g35"
+    elif custom_menu_mode and args.prompt_id == "sd-lexical-v2-g31":
+        my_method = "spanishdict-lexical-g31-v2"
+    elif custom_menu_mode and args.prompt_id == "sd-lexical-v2-g25":
+        my_method = "spanishdict-lexical-g25-v2"
     elif custom_menu_mode and "flash-lite" in gemini_model:
         my_method = "spanishdict-flash-lite"
     elif custom_menu_mode:
@@ -1257,6 +1487,13 @@ def main():
     else:
         my_method = "flash-wiktionary"
     my_priority = METHOD_PRIORITY.get(my_method, 0)
+    proposal_method = (
+        {"sd-lexical-v1-g31": "lexical-gap-fill-g31",
+         "sd-lexical-v2-g35": "lexical-gap-fill-g35",
+         "sd-lexical-v2-g31": "lexical-gap-fill-g31-v2",
+         "sd-lexical-v2-g25": "lexical-gap-fill-g25-v2"}.get(
+             args.prompt_id, "gap-fill")
+    )
 
     # For --normal-slang-only: load normal-mode senses
     normal_wl = set()
@@ -1349,20 +1586,39 @@ def main():
         # method we used to also skip at word level; now that selection is
         # example-level, equal priority is handled by the covered-index filter
         # below instead.
-        if word in existing_assigns and not args.force:
+        if (word in existing_assigns and not args.force
+                and not args.replace_prompt_id):
             existing_priority = best_method_priority(existing_assigns[word])
             if existing_priority > my_priority:
                 skipped_priority += 1
                 continue
 
-        # Target window into the stable per-word examples list. Positional
-        # indices are preserved across re-runs by step_5a_split_evidence, so
-        # absolute indices are safe to store and re-use.
+        # Target window into the current per-word examples list. Stable
+        # segment/example/occurrence references are the authoritative join;
+        # numeric indices remain a legacy fallback only.
         all_exs = examples_raw.get(word, [])
         target_end = min(len(all_exs), args.max_examples)
         if target_end == 0:
             no_examples += 1
             continue
+
+        replacement_abs = None
+        if args.replace_prompt_id:
+            replacement_items = []
+            for method_name, items in (existing_assigns.get(word) or {}).items():
+                is_non_model = (method_name.endswith("-auto") or
+                                (method_name.startswith("legacy-")
+                                 and method_name.endswith("-v1")))
+                if is_non_model:
+                    continue
+                replacement_items.extend(
+                    item for item in (items or [])
+                    if isinstance(item, dict)
+                    and item.get("prompt_id") in args.replace_prompt_id)
+            replacement_abs = covered_example_indices(
+                replacement_items, all_exs, allow_legacy_indices=False)
+            if not replacement_abs:
+                continue
 
         # Which absolute indices is THIS method already responsible for?
         # Only same-method coverage counts — we want incrementality inside
@@ -1370,16 +1626,12 @@ def main():
         # from doing its own pass.
         covered_abs = set()
         if not args.force and word in existing_assigns:
-            for item in existing_assigns[word].get(my_method, []) or []:
-                for abs_i in item.get("examples", []) or []:
-                    if isinstance(abs_i, int):
-                        covered_abs.add(abs_i)
+            covered_abs.update(covered_example_indices(
+                existing_assigns[word].get(my_method, []), all_exs))
             # Single-sense auto-assignment uses auto_method_name, not my_method.
             # Treat those as covered too so re-runs don't re-auto-assign them.
-            for item in existing_assigns[word].get(args.auto_method_name, []) or []:
-                for abs_i in item.get("examples", []) or []:
-                    if isinstance(abs_i, int):
-                        covered_abs.add(abs_i)
+            covered_abs.update(covered_example_indices(
+                existing_assigns[word].get(args.auto_method_name, []), all_exs))
             # Same-priority methods from prior runs (gap-fill at 50, any
             # other future equal-tier method). Without this, a word with
             # an existing gap-fill claim on every example would still fall
@@ -1390,17 +1642,28 @@ def main():
             for method_name, items in (existing_assigns[word] or {}).items():
                 if method_name in (my_method, args.auto_method_name):
                     continue
-                prio = METHOD_PRIORITY.get(method_name, 0)
-                if prio < my_priority:
-                    continue
                 for item in items or []:
-                    for abs_i in item.get("examples", []) or []:
-                        if isinstance(abs_i, int):
-                            covered_abs.add(abs_i)
+                    is_retained = (method_name.startswith("legacy-")
+                                   and method_name.endswith("-v1"))
+                    is_deterministic = method_name.endswith("-auto")
+                    # Match the named active deck/inspector policy. The target
+                    # prompt also covers its own prior partial results so a
+                    # checkpointed/rerun candidate remains incremental without
+                    # becoming accepted for shipping.
+                    is_trusted_prompt = (
+                        item.get("prompt_id") in accepted_model_prompt_ids
+                        or item.get("prompt_id") == args.prompt_id)
+                    prio = METHOD_PRIORITY.get(method_name, 0)
+                    if (prio < my_priority and not is_retained
+                            and not is_deterministic
+                            and not is_trusted_prompt):
+                        continue
+                    covered_abs.update(covered_example_indices([item], all_exs))
 
         # Build the (abs_idx, ex) list of NEW examples in the target window.
         selected = [(abs_i, all_exs[abs_i]) for abs_i in range(target_end)
-                    if abs_i not in covered_abs]
+                    if abs_i not in covered_abs
+                    and (replacement_abs is None or abs_i in replacement_abs)]
         if not selected:
             # Target window fully covered by prior same-method work — nothing
             # to do. Any existing assignment is preserved untouched.
@@ -1435,7 +1698,8 @@ def main():
             song_label = ex.get("title") or ex.get("source", "")
             examples.append({"spanish": spa, "english": eng,
                              "song": song_label, "id": ex.get("id", ""),
-                             "pos": precomputed.get(abs_i)})
+                             "pos": precomputed.get(abs_i),
+                             "artist": ex.get("artist", "")})
             abs_indices.append(abs_i)
 
         if not examples:
@@ -1454,12 +1718,21 @@ def main():
         id_list = []
         # Build the candidate menu from all shared surface-form analyses first.
         if custom_menu_mode:
+            resolved_lemma, resolved_analyses, _resolution_kind = (
+                resolve_custom_menu_analyses(
+                    word, shared_wikt_menu, routing_data=routing_data,
+                    conjugation_reverse=conjugation_reverse))
+            if resolved_analyses:
+                lemma = resolved_lemma
             shared_analyses = []
-            for analysis in get_analyses(shared_wikt_menu, word):
+            for analysis in resolved_analyses:
                 sense_map = analysis.get("senses", {})
                 shared_analyses.append({
                     "headword": analysis.get("headword", analysis.get("lemma", word)),
-                    "senses": list(deepcopy(sense_map).values()) if isinstance(sense_map, dict) else deepcopy(sense_map or []),
+                    # Preserve explicit provider/registry IDs. Converting this
+                    # dict to values made short hash IDs depend on source
+                    # order and could silently swap old assignment meanings.
+                    "senses": deepcopy(sense_map or {}),
                 })
         else:
             shared_analyses = collect_surface_analyses_from_shared_menu(word, shared_wikt_menu)
@@ -1519,10 +1792,6 @@ def main():
             pos_filtered_count += 1
 
         if len(keep_indices) == 1:
-            # Single sense: auto-assign the NEW examples (absolute indices).
-            single_sense += 1
-            if len(combined) > 1:
-                pos_single_sense_count += 1
             filtered_combined = [combined[keep_indices[0]]]
             if shared_analyses:
                 sid = id_list[keep_indices[0]]
@@ -1531,10 +1800,36 @@ def main():
                 if not custom_menu_mode:
                     merge_analysis(senses_out, word, None, id_map)
                 sid = list(id_map.keys())[0]
-            assignments_out[word] = {args.auto_method_name: [{
-                "sense": sid,
-                "examples": list(abs_indices),
-            }]}
+            allowed_abs = []
+            rejected_examples = []
+            rejected_abs = []
+            for example, abs_i in zip(examples, abs_indices):
+                reason = auto_sense_rejection_reason(
+                    word, filtered_combined[0], example, precomputed.get(abs_i))
+                if reason:
+                    auto_vetoed_examples += 1
+                    auto_vetoed_words.add(word)
+                    rejected_examples.append(example)
+                    rejected_abs.append(abs_i)
+                else:
+                    allowed_abs.append(abs_i)
+            if allowed_abs:
+                # Single sense: auto-assign only compatible NEW examples.
+                single_sense += 1
+                selected_method = args.auto_method_name
+                if len(combined) > 1:
+                    pos_single_sense_count += 1
+                    selected_method = "pos-auto"
+                assignments_out[word] = {selected_method: [{
+                    "sense": sid,
+                    "examples": allowed_abs,
+                }]}
+            if rejected_abs:
+                # The menu does not contain a compatible sense for these
+                # occurrences. Route them through the normal proposal path;
+                # --skip-gap-fill leaves them safely unassigned.
+                no_senses_queue.append(
+                    (word, lemma, rejected_examples, rejected_abs))
         else:
             # Multi-sense at the word level. Before batching to Gemini, run a
             # per-example pos-auto pre-filter: examples whose trusted POS tag
@@ -1600,6 +1895,8 @@ def main():
         print("  POS-filtered menus: %d" % pos_filtered_count)
     if pos_single_sense_count:
         print("  POS-resolved to single sense: %d" % pos_single_sense_count)
+    if auto_vetoed_examples:
+        print("  Single-sense auto vetoes: %d example(s)" % auto_vetoed_examples)
     print("  No examples (skipped): %d" % no_examples)
     print("  Single-sense (auto-assigned): %d" % single_sense)
     print("  Multi-sense (need classifier): %d" % len(multi_sense_queue))
@@ -1651,7 +1948,8 @@ def main():
                     [{"word": r["word"], "lemma": r["lemma"],
                       "senses": r["senses"], "ids": r["ids"],
                       "examples": r["examples"]} for r in batch],
-                    artist_context))
+                    artist_context),
+                plan_path=args.prompt_plan_json)
 
         if records:
             print("\n" + "=" * 60)
@@ -1659,12 +1957,17 @@ def main():
                 len(records), gemini_model, SD_CLASSIFY_BATCH_SIZE))
             print("=" * 60)
 
-            checkpoint_path = os.path.join(
-                layers_dir, ".%s.checkpoint.json" % Path(args.assignments_file).stem)
+            checkpoint_path = _checkpoint_path(
+                layers_dir, args.assignments_file, args.prompt_id, gemini_model)
             done_words = set()
             if os.path.isfile(checkpoint_path):
                 with open(checkpoint_path) as f:
                     checkpoint = json.load(f)
+                if (checkpoint.get("prompt_id") != args.prompt_id
+                        or checkpoint.get("gemini_model") != gemini_model
+                        or checkpoint.get("assignments_file") != args.assignments_file):
+                    raise RuntimeError(
+                        "Checkpoint provenance mismatch: %s" % checkpoint_path)
                 for word, word_data in checkpoint.get("assignments", {}).items():
                     assignments_out[word] = normalize_assignment_methods(word_data, my_method)
                 done_words = set(checkpoint.get("done_words", []))
@@ -1696,11 +1999,9 @@ def main():
                     calls = result_map.get(word, [])
                     id_set = set(r["ids"])
                     menu_buckets = {}   # sid -> [abs_idx]
-                    proposed_map = {}   # gloss -> {examples, type, construction, ex}
-                    # POS disagreements the model reported on MENU picks. Audit
-                    # only — see the pos_verdict note below.
-                    pos_verdicts = {}   # sid -> {verdict_pos: [abs_idx]}
-                    _VALID_POS = {"NOUN", "VERB", "ADJ", "ADV", "INTJ", "PROPN"}
+                    proposed_map = {}   # gloss -> {examples, pos, ex}
+                    abstentions = []
+                    _VALID_POS = {"NOUN", "VERB", "ADJ", "ADV", "INTJ"}
                     for call in calls:
                         if not isinstance(call, dict):
                             continue
@@ -1721,43 +2022,26 @@ def main():
                                 sid = r["ids"][int(s)]
                         if sid is not None:
                             menu_buckets.setdefault(sid, []).append(abs_i)
-                            # Optional POS override on a menu pick. Recorded,
-                            # never applied — the sense's POS is the menu's
-                            # structural property (it drives sense ids, lemma
-                            # routing in step_7a and card grouping in step_8b),
-                            # so silently rewriting it from a model opinion
-                            # would desync sense_assignments from sense_menu.
-                            # The value exists so the model has a way to say
-                            # "you gave me a noun, this is a verb" WITHOUT
-                            # having to reject the menu and invent — which was
-                            # the over-translation behaviour itself.
-                            verdict = str(call.get("pos_verdict") or "").strip().upper()
-                            menu_pos = ""
-                            try:
-                                menu_pos = str(
-                                    r["senses"][r["ids"].index(sid)].get("pos") or ""
-                                ).strip().upper()
-                            except (ValueError, IndexError, AttributeError):
-                                pass
-                            if verdict in _VALID_POS and verdict != menu_pos:
-                                pos_verdicts.setdefault(sid, {}).setdefault(
-                                    verdict, []).append(abs_i)
                         elif r["allow_propose"] and call.get("proposed"):
                             gloss = str(call["proposed"]).strip()
                             if not gloss:
                                 continue
                             pm = proposed_map.setdefault(gloss, {
-                                "examples": [], "type": call.get("type"),
-                                "construction": call.get("construction"),
-                                "pos": call.get("pos"),
+                                "examples": [], "pos": call.get("proposed_pos"),
                                 "ex": r["examples"][li] if li < len(r["examples"]) else {},
                             })
                             pm["examples"].append(abs_i)
+                        elif call.get("abstain_reason"):
+                            abstentions.append({
+                                "example": abs_i,
+                                "reason": str(call.get("abstain_reason")),
+                            })
                         elif r["ids"]:
-                            # Unresolvable sense id, no usable proposal — fall
-                            # back to the first menu sense (conservative default,
-                            # mirrors the plain classifier).
-                            menu_buckets.setdefault(r["ids"][0], []).append(abs_i)
+                            # Invalid output is not evidence. Leave it
+                            # unassigned so it remains visible in the rerun
+                            # backlog rather than silently choosing sense 0.
+                            abstentions.append({"example": abs_i,
+                                                "reason": "invalid_output"})
                         # else: no menu + no proposal -> leave example unassigned.
 
                     word_out = {}
@@ -1770,13 +2054,6 @@ def main():
                             if total >= 5 and freq < 0.05:
                                 continue
                             item = {"sense": sid, "examples": eis}
-                            if sid in pos_verdicts:
-                                # Audit-only: {"VERB": [3, 7]} — the POS the
-                                # model believes those examples really are.
-                                item["pos_verdict"] = {
-                                    p: sorted(set(v))
-                                    for p, v in pos_verdicts[sid].items()
-                                }
                             items.append(item)
                         if items:
                             word_out[my_method] = items
@@ -1791,13 +2068,9 @@ def main():
                         for gloss, pm in proposed_map.items():
                             prop_pos = str(pm.get("pos") or "").strip().upper()
                             pos = prop_pos if prop_pos in _valid_pos else fallback_pos
-                            # Prose guard. This path never ran the definitional
-                            # check that the legacy gap-fill path has always
-                            # run, which is how "To dance, especially in a
-                            # provocative way." shipped for `rrear`. Proper-noun
-                            # descriptions are exempt: they are supposed to
-                            # describe rather than gloss.
-                            if pm.get("type") != "proper_noun" and _is_definitional(gloss):
+                            # Prose guard: proposals must be short lexical
+                            # glosses, never descriptions or phrase meanings.
+                            if _is_definitional(gloss):
                                 repaired = _repair_proposed_sense(
                                     word, r["lemma"], r["examples"], gloss,
                                     api_key, gemini_model)
@@ -1815,10 +2088,6 @@ def main():
                             item = {"sense": sid, "pos": pos, "translation": gloss,
                                     "lemma": r["lemma"],
                                     "examples": sorted(set(pm["examples"]))}
-                            if pm.get("type"):
-                                item["type"] = pm["type"]
-                            if pm.get("construction"):
-                                item["construction"] = pm["construction"]
                             gf_items.append(item)
                             batch_proposed_total += 1
                             ex = pm.get("ex") or {}
@@ -1826,14 +2095,25 @@ def main():
                                 "word": word,
                                 "lemma": r["lemma"],
                                 "proposed": gloss,
-                                "type": pm.get("type"),
-                                "construction": pm.get("construction"),
                                 "corpus_count": corpus_counts.get(word, 0),
                                 "example": ex.get("spanish", ""),
                                 "translation": ex.get("english", ""),
                             })
                         if gf_items:
-                            word_out["gap-fill"] = gf_items
+                            word_out[proposal_method] = gf_items
+
+                    for abstention in abstentions:
+                        ex_i = abstention["example"]
+                        ex = r["examples"][r["abs"].index(ex_i)] if ex_i in r["abs"] else {}
+                        batch_review_items.append({
+                            "word": word,
+                            "lemma": r["lemma"],
+                            "abstain_reason": abstention["reason"],
+                            "corpus_count": corpus_counts.get(word, 0),
+                            "example_index": ex_i,
+                            "example": ex.get("spanish", ""),
+                            "translation": ex.get("english", ""),
+                        })
 
                     if word_out:
                         batch_assignments[word] = word_out
@@ -1856,7 +2136,10 @@ def main():
                 done_words.update(result["done_words"])
                 review_items.extend(result["review_items"])
                 with open(checkpoint_path, "w") as f:
-                    json.dump({"assignments": assignments_out,
+                    json.dump({"prompt_id": args.prompt_id,
+                               "gemini_model": gemini_model,
+                               "assignments_file": args.assignments_file,
+                               "assignments": assignments_out,
                                "done_words": sorted(done_words),
                                "review_items": review_items}, f)
 
@@ -1907,18 +2190,21 @@ def main():
                     existing_review = loaded.get("items", []) if isinstance(loaded, dict) else loaded
                 except (json.JSONDecodeError, ValueError):
                     existing_review = []
-            # De-duplicate on (word, proposed); newest entry wins.
+            # De-duplicate proposals and abstentions; newest entry wins.
             merged = {}
             for it in (existing_review or []) + review_items:
                 if isinstance(it, dict):
-                    merged[(it.get("word"), it.get("proposed"))] = it
+                    merged[(it.get("word"), it.get("proposed"),
+                            it.get("example_index"),
+                            it.get("abstain_reason"))] = it
             ranked = sorted(merged.values(),
                             key=lambda it: (it.get("corpus_count") or 0),
                             reverse=True)
             with open(review_path, "w", encoding="utf-8") as f:
                 json.dump({
                     "_meta": {"source": "spanishdict",
-                              "classifier": "classify-or-propose",
+                              "classifier": "lexical-wsd-propose",
+                              "prompt_id": args.prompt_id,
                               "model": gemini_model,
                               "count": len(ranked)},
                     "items": ranked,
@@ -1936,7 +2222,8 @@ def main():
             "classify (wiktionary)", BATCH_SIZE,
             [{"word": w, "lemma": l, "senses": s, "examples": ex}
              for w, l, s, ex, ids, abs_idx in multi_sense_queue],
-            lambda batch: build_classify_prompt(batch))
+            lambda batch: build_classify_prompt(batch),
+            plan_path=args.prompt_plan_json)
     if multi_sense_queue:
         print("\n" + "=" * 60)
         if use_gemini:
@@ -1947,7 +2234,8 @@ def main():
         print("=" * 60)
 
         t_start = time.time()
-        checkpoint_path = os.path.join(layers_dir, ".%s.checkpoint.json" % Path(args.assignments_file).stem)
+        checkpoint_path = _checkpoint_path(
+            layers_dir, args.assignments_file, args.prompt_id, gemini_model)
 
         # Load checkpoint if exists
         done_words = set()
@@ -2024,7 +2312,10 @@ def main():
 
                 # Checkpoint after each batch
                 with open(checkpoint_path, "w") as f:
-                    json.dump({"assignments": assignments_out,
+                    json.dump({"prompt_id": args.prompt_id,
+                               "gemini_model": gemini_model,
+                               "assignments_file": args.assignments_file,
+                               "assignments": assignments_out,
                                "done_words": sorted(done_words)}, f)
         else:
             # Keyword fallback
@@ -2067,7 +2358,8 @@ def main():
             "gap-fill (wiktionary)", GAP_FILL_BATCH_SIZE,
             [{"word": w, "lemma": l, "senses": [], "examples": ex}
              for w, l, ex, abs_idx in no_senses_queue],
-            build_gap_fill_batch_prompt)
+            build_gap_fill_batch_prompt,
+            plan_path=args.prompt_plan_json)
     if no_senses_queue and use_gemini:
         print("\n" + "=" * 60)
         print("GAP-FILL %d words without sense-menu entry" % len(no_senses_queue))
@@ -2189,7 +2481,13 @@ def main():
     # made each assignment. Idempotent — items already carrying prompt_id are
     # untouched. run_ts uses UTC ISO-8601 (sorts lexicographically for tie-breaks).
     run_ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-    stamp_provenance(assignments_out, args.prompt_id, run_ts)
+    # Only API-authored claims carry a Gemini prompt id. Deterministic
+    # spanishdict-auto/pos-auto decisions remain attributable to their method
+    # and must not masquerade as model output.
+    gemini_methods = {my_method, proposal_method} if use_gemini else set()
+    if gemini_methods:
+        stamp_provenance(assignments_out, args.prompt_id, run_ts,
+                         methods=gemini_methods)
 
     # Merge assignments with existing file.
     #
@@ -2203,6 +2501,12 @@ def main():
     existing_assigns = {}
     if os.path.isfile(assignments_path):
         existing_assigns = load_assignments(assignments_path)
+    for word in auto_vetoed_words:
+        word_data = existing_assigns.get(word)
+        if isinstance(word_data, dict):
+            word_data.pop(args.auto_method_name, None)
+            if not word_data:
+                existing_assigns.pop(word, None)
     stale_auto_wiped = 0
     for word, methods in assignments_out.items():
         if word not in existing_assigns or not isinstance(existing_assigns[word], dict):
@@ -2241,11 +2545,22 @@ def main():
             json.dump(translation_cache, f, ensure_ascii=False, indent=2)
 
     # Clean up checkpoint
-    checkpoint_path = os.path.join(layers_dir, ".%s.checkpoint.json" % Path(args.assignments_file).stem)
+    checkpoint_path = _checkpoint_path(
+        layers_dir, args.assignments_file, args.prompt_id, gemini_model)
     if os.path.isfile(checkpoint_path):
         os.remove(checkpoint_path)
 
-    print("\nDone! Run build_artist_vocabulary.py to rebuild the vocabulary.")
+    if args.artist_dir:
+        print("\nDone! Raw assignments are complete. Materialize them into "
+              "card identities, then rebuild the live deck:")
+        print('  .venv/bin/python3 pipeline/artist/step_7a_map_senses_to_lemmas.py '
+              '--artist-dir "%s"' % args.artist_dir)
+        print('  .venv/bin/python3 pipeline/artist/step_8b_assemble_artist_vocabulary.py '
+              '--artist-dir "%s" --sense-source %s'
+              % (args.artist_dir, args.menu_source_label))
+    else:
+        print("\nDone! Raw assignments are complete. Run "
+              "step_7a_map_senses_to_lemmas.py before deck assembly.")
 
 
 if __name__ == "__main__":

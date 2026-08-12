@@ -55,6 +55,41 @@ class PluralLemmaNormalizationTests(unittest.TestCase):
         items = split["besitos|besito"]["spanishdict-flash-lite"]
         self.assertEqual([item["sense"] for item in items], ["274", "b8c"])
 
+    def test_generated_collision_suffix_resolves_to_current_menu_id(self):
+        sense_id = "generated:artist-master:3968ed3bbfcb"
+        analyses = [{
+            "headword": "poner",
+            "senses": {sense_id: {"pos": "VERB", "translation": "to move"}},
+        }]
+        alias = sense_id + ":5798"
+        assignments = {"spanishdict-lexical-g31": [{
+            "sense": alias,
+            "examples": [1],
+            "example_ids": ["seg_example"],
+        }]}
+
+        split = split_word_assignments("ponerse", analyses, assignments)
+
+        item = split["ponerse|poner"]["spanishdict-lexical-g31"][0]
+        self.assertEqual(item["sense"], sense_id)
+        self.assertEqual(item["sense_id_aliases"], [alias])
+        self.assertEqual(item["example_ids"], ["seg_example"])
+
+    def test_non_generated_suffix_is_not_folded(self):
+        analyses = [{
+            "headword": "poner",
+            "senses": {"dictionary:abc": {"pos": "VERB"}},
+        }]
+        assignments = {"model": [{
+            "sense": "dictionary:abc:1234",
+            "examples": [0],
+        }]}
+
+        split = split_word_assignments("x", analyses, assignments)
+        self.assertEqual(
+            split["x|x"]["model"][0]["sense"],
+            "dictionary:abc:1234")
+
 
 class DerivationalRelationTests(unittest.TestCase):
     def test_semantic_guard_links_besito_but_not_bonito(self):

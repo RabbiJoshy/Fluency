@@ -38,8 +38,8 @@ from pipeline.util_evidence_store import (  # noqa: E402
 )
 
 
-STEP_VERSION = 1
-METHOD_ID = "artist-vocal-artifact-rules-v1"
+STEP_VERSION = 2
+METHOD_ID = "artist-vocal-artifact-rules-v2"
 BASIC_EXCLUDED_LABELS = ["adlib", "echo", "stutter"]
 _BRACKET_RE = re.compile(r"\[[^\]]*\]|\([^)]*\)")
 _HYPHEN_GAP_RE = re.compile(r"^\s*-\s*$")
@@ -72,9 +72,20 @@ def load_known_forms(path):
     return {identity_normalize_text(value) for value in payload or [] if value}
 
 
-def classify_occurrences(segments, occurrences, known_forms=None):
+def classify_occurrences(segments, occurrences, known_forms=None,
+                         normalization_forms=None):
     """Return ``occurrence_id -> {labels, reasons}`` for conservative rules."""
     known_forms = set(known_forms or [])
+    normalization_forms = normalization_forms or {}
+
+    def known_candidates(occurrence):
+        values = normalization_forms.get(occurrence.get("occurrence_id")) or []
+        if not values:
+            values = [occurrence.get("surface")]
+        return {
+            identity_normalize_text(value)
+            for value in values if value
+        }
     segments_by_id = {segment["segment_id"]: segment for segment in segments
                       if segment.get("state") == "present"}
     by_segment = defaultdict(list)
@@ -127,7 +138,8 @@ def classify_occurrences(segments, occurrences, known_forms=None):
             # lyric stutter pattern even when their syllables differ.
             if len(run) == 2 and (
                     forms[0] != forms[1]
-                    or (known_forms and forms[0] in known_forms)):
+                    or (known_forms and bool(
+                        known_candidates(run[0]) & known_forms))):
                 continue
             for member in run:
                 result = classified[member["occurrence_id"]]
@@ -151,7 +163,9 @@ def classify_occurrences(segments, occurrences, known_forms=None):
                     continue
                 if not source_letters.endswith(echo_letters):
                     continue
-                if source not in known_forms or echo in known_forms:
+                source_known = bool(known_candidates(previous) & known_forms)
+                echo_known = bool(known_candidates(occurrence) & known_forms)
+                if not source_known or echo_known:
                     continue
                 result = classified[occurrence["occurrence_id"]]
                 result["labels"].add("echo")
@@ -173,12 +187,29 @@ def write_classifier_run(artist_dir, policy="basic", known_forms_path=None,
     artist_dir = Path(artist_dir).resolve()
     evidence_dir = artist_dir / "data" / "evidence"
     config = load_artist_config(str(artist_dir))
-    language = language_tag(config.get("language") or "und")
+    # Older artist.json files rely on their parent directory for language.
+    # Match the orchestrator/config convention so Spanish artists actually
+    # load spanish_forms.json for the known-word echo guard.
+    language = language_tag(
+        config.get("language") or artist_dir.parent.name or "und")
     active = load_active_evidence(evidence_dir)
     path = Path(known_forms_path) if known_forms_path else default_known_forms_path(language)
     known_forms = load_known_forms(path)
+    normalization_forms = {}
+    for (layer, subject_kind, subject_id), claim in active["claims"].items():
+        if layer != "normalization" or subject_kind != "occurrence":
+            continue
+        value = claim.get("value") or {}
+        forms = [
+            str(unit.get("normalized_form") or "")
+            for unit in value.get("analysis_units") or []
+            if unit.get("normalized_form")
+        ]
+        if forms:
+            normalization_forms[subject_id] = forms
     classifications = classify_occurrences(
-        active["segments"], active["occurrences"], known_forms=known_forms)
+        active["segments"], active["occurrences"], known_forms=known_forms,
+        normalization_forms=normalization_forms)
 
     input_projection = {
         "ledger_run": active["ledger_run"],
@@ -187,6 +218,10 @@ def write_classifier_run(artist_dir, policy="basic", known_forms_path=None,
             for row in active["segments"] if row.get("state") == "present"
         },
         "known_forms": semantic_fingerprint(sorted(known_forms)),
+        "normalization_runs": (
+            (active["profile"].get("claim_runs") or {}).get("normalization")
+            or (active["profile"].get("runs") or {}).get("normalization")
+        ),
         "step_version": STEP_VERSION,
     }
     run_id = stable_id(
@@ -211,6 +246,7 @@ def write_classifier_run(artist_dir, policy="basic", known_forms_path=None,
                 "segment_revision": occurrence.get("segment_revision_id"),
                 "rules_version": STEP_VERSION,
                 "known_forms_hash": input_projection["known_forms"],
+                "normalized_forms": normalization_forms.get(occurrence_id, []),
             },
             confidence=0.99,
             input_refs=[{

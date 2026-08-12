@@ -70,6 +70,7 @@ from util_6a_pos_menu_filter import (
     filter_senses_by_pos,
     filter_senses_by_precomputed_pos,
     sense_compatible_with_example_pos,
+    auto_sense_rejection_reason,
     TRUSTED_FILTER_POS,
 )
 from util_5c_sense_menu_format import (
@@ -560,7 +561,8 @@ def main():
             valid_ids = valid_ids_by_word[_w]
             for _method in list(_method_map.keys()):
                 fresh_items = [it for it in _method_map[_method]
-                               if it.get("sense") in valid_ids]
+                               if (it.get("translation") and it.get("pos"))
+                               or it.get("sense") in valid_ids]
                 if len(fresh_items) != len(_method_map[_method]):
                     stale_dropped += len(_method_map[_method]) - len(fresh_items)
                     if fresh_items:
@@ -610,6 +612,8 @@ def main():
     skipped_routing = 0
     pos_filtered_count = 0
     pos_single_sense_count = 0
+    auto_vetoed_examples = 0
+    auto_vetoed_words = set()
     for inv_entry in inventory:
         word = inv_entry["word"]
 
@@ -745,12 +749,26 @@ def main():
             pos_filtered_count += 1
 
         if len(keep_indices) == 1:
-            single_sense_count += 1
-            if len(word_senses) > 1:
-                pos_single_sense_count += 1
             only_idx = keep_indices[0]
-            output[word] = {args.auto_method_name: [{"sense": id_list[only_idx],
-                                                     "examples": list(range(len(examples)))}]}
+            allowed_examples = []
+            for ex_idx, example in enumerate(examples):
+                reason = auto_sense_rejection_reason(
+                    word, word_senses[only_idx], example,
+                    precomputed.get(ex_idx))
+                if reason:
+                    auto_vetoed_examples += 1
+                    auto_vetoed_words.add(word)
+                    continue
+                allowed_examples.append(ex_idx)
+            if allowed_examples:
+                single_sense_count += 1
+                selected_method = args.auto_method_name
+                if len(word_senses) > 1:
+                    pos_single_sense_count += 1
+                    selected_method = "pos-auto"
+                output[word] = {selected_method: [{
+                    "sense": id_list[only_idx], "examples": allowed_examples,
+                }]}
             continue
 
         if use_keyword:
@@ -864,6 +882,8 @@ def main():
         print("  POS-filtered menus: %d" % pos_filtered_count)
     if pos_single_sense_count:
         print("  POS-resolved to single sense: %d" % pos_single_sense_count)
+    if auto_vetoed_examples:
+        print("  Single-sense auto vetoes: %d example(s)" % auto_vetoed_examples)
     print("  Single-sense (no classification): %d" % single_sense_count)
     print("  Multi-sense to classify: %d" % len(work_items))
     print("  No senses: %d" % no_senses_count)
@@ -894,7 +914,17 @@ def main():
     # With --force: first wipe this-method entries from existing so words
     # that fail to classify in the new run lose their stale assignments.
     if output_file.exists():
-        existing = load_assignments(output_file)
+        # Reuse the already-sanitized mapping loaded above. Reloading here
+        # silently resurrected every stale menu ID that the preparation pass
+        # had just removed. Inline gap-fill senses were never removed: their
+        # definition is self-contained and is not expected to exist in a menu.
+        existing = existing_assigns
+        for word in auto_vetoed_words:
+            word_data = existing.get(word)
+            if isinstance(word_data, dict):
+                word_data.pop(args.auto_method_name, None)
+                if not word_data:
+                    existing.pop(word, None)
         if args.force:
             wiped = 0
             for word, word_data in list(existing.items()):

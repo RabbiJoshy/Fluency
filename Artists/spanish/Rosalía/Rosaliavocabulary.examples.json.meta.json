@@ -1,5 +1,22 @@
 {
   "step_name": "assemble_artist_vocabulary",
-  "step_version": 8,
-  "generated_at": 1785530570
+  "step_version": 15,
+  "generated_at": 1786482160,
+  "ledger_run": "run_c9a215f57486286226ae22c9",
+  "corpus_profile_hash": "sha256:cfcdaf2a88a8959084f46fad4ca56373fd72115589201163bfeeec03067f6ad1",
+  "excluded_labels": [
+    "adlib",
+    "echo",
+    "stutter"
+  ],
+  "layer_sha256": {
+    "word_inventory": "4995bf3c555bcfa6e3e289913605ce078afc5e1f0ff3d59c2686b235adc3a64a",
+    "examples_raw": "214a4beee73fd42f3c164602eda75c9e6f76793f90f2337bcef07d71d6204047",
+    "example_pos": "bb045a1f04eae4b2f2788ff7851bf5025a2eae626fadc69bfa535a74ccb2e328",
+    "sense_assignments_lemma": "4e11b34d6e89141a11b6cace06db113a913659b37e04ec791becca87a248ad5f",
+    "word_routing": "006b446ba295a94e090050a59203d2a5fcfdf1bfcfb22b7044addb71301a2400",
+    "ranking": "08f94b2b58f2be5e8cf4258fdab2483da8fecee427110147723fb810385684d6",
+    "example_translations": "28ae276b2fb8566b41d6c13e1c2b98f0e6626d5b55b45856473e99a8c3f4cc03",
+    "mwe_detected": "617ff625abac5a87a3c4cb22ca9f933a0d28b5fd7fae014bd06306ef118738a4"
+  }
 }

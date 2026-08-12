@@ -18,6 +18,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from pipeline.artist.util_2b_evidence_view import (  # noqa: E402
+    corpus_profile_fingerprint,
     first_difference,
     load_profile,
     materialize_vocabulary_evidence,
@@ -26,7 +27,11 @@ from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
 
-STEP_VERSION = 1
+STEP_VERSION = 2
+STEP_VERSION_NOTES = {
+    1: "materialize a selected Evidence Store corpus profile with strict neutral parity",
+    2: "+ stamp the semantic corpus-profile fingerprint for downstream build contracts",
+}
 
 
 def _load_immutable_baseline(evidence_dir, profile):
@@ -90,6 +95,7 @@ def materialize_artist(artist_dir, output_path=None, max_examples=None,
         "materialize_artist_corpus", STEP_VERSION,
         extra={
             "ledger_run": ledger_run,
+            "corpus_profile_hash": corpus_profile_fingerprint(profile),
             "excluded_labels": summary["excluded_labels"],
         },
     ))

@@ -118,6 +118,44 @@ class AssignmentOccurrenceIdentityTests(unittest.TestCase):
 
         self.assertEqual(resolved["new"][0]["method"], "my-local-wsd")
 
+    def test_prompt_tier_archives_unknown_model_claim_but_keeps_named_run(self):
+        resolved = resolve_best_per_example({
+            "spanishdict-flash-lite": [
+                {"sense": "old", "examples": [0], "example_ids": ["seg-1"],
+                 "prompt_id": "legacy-unknown"},
+                {"sense": "new", "examples": [1], "example_ids": ["seg-2"],
+                 "prompt_id": "sd-cop-v2"},
+            ],
+        }, min_prompt_tier=20)
+
+        self.assertNotIn("old", resolved)
+        self.assertEqual(resolved["new"][0]["ex_id"], "seg-2")
+
+    def test_named_prompt_policy_is_explicit_and_tier_independent(self):
+        resolved = resolve_best_per_example({
+            "spanishdict-flash-lite": [
+                {"sense": "unknown", "examples": [0],
+                 "example_ids": ["seg-1"], "prompt_id": "legacy-unknown"},
+                {"sense": "old-named", "examples": [1],
+                 "example_ids": ["seg-2"], "prompt_id": "sd-cop-v3"},
+                {"sense": "accepted", "examples": [2],
+                 "example_ids": ["seg-3"], "prompt_id": "sd-lexical-v1-g31"},
+            ],
+        }, accepted_model_prompt_ids={"sd-lexical-v1-g31"})
+
+        self.assertEqual(set(resolved), {"accepted"})
+
+    def test_explicit_retention_evidence_is_prompt_tier_exempt(self):
+        resolved = resolve_best_per_example({
+            "legacy-independent-consensus-v1": [{
+                "sense": "kept", "examples": [0], "example_ids": ["seg-1"],
+            }],
+        }, min_prompt_tier=20,
+           method_priority={"legacy-independent-consensus-v1": 55})
+
+        self.assertEqual(resolved["kept"][0]["method"],
+                         "legacy-independent-consensus-v1")
+
     def test_occurrences_in_one_teaching_line_can_resolve_independently(self):
         word_data = {
             "gemini": [

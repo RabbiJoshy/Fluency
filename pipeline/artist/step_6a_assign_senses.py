@@ -12,7 +12,7 @@ Flags:
     --sense-source {wiktionary, spanishdict}   (default: spanishdict)
     --max-examples N                           (Gemini per-word cap, default 10)
     --force                                    (re-classify everything)
-    --gemini-model MODEL                       (default: gemini-3.5-flash-lite)
+    --gemini-model MODEL                       (default: gemini-3.1-flash-lite)
 
 Usage:
     .venv/bin/python3 pipeline/artist/step_6a_assign_senses.py \
@@ -54,15 +54,11 @@ def _spanishdict_args_local():
 
 
 def _spanishdict_args_gemini(gemini_model):
-    # Default (gemini_model is None) resolves to SD_DEFAULT_MODEL
-    # (gemini-3.5-flash-lite) in step_6c, a flash-lite model → spanishdict-flash-lite priority.
-    method = ("spanishdict-flash"
-              if (gemini_model and "flash-lite" not in gemini_model)
-              else "spanishdict-flash-lite")
+    # Let step_6c choose the method identity from the registered prompt. This
+    # keeps each lexical prompt/model run separate from historical data.
     return [
         "--sense-menu-file", "sense_menu/spanishdict.json",
         "--assignments-file", "sense_assignments/spanishdict.json",
-        "--method-name", method,
         "--keyword-method-name", "spanishdict-keyword",
         "--auto-method-name", "spanishdict-auto",
         "--menu-source-label", "spanishdict",
@@ -96,8 +92,15 @@ def main():
                              "Useful with --force for surgical re-classification.")
     parser.add_argument("--gemini-model", default=None,
                         help="Gemini model. Default (unset) lets step_6c pick "
-                             "gemini-3.5-flash-lite (SD_DEFAULT_MODEL) for the "
-                             "SpanishDict classify-or-propose path.")
+                             "gemini-3.1-flash-lite (SD_DEFAULT_MODEL) for the "
+                             "SpanishDict lexical-WSD path.")
+    parser.add_argument("--prompt-id", default=None,
+                        help="Registered prompt identity. Omit for the current "
+                             "sd-lexical-v2-g31 default; required when choosing "
+                             "a model belonging to another prompt run.")
+    parser.add_argument("--replace-prompt-id", action="append", default=[],
+                        help="Replace only stable evidence carrying this old "
+                             "prompt id (repeatable).")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -117,6 +120,11 @@ def main():
     # -----------------------------------------------------------------
     # Primary classifier
     # -----------------------------------------------------------------
+    if args.sense_source == "spanishdict":
+        run_step("Refresh configured shared sense registers",
+                 "artist/tool_5d_build_shared_sense_registers.py",
+                 ["--artist-dir", artist_dir])
+
     if args.classifier in ("keyword", "biencoder"):
         bienc_args = ["--artist-dir", artist_dir]
         if args.sense_source == "spanishdict":
@@ -152,6 +160,10 @@ def main():
             gemini_args.extend(["--word", word])
         if args.gemini_model:
             gemini_args.extend(["--gemini-model", args.gemini_model])
+        if args.prompt_id:
+            gemini_args.extend(["--prompt-id", args.prompt_id])
+        for prompt_id in args.replace_prompt_id:
+            gemini_args.extend(["--replace-prompt-id", prompt_id])
         if args.max_examples is not None:
             gemini_args.extend(["--max-examples", str(args.max_examples)])
         if args.gemini_workers is not None:
@@ -174,6 +186,10 @@ def main():
             gemini_args.extend(["--word", word])
         if args.gemini_model:
             gemini_args.extend(["--gemini-model", args.gemini_model])
+        if args.prompt_id:
+            gemini_args.extend(["--prompt-id", args.prompt_id])
+        for prompt_id in args.replace_prompt_id:
+            gemini_args.extend(["--replace-prompt-id", prompt_id])
         if args.max_examples is not None:
             gemini_args.extend(["--max-examples", str(args.max_examples)])
         if args.gemini_workers is not None:

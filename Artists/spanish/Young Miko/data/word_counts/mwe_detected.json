@@ -13,6 +13,10 @@
           "title": "FINA",
           "matched_variant": "voy a ser",
           "matched_surface": "voy a ser",
+          "segment_id": "seg_10d3cc6b95d20229bedaba26",
+          "occurrence_ids": [
+            "occ_642b856b26877b78779f6733"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -25,6 +29,10 @@
           "title": "FINA",
           "matched_variant": "vas a hacer",
           "matched_surface": "va' a hacer",
+          "segment_id": "seg_a4542f12d0acf9c30d54a560",
+          "occurrence_ids": [
+            "occ_3e9e86dd31616d90418e5dc1"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -37,6 +45,10 @@
           "title": "Sucia",
           "matched_variant": "vamos a empezar",
           "matched_surface": "vamo' a empezar",
+          "segment_id": "seg_87b2ca88fef8df35bb1fc597",
+          "occurrence_ids": [
+            "occ_9be19177d9ffc872023c801c"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -48,6 +60,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "va a decir",
           "matched_surface": "va a decir",
+          "segment_id": "seg_395af75dc64617b1a975aa6e",
+          "occurrence_ids": [
+            "occ_98731f810b5277e4958fc00a"
+          ],
           "vocalists": [
             "Tokischa",
             "Bad Gyal",
@@ -61,6 +77,11 @@
           "title": "Classy 101",
           "matched_variant": "voy a fantasmear",
           "matched_surface": "vo'a fantasmear",
+          "segment_id": "seg_9261b22a03c4ba3f8a45bd9d",
+          "occurrence_ids": [
+            "occ_c51a0acd7dd3acf2eeffb3fe",
+            "occ_c9a4acbda4d756db41637d2d"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -102,6 +123,10 @@
           "title": "FINA",
           "matched_variant": "sabes que",
           "matched_surface": "sabe' que",
+          "segment_id": "seg_deeee0c96c774b89d8ed150d",
+          "occurrence_ids": [
+            "occ_f95e2b9e6f41f7aa80151bcf"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -112,7 +137,11 @@
           "line": "Yo sé que tu face card no declina",
           "title": "WASSUP",
           "matched_variant": "sé que",
-          "matched_surface": "sé que"
+          "matched_surface": "sé que",
+          "segment_id": "seg_8993fa7fc541487c1c3e4dcc",
+          "occurrence_ids": [
+            "occ_032441ed3625b266c9eeb573"
+          ]
         },
         {
           "id": "9110676:14",
@@ -120,6 +149,10 @@
           "title": "COLMILLO",
           "matched_variant": "sabe que",
           "matched_surface": "sabe que",
+          "segment_id": "seg_ff863aea04cb78f5da80b383",
+          "occurrence_ids": [
+            "occ_2a74df7b03b7a2a1f331a6a7"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -131,6 +164,10 @@
           "title": "offline",
           "matched_variant": "saber que",
           "matched_surface": "saber que",
+          "segment_id": "seg_bf325332485c338855af54d6",
+          "occurrence_ids": [
+            "occ_66fc2e4a708da0d28d0d28ee"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -141,7 +178,11 @@
           "line": "Saben que es Baby Mi, yes, it's me, ey",
           "title": "rookie of the year",
           "matched_variant": "saben que",
-          "matched_surface": "Saben que"
+          "matched_surface": "Saben que",
+          "segment_id": "seg_37ea21f44a84973cd4b2bf83",
+          "occurrence_ids": [
+            "occ_4bf61d39cfeb4c67ad467d34"
+          ]
         }
       ],
       "variants": [
@@ -175,14 +216,22 @@
           "line": "Me gusta la película, pero solo a vece'",
           "title": "WASSUP",
           "matched_variant": "me gusta",
-          "matched_surface": "Me gusta"
+          "matched_surface": "Me gusta",
+          "segment_id": "seg_22aa78e70fd9319750967e97",
+          "occurrence_ids": [
+            "occ_f57f358d9f711f4dded48015"
+          ]
         },
         {
           "id": "11752402:27",
           "line": "A ti, mami, ¿qué te gusta? Rápido se crece",
           "title": "WASSUP",
           "matched_variant": "te gusta",
-          "matched_surface": "te gusta"
+          "matched_surface": "te gusta",
+          "segment_id": "seg_2074b0872a543fc17ccaab07",
+          "occurrence_ids": [
+            "occ_2581e7b09c72af8a84ca4e50"
+          ]
         },
         {
           "id": "9614105:17",
@@ -190,6 +239,10 @@
           "title": "FINA",
           "matched_variant": "le gusta",
           "matched_surface": "le gusta",
+          "segment_id": "seg_22adedb13be5fa3f9a3d726a",
+          "occurrence_ids": [
+            "occ_5a38ae62db435cd4483f5080"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -202,6 +255,10 @@
           "title": "FINA",
           "matched_variant": "me gustan",
           "matched_surface": "Me gustan",
+          "segment_id": "seg_b17ed76819ab7a8a707fbc21",
+          "occurrence_ids": [
+            "occ_459b0c89e2c65eb8e8b88d9e"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -214,6 +271,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "me gusta",
           "matched_surface": "me gusta",
+          "segment_id": "seg_1f7f8d5d34c4268b06f35ed9",
+          "occurrence_ids": [
+            "occ_cc0b3f1f376aba5d182bade5"
+          ],
           "vocalists": [
             "Tokischa",
             "Bad Gyal",
@@ -250,6 +311,10 @@
           "title": "FINA",
           "matched_variant": "dijo que",
           "matched_surface": "dijo que",
+          "segment_id": "seg_e3dd31c4e7c6e2e842ec511d",
+          "occurrence_ids": [
+            "occ_00a1ea0ddb9d436ccb3be2f0"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -262,6 +327,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "dice que",
           "matched_surface": "Dice que",
+          "segment_id": "seg_d6c14b6acbf93151139522aa",
+          "occurrence_ids": [
+            "occ_bf02b123a3fc1083ddd7f4b5"
+          ],
           "vocalists": [
             "Tokischa",
             "Bad Gyal",
@@ -274,7 +343,11 @@
           "line": "¿Dicen que debo favore'? Cabrón, sí, me imagino",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "dicen que",
-          "matched_surface": "Dicen que"
+          "matched_surface": "Dicen que",
+          "segment_id": "seg_ab73dd83bc41eea45154375d",
+          "occurrence_ids": [
+            "occ_8a92d7980540f11518bdd939"
+          ]
         },
         {
           "id": "10220934:27",
@@ -282,6 +355,10 @@
           "title": "offline",
           "matched_variant": "dijiste que",
           "matched_surface": "dijiste que",
+          "segment_id": "seg_65940bdfc5dd2fdd0c918cae",
+          "occurrence_ids": [
+            "occ_bebc9448bfe108501d55baa8"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -293,7 +370,11 @@
           "line": "No me diga' que no, pa' despué' que sí",
           "title": "Duro",
           "matched_variant": "digas que",
-          "matched_surface": "diga' que"
+          "matched_surface": "diga' que",
+          "segment_id": "seg_121acf5cd1a93452579a80ea",
+          "occurrence_ids": [
+            "occ_1564133120c3d5a894d27d4a"
+          ]
         }
       ],
       "variants": [
@@ -334,6 +415,10 @@
           "title": "FINA",
           "matched_variant": "es que",
           "matched_surface": "es que",
+          "segment_id": "seg_6e21306ddac2b5ef8b778da2",
+          "occurrence_ids": [
+            "occ_aff785c15b4f2901dee49d5c"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -344,21 +429,33 @@
           "line": "Sí, es que, man, yo te vi, afuera, en la fila pa' mi show",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "es que",
-          "matched_surface": "es que"
+          "matched_surface": "es que",
+          "segment_id": "seg_8c6c12c4aec4f87c0c348acc",
+          "occurrence_ids": [
+            "occ_c33e2cd0d78883c502fc5331"
+          ]
         },
         {
           "id": "9923845:48",
           "line": "Es que si cambian de color, no me quiero asociar",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "es que",
-          "matched_surface": "Es que"
+          "matched_surface": "Es que",
+          "segment_id": "seg_1fe5e9dd5c6fdf9095f32eed",
+          "occurrence_ids": [
+            "occ_eabdc6826b5d2c7121c41bb7"
+          ]
         },
         {
           "id": "8874493:5",
           "line": "Es que rápido me enchulo de las nena' (Muah)",
           "title": "Lisa",
           "matched_variant": "es que",
-          "matched_surface": "Es que"
+          "matched_surface": "Es que",
+          "segment_id": "seg_8cfff5f9a0291369fb89912a",
+          "occurrence_ids": [
+            "occ_735d5d26a69a50c8c3feea24"
+          ]
         },
         {
           "id": "11373471:6",
@@ -366,6 +463,11 @@
           "title": "Gata",
           "matched_variant": "es que",
           "matched_surface": "es que",
+          "segment_id": "seg_e9aab7a1b66c2bfff8eba81e",
+          "occurrence_ids": [
+            "occ_9fbfa43c8b729984fa1c8bd5",
+            "occ_c385244f3b5e5c781bd9712c"
+          ],
           "vocalists": [
             "Young Miko",
             "Central Cee"
@@ -391,6 +493,10 @@
           "title": "COLMILLO",
           "matched_variant": "no hay",
           "matched_surface": "no hay",
+          "segment_id": "seg_2fc9358a9f18ed30a6021dd0",
+          "occurrence_ids": [
+            "occ_a7ebeaab8fe4ad34446f396d"
+          ],
           "vocalists": [
             "Jowell"
           ],
@@ -401,7 +507,11 @@
           "line": "Acá arriba ya no hay cobertura",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "no hay",
-          "matched_surface": "no hay"
+          "matched_surface": "no hay",
+          "segment_id": "seg_07c7dfe9f7741377cc311e01",
+          "occurrence_ids": [
+            "occ_acf288bd9d7153270d388e8e"
+          ]
         },
         {
           "id": "10220934:15",
@@ -409,6 +519,10 @@
           "title": "offline",
           "matched_variant": "no hay",
           "matched_surface": "No hay",
+          "segment_id": "seg_870eb2ef9c221298a2e7028b",
+          "occurrence_ids": [
+            "occ_0b165b933a7c972f98e414b1"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -420,6 +534,10 @@
           "title": "offline",
           "matched_variant": "no hay",
           "matched_surface": "no hay",
+          "segment_id": "seg_49691760735878bdfd95af21",
+          "occurrence_ids": [
+            "occ_d9ec45ee41ab4cc1c8c031b5"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -431,6 +549,10 @@
           "title": "offline",
           "matched_variant": "no hay",
           "matched_surface": "no hay",
+          "segment_id": "seg_e9daf379e2ef976491952dd0",
+          "occurrence_ids": [
+            "occ_4a54e66638d0688de4a6c315"
+          ],
           "vocalists": [
             "Feid",
             "Young Miko"
@@ -453,6 +575,10 @@
           "title": "FINA",
           "matched_variant": "no sé",
           "matched_surface": "No sé",
+          "segment_id": "seg_34a84b6b647255f7c49fb06c",
+          "occurrence_ids": [
+            "occ_51740a00f1b438345edb5fa0"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -464,6 +590,10 @@
           "title": "COLMILLO",
           "matched_variant": "no sé",
           "matched_surface": "no sé",
+          "segment_id": "seg_fd0eed848a2260b0b8072300",
+          "occurrence_ids": [
+            "occ_a69f39ec22d23232ae0eafc5"
+          ],
           "vocalists": [
             "J Balvin",
             "Young Miko"
@@ -476,6 +606,10 @@
           "title": "COLMILLO",
           "matched_variant": "no sé",
           "matched_surface": "no sé",
+          "segment_id": "seg_0ccf02f3df5bc4475eea5cbd",
+          "occurrence_ids": [
+            "occ_fc47ae45c0aa0b7fb46e6a66"
+          ],
           "vocalists": [
             "Young Miko",
             "J Balvin"
@@ -487,14 +621,22 @@
           "line": "No sé a cuántos pies de altura",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "no sé",
-          "matched_surface": "No sé"
+          "matched_surface": "No sé",
+          "segment_id": "seg_b6eb17c20ec89b2e3218be72",
+          "occurrence_ids": [
+            "occ_9d60ba71ce5e3b610818f3ac"
+          ]
         },
         {
           "id": "9923845:8",
           "line": "No sé cuándo la vo'a ver",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "no sé",
-          "matched_surface": "No sé"
+          "matched_surface": "No sé",
+          "segment_id": "seg_75e15af4f5903c4c0a613d0e",
+          "occurrence_ids": [
+            "occ_2da0ee19cdbbb174edac8a7e"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -512,6 +654,10 @@
           "title": "COLMILLO",
           "matched_variant": "quiere que",
           "matched_surface": "Quiere que",
+          "segment_id": "seg_11c597c89aef4337b05c091a",
+          "occurrence_ids": [
+            "occ_4e691c4256e7994ec69f023b"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -523,6 +669,10 @@
           "title": "COLMILLO",
           "matched_variant": "quiero que",
           "matched_surface": "Quiero que",
+          "segment_id": "seg_2db75af811ca691b0f08152d",
+          "occurrence_ids": [
+            "occ_0175339bebae94aedb61058c"
+          ],
           "vocalists": [
             "Randy",
             "Jowell"
@@ -535,6 +685,10 @@
           "title": "Traviesa",
           "matched_variant": "quería que",
           "matched_surface": "quería que",
+          "segment_id": "seg_3f1ad7af67eb2d89f4e3e8df",
+          "occurrence_ids": [
+            "occ_6865cad1851db39b915d9771"
+          ],
           "vocalists": [
             "Eladio Carrión",
             "Young Miko",
@@ -547,7 +701,11 @@
           "line": "¿Quieres que siga? (Sí) ¿Cómo se dice? (Please)",
           "title": "Piki",
           "matched_variant": "quieres que",
-          "matched_surface": "Quieres que"
+          "matched_surface": "Quieres que",
+          "segment_id": "seg_1a5cee28fc4eff203206f88d",
+          "occurrence_ids": [
+            "occ_53add05a7da2b92964270ce8"
+          ]
         },
         {
           "id": "13170926:1",
@@ -555,6 +713,10 @@
           "title": "Te llevo tatuada",
           "matched_variant": "quise que",
           "matched_surface": "Quise que",
+          "segment_id": "seg_6db09b8df37c605fa2431c2b",
+          "occurrence_ids": [
+            "occ_44f94b2f42986d74ad5579a4"
+          ],
           "vocalists": [
             "Jorge Drexler",
             "Young Miko"
@@ -592,6 +754,10 @@
           "title": "FINA",
           "matched_variant": "para que",
           "matched_surface": "Pa' que",
+          "segment_id": "seg_b0504e1065f4f04a6149657a",
+          "occurrence_ids": [
+            "occ_a2e3fcfe5034bebf879d2e7f"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -603,21 +769,33 @@
           "line": "Cuando me engancho to'a las cadena' es pa' que me pese",
           "title": "WASSUP",
           "matched_variant": "para que",
-          "matched_surface": "pa' que"
+          "matched_surface": "pa' que",
+          "segment_id": "seg_9fc0cfe7be6ced516f01a20f",
+          "occurrence_ids": [
+            "occ_b8efdf279d64c271a8908e5b"
+          ]
         },
         {
           "id": "9923845:14",
           "line": "Pa' que suba los stories desde el Bentley",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "para que",
-          "matched_surface": "Pa' que"
+          "matched_surface": "Pa' que",
+          "segment_id": "seg_7d00c6185618a15380e37004",
+          "occurrence_ids": [
+            "occ_c67ed253902bfe88aa4f6551"
+          ]
         },
         {
           "id": "9923845:57",
           "line": "Pa' que suban los stories desde el Bentley",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "para que",
-          "matched_surface": "Pa' que"
+          "matched_surface": "Pa' que",
+          "segment_id": "seg_008069236c908f3686f496b6",
+          "occurrence_ids": [
+            "occ_049b917751986e03c05877ff"
+          ]
         },
         {
           "id": "9402498:14",
@@ -625,6 +803,10 @@
           "title": "DISPO",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
+          "segment_id": "seg_5d5607a915f477e01b91ac0d",
+          "occurrence_ids": [
+            "occ_66acd9affd2cffbdaac78be8"
+          ],
           "vocalists": [
             "KAROL G"
           ],
@@ -637,71 +819,89 @@
       "source": "artist-curated"
     },
     {
-      "expression": "tú eres",
-      "translation": "you are (elided)",
-      "count": 20,
-      "occurrence_count": 20,
-      "num_songs": 18,
+      "expression": "todas las",
+      "translation": "all the (fem., elided)",
+      "count": 21,
+      "occurrence_count": 21,
+      "num_songs": 16,
       "examples": [
         {
-          "id": "9614105:47",
-          "line": "Yo soy tu Bambino, tú eres mi villana",
+          "id": "9614105:53",
+          "line": "Oye, esto es pa' toa' las bebesota' del mundo entero",
           "title": "FINA",
-          "matched_variant": "tú eres",
-          "matched_surface": "tú eres",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las",
+          "segment_id": "seg_8c91f60904cf1b8b988bbe37",
+          "occurrence_ids": [
+            "occ_6f821a5ab6b9461c8663aeaa"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
           "sung_by_primary_artist": false
         },
         {
-          "id": "9216707:8",
-          "line": "Yo sé, papi, que tú eres muy chulo (Ya sé)",
-          "title": "Chulo pt.2",
-          "matched_variant": "tú eres",
-          "matched_surface": "tú eres",
+          "id": "9923845:42",
+          "line": "Aunque toa' las marca' me quieran auspiciar",
+          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las",
+          "segment_id": "seg_2b04ae43e7a55ee13ca20136",
+          "occurrence_ids": [
+            "occ_b2a09332511d46fe5d69ace3"
+          ]
+        },
+        {
+          "id": "11373471:5",
+          "line": "Mucha' gata', gata' a fogata, toa' las prenda' y la plata",
+          "title": "Gata",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las",
+          "segment_id": "seg_8516d02119f5a5db16e94f5a",
+          "occurrence_ids": [
+            "occ_3bd12a70e574ab8f972f8355"
+          ],
           "vocalists": [
-            "Bad Gyal"
+            "Young Miko",
+            "Central Cee"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "8783598:9",
+          "line": "Pichea pa' salir, en toa' las foto' infraganti (Una mami)",
+          "title": "Big Booty",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las",
+          "segment_id": "seg_c0f068faca61c326ed14b203",
+          "occurrence_ids": [
+            "occ_e227a2e7e34e03ade8487dec"
+          ],
+          "vocalists": [
+            "Hozwal"
           ],
           "sung_by_primary_artist": false
         },
         {
-          "id": "9216707:15",
-          "line": "Yo sé, papi, que tú ere' muy chulo (Ay)",
-          "title": "Chulo pt.2",
-          "matched_variant": "tú eres",
-          "matched_surface": "tú ere'",
-          "vocalists": [
-            "Bad Gyal",
-            "Tokischa"
+          "id": "8783598:40",
+          "line": "Pichea pa' salir y en toa' las foto' infraganti (Una mami), brr",
+          "title": "Big Booty",
+          "matched_variant": "todas las",
+          "matched_surface": "toa' las",
+          "segment_id": "seg_ba1198bd319044ea73b95cff",
+          "occurrence_ids": [
+            "occ_351e59b75d5041e30627b84e"
           ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8970064:13",
-          "line": "Tú ere' una bandi con cuerpo de Barbie, yeah",
-          "title": "Classy 101",
-          "matched_variant": "tú eres",
-          "matched_surface": "Tú ere'",
           "vocalists": [
-            "Feid"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9237320:19",
-          "line": "Why you gotta cry? Se nota que tú ere' piscis",
-          "title": "mañana",
-          "matched_variant": "tú eres",
-          "matched_surface": "tú ere'",
-          "vocalists": [
-            "Young Miko"
+            "Young Miko",
+            "Hozwal"
           ],
           "sung_by_primary_artist": true
         }
       ],
       "variants": [
-        "tú ere'"
+        "to'as las",
+        "toa' las"
       ],
       "source": "artist-curated"
     },
@@ -718,6 +918,10 @@
           "title": "FINA",
           "matched_variant": "tú sabes",
           "matched_surface": "tú sabe'",
+          "segment_id": "seg_deeee0c96c774b89d8ed150d",
+          "occurrence_ids": [
+            "occ_158396e64b3a916ac72a36e3"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -729,6 +933,11 @@
           "title": "Classy 101",
           "matched_variant": "tú sabes",
           "matched_surface": "tú sabe'",
+          "segment_id": "seg_274caf91ba07f9044df1e5fa",
+          "occurrence_ids": [
+            "occ_74645e0bda0ab942e7264fd2",
+            "occ_1ce63f9914780eb0a9130622"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -741,6 +950,11 @@
           "title": "Classy 101",
           "matched_variant": "tú sabes",
           "matched_surface": "tú sabe'",
+          "segment_id": "seg_ed42bc9b154fc3cf1c0fcd1c",
+          "occurrence_ids": [
+            "occ_ca121148015ac86747b16ab4",
+            "occ_a72d9903b10179002565166e"
+          ],
           "vocalists": [
             "Feid",
             "Young Miko"
@@ -753,6 +967,10 @@
           "title": "Big Booty",
           "matched_variant": "tú sabes",
           "matched_surface": "tú sabe'",
+          "segment_id": "seg_208f5671d0c01eccaa06d6a7",
+          "occurrence_ids": [
+            "occ_13c2e2aedfea2c291a6d8c5b"
+          ],
           "vocalists": [
             "Hozwal"
           ],
@@ -763,11 +981,103 @@
           "line": "Manín, ¿qué tú sabe' de esto?",
           "title": "rookie of the year",
           "matched_variant": "tú sabes",
-          "matched_surface": "tú sabe'"
+          "matched_surface": "tú sabe'",
+          "segment_id": "seg_54811586113bac9942f5ec1e",
+          "occurrence_ids": [
+            "occ_f024c8e860532b8c4f79c19f"
+          ]
         }
       ],
       "variants": [
         "tú sabe'"
+      ],
+      "source": "artist-curated"
+    },
+    {
+      "expression": "tú eres",
+      "translation": "you are (elided)",
+      "count": 19,
+      "occurrence_count": 19,
+      "num_songs": 18,
+      "examples": [
+        {
+          "id": "9614105:47",
+          "line": "Yo soy tu Bambino, tú eres mi villana",
+          "title": "FINA",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú eres",
+          "segment_id": "seg_d66cba77471353c4b2421630",
+          "occurrence_ids": [
+            "occ_34a5993f4e342aba40ff5738"
+          ],
+          "vocalists": [
+            "Bad Bunny"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "9216707:8",
+          "line": "Yo sé, papi, que tú eres muy chulo (Ya sé)",
+          "title": "Chulo pt.2",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú eres",
+          "segment_id": "seg_2e93f377700f659743068975",
+          "occurrence_ids": [
+            "occ_ed130430a7d787f60b15c4f3"
+          ],
+          "vocalists": [
+            "Bad Gyal"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "8970064:13",
+          "line": "Tú ere' una bandi con cuerpo de Barbie, yeah",
+          "title": "Classy 101",
+          "matched_variant": "tú eres",
+          "matched_surface": "Tú ere'",
+          "segment_id": "seg_1d08fe54f71c8fc7883060b9",
+          "occurrence_ids": [
+            "occ_98f4fee81bac7e3ad0c565e8"
+          ],
+          "vocalists": [
+            "Feid"
+          ],
+          "sung_by_primary_artist": false
+        },
+        {
+          "id": "9237320:19",
+          "line": "Why you gotta cry? Se nota que tú ere' piscis",
+          "title": "mañana",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú ere'",
+          "segment_id": "seg_58c53c60cfa09163f663ae7e",
+          "occurrence_ids": [
+            "occ_848a26c753bddd0858f78309"
+          ],
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "9402498:33",
+          "line": "Ma, tú ere' bichota y por pendejo' no se llora",
+          "title": "DISPO",
+          "matched_variant": "tú eres",
+          "matched_surface": "tú ere'",
+          "segment_id": "seg_98cfadfd3bca97046d5de066",
+          "occurrence_ids": [
+            "occ_022522f69fc01a223cfae919"
+          ],
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        }
+      ],
+      "variants": [
+        "tú ere'"
       ],
       "source": "artist-curated"
     },
@@ -784,6 +1094,11 @@
           "title": "Classy 101",
           "matched_variant": "la disco",
           "matched_surface": "la disco",
+          "segment_id": "seg_f3bddb78edc661b9e8737ca1",
+          "occurrence_ids": [
+            "occ_649d065ef7e434bc332324bf",
+            "occ_b6fbba10530dafd39c6639ef"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -794,7 +1109,11 @@
           "line": "Siempre que pisa la disco, todos vienen con lo mismo",
           "title": "Likey Likey",
           "matched_variant": "la disco",
-          "matched_surface": "la disco"
+          "matched_surface": "la disco",
+          "segment_id": "seg_31a316107fb846cbbdf97560",
+          "occurrence_ids": [
+            "occ_0041a9d668aa814378cfacad"
+          ]
         },
         {
           "id": "9402498:6",
@@ -802,6 +1121,10 @@
           "title": "DISPO",
           "matched_variant": "la disco",
           "matched_surface": "la disco",
+          "segment_id": "seg_6960615d6ad0e6816a9ed1ac",
+          "occurrence_ids": [
+            "occ_4923142e79a9587a9b4e2eb7"
+          ],
           "vocalists": [
             "Young Miko",
             "KAROL G"
@@ -814,6 +1137,10 @@
           "title": "DISPO",
           "matched_variant": "la disco",
           "matched_surface": "la disco",
+          "segment_id": "seg_8a74cb2ec8e7d246ad56f949",
+          "occurrence_ids": [
+            "occ_a5d15aa4c794ff82719f814e"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -825,6 +1152,11 @@
           "title": "Traviesa",
           "matched_variant": "la disco",
           "matched_surface": "la disco",
+          "segment_id": "seg_df82a0f9355017c2071d8404",
+          "occurrence_ids": [
+            "occ_8d1210878f531e09087ec300",
+            "occ_b3844d525351c16a55818061"
+          ],
           "vocalists": [
             "Eladio Carrión",
             "Young Miko",
@@ -838,8 +1170,8 @@
     {
       "expression": "te quiero",
       "translation": "I love you / I want you",
-      "count": 16,
-      "occurrence_count": 16,
+      "count": 15,
+      "occurrence_count": 15,
       "num_songs": 10,
       "examples": [
         {
@@ -847,7 +1179,11 @@
           "line": "Que te quiero con panty o sin",
           "title": "princess peach",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_0d37c7c85df04b15d8b0db86",
+          "occurrence_ids": [
+            "occ_aeaee58493f5f7787edb72e6"
+          ]
         },
         {
           "id": "9077520:29",
@@ -855,6 +1191,10 @@
           "title": "8 AM",
           "matched_variant": "te quiero",
           "matched_surface": "te quiero",
+          "segment_id": "seg_0cca5b5f643a6a334eff0e1f",
+          "occurrence_ids": [
+            "occ_22c78dd7cde7ec26e76384b8"
+          ],
           "vocalists": [
             "NICKI NICOLE",
             "Young Miko"
@@ -867,6 +1207,10 @@
           "title": "8 AM",
           "matched_variant": "te quiero",
           "matched_surface": "Te quiero",
+          "segment_id": "seg_8b426faa3dd9445101fedacb",
+          "occurrence_ids": [
+            "occ_52cbb61edebc8731469052c1"
+          ],
           "vocalists": [
             "NICKI NICOLE",
             "Young Miko"
@@ -878,81 +1222,24 @@
           "line": "Viniste en gistro y te quiero ver comando, yeah",
           "title": "Meiomi",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_36c4ca221959df0e697bc53f",
+          "occurrence_ids": [
+            "occ_70cb30b759118524a4ea9938"
+          ]
         },
         {
           "id": "10220928:30",
           "line": "Yo te quiero preguntar: \"¿Tú no te vas todavía?\"",
           "title": "arcoíris",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_070c84c5551cd3f1c072e400",
+          "occurrence_ids": [
+            "occ_fdf52e3cb06fc596b08fcd7c",
+            "occ_90ff80f1e9fe572ce76185da"
+          ]
         }
-      ],
-      "source": "artist-curated"
-    },
-    {
-      "expression": "todas las",
-      "translation": "all the (fem., elided)",
-      "count": 15,
-      "occurrence_count": 15,
-      "num_songs": 13,
-      "examples": [
-        {
-          "id": "9614105:53",
-          "line": "Oye, esto es pa' toa' las bebesota' del mundo entero",
-          "title": "FINA",
-          "matched_variant": "todas las",
-          "matched_surface": "toa' las",
-          "vocalists": [
-            "Bad Bunny"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "9923845:42",
-          "line": "Aunque toa' las marca' me quieran auspiciar",
-          "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
-          "matched_variant": "todas las",
-          "matched_surface": "toa' las"
-        },
-        {
-          "id": "11373471:5",
-          "line": "Mucha' gata', gata' a fogata, toa' las prenda' y la plata",
-          "title": "Gata",
-          "matched_variant": "todas las",
-          "matched_surface": "toa' las",
-          "vocalists": [
-            "Young Miko",
-            "Central Cee"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8783598:9",
-          "line": "Pichea pa' salir, en toa' las foto' infraganti (Una mami)",
-          "title": "Big Booty",
-          "matched_variant": "todas las",
-          "matched_surface": "toa' las",
-          "vocalists": [
-            "Hozwal"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8783598:40",
-          "line": "Pichea pa' salir y en toa' las foto' infraganti (Una mami), brr",
-          "title": "Big Booty",
-          "matched_variant": "todas las",
-          "matched_surface": "toa' las",
-          "vocalists": [
-            "Young Miko",
-            "Hozwal"
-          ],
-          "sung_by_primary_artist": true
-        }
-      ],
-      "variants": [
-        "toa' las"
       ],
       "source": "artist-curated"
     },
@@ -969,6 +1256,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "la nota",
           "matched_surface": "la nota",
+          "segment_id": "seg_e58e7b9a19ea3c834ee5e8c8",
+          "occurrence_ids": [
+            "occ_564b47a1f8a37b891b767902"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -979,7 +1270,12 @@
           "line": "La bellaquera y la nota",
           "title": "Meiomi",
           "matched_variant": "la nota",
-          "matched_surface": "la nota"
+          "matched_surface": "la nota",
+          "segment_id": "seg_1fadf00299b423d789c2244a",
+          "occurrence_ids": [
+            "occ_8b0dba3be03939faa9289148",
+            "occ_9d31074bfa577562f954883a"
+          ]
         },
         {
           "id": "12591719:52",
@@ -987,6 +1283,11 @@
           "title": "Traviesa",
           "matched_variant": "la nota",
           "matched_surface": "la nota",
+          "segment_id": "seg_108278e75d26f4124e40cace",
+          "occurrence_ids": [
+            "occ_f8f974d7d6605a3c3856cf6d",
+            "occ_faa2a0309ff75614f92bfe69"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -998,6 +1299,10 @@
           "title": "ay mami",
           "matched_variant": "la nota",
           "matched_surface": "la nota",
+          "segment_id": "seg_5d204e9d0693cfa6effae463",
+          "occurrence_ids": [
+            "occ_514424e47c18054c55ed81e4"
+          ],
           "vocalists": [
             "Dei V",
             "Young Miko",
@@ -1011,6 +1316,10 @@
           "title": "ID",
           "matched_variant": "la nota",
           "matched_surface": "la nota",
+          "segment_id": "seg_4324038188bcc1ad3eec7e80",
+          "occurrence_ids": [
+            "occ_48ebca81e476543a8ce40749"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -1032,6 +1341,10 @@
           "title": "offline",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_137bb71f604df739adc04a88",
+          "occurrence_ids": [
+            "occ_0601ebe17e450d22cee3e171"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -1043,6 +1356,10 @@
           "title": "offline",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_38afb74fd276a0daaa4b5fef",
+          "occurrence_ids": [
+            "occ_13994d940f58f92d44cd1985"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1054,6 +1371,10 @@
           "title": "offline",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_3853f458a1dc913a71ff9077",
+          "occurrence_ids": [
+            "occ_b3d883e3c01149b648a3b9cc"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -1066,6 +1387,10 @@
           "title": "offline",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_33004cefb8802fff3c7a2e5d",
+          "occurrence_ids": [
+            "occ_3a5ce09b1d246a727821334c"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -1076,7 +1401,11 @@
           "line": "Baby, no te haga', que me han habla'o de ti",
           "title": "arcoíris",
           "matched_variant": "de ti",
-          "matched_surface": "de ti"
+          "matched_surface": "de ti",
+          "segment_id": "seg_a9fc3ddb7f179b6ea7108b40",
+          "occurrence_ids": [
+            "occ_8915fd890f14412d88294832"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1093,28 +1422,45 @@
           "line": "¿Quién es esa diva? Y sabes que están hablando de mí (Ya sabe)",
           "title": "WASSUP",
           "matched_variant": "de mí",
-          "matched_surface": "de mí"
+          "matched_surface": "de mí",
+          "segment_id": "seg_60ec4884bad4fd792d4dbe9a",
+          "occurrence_ids": [
+            "occ_f75be10f38729582367f8faf"
+          ]
         },
         {
           "id": "9923845:19",
           "line": "Yo los saco de la tumba, ¿hablan de mí? Los revivo",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "de mí",
-          "matched_surface": "de mí"
+          "matched_surface": "de mí",
+          "segment_id": "seg_eb7cf52b8091a5ba63299206",
+          "occurrence_ids": [
+            "occ_2ce3b6d7a78f578932683dcc",
+            "occ_9d491eefc3b8adac656e5307"
+          ]
         },
         {
           "id": "9923845:23",
           "line": "Cuando hablaste mierda de mí",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "de mí",
-          "matched_surface": "de mí"
+          "matched_surface": "de mí",
+          "segment_id": "seg_e17ae486fcb4ffc0f8853e0b",
+          "occurrence_ids": [
+            "occ_6c601c5aefbdf2b79453519c"
+          ]
         },
         {
           "id": "9923845:51",
           "line": "Dicen que hablaste de mí, pero andas sin señal",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "de mí",
-          "matched_surface": "de mí"
+          "matched_surface": "de mí",
+          "segment_id": "seg_50eec4998810f0a87a9f76d5",
+          "occurrence_ids": [
+            "occ_20c95524b30748f250636d06"
+          ]
         },
         {
           "id": "8219794:3",
@@ -1122,6 +1468,10 @@
           "title": "Bi",
           "matched_variant": "de mí",
           "matched_surface": "de mí",
+          "segment_id": "seg_e0ba7af85bc42b0540269723",
+          "occurrence_ids": [
+            "occ_a7981f1ad17aab04760ca111"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1143,6 +1493,10 @@
           "title": "Traviesa",
           "matched_variant": "un par de",
           "matched_surface": "un par de",
+          "segment_id": "seg_108278e75d26f4124e40cace",
+          "occurrence_ids": [
+            "occ_f9ab78b8aafc123cdac4d114"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1153,7 +1507,11 @@
           "line": "¿Que qué me gusta de ti? Baby, un par de cosa'",
           "title": "arcoíris",
           "matched_variant": "un par de",
-          "matched_surface": "un par de"
+          "matched_surface": "un par de",
+          "segment_id": "seg_806413a654f9728f7a9c46bc",
+          "occurrence_ids": [
+            "occ_36a8a05c94181976de2030f0"
+          ]
         },
         {
           "id": "9185102:37",
@@ -1161,6 +1519,10 @@
           "title": "ID",
           "matched_variant": "un par de",
           "matched_surface": "Un par de",
+          "segment_id": "seg_6bd89e142cc613981782f4b1",
+          "occurrence_ids": [
+            "occ_0cf2f34267a21c24a370045c"
+          ],
           "vocalists": [
             "Randy",
             "Young Miko",
@@ -1174,6 +1536,10 @@
           "title": "ID",
           "matched_variant": "un par de",
           "matched_surface": "Un par de",
+          "segment_id": "seg_4fe4e9dc9730e0d837bb33bb",
+          "occurrence_ids": [
+            "occ_4baf25ee347cc1371834af1d"
+          ],
           "vocalists": [
             "Randy",
             "Young Miko",
@@ -1187,6 +1553,10 @@
           "title": "ID",
           "matched_variant": "un par de",
           "matched_surface": "un par de",
+          "segment_id": "seg_30ba6dc7630ce82c7b3fb2f3",
+          "occurrence_ids": [
+            "occ_2ec9532faf3cb740c238196f"
+          ],
           "vocalists": [
             "Randy",
             "Young Miko",
@@ -1209,7 +1579,11 @@
           "line": "Siempre que pisa la disco, todos vienen con lo mismo",
           "title": "Likey Likey",
           "matched_variant": "lo mismo",
-          "matched_surface": "lo mismo"
+          "matched_surface": "lo mismo",
+          "segment_id": "seg_31a316107fb846cbbdf97560",
+          "occurrence_ids": [
+            "occ_b24a40239c93871f7cd0a0b9"
+          ]
         },
         {
           "id": "11581491:6",
@@ -1217,6 +1591,10 @@
           "title": "WOAHH",
           "matched_variant": "lo mismo",
           "matched_surface": "lo mismo",
+          "segment_id": "seg_e765aca8d8db1b5aa88daa11",
+          "occurrence_ids": [
+            "occ_7c64d84673bac47d51b9b16b"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Young Miko"
@@ -1229,6 +1607,10 @@
           "title": "WOAHH",
           "matched_variant": "lo mismo",
           "matched_surface": "lo mismo",
+          "segment_id": "seg_f9fd02a6e5272bdb7084371a",
+          "occurrence_ids": [
+            "occ_71fe6429d8c57ff338848823"
+          ],
           "vocalists": [
             "Young Miko",
             "Omar Courtz"
@@ -1241,6 +1623,10 @@
           "title": "WOAHH",
           "matched_variant": "lo mismo",
           "matched_surface": "lo mismo",
+          "segment_id": "seg_a0752934f1eea2b6b487ab19",
+          "occurrence_ids": [
+            "occ_333f7fedb5c5266ebd7e9ed5"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Young Miko"
@@ -1253,6 +1639,10 @@
           "title": "TOA",
           "matched_variant": "lo mismo",
           "matched_surface": "lo mismo",
+          "segment_id": "seg_15b26735e87a61e108001266",
+          "occurrence_ids": [
+            "occ_8124f848691f72e9ca1f7884"
+          ],
           "vocalists": [
             "Mora"
           ],
@@ -1274,6 +1664,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "a mí me",
           "matched_surface": "a mí me",
+          "segment_id": "seg_6782a7bd83ff6349186af9e9",
+          "occurrence_ids": [
+            "occ_c3dcb6d748e8a3566aa942dc"
+          ],
           "vocalists": [
             "Tokischa",
             "Bad Gyal",
@@ -1287,6 +1681,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "a mí me",
           "matched_surface": "a mí me",
+          "segment_id": "seg_f257fc9a4e500095a3b8f79c",
+          "occurrence_ids": [
+            "occ_e950f3337ff50999656955aa"
+          ],
           "vocalists": [
             "Tokischa",
             "Bad Gyal",
@@ -1300,6 +1698,10 @@
           "title": "Classy 101",
           "matched_variant": "a mí me",
           "matched_surface": "a mí me",
+          "segment_id": "seg_1bcab8e910c4de432605338a",
+          "occurrence_ids": [
+            "occ_ef0830987e7fa8c31045db5d"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1310,14 +1712,22 @@
           "line": "Si es que a mí me enamora cómo tú me mira'",
           "title": "wiggy",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_bffde80bb667a272f2f398ba",
+          "occurrence_ids": [
+            "occ_5907d1752068899b908dba16"
+          ]
         },
         {
           "id": "12458903:23",
           "line": "En cámara lenta, ah, ese culo a mí me tienta, ah-ah, ah",
           "title": "Meiomi",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_953175792889241a3c218622",
+          "occurrence_ids": [
+            "occ_b63bb66ca39121dcbd65bc5a"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1335,6 +1745,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "otra vez",
           "matched_surface": "Otra vez",
+          "segment_id": "seg_eddc1518c041f5fd80ed114e",
+          "occurrence_ids": [
+            "occ_c364acc8e20872c04d4cdfa4"
+          ],
           "vocalists": [
             "Tokischa",
             "Young Miko",
@@ -1347,7 +1761,11 @@
           "line": "A casa otra ve'",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "otra vez",
-          "matched_surface": "otra ve'"
+          "matched_surface": "otra ve'",
+          "segment_id": "seg_516633e87b0254079ad92c79",
+          "occurrence_ids": [
+            "occ_150764d73105a7dd26648e82"
+          ]
         },
         {
           "id": "10220934:8",
@@ -1355,6 +1773,10 @@
           "title": "offline",
           "matched_variant": "otra vez",
           "matched_surface": "otra ve'",
+          "segment_id": "seg_cff2a75249649d1d712b2431",
+          "occurrence_ids": [
+            "occ_e240df2f2c428a38ae8d3667"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -1366,6 +1788,11 @@
           "title": "offline",
           "matched_variant": "otra vez",
           "matched_surface": "otra ve'",
+          "segment_id": "seg_e9daf379e2ef976491952dd0",
+          "occurrence_ids": [
+            "occ_8dccc3bb8ee76ce6f5bfdee3",
+            "occ_825d4b1531ede29347ce0250"
+          ],
           "vocalists": [
             "Feid",
             "Young Miko"
@@ -1378,6 +1805,11 @@
           "title": "offline",
           "matched_variant": "otra vez",
           "matched_surface": "otra ve'",
+          "segment_id": "seg_fd343b87b4bcd48dfa2fb3ea",
+          "occurrence_ids": [
+            "occ_a19ff8435e6f806330c6c817",
+            "occ_f02ea26649fbb39a5d1df6c5"
+          ],
           "vocalists": [
             "Feid",
             "Young Miko"
@@ -1396,78 +1828,6 @@
       "source": "artist-curated"
     },
     {
-      "expression": "tener que + infinitive",
-      "translation": "have to + verb",
-      "count": 12,
-      "occurrence_count": 12,
-      "num_songs": 11,
-      "examples": [
-        {
-          "id": "8209111:11",
-          "line": "Pa' ver su contenido tienes que pagar el prime (Ching)",
-          "title": "Riri",
-          "matched_variant": "tienes que pagar",
-          "matched_surface": "tienes que pagar"
-        },
-        {
-          "id": "10220921:44",
-          "line": "Yo no tengo que enseñar ID",
-          "title": "rookie of the year",
-          "matched_variant": "tengo que enseñar",
-          "matched_surface": "tengo que enseñar"
-        },
-        {
-          "id": "7134347:23",
-          "line": "No te tengo que decir",
-          "title": "Vendetta",
-          "matched_variant": "tengo que decir",
-          "matched_surface": "tengo que decir",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "11581491:15",
-          "line": "Cuando arrancamo' me sigue' y te sigo, no tenemo' que dar stop, nah (Nah)",
-          "title": "WOAHH",
-          "matched_variant": "tenemos que dar",
-          "matched_surface": "tenemo' que dar",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "10396585:8",
-          "line": "Ya sabes lo que tienes que hacer",
-          "title": "sorry es que soy bipolarrr",
-          "matched_variant": "tienes que hacer",
-          "matched_surface": "tienes que hacer",
-          "vocalists": [
-            "ROBI"
-          ],
-          "sung_by_primary_artist": false
-        }
-      ],
-      "variants": [
-        "tienes que",
-        "tengo que",
-        "tenemos que",
-        "tener que",
-        "tuve que"
-      ],
-      "variant_counts": {
-        "tienes que": 6,
-        "tengo que": 3,
-        "tenemos que": 1,
-        "tener que": 1,
-        "tuve que": 1
-      },
-      "family": "tener que + infinitive",
-      "source": "artist-construction"
-    },
-    {
       "expression": "me siento",
       "translation": "I feel",
       "count": 11,
@@ -1480,6 +1840,11 @@
           "title": "Brinca",
           "matched_variant": "me siento",
           "matched_surface": "Me siento",
+          "segment_id": "seg_989f02e71a73fd2ba376cb5d",
+          "occurrence_ids": [
+            "occ_3572257f1f663e1ccf8ae93d",
+            "occ_223559eddf32981162fb21ba"
+          ],
           "vocalists": [
             "Cazzu"
           ],
@@ -1491,6 +1856,10 @@
           "title": "Brinca",
           "matched_variant": "me siento",
           "matched_surface": "me siento",
+          "segment_id": "seg_4bd8b9bb5c81d9101d8d1056",
+          "occurrence_ids": [
+            "occ_410980569ca68fc91ffb4e26"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1501,7 +1870,11 @@
           "line": "Llevo par de trago' y ya me siento alofoke",
           "title": "arcoíris",
           "matched_variant": "me siento",
-          "matched_surface": "me siento"
+          "matched_surface": "me siento",
+          "segment_id": "seg_4751d30dc8972b242a8815b8",
+          "occurrence_ids": [
+            "occ_421518da6004021d19b87131"
+          ]
         },
         {
           "id": "10396585:18",
@@ -1509,6 +1882,10 @@
           "title": "sorry es que soy bipolarrr",
           "matched_variant": "me siento",
           "matched_surface": "me siento",
+          "segment_id": "seg_55a4727229886e8797e9d7ab",
+          "occurrence_ids": [
+            "occ_41121d0806fb4adcfff62343"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1520,6 +1897,10 @@
           "title": "ay mami",
           "matched_variant": "me siento",
           "matched_surface": "me siento",
+          "segment_id": "seg_f7809bd5f100d55d7466ffdf",
+          "occurrence_ids": [
+            "occ_15c2150f73fb400a103a8717"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1541,6 +1922,10 @@
           "title": "FINA",
           "matched_variant": "a veces",
           "matched_surface": "a veces",
+          "segment_id": "seg_cea058535c2794dcfd3fb3d6",
+          "occurrence_ids": [
+            "occ_9d2f89b0590c739dd9ea68aa"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -1551,7 +1936,11 @@
           "line": "Me gusta la película, pero solo a vece'",
           "title": "WASSUP",
           "matched_variant": "a veces",
-          "matched_surface": "a vece'"
+          "matched_surface": "a vece'",
+          "segment_id": "seg_22aa78e70fd9319750967e97",
+          "occurrence_ids": [
+            "occ_7ed20436e000fad162d55cb4"
+          ]
         },
         {
           "id": "7134347:59",
@@ -1559,6 +1948,11 @@
           "title": "Vendetta",
           "matched_variant": "a veces",
           "matched_surface": "A veces",
+          "segment_id": "seg_17a16bae543135bd4fa5ec54",
+          "occurrence_ids": [
+            "occ_52a7f4d3adf3f642e68da4fb",
+            "occ_d289488558f9fec75d45e7e9"
+          ],
           "vocalists": [
             "Villano Antillano",
             "Young Miko",
@@ -1572,6 +1966,11 @@
           "title": "Bi",
           "matched_variant": "a veces",
           "matched_surface": "a vece'",
+          "segment_id": "seg_d4f68387db5d51d175eb62f4",
+          "occurrence_ids": [
+            "occ_06ea8f77c820ca0160a88986",
+            "occ_2f5cef7032c4048107c10e05"
+          ],
           "vocalists": [
             "Brray"
           ],
@@ -1583,6 +1982,11 @@
           "title": "Bi",
           "matched_variant": "a veces",
           "matched_surface": "A vece'",
+          "segment_id": "seg_a778465d811d27e9fda980cb",
+          "occurrence_ids": [
+            "occ_9bbd3370bd957673d01a31ca",
+            "occ_f28353b53fab2b86dff7c310"
+          ],
           "vocalists": [
             "Brray"
           ],
@@ -1600,6 +2004,98 @@
       "source": "artist-curated"
     },
     {
+      "expression": "tener que + infinitive",
+      "translation": "have to + verb",
+      "count": 11,
+      "occurrence_count": 11,
+      "num_songs": 11,
+      "examples": [
+        {
+          "id": "8209111:11",
+          "line": "Pa' ver su contenido tienes que pagar el prime (Ching)",
+          "title": "Riri",
+          "matched_variant": "tienes que pagar",
+          "matched_surface": "tienes que pagar",
+          "segment_id": "seg_a1aee5162c885f4c44c33524",
+          "occurrence_ids": [
+            "occ_fb247b4945cd915a08acb03f"
+          ]
+        },
+        {
+          "id": "10220921:44",
+          "line": "Yo no tengo que enseñar ID",
+          "title": "rookie of the year",
+          "matched_variant": "tengo que enseñar",
+          "matched_surface": "tengo que enseñar",
+          "segment_id": "seg_b069d5d27e10bf10e2249fe1",
+          "occurrence_ids": [
+            "occ_6671cce4f3758905bbbcda2e"
+          ]
+        },
+        {
+          "id": "7134347:23",
+          "line": "No te tengo que decir",
+          "title": "Vendetta",
+          "matched_variant": "tengo que decir",
+          "matched_surface": "tengo que decir",
+          "segment_id": "seg_5890f9c85408b8ce38d71e69",
+          "occurrence_ids": [
+            "occ_6a98cb53ca3dc87ba8ebe4ef"
+          ],
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "11581491:15",
+          "line": "Cuando arrancamo' me sigue' y te sigo, no tenemo' que dar stop, nah (Nah)",
+          "title": "WOAHH",
+          "matched_variant": "tenemos que dar",
+          "matched_surface": "tenemo' que dar",
+          "segment_id": "seg_4b6c7af1676e0a9c948e9b9d",
+          "occurrence_ids": [
+            "occ_dc41c7572b6c26f544b21ea1"
+          ],
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10396585:8",
+          "line": "Ya sabes lo que tienes que hacer",
+          "title": "sorry es que soy bipolarrr",
+          "matched_variant": "tienes que hacer",
+          "matched_surface": "tienes que hacer",
+          "segment_id": "seg_6f154624a2609de941fb858a",
+          "occurrence_ids": [
+            "occ_3b567e75d0273ef6a6405af5"
+          ],
+          "vocalists": [
+            "ROBI"
+          ],
+          "sung_by_primary_artist": false
+        }
+      ],
+      "variants": [
+        "tienes que",
+        "tengo que",
+        "tenemos que",
+        "tener que",
+        "tuve que"
+      ],
+      "variant_counts": {
+        "tienes que": 5,
+        "tengo que": 3,
+        "tenemos que": 1,
+        "tener que": 1,
+        "tuve que": 1
+      },
+      "family": "tener que + infinitive",
+      "source": "artist-construction"
+    },
+    {
       "expression": "desde que",
       "translation": "since, ever since",
       "count": 10,
@@ -1612,6 +2108,10 @@
           "title": "Classy 101",
           "matched_variant": "desde que",
           "matched_surface": "desde que",
+          "segment_id": "seg_e111fc6b19d310027ae2e692",
+          "occurrence_ids": [
+            "occ_265dc90d25ac2ff71de4babc"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -1623,6 +2123,10 @@
           "title": "Bi",
           "matched_variant": "desde que",
           "matched_surface": "desde que",
+          "segment_id": "seg_4b96522e1092b6a267c3207d",
+          "occurrence_ids": [
+            "occ_027127c04bb7b612773ae3fe"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1634,6 +2138,10 @@
           "title": "Bi",
           "matched_variant": "desde que",
           "matched_surface": "desde que",
+          "segment_id": "seg_a7bdedb782cdb4673bce1f5b",
+          "occurrence_ids": [
+            "occ_b93b5f3251a78ca7fbbc2188"
+          ],
           "vocalists": [
             "Young Miko",
             "Brray"
@@ -1646,6 +2154,10 @@
           "title": "oye ma’",
           "matched_variant": "desde que",
           "matched_surface": "desde que",
+          "segment_id": "seg_d726fc18089a58acb0ff11a4",
+          "occurrence_ids": [
+            "occ_d25f2662b560c966a77e8815"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1657,6 +2169,10 @@
           "title": "pinot grigio",
           "matched_variant": "desde que",
           "matched_surface": "desde que",
+          "segment_id": "seg_bd276a585d6512ebcc01d923",
+          "occurrence_ids": [
+            "occ_c0ea3380d5909f850e88a0a2"
+          ],
           "vocalists": [
             "Young Miko",
             "Brray"
@@ -1678,7 +2194,11 @@
           "line": "Ella se va viral en IG cuando publica (Uh)",
           "title": "Riri",
           "matched_variant": "se va",
-          "matched_surface": "se va"
+          "matched_surface": "se va",
+          "segment_id": "seg_cb46db102e13f1926720c0d9",
+          "occurrence_ids": [
+            "occ_d93a2c6f094acfe78250e9b3"
+          ]
         },
         {
           "id": "11581491:8",
@@ -1686,6 +2206,10 @@
           "title": "WOAHH",
           "matched_variant": "se va",
           "matched_surface": "se va",
+          "segment_id": "seg_66dbc70883920c7cc5f18ec9",
+          "occurrence_ids": [
+            "occ_69a3590f16d5eaba60e2da4f"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Young Miko"
@@ -1698,6 +2222,10 @@
           "title": "TOA",
           "matched_variant": "se va",
           "matched_surface": "Se va",
+          "segment_id": "seg_7dda41a240135ab9275bc838",
+          "occurrence_ids": [
+            "occ_587109d0b9002406d423dc72"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1719,6 +2247,10 @@
           "title": "Classy 101",
           "matched_variant": "esta noche",
           "matched_surface": "Esta noche",
+          "segment_id": "seg_945fdd5a663883c6cc0cb810",
+          "occurrence_ids": [
+            "occ_7184e3630e72b254f95dc80b"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -1729,14 +2261,22 @@
           "line": "Esta noche me la llevo, la tengo en la mira",
           "title": "wiggy",
           "matched_variant": "esta noche",
-          "matched_surface": "Esta noche"
+          "matched_surface": "Esta noche",
+          "segment_id": "seg_71ac96294465f85b7377352d",
+          "occurrence_ids": [
+            "occ_da0726bfe1bc5eff691749bb"
+          ]
         },
         {
           "id": "12591721:48",
           "line": "Esta noche te parto si me das permiso",
           "title": "Piki",
           "matched_variant": "esta noche",
-          "matched_surface": "Esta noche"
+          "matched_surface": "Esta noche",
+          "segment_id": "seg_744ec5b60a9b1b6e897bf219",
+          "occurrence_ids": [
+            "occ_af92f3854eadc8a7ffd02a87"
+          ]
         },
         {
           "id": "8224314:27",
@@ -1744,6 +2284,10 @@
           "title": "Putero",
           "matched_variant": "esta noche",
           "matched_surface": "esta noche",
+          "segment_id": "seg_662f27765c0409e3bac802f5",
+          "occurrence_ids": [
+            "occ_3d3be46641eb680448e6dee3"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1755,6 +2299,10 @@
           "title": "SALVAJE",
           "matched_variant": "esta noche",
           "matched_surface": "esta noche",
+          "segment_id": "seg_0d4801d7239db429b05b3c1a",
+          "occurrence_ids": [
+            "occ_163f8606b28322b7cd327f45"
+          ],
           "vocalists": [
             "Young Miko",
             "Lyanno"
@@ -1777,6 +2325,10 @@
           "title": "offline",
           "matched_variant": "hay que ser",
           "matched_surface": "hay que ser",
+          "segment_id": "seg_870eb2ef9c221298a2e7028b",
+          "occurrence_ids": [
+            "occ_c92bcd8e8f8b13d47864da45"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1787,14 +2339,22 @@
           "line": "Pa' vivir el sueño hay que estar despierto",
           "title": "rookie of the year",
           "matched_variant": "hay que estar",
-          "matched_surface": "hay que estar"
+          "matched_surface": "hay que estar",
+          "segment_id": "seg_a177f6f95746daeb7420b505",
+          "occurrence_ids": [
+            "occ_a38f04bb9c83fbc8388074e5"
+          ]
         },
         {
           "id": "10055523:33",
           "line": "Hay que aterrizar, pero está bueno el trip, ey",
           "title": "curita",
           "matched_variant": "hay que aterrizar",
-          "matched_surface": "Hay que aterrizar"
+          "matched_surface": "Hay que aterrizar",
+          "segment_id": "seg_156fdfff4704a3da95c9afb7",
+          "occurrence_ids": [
+            "occ_230662b70383f0b201cce6f2"
+          ]
         },
         {
           "id": "11690948:41",
@@ -1802,6 +2362,10 @@
           "title": "EN LA CITY",
           "matched_variant": "hay que pedir",
           "matched_surface": "hay que pedir",
+          "segment_id": "seg_0bd6c49e956790602a28a2fd",
+          "occurrence_ids": [
+            "occ_c6362bafa6c294fa5fa7f05e"
+          ],
           "vocalists": [
             "Young Miko",
             "Trueno"
@@ -1814,6 +2378,10 @@
           "title": "Gyoza",
           "matched_variant": "hay que hablar",
           "matched_surface": "hay que hablar",
+          "segment_id": "seg_b64f60d5f266bf221289f43f",
+          "occurrence_ids": [
+            "occ_cbcac74434032303e9585580"
+          ],
           "vocalists": [
             "ELENA ROSE"
           ],
@@ -1841,7 +2409,11 @@
           "line": "No sé cuándo la vo'a ver",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "a ver",
-          "matched_surface": "vo'a ver"
+          "matched_surface": "vo'a ver",
+          "segment_id": "seg_75e15af4f5903c4c0a613d0e",
+          "occurrence_ids": [
+            "occ_a2159fa666b2b880d751db4f"
+          ]
         },
         {
           "id": "9402498:30",
@@ -1849,6 +2421,10 @@
           "title": "DISPO",
           "matched_variant": "a ver",
           "matched_surface": "A ver",
+          "segment_id": "seg_d1c30ec94fe2ae27a1ed2de9",
+          "occurrence_ids": [
+            "occ_b6485e397e929689fbd62bac"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1860,6 +2436,10 @@
           "title": "Vendetta",
           "matched_variant": "a ver",
           "matched_surface": "a ver",
+          "segment_id": "seg_a63b5b5dba816ec3e4e5ac59",
+          "occurrence_ids": [
+            "occ_aed5748d5e000a19de33e939"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1870,14 +2450,22 @@
           "line": "Tú vas a ver si me das el chance",
           "title": "Meiomi",
           "matched_variant": "a ver",
-          "matched_surface": "a ver"
+          "matched_surface": "a ver",
+          "segment_id": "seg_4456bfc6d3e40037941dbce9",
+          "occurrence_ids": [
+            "occ_84fa0dd8f06048b1c3bdec40"
+          ]
         },
         {
           "id": "12570921:37",
           "line": "¿Quién va a ver? Si e' el piso má' alto, ey",
           "title": "En el Ritz",
           "matched_variant": "a ver",
-          "matched_surface": "a ver"
+          "matched_surface": "a ver",
+          "segment_id": "seg_d1c20afa3d605fc960c1170b",
+          "occurrence_ids": [
+            "occ_0bf5c279562d29e81a16b8d0"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1895,6 +2483,10 @@
           "title": "FINA",
           "matched_variant": "todo el mundo",
           "matched_surface": "To' el mundo",
+          "segment_id": "seg_dd48717a86b1113e08eef96c",
+          "occurrence_ids": [
+            "occ_6342ebbd43bb618dc749d1a3"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -1906,6 +2498,10 @@
           "title": "FINA",
           "matched_variant": "todo el mundo",
           "matched_surface": "todo el mundo",
+          "segment_id": "seg_4dce360b8ff1fcb47ddf514e",
+          "occurrence_ids": [
+            "occ_68a250af04d6717451a5ef66"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -1916,7 +2512,11 @@
           "line": "La saco a pasear y rápido to' el mundo looking",
           "title": "curita",
           "matched_variant": "todo el mundo",
-          "matched_surface": "to' el mundo"
+          "matched_surface": "to' el mundo",
+          "segment_id": "seg_6821e92d187eba8e3aa9350e",
+          "occurrence_ids": [
+            "occ_fe1aacc865856de60d8bb1a4"
+          ]
         },
         {
           "id": "11581491:14",
@@ -1924,6 +2524,10 @@
           "title": "WOAHH",
           "matched_variant": "todo el mundo",
           "matched_surface": "todo el mundo",
+          "segment_id": "seg_4491ad7c7d57adc8ae3e3fa3",
+          "occurrence_ids": [
+            "occ_852b9d2f511d707b66f76e8d"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1935,6 +2539,10 @@
           "title": "Putero",
           "matched_variant": "todo el mundo",
           "matched_surface": "to' el mundo",
+          "segment_id": "seg_c970f83044db62970e41c6ae",
+          "occurrence_ids": [
+            "occ_80b0b225a4309b62fb8e25dc"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1959,6 +2567,10 @@
           "title": "Classy 101",
           "matched_variant": "todo lo que",
           "matched_surface": "To' lo que",
+          "segment_id": "seg_1bcab8e910c4de432605338a",
+          "occurrence_ids": [
+            "occ_2d5add8ad2d5a6bf9e2cf8aa"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1970,6 +2582,10 @@
           "title": "Classy 101",
           "matched_variant": "todo lo que",
           "matched_surface": "to' lo que",
+          "segment_id": "seg_945fdd5a663883c6cc0cb810",
+          "occurrence_ids": [
+            "occ_233150b8c9b9fec2160fdfd0"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -1981,6 +2597,10 @@
           "title": "Gata",
           "matched_variant": "todo lo que",
           "matched_surface": "to' lo que",
+          "segment_id": "seg_8a964f42a86490b483da9078",
+          "occurrence_ids": [
+            "occ_123e4f535612e66fdc5c83c1"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -1991,7 +2611,11 @@
           "line": "Ella consigue to' lo que ella quiera, si sabe que su body tea (Tea)",
           "title": "En el Ritz",
           "matched_variant": "todo lo que",
-          "matched_surface": "to' lo que"
+          "matched_surface": "to' lo que",
+          "segment_id": "seg_cb421f86a4d00f544dd675c0",
+          "occurrence_ids": [
+            "occ_bea5fa56092440bc96b8e538"
+          ]
         },
         {
           "id": "8617423:27",
@@ -1999,6 +2623,10 @@
           "title": "Sale el Sol",
           "matched_variant": "todo lo que",
           "matched_surface": "todo lo que",
+          "segment_id": "seg_5d7fa64b0dca3475b43a49e1",
+          "occurrence_ids": [
+            "occ_02179096d41cb6d3a6320435"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2023,6 +2651,10 @@
           "title": "FINA",
           "matched_variant": "que se joda",
           "matched_surface": "Que se joda",
+          "segment_id": "seg_bdf54c8434c8fb40357f80e3",
+          "occurrence_ids": [
+            "occ_45c706af51edadde2748e616"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -2035,6 +2667,10 @@
           "title": "FINA",
           "matched_variant": "que se joda",
           "matched_surface": "que se joda",
+          "segment_id": "seg_4dce360b8ff1fcb47ddf514e",
+          "occurrence_ids": [
+            "occ_69d5b928eb994d8096646fe2"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -2046,6 +2682,10 @@
           "title": "FINA",
           "matched_variant": "que se joda",
           "matched_surface": "que se joda",
+          "segment_id": "seg_aa49e21c711bae7b3dd069be",
+          "occurrence_ids": [
+            "occ_50c7e9e9091d1f27a3136945"
+          ],
           "vocalists": [
             "Bad Bunny",
             "Bad Bunny",
@@ -2059,6 +2699,10 @@
           "title": "FINA",
           "matched_variant": "que se joda",
           "matched_surface": "que se joda",
+          "segment_id": "seg_e7752c7c668a1ca52f194f88",
+          "occurrence_ids": [
+            "occ_4684c9ba37031604eb416036"
+          ],
           "vocalists": [
             "Bad Bunny",
             "Bad Bunny",
@@ -2072,6 +2716,10 @@
           "title": "DISPO",
           "matched_variant": "que se joda",
           "matched_surface": "que se joda",
+          "segment_id": "seg_7f401eb9d0af0520ffb8a0d2",
+          "occurrence_ids": [
+            "occ_12bf1b241532d4904d62ca85"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2093,6 +2741,10 @@
           "title": "COLMILLO",
           "matched_variant": "no sé si",
           "matched_surface": "no sé si",
+          "segment_id": "seg_fd0eed848a2260b0b8072300",
+          "occurrence_ids": [
+            "occ_a69f39ec22d23232ae0eafc5"
+          ],
           "vocalists": [
             "J Balvin",
             "Young Miko"
@@ -2105,6 +2757,10 @@
           "title": "COLMILLO",
           "matched_variant": "no sé si",
           "matched_surface": "no sé si",
+          "segment_id": "seg_0ccf02f3df5bc4475eea5cbd",
+          "occurrence_ids": [
+            "occ_fc47ae45c0aa0b7fb46e6a66"
+          ],
           "vocalists": [
             "Young Miko",
             "J Balvin"
@@ -2117,6 +2773,10 @@
           "title": "sorry es que soy bipolarrr",
           "matched_variant": "no sé si",
           "matched_surface": "No sé si",
+          "segment_id": "seg_55a4727229886e8797e9d7ab",
+          "occurrence_ids": [
+            "occ_75b07afcfe2a5086794cf98a"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2127,14 +2787,22 @@
           "line": "Debajo 'e la sábana, yo ya no sé si es de noche o de día",
           "title": "Sin pausa",
           "matched_variant": "no sé si",
-          "matched_surface": "no sé si"
+          "matched_surface": "no sé si",
+          "segment_id": "seg_3e799f1282b361312b062f66",
+          "occurrence_ids": [
+            "occ_678c5af4866ffd3b64884277"
+          ]
         },
         {
           "id": "10220933:2",
           "line": "No sé si e’ el estilo 'e vida o que siempre estoy viajando",
           "title": "fuck TMZ",
           "matched_variant": "no sé si",
-          "matched_surface": "No sé si"
+          "matched_surface": "No sé si",
+          "segment_id": "seg_85eeac691171dd98debd849c",
+          "occurrence_ids": [
+            "occ_115298aa4646e7b69d695e46"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2152,6 +2820,10 @@
           "title": "Brinca",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_65b2b3464fdece9f91983af1",
+          "occurrence_ids": [
+            "occ_16937ad5875530e47bdf37ab"
+          ],
           "vocalists": [
             "Cazzu"
           ],
@@ -2163,6 +2835,10 @@
           "title": "Traviesa",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_6fe54b78d88535111cdf79cf",
+          "occurrence_ids": [
+            "occ_9e6404b4bff52e20c90bbf5a"
+          ],
           "vocalists": [
             "Eladio Carrión",
             "Young Miko"
@@ -2175,6 +2851,10 @@
           "title": "oye ma’",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_0402855dcefee66ee8aa384f",
+          "occurrence_ids": [
+            "occ_ed1ef0d7c5487a4b3e70c45e"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2185,7 +2865,11 @@
           "line": "Miran como si yo fuese Mac Miller (Huh; uh)",
           "title": "Pull Up",
           "matched_variant": "como si",
-          "matched_surface": "como si"
+          "matched_surface": "como si",
+          "segment_id": "seg_267969ba979b23f667a1c5d1",
+          "occurrence_ids": [
+            "occ_b1b284b6687ed0f28c827635"
+          ]
         },
         {
           "id": "12003129:8",
@@ -2193,6 +2877,10 @@
           "title": "Jetski",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_2304a87944be757fe743546d",
+          "occurrence_ids": [
+            "occ_d44b3ecda8cede1a58cffcef"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -2214,6 +2902,10 @@
           "title": "WOAHH",
           "matched_variant": "me dice",
           "matched_surface": "me dice",
+          "segment_id": "seg_4491ad7c7d57adc8ae3e3fa3",
+          "occurrence_ids": [
+            "occ_463b56a3dd41cbec24dfe661"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2224,21 +2916,33 @@
           "line": "Viene de Londres, no habla spanish, pero me dice: \"Ay, mami, mami\"",
           "title": "Sin pausa",
           "matched_variant": "me dice",
-          "matched_surface": "me dice"
+          "matched_surface": "me dice",
+          "segment_id": "seg_d6d5092bed7bb3e86e8e4b06",
+          "occurrence_ids": [
+            "occ_a4c93b2c12211eeeeaf21884"
+          ]
         },
         {
           "id": "12570921:16",
           "line": "Me dice: \"Vamo' a chingar\" (Okey)",
           "title": "En el Ritz",
           "matched_variant": "me dice",
-          "matched_surface": "Me dice"
+          "matched_surface": "Me dice",
+          "segment_id": "seg_ef38f06b59cd4081f71354fb",
+          "occurrence_ids": [
+            "occ_ac737f677a2f56b500f88a6c"
+          ]
         },
         {
           "id": "12582445:10",
           "line": "La que nunca me dice que no ni maybe",
           "title": "Ojalá",
           "matched_variant": "me dice",
-          "matched_surface": "me dice"
+          "matched_surface": "me dice",
+          "segment_id": "seg_ca948474484fe50dd1d7fa6f",
+          "occurrence_ids": [
+            "occ_c70e28ff0d651f4dabd001db"
+          ]
         },
         {
           "id": "8156995:12",
@@ -2246,6 +2950,10 @@
           "title": "Castigada",
           "matched_variant": "me dice",
           "matched_surface": "me dice",
+          "segment_id": "seg_4f2f5dec3ff02d0f651d2822",
+          "occurrence_ids": [
+            "occ_340d02edf56f3793a5674469"
+          ],
           "vocalists": [
             "Cory"
           ],
@@ -2266,14 +2974,22 @@
           "line": "Creen que pueden leerme porque me han visto en la portada",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "creen que",
-          "matched_surface": "Creen que"
+          "matched_surface": "Creen que",
+          "segment_id": "seg_f555f65cd4972d051cef7edf",
+          "occurrence_ids": [
+            "occ_36a1a6c3b02c46d011109c7b"
+          ]
         },
         {
           "id": "10220928:2",
           "line": "Se cree que estoy pichando y yo que la quiero aquí",
           "title": "arcoíris",
           "matched_variant": "cree que",
-          "matched_surface": "cree que"
+          "matched_surface": "cree que",
+          "segment_id": "seg_471a8aae333cf12b83dfcc3f",
+          "occurrence_ids": [
+            "occ_ebc72b2a803be5f646767bb9"
+          ]
         },
         {
           "id": "9185102:24",
@@ -2281,6 +2997,10 @@
           "title": "ID",
           "matched_variant": "creo que",
           "matched_surface": "creo que",
+          "segment_id": "seg_4324038188bcc1ad3eec7e80",
+          "occurrence_ids": [
+            "occ_4056b1fe46b2925896c085ab"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -2292,6 +3012,10 @@
           "title": "Kilimanjaro",
           "matched_variant": "creían que",
           "matched_surface": "Creían que",
+          "segment_id": "seg_cab363955372ea278c38392f",
+          "occurrence_ids": [
+            "occ_0e8556312dc09d6946080952"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2303,6 +3027,10 @@
           "title": "TOA",
           "matched_variant": "cree que",
           "matched_surface": "cree que",
+          "segment_id": "seg_fb25e4f0659f3a8fdde680cf",
+          "occurrence_ids": [
+            "occ_7faf8e0834b8eadb02d5a5af"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2337,6 +3065,11 @@
           "title": "mañana",
           "matched_variant": "por qué",
           "matched_surface": "por qué",
+          "segment_id": "seg_e8c003ed9efac5d1203e6ccc",
+          "occurrence_ids": [
+            "occ_f571c14a9e62911a351c533c",
+            "occ_4bfeb74b998a19f3cec7a172"
+          ],
           "vocalists": [
             "The Marias"
           ],
@@ -2347,14 +3080,22 @@
           "line": "\"¿Por qué no me llamaste?\" Mami, qué sé yo",
           "title": "wiggy",
           "matched_variant": "por qué",
-          "matched_surface": "Por qué"
+          "matched_surface": "Por qué",
+          "segment_id": "seg_c50a8ef624f5e70d6973f3e1",
+          "occurrence_ids": [
+            "occ_a193c7ffb752a529adec4bb6"
+          ]
         },
         {
           "id": "10220928:28",
           "line": "Y tú lo sabe', si no, ¿por qué te pusiste rosa? (Ujum)",
           "title": "arcoíris",
           "matched_variant": "por qué",
-          "matched_surface": "por qué"
+          "matched_surface": "por qué",
+          "segment_id": "seg_91499ea257aa53a208849321",
+          "occurrence_ids": [
+            "occ_07b8a920565c6d62e369d164"
+          ]
         },
         {
           "id": "10396585:47",
@@ -2362,6 +3103,10 @@
           "title": "sorry es que soy bipolarrr",
           "matched_variant": "por qué",
           "matched_surface": "por qué",
+          "segment_id": "seg_dcdcc73d95b70f8a2acf7600",
+          "occurrence_ids": [
+            "occ_16f6061bbd771d3914052c2e"
+          ],
           "vocalists": [
             "ROBI"
           ],
@@ -2372,7 +3117,11 @@
           "line": "Me tiene a dieta de hace tiempo y yo no sé por qué",
           "title": "tamagotchi",
           "matched_variant": "por qué",
-          "matched_surface": "por qué"
+          "matched_surface": "por qué",
+          "segment_id": "seg_58bae8574d1ba9821146da76",
+          "occurrence_ids": [
+            "occ_9fb84dcbe5a824682c2802fe"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2390,6 +3139,10 @@
           "title": "Brinca",
           "matched_variant": "me llama",
           "matched_surface": "me llama",
+          "segment_id": "seg_cde18a691c805b8c9f731f41",
+          "occurrence_ids": [
+            "occ_91183fa409ff5a3556cfc245"
+          ],
           "vocalists": [
             "Cazzu",
             "Young Miko"
@@ -2402,6 +3155,10 @@
           "title": "TOA",
           "matched_variant": "me llama",
           "matched_surface": "me llama",
+          "segment_id": "seg_a142579eed6f208e2cf03dc9",
+          "occurrence_ids": [
+            "occ_befe38d04e7a649394d62ad0"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2413,6 +3170,10 @@
           "title": "EN LA CITY",
           "matched_variant": "me llama",
           "matched_surface": "me llama",
+          "segment_id": "seg_04da5c2f757d24b159610d23",
+          "occurrence_ids": [
+            "occ_1c17a672c0e6bb2376fdcbb8"
+          ],
           "vocalists": [
             "Trueno"
           ],
@@ -2424,6 +3185,10 @@
           "title": "EN LA CITY",
           "matched_variant": "me llama",
           "matched_surface": "me llama",
+          "segment_id": "seg_4693394eefd359aa8c129d6b",
+          "occurrence_ids": [
+            "occ_dcfa0ebc4a0ef7eb8a223722"
+          ],
           "vocalists": [
             "Trueno"
           ],
@@ -2435,6 +3200,11 @@
           "title": "Kilimanjaro",
           "matched_variant": "me llama",
           "matched_surface": "me llama",
+          "segment_id": "seg_97ba56caf8336d578d7cb00b",
+          "occurrence_ids": [
+            "occ_2dfd016ba2cd20049ffde5e7",
+            "occ_0d0c3650fef00875053be25c"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2456,22 +3226,15 @@
           "title": "Chulo pt.2",
           "matched_variant": "se ve",
           "matched_surface": "Se ve",
+          "segment_id": "seg_fa909b244a281aac3bf5d3a9",
+          "occurrence_ids": [
+            "occ_aaa52af091241b325856786c",
+            "occ_db660d26d59e079591ab1c22"
+          ],
           "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
-        },
-        {
-          "id": "9110676:65",
-          "line": "Cuando abre las pierna' se ve la supernova (-nova)",
-          "title": "COLMILLO",
-          "matched_variant": "se ve",
-          "matched_surface": "se ve",
-          "vocalists": [
-            "Randy",
-            "Jowell"
-          ],
-          "sung_by_primary_artist": false
         },
         {
           "id": "11373471:41",
@@ -2479,6 +3242,10 @@
           "title": "Gata",
           "matched_variant": "se ve",
           "matched_surface": "se ve",
+          "segment_id": "seg_ac844d80fe9f6ad7c7a5d941",
+          "occurrence_ids": [
+            "occ_239c245d57ea919646176cdb"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2489,7 +3256,11 @@
           "line": "Llevo velándote, se ve que estás imposi",
           "title": "Dosis",
           "matched_variant": "se ve",
-          "matched_surface": "se ve"
+          "matched_surface": "se ve",
+          "segment_id": "seg_7c004d9b0b876706da414ac5",
+          "occurrence_ids": [
+            "occ_0e0eaed398bce1c94529697e"
+          ]
         },
         {
           "id": "8224314:31",
@@ -2497,6 +3268,10 @@
           "title": "Putero",
           "matched_variant": "se ve",
           "matched_surface": "se ve",
+          "segment_id": "seg_f1ce47b38e97e2d265dc922e",
+          "occurrence_ids": [
+            "occ_37776a2391ff151c3dfcdca1"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2517,7 +3292,11 @@
           "line": "Dime si estás",
           "title": "princess peach",
           "matched_variant": "dime si",
-          "matched_surface": "Dime si"
+          "matched_surface": "Dime si",
+          "segment_id": "seg_937ed794fcea60ed96db3c94",
+          "occurrence_ids": [
+            "occ_09d131045c7ccded816861dc"
+          ]
         },
         {
           "id": "12591719:36",
@@ -2525,6 +3304,10 @@
           "title": "Traviesa",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_5b8ee298bf7bde8911b7edf4",
+          "occurrence_ids": [
+            "occ_78c6ab61c4bd98058938bb78"
+          ],
           "vocalists": [
             "Eladio Carrión"
           ],
@@ -2536,6 +3319,10 @@
           "title": "Sale el Sol",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_5697d98c48be172f33944b66",
+          "occurrence_ids": [
+            "occ_7f8e2444c95f882e7da5b46d"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2547,6 +3334,10 @@
           "title": "La Mini",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_a1aab6db8bb8b3b8770b189c",
+          "occurrence_ids": [
+            "occ_09250d886d583d401eb3bf61"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2558,6 +3349,10 @@
           "title": "La Mini",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_b56161511dda6012ad04e35d",
+          "occurrence_ids": [
+            "occ_b78bf7481c802335b207f4cc"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2579,6 +3374,10 @@
           "title": "Come Play",
           "matched_variant": "toda la",
           "matched_surface": "to'a la",
+          "segment_id": "seg_5dc2ff35f078f201afbe5afc",
+          "occurrence_ids": [
+            "occ_1a83a1760c85a578481a9376"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2590,6 +3389,10 @@
           "title": "Big Booty",
           "matched_variant": "toda la",
           "matched_surface": "to'a la",
+          "segment_id": "seg_3e12be861b8aa515e4e9bac7",
+          "occurrence_ids": [
+            "occ_94bfcfd82d3ccced0d23cb3c"
+          ],
           "vocalists": [
             "Hozwal"
           ],
@@ -2600,7 +3403,11 @@
           "line": "Hoy lleva mirando to'a la noche y yo sin miedo voy",
           "title": "arcoíris",
           "matched_variant": "toda la",
-          "matched_surface": "to'a la"
+          "matched_surface": "to'a la",
+          "segment_id": "seg_45673ebb5d9fce53795f8970",
+          "occurrence_ids": [
+            "occ_12686298c9214ce8d5444bd3"
+          ]
         },
         {
           "id": "8621461:20",
@@ -2608,6 +3415,10 @@
           "title": "Amandita",
           "matched_variant": "toda la",
           "matched_surface": "to'a la",
+          "segment_id": "seg_db0b03228a7c3fbffcbbefea",
+          "occurrence_ids": [
+            "occ_cea46b67ccaca7857b7518e4"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Omar Courtz",
@@ -2621,6 +3432,10 @@
           "title": "Putero",
           "matched_variant": "toda la",
           "matched_surface": "toda la",
+          "segment_id": "seg_c9e5ca403ba00eaa1d4a8a3e",
+          "occurrence_ids": [
+            "occ_e6ffbc87c26cf43dbff71610"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2645,6 +3460,10 @@
           "title": "mañana",
           "matched_variant": "no te hagas",
           "matched_surface": "no te hagas",
+          "segment_id": "seg_8472e76a72f0e77b0dff6ec4",
+          "occurrence_ids": [
+            "occ_8911d299e1f84070b25c3833"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2655,7 +3474,11 @@
           "line": "Baby, no te haga', que me han habla'o de ti",
           "title": "arcoíris",
           "matched_variant": "no te hagas",
-          "matched_surface": "no te haga'"
+          "matched_surface": "no te haga'",
+          "segment_id": "seg_a9fc3ddb7f179b6ea7108b40",
+          "occurrence_ids": [
+            "occ_c3ad15ae53ea44a5c5a66ce7"
+          ]
         },
         {
           "id": "11888474:36",
@@ -2663,6 +3486,11 @@
           "title": "TOA",
           "matched_variant": "no te hagas",
           "matched_surface": "no te haga'",
+          "segment_id": "seg_af7ff1d36fec21eaa1c4d73c",
+          "occurrence_ids": [
+            "occ_5b652e35f165313ae7966527",
+            "occ_f1fe8d49ad17d826ae13f12c"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2674,6 +3502,10 @@
           "title": "ID",
           "matched_variant": "no te hagas",
           "matched_surface": "No te haga'",
+          "segment_id": "seg_cd755e3cba6a4391afffb9e8",
+          "occurrence_ids": [
+            "occ_b03b92a8616911e66913af28"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -2684,7 +3516,11 @@
           "line": "No te hagas la santa, te vi el tatuaje en el coxis",
           "title": "Dosis",
           "matched_variant": "no te hagas",
-          "matched_surface": "No te hagas"
+          "matched_surface": "No te hagas",
+          "segment_id": "seg_b84f1758b238f56b339c2e59",
+          "occurrence_ids": [
+            "occ_a9303ce3d0952dd1fd16d519"
+          ]
         }
       ],
       "variants": [
@@ -2704,21 +3540,33 @@
           "line": "Y por eso soy su type, me dicen: \"Tú, Baby Miko\"",
           "title": "rookie of the year",
           "matched_variant": "por eso",
-          "matched_surface": "por eso"
+          "matched_surface": "por eso",
+          "segment_id": "seg_3a6527975bae98142ff5ebc8",
+          "occurrence_ids": [
+            "occ_ce5fc1cef4e080b54b8229d2"
+          ]
         },
         {
           "id": "10055523:7",
           "line": "Sé que estás dejá' y por eso vine cuando llamaste",
           "title": "curita",
           "matched_variant": "por eso",
-          "matched_surface": "por eso"
+          "matched_surface": "por eso",
+          "segment_id": "seg_013ef64f7486801c00b0a102",
+          "occurrence_ids": [
+            "occ_2d27878d2f8067826636b728"
+          ]
         },
         {
           "id": "10055523:11",
           "line": "Hace rato no te veo, por eso llamé",
           "title": "curita",
           "matched_variant": "por eso",
-          "matched_surface": "por eso"
+          "matched_surface": "por eso",
+          "segment_id": "seg_7f9e63ac1598f501ea42fc12",
+          "occurrence_ids": [
+            "occ_fde5a18db09984247a0f620e"
+          ]
         },
         {
           "id": "9555844:72",
@@ -2726,6 +3574,10 @@
           "title": "CC (Remix)",
           "matched_variant": "por eso",
           "matched_surface": "Por eso",
+          "segment_id": "seg_b109feb2caf5f6e959e83e33",
+          "occurrence_ids": [
+            "occ_e79c98e5284d566d3debd1ae"
+          ],
           "vocalists": [
             "Lil Joujou",
             "Bryant Myers"
@@ -2738,6 +3590,10 @@
           "title": "pinot grigio",
           "matched_variant": "por eso",
           "matched_surface": "Por eso",
+          "segment_id": "seg_447e421745e8ef35b5f5709a",
+          "occurrence_ids": [
+            "occ_31170f103ad5849122c31a6a"
+          ],
           "vocalists": [
             "Young Miko",
             "Brray"
@@ -2760,6 +3616,10 @@
           "title": "Amandita",
           "matched_variant": "cada vez que",
           "matched_surface": "cada ve' que",
+          "segment_id": "seg_892a861518efab8b39e60ddf",
+          "occurrence_ids": [
+            "occ_965c1c6e17209186321e888b"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Omar Courtz",
@@ -2773,6 +3633,10 @@
           "title": "EN LA CITY",
           "matched_variant": "cada vez que",
           "matched_surface": "cada ve' que",
+          "segment_id": "seg_2d92ba0c0cb54924255901d4",
+          "occurrence_ids": [
+            "occ_90969d4faca95092ffc528c2"
+          ],
           "vocalists": [
             "Trueno"
           ],
@@ -2784,6 +3648,10 @@
           "title": "EN LA CITY",
           "matched_variant": "cada vez que",
           "matched_surface": "cada ve' que",
+          "segment_id": "seg_a48ab1011b38f82efc328039",
+          "occurrence_ids": [
+            "occ_91e43598e69c4f66cbaf5100"
+          ],
           "vocalists": [
             "Trueno"
           ],
@@ -2795,6 +3663,10 @@
           "title": "EN LA CITY",
           "matched_variant": "cada vez que",
           "matched_surface": "cada ve' que",
+          "segment_id": "seg_285397bf1f0744e771385b7c",
+          "occurrence_ids": [
+            "occ_46396f31e1e5d2da470db0d3"
+          ],
           "vocalists": [
             "Trueno"
           ],
@@ -2806,6 +3678,10 @@
           "title": "EN LA CITY",
           "matched_variant": "cada vez que",
           "matched_surface": "cada ve' que",
+          "segment_id": "seg_0bd144cc1becaa91cdbaeed5",
+          "occurrence_ids": [
+            "occ_8523194a424d96762220d8b1"
+          ],
           "vocalists": [
             "Young Miko",
             "Trueno",
@@ -2828,7 +3704,11 @@
           "line": "Vamo' pa'l Riverside hasta que salga el sol",
           "title": "Sexo de moteles",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_cc745a413cd9a6c4b433c3b5",
+          "occurrence_ids": [
+            "occ_a50b1e84ebbf89b95803a48f"
+          ]
         },
         {
           "id": "12556569:43",
@@ -2836,6 +3716,10 @@
           "title": "Gyoza",
           "matched_variant": "hasta que",
           "matched_surface": "Hasta que",
+          "segment_id": "seg_3cd2bc96e15690d9c305e140",
+          "occurrence_ids": [
+            "occ_76d162bddb1f57093bd5e232"
+          ],
           "vocalists": [
             "ELENA ROSE"
           ],
@@ -2847,6 +3731,10 @@
           "title": "Condado",
           "matched_variant": "hasta que",
           "matched_surface": "hasta que",
+          "segment_id": "seg_7e1deee863e96c0e15a45369",
+          "occurrence_ids": [
+            "occ_ac7188eeeb15de4fefac6d37"
+          ],
           "vocalists": [
             "Lunay"
           ],
@@ -2858,6 +3746,10 @@
           "title": "Katana",
           "matched_variant": "hasta que",
           "matched_surface": "hasta que",
+          "segment_id": "seg_cc2ee42445caa8b14cc684bf",
+          "occurrence_ids": [
+            "occ_664df51a82a1362c6a347354"
+          ],
           "vocalists": [
             "Leebrian"
           ],
@@ -2869,6 +3761,10 @@
           "title": "Déjanos Pasar",
           "matched_variant": "hasta que",
           "matched_surface": "hasta que",
+          "segment_id": "seg_2ec91a8a565d6c4c80966487",
+          "occurrence_ids": [
+            "occ_bdd8a60b40c1bbbe4c1d9a1f"
+          ],
           "vocalists": [
             "PJ Sin suela",
             "Young Miko"
@@ -2891,6 +3787,10 @@
           "title": "Vendetta",
           "matched_variant": "así que",
           "matched_surface": "Así que",
+          "segment_id": "seg_e08ca8eb7362405dcf48f3ab",
+          "occurrence_ids": [
+            "occ_e7442d9301213ea443f3c9ae"
+          ],
           "vocalists": [
             "Villano Antillano",
             "Young Miko",
@@ -2904,6 +3804,10 @@
           "title": "Sale el Sol",
           "matched_variant": "así que",
           "matched_surface": "Así que",
+          "segment_id": "seg_4c834a6e03570b58163a9b45",
+          "occurrence_ids": [
+            "occ_928a5f13d913f3b6b48d464b"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2915,6 +3819,10 @@
           "title": "EN LA CITY",
           "matched_variant": "así que",
           "matched_surface": "Así que",
+          "segment_id": "seg_9adc8d8132843758b9b3ef93",
+          "occurrence_ids": [
+            "occ_d4aaaa6a7dede111a8f232f7"
+          ],
           "vocalists": [
             "Young Miko",
             "Trueno"
@@ -2927,6 +3835,10 @@
           "title": "Kilimanjaro",
           "matched_variant": "así que",
           "matched_surface": "así que",
+          "segment_id": "seg_cab363955372ea278c38392f",
+          "occurrence_ids": [
+            "occ_a39257991b3094e336d3a164"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -2938,84 +3850,16 @@
           "title": "Castigada",
           "matched_variant": "así que",
           "matched_surface": "así que",
+          "segment_id": "seg_be40b41f8d5faf3a797b04ce",
+          "occurrence_ids": [
+            "occ_86d746d837ab127dcff3e251"
+          ],
           "vocalists": [
             "Young Miko"
           ],
           "sung_by_primary_artist": true
         }
       ],
-      "source": "artist-curated"
-    },
-    {
-      "expression": "to'as las",
-      "translation": "all the (fem., elided)",
-      "count": 6,
-      "occurrence_count": 6,
-      "num_songs": 4,
-      "examples": [
-        {
-          "id": "8219794:3",
-          "line": "To'as las mujere' encima de mí",
-          "title": "Bi",
-          "matched_variant": "to'as las",
-          "matched_surface": "To'as las",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8219794:31",
-          "line": "To'as las babie' son bi, a vece' sho, a vece' bi (Ja)",
-          "title": "Bi",
-          "matched_variant": "to'as las",
-          "matched_surface": "To'as las",
-          "vocalists": [
-            "Brray"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8503396:28",
-          "line": "To'as las Chevy ya tuve que tintear",
-          "title": "Kachipun",
-          "matched_variant": "to'as las",
-          "matched_surface": "To'as las",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8503396:66",
-          "line": "'Tamos rompiendo los micros adentro de to'as las cabina', damn!",
-          "title": "Kachipun",
-          "matched_variant": "to'as las",
-          "matched_surface": "to'as las",
-          "vocalists": [
-            "Metalingüística"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8618160:45",
-          "line": "Llegamos a la disco con to'as las cuero",
-          "title": "Katana",
-          "matched_variant": "to'as las",
-          "matched_surface": "to'as las",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        }
-      ],
-      "variants": [
-        "to'as las"
-      ],
-      "variant_counts": {
-        "to'as las": 6
-      },
-      "family": "to' (elision)",
       "source": "artist-curated"
     },
     {
@@ -3031,6 +3875,10 @@
           "title": "Big Booty",
           "matched_variant": "acabo de cenar",
           "matched_surface": "Acabo de cenar",
+          "segment_id": "seg_e71abf92b7572726441a1946",
+          "occurrence_ids": [
+            "occ_482f5b4532437ec22b598679"
+          ],
           "vocalists": [
             "Hozwal"
           ],
@@ -3041,14 +3889,22 @@
           "line": "Acabo de aterrizar, ey (Mmm)",
           "title": "En el Ritz",
           "matched_variant": "acabo de aterrizar",
-          "matched_surface": "Acabo de aterrizar"
+          "matched_surface": "Acabo de aterrizar",
+          "segment_id": "seg_a842c38d0312184bd9aeb879",
+          "occurrence_ids": [
+            "occ_991fa1ed577cf66007cdf645"
+          ]
         },
         {
           "id": "7930766:8",
           "line": "Acabo 'e cobrar, perdón si me luzco",
           "title": "Standard",
           "matched_variant": "acabo de cobrar",
-          "matched_surface": "Acabo 'e cobrar"
+          "matched_surface": "Acabo 'e cobrar",
+          "segment_id": "seg_02aea47ff7d51c33d661aa85",
+          "occurrence_ids": [
+            "occ_e7758ad10de74b33c7f942a7"
+          ]
         },
         {
           "id": "8361727:27",
@@ -3056,6 +3912,10 @@
           "title": "Condado",
           "matched_variant": "acaba de prender",
           "matched_surface": "Acaba 'e prender",
+          "segment_id": "seg_66994877fed0c34ea079393c",
+          "occurrence_ids": [
+            "occ_0c92f85d0a80285265dbeb20"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3067,6 +3927,10 @@
           "title": "Stripper X",
           "matched_variant": "acabo de llegar",
           "matched_surface": "Acabo 'e llegar",
+          "segment_id": "seg_ad597ac91ba5aec4e5beab61",
+          "occurrence_ids": [
+            "occ_df03e583b04a44f6a15356bd"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3097,6 +3961,10 @@
           "title": "FINA",
           "matched_variant": "pienso que",
           "matched_surface": "pienso que",
+          "segment_id": "seg_cea058535c2794dcfd3fb3d6",
+          "occurrence_ids": [
+            "occ_e742d06a7cf7a6b5233934bd"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -3108,6 +3976,10 @@
           "title": "offline",
           "matched_variant": "pensaba que",
           "matched_surface": "Pensaba que",
+          "segment_id": "seg_1f18a28837210e998ac913df",
+          "occurrence_ids": [
+            "occ_8b7367039b16b51d83abe417"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -3118,14 +3990,22 @@
           "line": "No sube' na' pa' que piense' que está' con alguien",
           "title": "princess peach",
           "matched_variant": "pienses que",
-          "matched_surface": "piense' que"
+          "matched_surface": "piense' que",
+          "segment_id": "seg_31f932ddc1ec7b37bfef3f02",
+          "occurrence_ids": [
+            "occ_40f596e37c754dde9bb79e85"
+          ]
         },
         {
           "id": "12582446:15",
           "line": "Aquí pensando que vo' a hacerte un baby shower",
           "title": "Sin pausa",
           "matched_variant": "pensando que",
-          "matched_surface": "pensando que"
+          "matched_surface": "pensando que",
+          "segment_id": "seg_5138a30e92e8154b9011e162",
+          "occurrence_ids": [
+            "occ_ec5914d37d9132dd01e83aa5"
+          ]
         },
         {
           "id": "11660627:4",
@@ -3133,6 +4013,10 @@
           "title": "AMG",
           "matched_variant": "piensan que",
           "matched_surface": "piensan que",
+          "segment_id": "seg_9665d47f43834a8481579c5b",
+          "occurrence_ids": [
+            "occ_5a1899cfe98af3f64ad12923"
+          ],
           "vocalists": [
             "Eladio Carrión"
           ],
@@ -3169,6 +4053,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "me puse",
           "matched_surface": "me puse",
+          "segment_id": "seg_48456ed62244b3d7a4e72e05",
+          "occurrence_ids": [
+            "occ_249d815799f95e92aa6cc7e3"
+          ],
           "vocalists": [
             "Bad Gyal"
           ],
@@ -3180,6 +4068,11 @@
           "title": "Big Booty",
           "matched_variant": "me puse",
           "matched_surface": "Me puse",
+          "segment_id": "seg_9e081a31380778928f347980",
+          "occurrence_ids": [
+            "occ_588db000b7a0cc0c22b0d985",
+            "occ_66e10479498cbf1c3d5e996e"
+          ],
           "vocalists": [
             "Hozwal"
           ],
@@ -3190,7 +4083,12 @@
           "line": "Me dijo: \"Mami, mira, no me puse el gistro\"",
           "title": "En el Ritz",
           "matched_variant": "me puse",
-          "matched_surface": "me puse"
+          "matched_surface": "me puse",
+          "segment_id": "seg_ef309ee6cf3dda16eb0bec3f",
+          "occurrence_ids": [
+            "occ_0a063ac4d125ad2eb0449762",
+            "occ_98cc4bcbb2cc0c936501f1d1"
+          ]
         },
         {
           "id": "8259338:3",
@@ -3198,6 +4096,10 @@
           "title": "Stripper X",
           "matched_variant": "me puse",
           "matched_surface": "Me puse",
+          "segment_id": "seg_a54f704640faf03d631d2f0f",
+          "occurrence_ids": [
+            "occ_b39d8351a0302594770e7f91"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3209,6 +4111,10 @@
           "title": "Stripper X",
           "matched_variant": "me puse",
           "matched_surface": "Me puse",
+          "segment_id": "seg_bb8dabab37629ec0430101a3",
+          "occurrence_ids": [
+            "occ_09db933dbd5f1928cd4773fe"
+          ],
           "vocalists": [
             "Lil Joujou"
           ],
@@ -3230,6 +4136,11 @@
           "title": "Classy 101",
           "matched_variant": "se pone",
           "matched_surface": "Se pone",
+          "segment_id": "seg_04d69427dface699e750a81c",
+          "occurrence_ids": [
+            "occ_aebf14dd244995dd65260d44",
+            "occ_5466db38b693ba9d00a6076d"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -3241,6 +4152,10 @@
           "title": "Brinca",
           "matched_variant": "se pone",
           "matched_surface": "Se pone",
+          "segment_id": "seg_4bd8b9bb5c81d9101d8d1056",
+          "occurrence_ids": [
+            "occ_3781f8fe15ec8bf31406b4d3"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3251,7 +4166,11 @@
           "line": "Se pone bien puta, bien sucia, bien hoe",
           "title": "Sexo de moteles",
           "matched_variant": "se pone",
-          "matched_surface": "Se pone"
+          "matched_surface": "Se pone",
+          "segment_id": "seg_ee306d4414b9b017010898c5",
+          "occurrence_ids": [
+            "occ_e897ba9847408bd5bf06fac6"
+          ]
         },
         {
           "id": "9788043:42",
@@ -3259,6 +4178,10 @@
           "title": "Señorita",
           "matched_variant": "se pone",
           "matched_surface": "se pone",
+          "segment_id": "seg_d9268059e9255ecf04061cc2",
+          "occurrence_ids": [
+            "occ_c90faf7cd018374b6159f91c"
+          ],
           "vocalists": [
             "Wisin"
           ],
@@ -3270,6 +4193,10 @@
           "title": "De Pasajero",
           "matched_variant": "se pone",
           "matched_surface": "Se pone",
+          "segment_id": "seg_173136988c3224e238a590c4",
+          "occurrence_ids": [
+            "occ_f4bfc09750600023ef8e4ef4"
+          ],
           "vocalists": [
             "Chanell"
           ],
@@ -3291,6 +4218,10 @@
           "title": "DISPO",
           "matched_variant": "por ahí",
           "matched_surface": "por ahí",
+          "segment_id": "seg_eec52210d6b8f2e57cad48bf",
+          "occurrence_ids": [
+            "occ_9c94c9e5d9bfc4a929d5de09"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3302,6 +4233,10 @@
           "title": "sorry es que soy bipolarrr",
           "matched_variant": "por ahí",
           "matched_surface": "por ahí",
+          "segment_id": "seg_1b2c55c67c568dd48aab8422",
+          "occurrence_ids": [
+            "occ_50eaffa706422e096bff1459"
+          ],
           "vocalists": [
             "ROBI"
           ],
@@ -3313,6 +4248,10 @@
           "title": "oye ma’",
           "matched_variant": "por ahí",
           "matched_surface": "por ahí",
+          "segment_id": "seg_5ea3f2289dc48a0d62753760",
+          "occurrence_ids": [
+            "occ_3708548082f746137c4bc42b"
+          ],
           "vocalists": [
             "Young Miko",
             "Alexis"
@@ -3325,6 +4264,10 @@
           "title": "oye ma’",
           "matched_variant": "por ahí",
           "matched_surface": "por ahí",
+          "segment_id": "seg_d4e91efc3501b42bb6ef0865",
+          "occurrence_ids": [
+            "occ_d2be3c11d12d43dba91679f7"
+          ],
           "vocalists": [
             "Young Miko",
             "Alexis"
@@ -3347,6 +4290,10 @@
           "title": "Bi",
           "matched_variant": "por más que",
           "matched_surface": "por má' que",
+          "segment_id": "seg_ae20262cf430293f50d6f0dc",
+          "occurrence_ids": [
+            "occ_d6b2e81744d6186afc87a6ad"
+          ],
           "vocalists": [
             "Brray"
           ],
@@ -3358,6 +4305,10 @@
           "title": "WOAHH",
           "matched_variant": "por más que",
           "matched_surface": "Por más que",
+          "segment_id": "seg_8df5bc1c39bf90dadce73be0",
+          "occurrence_ids": [
+            "occ_0ebd7de6c75f6300e008d684"
+          ],
           "vocalists": [
             "Omar Courtz"
           ],
@@ -3368,14 +4319,22 @@
           "line": "Por más que te he visto sin ropa, tú te la quita' y e' OMG",
           "title": "Sin pausa",
           "matched_variant": "por más que",
-          "matched_surface": "Por más que"
+          "matched_surface": "Por más que",
+          "segment_id": "seg_06c4c72796c51bf88c70728c",
+          "occurrence_ids": [
+            "occ_e70d98a8c83f2e0110bde678"
+          ]
         },
         {
           "id": "10220940:2",
           "line": "Por má' que los gasto, en el putero siempre viran",
           "title": "pinot grigio",
           "matched_variant": "por más que",
-          "matched_surface": "Por má' que"
+          "matched_surface": "Por má' que",
+          "segment_id": "seg_d8773a971d2928f5fd4d9881",
+          "occurrence_ids": [
+            "occ_cf9b022d792ba08b7942540c"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -3393,6 +4352,10 @@
           "title": "sorry es que soy bipolarrr",
           "matched_variant": "de nuevo",
           "matched_surface": "de nuevo",
+          "segment_id": "seg_c8b992dc785bf9d4a5447b38",
+          "occurrence_ids": [
+            "occ_3a178ce38ce65b32f797e146"
+          ],
           "vocalists": [
             "ROBI"
           ],
@@ -3404,6 +4367,10 @@
           "title": "En Esta Boca",
           "matched_variant": "de nuevo",
           "matched_surface": "de nuevo",
+          "segment_id": "seg_6714defd3bf097036cae5fdd",
+          "occurrence_ids": [
+            "occ_fff23be4f450ae7838b61d8d"
+          ],
           "vocalists": [
             "Young Miko",
             "Kany García",
@@ -3416,7 +4383,11 @@
           "line": "Que se joda si me quemo, yo voy de nuevo",
           "title": "tres tristes tragos",
           "matched_variant": "de nuevo",
-          "matched_surface": "de nuevo"
+          "matched_surface": "de nuevo",
+          "segment_id": "seg_5c3641fcb4169b2cc2da5ba5",
+          "occurrence_ids": [
+            "occ_a317cf5b2d7681e5b164b8a9"
+          ]
         },
         {
           "id": "8043163:58",
@@ -3424,6 +4395,10 @@
           "title": "2seater",
           "matched_variant": "de nuevo",
           "matched_surface": "de nuevo",
+          "segment_id": "seg_8819b0071ffc21f532ce04b2",
+          "occurrence_ids": [
+            "occ_9a2005ee9e184eac32224941"
+          ],
           "vocalists": [
             "Juanka",
             "Young Miko"
@@ -3446,6 +4421,10 @@
           "title": "COLMILLO",
           "matched_variant": "hace tiempo",
           "matched_surface": "hace tiempo",
+          "segment_id": "seg_657fefcee5e78a36b0b12e33",
+          "occurrence_ids": [
+            "occ_8c84e4cbb98dc39701c31077"
+          ],
           "vocalists": [
             "Randy",
             "Jowell"
@@ -3457,7 +4436,11 @@
           "line": "Me tiene a dieta de hace tiempo y yo no sé por qué",
           "title": "tamagotchi",
           "matched_variant": "hace tiempo",
-          "matched_surface": "hace tiempo"
+          "matched_surface": "hace tiempo",
+          "segment_id": "seg_58bae8574d1ba9821146da76",
+          "occurrence_ids": [
+            "occ_51f852cbf3703cc66881c341"
+          ]
         },
         {
           "id": "8464254:12",
@@ -3465,6 +4448,10 @@
           "title": "Aprovéchame BB",
           "matched_variant": "hace tiempo",
           "matched_surface": "Hace tiempo",
+          "segment_id": "seg_104ffbf5fd9353f4d222b47f",
+          "occurrence_ids": [
+            "occ_da7c974a1779d8d126e5c768"
+          ],
           "vocalists": [
             "vf7",
             "Young Miko"
@@ -3477,6 +4464,10 @@
           "title": "Saturno",
           "matched_variant": "hace tiempo",
           "matched_surface": "hace tiempo",
+          "segment_id": "seg_06124bdc05b53155802c030f",
+          "occurrence_ids": [
+            "occ_cb845832a3948af4b49ce937"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3498,6 +4489,10 @@
           "title": "Traviesa",
           "matched_variant": "después de",
           "matched_surface": "despué' de",
+          "segment_id": "seg_a966cbb35dbf0f93b5050385",
+          "occurrence_ids": [
+            "occ_f3cbb1aa30416bde9c8e14cd"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3508,7 +4503,11 @@
           "line": "Después de un perreo anormal, no me digas que no, si (Yeah, yeah)",
           "title": "Dosis",
           "matched_variant": "después de",
-          "matched_surface": "Después de"
+          "matched_surface": "Después de",
+          "segment_id": "seg_c4d2344264875af2395a6128",
+          "occurrence_ids": [
+            "occ_5010e21c5537ed5a5b03508f"
+          ]
         },
         {
           "id": "8621461:19",
@@ -3516,6 +4515,10 @@
           "title": "Amandita",
           "matched_variant": "después de",
           "matched_surface": "después de",
+          "segment_id": "seg_68f0c2d1022a15f16f95d7ab",
+          "occurrence_ids": [
+            "occ_6ab041acc4345fd2f9b4214e"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Omar Courtz",
@@ -3529,6 +4532,10 @@
           "title": "Señorita",
           "matched_variant": "después de",
           "matched_surface": "despué' de",
+          "segment_id": "seg_8da26f4a7961a1e4a65ea7d9",
+          "occurrence_ids": [
+            "occ_bfd0209672cee27b4f950f5b"
+          ],
           "vocalists": [
             "Wisin"
           ],
@@ -3550,6 +4557,10 @@
           "title": "Bi",
           "matched_variant": "encima de",
           "matched_surface": "encima de",
+          "segment_id": "seg_e0ba7af85bc42b0540269723",
+          "occurrence_ids": [
+            "occ_99c649ef5f134b7787f630db"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3560,14 +4571,22 @@
           "line": "Y tú encima 'e mí",
           "title": "Duro",
           "matched_variant": "encima de",
-          "matched_surface": "encima 'e"
+          "matched_surface": "encima 'e",
+          "segment_id": "seg_1e0b3762c465cb5aeea08983",
+          "occurrence_ids": [
+            "occ_1f6624dabf1e9a8980510727"
+          ]
         },
         {
           "id": "10220933:9",
           "line": "Ya que estamo' aquí, voy pa' encima 'e ti",
           "title": "fuck TMZ",
           "matched_variant": "encima de",
-          "matched_surface": "encima 'e"
+          "matched_surface": "encima 'e",
+          "segment_id": "seg_e03aded3847dc4f8f9d7abbf",
+          "occurrence_ids": [
+            "occ_227849eaffbbfeb53f687953"
+          ]
         },
         {
           "id": "9788043:28",
@@ -3575,6 +4594,10 @@
           "title": "Señorita",
           "matched_variant": "encima de",
           "matched_surface": "encima de",
+          "segment_id": "seg_e5ae8c45ff3271272175091b",
+          "occurrence_ids": [
+            "occ_1ff9608aca80a67132bd2444"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3595,14 +4618,22 @@
           "line": "Si un día me voy (Voy)",
           "title": "Ojalá",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_a98a7f2c3aff9d20b1698c2f",
+          "occurrence_ids": [
+            "occ_ef5affe8a47417104d2ab732"
+          ]
         },
         {
           "id": "12591721:38",
           "line": "Ma, agárrate de aquí, contigo me voy OT",
           "title": "Piki",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_21f880fb526bd498330d556c",
+          "occurrence_ids": [
+            "occ_e877663b69ab2faa99a9956b"
+          ]
         },
         {
           "id": "10220946:11",
@@ -3610,6 +4641,10 @@
           "title": "oye ma’",
           "matched_variant": "me voy",
           "matched_surface": "me voy",
+          "segment_id": "seg_578a6b3d83147c78da918416",
+          "occurrence_ids": [
+            "occ_a3efcdf96c373b1fd3d7a0a4"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3621,6 +4656,10 @@
           "title": "De Pasajero",
           "matched_variant": "me voy",
           "matched_surface": "me voy",
+          "segment_id": "seg_4e1edb65665911d2227b40c2",
+          "occurrence_ids": [
+            "occ_e4c1423578ec8afe8a04dca4"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3641,7 +4680,11 @@
           "line": "Tú vas a ver si me das el chance",
           "title": "Meiomi",
           "matched_variant": "a ver si",
-          "matched_surface": "a ver si"
+          "matched_surface": "a ver si",
+          "segment_id": "seg_4456bfc6d3e40037941dbce9",
+          "occurrence_ids": [
+            "occ_84fa0dd8f06048b1c3bdec40"
+          ]
         },
         {
           "id": "10220946:28",
@@ -3649,6 +4692,10 @@
           "title": "oye ma’",
           "matched_variant": "a ver si",
           "matched_surface": "a ver si",
+          "segment_id": "seg_6b2f57326c8e99ec56dcab15",
+          "occurrence_ids": [
+            "occ_e46f71caa9d75f7e46dd6ca6"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3660,6 +4707,10 @@
           "title": "Te llevo tatuada",
           "matched_variant": "a ver si",
           "matched_surface": "a ver si",
+          "segment_id": "seg_af8425ee4952ab64aa4357dc",
+          "occurrence_ids": [
+            "occ_82a11be8e92c29ec4cd42f6d"
+          ],
           "vocalists": [
             "Jorge Drexler",
             "Young Miko",
@@ -3683,6 +4734,10 @@
           "title": "FINA",
           "matched_variant": "dile que",
           "matched_surface": "Dile que",
+          "segment_id": "seg_439d09d6bf52ef9f76dce035",
+          "occurrence_ids": [
+            "occ_fbeff92b15ce63185a982f6e"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -3693,7 +4748,11 @@
           "line": "A tu amiga dile que dije: \"What's up? I'm down\"",
           "title": "Piki",
           "matched_variant": "dile que",
-          "matched_surface": "dile que"
+          "matched_surface": "dile que",
+          "segment_id": "seg_6edaed48af7aa31a10462981",
+          "occurrence_ids": [
+            "occ_48f9b462db95e47663651eda"
+          ]
         },
         {
           "id": "8618160:3",
@@ -3701,6 +4760,10 @@
           "title": "Katana",
           "matched_variant": "dile que",
           "matched_surface": "Dile que",
+          "segment_id": "seg_9f989be0453fa8dbd1cda668",
+          "occurrence_ids": [
+            "occ_1075885b695f2eda08e4f05c"
+          ],
           "vocalists": [
             "Leebrian"
           ],
@@ -3722,6 +4785,10 @@
           "title": "FINA",
           "matched_variant": "no sé qué",
           "matched_surface": "No sé qué",
+          "segment_id": "seg_34a84b6b647255f7c49fb06c",
+          "occurrence_ids": [
+            "occ_51740a00f1b438345edb5fa0"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -3733,6 +4800,10 @@
           "title": "sorry es que soy bipolarrr",
           "matched_variant": "no sé qué",
           "matched_surface": "No sé qué",
+          "segment_id": "seg_90d0328a761b8ef37ae96d3a",
+          "occurrence_ids": [
+            "occ_8e3a306739f5a79370400e12"
+          ],
           "vocalists": [
             "ROBI"
           ],
@@ -3744,6 +4815,10 @@
           "title": "no quiero pelear",
           "matched_variant": "no sé qué",
           "matched_surface": "No sé qué",
+          "segment_id": "seg_6c7d6832c6624668d71d10d8",
+          "occurrence_ids": [
+            "occ_ad66490d40c5b1a09fb1fa49"
+          ],
           "vocalists": [
             "ELENA ROSE"
           ],
@@ -3765,6 +4840,10 @@
           "title": "COLMILLO",
           "matched_variant": "deje de llamar",
           "matched_surface": "Deje de llamar",
+          "segment_id": "seg_2fc9358a9f18ed30a6021dd0",
+          "occurrence_ids": [
+            "occ_4bf32c10e0792ebe8bedfc91"
+          ],
           "vocalists": [
             "Jowell"
           ],
@@ -3775,7 +4854,11 @@
           "line": "No, no significa que yo dejo de ser normal",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "dejo de ser",
-          "matched_surface": "dejo de ser"
+          "matched_surface": "dejo de ser",
+          "segment_id": "seg_7c144b24cdfd03becc9bdec2",
+          "occurrence_ids": [
+            "occ_944cf884c1bd92392c4492fc"
+          ]
         },
         {
           "id": "8503396:29",
@@ -3783,6 +4866,10 @@
           "title": "Kachipun",
           "matched_variant": "dejan de mirar",
           "matched_surface": "dejan de mirar",
+          "segment_id": "seg_9b0fd6b77043592715283525",
+          "occurrence_ids": [
+            "occ_236c5570f5af87867d791aef"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3814,7 +4901,11 @@
           "line": "Ya no quiero Gucci, ¿pa' qué tanto Prada?",
           "title": "fuck TMZ",
           "matched_variant": "para qué",
-          "matched_surface": "pa' qué"
+          "matched_surface": "pa' qué",
+          "segment_id": "seg_9ec2c68061850e3ebc6b96cb",
+          "occurrence_ids": [
+            "occ_4fd19a0aad0a4c5c84c6e3cc"
+          ]
         },
         {
           "id": "9555844:66",
@@ -3822,6 +4913,10 @@
           "title": "CC (Remix)",
           "matched_variant": "para qué",
           "matched_surface": "pa' qué",
+          "segment_id": "seg_ae22474a65f78811dc3f798c",
+          "occurrence_ids": [
+            "occ_176adef5d0d83dd3ddc27e52"
+          ],
           "vocalists": [
             "Omar Courtz"
           ],
@@ -3846,6 +4941,10 @@
           "title": "Gata",
           "matched_variant": "lo que sea",
           "matched_surface": "lo que sea",
+          "segment_id": "seg_e178db2cfb0e833f8068c0ca",
+          "occurrence_ids": [
+            "occ_a87ea07d21f85a83717062b6"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3856,7 +4955,11 @@
           "line": "Pide lo que sea, que de eso tengo de sobra",
           "title": "Meiomi",
           "matched_variant": "lo que sea",
-          "matched_surface": "lo que sea"
+          "matched_surface": "lo que sea",
+          "segment_id": "seg_60c1fa976065438c9eee4f61",
+          "occurrence_ids": [
+            "occ_f40958426598a42d47fd1de8"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -3873,7 +4976,11 @@
           "line": "Lo mío es romper tari, pero hoy yo te rompo a ti",
           "title": "Plug (Type Shit)",
           "matched_variant": "lo mío",
-          "matched_surface": "Lo mío"
+          "matched_surface": "Lo mío",
+          "segment_id": "seg_42ab5c95da4e83444736eb35",
+          "occurrence_ids": [
+            "occ_cee0882bdaa2635b6bb81c41"
+          ]
         },
         {
           "id": "8503396:62",
@@ -3881,6 +4988,10 @@
           "title": "Kachipun",
           "matched_variant": "lo mío",
           "matched_surface": "lo mío",
+          "segment_id": "seg_de21c803a17a1dbd900477af",
+          "occurrence_ids": [
+            "occ_57abede18486e6714632dd94"
+          ],
           "vocalists": [
             "Metalingüística"
           ],
@@ -3901,14 +5012,22 @@
           "line": "Acá arriba ya no hay cobertura",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "ya no hay",
-          "matched_surface": "ya no hay"
+          "matched_surface": "ya no hay",
+          "segment_id": "seg_07c7dfe9f7741377cc311e01",
+          "occurrence_ids": [
+            "occ_6fb7aac19da7b98077e012f7"
+          ]
         },
         {
           "id": "7598030:44",
           "line": "Uh, ey, desde que salí ya no hay break (No hay break), ja",
           "title": "Puerto Rican Mami",
           "matched_variant": "ya no hay",
-          "matched_surface": "ya no hay"
+          "matched_surface": "ya no hay",
+          "segment_id": "seg_3939f2f65b103e9a4f8ae9c5",
+          "occurrence_ids": [
+            "occ_1458b50681e85a0a3f92d1ef"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -3926,6 +5045,10 @@
           "title": "Chulo pt.2",
           "matched_variant": "te juro",
           "matched_surface": "te juro",
+          "segment_id": "seg_f6c23955f0ba793eed999863",
+          "occurrence_ids": [
+            "occ_6a8bd135ca572f792eb65f4d"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3937,6 +5060,10 @@
           "title": "Sale el Sol",
           "matched_variant": "te juro",
           "matched_surface": "te juro",
+          "segment_id": "seg_68e94bc74fea07177337e0c5",
+          "occurrence_ids": [
+            "occ_2e8ae9f11cbfddfa8175e9bc"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3958,6 +5085,10 @@
           "title": "ay mami",
           "matched_variant": "para el carajo",
           "matched_surface": "pa'l carajo",
+          "segment_id": "seg_4127e40a9d8e638ecf007419",
+          "occurrence_ids": [
+            "occ_731648f69682ef43d6a67081"
+          ],
           "vocalists": [
             "Dei V",
             "Young Miko",
@@ -3971,6 +5102,10 @@
           "title": "Condado",
           "matched_variant": "para el carajo",
           "matched_surface": "pa'l carajo",
+          "segment_id": "seg_86d529c22e8fd71f50e59ebf",
+          "occurrence_ids": [
+            "occ_3b80e3e6562dab0a4a459b97"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -3995,6 +5130,10 @@
           "title": "Condado",
           "matched_variant": "un flow",
           "matched_surface": "un flow",
+          "segment_id": "seg_93f499daeb51840428b80971",
+          "occurrence_ids": [
+            "occ_fdaf335af7f090fbbe6cd34d"
+          ],
           "vocalists": [
             "Lunay",
             "Young Miko"
@@ -4007,6 +5146,10 @@
           "title": "Condado",
           "matched_variant": "un flow",
           "matched_surface": "un flow",
+          "segment_id": "seg_32c1f26c1f847cbfe035fd0e",
+          "occurrence_ids": [
+            "occ_b21b55a4cbe12fb47fc3a5f6"
+          ],
           "vocalists": [
             "Young Miko",
             "Lunay"
@@ -4029,6 +5172,10 @@
           "title": "6B",
           "matched_variant": "yo hago lo que",
           "matched_surface": "yo hago lo que",
+          "segment_id": "seg_47c467d5176bf7708e11f644",
+          "occurrence_ids": [
+            "occ_b6ed9783e5f691c3a842c8e5"
+          ],
           "vocalists": [
             "Young Miko",
             "Jovaan"
@@ -4041,6 +5188,11 @@
           "title": "Katana",
           "matched_variant": "yo hago lo que",
           "matched_surface": "yo hago lo que",
+          "segment_id": "seg_2b9d6f1ad6d5f1c7a6cee83e",
+          "occurrence_ids": [
+            "occ_7cbb74417d5a466e3d7e2c41",
+            "occ_ba0c01265cacf1c0c297fbfa"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4062,6 +5214,10 @@
           "title": "WOAHH",
           "matched_variant": "volvemos a hacer",
           "matched_surface": "volvemo' a hacer",
+          "segment_id": "seg_8605f5fc7d1e3cb86243ec65",
+          "occurrence_ids": [
+            "occ_b5589436bbfc5e0025fc039c"
+          ],
           "vocalists": [
             "Clarent"
           ],
@@ -4072,7 +5228,11 @@
           "line": "Qué mierda volver a empezar",
           "title": "Algo casual",
           "matched_variant": "volver a empezar",
-          "matched_surface": "volver a empezar"
+          "matched_surface": "volver a empezar",
+          "segment_id": "seg_a09078739ad56b5f66437437",
+          "occurrence_ids": [
+            "occ_721c1965e31fb610a506c435"
+          ]
         }
       ],
       "variants": [
@@ -4099,6 +5259,10 @@
           "title": "offline",
           "matched_variant": "empecé a imaginar",
           "matched_surface": "empecé a imaginar",
+          "segment_id": "seg_ab3c1568c0a488e48f39c02e",
+          "occurrence_ids": [
+            "occ_8a696f4a7d213c04a1375142"
+          ],
           "vocalists": [
             "Feid"
           ],
@@ -4110,6 +5274,10 @@
           "title": "Jetski",
           "matched_variant": "empieza a pichar",
           "matched_surface": "empieza a pichar",
+          "segment_id": "seg_2304a87944be757fe743546d",
+          "occurrence_ids": [
+            "occ_e951354937a859e749e2a09e"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -4140,6 +5308,10 @@
           "title": "Kilimanjaro",
           "matched_variant": "parece que",
           "matched_surface": "Parece que",
+          "segment_id": "seg_8f90413fcdb5193af8fba008",
+          "occurrence_ids": [
+            "occ_c954a12684e828aad907ef37"
+          ],
           "vocalists": [
             "Arcángel",
             "Young Miko",
@@ -4153,6 +5325,10 @@
           "title": "Señorita",
           "matched_variant": "parece que",
           "matched_surface": "parece que",
+          "segment_id": "seg_067feb1a097afbc367b18fb4",
+          "occurrence_ids": [
+            "occ_3930a26f3f12db40fbfaa651"
+          ],
           "vocalists": [
             "Wisin"
           ],
@@ -4181,6 +5357,10 @@
           "title": "ID",
           "matched_variant": "a lo loco",
           "matched_surface": "a lo loco",
+          "segment_id": "seg_68d6b6301d41b0f2aeedf3b9",
+          "occurrence_ids": [
+            "occ_dfc51b076b36eb2a0e452049"
+          ],
           "vocalists": [
             "Jowell"
           ],
@@ -4202,6 +5382,10 @@
           "title": "Bi",
           "matched_variant": "lo nuestro",
           "matched_surface": "lo nuestro",
+          "segment_id": "seg_b11fc6efb749dc6bc36fd896",
+          "occurrence_ids": [
+            "occ_b54fc50c78c4ec4447d98a7b"
+          ],
           "vocalists": [
             "Brray"
           ],
@@ -4223,6 +5407,10 @@
           "title": "Aprovéchame BB",
           "matched_variant": "hace tiempo que",
           "matched_surface": "Hace tiempo que",
+          "segment_id": "seg_104ffbf5fd9353f4d222b47f",
+          "occurrence_ids": [
+            "occ_da7c974a1779d8d126e5c768"
+          ],
           "vocalists": [
             "vf7",
             "Young Miko"
@@ -4245,6 +5433,10 @@
           "title": "Saturno",
           "matched_variant": "sin ti",
           "matched_surface": "sin ti",
+          "segment_id": "seg_b193e784d03d8700d8c793c1",
+          "occurrence_ids": [
+            "occ_328da3b3e133858d6b157895"
+          ],
           "vocalists": [
             "Adames"
           ],
@@ -4266,6 +5458,10 @@
           "title": "WOAHH",
           "matched_variant": "antes que",
           "matched_surface": "Antes que",
+          "segment_id": "seg_8605f5fc7d1e3cb86243ec65",
+          "occurrence_ids": [
+            "occ_be83dc1b6be455739af7e5d4"
+          ],
           "vocalists": [
             "Clarent"
           ],
@@ -4287,6 +5483,11 @@
           "title": "Un Poquito",
           "matched_variant": "a ti te",
           "matched_surface": "A ti te",
+          "segment_id": "seg_c09168e56948490c006099f0",
+          "occurrence_ids": [
+            "occ_6973f9d86941fea739fd1ccf",
+            "occ_c5cac1e2481cd2bc07acc345"
+          ],
           "vocalists": [
             "Alejo"
           ],
@@ -4308,6 +5509,10 @@
           "title": "Vendetta",
           "matched_variant": "a mí no",
           "matched_surface": "a mí no",
+          "segment_id": "seg_b74260dca4dd40b977fd0cd3",
+          "occurrence_ids": [
+            "occ_f1445f3cab163be94bced356"
+          ],
           "vocalists": [
             "Villano Antillano",
             "Young Miko",
@@ -4331,6 +5536,10 @@
           "title": "Jetski",
           "matched_variant": "la movie",
           "matched_surface": "la movie",
+          "segment_id": "seg_aae0f82346c4bf8bf16d514c",
+          "occurrence_ids": [
+            "occ_9dfb9787c87240d016fc97b3"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4352,6 +5561,11 @@
           "title": "FINA",
           "matched_variant": "la gana",
           "matched_surface": "la gana",
+          "segment_id": "seg_9f90017c800f739eaf6055d9",
+          "occurrence_ids": [
+            "occ_8ff7e810aed3eedcb73294d7",
+            "occ_f4dcada75f3f4a5e95c929ac"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -4361,22 +5575,22 @@
       "source": "artist-curated"
     },
     {
-      "expression": "el bicho",
-      "translation": "the beast (Bad Bunny's nickname)",
+      "expression": "dime qué",
+      "translation": "tell me what",
       "count": 1,
       "occurrence_count": 1,
       "num_songs": 1,
       "examples": [
         {
-          "id": "9614105:36",
-          "line": "Tengo el bicho afeita'o y cabezón como Caillou",
-          "title": "FINA",
-          "matched_variant": "el bicho",
-          "matched_surface": "el bicho",
-          "vocalists": [
-            "Bad Bunny"
-          ],
-          "sung_by_primary_artist": false
+          "id": "12591724:17",
+          "line": "Dime qué tengo en el vaso",
+          "title": "Plug (Type Shit)",
+          "matched_variant": "dime qué",
+          "matched_surface": "Dime qué",
+          "segment_id": "seg_1b7622a4acba1ea39f31da38",
+          "occurrence_ids": [
+            "occ_cc3ad20eb37c7d153639abea"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -4394,6 +5608,10 @@
           "title": "Sale el Sol",
           "matched_variant": "juro que",
           "matched_surface": "juro que",
+          "segment_id": "seg_68e94bc74fea07177337e0c5",
+          "occurrence_ids": [
+            "occ_f59ceddf6a1e8cb3fcfe2a09"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4410,63 +5628,7 @@
       "source": "artist-construction"
     }
   ],
-  "pmi_detected": [
-    {
-      "expression": "te he visto",
-      "translation": "I've seen you",
-      "count": 5,
-      "occurrence_count": 5,
-      "pmi": 15.9,
-      "num_songs": 5,
-      "examples": [
-        {
-          "id": "9110676:6",
-          "line": "A ti yo te he visto ante'",
-          "title": "COLMILLO",
-          "matched_variant": "te he visto",
-          "matched_surface": "te he visto",
-          "vocalists": [
-            "Young Miko",
-            "Jenny \"La Sexy Voz\""
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "10220934:2",
-          "line": "Pensando en las veces que te he visto",
-          "title": "offline",
-          "matched_variant": "te he visto",
-          "matched_surface": "te he visto",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "10220921:10",
-          "line": "Sí, sí, ya yo te he visto en mi concierto",
-          "title": "rookie of the year",
-          "matched_variant": "te he visto",
-          "matched_surface": "te he visto"
-        },
-        {
-          "id": "12582446:37",
-          "line": "Por más que te he visto sin ropa, tú te la quita' y e' OMG",
-          "title": "Sin pausa",
-          "matched_variant": "te he visto",
-          "matched_surface": "te he visto"
-        },
-        {
-          "id": "12591724:53",
-          "line": "A ti no te he visto aquí, manín, tú no vive' así",
-          "title": "Plug (Type Shit)",
-          "matched_variant": "te he visto",
-          "matched_surface": "te he visto"
-        }
-      ],
-      "source": "artist-pmi-lexicon"
-    }
-  ],
+  "pmi_detected": [],
   "patterns": [
     {
       "expression": "[PRON] voy a",
@@ -4489,6 +5651,10 @@
           "title": "Classy 101",
           "matched_variant": "te voy a",
           "matched_surface": "te voy a",
+          "segment_id": "seg_9261b22a03c4ba3f8a45bd9d",
+          "occurrence_ids": [
+            "occ_043d7a16d399c967fde537ef"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -4501,6 +5667,10 @@
           "title": "Classy 101",
           "matched_variant": "te voy a",
           "matched_surface": "te voy a",
+          "segment_id": "seg_dd66f806f463297795defad5",
+          "occurrence_ids": [
+            "occ_2ad062748d2572039c8f3c6e"
+          ],
           "vocalists": [
             "Feid",
             "Young Miko"
@@ -4513,6 +5683,10 @@
           "title": "Classy 101",
           "matched_variant": "te voy a",
           "matched_surface": "Te vo'a",
+          "segment_id": "seg_5f8ac9976862dee8cdde283d",
+          "occurrence_ids": [
+            "occ_ee109e316c8eeebc88c10c9f"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4524,6 +5698,7 @@
           "title": "COLMILLO",
           "matched_variant": "te voy a",
           "matched_surface": "Te voy a",
+          "segment_id": "seg_799c28418819a0a34f113473",
           "vocalists": [
             "Randy",
             "Jowell"
@@ -4535,7 +5710,11 @@
           "line": "Ba-Ba-Ba-Baby, yo te vo'a decir",
           "title": "Duro",
           "matched_variant": "te voy a",
-          "matched_surface": "te vo'a"
+          "matched_surface": "te vo'a",
+          "segment_id": "seg_75811e94b0772da5bb66badd",
+          "occurrence_ids": [
+            "occ_d0ea0a368e92656ce92383d0"
+          ]
         }
       ]
     },
@@ -4557,6 +5736,11 @@
           "title": "Chulo pt.2",
           "matched_variant": "me va a",
           "matched_surface": "me va a",
+          "segment_id": "seg_395af75dc64617b1a975aa6e",
+          "occurrence_ids": [
+            "occ_b46bd3e31eb3d55cbb15c03f",
+            "occ_d7fc5c042cf1fd4b0aa42852"
+          ],
           "vocalists": [
             "Tokischa",
             "Bad Gyal",
@@ -4569,21 +5753,35 @@
           "line": "¿Qué te importa a ti su signo? Ella no te va a dar lu'",
           "title": "Likey Likey",
           "matched_variant": "te va a",
-          "matched_surface": "te va a"
+          "matched_surface": "te va a",
+          "segment_id": "seg_50da39a4be49dcdae626043b",
+          "occurrence_ids": [
+            "occ_f289cf998cdb139196b258f1",
+            "occ_dc38f9aa689e522e8ce4de71"
+          ]
         },
         {
           "id": "12570921:26",
           "line": "Diablo, qué apreta'o, mami, se te va a descoser el jumper",
           "title": "En el Ritz",
           "matched_variant": "te va a",
-          "matched_surface": "te va a"
+          "matched_surface": "te va a",
+          "segment_id": "seg_75946f50469996a33851dc21",
+          "occurrence_ids": [
+            "occ_a9b95ce4673c5b4f5234782c"
+          ]
         },
         {
           "id": "8224311:8",
           "line": "No porque te va a patear, te va a patear",
           "title": "Smoke Break",
           "matched_variant": "te va a",
-          "matched_surface": "te va a"
+          "matched_surface": "te va a",
+          "segment_id": "seg_e9dc9fa67aa563e231e83b08",
+          "occurrence_ids": [
+            "occ_81e4183f4ec2f9fc51f6ce1e",
+            "occ_2c907cc3ba4e155647173d55"
+          ]
         },
         {
           "id": "9077520:26",
@@ -4591,6 +5789,10 @@
           "title": "8 AM",
           "matched_variant": "se va a",
           "matched_surface": "se va a",
+          "segment_id": "seg_9bc2229d8ec80d6f9d9c6093",
+          "occurrence_ids": [
+            "occ_3aa0af0c01d909fe6515106c"
+          ],
           "vocalists": [
             "NICKI NICOLE",
             "Young Miko"
@@ -4617,6 +5819,10 @@
           "title": "Classy 101",
           "matched_variant": "que te gusta",
           "matched_surface": "que te gusta",
+          "segment_id": "seg_1550e61716c423913009b369",
+          "occurrence_ids": [
+            "occ_7d18988311ff89fc08f8566e"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -4629,6 +5835,10 @@
           "title": "ay mami",
           "matched_variant": "que te gusta",
           "matched_surface": "que te gusta",
+          "segment_id": "seg_a2c8c2a27e3e48d4bc9f9166",
+          "occurrence_ids": [
+            "occ_c091df08f43336b35b72395c"
+          ],
           "vocalists": [
             "Dei V",
             "Young Miko",
@@ -4641,7 +5851,11 @@
           "line": "Te dejé el la'o de la camita que te gusta",
           "title": "Ojalá",
           "matched_variant": "que te gusta",
-          "matched_surface": "que te gusta"
+          "matched_surface": "que te gusta",
+          "segment_id": "seg_b33abc3c5f81244126682e00",
+          "occurrence_ids": [
+            "occ_9ce139a7ebd7d19b2d9b07c8"
+          ]
         },
         {
           "id": "10084300:18",
@@ -4649,6 +5863,10 @@
           "title": "En Esta Boca",
           "matched_variant": "que te gusta",
           "matched_surface": "que te gusta",
+          "segment_id": "seg_fdb98e99e4faf2bf9058937a",
+          "occurrence_ids": [
+            "occ_dd842c5ec1a70079d869b9d4"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4660,6 +5878,10 @@
           "title": "Classy 101",
           "matched_variant": "que me gusta",
           "matched_surface": "que me gusta",
+          "segment_id": "seg_274caf91ba07f9044df1e5fa",
+          "occurrence_ids": [
+            "occ_2c0969a6cb50e8032a3e517f"
+          ],
           "vocalists": [
             "Young Miko",
             "Feid"
@@ -4686,6 +5908,10 @@
           "title": "Castigada",
           "matched_variant": "yo me dejo",
           "matched_surface": "yo me dejo",
+          "segment_id": "seg_3400bb8ce2132b777fe98a7c",
+          "occurrence_ids": [
+            "occ_1a1d2401547f4f8b9aad9593"
+          ],
           "vocalists": [
             "Young Miko",
             "Cory"
@@ -4698,6 +5924,10 @@
           "title": "Castigada",
           "matched_variant": "yo me dejo",
           "matched_surface": "yo me dejo",
+          "segment_id": "seg_8cf350dc3a24ca1ceefa4dc6",
+          "occurrence_ids": [
+            "occ_cec60cb64235f35c2e7a9572"
+          ],
           "vocalists": [
             "Young Miko",
             "Cory"
@@ -4710,6 +5940,10 @@
           "title": "Castigada",
           "matched_variant": "yo me dejo",
           "matched_surface": "yo me dejo",
+          "segment_id": "seg_e16ff8a062482f9627797ee2",
+          "occurrence_ids": [
+            "occ_4259977c7d53f36331104bb7"
+          ],
           "vocalists": [
             "Cory"
           ],
@@ -4721,6 +5955,10 @@
           "title": "Castigada",
           "matched_variant": "yo me dejo",
           "matched_surface": "yo me dejo",
+          "segment_id": "seg_be40b41f8d5faf3a797b04ce",
+          "occurrence_ids": [
+            "occ_2ddba96ccb0ed882d8eb52e5"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4732,6 +5970,10 @@
           "title": "6B",
           "matched_variant": "yo me dejo",
           "matched_surface": "Yo me dejo",
+          "segment_id": "seg_27acc001f4d504018c855f4d",
+          "occurrence_ids": [
+            "occ_19a5958c942a9266eb06d0b7"
+          ],
           "vocalists": [
             "Jovaan"
           ],
@@ -4756,6 +5998,10 @@
           "title": "mañana",
           "matched_variant": "no te hagas",
           "matched_surface": "no te hagas",
+          "segment_id": "seg_8472e76a72f0e77b0dff6ec4",
+          "occurrence_ids": [
+            "occ_8911d299e1f84070b25c3833"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4766,7 +6012,11 @@
           "line": "Baby, no te haga', que me han habla'o de ti",
           "title": "arcoíris",
           "matched_variant": "no te hagas",
-          "matched_surface": "no te haga'"
+          "matched_surface": "no te haga'",
+          "segment_id": "seg_a9fc3ddb7f179b6ea7108b40",
+          "occurrence_ids": [
+            "occ_c3ad15ae53ea44a5c5a66ce7"
+          ]
         },
         {
           "id": "11888474:36",
@@ -4774,6 +6024,11 @@
           "title": "TOA",
           "matched_variant": "no te hagas",
           "matched_surface": "no te haga'",
+          "segment_id": "seg_af7ff1d36fec21eaa1c4d73c",
+          "occurrence_ids": [
+            "occ_5b652e35f165313ae7966527",
+            "occ_f1fe8d49ad17d826ae13f12c"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4785,6 +6040,10 @@
           "title": "ID",
           "matched_variant": "no te hagas",
           "matched_surface": "No te haga'",
+          "segment_id": "seg_cd755e3cba6a4391afffb9e8",
+          "occurrence_ids": [
+            "occ_b03b92a8616911e66913af28"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -4795,7 +6054,11 @@
           "line": "No te hagas la santa, te vi el tatuaje en el coxis",
           "title": "Dosis",
           "matched_variant": "no te hagas",
-          "matched_surface": "No te hagas"
+          "matched_surface": "No te hagas",
+          "segment_id": "seg_b84f1758b238f56b339c2e59",
+          "occurrence_ids": [
+            "occ_a9303ce3d0952dd1fd16d519"
+          ]
         }
       ]
     },
@@ -4817,14 +6080,23 @@
           "line": "Es que si cambian de color, no me quiero asociar",
           "title": "Young Miko: Bzrp Music Sessions, Vol. 58/66",
           "matched_variant": "no me quiero",
-          "matched_surface": "no me quiero"
+          "matched_surface": "no me quiero",
+          "segment_id": "seg_1fe5e9dd5c6fdf9095f32eed",
+          "occurrence_ids": [
+            "occ_2bd79975897639aa1978b2f2"
+          ]
         },
         {
           "id": "8224310:12",
           "line": "Yo no la quiero si no tiene un checkbook",
           "title": "Trending",
           "matched_variant": "no la quiero",
-          "matched_surface": "no la quiero"
+          "matched_surface": "no la quiero",
+          "segment_id": "seg_091c370ff9b4f1ba98be89b3",
+          "occurrence_ids": [
+            "occ_6178a4755bb5bcc69e3af0d6",
+            "occ_b689065290eeff71ece3058a"
+          ]
         },
         {
           "id": "9555844:60",
@@ -4832,6 +6104,10 @@
           "title": "CC (Remix)",
           "matched_variant": "no las quiero",
           "matched_surface": "no las quiero",
+          "segment_id": "seg_ad7f7b26f130e3006b137db1",
+          "occurrence_ids": [
+            "occ_7d1caea733b1424c5bcee9c0"
+          ],
           "vocalists": [
             "Omar Courtz"
           ],
@@ -4843,6 +6119,10 @@
           "title": "Saturno",
           "matched_variant": "no te quiero",
           "matched_surface": "no te quiero",
+          "segment_id": "seg_88fb830d0c69514ca880df16",
+          "occurrence_ids": [
+            "occ_f6c51bb61bb88994ac71bb56"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4854,6 +6134,10 @@
           "title": "Saturno",
           "matched_variant": "no te quiero",
           "matched_surface": "no te quiero",
+          "segment_id": "seg_a25e72f5176954e99175a488",
+          "occurrence_ids": [
+            "occ_4081d46a3e6a33c7b0051487"
+          ],
           "vocalists": [
             "Adames"
           ],
@@ -4878,6 +6162,10 @@
           "title": "COLMILLO",
           "matched_variant": "te he visto",
           "matched_surface": "te he visto",
+          "segment_id": "seg_7763f6455ba390d0bfbce018",
+          "occurrence_ids": [
+            "occ_48dbccc60920f5ebe950a746"
+          ],
           "vocalists": [
             "Young Miko",
             "Jenny \"La Sexy Voz\""
@@ -4890,6 +6178,10 @@
           "title": "offline",
           "matched_variant": "te he visto",
           "matched_surface": "te he visto",
+          "segment_id": "seg_f67879cea98ff6e82fb96d03",
+          "occurrence_ids": [
+            "occ_9054759be940699cb55dca24"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4900,21 +6192,34 @@
           "line": "Sí, sí, ya yo te he visto en mi concierto",
           "title": "rookie of the year",
           "matched_variant": "te he visto",
-          "matched_surface": "te he visto"
+          "matched_surface": "te he visto",
+          "segment_id": "seg_54732adeac1c6b5a6cbd402b",
+          "occurrence_ids": [
+            "occ_b133698dc38d1d94c299b506"
+          ]
         },
         {
           "id": "12582446:37",
           "line": "Por más que te he visto sin ropa, tú te la quita' y e' OMG",
           "title": "Sin pausa",
           "matched_variant": "te he visto",
-          "matched_surface": "te he visto"
+          "matched_surface": "te he visto",
+          "segment_id": "seg_06c4c72796c51bf88c70728c",
+          "occurrence_ids": [
+            "occ_f42f4b24f7e028c9d7019a28",
+            "occ_6b3b662657d13fed8dc9adaf"
+          ]
         },
         {
           "id": "12591724:53",
           "line": "A ti no te he visto aquí, manín, tú no vive' así",
           "title": "Plug (Type Shit)",
           "matched_variant": "te he visto",
-          "matched_surface": "te he visto"
+          "matched_surface": "te he visto",
+          "segment_id": "seg_0323a9d39e8132d3754364c7",
+          "occurrence_ids": [
+            "occ_e338061495070be59402a68a"
+          ]
         }
       ]
     },
@@ -4934,21 +6239,33 @@
           "line": "Uh, no les gusta mi actitud",
           "title": "rookie of the year",
           "matched_variant": "les gusta mi",
-          "matched_surface": "les gusta mi"
+          "matched_surface": "les gusta mi",
+          "segment_id": "seg_c855d8ce31b130c14b24f43f",
+          "occurrence_ids": [
+            "occ_c64f01a072f25429b3490596"
+          ]
         },
         {
           "id": "8224312:5",
           "line": "A las extranjera' le gusta mi acento (Uh)",
           "title": "Acento",
           "matched_variant": "le gusta mi",
-          "matched_surface": "le gusta mi"
+          "matched_surface": "le gusta mi",
+          "segment_id": "seg_784eafd7c7e18842c8cb0a2d",
+          "occurrence_ids": [
+            "occ_3f8cc54bfadd52b43db9341b"
+          ]
         },
         {
           "id": "8224312:25",
           "line": "Si a las extranjera' le gusta mi acento (Uh)",
           "title": "Acento",
           "matched_variant": "le gusta mi",
-          "matched_surface": "le gusta mi"
+          "matched_surface": "le gusta mi",
+          "segment_id": "seg_afae61f2a35fb24d58c1f2f2",
+          "occurrence_ids": [
+            "occ_b4b86a31a11e2f6f479aec27"
+          ]
         },
         {
           "id": "8259338:6",
@@ -4956,6 +6273,10 @@
           "title": "Stripper X",
           "matched_variant": "le gusta mi",
           "matched_surface": "Le gusta mi",
+          "segment_id": "seg_aaf1ad76696bfa1cf3c22cdc",
+          "occurrence_ids": [
+            "occ_c1e1b9c122b096a357dce990"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -4967,6 +6288,10 @@
           "title": "Stripper X",
           "matched_variant": "le gusta mi",
           "matched_surface": "Le gusta mi",
+          "segment_id": "seg_763ca511d2101fbc0ba4dcef",
+          "occurrence_ids": [
+            "occ_ee296de2b4f7cfdad8cd7b0b"
+          ],
           "vocalists": [
             "Lil Joujou"
           ],
@@ -4992,6 +6317,10 @@
           "title": "8 AM",
           "matched_variant": "yo te busco",
           "matched_surface": "yo te busco",
+          "segment_id": "seg_fcb9543bb8eb1ed7d44ecd10",
+          "occurrence_ids": [
+            "occ_5c2bd87242167c404ffc5650"
+          ],
           "vocalists": [
             "Young Miko",
             "NICKI NICOLE"
@@ -5004,6 +6333,10 @@
           "title": "ay mami",
           "matched_variant": "yo te busco",
           "matched_surface": "yo te busco",
+          "segment_id": "seg_480448392dec2cb98babbc71",
+          "occurrence_ids": [
+            "occ_4ebb79c4b30bfbff1f783aef"
+          ],
           "vocalists": [
             "Young Miko",
             "Dei V"
@@ -5015,7 +6348,11 @@
           "line": "Ma, yo te busco en el skrrt (Skrrt)",
           "title": "En el Ritz",
           "matched_variant": "yo te busco",
-          "matched_surface": "yo te busco"
+          "matched_surface": "yo te busco",
+          "segment_id": "seg_5ab82e89d499f77bfe2f0e12",
+          "occurrence_ids": [
+            "occ_fa94ebedfdc6c355adbbbda9"
+          ]
         },
         {
           "id": "8156995:37",
@@ -5023,6 +6360,10 @@
           "title": "Castigada",
           "matched_variant": "yo te busco",
           "matched_surface": "yo te busco",
+          "segment_id": "seg_d05d3ae4715246a5d17f982d",
+          "occurrence_ids": [
+            "occ_ce6bfab40c7c996b2200aced"
+          ],
           "vocalists": [
             "Catalyna"
           ],
@@ -5034,6 +6375,10 @@
           "title": "Amandita",
           "matched_variant": "yo las busco",
           "matched_surface": "Yo las busco",
+          "segment_id": "seg_3bb3c35b997d93c7a6388f59",
+          "occurrence_ids": [
+            "occ_ec1e0f13f532fd47d95a135c"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Omar Courtz",
@@ -5060,6 +6405,10 @@
           "title": "FINA",
           "matched_variant": "te vas a",
           "matched_surface": "te va' a",
+          "segment_id": "seg_a4542f12d0acf9c30d54a560",
+          "occurrence_ids": [
+            "occ_1b775e5b7f9e45541de8b25a"
+          ],
           "vocalists": [
             "Young Miko",
             "Tego Calderón"
@@ -5072,6 +6421,10 @@
           "title": "COLMILLO",
           "matched_variant": "te vas a",
           "matched_surface": "te va' a",
+          "segment_id": "seg_5125f12bdc77e5e399d87fd7",
+          "occurrence_ids": [
+            "occ_1e3d3c135b33695b62f0bbe3"
+          ],
           "vocalists": [
             "Young Miko",
             "Jenny \"La Sexy Voz\""
@@ -5083,7 +6436,11 @@
           "line": "Si es verdad que te vas a ir",
           "title": "Duro",
           "matched_variant": "te vas a",
-          "matched_surface": "te vas a"
+          "matched_surface": "te vas a",
+          "segment_id": "seg_72a87532671a0aaeda048ed7",
+          "occurrence_ids": [
+            "occ_c7006b20c7b26eca839ba865"
+          ]
         },
         {
           "id": "11888474:7",
@@ -5091,6 +6448,10 @@
           "title": "TOA",
           "matched_variant": "me vas a",
           "matched_surface": "me va' a",
+          "segment_id": "seg_99fd5be72c6c28c09e814fd1",
+          "occurrence_ids": [
+            "occ_5474389cd103047dfbada94e"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5101,7 +6462,11 @@
           "line": "Si el corazoncito es rosa, ya yo sé lo que me va' a pedir",
           "title": "Sin pausa",
           "matched_variant": "me vas a",
-          "matched_surface": "me va' a"
+          "matched_surface": "me va' a",
+          "segment_id": "seg_6d06017db391475edf4f68a4",
+          "occurrence_ids": [
+            "occ_8e059786eac4b0d635d116e4"
+          ]
         }
       ]
     },
@@ -5122,6 +6487,10 @@
           "title": "COLMILLO",
           "matched_variant": "tú me has",
           "matched_surface": "tú me has",
+          "segment_id": "seg_c720b958ec43f3dab1d65ebb",
+          "occurrence_ids": [
+            "occ_a7eaa9978692d8e551fe87f0"
+          ],
           "vocalists": [
             "J Balvin",
             "Young Miko"
@@ -5134,6 +6503,10 @@
           "title": "COLMILLO",
           "matched_variant": "tú me has",
           "matched_surface": "tú me has",
+          "segment_id": "seg_e243b1f52279f0aec9a64c20",
+          "occurrence_ids": [
+            "occ_7e551adbae9eee60ef71c6f4"
+          ],
           "vocalists": [
             "J Balvin",
             "Young Miko"
@@ -5146,6 +6519,7 @@
           "title": "COLMILLO",
           "matched_variant": "tú me has",
           "matched_surface": "tú me has",
+          "segment_id": "seg_a972956a5d0fb7e4898ca83d",
           "vocalists": [
             "Young Miko",
             "J Balvin"
@@ -5157,14 +6531,22 @@
           "line": "Ey, tú me has visto ya los caption, mi guante ya está proba'o",
           "title": "MVP",
           "matched_variant": "tú me has",
-          "matched_surface": "tú me has"
+          "matched_surface": "tú me has",
+          "segment_id": "seg_6493d0260ee4cdc230725223",
+          "occurrence_ids": [
+            "occ_ff2e8dba66277e830b7aa088"
+          ]
         },
         {
           "id": "12570922:30",
           "line": "Castigá' por lo mal que tú te has porta'o",
           "title": "Sexo de moteles",
           "matched_variant": "tú te has",
-          "matched_surface": "tú te has"
+          "matched_surface": "tú te has",
+          "segment_id": "seg_e249ba202021c3f8b63a11fa",
+          "occurrence_ids": [
+            "occ_1feffbe8b6ec1e8c02f2e208"
+          ]
         }
       ]
     },
@@ -5184,14 +6566,22 @@
           "line": "Aquí mirando, me tiene en un limbo, baby",
           "title": "Meiomi",
           "matched_variant": "me tiene en",
-          "matched_surface": "me tiene en"
+          "matched_surface": "me tiene en",
+          "segment_id": "seg_6b10e50742fe801849f8e8b3",
+          "occurrence_ids": [
+            "occ_400633370541f5da7e67bcea"
+          ]
         },
         {
           "id": "12458903:47",
           "line": "Aquí mirando, me tiene en un limbo, baby (Baby), ay, sí",
           "title": "Meiomi",
           "matched_variant": "me tiene en",
-          "matched_surface": "me tiene en"
+          "matched_surface": "me tiene en",
+          "segment_id": "seg_16511b74606c22e056514646",
+          "occurrence_ids": [
+            "occ_b618094dbd32fd92ebf60145"
+          ]
         },
         {
           "id": "8618160:47",
@@ -5199,6 +6589,10 @@
           "title": "Katana",
           "matched_variant": "me tiene en",
           "matched_surface": "me tiene en",
+          "segment_id": "seg_d5b722d227d24a2e234027bd",
+          "occurrence_ids": [
+            "occ_9a8081aa3ff6046a28b2ad0a"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5210,6 +6604,10 @@
           "title": "Katana",
           "matched_variant": "me tiene en",
           "matched_surface": "me tiene en",
+          "segment_id": "seg_5fd8a534eaa5f458f8c68df8",
+          "occurrence_ids": [
+            "occ_0f2177849df6159d576053ee"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5221,6 +6619,10 @@
           "title": "ID",
           "matched_variant": "te tiene en",
           "matched_surface": "te tiene en",
+          "segment_id": "seg_d32f61bb3c98035beea3771e",
+          "occurrence_ids": [
+            "occ_607b09825d28eb847ebe0b0a"
+          ],
           "vocalists": [
             "Randy"
           ],
@@ -5244,35 +6646,58 @@
           "line": "Ey, me gusta que me digas \"daddy\"",
           "title": "Duro",
           "matched_variant": "me gusta que",
-          "matched_surface": "me gusta que"
+          "matched_surface": "me gusta que",
+          "segment_id": "seg_00ac3c81aa2fb9dd31a11b31",
+          "occurrence_ids": [
+            "occ_922532aa322188e4fc6cdc30",
+            "occ_9c082a634c562c244bbaba3a"
+          ]
         },
         {
           "id": "12591723:2",
           "line": "Me gusta que al carro se le abran las puerta' pa' arriba, uh",
           "title": "Esa nena",
           "matched_variant": "me gusta que",
-          "matched_surface": "Me gusta que"
+          "matched_surface": "Me gusta que",
+          "segment_id": "seg_5f4adf472b84208efe7af391",
+          "occurrence_ids": [
+            "occ_5ad2cf5f03e5bb26bd0505a9"
+          ]
         },
         {
           "id": "12591723:3",
           "line": "Me gusta que acá en el PH no tengo vecino', y",
           "title": "Esa nena",
           "matched_variant": "me gusta que",
-          "matched_surface": "Me gusta que"
+          "matched_surface": "Me gusta que",
+          "segment_id": "seg_1b190befd8a506a90d523ed4",
+          "occurrence_ids": [
+            "occ_d8c8f7bbec6a0debc17ccc4a"
+          ]
         },
         {
           "id": "12591723:4",
           "line": "Me gusta que ante' del millón ya me sentía rica, ey, ey",
           "title": "Esa nena",
           "matched_variant": "me gusta que",
-          "matched_surface": "Me gusta que"
+          "matched_surface": "Me gusta que",
+          "segment_id": "seg_cc6aec4bd9caba9c569871ea",
+          "occurrence_ids": [
+            "occ_50b95b03fd93264682ed3f79",
+            "occ_6e44de37d1f217e2acb8655c"
+          ]
         },
         {
           "id": "8224312:16",
           "line": "Le gusta que yo tengo ticke', quiere que le lleve una Birkin",
           "title": "Acento",
           "matched_variant": "le gusta que",
-          "matched_surface": "Le gusta que"
+          "matched_surface": "Le gusta que",
+          "segment_id": "seg_0270719c83da32932e1a3283",
+          "occurrence_ids": [
+            "occ_78e3f5b45bcdf2d32a239524",
+            "occ_13579beff0929a43f1596dda"
+          ]
         }
       ]
     },
@@ -5293,6 +6718,10 @@
           "title": "ay mami",
           "matched_variant": "yo me siento",
           "matched_surface": "yo me siento",
+          "segment_id": "seg_f7809bd5f100d55d7466ffdf",
+          "occurrence_ids": [
+            "occ_0eea1579d5db692561f533de"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5304,6 +6733,10 @@
           "title": "ay mami",
           "matched_variant": "yo me siento",
           "matched_surface": "yo me siento",
+          "segment_id": "seg_ea1d8bd9e2b39dc11a75bad7",
+          "occurrence_ids": [
+            "occ_61127f597b5b46bd2a5357db"
+          ],
           "vocalists": [
             "Dei V"
           ],
@@ -5315,6 +6748,10 @@
           "title": "ay mami",
           "matched_variant": "yo me siento",
           "matched_surface": "yo me siento",
+          "segment_id": "seg_3f6f28ca65cc429b88c80b8b",
+          "occurrence_ids": [
+            "occ_6e20a2d928bf1d94e2e86785"
+          ],
           "vocalists": [
             "Dei V",
             "Young Miko",
@@ -5328,6 +6765,10 @@
           "title": "Déjanos Pasar",
           "matched_variant": "yo me siento",
           "matched_surface": "yo me siento",
+          "segment_id": "seg_7c8d62536eca1d5779e56ed1",
+          "occurrence_ids": [
+            "occ_75290eab71823c3a549d15ee"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5338,7 +6779,11 @@
           "line": "Aunque no me toques, yo te siento, I'm like \"fuck it\"",
           "title": "Sin pausa",
           "matched_variant": "yo te siento",
-          "matched_surface": "yo te siento"
+          "matched_surface": "yo te siento",
+          "segment_id": "seg_47fcf463f8a61cba079ffd11",
+          "occurrence_ids": [
+            "occ_d3d1b9454b6f3af9b2c0a87c"
+          ]
         }
       ]
     },
@@ -5358,7 +6803,11 @@
           "line": "¿Baby, qué es la que hay? (¿Qué lo que?)",
           "title": "WASSUP",
           "matched_variant": "la que hay",
-          "matched_surface": "la que hay"
+          "matched_surface": "la que hay",
+          "segment_id": "seg_1eb5ac4739fa512a832a48fe",
+          "occurrence_ids": [
+            "occ_c94cba9150b045ae09f57477"
+          ]
         },
         {
           "id": "7134347:58",
@@ -5366,6 +6815,10 @@
           "title": "Vendetta",
           "matched_variant": "la que hay",
           "matched_surface": "la que hay",
+          "segment_id": "seg_5f1e433f97759ef85464281a",
+          "occurrence_ids": [
+            "occ_88d1204b1b561d0aa0b5d94a"
+          ],
           "vocalists": [
             "Villano Antillano",
             "Young Miko",
@@ -5379,6 +6832,10 @@
           "title": "pinot grigio",
           "matched_variant": "la que hay",
           "matched_surface": "la que hay",
+          "segment_id": "seg_733b04a32370cd5ca34829b2",
+          "occurrence_ids": [
+            "occ_6c21cd0ee26ff2589796edba"
+          ],
           "vocalists": [
             "Young Miko",
             "Brray"
@@ -5391,6 +6848,10 @@
           "title": "ID",
           "matched_variant": "lo que hay",
           "matched_surface": "lo que hay",
+          "segment_id": "seg_c6e41858d142e066f0e9796d",
+          "occurrence_ids": [
+            "occ_0bcdc95976c158c891c267a7"
+          ],
           "vocalists": [
             "Jowell"
           ],
@@ -5415,6 +6876,10 @@
           "title": "COLMILLO",
           "matched_variant": "te ves bien",
           "matched_surface": "te ves bien",
+          "segment_id": "seg_0324ef3addaaf3c58728115a",
+          "occurrence_ids": [
+            "occ_de403b5851e2ec4e8b2133bb"
+          ],
           "vocalists": [
             "Young Miko",
             "Jenny \"La Sexy Voz\""
@@ -5426,7 +6891,11 @@
           "line": "Tú siempre te ves bien clean, bien nice, mm-mmm",
           "title": "Sexo de moteles",
           "matched_variant": "te ves bien",
-          "matched_surface": "te ves bien"
+          "matched_surface": "te ves bien",
+          "segment_id": "seg_cb4902d780b12c73953a8200",
+          "occurrence_ids": [
+            "occ_0dc749ef4e2f662a1f5a5fef"
+          ]
         },
         {
           "id": "8721872:16",
@@ -5434,6 +6903,10 @@
           "title": "Cuando Te Toca",
           "matched_variant": "te ves bien",
           "matched_surface": "te ve' bien",
+          "segment_id": "seg_305326bf98bf998df71420bd",
+          "occurrence_ids": [
+            "occ_5cefa2b72f5ea064481107e9"
+          ],
           "vocalists": [
             "Yandel"
           ],
@@ -5445,6 +6918,10 @@
           "title": "DISPO",
           "matched_variant": "la ves bien",
           "matched_surface": "la ves bien",
+          "segment_id": "seg_69b7069b727af9644df96e71",
+          "occurrence_ids": [
+            "occ_3931fe9858f5145c04cdba50"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5469,6 +6946,11 @@
           "title": "COLMILLO",
           "matched_variant": "que te dé",
           "matched_surface": "Que te dé",
+          "segment_id": "seg_278b99df16e2ed08e2527d1c",
+          "occurrence_ids": [
+            "occ_fa1a624710d2041959b35518",
+            "occ_e2795e4dc182cde9159fa409"
+          ],
           "vocalists": [
             "J Balvin",
             "Young Miko"
@@ -5481,6 +6963,11 @@
           "title": "COLMILLO",
           "matched_variant": "que te dé",
           "matched_surface": "Que te dé",
+          "segment_id": "seg_28e26cf4967ef0e8a2b11bb9",
+          "occurrence_ids": [
+            "occ_f37ba40940bde7c9bdabf87f",
+            "occ_dbac924cf9c41aa6b1ef6d40"
+          ],
           "vocalists": [
             "J Balvin",
             "Young Miko"
@@ -5493,6 +6980,10 @@
           "title": "COLMILLO",
           "matched_variant": "que le dé",
           "matched_surface": "que le dé",
+          "segment_id": "seg_355afa365298d137c3fd3253",
+          "occurrence_ids": [
+            "occ_bde51f51f2922865ab63658a"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5503,7 +6994,11 @@
           "line": "Quiere que le dé tijera en el cuarto del hotel (Prr)",
           "title": "Lisa",
           "matched_variant": "que le dé",
-          "matched_surface": "que le dé"
+          "matched_surface": "que le dé",
+          "segment_id": "seg_984a2ea4c290a6b748a3ba1a",
+          "occurrence_ids": [
+            "occ_6f806dd50f8685002f22affa"
+          ]
         }
       ]
     },
@@ -5523,28 +7018,44 @@
           "line": "Yo les doy a las do' y nunca hay drama",
           "title": "Lisa",
           "matched_variant": "les doy a",
-          "matched_surface": "les doy a"
+          "matched_surface": "les doy a",
+          "segment_id": "seg_8e886361ed598f5d589a86c7",
+          "occurrence_ids": [
+            "occ_9cde3fd16d87555e64da6d79"
+          ]
         },
         {
           "id": "8874493:35",
           "line": "Yo les doy a las do' y no uso trama (No)",
           "title": "Lisa",
           "matched_variant": "les doy a",
-          "matched_surface": "les doy a"
+          "matched_surface": "les doy a",
+          "segment_id": "seg_a8c24c2262884d0d070d54dd",
+          "occurrence_ids": [
+            "occ_70f54c6bafe280477ee9f791"
+          ]
         },
         {
           "id": "12570923:41",
           "line": "Yo que le doy a naturale' y plástica'",
           "title": "Dosis",
           "matched_variant": "le doy a",
-          "matched_surface": "le doy a"
+          "matched_surface": "le doy a",
+          "segment_id": "seg_699b05698b2285b58fc685a6",
+          "occurrence_ids": [
+            "occ_4f38e0ed6ea348850f8d30e4"
+          ]
         },
         {
           "id": "12570923:49",
           "line": "Yo-Yo-Yo que le doy a naturale' y plástica'",
           "title": "Dosis",
           "matched_variant": "le doy a",
-          "matched_surface": "le doy a"
+          "matched_surface": "le doy a",
+          "segment_id": "seg_7ab70afb0aa265e4f472fcca",
+          "occurrence_ids": [
+            "occ_bb452d3fb50efaf0b4edd6c8"
+          ]
         }
       ]
     },
@@ -5564,14 +7075,22 @@
           "line": "Yo les doy a las do' y nunca hay drama",
           "title": "Lisa",
           "matched_variant": "a las dos",
-          "matched_surface": "a las do'"
+          "matched_surface": "a las do'",
+          "segment_id": "seg_8e886361ed598f5d589a86c7",
+          "occurrence_ids": [
+            "occ_c22112e991803c49ff5870e6"
+          ]
         },
         {
           "id": "8874493:35",
           "line": "Yo les doy a las do' y no uso trama (No)",
           "title": "Lisa",
           "matched_variant": "a las dos",
-          "matched_surface": "a las do'"
+          "matched_surface": "a las do'",
+          "segment_id": "seg_a8c24c2262884d0d070d54dd",
+          "occurrence_ids": [
+            "occ_b45b3c90a6fb9fae53d0c614"
+          ]
         },
         {
           "id": "11888474:39",
@@ -5579,6 +7098,10 @@
           "title": "TOA",
           "matched_variant": "a las dos",
           "matched_surface": "a las do'",
+          "segment_id": "seg_3611b8d4e72694edb47c757c",
+          "occurrence_ids": [
+            "occ_efee6459d75c593847252338"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5590,6 +7113,10 @@
           "title": "TOA",
           "matched_variant": "a los dos",
           "matched_surface": "a los do'",
+          "segment_id": "seg_f4cd9ad3acc56a5c1c14535c",
+          "occurrence_ids": [
+            "occ_1e8710be5f2af051b56bb87a"
+          ],
           "vocalists": [
             "Mora"
           ],
@@ -5614,6 +7141,10 @@
           "title": "mañana",
           "matched_variant": "no te veo",
           "matched_surface": "no te veo",
+          "segment_id": "seg_e8c003ed9efac5d1203e6ccc",
+          "occurrence_ids": [
+            "occ_c3768239876b49f5d5a9c6fb"
+          ],
           "vocalists": [
             "The Marias"
           ],
@@ -5624,14 +7155,22 @@
           "line": "Hace rato no te veo, por eso llamé",
           "title": "curita",
           "matched_variant": "no te veo",
-          "matched_surface": "no te veo"
+          "matched_surface": "no te veo",
+          "segment_id": "seg_7f9e63ac1598f501ea42fc12",
+          "occurrence_ids": [
+            "occ_c5c23ec798e597a2437b8cd4"
+          ]
         },
         {
           "id": "12570923:1",
           "line": "Ya no te veo",
           "title": "Dosis",
           "matched_variant": "no te veo",
-          "matched_surface": "no te veo"
+          "matched_surface": "no te veo",
+          "segment_id": "seg_5b9727818c80a2a5e1fed2b5",
+          "occurrence_ids": [
+            "occ_73ecff3af38c3c8c1a7b1764"
+          ]
         },
         {
           "id": "8602168:11",
@@ -5639,6 +7178,10 @@
           "title": "Kilimanjaro",
           "matched_variant": "no los veo",
           "matched_surface": "no los veo",
+          "segment_id": "seg_3f850045f8914b48cd1b951d",
+          "occurrence_ids": [
+            "occ_ba7c14b2d8fdcad9604341f9"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5662,14 +7205,22 @@
           "line": "Yo lo sé, solamente verifico (Mhm)",
           "title": "rookie of the year",
           "matched_variant": "yo lo sé",
-          "matched_surface": "Yo lo sé"
+          "matched_surface": "Yo lo sé",
+          "segment_id": "seg_3e06df49bf507ec26c711e66",
+          "occurrence_ids": [
+            "occ_a893973d085e8818dc2d27c8"
+          ]
         },
         {
           "id": "12591721:7",
           "line": "Yo lo sé, pero es que ella me encanta",
           "title": "Piki",
           "matched_variant": "yo lo sé",
-          "matched_surface": "Yo lo sé"
+          "matched_surface": "Yo lo sé",
+          "segment_id": "seg_5e55dc8819390e101885f6f3",
+          "occurrence_ids": [
+            "occ_95bbe375252916ae82f96dca"
+          ]
         },
         {
           "id": "8156995:40",
@@ -5677,6 +7228,10 @@
           "title": "Castigada",
           "matched_variant": "yo lo sé",
           "matched_surface": "yo lo sé",
+          "segment_id": "seg_a8561a30f2ee8286bcf8fe28",
+          "occurrence_ids": [
+            "occ_1446d7a9f4ffc080d840734a"
+          ],
           "vocalists": [
             "Catalyna"
           ],
@@ -5687,7 +7242,11 @@
           "line": "Nunca pierdo el ritmo cuando brinco, yo me sé el tempo",
           "title": "Sin pausa",
           "matched_variant": "yo me sé",
-          "matched_surface": "yo me sé"
+          "matched_surface": "yo me sé",
+          "segment_id": "seg_cfd0602dd951687a830e7e46",
+          "occurrence_ids": [
+            "occ_8fe16d5c3e355a075cd04320"
+          ]
         }
       ]
     },
@@ -5708,14 +7267,22 @@
           "line": "Me deja en seen pa' despué' tenerla encima",
           "title": "princess peach",
           "matched_variant": "me deja en",
-          "matched_surface": "Me deja en"
+          "matched_surface": "Me deja en",
+          "segment_id": "seg_a997fb2c639e9fd02451d382",
+          "occurrence_ids": [
+            "occ_6b6bd7910292bd81c75f0866"
+          ]
         },
         {
           "id": "10220935:15",
           "line": "Me deja en seen pa' despué' tenerla encima, ah",
           "title": "princess peach",
           "matched_variant": "me deja en",
-          "matched_surface": "Me deja en"
+          "matched_surface": "Me deja en",
+          "segment_id": "seg_e8e02dbf3590b11bd0402324",
+          "occurrence_ids": [
+            "occ_986ef6b1a33559c08c2558cb"
+          ]
         },
         {
           "id": "8361727:6",
@@ -5723,6 +7290,11 @@
           "title": "Condado",
           "matched_variant": "lo deja en",
           "matched_surface": "lo deja en",
+          "segment_id": "seg_b901aafacc80b78b892afde0",
+          "occurrence_ids": [
+            "occ_688e9be8a13af11579b66345",
+            "occ_636606ce98c549b692cea714"
+          ],
           "vocalists": [
             "Lunay",
             "Young Miko"
@@ -5735,6 +7307,10 @@
           "title": "Pretty Bad Bitch",
           "matched_variant": "los deja en",
           "matched_surface": "Los deja en",
+          "segment_id": "seg_eafbef362c5138dcc9b0c4b7",
+          "occurrence_ids": [
+            "occ_afffdc065dbc0adda1c06967"
+          ],
           "vocalists": [
             "Brray"
           ],
@@ -5759,93 +7335,54 @@
           "line": "Baby, no te haga', que me han habla'o de ti",
           "title": "arcoíris",
           "matched_variant": "que me han",
-          "matched_surface": "que me han"
+          "matched_surface": "que me han",
+          "segment_id": "seg_a9fc3ddb7f179b6ea7108b40",
+          "occurrence_ids": [
+            "occ_306e77beaf70452515214271"
+          ]
         },
         {
           "id": "12570920:14",
           "line": "Si to' los que te han tirao'-ao'-ao', le' has pichao'-ao'-ao'",
           "title": "What’s Ur Vibe?",
           "matched_variant": "que te han",
-          "matched_surface": "que te han"
+          "matched_surface": "que te han",
+          "segment_id": "seg_ccf04cd03f66cd7100b7bedf",
+          "occurrence_ids": [
+            "occ_833287cc0d0964af63b5d5f2"
+          ]
         },
         {
           "id": "8224310:9",
           "line": "I'm Prada walking, bad bitch, yo sé que lo han nota'o, ah",
           "title": "Trending",
           "matched_variant": "que lo han",
-          "matched_surface": "que lo han"
+          "matched_surface": "que lo han",
+          "segment_id": "seg_3ce6ba94a07b9b36be35a3c8",
+          "occurrence_ids": [
+            "occ_1eca3446cb2bd4d7af39f7ab"
+          ]
         },
         {
           "id": "8224310:60",
           "line": "I'm Prada walking, bad bitch, yo sé que lo han nota'o",
           "title": "Trending",
           "matched_variant": "que lo han",
-          "matched_surface": "que lo han"
+          "matched_surface": "que lo han",
+          "segment_id": "seg_d59300fb364fa0e6457880db",
+          "occurrence_ids": [
+            "occ_d64bdc5ce7c6f10da19aa889"
+          ]
         }
       ]
     }
   ],
   "candidates": [
     {
-      "expression": "se hizo las tetas",
-      "count": 4,
-      "occurrence_count": 4,
-      "pmi": 25.4,
-      "num_songs": 3,
-      "examples": [
-        {
-          "id": "7134347:5",
-          "line": "Boujee bad bitch, se hizo la' teta'",
-          "title": "Vendetta",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "se hizo la' teta'",
-          "vocalists": [
-            "Young Miko"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "7134347:30",
-          "line": "Boujee bad bitch, se hizo las tetas",
-          "title": "Vendetta",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "se hizo las tetas",
-          "vocalists": [
-            "Young Miko",
-            "Villano Antillano",
-            "Ambas"
-          ],
-          "sung_by_primary_artist": true
-        },
-        {
-          "id": "8422401:61",
-          "line": "En verdad no le hacía falta, pero por gusto se hizo las teta'",
-          "title": "SALVAJE",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "se hizo las teta'",
-          "vocalists": [
-            "Lyanno"
-          ],
-          "sung_by_primary_artist": false
-        },
-        {
-          "id": "8259338:32",
-          "line": "Se hizo las tetas, le chupo las boobies",
-          "title": "Stripper X",
-          "matched_variant": "se hizo las tetas",
-          "matched_surface": "Se hizo las tetas",
-          "vocalists": [
-            "Lil Joujou"
-          ],
-          "sung_by_primary_artist": false
-        }
-      ]
-    },
-    {
       "expression": "it's baby miko",
       "count": 16,
       "occurrence_count": 16,
-      "pmi": 16.6,
+      "pmi": 16.5,
       "num_songs": 16,
       "examples": [
         {
@@ -5854,6 +7391,10 @@
           "title": "FINA",
           "matched_variant": "it's baby miko",
           "matched_surface": "It's Baby Miko",
+          "segment_id": "seg_48fffedd06c445509714ba50",
+          "occurrence_ids": [
+            "occ_679f17e2eda4af38dfd19423"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5865,6 +7406,10 @@
           "title": "WASSUP",
           "matched_variant": "it's baby miko",
           "matched_surface": "It's Baby Miko",
+          "segment_id": "seg_22b1fa76d9a4f7a70f0ba240",
+          "occurrence_ids": [
+            "occ_2a2abdd1b41c50c38585ff01"
+          ],
           "vocalists": [
             "Young Miko",
             "Lil Jon",
@@ -5878,6 +7423,10 @@
           "title": "Classy 101",
           "matched_variant": "it's baby miko",
           "matched_surface": "It's Baby Miko",
+          "segment_id": "seg_f5f40eb86eb9a8e3e90bb855",
+          "occurrence_ids": [
+            "occ_11ff65013cebbb41962fd16d"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5889,6 +7438,10 @@
           "title": "Vendetta",
           "matched_variant": "it's baby miko",
           "matched_surface": "it's Baby Miko",
+          "segment_id": "seg_e17885a5c89bb01ac22f82bf",
+          "occurrence_ids": [
+            "occ_c0a9d3985a4313baebe71a86"
+          ],
           "vocalists": [
             "Young Miko",
             "Villano Antillano"
@@ -5901,11 +7454,89 @@
           "title": "Traviesa",
           "matched_variant": "it's baby miko",
           "matched_surface": "It's Baby Miko",
+          "segment_id": "seg_804e2107c86c89ab8ae475c1",
+          "occurrence_ids": [
+            "occ_ae34cb27d34ff659abe352cb"
+          ],
           "vocalists": [
             "Young Miko",
             "Eladio Carrión"
           ],
           "sung_by_primary_artist": true
+        }
+      ]
+    },
+    {
+      "expression": "te he visto",
+      "count": 5,
+      "occurrence_count": 5,
+      "pmi": 15.9,
+      "num_songs": 5,
+      "examples": [
+        {
+          "id": "9110676:6",
+          "line": "A ti yo te he visto ante'",
+          "title": "COLMILLO",
+          "matched_variant": "te he visto",
+          "matched_surface": "te he visto",
+          "segment_id": "seg_7763f6455ba390d0bfbce018",
+          "occurrence_ids": [
+            "occ_48dbccc60920f5ebe950a746"
+          ],
+          "vocalists": [
+            "Young Miko",
+            "Jenny \"La Sexy Voz\""
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220934:2",
+          "line": "Pensando en las veces que te he visto",
+          "title": "offline",
+          "matched_variant": "te he visto",
+          "matched_surface": "te he visto",
+          "segment_id": "seg_f67879cea98ff6e82fb96d03",
+          "occurrence_ids": [
+            "occ_9054759be940699cb55dca24"
+          ],
+          "vocalists": [
+            "Young Miko"
+          ],
+          "sung_by_primary_artist": true
+        },
+        {
+          "id": "10220921:10",
+          "line": "Sí, sí, ya yo te he visto en mi concierto",
+          "title": "rookie of the year",
+          "matched_variant": "te he visto",
+          "matched_surface": "te he visto",
+          "segment_id": "seg_54732adeac1c6b5a6cbd402b",
+          "occurrence_ids": [
+            "occ_b133698dc38d1d94c299b506"
+          ]
+        },
+        {
+          "id": "12582446:37",
+          "line": "Por más que te he visto sin ropa, tú te la quita' y e' OMG",
+          "title": "Sin pausa",
+          "matched_variant": "te he visto",
+          "matched_surface": "te he visto",
+          "segment_id": "seg_06c4c72796c51bf88c70728c",
+          "occurrence_ids": [
+            "occ_f42f4b24f7e028c9d7019a28",
+            "occ_6b3b662657d13fed8dc9adaf"
+          ]
+        },
+        {
+          "id": "12591724:53",
+          "line": "A ti no te he visto aquí, manín, tú no vive' así",
+          "title": "Plug (Type Shit)",
+          "matched_variant": "te he visto",
+          "matched_surface": "te he visto",
+          "segment_id": "seg_0323a9d39e8132d3754364c7",
+          "occurrence_ids": [
+            "occ_e338061495070be59402a68a"
+          ]
         }
       ]
     },
@@ -5922,6 +7553,11 @@
           "title": "ay mami",
           "matched_variant": "me dan ganas",
           "matched_surface": "me dan gana'",
+          "segment_id": "seg_faccb13c337472f60ccfcd5c",
+          "occurrence_ids": [
+            "occ_de8a8fb08869c42bb3461afa",
+            "occ_2093d534e1ed1b347b9b9529"
+          ],
           "vocalists": [
             "Dei V",
             "Dei V",
@@ -5934,14 +7570,22 @@
           "line": "Tan rico que parece un favor, me dan ganas de decirte \"mi amor\"",
           "title": "Sin pausa",
           "matched_variant": "me dan ganas",
-          "matched_surface": "me dan ganas"
+          "matched_surface": "me dan ganas",
+          "segment_id": "seg_4c726d1f1e031062d3637e60",
+          "occurrence_ids": [
+            "occ_1925b808a56cf4fbe3f7c3bc"
+          ]
         },
         {
           "id": "12570920:17",
           "line": "De eso' ojitos que me dan ganas de preguntarte",
           "title": "What’s Ur Vibe?",
           "matched_variant": "me dan ganas",
-          "matched_surface": "me dan ganas"
+          "matched_surface": "me dan ganas",
+          "segment_id": "seg_deb752a46bbf41724f916fab",
+          "occurrence_ids": [
+            "occ_c30a7c2fbc773c67da4dfecb"
+          ]
         },
         {
           "id": "8621461:62",
@@ -5949,6 +7593,10 @@
           "title": "Amandita",
           "matched_variant": "me dan ganas",
           "matched_surface": "me dan gana'",
+          "segment_id": "seg_03c67fe159886a9eab309be7",
+          "occurrence_ids": [
+            "occ_26d7ce86ae73a1cb8fa0a968"
+          ],
           "vocalists": [
             "Omar Courtz",
             "Young Miko"
@@ -5970,6 +7618,10 @@
           "title": "Classy 101",
           "matched_variant": "todo los días",
           "matched_surface": "To' los día'",
+          "segment_id": "seg_30ba8dcf4fc98de03689cec1",
+          "occurrence_ids": [
+            "occ_872c4845b0cf20c38983eebd"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5981,6 +7633,10 @@
           "title": "COLMILLO",
           "matched_variant": "todo los días",
           "matched_surface": "To' los día'",
+          "segment_id": "seg_1c0c9f10362b58aa2ab92d2b",
+          "occurrence_ids": [
+            "occ_4ced837a96456139bdd6d35d"
+          ],
           "vocalists": [
             "Young Miko"
           ],
@@ -5992,6 +7648,10 @@
           "title": "AMG",
           "matched_variant": "todo los días",
           "matched_surface": "To' los día'",
+          "segment_id": "seg_c0ff91b572a74be6030716f1",
+          "occurrence_ids": [
+            "occ_84754193d35b4dfaa6f45df4"
+          ],
           "vocalists": [
             "Eladio Carrión"
           ],
@@ -6002,21 +7662,29 @@
           "line": "To' los día' de su cuerpo una dosi'",
           "title": "tamagotchi",
           "matched_variant": "todo los días",
-          "matched_surface": "To' los día'"
+          "matched_surface": "To' los día'",
+          "segment_id": "seg_e29fc795052a90bdc2800cd1",
+          "occurrence_ids": [
+            "occ_65393c9940177c3530b1a98e"
+          ]
         },
         {
           "id": "10220930:28",
           "line": "To' los día' de tu cuerpo una dosi'",
           "title": "tamagotchi",
           "matched_variant": "todo los días",
-          "matched_surface": "To' los día'"
+          "matched_surface": "To' los día'",
+          "segment_id": "seg_b8e485bb24f7b29d36a42c5b",
+          "occurrence_ids": [
+            "occ_3933ee982bfe2c19898f17de"
+          ]
         }
       ]
     }
   ],
   "stats": {
-    "confirmed_count": 84,
-    "pmi_detected_count": 1,
+    "confirmed_count": 83,
+    "pmi_detected_count": 0,
     "patterns_count": 23,
     "candidate_count": 4
   }

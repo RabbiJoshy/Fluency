@@ -13,7 +13,10 @@
           "title": "Amarillo",
           "matched_variant": "vamos a parar",
           "matched_surface": "vamo' a parar",
-          "segment_id": "seg_c083f04967bbc3678c432395"
+          "segment_id": "seg_c083f04967bbc3678c432395",
+          "occurrence_ids": [
+            "occ_3c4ace02f25fc12a506d7874"
+          ]
         },
         {
           "id": "5302840:32",
@@ -21,7 +24,10 @@
           "title": "Amarillo",
           "matched_variant": "vamos a seguir",
           "matched_surface": "vamo' a seguir",
-          "segment_id": "seg_bf0b6b5e825ea23680881fb8"
+          "segment_id": "seg_bf0b6b5e825ea23680881fb8",
+          "occurrence_ids": [
+            "occ_a14216e04057ccebbe773e75"
+          ]
         },
         {
           "id": "6211036:15",
@@ -151,8 +157,8 @@
     {
       "expression": "querer que",
       "translation": "want someone to",
-      "count": 12,
-      "occurrence_count": 12,
+      "count": 11,
+      "occurrence_count": 11,
       "num_songs": 5,
       "examples": [
         {
@@ -217,7 +223,7 @@
       ],
       "variant_counts": {
         "quiere que": 7,
-        "quiero que": 5
+        "quiero que": 4
       },
       "family": "querer que",
       "source": "artist-construction"
@@ -368,7 +374,10 @@
           "title": "Amarillo",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
-          "segment_id": "seg_3e00cf9239a2e90fe11c16aa"
+          "segment_id": "seg_3e00cf9239a2e90fe11c16aa",
+          "occurrence_ids": [
+            "occ_c5b3b69e7215af7eeedc6dbd"
+          ]
         },
         {
           "id": "5960780:35",
@@ -376,7 +385,10 @@
           "title": "Antes",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
-          "segment_id": "seg_94fecaa8fb8c35c5470ec738"
+          "segment_id": "seg_94fecaa8fb8c35c5470ec738",
+          "occurrence_ids": [
+            "occ_05c4ddbeffb686e1f8c0a51b"
+          ]
         },
         {
           "id": "6211036:5",
@@ -384,7 +396,10 @@
           "title": "BOOKER T",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
-          "segment_id": "seg_80a23632a75a053da7c173f8"
+          "segment_id": "seg_80a23632a75a053da7c173f8",
+          "occurrence_ids": [
+            "occ_049db2b01f15c50ef3894b97"
+          ]
         },
         {
           "id": "6211036:6",
@@ -392,7 +407,10 @@
           "title": "BOOKER T",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
-          "segment_id": "seg_671a8ee60a71b3c7431e7ee7"
+          "segment_id": "seg_671a8ee60a71b3c7431e7ee7",
+          "occurrence_ids": [
+            "occ_1bec8cded622981d4978bf0d"
+          ]
         },
         {
           "id": "6211036:54",
@@ -400,7 +418,10 @@
           "title": "BOOKER T",
           "matched_variant": "para que",
           "matched_surface": "Pa' que",
-          "segment_id": "seg_144e017918495028fafe0bbd"
+          "segment_id": "seg_144e017918495028fafe0bbd",
+          "occurrence_ids": [
+            "occ_574cd7ba441a4453f3e5ff30"
+          ]
         }
       ],
       "variants": [
@@ -563,7 +584,10 @@
           "title": "Gata Only",
           "matched_variant": "es que",
           "matched_surface": "E' que",
-          "segment_id": "seg_4cadbb2cc2e07e043f7f427f"
+          "segment_id": "seg_4cadbb2cc2e07e043f7f427f",
+          "occurrence_ids": [
+            "occ_559b42e0f8a66402e81e3aa0"
+          ]
         },
         {
           "id": "3687950:9",
@@ -593,7 +617,10 @@
           "title": "orióN",
           "matched_variant": "es que",
           "matched_surface": "E' que",
-          "segment_id": "seg_3175c7b595be54c896eb35e0"
+          "segment_id": "seg_3175c7b595be54c896eb35e0",
+          "occurrence_ids": [
+            "occ_ddc7a32ef2abb2cc2cda0e6e"
+          ]
         }
       ],
       "variants": [
@@ -722,7 +749,10 @@
           "title": "Gata Only",
           "matched_variant": "todas las",
           "matched_surface": "toa' las",
-          "segment_id": "seg_94cee8f04992ee05c04ea939"
+          "segment_id": "seg_94cee8f04992ee05c04ea939",
+          "occurrence_ids": [
+            "occ_348442d3187ed2f14ba301bf"
+          ]
         },
         {
           "id": "9991217:47",
@@ -730,7 +760,10 @@
           "title": "Gata Only",
           "matched_variant": "todas las",
           "matched_surface": "toa' las",
-          "segment_id": "seg_e7bf63cab1dd1b7d155c4a2f"
+          "segment_id": "seg_e7bf63cab1dd1b7d155c4a2f",
+          "occurrence_ids": [
+            "occ_7d78953639c17e882f59acbf"
+          ]
         },
         {
           "id": "1469974:11",
@@ -738,7 +771,10 @@
           "title": "Una Vaina Loca",
           "matched_variant": "todas las",
           "matched_surface": "To'as la'",
-          "segment_id": "seg_468b3342d5589d312ab45456"
+          "segment_id": "seg_468b3342d5589d312ab45456",
+          "occurrence_ids": [
+            "occ_b3fceb6b6e4b1fb303220e6c"
+          ]
         },
         {
           "id": "10919676:15",
@@ -746,7 +782,10 @@
           "title": "frente al mar",
           "matched_variant": "todas las",
           "matched_surface": "Toa' las",
-          "segment_id": "seg_3738bc2f56c851338fbdc7ac"
+          "segment_id": "seg_3738bc2f56c851338fbdc7ac",
+          "occurrence_ids": [
+            "occ_f3d580db2a68377443feba30"
+          ]
         }
       ],
       "variants": [
@@ -1097,17 +1136,6 @@
           ]
         },
         {
-          "id": "5302844:13",
-          "line": "Echa pa' acá, que desde lejos se ve",
-          "title": "Verde",
-          "matched_variant": "se ve",
-          "matched_surface": "se ve",
-          "segment_id": "seg_5a873aba555578f57fd25777",
-          "occurrence_ids": [
-            "occ_a79cd9f930852953354d3993"
-          ]
-        },
-        {
           "id": "5302844:14",
           "line": "Ese booty desde lejos se ve",
           "title": "Verde",
@@ -1188,7 +1216,10 @@
           "title": "Amarillo",
           "matched_variant": "para qué",
           "matched_surface": "Pa' qué",
-          "segment_id": "seg_a4beddf1779f7210d3c7ed15"
+          "segment_id": "seg_a4beddf1779f7210d3c7ed15",
+          "occurrence_ids": [
+            "occ_b0614997e85df8cbd2f9988b"
+          ]
         }
       ],
       "variants": [
@@ -1273,7 +1304,10 @@
           "title": "Amarillo",
           "matched_variant": "después de",
           "matched_surface": "Despué' de",
-          "segment_id": "seg_5e0518479e010c6ae2cc35ca"
+          "segment_id": "seg_5e0518479e010c6ae2cc35ca",
+          "occurrence_ids": [
+            "occ_d53ab3b8e338db3e86b334c5"
+          ]
         },
         {
           "id": "10304179:9",
@@ -1281,7 +1315,10 @@
           "title": "Tengo Un Plan",
           "matched_variant": "después de",
           "matched_surface": "despué' de",
-          "segment_id": "seg_79bb6b94be098cd1dba0c299"
+          "segment_id": "seg_79bb6b94be098cd1dba0c299",
+          "occurrence_ids": [
+            "occ_825fa9f4f2145814121850b4"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1293,17 +1330,6 @@
       "occurrence_count": 2,
       "num_songs": 2,
       "examples": [
-        {
-          "id": "5929713:9",
-          "line": "Se va con su amiga pa' la disco",
-          "title": "Una Locura",
-          "matched_variant": "se va",
-          "matched_surface": "Se va",
-          "segment_id": "seg_60296b0e538fa5efe193bc08",
-          "occurrence_ids": [
-            "occ_0f1f54d2b2506b26367ba780"
-          ]
-        },
         {
           "id": "3687950:12",
           "line": "Que por más que intento no se va",
@@ -1331,7 +1357,10 @@
           "title": "Antes",
           "matched_variant": "todo el mundo",
           "matched_surface": "To' el mundo",
-          "segment_id": "seg_56c97bbb59c230cd565687fc"
+          "segment_id": "seg_56c97bbb59c230cd565687fc",
+          "occurrence_ids": [
+            "occ_659bd5402524905adaaa7a8f"
+          ]
         },
         {
           "id": "6211036:32",
@@ -1339,7 +1368,10 @@
           "title": "BOOKER T",
           "matched_variant": "todo el mundo",
           "matched_surface": "to' el mundo",
-          "segment_id": "seg_1729272144c4e8149945ccc0"
+          "segment_id": "seg_1729272144c4e8149945ccc0",
+          "occurrence_ids": [
+            "occ_4a7adf825e5b8a836b28e7e4"
+          ]
         }
       ],
       "variants": [
@@ -1371,7 +1403,10 @@
           "title": "Una Locura",
           "matched_variant": "toda la",
           "matched_surface": "to'a la",
-          "segment_id": "seg_055950502423da0cfb955786"
+          "segment_id": "seg_055950502423da0cfb955786",
+          "occurrence_ids": [
+            "occ_e9da5d33e1735dcd52f43ff7"
+          ]
         }
       ],
       "variants": [

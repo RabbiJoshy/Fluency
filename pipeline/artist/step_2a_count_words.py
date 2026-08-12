@@ -40,6 +40,7 @@ import math
 import os
 import re
 import sys
+import unicodedata
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -52,7 +53,7 @@ from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 
 # Bump when counting logic, tokenization, or output schema changes in a way
 # that invalidates existing vocab_evidence.json files.
-STEP_VERSION = 10
+STEP_VERSION = 13
 STEP_VERSION_NOTES = {
     1: "lingua English filter + MWE detection + max-examples-per-word",
     2: "+ multi-word elision split with surface preservation on examples",
@@ -73,6 +74,11 @@ STEP_VERSION_NOTES = {
        "attach stable segment/occurrence references to legacy teaching examples",
     10: "+ retain non-counting/ad-lib-only source lines and the exact legacy "
         "surface/batch metadata needed for behavior-neutral profile materialization",
+    11: "+ preserve source song order and align Unicode-scanner tokens with the "
+        "historical tokenizer for exact ledger materialization parity",
+    12: "+ align one-letter legacy tokens embedded inside Unicode source words",
+    13: "+ write fully restored elision forms into ledger normalization claims "
+        "before vocal-artifact, routing, POS and WSD layers",
 }
 
 try:
@@ -338,9 +344,15 @@ def tokenize_with_surfaces(line: str) -> List[Tuple[str, str]]:
         if match.start() > 0 and line[match.start() - 1] in "'’":
             before = line[match.start() - 2] if match.start() > 1 else ""
             if (not before or not re.match(r"[" + LETTER_CLASS + r"]", before)):
-                expanded = _LEADING_ELISIONS.get(raw)
+                # A source may mark both the leading aphesis and the dropped
+                # final consonant (``'Tamo'``). Match the leading-elision key
+                # without the trailing marker, then retain that marker so this
+                # projection stays byte-for-byte compatible with tokenize().
+                lookup = raw.rstrip("'’")
+                suffix = raw[len(lookup):]
+                expanded = _LEADING_ELISIONS.get(lookup)
                 if expanded:
-                    canonical = expanded
+                    canonical = expanded + suffix
                     surface = line[match.start() - 1] + raw
         out.append((canonical, surface))
     return out
@@ -412,15 +424,11 @@ def expand_tokens(tokens: List[str], mwe_map: Dict[str, List[str]]) -> List[Tupl
     return out
 
 
-# ====== Single-word elision normalization (for n-gram counting only) ======
+# ====== Single-word elision normalization ======
 #
-# Step 3a merges elided surface forms into canonical lemmas (ve'→vez/ves,
-# e'→es, lo'→los) at the WORD level. But MWE detection in this step counts
-# n-grams BEFORE step 3a runs, so "otra ve'" and "otra vez" land in separate
-# buckets and split each other's PMI / curated-match counts. This helper
-# applies the same canonical mapping to n-gram tokens only — the per-word
-# `counts` Counter (which feeds vocab_evidence.json) stays surface-level so
-# step 3a's evidence-merging continues to work unchanged.
+# Canonical restoration now happens here, at ingestion, so every later layer
+# sees the same clean analysis form. Step 3a remains as an idempotent
+# compatibility projection and audit guard for older ledgers.
 #
 # Ambiguous elisions (currently just `ve'` → vez|ves) reuse step 3a's
 # preceding-word heuristic. Inlined rather than imported to avoid a
@@ -452,6 +460,59 @@ _AMBIG_ELISIONS_NGRAM = {
         "trigger": frozenset({"a"}),
     },
 }
+
+
+_PLURAL_CONTEXT = frozenset({
+    "los", "unos", "mis", "tus", "sus", "estos", "esos", "aquellos",
+})
+
+
+def _strip_accents(value: str) -> str:
+    return "".join(
+        ch for ch in unicodedata.normalize("NFD", value)
+        if unicodedata.category(ch) != "Mn"
+    )
+
+
+def _contextual_internal_elision(tokens: List[str], index: int, known_forms):
+    """Resolve only locally licensed ambiguous/internal Spanish elisions.
+
+    Candidate generation remains dictionary-constrained.  Context is used for
+    the two common collisions where a dropped ``s`` competes with an
+    infinitive/noun, and for a plural whose slang singular exists but whose
+    generated plural is absent from spanish_forms.  Otherwise we abstain.
+    """
+    try:
+        from step_3a_merge_elisions import internal_apos_candidates
+    except ImportError:
+        from pipeline.artist.step_3a_merge_elisions import internal_apos_candidates
+
+    word = tokens[index]
+    previous = tokens[index - 1] if index > 0 else None
+    candidates = internal_apos_candidates(word, known_forms)
+
+    # menos e'perado -> menos esperado.  Do not choose between esperado and
+    # the rare emperado without an adjective-licensing context.
+    if previous in {"menos", "más", "tan", "lo"} and "esperado" in candidates:
+        return "esperado"
+
+    # que llega'te / te pasa'te: the local syntax requires a finite verb, not
+    # llegarte/pasarte.  Restrict this to the distinctive -a'te spelling and
+    # an explicit finite-verb licensor.
+    normalized = word.replace("\u2019", "'")
+    if normalized.endswith("a'te") and previous in {"que", "te"}:
+        finite = normalized.replace("a'te", "aste")
+        if finite in candidates:
+            return finite
+
+    # los tíguere' -> tigueres.  The lexical table knows the accentless slang
+    # singular ``tiguere`` but not every plural.  A plural determiner supplies
+    # the missing agreement evidence; without it the rule abstains.
+    if normalized.endswith("'") and previous in _PLURAL_CONTEXT:
+        stem = _strip_accents(normalized[:-1])
+        if stem in known_forms:
+            return stem + "s"
+    return None
 
 
 def load_elision_normalization(shared_dir: str) -> Dict[str, str]:
@@ -512,6 +573,57 @@ def normalize_ngram_tokens(tokens: List[str], simple_map: Dict[str, str]) -> Lis
     return out
 
 
+def normalize_analysis_tokens(tokens: List[str], simple_map: Dict[str, str],
+                              known_forms=None) -> List[str]:
+    """Canonical forms used by every downstream occurrence-level layer.
+
+    This is the ledger-facing counterpart to step 3's compatibility merge.
+    It runs before vocal-artifact, routing, POS and WSD claims are produced,
+    while the raw occurrence continues to preserve the exact lyric surface.
+    """
+    try:
+        from step_3a_merge_elisions import (
+            bare_d_elision_canonical, d_elision_canonical,
+            d_elision_ext_canonical, double_elision_canonical,
+            internal_apos_restore, load_spanish_forms, trailing_apos_restore,
+        )
+    except ImportError:  # package import in tests
+        from pipeline.artist.step_3a_merge_elisions import (
+            bare_d_elision_canonical, d_elision_canonical,
+            d_elision_ext_canonical, double_elision_canonical,
+            internal_apos_restore, load_spanish_forms, trailing_apos_restore,
+        )
+    known = known_forms if known_forms is not None else load_spanish_forms()
+    normalized = normalize_ngram_tokens(tokens, simple_map)
+    out = []
+    for index, (original, mapped) in enumerate(zip(tokens, normalized)):
+        # An explicit/contextual mapping may itself land on another elided
+        # form (metío' → metíos). Apply the same safe second-hop rule used
+        # by step 3 so the ledger stores the final canonical form (metidos).
+        if mapped != original:
+            chained = bare_d_elision_canonical(mapped, known)
+            out.append(chained[0] if chained else mapped)
+            continue
+        result = (double_elision_canonical(mapped, known)
+                  or d_elision_canonical(mapped))
+        if result:
+            out.append(result[0])
+            continue
+        extended = d_elision_ext_canonical(mapped, known)
+        if extended:
+            out.append(extended[0])
+            continue
+        contextual = _contextual_internal_elision(normalized, index, known)
+        if contextual:
+            out.append(contextual)
+            continue
+        result = (bare_d_elision_canonical(mapped, known)
+                  or trailing_apos_restore(mapped, known)
+                  or internal_apos_restore(mapped, known))
+        out.append(result[0] if result else mapped)
+    return out
+
+
 def is_good_context_line(tokens: List[str]) -> bool:
     # conservative filtering
     if len(tokens) < 5:
@@ -557,9 +669,10 @@ def iter_songs_from_batches(batch_glob: str) -> List[Dict[str, Any]]:
             data = json.load(f)
         if not isinstance(data, list):
             raise ValueError(f"{path} did not contain a JSON list.")
-        for s in data:
+        for song_i, s in enumerate(data):
             if isinstance(s, dict):
                 s["__batch"] = batch_i
+                s["__song_order"] = song_i
                 songs.append(s)
     return songs
 
@@ -595,6 +708,7 @@ def build_counts_and_candidates(
     elision_map: Dict[str, str] = None,
     primary_artist: str = "",
     ledger=None,
+    analysis_language: str = "spanish",
 ) -> Tuple[Counter, Dict[str, List[Dict[str, Any]]], Dict[str, int], Dict[str, Any], Dict[str, set]]:
     """
     Returns:
@@ -604,9 +718,9 @@ def build_counts_and_candidates(
     - ngram_data = counters used by MWE detection
     - word_songs[word] = every distinct corpus song containing the word
 
-    `elision_map` (optional) normalizes single-word elisions in the n-gram
-    counting stream so phrases like "otra ve'" / "otra vez" share counts.
-    Per-word `counts` is unaffected — step 3a still does that merge.
+    `elision_map` (optional) normalizes single-word elisions at ingestion so
+    counts, the ledger, n-grams, artifact classification, routing, POS, menus,
+    and WSD all consume the same restored analysis forms.
     """
     counts: Counter = Counter()
     candidates: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
@@ -616,6 +730,13 @@ def build_counts_and_candidates(
                  "ngram_elision_subs": 0}
     mwe_map = mwe_map or {}
     elision_map = elision_map or {}
+    analysis_known_forms = None
+    if ledger is not None and analysis_language == "spanish":
+        try:
+            from step_3a_merge_elisions import load_spanish_forms
+        except ImportError:  # package import in tests
+            from pipeline.artist.step_3a_merge_elisions import load_spanish_forms
+        analysis_known_forms = load_spanish_forms()
 
     # N-gram tracking for MWE detection (counted per unique line, not per word)
     _PHRASE_SPLIT_RE = re.compile(r'[,;:!?¡¿()"—\-]+')
@@ -637,6 +758,7 @@ def build_counts_and_candidates(
         song_id = song.get("id")
         title = song.get("title") or ""
         batch_i = song.get("__batch", -1)
+        song_order = song.get("__song_order", -1)
 
         clean_rows = clean_genius_lyrics(raw_lyrics, with_sections=True)
         if not clean_rows:
@@ -666,6 +788,20 @@ def build_counts_and_candidates(
                 lid_stats["multi_word_splits"] += sum(
                     1 for t in raw_toks if t in mwe_map
                 )
+            # Restoration is the first mutable linguistic layer. Counts,
+            # examples, routing, POS, menus and WSD all consume these forms;
+            # the paired source surface remains untouched for display/audit.
+            restored_tokens = (
+                normalize_analysis_tokens(
+                    [w for w, _surface in expanded], elision_map,
+                    known_forms=analysis_known_forms)
+                if analysis_language == "spanish"
+                else [w for w, _surface in expanded]
+            )
+            expanded = [
+                (restored, surface)
+                for restored, (_word, surface) in zip(restored_tokens, expanded)
+            ]
             norm_toks = [w for w, _ in expanded]
             normalized_vocalists = {_normalized_artist_name(name) for name in vocalists}
             sung_by_primary = bool(primary_name and any(
@@ -684,10 +820,25 @@ def build_counts_and_candidates(
                     lid_stats["lines_below_min_tokens"] += 1
             if ledger is not None:
                 ledger_tokens = []
-                for canonical, source_surface in tokenize_with_surfaces(count_text):
+                raw_ledger_tokens = tokenize_with_surfaces(count_text)
+                grouped_forms = [
+                    list(mwe_map.get(canonical, [canonical]))
+                    for canonical, _surface in raw_ledger_tokens
+                ]
+                flat_forms = [form for forms in grouped_forms for form in forms]
+                normalized_forms = (
+                    normalize_analysis_tokens(
+                        flat_forms, elision_map, known_forms=analysis_known_forms)
+                    if analysis_language == "spanish" else flat_forms
+                )
+                offset = 0
+                for (canonical, source_surface), forms in zip(
+                        raw_ledger_tokens, grouped_forms):
+                    restored = normalized_forms[offset:offset + len(forms)]
+                    offset += len(forms)
                     ledger_tokens.append({
                         "surface": source_surface,
-                        "forms": list(mwe_map.get(canonical, [canonical])),
+                        "forms": restored,
                         "legacy_surface": canonical,
                     })
                 ledger.observe_line(
@@ -701,6 +852,7 @@ def build_counts_and_candidates(
                     vocalists=vocalists,
                     sung_by_primary_artist=sung_by_primary,
                     batch_index=batch_i,
+                    song_order=song_order,
                 )
             # Ad-lib-only and other currently non-counting lines still belong
             # in the immutable source ledger so later classifiers can inspect
@@ -1701,6 +1853,7 @@ def main():
         songs, lid_detector=lid_detector, mwe_map=mwe_map, elision_map=elision_map,
         primary_artist=artist_config.get("name", ""),
         ledger=ledger,
+        analysis_language=(artist_config.get("language") or "spanish"),
     )
     selected = select_examples(counts, candidates, max_examples_per_word=args.max_examples)
     out_list = to_evidence_json(counts, selected, word_songs)

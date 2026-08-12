@@ -9,18 +9,14 @@ tool is the only thing that turns an accepted suggestion into pipeline input.
     accepted  copied into the curation file for its kind
     rejected  never applied; the entry stays as a permanent veto
 
-Routing by kind:
+Routing is controlled by the structured ``operation`` field, never by prose in
+``proposed``. Supported operations are:
 
-    lemma               -> lemma_overrides.json      {overrides, keep}
-    proper_noun         -> proper_nouns.json         {drop, keep}
-    english             -> extra_english.json        {entries, sources}
-    cognate             -> cognates.json             {drop, keep}
-    noise               -> noise.json                {drop, keep}
-    elision             -> elision_mapping.json      elided_only entry
-    echo_reduplication  -> noise.json, but ONLY when every occurrence of the
-                           string is an echo
+    add_drop / add_keep / remove_drop / remove_keep
+    add_occurrence_override
+    add_override (lemma), set_gloss, merge_elision, replace_elision
 
-That last restriction is the point of the `proposed` field. Echo is a property
+That occurrence restriction is the point of the structured operation. Echo is a property
 of an OCCURRENCE, not of a string: `over` is an ad-lib in "mover, -over" and an
 ordinary word in "game over" and "Lary Over". Its detector records
 echo_occurrences/total_occurrences, and a partial word carries
@@ -60,20 +56,72 @@ LEMMA_OVERRIDES_SEED = {
     "keep": [],
 }
 
-# kind -> (filename, section holding accepted values, veto section)
-KIND_TARGETS = {
-    "lemma": ("lemma_overrides.json", "overrides", "keep"),
-    "proper_noun": ("proper_nouns.json", "drop", "keep"),
-    "english": ("extra_english.json", "entries", None),
-    "cognate": ("cognates.json", "drop", "keep"),
-    "noise": ("noise.json", "drop", "keep"),
-    "echo_reduplication": ("noise.json", "drop", "keep"),
-    "elision": ("elision_mapping.json", None, None),
+KIND_FILES = {
+    "lemma": "lemma_overrides.json",
+    "proper_noun": "proper_nouns.json",
+    "english": "extra_english.json",
+    "cognate": "cognates.json",
+    "noise": "noise.json",
+    "echo_reduplication": "noise.json",
+    "elision": "elision_mapping.json",
     # A wrong gloss is not a routing decision — no bucket fixes a translation.
-    # Glosses live in the shared curated-translation layer, keyed word|lemma,
-    # which both builders consult when assembling a card.
-    "gloss": (os.path.join(_PROJECT_ROOT, "shared", "curated_translations.json"), "_curated", None),
+    "gloss": os.path.join(_PROJECT_ROOT, "shared", "curated_translations.json"),
 }
+
+SECTIONED_KINDS = {"proper_noun", "cognate", "noise", "echo_reduplication"}
+VALID_OPERATIONS = {
+    "add_drop", "add_keep", "remove_drop", "remove_keep",
+    "add_occurrence_override", "add_override", "set_gloss", "merge_elision",
+    "replace_elision",
+}
+
+
+def proposal_operation(proposal):
+    """Return a machine operation without interpreting human-readable prose.
+
+    The narrow fallbacks keep accepted records written before the operation
+    field was introduced reproducible. Routing proposals never infer keep/drop
+    from strings such as ``keep (real word ...)``.
+    """
+    operation = proposal.get("operation")
+    if operation:
+        return operation if operation in VALID_OPERATIONS else None
+    kind = proposal.get("kind")
+    proposed = proposal.get("proposed")
+    if kind == "lemma":
+        return "add_override"
+    if kind == "gloss":
+        return "set_gloss"
+    if kind == "elision":
+        return "merge_elision"
+    if kind == "echo_reduplication" and proposed == "noise":
+        return "add_drop"
+    if kind == "echo_reduplication" and proposed == "drop_occurrences":
+        return "add_occurrence_override"
+    return None
+
+
+def operation_target(proposal, operation):
+    """Return ``(filename, section, remove)`` or None for occurrence overlays."""
+    kind = proposal.get("kind")
+    filename = KIND_FILES.get(kind)
+    if not filename:
+        return None
+    if operation == "add_occurrence_override":
+        return None
+    if operation == "add_override" and kind == "lemma":
+        return filename, "overrides", False
+    if operation == "set_gloss" and kind == "gloss":
+        return filename, "_curated", False
+    if operation in ("merge_elision", "replace_elision") and kind == "elision":
+        return filename, None, False
+    if operation.startswith(("add_", "remove_")):
+        action, section = operation.split("_", 1)
+        if kind in SECTIONED_KINDS and section in ("drop", "keep"):
+            return filename, section, action == "remove"
+        if kind == "english" and section == "drop":
+            return filename, "entries", action == "remove"
+    return None
 
 
 def load_json(path):
@@ -95,24 +143,38 @@ def load_curation(filename):
     return path, load_json(path)
 
 
-def blocked_reason(proposal, doc, veto_section):
+def blocked_reason(proposal, operation, doc):
     """Why this accepted proposal must not be applied, or None."""
     word = (proposal.get("word") or "").strip().lower()
     if not word:
         return "no word"
-    if proposal.get("proposed") == "drop_occurrences":
-        return ("only %s of %s occurrences are echoes — needs per-occurrence "
-                "handling, not a corpus-wide drop"
-                % (proposal.get("echo_occurrences"), proposal.get("total_occurrences")))
-    if veto_section and word in {w.lower() for w in doc.get(veto_section, [])}:
-        return "in '%s' — human override wins" % veto_section
+    if not operation:
+        return "missing or unsupported structured operation"
+    if operation == "add_occurrence_override":
+        occurrence_action = proposal.get("occurrence_action")
+        if occurrence_action is None and proposal.get("proposed") == "drop_occurrences":
+            occurrence_action = "drop"
+        if occurrence_action not in ("drop", "normalize"):
+            return "occurrence override needs occurrence_action=drop|normalize"
+        if (occurrence_action == "normalize"
+                and not (proposal.get("normalization_target") or "").strip()):
+            return "normalization occurrence override has no target"
+        ids = proposal.get("occurrence_ids") or proposal.get("echo_example_ids") or []
+        if not ids:
+            return "occurrence override has no stable occurrence/example IDs"
+        if occurrence_action == "normalize":
+            return ("normalization occurrence override is recorded but has no "
+                    "safe pre-routing materializer yet")
+        return None
+    if operation == "add_drop" and word in {w.lower() for w in doc.get("keep", [])}:
+        return "in 'keep' — human override wins"
     return None
 
 
-def apply_proposal(proposal, doc, section):
+def apply_proposal(proposal, doc, operation, section, remove=False):
     """Write one accepted proposal into the loaded curation doc. True if changed."""
     word = proposal["word"].strip().lower()
-    if section == "_curated":
+    if operation == "set_gloss" and section == "_curated":
         # curated_translations.json is a flat map keyed `word|lemma`. mode=all
         # so the override applies whichever sense source built the deck.
         key = "%s|%s" % (word, (proposal.get("lemma") or word).strip().lower())
@@ -125,9 +187,24 @@ def apply_proposal(proposal, doc, section):
             "source": "proposal (%s)" % proposal.get("source", "unknown"),
         }
         return True
-    if section is None:  # elision_mapping.json is a list of merge records
-        if any(r.get("elided_word") == word for r in doc):
-            return False
+    if operation in ("merge_elision", "replace_elision") and section is None:
+        existing = next(
+            (row for row in doc if row.get("elided_word") == word), None)
+        if existing is not None:
+            if operation == "merge_elision":
+                return False
+            target = str(proposal["proposed"]).strip().lower()
+            changed = existing.get("target_word") != target
+            existing.update({
+                "action": "merge",
+                "merge_type": "elided_only",
+                "target_word": target,
+                "display_form": word,
+                "target_lemma": proposal.get("target_lemma") or target,
+                "note": "accepted proposal (%s)" % proposal.get("source", "unknown"),
+            })
+            existing.pop("full_word", None)
+            return changed
         doc.append({
             "action": "merge",
             "merge_type": "elided_only",
@@ -138,13 +215,21 @@ def apply_proposal(proposal, doc, section):
             "note": "accepted proposal (%s)" % proposal.get("source", "unknown"),
         })
         return True
-    if isinstance(doc.get(section), dict):  # lemma_overrides
+    if operation == "add_override" and isinstance(doc.get(section), dict):
         if doc[section].get(word) == proposal["proposed"]:
             return False
         doc[section][word] = proposal["proposed"]
         return True
     listed = doc.setdefault(section, [])
-    if word in {w.lower() for w in listed}:
+    matching = [value for value in listed if str(value).lower() == word]
+    if remove:
+        if not matching:
+            return False
+        doc[section] = [value for value in listed if str(value).lower() != word]
+        if section == "entries" and "sources" in doc:
+            doc["sources"].pop(word, None)
+        return True
+    if matching:
         return False
     listed.append(word)
     doc[section] = sorted(set(listed))
@@ -186,21 +271,44 @@ def main():
     touched, applied_n, blocked_n = {}, 0, 0
     for proposal in accepted:
         kind = proposal.get("kind")
-        if kind not in KIND_TARGETS:
+        if kind not in KIND_FILES:
             print("   ? unknown kind %r for %s" % (kind, proposal.get("word")))
             continue
-        filename, section, veto = KIND_TARGETS[kind]
+        operation = proposal_operation(proposal)
+        if not operation:
+            print("   ! %-12s blocked: missing or unsupported structured operation"
+                  % proposal.get("word"))
+            blocked_n += 1
+            continue
+        if operation == "add_occurrence_override":
+            reason = blocked_reason(proposal, operation, {})
+            if reason:
+                print("   ! %-12s blocked: %s" % (proposal.get("word"), reason))
+                blocked_n += 1
+            else:
+                print("   = %-12s occurrence override remains in accepted ledger"
+                      % proposal.get("word"))
+            continue
+        target = operation_target(proposal, operation)
+        if not target:
+            print("   ! %-12s blocked: operation %s is invalid for kind %s"
+                  % (proposal.get("word"), operation, kind))
+            blocked_n += 1
+            continue
+        filename, section, remove = target
         if filename not in touched:
             touched[filename] = load_curation(filename)
         path, doc = touched[filename]
-        reason = blocked_reason(proposal, doc if isinstance(doc, dict) else {}, veto)
+        reason = blocked_reason(
+            proposal, operation, doc if isinstance(doc, dict) else {})
         if reason:
             print("   ! %-12s blocked: %s" % (proposal.get("word"), reason))
             blocked_n += 1
             continue
-        if apply_proposal(proposal, doc, section):
-            print("   + %-12s -> %s [%s]"
-                  % (proposal["word"], os.path.basename(filename), section or "elided_only"))
+        if apply_proposal(proposal, doc, operation, section, remove=remove):
+            print("   %s %-12s -> %s [%s]"
+                  % ("-" if remove else "+", proposal["word"],
+                     os.path.basename(filename), section or "elided_only"))
             applied_n += 1
         else:
             print("   = %-12s already present in %s" % (proposal["word"], filename))

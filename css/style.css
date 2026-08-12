@@ -7650,9 +7650,41 @@
             font-style: italic;
             line-height: 1.35;
         }
+        .provenance-panel .prov-proposal {
+            display: inline-flex;
+            margin-top: 6px;
+            padding: 2px 7px;
+            border: 1px solid rgba(167, 139, 250, 0.5);
+            border-radius: 999px;
+            background: rgba(139, 92, 246, 0.12);
+            color: #d8ccff;
+            font-family: var(--font-data);
+            font-size: 11px;
+            letter-spacing: 0.02em;
+        }
         .provenance-panel .prov-empty {
             color: var(--text-secondary);
             font-size: 14px;
+        }
+
+        /* Owner-only audit marker appended to a definition when the model had
+           to propose a gloss outside SpanishDict's supplied sense menu. */
+        .model-proposed-marker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 6px;
+            padding: 1px 5px;
+            border: 1px solid rgba(167, 139, 250, 0.55);
+            border-radius: 999px;
+            background: rgba(139, 92, 246, 0.12);
+            color: #d8ccff;
+            font-family: var(--font-data);
+            font-size: 9px;
+            font-weight: 700;
+            line-height: 1.35;
+            letter-spacing: 0.06em;
+            vertical-align: 0.15em;
         }
 
         /* Synonyms / antonyms panel — two stacked sections, words rendered
@@ -12555,4 +12587,31 @@
     .about-example-blurb {
         font-size: 13.5px;
     }
+}
+
+/* Provenance panel: confidence + the sentences a sense was assigned to.
+   The panel itself already scrolls (absolute, inset 0, overflow-y:auto above);
+   only momentum scrolling is added here so the longer content drags on iOS. */
+.provenance-panel { -webkit-overflow-scrolling: touch; }
+.prov-conf { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline;
+  margin: 4px 0 2px; font-size: 11px; }
+.prov-conf-band { text-transform: uppercase; letter-spacing: .05em; font-weight: 700;
+  padding: 1px 6px; border-radius: 4px; }
+.prov-conf--high .prov-conf-band { background: rgba(31,107,74,.16); color: #1f6b4a; }
+.prov-conf--medium .prov-conf-band { background: rgba(154,91,18,.16); color: #9a5b12; }
+.prov-conf--low .prov-conf-band { background: rgba(194,47,74,.14); color: #c22f4a; }
+.prov-conf-val { font-variant-numeric: tabular-nums; opacity: .85; }
+.prov-conf-note { opacity: .6; }
+.prov-examples { margin: 6px 0 2px; display: flex; flex-direction: column; gap: 6px; }
+.prov-examples--empty { font-size: 11px; opacity: .55; font-style: italic; }
+.prov-ex { border-left: 2px solid currentColor; padding-left: 8px; opacity: .95; }
+.prov-ex-target { font-size: 12.5px; }
+.prov-ex-english { font-size: 11.5px; opacity: .7; }
+.prov-ex-meta { font-size: 10.5px; opacity: .6; display: flex; gap: 8px; margin-top: 2px; }
+.prov-ex-src { text-decoration: underline; }
+.prov-ex-align { font-variant-numeric: tabular-nums; }
+@media (prefers-color-scheme: dark) {
+  .prov-conf--high .prov-conf-band { background: rgba(95,211,154,.16); color: #5fd39a; }
+  .prov-conf--medium .prov-conf-band { background: rgba(226,165,99,.16); color: #e2a563; }
+  .prov-conf--low .prov-conf-band { background: rgba(255,122,144,.16); color: #ff7a90; }
 }

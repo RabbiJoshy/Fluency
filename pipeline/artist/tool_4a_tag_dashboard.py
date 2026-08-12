@@ -60,11 +60,19 @@ def discover_sources():
     for slug, cfg in (artists_cfg.items() if isinstance(artists_cfg, dict) else []):
         lang = (cfg.get("language") or "spanish").title()
         adir = None
-        # config paths vary; find the artist dir by walking Artists/<lang>/<Name>
+        # Prefer the configured deck path: display names are not guaranteed to
+        # equal directory names ("Spanish Test Playlist" lives in
+        # ``SpanishTestPlaylist/``). Fall back to the historical name lookup.
+        configured_deck = cfg.get("indexPath") or cfg.get("dataPath")
+        if configured_deck:
+            configured_abs = os.path.abspath(os.path.join(ROOT, configured_deck))
+            configured_dir = os.path.dirname(configured_abs)
+            if os.path.isdir(configured_dir):
+                adir = configured_dir
         base = os.path.join(ROOT, "Artists", (cfg.get("language") or "spanish"))
         name = cfg.get("name") or slug
         cand = os.path.join(base, name)
-        if os.path.isdir(cand):
+        if not adir and os.path.isdir(cand):
             adir = cand
         if not adir:
             continue

@@ -1,0 +1,18 @@
+{
+  "schema": "fluency.usage-tag-curations/v1",
+  "_intent": "Human-reviewed usage-tag corrections. Global entries apply only when a judgment is invariant across every matching use; occurrence entries target one persisted lyric occurrence and take precedence.",
+  "_tags": [
+    "slang",
+    "regional",
+    "figurative",
+    "vulgar",
+    "idiom",
+    "loanword",
+    "proper_noun",
+    "interjection",
+    "onomatopoeia"
+  ],
+  "_workflow": "Add an entry with action=add or remove, tags from the fixed list, a reason, and reviewed_by. Run tool_6e_apply_usage_tag_overrides.py for each affected artist. Exact occurrence entries are applied after global entries.",
+  "global": [],
+  "occurrences": []
+}

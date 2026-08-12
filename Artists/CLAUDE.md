@@ -165,7 +165,7 @@ changes; ambiguous sense splits remain explicit migration decisions.
 
 ```
 Artists/{lang}/{Name}/
-  artist.json                    # {"name", "genius_query", "vocabulary_file"}
+  artist.json                    # {"name", "genius_query", "vocabulary_file", optional "sense_registers"}
   {Name}vocabulary.json          # Monolith (debugging only, built by builder)
   {Name}vocabulary.index.json    # Compact index for front end (built by builder)
   {Name}vocabulary.examples.json # Examples keyed by ID (built by builder)

@@ -175,23 +175,8 @@
     "reason": "implausible_fuzzy_headword"
   },
   {
-    "surface": "cocer",
-    "headword": "cocerse",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
     "surface": "compu",
     "headword": "compa",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
-    "surface": "cotizados",
-    "headword": "cotizar",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
-    "surface": "cotizados",
-    "headword": "cotizarse",
     "reason": "implausible_fuzzy_headword"
   },
   {
@@ -205,11 +190,6 @@
     "reason": "implausible_fuzzy_headword"
   },
   {
-    "surface": "desafinar",
-    "headword": "desafinarse",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
     "surface": "enchulaos",
     "headword": "enchufar",
     "reason": "implausible_fuzzy_headword"
@@ -227,11 +207,6 @@
   {
     "surface": "enchules",
     "headword": "enchufarse",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
-    "surface": "entonar",
-    "headword": "entonarse",
     "reason": "implausible_fuzzy_headword"
   },
   {
@@ -257,11 +232,6 @@
   {
     "surface": "malotes",
     "headword": "maltés",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
-    "surface": "mascar",
-    "headword": "mascarse",
     "reason": "implausible_fuzzy_headword"
   },
   {
@@ -325,11 +295,6 @@
     "reason": "implausible_fuzzy_headword"
   },
   {
-    "surface": "saturar",
-    "headword": "saturarse",
-    "reason": "implausible_fuzzy_headword"
-  },
-  {
     "surface": "seteamos",
     "headword": "saetear",
     "reason": "implausible_fuzzy_headword"
@@ -365,8 +330,198 @@
     "reason": "implausible_fuzzy_headword"
   },
   {
-    "surface": "ándale",
-    "headword": "¡Ándale!",
-    "reason": "implausible_fuzzy_headword"
+    "surface": "dale",
+    "headword": "¡Dale!",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "diablo",
+    "headword": "¡Diablos!",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "to's",
+    "headword": "todo",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "jajaja",
+    "headword": "¡Jajaja!",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "mojaítas",
+    "headword": "mojaíta",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "bellaquera",
+    "headword": "bellaquería",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "cel",
+    "headword": "cal",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "frontear",
+    "headword": "frontera",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "dembow",
+    "headword": "dembo",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "buenas",
+    "headword": "buenas noches",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "metíos",
+    "headword": "metro",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "uy",
+    "headword": "¡Uy!",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "pásame",
+    "headword": "pasar",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "fulete",
+    "headword": "filete",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "fotitos",
+    "headword": "fotuto",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "atrevo",
+    "headword": "atrezo",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "cheki",
+    "headword": "cheli",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "celu",
+    "headword": "celos",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "tenqui",
+    "headword": "tequi",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "chichar",
+    "headword": "chicha",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "lejitos",
+    "headword": "lejío",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "juqueado",
+    "headword": "jaquear",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "fotito",
+    "headword": "fotuto",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "feca",
+    "headword": "fecha",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "chiqui",
+    "headword": "chicar",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "penita",
+    "headword": "pepita",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "roleta",
+    "headword": "ruleta",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "todito",
+    "headword": "torito",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "enchulo",
+    "headword": "enchufar",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "infraganti",
+    "headword": "in fraganti",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "dolce",
+    "headword": "dulces",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "cuki",
+    "headword": "cuy",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "já",
+    "headword": "¡Ja!",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "cógelo",
+    "headword": "cómelo",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "cógela",
+    "headword": "comer",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "síguelo",
+    "headword": "signar",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "atreve",
+    "headword": "atreverse",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "yankee",
+    "headword": "yanqui",
+    "reason": "stale_implausible_headword"
+  },
+  {
+    "surface": "gángster",
+    "headword": "gánster",
+    "reason": "stale_implausible_headword"
   }
 ]

@@ -1,6 +1,6 @@
 {
   "a": {
-    "freq": 82,
+    "freq": 81,
     "wikt_pos": [
       "character",
       "noun"
@@ -676,8 +676,8 @@
   },
   "ay": {
     "freq": 7,
-    "bucket": "noise",
-    "source": "curated_noise",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -1062,7 +1062,7 @@
     "in_en_50k": true
   },
   "botellas": {
-    "freq": 3,
+    "freq": 2,
     "wikt_pos": [
       "noun"
     ],
@@ -1776,8 +1776,8 @@
       "noun",
       "verb"
     ],
-    "bucket": "cognate",
-    "cognate_source": "curated",
+    "bucket": "conjugation",
+    "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -2231,7 +2231,7 @@
     "in_en_50k": false
   },
   "cuando": {
-    "freq": 14,
+    "freq": 13,
     "wikt_pos": [
       "adv",
       "conj"
@@ -2345,7 +2345,7 @@
     "in_en_50k": false
   },
   "cuánto": {
-    "freq": 5,
+    "freq": 4,
     "wikt_pos": [
       "adv",
       "det"
@@ -3052,12 +3052,8 @@
   },
   "dios": {
     "freq": 5,
-    "wikt_pos": [
-      "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -3082,11 +3078,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "discoteka'": {
+  "discotecas": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "noun"
+    ],
+    "bucket": "normal_vocab",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "disfruta": {
@@ -3333,20 +3332,6 @@
     "bucket": "normal_vocab",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "e'perado": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
-  "e'to": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "echa": {
@@ -3949,6 +3934,17 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
+  "esperado": {
+    "freq": 1,
+    "wikt_pos": [
+      "adj",
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
   "esperando": {
     "freq": 4,
     "wikt_pos": [
@@ -4011,7 +4007,7 @@
     "in_en_50k": false
   },
   "estamos": {
-    "freq": 7,
+    "freq": 6,
     "wikt_pos": [
       "verb"
     ],
@@ -4082,7 +4078,7 @@
     "in_en_50k": true
   },
   "esto": {
-    "freq": 4,
+    "freq": 5,
     "wikt_pos": [
       "pron"
     ],
@@ -4587,11 +4583,8 @@
   },
   "g": {
     "freq": 1,
-    "wikt_pos": [
-      "character"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": true,
     "in_en_50k": true
   },
@@ -5759,7 +5752,7 @@
     "in_en_50k": true
   },
   "las": {
-    "freq": 22,
+    "freq": 20,
     "wikt_pos": [
       "det",
       "noun",
@@ -5935,15 +5928,8 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "llega'te": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "llegan": {
-    "freq": 3,
+    "freq": 2,
     "wikt_pos": [
       "verb"
     ],
@@ -5954,6 +5940,16 @@
   },
   "llegar": {
     "freq": 4,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
+  "llegaste": {
+    "freq": 1,
     "wikt_pos": [
       "verb"
     ],
@@ -6065,8 +6061,8 @@
   },
   "lmg": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -6891,10 +6887,10 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "moja'íta": {
+  "mojadita": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "bucket": "derivation",
+    "derivation_base": "mojada",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -7148,7 +7144,7 @@
     "in_en_50k": false
   },
   "más": {
-    "freq": 23,
+    "freq": 22,
     "wikt_pos": [
       "adv",
       "conj",
@@ -7388,7 +7384,7 @@
     "in_en_50k": false
   },
   "no": {
-    "freq": 112,
+    "freq": 110,
     "wikt_pos": [
       "adv",
       "intj",
@@ -7400,7 +7396,7 @@
     "in_en_50k": true
   },
   "noche": {
-    "freq": 16,
+    "freq": 15,
     "wikt_pos": [
       "adv",
       "noun"
@@ -7677,7 +7673,7 @@
     "in_en_50k": false
   },
   "otra": {
-    "freq": 10,
+    "freq": 9,
     "wikt_pos": [
       "det",
       "intj",
@@ -7882,13 +7878,6 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "pasa'te": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "pasado": {
     "freq": 3,
     "wikt_pos": [
@@ -7960,6 +7949,16 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
+  "pasaste": {
+    "freq": 1,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
+    "in_en_50k": false
+  },
   "pasen": {
     "freq": 1,
     "wikt_pos": [
@@ -8010,7 +8009,7 @@
     "in_en_50k": false
   },
   "pedí": {
-    "freq": 3,
+    "freq": 2,
     "wikt_pos": [
       "verb"
     ],
@@ -8905,7 +8904,7 @@
     "in_en_50k": true
   },
   "que": {
-    "freq": 168,
+    "freq": 167,
     "wikt_pos": [
       "conj",
       "pron"
@@ -8996,7 +8995,7 @@
     "in_en_50k": true
   },
   "quiero": {
-    "freq": 26,
+    "freq": 25,
     "wikt_pos": [
       "verb"
     ],
@@ -9521,7 +9520,7 @@
     "in_en_50k": true
   },
   "sabes": {
-    "freq": 9,
+    "freq": 8,
     "wikt_pos": [
       "intj",
       "verb"
@@ -10115,7 +10114,7 @@
     "in_en_50k": false
   },
   "solas": {
-    "freq": 2,
+    "freq": 1,
     "wikt_pos": [
       "adj",
       "verb"
@@ -10616,8 +10615,8 @@
   },
   "the": {
     "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
+    "bucket": "proper_nouns",
+    "source": "caps_rate",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -10662,9 +10661,8 @@
     "in_en_50k": false
   },
   "tigueres": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "freq": 2,
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11038,13 +11036,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "tíguere'": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "tímida": {
     "freq": 1,
     "wikt_pos": [
@@ -11160,7 +11151,7 @@
     "in_en_50k": false
   },
   "usted": {
-    "freq": 2,
+    "freq": 3,
     "wikt_pos": [
       "pron"
     ],
@@ -11177,13 +11168,6 @@
     "bucket": "normal_vocab",
     "source": "spanish_forms",
     "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "ustes": {
-    "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
-    "in_spanish_forms": false,
     "in_en_50k": false
   },
   "va": {
@@ -11680,7 +11664,7 @@
     "in_en_50k": false
   },
   "vuelva": {
-    "freq": 4,
+    "freq": 3,
     "wikt_pos": [
       "verb"
     ],
@@ -11745,7 +11729,7 @@
     "in_en_50k": false
   },
   "y": {
-    "freq": 104,
+    "freq": 103,
     "wikt_pos": [
       "character",
       "conj"

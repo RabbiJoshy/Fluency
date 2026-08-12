@@ -8,6 +8,7 @@ reconciliation instead of silently moving learner progress.
 """
 
 import json
+from collections import Counter
 from pathlib import Path
 
 from pipeline.util_evidence_store import canonical_json
@@ -34,6 +35,7 @@ class CardIdentityRegistry:
         self.language = str(language or "und").strip().lower()
         self.records = records or {}
         self.migrations = migrations or []
+        self._indexes = None
 
     @classmethod
     def load(cls, path, language):
@@ -49,18 +51,41 @@ class CardIdentityRegistry:
             raise ValueError("Card identity registry language mismatch")
         return cls(stored_language, payload.get("records"), payload.get("migrations"))
 
-    def _active_records(self):
-        return {
+    def invalidate_indexes(self):
+        """Invalidate lookup caches after a caller performs a bulk mutation."""
+        self._indexes = None
+
+    def _ensure_indexes(self):
+        if self._indexes is not None:
+            return
+        active = {
             card_id: record for card_id, record in self.records.items()
             if record.get("status", "active") == "active"
         }
+        aliases = {}
+        surfaces = {}
+        evidence = {}
+        for card_id, record in active.items():
+            for value in record.get("aliases") or []:
+                key = _alias_key(value.get("surface"), value.get("lemma"))
+                aliases[key] = card_id
+                surfaces.setdefault(key[0], set()).add(card_id)
+            for evidence_id in record.get("evidence_ids") or []:
+                evidence.setdefault(evidence_id, set()).add(card_id)
+        self._indexes = {
+            "active": active,
+            "aliases": aliases,
+            "surfaces": surfaces,
+            "evidence": evidence,
+        }
+
+    def _active_records(self):
+        self._ensure_indexes()
+        return self._indexes["active"]
 
     def _alias_index(self):
-        result = {}
-        for card_id, record in self._active_records().items():
-            for value in record.get("aliases") or []:
-                result[_alias_key(value.get("surface"), value.get("lemma"))] = card_id
-        return result
+        self._ensure_indexes()
+        return self._indexes["aliases"]
 
     def seed(self, card_id, surface, lemma, evidence_ids=None):
         """Register an existing externally visible ID without renumbering it."""
@@ -78,9 +103,15 @@ class CardIdentityRegistry:
         alias_value = _alias(surface, lemma)
         if alias_value not in record["aliases"]:
             record["aliases"].append(alias_value)
+            self._ensure_indexes()
+            self._indexes["aliases"][key] = card_id
+            self._indexes["surfaces"].setdefault(key[0], set()).add(card_id)
+        self._ensure_indexes()
+        self._indexes["active"][card_id] = record
         for evidence_id in evidence_ids or []:
             if evidence_id and evidence_id not in record["evidence_ids"]:
                 record["evidence_ids"].append(evidence_id)
+                self._indexes["evidence"].setdefault(evidence_id, set()).add(card_id)
         return card_id
 
     def resolve(self, surface, lemma, evidence_ids=None, claimed_ids=None,
@@ -95,11 +126,14 @@ class CardIdentityRegistry:
 
         evidence = set(evidence_ids or [])
         if evidence:
-            overlaps = []
-            for card_id, record in self._active_records().items():
-                overlap = len(evidence & set(record.get("evidence_ids") or []))
-                if overlap and card_id not in claimed_ids:
-                    overlaps.append((overlap, card_id))
+            self._ensure_indexes()
+            overlap_counts = Counter(
+                card_id
+                for evidence_id in evidence
+                for card_id in self._indexes["evidence"].get(evidence_id, ())
+                if card_id not in claimed_ids
+            )
+            overlaps = [(overlap, card_id) for card_id, overlap in overlap_counts.items()]
             if overlaps:
                 best_overlap = max(score for score, _ in overlaps)
                 winners = [card_id for score, card_id in overlaps if score == best_overlap]
@@ -107,14 +141,8 @@ class CardIdentityRegistry:
                     return winners[0]
 
         surface_key = _alias(surface, "")["surface"]
-        surface_matches = {
-            card_id
-            for card_id, record in self._active_records().items()
-            if card_id not in claimed_ids and any(
-                _alias(value.get("surface"), "")["surface"] == surface_key
-                for value in record.get("aliases") or []
-            )
-        }
+        self._ensure_indexes()
+        surface_matches = self._indexes["surfaces"].get(surface_key, set()) - claimed_ids
         return next(iter(surface_matches)) if len(surface_matches) == 1 else None
 
     def assign(self, surface, lemma, evidence_ids, preferred_id,
@@ -137,6 +165,7 @@ class CardIdentityRegistry:
         # index no longer reports the source as their owner.
         source["status"] = "merged"
         source["superseded_by"] = target_id
+        self.invalidate_indexes()
         for value in source.get("aliases") or []:
             self.seed(target_id, value.get("surface"), value.get("lemma"))
         for evidence_id in source.get("evidence_ids") or []:

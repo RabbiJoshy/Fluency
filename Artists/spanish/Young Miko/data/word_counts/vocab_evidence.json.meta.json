@@ -1,5 +1,12 @@
 {
-  "step_name": "count_words",
-  "step_version": 8,
-  "generated_at": 1785056473
+  "step_name": "materialize_artist_corpus",
+  "step_version": 2,
+  "generated_at": 1786402521,
+  "ledger_run": "run_c5e460491cd359b3e686b435",
+  "corpus_profile_hash": "sha256:ec4934ade41a453d9f6f6e345e274156159f82dd17064fc9f256be3ed7e5fd74",
+  "excluded_labels": [
+    "adlib",
+    "echo",
+    "stutter"
+  ]
 }

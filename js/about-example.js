@@ -29,9 +29,10 @@
 // Demo cards — real entries, real lyrics, real track ids.
 // ---------------------------------------------------------------------------
 //
-// `fuego` and `como` are genuine Bad Bunny deck entries (rank, line counts and
-// sense splits match the built deck); `aunque` is the Speech-mode card the
-// About copy already discusses. Percentages are the deck's own sense splits.
+// `cielo` is a genuine Bad Bunny deck entry — rank, line count, meanings,
+// percentages, lyrics and timestamps all read out of the built deck rather
+// than written for the walkthrough. `aunque` is the Speech-mode card the About
+// copy already discusses.
 
 const ABOUT_EXAMPLE_CARDS = {
     // Chosen for the quality of its sense assignment, not at random. `fuego`

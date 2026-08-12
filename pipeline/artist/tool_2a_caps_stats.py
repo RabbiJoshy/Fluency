@@ -26,6 +26,35 @@ sys.path.insert(0, os.path.join(ROOT, "pipeline", "artist"))
 import step_2a_count_words as S2  # noqa: E402
 
 
+def _scan_ledger(adir, total, midcap, firstcap):
+    """Read preserved raw casing from the selected immutable occurrence run."""
+    profile_path = os.path.join(adir, "data", "evidence", "profiles", "current.json")
+    if not os.path.isfile(profile_path):
+        return False
+    with open(profile_path, encoding="utf-8") as handle:
+        profile = json.load(handle)
+    run_id = (profile.get("runs") or {}).get("ledger")
+    if not run_id:
+        return False
+    occurrence_path = os.path.join(
+        adir, "data", "evidence", "ledger", "runs", run_id, "occurrences.jsonl")
+    if not os.path.isfile(occurrence_path):
+        return False
+    with open(occurrence_path, encoding="utf-8") as handle:
+        for line in handle:
+            row = json.loads(line)
+            if row.get("state") != "present":
+                continue
+            surface = row.get("surface") or ""
+            if not surface:
+                continue
+            word = surface.lower()
+            total[word] += 1
+            if surface[:1].isupper():
+                (firstcap if row.get("ordinal") == 0 else midcap)[word] += 1
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--artist-dir", required=True)
@@ -36,7 +65,8 @@ def main():
     total = defaultdict(int)
     midcap = defaultdict(int)
     firstcap = defaultdict(int)
-    for f in batches:
+    used_ledger = _scan_ledger(adir, total, midcap, firstcap)
+    for f in ([] if used_ledger else batches):
         try:
             songs = json.load(open(f, encoding="utf-8"))
         except Exception:
@@ -70,7 +100,9 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
     hi = sum(1 for s in stats.values() if s["cap_rate"] >= 0.65 and (s["total"] - s["firstcap"]) >= 3)
-    print("Wrote %s (%d words, %d with cap_rate>=0.65 & >=3 mid occ)" % (out, len(stats), hi))
+    source = "evidence ledger" if used_ledger else "legacy lyric batches"
+    print("Wrote %s (%d words, %d with cap_rate>=0.65 & >=3 mid occ; %s)" %
+          (out, len(stats), hi, source))
 
 
 if __name__ == "__main__":

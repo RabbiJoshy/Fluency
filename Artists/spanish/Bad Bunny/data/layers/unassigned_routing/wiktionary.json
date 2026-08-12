@@ -82,11 +82,11 @@
     2,
     3,
     4,
-    7,
-    9
+    7
   ],
   "odio|odio": [
-    8
+    8,
+    9
   ],
   "tan|tanto": [
     0,
@@ -113,9 +113,11 @@
     2,
     5
   ],
-  "beso|beso": [
+  "beso|besar": [
     1,
-    2,
+    2
+  ],
+  "beso|beso": [
     5,
     6,
     8,
@@ -130,12 +132,12 @@
   "vino|vino": [
     0,
     2,
-    3
+    8
   ],
   "vino|venir": [
+    3,
     4,
-    7,
-    8
+    7
   ],
   "claro|claro": [
     0,
@@ -144,14 +146,14 @@
     3,
     6
   ],
+  "gana|ganar": [
+    1
+  ],
   "gana|gana": [
-    1,
     2,
     3,
-    7
-  ],
-  "gana|ganar": [
     4,
+    7,
     9
   ],
   "cuidado|cuidado": [
@@ -182,8 +184,10 @@
   "pasado|pasado": [
     0,
     2,
+    5
+  ],
+  "pasado|pasar": [
     4,
-    5,
     7,
     8
   ],
@@ -495,7 +499,8 @@
   "vestido|vestido": [
     0,
     1,
-    2
+    2,
+    4
   ],
   "reales|real": [
     0,
@@ -538,6 +543,9 @@
   ],
   "despierto|despierto": [
     1,
+    2
+  ],
+  "prendido|prendido": [
     2
   ],
   "presente|presente": [
@@ -601,6 +609,9 @@
   "comenzar|comenzar": [
     2
   ],
+  "felicidad|felicidad": [
+    2
+  ],
   "médico|médico": [
     1
   ],
@@ -629,6 +640,9 @@
     1
   ],
   "pases|pasar": [
+    1
+  ],
+  "ajedrez|ajedrez": [
     1
   ],
   "celulares|celular": [
@@ -1200,10 +1214,10 @@
     2
   ],
   "vivo|vivir": [
-    0,
-    1
+    0
   ],
   "vivo|vivo": [
+    1,
     2
   ],
   "mientras|mientras": [
@@ -1241,10 +1255,8 @@
     1,
     2
   ],
-  "paso|paso": [
-    0
-  ],
   "paso|pasar": [
+    0,
     1,
     2
   ],
@@ -1350,11 +1362,11 @@
     8
   ],
   "nota|notar": [
-    0
+    0,
+    2
   ],
   "nota|nota": [
-    1,
-    2
+    1
   ],
   "puse|poner": [
     0,
@@ -1631,10 +1643,8 @@
     1,
     2
   ],
-  "dura|durar": [
-    0
-  ],
   "dura|duro": [
+    0,
     1,
     2
   ],
@@ -2335,7 +2345,9 @@
   ],
   "vuelta|vuelta": [
     0,
-    1,
+    1
+  ],
+  "vuelta|volver": [
     2
   ],
   "última|último": [
@@ -4295,7 +4307,8 @@
   "actitud|actitud": [
     0,
     1,
-    2
+    2,
+    4
   ],
   "baje|bajar": [
     0,
@@ -6481,6 +6494,12 @@
   "dedicar|dedicar": [
     1
   ],
+  "desnuda|desnudo": [
+    6
+  ],
+  "perdido|perder": [
+    7
+  ],
   "vete|ir": [
     7
   ],
@@ -6506,11 +6525,17 @@
   "corazones|corazón": [
     6
   ],
+  "metido|metido": [
+    3
+  ],
   "drogas|droga": [
     1
   ],
   "llevarte|llevar": [
     3
+  ],
+  "oportunidad|oportunidad": [
+    2
   ],
   "puedas|poder": [
     3
@@ -6580,6 +6605,9 @@
     2,
     3
   ],
+  "acostumbrado|acostumbrar": [
+    1
+  ],
   "convencer|convencer": [
     1
   ],
@@ -6597,6 +6625,12 @@
     1
   ],
   "meterme|meter": [
+    1
+  ],
+  "metida|meter": [
+    1
+  ],
+  "montado|montado": [
     1
   ],
   "privados|privado": [

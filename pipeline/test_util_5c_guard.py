@@ -79,6 +79,25 @@ LEGACY_DIRECTION_CASES = [
     ),
 ]
 
+# SpanishDict can embed the simple plural on an exact singular page (or expose
+# it as a spelling-like inflection redirect).  The exact entry must win;
+# otherwise lemma projection can emit duplicate card identities (the real
+# failure was usted|usted plus ustedes projected back onto usted|usted).
+EXACT_SELF_REDIRECT_CASES = [
+    (
+        "usted",
+        {"usted": {
+            "dictionary_analyses": [
+                _da("usted", _sense("PRON", "you")),
+                _da("ustedes", _sense("PRON", "you all")),
+            ],
+            "possible_results": [],
+        }},
+        {},
+        {"usted"},
+    ),
+]
+
 # Direct is_plausible_headword() checks: (surface, headword, relation, conj_lemmas, expected)
 DIRECT = [
     ("perse", "purse", "", None, False),
@@ -127,8 +146,28 @@ def main():
               % ("OK" if ok else "FAIL", surface,
                  ",".join(sorted(expected)), ",".join(sorted(got))))
 
+    for surface, surface_cache, headword_cache, expected in EXACT_SELF_REDIRECT_CASES:
+        quarantine = []
+        got = {
+            (a.get("headword") or "").strip()
+            for a in u.build_menu_analyses(
+                surface, surface_cache, headword_cache, quarantine=quarantine)
+            if a.get("headword")
+        }
+        ok = (
+            got == expected
+            and any(q.get("reason") ==
+                    "plural_analysis_conflicts_with_exact_surface"
+                    for q in quarantine)
+        )
+        failures += not ok
+        print("[%s] exact self redirect %-6s expected=%s got=%s"
+              % ("OK" if ok else "FAIL", surface,
+                 ",".join(sorted(expected)), ",".join(sorted(got))))
+
     print("\n%d case(s), %d failure(s)" % (
-        len(CASES) + len(DIRECT) + len(LEGACY_DIRECTION_CASES), failures))
+        len(CASES) + len(DIRECT) + len(LEGACY_DIRECTION_CASES)
+        + len(EXACT_SELF_REDIRECT_CASES), failures))
     return 1 if failures else 0
 
 

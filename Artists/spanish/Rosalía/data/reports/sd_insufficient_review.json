@@ -1,11 +1,21 @@
 {
   "_meta": {
     "source": "spanishdict",
-    "classifier": "classify-or-propose",
-    "model": "gemini-3.5-flash-lite",
-    "count": 139
+    "classifier": "lexical-wsd-propose",
+    "prompt_id": "sd-lexical-v2-g31",
+    "model": "gemini-3.1-flash-lite",
+    "count": 245
   },
   "items": [
+    {
+      "word": "me",
+      "lemma": "me",
+      "abstain_reason": "foreign",
+      "corpus_count": 323,
+      "example_index": 0,
+      "example": "C'est mon cœur qui me nomme, si je vous quitte",
+      "translation": "C'est mon cœur qui me nomme, si je vous quitte"
+    },
     {
       "word": "por",
       "lemma": "por",
@@ -77,6 +87,42 @@
       "translation": "What difference does it make if La Mala throws me?"
     },
     {
+      "word": "del",
+      "lemma": "del",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 52,
+      "example_index": 4,
+      "example": "Encima del ring es espiritual",
+      "translation": "Above the ring it is spiritual"
+    },
+    {
+      "word": "del",
+      "lemma": "del",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 52,
+      "example_index": 6,
+      "example": "En la puerta del cielo",
+      "translation": "At the gate of heaven"
+    },
+    {
+      "word": "o",
+      "lemma": "o",
+      "abstain_reason": "noise",
+      "corpus_count": 28,
+      "example_index": 5,
+      "example": "Nadie a ti te ha conta’o",
+      "translation": "Nobody has told you"
+    },
+    {
+      "word": "o",
+      "lemma": "o",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 28,
+      "example_index": 6,
+      "example": "O-1 visa over ESTA",
+      "translation": "O-1 visa over ESTA"
+    },
+    {
       "word": "ha",
       "lemma": "ha",
       "proposed": "auxiliary verb for perfect tense",
@@ -85,6 +131,23 @@
       "corpus_count": 25,
       "example": "Que se ha muerto nuestra madre",
       "translation": "that our mother has died"
+    },
+    {
+      "word": "fue",
+      "lemma": "fue",
+      "proposed": "outside",
+      "corpus_count": 19,
+      "example": "Fue-Fuera del bajo mundo, fuera",
+      "translation": "Out-Out of the underworld, out"
+    },
+    {
+      "word": "ser",
+      "lemma": "ser",
+      "abstain_reason": "construction_only",
+      "corpus_count": 16,
+      "example_index": 1,
+      "example": "Hizo en mí un ser martirizado",
+      "translation": "He made me a martyred being"
     },
     {
       "word": "dos",
@@ -97,6 +160,24 @@
       "translation": "It was two at night"
     },
     {
+      "word": "mal",
+      "lemma": "mal",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 14,
+      "example_index": 0,
+      "example": "La canción no se ha estrenado oficialmente, pero se ha escuchado en la gira “El Mal Querer” de Rosalía .",
+      "translation": "The song has not been officially released, but it has been heard on Rosalía's “El Mal Querer” tour."
+    },
+    {
+      "word": "mal",
+      "lemma": "mal",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 14,
+      "example_index": 9,
+      "example": "Mal Querer en Times Square (¿O qué?)",
+      "translation": "Mal Querer in Times Square (Or what?)"
+    },
+    {
       "word": "mirás",
       "lemma": "mirás",
       "proposed": "look or gaze",
@@ -107,6 +188,22 @@
       "translation": "Just by looking in your eyes'"
     },
     {
+      "word": "querer",
+      "lemma": "querer",
+      "proposed": "love",
+      "corpus_count": 11,
+      "example": "Mal Querer en Times Square (¿O qué?)",
+      "translation": "Mal Querer in Times Square (Or what?)"
+    },
+    {
+      "word": "toma",
+      "lemma": "toma",
+      "proposed": "take",
+      "corpus_count": 11,
+      "example": "Que toma, que toma, que toma, que toma toma, toma",
+      "translation": "What does it take, what does it take, what does it take, what does it take, what does it take, what does it take?"
+    },
+    {
       "word": "chi",
       "lemma": "chi",
       "proposed": "onomatopoeia",
@@ -115,6 +212,14 @@
       "corpus_count": 10,
       "example": "Qué lo, duro, qué lo, chi, chi, chi",
       "translation": "What, hard, what, chi, chi, chi"
+    },
+    {
+      "word": "calle",
+      "lemma": "calle",
+      "proposed": "to be quiet",
+      "corpus_count": 10,
+      "example": "Corre y dile que se calle",
+      "translation": "Run and tell him to shut up"
     },
     {
       "word": "alí",
@@ -157,6 +262,22 @@
       "translation": "Get out of my presence, it's martyring me"
     },
     {
+      "word": "fuego",
+      "lemma": "fuego",
+      "proposed": "on fire",
+      "corpus_count": 7,
+      "example": "Hoy estoy a fuego, 'toy chucky",
+      "translation": "Today I'm on fire, 'toy chucky"
+    },
+    {
+      "word": "pues",
+      "lemma": "pues",
+      "proposed": "can",
+      "corpus_count": 7,
+      "example": "Solo Dios pues juzgarme",
+      "translation": "Only God can judge me"
+    },
+    {
       "word": "bendecías",
       "lemma": "bendecías",
       "proposed": "blessed",
@@ -165,6 +286,99 @@
       "corpus_count": 6,
       "example": "Aquí con mi Ale 'tamo bendecías (Blessed)",
       "translation": "Here with my Ale 'we blessed' (Blessed)"
+    },
+    {
+      "word": "buena",
+      "lemma": "buena",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 6,
+      "example_index": 0,
+      "example": "Sé que murió siendo buena",
+      "translation": "I know she died being good"
+    },
+    {
+      "word": "buena",
+      "lemma": "buena",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 6,
+      "example_index": 3,
+      "example": "Mira que quiero ser buena, ¿no lo ves?",
+      "translation": "Look, I want to be good, don't you see?"
+    },
+    {
+      "word": "pa",
+      "lemma": "pa",
+      "proposed": "dad",
+      "corpus_count": 6,
+      "example": "¿Pa, pa, pa qué highlighter, si tú brillas sola?",
+      "translation": "Pa, pa, pa, why highlighter, if you shine alone?"
+    },
+    {
+      "word": "somos",
+      "lemma": "somos",
+      "proposed": "to be",
+      "corpus_count": 6,
+      "example": "No' besamo', pero somos homie'",
+      "translation": "We don't kiss, but we are a homie"
+    },
+    {
+      "word": "están",
+      "lemma": "están",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 6,
+      "example_index": 2,
+      "example": "Si las gana' ya están en el tope",
+      "translation": "If they win they are already at the top"
+    },
+    {
+      "word": "gata",
+      "lemma": "gata",
+      "proposed": "young woman",
+      "corpus_count": 6,
+      "example": "Tu gata quiere maki, mi gata en Kawasaki",
+      "translation": "Your cat wants maki, my cat in Kawasaki"
+    },
+    {
+      "word": "les",
+      "lemma": "les",
+      "abstain_reason": "foreign",
+      "corpus_count": 6,
+      "example_index": 0,
+      "example": "Les línies del seu cos s’estan desdibuixant fins a la frontera",
+      "translation": "The lines of the world are blurring towards the border"
+    },
+    {
+      "word": "les",
+      "lemma": "les",
+      "abstain_reason": "foreign",
+      "corpus_count": 6,
+      "example_index": 1,
+      "example": "Si on m'invite à rendre les armes sans rendre l’âme",
+      "translation": "If on m'invite à rendre les armes sans rendre l’âme"
+    },
+    {
+      "word": "matar",
+      "lemma": "matar",
+      "proposed": "to impress",
+      "corpus_count": 6,
+      "example": "Rumba pa' matar, ¿dónde es que pa' romper?",
+      "translation": "Rumba to kill, where is it to break?"
+    },
+    {
+      "word": "matar",
+      "lemma": "matar",
+      "proposed": "to go all out",
+      "corpus_count": 6,
+      "example": "Yo me voy contigo a matar",
+      "translation": "I'm going with you to kill"
+    },
+    {
+      "word": "miras",
+      "lemma": "miras",
+      "proposed": "gaze",
+      "corpus_count": 6,
+      "example": "En tu miras, es tu mirada",
+      "translation": "In your sight, it is your gaze"
     },
     {
       "word": "so",
@@ -225,6 +439,146 @@
       "corpus_count": 5,
       "example": "TKN, TKN, TKN",
       "translation": "TKN, TKN, TKN"
+    },
+    {
+      "word": "dando",
+      "lemma": "dando",
+      "proposed": "to talk",
+      "corpus_count": 5,
+      "example": "La que siempre está dando muela y en habladurías",
+      "translation": "The one who is always grinding and gossiping"
+    },
+    {
+      "word": "dejo",
+      "lemma": "dejo",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 5,
+      "example_index": 4,
+      "example": "No dejo de pensar en ti y en tu cuerpo, oh-oh",
+      "translation": "I can't stop thinking about you and your body, oh-oh"
+    },
+    {
+      "word": "di",
+      "lemma": "di",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 0,
+      "example": "Crashed, Lady Di",
+      "translation": "Crashed, Lady Di"
+    },
+    {
+      "word": "real",
+      "lemma": "real",
+      "proposed": "royal",
+      "corpus_count": 5,
+      "example": "Como un pavo real, bebé",
+      "translation": "Like a peacock, baby"
+    },
+    {
+      "word": "sales",
+      "lemma": "sales",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 5,
+      "example_index": 2,
+      "example": "Que si no sales tú, entro yo",
+      "translation": "If you don't come out, I'll come in"
+    },
+    {
+      "word": "santo",
+      "lemma": "santo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 4,
+      "example": "De Barcelona pa' Santo Domingo",
+      "translation": "From Barcelona to Santo Domingo"
+    },
+    {
+      "word": "so",
+      "lemma": "so",
+      "abstain_reason": "foreign",
+      "corpus_count": 5,
+      "example_index": 0,
+      "example": "Deshalb ist mein Herz so schwer",
+      "translation": "Deshalb ist mein Herz so schwer"
+    },
+    {
+      "word": "so",
+      "lemma": "so",
+      "abstain_reason": "foreign",
+      "corpus_count": 5,
+      "example_index": 1,
+      "example": "So good",
+      "translation": "So good"
+    },
+    {
+      "word": "madre",
+      "lemma": "madre",
+      "proposed": "goodness",
+      "corpus_count": 5,
+      "example": "Madre mía, Rosalía, bájale",
+      "translation": "My goodness, Rosalía, put it down"
+    },
+    {
+      "word": "mala",
+      "lemma": "mala",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 3,
+      "example": "¿Qué más da que me tire La Mala?",
+      "translation": "What difference does it make if La Mala throws me?"
+    },
+    {
+      "word": "medio",
+      "lemma": "medio",
+      "abstain_reason": "construction_only",
+      "corpus_count": 5,
+      "example_index": 1,
+      "example": "Ay, que tú sabes que yo te canto al siete por medio",
+      "translation": "Oh, you know that I sing to you every seven"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 5,
+      "example_index": 0,
+      "example": "Copla' del siglo pasa'o, ven y mira cómo le mete",
+      "translation": "Copla' from the last century, come and see how he puts it"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 5,
+      "example_index": 1,
+      "example": "Ven y hazme santería",
+      "translation": "Come and make me Santeria"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 5,
+      "example_index": 2,
+      "example": "Esta noche ven, refúgiate en mis brazos",
+      "translation": "Tonight come, take refuge in my arms"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 5,
+      "example_index": 3,
+      "example": "Ven pa'cá",
+      "translation": "Come here"
+    },
+    {
+      "word": "medio",
+      "lemma": "medio",
+      "proposed": "interval",
+      "corpus_count": 5,
+      "example": "Ay, que tú sabes que yo te canto al siete por medio",
+      "translation": "Oh, you know that I sing to you every seven"
     },
     {
       "word": "algarete",
@@ -407,6 +761,79 @@
       "translation": "Forgive me, forgive me"
     },
     {
+      "word": "llamas",
+      "lemma": "llamas",
+      "proposed": "flames",
+      "corpus_count": 4,
+      "example": "Y las llamas destrozarán la cruz",
+      "translation": "And the flames will destroy the cross"
+    },
+    {
+      "word": "cuenta",
+      "lemma": "cuenta",
+      "proposed": "realization",
+      "corpus_count": 4,
+      "example": "Pero sin darte cuenta te alejas de mí",
+      "translation": "But without realizing it you go away from me"
+    },
+    {
+      "word": "deja",
+      "lemma": "deja",
+      "proposed": "to stop",
+      "corpus_count": 4,
+      "example": "Ya, ya, deja ya de hablar",
+      "translation": "Now, now, stop talking"
+    },
+    {
+      "word": "fin",
+      "lemma": "fin",
+      "proposed": "finally",
+      "corpus_count": 4,
+      "example": "Por fin vas a terapia, vas al psicólogo y también psiquiatra",
+      "translation": "You finally go to therapy, you go to a psychologist and also a psychiatrist."
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to party hard",
+      "corpus_count": 4,
+      "example": "Rumba pa' matar, ¿dónde es que pa' romper?",
+      "translation": "Rumba to kill, where is it to break?"
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to succeed",
+      "corpus_count": 4,
+      "example": "Que si estoy en esto es para romper",
+      "translation": "That if I'm in this it's to break"
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to party",
+      "corpus_count": 4,
+      "example": "Se dice que hay que romper",
+      "translation": "It is said that you have to break"
+    },
+    {
+      "word": "chiqui",
+      "lemma": "chiqui",
+      "proposed": "little one",
+      "corpus_count": 4,
+      "example": "Con mis cadena', yo a lo chiqui chiri",
+      "translation": "With my chain', I like the little one"
+    },
+    {
+      "word": "perla",
+      "lemma": "perla",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 4,
+      "example_index": 2,
+      "example": "Hoy yo me pierdo por La Perla",
+      "translation": "Today I get lost in La Perla"
+    },
+    {
       "word": "can",
       "lemma": "can",
       "proposed": "can (English modal verb)",
@@ -525,6 +952,49 @@
       "corpus_count": 3,
       "example": "ponerse el cinturón y coge asiento",
       "translation": "Put on your seatbelt and take a seat"
+    },
+    {
+      "word": "loco",
+      "lemma": "loco",
+      "proposed": "crazy",
+      "corpus_count": 3,
+      "example": "Loco, mira eso",
+      "translation": "Crazy, look at that"
+    },
+    {
+      "word": "salida",
+      "lemma": "salida",
+      "abstain_reason": "construction_only",
+      "corpus_count": 3,
+      "example_index": 2,
+      "example": "Por la noche, la salida del Bagdad",
+      "translation": "At night, he left Baghdad"
+    },
+    {
+      "word": "ten",
+      "lemma": "ten",
+      "proposed": "to have",
+      "corpus_count": 3,
+      "example": "Que te las clavo, niño, ten cuida'o (Cla)",
+      "translation": "I'll nail you, child, be careful (Cla)"
+    },
+    {
+      "word": "tenemos",
+      "lemma": "tenemos",
+      "abstain_reason": "construction_only",
+      "corpus_count": 3,
+      "example_index": 2,
+      "example": "Aquí to'a la' niña' tenemos tumba'o (¡Tra!)",
+      "translation": "Here we have a grave for all the girls (Tra!)"
+    },
+    {
+      "word": "vuelves",
+      "lemma": "vuelves",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Y los vuelves a sacar",
+      "translation": "And you take them out again"
     },
     {
       "word": "blut",
@@ -875,6 +1345,73 @@
       "corpus_count": 2,
       "example": "Sin ser gitana, tengo compás",
       "translation": "Without being a gypsy, I have friends"
+    },
+    {
+      "word": "gana",
+      "lemma": "gana",
+      "proposed": "to win",
+      "corpus_count": 2,
+      "example": "De tu sempre té gana, tu ets el rei que la mana",
+      "translation": "You always win, you are the king who rules"
+    },
+    {
+      "word": "meto",
+      "lemma": "meto",
+      "proposed": "to perform",
+      "corpus_count": 2,
+      "example": "Yo le meto duro, sale bien seguro",
+      "translation": "I put it hard, it comes out well for sure"
+    },
+    {
+      "word": "pesado",
+      "lemma": "pesado",
+      "proposed": "annoying",
+      "corpus_count": 2,
+      "example": "Tengo más guardao', desde hace años, pesado (Eh)",
+      "translation": "I have more saved, for years, but (Eh)"
+    },
+    {
+      "word": "pies",
+      "lemma": "pies",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Tatuá' de pies hasta la nuca",
+      "translation": "Tattoo 'standing' up to the nape of the neck"
+    },
+    {
+      "word": "nueva",
+      "lemma": "nueva",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "En Nueva York patinando pa' lo' Heights",
+      "translation": "In New York skating for the Heights"
+    },
+    {
+      "word": "puesto",
+      "lemma": "puesto",
+      "proposed": "to become",
+      "corpus_count": 2,
+      "example": "Se ha puesto la noche rara, han salí'o luna y estrellas (Eh)",
+      "translation": "The night has become strange, the moon and stars have come out (Eh)"
+    },
+    {
+      "word": "rosa",
+      "lemma": "rosa",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Ah, Rosa-lía, ah",
+      "translation": "Ah, Rosa-lía, ah"
+    },
+    {
+      "word": "sentado",
+      "lemma": "sentado",
+      "proposed": "taken for granted",
+      "corpus_count": 2,
+      "example": "Por dar por sentado tantas bendicione'",
+      "translation": "For taking so many blessings for granted"
     },
     {
       "word": "tirar",
@@ -1395,6 +1932,359 @@
       "corpus_count": 1,
       "example": "Si qui'es hablarme, sentirse en la silla",
       "translation": "If you want to talk to me, sit in the chair"
+    },
+    {
+      "word": "armada",
+      "lemma": "armada",
+      "abstain_reason": "construction_only",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "¡Un auténtico robo de identidad, libertad y poder a mano armada donde todas somos invitadas!",
+      "translation": "A true theft of identity, freedom and power at gunpoint where we are all guests!"
+    },
+    {
+      "word": "amiguita",
+      "lemma": "amiguita",
+      "proposed": "friend",
+      "corpus_count": 1,
+      "example": "¿Y le gusta mi bachata, amiguita?",
+      "translation": "And do you like my bachata, friend?"
+    },
+    {
+      "word": "apenas",
+      "lemma": "apenas",
+      "proposed": "sad",
+      "corpus_count": 1,
+      "example": "Bonita pero apenas",
+      "translation": "Pretty but sad"
+    },
+    {
+      "word": "base",
+      "lemma": "base",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Directamente desde La Base",
+      "translation": "Directly from The Base"
+    },
+    {
+      "word": "bases",
+      "lemma": "bases",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Tengo hits porque yo senté las bases",
+      "translation": "I have hits because I laid the foundation"
+    },
+    {
+      "word": "bizcochito",
+      "lemma": "bizcocho",
+      "proposed": "sweetheart",
+      "corpus_count": 1,
+      "example": "Yo no soy y ni voy a ser tu bizcochito",
+      "translation": "I am not and I will not be your little cake"
+    },
+    {
+      "word": "buenos",
+      "lemma": "buenos",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "En PR nació el coraje, pero el cielo nació en Buenos Aires",
+      "translation": "Courage was born in PR, but heaven was born in Buenos Aires"
+    },
+    {
+      "word": "campo",
+      "lemma": "campo",
+      "proposed": "field",
+      "corpus_count": 1,
+      "example": "Campo de minas para mi sensibilidad",
+      "translation": "Minefield for my sensitivity"
+    },
+    {
+      "word": "casas",
+      "lemma": "casas",
+      "abstain_reason": "construction_only",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "No estoy para nadie, no me puedo casas",
+      "translation": "I'm not there for anyone, I can't get home'"
+    },
+    {
+      "word": "cañón",
+      "lemma": "cañón",
+      "proposed": "barrel",
+      "corpus_count": 1,
+      "example": "Apúnteme usted una escopeta que no tiene llave, cañón ni baqueta",
+      "translation": "Point me a shotgun that has no key, barrel or ramrod."
+    },
+    {
+      "word": "ciegas",
+      "lemma": "ciegas",
+      "proposed": "blindly",
+      "corpus_count": 1,
+      "example": "Amar a ciegas te quita poder",
+      "translation": "Loving blindly takes away your power"
+    },
+    {
+      "word": "corte",
+      "lemma": "corte",
+      "proposed": "cut",
+      "corpus_count": 1,
+      "example": "Había un quilo sin corte en tu cajón",
+      "translation": "There was a kilo uncut in your drawer"
+    },
+    {
+      "word": "cristal",
+      "lemma": "cristal",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Y en la ciudad de Cristal fue que me trasquilé",
+      "translation": "And in the city of Crystal it was that I was sheared"
+    },
+    {
+      "word": "cuesta",
+      "lemma": "cuesta",
+      "abstain_reason": "construction_only",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Y ahora que ha pasado cuesta tanto de creer",
+      "translation": "And now that it's happened, it's so hard to believe."
+    },
+    {
+      "word": "explotado",
+      "lemma": "explotado",
+      "proposed": "full",
+      "corpus_count": 1,
+      "example": "Todo el mundo me quiere de su la'o, tengo el buzón explotado",
+      "translation": "Everyone wants me on their side, my mailbox is exploding"
+    },
+    {
+      "word": "hojas",
+      "lemma": "hojas",
+      "proposed": "blade",
+      "corpus_count": 1,
+      "example": "Como las hojas de un cuchillo",
+      "translation": "Like the blades of a knife"
+    },
+    {
+      "word": "grave",
+      "lemma": "grave",
+      "proposed": "sick",
+      "corpus_count": 1,
+      "example": "Mami, sigo grave y tú tienes el jarabe",
+      "translation": "Mommy, I'm still serious and you have the syrup"
+    },
+    {
+      "word": "guarden",
+      "lemma": "guarden",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Me iluminen, me guarden (Hmph) y por delante (Hm)",
+      "translation": "Enlighten me, keep me (Hmph) and ahead (Hm)"
+    },
+    {
+      "word": "junte",
+      "lemma": "junte",
+      "proposed": "collaboration",
+      "corpus_count": 1,
+      "example": "Este junte paga to'a la Ferrari",
+      "translation": "This team pays everything to the Ferrari"
+    },
+    {
+      "word": "lastima",
+      "lemma": "lastima",
+      "proposed": "to hurt",
+      "corpus_count": 1,
+      "example": "Que su cante me lastima",
+      "translation": "That your singing hurts me"
+    },
+    {
+      "word": "matando",
+      "lemma": "matando",
+      "proposed": "to excel",
+      "corpus_count": 1,
+      "example": "Toy matando, mmm-hmm (Gy-gypsy)",
+      "translation": "Toy killing, mmm-hmm (Gy-gypsy)"
+    },
+    {
+      "word": "miradita",
+      "lemma": "mirada",
+      "proposed": "little look",
+      "corpus_count": 1,
+      "example": "Miradita es taina",
+      "translation": "Miradita is Taino"
+    },
+    {
+      "word": "nadita",
+      "lemma": "nada",
+      "proposed": "nothing",
+      "corpus_count": 1,
+      "example": "nadita que yo no quisiera",
+      "translation": "Na'ita that I would not want"
+    },
+    {
+      "word": "paca",
+      "lemma": "paca",
+      "proposed": "money",
+      "corpus_count": 1,
+      "example": "Me doy un flow de paca, me veo original",
+      "translation": "I give myself a great flow, I look original"
+    },
+    {
+      "word": "parto",
+      "lemma": "parto",
+      "proposed": "to tear",
+      "corpus_count": 1,
+      "example": "Me parto la camisa",
+      "translation": "I tear my shirt"
+    },
+    {
+      "word": "pico",
+      "lemma": "pico",
+      "proposed": "a little bit",
+      "corpus_count": 1,
+      "example": "Toy flotando y pico, como Alí (Gy-gypsy)",
+      "translation": "Toy floating and beaking, like Ali (Gy-gypsy)"
+    },
+    {
+      "word": "piquete",
+      "lemma": "piquete",
+      "proposed": "style",
+      "corpus_count": 1,
+      "example": "Mi piquete duro te marea'",
+      "translation": "My hard bite makes you dizzy'"
+    },
+    {
+      "word": "pisado",
+      "lemma": "pisado",
+      "proposed": "fast",
+      "corpus_count": 1,
+      "example": "Mercer con la Prince, salimo' pisado",
+      "translation": "Mercer with Prince, we go out"
+    },
+    {
+      "word": "popola",
+      "lemma": "popola",
+      "proposed": "vagina",
+      "corpus_count": 1,
+      "example": "La reina de esta popola, tenemo' la corona",
+      "translation": "The queen of this popola, we have the crown"
+    },
+    {
+      "word": "presta",
+      "lemma": "presta",
+      "proposed": "to press",
+      "corpus_count": 1,
+      "example": "Vivo en las nubes arriba y el diablo presta apreta'o",
+      "translation": "I live in the clouds above and the devil is pressing"
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "to make a good impression",
+      "corpus_count": 1,
+      "example": "Con cualquiera de tus compras tienes una garantía porque nuestra póliza siempre es para quedar bien y hacerte feliz tenga el coste",
+      "translation": "With any of your purchases you have a guarantee because our policy is always to look good and make you happy regardless of the cost."
+    },
+    {
+      "word": "saque",
+      "lemma": "saque",
+      "proposed": "to serve",
+      "corpus_count": 1,
+      "example": "Tú a solas en el battle, ya no hay quién saque",
+      "translation": "You alone in the battle, there is no one to serve anymore"
+    },
+    {
+      "word": "temas",
+      "lemma": "temas",
+      "proposed": "to fear",
+      "corpus_count": 1,
+      "example": "No le temas al camino",
+      "translation": "Don't be afraid of the road"
+    },
+    {
+      "word": "tenías",
+      "lemma": "tenías",
+      "proposed": "to have",
+      "corpus_count": 1,
+      "example": "Porque la tenías con sed (Wuh, wuh)",
+      "translation": "Because you were thirsty (Wuh, wuh)"
+    },
+    {
+      "word": "tira",
+      "lemma": "tira",
+      "proposed": "to give",
+      "corpus_count": 1,
+      "example": "Si Haraca me tira la buena",
+      "translation": "If Haraca gives me the good"
+    },
+    {
+      "word": "tirando",
+      "lemma": "tirando",
+      "proposed": "to throw",
+      "corpus_count": 1,
+      "example": "Me están tirando sombras como drag queen",
+      "translation": "They're throwing shade at me like a drag queen"
+    },
+    {
+      "word": "tomando",
+      "lemma": "tomando",
+      "proposed": "to start",
+      "corpus_count": 1,
+      "example": "Más querer te voy tomando",
+      "translation": "I'm taking you more loving"
+    },
+    {
+      "word": "vale",
+      "lemma": "vale",
+      "proposed": "to be worth it",
+      "corpus_count": 1,
+      "example": "Más-Más te vale no romper la omertá",
+      "translation": "More-You better not break the omertá"
+    },
+    {
+      "word": "vayas",
+      "lemma": "vayas",
+      "proposed": "to go",
+      "corpus_count": 1,
+      "example": "Si quiere', duerme con ella, pero nunca la vayas a casar",
+      "translation": "If you want, sleep with her, but never marry her"
+    },
+    {
+      "word": "cuesta",
+      "lemma": "cuesta",
+      "proposed": "to be difficult",
+      "corpus_count": 1,
+      "example": "Y ahora que ha pasado cuesta tanto de creer",
+      "translation": "And now that it's happened, it's so hard to believe."
+    },
+    {
+      "word": "papa",
+      "lemma": "papa",
+      "proposed": "food",
+      "corpus_count": 1,
+      "example": "Dale, échale papa; tú me entiendes, Joselito",
+      "translation": "Come on, add potato; you understand me, Joselito"
+    },
+    {
+      "word": "parís",
+      "lemma": "parís",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Perdí mi lengua en París, mi tiempo en LA",
+      "translation": "I lost my language in Paris, my time in LA"
+    },
+    {
+      "word": "casas",
+      "lemma": "casas",
+      "proposed": "to get home",
+      "corpus_count": 1,
+      "example": "No estoy para nadie, no me puedo casas",
+      "translation": "I'm not there for anyone, I can't get home'"
     }
   ]
 }

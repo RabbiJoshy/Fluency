@@ -9,7 +9,7 @@ human correction always beats the rules without changing any logic).
 
 Priority (highest first):
     manual override  >  proper_noun  >  loanword  >  english  >  cognate
-                     >  noise  >  single_occurrence  >  core
+                     >  noise  >  unresolved  >  core
 
 Output: data/known_vocab/word_tags.json
     {word: {category, corpus_count, tags: [{tag, source}]}}
@@ -29,7 +29,7 @@ import tool_4a_tag_dashboard as DASH  # reuse its evidence gatherer
 
 # category resolution order (first match wins, after manual override)
 PRIORITY = ["proper_noun", "loanword", "english", "cognate", "noise",
-            "single_occurrence", "core"]
+            "unresolved", "core"]
 
 
 def _load(p, d=None):
@@ -58,6 +58,12 @@ def _source_from_dashboard_row(r):
         tags.append({"tag": "english", "source": "routing"})
     elif b == "exclude.noise":
         tags.append({"tag": "noise", "source": "routing"})
+    elif b == "exclude.low_frequency":
+        # Low frequency is not a linguistic category. It means routing lacks
+        # enough positive evidence to call this learnable Spanish, English,
+        # a name, or noise. Keep that uncertainty explicit instead of
+        # silently promoting the word to Main as ``core``.
+        tags.append({"tag": "unresolved", "source": "routing_low_frequency"})
     # base category derived from the routing bucket (already incorporates the
     # loanword/en-not-es/word==translation detectors we ran).
     if b == "exclude.proper_nouns":
@@ -68,8 +74,10 @@ def _source_from_dashboard_row(r):
         base = "cognate"
     elif b == "exclude.noise":
         base = "noise"
+    elif b == "exclude.low_frequency":
+        base = "unresolved"
     else:
-        base = "core"  # classifier / sense_discovery = learnable Main vocab
+        base = "core"  # positive classifier/sense evidence = learnable Main
     return tags, base
 
 

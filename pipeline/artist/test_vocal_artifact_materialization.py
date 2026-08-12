@@ -53,12 +53,20 @@ class VocalArtifactMaterializationTests(unittest.TestCase):
                 "id": 1,
                 "title": "Song",
                 "__batch": 3,
+                "__song_order": 7,
                 "lyrics": (
                     "Lyrics\n"
                     "Yo quiero mover, -over ahora\n"
                     "Game over ahora\n"
                     "Voy pa'l centro\n"
                     "Voy pa'l centro\n"
+                    "Respeto, to’s me tienen miedo\n"
+                    "Yo te vo’a buscar cerca del lunar\n"
+                    "Abre la Möet y no falle\n"
+                    "Passe le mic', on verra bien c'que ça donne, my lady\n"
+                    "Нa cвiтaнку de madrugá\n"
+                    "Ya estoy proba’o y preparado\n"
+                    "'Tamo' aquí desde ayer\n"
                     "(Yeah) ah-na-na"
                 ),
             }]
@@ -72,6 +80,34 @@ class VocalArtifactMaterializationTests(unittest.TestCase):
 
             self.assertEqual(materialized, direct)
             self.assertEqual(summary["excluded_occurrences"], 0)
+
+    def test_neutral_materializer_preserves_source_song_order_for_ties(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            artist_dir = self._artist(tmp)
+            songs = [
+                {
+                    "id": "later-sort-id",
+                    "title": "First Source Song",
+                    "__batch": 0,
+                    "__song_order": 0,
+                    "lyrics": "Lyrics\nEsto es una burla seria",
+                },
+                {
+                    "id": "earlier-sort-id",
+                    "title": "Second Source Song",
+                    "__batch": 0,
+                    "__song_order": 1,
+                    "lyrics": "Lyrics\nEsto es otra burla clara",
+                },
+            ]
+            direct = self._scan(artist_dir, songs)
+            materialized, _summary = materialize_vocabulary_evidence(
+                artist_dir / "data" / "evidence",
+                max_examples=10,
+                excluded_labels=[],
+            )
+
+            self.assertEqual(materialized, direct)
 
     def test_basic_classifier_drops_only_the_echo_occurrence(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -139,6 +175,30 @@ class VocalArtifactMaterializationTests(unittest.TestCase):
                 if row["segment_id"] == no_segment["segment_id"]
             }
             self.assertFalse(no_occurrences & set(classified))
+
+    def test_classifier_uses_restored_form_for_known_word_guard(self):
+        segments = [{
+            "segment_id": "seg-1",
+            "state": "present",
+            "text": "move', -ove",
+        }]
+        occurrences = [
+            {"occurrence_id": "occ-source", "segment_id": "seg-1",
+             "state": "present", "ordinal": 0, "span": [0, 5],
+             "surface": "move'"},
+            {"occurrence_id": "occ-echo", "segment_id": "seg-1",
+             "state": "present", "ordinal": 1, "span": [8, 11],
+             "surface": "ove"},
+        ]
+
+        classified = classify_occurrences(
+            segments,
+            occurrences,
+            known_forms={"mover"},
+            normalization_forms={"occ-source": ["mover"]},
+        )
+
+        self.assertEqual(classified["occ-echo"]["labels"], ["echo"])
 
     def test_strict_parity_uses_immutable_baseline_on_repeated_active_runs(self):
         with tempfile.TemporaryDirectory() as tmp:

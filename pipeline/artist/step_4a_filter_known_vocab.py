@@ -72,7 +72,7 @@ _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
-from pipeline.util_pipeline_meta import make_meta  # noqa: E402
+from pipeline.util_pipeline_meta import dependency_metadata, make_meta  # noqa: E402
 from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 from pipeline.util_4a_routing import (  # noqa: E402
     clitic_roles,
@@ -89,7 +89,7 @@ from util_1a_artist_config import (  # noqa: E402
     add_artist_arg, load_shared_list, load_curation_section, SHARED_DIR,
 )
 
-STEP_VERSION = 8
+STEP_VERSION = 9
 STEP_VERSION_NOTES = {
     1: "initial: 6 phases with heuristic detectors",
     2: "+ cognate skip, Wikt safety-nets, residual clitic fallback",
@@ -108,6 +108,7 @@ STEP_VERSION_NOTES = {
        "derivation override additionally requires a non-lexicalised surface "
        "(absent from es_50k, not a conjugated form, not -ill-, POS-preserving)",
     8: "archive every content-distinct routing/noise output as an immutable evidence run",
+    9: "+ propagate ledger and corpus-profile dependency fingerprints",
 }
 
 # Bumped whenever the output JSON schema changes in a way consumers must
@@ -1108,7 +1109,9 @@ def main():
             "clitic_keep": 0,
             "min_freq": args.min_freq,
         },
-        "_meta": make_meta("filter_known_vocab", STEP_VERSION),
+        "_meta": make_meta(
+            "filter_known_vocab", STEP_VERSION,
+            extra=dependency_metadata(input_path)),
     }
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
@@ -1118,6 +1121,7 @@ def main():
         output,
         language=os.path.basename(os.path.dirname(artist_dir)) or "und",
         adapter={"name": "artist-step-4a", "version": STEP_VERSION},
+        inputs=dependency_metadata(input_path),
         config={"min_frequency": args.min_freq},
     )
     print(f"Wrote {output_path}")

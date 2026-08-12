@@ -1,5 +1,6 @@
 {
-  "step_name": "migrate_example_ids",
-  "step_version": 2,
-  "generated_at": 1786234988
+  "step_name": "map_senses_to_lemmas",
+  "step_version": 5,
+  "generated_at": 1786494882,
+  "source": "spanishdict"
 }

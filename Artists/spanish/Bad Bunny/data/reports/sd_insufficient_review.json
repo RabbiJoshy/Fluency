@@ -1,9 +1,10 @@
 {
   "_meta": {
     "source": "spanishdict",
-    "classifier": "classify-or-propose",
-    "model": "gemini-3.5-flash-lite",
-    "count": 1812
+    "classifier": "lexical-wsd-propose",
+    "prompt_id": "sd-lexical-v2-g31",
+    "model": "gemini-3.1-flash-lite",
+    "count": 2196
   },
   "items": [
     {
@@ -47,6 +48,23 @@
       "translation": "That's why I don't give a damn..."
     },
     {
+      "word": "si",
+      "lemma": "si",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 895,
+      "example_index": 6,
+      "example": "Me la' clavo de tre' en tre' como si yo fuera lo' Migo' (Huh-huh)",
+      "translation": "I nail them three at a time like I'm the Migos (Huh-huh)"
+    },
+    {
+      "word": "le",
+      "lemma": "le",
+      "proposed": "to be into",
+      "corpus_count": 576,
+      "example": "Le mete al gym y con Percocet",
+      "translation": "She's into the gym and Percocet"
+    },
+    {
       "word": "hace",
       "lemma": "hace",
       "proposed": "to be needed",
@@ -87,6 +105,15 @@
       "translation": "You're gonna get hooked after you try it, try it, yeh (Yeh, yeh)"
     },
     {
+      "word": "o",
+      "lemma": "o",
+      "abstain_reason": "insufficient_context",
+      "corpus_count": 161,
+      "example_index": 9,
+      "example": "Ya yo estoy proba’o, pa’ mí eso no es nuevo (No)",
+      "translation": "I'm already proven, that's nothing new to me (No)"
+    },
+    {
       "word": "calle",
       "lemma": "calle",
       "proposed": "street-smart",
@@ -117,6 +144,15 @@
       "translation": "And when she goes to mine, all she does is watch porn and smoke weed"
     },
     {
+      "word": "hace",
+      "lemma": "hace",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 141,
+      "example_index": 7,
+      "example": "Ahora la cama se me hace gigante",
+      "translation": "Now the bed feels huge"
+    },
+    {
       "word": "toda",
       "lemma": "toda",
       "proposed": "to go all out",
@@ -127,6 +163,14 @@
       "translation": "Baby, you know I'd do anything for you"
     },
     {
+      "word": "fue",
+      "lemma": "fue",
+      "proposed": "to go",
+      "corpus_count": 122,
+      "example": "Me fue cabrón, no sé si me viste en el Super Bowl",
+      "translation": "I did great, I don't know if you saw me at the Super Bowl"
+    },
+    {
       "word": "sí",
       "lemma": "sí",
       "proposed": "herself",
@@ -135,6 +179,31 @@
       "corpus_count": 111,
       "example": "Mujer que vive segura de sí misma, es toda una diosa",
       "translation": "A woman who lives confident in herself is a goddess"
+    },
+    {
+      "word": "sí",
+      "lemma": "sí",
+      "proposed": "himself",
+      "corpus_count": 111,
+      "example": "Mujer que vive segura de sí misma, es toda una diosa",
+      "translation": "A woman who lives confident in herself is a goddess"
+    },
+    {
+      "word": "sí",
+      "lemma": "sí",
+      "proposed": "themselves",
+      "corpus_count": 111,
+      "example": "Porque están seguro' de sí mismo'",
+      "translation": "Because they are sure of themselves"
+    },
+    {
+      "word": "les",
+      "lemma": "les",
+      "abstain_reason": "construction_only",
+      "corpus_count": 109,
+      "example_index": 2,
+      "example": "Una hora y media en lo' mote-les (Ey)",
+      "translation": "An hour and a half in the make-out sessions (Ey)"
     },
     {
       "word": "casa",
@@ -177,14 +246,20 @@
       "translation": "Before it's too late and I unintentionally break in two (Break in two)"
     },
     {
-      "word": "meto",
-      "lemma": "meto",
-      "proposed": "to have sex with",
-      "type": "vulgar",
-      "construction": null,
-      "corpus_count": 88,
-      "example": "Tu amiga dando like, si le meto, la grabo (Ey)",
-      "translation": "Your friend liking it, if I hit it, I record her (Ey)"
+      "word": "dale",
+      "lemma": "dale",
+      "proposed": "to give",
+      "corpus_count": 89,
+      "example": "Si no quieres, a tu amiga dale relevo (¡Uh!)",
+      "translation": "If you don't want to, let your friend take over (Uh!)"
+    },
+    {
+      "word": "dale",
+      "lemma": "dale",
+      "proposed": "go ahead",
+      "corpus_count": 89,
+      "example": "Yo sé que puedes, dale, voy a ti (Eh-eh)",
+      "translation": "I know you can do it, go on, I'm rooting for you (Eh-eh)"
     },
     {
       "word": "meto",
@@ -247,6 +322,14 @@
       "translation": "Smells like dick, you're not street, you hang out on the sidewalk"
     },
     {
+      "word": "culo",
+      "lemma": "culo",
+      "proposed": "pussy",
+      "corpus_count": 84,
+      "example": "No veo un culo que me guste más cabrón por más Reels que swipeo",
+      "translation": "I don't see a pussy I like more, no matter how many Reels I swipe"
+    },
+    {
       "word": "loca",
       "lemma": "loca",
       "proposed": "playing dumb",
@@ -255,6 +338,15 @@
       "corpus_count": 77,
       "example": "Si tú sabes que te gusto, ¿por qué te haces la loca?",
       "translation": "If you know I like you, why are you playing dumb?"
+    },
+    {
+      "word": "sea",
+      "lemma": "sea",
+      "abstain_reason": "construction_only",
+      "corpus_count": 77,
+      "example_index": 5,
+      "example": "Puede perrear con uno, como sea, lo baila sola (Chi-chi-chi)",
+      "translation": "She can twerk with someone, whatever, she dances alone (Chi-chi-chi)"
     },
     {
       "word": "igual",
@@ -337,6 +429,14 @@
       "translation": "I prefer a guy who measures up"
     },
     {
+      "word": "ves",
+      "lemma": "ves",
+      "proposed": "from time to time",
+      "corpus_count": 69,
+      "example": "De ves en cuando pa' la iglesia pa' disimular",
+      "translation": "From time to time to church to pretend"
+    },
+    {
       "word": "dar",
       "lemma": "dar",
       "proposed": "to have sex",
@@ -345,6 +445,38 @@
       "corpus_count": 68,
       "example": "Tú sabe' bien que te quiero dar tabla (Tabla, tabla)",
       "translation": "You know damn well I want to ride you (Ride, ride)"
+    },
+    {
+      "word": "corazón",
+      "lemma": "corazón",
+      "proposed": "honestly",
+      "corpus_count": 68,
+      "example": "De corazón que no fui yo el que la nave despegó",
+      "translation": "Honestly, it wasn't me who launched the ship"
+    },
+    {
+      "word": "da",
+      "lemma": "da",
+      "proposed": "to slow down",
+      "corpus_count": 65,
+      "example": "Bad Bunny no le baja, es un misterio, Da Vinci Code (Ey, ey)",
+      "translation": "Bad Bunny doesn't slow down, it's a mystery, Da Vinci Code (Ey, ey)"
+    },
+    {
+      "word": "meto",
+      "lemma": "meto",
+      "proposed": "to have sex with",
+      "corpus_count": 64,
+      "example": "Con cualquiera no me acuesto, a cualquiera no le meto",
+      "translation": "I don't sleep with just anyone, I don't hit on just anyone"
+    },
+    {
+      "word": "meto",
+      "lemma": "meto",
+      "proposed": "to score",
+      "corpus_count": 64,
+      "example": "No fallamo' un gancho (Yeh), hoy si meto, me la engancho (Me la engancho)",
+      "translation": "We don't miss a hook (Yeh), today if I score, I hook her (I hook her)"
     },
     {
       "word": "real",
@@ -365,6 +497,51 @@
       "corpus_count": 62,
       "example": "Vo'a ha-; pon-; bellaca; vo'a; con to' y bata (Yeah)",
       "translation": "I'm gonna do-; put-; horny; I'm gonna; even with a robe (Yeah)"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 62,
+      "example_index": 2,
+      "example": "Baby, no está' en Charlotte, pero ven, lámelo (Plo)",
+      "translation": "Baby, you're not in Charlotte, but come, lick it (Plo)"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 62,
+      "example_index": 4,
+      "example": "Ven pa' casa, quiero que tú me dance'",
+      "translation": "Come home, I want you to dance for me"
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 62,
+      "example_index": 5,
+      "example": "Lo tengo para'o, ven pa' que lo sienta'",
+      "translation": "I have it standing, come feel it."
+    },
+    {
+      "word": "ven",
+      "lemma": "ven",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 62,
+      "example_index": 9,
+      "example": "Vuela conmigo, ven te invito a saborear la gloria",
+      "translation": "Fly with me, come, I invite you to taste glory"
+    },
+    {
+      "word": "real",
+      "lemma": "real",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 59,
+      "example_index": 9,
+      "example": "Real G4 Life, el movimiento sigue sólido",
+      "translation": "Real G4 Life, the movement stays solid"
     },
     {
       "word": "di",
@@ -467,14 +644,28 @@
       "translation": "I'm down for you and you don't pay me any mind"
     },
     {
-      "word": "cojones",
-      "lemma": "cojones",
-      "proposed": "to not care",
-      "type": "vulgar",
-      "construction": "sin cojones",
+      "word": "van",
+      "lemma": "van",
+      "proposed": "van",
       "corpus_count": 50,
-      "example": "A mí sin cojones lo que digan tu' amiga'",
-      "translation": "I don't give a damn what your friends say"
+      "example": "Y vas pa' dentro, pero de la van",
+      "translation": "And you go in, but from the van"
+    },
+    {
+      "word": "puta",
+      "lemma": "puta",
+      "proposed": "fucking",
+      "corpus_count": 48,
+      "example": "Que puta felicidá' (¡Wouh!), hoy a to'as se le da, ey (¡Shh!)",
+      "translation": "What a fucking happiness! (Wow!), today they all get some, hey (Shh!)"
+    },
+    {
+      "word": "quiera",
+      "lemma": "quiera",
+      "proposed": "anyway",
+      "corpus_count": 48,
+      "example": "Y como quiera me llama, pa' recordar en su cama",
+      "translation": "And she still calls me, to remember in her bed"
     },
     {
       "word": "dejar",
@@ -567,6 +758,14 @@
       "translation": "Baby, don't play dumb, I know you used to go all the way down"
     },
     {
+      "word": "cojones",
+      "lemma": "cojones",
+      "proposed": "to not care",
+      "corpus_count": 43,
+      "example": "Sin cojones le tiene si se enteran",
+      "translation": "She does not really care if they find out"
+    },
+    {
       "word": "saben",
       "lemma": "saben",
       "proposed": "to know what is happening",
@@ -595,6 +794,32 @@
       "corpus_count": 41,
       "example": "Qué carajo, ahora tú te la pasa' hablando mierda",
       "translation": "What the hell, now you spend your time talking shit"
+    },
+    {
+      "word": "estaba",
+      "lemma": "estaba",
+      "proposed": "to be in a state",
+      "corpus_count": 41,
+      "example": "Y esa mujer, te digo, estaba en una pieza",
+      "translation": ""
+    },
+    {
+      "word": "malo",
+      "lemma": "malo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 41,
+      "example_index": 3,
+      "example": "El Conejo Malo, El Conejo Malo, jeje",
+      "translation": ""
+    },
+    {
+      "word": "malo",
+      "lemma": "malo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 41,
+      "example_index": 7,
+      "example": "El Conejo Malo",
+      "translation": "The Bad Bunny"
     },
     {
       "word": "conejo",
@@ -637,6 +862,24 @@
       "translation": "In this game, I'm a legend"
     },
     {
+      "word": "nueva",
+      "lemma": "nueva",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 37,
+      "example_index": 3,
+      "example": "Da lo mismo Nueva York o Londres",
+      "translation": "It's all the same, New York or London"
+    },
+    {
+      "word": "nueva",
+      "lemma": "nueva",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 37,
+      "example_index": 6,
+      "example": "La Nueva Religión, dime si crees, eh, eh",
+      "translation": "La Nueva Religión, tell me if you believe, eh, eh"
+    },
+    {
       "word": "anda",
       "lemma": "anda",
       "proposed": "to be on the loose",
@@ -669,22 +912,20 @@
     {
       "word": "mano",
       "lemma": "mano",
-      "proposed": "to get involved",
-      "type": "slang",
-      "construction": "meter mano",
-      "corpus_count": 36,
-      "example": "Aquí to's meten mano, to's tenemos cría'",
-      "translation": "Everyone here gets involved, we all have kids"
-    },
-    {
-      "word": "mano",
-      "lemma": "mano",
       "proposed": "to be good at sex",
       "type": "slang",
       "construction": "meter mano",
       "corpus_count": 36,
       "example": "Bebé, a mí me dijeron que tú metes mano",
       "translation": "Baby, I was told you're good at it"
+    },
+    {
+      "word": "mano",
+      "lemma": "mano",
+      "proposed": "to get involved",
+      "corpus_count": 34,
+      "example": "Aquí to's meten mano, to's tenemos cría'",
+      "translation": "Everyone here gets involved, we all have kids"
     },
     {
       "word": "vos",
@@ -695,6 +936,46 @@
       "corpus_count": 34,
       "example": "Como quiera te vos a ver, ey",
       "translation": "Either way I'm gonna see you, ey"
+    },
+    {
+      "word": "haces",
+      "lemma": "haces",
+      "proposed": "to join in",
+      "corpus_count": 34,
+      "example": "En las noche' oro, pero tú no me haces coro",
+      "translation": "On golden nights, but you don't join me"
+    },
+    {
+      "word": "hijo",
+      "lemma": "hijo",
+      "proposed": "son",
+      "corpus_count": 34,
+      "example": "Hijo de puta, es mejor que te calmes, que te calmes (que te calmes)",
+      "translation": "Motherfucker, you better calm down, calm down (calm down)"
+    },
+    {
+      "word": "mano",
+      "lemma": "mano",
+      "proposed": "to mess with",
+      "corpus_count": 34,
+      "example": "Aquí sí gastamo', no necesitamos que en la cuenta nosmetan mano (Nos metan mano)",
+      "translation": "Here we do spend, we don't need them to mess with our account (Mess with our account)"
+    },
+    {
+      "word": "mano",
+      "lemma": "mano",
+      "proposed": "to go too far",
+      "corpus_count": 34,
+      "example": "Yo se que se me fue la mano, como el fuckin' mistake",
+      "translation": "I know I went too far, like a fuckin' mistake"
+    },
+    {
+      "word": "mente",
+      "lemma": "mente",
+      "proposed": "memory",
+      "corpus_count": 34,
+      "example": "Los peines 'tan en la mente es cuestión de jalar gatillo",
+      "translation": "The clips are in the mind, it's a matter of pulling the trigger"
     },
     {
       "word": "acostumbré",
@@ -725,6 +1006,40 @@
       "corpus_count": 33,
       "example": "Porque pasan los año' y sigo dando palo'",
       "translation": "Because the years go by and I'm still killing it"
+    },
+    {
+      "word": "entera",
+      "lemma": "entera",
+      "proposed": "completely",
+      "corpus_count": 33,
+      "example": "Me la como entera y nadie se entera, un par de amiga' (Un par de amiga'; wuh-huh)",
+      "translation": "But in my bed she became an addiction like the 5-12 (Like the 5-12)"
+    },
+    {
+      "word": "entera",
+      "lemma": "entera",
+      "proposed": "to find out",
+      "corpus_count": 33,
+      "example": "Tú saca' un disco, jeje, nadie se entera (¡No!)",
+      "translation": "You drop a record, hehe, nobody finds out (No!)"
+    },
+    {
+      "word": "buena",
+      "lemma": "buena",
+      "abstain_reason": "insufficient_context",
+      "corpus_count": 32,
+      "example_index": 2,
+      "example": "La película, la buena vida, puerto [?]",
+      "translation": ""
+    },
+    {
+      "word": "baja",
+      "lemma": "baja",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 32,
+      "example_index": 5,
+      "example": "Abriéndoles la raja, Trujillo Alto y Vega Baja",
+      "translation": "Opening them up, Trujillo Alto and Vega Baja"
     },
     {
       "word": "caso",
@@ -849,16 +1164,6 @@
     {
       "word": "piquete",
       "lemma": "piquete",
-      "proposed": "swagger",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 29,
-      "example": "Hoy salí con piquete de artista",
-      "translation": "Today I went out with an artist's swagger"
-    },
-    {
-      "word": "piquete",
-      "lemma": "piquete",
       "proposed": "vibe",
       "type": "slang",
       "construction": null,
@@ -907,6 +1212,14 @@
       "translation": "Baby girl, with you nothing goes wrong (No, no, no)"
     },
     {
+      "word": "queda",
+      "lemma": "queda",
+      "proposed": "to be cut out for",
+      "corpus_count": 28,
+      "example": "A mí no me queda lo de actor, so no vo'a decir que fue un rumor",
+      "translation": "I'm not cut out for acting, so I'm not gonna say it was a rumor"
+    },
+    {
       "word": "cuenta",
       "lemma": "cuenta",
       "proposed": "to realize",
@@ -927,6 +1240,32 @@
       "translation": "You're always doing your own thing"
     },
     {
+      "word": "dando",
+      "lemma": "dando",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 27,
+      "example_index": 8,
+      "example": "Siempre dando gracia' a Dio' por el piquete que me dio, yeh (Mera, dile', Bad Bunny)",
+      "translation": "Always thanking God for the swag he gave me, yeah (Yo, tell 'em, Bad Bunny)"
+    },
+    {
+      "word": "dio",
+      "lemma": "dio",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 27,
+      "example_index": 5,
+      "example": "Se dio un shot de mi ADN",
+      "translation": "They took a sample of my DNA"
+    },
+    {
+      "word": "cien",
+      "lemma": "cien",
+      "proposed": "hundred-dollar bills",
+      "corpus_count": 27,
+      "example": "Huelo rico y ando con los de cien",
+      "translation": "I smell good and I'm with the hundred-thousanders"
+    },
+    {
       "word": "cabra",
       "lemma": "cabra",
       "proposed": "to impress",
@@ -935,16 +1274,6 @@
       "corpus_count": 26,
       "example": "Tú no metes cabra, tú no luces",
       "translation": "You don't impress, you don't look good"
-    },
-    {
-      "word": "cabra",
-      "lemma": "cabra",
-      "proposed": "greatest of all time",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 26,
-      "example": "Yo no soy la cabra, yo soy El Conejo",
-      "translation": "I'm not the GOAT, I'm The Rabbit"
     },
     {
       "word": "metes",
@@ -967,14 +1296,30 @@
       "translation": "You don't impress, you don't look good"
     },
     {
-      "word": "metes",
-      "lemma": "metes",
-      "proposed": "to go hard",
-      "type": "slang",
-      "construction": "meter cabrón",
+      "word": "cuenta",
+      "lemma": "cuenta",
+      "abstain_reason": "invalid_output",
       "corpus_count": 26,
-      "example": "Tú dice' que le metes cabrón (Nah)",
-      "translation": "You say you go hard, motherfucker (Nah)"
+      "example_index": 1,
+      "example": "Pero te das cuenta que ahora hay otro hombre",
+      "translation": "But you realize that there's another man now"
+    },
+    {
+      "word": "cuenta",
+      "lemma": "cuenta",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 26,
+      "example_index": 8,
+      "example": "Hace rato está mirando, me di cuenta, ya me di cuenta, ah-ah",
+      "translation": "He's been looking for a while, I realized, I already realized, ah-ah"
+    },
+    {
+      "word": "estas",
+      "lemma": "estas",
+      "proposed": "you are",
+      "corpus_count": 26,
+      "example": "Solo llámalo y dile que ya estas conmigo",
+      "translation": "Just call him and tell him you're with me now"
     },
     {
       "word": "dormir",
@@ -1157,6 +1502,22 @@
       "translation": "Meanwhile, I keep on rolling after dinner at Sophia's (Mmm)"
     },
     {
+      "word": "cualquiera",
+      "lemma": "cualquiera",
+      "proposed": "nobody",
+      "corpus_count": 24,
+      "example": "Me dice: \"¿Quién es esa puta, esa cualquiera?\"",
+      "translation": "She asks me: \"Who is that bitch, that nobody?\""
+    },
+    {
+      "word": "final",
+      "lemma": "final",
+      "proposed": "the best",
+      "corpus_count": 24,
+      "example": "En R.D. me dicen: \"Mi loco, tú ere' el final\" (Ey, ey, ey, ey)",
+      "translation": "In D.R. they tell me: \"My crazy, you're the best\" (Ey, ey, ey, ey)"
+    },
+    {
       "word": "pelo",
       "lemma": "pelo",
       "proposed": "to be broke",
@@ -1180,8 +1541,6 @@
       "word": "so",
       "lemma": "so",
       "proposed": "so",
-      "type": "loanword",
-      "construction": null,
       "corpus_count": 23,
       "example": "Tu jevito nuevo es un charro, un trili, so no me frontee'",
       "translation": "Your new man is a scrub, a nobody, so don't front on me"
@@ -1225,16 +1584,6 @@
       "corpus_count": 23,
       "example": "Y hoy le quiero dar la vuelta con Sensei, con Gabs",
       "translation": "And today I wanna hang out with Sensei, with Gabs"
-    },
-    {
-      "word": "vuelta",
-      "lemma": "vuelta",
-      "proposed": "situation",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 23,
-      "example": "En esta vuelta no hay que esconderse",
-      "translation": "In this situation, there's no need to hide"
     },
     {
       "word": "beber",
@@ -1367,6 +1716,23 @@
       "translation": "No need to brag, mami, je, don't be a fake"
     },
     {
+      "word": "mete",
+      "lemma": "mete",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 21,
+      "example_index": 7,
+      "example": "También tengo un pana que te mete y no le teme a que la policía lo encierre, -cierre (Woh)",
+      "translation": "I also have a homie who hits it and isn't afraid of the police locking him up, -up (Woh)"
+    },
+    {
+      "word": "piquete",
+      "lemma": "piquete",
+      "proposed": "swagger",
+      "corpus_count": 20,
+      "example": "Hoy salí con piquete de artista",
+      "translation": "Today I went out with an artist's swagger"
+    },
+    {
       "word": "aparte",
       "lemma": "aparte",
       "proposed": "period",
@@ -1417,6 +1783,66 @@
       "translation": "They go out for the streets, for photos only, for me they can all go to hell"
     },
     {
+      "word": "negro",
+      "lemma": "negro",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 20,
+      "example_index": 7,
+      "example": "Echando carrera' con Arca y El Negro, Bad Bunny y Almighty quemando el expreso",
+      "translation": "Racing with Arca and El Negro, Bad Bunny and Almighty burning up the expressway"
+    },
+    {
+      "word": "tiran",
+      "lemma": "tiran",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 20,
+      "example_index": 8,
+      "example": "Se tiran a los caserío', a los puntos 'e droga",
+      "translation": "They go to the housing projects, to the drug spots"
+    },
+    {
+      "word": "completa",
+      "lemma": "completa",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 20,
+      "example_index": 0,
+      "example": "Todo lo que empiezo siempre se completa",
+      "translation": "Everything I start is always completed"
+    },
+    {
+      "word": "meter",
+      "lemma": "meter",
+      "proposed": "to have sex with",
+      "corpus_count": 20,
+      "example": "De tanto meter palos, cabrones, rompí el scoreboard (haha)",
+      "translation": "From so many dicks, motherfuckers, I broke the scoreboard (haha)"
+    },
+    {
+      "word": "meter",
+      "lemma": "meter",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 20,
+      "example_index": 3,
+      "example": "Y si quiere' hay cuarto pa' meter",
+      "translation": "And if you want, there's money to be made"
+    },
+    {
+      "word": "meter",
+      "lemma": "meter",
+      "proposed": "to earn money",
+      "corpus_count": 20,
+      "example": "Y si quiere' hay cuarto pa' meter",
+      "translation": "And if you want, there's money to be made"
+    },
+    {
+      "word": "meter",
+      "lemma": "meter",
+      "proposed": "to intimidate",
+      "corpus_count": 20,
+      "example": "No  nos va a meter las cabras un pendejo de Marista",
+      "translation": ""
+    },
+    {
       "word": "demaga",
       "lemma": "demaga",
       "proposed": "demagogue",
@@ -1435,6 +1861,15 @@
       "corpus_count": 19,
       "example": "Se transforma cuando ella ve humo (Ella ve humo)",
       "translation": "She transforms when she sees smoke (She sees smoke)"
+    },
+    {
+      "word": "dan",
+      "lemma": "dan",
+      "abstain_reason": "noise",
+      "corpus_count": 19,
+      "example_index": 8,
+      "example": "Kariri kariri dip dan din Lan den lan do",
+      "translation": "Kariri kariri dip dan din Lan den lan do"
     },
     {
       "word": "borracho",
@@ -1600,8 +2035,6 @@
       "word": "mando",
       "lemma": "mando",
       "proposed": "stash",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 17,
       "example": "Y le encanta ver la serie con la mando en la pared",
       "translation": "And she loves watching the series with the stash on the wall"
@@ -1687,6 +2120,23 @@
       "translation": "You hang out with all your friends and not with him"
     },
     {
+      "word": "hiciste",
+      "lemma": "hiciste",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 17,
+      "example_index": 6,
+      "example": "Yo sé que el culo y las tetas te hiciste (Yeah)",
+      "translation": "I know you got your ass and tits done (Yeah)"
+    },
+    {
+      "word": "vuelta",
+      "lemma": "vuelta",
+      "proposed": "situation",
+      "corpus_count": 16,
+      "example": "Dime cuál es la vuelta, ma', ¿qué se hace?",
+      "translation": "Tell me what's up, ma, what's going on?"
+    },
+    {
       "word": "enrolo",
       "lemma": "enrolo",
       "proposed": "to roll a joint",
@@ -1767,6 +2217,31 @@
       "translation": "You talk a lot of shit, but you don't do anything you say, say"
     },
     {
+      "word": "salir",
+      "lemma": "salir",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 16,
+      "example_index": 7,
+      "example": "No se metan con el diablo (¡Ju, ju-ju!), que pueden salir quemados",
+      "translation": "Don't mess with the devil (Ju, ju-ju!), you might get burned"
+    },
+    {
+      "word": "sube",
+      "lemma": "sube",
+      "proposed": "to raise",
+      "corpus_count": 16,
+      "example": "Sube ese culo y to's comentan",
+      "translation": "Shake that ass and everyone comments."
+    },
+    {
+      "word": "pecho",
+      "lemma": "pecho",
+      "proposed": "to dive in",
+      "corpus_count": 16,
+      "example": "Tu jeva me vio y se fue de pecho como Jimmy Snuka (Ah)",
+      "translation": "Your girl saw me and went flying like Jimmy Snuka (Ah)"
+    },
+    {
       "word": "bajar",
       "lemma": "bajar",
       "proposed": "to release sexual tension",
@@ -1775,26 +2250,6 @@
       "corpus_count": 15,
       "example": "Estoy loco contigo 'e bajar bellaquera",
       "translation": "I'm crazy about you, ready to get wild"
-    },
-    {
-      "word": "bajar",
-      "lemma": "bajar",
-      "proposed": "to back down",
-      "type": "slang",
-      "construction": "bajar",
-      "corpus_count": 15,
-      "example": "Ella no le va a bajar (Ella no va a cambiar)",
-      "translation": "She's not gonna back down (She's not gonna change)"
-    },
-    {
-      "word": "bajar",
-      "lemma": "bajar",
-      "proposed": "to slow down",
-      "type": "slang",
-      "construction": "bajar",
-      "corpus_count": 15,
-      "example": "Seguimo' a dosciento' y no vamo' a bajar",
-      "translation": "We're still at two hundred and we're not gonna slow down"
     },
     {
       "word": "burlado",
@@ -1977,6 +2432,122 @@
       "translation": "And I like the faces you make every time the dude puts it on you (Puts it on you), yeh"
     },
     {
+      "word": "dejaste",
+      "lemma": "dejaste",
+      "proposed": "to break up",
+      "corpus_count": 15,
+      "example": "Si lo dejaste hoy y el teléfono te está explotando (Levanta tu mano)",
+      "translation": "If you broke up today and your phone is blowing up (Raise your hand)."
+    },
+    {
+      "word": "diosa",
+      "lemma": "diosa",
+      "abstain_reason": "construction_only",
+      "corpus_count": 15,
+      "example_index": 3,
+      "example": "\"Diosa\", esa es tu definición",
+      "translation": "'Goddess', that's your definition"
+    },
+    {
+      "word": "diosa",
+      "lemma": "diosa",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 15,
+      "example_index": 4,
+      "example": "Diosa Canale' en Venezuela, Giulia Arane en Italia",
+      "translation": "Diosa Canale' in Venezuela, Giulia Arane in Italy"
+    },
+    {
+      "word": "familia",
+      "lemma": "familia",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 15,
+      "example_index": 1,
+      "example": "La Familia",
+      "translation": "The Family"
+    },
+    {
+      "word": "familia",
+      "lemma": "familia",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 15,
+      "example_index": 8,
+      "example": "La Familia",
+      "translation": "The Family"
+    },
+    {
+      "word": "palos",
+      "lemma": "palos",
+      "proposed": "guns",
+      "corpus_count": 15,
+      "example": "Los palos en el Hellcat Durango",
+      "translation": "The sticks in the Hellcat Durango"
+    },
+    {
+      "word": "palos",
+      "lemma": "palos",
+      "proposed": "stacks of cash",
+      "corpus_count": 15,
+      "example": "Adió' al 2016 (Bye), par de palos",
+      "translation": "Goodbye to 2016 (Bye), a couple of stacks"
+    },
+    {
+      "word": "palos",
+      "lemma": "palos",
+      "proposed": "dicks",
+      "corpus_count": 15,
+      "example": "De tanto meter palos, cabrones, rompí el scoreboard (haha)",
+      "translation": "From so many dicks, motherfuckers, I broke the scoreboard (haha)"
+    },
+    {
+      "word": "palos",
+      "lemma": "palos",
+      "proposed": "million",
+      "corpus_count": 15,
+      "example": "Veinte palos, 'toy ready pa’l juego (Prr-prr-prr)",
+      "translation": "Twenty million, I'm ready for the game (Prr-prr-prr)"
+    },
+    {
+      "word": "pasan",
+      "lemma": "pasan",
+      "proposed": "to spend time",
+      "corpus_count": 15,
+      "example": "Se pasan hablando con los astro' pa' robarme las señale' (Wuh-wuh-wuh-wuh, ¡ah!)",
+      "translation": "They keep talking to the stars to steal my signals (Wuh-wuh-wuh-wuh, ah!)"
+    },
+    {
+      "word": "picheo",
+      "lemma": "picheo",
+      "proposed": "to hit",
+      "corpus_count": 15,
+      "example": "Yo siempre picheo, enrolo otra ve'",
+      "translation": "I always hit, I roll again"
+    },
+    {
+      "word": "piso",
+      "lemma": "piso",
+      "proposed": "to kill",
+      "corpus_count": 15,
+      "example": "O enciérrate en el baño, que van camino a darte piso (Rrrah)",
+      "translation": "Or lock yourself in the bathroom, 'cause they're on their way to get you (Rrrah)"
+    },
+    {
+      "word": "madre",
+      "lemma": "madre",
+      "proposed": "damn",
+      "corpus_count": 15,
+      "example": "Sea la madre, ahora tú te la pasa' hablando mierda (Oh-oh, yeah)",
+      "translation": "What the fuck, now you are talking shit (Oh-oh, yeah)"
+    },
+    {
+      "word": "diosa",
+      "lemma": "diosa",
+      "proposed": "proper noun",
+      "corpus_count": 15,
+      "example": "Diosa Canale' en Venezuela, Giulia Arane en Italia",
+      "translation": "Diosa Canale' in Venezuela, Giulia Arane in Italy"
+    },
+    {
       "word": "caile",
       "lemma": "caile",
       "proposed": "to come over",
@@ -2087,6 +2658,41 @@
       "translation": "We're going downhill and we're going off the rails"
     },
     {
+      "word": "ten",
+      "lemma": "ten",
+      "proposed": "ten",
+      "corpus_count": 14,
+      "example": "Yo he esta'o con mile' y tú sigue' en el top ten",
+      "translation": "I've been with thousands and you're still in the top ten"
+    },
+    {
+      "word": "santa",
+      "lemma": "santa",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 14,
+      "example_index": 1,
+      "example": "Te pedí pa' los Reye' y pa' Santa Clau'",
+      "translation": "I asked you for Christmas and for Santa Claus"
+    },
+    {
+      "word": "santa",
+      "lemma": "santa",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 14,
+      "example_index": 7,
+      "example": "Santa Claus con la esencia del Grinch metío' (Rrra)",
+      "translation": "Santa Claus with the essence of the Grinch inside (Rrra)"
+    },
+    {
+      "word": "santa",
+      "lemma": "santa",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 14,
+      "example_index": 8,
+      "example": "Me llegó el regalo adelanta'o de Santa Claus (Wow)",
+      "translation": "My Christmas gift arrived early from Santa Claus (Wow)"
+    },
+    {
       "word": "cero",
       "lemma": "cero",
       "proposed": ".40 caliber handgun",
@@ -2177,16 +2783,6 @@
       "translation": "Tell him to stop fronting, that he has a Mercedes"
     },
     {
-      "word": "frontear",
-      "lemma": "frontear",
-      "proposed": "to show off",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 13,
-      "example": "Ni voy a frontear, dale a repeat, cabrón",
-      "translation": "I'm not even gonna front, put it on repeat, motherfucker"
-    },
-    {
       "word": "ley",
       "lemma": "ley",
       "proposed": "a short distance",
@@ -2227,26 +2823,6 @@
       "translation": "And I'm gonna be a millionaire again, look how I move"
     },
     {
-      "word": "millo",
-      "lemma": "millo",
-      "proposed": "millions",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 13,
-      "example": "Millo a lo' 25 (Jeje), yo hago lo que me da la gana (Jeje; jeje), ey",
-      "translation": "Millions by 25 (Hehe), I do whatever the hell I want (Hehe; hehe), hey"
-    },
-    {
-      "word": "palo",
-      "lemma": "palo",
-      "proposed": "gun",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 13,
-      "example": "Que me compré un palo y a alguien asalté",
-      "translation": "Who buys me a gun and I robbed someone"
-    },
-    {
       "word": "perdón",
       "lemma": "perdón",
       "proposed": "sorry",
@@ -2255,16 +2831,6 @@
       "corpus_count": 13,
       "example": "Perdón a mis jefecitos por ser un dolor de muelas",
       "translation": "Sorry to my bosses for being a pain in the ass"
-    },
-    {
-      "word": "rompiendo",
-      "lemma": "rompiendo",
-      "proposed": "killing it",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 13,
-      "example": "Será que no me has visto en la calle rompiendo",
-      "translation": "Maybe you haven't seen me out on the street killing it"
     },
     {
       "word": "rompiendo",
@@ -2290,8 +2856,6 @@
       "word": "moñas",
       "lemma": "moñas",
       "proposed": "marijuana buds",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 13,
       "example": "Las moñas violeta como Tinky Winky",
       "translation": "The purple buds like Tinky Winky"
@@ -2325,6 +2889,40 @@
       "corpus_count": 13,
       "example": "Pero por la' noche' me recibe afeitá' con el splash de cherry (Skrt)",
       "translation": "But at night she receives me shaved with the cherry splash (Skrt)"
+    },
+    {
+      "word": "punto",
+      "lemma": "punto",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 13,
+      "example_index": 0,
+      "example": "Desde hace tiempo le puse punto final (Sí)",
+      "translation": "I put an end to it a long time ago (Yeah)"
+    },
+    {
+      "word": "vengo",
+      "lemma": "vengo",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 13,
+      "example_index": 7,
+      "example": "Y en este caso especial, yo vengo siendo el piloto (Yo')",
+      "translation": "And in this special case, I'm the pilot (Yo')"
+    },
+    {
+      "word": "canto",
+      "lemma": "canto",
+      "proposed": "piece",
+      "corpus_count": 13,
+      "example": "Canto 'e bellaca, ese toto vo'a martillarte (Jajajajaja)",
+      "translation": "Bad bitch singing, I'm gonna hammer that pussy (Hahahaha)"
+    },
+    {
+      "word": "frontear",
+      "lemma": "frontear",
+      "proposed": "to show off",
+      "corpus_count": 12,
+      "example": "Ni voy a frontear, dale a repeat, cabrón",
+      "translation": "I'm not even gonna front, put it on repeat, motherfucker"
     },
     {
       "word": "ajá",
@@ -2607,6 +3205,98 @@
       "translation": "I like those Balenciagas (Those)"
     },
     {
+      "word": "media",
+      "lemma": "media",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 12,
+      "example_index": 0,
+      "example": "Como media virá' (Virá'), media asfixiá'",
+      "translation": "Half crazy, half suffocated"
+    },
+    {
+      "word": "media",
+      "lemma": "media",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 12,
+      "example_index": 1,
+      "example": "Lo má' que me gusta e' que tú ere media complicá'",
+      "translation": "What I like most is that you're kinda complicated"
+    },
+    {
+      "word": "media",
+      "lemma": "media",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 12,
+      "example_index": 5,
+      "example": "Esta gente me preguntan que si es media maniática (Oh)",
+      "translation": "These people ask me if she's a little manic (Oh)"
+    },
+    {
+      "word": "movimiento",
+      "lemma": "movimiento",
+      "proposed": "movement",
+      "corpus_count": 12,
+      "example": "Movimiento Guiru, Guiru",
+      "translation": "Guiru, Guiru movement"
+    },
+    {
+      "word": "pana",
+      "lemma": "pana",
+      "proposed": "homie",
+      "corpus_count": 12,
+      "example": "Pana-Panamera (-mera), la bestia acelera (-lera)",
+      "translation": "Homie's Panamera (-mera), the beast accelerates (-lera)"
+    },
+    {
+      "word": "pare",
+      "lemma": "pare",
+      "proposed": "to get an erection",
+      "corpus_count": 12,
+      "example": "Que me bese y me lo pare, pero",
+      "translation": "For her to kiss me and make me hard, but"
+    },
+    {
+      "word": "tirar",
+      "lemma": "tirar",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 12,
+      "example_index": 8,
+      "example": "Dame un break, vo' a tirar otra cosa, vo' a tirar otra cosa, okay",
+      "translation": "Give me a break, I'm gonna drop something else, I'm gonna drop something else, okay"
+    },
+    {
+      "word": "hable",
+      "lemma": "hable",
+      "proposed": "to talk",
+      "corpus_count": 12,
+      "example": "Me pide que le hable malo",
+      "translation": "She asks me to talk dirty to her"
+    },
+    {
+      "word": "pare",
+      "lemma": "pare",
+      "proposed": "stop sign",
+      "corpus_count": 12,
+      "example": "Esto es PR, aquí nadie para en los \"pare\", ¡prr!",
+      "translation": "This is PR, nobody stops at the 'stop' signs here, prr!"
+    },
+    {
+      "word": "bajar",
+      "lemma": "bajar",
+      "proposed": "to back down",
+      "corpus_count": 11,
+      "example": "Ella no le va a bajar (Ella no va a cambiar)",
+      "translation": "She's not gonna back down (She's not gonna change)"
+    },
+    {
+      "word": "bajar",
+      "lemma": "bajar",
+      "proposed": "to slow down",
+      "corpus_count": 11,
+      "example": "Seguimo' a dosciento' y no vamo' a bajar",
+      "translation": "We're still at two hundred and we're not gonna slow down"
+    },
+    {
       "word": "cabrona",
       "lemma": "cabrona",
       "proposed": "crazy/intense",
@@ -2845,6 +3535,179 @@
       "corpus_count": 11,
       "example": "Tráete a tu bestie (Uh), que a la do' le bajamo' el panty (Tra)",
       "translation": "Bring your bestie (Uh), 'cause we'll take both of their panties down (Tra)"
+    },
+    {
+      "word": "blanco",
+      "lemma": "blanco",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 11,
+      "example_index": 7,
+      "example": "Yo tu Escobar, tú mi Griselda Blanco",
+      "translation": "I'm your Escobar, you're my Griselda Blanco"
+    },
+    {
+      "word": "cubana",
+      "lemma": "cubana",
+      "proposed": "cuban style chain",
+      "corpus_count": 11,
+      "example": "El booty de oro como mi Cubana Franco",
+      "translation": "A golden booty like my Cuban Franco"
+    },
+    {
+      "word": "gata",
+      "lemma": "gata",
+      "proposed": "girlfriend",
+      "corpus_count": 11,
+      "example": "No sé si tienes gata o tienes gato",
+      "translation": "I don't know if you have a girlfriend or a boyfriend"
+    },
+    {
+      "word": "pares",
+      "lemma": "pares",
+      "proposed": "to stop",
+      "corpus_count": 11,
+      "example": "Porque estás tú, aquí, moviéndote así, no pares",
+      "translation": "Because you're here, moving like that, don't stop"
+    },
+    {
+      "word": "pares",
+      "lemma": "pares",
+      "proposed": "to pay attention",
+      "corpus_count": 11,
+      "example": "No le pares y dale",
+      "translation": "Don't pay attention and go for it"
+    },
+    {
+      "word": "bajar",
+      "lemma": "bajar",
+      "proposed": "to satisfy",
+      "corpus_count": 11,
+      "example": "Estoy loco contigo 'e bajar bellaquera",
+      "translation": "I'm crazy about you, ready to get wild"
+    },
+    {
+      "word": "blanco",
+      "lemma": "blanco",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 11,
+      "example_index": 6,
+      "example": "El Tiburón Blanco",
+      "translation": "The White Shark"
+    },
+    {
+      "word": "dejamos",
+      "lemma": "dejamos",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 11,
+      "example_index": 0,
+      "example": "¿Y de nosotro' quién va a hablar? Si no nos dejamos ver",
+      "translation": "And who's going to talk about us? If they don't see us"
+    },
+    {
+      "word": "dejamos",
+      "lemma": "dejamos",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 11,
+      "example_index": 3,
+      "example": "No nos dejamos ver pero to' el mundo sabe donde e' que estamo', ey (Uh-uh-uh-uh)",
+      "translation": "We don't let ourselves be seen but everyone knows where we are, hey (Uh-uh-uh-uh)"
+    },
+    {
+      "word": "dejamos",
+      "lemma": "dejamos",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 11,
+      "example_index": 9,
+      "example": "Que andamo' ready, no la dejamos caer",
+      "translation": "We're ready, we don't let it drop"
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to tear up",
+      "corpus_count": 11,
+      "example": "Hoy voy a romper la noche, hoy yo voy a janguear (Wuh-huh)",
+      "translation": "Tonight I'm gonna tear up the night, tonight I'm gonna hang out (Wuh-huh)"
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to get lit",
+      "corpus_count": 11,
+      "example": "Baby, vamo' a romper",
+      "translation": "Baby, we are going to get lit"
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to light up",
+      "corpus_count": 11,
+      "example": "Solita pa' romper la disco",
+      "translation": "Alone, ready to light up the party"
+    },
+    {
+      "word": "romper",
+      "lemma": "romper",
+      "proposed": "to break off",
+      "corpus_count": 11,
+      "example": "Que despué' yo te voy a romper con el néctar (Ay-Ay)",
+      "translation": "That after this I'm gonna break you off with the nectar (Ay-Ay)"
+    },
+    {
+      "word": "rompo",
+      "lemma": "rompo",
+      "proposed": "to fuck",
+      "corpus_count": 11,
+      "example": "Te rompo el toto y te lo mando a hacer",
+      "translation": "I'll break your pussy and send it to be remade"
+    },
+    {
+      "word": "rompo",
+      "lemma": "rompo",
+      "proposed": "to fail",
+      "corpus_count": 11,
+      "example": "Yo no rompo, les derrito el hielo (Blap!)",
+      "translation": "I don't break, I melt the ice for them (Blap!)"
+    },
+    {
+      "word": "rompo",
+      "lemma": "rompo",
+      "proposed": "to dominate",
+      "corpus_count": 11,
+      "example": "La compe la rompo",
+      "translation": "I break the competition"
+    },
+    {
+      "word": "subimos",
+      "lemma": "subimos",
+      "proposed": "to release",
+      "corpus_count": 11,
+      "example": "subimos un tema y el SoundCloud siempre se explota, jaja",
+      "translation": "We drop a track and SoundCloud always blows up, haha"
+    },
+    {
+      "word": "millo",
+      "lemma": "millo",
+      "proposed": "millions",
+      "corpus_count": 10,
+      "example": "Millo a lo' 25 (Jeje), yo hago lo que me da la gana (Jeje; jeje), ey",
+      "translation": "Millions by 25 (Hehe), I do whatever the hell I want (Hehe; hehe), hey"
+    },
+    {
+      "word": "palo",
+      "lemma": "palo",
+      "proposed": "gun",
+      "corpus_count": 10,
+      "example": "Al palo le puse \"Goldberg\" porque cuando aprieto, a to' le hace el spear (Spear; prr-prr-prr)",
+      "translation": "I named the stick 'Goldberg' because when I squeeze, it spears everyone (Spear; prr-prr-prr)"
+    },
+    {
+      "word": "rompiendo",
+      "lemma": "rompiendo",
+      "proposed": "killing it",
+      "corpus_count": 10,
+      "example": "Será que no me has visto en la calle rompiendo",
+      "translation": "Maybe you haven't seen me out on the street killing it"
     },
     {
       "word": "atrapa",
@@ -3089,16 +3952,6 @@
     {
       "word": "buenas",
       "lemma": "buenas",
-      "proposed": "good",
-      "type": null,
-      "construction": null,
-      "corpus_count": 10,
-      "example": "Las cosas son buenas, depende quién las perciba",
-      "translation": "Things are good, it depends on who perceives them"
-    },
-    {
-      "word": "buenas",
-      "lemma": "buenas",
       "proposed": "good/skilled",
       "type": "slang",
       "construction": null,
@@ -3135,6 +3988,88 @@
       "corpus_count": 10,
       "example": "To' pa' mí tienen manos (Yeah) pero siempre les gano",
       "translation": "They all have an angle with me (Yeah) but I always beat them"
+    },
+    {
+      "word": "coco",
+      "lemma": "coco",
+      "abstain_reason": "insufficient_context",
+      "corpus_count": 10,
+      "example_index": 3,
+      "example": "Yo soy coco, ustede' bakin' (Wuh)",
+      "translation": "I'm coconut, you guys are baking (Wuh)"
+    },
+    {
+      "word": "rompiendo",
+      "lemma": "rompiendo",
+      "proposed": "breaking",
+      "corpus_count": 10,
+      "example": "Sky Rompiendo",
+      "translation": "Sky Breaking"
+    },
+    {
+      "word": "roto",
+      "lemma": "roto",
+      "proposed": "hole",
+      "corpus_count": 10,
+      "example": "Porque yo no rompo récord', yo le' hago un roto",
+      "translation": "Because I don't break records, I make holes in them"
+    },
+    {
+      "word": "serio",
+      "lemma": "serio",
+      "proposed": "seriously",
+      "corpus_count": 10,
+      "example": "En serio, ma', me gusta lo que tienes puesto (Lo que tienes puesto)",
+      "translation": "Seriously, ma', I like what you're wearing (What you're wearing)"
+    },
+    {
+      "word": "trajo",
+      "lemma": "trajo",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 10,
+      "example_index": 8,
+      "example": "Encima de mí como Dios te trajo",
+      "translation": "On top of me like God made you"
+    },
+    {
+      "word": "millo",
+      "lemma": "millo",
+      "proposed": "rich",
+      "corpus_count": 10,
+      "example": "Nací pa' ser millo, no quiero fama (¡Wouh!)",
+      "translation": "I was born to be rich, I don't want fame (Wouh!)"
+    },
+    {
+      "word": "tirando",
+      "lemma": "tirando",
+      "proposed": "to hit up",
+      "corpus_count": 10,
+      "example": "Están tirando al cel, ya me quieren ver (Ah)",
+      "translation": "They're hitting up my phone, they want to see me now (Ah)"
+    },
+    {
+      "word": "tirando",
+      "lemma": "tirando",
+      "proposed": "to come at",
+      "corpus_count": 10,
+      "example": "Clase 'e loquera y hoy me están tirando de nuevo pa' bajar pa'llá",
+      "translation": "Some kind of craziness and today they're coming at me again to bring me down"
+    },
+    {
+      "word": "tire",
+      "lemma": "tire",
+      "proposed": "to challenge",
+      "corpus_count": 10,
+      "example": "El que quiera, que me tire",
+      "translation": "Whoever wants to, can come at me."
+    },
+    {
+      "word": "buenas",
+      "lemma": "buenas",
+      "proposed": "good",
+      "corpus_count": 9,
+      "example": "Y ella' están buenas, pero tú 'tás mejor (Mejor)",
+      "translation": "And they're good, but you're better (Better)"
     },
     {
       "word": "acabo",
@@ -3195,16 +4130,6 @@
       "corpus_count": 9,
       "example": "Ese culo e' artista, me avisa' si quiere' que lo maneje",
       "translation": "That ass is a work of art, let me know if you want me to handle it"
-    },
-    {
-      "word": "banda",
-      "lemma": "banda",
-      "proposed": "attention",
-      "type": "slang",
-      "construction": "dar banda",
-      "corpus_count": 9,
-      "example": "Dame-dame banda, eh",
-      "translation": "Give me, give me attention, eh"
     },
     {
       "word": "banda",
@@ -3567,6 +4492,57 @@
       "translation": "Canales, el Mira, Playita, Veca (what?)"
     },
     {
+      "word": "viva",
+      "lemma": "viva",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 9,
+      "example_index": 0,
+      "example": "En lo que pronto se estrena \"Viva El Perreo\"",
+      "translation": "While \"Viva El Perreo\" is about to premiere"
+    },
+    {
+      "word": "viva",
+      "lemma": "viva",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 9,
+      "example_index": 4,
+      "example": "Con la emisora del 2020: \"Viva el Perreo\"",
+      "translation": ""
+    },
+    {
+      "word": "zeta",
+      "lemma": "zeta",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 9,
+      "example_index": 5,
+      "example": "EZ (EZ made the beat), E Zeta",
+      "translation": "EZ (EZ made the beat), E Zeta"
+    },
+    {
+      "word": "rompe",
+      "lemma": "rompe",
+      "proposed": "to rock",
+      "corpus_count": 9,
+      "example": "Rompe la calle siempre que sale",
+      "translation": "She rocks the streets every time she goes out"
+    },
+    {
+      "word": "rompe",
+      "lemma": "rompe",
+      "proposed": "to break it down",
+      "corpus_count": 9,
+      "example": "Se va con otro a bailar y hasta abajo rompe la losa",
+      "translation": "She leaves with another guy to dance and goes down low, breaking it down"
+    },
+    {
+      "word": "zeta",
+      "lemma": "zeta",
+      "proposed": "z",
+      "corpus_count": 9,
+      "example": "EZ (EZ made the beat), E Zeta",
+      "translation": "EZ (EZ made the beat), E Zeta"
+    },
+    {
       "word": "bella",
       "lemma": "bella",
       "proposed": "hot and nasty",
@@ -3667,31 +4643,9 @@
       "translation": "Smells like dick, who the hell are you? Ey"
     },
     {
-      "word": "juquear",
-      "lemma": "juquear",
-      "proposed": "to get into trouble",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 8,
-      "example": "Tú te va' a juquear y esto se va a joder",
-      "translation": "You're gonna get yourself into trouble and this is gonna get messed up"
-    },
-    {
-      "word": "juquear",
-      "lemma": "juquear",
-      "proposed": "to get hooked",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 8,
-      "example": "Te va' a juquear despué' que lo pruebe', pruebe', yeh (Yeh, yeh)",
-      "translation": "You're gonna get hooked after you try it, try it, yeh (Yeh, yeh)"
-    },
-    {
       "word": "leche",
       "lemma": "leche",
       "proposed": "to ejaculate",
-      "type": "figurative",
-      "construction": "sacar la leche",
       "corpus_count": 8,
       "example": "Me cojo mi tiempo, te saco la leche",
       "translation": "I take my time, I milk you"
@@ -3797,16 +4751,6 @@
       "translation": "I give you all of mine, even my breath (Yeh)"
     },
     {
-      "word": "sana",
-      "lemma": "sana",
-      "proposed": "to heal",
-      "type": "figurative",
-      "construction": null,
-      "corpus_count": 8,
-      "example": "La herida no sana",
-      "translation": "The wound doesn't heal"
-    },
-    {
       "word": "santo",
       "lemma": "santo",
       "proposed": "holy crap",
@@ -3899,16 +4843,6 @@
     {
       "word": "bajes",
       "lemma": "bajes",
-      "proposed": "to slow down",
-      "type": "figurative",
-      "construction": "no le bajes",
-      "corpus_count": 8,
-      "example": "Baby, tú eres mi droga, esta noche no le bajes",
-      "translation": "Baby, you're my drug, don't slow down tonight"
-    },
-    {
-      "word": "bajes",
-      "lemma": "bajes",
       "proposed": "to stop",
       "type": "figurative",
       "construction": "no le bajes",
@@ -3925,26 +4859,6 @@
       "corpus_count": 8,
       "example": "Por eso ahora esta' mujere' hasta piden por detrás (Rrr-rrr-rrr)",
       "translation": "That's why these women now even ask for more (Rrr-rrr-rrr)"
-    },
-    {
-      "word": "matas",
-      "lemma": "matas",
-      "proposed": "to go wild",
-      "type": "slang",
-      "construction": "te matas",
-      "corpus_count": 8,
-      "example": "Di-Di-Dime, si con él eres una santa y conmigo te matas",
-      "translation": "Tell me, if you're a saint with him and you go wild with me"
-    },
-    {
-      "word": "cuartos",
-      "lemma": "cuartos",
-      "proposed": "money",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 8,
-      "example": "Dónde e' que están los cuartos, 'manito, ey, y yo le llego",
-      "translation": "Where's the money at, bro, hey, and I'll get there"
     },
     {
       "word": "patas",
@@ -4047,6 +4961,65 @@
       "translation": "And now we're big shots, eh"
     },
     {
+      "word": "monte",
+      "lemma": "monte",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 8,
+      "example_index": 3,
+      "example": "Aquí en El Monte heredamos el mismo pecho",
+      "translation": "Here in El Monte we inherited the same guts"
+    },
+    {
+      "word": "jefe",
+      "lemma": "jefe",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 8,
+      "example_index": 2,
+      "example": "El Alfa \"El Jefe\", la planta, la bestia, the best",
+      "translation": "El Alfa \"El Jefe\", the plug, the beast, the best"
+    },
+    {
+      "word": "jefe",
+      "lemma": "jefe",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 8,
+      "example_index": 5,
+      "example": "El Alfa El Jefe",
+      "translation": "El Alfa El Jefe"
+    },
+    {
+      "word": "manos",
+      "lemma": "manos",
+      "proposed": "angle",
+      "corpus_count": 8,
+      "example": "To' pa' mí tienen manos (Yeah) pero siempre les gano",
+      "translation": "They all have an angle with me (Yeah) but I always beat them"
+    },
+    {
+      "word": "monte",
+      "lemma": "monte",
+      "proposed": "neighborhood",
+      "corpus_count": 8,
+      "example": "Aquí en El Monte heredamos el mismo pecho",
+      "translation": "Here in El Monte we inherited the same guts"
+    },
+    {
+      "word": "verde",
+      "lemma": "verde",
+      "proposed": "green light",
+      "corpus_count": 8,
+      "example": "Me dieron la verde después del ritual, la ashé, ya yo hablé con los santo' (Ja, ja)",
+      "translation": "They gave me the green light after the ritual, the ashé, I already spoke with the saints (Ha, ha)"
+    },
+    {
+      "word": "banda",
+      "lemma": "banda",
+      "proposed": "attention",
+      "corpus_count": 7,
+      "example": "Dame-dame banda, eh",
+      "translation": "Give me, give me attention, eh"
+    },
+    {
       "word": "ama",
       "lemma": "ama",
       "proposed": "to climax",
@@ -4055,16 +5028,6 @@
       "corpus_count": 7,
       "example": "Yo le doy duro hasta el ama-",
       "translation": "I go hard on her until she climaxes-"
-    },
-    {
-      "word": "atreva",
-      "lemma": "atreva",
-      "proposed": "to dare",
-      "type": "figurative",
-      "construction": "atreverse",
-      "corpus_count": 7,
-      "example": "Además, ¿tú crees que yo me atreva? Nah",
-      "translation": "Besides, you think I'd dare? Nah"
     },
     {
       "word": "bajé",
@@ -4557,6 +5520,284 @@
       "translation": "But I put her on all fours and beat her by knockout (Wuh)"
     },
     {
+      "word": "alto",
+      "lemma": "alto",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 1,
+      "example": "Abriéndoles la raja, Trujillo Alto y Vega Baja",
+      "translation": "Opening them up, Trujillo Alto and Vega Baja"
+    },
+    {
+      "word": "cojo",
+      "lemma": "cojo",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 2,
+      "example": "Dime dónde tú está', que yo por ti cojo un vuelo",
+      "translation": "Tell me where you are, 'cause I'll fly for you"
+    },
+    {
+      "word": "daba",
+      "lemma": "daba",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 0,
+      "example": "Yo sé que tú extrañas cómo yo te lo daba (Lo daba)",
+      "translation": "I know you miss how I used to give it to you (Give it to you)"
+    },
+    {
+      "word": "daba",
+      "lemma": "daba",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 1,
+      "example": "Yo siempre te daba con consistencia",
+      "translation": "I always gave it to you consistently"
+    },
+    {
+      "word": "daba",
+      "lemma": "daba",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 2,
+      "example": "Que si te cogía te daba hasta el otro día",
+      "translation": "If I caught you, I'd be hitting it until the next day"
+    },
+    {
+      "word": "daba",
+      "lemma": "daba",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 3,
+      "example": "Piensa en como yo te daba",
+      "translation": "Think about how I used to give it to you"
+    },
+    {
+      "word": "daba",
+      "lemma": "daba",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 5,
+      "example": "Cuando te lo daba en cuatro y te volvías loca",
+      "translation": "When I was giving it to you doggy style and you went crazy"
+    },
+    {
+      "word": "daba",
+      "lemma": "daba",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 7,
+      "example_index": 6,
+      "example": "Como aquella noche cuando que yo te daba",
+      "translation": ""
+    },
+    {
+      "word": "pudo",
+      "lemma": "pudo",
+      "proposed": "to work out",
+      "corpus_count": 7,
+      "example": "Traté de picharte, pero no se pudo",
+      "translation": "I tried to hit on you, but it didn't work out"
+    },
+    {
+      "word": "quedar",
+      "lemma": "quedar",
+      "proposed": "to dominate",
+      "corpus_count": 7,
+      "example": "Que esto se va a quedar con el 2017, daddy",
+      "translation": "This is gonna stay with 2017, daddy"
+    },
+    {
+      "word": "quedas",
+      "lemma": "quedas",
+      "proposed": "to end up",
+      "corpus_count": 7,
+      "example": "Y él no tiene ni idea que conmigo te quedas ronca gritando (Yeah, yeah)",
+      "translation": "And he has no idea that you stay hoarse screaming with me (Yeah, yeah)"
+    },
+    {
+      "word": "sacar",
+      "lemma": "sacar",
+      "proposed": "to extract",
+      "corpus_count": 7,
+      "example": "Que hoy te vo' a sacar el jugo como un Bubbaloo",
+      "translation": "Because today I'm gonna squeeze you like a Bubbaloo"
+    },
+    {
+      "word": "tira",
+      "lemma": "tira",
+      "proposed": "to hit up",
+      "corpus_count": 7,
+      "example": "Otro que me tira (¿Ah?)",
+      "translation": "Another one hitting me up (Huh?)"
+    },
+    {
+      "word": "tira",
+      "lemma": "tira",
+      "proposed": "to send",
+      "corpus_count": 7,
+      "example": "Me tira video' por Snap (Snap)",
+      "translation": "She sends me videos on Snap (Snap)"
+    },
+    {
+      "word": "trata",
+      "lemma": "trata",
+      "proposed": "to try",
+      "corpus_count": 7,
+      "example": "Álvarez, esta gente trata de joderte y le sale al revés (¡Wuh!)",
+      "translation": "Álvarez, these people try to mess with you and it backfires (Wuh!)"
+    },
+    {
+      "word": "tumbar",
+      "lemma": "tumbar",
+      "proposed": "to steal",
+      "corpus_count": 7,
+      "example": "Me quieren tumbar flow Mayweather en Las Vega' (Las Vega')",
+      "translation": "They want to take my Mayweather flow in Vegas (Vegas)"
+    },
+    {
+      "word": "bajé",
+      "lemma": "bajé",
+      "proposed": "to lower",
+      "corpus_count": 7,
+      "example": "Mami, yo te trabajé, bellaquera' te bajé (Huh)",
+      "translation": "Baby, I worked you, I took your horniness down (Huh)"
+    },
+    {
+      "word": "diario",
+      "lemma": "diario",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 5,
+      "example": "Conmigo nunca salen, Eddie Dee con \"El Diario\"",
+      "translation": "They never go out with me, Eddie Dee with 'The Diary'"
+    },
+    {
+      "word": "enrola",
+      "lemma": "enrola",
+      "proposed": "to roll a blunt",
+      "corpus_count": 7,
+      "example": "Si Beto lo enrola voy a prenderlo, si traen perico vo'a huelerlo",
+      "translation": "If Beto rolls it, I'm gonna light it, if they bring coke, I'm gonna sniff it"
+    },
+    {
+      "word": "oscuridad",
+      "lemma": "oscuridad",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 1,
+      "example": "La Oscuridad",
+      "translation": "The Darkness"
+    },
+    {
+      "word": "oscuridad",
+      "lemma": "oscuridad",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 2,
+      "example": "La Oscuridad",
+      "translation": "The Darkness"
+    },
+    {
+      "word": "oscuridad",
+      "lemma": "oscuridad",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 3,
+      "example": "Bryant Myers, La Oscuridad",
+      "translation": "Bryant Myers, The Darkness"
+    },
+    {
+      "word": "oscuridad",
+      "lemma": "oscuridad",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 4,
+      "example": "La Oscuridad",
+      "translation": "The Darkness"
+    },
+    {
+      "word": "oscuridad",
+      "lemma": "oscuridad",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 7,
+      "example_index": 5,
+      "example": "La Oscuridad",
+      "translation": "The Darkness"
+    },
+    {
+      "word": "tira",
+      "lemma": "tira",
+      "proposed": "to approach",
+      "corpus_count": 7,
+      "example": "Me tira pa' que yo la pruebe",
+      "translation": "What she wants to do is her hair (Wuh), and fix herself up (Wuh)"
+    },
+    {
+      "word": "quité",
+      "lemma": "quité",
+      "proposed": "to quit",
+      "corpus_count": 7,
+      "example": "Hace rato me quité del trap, yo se lo dejé a Eladio",
+      "translation": "I quit trap a while ago, I left it to Eladio"
+    },
+    {
+      "word": "quité",
+      "lemma": "quité",
+      "proposed": "to move on",
+      "corpus_count": 7,
+      "example": "Ya yo me quité, tú nunca me va' a amar (Na)",
+      "translation": "I've moved on, you're never gonna love me (Nah)"
+    },
+    {
+      "word": "cabra",
+      "lemma": "cabra",
+      "proposed": "greatest of all time",
+      "corpus_count": 6,
+      "example": "Yo no soy la cabra, yo soy El Conejo",
+      "translation": "I'm not the GOAT, I'm The Rabbit"
+    },
+    {
+      "word": "metes",
+      "lemma": "metes",
+      "proposed": "to go hard",
+      "corpus_count": 6,
+      "example": "Tú dice' que le metes cabrón (Nah)",
+      "translation": "You say you go hard, motherfucker (Nah)"
+    },
+    {
+      "word": "sana",
+      "lemma": "sana",
+      "proposed": "to heal",
+      "corpus_count": 6,
+      "example": "La herida no sana",
+      "translation": "The wound doesn't heal"
+    },
+    {
+      "word": "bajes",
+      "lemma": "bajes",
+      "proposed": "to slow down",
+      "corpus_count": 6,
+      "example": "Baby, tú eres mi droga, esta noche no le bajes",
+      "translation": "Baby, you're my drug, don't slow down tonight"
+    },
+    {
+      "word": "cuartos",
+      "lemma": "cuartos",
+      "proposed": "money",
+      "corpus_count": 6,
+      "example": "Dónde e' que están los cuartos, 'manito, ey, y yo le llego",
+      "translation": "Where's the money at, bro, hey, and I'll get there"
+    },
+    {
+      "word": "matas",
+      "lemma": "matas",
+      "proposed": "to go wild",
+      "corpus_count": 6,
+      "example": "Di-Di-Dime, si con él eres una santa y conmigo te matas",
+      "translation": "Tell me, if you're a saint with him and you go wild with me"
+    },
+    {
       "word": "alfa",
       "lemma": "alfa",
       "proposed": "proper noun (artist name)",
@@ -4565,16 +5806,6 @@
       "corpus_count": 6,
       "example": "'Toy como El Alfa, cacao, cacao",
       "translation": "I'm like El Alfa, cocoa, cocoa"
-    },
-    {
-      "word": "apretar",
-      "lemma": "apretar",
-      "proposed": "to pull the trigger",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 6,
-      "example": "Tengo a los falso' en la mira, es cuestión de apretar, prr-prr",
-      "translation": "I've got the fakes in my sights, it's a matter of pulling the trigger, prr-prr"
     },
     {
       "word": "arrebatado",
@@ -4770,8 +6001,6 @@
       "word": "parado",
       "lemma": "parado",
       "proposed": "erect",
-      "type": "vulgar",
-      "construction": null,
       "corpus_count": 6,
       "example": "Baby, me lo tiene' parado (Descontrola'o)",
       "translation": "Baby, you've got me stopped (Out of control)"
@@ -5137,6 +6366,308 @@
       "translation": "Down she won't (Down she won't)"
     },
     {
+      "word": "bandera",
+      "lemma": "bandera",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 2,
+      "example": "Vo'a tirar el radio pa'l mar si sale Sin Bandera porque",
+      "translation": "I'm gonna throw the radio in the sea if Sin Bandera comes on because"
+    },
+    {
+      "word": "cabra",
+      "lemma": "cabra",
+      "proposed": "goat",
+      "corpus_count": 6,
+      "example": "Mera, dilo, Cabra",
+      "translation": "Yo, say it, Cabra"
+    },
+    {
+      "word": "cartel",
+      "lemma": "cartel",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 1,
+      "example": "Trap Cartel (Uh-uh)",
+      "translation": "Trap Cartel (Uh-uh)"
+    },
+    {
+      "word": "cartel",
+      "lemma": "cartel",
+      "abstain_reason": "noise",
+      "corpus_count": 6,
+      "example_index": 3,
+      "example": "¡Cartel!",
+      "translation": "Cartel!"
+    },
+    {
+      "word": "cartel",
+      "lemma": "cartel",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 5,
+      "example": "Cartel",
+      "translation": "Cartel"
+    },
+    {
+      "word": "corona",
+      "lemma": "corona",
+      "proposed": "to succeed",
+      "corpus_count": 6,
+      "example": "Cualquier cabrón con ella no corona",
+      "translation": "Any asshole with her doesn't win"
+    },
+    {
+      "word": "dado",
+      "lemma": "dado",
+      "proposed": "to have sex with",
+      "corpus_count": 6,
+      "example": "Cuando con má' de mil he esta'o, a cuántas no le' he dado, je",
+      "translation": "When I've been with over a thousand, how many haven't I hit, je"
+    },
+    {
+      "word": "escribe",
+      "lemma": "escribe",
+      "proposed": "to text",
+      "corpus_count": 6,
+      "example": "Otra baby me escribe, nunca le respondo (No)",
+      "translation": "Another baby texts me, I never reply (No)"
+    },
+    {
+      "word": "escriben",
+      "lemma": "escriben",
+      "proposed": "to text",
+      "corpus_count": 6,
+      "example": "El DM explotao', to's le escriben \"hola\"",
+      "translation": "The DMs exploded, everyone's writing 'hello'"
+    },
+    {
+      "word": "había",
+      "lemma": "había",
+      "proposed": "what was happening",
+      "corpus_count": 6,
+      "example": "Tú sabía' la que había, baby",
+      "translation": "You knew what was up, baby"
+    },
+    {
+      "word": "humilde",
+      "lemma": "humilde",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 0,
+      "example": "Aquí somos de Rancho Humilde",
+      "translation": "We're from Rancho Humilde here"
+    },
+    {
+      "word": "pon",
+      "lemma": "pon",
+      "proposed": "challenge",
+      "corpus_count": 6,
+      "example": "Pon-, pónme a prueba, a ver, que to' el peso te va a caer",
+      "translation": "Challenge me, let's see, all the weight is gonna fall on you"
+    },
+    {
+      "word": "pon",
+      "lemma": "pon",
+      "abstain_reason": "noise",
+      "corpus_count": 6,
+      "example_index": 1,
+      "example": "Vo'a ha-; pon-; bellaca; vo'a; con to' y bata (Yeah)",
+      "translation": "I'm gonna do-; put-; horny; I'm gonna; even with a robe (Yeah)"
+    },
+    {
+      "word": "prendemos",
+      "lemma": "prendemos",
+      "proposed": "to be high",
+      "corpus_count": 6,
+      "example": "En la G-Wagon siempre prendemos",
+      "translation": "In the G-Wagon, we're always lit"
+    },
+    {
+      "word": "reales",
+      "lemma": "reales",
+      "proposed": "money",
+      "corpus_count": 6,
+      "example": "Poco' reales, yo sé quiéne' son",
+      "translation": "Little cash, I know who they are"
+    },
+    {
+      "word": "santo",
+      "lemma": "santo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 3,
+      "example": "Santo Domingo ya le llegó, ey",
+      "translation": "Santo Domingo has arrived, ey"
+    },
+    {
+      "word": "tratando",
+      "lemma": "tratando",
+      "proposed": "to try",
+      "corpus_count": 6,
+      "example": "Tratando de matarme han gasta'o to' las bala' del almacén",
+      "translation": "Trying to kill me, they've spent all the bullets in the warehouse"
+    },
+    {
+      "word": "vives",
+      "lemma": "vives",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 5,
+      "example": "Yo no soy Carlos Vives (Wuh)",
+      "translation": "I'm not Carlos Vives (Wuh)"
+    },
+    {
+      "word": "bajamos",
+      "lemma": "bajamos",
+      "proposed": "to diminish",
+      "corpus_count": 6,
+      "example": "Nosotros le bajamos el piquete a los má' piquetu' (¿Qué pahó, cabrón?)",
+      "translation": "We take the swagger out of the most swaggering ones (What happened, motherfucker?)"
+    },
+    {
+      "word": "corona",
+      "lemma": "corona",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 2,
+      "example": "Dale a la Corona y la Medalla (Ey)",
+      "translation": "Give her the Corona and the Medal (Ey)"
+    },
+    {
+      "word": "cortas",
+      "lemma": "cortas",
+      "proposed": "small guns",
+      "corpus_count": 6,
+      "example": "Las cortas van pa' dentro, cabrón, pa' mí nunca hay cateo",
+      "translation": "The small guns go inside, motherfucker, they never search me"
+    },
+    {
+      "word": "den",
+      "lemma": "den",
+      "abstain_reason": "noise",
+      "corpus_count": 6,
+      "example_index": 1,
+      "example": "Kariri kariri dip dan din Lan den lan do",
+      "translation": "Kariri kariri dip dan din Lan den lan do"
+    },
+    {
+      "word": "des",
+      "lemma": "dar",
+      "abstain_reason": "foreign",
+      "corpus_count": 6,
+      "example_index": 0,
+      "example": "Tú Comme des Garçons se puso frío",
+      "translation": "Your Comme des Garçons got cold"
+    },
+    {
+      "word": "calentón",
+      "lemma": "calentón",
+      "proposed": "heat",
+      "corpus_count": 6,
+      "example": "Welcome to the calentón",
+      "translation": "Welcome to the heat"
+    },
+    {
+      "word": "cartel",
+      "lemma": "cartel",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 2,
+      "example": "Cartel Records",
+      "translation": "Cartel Records"
+    },
+    {
+      "word": "cartel",
+      "lemma": "cartel",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 6,
+      "example_index": 4,
+      "example": "Cartel Records",
+      "translation": "Cartel Records"
+    },
+    {
+      "word": "patas",
+      "lemma": "patas",
+      "proposed": "legs",
+      "corpus_count": 6,
+      "example": "Hoy e' noche 'e travesura, hoy e' patas abajo (Yeh)",
+      "translation": "Tonight is a night for mischief, tonight is upside down (Yeh)"
+    },
+    {
+      "word": "patas",
+      "lemma": "patas",
+      "proposed": "feet",
+      "corpus_count": 6,
+      "example": "Dale hasta abajo, patas abajo sin parar, yeh",
+      "translation": "Go all the way down, feet down non-stop, yeah"
+    },
+    {
+      "word": "patas",
+      "lemma": "patas",
+      "proposed": "lesbians",
+      "corpus_count": 6,
+      "example": "Se besa con la amiga y no son patas",
+      "translation": "She kisses her friend and they're not gay"
+    },
+    {
+      "word": "pon",
+      "lemma": "pon",
+      "abstain_reason": "insufficient_context",
+      "corpus_count": 6,
+      "example_index": 1,
+      "example": "Vo'a ha-; pon-; bellaca; vo'a; con to' y bata (Yeah)",
+      "translation": "I'm gonna do-; put-; horny; I'm gonna; even with a robe (Yeah)"
+    },
+    {
+      "word": "ponga",
+      "lemma": "ponga",
+      "proposed": "to focus on",
+      "corpus_count": 6,
+      "example": "Te muere' sí o sí, después que me ponga pa' ti",
+      "translation": "You'll die, no matter what, after I get with you"
+    },
+    {
+      "word": "tratando",
+      "lemma": "tratando",
+      "proposed": "trying",
+      "corpus_count": 6,
+      "example": "Tratando de olvidarte he esta'o con más de una",
+      "translation": "Trying to forget you, I've been with more than one"
+    },
+    {
+      "word": "quemar",
+      "lemma": "quemar",
+      "proposed": "to smoke",
+      "corpus_count": 6,
+      "example": "Enrola y va a quemar, ah-ay (Ey)",
+      "translation": "She rolls it up and is gonna smoke it, ah-ay (Ey)"
+    },
+    {
+      "word": "reales",
+      "lemma": "reales",
+      "proposed": "cash",
+      "corpus_count": 6,
+      "example": "Los reales con una mano los puedo contar",
+      "translation": "I can count the cash with one hand"
+    },
+    {
+      "word": "atreva",
+      "lemma": "atreva",
+      "proposed": "to dare",
+      "corpus_count": 5,
+      "example": "Además, ¿tú crees que yo me atreva? Nah",
+      "translation": "Besides, you think I'd dare? Nah"
+    },
+    {
+      "word": "apretar",
+      "lemma": "apretar",
+      "proposed": "to pull the trigger",
+      "corpus_count": 5,
+      "example": "Tengo a los falso' en la mira, es cuestión de apretar, prr-prr",
+      "translation": "I've got the fakes in my sights, it's a matter of pulling the trigger, prr-prr"
+    },
+    {
       "word": "aire",
       "lemma": "aire",
       "proposed": "air conditioning",
@@ -5270,8 +6801,6 @@
       "word": "clavé",
       "lemma": "clavé",
       "proposed": "to bet",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 5,
       "example": "Clavé mi dinero, me puse una meta y me dije, \"Me voy a hacer el loco\" (Ah)",
       "translation": "I bet my money, set a goal and told myself, 'I'm gonna play dumb' (Ah)"
@@ -5380,8 +6909,6 @@
       "word": "fulete",
       "lemma": "fulete",
       "proposed": "hustle",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 5,
       "example": "Le gusta el fulete y hacer billetes hasta que tengamos el Masseratti",
       "translation": "She likes the hustle and making money until we get the Maserati"
@@ -5390,8 +6917,6 @@
       "word": "fulete",
       "lemma": "fulete",
       "proposed": "firearm",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 5,
       "example": "Por si me quedo sin balas o se me tranca el fulete (Eh)",
       "translation": "In case I run out of bullets or the gun jams (Eh)"
@@ -6087,6 +7612,227 @@
       "translation": "If you have that ass, shake it, buoh!"
     },
     {
+      "word": "cueros",
+      "lemma": "cueros",
+      "proposed": "prostitutes",
+      "corpus_count": 5,
+      "example": "No singo con lo' cueros si no han deposita'o",
+      "translation": "I don't mess with the dudes if they haven't deposited"
+    },
+    {
+      "word": "pieza",
+      "lemma": "pieza",
+      "proposed": "firearm",
+      "corpus_count": 5,
+      "example": "Bajo donde Amos, me compro una pieza y contigo la pruebo",
+      "translation": "I go down to Amos', buy myself a piece and try it with you"
+    },
+    {
+      "word": "puente",
+      "lemma": "puente",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 2,
+      "example": "Baby, hasta Don me decía: \"Dale má' duro que Tito Puente a los timbale\"",
+      "translation": "Baby, even Don told me: 'Hit it harder than Tito Puente on the timbales'"
+    },
+    {
+      "word": "puente",
+      "lemma": "puente",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 3,
+      "example": "Ando más azota'o que los timbale' 'e Tito Puente",
+      "translation": "I'm more messed up than Tito Puente's timbales"
+    },
+    {
+      "word": "suyo",
+      "lemma": "suyo",
+      "proposed": "relationship",
+      "corpus_count": 5,
+      "example": "Tiene lo suyo y le va bien pero de noche conmigo le gusta portarse mal (Wuh-huh!)",
+      "translation": "She has a relationship and it's going well"
+    },
+    {
+      "word": "títeres",
+      "lemma": "títeres",
+      "proposed": "street thugs",
+      "corpus_count": 5,
+      "example": "Pero (Pero), le gustan los títeres wheeleando motora (Motora)",
+      "translation": "But (But), she likes puppets riding motorcycles (Motorcycles)"
+    },
+    {
+      "word": "verdadera",
+      "lemma": "verdadera",
+      "proposed": "truth",
+      "corpus_count": 5,
+      "example": "Real G, orientando la' generacione' nueva', con la verdadera",
+      "translation": "Real G, guiding the new generations, with the truth"
+    },
+    {
+      "word": "corte",
+      "lemma": "corte",
+      "proposed": "purity level",
+      "corpus_count": 5,
+      "example": "De 0.5 gramo' el corte que monte",
+      "translation": "0.5 grams is the cut I'll make"
+    },
+    {
+      "word": "canales",
+      "lemma": "canales",
+      "proposed": "neighborhood",
+      "corpus_count": 5,
+      "example": "Que lo bailen en Lloréns, que lo bailen en canales",
+      "translation": "Let them dance in Lloréns, let them dance in Canales"
+    },
+    {
+      "word": "canales",
+      "lemma": "canales",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 1,
+      "example": "Diosa canales en Venezuela, Giulia Arane en Italia",
+      "translation": "Diosa Canale' in Venezuela, Giulia Arane in Italy"
+    },
+    {
+      "word": "canales",
+      "lemma": "canales",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 3,
+      "example": "Canales, el Mira, Playita, Veca (what?)",
+      "translation": "Canales, el Mira, Playita, Veca (what?)"
+    },
+    {
+      "word": "carrera",
+      "lemma": "carrera",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 5,
+      "example_index": 4,
+      "example": "Antes yo andaba a pie y ahora andomo' en un Porsche Carrera",
+      "translation": "Before I used to walk, and now I ride in a Porsche Carrera"
+    },
+    {
+      "word": "combi",
+      "lemma": "combi",
+      "proposed": "outfit",
+      "corpus_count": 5,
+      "example": "Con la combi nueva, con piquete nuevo",
+      "translation": "With the new outfit, with new swagger"
+    },
+    {
+      "word": "combi",
+      "lemma": "combi",
+      "proposed": "crew",
+      "corpus_count": 5,
+      "example": "Ando con la combi entera (Ah-ah)",
+      "translation": "Rolling with the whole crew (Ah-ah)"
+    },
+    {
+      "word": "combi",
+      "lemma": "combi",
+      "proposed": "package deal",
+      "corpus_count": 5,
+      "example": "Le pido un beso y me da la combi completa (¡¿Qué?!)",
+      "translation": "I ask for a kiss and she gives me the whole package (What?!)"
+    },
+    {
+      "word": "guagua",
+      "lemma": "guagua",
+      "proposed": "vehicle",
+      "corpus_count": 5,
+      "example": "En la guagua se quedó el olor de tu perfume",
+      "translation": "The smell of your perfume stayed in the car"
+    },
+    {
+      "word": "amiguita",
+      "lemma": "amiguita",
+      "proposed": "female friend",
+      "corpus_count": 5,
+      "example": "Avísame, que tu amiguita está en fila pa' darle (Ey, ey)",
+      "translation": "Let me know, 'cause your little friend is in line to get it (Ey, ey)"
+    },
+    {
+      "word": "metan",
+      "lemma": "metan",
+      "proposed": "to get to work",
+      "corpus_count": 5,
+      "example": "Si tienen cojone', dale, metan mano, cabrone'",
+      "translation": "If you have balls, go ahead, get to work, motherfuckers"
+    },
+    {
+      "word": "paro",
+      "lemma": "paro",
+      "proposed": "to pay attention",
+      "corpus_count": 5,
+      "example": "Pero a nada yo le paro",
+      "translation": "But I don't pay attention to anything"
+    },
+    {
+      "word": "pico",
+      "lemma": "pico",
+      "proposed": "spikes",
+      "corpus_count": 5,
+      "example": "Sacan pico pa' correr el 10K",
+      "translation": "They pull out the spikes to run the 10K"
+    },
+    {
+      "word": "puré",
+      "lemma": "puré",
+      "proposed": "lean",
+      "corpus_count": 5,
+      "example": "Tengo una onza de puré, Rosé y un pote 'e Percocet",
+      "translation": "I have an ounce of lean, Rosé, and a bottle of Percocet"
+    },
+    {
+      "word": "puré",
+      "lemma": "puré",
+      "proposed": "mush",
+      "corpus_count": 5,
+      "example": "Me meto pa' tu canto, el kiosko te tranco y la cara te la hago puré (Brr)",
+      "translation": "I step into your spot, I lock down your kiosk and I'll mess up your face (Brr)"
+    },
+    {
+      "word": "puré",
+      "lemma": "puré",
+      "proposed": "high",
+      "corpus_count": 5,
+      "example": "Los kilo' me bajan puré (Me bajan puré)",
+      "translation": "The kilos get me messed up (Get me messed up)"
+    },
+    {
+      "word": "trates",
+      "lemma": "trates",
+      "proposed": "to try",
+      "corpus_count": 5,
+      "example": "No trates, bo, que no capeamo' feka never (No-no)",
+      "translation": "Don't try it, bro, we never deal with fakes (No-no)"
+    },
+    {
+      "word": "suenan",
+      "lemma": "suenan",
+      "proposed": "to shoot",
+      "corpus_count": 5,
+      "example": "Te suenan con los palo' y te rematan con la plástica (Esta es la verdadera vuelta, baby; brr)",
+      "translation": "They hit you with the sticks and finish you off with the plastic (This is the real deal, baby; brr)"
+    },
+    {
+      "word": "atreve",
+      "lemma": "atreve",
+      "proposed": "to dare",
+      "corpus_count": 5,
+      "example": "Pregúntale a tu amiga si se atreve, eh",
+      "translation": "Ask your friend if she dares, eh"
+    },
+    {
+      "word": "atrevo",
+      "lemma": "atrevo",
+      "proposed": "to dare",
+      "corpus_count": 5,
+      "example": "Si es contigo yo me atrevo (¡Ey!)",
+      "translation": "If it's with you, I'll dare (Ey!)"
+    },
+    {
       "word": "abusadora",
       "lemma": "abusadora",
       "proposed": "wild person",
@@ -6180,8 +7926,6 @@
       "word": "charro",
       "lemma": "charro",
       "proposed": "scrub",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 4,
       "example": "Tu jevito nuevo es un charro, un trili, so no me frontee'",
       "translation": "Your new man is a scrub, a nobody, so don't front on me"
@@ -6190,8 +7934,6 @@
       "word": "charro",
       "lemma": "charro",
       "proposed": "jerk",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 4,
       "example": "Tú eres un charro, Rocky \"The Kid\", una porquería",
       "translation": "You're a jerk, Rocky 'The Kid', a piece of trash"
@@ -6210,8 +7952,6 @@
       "word": "chilla",
       "lemma": "chilla",
       "proposed": "side chick",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 4,
       "example": "Vo'a buscarme novia pa' que tú seas mi chilla, ey",
       "translation": "I'm gonna get a girlfriend so you can be my side chick, hey"
@@ -6610,8 +8350,6 @@
       "word": "meten",
       "lemma": "meten",
       "proposed": "to perform well",
-      "type": "slang",
-      "construction": "meter cabrón",
       "corpus_count": 4,
       "example": "Ustede' le meten cabrón, siempre y cuando sea en la ducha",
       "translation": "You guys go hard, as long as it's in the shower"
@@ -6680,8 +8418,6 @@
       "word": "quitar",
       "lemma": "quitar",
       "proposed": "to stop",
-      "type": "slang",
-      "construction": "quitarse",
       "corpus_count": 4,
       "example": "Dile que meta mano, que no se puede quitar",
       "translation": "Tell her to get into it, she can't stop"
@@ -6790,11 +8526,9 @@
       "word": "pichar",
       "lemma": "pichar",
       "proposed": "to ignore",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 4,
-      "example": "Que estos trilli, en verdad, les vo'a pichar",
-      "translation": "Because these haters, honestly, I'm gonna ignore them"
+      "example": "Toca seguir, pichar y olvidar",
+      "translation": "Gotta keep going, screw it, and forget"
     },
     {
       "word": "pina",
@@ -7257,6 +8991,246 @@
       "translation": "Because being single is in style"
     },
     {
+      "word": "abrir",
+      "lemma": "abrir",
+      "proposed": "to open",
+      "corpus_count": 4,
+      "example": "Y en un abrir y cerrar se las lleva el viento",
+      "translation": "And in the blink of an eye, the wind takes them away."
+    },
+    {
+      "word": "arrebatados",
+      "lemma": "arrebatados",
+      "proposed": "high",
+      "corpus_count": 4,
+      "example": "Porque nosotro' estamo' arrebatados (Arrebatao'; ey)",
+      "translation": "Because we are wildin' out (Wildin' out; ey)"
+    },
+    {
+      "word": "arrebato",
+      "lemma": "arrebato",
+      "proposed": "high",
+      "corpus_count": 4,
+      "example": "Ya el arrebato se siente",
+      "translation": "The rush can already be felt"
+    },
+    {
+      "word": "chico",
+      "lemma": "chico",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 4,
+      "example_index": 3,
+      "example": "I've been El Chico for cincuenta años",
+      "translation": "I've been El Chico for fifty years"
+    },
+    {
+      "word": "compras",
+      "lemma": "compras",
+      "proposed": "to buy",
+      "corpus_count": 4,
+      "example": "Mira la casa, que 'tá por mitad de dinero, me vo' a compras el mundo",
+      "translation": "Look at the house, it's half the money, I'm gonna buy the world"
+    },
+    {
+      "word": "copa",
+      "lemma": "copa",
+      "proposed": "bra cup size",
+      "corpus_count": 4,
+      "example": "Copa B, 5'3\", nalga' para'ita",
+      "translation": "B cup, 5'3\", flat ass"
+    },
+    {
+      "word": "explotar",
+      "lemma": "explotar",
+      "proposed": "to spend",
+      "corpus_count": 4,
+      "example": "Hoy cobré y hoy mismo lo' vo'a explotar, ey",
+      "translation": "I won't even ask for the price, ayy"
+    },
+    {
+      "word": "gran",
+      "lemma": "gran",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 4,
+      "example_index": 2,
+      "example": "Le pregunté al Gran Combo qué se hace cuando te hacen brujería",
+      "translation": "I asked El Gran Combo what you do when witchcraft is done to you"
+    },
+    {
+      "word": "gran",
+      "lemma": "gran",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 4,
+      "example_index": 3,
+      "example": "Desde Kissimmee hasta la gran manzana",
+      "translation": "From Kissimmee to the Big Apple"
+    },
+    {
+      "word": "nace",
+      "lemma": "nace",
+      "proposed": "to feel the urge",
+      "corpus_count": 4,
+      "example": "Por eso desde lo más profundo 'el alma engancharme una corta en la' noche' me nace",
+      "translation": ""
+    },
+    {
+      "word": "ronquen",
+      "lemma": "ronquen",
+      "proposed": "to brag",
+      "corpus_count": 4,
+      "example": "Maten lechone' que no ronquen de sicario'",
+      "translation": "Kill suckling pigs who don't brag about being sicarios"
+    },
+    {
+      "word": "tiré",
+      "lemma": "tiré",
+      "proposed": "to attack",
+      "corpus_count": 4,
+      "example": "Dime, ¿a quién ahora me tiré? (Me tiré)",
+      "translation": "Tell me, who did I go after now? (I went after)"
+    },
+    {
+      "word": "trapero",
+      "lemma": "trapero",
+      "proposed": "trap artist",
+      "corpus_count": 4,
+      "example": "El trapero 'e trapero' con el Conejo Malo",
+      "translation": "The rapper of rappers with the Bad Bunny"
+    },
+    {
+      "word": "traten",
+      "lemma": "traten",
+      "proposed": "to try",
+      "corpus_count": 4,
+      "example": "Si yo no soy intocable, pues, traten a ver (¡Brr!)",
+      "translation": "If I'm not untouchable, well, try it (Brr!)"
+    },
+    {
+      "word": "traté",
+      "lemma": "traté",
+      "proposed": "to try",
+      "corpus_count": 4,
+      "example": "Porque hoy te va' pa' casa y casi ni traté (-té)",
+      "translation": "Because today you're going home and I barely even tried"
+    },
+    {
+      "word": "case",
+      "lemma": "case",
+      "proposed": "neighborhood",
+      "corpus_count": 4,
+      "example": "En mi case vivimo' en guerra, rifles militare'",
+      "translation": "In my hood, we live at war, military rifles"
+    },
+    {
+      "word": "case",
+      "lemma": "case",
+      "abstain_reason": "foreign",
+      "corpus_count": 4,
+      "example_index": 1,
+      "example": "Mira mi trophy case, cómo los combino",
+      "translation": "Look at my trophy case, how I combine them"
+    },
+    {
+      "word": "crece",
+      "lemma": "crece",
+      "proposed": "to get big-headed",
+      "corpus_count": 4,
+      "example": "Ella se crece a veces, pero sabe que soy el que la vacuno",
+      "translation": "She gets big-headed sometimes, but she knows I'm the one who hits it"
+    },
+    {
+      "word": "date",
+      "lemma": "date",
+      "proposed": "to give oneself",
+      "corpus_count": 4,
+      "example": "Date dos cachá', déjate llevar",
+      "translation": "Take two hits, let yourself go"
+    },
+    {
+      "word": "date",
+      "lemma": "date",
+      "abstain_reason": "foreign",
+      "corpus_count": 4,
+      "example_index": 0,
+      "example": "Y tuvimos un date en la luna",
+      "translation": "And we had a date on the moon"
+    },
+    {
+      "word": "date",
+      "lemma": "date",
+      "abstain_reason": "foreign",
+      "corpus_count": 4,
+      "example_index": 3,
+      "example": "Con la jeva en Central Park, tener un date",
+      "translation": "With the girl in Central Park, having a date"
+    },
+    {
+      "word": "llevó",
+      "lemma": "llevó",
+      "abstain_reason": "construction_only",
+      "corpus_count": 4,
+      "example_index": 3,
+      "example": "Te llevó quien te trajo",
+      "translation": "Whoever brought you, brought you"
+    },
+    {
+      "word": "metía",
+      "lemma": "metía",
+      "proposed": "to have sex",
+      "corpus_count": 4,
+      "example": "Cómo ante' yo te lo metía, tu amiga se fue",
+      "translation": "How I used to hit it before, your friend left"
+    },
+    {
+      "word": "moviendo",
+      "lemma": "moviendo",
+      "proposed": "to traffic",
+      "corpus_count": 4,
+      "example": "'Tamos moviendo los kilos, traficando aquí más vaina que la mara (Mara)",
+      "translation": ""
+    },
+    {
+      "word": "gran",
+      "lemma": "gran",
+      "abstain_reason": "construction_only",
+      "corpus_count": 4,
+      "example_index": 3,
+      "example": "Desde Kissimmee hasta la gran manzana",
+      "translation": "From Kissimmee to the Big Apple"
+    },
+    {
+      "word": "pichar",
+      "lemma": "pichar",
+      "proposed": "to smoke marijuana",
+      "corpus_count": 4,
+      "example": "Vamo' a beber, vamo' a fumar, una rola pa' pichar",
+      "translation": "Let's drink, let's smoke, a joint to get high"
+    },
+    {
+      "word": "soltar",
+      "lemma": "soltar",
+      "proposed": "to let loose",
+      "corpus_count": 4,
+      "example": "Hoy se quiere soltar",
+      "translation": "Today she wants to let loose"
+    },
+    {
+      "word": "juquear",
+      "lemma": "juquear",
+      "proposed": "to get into trouble",
+      "corpus_count": 3,
+      "example": "Tú te va' a juquear y esto se va a joder",
+      "translation": "You're gonna get yourself into trouble and this is gonna get messed up"
+    },
+    {
+      "word": "juquear",
+      "lemma": "juquear",
+      "proposed": "to get hooked",
+      "corpus_count": 3,
+      "example": "Te va' a juquear despué' que lo pruebe', pruebe', yeh (Yeh, yeh)",
+      "translation": "You're gonna get hooked after you try it, try it, yeh (Yeh, yeh)"
+    },
+    {
       "word": "arrebataos",
       "lemma": "arrebataos",
       "proposed": "wilding out",
@@ -7320,8 +9294,6 @@
       "word": "acuesta",
       "lemma": "acuesta",
       "proposed": "to knock down",
-      "type": "figurative",
-      "construction": null,
       "corpus_count": 3,
       "example": "El diablo me inyecta, y saco la que suena y los acuesta",
       "translation": "The devil injects me, and I pull out the one that makes noise and knocks them down"
@@ -8087,16 +10059,6 @@
       "translation": "Let's stay in Maya, then I'll take you to Paris"
     },
     {
-      "word": "montan",
-      "lemma": "montan",
-      "proposed": "to hype up",
-      "type": "slang",
-      "construction": "montar la",
-      "corpus_count": 3,
-      "example": "Los brother' me la montan, dicen que estoy en un viaje",
-      "translation": "The homies are hyping me up, saying I'm on a trip"
-    },
-    {
       "word": "montana",
       "lemma": "montana",
       "proposed": "proper noun",
@@ -8277,16 +10239,6 @@
       "translation": "It's not the same, shorty, it's not the same, yeah-yeah"
     },
     {
-      "word": "quemé",
-      "lemma": "quemé",
-      "proposed": "to get high",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 3,
-      "example": "Yo estoy bebiendo y también quemé",
-      "translation": "I'm drinking and I also got high"
-    },
-    {
       "word": "quitado",
       "lemma": "quitado",
       "proposed": "to be over something",
@@ -8320,8 +10272,6 @@
       "word": "quitó",
       "lemma": "quitó",
       "proposed": "to give up",
-      "type": "slang",
-      "construction": "se quitó",
       "corpus_count": 3,
       "example": "El que nunca se quitó, pues nunca perdió",
       "translation": "He who never gave up, well, he never lost"
@@ -8800,11 +10750,9 @@
       "word": "comemos",
       "lemma": "comemos",
       "proposed": "to have sex",
-      "type": "figurative",
-      "construction": null,
       "corpus_count": 3,
-      "example": "Juntos no' endrogamo' y después no' comemos",
-      "translation": "We get high together and then we eat each other"
+      "example": "Y si nos comemos otra vez, ¿a quién le importa? (¡Yah!)",
+      "translation": "And if we hook up again, who cares? (¡Yah!)"
     },
     {
       "word": "dejemos",
@@ -8850,8 +10798,6 @@
       "word": "metemos",
       "lemma": "metemos",
       "proposed": "to go hard",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 3,
       "example": "Le metemos cabrón, estamos muy cabrón",
       "translation": "We go hard, motherfucker, we're going so hard"
@@ -9125,6 +11071,430 @@
       "corpus_count": 3,
       "example": "aborrecidos, estoy que me mudo pa' Kansa'",
       "translation": "Fed up, I'm about to move to Kansas"
+    },
+    {
+      "word": "arco",
+      "lemma": "arco",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Una guerrera, Juana de Arco, temperamental, Niurka Marco'",
+      "translation": "A warrior, Joan of Arc, temperamental, Niurka Marcos"
+    },
+    {
+      "word": "asesina",
+      "lemma": "asesina",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Una asesina, lo' mata con perreo",
+      "translation": "A killer, she kills them with perreo"
+    },
+    {
+      "word": "aventura",
+      "lemma": "aventura",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 1,
+      "example": "Si yo volví a Aventura, tú regresas a mi lado, baby",
+      "translation": "If I went back to Aventura, you're coming back to my side, baby"
+    },
+    {
+      "word": "cena",
+      "lemma": "cena",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 1,
+      "example": "Lowkey, nunca me dejo ver, como John Cena",
+      "translation": "Lowkey, I never let myself be seen, like John Cena"
+    },
+    {
+      "word": "funda",
+      "lemma": "funda",
+      "proposed": "money",
+      "corpus_count": 3,
+      "example": "El mundo a viajar, la funda a llegar, ya no había que bregar, no",
+      "translation": "Travel the world, get the bag, there was no more hustle, no"
+    },
+    {
+      "word": "jugo",
+      "lemma": "jugo",
+      "proposed": "to play",
+      "corpus_count": 3,
+      "example": "Baby, él jugo contigo pero ahora el juego se empató",
+      "translation": "Baby, he played with you but now the game is tied"
+    },
+    {
+      "word": "grupo",
+      "lemma": "grupo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Y esto es Grupo Frontera",
+      "translation": "And this is Grupo Frontera"
+    },
+    {
+      "word": "late",
+      "lemma": "late",
+      "abstain_reason": "noise",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Choco-late, mas la fresa",
+      "translation": "Choco-late, plus the strawberry"
+    },
+    {
+      "word": "paquete",
+      "lemma": "paquete",
+      "proposed": "brand new",
+      "corpus_count": 3,
+      "example": "Yo todavía nuevo de paquete",
+      "translation": "I'm still brand new"
+    },
+    {
+      "word": "parto",
+      "lemma": "parto",
+      "proposed": "to break down",
+      "corpus_count": 3,
+      "example": "Y me pide que la parta como parto to' los beats",
+      "translation": "And she asks me to break it down like I break down all the beats"
+    },
+    {
+      "word": "prendido",
+      "lemma": "prendido",
+      "proposed": "to smoke",
+      "corpus_count": 3,
+      "example": "Es que en la guagua siempre he prendido más de dos, ah (Yeh)",
+      "translation": "It's just that in the car I've always had more than two going, ah (Yeh)"
+    },
+    {
+      "word": "pruebe",
+      "lemma": "pruebe",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Traiga a tu amiga pa' que también pruebe",
+      "translation": "Bring your friend so she can try too"
+    },
+    {
+      "word": "pruebe",
+      "lemma": "pruebe",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 3,
+      "example_index": 1,
+      "example": "Me llama pa' que yo la pruebe y (Yah)",
+      "translation": "She calls me to try her and (Yah)"
+    },
+    {
+      "word": "químico",
+      "lemma": "químico",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Hyde El Químico",
+      "translation": "Hyde El Químico"
+    },
+    {
+      "word": "químico",
+      "lemma": "químico",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 2,
+      "example": "Químico Ultra Mega",
+      "translation": "Químico Ultra Mega"
+    },
+    {
+      "word": "rincón",
+      "lemma": "rincón",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 1,
+      "example": "Ey, ey, quieren montarse en la ola y no han ido a Rincón",
+      "translation": "Ey, ey, they want to ride the wave but they haven't gone to Rincón"
+    },
+    {
+      "word": "salte",
+      "lemma": "salte",
+      "proposed": "to leave",
+      "corpus_count": 3,
+      "example": "Y si va' a matar la vibra pues salte (Salte)",
+      "translation": "And if you're going to kill the vibe, then leave (Leave)"
+    },
+    {
+      "word": "salte",
+      "lemma": "salte",
+      "proposed": "to get out",
+      "corpus_count": 3,
+      "example": "Salte 'el medio, ¿okay?",
+      "translation": "Get out of the way, okay?"
+    },
+    {
+      "word": "soltero",
+      "lemma": "soltero",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Ya Susan Soltero (Wuh)",
+      "translation": "Susan is single now (Wuh)"
+    },
+    {
+      "word": "subiste",
+      "lemma": "subiste",
+      "proposed": "to post",
+      "corpus_count": 3,
+      "example": "Vi que viste mi story y subiste una pa' mí",
+      "translation": "I saw you saw my story and you posted one for me"
+    },
+    {
+      "word": "todito",
+      "lemma": "todo",
+      "proposed": "everyone",
+      "corpus_count": 3,
+      "example": "Ella vacila con todito, pero soy el unico que se lo mete",
+      "translation": "She plays with everyone, but I'm the only one who gets with her"
+    },
+    {
+      "word": "trepo",
+      "lemma": "trepo",
+      "proposed": "to mount",
+      "corpus_count": 3,
+      "example": "Después yo la trepo encima e' la mesa",
+      "translation": "Then I climb her on top of the table"
+    },
+    {
+      "word": "trepó",
+      "lemma": "trepó",
+      "proposed": "to mount",
+      "corpus_count": 3,
+      "example": "Se trepó y me lo partió",
+      "translation": "She climbed on me and broke it for me"
+    },
+    {
+      "word": "viran",
+      "lemma": "viran",
+      "proposed": "to betray",
+      "corpus_count": 3,
+      "example": "Se viran, no pasan el quiz (¡Yeh!)",
+      "translation": "They turn around, they don't pass the quiz (Yeah!)"
+    },
+    {
+      "word": "viró",
+      "lemma": "viró",
+      "proposed": "to turn one's back on",
+      "corpus_count": 3,
+      "example": "Me viró la cara como le hicieron a drake",
+      "translation": "She turned her back on me like they did to Drake"
+    },
+    {
+      "word": "campo",
+      "lemma": "campo",
+      "proposed": "proper noun",
+      "corpus_count": 3,
+      "example": "A mí me va cabrón, en Casa de Campo, perico ripiao",
+      "translation": "I'm doing great, in Casa de Campo, with perico ripiao"
+    },
+    {
+      "word": "bajan",
+      "lemma": "bajan",
+      "proposed": "to intoxicate",
+      "corpus_count": 3,
+      "example": "Los kilo' me bajan puré (Me bajan puré)",
+      "translation": "The kilos get me messed up (Get me messed up)"
+    },
+    {
+      "word": "alta",
+      "lemma": "alta",
+      "proposed": "high status",
+      "corpus_count": 3,
+      "example": "Siempre ando en alta, no me gusta 'tá acosta'o",
+      "translation": "I'm always on top, I don't like being down"
+    },
+    {
+      "word": "alta",
+      "lemma": "alta",
+      "proposed": "high",
+      "corpus_count": 3,
+      "example": "La nota en alta, no me ha baja'o",
+      "translation": "The vibe is high, it hasn't dropped for me"
+    },
+    {
+      "word": "cogiendo",
+      "lemma": "cogiendo",
+      "proposed": "to gain",
+      "corpus_count": 3,
+      "example": "Yo haciendo party', cogiendo vuelo",
+      "translation": "Me partying, taking off"
+    },
+    {
+      "word": "cogió",
+      "lemma": "cogió",
+      "proposed": "to catch",
+      "corpus_count": 3,
+      "example": "Hoy me cogió activo, prendi al rojo vivo (Ah, wuh, ah, wuh)",
+      "translation": "Today I caught me in the zone, lit up bright red (Ah, wuh, ah, wuh)"
+    },
+    {
+      "word": "cogió",
+      "lemma": "cogió",
+      "proposed": "to be",
+      "corpus_count": 3,
+      "example": "Iba a firmar por 5, pero les cogió tarde (¿Qué?)",
+      "translation": "I was gonna sign for 5, but they were too late (What?)"
+    },
+    {
+      "word": "echar",
+      "lemma": "echar",
+      "proposed": "to have",
+      "corpus_count": 3,
+      "example": "Contigo quiero echar un polvo, pero largo, oh-oh",
+      "translation": "I want to have sex with you, but for a long time, oh-oh"
+    },
+    {
+      "word": "enrolando",
+      "lemma": "enrolando",
+      "proposed": "to roll (a blunt/joint)",
+      "corpus_count": 3,
+      "example": "Y afuera en los balcone' to' el combo enrolando bluntes",
+      "translation": "And outside on the balconies, the whole crew rolling blunts"
+    },
+    {
+      "word": "enrolas",
+      "lemma": "enrolas",
+      "proposed": "to roll (a blunt/joint)",
+      "corpus_count": 3,
+      "example": "Ella quiere enrolas y de una vez prende', eh",
+      "translation": "She wants to roll up and light it right away, huh"
+    },
+    {
+      "word": "maldad",
+      "lemma": "maldad",
+      "proposed": "mischief",
+      "corpus_count": 3,
+      "example": "Hoy es noche 'e maldad y me voy a divertir",
+      "translation": "Tonight is a night of mischief and I'm gonna have fun"
+    },
+    {
+      "word": "menudo",
+      "lemma": "menudo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Ya no andamo' con Menudo, súbete a mi moto (Brum)",
+      "translation": "We're not messing with Menudo anymore, get on my bike (Vroom)"
+    },
+    {
+      "word": "inventa",
+      "lemma": "inventa",
+      "proposed": "to mess with",
+      "corpus_count": 3,
+      "example": "El que inventa aquí, lo lamenta (No joda)",
+      "translation": "Whoever tries to mess with me here, regrets it"
+    },
+    {
+      "word": "late",
+      "lemma": "late",
+      "abstain_reason": "foreign",
+      "corpus_count": 3,
+      "example_index": 1,
+      "example": "¿Que quieres ser mi pana ahora? Fuck you, nigga, it's too late",
+      "translation": "You wanna be my buddy now? Fuck you, nigga, it's too late"
+    },
+    {
+      "word": "patea",
+      "lemma": "patea",
+      "proposed": "to hit",
+      "corpus_count": 3,
+      "example": "Me acostumbré al sour, ya no patea (No)",
+      "translation": "I'm used to the sour, it doesn't hit back anymore (No)"
+    },
+    {
+      "word": "perse",
+      "lemma": "perse",
+      "proposed": "trouble",
+      "corpus_count": 3,
+      "example": "Me dijo \"Si quieres te vienes adentro, yo no tengo perse\"",
+      "translation": "She told me 'If you want, you can come inside, I don't have any problems'"
+    },
+    {
+      "word": "pique",
+      "lemma": "pique",
+      "proposed": "vibe",
+      "corpus_count": 3,
+      "example": "Que tú estás muy dura, tú tiene' el pique (Pique)",
+      "translation": "That you're so fine, you've got the vibe (Vibe)"
+    },
+    {
+      "word": "rincón",
+      "lemma": "rincón",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "De Arecibo hasta Ponce, de Fajardo a Rincón",
+      "translation": "From Arecibo to Ponce, from Fajardo to Rincón"
+    },
+    {
+      "word": "suya",
+      "lemma": "suya",
+      "proposed": "her own world",
+      "corpus_count": 3,
+      "example": "En la suya con n-o-t-a",
+      "translation": "In your own world with n-o-t-a"
+    },
+    {
+      "word": "tiró",
+      "lemma": "tiró",
+      "proposed": "to step back",
+      "corpus_count": 3,
+      "example": "Mera, cabrón, ¿tú te acuerdas cuando Jordan se ganó los tres campeonato' y se tiró pa' atrá' ese año, que se fue a jugar pelota, y después dio pa' atrá' y se ganó los 3 campeonato'?",
+      "translation": "Yo, dude, do you remember when Jordan won the three championships and then took a break that year, when he went to play baseball, and then came back and won the 3 championships?"
+    },
+    {
+      "word": "quitado",
+      "lemma": "quitado",
+      "proposed": "sober",
+      "corpus_count": 3,
+      "example": "Te lo juro, estoy quitado, hace tiempo no chicho",
+      "translation": "I swear, I'm over it, haven't hooked up in a while"
+    },
+    {
+      "word": "quitado",
+      "lemma": "quitado",
+      "proposed": "quitter",
+      "corpus_count": 3,
+      "example": "Yo nunca he sí'o un quitado, de chamaquito, no pedía tenqui (Heh!)",
+      "translation": "I've never been a quitter, as a kid, I didn't ask for thanks (Heh!)"
+    },
+    {
+      "word": "quitado",
+      "lemma": "quitado",
+      "proposed": "abstinent",
+      "corpus_count": 3,
+      "example": "Ese culo es made in Cali, me tiene quitado de la' Perco' y la pali (Ajá)",
+      "translation": "That ass is made in Cali, it's got me off the Percs and the pills (Uh-huh)"
+    },
+    {
+      "word": "cheki",
+      "lemma": "cheki",
+      "abstain_reason": "noise",
+      "corpus_count": 3,
+      "example_index": 0,
+      "example": "Cheki, morena, cheki",
+      "translation": "Check it, shorty, check it"
+    },
+    {
+      "word": "montan",
+      "lemma": "montan",
+      "proposed": "to hype up",
+      "corpus_count": 2,
+      "example": "Los brother' me la montan, dicen que estoy en un viaje",
+      "translation": "The homies are hyping me up, saying I'm on a trip"
+    },
+    {
+      "word": "quemé",
+      "lemma": "quemé",
+      "proposed": "to get high",
+      "corpus_count": 2,
+      "example": "Yo estoy bebiendo y también quemé",
+      "translation": "I'm drinking and I also got high"
     },
     {
       "word": "aborrecías",
@@ -9480,8 +11850,6 @@
       "word": "chapa",
       "lemma": "chapa",
       "proposed": "buttocks",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "Yo soy tu chapo, muéveme esa' chapa",
       "translation": "I'm your Chapo, move those plates for me"
@@ -9580,8 +11948,6 @@
       "word": "chichar",
       "lemma": "chichar",
       "proposed": "to have sex",
-      "type": "vulgar",
-      "construction": null,
       "corpus_count": 2,
       "example": "Las mujeres nos buscan para chichar",
       "translation": "Women look for us to have sex"
@@ -9650,8 +12016,6 @@
       "word": "chinitas",
       "lemma": "chinitas",
       "proposed": "blonde",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "Las moñas son verdes, chinitas y violetas",
       "translation": "The weed is green, blonde, and purple"
@@ -9670,8 +12034,6 @@
       "word": "celu",
       "lemma": "celu",
       "proposed": "cell phone",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "Suena el celu, y como de costumbre, lo contesto",
       "translation": "The phone rings, and as usual, I answer it"
@@ -10560,8 +12922,6 @@
       "word": "pajarito",
       "lemma": "pajarito",
       "proposed": "private jet",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "El primer artista en el género urbano en comprarse un pajarito de esto' fui yo",
       "translation": "The first artist in the urban genre to buy one of these little birds was me"
@@ -10580,8 +12940,6 @@
       "word": "partí",
       "lemma": "partí",
       "proposed": "to have sex with",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "Tú eres mi baby, la que yo partí (Yo partí)",
       "translation": "You're my baby, the one I smashed (I smashed)"
@@ -10660,8 +13018,6 @@
       "word": "partir",
       "lemma": "partir",
       "proposed": "to have sex with",
-      "type": "vulgar",
-      "construction": null,
       "corpus_count": 2,
       "example": "A tu amiga la acabo 'e partir",
       "translation": "I just fucked your friend"
@@ -10670,8 +13026,6 @@
       "word": "partir",
       "lemma": "partir",
       "proposed": "to excel at",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "Si Mvsis vuelve a poner un ritmo así, lo vuelvo a partir, ¿qué fue? Jaja",
       "translation": "If Mvsis drops a beat like this again, I'll kill it again, what's up? Haha"
@@ -10730,8 +13084,6 @@
       "word": "popola",
       "lemma": "popola",
       "proposed": "vagina",
-      "type": "vulgar",
-      "construction": null,
       "corpus_count": 2,
       "example": "Mami, te vo'a dar hasta que te duela la popola como a Glou (Glou)",
       "translation": "Baby, I'm gonna hit you 'til your pussy hurts like Glou's (Glou)"
@@ -10740,8 +13092,6 @@
       "word": "popola",
       "lemma": "popola",
       "proposed": "woman",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "Yo soy fan de esa popola (Mua, mua)",
       "translation": "I'm a fan of that chick (Mua, mua)"
@@ -10860,18 +13210,14 @@
       "word": "piquetúa",
       "lemma": "piquetúa",
       "proposed": "feisty",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
-      "example": "Me gustan así, piquetúa",
-      "translation": "I like them like this, feisty"
+      "example": "Extraño escucharte, piquetúa",
+      "translation": "I miss hearing you, you nasty thing"
     },
     {
       "word": "planta",
       "lemma": "planta",
       "proposed": "the plug",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
       "example": "El Alfa \"El Jefe\", la planta, la bestia, the best",
       "translation": "El Alfa \"El Jefe\", the plug, the beast, the best"
@@ -11230,11 +13576,9 @@
       "word": "toítas",
       "lemma": "toítas",
       "proposed": "all",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 2,
-      "example": "Pero en mi cama, se lo metí en cuatro y en toítas las pose’ (En toíta' las pose'), eh",
-      "translation": "But in my bed, I put it in her four ways and in all the positions (In all the positions), eh"
+      "example": "Las tengo a toítas tirándome por cómo le' metí (Yeh, yeh; eso e' así)",
+      "translation": "They're all hitting on me because of how I hit it (Yeah, yeah; that's how it is)"
     },
     {
       "word": "toítos",
@@ -11490,8 +13834,6 @@
       "word": "metas",
       "lemma": "metas",
       "proposed": "to get involved",
-      "type": "figurative",
-      "construction": "meterse",
       "corpus_count": 2,
       "example": "Pa'l sello, pendejo, mejor no te metas",
       "translation": "For the label, idiot, better don't get involved"
@@ -12417,6 +14759,476 @@
       "translation": "No matter how much they try to push you away"
     },
     {
+      "word": "tickets",
+      "lemma": "tickets",
+      "proposed": "money",
+      "corpus_count": 2,
+      "example": "Y esos que roncan de tickets (¡Wuh!)",
+      "translation": "And those who brag about tickets (Wuh!)"
+    },
+    {
+      "word": "bombon",
+      "lemma": "bombon",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Bombon Productions",
+      "translation": "Bombon Productions"
+    },
+    {
+      "word": "bombon",
+      "lemma": "bombon",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 1,
+      "example": "Bombon Productions",
+      "translation": "Bombon Productions"
+    },
+    {
+      "word": "bebes",
+      "lemma": "bebes",
+      "proposed": "babies",
+      "corpus_count": 2,
+      "example": "Mientras tú haces líos pa' bebes (Pa' bebe')",
+      "translation": "While you make trouble for babies (For babies)"
+    },
+    {
+      "word": "cabo",
+      "lemma": "cabo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 1,
+      "example": "Yo nunca ando solo, yo siempre salgo con 100 bandidos como El Cabo",
+      "translation": "I'm never alone, I always go out with 100 bandits like El Cabo"
+    },
+    {
+      "word": "cerrar",
+      "lemma": "cerrar",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Y en un abrir y cerrar se las lleva el viento",
+      "translation": "And in the blink of an eye, the wind takes them away."
+    },
+    {
+      "word": "chavo",
+      "lemma": "chavo",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 1,
+      "example": "Y las mujeres me lo lamen como la paleta 'el Chavo",
+      "translation": "And the women lick it for me like Chavo's popsicle"
+    },
+    {
+      "word": "consiguen",
+      "lemma": "consiguen",
+      "proposed": "to find",
+      "corpus_count": 2,
+      "example": "Después cambio de número y no me consiguen",
+      "translation": "Then I change my number and they can't find me"
+    },
+    {
+      "word": "chimba",
+      "lemma": "chimba",
+      "proposed": "fun",
+      "corpus_count": 2,
+      "example": "No hay chimba si tú no estás aquí",
+      "translation": "There's no fun if you're not here"
+    },
+    {
+      "word": "fumen",
+      "lemma": "fumen",
+      "proposed": "to pay attention to",
+      "corpus_count": 2,
+      "example": "Y fumen a mi nombre dos semanas (Jajaja, oye)",
+      "translation": ""
+    },
+    {
+      "word": "gane",
+      "lemma": "gane",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 1,
+      "example": "Esta gente tirándote el juego y yo soy el del punto del gane",
+      "translation": "These people are throwing the game at you and I'm the one with the winning point."
+    },
+    {
+      "word": "gastando",
+      "lemma": "gastando",
+      "proposed": "spending money",
+      "corpus_count": 2,
+      "example": "Gastando la fundas, chingando con putas, brincando de hotel en hotel (yeh)",
+      "translation": "Spending the bags, fucking with bitches, jumping from hotel to hotel (yeah)"
+    },
+    {
+      "word": "illuminatis",
+      "lemma": "illuminatis",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Los intocable', los illuminatis",
+      "translation": "The untouchables, the Illuminati"
+    },
+    {
+      "word": "illuminatis",
+      "lemma": "illuminatis",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 1,
+      "example": "Mera, dime Casper, los intocable', los illuminatis",
+      "translation": "Yo, what's up Casper, the untouchables, the Illuminati"
+    },
+    {
+      "word": "navaja",
+      "lemma": "navaja",
+      "proposed": "proper noun",
+      "corpus_count": 2,
+      "example": "Dile a Pedro Navaja que tenga cuida'o conmigo y no se corte",
+      "translation": "Tell Pedro Navaja to be careful with me and not cut himself"
+    },
+    {
+      "word": "neverita",
+      "lemma": "neverita",
+      "proposed": "cooler",
+      "corpus_count": 2,
+      "example": "¿Y este cabrón quién e'? El que está cogiendo cerveza 'e la neverita, tú, allá",
+      "translation": "And who is this motherfucker? The one grabbing beer from the cooler, you, over there"
+    },
+    {
+      "word": "octavo",
+      "lemma": "octavo",
+      "proposed": "eighth of an ounce",
+      "corpus_count": 2,
+      "example": "Que las cosas estaban mala', no tenía ni pa' un octavo (Ah)",
+      "translation": "Things were bad, I didn't even have money for an eighth (Ah)"
+    },
+    {
+      "word": "oídos",
+      "lemma": "oídos",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Oídos Fresh",
+      "translation": "Oídos Fresh"
+    },
+    {
+      "word": "rancho",
+      "lemma": "rancho",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Aquí somos de Rancho Humilde",
+      "translation": "We're from Rancho Humilde here"
+    },
+    {
+      "word": "rápida",
+      "lemma": "rápida",
+      "proposed": "quickly",
+      "corpus_count": 2,
+      "example": "La' tienen rápida mi reputación (El Negro)",
+      "translation": "They quickly got my reputation"
+    },
+    {
+      "word": "sacando",
+      "lemma": "sacando",
+      "proposed": "to emit",
+      "corpus_count": 2,
+      "example": "Sacando candela (¡Woh, oh, oh!)",
+      "translation": "Spitting fire (Woh, oh, oh!)"
+    },
+    {
+      "word": "sacos",
+      "lemma": "sacos",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "O Bruce Lee con los chacos, el punto y los sacos",
+      "translation": "Or Bruce Lee with nunchucks, the point and I'll take you out"
+    },
+    {
+      "word": "sueltes",
+      "lemma": "sueltes",
+      "proposed": "to let go of",
+      "corpus_count": 2,
+      "example": "Pero yo voy a mí pa' que hoy tú me la sueltes",
+      "translation": "But I'm gonna do my thing so you can let me go today"
+    },
+    {
+      "word": "trabaje",
+      "lemma": "trabaje",
+      "proposed": "to sexually stimulate",
+      "corpus_count": 2,
+      "example": "Ella no e' facil, le gusta que la trabaje",
+      "translation": "She's not easy, she likes to be worked"
+    },
+    {
+      "word": "trabajé",
+      "lemma": "trabajé",
+      "proposed": "to sexually stimulate",
+      "corpus_count": 2,
+      "example": "Mami, yo te trabajé, bellaquera' te bajé (Huh)",
+      "translation": "Baby, I worked you, I took your horniness down (Huh)"
+    },
+    {
+      "word": "virado",
+      "lemma": "virado",
+      "proposed": "turned",
+      "corpus_count": 2,
+      "example": "Que hoy yo salgo esta noche virado pa' la calle",
+      "translation": "That tonight I'm going out turned towards the street"
+    },
+    {
+      "word": "volado",
+      "lemma": "volado",
+      "proposed": "fast",
+      "corpus_count": 2,
+      "example": "Que de aquí salgo en el Banshee bien volado haciendo wheelie'",
+      "translation": "That I'm leaving here in the Banshee real fast doing wheelies"
+    },
+    {
+      "word": "volado",
+      "lemma": "volado",
+      "proposed": "flying",
+      "corpus_count": 2,
+      "example": "En el carrito de Red Bull me salieron ala', estoy volado (¡Fiu!; vola'o)",
+      "translation": "In the Red Bull cart, I grew wings, I'm flying (Fiu!; flying)"
+    },
+    {
+      "word": "ajoro",
+      "lemma": "ajoro",
+      "proposed": "to stress",
+      "corpus_count": 2,
+      "example": "Yo por nadie me ajoro",
+      "translation": "I don't stress over anyone"
+    },
+    {
+      "word": "bomba",
+      "lemma": "bomba",
+      "proposed": "bomba",
+      "corpus_count": 2,
+      "example": "Mueve ese culei de bomba y plena",
+      "translation": "Move that bomb ass ass to bomba and plena"
+    },
+    {
+      "word": "botando",
+      "lemma": "botando",
+      "proposed": "to emit",
+      "corpus_count": 2,
+      "example": "Chillando goma, botando humo, dale, ponle",
+      "translation": "Screeching tires, blowing smoke, come on, hit it"
+    },
+    {
+      "word": "cogemos",
+      "lemma": "cogemos",
+      "proposed": "to get into",
+      "corpus_count": 2,
+      "example": "Hoy la cogemos fea",
+      "translation": "Today we're gonna get ugly"
+    },
+    {
+      "word": "compartir",
+      "lemma": "compartir",
+      "proposed": "get-together",
+      "corpus_count": 2,
+      "example": "Pue' mira, este..., lo que pasó fue que a mí me invitaron a un compartir, verda' (Hmm-mm)",
+      "translation": ""
+    },
+    {
+      "word": "cuerdas",
+      "lemma": "cuerdas",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 1,
+      "example": "Benito, puñeta, ¿cómo carajos que tú no te cuerdas? Si siempre me haces lo mismo. ¿Tú te crees que yo soy pendeja?",
+      "translation": "Benito, damn, how the hell do you not remember? You always do the same thing to me. Do you think I'm stupid?"
+    },
+    {
+      "word": "cabo",
+      "lemma": "cabo",
+      "proposed": "end",
+      "corpus_count": 2,
+      "example": "Al fin y al cabo, esta vida es mía, mía",
+      "translation": "After all, this life is mine, mine"
+    },
+    {
+      "word": "changa",
+      "lemma": "changa",
+      "proposed": "fake",
+      "corpus_count": 2,
+      "example": "Aquí una changa es un phillie tuyo",
+      "translation": "Here a joint is a phillie for you"
+    },
+    {
+      "word": "chapa",
+      "lemma": "chapa",
+      "proposed": "vibe",
+      "corpus_count": 2,
+      "example": "Y lo que me corre más es que me da esa chapa sin chapeo",
+      "translation": "And what gets me going more is that she gives me that vibe without showing off"
+    },
+    {
+      "word": "chapeo",
+      "lemma": "chapeo",
+      "proposed": "gold digging",
+      "corpus_count": 2,
+      "example": "Y lo que me corre más es que me da esa chapa sin chapeo",
+      "translation": "And what gets me going more is that she gives me that vibe without showing off"
+    },
+    {
+      "word": "enrolamos",
+      "lemma": "enrolamos",
+      "proposed": "to roll (a blunt/joint)",
+      "corpus_count": 2,
+      "example": "Prende de la zeta que enrolamos",
+      "translation": "Light up the weed we rolled"
+    },
+    {
+      "word": "espeté",
+      "lemma": "espeté",
+      "proposed": "to hit",
+      "corpus_count": 2,
+      "example": "Le espeté el palo en la polo Tommy Hilfiger",
+      "translation": "I hit him with the hit in the Tommy Hilfiger polo."
+    },
+    {
+      "word": "espeté",
+      "lemma": "espeté",
+      "proposed": "to stick",
+      "corpus_count": 2,
+      "example": "Y el palo en el pecho yo se lo espeté (¡Brr!)",
+      "translation": "And I stuck the wood in her chest (Brr!)"
+    },
+    {
+      "word": "gane",
+      "lemma": "gane",
+      "proposed": "winning",
+      "corpus_count": 2,
+      "example": "Esta gente tirándote el juego y yo soy el del punto del gane",
+      "translation": "These people are throwing the game at you and I'm the one with the winning point."
+    },
+    {
+      "word": "guayo",
+      "lemma": "guayo",
+      "abstain_reason": "noise",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Guayo-yeh, guayo-yeh",
+      "translation": "Guayo-yeh, guayo-yeh"
+    },
+    {
+      "word": "juqueado",
+      "lemma": "juquear",
+      "proposed": "hooked",
+      "corpus_count": 2,
+      "example": "Mami, me tiene' juqueado, sí",
+      "translation": "Baby, you got me hooked, yeah"
+    },
+    {
+      "word": "mataba",
+      "lemma": "mataba",
+      "proposed": "to smoke",
+      "corpus_count": 2,
+      "example": "Ella mataba un weed y me pide que le dé má' bimbín (We on!)",
+      "translation": "She killed some weed and asks me for more head (We on!)"
+    },
+    {
+      "word": "medias",
+      "lemma": "medias",
+      "proposed": "half",
+      "corpus_count": 2,
+      "example": "O que el amor a medias se ha vuelto moderno, eh",
+      "translation": "Or that love-in-the-middle has become modern, huh"
+    },
+    {
+      "word": "paca",
+      "lemma": "paca",
+      "proposed": "stack of cash",
+      "corpus_count": 2,
+      "example": "Y adentro tengo la' moña', la paca y las Cartier",
+      "translation": "And inside I have the buds, the stack, and the Cartier"
+    },
+    {
+      "word": "picharon",
+      "lemma": "picharon",
+      "proposed": "to ignore",
+      "corpus_count": 2,
+      "example": "Los Reyes picharon y Santa nunca llegó",
+      "translation": "The Kings didn't show up and Santa never came"
+    },
+    {
+      "word": "picharon",
+      "lemma": "picharon",
+      "proposed": "to reject",
+      "corpus_count": 2,
+      "example": "Y ahora quieren de este bicho to' esas puta' que picharon (Brr)",
+      "translation": "And now all these bitches who dissed me want this dick (Brr)"
+    },
+    {
+      "word": "piché",
+      "lemma": "piché",
+      "proposed": "to skip",
+      "corpus_count": 2,
+      "example": "La invité pa' casa y le piché el cine (Wuh)",
+      "translation": "I invited her over and I pitched her the movie"
+    },
+    {
+      "word": "piché",
+      "lemma": "piché",
+      "proposed": "to reject",
+      "corpus_count": 2,
+      "example": "Veinte me tiraron y a to's les piché (¡Hah!)",
+      "translation": "Twenty dissed me and I rejected them all (Hah!)"
+    },
+    {
+      "word": "pegado",
+      "lemma": "pegado",
+      "proposed": "popular",
+      "corpus_count": 2,
+      "example": "Cabrón, yo estoy pegado, pu, desde que saqué \"Diles\"",
+      "translation": "Motherfucker, I've been hot since I dropped \"Diles\""
+    },
+    {
+      "word": "resuelve",
+      "lemma": "resuelve",
+      "proposed": "quick fix",
+      "corpus_count": 2,
+      "example": "Conmigo se siente cabrón, él es solo un resuelve",
+      "translation": "With me she feels like a boss, he's just a quick fix"
+    },
+    {
+      "word": "rompieron",
+      "lemma": "rompieron",
+      "proposed": "to excel",
+      "corpus_count": 2,
+      "example": "Un aplauso pa' mami y papi porque en verda' rompieron",
+      "translation": "An applause for mommy and daddy because they really killed it"
+    },
+    {
+      "word": "traes",
+      "lemma": "traes",
+      "proposed": "to be up to something",
+      "corpus_count": 2,
+      "example": "Tú ere' una bandida, tú te las traes, ey",
+      "translation": "You're a bandit, you've got it going on, ey"
+    },
+    {
+      "word": "trili",
+      "lemma": "trili",
+      "proposed": "snitch",
+      "corpus_count": 2,
+      "example": "O su gato es un trili",
+      "translation": "Or your cat is a snitch"
+    },
+    {
+      "word": "roleta",
+      "lemma": "roleta",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Una Roleta, un Hublot, no hay cadenas en baño",
+      "translation": "A Roleta, a Hublot, no chains in the bathroom"
+    },
+    {
       "word": "abajé",
       "lemma": "abajé",
       "proposed": "to back down",
@@ -12740,8 +15552,6 @@
       "word": "apuntar",
       "lemma": "apuntar",
       "proposed": "to get away with",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 1,
       "example": "Tienen que mamarme el bicho, no se la van a apuntar",
       "translation": "You have to suck my dick, you're not gonna get away with it"
@@ -12900,8 +15710,6 @@
       "word": "bajaba",
       "lemma": "bajaba",
       "proposed": "to drink",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 1,
       "example": "Solo le bajaba Rosé (Rosé)",
       "translation": "I was only drinking Rosé (Rosé)"
@@ -13570,8 +16378,6 @@
       "word": "chino",
       "lemma": "chino",
       "proposed": "hand",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 1,
       "example": "La forty en mi chino los va a orientar (ya)",
       "translation": "The forty in my hand will set them straight (yeah)"
@@ -13710,8 +16516,6 @@
       "word": "ciegas",
       "lemma": "ciegas",
       "proposed": "blindly",
-      "type": "figurative",
-      "construction": "a ciegas",
       "corpus_count": 1,
       "example": "Contigo me voy a ciegas (Ciega'), eh",
       "translation": "With you I'm going to go blind (Blind), eh"
@@ -15460,8 +18264,6 @@
       "word": "lastima",
       "lemma": "lastima",
       "proposed": "to hurt",
-      "type": "figurative",
-      "construction": null,
       "corpus_count": 1,
       "example": "Te juro que verte con otro me lastima (-tima, yeah)",
       "translation": "I swear seeing you with someone else hurts me (-tima, yeah)"
@@ -16390,8 +19192,6 @@
       "word": "pegues",
       "lemma": "pegues",
       "proposed": "to become famous",
-      "type": "slang",
-      "construction": "pegarse",
       "corpus_count": 1,
       "example": "¡Pa' que te pegues!",
       "translation": "So you can get famous!"
@@ -17277,16 +20077,6 @@
       "translation": "They see me and walk backwards, Michael Jackson, we're planting the thriller"
     },
     {
-      "word": "tickets",
-      "lemma": "tickets",
-      "proposed": "money",
-      "type": "slang",
-      "construction": null,
-      "corpus_count": 1,
-      "example": "No quiero mis tickets en caleta",
-      "translation": "I don't want my tickets hidden"
-    },
-    {
       "word": "tictac",
       "lemma": "tictac",
       "proposed": "small candy",
@@ -17510,8 +20300,6 @@
       "word": "trama",
       "lemma": "trama",
       "proposed": "marijuana",
-      "type": "slang",
-      "construction": null,
       "corpus_count": 1,
       "example": "Die' phillie' de sour, un pote de trama",
       "translation": "Ten sour Phillies, a jar of weed"
@@ -18125,6 +20913,296 @@
       "corpus_count": 1,
       "example": "La leona no está puesta pa' gatitos (No), ey",
       "translation": "The lioness isn't down for kittens (No), ey"
+    },
+    {
+      "word": "apretás",
+      "lemma": "apretás",
+      "proposed": "tight",
+      "corpus_count": 1,
+      "example": "Y ese traje se ve bien con tus nalga' apretás",
+      "translation": "And that outfit looks good with your tight ass"
+    },
+    {
+      "word": "asaltando",
+      "lemma": "asaltando",
+      "proposed": "to hit on",
+      "corpus_count": 1,
+      "example": "Y la estoy asaltando desde que me dicen Alem",
+      "translation": "And I've been assaulting her since they called me Alem"
+    },
+    {
+      "word": "bichos",
+      "lemma": "bichos",
+      "proposed": "dudes",
+      "corpus_count": 1,
+      "example": "Pateándole' el culo a par de bichos que no están en na'",
+      "translation": "Kicking the asses of some dudes who are doing nothing"
+    },
+    {
+      "word": "bloqueado",
+      "lemma": "bloqueado",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "En el Instagram me tiene bloqueado (Me tiene bloquea'o)",
+      "translation": "He's got me blocked on Instagram (He's got me blocked)"
+    },
+    {
+      "word": "callaito",
+      "lemma": "calla",
+      "proposed": "quiet",
+      "corpus_count": 1,
+      "example": "Shh, yo me quedo callaito",
+      "translation": "Shh, I'm staying quiet"
+    },
+    {
+      "word": "cepillás",
+      "lemma": "cepillás",
+      "proposed": "sexual encounter",
+      "corpus_count": 1,
+      "example": "Vino ready ya, puesta pa' una cepillás",
+      "translation": "Came ready, ready for a good time"
+    },
+    {
+      "word": "coronar",
+      "lemma": "coronar",
+      "proposed": "to succeed",
+      "corpus_count": 1,
+      "example": "Siempre estamo' en P.R., malianteo', bellaqueo', coronar (Yeh, yeh, yeh)",
+      "translation": "We're always in P.R., hustling, partying, winning (Yeh, yeh, yeh)"
+    },
+    {
+      "word": "despegan",
+      "lemma": "despegan",
+      "proposed": "to leave alone",
+      "corpus_count": 1,
+      "example": "Las babie' no se despegan pa' mí que en el bicho tengo Krazy Glue (Glue-Glue)",
+      "translation": "The babes don't leave me alone, it's like I have Krazy Glue on my dick (Glue-Glue)"
+    },
+    {
+      "word": "destroce",
+      "lemma": "destroce",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Y el corazón te destroce otra ve'",
+      "translation": "And your heart gets broken again"
+    },
+    {
+      "word": "devuelto",
+      "lemma": "devuelto",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Mil favores que no me han devuelto",
+      "translation": "A thousand favors that haven't been returned to me"
+    },
+    {
+      "word": "donitas",
+      "lemma": "don",
+      "proposed": "donuts",
+      "corpus_count": 1,
+      "example": "Haciendo donitas en la Mercho, Ken Block, Block",
+      "translation": "Doing donuts in the Mercedes, Ken Block, Block"
+    },
+    {
+      "word": "falsedad",
+      "lemma": "falsedad",
+      "abstain_reason": "invalid_output",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "No quiero mentira' ni tu falsedad",
+      "translation": "I don't want lies or your fakeness"
+    },
+    {
+      "word": "faltó",
+      "lemma": "faltó",
+      "proposed": "to fail to",
+      "corpus_count": 1,
+      "example": "Hay mucho de mí que te faltó conocer",
+      "translation": "There's a lot about me you didn't get to know"
+    },
+    {
+      "word": "frenar",
+      "lemma": "frenar",
+      "proposed": "to stop",
+      "corpus_count": 1,
+      "example": "Donde los vea le vamos a frenar",
+      "translation": "Wherever we see them, we're gonna stop them"
+    },
+    {
+      "word": "güirita",
+      "lemma": "güira",
+      "proposed": "head",
+      "corpus_count": 1,
+      "example": "En güirita flow barea, te la vamo' a dunkear (Huh)",
+      "translation": "With that güirita flow, I'm gonna dunk on you (Huh)"
+    },
+    {
+      "word": "increíble",
+      "lemma": "increíble",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Jan Paul, El Increíble",
+      "translation": "Jan Paul, The Incredible"
+    },
+    {
+      "word": "moviera",
+      "lemma": "moviera",
+      "proposed": "to traffic",
+      "corpus_count": 1,
+      "example": "Facturando como si moviera los cosos (Jeje)",
+      "translation": "Making money like we're moving the goods (Hehe)"
+    },
+    {
+      "word": "pegando",
+      "lemma": "pegando",
+      "proposed": "to release hits",
+      "corpus_count": 1,
+      "example": "Yo pegando temas sin hacerle' promo (Promo)",
+      "translation": "I'm dropping hits without promoting them (Promo)"
+    },
+    {
+      "word": "pisar",
+      "lemma": "pisar",
+      "proposed": "to surpass",
+      "corpus_count": 1,
+      "example": "Vamo' a analizar cuál de ustede', quién me va a pisar (Jaja)",
+      "translation": "Let's analyze which of you is gonna take me (Haha)"
+    },
+    {
+      "word": "pusimos",
+      "lemma": "pusimos",
+      "proposed": "to start",
+      "corpus_count": 1,
+      "example": "Luego las cosa' cambiaron (Yeah) y nos pusimos a cantar (Yeah)",
+      "translation": "Then things changed (Yeah) and we started singing (Yeah)"
+    },
+    {
+      "word": "querida",
+      "lemma": "querida",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Como Juan Gabriel cantando \"Querida\"",
+      "translation": "Like Juan Gabriel singing \"Querida\""
+    },
+    {
+      "word": "recorras",
+      "lemma": "recorras",
+      "proposed": "to experience",
+      "corpus_count": 1,
+      "example": "Y no me interesa lo que por mí recorras",
+      "translation": "And I don't care what you go through for me"
+    },
+    {
+      "word": "romana",
+      "lemma": "romana",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Hoy ando rulay, La Romana prendí'a mejor que Dubai, ey",
+      "translation": "Today I'm feeling fly, La Romana lit up better than Dubai, ey"
+    },
+    {
+      "word": "sagrado",
+      "lemma": "sagrado",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "De la IUPI pa' la Inter, de la Inter pa' Sagrado",
+      "translation": "From IUPI to Inter, from Inter to Sagrado"
+    },
+    {
+      "word": "salieron",
+      "lemma": "salieron",
+      "proposed": "to grow",
+      "corpus_count": 1,
+      "example": "En el carrito de Red Bull me salieron ala', estoy vola'o (¡Fiu!; vola'o)",
+      "translation": "In the Red Bull cart, I grew wings, I'm flying (Fiu!; flying)"
+    },
+    {
+      "word": "vistas",
+      "lemma": "vistas",
+      "proposed": "views",
+      "corpus_count": 1,
+      "example": "Este disco no es pa' ser tocado, ni un billón de vistas",
+      "translation": "This album isn't meant to be played, not even a billion views"
+    },
+    {
+      "word": "ponerse",
+      "lemma": "ponerse",
+      "proposed": "to put on",
+      "corpus_count": 1,
+      "example": "Pórtate mala, dale, ponerse cuero",
+      "translation": "Behave badly, go on, get your leather on"
+    },
+    {
+      "word": "armada",
+      "lemma": "armada",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Esperándote, como la Nissan, Armada (Yeh)",
+      "translation": "Waiting for you, like the Nissan, Armada (Yeh)"
+    },
+    {
+      "word": "escondías",
+      "lemma": "escondías",
+      "proposed": "in secret",
+      "corpus_count": 1,
+      "example": "Siempre jangueando a escondías del pai",
+      "translation": "Always hanging out, hiding from dad"
+    },
+    {
+      "word": "presta",
+      "lemma": "presta",
+      "proposed": "to be willing",
+      "corpus_count": 1,
+      "example": "Y pa' hacerlo de nuevo se presta",
+      "translation": "And she's down to do it again"
+    },
+    {
+      "word": "sirven",
+      "lemma": "sirven",
+      "proposed": "to fit",
+      "corpus_count": 1,
+      "example": "Si las Retro no me sirven, le' quito la suela (Ey)",
+      "translation": "If the Retro ones don't fit me, I take off the sole (Ey)"
+    },
+    {
+      "word": "tiraos",
+      "lemma": "tiraos",
+      "proposed": "to lie down",
+      "corpus_count": 1,
+      "example": "Michael Phelps tiraos pa' atrá', nadando en mi' millone'",
+      "translation": "Michael Phelps lying back, swimming in my millions"
+    },
+    {
+      "word": "indica",
+      "lemma": "indica",
+      "proposed": "tell me",
+      "corpus_count": 1,
+      "example": "Indica, mi loco, dame la lú' (¡Lu'!), ¿quién puñeta eres tú?",
+      "translation": "Tell me, my dude, give me the light (Light!), who the hell are you?"
+    },
+    {
+      "word": "marino",
+      "lemma": "marino",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "San Marino",
+      "translation": "San Marino"
+    },
+    {
+      "word": "pelas",
+      "lemma": "pelas",
+      "proposed": "hair",
+      "corpus_count": 1,
+      "example": "Y tengo la cabeza sin pelas, como un ovejo",
+      "translation": "And my head is clear, like a sheep"
     }
   ]
 }

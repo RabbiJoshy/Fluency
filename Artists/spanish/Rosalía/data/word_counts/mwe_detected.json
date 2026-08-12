@@ -12,7 +12,11 @@
           "line": "Antes de caerse al suelo ya sabía que se rompía (Uh)",
           "title": "MALAMENTE (Cap.1: Augurio)",
           "matched_variant": "sabía que",
-          "matched_surface": "sabía que"
+          "matched_surface": "sabía que",
+          "segment_id": "seg_dc314c1c3a44db3f18bcb35f",
+          "occurrence_ids": [
+            "occ_3c63b2678e912c1d0d52b6b3"
+          ]
         },
         {
           "id": "12548052:16",
@@ -20,6 +24,10 @@
           "title": "Berghain",
           "matched_variant": "sé que",
           "matched_surface": "Sé que",
+          "segment_id": "seg_04a17cf06b8ac5e1739e4da8",
+          "occurrence_ids": [
+            "occ_efdc68604970cb559d731e70"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -31,6 +39,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "sabes que",
           "matched_surface": "Sabe' que",
+          "segment_id": "seg_56ee486df95d69553edbf4b2",
+          "occurrence_ids": [
+            "occ_9444b59524f2eaf160fc0230"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -41,14 +53,22 @@
           "line": "Dice quien sabe que tú eres pa' mí",
           "title": "La Rumba Del Perdón",
           "matched_variant": "sabe que",
-          "matched_surface": "sabe que"
+          "matched_surface": "sabe que",
+          "segment_id": "seg_4eb70d7677cf08518dc63431",
+          "occurrence_ids": [
+            "occ_c8a55a2ef608b58985a58143"
+          ]
         },
         {
           "id": "7659063:3",
           "line": "No reces por mí, quiero que sepas que estoy bien",
           "title": "COMO UN G",
           "matched_variant": "sepas que",
-          "matched_surface": "sepas que"
+          "matched_surface": "sepas que",
+          "segment_id": "seg_d6ce08b359957e3b9d374f1c",
+          "occurrence_ids": [
+            "occ_19b88217882a3e788276cee9"
+          ]
         }
       ],
       "variants": [
@@ -87,6 +107,10 @@
           "title": "Lo Vas A Olvidar",
           "matched_variant": "vas a olvidar",
           "matched_surface": "va' a olvidar",
+          "segment_id": "seg_de68665dcda3d1d6b9129de9",
+          "occurrence_ids": [
+            "occ_d3c9852525b98309370816cf"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Billie Eilish"
@@ -98,14 +122,22 @@
           "line": "Voy a salir pa' la calle, en la manita los aros brillando en mi piel",
           "title": "MALAMENTE (Cap.1: Augurio)",
           "matched_variant": "voy a salir",
-          "matched_surface": "Voy a salir"
+          "matched_surface": "Voy a salir",
+          "segment_id": "seg_1bfc954adfbdd8d09f1243ca",
+          "occurrence_ids": [
+            "occ_d1d9c9bbf2ea6ed541c1c0bd"
+          ]
         },
         {
           "id": "3750274:33",
           "line": "No voy a perder ni un minuto en volver a pensarte (Hmm)",
           "title": "MALAMENTE (Cap.1: Augurio)",
           "matched_variant": "voy a perder",
-          "matched_surface": "voy a perder"
+          "matched_surface": "voy a perder",
+          "segment_id": "seg_cf2e3604c9ee89596b66995a",
+          "occurrence_ids": [
+            "occ_7e90c4b648759191e4cf328a"
+          ]
         },
         {
           "id": "7288792:13",
@@ -113,6 +145,10 @@
           "title": "LA FAMA",
           "matched_variant": "vayas a casar",
           "matched_surface": "vayas a casar",
+          "segment_id": "seg_4de2da6b8f40377536552ffa",
+          "occurrence_ids": [
+            "occ_97b948addcc83ab4d9acb1f9"
+          ],
           "vocalists": [
             "The Weeknd"
           ],
@@ -124,6 +160,10 @@
           "title": "LA FAMA",
           "matched_variant": "voy a casar",
           "matched_surface": "voy a casar",
+          "segment_id": "seg_ade06d65907e4b6935865fcd",
+          "occurrence_ids": [
+            "occ_3c5e8c3957a1f68c29d745bc"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -164,6 +204,10 @@
           "title": "BESO",
           "matched_variant": "tú eres",
           "matched_surface": "Tú ere'",
+          "segment_id": "seg_cf2445388d10315569968518",
+          "occurrence_ids": [
+            "occ_3faabdcf9872aeb5342c15ad"
+          ],
           "vocalists": [
             "Rauw Alejandro"
           ],
@@ -175,6 +219,10 @@
           "title": "BESO",
           "matched_variant": "tú eres",
           "matched_surface": "tú ere'",
+          "segment_id": "seg_0605b27c0b01793c13a0f84f",
+          "occurrence_ids": [
+            "occ_e883ca220694eeac004c3b9e"
+          ],
           "vocalists": [
             "Rauw Alejandro"
           ],
@@ -185,7 +233,11 @@
           "line": "¿Tú ere' el que pimpea o te pimpean a ti?",
           "title": "BIZCOCHITO",
           "matched_variant": "tú eres",
-          "matched_surface": "Tú ere'"
+          "matched_surface": "Tú ere'",
+          "segment_id": "seg_2bf9c597582c07bb7636298e",
+          "occurrence_ids": [
+            "occ_49628152415ff4ad9599df90"
+          ]
         },
         {
           "id": "7142770:12",
@@ -193,6 +245,10 @@
           "title": "Linda",
           "matched_variant": "tú eres",
           "matched_surface": "Tú ere'",
+          "segment_id": "seg_e2ab7191996c92b021909671",
+          "occurrence_ids": [
+            "occ_7e7c420c7276f0bd9e79ea17"
+          ],
           "vocalists": [
             "Tokischa",
             "ROSALÍA"
@@ -205,6 +261,10 @@
           "title": "Linda",
           "matched_variant": "tú eres",
           "matched_surface": "tú eres",
+          "segment_id": "seg_1c5e8917f61d3cc36c1f7ee4",
+          "occurrence_ids": [
+            "occ_1a93bdf150d0f7dd3e716d42"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Tokischa"
@@ -230,6 +290,10 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "es que",
           "matched_surface": "es que",
+          "segment_id": "seg_ee85ad7a43ea6994c41e39bb",
+          "occurrence_ids": [
+            "occ_3d39836d939180648834f15e"
+          ],
           "vocalists": [
             "Ozuna"
           ],
@@ -241,6 +305,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "es que",
           "matched_surface": "e' que",
+          "segment_id": "seg_f1455a3475cb63e33e03102b",
+          "occurrence_ids": [
+            "occ_722af58467d25c92ec633643"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -252,7 +320,11 @@
           "line": "Y es que el de arriba nos ha señala'o (¡Eh!)",
           "title": "Aute Cuture",
           "matched_variant": "es que",
-          "matched_surface": "es que"
+          "matched_surface": "es que",
+          "segment_id": "seg_85852103bfd90fff70ccb66d",
+          "occurrence_ids": [
+            "occ_9bea35d6c15f11768efa256a"
+          ]
         },
         {
           "id": "7288792:3",
@@ -260,6 +332,10 @@
           "title": "LA FAMA",
           "matched_variant": "es que",
           "matched_surface": "es que",
+          "segment_id": "seg_44beed29a7ac28649dc21439",
+          "occurrence_ids": [
+            "occ_c7e0979b40c8ecde8500f492"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -271,6 +347,10 @@
           "title": "BESO",
           "matched_variant": "es que",
           "matched_surface": "es que",
+          "segment_id": "seg_e8d608a7e6cd4a676aada86d",
+          "occurrence_ids": [
+            "occ_73f54d0d9a90459a53ae7670"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -295,6 +375,10 @@
           "title": "La Perla",
           "matched_variant": "dirá que",
           "matched_surface": "Dirá que",
+          "segment_id": "seg_df585be29decd7abffc52e7f",
+          "occurrence_ids": [
+            "occ_d939bda22d368a97242a9e36"
+          ],
           "vocalists": [
             "Yahritza",
             "Su Esencia",
@@ -308,6 +392,10 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "diría que",
           "matched_surface": "diría que",
+          "segment_id": "seg_7bcd3aa2aa12f74db1dc7352",
+          "occurrence_ids": [
+            "occ_a6f438f6727205992a00f015"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -319,6 +407,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "decías que",
           "matched_surface": "decías que",
+          "segment_id": "seg_c1e5563d550d769bd13c2e26",
+          "occurrence_ids": [
+            "occ_738ce34112eba7aca580ab09"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Bad Bunny",
@@ -331,14 +423,22 @@
           "line": "Frank me dice que abra el mundo como una nue'",
           "title": "SAOKO",
           "matched_variant": "dice que",
-          "matched_surface": "dice que"
+          "matched_surface": "dice que",
+          "segment_id": "seg_708638fd5f955873c2e97b31",
+          "occurrence_ids": [
+            "occ_db499ba0b8fcac4696b7f1e6"
+          ]
         },
         {
           "id": "12581298:1",
           "line": "Dicen que si vieras pasar",
           "title": "Magnolias",
           "matched_variant": "dicen que",
-          "matched_surface": "Dicen que"
+          "matched_surface": "Dicen que",
+          "segment_id": "seg_86dc1b058ef0eeabcaf6b10f",
+          "occurrence_ids": [
+            "occ_018ec0fd3c163b76c89904b5"
+          ]
         }
       ],
       "variants": [
@@ -381,6 +481,10 @@
           "title": "LA FAMA",
           "matched_variant": "no hay",
           "matched_surface": "No hay",
+          "segment_id": "seg_a7cf930db3d4698150770976",
+          "occurrence_ids": [
+            "occ_eb5a864ecc97aec31f5b2f79"
+          ],
           "vocalists": [
             "ROSALÍA",
             "The Weeknd"
@@ -393,6 +497,10 @@
           "title": "LA FAMA",
           "matched_variant": "no hay",
           "matched_surface": "No hay",
+          "segment_id": "seg_b2d1d19f9f813b67f599e969",
+          "occurrence_ids": [
+            "occ_1fbec4d5c8365a212aa20bf7"
+          ],
           "vocalists": [
             "ROSALÍA",
             "The Weeknd"
@@ -404,21 +512,34 @@
           "line": "Ya no hay nadie más por ahí",
           "title": "BAGDAD (Cap.7: Liturgia)",
           "matched_variant": "no hay",
-          "matched_surface": "no hay"
+          "matched_surface": "no hay",
+          "segment_id": "seg_9641a8edd9f9c293c4f25719",
+          "occurrence_ids": [
+            "occ_2a18ba09f095721e7f9e4326"
+          ]
         },
         {
           "id": "3964062:4",
           "line": "No hay nadie más, senta'ita dando palmas",
           "title": "BAGDAD (Cap.7: Liturgia)",
           "matched_variant": "no hay",
-          "matched_surface": "No hay"
+          "matched_surface": "No hay",
+          "segment_id": "seg_0dcd95783874197644efad10",
+          "occurrence_ids": [
+            "occ_8f9070f2a0daa900fd2ca119"
+          ]
         },
         {
           "id": "3964062:8",
           "line": "No hay nadie más, no hay nadie más",
           "title": "BAGDAD (Cap.7: Liturgia)",
           "matched_variant": "no hay",
-          "matched_surface": "No hay"
+          "matched_surface": "No hay",
+          "segment_id": "seg_dbe2626c095ff2df46edcc64",
+          "occurrence_ids": [
+            "occ_e5f4dfc65514e321d6c534d0",
+            "occ_8582793c52b989b28097b658"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -436,6 +557,10 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "quieres que",
           "matched_surface": "quieres que",
+          "segment_id": "seg_c8f42551334b624f762772a8",
+          "occurrence_ids": [
+            "occ_b682f467a7bae144e85ddff3"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -447,6 +572,10 @@
           "title": "BESO",
           "matched_variant": "quiero que",
           "matched_surface": "quiero que",
+          "segment_id": "seg_f291aa8ff916c4c7edc4571a",
+          "occurrence_ids": [
+            "occ_b9ad60f012b6502ebff0a7aa"
+          ],
           "vocalists": [
             "Rauw Alejandro",
             "Rauw Alejandro",
@@ -459,7 +588,11 @@
           "line": "El querer que no se da, ¿dónde acaba?",
           "title": "COMO UN G",
           "matched_variant": "querer que",
-          "matched_surface": "querer que"
+          "matched_surface": "querer que",
+          "segment_id": "seg_7703701b8bcf019b14f107dd",
+          "occurrence_ids": [
+            "occ_c498e5bdad96343941b03caa"
+          ]
         },
         {
           "id": "8416396:11",
@@ -467,6 +600,10 @@
           "title": "Besos Moja2",
           "matched_variant": "quería que",
           "matched_surface": "quería que",
+          "segment_id": "seg_496151e059404a16be353871",
+          "occurrence_ids": [
+            "occ_96ffa5b4122295e5a434a6a0"
+          ],
           "vocalists": [
             "Yandel",
             "ROSALÍA"
@@ -478,7 +615,11 @@
           "line": "Quisiera que me comprendieras",
           "title": "Te Estoy Amando Locamente (Cover)",
           "matched_variant": "quisiera que",
-          "matched_surface": "Quisiera que"
+          "matched_surface": "Quisiera que",
+          "segment_id": "seg_851384a20315d173f825fae0",
+          "occurrence_ids": [
+            "occ_35b720096f017effdb15a1e4"
+          ]
         }
       ],
       "variants": [
@@ -501,8 +642,8 @@
     {
       "expression": "para que",
       "translation": "so that, in order to",
-      "count": 13,
-      "occurrence_count": 13,
+      "count": 12,
+      "occurrence_count": 12,
       "num_songs": 8,
       "examples": [
         {
@@ -511,6 +652,10 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
+          "segment_id": "seg_36789572f0c47f83c6ad5366",
+          "occurrence_ids": [
+            "occ_e74a25c73e817c40d5dfbb0b"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Ozuna",
@@ -524,6 +669,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
+          "segment_id": "seg_b4c864673f8ec6e717524f83",
+          "occurrence_ids": [
+            "occ_40d0892a6ea37b04f43271ac"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -536,6 +685,10 @@
           "title": "Con Altura",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
+          "segment_id": "seg_2e889493950a5cd360f6dcd4",
+          "occurrence_ids": [
+            "occ_812b9b3786da0ea41c131785"
+          ],
           "vocalists": [
             "El Guincho",
             "ROSALÍA"
@@ -548,6 +701,10 @@
           "title": "Con Altura",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
+          "segment_id": "seg_3d0d87245001dd3d2ef2b37d",
+          "occurrence_ids": [
+            "occ_7f249249732ac2b06c04310d"
+          ],
           "vocalists": [
             "ROSALÍA",
             "J Balvin",
@@ -561,6 +718,11 @@
           "title": "Con Altura",
           "matched_variant": "para que",
           "matched_surface": "pa' que",
+          "segment_id": "seg_c3ff742e266155e800e8eb9b",
+          "occurrence_ids": [
+            "occ_6f6feb7dd08d7bd635b07461",
+            "occ_3834d18de4f2110e5d6c09c7"
+          ],
           "vocalists": [
             "ROSALÍA",
             "J Balvin",
@@ -587,6 +749,10 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_74ad395da0ac2457b45c4848",
+          "occurrence_ids": [
+            "occ_3132e81f3da6cd587adf528e"
+          ],
           "vocalists": [
             "Ozuna"
           ],
@@ -598,6 +764,11 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_6aa5d1ccc1a42b4d1f4c8a4d",
+          "occurrence_ids": [
+            "occ_79a31886a8c3a13334eee55b",
+            "occ_3c211a6223967516622ef751"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Bad Bunny",
@@ -611,6 +782,11 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_773625ced2104deacd6a05f2",
+          "occurrence_ids": [
+            "occ_08de406e82b4105e788d3ff8",
+            "occ_002bf3c912cd73f4df561148"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -623,6 +799,10 @@
           "title": "BESO",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_ec59cef890475fb1b281b7c6",
+          "occurrence_ids": [
+            "occ_f3b1f259ec61dc411b03cb2f"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -634,6 +814,10 @@
           "title": "BESO",
           "matched_variant": "de ti",
           "matched_surface": "de ti",
+          "segment_id": "seg_089beb30b2b00066e2950d90",
+          "occurrence_ids": [
+            "occ_ece0a065f5bd1c52745fdb58"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -655,6 +839,11 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "de mí",
           "matched_surface": "de mí",
+          "segment_id": "seg_6aa5d1ccc1a42b4d1f4c8a4d",
+          "occurrence_ids": [
+            "occ_79a31886a8c3a13334eee55b",
+            "occ_3c211a6223967516622ef751"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Bad Bunny",
@@ -668,6 +857,11 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "de mí",
           "matched_surface": "de mí",
+          "segment_id": "seg_773625ced2104deacd6a05f2",
+          "occurrence_ids": [
+            "occ_08de406e82b4105e788d3ff8",
+            "occ_002bf3c912cd73f4df561148"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -680,6 +874,10 @@
           "title": "BESO",
           "matched_variant": "de mí",
           "matched_surface": "de mí",
+          "segment_id": "seg_0605b27c0b01793c13a0f84f",
+          "occurrence_ids": [
+            "occ_b49a6ad37c83cb47509d17b6"
+          ],
           "vocalists": [
             "Rauw Alejandro"
           ],
@@ -690,7 +888,11 @@
           "line": "Coge un trozo de mí, quédatelo pa' cuando no esté",
           "title": "Reliquia",
           "matched_variant": "de mí",
-          "matched_surface": "de mí"
+          "matched_surface": "de mí",
+          "segment_id": "seg_3fdd3c7e115a9241cc8c38cb",
+          "occurrence_ids": [
+            "occ_b425b55fc30417fbca6f44e2"
+          ]
         },
         {
           "id": "8916305:11",
@@ -698,6 +900,11 @@
           "title": "VAMPIROS",
           "matched_variant": "de mí",
           "matched_surface": "de mí",
+          "segment_id": "seg_ecb19929f255871054b59892",
+          "occurrence_ids": [
+            "occ_4a28d896540bdaed5b1c8f98",
+            "occ_a42cf9c02b0fc87cf8739170"
+          ],
           "vocalists": [
             "Rauw Alejandro",
             "ROSALÍA",
@@ -720,7 +927,11 @@
           "line": "Ya decidí que esta noche se sale",
           "title": "DESPECHÁ",
           "matched_variant": "esta noche",
-          "matched_surface": "esta noche"
+          "matched_surface": "esta noche",
+          "segment_id": "seg_6129db41e60b01cd19f7e6aa",
+          "occurrence_ids": [
+            "occ_35e1c8fb2bccbc37034614af"
+          ]
         },
         {
           "id": "8916305:13",
@@ -728,6 +939,10 @@
           "title": "VAMPIROS",
           "matched_variant": "esta noche",
           "matched_surface": "esta noche",
+          "segment_id": "seg_06c85fff49b16620042d454c",
+          "occurrence_ids": [
+            "occ_46bbf05c615db7ee99e28147"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -740,6 +955,10 @@
           "title": "VAMPIROS",
           "matched_variant": "esta noche",
           "matched_surface": "esta noche",
+          "segment_id": "seg_cdb6cdc478c90d6b273db7fd",
+          "occurrence_ids": [
+            "occ_5ec8ad4ea6c581fb73fba93e"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -752,6 +971,10 @@
           "title": "VAMPIROS",
           "matched_variant": "esta noche",
           "matched_surface": "esta noche",
+          "segment_id": "seg_ebd8e3a383bcacea765e8023",
+          "occurrence_ids": [
+            "occ_55c690c32526aba535fb0068"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -764,6 +987,10 @@
           "title": "VAMPIROS",
           "matched_variant": "esta noche",
           "matched_surface": "esta noche",
+          "segment_id": "seg_ec5a754268049a6a89c25ac1",
+          "occurrence_ids": [
+            "occ_bc2a6ef88c002518e8be6a0a"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -786,6 +1013,10 @@
           "title": "Suncity",
           "matched_variant": "tienes que llorar",
           "matched_surface": "tienes que llorar",
+          "segment_id": "seg_4946f065e745ca78400d7904",
+          "occurrence_ids": [
+            "occ_df0bf2b287e0a96681a92686"
+          ],
           "vocalists": [
             "Khalid",
             "Empress Of"
@@ -798,6 +1029,10 @@
           "title": "Con Altura",
           "matched_variant": "tuve que comprar",
           "matched_surface": "tuve que comprar",
+          "segment_id": "seg_cdb44f273639f94e9f372670",
+          "occurrence_ids": [
+            "occ_e2475fa2fb64fe41bd66b67c"
+          ],
           "vocalists": [
             "J Balvin",
             "ROSALÍA"
@@ -810,6 +1045,10 @@
           "title": "BESO",
           "matched_variant": "tuvo que enseñar",
           "matched_surface": "tuvo que enseñar",
+          "segment_id": "seg_ad6282f853d6fe5cdf46b99f",
+          "occurrence_ids": [
+            "occ_14305602b800706c479ec901"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -821,6 +1060,10 @@
           "title": "Barefoot in the Park",
           "matched_variant": "tuviera que encontrar",
           "matched_surface": "tuviera que encontrar",
+          "segment_id": "seg_050f97facb23e20ac35c2c76",
+          "occurrence_ids": [
+            "occ_8ea51005b46e3d1883c68e74"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Both"
@@ -832,7 +1075,11 @@
           "line": "Si no lo puedes tener lo tendrás que soltar",
           "title": "COMO UN G",
           "matched_variant": "tendrás que soltar",
-          "matched_surface": "tendrás que soltar"
+          "matched_surface": "tendrás que soltar",
+          "segment_id": "seg_fbf7a83615f976250ef855b8",
+          "occurrence_ids": [
+            "occ_fff0be74c616a7ab5857eabb"
+          ]
         }
       ],
       "variants": [
@@ -868,7 +1115,11 @@
           "line": "Si te vuelvo a besar, bebé",
           "title": "SAOKO",
           "matched_variant": "vuelvo a besar",
-          "matched_surface": "vuelvo a besar"
+          "matched_surface": "vuelvo a besar",
+          "segment_id": "seg_b8a6d7b41d170ef1225f1ee9",
+          "occurrence_ids": [
+            "occ_4d31c59f5277bbac6bcec11d"
+          ]
         },
         {
           "id": "12581288:9",
@@ -876,6 +1127,10 @@
           "title": "Porcelana",
           "matched_variant": "vuelve a aparecer",
           "matched_surface": "vuelve a aparecer",
+          "segment_id": "seg_c366af9a01ed4526ba0b4157",
+          "occurrence_ids": [
+            "occ_1054e25124b6f041d92817a5"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -886,7 +1141,11 @@
           "line": "Pero el pelo vuelve a crecer, la pureza también",
           "title": "Reliquia",
           "matched_variant": "vuelve a crecer",
-          "matched_surface": "vuelve a crecer"
+          "matched_surface": "vuelve a crecer",
+          "segment_id": "seg_9cc3d9d20f048d3f20fabe54",
+          "occurrence_ids": [
+            "occ_55519578ef9b8d66ae2a0125"
+          ]
         },
         {
           "id": "2814756:39",
@@ -894,6 +1153,10 @@
           "title": "Antes de Morirme",
           "matched_variant": "volver a nacer",
           "matched_surface": "volver a nacer",
+          "segment_id": "seg_c7f5b1a24af728ac62a0e698",
+          "occurrence_ids": [
+            "occ_ae3127ddfa7576284f8a5d8c"
+          ],
           "vocalists": [
             "ROSALÍA",
             "C. Tangana",
@@ -906,7 +1169,11 @@
           "line": "Y nunca volviste a cruzar el umbral de la puerta por la que te fuiste",
           "title": "La Rumba Del Perdón",
           "matched_variant": "volviste a cruzar",
-          "matched_surface": "volviste a cruzar"
+          "matched_surface": "volviste a cruzar",
+          "segment_id": "seg_1d19ccc9c505a6683923e005",
+          "occurrence_ids": [
+            "occ_8c5c0da9cebf5c95195af1b1"
+          ]
         }
       ],
       "variants": [
@@ -942,35 +1209,56 @@
           "line": "Te quiero ride como a mi bike",
           "title": "HENTAI",
           "matched_variant": "te quiero",
-          "matched_surface": "Te quiero"
+          "matched_surface": "Te quiero",
+          "segment_id": "seg_727ab809b540d3d183773ce9",
+          "occurrence_ids": [
+            "occ_23fbbdb536d941b7efcecdfe"
+          ]
         },
         {
           "id": "7515170:30",
           "line": "Bebé, te quiero comer ya, ya",
           "title": "HENTAI",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_53ece5ef3993e2b6d965dc5a",
+          "occurrence_ids": [
+            "occ_1911b5365756cab9277f9901"
+          ]
         },
         {
           "id": "7515170:31",
           "line": "Ya te quiero hacer hentai",
           "title": "HENTAI",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_e5c860da8060c5e804674bec",
+          "occurrence_ids": [
+            "occ_940b73530a1fcffcf44b8ea9"
+          ]
         },
         {
           "id": "3964070:24",
           "line": "Que te dije que te quiero",
           "title": "MALDICIÓN (Cap.10: Cordura)",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_ec229f1334c75b26f9b67065",
+          "occurrence_ids": [
+            "occ_c0076141cd736ddaacc95555",
+            "occ_dd62dc52c1d5998641ed4bf9"
+          ]
         },
         {
           "id": "3065897:38",
           "line": "Por lo mucho que te quiero",
           "title": "Si Tú Supieras Compañero",
           "matched_variant": "te quiero",
-          "matched_surface": "te quiero"
+          "matched_surface": "te quiero",
+          "segment_id": "seg_ea8be970de45d3ea1a4daa86",
+          "occurrence_ids": [
+            "occ_7b174fd3514132afd638f5f2"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -988,6 +1276,10 @@
           "title": "New Woman",
           "matched_variant": "todo lo que",
           "matched_surface": "to' lo que",
+          "segment_id": "seg_b5cca2fa1b0a2c7ebd438e69",
+          "occurrence_ids": [
+            "occ_04f1c332e877110bd5c83c89"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -999,6 +1291,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "todo lo que",
           "matched_surface": "to' lo que",
+          "segment_id": "seg_710a3f7f1673311b5f63f927",
+          "occurrence_ids": [
+            "occ_2fdd0af5df50136903454935"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -1011,6 +1307,10 @@
           "title": "Barefoot in the Park",
           "matched_variant": "todo lo que",
           "matched_surface": "to' lo que",
+          "segment_id": "seg_afe963e5ae708f9090579379",
+          "occurrence_ids": [
+            "occ_370da6def005943f9ff04ba8"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Both"
@@ -1022,14 +1322,22 @@
           "line": "Pero tengo to' lo que tiene delito",
           "title": "BIZCOCHITO",
           "matched_variant": "todo lo que",
-          "matched_surface": "to' lo que"
+          "matched_surface": "to' lo que",
+          "segment_id": "seg_c3c818709ef9c023b1c6522e",
+          "occurrence_ids": [
+            "occ_20dccbd8ed334b707aaf3acd"
+          ]
         },
         {
           "id": "7515185:33",
           "line": "Habla bullshit, to' lo que dice fasea",
           "title": "BIZCOCHITO",
           "matched_variant": "todo lo que",
-          "matched_surface": "to' lo que"
+          "matched_surface": "to' lo que",
+          "segment_id": "seg_b83f0a2cd1c9f112e7658009",
+          "occurrence_ids": [
+            "occ_e84d19989933b78bfe8fa120"
+          ]
         }
       ],
       "variants": [
@@ -1049,14 +1357,22 @@
           "line": "Que tú sabes que yo te canto al siete por medio",
           "title": "BULERÍAS",
           "matched_variant": "tú sabes",
-          "matched_surface": "tú sabes"
+          "matched_surface": "tú sabes",
+          "segment_id": "seg_6291b0926aae6309b0164a77",
+          "occurrence_ids": [
+            "occ_78edc568d3e8edf3a8e11d4c"
+          ]
         },
         {
           "id": "7528115:31",
           "line": "Ay, que tú sabes que yo te canto al siete por medio",
           "title": "BULERÍAS",
           "matched_variant": "tú sabes",
-          "matched_surface": "tú sabes"
+          "matched_surface": "tú sabes",
+          "segment_id": "seg_9092979a4de205c7ecdb0b18",
+          "occurrence_ids": [
+            "occ_08219670248cd9160d8ce5ad"
+          ]
         },
         {
           "id": "8916305:13",
@@ -1064,6 +1380,10 @@
           "title": "VAMPIROS",
           "matched_variant": "tú sabes",
           "matched_surface": "Tú sabe'",
+          "segment_id": "seg_06c85fff49b16620042d454c",
+          "occurrence_ids": [
+            "occ_462d90ecfb8f2de4ad17f278"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -1076,6 +1396,10 @@
           "title": "VAMPIROS",
           "matched_variant": "tú sabes",
           "matched_surface": "Tú sabe'",
+          "segment_id": "seg_cdb6cdc478c90d6b273db7fd",
+          "occurrence_ids": [
+            "occ_446544e669d3fce76e035e54"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -1088,6 +1412,10 @@
           "title": "VAMPIROS",
           "matched_variant": "tú sabes",
           "matched_surface": "tú sabe'",
+          "segment_id": "seg_ebd8e3a383bcacea765e8023",
+          "occurrence_ids": [
+            "occ_d382024cfdd75e27fc8a1d97"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -1113,6 +1441,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_1ad56adfa8fcb81f71151035",
+          "occurrence_ids": [
+            "occ_580d23f69235f1c241343e25"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1124,6 +1456,10 @@
           "title": "LA FAMA",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_8157603196ddd8fdee1fd86e",
+          "occurrence_ids": [
+            "occ_3cc9a6696a28e97cf42f257e"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1135,6 +1471,10 @@
           "title": "BESO",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_eb61816fbf01a3a6a39f48bf",
+          "occurrence_ids": [
+            "occ_5d377ccb800e740d90b9bf89"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1145,7 +1485,11 @@
           "line": "No duermo na' y voy como si estuviera blindá'",
           "title": "COMO UN G",
           "matched_variant": "como si",
-          "matched_surface": "como si"
+          "matched_surface": "como si",
+          "segment_id": "seg_7cb0955c95e7f3b9ec8245d4",
+          "occurrence_ids": [
+            "occ_d19c71322918236c486f43a9"
+          ]
         },
         {
           "id": "7142770:41",
@@ -1153,6 +1497,10 @@
           "title": "Linda",
           "matched_variant": "como si",
           "matched_surface": "como si",
+          "segment_id": "seg_33ef9ace408be33539b3bd54",
+          "occurrence_ids": [
+            "occ_9a7b3380f194a03c5deb69ca"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Tokischa"
@@ -1174,7 +1522,11 @@
           "line": "Yo tengo mi fe, mis armas, mi cora', que aún no sé pa' quién",
           "title": "COMO UN G",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_73112df8ebb145b42401e2d7",
+          "occurrence_ids": [
+            "occ_4bdc3474e196558292eb8055"
+          ]
         },
         {
           "id": "7515169:48",
@@ -1182,6 +1534,10 @@
           "title": "DIABLO",
           "matched_variant": "no sé",
           "matched_surface": "no sé",
+          "segment_id": "seg_9739a0ac8d8e97d024eff551",
+          "occurrence_ids": [
+            "occ_7c3bfc750674b1b2c9feb8f3"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1193,6 +1549,10 @@
           "title": "DIABLO",
           "matched_variant": "no sé",
           "matched_surface": "No sé",
+          "segment_id": "seg_2f3e7a67be1e46ea88a98659",
+          "occurrence_ids": [
+            "occ_40c7b1aed5066998614eb9b1"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1203,14 +1563,23 @@
           "line": "Yo ya no sé por qué no quiere dolerme",
           "title": "Dolerme",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_e84425da3b3fa1bc8fbde6ee",
+          "occurrence_ids": [
+            "occ_0e1d5d62fc316dd695fde5fd",
+            "occ_af1a231a39d92e1d950e0343"
+          ]
         },
         {
           "id": "9176102:2",
           "line": "Bebé, tú ten cuida'o, no sé si tú estás listo",
           "title": "TUYA",
           "matched_variant": "no sé",
-          "matched_surface": "no sé"
+          "matched_surface": "no sé",
+          "segment_id": "seg_93d5e7af8845e2061421db42",
+          "occurrence_ids": [
+            "occ_19382667eb1fd39358425793"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1227,21 +1596,34 @@
           "line": "¿Por qué será? ¿Por qué será?",
           "title": "SAKURA",
           "matched_variant": "por qué",
-          "matched_surface": "Por qué"
+          "matched_surface": "Por qué",
+          "segment_id": "seg_29f144551a3399c55486d300",
+          "occurrence_ids": [
+            "occ_844e788ec7eeb5e9b2bf34c1",
+            "occ_2fe384075b74898a6e9ba846"
+          ]
         },
         {
           "id": "5384007:8",
           "line": "Yo ya no sé por qué no quiere dolerme",
           "title": "Dolerme",
           "matched_variant": "por qué",
-          "matched_surface": "por qué"
+          "matched_surface": "por qué",
+          "segment_id": "seg_e84425da3b3fa1bc8fbde6ee",
+          "occurrence_ids": [
+            "occ_7b968ef5b3cada98e38d9c37"
+          ]
         },
         {
           "id": "5384007:12",
           "line": "¿O por qué no pones tú también de tu parte?",
           "title": "Dolerme",
           "matched_variant": "por qué",
-          "matched_surface": "por qué"
+          "matched_surface": "por qué",
+          "segment_id": "seg_fa3d22893f2704b9dd74a538",
+          "occurrence_ids": [
+            "occ_e6427ec2cedd01fc1094c5da"
+          ]
         },
         {
           "id": "8416396:48",
@@ -1249,6 +1631,10 @@
           "title": "Besos Moja2",
           "matched_variant": "por qué",
           "matched_surface": "Por qué",
+          "segment_id": "seg_aba50abe95071a7a8e50284c",
+          "occurrence_ids": [
+            "occ_f960df81cb0d29b8dcc13724"
+          ],
           "vocalists": [
             "Yandel",
             "Wisin"
@@ -1260,7 +1646,11 @@
           "line": "¿Por qué no te despiertas tú, hermanito?",
           "title": "Nos Quedamos Solitos",
           "matched_variant": "por qué",
-          "matched_surface": "Por qué"
+          "matched_surface": "Por qué",
+          "segment_id": "seg_02efa4d6c289323c594e98e6",
+          "occurrence_ids": [
+            "occ_191de43afcaa8c4ba407b8f3"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1277,35 +1667,59 @@
           "line": "Ja, a ver si sirven de algo, jajaja",
           "title": "SAOKO",
           "matched_variant": "a ver",
-          "matched_surface": "a ver"
+          "matched_surface": "a ver",
+          "segment_id": "seg_438d1b50cc1dc606f18a9931",
+          "occurrence_ids": [
+            "occ_c90b01f3dba05d6e74f5a8db"
+          ]
         },
         {
           "id": "7515279:34",
           "line": "Los caramelo' de la voz, a ver",
           "title": "SAOKO",
           "matched_variant": "a ver",
-          "matched_surface": "a ver"
+          "matched_surface": "a ver",
+          "segment_id": "seg_68e9cbce2eb278c1837eb94a",
+          "occurrence_ids": [
+            "occ_d21d12f81ea6a29d557acf98"
+          ]
         },
         {
           "id": "3856338:27",
           "line": "A ver, a ver, a ver",
           "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
           "matched_variant": "a ver",
-          "matched_surface": "A ver"
+          "matched_surface": "A ver",
+          "segment_id": "seg_bd66b55384421d92264bb40a",
+          "occurrence_ids": [
+            "occ_c4ba8ca95c372529d0ccbe8f",
+            "occ_41615e7226211479e8eda0ee",
+            "occ_443accf8ef297a0e13548170"
+          ]
         },
         {
           "id": "12660487:19",
           "line": "A ver cuál de los dos llega antes a ti",
           "title": "Dios Es Un Stalker (Versión Física)",
           "matched_variant": "a ver",
-          "matched_surface": "A ver"
+          "matched_surface": "A ver",
+          "segment_id": "seg_314fcd4b406377c617d6e055",
+          "occurrence_ids": [
+            "occ_a6dfb9bcee31819d11b52d70",
+            "occ_6ebc1fbf2af82961cad4022d"
+          ]
         },
         {
           "id": "8189170:1",
           "line": "A ver, a ver, hola, hola",
           "title": "Thank Yu :)",
           "matched_variant": "a ver",
-          "matched_surface": "A ver"
+          "matched_surface": "A ver",
+          "segment_id": "seg_9800b16bef68d8329598fed2",
+          "occurrence_ids": [
+            "occ_061ce137c29c54461116a80f",
+            "occ_3d538a2d848cccc41ce8f5a8"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1322,7 +1736,11 @@
           "line": "Yo la batí hasta que se montó",
           "title": "HENTAI",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_c3db82cc7a716c70b88507fc",
+          "occurrence_ids": [
+            "occ_1e7fcf0b0e9cda3845d2ea4c"
+          ]
         },
         {
           "id": "12581288:10",
@@ -1330,6 +1748,10 @@
           "title": "Porcelana",
           "matched_variant": "hasta que",
           "matched_surface": "hasta que",
+          "segment_id": "seg_0c0b9f6c2f1d724768a60d21",
+          "occurrence_ids": [
+            "occ_65d20676d48d7771dc8337a3"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1340,21 +1762,33 @@
           "line": "Va a estar conmigo y hasta que se muera",
           "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_06062ccf132ab4fea7bf0852",
+          "occurrence_ids": [
+            "occ_8b1d00f493e72b003e2f5880"
+          ]
         },
         {
           "id": "12581298:31",
           "line": "Y quedaros despiertos hasta que vuelva otra vez la luz",
           "title": "Magnolias",
           "matched_variant": "hasta que",
-          "matched_surface": "hasta que"
+          "matched_surface": "hasta que",
+          "segment_id": "seg_15cb8611831a1faaea23e1a0",
+          "occurrence_ids": [
+            "occ_5436706f11577096276142bc"
+          ]
         },
         {
           "id": "3814307:5",
           "line": "Hasta que fuiste carcelero",
           "title": "A NINGÚN HOMBRE (Cap.11: Poder)",
           "matched_variant": "hasta que",
-          "matched_surface": "Hasta que"
+          "matched_surface": "Hasta que",
+          "segment_id": "seg_d0d3f2037f93183831f0be39",
+          "occurrence_ids": [
+            "occ_747120ebd2a987ffbc106a9f"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1372,6 +1806,10 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "a ti te",
           "matched_surface": "a ti te",
+          "segment_id": "seg_36789572f0c47f83c6ad5366",
+          "occurrence_ids": [
+            "occ_35bc11f3921772f5753fbb2b"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Ozuna",
@@ -1385,6 +1823,10 @@
           "title": "LA FAMA",
           "matched_variant": "a ti te",
           "matched_surface": "a ti te",
+          "segment_id": "seg_1716c2d8b3feea8ac9990c72",
+          "occurrence_ids": [
+            "occ_ae704818f790a8b282984792"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1396,6 +1838,10 @@
           "title": "Porcelana",
           "matched_variant": "a ti te",
           "matched_surface": "a ti te",
+          "segment_id": "seg_c0b80bc19471800620b51fec",
+          "occurrence_ids": [
+            "occ_6b5876fe50c420ddc80ea53c"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1407,6 +1853,11 @@
           "title": "BESO",
           "matched_variant": "a ti te",
           "matched_surface": "a ti te",
+          "segment_id": "seg_ad6282f853d6fe5cdf46b99f",
+          "occurrence_ids": [
+            "occ_a4fab85ae0fdb2292575ccef",
+            "occ_49afa50ac6e87528e093d6d7"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1417,7 +1868,11 @@
           "line": "De lo que a ti te está doliendo",
           "title": "DE AQUÍ NO SALES (Cap.4: Disputa)",
           "matched_variant": "a ti te",
-          "matched_surface": "a ti te"
+          "matched_surface": "a ti te",
+          "segment_id": "seg_194ba02f55f84feb58fff686",
+          "occurrence_ids": [
+            "occ_b40aee9bb902f04c4c74422c"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1435,6 +1890,11 @@
           "title": "Yo x Ti, Tu x Mí",
           "matched_variant": "por ahí",
           "matched_surface": "por ahí",
+          "segment_id": "seg_9c347434e8b908b45119589a",
+          "occurrence_ids": [
+            "occ_62705d443aebe4423da47d38",
+            "occ_f219ef0c42f909a9d281cf8e"
+          ],
           "vocalists": [
             "Ozuna"
           ],
@@ -1445,21 +1905,34 @@
           "line": "Como un G de verdad, sin guardaespaldas voy por ahí (Jura'o, como un G)",
           "title": "COMO UN G",
           "matched_variant": "por ahí",
-          "matched_surface": "por ahí"
+          "matched_surface": "por ahí",
+          "segment_id": "seg_f6cd588145b1927bcf0e354b",
+          "occurrence_ids": [
+            "occ_c121fc2781cf6750abf4a08f"
+          ]
         },
         {
           "id": "12579326:2",
           "line": "Crecí y el descaro lo aprendí por ahí por Barcelona",
           "title": "Reliquia",
           "matched_variant": "por ahí",
-          "matched_surface": "por ahí"
+          "matched_surface": "por ahí",
+          "segment_id": "seg_1bfc96076d885acde1aa2ec6",
+          "occurrence_ids": [
+            "occ_79961eae0ce179579b82c872",
+            "occ_f3ed9f8d87e580dd6d577739"
+          ]
         },
         {
           "id": "3964062:3",
           "line": "Ya no hay nadie más por ahí",
           "title": "BAGDAD (Cap.7: Liturgia)",
           "matched_variant": "por ahí",
-          "matched_surface": "por ahí"
+          "matched_surface": "por ahí",
+          "segment_id": "seg_9641a8edd9f9c293c4f25719",
+          "occurrence_ids": [
+            "occ_17b4452e9ecc9df2a576c84d"
+          ]
         },
         {
           "id": "3646825:11",
@@ -1467,6 +1940,10 @@
           "title": "Brillo",
           "matched_variant": "por ahí",
           "matched_surface": "por ahí",
+          "segment_id": "seg_4372436964fd630997fce583",
+          "occurrence_ids": [
+            "occ_fe64fc20e921069f2f80a2ac"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1487,21 +1964,33 @@
           "line": "Quiero una cadena que me arruine to'a la cuenta",
           "title": "CHICKEN TERIYAKI",
           "matched_variant": "toda la",
-          "matched_surface": "to'a la"
+          "matched_surface": "to'a la",
+          "segment_id": "seg_ce5f0bb2bff13b31de5da109",
+          "occurrence_ids": [
+            "occ_1dac11e516e6d82d29c36acc"
+          ]
         },
         {
           "id": "3065897:34",
           "line": "No hay niña que la' tenga por toda la España",
           "title": "Si Tú Supieras Compañero",
           "matched_variant": "toda la",
-          "matched_surface": "toda la"
+          "matched_surface": "toda la",
+          "segment_id": "seg_224f4a0c23aefb1cd9c84749",
+          "occurrence_ids": [
+            "occ_fa21411deb9b5470594e9b3d"
+          ]
         },
         {
           "id": "3814307:16",
           "line": "Y recordarlo to'a la ví'a",
           "title": "A NINGÚN HOMBRE (Cap.11: Poder)",
           "matched_variant": "toda la",
-          "matched_surface": "to'a la"
+          "matched_surface": "to'a la",
+          "segment_id": "seg_19958a733d1ea5b2997dce2f",
+          "occurrence_ids": [
+            "occ_39d946caad832bf915fb7a34"
+          ]
         },
         {
           "id": "8916305:32",
@@ -1509,6 +1998,10 @@
           "title": "VAMPIROS",
           "matched_variant": "toda la",
           "matched_surface": "to'a la",
+          "segment_id": "seg_bc0a483044a23d7b43eab967",
+          "occurrence_ids": [
+            "occ_ecf5ed424882fd509b632537"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -1521,6 +2014,10 @@
           "title": "Llámame Más Tarde",
           "matched_variant": "toda la",
           "matched_surface": "toda la",
+          "segment_id": "seg_841923c59e8e6ac570845b77",
+          "occurrence_ids": [
+            "occ_178a6e986ee5b8cf9de29ac5"
+          ],
           "vocalists": [
             "C. Tangana"
           ],
@@ -1544,7 +2041,11 @@
           "line": "Con diamantes, me gusta",
           "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
           "matched_variant": "me gusta",
-          "matched_surface": "me gusta"
+          "matched_surface": "me gusta",
+          "segment_id": "seg_3761728b2c7db685df31b1a3",
+          "occurrence_ids": [
+            "occ_984aac699b0dad51773f2126"
+          ]
         },
         {
           "id": "8324985:37",
@@ -1552,6 +2053,10 @@
           "title": "El Pañuelo",
           "matched_variant": "le gusta",
           "matched_surface": "le gusta",
+          "segment_id": "seg_d389749db93242d137d4b20f",
+          "occurrence_ids": [
+            "occ_2516546aad7a9dcf8ec4b1ac"
+          ],
           "vocalists": [
             "Romeo Santos",
             "ROSALÍA"
@@ -1563,7 +2068,11 @@
           "line": "No me gusta hacer intervención divina",
           "title": "Dios Es Un Stalker (Versión Física)",
           "matched_variant": "me gusta",
-          "matched_surface": "me gusta"
+          "matched_surface": "me gusta",
+          "segment_id": "seg_8bfe5e786cbc75f698e8ebfd",
+          "occurrence_ids": [
+            "occ_68fb874f6df7d0d31fc02e8c"
+          ]
         },
         {
           "id": "2966663:4",
@@ -1571,6 +2080,10 @@
           "title": "Llámame Más Tarde",
           "matched_variant": "me gusta",
           "matched_surface": "Me gusta",
+          "segment_id": "seg_ea48b85cb9825157f2843cb4",
+          "occurrence_ids": [
+            "occ_24e8cd98b007e8a4d102a2ad"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1582,6 +2095,10 @@
           "title": "Llámame Más Tarde",
           "matched_variant": "me gusta",
           "matched_surface": "me gusta",
+          "segment_id": "seg_8d6afacd8d35ad3e327a0dfb",
+          "occurrence_ids": [
+            "occ_d718a8ee0d702dc7b61a2d07"
+          ],
           "vocalists": [
             "C. Tangana"
           ],
@@ -1611,35 +2128,55 @@
           "line": "Cuando sales por la puerta, pienso que no vuelves nunca",
           "title": "PIENSO EN TU MIRÁ (Cap.3: Celos)",
           "matched_variant": "pienso que",
-          "matched_surface": "pienso que"
+          "matched_surface": "pienso que",
+          "segment_id": "seg_81041ac0d58ddac4e5fb3da8",
+          "occurrence_ids": [
+            "occ_20f28cf3784d6acc7bc12dac"
+          ]
         },
         {
           "id": "12581296:38",
           "line": "La que piensa que puede escaparse del plan divino",
           "title": "La Rumba Del Perdón",
           "matched_variant": "piensa que",
-          "matched_surface": "piensa que"
+          "matched_surface": "piensa que",
+          "segment_id": "seg_4e148275733ca2e90fcee92e",
+          "occurrence_ids": [
+            "occ_fcf2e1e30f8656bdf52e94c1"
+          ]
         },
         {
           "id": "7515161:7",
           "line": "Que me perdone el que yo piense que está a mi merced",
           "title": "CHIRI",
           "matched_variant": "piense que",
-          "matched_surface": "piense que"
+          "matched_surface": "piense que",
+          "segment_id": "seg_c1d20f98b1db7ef49368c929",
+          "occurrence_ids": [
+            "occ_65fdb288d607de55b5690bc9"
+          ]
         },
         {
           "id": "7515176:41",
           "line": "No quiero que pienses que eso me da orgullo",
           "title": "AISLAMIENTO",
           "matched_variant": "pienses que",
-          "matched_surface": "pienses que"
+          "matched_surface": "pienses que",
+          "segment_id": "seg_6e522cc503dfeb3d2bc670d5",
+          "occurrence_ids": [
+            "occ_cacb5fccd73e12521afcaf5e"
+          ]
         },
         {
           "id": "8176090:2",
           "line": "Y piensas que ya te dejé de querer, estás equivocada",
           "title": "PERDÓNAME",
           "matched_variant": "piensas que",
-          "matched_surface": "piensas que"
+          "matched_surface": "piensas que",
+          "segment_id": "seg_a4b7cf549451d95459b064a7",
+          "occurrence_ids": [
+            "occ_aaabeec74a47665d024d646f"
+          ]
         }
       ],
       "variants": [
@@ -1671,28 +2208,45 @@
           "line": "Ella a mí me desarmó y yo le estoy agradecida",
           "title": "Magnolias",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_eb876a3fe173e7b05d69eb6f",
+          "occurrence_ids": [
+            "occ_dd30c8c50104701a137395d7"
+          ]
         },
         {
           "id": "7528115:14",
           "line": "Y aunque a mí me maldigan a mis espalda'",
           "title": "BULERÍAS",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_01c9f84654168d6961dedbe3",
+          "occurrence_ids": [
+            "occ_ee5cdaea8152ee07b5dc1f6e",
+            "occ_d630c1bfa26ac1932835bd96"
+          ]
         },
         {
           "id": "3964043:4",
           "line": "Mucho más a mí me duele",
           "title": "DE AQUÍ NO SALES (Cap.4: Disputa)",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_fb0c38eef23f19e65bda02f2",
+          "occurrence_ids": [
+            "occ_afcc7728b2d174adcb9d98dc"
+          ]
         },
         {
           "id": "9176102:23",
           "line": "Tú a mí me encanta', tú ere' una hermosura",
           "title": "TUYA",
           "matched_variant": "a mí me",
-          "matched_surface": "a mí me"
+          "matched_surface": "a mí me",
+          "segment_id": "seg_424ae71191c7d0c8c6d7d1f5",
+          "occurrence_ids": [
+            "occ_4a2f46549e8cdd875b0ace25"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1710,6 +2264,10 @@
           "title": "Berghain",
           "matched_variant": "me voy",
           "matched_surface": "me voy",
+          "segment_id": "seg_d668fa6af839472f6cce5eb5",
+          "occurrence_ids": [
+            "occ_b8c91be4216f6e31ed30ffdd"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1721,6 +2279,10 @@
           "title": "BESO",
           "matched_variant": "me voy",
           "matched_surface": "me voy",
+          "segment_id": "seg_0e72b691242ebd3b68d66f01",
+          "occurrence_ids": [
+            "occ_ab4db8f180cbecd62f08805a"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1731,14 +2293,22 @@
           "line": "Y a Alemania me voy, y no a divertirme",
           "title": "Catalina",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_a2d4936b60d1500abd7b562d",
+          "occurrence_ids": [
+            "occ_50090575effd58e2258e5742"
+          ]
         },
         {
           "id": "3065897:37",
           "line": "Y a la vez me voy quemando",
           "title": "Si Tú Supieras Compañero",
           "matched_variant": "me voy",
-          "matched_surface": "me voy"
+          "matched_surface": "me voy",
+          "segment_id": "seg_3ad9d6c5e7a3722c302bed1b",
+          "occurrence_ids": [
+            "occ_cddbbb0cc0fe8f77b23605da"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -1756,6 +2326,10 @@
           "title": "Lo Vas A Olvidar",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_316c28af0848e8976b2ee7d4",
+          "occurrence_ids": [
+            "occ_2ef305f0a84390fb67190d4b"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Billie Eilish",
@@ -1769,6 +2343,10 @@
           "title": "Lo Vas A Olvidar",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_4b61a5b9279a47852b9b984d",
+          "occurrence_ids": [
+            "occ_23e0aef6e5b3b5c3ad798e43"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Billie Eilish",
@@ -1782,6 +2360,10 @@
           "title": "Lo Vas A Olvidar",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_9027e75d5d3881a38b963510",
+          "occurrence_ids": [
+            "occ_858b5caafb86be11bcc9916e"
+          ],
           "vocalists": [
             "Billie Eilish",
             "ROSALÍA"
@@ -1794,6 +2376,10 @@
           "title": "Choices",
           "matched_variant": "dime si",
           "matched_surface": "Dime si",
+          "segment_id": "seg_9a95375b529901e6c638a707",
+          "occurrence_ids": [
+            "occ_2461c9f712d105e888ea8a88"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1814,21 +2400,33 @@
           "line": "To' el mundo quiere fortuna, dinero y libertad",
           "title": "CHIRI",
           "matched_variant": "todo el mundo",
-          "matched_surface": "To' el mundo"
+          "matched_surface": "To' el mundo",
+          "segment_id": "seg_3a54fc4098791dd152149b75",
+          "occurrence_ids": [
+            "occ_df47f1e2d9034672a437398c"
+          ]
         },
         {
           "id": "12660487:16",
           "line": "Todo el mundo me quiere de su la'o, tengo el buzón explota'o",
           "title": "Dios Es Un Stalker (Versión Física)",
           "matched_variant": "todo el mundo",
-          "matched_surface": "Todo el mundo"
+          "matched_surface": "Todo el mundo",
+          "segment_id": "seg_c1fccd483aafa7ecfe53318d",
+          "occurrence_ids": [
+            "occ_dc643ea698fc4176994f5b7c"
+          ]
         },
         {
           "id": "4151176:22",
           "line": "To' el mundo te tiene por un santo, pero nah",
           "title": "Lo Presiento",
           "matched_variant": "todo el mundo",
-          "matched_surface": "To' el mundo"
+          "matched_surface": "To' el mundo",
+          "segment_id": "seg_4fb8420dc92bc7ed0e963f7c",
+          "occurrence_ids": [
+            "occ_ef9e02ea1f5f32b9205633f1"
+          ]
         },
         {
           "id": "9077775:33",
@@ -1836,6 +2434,10 @@
           "title": "Choices",
           "matched_variant": "todo el mundo",
           "matched_surface": "todo el mundo",
+          "segment_id": "seg_9a95375b529901e6c638a707",
+          "occurrence_ids": [
+            "occ_79761ce344f0f0bb6f26187a"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1859,14 +2461,22 @@
           "line": "Con él abriré todas las puertas",
           "title": "Novia Robot",
           "matched_variant": "todas las",
-          "matched_surface": "todas las"
+          "matched_surface": "todas las",
+          "segment_id": "seg_34455aae30765ec946bf8d7e",
+          "occurrence_ids": [
+            "occ_d845fc8502847fcd2031ba3e"
+          ]
         },
         {
           "id": "7515069:5",
           "line": "Y todas las chicas son tan bonitas, tan plásticas",
           "title": "SAKURA",
           "matched_variant": "todas las",
-          "matched_surface": "todas las"
+          "matched_surface": "todas las",
+          "segment_id": "seg_9409605d00664cc079bf17e8",
+          "occurrence_ids": [
+            "occ_9b676380f8efe92c17bd19b8"
+          ]
         },
         {
           "id": "8916307:19",
@@ -1874,6 +2484,10 @@
           "title": "PROMESA",
           "matched_variant": "todas las",
           "matched_surface": "todas las",
+          "segment_id": "seg_0ec3f088fedb94ae17ea6ab2",
+          "occurrence_ids": [
+            "occ_3f7c7ac27c02691a18073da1"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1884,10 +2498,15 @@
           "line": "Doblo contigo todas las esquinas",
           "title": "Dios Es Un Stalker (Versión Física)",
           "matched_variant": "todas las",
-          "matched_surface": "todas las"
+          "matched_surface": "todas las",
+          "segment_id": "seg_0fbc184e7f19370346415058",
+          "occurrence_ids": [
+            "occ_2bd52c74b6562d87ca2c233c"
+          ]
         }
       ],
       "variants": [
+        "to'as las",
         "toa' las"
       ],
       "source": "artist-curated"
@@ -1905,6 +2524,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "otra vez",
           "matched_surface": "otra vez",
+          "segment_id": "seg_0cc578490cf9b203b9432586",
+          "occurrence_ids": [
+            "occ_2ed9620bc790c0725a134d78"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -1916,6 +2539,10 @@
           "title": "Con Altura",
           "matched_variant": "otra vez",
           "matched_surface": "otra vez",
+          "segment_id": "seg_64b1afaea0ae19c973688583",
+          "occurrence_ids": [
+            "occ_072c97ab00cd635b02838ce8"
+          ],
           "vocalists": [
             "J Balvin",
             "ROSALÍA"
@@ -1927,14 +2554,23 @@
           "line": "Otra vez, otra vez",
           "title": "COMO UN G",
           "matched_variant": "otra vez",
-          "matched_surface": "Otra vez"
+          "matched_surface": "Otra vez",
+          "segment_id": "seg_c027736e4693eae6c07bcbcc",
+          "occurrence_ids": [
+            "occ_53698eca579e8dc0bfe35f11",
+            "occ_7aa2dee45456d1b90425b4c5"
+          ]
         },
         {
           "id": "12581298:31",
           "line": "Y quedaros despiertos hasta que vuelva otra vez la luz",
           "title": "Magnolias",
           "matched_variant": "otra vez",
-          "matched_surface": "otra vez"
+          "matched_surface": "otra vez",
+          "segment_id": "seg_15cb8611831a1faaea23e1a0",
+          "occurrence_ids": [
+            "occ_68200694f9ce623ab025dfa2"
+          ]
         }
       ],
       "variants": [
@@ -1959,28 +2595,44 @@
           "line": "Parecía que rezaba",
           "title": "BAGDAD (Cap.7: Liturgia)",
           "matched_variant": "parecía que",
-          "matched_surface": "Parecía que"
+          "matched_surface": "Parecía que",
+          "segment_id": "seg_b7e2baa25dd4724bf6dd17b4",
+          "occurrence_ids": [
+            "occ_5c35a155e4e89c23d7c1ac3d"
+          ]
         },
         {
           "id": "7515176:20",
           "line": "Parece que se parte el cielo, pero no importa",
           "title": "AISLAMIENTO",
           "matched_variant": "parece que",
-          "matched_surface": "Parece que"
+          "matched_surface": "Parece que",
+          "segment_id": "seg_00025e65f3234f5089d0eb88",
+          "occurrence_ids": [
+            "occ_f225d99e3c575a7c4e72f4dd"
+          ]
         },
         {
           "id": "4496591:1",
           "line": "Parece que fue ayer",
           "title": "Un Millón de Veces",
           "matched_variant": "parece que",
-          "matched_surface": "Parece que"
+          "matched_surface": "Parece que",
+          "segment_id": "seg_2925f963f4cc02749abcaba2",
+          "occurrence_ids": [
+            "occ_a748e325d764a235bdef562f"
+          ]
         },
         {
           "id": "4496591:3",
           "line": "Y parece que fue ayer",
           "title": "Un Millón de Veces",
           "matched_variant": "parece que",
-          "matched_surface": "parece que"
+          "matched_surface": "parece que",
+          "segment_id": "seg_cab8191c019efeff0d6b636d",
+          "occurrence_ids": [
+            "occ_05c06c7b8b13b1e064d3b224"
+          ]
         }
       ],
       "variants": [
@@ -2006,21 +2658,34 @@
           "line": "(Que no salga la luna que no tiene pa' qué",
           "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
           "matched_variant": "para qué",
-          "matched_surface": "pa' qué"
+          "matched_surface": "pa' qué",
+          "segment_id": "seg_8027b2410c2decfd943f55de",
+          "occurrence_ids": [
+            "occ_0a3bff836081878488551f47"
+          ]
         },
         {
           "id": "3856338:19",
           "line": "No tiene pa' qué, no tiene pa' qué)",
           "title": "QUE NO SALGA LA LUNA (Cap.2: Boda)",
           "matched_variant": "para qué",
-          "matched_surface": "pa' qué"
+          "matched_surface": "pa' qué",
+          "segment_id": "seg_0b02d002437f0797b97b6d06",
+          "occurrence_ids": [
+            "occ_58ce54b29d48a9ebb9f751e4",
+            "occ_866462bdc712ac7195f3f7a6"
+          ]
         },
         {
           "id": "7515161:5",
           "line": "Y mentiste, ¿pa' qué?, hice un salto de fe",
           "title": "CHIRI",
           "matched_variant": "para qué",
-          "matched_surface": "pa' qué"
+          "matched_surface": "pa' qué",
+          "segment_id": "seg_8fae951c23f96265253c1654",
+          "occurrence_ids": [
+            "occ_b730598603240337a946f5e0"
+          ]
         }
       ],
       "variants": [
@@ -2041,6 +2706,10 @@
           "title": "LA FAMA",
           "matched_variant": "de verdad",
           "matched_surface": "de verdad",
+          "segment_id": "seg_a3f72de331c9a008c141d9f4",
+          "occurrence_ids": [
+            "occ_90f388de14835cdd14ab9d11"
+          ],
           "vocalists": [
             "The Weeknd"
           ],
@@ -2052,6 +2721,10 @@
           "title": "LA FAMA",
           "matched_variant": "de verdad",
           "matched_surface": "de verdad",
+          "segment_id": "seg_340fd03321ba90e9f18c1ccd",
+          "occurrence_ids": [
+            "occ_e4dbe59f64b9e7a646bf49d4"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -2062,7 +2735,11 @@
           "line": "Como un G de verdad, sin guardaespaldas voy por ahí (Jura'o, como un G)",
           "title": "COMO UN G",
           "matched_variant": "de verdad",
-          "matched_surface": "de verdad"
+          "matched_surface": "de verdad",
+          "segment_id": "seg_f6cd588145b1927bcf0e354b",
+          "occurrence_ids": [
+            "occ_60815ced3998bd069f1ca6d7"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2079,14 +2756,25 @@
           "line": "Quema el manual para lo mismo, pa’ lo mismo",
           "title": "Novia Robot",
           "matched_variant": "lo mismo",
-          "matched_surface": "lo mismo"
+          "matched_surface": "lo mismo",
+          "segment_id": "seg_f2ff526e4aedf4ef1722132c",
+          "occurrence_ids": [
+            "occ_39ad724db24fdb5e3e7933aa",
+            "occ_cf76506caafdceeb923ee407"
+          ]
         },
         {
           "id": "7515161:17",
           "line": "Lo mismo yo te lo canto, que te lo canta Jaliyo",
           "title": "CHIRI",
           "matched_variant": "lo mismo",
-          "matched_surface": "Lo mismo"
+          "matched_surface": "Lo mismo",
+          "segment_id": "seg_4c50a8ee041bc466752ce377",
+          "occurrence_ids": [
+            "occ_6eba7570af297691aa15c8c5",
+            "occ_a64c286ae6b35f7ea3335ce3",
+            "occ_5f1d23a56c5cdf033b980e1d"
+          ]
         },
         {
           "id": "8324985:41",
@@ -2094,6 +2782,10 @@
           "title": "El Pañuelo",
           "matched_variant": "lo mismo",
           "matched_surface": "lo mismo",
+          "segment_id": "seg_de6e4ede3a493cafcfbb6148",
+          "occurrence_ids": [
+            "occ_7e0f2fdc3882cb9f4688ab3a"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Romeo Santos"
@@ -2116,6 +2808,11 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "encima de",
           "matched_surface": "encima de",
+          "segment_id": "seg_6aa5d1ccc1a42b4d1f4c8a4d",
+          "occurrence_ids": [
+            "occ_f8edb1a483ec676ce5547c33",
+            "occ_fe42b5ed6b1c3ffd7ee4bd08"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Bad Bunny",
@@ -2129,6 +2826,11 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "encima de",
           "matched_surface": "encima de",
+          "segment_id": "seg_773625ced2104deacd6a05f2",
+          "occurrence_ids": [
+            "occ_2ad7109ee5d8ed008d5aeda7",
+            "occ_876381175b6f6f4162a4ab8d"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -2140,7 +2842,11 @@
           "line": "Bailando con amor encima de mi cadáver",
           "title": "Magnolias",
           "matched_variant": "encima de",
-          "matched_surface": "encima de"
+          "matched_surface": "encima de",
+          "segment_id": "seg_371fe44fd08c3911b3cedc00",
+          "occurrence_ids": [
+            "occ_bca746824663767a261e7755"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2157,21 +2863,33 @@
           "line": "Me siento renovado",
           "title": "Es Por Ti",
           "matched_variant": "me siento",
-          "matched_surface": "Me siento"
+          "matched_surface": "Me siento",
+          "segment_id": "seg_700f923735d9517d2bdf1a60",
+          "occurrence_ids": [
+            "occ_63f9876f79447c94d79cca27"
+          ]
         },
         {
           "id": "8682586:4",
           "line": "Y me siento aniquilado",
           "title": "Es Por Ti",
           "matched_variant": "me siento",
-          "matched_surface": "me siento"
+          "matched_surface": "me siento",
+          "segment_id": "seg_58ca173d9d40889534213d43",
+          "occurrence_ids": [
+            "occ_ec5eee989d3af4434e8e11fd"
+          ]
         },
         {
           "id": "8682586:21",
           "line": "Me siento un vagabundo",
           "title": "Es Por Ti",
           "matched_variant": "me siento",
-          "matched_surface": "Me siento"
+          "matched_surface": "Me siento",
+          "segment_id": "seg_7b1ac4c0ac3839d2e268e2be",
+          "occurrence_ids": [
+            "occ_76b3d36bd7db5a0abeb2b35e"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2188,21 +2906,35 @@
           "line": "Se siente heavy",
           "title": "LAX",
           "matched_variant": "se siente",
-          "matched_surface": "Se siente"
+          "matched_surface": "Se siente",
+          "segment_id": "seg_c381162f5d51d1f3482e7694",
+          "occurrence_ids": [
+            "occ_8a6e93a4cafab25fb815dda3"
+          ]
         },
         {
           "id": "7515371:21",
           "line": "Se siente heavy, se siente heavy",
           "title": "LAX",
           "matched_variant": "se siente",
-          "matched_surface": "Se siente"
+          "matched_surface": "Se siente",
+          "segment_id": "seg_627ae4268984262213120627",
+          "occurrence_ids": [
+            "occ_9c94b901a24017654f310a4c",
+            "occ_9a95181200d10ed54ac403f4"
+          ]
         },
         {
           "id": "4470734:22",
           "line": "Se siente bien, se siente real (Ah)",
           "title": "Como Alí",
           "matched_variant": "se siente",
-          "matched_surface": "Se siente"
+          "matched_surface": "Se siente",
+          "segment_id": "seg_ebed23c7ef9e9e0031bec70b",
+          "occurrence_ids": [
+            "occ_0529d91dad6edceaab5d4f34",
+            "occ_99bc51a63690573a873c293b"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2220,6 +2952,10 @@
           "title": "Besos Moja2",
           "matched_variant": "dejo de pensar",
           "matched_surface": "dejo de pensar",
+          "segment_id": "seg_c10fad23053b0ff3b499f952",
+          "occurrence_ids": [
+            "occ_185d0cc2f941b7db2a40bce9"
+          ],
           "vocalists": [
             "Wisin",
             "Wisin",
@@ -2233,14 +2969,22 @@
           "line": "Y piensas que ya te dejé de querer, estás equivocada",
           "title": "PERDÓNAME",
           "matched_variant": "dejé de querer",
-          "matched_surface": "dejé de querer"
+          "matched_surface": "dejé de querer",
+          "segment_id": "seg_a4b7cf549451d95459b064a7",
+          "occurrence_ids": [
+            "occ_e4340a03018762e3b2d6377f"
+          ]
         },
         {
           "id": "4496591:53",
           "line": "Nunca dejes de soñar",
           "title": "Un Millón de Veces",
           "matched_variant": "dejes de soñar",
-          "matched_surface": "dejes de soñar"
+          "matched_surface": "dejes de soñar",
+          "segment_id": "seg_0062ed11d7bdfc0a366bab1b",
+          "occurrence_ids": [
+            "occ_c3f74f2b9834230a39cdd6a8"
+          ]
         }
       ],
       "variants": [
@@ -2269,6 +3013,10 @@
           "title": "LA FAMA",
           "matched_variant": "creas que",
           "matched_surface": "creas que",
+          "segment_id": "seg_1b71732f3451f9639fbe9236",
+          "occurrence_ids": [
+            "occ_864979d6411f0ac29c80d489"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -2279,14 +3027,22 @@
           "line": "Me creo que el mundo es mío",
           "title": "AISLAMIENTO",
           "matched_variant": "creo que",
-          "matched_surface": "creo que"
+          "matched_surface": "creo que",
+          "segment_id": "seg_14762b12dff56b4f14efe1bd",
+          "occurrence_ids": [
+            "occ_1be759fc33ac2d5f5005cbff"
+          ]
         },
         {
           "id": "5245004:2",
           "line": "No creas que me tienes embruja'o con tus amores",
           "title": "Parrita Remix",
           "matched_variant": "creas que",
-          "matched_surface": "creas que"
+          "matched_surface": "creas que",
+          "segment_id": "seg_75da87955398a134c3ad96ef",
+          "occurrence_ids": [
+            "occ_26dc7085a5a0f627ed027b76"
+          ]
         }
       ],
       "variants": [
@@ -2312,14 +3068,22 @@
           "line": "Cada vez que me levanto",
           "title": "Es Por Ti",
           "matched_variant": "cada vez que",
-          "matched_surface": "Cada vez que"
+          "matched_surface": "Cada vez que",
+          "segment_id": "seg_28a85634c78946240f5b3d5e",
+          "occurrence_ids": [
+            "occ_d7bee912469c3ee3f0cd49ec"
+          ]
         },
         {
           "id": "8682586:19",
           "line": "Y cada vez que yo te busco",
           "title": "Es Por Ti",
           "matched_variant": "cada vez que",
-          "matched_surface": "cada vez que"
+          "matched_surface": "cada vez que",
+          "segment_id": "seg_3aed7d5104bd8ba79bb132c0",
+          "occurrence_ids": [
+            "occ_33a878f22c388dfae6f8c5b3"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2336,14 +3100,22 @@
           "line": "Ya no hay nadie más por ahí",
           "title": "BAGDAD (Cap.7: Liturgia)",
           "matched_variant": "ya no hay",
-          "matched_surface": "Ya no hay"
+          "matched_surface": "Ya no hay",
+          "segment_id": "seg_9641a8edd9f9c293c4f25719",
+          "occurrence_ids": [
+            "occ_6c1b66300032d19e5710a0a2"
+          ]
         },
         {
           "id": "4151176:9",
           "line": "Tú a solas en el battle, ya no hay quién saque",
           "title": "Lo Presiento",
           "matched_variant": "ya no hay",
-          "matched_surface": "ya no hay"
+          "matched_surface": "ya no hay",
+          "segment_id": "seg_9aba6a4a4b58a21be30b0504",
+          "occurrence_ids": [
+            "occ_a9e9409acced5da498409a64"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2361,6 +3133,10 @@
           "title": "CANDY (Remix)",
           "matched_variant": "sin ti",
           "matched_surface": "sin ti",
+          "segment_id": "seg_f94d04b21d46814196b8ac4f",
+          "occurrence_ids": [
+            "occ_b5387963750970d75620e5f8"
+          ],
           "vocalists": [
             "Chencho Corleone"
           ],
@@ -2371,7 +3147,11 @@
           "line": "Sin ti, mi alma ¿pa que la quiero?",
           "title": "Por Mi Puerta No Lo Pasen",
           "matched_variant": "sin ti",
-          "matched_surface": "Sin ti"
+          "matched_surface": "Sin ti",
+          "segment_id": "seg_63f41f7804c18985e6afc1f5",
+          "occurrence_ids": [
+            "occ_66f3c6d2752929344bade339"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2388,14 +3168,22 @@
           "line": "El que me dejó a mí antes que dejar su botella",
           "title": "La Rumba Del Perdón",
           "matched_variant": "antes que",
-          "matched_surface": "antes que"
+          "matched_surface": "antes que",
+          "segment_id": "seg_a28f04f4d16c92c62d585b38",
+          "occurrence_ids": [
+            "occ_827f70138fe456c7a9ab4d6b"
+          ]
         },
         {
           "id": "7515371:27",
           "line": "Antes que quemen, me dejen salir",
           "title": "LAX",
           "matched_variant": "antes que",
-          "matched_surface": "Antes que"
+          "matched_surface": "Antes que",
+          "segment_id": "seg_c5ba3f158d8194656641edf7",
+          "occurrence_ids": [
+            "occ_a27bb966733d8093e41a796d"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2412,7 +3200,11 @@
           "line": "Frank me dice que abra el mundo como una nue'",
           "title": "SAOKO",
           "matched_variant": "me dice",
-          "matched_surface": "me dice"
+          "matched_surface": "me dice",
+          "segment_id": "seg_708638fd5f955873c2e97b31",
+          "occurrence_ids": [
+            "occ_77b7ecb92204df211b3d57ba"
+          ]
         },
         {
           "id": "3646825:19",
@@ -2420,6 +3212,10 @@
           "title": "Brillo",
           "matched_variant": "me dice",
           "matched_surface": "me dice",
+          "segment_id": "seg_5be74fbd66b40c616e8a840e",
+          "occurrence_ids": [
+            "occ_525211093bf4a6f5c4a95bce"
+          ],
           "vocalists": [
             "J Balvin",
             "ROSALÍA",
@@ -2442,14 +3238,22 @@
           "line": "Hoy salgo con mi baby de la disco coroná'",
           "title": "DESPECHÁ",
           "matched_variant": "la disco",
-          "matched_surface": "la disco"
+          "matched_surface": "la disco",
+          "segment_id": "seg_74c4759965f6c4ddb848799d",
+          "occurrence_ids": [
+            "occ_45ef7b2e1b697144a810c257"
+          ]
         },
         {
           "id": "8173139:15",
           "line": "Hoy salgo con mi baby de la disco coroná', coroná', yeah",
           "title": "DESPECHÁ",
           "matched_variant": "la disco",
-          "matched_surface": "la disco"
+          "matched_surface": "la disco",
+          "segment_id": "seg_c5db5993cbed850cb8cefc66",
+          "occurrence_ids": [
+            "occ_8eea5b0620a291f47469964f"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2466,7 +3270,11 @@
           "line": "Bajé con un flow nuevo 'e caja, baby, hackeá'",
           "title": "DESPECHÁ",
           "matched_variant": "un flow",
-          "matched_surface": "un flow"
+          "matched_surface": "un flow",
+          "segment_id": "seg_7cab0c2ab13a01748abdd8c3",
+          "occurrence_ids": [
+            "occ_6ab8fe71771725ce09f6c017"
+          ]
         },
         {
           "id": "7515113:53",
@@ -2474,6 +3282,10 @@
           "title": "LA COMBI VERSACE",
           "matched_variant": "un flow",
           "matched_surface": "un flow",
+          "segment_id": "seg_b3a3d8c6540ac5dce83ec174",
+          "occurrence_ids": [
+            "occ_9e7f948b1bf4e18846494beb"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Tokischa"
@@ -2496,6 +3308,10 @@
           "title": "VAMPIROS",
           "matched_variant": "hay que romper",
           "matched_surface": "hay que romper",
+          "segment_id": "seg_19f57fa9bc6fc8c924bcb2ce",
+          "occurrence_ids": [
+            "occ_23c9856a43adcbd2c8218232"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -2508,6 +3324,10 @@
           "title": "VAMPIROS",
           "matched_variant": "hay que perder",
           "matched_surface": "hay que perder",
+          "segment_id": "seg_4939c0f4b50cf811410c1ea3",
+          "occurrence_ids": [
+            "occ_a1713509418347b26b808a8b"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Rauw Alejandro"
@@ -2536,7 +3356,11 @@
           "line": "Que acaban de asesinar",
           "title": "Día 14 De Abril",
           "matched_variant": "acaban de asesinar",
-          "matched_surface": "acaban de asesinar"
+          "matched_surface": "acaban de asesinar",
+          "segment_id": "seg_43cb76452513822a05e352ad",
+          "occurrence_ids": [
+            "occ_d05e2e18a70b9243e0b27f20"
+          ]
         },
         {
           "id": "9077775:32",
@@ -2544,6 +3368,10 @@
           "title": "Choices",
           "matched_variant": "acabo de perder",
           "matched_surface": "acabo de perder",
+          "segment_id": "seg_7fd38117546822ae48e46054",
+          "occurrence_ids": [
+            "occ_1939f7b12ef8452f74f25cd7"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -2574,6 +3402,10 @@
           "title": "Tagliatelle Santeria",
           "matched_variant": "por eso",
           "matched_surface": "por eso",
+          "segment_id": "seg_f3def490c89006134bb66514",
+          "occurrence_ids": [
+            "occ_6142500c27dad206eaaee532"
+          ],
           "vocalists": [
             "Bad Bunny"
           ],
@@ -2594,7 +3426,11 @@
           "line": "Volver de nuevo a habitar",
           "title": "Mundo Nuevo",
           "matched_variant": "de nuevo",
-          "matched_surface": "de nuevo"
+          "matched_surface": "de nuevo",
+          "segment_id": "seg_55d085eae9266dce9ea0dbe8",
+          "occurrence_ids": [
+            "occ_776865951daee25283793fcb"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2611,7 +3447,11 @@
           "line": "Ja, a ver si sirven de algo, jajaja",
           "title": "SAOKO",
           "matched_variant": "a ver si",
-          "matched_surface": "a ver si"
+          "matched_surface": "a ver si",
+          "segment_id": "seg_438d1b50cc1dc606f18a9931",
+          "occurrence_ids": [
+            "occ_c90b01f3dba05d6e74f5a8db"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2629,6 +3469,10 @@
           "title": "LA NOCHE DE ANOCHE",
           "matched_variant": "lo nuestro",
           "matched_surface": "lo nuestro",
+          "segment_id": "seg_00c707d467a30f5137c3ca78",
+          "occurrence_ids": [
+            "occ_d3f05dc7ed9613393b3512e0"
+          ],
           "vocalists": [
             "Bad Bunny",
             "ROSALÍA"
@@ -2650,7 +3494,12 @@
           "line": "Y yo cambié lo mío por lo que tú querías",
           "title": "Dolerme",
           "matched_variant": "lo mío",
-          "matched_surface": "lo mío"
+          "matched_surface": "lo mío",
+          "segment_id": "seg_e6abd5479d68a7d5cca46269",
+          "occurrence_ids": [
+            "occ_3e2ca347163b85b21b68057c",
+            "occ_52222df66cb16fd359472f77"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2668,6 +3517,10 @@
           "title": "Besos Moja2",
           "matched_variant": "hace tiempo",
           "matched_surface": "Hace tiempo",
+          "segment_id": "seg_3c779d83cebd58ce65731dc5",
+          "occurrence_ids": [
+            "occ_a7db8929a0e05e8da4001abf"
+          ],
           "vocalists": [
             "Yandel",
             "ROSALÍA"
@@ -2690,6 +3543,10 @@
           "title": "Besos Moja2",
           "matched_variant": "hace tiempo que",
           "matched_surface": "Hace tiempo que",
+          "segment_id": "seg_3c779d83cebd58ce65731dc5",
+          "occurrence_ids": [
+            "occ_a7db8929a0e05e8da4001abf"
+          ],
           "vocalists": [
             "Yandel",
             "ROSALÍA"
@@ -2711,7 +3568,11 @@
           "line": "Así que muchas gracias por escucharlo",
           "title": "Thank Yu :)",
           "matched_variant": "así que",
-          "matched_surface": "Así que"
+          "matched_surface": "Así que",
+          "segment_id": "seg_66da9fb943400062115057b4",
+          "occurrence_ids": [
+            "occ_b0fdd9a3ab9f285a1a610da3"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2728,7 +3589,11 @@
           "line": "Con uno solo a mí no me basta",
           "title": "Fire, Fire",
           "matched_variant": "a mí no",
-          "matched_surface": "a mí no"
+          "matched_surface": "a mí no",
+          "segment_id": "seg_831fa74f27dcf54a254f8a35",
+          "occurrence_ids": [
+            "occ_03cd57b7a207ff0df52ff1cc"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2745,7 +3610,11 @@
           "line": "Con uno solo a mí no me basta",
           "title": "Fire, Fire",
           "matched_variant": "mí no me",
-          "matched_surface": "mí no me"
+          "matched_surface": "mí no me",
+          "segment_id": "seg_831fa74f27dcf54a254f8a35",
+          "occurrence_ids": [
+            "occ_9e3a62183229204edbf44709"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2762,7 +3631,11 @@
           "line": "Por toda' esas veces que me puse detrá'",
           "title": "Dolerme",
           "matched_variant": "me puse",
-          "matched_surface": "me puse"
+          "matched_surface": "me puse",
+          "segment_id": "seg_52007c3e6b82397d7d78ccda",
+          "occurrence_ids": [
+            "occ_e35c9456b00f690480aa96c0"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2779,7 +3652,11 @@
           "line": "Se va calentando mi piel, eso va a tu favor",
           "title": "TUYA",
           "matched_variant": "se va",
-          "matched_surface": "Se va"
+          "matched_surface": "Se va",
+          "segment_id": "seg_1984a4d55ed956b3342968bc",
+          "occurrence_ids": [
+            "occ_83847ac775e55c351304321d"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2797,6 +3674,10 @@
           "title": "Con Altura",
           "matched_variant": "se ve",
           "matched_surface": "se ve",
+          "segment_id": "seg_3504ba046bd1fd88f384d2f4",
+          "occurrence_ids": [
+            "occ_54d036fbefb1041ce2e1682b"
+          ],
           "vocalists": [
             "J Balvin",
             "ROSALÍA"
@@ -2818,7 +3699,11 @@
           "line": "Corre y dile que se calle",
           "title": "Por Mi Puerta No Lo Pasen",
           "matched_variant": "dile que",
-          "matched_surface": "dile que"
+          "matched_surface": "dile que",
+          "segment_id": "seg_d5a8cd204048ebd1a382b2bf",
+          "occurrence_ids": [
+            "occ_37fa852b642cbae1359f1c54"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2836,6 +3721,10 @@
           "title": "Always On My Mind*",
           "matched_variant": "la gana",
           "matched_surface": "la gana",
+          "segment_id": "seg_66846325ad681dad3c8b7480",
+          "occurrence_ids": [
+            "occ_11e939b8b7cc82deac80409f"
+          ],
           "vocalists": [
             "Rosalia"
           ],
@@ -2856,7 +3745,11 @@
           "line": "Bebé, tú ten cuida'o, no sé si tú estás listo",
           "title": "TUYA",
           "matched_variant": "no sé si",
-          "matched_surface": "no sé si"
+          "matched_surface": "no sé si",
+          "segment_id": "seg_93d5e7af8845e2061421db42",
+          "occurrence_ids": [
+            "occ_19382667eb1fd39358425793"
+          ]
         }
       ],
       "source": "artist-curated"
@@ -2874,6 +3767,10 @@
           "title": "TKN",
           "matched_variant": "tienen que",
           "matched_surface": "tienen que",
+          "segment_id": "seg_fe0f34839b09f2b875ba19f7",
+          "occurrence_ids": [
+            "occ_259824ed0d79f58af5e5d95b"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -2901,7 +3798,14 @@
           "line": "Juro que, juro que, juro que, juro que",
           "title": "Juro Que",
           "matched_variant": "juro que",
-          "matched_surface": "Juro que"
+          "matched_surface": "Juro que",
+          "segment_id": "seg_5d18ce8e561f652a9d977ead",
+          "occurrence_ids": [
+            "occ_bb93695d812564cfe44cb223",
+            "occ_cdbc168e3fc11503f6f93a4a",
+            "occ_d0b86c7ec977104f48b304c4",
+            "occ_2c7ca0481c90c54c64ea21f8"
+          ]
         }
       ],
       "variants": [
@@ -2944,6 +3848,10 @@
           "title": "LA FAMA",
           "matched_variant": "la voy a",
           "matched_surface": "la voy a",
+          "segment_id": "seg_ade06d65907e4b6935865fcd",
+          "occurrence_ids": [
+            "occ_a79a344b4e3a01efb2309ba9"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -2954,28 +3862,44 @@
           "line": "Mira qué fácil te lo voy a decir",
           "title": "DESPECHÁ",
           "matched_variant": "lo voy a",
-          "matched_surface": "lo voy a"
+          "matched_surface": "lo voy a",
+          "segment_id": "seg_6bfd3947ea18a6ca357e9d77",
+          "occurrence_ids": [
+            "occ_e723e7b30b40b3f15d477309"
+          ]
         },
         {
           "id": "12660487:12",
           "line": "Pero a mi baby hoy lo voy a stalkear",
           "title": "Dios Es Un Stalker (Versión Física)",
           "matched_variant": "lo voy a",
-          "matched_surface": "lo voy a"
+          "matched_surface": "lo voy a",
+          "segment_id": "seg_d12325672353a659ae7d54ea",
+          "occurrence_ids": [
+            "occ_0304f4707a2fe9974a2d5ee5"
+          ]
         },
         {
           "id": "12660487:45",
           "line": "Pero su corazón lo voy a secuestrar",
           "title": "Dios Es Un Stalker (Versión Física)",
           "matched_variant": "lo voy a",
-          "matched_surface": "lo voy a"
+          "matched_surface": "lo voy a",
+          "segment_id": "seg_08c57b18b89448e02e2579c0",
+          "occurrence_ids": [
+            "occ_6662f12a5f0d1f0df6b14f8a"
+          ]
         },
         {
           "id": "5187929:2",
           "line": "Pero no sé cómo te lo vo' a decir",
           "title": "Te Estoy Amando Locamente (Cover)",
           "matched_variant": "lo voy a",
-          "matched_surface": "lo vo' a"
+          "matched_surface": "lo vo' a",
+          "segment_id": "seg_544bb73e127fe04eaa3a2762",
+          "occurrence_ids": [
+            "occ_7690ff53c9c3202b7963deff"
+          ]
         }
       ]
     },
@@ -2996,6 +3920,10 @@
           "title": "Brillo",
           "matched_variant": "no lo ves",
           "matched_surface": "no lo ves",
+          "segment_id": "seg_301c230c29661d842f7503e3",
+          "occurrence_ids": [
+            "occ_d0d592ea1733627503a6e459"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -3007,6 +3935,10 @@
           "title": "Brillo",
           "matched_variant": "no lo ves",
           "matched_surface": "no lo ves",
+          "segment_id": "seg_c590f0be118d34497fb0f5d2",
+          "occurrence_ids": [
+            "occ_12d27e82ba5dc9d53fe17e92"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -3018,6 +3950,10 @@
           "title": "Brillo",
           "matched_variant": "no lo ves",
           "matched_surface": "no lo ves",
+          "segment_id": "seg_ca1c2e072fbcac6987d3e604",
+          "occurrence_ids": [
+            "occ_59b454fca1b2cca0b4483253"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -3029,6 +3965,10 @@
           "title": "Brillo",
           "matched_variant": "no lo ves",
           "matched_surface": "no lo ves",
+          "segment_id": "seg_d5f02862309b50a57bac624f",
+          "occurrence_ids": [
+            "occ_6bb2742902a25702c4e6dbff"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -3040,6 +3980,11 @@
           "title": "Brillo",
           "matched_variant": "no lo ves",
           "matched_surface": "no lo ves",
+          "segment_id": "seg_e03f547479f6be13fec3afbb",
+          "occurrence_ids": [
+            "occ_2922d0f345f55ca0f96e06d7",
+            "occ_d7262bb3c26ad64c76e87bb3"
+          ],
           "vocalists": [
             "ROSALÍA"
           ],
@@ -3064,6 +4009,10 @@
           "title": "Lo Vas A Olvidar",
           "matched_variant": "lo vas a",
           "matched_surface": "Lo va' a",
+          "segment_id": "seg_de68665dcda3d1d6b9129de9",
+          "occurrence_ids": [
+            "occ_c7ecf3bfaea6b0e451f013bd"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Billie Eilish"
@@ -3076,6 +4025,11 @@
           "title": "Lo Vas A Olvidar",
           "matched_variant": "lo vas a",
           "matched_surface": "Lo va' a",
+          "segment_id": "seg_5b809c923ef7a0e75a268869",
+          "occurrence_ids": [
+            "occ_a0e229a64620f088d47b54a5",
+            "occ_6d33bc1ca12d8847a56855dc"
+          ],
           "vocalists": [
             "ROSALÍA",
             "Billie Eilish"
@@ -3087,21 +4041,33 @@
           "line": "Que me lo vas a apa-pagar",
           "title": "Si Tú Supieras Compañero",
           "matched_variant": "lo vas a",
-          "matched_surface": "lo vas a"
+          "matched_surface": "lo vas a",
+          "segment_id": "seg_a90edf012fe8bdfca4035237",
+          "occurrence_ids": [
+            "occ_64ab251d40a2e3ee1322b140"
+          ]
         },
         {
           "id": "3065897:23",
           "line": "Ay, que me lo va' a apagar",
           "title": "Si Tú Supieras Compañero",
           "matched_variant": "lo vas a",
-          "matched_surface": "lo va' a"
+          "matched_surface": "lo va' a",
+          "segment_id": "seg_987f22f580c2a1725f7e2e74",
+          "occurrence_ids": [
+            "occ_8efac85b1d3ce6eb344a954f"
+          ]
         },
         {
           "id": "5197781:18",
           "line": "El primer día de permiso lo va' a pasar conmigo (Dale, olé)",
           "title": "Juro Que",
           "matched_variant": "lo vas a",
-          "matched_surface": "lo va' a"
+          "matched_surface": "lo va' a",
+          "segment_id": "seg_45a299345bc5090bae3847d1",
+          "occurrence_ids": [
+            "occ_681703cecc71e65b984f2219"
+          ]
         }
       ]
     },
@@ -3122,35 +4088,56 @@
           "line": "La nieve en la que me quiero hundir",
           "title": "La Yugular",
           "matched_variant": "que me quiero",
-          "matched_surface": "que me quiero"
+          "matched_surface": "que me quiero",
+          "segment_id": "seg_31d73fa2597c5f46ab8f4ffb",
+          "occurrence_ids": [
+            "occ_c68cbbd4ef74c213c83b7251"
+          ]
         },
         {
           "id": "3964070:24",
           "line": "Que te dije que te quiero",
           "title": "MALDICIÓN (Cap.10: Cordura)",
           "matched_variant": "que te quiero",
-          "matched_surface": "que te quiero"
+          "matched_surface": "que te quiero",
+          "segment_id": "seg_ec229f1334c75b26f9b67065",
+          "occurrence_ids": [
+            "occ_0e378b53df95eb860aac9d85",
+            "occ_d27615025472c6bc8e391672"
+          ]
         },
         {
           "id": "3065897:38",
           "line": "Por lo mucho que te quiero",
           "title": "Si Tú Supieras Compañero",
           "matched_variant": "que te quiero",
-          "matched_surface": "que te quiero"
+          "matched_surface": "que te quiero",
+          "segment_id": "seg_ea8be970de45d3ea1a4daa86",
+          "occurrence_ids": [
+            "occ_f77a54ef8f56a70661e5b702"
+          ]
         },
         {
           "id": "3345402:15",
           "line": "Ay, que te quiero",
           "title": "Por Mi Puerta No Lo Pasen",
           "matched_variant": "que te quiero",
-          "matched_surface": "que te quiero"
+          "matched_surface": "que te quiero",
+          "segment_id": "seg_44e708ac569749e25167d9f8",
+          "occurrence_ids": [
+            "occ_5f3410661ec1842a575d2f0a"
+          ]
         },
         {
           "id": "3345402:18",
           "line": "Sin ti, mi alma ¿pa que la quiero?",
           "title": "Por Mi Puerta No Lo Pasen",
           "matched_variant": "que la quiero",
-          "matched_surface": "que la quiero"
+          "matched_surface": "que la quiero",
+          "segment_id": "seg_63f41f7804c18985e6afc1f5",
+          "occurrence_ids": [
+            "occ_b04370ebb5b77a94f1bac8c5"
+          ]
         }
       ]
     },
@@ -3170,28 +4157,44 @@
           "line": "Si no lo puedes tener lo tendrás que soltar",
           "title": "COMO UN G",
           "matched_variant": "no lo puedes",
-          "matched_surface": "no lo puedes"
+          "matched_surface": "no lo puedes",
+          "segment_id": "seg_fbf7a83615f976250ef855b8",
+          "occurrence_ids": [
+            "occ_2643313716ecf9940665ebc5"
+          ]
         },
         {
           "id": "7659063:13",
           "line": "Si no lo puedes tener, mejor déjalo ir",
           "title": "COMO UN G",
           "matched_variant": "no lo puedes",
-          "matched_surface": "no lo puedes"
+          "matched_surface": "no lo puedes",
+          "segment_id": "seg_e81b45436cfbfd918cc7a387",
+          "occurrence_ids": [
+            "occ_9112826f04cf24f30eec3edf"
+          ]
         },
         {
           "id": "4496591:52",
           "line": "Que no lo puedes conseguir",
           "title": "Un Millón de Veces",
           "matched_variant": "no lo puedes",
-          "matched_surface": "no lo puedes"
+          "matched_surface": "no lo puedes",
+          "segment_id": "seg_b119caa9c7e961dc68294cfb",
+          "occurrence_ids": [
+            "occ_b19380d53dee5350414ce23e"
+          ]
         },
         {
           "id": "4151176:21",
           "line": "Pero no me puede' engañar",
           "title": "Lo Presiento",
           "matched_variant": "no me puedes",
-          "matched_surface": "no me puede'"
+          "matched_surface": "no me puede'",
+          "segment_id": "seg_e662d8e6c90005e29a4063ac",
+          "occurrence_ids": [
+            "occ_65e259a8ce891507159fd56e"
+          ]
         }
       ]
     }

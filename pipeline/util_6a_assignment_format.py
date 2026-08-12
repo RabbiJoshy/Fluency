@@ -30,9 +30,11 @@ from pathlib import Path
 
 try:  # Package import in tests/tools; script import in pipeline entry points.
     from .util_6a_method_priority import METHOD_PRIORITY
+    from .util_6a_prompt_registry import capability_tier, load_registry
     from .util_evidence_store import archive_json_artifact
 except ImportError:  # pragma: no cover - exercised by direct script execution
     from util_6a_method_priority import METHOD_PRIORITY
+    from util_6a_prompt_registry import capability_tier, load_registry
     from util_evidence_store import archive_json_artifact
 
 
@@ -361,7 +363,7 @@ def stamp_example_ids(assignments_out, examples_raw):
                         ))
 
 
-def stamp_provenance(assignments_out, prompt_id, run_ts):
+def stamp_provenance(assignments_out, prompt_id, run_ts, methods=None):
     """Stamp ``prompt_id`` + ``run_ts`` onto every item that lacks a ``prompt_id``.
 
     Records which prompt/model run produced each assignment so the display
@@ -374,9 +376,12 @@ def stamp_provenance(assignments_out, prompt_id, run_ts):
     """
     if not prompt_id:
         return
-    for _word, methods in assignments_out.items():
+    selected_methods = None if methods is None else set(methods)
+    for _word, method_map in assignments_out.items():
         items_iter = (
-            methods.values() if isinstance(methods, dict) else [methods]
+            ((items for method, items in method_map.items()
+              if selected_methods is None or method in selected_methods)
+             if isinstance(method_map, dict) else [method_map])
         )
         for item_list in items_iter:
             for item in item_list or []:
@@ -387,7 +392,9 @@ def stamp_provenance(assignments_out, prompt_id, run_ts):
                     item["run_ts"] = run_ts
 
 
-def resolve_best_per_example(word_data, min_priority=0, method_priority=None):
+def resolve_best_per_example(word_data, min_priority=0, method_priority=None,
+                             min_prompt_tier=0, prompt_registry=None,
+                             accepted_model_prompt_ids=None):
     """Resolve per-example winners from a word's {method: [items]} dict.
 
     For each occurrence (or stable example ID, then legacy index) encountered,
@@ -416,6 +423,7 @@ def resolve_best_per_example(word_data, min_priority=0, method_priority=None):
     # (priority, method, sense_id, ex_idx, ex_id, occurrence_id, prompt_id, run_ts)
     priority_map = dict(METHOD_PRIORITY)
     priority_map.update(method_priority or {})
+    registry = prompt_registry if prompt_registry is not None else load_registry()
     best = {}
     for method, items in word_data.items():
         prio = priority_map.get(method, 0)
@@ -434,11 +442,26 @@ def resolve_best_per_example(word_data, min_priority=0, method_priority=None):
             sid = item.get("sense")
             if not sid:
                 continue
+            # Model admission is an explicit prompt-id allowlist. Numeric tiers
+            # survive only as an opt-in compatibility fallback for old callers.
+            # Deterministic and explicitly retained evidence is exempt because
+            # no model prompt authored those decisions.
+            is_retained = method.startswith("legacy-") and method.endswith("-v1")
+            if (accepted_model_prompt_ids is not None
+                    and not is_auto and not is_retained):
+                if item.get("prompt_id") not in accepted_model_prompt_ids:
+                    continue
+            elif min_prompt_tier and not is_auto and not is_retained:
+                if capability_tier(item.get("prompt_id"), registry) < min_prompt_tier:
+                    continue
             # Provenance join keys (may be absent on pre-backfill data). Carried
             # through additively — they do NOT participate in winner selection
             # here; the winner is still highest method priority.
-            prompt_id = item.get("prompt_id")
-            run_ts = item.get("run_ts")
+            # Historical writers stamped the surrounding Gemini run onto
+            # deterministic auto claims. Do not surface that as model
+            # authorship; retained adapters are likewise non-prompt evidence.
+            prompt_id = None if (is_auto or is_retained) else item.get("prompt_id")
+            run_ts = None if (is_auto or is_retained) else item.get("run_ts")
             examples = item.get("examples") or []
             example_ids = item.get("example_ids") or []
             # Map integer index -> stable ID (positional alignment).

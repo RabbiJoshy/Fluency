@@ -11,6 +11,26 @@ import unicodedata
 _PLURAL_POS = frozenset({"NOUN", "ADJ", "DET", "PRON", "PROPN"})
 
 
+def canonical_menu_sense_id(sense_id, menu_sense_ids):
+    """Resolve a generated assignment alias onto its current menu identity.
+
+    A short-lived artist-master adapter appended a four-character collision
+    suffix to generated sense IDs in assignments while the menu retained the
+    unsuffixed identity. Exact IDs always win; the compatibility fold is
+    limited to ``generated:artist-master:*`` IDs whose unsuffixed candidate
+    exists in the current menu.
+    """
+    if sense_id in menu_sense_ids:
+        return sense_id
+    if not isinstance(sense_id, str) or not sense_id.startswith(
+            "generated:artist-master:"):
+        return None
+    candidate, separator, suffix = sense_id.rpartition(":")
+    if separator and len(suffix) == 4 and candidate in menu_sense_ids:
+        return candidate
+    return None
+
+
 def _fold_form(value):
     text = unicodedata.normalize("NFD", (value or "").strip().lower())
     return "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
@@ -263,6 +283,7 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
         sense_map = a.get("senses", {})
         sense_ids = set(sense_map.keys()) if isinstance(sense_map, dict) else set()
         analysis_maps.append((analysis_key(word, a, known_lemmas=known_lemmas), sense_ids, a))
+    menu_sense_ids = set().union(*(sense_ids for _, sense_ids, _ in analysis_maps))
 
     # SpanishDict can expose a plural as both a lexical self-headword and an
     # explicit singular-headword inflection (`besitos|besitos` plus
@@ -318,13 +339,20 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
             kept = []
             for item in items:
                 sid = item.get("sense")
-                if sid and sid in sense_ids:
+                canonical_sid = canonical_menu_sense_id(sid, menu_sense_ids)
+                if canonical_sid and canonical_sid in sense_ids:
                     # Preserve every field (provenance prompt_id/run_ts,
                     # example_ids, and any inline pos/translation/lemma) — only
                     # `examples` is normalized. Rebuilding as bare
                     # {sense, examples} previously stripped provenance and
                     # example_ids on every menu-pick during lemma remapping.
                     new_item = deepcopy(item)
+                    if canonical_sid != sid:
+                        new_item["sense"] = canonical_sid
+                        aliases = list(new_item.get("sense_id_aliases") or [])
+                        if sid not in aliases:
+                            aliases.append(sid)
+                        new_item["sense_id_aliases"] = aliases
                     new_item["examples"] = sorted(set(item.get("examples", [])))
                     kept.append(new_item)
             if kept:
@@ -351,7 +379,7 @@ def split_word_assignments(word, analyses, raw_value, known_lemmas=None):
         leftover_by_key = {}
         for item in items:
             sid = item.get("sense")
-            if not sid or sid in placed_sense_ids:
+            if not sid or canonical_menu_sense_id(sid, placed_sense_ids):
                 continue
             if not (item.get("translation") or "").strip():
                 continue

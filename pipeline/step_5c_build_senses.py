@@ -29,7 +29,8 @@ from collections import defaultdict
 from pathlib import Path
 
 from util_5c_sense_menu_format import (
-    assign_analysis_sense_ids, flatten_analyses_with_ids, normalize_artist_sense_menu,
+    assign_analysis_sense_ids, carry_sense_ids_by_content,
+    flatten_analyses_with_ids, normalize_artist_sense_menu,
 )
 
 # SpanishDict helpers (shared cache paths + menu assembly, both modes)
@@ -1150,6 +1151,7 @@ def build_spanishdict_menu(
             unmatched += 1
             continue
         _, _, normalized = flatten_analyses_with_ids(analyses)
+        normalized = carry_sense_ids_by_content(normalized, output.get(word, []))
         output[word] = normalized
         matched += 1
         total_senses += sum(len(a.get("senses", {})) for a in normalized)

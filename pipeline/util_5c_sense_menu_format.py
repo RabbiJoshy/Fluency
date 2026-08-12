@@ -19,6 +19,7 @@ converted.
 
 from copy import deepcopy
 import hashlib
+import json
 
 
 def normalize_artist_sense_menu(data):
@@ -113,6 +114,65 @@ def merge_analysis(menu, word, identity, senses):
     analyses.append(new_analysis)
 
 
+def carry_sense_ids_by_content(new_analyses, previous_analyses):
+    """Reuse prior IDs when an exact sense survives a menu rebuild.
+
+    Some providers contain multiple senses with the same POS and translation.
+    Their short legacy IDs therefore depend on source order.  Matching the
+    complete sense payload prevents a provider reorder from silently changing
+    what an existing assignment ID means.
+    """
+    if not isinstance(new_analyses, list) or not isinstance(previous_analyses, list):
+        return deepcopy(new_analyses)
+
+    def identity(analysis):
+        return analysis.get("headword", analysis.get("lemma"))
+
+    def signature(sense):
+        return json.dumps(sense, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+    previous_by_identity = {}
+    for analysis in previous_analyses:
+        if isinstance(analysis, dict):
+            previous_by_identity.setdefault(identity(analysis), []).append(analysis)
+
+    carried = deepcopy(new_analyses)
+    for analysis in carried:
+        if not isinstance(analysis, dict) or not isinstance(analysis.get("senses"), dict):
+            continue
+        candidates = previous_by_identity.get(identity(analysis), [])
+        if not candidates and len(previous_analyses) == 1:
+            candidates = previous_analyses
+        old_ids_by_signature = {}
+        for candidate in candidates:
+            for sense_id, sense in (candidate.get("senses") or {}).items():
+                old_ids_by_signature.setdefault(signature(sense), []).append(str(sense_id))
+
+        desired = {}
+        for current_id, sense in analysis["senses"].items():
+            matches = old_ids_by_signature.get(signature(sense), [])
+            if matches:
+                desired[str(current_id)] = matches.pop(0)
+
+        reserved = set(desired.values())
+        used = set()
+        remapped = {}
+        for current_id, sense in analysis["senses"].items():
+            current_id = str(current_id)
+            sense_id = desired.get(current_id, current_id)
+            if sense_id in used or (current_id not in desired and sense_id in reserved):
+                digest = hashlib.md5(signature(sense).encode("utf-8")).hexdigest()
+                for length in range(4, len(digest) + 1):
+                    candidate = "%s:%s" % (current_id, digest[:length])
+                    if candidate not in used and candidate not in reserved:
+                        sense_id = candidate
+                        break
+            remapped[sense_id] = sense
+            used.add(sense_id)
+        analysis["senses"] = remapped
+    return carried
+
+
 def assign_analysis_sense_ids(identity, senses_list, used_ids=None):
     """Assign stable IDs that are unique within a menu.
 
@@ -195,8 +255,10 @@ def collect_surface_analyses_from_shared_menu(word, shared_menu):
                 if isinstance(analysis, dict):
                     headword = analysis.get("headword", word)
                     senses = analysis.get("senses", {})
-                    if isinstance(senses, dict):
-                        senses = list(senses.values())
+                    # Preserve explicit provider/register IDs.  The classifier
+                    # flattener accepts the mapping directly; converting it to
+                    # values here silently re-hashed every sense and made its
+                    # assignment ID differ from the on-disk menu.
                     analyses.append({"headword": headword, "senses": deepcopy(senses)})
             if analyses:
                 return analyses
@@ -347,7 +409,27 @@ def flatten_analyses_with_ids(analyses):
     for index, analysis in enumerate(analyses):
         identity = analysis.get("headword", analysis.get("lemma")) or ("analysis-%d" % index)
         senses = analysis.get("senses", []) or []
-        id_map = assign_analysis_sense_ids(identity, senses, used_ids=used_ids)
+        if isinstance(senses, dict):
+            # The menu IDs are provider/registry identities already referenced
+            # by assignment layers. Re-hashing only the values here used to
+            # make duplicate translations swap meanings when provider order
+            # changed, even though the on-disk menu itself was stable.
+            id_map = {}
+            for source_id, sense in senses.items():
+                source_id = str(source_id)
+                sense_id = source_id
+                if sense_id in used_ids or sense_id in id_map:
+                    digest = hashlib.md5(
+                        json.dumps(sense, ensure_ascii=False, sort_keys=True).encode("utf-8")
+                    ).hexdigest()
+                    for length in range(4, len(digest) + 1):
+                        candidate = "%s:%s" % (source_id, digest[:length])
+                        if candidate not in used_ids and candidate not in id_map:
+                            sense_id = candidate
+                            break
+                id_map[sense_id] = deepcopy(sense)
+        else:
+            id_map = assign_analysis_sense_ids(identity, senses, used_ids=used_ids)
         normalized = {"senses": id_map}
         if analysis.get("headword") is not None:
             normalized["headword"] = analysis.get("headword")

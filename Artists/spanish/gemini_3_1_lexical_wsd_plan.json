@@ -1,0 +1,43 @@
+{
+  "schema": "fluency.gemini-rerun-plan-summary/v1",
+  "created": "2026-08-09",
+  "model": "gemini-3.1-flash-lite",
+  "prompt_id": "sd-lexical-v1-g31",
+  "minimum_existing_prompt_tier": 20,
+  "paid_api_called": false,
+  "artists": {
+    "Bad Bunny": {
+      "records": 2655,
+      "examples": 8860,
+      "menu_records": 2655,
+      "no_menu_records": 0,
+      "batches_of_10": 266
+    },
+    "Rosalía": {
+      "records": 1110,
+      "examples": 2928,
+      "menu_records": 1110,
+      "no_menu_records": 0,
+      "batches_of_10": 111
+    },
+    "Young Miko": {
+      "records": 1437,
+      "examples": 4515,
+      "menu_records": 1437,
+      "no_menu_records": 0,
+      "batches_of_10": 144
+    }
+  },
+  "totals": {
+    "records": 5202,
+    "examples": 16303,
+    "menu_records": 5202,
+    "no_menu_records": 0,
+    "batches_of_10": 521
+  },
+  "notes": [
+    "All three artists were rerun from ingestion through POS with elision restoration stored before vocal-artifact classification, routing, POS and WSD preparation; the compatibility elision pass then reduced every corpus by zero entries.",
+    "Deterministic single-candidate and independent-consensus legacy evidence is excluded from these example queues.",
+    "Every queued record resolves to an existing menu after morphology and derivation bridging; there are no off-menu gap-fill records. Existing sd-cop-v2 and sd-cop-v3 occurrence claims are excluded. Spanish Test Playlist is already fully covered and has no rerun plan."
+  ]
+}

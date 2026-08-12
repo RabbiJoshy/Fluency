@@ -50,7 +50,8 @@ DEFAULT_ARTIST_DIR = str(PROJECT_ROOT / "Artists" / "spanish" / "Bad Bunny")
 # ---------------------------------------------------------------------------
 # mode:      "menu"    -> the menu already had a correct sense; picking it is the
 #                         only pass. Proposing here is the over-translation bug.
-#            "propose" -> genuine menu gap or proper noun; proposing is correct.
+#            "propose" -> genuine lexical menu gap; proposing is correct.
+#            "abstain" -> non-lexical material; a named abstention is correct.
 # context:   distinctive substring of the flagged lyric line, used to find the
 #            example this expectation is about (accent/apostrophe-insensitive).
 # want_any:  pass needs one of these substrings in the chosen/proposed gloss.
@@ -89,13 +90,12 @@ GOLD_SET = [
      "note": "fragment of perrear; shipped the PROSE definition "
              "'To dance, especially in a provocative way.' — want a short gloss "
              "or a rejection, never prose"},
-    {"word": "quiles", "mode": "propose", "context": "justin quiles",
-     "want_type": "proper_noun", "forbid_any": ["screw"],
-     "note": "a surname; shipped 'to screw' — want proper-noun handling"},
-    {"word": "beatles", "mode": "propose", "context": "los beatle",
-     "want_type": "proper_noun", "forbid_any": [" or "],
-     "note": "a band; shipped 'The Beatles (band) or someone resembling them' — "
-             "want a short description, no 'or ...' hedge"},
+    {"word": "quiles", "mode": "abstain", "context": "justin quiles",
+     "want_reason": "proper_noun", "forbid_any": ["screw"],
+     "note": "a surname; lexical WSD must abstain as proper_noun"},
+    {"word": "beatles", "mode": "abstain", "context": "los beatle",
+     "want_reason": "proper_noun", "forbid_any": [" or "],
+     "note": "a band; lexical WSD must abstain as proper_noun"},
     {"word": "cuantos", "mode": "propose", "context": "unos cuantos",
      "forbid_any": ["quantum"],
      "note": "menu ONLY has cuanto->'quantum (physics)' — a GENUINE gap, "
@@ -192,6 +192,14 @@ def _judge(gold, record, call):
     ctype = str(call.get("type") or "")
     chose_menu = sid is not None and sid in (record.get("ids") or [])
 
+    if gold["mode"] == "abstain":
+        reason = str(call.get("abstain_reason") or "")
+        wanted = gold.get("want_reason")
+        if sid is None and not proposed and reason == wanted:
+            return True, "", "[%s]" % reason, False, ""
+        return (False, "abstain_reason=%r, wanted %r" % (reason or None, wanted),
+                proposed, chose_menu, proposed)
+
     gloss = ""
     if chose_menu:
         ids, senses = record["ids"], record["senses"]
@@ -240,7 +248,8 @@ def _judge(gold, record, call):
 # ---------------------------------------------------------------------------
 # Runner
 # ---------------------------------------------------------------------------
-def run(words, gold_by_word, artist_dir, dry_run):
+def run(words, gold_by_word, artist_dir, dry_run, gemini_model=None,
+        prompt_id=None):
     captured = {"records": None, "results": None}
     real_call = s6c.classify_or_propose_batch
 
@@ -272,6 +281,10 @@ def run(words, gold_by_word, artist_dir, dry_run):
     ]
     for w in words:
         argv += ["--word", w]
+    if gemini_model:
+        argv += ["--gemini-model", gemini_model]
+    if prompt_id:
+        argv += ["--prompt-id", prompt_id]
     if dry_run:
         argv.append("--dry-run-prompt")
 
@@ -399,6 +412,11 @@ def main():
     ap.add_argument("--dry-run", action="store_true",
                     help="Print the exact prompt payload and exit without "
                          "calling the API (no key needed).")
+    ap.add_argument("--gemini-model", default=None,
+                    help="Registered Gemini model to benchmark.")
+    ap.add_argument("--prompt-id", default=None,
+                    help="Prompt/model provenance id. Use the matching revised "
+                         "v2 id for a same-prompt comparison.")
     args = ap.parse_args()
 
     gold_by_word = {g["word"]: g for g in GOLD_SET}
@@ -409,7 +427,8 @@ def main():
                                         "note": "(ad-hoc word, no expectation)"})
     else:
         words = [g["word"] for g in GOLD_SET]
-    sys.exit(run(words, gold_by_word, args.artist_dir, args.dry_run))
+    sys.exit(run(words, gold_by_word, args.artist_dir, args.dry_run,
+                 gemini_model=args.gemini_model, prompt_id=args.prompt_id))
 
 
 if __name__ == "__main__":

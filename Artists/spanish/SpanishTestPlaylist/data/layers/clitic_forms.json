@@ -1,499 +1,26 @@
 {
-  "771a3b": {
-    "base_verb": "mover",
-    "lemma": "muévelo",
-    "corpus_count": 1,
-    "translation": "to move",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Muévelo, cabecea al ritmo del TikTok",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6",
-        "timestamp_ms": 47340,
-        "end_timestamp_ms": 50910
-      }
-    ],
-    "id": "771a3b",
-    "base_id": "7cfb5a"
-  },
-  "55eac5": {
-    "base_verb": "recordar",
-    "lemma": "recordarte",
-    "corpus_count": 1,
-    "translation": "to remember",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5960780",
-        "song_name": "Antes",
-        "spanish": "De to' la' noche' no paro de yo recordarte (Recordarte)",
-        "english": "I couldn't stop thinking of you (Thinking of you)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Anuel AA",
-        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
-        "timestamp_ms": 124320,
-        "end_timestamp_ms": 127410
-      }
-    ],
-    "id": "55eac5",
-    "base_id": "5fd027"
-  },
-  "09cc67": {
-    "base_verb": "fallar",
-    "lemma": "fallarle",
-    "corpus_count": 1,
-    "translation": "to fail",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10471373",
-        "song_name": "orióN",
-        "spanish": "No hay cómo fallarle a semejante mujerón",
-        "english": "There's no way to fail with such a woman",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Boza",
-        "spotify_track_id": "4feh4Ak3ZJfC6ibxkNzlkE",
-        "timestamp_ms": 159850,
-        "end_timestamp_ms": 162150
-      }
-    ],
-    "id": "09cc67",
-    "base_id": "2ade26"
-  },
-  "854d87": {
-    "base_verb": "regalar",
-    "lemma": "regálame",
+  "0e10e9": {
+    "base_verb": "decir",
+    "lemma": "decirle",
     "corpus_count": 2,
-    "translation": "to give",
+    "translation": "to say",
     "assignments": {},
     "examples": [
       {
-        "song": "8417047",
-        "song_name": "X SI VOLVEMOS",
-        "spanish": "Bebé, regálame una noche que no termine nunca",
-        "english": "",
+        "song": "5751052",
+        "song_name": "Ay, DiOs Mío!",
+        "spanish": "Y yo no pude, no (No), decirle que no",
+        "english": "When I left he sent them to search for me (Oh)",
         "spotify_available": true,
         "is_variant": false,
         "artist": "KAROL G",
-        "spotify_track_id": "3Zyk5Vd9WNPNVWxvb0EZTk",
-        "timestamp_ms": 165280,
-        "end_timestamp_ms": 169940
-      },
-      {
-        "song": "6838492",
-        "song_name": "Qué Más Pues?",
-        "spanish": "Regálame otra noche, quiero verte",
-        "english": "Give me another night, I wanna see you",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "J Balvin",
-        "spotify_track_id": "6D2TCm4nf5nxAcdGJ7w3QP",
-        "timestamp_ms": 28900,
-        "end_timestamp_ms": 33570
+        "spotify_track_id": "7x4ASXYEKfQBCewcZhK776",
+        "timestamp_ms": 82890,
+        "end_timestamp_ms": 88420
       }
     ],
-    "id": "854d87",
-    "base_id": "508c04"
-  },
-  "4d05d2": {
-    "base_verb": "hacer",
-    "lemma": "hacerle",
-    "corpus_count": 1,
-    "translation": "to do",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6211036",
-        "song_name": "BOOKER T",
-        "spanish": "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela",
-        "english": "Because I'm at my peak, ha (I'm at my peak)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Bad Bunny",
-        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
-        "timestamp_ms": 96240,
-        "end_timestamp_ms": 98500
-      }
-    ],
-    "id": "4d05d2",
-    "base_id": "7a798b"
-  },
-  "edde38": {
-    "base_verb": "mojar",
-    "lemma": "mojarte",
-    "corpus_count": 1,
-    "translation": "to get wet",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Allá abajo mojarte toa' las parte'",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
-      }
-    ],
-    "id": "edde38",
-    "base_id": "78e185"
-  },
-  "78b583": {
-    "base_verb": "hacer",
-    "lemma": "hacerlo",
-    "corpus_count": 3,
-    "translation": "to do",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8417047",
-        "song_name": "X SI VOLVEMOS",
-        "spanish": "Vamo' a hacerlo por última vez, bebé (Bebé)",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "3Zyk5Vd9WNPNVWxvb0EZTk",
-        "timestamp_ms": 21010,
-        "end_timestamp_ms": 24680
-      },
-      {
-        "song": "6838492",
-        "song_name": "Qué Más Pues?",
-        "spanish": "Vamos a hacerlo, que está rico el clima",
-        "english": "Let's do it, the weather's nice",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "J Balvin",
-        "spotify_track_id": "6D2TCm4nf5nxAcdGJ7w3QP",
-        "timestamp_ms": 127420,
-        "end_timestamp_ms": 131830
-      }
-    ],
-    "id": "78b583",
-    "base_id": "7a798b"
-  },
-  "1a057c": {
-    "base_verb": "calentar",
-    "lemma": "calentándote",
-    "corpus_count": 1,
-    "translation": "to heat",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Tocándote (Eh), calentándote",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
-      }
-    ],
-    "id": "1a057c",
-    "base_id": "552475"
-  },
-  "3f7e23": {
-    "base_verb": "devorar",
-    "lemma": "devorándonos",
-    "corpus_count": 1,
-    "translation": "to devour",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5929713",
-        "song_name": "Una Locura",
-        "spanish": "Porque devorándonos se ha vuelto tu fatality",
-        "english": "Because devouring each other has become your fatality",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Ozuna",
-        "spotify_track_id": "5y7DaS3jAc9eZzcSOoUIwU",
-        "timestamp_ms": 127970,
-        "end_timestamp_ms": 130630
-      }
-    ],
-    "id": "3f7e23",
-    "base_id": "da3637"
-  },
-  "700124": {
-    "base_verb": "poner",
-    "lemma": "ponerte",
-    "corpus_count": 1,
-    "translation": "to put",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5302844",
-        "song_name": "Verde",
-        "spanish": "Baby, tírate pa' ponerte en el sartén (Wuh, wuh)",
-        "english": "Baby, throw yourself in the pan (Wuh, wuh)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "J Balvin",
-        "spotify_track_id": "3HTbI3yUJQw3fP0Po8qLcD",
-        "timestamp_ms": 73360,
-        "end_timestamp_ms": 75780
-      }
-    ],
-    "id": "700124",
-    "base_id": "1fa2ba"
-  },
-  "a70ded": {
-    "base_verb": "ver",
-    "lemma": "verte",
-    "corpus_count": 1,
-    "translation": "to see",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6838492",
-        "song_name": "Qué Más Pues?",
-        "spanish": "Regálame otra noche, quiero verte",
-        "english": "Give me another night, I wanna see you",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "J Balvin",
-        "spotify_track_id": "6D2TCm4nf5nxAcdGJ7w3QP",
-        "timestamp_ms": 28900,
-        "end_timestamp_ms": 33570
-      }
-    ],
-    "id": "a70ded",
-    "base_id": "cd9482"
-  },
-  "26efb2": {
-    "base_verb": "dar",
-    "lemma": "dándote",
-    "corpus_count": 2,
-    "translation": "to give",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Otra noche dándote (Eh), dándote (Eh)",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
-      }
-    ],
-    "id": "26efb2",
-    "base_id": "695915"
-  },
-  "dfa10d": {
-    "base_verb": "hacer",
-    "lemma": "hacerles",
-    "corpus_count": 1,
-    "translation": "to do",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6211036",
-        "song_name": "BOOKER T",
-        "spanish": "Yo pegando temas sin hacerle' promo (Promo)",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Bad Bunny",
-        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
-        "timestamp_ms": 111020,
-        "end_timestamp_ms": 113630
-      }
-    ],
-    "id": "dfa10d",
-    "base_id": "7a798b"
-  },
-  "d0faae": {
-    "base_verb": "despedirse",
-    "lemma": "despídete",
-    "corpus_count": 1,
-    "translation": "to say goodbye",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "8417047",
-        "song_name": "X SI VOLVEMOS",
-        "spanish": "Despídete desnuda, con mi cel te voy grabando",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "3Zyk5Vd9WNPNVWxvb0EZTk",
-        "timestamp_ms": 129440,
-        "end_timestamp_ms": 132480
-      }
-    ],
-    "id": "d0faae"
-  },
-  "cb35da": {
-    "base_verb": "montarse",
-    "lemma": "móntate",
-    "corpus_count": 1,
-    "translation": "to get on",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5302844",
-        "song_name": "Verde",
-        "spanish": "Dale, móntate, ven (Wuh, wuh)",
-        "english": "Let's go, get on, come (Wuh, wuh)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "J Balvin",
-        "spotify_track_id": "3HTbI3yUJQw3fP0Po8qLcD",
-        "timestamp_ms": 71000,
-        "end_timestamp_ms": 72380
-      }
-    ],
-    "id": "cb35da",
-    "base_id": "a19056"
-  },
-  "59ebce": {
-    "base_verb": "dar",
-    "lemma": "darte",
-    "corpus_count": 2,
-    "translation": "to give",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "1469974",
-        "song_name": "Una Vaina Loca",
-        "spanish": "Yo voy a darte por tu bum-bum-bum-bum",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Fuego",
-        "spotify_track_id": "6YYmoV9YbBefsspGmqFHbs",
-        "timestamp_ms": 59590,
-        "end_timestamp_ms": 61640
-      }
-    ],
-    "id": "59ebce",
-    "base_id": "695915"
-  },
-  "920e14": {
-    "base_verb": "comerse",
-    "lemma": "comerme",
-    "corpus_count": 1,
-    "translation": "to eat",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10489180",
-        "song_name": "Si Antes Te Hubiera Conocido",
-        "spanish": "Me atrevo a comerme los do'",
-        "english": "I might dare to get with both of you",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "6WatFBLVB0x077xWeoVc2k",
-        "timestamp_ms": 58090,
-        "end_timestamp_ms": 59990
-      }
-    ],
-    "id": "920e14",
-    "base_id": "45bce2"
-  },
-  "1512ba": {
-    "base_verb": "tocar",
-    "lemma": "tocándote",
-    "corpus_count": 1,
-    "translation": "to touch",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Tocándote (Eh), calentándote",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
-      }
-    ],
-    "id": "1512ba",
-    "base_id": "fef2af"
-  },
-  "b7d9bd": {
-    "base_verb": "confesar",
-    "lemma": "confesarte",
-    "corpus_count": 1,
-    "translation": "to confess",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10471373",
-        "song_name": "orióN",
-        "spanish": "Pri, tú me está' gustando mucho, por eso quiero confesarte",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Boza",
-        "spotify_track_id": "4feh4Ak3ZJfC6ibxkNzlkE"
-      }
-    ],
-    "id": "b7d9bd",
-    "base_id": "d28238"
-  },
-  "cc1fb6": {
-    "base_verb": "mirar",
-    "lemma": "mírame",
-    "corpus_count": 2,
-    "translation": "to look at",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6211036",
-        "song_name": "BOOKER T",
-        "spanish": "Mírame, ¿que tú qué?, ¿que tú qué? (Nah-nah) Nah-nah",
-        "english": "I'm coco, you guys are baking (Woo)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Bad Bunny",
-        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
-        "timestamp_ms": 138490,
-        "end_timestamp_ms": 141950
-      }
-    ],
-    "id": "cc1fb6",
-    "base_id": "d9ba72"
-  },
-  "849e1b": {
-    "base_verb": "irse",
-    "lemma": "irse",
-    "corpus_count": 2,
-    "translation": "",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "6211036",
-        "song_name": "BOOKER T",
-        "spanish": "Ustedes pagando pa' irse virale' (Ey)",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Bad Bunny",
-        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
-        "timestamp_ms": 108920,
-        "end_timestamp_ms": 111020
-      }
-    ],
-    "id": "849e1b",
-    "base_id": "849e1b"
+    "id": "0e10e9",
+    "base_id": "2159c9"
   },
   "f61585": {
     "base_verb": "mirar",
@@ -518,6 +45,75 @@
     "id": "f61585",
     "base_id": "d9ba72"
   },
+  "cb35da": {
+    "base_verb": "montarse",
+    "lemma": "móntate",
+    "corpus_count": 1,
+    "translation": "to get on",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5302844",
+        "song_name": "Verde",
+        "spanish": "Dale, móntate, ven (Wuh, wuh)",
+        "english": "Let's go, get on, come (Wuh, wuh)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "J Balvin",
+        "spotify_track_id": "3HTbI3yUJQw3fP0Po8qLcD",
+        "timestamp_ms": 71000,
+        "end_timestamp_ms": 72380
+      }
+    ],
+    "id": "cb35da",
+    "base_id": "a19056"
+  },
+  "55eac5": {
+    "base_verb": "recordar",
+    "lemma": "recordarte",
+    "corpus_count": 1,
+    "translation": "to remember",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5960780",
+        "song_name": "Antes",
+        "spanish": "De to' la' noche' no paro de yo recordarte (Recordarte)",
+        "english": "I couldn't stop thinking of you (Thinking of you)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Anuel AA",
+        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
+        "timestamp_ms": 124320,
+        "end_timestamp_ms": 127410
+      }
+    ],
+    "id": "55eac5",
+    "base_id": "5fd027"
+  },
+  "362c65": {
+    "base_verb": "mandar",
+    "lemma": "mándame",
+    "corpus_count": 1,
+    "translation": "to order",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Gata, tú está' only, mándame tu ubi",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6",
+        "timestamp_ms": 45180,
+        "end_timestamp_ms": 47340
+      }
+    ],
+    "id": "362c65",
+    "base_id": "9945a2"
+  },
   "4f7e4d": {
     "base_verb": "ir",
     "lemma": "irnos",
@@ -540,145 +136,6 @@
     ],
     "id": "4f7e4d",
     "base_id": "be037b"
-  },
-  "0e10e9": {
-    "base_verb": "decir",
-    "lemma": "decirle",
-    "corpus_count": 2,
-    "translation": "to say",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5751052",
-        "song_name": "Ay, DiOs Mío!",
-        "spanish": "Y yo no pude, no (No), decirle que no",
-        "english": "When I left he sent them to search for me (Oh)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "7x4ASXYEKfQBCewcZhK776",
-        "timestamp_ms": 82890,
-        "end_timestamp_ms": 88420
-      }
-    ],
-    "id": "0e10e9",
-    "base_id": "2159c9"
-  },
-  "01785c": {
-    "base_verb": "conquistar",
-    "lemma": "conquistándome",
-    "corpus_count": 1,
-    "translation": "to conquer",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5751052",
-        "song_name": "Ay, DiOs Mío!",
-        "spanish": "Tú fuiste conquistándome",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "7x4ASXYEKfQBCewcZhK776",
-        "timestamp_ms": 18190,
-        "end_timestamp_ms": 20700
-      }
-    ],
-    "id": "01785c",
-    "base_id": "7be1ab"
-  },
-  "b4e3a2": {
-    "base_verb": "dejarse",
-    "lemma": "déjate",
-    "corpus_count": 6,
-    "translation": "to let oneself",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10627178",
-        "song_name": "PELIGROSA",
-        "spanish": "Y, ma, déjate llevar",
-        "english": "And, baby, let yourself go",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "42wdz3j7gstgUuhoFLCXqd",
-        "timestamp_ms": 57100,
-        "end_timestamp_ms": 61250
-      },
-      {
-        "song": "5960780",
-        "song_name": "Antes",
-        "spanish": "A ver, déjate ver (Déjate ver)",
-        "english": "Let's see, show yourself (Show yourself)",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Anuel AA",
-        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
-        "timestamp_ms": 142930,
-        "end_timestamp_ms": 146310
-      },
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Déjate llevar, apaga el celular",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6",
-        "timestamp_ms": 23550,
-        "end_timestamp_ms": 25880
-      }
-    ],
-    "id": "b4e3a2",
-    "base_id": "381df7"
-  },
-  "5458c7": {
-    "base_verb": "mirar",
-    "lemma": "mirándome",
-    "corpus_count": 1,
-    "translation": "to look at",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "5960780",
-        "song_name": "Antes",
-        "spanish": "Tú mirándome a los ojo' y yo mirándote las te-te-, baby",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Anuel AA",
-        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
-        "timestamp_ms": 57600,
-        "end_timestamp_ms": 61380
-      }
-    ],
-    "id": "5458c7",
-    "base_id": "d9ba72"
-  },
-  "1c514c": {
-    "base_verb": "tener",
-    "lemma": "tenerte",
-    "corpus_count": 1,
-    "translation": "to have",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10471373",
-        "song_name": "orióN",
-        "spanish": "De tenerte también tengo gana'",
-        "english": "I also want to have you",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "Boza",
-        "spotify_track_id": "4feh4Ak3ZJfC6ibxkNzlkE",
-        "timestamp_ms": 45080,
-        "end_timestamp_ms": 49010
-      }
-    ],
-    "id": "1c514c",
-    "base_id": "a132bf"
   },
   "630701": {
     "base_verb": "dar",
@@ -737,51 +194,116 @@
     "id": "630701",
     "base_id": "695915"
   },
-  "ed8dc2": {
-    "base_verb": "mirar",
-    "lemma": "mirarlo",
+  "09cc67": {
+    "base_verb": "fallar",
+    "lemma": "fallarle",
     "corpus_count": 1,
-    "translation": "to look at",
+    "translation": "to fail",
     "assignments": {},
     "examples": [
       {
-        "song": "5751052",
-        "song_name": "Ay, DiOs Mío!",
-        "spanish": "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)",
-        "english": "I know that he noticed it and I couldn't help",
+        "song": "10471373",
+        "song_name": "orióN",
+        "spanish": "No hay cómo fallarle a semejante mujerón",
+        "english": "There's no way to fail with such a woman",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Boza",
+        "spotify_track_id": "4feh4Ak3ZJfC6ibxkNzlkE",
+        "timestamp_ms": 159850,
+        "end_timestamp_ms": 162150
+      }
+    ],
+    "id": "09cc67",
+    "base_id": "2ade26"
+  },
+  "920e14": {
+    "base_verb": "comerse",
+    "lemma": "comerme",
+    "corpus_count": 1,
+    "translation": "to eat",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10489180",
+        "song_name": "Si Antes Te Hubiera Conocido",
+        "spanish": "Me atrevo a comerme los do'",
+        "english": "I might dare to get with both of you",
         "spotify_available": true,
         "is_variant": false,
         "artist": "KAROL G",
-        "spotify_track_id": "7x4ASXYEKfQBCewcZhK776",
-        "timestamp_ms": 72180,
-        "end_timestamp_ms": 75630
+        "spotify_track_id": "6WatFBLVB0x077xWeoVc2k",
+        "timestamp_ms": 58090,
+        "end_timestamp_ms": 59990
       }
     ],
-    "id": "ed8dc2",
-    "base_id": "d9ba72"
+    "id": "920e14",
+    "base_id": "45bce2"
   },
-  "db0712": {
-    "base_verb": "mirar",
-    "lemma": "mirándonos",
+  "b7d9bd": {
+    "base_verb": "confesar",
+    "lemma": "confesarte",
     "corpus_count": 1,
-    "translation": "to look at",
+    "translation": "to confess",
     "assignments": {},
     "examples": [
       {
-        "song": "5960780",
-        "song_name": "Antes",
-        "spanish": "Par de mordío' mirándono' feo",
-        "english": "A few pissed dudes looking at us mad",
+        "song": "10471373",
+        "song_name": "orióN",
+        "spanish": "Pri, tú me está' gustando mucho, por eso quiero confesarte",
+        "english": "",
         "spotify_available": true,
         "is_variant": false,
-        "artist": "Anuel AA",
-        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
-        "timestamp_ms": 66590,
-        "end_timestamp_ms": 68250
+        "artist": "Boza",
+        "spotify_track_id": "4feh4Ak3ZJfC6ibxkNzlkE"
       }
     ],
-    "id": "db0712",
-    "base_id": "d9ba72"
+    "id": "b7d9bd",
+    "base_id": "d28238"
+  },
+  "849e1b": {
+    "base_verb": "irse",
+    "lemma": "irse",
+    "corpus_count": 2,
+    "translation": "",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6211036",
+        "song_name": "BOOKER T",
+        "spanish": "Ustedes pagando pa' irse virale' (Ey)",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Bad Bunny",
+        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
+        "timestamp_ms": 108920,
+        "end_timestamp_ms": 111020
+      }
+    ],
+    "id": "849e1b",
+    "base_id": "849e1b"
+  },
+  "26efb2": {
+    "base_verb": "dar",
+    "lemma": "dándote",
+    "corpus_count": 2,
+    "translation": "to give",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Otra noche dándote (Eh), dándote (Eh)",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
+      }
+    ],
+    "id": "26efb2",
+    "base_id": "695915"
   },
   "195b78": {
     "base_verb": "tirarse",
@@ -806,6 +328,178 @@
     "id": "195b78",
     "base_id": "7bbb53"
   },
+  "cf8177": {
+    "base_verb": "tocar",
+    "lemma": "tocarte",
+    "corpus_count": 2,
+    "translation": "to touch",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5929713",
+        "song_name": "Una Locura",
+        "spanish": "Estoy tentado a tocarte, tentado a pecar",
+        "english": "I'm tempted to touch you, tempted to sin",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Ozuna",
+        "spotify_track_id": "5y7DaS3jAc9eZzcSOoUIwU",
+        "timestamp_ms": 159890,
+        "end_timestamp_ms": 162970
+      }
+    ],
+    "id": "cf8177",
+    "base_id": "fef2af"
+  },
+  "d0faae": {
+    "base_verb": "despedirse",
+    "lemma": "despídete",
+    "corpus_count": 1,
+    "translation": "to say goodbye",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8417047",
+        "song_name": "X SI VOLVEMOS",
+        "spanish": "Despídete desnuda, con mi cel te voy grabando",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "KAROL G",
+        "spotify_track_id": "3Zyk5Vd9WNPNVWxvb0EZTk",
+        "timestamp_ms": 129440,
+        "end_timestamp_ms": 132480
+      }
+    ],
+    "id": "d0faae"
+  },
+  "771a3b": {
+    "base_verb": "mover",
+    "lemma": "muévelo",
+    "corpus_count": 1,
+    "translation": "to move",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Muévelo, cabecea al ritmo del TikTok",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6",
+        "timestamp_ms": 47340,
+        "end_timestamp_ms": 50910
+      }
+    ],
+    "id": "771a3b",
+    "base_id": "7cfb5a"
+  },
+  "0d4ed7": {
+    "base_verb": "conquistar",
+    "lemma": "conquistarte",
+    "corpus_count": 1,
+    "translation": "to conquer",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10489180",
+        "song_name": "Si Antes Te Hubiera Conocido",
+        "spanish": "Bebé, pa' conquistarte que me pasen el manual",
+        "english": "Baby, to conquer you, they need to pass me the manual",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "KAROL G",
+        "spotify_track_id": "6WatFBLVB0x077xWeoVc2k",
+        "timestamp_ms": 96880,
+        "end_timestamp_ms": 100670
+      }
+    ],
+    "id": "0d4ed7",
+    "base_id": "7be1ab"
+  },
+  "4d05d2": {
+    "base_verb": "hacer",
+    "lemma": "hacerle",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6211036",
+        "song_name": "BOOKER T",
+        "spanish": "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela",
+        "english": "Because I'm at my peak, ha (I'm at my peak)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Bad Bunny",
+        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
+        "timestamp_ms": 96240,
+        "end_timestamp_ms": 98500
+      }
+    ],
+    "id": "4d05d2",
+    "base_id": "7a798b"
+  },
+  "59ebce": {
+    "base_verb": "dar",
+    "lemma": "darte",
+    "corpus_count": 2,
+    "translation": "to give",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "1469974",
+        "song_name": "Una Vaina Loca",
+        "spanish": "Yo voy a darte por tu bum-bum-bum-bum",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Fuego",
+        "spotify_track_id": "6YYmoV9YbBefsspGmqFHbs",
+        "timestamp_ms": 59590,
+        "end_timestamp_ms": 61640
+      }
+    ],
+    "id": "59ebce",
+    "base_id": "695915"
+  },
+  "78b583": {
+    "base_verb": "hacer",
+    "lemma": "hacerlo",
+    "corpus_count": 3,
+    "translation": "to do",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "8417047",
+        "song_name": "X SI VOLVEMOS",
+        "spanish": "Vamo' a hacerlo por última vez, bebé (Bebé)",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "KAROL G",
+        "spotify_track_id": "3Zyk5Vd9WNPNVWxvb0EZTk",
+        "timestamp_ms": 21010,
+        "end_timestamp_ms": 24680
+      },
+      {
+        "song": "6838492",
+        "song_name": "Qué Más Pues?",
+        "spanish": "Vamos a hacerlo, que está rico el clima",
+        "english": "Let's do it, the weather's nice",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "J Balvin",
+        "spotify_track_id": "6D2TCm4nf5nxAcdGJ7w3QP",
+        "timestamp_ms": 127420,
+        "end_timestamp_ms": 131830
+      }
+    ],
+    "id": "78b583",
+    "base_id": "7a798b"
+  },
   "e7f0b4": {
     "base_verb": "chingar",
     "lemma": "chingarte",
@@ -826,6 +520,29 @@
     ],
     "id": "e7f0b4",
     "base_id": "209610"
+  },
+  "1c514c": {
+    "base_verb": "tener",
+    "lemma": "tenerte",
+    "corpus_count": 1,
+    "translation": "to have",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10471373",
+        "song_name": "orióN",
+        "spanish": "De tenerte también tengo gana'",
+        "english": "I also want to have you",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Boza",
+        "spotify_track_id": "4feh4Ak3ZJfC6ibxkNzlkE",
+        "timestamp_ms": 45080,
+        "end_timestamp_ms": 49010
+      }
+    ],
+    "id": "1c514c",
+    "base_id": "a132bf"
   },
   "a49c83": {
     "base_verb": "decir",
@@ -896,51 +613,131 @@
     "id": "a49c83",
     "base_id": "2159c9"
   },
-  "573acd": {
-    "base_verb": "hacer",
-    "lemma": "hacernos",
-    "corpus_count": 1,
-    "translation": "to do",
+  "cc1fb6": {
+    "base_verb": "mirar",
+    "lemma": "mírame",
+    "corpus_count": 2,
+    "translation": "to look at",
     "assignments": {},
     "examples": [
       {
-        "song": "10919676",
-        "song_name": "frente al mar",
-        "spanish": "Fue inevitable hacerno' de to'",
+        "song": "6211036",
+        "song_name": "BOOKER T",
+        "spanish": "Mírame, ¿que tú qué?, ¿que tú qué? (Nah-nah) Nah-nah",
+        "english": "I'm coco, you guys are baking (Woo)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Bad Bunny",
+        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
+        "timestamp_ms": 138490,
+        "end_timestamp_ms": 141950
+      }
+    ],
+    "id": "cc1fb6",
+    "base_id": "d9ba72"
+  },
+  "edde38": {
+    "base_verb": "mojar",
+    "lemma": "mojarte",
+    "corpus_count": 1,
+    "translation": "to get wet",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Allá abajo mojarte toa' las parte'",
         "english": "",
         "spotify_available": true,
         "is_variant": false,
-        "artist": "Beéle",
-        "spotify_track_id": "60u6hcpH5Qm1M3xESdNBrB",
-        "timestamp_ms": 73740,
-        "end_timestamp_ms": 75600
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
       }
     ],
-    "id": "573acd",
-    "base_id": "7a798b"
+    "id": "edde38",
+    "base_id": "78e185"
   },
-  "cf8177": {
-    "base_verb": "tocar",
-    "lemma": "tocarte",
+  "854d87": {
+    "base_verb": "regalar",
+    "lemma": "regálame",
     "corpus_count": 2,
-    "translation": "to touch",
+    "translation": "to give",
     "assignments": {},
     "examples": [
       {
-        "song": "5929713",
-        "song_name": "Una Locura",
-        "spanish": "Estoy tentado a tocarte, tentado a pecar",
-        "english": "I'm tempted to touch you, tempted to sin",
+        "song": "8417047",
+        "song_name": "X SI VOLVEMOS",
+        "spanish": "Bebé, regálame una noche que no termine nunca",
+        "english": "",
         "spotify_available": true,
         "is_variant": false,
-        "artist": "Ozuna",
-        "spotify_track_id": "5y7DaS3jAc9eZzcSOoUIwU",
-        "timestamp_ms": 159890,
-        "end_timestamp_ms": 162970
+        "artist": "KAROL G",
+        "spotify_track_id": "3Zyk5Vd9WNPNVWxvb0EZTk",
+        "timestamp_ms": 165280,
+        "end_timestamp_ms": 169940
+      },
+      {
+        "song": "6838492",
+        "song_name": "Qué Más Pues?",
+        "spanish": "Regálame otra noche, quiero verte",
+        "english": "Give me another night, I wanna see you",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "J Balvin",
+        "spotify_track_id": "6D2TCm4nf5nxAcdGJ7w3QP",
+        "timestamp_ms": 28900,
+        "end_timestamp_ms": 33570
       }
     ],
-    "id": "cf8177",
-    "base_id": "fef2af"
+    "id": "854d87",
+    "base_id": "508c04"
+  },
+  "b4e3a2": {
+    "base_verb": "dejarse",
+    "lemma": "déjate",
+    "corpus_count": 6,
+    "translation": "to let oneself",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10627178",
+        "song_name": "PELIGROSA",
+        "spanish": "Y, ma, déjate llevar",
+        "english": "And, baby, let yourself go",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "42wdz3j7gstgUuhoFLCXqd",
+        "timestamp_ms": 57100,
+        "end_timestamp_ms": 61250
+      },
+      {
+        "song": "5960780",
+        "song_name": "Antes",
+        "spanish": "A ver, déjate ver (Déjate ver)",
+        "english": "Let's see, show yourself (Show yourself)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Anuel AA",
+        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
+        "timestamp_ms": 142930,
+        "end_timestamp_ms": 146310
+      },
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Déjate llevar, apaga el celular",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6",
+        "timestamp_ms": 23550,
+        "end_timestamp_ms": 25880
+      }
+    ],
+    "id": "b4e3a2",
+    "base_id": "381df7"
   },
   "396530": {
     "base_verb": "dar",
@@ -965,28 +762,28 @@
     "id": "396530",
     "base_id": "695915"
   },
-  "362c65": {
-    "base_verb": "mandar",
-    "lemma": "mándame",
+  "5458c7": {
+    "base_verb": "mirar",
+    "lemma": "mirándome",
     "corpus_count": 1,
-    "translation": "to order",
+    "translation": "to look at",
     "assignments": {},
     "examples": [
       {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Gata, tú está' only, mándame tu ubi",
+        "song": "5960780",
+        "song_name": "Antes",
+        "spanish": "Tú mirándome a los ojo' y yo mirándote las te-te-, baby",
         "english": "",
         "spotify_available": true,
         "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6",
-        "timestamp_ms": 45180,
-        "end_timestamp_ms": 47340
+        "artist": "Anuel AA",
+        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
+        "timestamp_ms": 57600,
+        "end_timestamp_ms": 61380
       }
     ],
-    "id": "362c65",
-    "base_id": "9945a2"
+    "id": "5458c7",
+    "base_id": "d9ba72"
   },
   "790905": {
     "base_verb": "venir",
@@ -1008,52 +805,6 @@
     ],
     "id": "790905",
     "base_id": "3d404f"
-  },
-  "0d4ed7": {
-    "base_verb": "conquistar",
-    "lemma": "conquistarte",
-    "corpus_count": 1,
-    "translation": "to conquer",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10489180",
-        "song_name": "Si Antes Te Hubiera Conocido",
-        "spanish": "Bebé, pa' conquistarte que me pasen el manual",
-        "english": "Baby, to conquer you, they need to pass me the manual",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "6WatFBLVB0x077xWeoVc2k",
-        "timestamp_ms": 96880,
-        "end_timestamp_ms": 100670
-      }
-    ],
-    "id": "0d4ed7",
-    "base_id": "7be1ab"
-  },
-  "d58df2": {
-    "base_verb": "presentar",
-    "lemma": "presentarte",
-    "corpus_count": 1,
-    "translation": "to introduce",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "10489180",
-        "song_name": "Si Antes Te Hubiera Conocido",
-        "spanish": "Pa' presentarte como mi marido",
-        "english": "To present you as my husband",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "KAROL G",
-        "spotify_track_id": "6WatFBLVB0x077xWeoVc2k",
-        "timestamp_ms": 118040,
-        "end_timestamp_ms": 122860
-      }
-    ],
-    "id": "d58df2",
-    "base_id": "91330d"
   },
   "8972c8": {
     "base_verb": "pegar",
@@ -1078,17 +829,110 @@
     "id": "8972c8",
     "base_id": "9bc35d"
   },
-  "985b42": {
-    "base_verb": "guayar",
-    "lemma": "guayarte",
+  "d58df2": {
+    "base_verb": "presentar",
+    "lemma": "presentarte",
     "corpus_count": 1,
-    "translation": "to grate",
+    "translation": "to introduce",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10489180",
+        "song_name": "Si Antes Te Hubiera Conocido",
+        "spanish": "Pa' presentarte como mi marido",
+        "english": "To present you as my husband",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "KAROL G",
+        "spotify_track_id": "6WatFBLVB0x077xWeoVc2k",
+        "timestamp_ms": 118040,
+        "end_timestamp_ms": 122860
+      }
+    ],
+    "id": "d58df2",
+    "base_id": "91330d"
+  },
+  "3f7e23": {
+    "base_verb": "devorar",
+    "lemma": "devorándonos",
+    "corpus_count": 1,
+    "translation": "to devour",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5929713",
+        "song_name": "Una Locura",
+        "spanish": "Porque devorándonos se ha vuelto tu fatality",
+        "english": "Because devouring each other has become your fatality",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Ozuna",
+        "spotify_track_id": "5y7DaS3jAc9eZzcSOoUIwU",
+        "timestamp_ms": 127970,
+        "end_timestamp_ms": 130630
+      }
+    ],
+    "id": "3f7e23",
+    "base_id": "da3637"
+  },
+  "dfa10d": {
+    "base_verb": "hacer",
+    "lemma": "hacerles",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6211036",
+        "song_name": "BOOKER T",
+        "spanish": "Yo pegando temas sin hacerle' promo (Promo)",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Bad Bunny",
+        "spotify_track_id": "26w9NTiE9NGjW1ZvIOd1So",
+        "surface": "hacerle'",
+        "timestamp_ms": 111020,
+        "end_timestamp_ms": 113630
+      }
+    ],
+    "id": "dfa10d",
+    "base_id": "7a798b"
+  },
+  "ed8dc2": {
+    "base_verb": "mirar",
+    "lemma": "mirarlo",
+    "corpus_count": 1,
+    "translation": "to look at",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5751052",
+        "song_name": "Ay, DiOs Mío!",
+        "spanish": "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)",
+        "english": "I know that he noticed it and I couldn't help",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "KAROL G",
+        "spotify_track_id": "7x4ASXYEKfQBCewcZhK776",
+        "timestamp_ms": 72180,
+        "end_timestamp_ms": 75630
+      }
+    ],
+    "id": "ed8dc2",
+    "base_id": "d9ba72"
+  },
+  "1512ba": {
+    "base_verb": "tocar",
+    "lemma": "tocándote",
+    "corpus_count": 1,
+    "translation": "to touch",
     "assignments": {},
     "examples": [
       {
         "song": "9991217",
         "song_name": "Gata Only",
-        "spanish": "Ven y dame un chance pa' guayarte",
+        "spanish": "Tocándote (Eh), calentándote",
         "english": "",
         "spotify_available": true,
         "is_variant": false,
@@ -1096,8 +940,169 @@
         "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
       }
     ],
-    "id": "985b42",
-    "base_id": "793584"
+    "id": "1512ba",
+    "base_id": "fef2af"
+  },
+  "01785c": {
+    "base_verb": "conquistar",
+    "lemma": "conquistándome",
+    "corpus_count": 1,
+    "translation": "to conquer",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5751052",
+        "song_name": "Ay, DiOs Mío!",
+        "spanish": "Tú fuiste conquistándome",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "KAROL G",
+        "spotify_track_id": "7x4ASXYEKfQBCewcZhK776",
+        "timestamp_ms": 18190,
+        "end_timestamp_ms": 20700
+      }
+    ],
+    "id": "01785c",
+    "base_id": "7be1ab"
+  },
+  "db0712": {
+    "base_verb": "mirar",
+    "lemma": "mirándonos",
+    "corpus_count": 1,
+    "translation": "to look at",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5960780",
+        "song_name": "Antes",
+        "spanish": "Par de mordío' mirándono' feo",
+        "english": "A few pissed dudes looking at us mad",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Anuel AA",
+        "spotify_track_id": "73O30uMI7n6DuzBmbtO7kC",
+        "surface": "mirándono'",
+        "timestamp_ms": 66590,
+        "end_timestamp_ms": 68250
+      }
+    ],
+    "id": "db0712",
+    "base_id": "d9ba72"
+  },
+  "1a057c": {
+    "base_verb": "calentar",
+    "lemma": "calentándote",
+    "corpus_count": 1,
+    "translation": "to heat",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Tocándote (Eh), calentándote",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
+      }
+    ],
+    "id": "1a057c",
+    "base_id": "552475"
+  },
+  "a70ded": {
+    "base_verb": "ver",
+    "lemma": "verte",
+    "corpus_count": 1,
+    "translation": "to see",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "6838492",
+        "song_name": "Qué Más Pues?",
+        "spanish": "Regálame otra noche, quiero verte",
+        "english": "Give me another night, I wanna see you",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "J Balvin",
+        "spotify_track_id": "6D2TCm4nf5nxAcdGJ7w3QP",
+        "timestamp_ms": 28900,
+        "end_timestamp_ms": 33570
+      }
+    ],
+    "id": "a70ded",
+    "base_id": "cd9482"
+  },
+  "700124": {
+    "base_verb": "poner",
+    "lemma": "ponerte",
+    "corpus_count": 1,
+    "translation": "to put",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "5302844",
+        "song_name": "Verde",
+        "spanish": "Baby, tírate pa' ponerte en el sartén (Wuh, wuh)",
+        "english": "Baby, throw yourself in the pan (Wuh, wuh)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "J Balvin",
+        "spotify_track_id": "3HTbI3yUJQw3fP0Po8qLcD",
+        "timestamp_ms": 73360,
+        "end_timestamp_ms": 75780
+      }
+    ],
+    "id": "700124",
+    "base_id": "1fa2ba"
+  },
+  "573acd": {
+    "base_verb": "hacer",
+    "lemma": "hacernos",
+    "corpus_count": 1,
+    "translation": "to do",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10919676",
+        "song_name": "frente al mar",
+        "spanish": "Fue inevitable hacerno' de to'",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Beéle",
+        "spotify_track_id": "60u6hcpH5Qm1M3xESdNBrB",
+        "surface": "hacerno'",
+        "timestamp_ms": 73740,
+        "end_timestamp_ms": 75600
+      }
+    ],
+    "id": "573acd",
+    "base_id": "7a798b"
+  },
+  "92b01c": {
+    "base_verb": "caer",
+    "lemma": "cáele",
+    "corpus_count": 2,
+    "translation": "to fall",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "10304179",
+        "song_name": "Tengo Un Plan",
+        "spanish": "Solo cáele, cáele (Eh-eh)",
+        "english": "Just come over, come over (Eh-eh)",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "Key-Key",
+        "spotify_track_id": "3r9OpHiEaeMaBOa7kVtWtC",
+        "timestamp_ms": 93520,
+        "end_timestamp_ms": 96570
+      }
+    ],
+    "id": "92b01c",
+    "base_id": "d988e1"
   },
   "ff3830": {
     "base_verb": "perrear",
@@ -1121,27 +1126,6 @@
     ],
     "id": "ff3830",
     "base_id": "e5cddf"
-  },
-  "4bee11": {
-    "base_verb": "gemir",
-    "lemma": "gimiéndome",
-    "corpus_count": 1,
-    "translation": "to moan",
-    "assignments": {},
-    "examples": [
-      {
-        "song": "9991217",
-        "song_name": "Gata Only",
-        "spanish": "Al oído gimiéndome (Ja)",
-        "english": "",
-        "spotify_available": true,
-        "is_variant": false,
-        "artist": "FloyyMenor",
-        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
-      }
-    ],
-    "id": "4bee11",
-    "base_id": "3149bd"
   },
   "f188dd": {
     "base_verb": "arrebatarse",
@@ -1188,28 +1172,47 @@
     ],
     "id": "5c9d79"
   },
-  "92b01c": {
-    "base_verb": "caer",
-    "lemma": "cáele",
-    "corpus_count": 2,
-    "translation": "to fall",
+  "985b42": {
+    "base_verb": "guayar",
+    "lemma": "guayarte",
+    "corpus_count": 1,
+    "translation": "to grate",
     "assignments": {},
     "examples": [
       {
-        "song": "10304179",
-        "song_name": "Tengo Un Plan",
-        "spanish": "Solo cáele, cáele (Eh-eh)",
-        "english": "Just come over, come over (Eh-eh)",
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Ven y dame un chance pa' guayarte",
+        "english": "",
         "spotify_available": true,
         "is_variant": false,
-        "artist": "Key-Key",
-        "spotify_track_id": "3r9OpHiEaeMaBOa7kVtWtC",
-        "timestamp_ms": 93520,
-        "end_timestamp_ms": 96570
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
       }
     ],
-    "id": "92b01c",
-    "base_id": "d988e1"
+    "id": "985b42",
+    "base_id": "793584"
+  },
+  "4bee11": {
+    "base_verb": "gemir",
+    "lemma": "gimiéndome",
+    "corpus_count": 1,
+    "translation": "to moan",
+    "assignments": {},
+    "examples": [
+      {
+        "song": "9991217",
+        "song_name": "Gata Only",
+        "spanish": "Al oído gimiéndome (Ja)",
+        "english": "",
+        "spotify_available": true,
+        "is_variant": false,
+        "artist": "FloyyMenor",
+        "spotify_track_id": "6XjDF6nds4DE2BBbagZol6"
+      }
+    ],
+    "id": "4bee11",
+    "base_id": "3149bd"
   },
   "30b9e1": {
     "base_verb": "pasar",

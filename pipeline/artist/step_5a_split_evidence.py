@@ -32,16 +32,21 @@ _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
-from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.util_pipeline_meta import (  # noqa: E402
+    dependency_metadata,
+    make_meta,
+    write_sidecar,
+)
 
 # Bump when split-evidence logic or output schema changes.
-STEP_VERSION = 5
+STEP_VERSION = 6
 STEP_VERSION_NOTES = {
     1: "split merged evidence into word_inventory + examples_raw, clitic orphan handling",
     2: "+ carry full-corpus distinct song_count into word_inventory",
     3: "+ retain vocalist provenance and stamp Spotify/variant example priority metadata",
     4: "+ retain per-track Spotify IDs and artists from playlist tracks.json",
     5: "+ carry stable segment/occurrence ledger references into legacy examples",
+    6: "+ propagate ledger and corpus-profile dependency fingerprints",
 }
 
 _VARIANT_TITLE_RE = re.compile(
@@ -247,8 +252,11 @@ def main():
         json.dump(inventory, f, ensure_ascii=False, indent=2)
     with open(ex_path, "w", encoding="utf-8") as f:
         json.dump(examples_raw, f, ensure_ascii=False)
-    write_sidecar(inv_path, make_meta("split_evidence", STEP_VERSION))
-    write_sidecar(ex_path, make_meta("split_evidence", STEP_VERSION))
+    upstream = dependency_metadata(merged_path)
+    write_sidecar(inv_path, make_meta(
+        "split_evidence", STEP_VERSION, extra=upstream))
+    write_sidecar(ex_path, make_meta(
+        "split_evidence", STEP_VERSION, extra=upstream))
 
     words_with_examples = sum(1 for exs in examples_raw.values() if exs)
     total_examples = sum(len(exs) for exs in examples_raw.values())

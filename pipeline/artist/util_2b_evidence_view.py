@@ -10,10 +10,51 @@ import os
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from pipeline.util_evidence_store import read_jsonl, resolve_claims
+from pipeline.util_evidence_store import (
+    read_jsonl,
+    resolve_claims,
+    semantic_fingerprint,
+)
 
 
 VOCAL_ARTIFACT_LAYER = "vocal_artifact"
+USAGE_TAG_LAYER = "usage_tag"
+USAGE_TAG_OVERRIDE_LAYER = "usage_tag_override"
+SENSE_RETENTION_LAYER = "sense_assignment_retention"
+
+# These descriptive layers are selected by the active profile and exposed to
+# audit/inspection consumers, but do not change which words enter the corpus.
+# Consequently they are deliberately absent from ``corpus_profile_fingerprint``.
+INSPECTION_LAYERS = (
+    USAGE_TAG_LAYER, USAGE_TAG_OVERRIDE_LAYER, SENSE_RETENTION_LAYER,
+)
+
+
+def corpus_profile_fingerprint(profile):
+    """Hash only the profile fields that determine the active corpus view.
+
+    Compatibility snapshots advance ``materialized_runs`` while downstream
+    steps execute. Those audit pointers must not make the already-materialized
+    corpus look stale, so they are deliberately excluded from this projection.
+    """
+    runs = profile.get("runs") or {}
+    claim_runs = profile.get("claim_runs") or {}
+    projection = {
+        "ledger": runs.get("ledger"),
+        "runs": {
+            layer: runs.get(layer)
+            for layer in ("normalization", "corpus_membership", VOCAL_ARTIFACT_LAYER)
+            if runs.get(layer)
+        },
+        "claim_runs": {
+            layer: claim_runs.get(layer)
+            for layer in ("normalization", "corpus_membership", VOCAL_ARTIFACT_LAYER)
+            if claim_runs.get(layer)
+        },
+        "vocal_artifact_policy": (
+            (profile.get("policies") or {}).get(VOCAL_ARTIFACT_LAYER) or {}),
+    }
+    return semantic_fingerprint(projection)
 
 
 def load_profile(evidence_dir):
@@ -90,7 +131,9 @@ def load_active_evidence(evidence_dir):
     }
 
     winners = {}
-    for layer in ("corpus_membership", "normalization", VOCAL_ARTIFACT_LAYER):
+    for layer in (
+            "corpus_membership", "normalization", VOCAL_ARTIFACT_LAYER,
+            *INSPECTION_LAYERS):
         claims = load_selected_claims(evidence_dir, layer, profile)
         # A profile may temporarily retain a classifier pointer while a new
         # source snapshot is being ingested. Never apply a claim whose explicit
@@ -109,6 +152,34 @@ def load_active_evidence(evidence_dir):
         "segments": segments,
         "occurrences": occurrences,
         "claims": winners,
+    }
+
+
+def resolved_usage_tags(active, occurrence_id):
+    """Compose historical/detector tags with curated global/context deltas.
+
+    Base evidence remains visible even when a curator removes its active tag.
+    Override operations are already ordered global-first and occurrence-last by
+    the curation adapter, so an exact contextual decision has final precedence.
+    """
+    claims = active.get("claims") or {}
+    base = claims.get((USAGE_TAG_LAYER, "occurrence", occurrence_id))
+    override = claims.get((USAGE_TAG_OVERRIDE_LAYER, "occurrence", occurrence_id))
+    labels = set(((base or {}).get("value") or {}).get("labels") or [])
+    operations = list(((override or {}).get("value") or {}).get("operations") or [])
+    for operation in operations:
+        tag = str(operation.get("tag") or "")
+        if not tag:
+            continue
+        if operation.get("action") == "remove":
+            labels.discard(tag)
+        elif operation.get("action") == "add":
+            labels.add(tag)
+    return {
+        "labels": sorted(labels),
+        "base_claim": base,
+        "override_claim": override,
+        "operations": operations,
     }
 
 
@@ -190,6 +261,7 @@ def build_active_segment_rows(evidence_dir, excluded_labels=None):
 
     rows.sort(key=lambda row: (
         int((row["segment"].get("metadata") or {}).get("batch_index", -1)),
+        int((row["segment"].get("metadata") or {}).get("song_order", -1)),
         str((row["segment"].get("source") or {}).get("document_id") or ""),
         min((row["segment"].get("source") or {}).get("positions") or [0]),
         row["segment"].get("segment_id", ""),

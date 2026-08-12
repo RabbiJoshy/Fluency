@@ -410,6 +410,13 @@ def main():
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards; unassigned examples dropped)")
+    parser.add_argument("--prompt-policy", default=None,
+                        help="Named policy in config/prompt_registry.json. Only "
+                             "model-authored claims whose prompt_id is on that "
+                             "policy's allowlist are admitted; everything else "
+                             "is dropped regardless of method priority. Artist "
+                             "mode has always had this; normal/speech mode did "
+                             "not, which is why old runs leaked into new decks.")
     parser.add_argument("--min-priority", type=int, default=None,
                         help="Drop assignments whose method priority is below N. "
                              "Their examples become orphans (eligible for remainders "
@@ -427,6 +434,16 @@ def main():
               % (args.min_priority, NORMAL_MODE_LANGUAGE))
     else:
         print("min-priority: %d (from --min-priority flag)" % args.min_priority)
+
+    accepted_model_prompt_ids = None
+    if args.prompt_policy:
+        from util_6a_prompt_registry import accepted_prompt_ids, load_prompt_policy
+        if not load_prompt_policy(args.prompt_policy):
+            raise SystemExit("Unknown prompt acceptance policy: %s"
+                             % args.prompt_policy)
+        accepted_model_prompt_ids = accepted_prompt_ids(args.prompt_policy)
+        print("prompt policy: %s -> accepts %s"
+              % (args.prompt_policy, sorted(accepted_model_prompt_ids)))
 
     # Load all layers
     print("Loading layers...")
@@ -840,7 +857,9 @@ def main():
             # Each sense becomes one meaning; examples inside a meaning may
             # carry different methods (stamped per-example downstream).
             raw_assigns = assignments.get(key, {})
-            per_sense = (resolve_best_per_example(raw_assigns, min_priority=args.min_priority)
+            per_sense = (resolve_best_per_example(
+                             raw_assigns, min_priority=args.min_priority,
+                             accepted_model_prompt_ids=accepted_model_prompt_ids)
                          if isinstance(raw_assigns, dict) else {})
 
             # Group per-sense examples by sense_idx. Multiple sids can resolve

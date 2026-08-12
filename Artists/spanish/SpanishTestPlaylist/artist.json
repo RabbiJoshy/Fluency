@@ -6,6 +6,7 @@
   "index_file": "SpanishTestPlaylistvocabulary.index.json",
   "examples_file": "SpanishTestPlaylistvocabulary.examples.json",
   "artist_context": "Mixed-artist playlist of Spanish-language songs selected for pipeline testing",
+  "sense_registers": ["reggaeton"],
   "source_type": "spotify_playlist",
   "spotify_playlist_url": "https://open.spotify.com/playlist/6mxPYnExfvVJ67Hovc0U65",
   "spotify_playlist_id": "6mxPYnExfvVJ67Hovc0U65",

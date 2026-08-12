@@ -655,6 +655,40 @@ def build_menu_analyses(surface, surface_cache, headword_cache, include_redirect
                 seen_headwords.add(analysis.get("headword"))
                 seen_signatures.add(sig)
 
+    # SpanishDict occasionally embeds a simple-plural headword on the exact
+    # singular page (and may alternatively expose it as an ``inflection``
+    # redirect).  The concrete failure was usted -> ustedes: retaining both
+    # analyses produced two cards with the same usted|usted identity after
+    # lemma projection.  An exact singular token cannot itself be the simple
+    # plural spelling, so prefer the exact lexical entry in this narrowly-
+    # defined collision.  This does not affect queries that lack a self-
+    # headword, conjugation redirects, or non-plural headwords.
+    surface_deac = _deaccent(surface)
+    has_exact_self = any(
+        _deaccent((a.get("headword") or "").strip()) == surface_deac
+        and not a.get("surface_from")
+        for a in analyses
+    )
+    if has_exact_self:
+        plural_spellings = {surface_deac + "s", surface_deac + "es"}
+        filtered = []
+        for analysis in analyses:
+            is_plural_redirect = (
+                _deaccent((analysis.get("headword") or "").strip()) in plural_spellings
+                and (analysis.get("surface_relation") or "").strip().lower()
+                in {"", "inflection"}
+            )
+            if is_plural_redirect:
+                if quarantine is not None:
+                    quarantine.append({
+                        "surface": surface,
+                        "headword": (analysis.get("headword") or "").strip(),
+                        "reason": "plural_analysis_conflicts_with_exact_surface",
+                    })
+                continue
+            filtered.append(analysis)
+        analyses = filtered
+
     # Legacy caches predating ?langFrom=es can contain a self-headword from
     # the English dictionary even when the token is a known Spanish verb form
     # (sea → mar instead of sea → ser). Replace that quarantined analysis with

@@ -1,6 +1,11 @@
 import unittest
 
-from pipeline.artist.step_3a_merge_elisions import merge_evidence, trailing_apos_restore
+from pipeline.artist.step_3a_merge_elisions import (
+    d_elision_ext_canonical,
+    internal_apos_restore,
+    merge_evidence,
+    trailing_apos_restore,
+)
 from pipeline.artist.step_7b_rerank import sort_key
 
 
@@ -45,6 +50,25 @@ class SongCountPipelineTests(unittest.TestCase):
     def test_trailing_apostrophe_restores_z_only_when_unambiguous(self):
         self.assertEqual(trailing_apos_restore("lu'", {"luz"}), ("luz", "lu'"))
         self.assertIsNone(trailing_apos_restore("cru'", {"cruz", "crus"}))
+
+    def test_internal_apostrophe_requires_one_known_candidate(self):
+        self.assertEqual(
+            internal_apos_restore("e'to", {"esto"}), ("esto", "e'to"))
+        self.assertIsNone(
+            internal_apos_restore("e'perado", {"emperado", "esperado"}))
+
+    def test_k_spelling_variant_still_requires_a_known_target(self):
+        self.assertEqual(
+            internal_apos_restore("discoteka'", {"discotecas"}),
+            ("discotecas", "discoteka'"),
+        )
+        self.assertIsNone(internal_apos_restore("bruka'", {"brucas", "brukas"}))
+
+    def test_diminutive_d_elision_can_validate_through_base_adjective(self):
+        self.assertEqual(
+            d_elision_ext_canonical("moja'íta", {"mojado"}),
+            ("mojadita", "moja'íta", "d_elision_diminutive"),
+        )
 
 
 if __name__ == "__main__":

@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260809a';
-import './speech.js?v=20260809a';
+import './state.js?v=20260812c';
+import './speech.js?v=20260812c';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260809a';
+} from './example-personalisation.js?v=20260812c';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -1276,16 +1276,11 @@ function initializeApp() {
             { label: 'Set progress', iconHTML: icon('<path d="M4 19V9"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19H2"></path>'), onSelect: () => showStatsModal() },
             { label: 'Study preferences', iconHTML: icon('<path d="M4 6h10"></path><path d="M18 6h2"></path><circle cx="16" cy="6" r="2"></circle><path d="M4 12h2"></path><path d="M10 12h10"></path><circle cx="8" cy="12" r="2"></circle><path d="M4 18h8"></path><path d="M16 18h4"></path><circle cx="14" cy="18" r="2"></circle>'), onSelect: () => showSettingsModalWithTab('study', { singleTab: true }) }
         ];
-        // JST-only debugging entries — folded in here instead of a second,
-        // separate button on the card, so there's only ever one settings
-        // control. "Data & model info" only appears when the current card
-        // actually carries provenance (prompt/model/run) data.
-        if (currentUser && currentUser.initials === 'JST') {
-            const debugCard = flashcards[currentIndex];
-            const hasProvenance = debugCard && (debugCard.meanings || []).some(m => m.prompt_id);
-            if (hasProvenance) {
-                entries.push({ label: 'Data & model info', iconHTML: icon('<circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path>'), onSelect: () => window.toggleProvenancePanel?.() });
-            }
+        // JST-only audit controls live in the study menu. Provenance remains
+        // available even on deterministic cards so the control never appears
+        // to vanish merely because the current sense has no model stamp.
+        if (isJstOwner()) {
+            entries.push({ label: 'Data & model info', iconHTML: icon('<circle cx="12" cy="12" r="9"></circle><path d="M12 11v6"></path><path d="M12 7.5h.01"></path>'), onSelect: () => window.toggleProvenancePanel?.() });
             entries.push({ label: 'Report a card issue', iconHTML: icon('<path d="M5 21V4"></path><path d="M5 5h11l-2 4 2 4H5"></path>'), onSelect: () => window.showFlagMenu?.() });
         }
         window.showRadialPicker({
@@ -2016,6 +2011,11 @@ function setupKeyboardShortcuts() {
         const commandModifier = e.ctrlKey || e.metaKey;
         const commandKey = String(e.key || '').toLowerCase();
         const canFlag = Boolean(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
+        if (commandModifier && !e.altKey && commandKey === 'i' && !e.shiftKey && isJstOwner()) {
+            e.preventDefault();
+            toggleProvenancePanel();
+            return;
+        }
         if (commandModifier && !e.altKey && commandKey === 's' && !e.shiftKey) {
             e.preventDefault();
             showStatsModal();
@@ -2103,7 +2103,10 @@ function setupKeyboardShortcuts() {
             e.preventDefault();
             const deckModal = document.getElementById('deckCompleteModal');
             const statsModal = document.getElementById('statsModal');
-            if (deckModal && !deckModal.classList.contains('hidden')) {
+            const provenancePanel = document.getElementById('provenancePanel');
+            if (provenancePanel && provenancePanel.style.display !== 'none') {
+                toggleProvenancePanel(false);
+            } else if (deckModal && !deckModal.classList.contains('hidden')) {
                 hideDeckCompleteModal();
             } else if (statsModal && !statsModal.classList.contains('hidden')) {
                 hideStatsModal();
@@ -2752,6 +2755,26 @@ function highlightAttachedForm(sentence, form) {
     } catch (e) {
         return safe;
     }
+}
+
+// Where a corpus example actually came from. OpenSubtitles ships an .ids file
+// aligned line-for-line with the text; step_5a_build_examples_v2 carries the
+// title/subtitle/line through onto each example. The title_id is an IMDb id
+// (OPUS layout es/{year}/{imdb_id}/{subtitle_id}.xml.gz), so it links straight
+// out without needing a local title lookup.
+function exampleProvenanceHTML(example) {
+    const p = example && example.provenance;
+    if (!p || p.corpus !== 'opensubtitles') return null;
+    const bits = [];
+    if (p.title_id) {
+        const tt = 'tt' + String(p.title_id).padStart(7, '0');
+        bits.push(`<a href="https://www.imdb.com/title/${tt}/" target="_blank" ` +
+                  `rel="noopener noreferrer">OpenSubtitles · ${tt}</a>`);
+    } else {
+        bits.push('OpenSubtitles');
+    }
+    if (p.line) bits.push(`line ${escapeCardText(String(p.line))}`);
+    return bits.join(' · ');
 }
 
 function cliticExampleHTML(example, form) {
@@ -4260,7 +4283,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         } else {
                             const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
                             const transSafe = String(transRaw).replace(/"/g, '&quot;');
-                            varyingHtml = `<span class="row-adaptive-text" style="font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}</span>`;
+                            varyingHtml = `<span class="row-adaptive-text" style="font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}${modelProposalMarkerHTML(mm)}</span>`;
                         }
                         const varyingCol = isTransAxis ? 2 : 1;
                         const varyingCell = `<div onclick="event.stopPropagation(); selectMeaning(${memberIdx})" style="${baseCell} grid-column: ${varyingCol}; min-width: 0; overflow: hidden;">${varyingHtml}</div>`;
@@ -4284,7 +4307,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     const sharedCol = isTransAxis ? 1 : 2;
                     const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
-                        ? `<div class="group-card-shared row-adaptive-text" style="${sharedSpan} font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}</div>`
+                        ? `<div class="group-card-shared row-adaptive-text" style="${sharedSpan} font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}${modelProposalMarkerHTML(members.some(memberIdx => card.meanings[memberIdx].modelProposed) ? { modelProposed: true } : null)}</div>`
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;"><span class="meaning-context">${sharedText}</span></div>`;
 
                     // Body grid: shared + varying. The pct column lives in the
@@ -4315,6 +4338,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
                     }
                     contextInline += registerTagHTML(m);
+                    contextInline += modelProposalMarkerHTML(m);
                     const singletonTextClass = adaptiveRowTextClass(displayMeaning, m.context || '');
                     // Pct pinned to the row's right edge (not body's), so it
                     // hugs the row outline rather than sitting inside body
@@ -4469,7 +4493,8 @@ function updateCard({ announceHeadword = false } = {}) {
                     ? `Personalised practice · ${example.reinforcement_word}`
                     : (example.source_mode === 'speech'
                         ? 'Speech example'
-                        : (example.source === 'spanishdict' ? 'SpanishDict example' : null));
+                        : (example.source === 'spanishdict' ? 'SpanishDict example'
+                            : exampleProvenanceHTML(example)));
                 window._currentDisplayedExample = example;
                 const exTarget = example.target || example.spanish || '';
                 const exEnglish = example.english || '';
@@ -4707,7 +4732,7 @@ function updateCard({ announceHeadword = false } = {}) {
         // renderPhraseSummaryBack already rendered every phrase's example.
     } else {
         // Legacy format
-        backHTML += `<div style="font-size: 28px; color: var(--text-primary); margin-top: 12px; font-weight: 600; text-align: center; margin-bottom: 20px;">${backTranslation}</div>`;
+        backHTML += `<div style="font-size: 28px; color: var(--text-primary); margin-top: 12px; font-weight: 600; text-align: center; margin-bottom: 20px;">${backTranslation}${modelProposalMarkerHTML(currentMeaning)}</div>`;
 
         // Show base form if different from displayed word
         if (card.inflectedForm && card.baseForm !== card.targetWord) {
@@ -4853,8 +4878,7 @@ function updateCard({ announceHeadword = false } = {}) {
         backHTML += buildSynonymsPanelHTML(card.synonyms || [], card.antonyms || [], card.lemma || card.targetWord);
     }
 
-    if (currentUser && currentUser.initials === 'JST'
-        && (card.meanings || []).some(m => m.prompt_id)) {
+    if (isJstOwner()) {
         backHTML += buildProvenancePanelHTML(card);
     }
     }
@@ -5732,10 +5756,19 @@ function confirmLeaveForSpanishDict(word, url) {
     modal.querySelector('[data-syn-leave="continue"]')?.focus();
 }
 
-// Sense-assignment provenance panel (JST diagnostic). Lists each meaning with
-// the prompt/model/run that produced its assignment, resolved against
-// window._promptRegistry (loaded in config.js). "Legacy / unknown" and blank
-// provenance are shown honestly rather than hidden.
+function isJstOwner() {
+    return Boolean(currentUser && !currentUser.isGuest && currentUser.initials === 'JST');
+}
+
+function modelProposalMarkerHTML(meaning) {
+    if (!isJstOwner() || !meaning?.modelProposed) return '';
+    return `<span class="model-proposed-marker" title="Gemini proposed this definition because it was not in the SpanishDict sense menu" aria-label="Gemini-proposed definition">AI</span>`;
+}
+
+// Sense-assignment provenance panel (JST diagnostic). Lists every ordinary
+// meaning and resolves stamped prompts against window._promptRegistry (loaded
+// in config.js). A missing prompt is identified as deterministic/retained
+// evidence rather than making the entire control disappear.
 function buildProvenancePanelHTML(card) {
     const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => (
         {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
@@ -5748,21 +5781,81 @@ function buildProvenancePanelHTML(card) {
         return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
-    const rows = (card.meanings || [])
-        .filter(m => m.prompt_id)
-        .map(m => {
+    const rows = (card.meanings || []).map(m => {
             const reg = registry[m.prompt_id] || {};
-            const model = reg.model || 'unknown model';
+            const isAutomatic = typeof m.assignment_method === 'string'
+                && m.assignment_method.endsWith('-auto');
+            const hasPrompt = Boolean(m.prompt_id) && !isAutomatic;
+            const automaticLabel = m.assignment_method === 'shared-register-auto'
+                ? 'Shared sense register auto · no model call'
+                : m.assignment_method === 'pos-auto'
+                    ? 'POS-filtered auto · no model call'
+                    : 'SpanishDict auto · no model call';
+            const automaticDetail = m.assignment_method === 'shared-register-auto'
+                ? 'exact line reused from another registered artist'
+                : m.assignment_method === 'pos-auto'
+                    ? 'one menu sense remained after occurrence POS filtering'
+                    : 'single available dictionary sense';
+            const model = isAutomatic
+                ? automaticLabel
+                : (hasPrompt ? (reg.model || 'Unregistered model') : 'Deterministic or retained evidence');
             const family = reg.family || '';
             const tier = (reg.capability_tier != null) ? `tier ${reg.capability_tier}` : '';
             const ts = fmtTs(m.run_ts);
             const meta = [family, tier, ts].filter(Boolean).join(' · ');
             const notes = reg.notes ? `<div class="prov-notes">${esc(reg.notes)}</div>` : '';
+            const proposal = m.modelProposed
+                ? '<div class="prov-proposal">AI-proposed definition · outside the SpanishDict menu</div>'
+                : '';
+            const stamp = hasPrompt
+                ? `<div class="prov-meta"><code>${esc(m.prompt_id)}</code>${meta ? ` · ${esc(meta)}` : ''}</div>`
+                : `<div class="prov-meta">${esc(m.assignment_method || 'No model prompt')}${isAutomatic ? ` · ${esc(automaticDetail)}` : ''}</div>`;
+            // Confidence, when the assigning method reports one. The band cuts
+            // are absolute values transferred from the hand-labelled panel in
+            // Data/Spanish/Intermediates/wsd_sense_harness, not quantiles of a
+            // run: high is the gap at which that panel measured 100% acceptable.
+            const conf = (m.confidence != null)
+                ? `<div class="prov-conf prov-conf--${esc(m.band || 'low')}">
+                       <span class="prov-conf-band">${esc(m.band || '?')}</span>
+                       <span class="prov-conf-val">gap ${esc(Number(m.confidence).toFixed(4))}</span>
+                       <span class="prov-conf-note">${m.band === 'high' ? '100% acceptable on panel'
+                           : m.band === 'medium' ? '91.9% acceptable on panel'
+                           : '84.5% acceptable on panel'}</span>
+                   </div>`
+                : '';
+            // The sentences this sense was actually assigned to. Without these
+            // the panel says a model made a decision but never shows the
+            // evidence it decided on, which is the only thing worth auditing.
+            const exs = (m.examples || []).map(x => {
+                const pv = x.provenance;
+                let src = '';
+                if (pv && pv.corpus === 'opensubtitles' && pv.title_id) {
+                    const tt = 'tt' + String(pv.title_id).padStart(7, '0');
+                    src = `<a class="prov-ex-src" href="https://www.imdb.com/title/${tt}/"
+                              target="_blank" rel="noopener noreferrer">${tt}</a>`
+                        + (pv.line ? ` <span class="prov-ex-line">line ${esc(pv.line)}</span>` : '');
+                } else if (x.source) {
+                    src = `<span class="prov-ex-src">${esc(x.source)}</span>`;
+                }
+                const al = (x.alignment != null)
+                    ? `<span class="prov-ex-align">align ${esc(Number(x.alignment).toFixed(3))}</span>` : '';
+                return `<div class="prov-ex">
+                    <div class="prov-ex-target">${esc(x.target || x.spanish || '')}</div>
+                    <div class="prov-ex-english">${esc(x.english || '')}</div>
+                    <div class="prov-ex-meta">${src}${al}</div>
+                </div>`;
+            }).join('');
+            const exBlock = exs
+                ? `<div class="prov-examples">${exs}</div>`
+                : '<div class="prov-examples prov-examples--empty">No sentence attached to this sense.</div>';
             return `<div class="prov-row">
                 <div class="prov-gloss">${esc(m.meaning || m.translation || '')}
                     <span class="prov-pos">${esc(m.pos || '')}</span></div>
                 <div class="prov-model">${esc(model)}</div>
-                <div class="prov-meta"><code>${esc(m.prompt_id)}</code> · ${esc(meta)}</div>
+                ${stamp}
+                ${conf}
+                ${exBlock}
+                ${proposal}
                 ${notes}
             </div>`;
         }).join('');
@@ -5770,14 +5863,29 @@ function buildProvenancePanelHTML(card) {
     return `<div id="provenancePanel" class="provenance-panel" style="display:none;">
         <button class="prov-close" title="Close" aria-label="Close" onclick="event.stopPropagation(); toggleProvenancePanel();">&times;</button>
         <div class="prov-title">Sense provenance</div>
-        ${rows || '<div class="prov-empty">No stamped provenance on this card.</div>'}
+        ${rows || '<div class="prov-empty">No sense assignments on this card.</div>'}
     </div>`;
 }
 
-function toggleProvenancePanel() {
-    const panel = document.getElementById('provenancePanel');
+function ensureProvenancePanelForCurrentCard() {
+    if (!isJstOwner()) return null;
+    let panel = document.getElementById('provenancePanel');
+    if (panel) return panel;
+    const card = flashcards[currentIndex];
+    const back = document.getElementById('backContent');
+    if (!card || !back) return null;
+    back.insertAdjacentHTML('beforeend', buildProvenancePanelHTML(card));
+    return document.getElementById('provenancePanel');
+}
+
+function toggleProvenancePanel(forceOpen) {
+    const panel = ensureProvenancePanelForCurrentCard();
     if (!panel) return;
-    panel.style.display = (panel.style.display === 'none' || !panel.style.display) ? 'block' : 'none';
+    const shouldOpen = forceOpen == null
+        ? (panel.style.display === 'none' || !panel.style.display)
+        : Boolean(forceOpen);
+    panel.style.display = shouldOpen ? 'block' : 'none';
+    if (shouldOpen) document.getElementById('flashcard')?.classList.add('flipped');
 }
 window.toggleProvenancePanel = toggleProvenancePanel;
 
@@ -6033,7 +6141,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260809a';
+const ASSET_VERSION = '20260812c';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -23,6 +23,8 @@ from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
 STATIC_LAYERS = (
     ("data/elision_merge/vocab_evidence_merged.json", "elision_normalization"),
     ("data/known_vocab/word_routing.json", "word_routing"),
+    ("data/layers/word_inventory.json", "word_inventory"),
+    ("data/layers/examples_raw.json", "examples_raw"),
     ("data/layers/example_pos.json", "example_pos"),
 )
 

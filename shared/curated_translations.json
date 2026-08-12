@@ -631,10 +631,10 @@
     "source": "Bad Bunny"
   },
   "manín|manín": {
-    "translation": "buddy, pal",
-    "pos": "X",
-    "mode": "archive",
-    "source": "Bad Bunny"
+    "translation": "bro, buddy (PR slang)",
+    "pos": "NOUN",
+    "mode": "all",
+    "source": "proposal (claude-code)"
   },
   "me|me": {
     "translation": "me",
@@ -1356,12 +1356,6 @@
     "mode": "artist",
     "source": "Bad Bunny"
   },
-  "pusimos|poner": {
-    "translation": "to become",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
   "pusiera|poner": {
     "translation": "to become",
     "pos": "VERB",
@@ -1377,12 +1371,6 @@
   "sendo|sendo": {
     "translation": "huge, mighty",
     "pos": "ADJ",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "bate|bate": {
-    "translation": "to break (records)",
-    "pos": "VERB",
     "mode": "artist",
     "source": "Bad Bunny"
   },
@@ -1410,12 +1398,6 @@
     "mode": "artist",
     "source": "Bad Bunny"
   },
-  "caigas|caigas": {
-    "translation": "to fall",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
   "campeonatos|campeonatos": {
     "translation": "championship",
     "pos": "NOUN",
@@ -1437,12 +1419,6 @@
   "curvas|curvas": {
     "translation": "curves",
     "pos": "NOUN",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "curé|curé": {
-    "translation": "to heal",
-    "pos": "VERB",
     "mode": "artist",
     "source": "Bad Bunny"
   },
@@ -1485,18 +1461,6 @@
   "malianteos|malianteos": {
     "translation": "hustling, thug life",
     "pos": "NOUN",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "mamas|mamas": {
-    "translation": "to suck (vulgar)",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "mame|mame": {
-    "translation": "to suck (vulgar)",
-    "pos": "VERB",
     "mode": "artist",
     "source": "Bad Bunny"
   },
@@ -1560,12 +1524,6 @@
     "mode": "artist",
     "source": "Bad Bunny"
   },
-  "probé|probé": {
-    "translation": "to try, to taste",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
   "puertorriqueños|puertorriqueños": {
     "translation": "Puerto Rican",
     "pos": "NOUN",
@@ -1623,12 +1581,6 @@
   "trapxficante|trapxficante": {
     "translation": "trap-dealer (wordplay)",
     "pos": "NOUN",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "tumbamos|tumbamos": {
-    "translation": "to knock down",
-    "pos": "VERB",
     "mode": "artist",
     "source": "Bad Bunny"
   },
@@ -1698,62 +1650,14 @@
     "mode": "artist",
     "source": "Bad Bunny"
   },
-  "squirteé|squirteé": {
-    "translation": "to squirt",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
   "culona|culona": {
     "translation": "big-bottomed woman",
     "pos": "NOUN",
     "mode": "artist",
     "source": "Bad Bunny"
   },
-  "enchuló|enchuló": {
-    "translation": "to make fall in love (slang)",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "fantasmeas|fantasmeas": {
-    "translation": "to front, act fake",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "frontean|frontean": {
-    "translation": "to front, show off",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "fronteando|fronteando": {
-    "translation": "to front, show off",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "fronteándome|fronteándome": {
-    "translation": "to front, show off",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "posteados|posteados": {
-    "translation": "posted up, hanging out",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
   "vo|vo": {
     "translation": "I'm gonna (vo'a = voy a)",
-    "pos": "VERB",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "wheeliando|wheeliando": {
-    "translation": "doing wheelies, cruising",
     "pos": "VERB",
     "mode": "artist",
     "source": "Bad Bunny"
@@ -1766,12 +1670,6 @@
   },
   "poses|poses": {
     "translation": "pose",
-    "pos": "NOUN",
-    "mode": "artist",
-    "source": "Bad Bunny"
-  },
-  "hippies|hippies": {
-    "translation": "hippie",
     "pos": "NOUN",
     "mode": "artist",
     "source": "Bad Bunny"

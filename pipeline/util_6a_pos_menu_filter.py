@@ -11,6 +11,7 @@ classification runs. The filter is conservative:
 """
 
 import re
+import unicodedata
 from collections import Counter
 
 _SPACY_POS_MAP = {
@@ -71,6 +72,39 @@ def sense_compatible_with_example_pos(sense_pos, ex_pos):
         return False
     # ex_pos untrusted: only drop trusted mismatches.
     return sense_pos not in _TRUSTED_FILTER_POS
+
+
+def _normalise_name(value):
+    value = unicodedata.normalize("NFKD", str(value or "").casefold())
+    value = "".join(ch for ch in value if not unicodedata.combining(ch))
+    return " ".join(re.findall(r"[a-z0-9]+", value))
+
+
+def example_matches_credited_artist(word, example):
+    """Whether the target token exactly names the credited line performer.
+
+    Exact full-name matching is intentionally narrower than token membership:
+    ``Boza`` matches artist ``Boza`` while ``bad`` does not match ``Bad Bunny``.
+    This makes the signal safe as a deterministic veto for common-noun menu
+    senses without turning ordinary words inside multiword stage names into
+    proper nouns.
+    """
+    if not isinstance(example, dict):
+        return False
+    word_name = _normalise_name(word)
+    artist_name = _normalise_name(example.get("artist"))
+    return bool(word_name and artist_name and word_name == artist_name)
+
+
+def auto_sense_rejection_reason(word, sense, example, example_pos=None):
+    """Return a high-precision reason a single-menu sense must not auto-win."""
+    sense_pos = str((sense or {}).get("pos") or "").strip().upper()
+    ex_pos = str(example_pos or "").strip().upper()
+    if ex_pos and not sense_compatible_with_example_pos(sense_pos, ex_pos):
+        return "sense_pos_%s_conflicts_with_evidence_%s" % (sense_pos or "X", ex_pos)
+    if example_matches_credited_artist(word, example) and sense_pos != "PROPN":
+        return "common_noun_conflicts_with_credited_artist"
+    return None
 
 _NLP = None
 _NLP_MODEL = None

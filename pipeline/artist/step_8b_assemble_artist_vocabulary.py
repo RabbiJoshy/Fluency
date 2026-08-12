@@ -34,14 +34,21 @@ _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(_THIS_DIR))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
-from pipeline.util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
+from pipeline.artist.util_2b_evidence_view import (  # noqa: E402
+    corpus_profile_fingerprint,
+)
+from pipeline.util_evidence_store import archive_json_artifact  # noqa: E402
+from pipeline.util_pipeline_meta import make_meta, read_meta, write_sidecar  # noqa: E402
 from pipeline.util_6a_assignment_format import (load_assignments, resolve_best_per_example,  # noqa: E402
                                                 is_proper_noun_gloss, is_proper_noun_sense,
                                                 carry_sense_tags, normalize_pos,
                                                 index_examples_by_identity,
                                                 resolve_example_reference,
                                                 resolve_routing_references)
-from pipeline.util_6a_prompt_registry import load_registry, capability_tier  # noqa: E402
+from pipeline.util_6a_prompt_registry import (  # noqa: E402
+    CURRENT_SD_POLICY_ID, capability_tier, load_prompt_policy, load_registry,
+)
+from pipeline.util_6a_pos_menu_filter import example_matches_credited_artist  # noqa: E402
 from pipeline.util_7a_lemma_split import (  # noqa: E402
     _is_phrase_only_self_analysis,
     plural_lemma_redirects,
@@ -61,7 +68,7 @@ from pipeline.util_5c_spanishdict import (  # noqa: E402
     conjugation_lemma_from_possible_results,
 )
 
-STEP_VERSION = 13
+STEP_VERSION = 16
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples + master update + clitic layer",
     2: "+ carry vocalist, Spotify-availability, and variant-title metadata into examples",
@@ -78,6 +85,9 @@ STEP_VERSION_NOTES = {
     11: "+ persist card identity independently from mutable surface/lemma analysis",
     12: "+ persist sense identity independently from mutable menu source, gloss, POS, and context labels",
     13: "+ carry exact occurrence surface into compact examples for evidence-backed highlighting",
+    14: "+ require active-ledger lineage on compatibility inputs and archive final deck projections",
+    15: "+ require Gemini 3.1+ model evidence by default and consume structured occurrence-drop overrides",
+    16: "+ suppress common-noun fallback meanings when every occurrence exactly names its credited artist",
 }
 from util_8a_assembly_helpers import split_count_proportionally
 
@@ -94,6 +104,66 @@ _EXAMPLE_PRIORITY_KEYS = (
     "vocalists", "sung_by_primary_artist", "spotify_available", "is_variant",
     "artist", "spotify_track_id",
 )
+
+
+def active_evidence_build_contract(artist_dir, sense_source="spanishdict"):
+    """Validate and fingerprint the ledger-backed inputs used by assembly.
+
+    Artists without an Evidence Store remain buildable during migration. Once
+    a profile exists, however, silently assembling stale pre-ledger layers is
+    forbidden: both inventory and examples must descend from the selected
+    corpus profile.
+    """
+    artist_dir = Path(artist_dir).resolve()
+    evidence_dir = artist_dir / "data" / "evidence"
+    profile_path = evidence_dir / "profiles" / "current.json"
+    if not profile_path.is_file():
+        return {}
+    with open(profile_path, encoding="utf-8") as handle:
+        profile = json.load(handle)
+    ledger_run = str((profile.get("runs") or {}).get("ledger") or "")
+    if not ledger_run:
+        raise ValueError("Active evidence profile has no ledger run: %s" % profile_path)
+    expected_profile_hash = corpus_profile_fingerprint(profile)
+    layers_dir = artist_dir / "data" / "layers"
+    required = {
+        "word_inventory": layers_dir / "word_inventory.json",
+        "examples_raw": layers_dir / "examples_raw.json",
+    }
+    for label, path in required.items():
+        meta = read_meta(path) or {}
+        if str(meta.get("ledger_run") or "") != ledger_run:
+            raise ValueError(
+                "%s is not materialized from active ledger %s; rerun "
+                "step_2e_materialize_corpus through step_5a_split_evidence" % (
+                    label, ledger_run))
+        if meta.get("corpus_profile_hash") != expected_profile_hash:
+            raise ValueError(
+                "%s is stale for the active corpus policy; rerun "
+                "step_2e_materialize_corpus through step_5a_split_evidence" % label)
+
+    candidate_paths = {
+        **required,
+        "example_pos": layers_dir / "example_pos.json",
+        "sense_assignments_lemma": (
+            layers_dir / "sense_assignments_lemma" / (sense_source + ".json")),
+        "word_routing": artist_dir / "data" / "known_vocab" / "word_routing.json",
+        "ranking": layers_dir / "ranking.json",
+        "example_translations": layers_dir / "example_translations.json",
+        "mwe_detected": artist_dir / "data" / "word_counts" / "mwe_detected.json",
+    }
+    layer_hashes = {
+        label: hashlib.sha256(path.read_bytes()).hexdigest()
+        for label, path in candidate_paths.items() if path.is_file()
+    }
+    return {
+        "ledger_run": ledger_run,
+        "corpus_profile_hash": expected_profile_hash,
+        "excluded_labels": sorted(
+            (((profile.get("policies") or {}).get("vocal_artifact") or {}).get(
+                "excluded_labels") or [])),
+        "layer_sha256": layer_hashes,
+    }
 
 
 def _copy_example_priority(raw_example, output_example):
@@ -161,9 +231,19 @@ def load_echo_drops():
         for proposal in ledger.get("proposals", []):
             if proposal.get("status") != "accepted":
                 continue
-            if proposal.get("proposed") != "drop_occurrences":
+            operation = proposal.get("operation")
+            structured_drop = (
+                operation == "add_occurrence_override"
+                and proposal.get("occurrence_action") == "drop")
+            legacy_drop = (
+                operation is None
+                and proposal.get("proposed") == "drop_occurrences")
+            if not (structured_drop or legacy_drop):
                 continue
-            ids = {i for i in (proposal.get("echo_example_ids") or []) if i}
+            ids = {i for i in (
+                proposal.get("occurrence_ids")
+                or proposal.get("echo_example_ids")
+                or []) if i}
             if ids:
                 drops.setdefault((proposal.get("word") or "").lower(), set()).update(ids)
     _ECHO_DROPS_CACHE = drops
@@ -273,7 +353,9 @@ def _ensure_sense_in_group(group, sid, meta):
 
 
 def _build_menu_free_groups(word, lemma_assignments, min_priority,
-                            method_priorities):
+                            method_priorities, min_prompt_tier=0,
+                            prompt_registry=None,
+                            accepted_model_prompt_ids=None):
     """Materialize inline word|lemma assignments without a dictionary menu."""
     groups = []
     prefix = word + "|"
@@ -286,6 +368,9 @@ def _build_menu_free_groups(word, lemma_assignments, min_priority,
             methods,
             min_priority=min_priority,
             method_priority=method_priorities,
+            min_prompt_tier=min_prompt_tier,
+            prompt_registry=prompt_registry,
+            accepted_model_prompt_ids=accepted_model_prompt_ids,
         )
         sid_meta = _collect_sid_meta(methods, per_sense)
         group = {
@@ -351,6 +436,10 @@ def assign_ids_from_master(entries, master, registry_path=None, language="und"):
                 }
                 if migration not in registry.migrations:
                     registry.migrations.append(migration)
+        # The duplicate reconciliation above mutates records directly in one
+        # bulk pass. Rebuild the registry's indexes once before assigning the
+        # candidate deck instead of rescanning every record for every card.
+        registry.invalidate_indexes()
 
     used = set(master.keys()) | (set(registry.records) if registry else set())
     claimed_ids = set()
@@ -698,13 +787,18 @@ def _normalize_wiktionary_senses(menu):
 # Assembly
 # ---------------------------------------------------------------------------
 
-def resolve_sense_provenance(raw_assignments, registry):
+def resolve_sense_provenance(raw_assignments, registry, min_prompt_tier=0,
+                             accepted_model_prompt_ids=None,
+                             prompt_preference=None):
     """Map each assigned sense_id to the provenance of its most trustworthy claim.
 
     Reads a word's ``{method: [items]}`` assignment dict and, per sense_id,
     picks the item with the highest capability_tier (registry lookup on
     ``prompt_id``), breaking ties by the most recent ``run_ts``. Returns
-    ``{sense_id: {"prompt_id": str, "run_ts": str|None}}``.
+    ``{sense_id: {"prompt_id": str, "run_ts": str|None, "method": str,
+    "model_proposed": bool}}``. ``model_proposed`` distinguishes definitions
+    generated because the dictionary menu had a lexical gap from ordinary
+    model selections among SpanishDict's supplied senses.
 
     This is the authoritative per-sense provenance source for the card, keyed by
     the stable sense_id — independent of the lossy (pos, translation) match and
@@ -714,6 +808,9 @@ def resolve_sense_provenance(raw_assignments, registry):
     if not isinstance(raw_assignments, dict):
         return {}
     for _method, items in raw_assignments.items():
+        if (_method.endswith("-auto")
+                or (_method.startswith("legacy-") and _method.endswith("-v1"))):
+            continue
         for item in items or []:
             if not isinstance(item, dict):
                 continue
@@ -721,19 +818,37 @@ def resolve_sense_provenance(raw_assignments, registry):
             prompt_id = item.get("prompt_id")
             if not sid or not prompt_id:
                 continue
+            if accepted_model_prompt_ids is not None:
+                if prompt_id not in accepted_model_prompt_ids:
+                    continue
+            elif capability_tier(prompt_id, registry) < min_prompt_tier:
+                continue
             run_ts = item.get("run_ts") or ""
-            rank = (capability_tier(prompt_id, registry), run_ts)
+            if prompt_preference is not None:
+                rank = (prompt_preference.get(prompt_id, -1), run_ts)
+            else:
+                rank = (capability_tier(prompt_id, registry), run_ts)
             cur = best.get(sid)
             if cur is None or rank > cur[0]:
-                best[sid] = (rank, prompt_id, item.get("run_ts"))
-    return {sid: {"prompt_id": pid, "run_ts": rts}
-            for sid, (_rank, pid, rts) in best.items()}
+                best[sid] = (rank, prompt_id, item.get("run_ts"), _method)
+    return {
+        sid: {
+            "prompt_id": pid,
+            "run_ts": rts,
+            "method": method,
+            "model_proposed": (
+                method.startswith("lexical-gap-fill-") or method == "gap-fill"
+            ),
+        }
+        for sid, (_rank, pid, rts, method) in best.items()
+    }
 
 
 def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                          sense_source="wiktionary", skip_words_path=None,
                          emit_remainders=False, min_priority=0,
-                         stamp_cognate_scores=False):
+                         stamp_cognate_scores=False, min_prompt_tier=0,
+                         prompt_policy_id=CURRENT_SD_POLICY_ID):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -754,6 +869,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     evidence_profile = load_layer(
         profile_path, "evidence_profile", required=False) or {}
     method_priorities = evidence_profile.get("method_priorities") or {}
+    prompt_policy = load_prompt_policy(prompt_policy_id) if prompt_policy_id else {}
+    if prompt_policy_id and not prompt_policy:
+        raise ValueError("Unknown prompt acceptance policy: %s" % prompt_policy_id)
+    accepted_model_prompt_ids = frozenset(
+        prompt_policy.get("accepted_prompt_ids") or [])
+    prompt_preference = {
+        prompt_id: index
+        for index, prompt_id in enumerate(prompt_policy.get("preference_order") or [])
+    }
     inventory = load_layer(os.path.join(layers_dir, "word_inventory.json"), "word_inventory")
     examples_raw = load_layer(os.path.join(layers_dir, "examples_raw.json"), "examples_raw")
     translations = load_layer(os.path.join(layers_dir, "example_translations.json"), "example_translations")
@@ -1216,6 +1340,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         raw_group_assignments,
                         min_priority=min_priority,
                         method_priority=method_priorities,
+                        min_prompt_tier=min_prompt_tier,
+                        prompt_registry=prompt_registry,
+                        accepted_model_prompt_ids=accepted_model_prompt_ids,
                     )
                     sid_meta = _collect_sid_meta(raw_group_assignments, per_sense)
                 elif isinstance(raw_group_assignments, list) and raw_group_assignments:
@@ -1225,6 +1352,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         as_dict,
                         min_priority=min_priority,
                         method_priority=method_priorities,
+                        min_prompt_tier=min_prompt_tier,
+                        prompt_registry=prompt_registry,
+                        accepted_model_prompt_ids=accepted_model_prompt_ids,
                     )
                     sid_meta = _collect_sid_meta(as_dict, per_sense)
                 else:
@@ -1245,6 +1375,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     raw_assignments,
                     min_priority=min_priority,
                     method_priority=method_priorities,
+                    min_prompt_tier=min_prompt_tier,
+                    prompt_registry=prompt_registry,
+                    accepted_model_prompt_ids=accepted_model_prompt_ids,
                 )
                 sid_meta = _collect_sid_meta(raw_assignments, per_sense)
             else:
@@ -1253,6 +1386,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     as_dict,
                     min_priority=min_priority,
                     method_priority=method_priorities,
+                    min_prompt_tier=min_prompt_tier,
+                    prompt_registry=prompt_registry,
+                    accepted_model_prompt_ids=accepted_model_prompt_ids,
                 )
                 sid_meta = _collect_sid_meta(as_dict, per_sense)
             for sid, ex_list in per_sense.items():
@@ -1276,6 +1412,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 lemma_assignments,
                 min_priority,
                 method_priorities,
+                min_prompt_tier=min_prompt_tier,
+                prompt_registry=prompt_registry,
+                accepted_model_prompt_ids=accepted_model_prompt_ids,
             )
 
             if not grouped:
@@ -1290,6 +1429,9 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                         raw_assignments,
                         min_priority=min_priority,
                         method_priority=method_priorities,
+                        min_prompt_tier=min_prompt_tier,
+                        prompt_registry=prompt_registry,
+                        accepted_model_prompt_ids=accepted_model_prompt_ids,
                     )
                     sid_meta = _collect_sid_meta(raw_assignments, per_sense)
                     for sid, ex_list in per_sense.items():
@@ -1313,6 +1455,10 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         # Get raw examples for this word
         raw_examples = examples_raw.get(word, [])
         raw_examples_by_id = index_examples_by_identity(raw_examples)
+        credited_artist_only = bool(raw_examples) and all(
+            example_matches_credited_artist(word, example)
+            for example in raw_examples
+        )
 
         # Apply POS-based unassigned-example routing from step 7a.
         # For each group (analysis), attach the list of raw-example indices
@@ -1472,9 +1618,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     # is keyword-tier (0 < prio <= KEYWORD_PRIORITY_THRESHOLD).
                     # Non-keyword methods in the same meaning suppress the
                     # low-trust caveat.
-                    if methods_in_meaning and all(
-                        0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
-                        for m in methods_in_meaning
+                    if methods_in_meaning and (
+                        all(m.endswith("-auto") for m in methods_in_meaning)
+                        or all(
+                            0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
+                            for m in methods_in_meaning
+                        )
                     ):
                         meaning["assignment_method"] = max(
                             methods_in_meaning,
@@ -1760,9 +1909,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                     src = assignment.get("source")
                     if src:
                         meaning["source"] = src
-                    if methods_in_meaning and all(
-                        0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
-                        for m in methods_in_meaning
+                    if methods_in_meaning and (
+                        all(m.endswith("-auto") for m in methods_in_meaning)
+                        or all(
+                            0 < METHOD_PRIORITY.get(m, 0) <= KEYWORD_PRIORITY_THRESHOLD
+                            for m in methods_in_meaning
+                        )
                     ):
                         meaning["assignment_method"] = max(
                             methods_in_meaning,
@@ -1855,8 +2007,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 return bool((m.get("translation") or "").strip()) and m.get("pos") != "X"
 
             _propn_meanings = [m for m in meanings if _is_propn_meaning(m)]
-            _force_propn = False
-            if _propn_meanings:
+            _force_propn = credited_artist_only
+            if credited_artist_only:
+                # A token that is the exact full credited performer name in
+                # every occurrence is name evidence, not evidence for an
+                # unrelated common-noun dictionary entry (Boza -> rope).
+                meanings = _propn_meanings
+            elif _propn_meanings:
                 _real_meanings = [m for m in meanings
                                   if not _is_propn_meaning(m) and _is_teachable_meaning(m)]
                 if _real_meanings:
@@ -1904,6 +2061,13 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             }
             # Unified tag category → front-end groups Extra by this.
             _cat = word_categories.get(wl)
+            if (_cat == "unresolved" and word_assignments
+                    and any(_is_teachable_meaning(m) for m in meanings)):
+                # `unresolved` describes missing lexical evidence. Once a
+                # deterministic/register assignment supplies a real meaning,
+                # leaving the stale tag would hide a now-resolved word in the
+                # Needs classification Extra group.
+                _cat = "core"
             if _force_propn:
                 # A Gemini-recognised proper noun with no routing tag yet — send
                 # it to the Extra proper_noun group rather than the main deck.
@@ -1998,7 +2162,11 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             _entry_prov = {}
             for _lkey, _lval in lemma_assignments.items():
                 if _lkey == "%s|%s" % (word, word_lemma) or _lkey.startswith(_prefix):
-                    _entry_prov.update(resolve_sense_provenance(_lval, prompt_registry))
+                    _entry_prov.update(resolve_sense_provenance(
+                        _lval, prompt_registry,
+                        min_prompt_tier=min_prompt_tier,
+                        accepted_model_prompt_ids=accepted_model_prompt_ids,
+                        prompt_preference=prompt_preference))
             if _entry_prov:
                 entry["_sense_provenance"] = _entry_prov
 
@@ -2629,7 +2797,8 @@ def _load_speech_fallbacks():
 
 
 def write_split_files(entries, master, vocab_path, master_path, clitic_data=None,
-                      raw_examples=None, translations=None, timestamp_map=None):
+                      raw_examples=None, translations=None, timestamp_map=None,
+                      build_contract=None):
     """Write compact index + examples aligned to master senses."""
     base = vocab_path.rsplit(".", 1)[0]
     index_path = base + ".index.json"
@@ -2687,6 +2856,7 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
         sense_methods = []
         sense_prompt_ids = []
         sense_run_ts = []
+        sense_model_proposed = []
         sense_examples = []
         total_ex = 0
 
@@ -2735,12 +2905,18 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             if _prov:
                 sense_prompt_ids.append(_prov.get("prompt_id"))
                 sense_run_ts.append(_prov.get("run_ts"))
+                sense_model_proposed.append(bool(_prov.get("model_proposed")))
             elif matching and matching.get("prompt_id"):
                 sense_prompt_ids.append(matching.get("prompt_id"))
                 sense_run_ts.append(matching.get("run_ts"))
+                _method = matching.get("assignment_method") or ""
+                sense_model_proposed.append(
+                    _method.startswith("lexical-gap-fill-") or _method == "gap-fill"
+                )
             else:
                 sense_prompt_ids.append(None)
                 sense_run_ts.append(None)
+                sense_model_proposed.append(False)
 
         for exs in sense_examples:
             sense_freq.append(round(len(exs) / total_ex, 2) if total_ex > 0 else 0)
@@ -2759,12 +2935,19 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             "most_frequent_lemma_instance": entry.get("most_frequent_lemma_instance", False),
             "sense_frequencies": sense_freq,
         }
+        # Routing is artist-local: the same surface may be a name/noise in one
+        # corpus and ordinary Spanish in another. Carry the resolved category
+        # in the artist index rather than relying on the shared master.
+        if entry.get("extra_category"):
+            idx_entry["extra_category"] = entry["extra_category"]
         if any(sense_methods):
             idx_entry["sense_methods"] = sense_methods
         if any(sense_prompt_ids):
             idx_entry["sense_prompt_ids"] = sense_prompt_ids
         if any(sense_run_ts):
             idx_entry["sense_run_ts"] = sense_run_ts
+        if any(sense_model_proposed):
+            idx_entry["sense_model_proposed"] = sense_model_proposed
         if any(mg.get("unassigned") for mg in entry.get("meanings", [])):
             idx_entry["unassigned"] = True
         if entry.get("cognate_score") is not None:
@@ -2887,10 +3070,14 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
     os.makedirs(os.path.dirname(index_path), exist_ok=True)
     with open(index_path, "w", encoding="utf-8") as f:
         json.dump(index, f, ensure_ascii=False)
-    write_sidecar(index_path, make_meta("assemble_artist_vocabulary", STEP_VERSION))
+    write_sidecar(index_path, make_meta(
+        "assemble_artist_vocabulary", STEP_VERSION,
+        extra=build_contract or None))
     with open(examples_path, "w", encoding="utf-8") as f:
         json.dump(examples, f, ensure_ascii=False)
-    write_sidecar(examples_path, make_meta("assemble_artist_vocabulary", STEP_VERSION))
+    write_sidecar(examples_path, make_meta(
+        "assemble_artist_vocabulary", STEP_VERSION,
+        extra=build_contract or None))
 
     # Write updated master
     os.makedirs(os.path.dirname(master_path), exist_ok=True)
@@ -2904,6 +3091,7 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
     print("    %s: %s bytes" % (index_path, "{:,}".format(idx_size)))
     print("    %s: %s bytes" % (examples_path, "{:,}".format(ex_size)))
     print("  Master: %d entries -> %s" % (len(master), master_path))
+    return {"index": index_path, "examples": examples_path}
 
 
 # ---------------------------------------------------------------------------
@@ -2932,6 +3120,14 @@ def main():
                              "(Spanish: 50; unset languages: 0 = keep everything). "
                              "Useful values: 15 (skip keyword-tier), 30 (biencoder+), "
                              "50 (Gemini only).")
+    parser.add_argument("--prompt-policy", default=CURRENT_SD_POLICY_ID,
+                        help="Named prompt acceptance policy from "
+                             "config/prompt_registry.json. Default: %s."
+                             % CURRENT_SD_POLICY_ID)
+    parser.add_argument("--min-prompt-tier", type=int, default=0,
+                        help="Deprecated compatibility override for builds "
+                             "without --prompt-policy. Numeric prompt tiers are "
+                             "not used by the default Artist build.")
     parser.add_argument("--stamp-cognate-scores", action="store_true",
                         help="Stamp the auto cognate_score from the cognates.json "
                              "layer onto entries. OFF by default: that scorer "
@@ -2974,6 +3170,11 @@ def main():
         artists_dir, "vocabulary_master%s.json" % args.output_suffix)
     layers_dir = os.path.join(artist_dir, "data", "layers")
     curated_path = os.path.join(artist_dir, "data", "llm_analysis", "curated_translations.json")
+    build_contract = active_evidence_build_contract(
+        artist_dir, sense_source=args.sense_source)
+    if build_contract:
+        print("Evidence build contract: %s / %s" % (
+            build_contract["ledger_run"], build_contract["corpus_profile_hash"]))
 
     # Load master
     master = {}
@@ -2993,13 +3194,17 @@ def main():
         skip_words_path=skip_words_path,
         emit_remainders=args.remainders,
         min_priority=args.min_priority,
+        min_prompt_tier=args.min_prompt_tier,
+        prompt_policy_id=args.prompt_policy,
         stamp_cognate_scores=args.stamp_cognate_scores)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)
     with open(vocab_path, "w", encoding="utf-8") as f:
         json.dump(entries, f, ensure_ascii=False, indent=2)
-    write_sidecar(vocab_path, make_meta("assemble_artist_vocabulary", STEP_VERSION))
+    write_sidecar(vocab_path, make_meta(
+        "assemble_artist_vocabulary", STEP_VERSION,
+        extra=build_contract or None))
     print("  Monolith: %d entries -> %s" % (len(entries), vocab_path))
 
     # Write clitic layer file (MWE-style, keyed by hex ID)
@@ -3033,12 +3238,34 @@ def main():
         print("  ID migration: %d mappings -> %s" % (len(id_migration), migration_path))
 
     # Write split files
-    write_split_files(
+    split_paths = write_split_files(
         entries, master, vocab_path, master_path, clitic_data,
         raw_examples=raw_examples,
         translations=translations,
         timestamp_map=timestamp_map,
+        build_contract=build_contract,
     )
+
+    if build_contract:
+        evidence_dir = os.path.join(artist_dir, "data", "evidence")
+        output_paths = {"monolith": vocab_path, **split_paths}
+        for output_name, output_path in output_paths.items():
+            with open(output_path, encoding="utf-8") as handle:
+                output_payload = json.load(handle)
+            archive_json_artifact(
+                evidence_dir,
+                "final_deck/%s" % output_name,
+                output_payload,
+                language=language,
+                adapter={"name": "artist-step-8b", "version": STEP_VERSION},
+                inputs=build_contract,
+                config={
+                    "sense_source": args.sense_source,
+                    "min_priority": args.min_priority,
+                    "remainders": bool(args.remainders),
+                    "output_suffix": args.output_suffix,
+                },
+            )
 
     print("Done!")
 

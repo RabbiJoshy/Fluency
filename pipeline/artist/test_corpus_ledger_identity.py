@@ -3,11 +3,54 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from pipeline.artist.step_2a_count_words import normalize_analysis_tokens
 from pipeline.artist.util_2a_corpus_ledger import ArtistCorpusLedger
 from pipeline.util_evidence_store import make_occurrence_id, read_jsonl
 
 
 class ArtistCorpusLedgerTests(unittest.TestCase):
+    def test_ingestion_completes_chained_elision_restoration(self):
+        mapping = {"metío'": "metíos", "pegaíto'": "pegaítos"}
+        self.assertEqual(
+            normalize_analysis_tokens(
+                ["metío'", "pegaíto'", "mojaítas"], mapping),
+            ["metidos", "pegaditos", "mojaditas"],
+        )
+
+    def test_ingestion_restores_high_confidence_internal_elisions(self):
+        self.assertEqual(
+            normalize_analysis_tokens(
+                ["nunca", "como", "e'to", "y", "moja'íta", "discoteka'"],
+                {},
+                known_forms={"esto", "mojado", "discotecas"},
+            ),
+            ["nunca", "como", "esto", "y", "mojadita", "discotecas"],
+        )
+
+    def test_ingestion_uses_context_only_for_ambiguous_candidates(self):
+        known = {
+            "menos", "emperado", "esperado", "llegarte", "llegaste",
+            "pasante", "pasarte", "pasaste", "tiguere",
+        }
+        self.assertEqual(
+            normalize_analysis_tokens(
+                ["menos", "e'perado", "que", "llega'te", "te", "pasa'te",
+                 "los", "tíguere'"],
+                {}, known_forms=known,
+            ),
+            ["menos", "esperado", "que", "llegaste", "te", "pasaste",
+             "los", "tigueres"],
+        )
+
+    def test_ingestion_abstains_when_internal_elision_is_ambiguous(self):
+        self.assertEqual(
+            normalize_analysis_tokens(
+                ["algo", "e'perado", "y", "llega'te"], {},
+                known_forms={"emperado", "esperado", "llegarte", "llegaste"},
+            ),
+            ["algo", "e'perado", "y", "llega'te"],
+        )
+
     def _collector(self, root, language="spanish"):
         artist_dir = Path(root) / "Artist"
         artist_dir.mkdir(parents=True, exist_ok=True)

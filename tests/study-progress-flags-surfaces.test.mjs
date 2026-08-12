@@ -30,15 +30,55 @@ test('Study progress is a per-card audit with retained and in-session history', 
     assert.match(context.result, /^\d{2}\/\d{2}\/\d{2} \d{2}:\d{2}$/);
 });
 
-test('owner shortcuts open progress, study preferences, and both flag routes', async () => {
+test('owner shortcuts open progress, preferences, model provenance, and both flag routes', async () => {
     const [html, cards] = await Promise.all([text('index.html'), text('js/flashcards.js')]);
     assert.match(cards, /commandKey === 's'[\s\S]*?showStatsModal\(\)/);
     assert.match(cards, /commandKey === 'p'[\s\S]*?showSettingsModalWithTab\('study', \{ singleTab: true \}\)/);
+    assert.match(cards, /commandKey === 'i'[\s\S]*?isJstOwner\(\)[\s\S]*?toggleProvenancePanel\(\)/);
+    assert.match(cards, /Data & model info/);
+    assert.match(cards, /ensureProvenancePanelForCurrentCard/);
     assert.match(cards, /commandKey === 'f' && canFlag/);
     assert.match(cards, /if \(e\.shiftKey\) window\.showFlagMenu\?\.\(\)/);
     assert.match(cards, /else window\.sendWholeCardFlag\?\.\(\)/);
     assert.match(cards, /'showFlagMenu', 'hideFlagMenu', 'sendWholeCardFlag'/);
-    for (const label of ['Ctrl S', 'Ctrl P', 'Ctrl F', 'Ctrl Shift F']) assert.match(html, new RegExp(label));
+    for (const label of ['Ctrl S', 'Ctrl P', 'Ctrl I', 'Ctrl F', 'Ctrl Shift F']) assert.match(html, new RegExp(label));
+});
+
+test('Gemini off-menu definitions carry an owner-only card marker', async () => {
+    const [cards, vocab, css, pipeline] = await Promise.all([
+        text('js/flashcards.js'), text('js/vocab.js'), text('css/style.css'),
+        text('pipeline/artist/step_8b_assemble_artist_vocabulary.py')
+    ]);
+    assert.match(pipeline, /sense_model_proposed/);
+    assert.match(pipeline, /method\.startswith\("lexical-gap-fill-"\)/);
+    assert.match(vocab, /idx\.sense_model_proposed/);
+    assert.match(vocab, /meaning\.modelProposed = true/);
+    assert.match(cards, /function modelProposalMarkerHTML\(meaning\)[\s\S]*?isJstOwner\(\)[\s\S]*?meaning\?\.modelProposed/);
+    assert.match(cards, /Gemini proposed this definition because it was not in the SpanishDict sense menu/);
+    assert.match(css, /\.model-proposed-marker/);
+});
+
+test('SpanishDict auto evidence cannot masquerade as a Gemini run', async () => {
+    const [cards, vocab] = await Promise.all([text('js/flashcards.js'), text('js/vocab.js')]);
+    const helpers = vocab.slice(
+        vocab.indexOf('function isAutomaticSenseMethod'),
+        vocab.indexOf('/**\n * Lemma mode: pool')
+    );
+    const context = {};
+    runInNewContext(`${helpers}; meaning = {
+        prompt_id: 'sd-cop-v3', run_ts: '2026-08-08T00:14Z', model_proposed: true
+    }; reconcileMeaningProvenanceFromExamples(meaning, [
+        { assignment_method: 'spanishdict-auto', prompt_id: 'sd-cop-v3' }
+    ]);`, context);
+    assert.equal(context.meaning.assignment_method, 'spanishdict-auto');
+    assert.equal(context.meaning.prompt_id, undefined);
+    assert.equal(context.meaning.run_ts, undefined);
+    assert.equal(context.meaning.model_proposed, undefined);
+    assert.match(cards, /SpanishDict auto · no model call/);
+    assert.match(cards, /single available dictionary sense/);
+    assert.match(cards, /Shared sense register auto · no model call/);
+    assert.match(cards, /exact line reused from another registered artist/);
+    assert.match(cards, /POS-filtered auto · no model call/);
 });
 
 test('every quick flag closes at the send gesture and confirms outside the menu', async () => {
@@ -98,4 +138,3 @@ test('example highlighting prefers the exact occurrence surface and hides clitic
     assert.match(cards, /currentExample, displayTargetSentence/);
     assert.match(cards, /title="Recorded form in this example"/);
 });
-

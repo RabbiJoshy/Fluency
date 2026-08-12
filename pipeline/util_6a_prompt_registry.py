@@ -23,19 +23,31 @@ BACKFILL_DEFAULT_PROMPT_ID = "legacy-unknown"
 
 # Go-forward: the current SpanishDict classify-or-propose path. Overridable via
 # step_6c's --prompt-id when a new model/prompt lands (mint a registry entry first).
-# Bumped to sd-cop-v3 (gemini-3.5-flash-lite) on 2026-07-29 alongside SD_DEFAULT_MODEL.
-CURRENT_SD_PROMPT_ID = "sd-cop-v3"
+# Lexical WSD only: tagging/entity/construction decisions now belong to their
+# own evidence layers.  The model may still propose a missing lexical slang
+# gloss, but it no longer owns those routing tags.
+CURRENT_SD_PROMPT_ID = "sd-lexical-v2-g31"
+CURRENT_SD_POLICY_ID = "artist-lexical-wsd-current"
 
 _DEFAULT_REGISTRY_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     "config", "prompt_registry.json")
 
 _LEGACY_TIER = 0
-
-
 def registry_path(explicit=None):
     """Resolve the registry path (explicit arg wins, else the repo default)."""
     return explicit or _DEFAULT_REGISTRY_PATH
+
+
+def load_registry_document(path=None):
+    """Load the complete prompt registry document."""
+    p = registry_path(path)
+    try:
+        with open(p, encoding="utf-8") as f:
+            raw = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    return raw if isinstance(raw, dict) else {}
 
 
 def load_registry(path=None):
@@ -44,14 +56,26 @@ def load_registry(path=None):
     Returns ``{}`` if the file is missing or malformed so callers degrade
     gracefully (assignments still carry their raw prompt_id join keys).
     """
-    p = registry_path(path)
-    try:
-        with open(p, encoding="utf-8") as f:
-            raw = json.load(f)
-    except (OSError, ValueError):
-        return {}
+    raw = load_registry_document(path)
     prompts = raw.get("prompts") if isinstance(raw, dict) else None
     return prompts if isinstance(prompts, dict) else {}
+
+
+def load_prompt_policy(policy_id=CURRENT_SD_POLICY_ID, path=None):
+    """Load one named deployment policy from the registry document."""
+    policies = load_registry_document(path).get("acceptance_policies") or {}
+    policy = policies.get(policy_id) if isinstance(policies, dict) else None
+    return policy if isinstance(policy, dict) else {}
+
+
+def accepted_prompt_ids(policy_id=CURRENT_SD_POLICY_ID, path=None):
+    """Return the explicit prompt allowlist for a named deployment policy."""
+    return frozenset(load_prompt_policy(policy_id, path).get(
+        "accepted_prompt_ids") or [])
+
+
+def prompt_is_accepted(prompt_id, policy_id=CURRENT_SD_POLICY_ID, path=None):
+    return bool(prompt_id and prompt_id in accepted_prompt_ids(policy_id, path))
 
 
 def backfill_prompt_id_for_method(method):
