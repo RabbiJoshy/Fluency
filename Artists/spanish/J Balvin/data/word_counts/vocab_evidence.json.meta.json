@@ -1,0 +1,12 @@
+{
+  "step_name": "materialize_artist_corpus",
+  "step_version": 2,
+  "generated_at": 1786402530,
+  "ledger_run": "run_ebd31aab53bf8ac8a638fb23",
+  "corpus_profile_hash": "sha256:7ce3e48675c9db3b15ef4b47e9cc2dd6bdc4a154f1075e3e7f525f0a47c8499e",
+  "excluded_labels": [
+    "adlib",
+    "echo",
+    "stutter"
+  ]
+}

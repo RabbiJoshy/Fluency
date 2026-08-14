@@ -1,0 +1,9996 @@
+{
+  "schema": "fluency.pre-sense-prompt-migration-audit/v1",
+  "scope": "Bad Bunny deterministic rerun; no Gemini API call",
+  "inputs": {
+    "before_plan": "/private/tmp/bad-bunny-prompt-before.t8iqTn/prompt-plan-stable-ids.json",
+    "after_plan": "/private/tmp/bad-bunny-prompt-after.xCT8SO/prompt-plan-stable-ids.json",
+    "before_data": "/private/tmp/bad-bunny-prompt-before.t8iqTn/data",
+    "after_data": "Artists/spanish/Bad Bunny/data",
+    "noise_claims": "Artists/spanish/Bad Bunny/data/evidence/overlays/vocal_artifact/run_779546c4dddece0f7830fbed.jsonl"
+  },
+  "summary": {
+    "before_prompt_records": 3587,
+    "after_prompt_records": 3548,
+    "exact_prompt_records": 938,
+    "pure_sense_menu_reorder_records": 2441,
+    "meaningfully_changed_common_records": 152,
+    "removed_from_prompt_queue": 56,
+    "added_to_prompt_queue": 17,
+    "change_field_word_counts": {
+      "abs": 12,
+      "example_selection": 144,
+      "examples": 144,
+      "sense_menu_content": 9,
+      "sense_menu_order": 2547
+    },
+    "noise_linked_removed_raw_examples": 15,
+    "stable_example_pos_changes": 0,
+    "words_with_stable_example_pos_changes": 0
+  },
+  "exact_words": [
+    "abierta",
+    "abrazo",
+    "abren",
+    "abres",
+    "abro",
+    "abuelos",
+    "acaso",
+    "aceite",
+    "acicalado",
+    "activo",
+    "acto",
+    "acuesta",
+    "afuera",
+    "agradecer",
+    "ahorros",
+    "aire",
+    "ajeno",
+    "ajoro",
+    "alcohol",
+    "alegre",
+    "algarete",
+    "alguito",
+    "algunas",
+    "allá",
+    "alumbra",
+    "amante",
+    "amarrar",
+    "ambos",
+    "amigo",
+    "amiguita",
+    "anillo",
+    "antojo",
+    "apa",
+    "arco",
+    "arrebato",
+    "arrodilla",
+    "arte",
+    "asusta",
+    "atiende",
+    "atragantás",
+    "atreva",
+    "atrevida",
+    "aumentan",
+    "azoto",
+    "azul",
+    "año",
+    "aún",
+    "baila",
+    "baile",
+    "bajaba",
+    "baldo",
+    "banco",
+    "bandera",
+    "bandolera",
+    "bandoleras",
+    "barriga",
+    "bases",
+    "basta",
+    "bebecita",
+    "bebidos",
+    "bebí",
+    "beibe",
+    "bellaquita",
+    "bendecir",
+    "bendiciones",
+    "bendita",
+    "besamos",
+    "besitos",
+    "bezos",
+    "bichotes",
+    "billetes",
+    "bizca",
+    "blancas",
+    "blanquita",
+    "blin",
+    "bobos",
+    "bola",
+    "bolas",
+    "bolsillo",
+    "bolsillos",
+    "bombón",
+    "bonitos",
+    "borrado",
+    "borre",
+    "bote",
+    "botón",
+    "boy",
+    "brillando",
+    "brillas",
+    "buceo",
+    "buen",
+    "bulto",
+    "burlado",
+    "burros",
+    "buscar",
+    "butaca",
+    "cabra",
+    "cadenas",
+    "caja",
+    "calendario",
+    "callas",
+    "callosa",
+    "callás",
+    "cambiado",
+    "cambiaron",
+    "cambiaste",
+    "cambié",
+    "cambió",
+    "caminos",
+    "campo",
+    "cancela",
+    "cancha",
+    "cansé",
+    "cantan",
+    "canto",
+    "capital",
+    "caripelao",
+    "carreras",
+    "carretera",
+    "casar",
+    "casas",
+    "castigar",
+    "casualidad",
+    "cayeron",
+    "caí",
+    "celos",
+    "cenizas",
+    "cerca",
+    "cerquita",
+    "chamaquita",
+    "chamaquito",
+    "chamaquitos",
+    "chapa",
+    "chapeado",
+    "chapeen",
+    "chapulín",
+    "chapéame",
+    "charro",
+    "chavo",
+    "chicos",
+    "chingamos",
+    "chingó",
+    "chinitas",
+    "chino",
+    "chiquitita",
+    "choca",
+    "chocar",
+    "chulo",
+    "chupa",
+    "ciegas",
+    "cielo",
+    "cientos",
+    "cierras",
+    "cierren",
+    "cierro",
+    "cierto",
+    "cincuenta",
+    "clavando",
+    "clave",
+    "coco",
+    "cogimos",
+    "colmadón",
+    "color",
+    "colores",
+    "combino",
+    "cometer",
+    "comparen",
+    "compares",
+    "compartir",
+    "comparto",
+    "compañía",
+    "compe",
+    "compes",
+    "competencia",
+    "compra",
+    "compromiso",
+    "conectado",
+    "confundas",
+    "confía",
+    "confías",
+    "conocemos",
+    "consiguen",
+    "consolarse",
+    "contactos",
+    "contar",
+    "control",
+    "controlo",
+    "convierte",
+    "convierto",
+    "corazones",
+    "coronar",
+    "correcto",
+    "corriendo",
+    "corriente",
+    "cortas",
+    "cotorro",
+    "creer",
+    "creía",
+    "creían",
+    "criaron",
+    "criticas",
+    "créditos",
+    "cualifica",
+    "cuartos",
+    "cuela",
+    "cuente",
+    "cuento",
+    "cuentos",
+    "cuerpo",
+    "cuerpos",
+    "cueste",
+    "cuiden",
+    "culazo",
+    "curvas",
+    "daba",
+    "debajo",
+    "debería",
+    "debilidad",
+    "debo",
+    "decida",
+    "decidió",
+    "dejaba",
+    "dejaré",
+    "dejemos",
+    "delante",
+    "demonia",
+    "demonio",
+    "demonios",
+    "dentro",
+    "derechos",
+    "derrito",
+    "des",
+    "descansa",
+    "descansar",
+    "desean",
+    "deseas",
+    "desesperado",
+    "despedí",
+    "despeja",
+    "destino",
+    "desvestir",
+    "detonar",
+    "dieron",
+    "dieta",
+    "difícil",
+    "digitar",
+    "dijeron",
+    "dijiste",
+    "dioses",
+    "dirá",
+    "disciplina",
+    "discos",
+    "disfruta",
+    "disfrutando",
+    "dispara",
+    "doctor",
+    "doctores",
+    "dolor",
+    "dolores",
+    "domi",
+    "dosis",
+    "drama",
+    "droga",
+    "drogas",
+    "duela",
+    "duele",
+    "duermo",
+    "duras",
+    "echa",
+    "efecto",
+    "ejemplo",
+    "ellas",
+    "empecé",
+    "empezar",
+    "empieza",
+    "empleados",
+    "encaja",
+    "encanto",
+    "enchuló",
+    "encojona",
+    "encontraste",
+    "encontró",
+    "endiabló",
+    "endrogamos",
+    "engancha",
+    "engañó",
+    "enoja",
+    "enrola",
+    "enrolamos",
+    "enrolando",
+    "enrolas",
+    "enseguida",
+    "enseñar",
+    "enseñaste",
+    "enseño",
+    "entero",
+    "entra",
+    "envejecer",
+    "enviar",
+    "envidia",
+    "envió",
+    "envolví",
+    "envuelto",
+    "envueltos",
+    "envío",
+    "equivocado",
+    "era",
+    "eran",
+    "ere",
+    "eres",
+    "esas",
+    "escalera",
+    "esconda",
+    "escondidos",
+    "escondía",
+    "escondías",
+    "escriba",
+    "escriben",
+    "escuchaba",
+    "escuché",
+    "escuela",
+    "escupo",
+    "esnúa",
+    "espacio",
+    "espaldar",
+    "especial",
+    "espectacular",
+    "espeté",
+    "esta",
+    "estan",
+    "estará",
+    "estarás",
+    "estemos",
+    "estrella",
+    "estrellas",
+    "estudio",
+    "estuvo",
+    "estás",
+    "exclusiva",
+    "existen",
+    "explotado",
+    "facil",
+    "fallan",
+    "fallé",
+    "fama",
+    "familia",
+    "fans",
+    "fantasías",
+    "farmacia",
+    "fav",
+    "fe",
+    "fea",
+    "festeja",
+    "fiel",
+    "fila",
+    "fin",
+    "firmes",
+    "fondos",
+    "fortuna",
+    "frente",
+    "frontean",
+    "fronteando",
+    "fría",
+    "fui",
+    "fuiste",
+    "fuletazo",
+    "full",
+    "funciones",
+    "fácil",
+    "fía",
+    "galla",
+    "gallos",
+    "game",
+    "ganar",
+    "ganas",
+    "gangster",
+    "garantía",
+    "gasta",
+    "gastamos",
+    "gastando",
+    "gastar",
+    "gata",
+    "gatito",
+    "gloria",
+    "go",
+    "goleamos",
+    "golosa",
+    "goza",
+    "gozo",
+    "grabando",
+    "grabo",
+    "grasa",
+    "gravedad",
+    "grises",
+    "gritar",
+    "guayo",
+    "guiando",
+    "guillarse",
+    "gusta",
+    "gustaba",
+    "gustar",
+    "gustas",
+    "guste",
+    "habitación",
+    "hables",
+    "habló",
+    "habrá",
+    "habían",
+    "hackeado",
+    "hackeás",
+    "harás",
+    "hermoso",
+    "hijos",
+    "hojas",
+    "hombres",
+    "hondo",
+    "hookiás",
+    "horas",
+    "hot",
+    "huella",
+    "huelo",
+    "humilde",
+    "icono",
+    "idea",
+    "ignoras",
+    "illuminatis",
+    "imagina",
+    "imagino",
+    "imitar",
+    "impacto",
+    "indica",
+    "infierno",
+    "inmortales",
+    "inteligencia",
+    "intencional",
+    "intentar",
+    "intento",
+    "invente",
+    "invento",
+    "invierto",
+    "invitación",
+    "isla",
+    "jarabe",
+    "jevas",
+    "joseando",
+    "juegues",
+    "juguete",
+    "juquear",
+    "juqueó",
+    "justo",
+    "juzgar",
+    "jóvenes",
+    "kayak",
+    "lados",
+    "larga",
+    "largo",
+    "las",
+    "late",
+    "lazos",
+    "leal",
+    "leche",
+    "leer",
+    "lentes",
+    "letra",
+    "letras",
+    "levantar",
+    "ley",
+    "leyenda",
+    "leyendas",
+    "libre",
+    "lista",
+    "llama",
+    "llamada",
+    "llamadas",
+    "llamando",
+    "llamas",
+    "llamen",
+    "llamé",
+    "llegada",
+    "llenamos",
+    "llenan",
+    "llevado",
+    "llevaré",
+    "lleven",
+    "llevé",
+    "llevó",
+    "llover",
+    "lloviendo",
+    "llueva",
+    "llueve",
+    "llueven",
+    "locas",
+    "lowkey",
+    "lucha",
+    "luchar",
+    "lugar",
+    "luzcas",
+    "luzco",
+    "líneas",
+    "lío",
+    "magia",
+    "maldad",
+    "maldades",
+    "maldita",
+    "maleantes",
+    "maltrato",
+    "mames",
+    "mandamos",
+    "manejador",
+    "manín",
+    "marca",
+    "margiela",
+    "masas",
+    "mataba",
+    "matado",
+    "matan",
+    "matando",
+    "mate",
+    "maten",
+    "mato",
+    "matrimonio",
+    "mañanas",
+    "mece",
+    "melón",
+    "memoria",
+    "mensaje",
+    "menta",
+    "mente",
+    "mese",
+    "metido",
+    "metiste",
+    "millones",
+    "ministro",
+    "minuto",
+    "mirabas",
+    "miradas",
+    "mirar",
+    "mire",
+    "miré",
+    "miró",
+    "modales",
+    "modelo",
+    "modo",
+    "mojaste",
+    "molusco",
+    "momento",
+    "momentos",
+    "montón",
+    "moral",
+    "morena",
+    "moto",
+    "moviendo",
+    "movimientos",
+    "mr",
+    "mucha",
+    "muchachos",
+    "muchas",
+    "muchos",
+    "mudé",
+    "muera",
+    "muerde",
+    "mueren",
+    "muerta",
+    "muy",
+    "máxima",
+    "mí",
+    "nalgadas",
+    "nalgotas",
+    "nano",
+    "natural",
+    "nave",
+    "navidades",
+    "necesita",
+    "negocio",
+    "negocios",
+    "negra",
+    "nelson",
+    "nenes",
+    "nervios",
+    "nietos",
+    "niña",
+    "niños",
+    "nosotros",
+    "notar",
+    "noticias",
+    "notificaciones",
+    "noto",
+    "novias",
+    "nuevas",
+    "néctar",
+    "números",
+    "o",
+    "obras",
+    "ocho",
+    "octavos",
+    "ofendas",
+    "oficial",
+    "ojalá",
+    "olvidado",
+    "olvide",
+    "once",
+    "oportunidad",
+    "orden",
+    "ordena",
+    "orgullo",
+    "orgánico",
+    "original",
+    "oscura",
+    "oídos",
+    "paca",
+    "padre",
+    "pagando",
+    "paleta",
+    "pana",
+    "papar",
+    "papel",
+    "paquete",
+    "parado",
+    "pared",
+    "paro",
+    "parque",
+    "partida",
+    "parto",
+    "partí",
+    "pasarela",
+    "patea",
+    "pecho",
+    "peda",
+    "pegarse",
+    "pelado",
+    "pelas",
+    "pelear",
+    "peliculeros",
+    "pelo",
+    "pensamiento",
+    "pensamos",
+    "pensara",
+    "perdedor",
+    "perdido",
+    "perdiste",
+    "perdías",
+    "perdón",
+    "perfil",
+    "perfume",
+    "perfumito",
+    "permiso",
+    "perras",
+    "perriabas",
+    "perros",
+    "perse",
+    "persona",
+    "personal",
+    "personas",
+    "pertenece",
+    "pertenezco",
+    "pese",
+    "peseta",
+    "pesetas",
+    "pica",
+    "pichaera",
+    "pichando",
+    "pichar",
+    "picharon",
+    "piché",
+    "piedras",
+    "piensan",
+    "pienses",
+    "pikete",
+    "pillamos",
+    "pillar",
+    "piso",
+    "planes",
+    "planeta",
+    "planta",
+    "playita",
+    "plein",
+    "plástica",
+    "pobre",
+    "pobres",
+    "polvo",
+    "ponemos",
+    "pongas",
+    "popola",
+    "posiciones",
+    "positiva",
+    "positivo",
+    "posteados",
+    "pre",
+    "precio",
+    "precioso",
+    "premio",
+    "premios",
+    "prendes",
+    "prendí",
+    "prepago",
+    "presiento",
+    "presión",
+    "presta",
+    "prestados",
+    "primer",
+    "primera",
+    "privado",
+    "proba",
+    "profundo",
+    "progreso",
+    "propias",
+    "propio",
+    "propios",
+    "protejo",
+    "prueba",
+    "puedas",
+    "puedes",
+    "puente",
+    "puertorro",
+    "pupilos",
+    "queje",
+    "quema",
+    "quemado",
+    "quemados",
+    "quemo",
+    "queremos",
+    "querido",
+    "quiere",
+    "quieres",
+    "quiero",
+    "quinientos",
+    "quisiste",
+    "quizás",
+    "qué",
+    "química",
+    "radio",
+    "raza",
+    "realidad",
+    "refuerzos",
+    "regalado",
+    "regalan",
+    "religión",
+    "reloj",
+    "repetir",
+    "respetar",
+    "resto",
+    "resuelve",
+    "resuelvo",
+    "retrata",
+    "revivir",
+    "rezo",
+    "riendas",
+    "rincón",
+    "risa",
+    "roba",
+    "rodeos",
+    "rogar",
+    "roja",
+    "rompieron",
+    "rompimos",
+    "roncar",
+    "ropa",
+    "rosa",
+    "rosas",
+    "rosita",
+    "rota",
+    "roto",
+    "rotos",
+    "rulay",
+    "ruleta",
+    "rulin",
+    "sabemos",
+    "sabido",
+    "sabía",
+    "sagrado",
+    "sangre",
+    "sapos",
+    "sata",
+    "satélites",
+    "sazón",
+    "seas",
+    "sed",
+    "seis",
+    "sello",
+    "sen",
+    "sensibilidad",
+    "sentimientos",
+    "sepultura",
+    "serie",
+    "serás",
+    "señales",
+    "señores",
+    "señoritas",
+    "sicario",
+    "sicarios",
+    "sido",
+    "siempre",
+    "siendo",
+    "sientan",
+    "sientas",
+    "significa",
+    "silencio",
+    "sillas",
+    "sincera",
+    "sincero",
+    "sintió",
+    "sirven",
+    "sistema",
+    "ski",
+    "so",
+    "soda",
+    "solamente",
+    "solos",
+    "soltar",
+    "soportar",
+    "soporte",
+    "soporto",
+    "soñando",
+    "soñar",
+    "squad",
+    "squirteé",
+    "strikes",
+    "sudas",
+    "sudaítas",
+    "suene",
+    "sueña",
+    "sueños",
+    "suman",
+    "suyo",
+    "sé",
+    "súper",
+    "tabla",
+    "tablilla",
+    "tacones",
+    "tag",
+    "tantos",
+    "tar",
+    "taína",
+    "techo",
+    "temperatura",
+    "tenemos",
+    "tener",
+    "tenga",
+    "tengas",
+    "tengo",
+    "tenido",
+    "termine",
+    "tetera",
+    "textea",
+    "texto",
+    "ti",
+    "tiempo",
+    "tiguere",
+    "timbal",
+    "timbales",
+    "tiroteo",
+    "tiró",
+    "tocamos",
+    "tocas",
+    "toditas",
+    "todo",
+    "toldo",
+    "tomando",
+    "tomo",
+    "too",
+    "toques",
+    "total",
+    "trabaja",
+    "trago",
+    "tragos",
+    "trajecito",
+    "tranqui",
+    "transparente",
+    "tratas",
+    "traten",
+    "traté",
+    "trepo",
+    "tres",
+    "trili",
+    "tropas",
+    "trás",
+    "tríos",
+    "tumba",
+    "tumbado",
+    "tumbar",
+    "tuya",
+    "tuyos",
+    "tíguere",
+    "una",
+    "universidad",
+    "usas",
+    "uñas",
+    "vacila",
+    "vacía",
+    "vagos",
+    "varios",
+    "vaso",
+    "vayas",
+    "vean",
+    "veas",
+    "vegeta",
+    "vendas",
+    "vendiendo",
+    "venta",
+    "ventas",
+    "ver",
+    "veras",
+    "verdadero",
+    "verás",
+    "vez",
+    "viajar",
+    "viaje",
+    "vibra",
+    "viejas",
+    "viejos",
+    "viera",
+    "vieras",
+    "violeta",
+    "virus",
+    "visten",
+    "vistes",
+    "viva",
+    "vivan",
+    "viven",
+    "vives",
+    "vividos",
+    "vivía",
+    "vo",
+    "volumen",
+    "volverás",
+    "voy",
+    "voz",
+    "vuelo",
+    "vuelvas",
+    "wheeliando",
+    "wisin",
+    "y",
+    "zendaya",
+    "ángel",
+    "área",
+    "éramos",
+    "éxtasis",
+    "última"
+  ],
+  "pure_sense_menu_reorder_words": [
+    "a",
+    "abajo",
+    "aborrecía",
+    "abortar",
+    "abran",
+    "abras",
+    "abraza",
+    "abrazados",
+    "abrimos",
+    "abrir",
+    "abuela",
+    "aburro",
+    "aburrí",
+    "acaba",
+    "acabado",
+    "acabara",
+    "acabaron",
+    "acabe",
+    "acabo",
+    "acabó",
+    "acción",
+    "acelera",
+    "acelerador",
+    "acelero",
+    "acepto",
+    "acerca",
+    "acicale",
+    "aclaren",
+    "aclaro",
+    "aconsejo",
+    "acordó",
+    "acostarse",
+    "acostumbrar",
+    "acostumbres",
+    "acostumbré",
+    "acosté",
+    "actualizás",
+    "actúa",
+    "acuerda",
+    "acuerdo",
+    "acuestes",
+    "acuesto",
+    "acá",
+    "adelantado",
+    "admiten",
+    "afilador",
+    "aflojan",
+    "agarra",
+    "agarrados",
+    "agarre",
+    "agenda",
+    "agotamos",
+    "agotes",
+    "agresivo",
+    "aguan",
+    "aguanta",
+    "aguantan",
+    "aguantando",
+    "aguantar",
+    "aguantas",
+    "aguante",
+    "aguantes",
+    "aguanto",
+    "aguja",
+    "ahorita",
+    "ajena",
+    "al",
+    "alante",
+    "alarmo",
+    "alejar",
+    "alejas",
+    "alejé",
+    "alejó",
+    "aleta",
+    "alguien",
+    "algunos",
+    "algún",
+    "aljibe",
+    "alta",
+    "alterno",
+    "alteza",
+    "alto",
+    "altura",
+    "alturas",
+    "amanecer",
+    "amanecidos",
+    "amanezca",
+    "amanezco",
+    "amarras",
+    "amazona",
+    "ambiente",
+    "amerite",
+    "amistades",
+    "amor",
+    "amores",
+    "ancha",
+    "anda",
+    "andaba",
+    "andamos",
+    "andan",
+    "andar",
+    "andas",
+    "andes",
+    "anillos",
+    "animo",
+    "ansioso",
+    "antenas",
+    "anterior",
+    "anteriores",
+    "antes",
+    "apaga",
+    "apagan",
+    "apagas",
+    "apague",
+    "apaguen",
+    "apagás",
+    "aparece",
+    "aparte",
+    "apenas",
+    "aplaudir",
+    "aplicar",
+    "aplique",
+    "apostó",
+    "aprendan",
+    "aprendo",
+    "aprendí",
+    "apretados",
+    "apretar",
+    "apretás",
+    "apretó",
+    "aprieta",
+    "apriete",
+    "aprieto",
+    "aprovechar",
+    "aproveche",
+    "aprovechen",
+    "aprovecho",
+    "apuntar",
+    "aquello",
+    "arde",
+    "are",
+    "armada",
+    "armadas",
+    "aro",
+    "arranca",
+    "arrancar",
+    "arranco",
+    "arrancó",
+    "arranque",
+    "arrastramos",
+    "arrebataba",
+    "arrebatados",
+    "arrebatos",
+    "arrebaté",
+    "arreglamos",
+    "arrodillado",
+    "arropa",
+    "arrope",
+    "artificiales",
+    "artista",
+    "artistas",
+    "asaltando",
+    "asesina",
+    "asesino",
+    "asustas",
+    "asusten",
+    "asustes",
+    "asusté",
+    "así",
+    "atendió",
+    "aterrizando",
+    "atesoro",
+    "atiendas",
+    "atrasado",
+    "atraso",
+    "atrasó",
+    "atribules",
+    "atrás",
+    "aumentando",
+    "aumentó",
+    "aunque",
+    "autor",
+    "autoridad",
+    "avance",
+    "aventura",
+    "aventurar",
+    "avisar",
+    "aviso",
+    "avisó",
+    "azaroso",
+    "azota",
+    "azotado",
+    "baboso",
+    "babys",
+    "baja",
+    "bajado",
+    "bajamos",
+    "bajan",
+    "bajar",
+    "bajas",
+    "baje",
+    "bajen",
+    "bajes",
+    "bajo",
+    "bajé",
+    "banda",
+    "bandida",
+    "bandido",
+    "bandidos",
+    "baratos",
+    "barco",
+    "barras",
+    "barrio",
+    "base",
+    "bastante",
+    "bate",
+    "batería",
+    "batá",
+    "baña",
+    "bañamos",
+    "bañar",
+    "bañes",
+    "baño",
+    "bañé",
+    "beba",
+    "bebe",
+    "bebecitas",
+    "bebemos",
+    "beber",
+    "bebiendo",
+    "bebió",
+    "becas",
+    "bellaca",
+    "bellacas",
+    "bellaco",
+    "bendecido",
+    "bendecidos",
+    "bendijo",
+    "benjamines",
+    "bequé",
+    "besa",
+    "besan",
+    "bese",
+    "beso",
+    "bestial",
+    "besé",
+    "bichos",
+    "billar",
+    "blanco",
+    "blanquitas",
+    "blanquito",
+    "bloquea",
+    "bloqueado",
+    "bloqueemos",
+    "bloqueá",
+    "bloqueás",
+    "bloqueé",
+    "bochinchero",
+    "body",
+    "bomba",
+    "bombon",
+    "bonita",
+    "bonito",
+    "boquerón",
+    "borra",
+    "borrar",
+    "borro",
+    "bota",
+    "botando",
+    "botes",
+    "botás",
+    "boté",
+    "brega",
+    "bregar",
+    "brego",
+    "bregues",
+    "brilla",
+    "brillan",
+    "brillante",
+    "brillar",
+    "brillo",
+    "brinca",
+    "brincando",
+    "brincó",
+    "bronco",
+    "brujería",
+    "bruto",
+    "brío",
+    "buena",
+    "bulles",
+    "burlaron",
+    "burlaste",
+    "busca",
+    "buscado",
+    "buscando",
+    "buscas",
+    "buscó",
+    "busque",
+    "busques",
+    "bélico",
+    "bóveda",
+    "caballete",
+    "cabe",
+    "cabeza",
+    "cabina",
+    "cabo",
+    "cabrona",
+    "cabrón",
+    "cacen",
+    "cacha",
+    "cacho",
+    "cachorros",
+    "cachás",
+    "caché",
+    "caco",
+    "cada",
+    "caemos",
+    "caer",
+    "caes",
+    "cagarse",
+    "caiga",
+    "caigamos",
+    "caigas",
+    "caigo",
+    "calentar",
+    "calentón",
+    "caletas",
+    "calienta",
+    "caliente",
+    "caliento",
+    "calla",
+    "callado",
+    "callar",
+    "calle",
+    "calmar",
+    "calme",
+    "calmes",
+    "calor",
+    "cambia",
+    "cambiamos",
+    "cambian",
+    "cambiar",
+    "cambiaría",
+    "cambio",
+    "camino",
+    "campeón",
+    "can",
+    "canal",
+    "canales",
+    "cancelemos",
+    "cancelen",
+    "cancelo",
+    "cancelé",
+    "canceló",
+    "canelo",
+    "cansan",
+    "cansar",
+    "cansaste",
+    "canse",
+    "cansó",
+    "cantar",
+    "cantera",
+    "capaz",
+    "capeaba",
+    "capeando",
+    "capeo",
+    "capeó",
+    "cara",
+    "carambola",
+    "caramelo",
+    "caras",
+    "caravana",
+    "carga",
+    "cargamento",
+    "cargamos",
+    "cargo",
+    "carrera",
+    "carrito",
+    "carta",
+    "cartel",
+    "cartera",
+    "case",
+    "cases",
+    "caso",
+    "casos",
+    "castaña",
+    "casó",
+    "cayeran",
+    "cayó",
+    "caía",
+    "cañón",
+    "celas",
+    "cena",
+    "cepillás",
+    "cercanos",
+    "cerebro",
+    "cero",
+    "cerrar",
+    "chacho",
+    "chambea",
+    "changa",
+    "chapeo",
+    "charras",
+    "charros",
+    "chavos",
+    "chica",
+    "chichi",
+    "chiché",
+    "chico",
+    "chilla",
+    "chillar",
+    "chimba",
+    "chinga",
+    "chingar",
+    "chingas",
+    "chingo",
+    "chinguemos",
+    "chingábamos",
+    "chiquitas",
+    "chiquitos",
+    "choco",
+    "chocolates",
+    "choque",
+    "chorro",
+    "chucha",
+    "chuleas",
+    "cicatrices",
+    "cicatriz",
+    "ciclo",
+    "ciegos",
+    "cielos",
+    "cien",
+    "cienes",
+    "ciento",
+    "cierran",
+    "cierre",
+    "cierres",
+    "cigala",
+    "cima",
+    "cinco",
+    "cita",
+    "claro",
+    "clase",
+    "clases",
+    "clava",
+    "clavado",
+    "clavo",
+    "clavos",
+    "clavé",
+    "clima",
+    "cobra",
+    "cobramos",
+    "cobrando",
+    "cobré",
+    "cocer",
+    "cocina",
+    "coge",
+    "cogemos",
+    "coger",
+    "cogiendo",
+    "cogió",
+    "cogí",
+    "cohíbo",
+    "coincido",
+    "coja",
+    "cojas",
+    "cojo",
+    "cola",
+    "colabora",
+    "colapsar",
+    "colapsó",
+    "collar",
+    "colombiana",
+    "colonizado",
+    "coloque",
+    "coma",
+    "combi",
+    "combina",
+    "combis",
+    "come",
+    "comedia",
+    "comemos",
+    "comenzamos",
+    "comenzar",
+    "comenzó",
+    "comer",
+    "comido",
+    "comienzas",
+    "comisario",
+    "como",
+    "compare",
+    "comparte",
+    "compartió",
+    "completa",
+    "completar",
+    "completo",
+    "complicás",
+    "complot",
+    "compositor",
+    "compraron",
+    "compras",
+    "compre",
+    "comí",
+    "común",
+    "con",
+    "condene",
+    "condené",
+    "condición",
+    "conducir",
+    "conducía",
+    "conectados",
+    "conectando",
+    "conecto",
+    "conexión",
+    "confesé",
+    "confiados",
+    "confianza",
+    "confiar",
+    "confiaste",
+    "confieso",
+    "confié",
+    "confió",
+    "conformes",
+    "conformo",
+    "confunda",
+    "confundo",
+    "confíes",
+    "conoce",
+    "conocen",
+    "conocer",
+    "conocerás",
+    "conoces",
+    "conocido",
+    "conociendo",
+    "conocimos",
+    "conoció",
+    "conocí",
+    "consigues",
+    "consuma",
+    "contactó",
+    "contamos",
+    "contento",
+    "contesto",
+    "continúa",
+    "contra",
+    "controlar",
+    "conté",
+    "convenció",
+    "conviene",
+    "copa",
+    "copas",
+    "copiar",
+    "corazón",
+    "coro",
+    "corona",
+    "corone",
+    "coroné",
+    "corre",
+    "correa",
+    "correr",
+    "correrán",
+    "corridos",
+    "corrí",
+    "corría",
+    "corta",
+    "cortaron",
+    "corte",
+    "cortes",
+    "cosa",
+    "coso",
+    "costumbre",
+    "cotizados",
+    "cotorra",
+    "coño",
+    "crean",
+    "creando",
+    "creas",
+    "crece",
+    "crecer",
+    "crecidos",
+    "crecías",
+    "cree",
+    "creen",
+    "crees",
+    "creo",
+    "cresta",
+    "creyendo",
+    "crezca",
+    "creías",
+    "creíste",
+    "criamos",
+    "cristal",
+    "cristales",
+    "critican",
+    "criticando",
+    "crié",
+    "cruzas",
+    "crédito",
+    "crías",
+    "cuadre",
+    "cuadrás",
+    "cualquiera",
+    "cuarenta",
+    "cuarto",
+    "cuatro",
+    "cubana",
+    "cubriendo",
+    "cuca",
+    "cuello",
+    "cuenta",
+    "cuerdas",
+    "cuero",
+    "cueros",
+    "cuesta",
+    "cuestión",
+    "cuida",
+    "cuidado",
+    "cuidamos",
+    "cuidando",
+    "cuidar",
+    "cuide",
+    "cuido",
+    "culero",
+    "culona",
+    "culotes",
+    "cultura",
+    "cumplen",
+    "cumples",
+    "cumplidos",
+    "cumplimos",
+    "cumplir",
+    "cumplió",
+    "cumplí",
+    "cuna",
+    "cura",
+    "cuál",
+    "cuánto",
+    "dabas",
+    "dado",
+    "damas",
+    "damos",
+    "dan",
+    "dance",
+    "dar",
+    "das",
+    "data",
+    "date",
+    "dañar",
+    "dañe",
+    "daño",
+    "dañó",
+    "de",
+    "debe",
+    "debes",
+    "decidas",
+    "decir",
+    "decía",
+    "decían",
+    "decías",
+    "dedica",
+    "dedicar",
+    "dejado",
+    "dejamos",
+    "dejan",
+    "dejar",
+    "dejara",
+    "dejaron",
+    "dejas",
+    "dejaste",
+    "deje",
+    "dejen",
+    "dejes",
+    "dejo",
+    "dejé",
+    "delirio",
+    "demasiado",
+    "demasiados",
+    "demostrando",
+    "demostrar",
+    "demuestra",
+    "demuestro",
+    "demás",
+    "den",
+    "dentales",
+    "dentera",
+    "depre",
+    "derriba",
+    "derrumbamos",
+    "desafinar",
+    "desastre",
+    "descanse",
+    "descansen",
+    "descaro",
+    "desde",
+    "desea",
+    "deseando",
+    "desear",
+    "deseen",
+    "deseo",
+    "deseos",
+    "desespera",
+    "desesperes",
+    "desespero",
+    "deshacer",
+    "desmayo",
+    "desmonto",
+    "desnudas",
+    "despega",
+    "despegan",
+    "despeje",
+    "despertar",
+    "despide",
+    "despides",
+    "despojo",
+    "desquiciás",
+    "destroce",
+    "desvía",
+    "detiene",
+    "devuelto",
+    "devuelvo",
+    "di",
+    "diablos",
+    "diamantes",
+    "diario",
+    "dice",
+    "dices",
+    "dicho",
+    "diez",
+    "diferenciar",
+    "diga",
+    "digan",
+    "digas",
+    "digo",
+    "dije",
+    "diligencia",
+    "diluvio",
+    "dimos",
+    "dio",
+    "diosa",
+    "dirección",
+    "directamente",
+    "directo",
+    "director",
+    "dirigida",
+    "dirigiendo",
+    "dirán",
+    "disfrutar",
+    "disfruten",
+    "disfruto",
+    "disimular",
+    "disparan",
+    "disparando",
+    "disparar",
+    "dispares",
+    "diste",
+    "domina",
+    "dominado",
+    "dominamos",
+    "donde",
+    "dondequiera",
+    "dormir",
+    "dormíos",
+    "doscientos",
+    "doña",
+    "ducha",
+    "duelos",
+    "duerman",
+    "duermen",
+    "dueño",
+    "dueños",
+    "duro",
+    "duros",
+    "día",
+    "echada",
+    "echamos",
+    "echar",
+    "eche",
+    "eches",
+    "echo",
+    "eché",
+    "echó",
+    "eduquen",
+    "ejecuta",
+    "ejecuto",
+    "elevar",
+    "eleve",
+    "eleven",
+    "elevo",
+    "ellos",
+    "emboco",
+    "emborracho",
+    "emes",
+    "emociones",
+    "empiezas",
+    "en",
+    "enamora",
+    "enamorado",
+    "enamorar",
+    "enamoraron",
+    "enamoraste",
+    "enamore",
+    "enamoro",
+    "enamoré",
+    "enamoró",
+    "encender",
+    "encendidos",
+    "encerrados",
+    "encerrar",
+    "encerrás",
+    "encienda",
+    "encierre",
+    "encontrado",
+    "encontrar",
+    "encontré",
+    "encuentro",
+    "enderece",
+    "enfade",
+    "enferma",
+    "enfrentar",
+    "enfría",
+    "enganchar",
+    "engancho",
+    "engañar",
+    "engaño",
+    "engraso",
+    "enloquece",
+    "enloquezca",
+    "enredás",
+    "enredé",
+    "enrolar",
+    "enrolaste",
+    "enroles",
+    "enrolás",
+    "ensalada",
+    "enseñes",
+    "enseñé",
+    "enseñó",
+    "enséñame",
+    "entendí",
+    "entere",
+    "enteren",
+    "enteros",
+    "enterramos",
+    "enterrar",
+    "entiendo",
+    "entierren",
+    "entonar",
+    "entonces",
+    "entrada",
+    "entramos",
+    "entran",
+    "entrando",
+    "entrar",
+    "entre",
+    "entregar",
+    "entrego",
+    "entregue",
+    "entres",
+    "entretiene",
+    "entro",
+    "entró",
+    "envasar",
+    "envidiar",
+    "envolver",
+    "envuelve",
+    "envuelvo",
+    "equivoqué",
+    "es",
+    "escala",
+    "escoge",
+    "escondan",
+    "esconde",
+    "esconden",
+    "esconder",
+    "escondió",
+    "escondo",
+    "escribe",
+    "escribes",
+    "escribiendo",
+    "escribieron",
+    "escribir",
+    "escribió",
+    "escribo",
+    "escribí",
+    "escucha",
+    "escuchan",
+    "escuchar",
+    "escucharon",
+    "escuchas",
+    "escuche",
+    "escuchen",
+    "escucho",
+    "escuchó",
+    "escupe",
+    "esfera",
+    "esfuerzo",
+    "esos",
+    "espanto",
+    "espera",
+    "esperaba",
+    "esperando",
+    "esperar",
+    "esperas",
+    "espere",
+    "esperen",
+    "esperes",
+    "espero",
+    "espinas",
+    "espíritu",
+    "esquivo",
+    "estabamos",
+    "estaban",
+    "estabas",
+    "estación",
+    "estado",
+    "estando",
+    "estar",
+    "estarán",
+    "estaré",
+    "estas",
+    "este",
+    "estoy",
+    "estrelle",
+    "estrellen",
+    "estrenas",
+    "estrujar",
+    "estudiaba",
+    "estudiando",
+    "estudié",
+    "estudió",
+    "estupideces",
+    "estuve",
+    "estuviera",
+    "estuviesen",
+    "estuvimos",
+    "estuviste",
+    "estuviéramos",
+    "estuviésemos",
+    "está",
+    "estábamos",
+    "esté",
+    "estén",
+    "estés",
+    "evapores",
+    "evolución",
+    "exacto",
+    "excita",
+    "excitas",
+    "exhibición",
+    "explota",
+    "explotados",
+    "explotando",
+    "explotar",
+    "explote",
+    "expresar",
+    "expresiones",
+    "expreso",
+    "exquisito",
+    "extensiones",
+    "faciales",
+    "factura",
+    "facturando",
+    "facturar",
+    "facturo",
+    "faldas",
+    "falla",
+    "fallado",
+    "fallados",
+    "fallaron",
+    "fallaré",
+    "fallas",
+    "fallaste",
+    "falle",
+    "fallo",
+    "falló",
+    "falsedad",
+    "falso",
+    "falsos",
+    "falta",
+    "faltará",
+    "faltas",
+    "falte",
+    "faltó",
+    "famosos",
+    "fas",
+    "fechorías",
+    "feo",
+    "ficha",
+    "fieles",
+    "fiera",
+    "fiesta",
+    "figura",
+    "fijo",
+    "fina",
+    "finas",
+    "finca",
+    "fino",
+    "finos",
+    "floja",
+    "flotador",
+    "floto",
+    "fluido",
+    "foco",
+    "fondo",
+    "forma",
+    "formamos",
+    "forro",
+    "frena",
+    "frenar",
+    "frene",
+    "fresca",
+    "fresco",
+    "frío",
+    "fríos",
+    "fue",
+    "fuego",
+    "fuera",
+    "fueran",
+    "fueron",
+    "fuerte",
+    "fuerza",
+    "fuerzas",
+    "fuimos",
+    "fumen",
+    "funcionan",
+    "funcionar",
+    "funda",
+    "fundas",
+    "fundo",
+    "furia",
+    "gabinetes",
+    "gafas",
+    "gallego",
+    "gana",
+    "ganamos",
+    "ganan",
+    "ganando",
+    "ganase",
+    "gancho",
+    "gane",
+    "ganga",
+    "gano",
+    "garantizar",
+    "gastan",
+    "gasto",
+    "gasté",
+    "gatitos",
+    "genera",
+    "genero",
+    "gigante",
+    "gimiendo",
+    "gira",
+    "girar",
+    "giró",
+    "global",
+    "goma",
+    "gomas",
+    "gotas",
+    "grabé",
+    "gracia",
+    "gracias",
+    "gran",
+    "grandes",
+    "gratis",
+    "grave",
+    "gringa",
+    "grita",
+    "gritaba",
+    "gritamos",
+    "gritan",
+    "gritando",
+    "grites",
+    "grito",
+    "groserías",
+    "grupo",
+    "guagua",
+    "guarda",
+    "guardado",
+    "guardar",
+    "guarde",
+    "guarden",
+    "guardia",
+    "guardias",
+    "guardo",
+    "guardás",
+    "guayan",
+    "guayaron",
+    "guayá",
+    "guayó",
+    "guerreando",
+    "guerrear",
+    "guió",
+    "gusanos",
+    "gustabas",
+    "gustado",
+    "gusto",
+    "gustos",
+    "gusté",
+    "guía",
+    "güira",
+    "güiro",
+    "ha",
+    "haber",
+    "habilidad",
+    "habla",
+    "hablaba",
+    "hablamos",
+    "hablan",
+    "hablando",
+    "hablar",
+    "hablas",
+    "hable",
+    "hablemos",
+    "hablen",
+    "hablo",
+    "hablé",
+    "había",
+    "hace",
+    "hacemos",
+    "hacen",
+    "hacer",
+    "haces",
+    "haciendo",
+    "hacía",
+    "hacíamos",
+    "hacías",
+    "haga",
+    "hagamos",
+    "hagan",
+    "hagas",
+    "hago",
+    "haremos",
+    "haré",
+    "haría",
+    "hay",
+    "haz",
+    "hechas",
+    "hechizó",
+    "hecho",
+    "hemos",
+    "heredaste",
+    "hermanado",
+    "hermano",
+    "hermanos",
+    "hermosa",
+    "heroína",
+    "hice",
+    "hicieron",
+    "hicimos",
+    "hiciste",
+    "hijueputa",
+    "hijueputas",
+    "historia",
+    "historias",
+    "hizo",
+    "hora",
+    "hostia",
+    "hostias",
+    "hoyo",
+    "hubiera",
+    "hubiese",
+    "huele",
+    "hueles",
+    "huevo",
+    "humos",
+    "hunde",
+    "hundo",
+    "huyendo",
+    "huyo",
+    "iba",
+    "ido",
+    "ignorancia",
+    "igual",
+    "iguales",
+    "ilusionado",
+    "imperfecciones",
+    "inaugurar",
+    "incomoda",
+    "increíble",
+    "indecente",
+    "indias",
+    "inestable",
+    "infeliz",
+    "infiel",
+    "inmortal",
+    "instante",
+    "inteligente",
+    "interesa",
+    "interior",
+    "intermedia",
+    "interrumpen",
+    "interés",
+    "intimidad",
+    "inventa",
+    "invicto",
+    "invito",
+    "invoca",
+    "ir",
+    "jacinto",
+    "jalo",
+    "jefe",
+    "jersey",
+    "jeva",
+    "jirafas",
+    "joda",
+    "jodas",
+    "jode",
+    "joder",
+    "jodes",
+    "jodido",
+    "jodidos",
+    "jodiendo",
+    "jodió",
+    "jodés",
+    "jodí",
+    "juegas",
+    "juego",
+    "jueguen",
+    "jugaba",
+    "jugando",
+    "jugar",
+    "jugara",
+    "jugarse",
+    "jugo",
+    "jugué",
+    "juntamos",
+    "juntan",
+    "juntó",
+    "justificar",
+    "juzgo",
+    "juzgues",
+    "kamikaze",
+    "kiosko",
+    "la",
+    "lado",
+    "laguna",
+    "lana",
+    "lastima",
+    "latidos",
+    "le",
+    "legos",
+    "lelo",
+    "lengua",
+    "levanta",
+    "levante",
+    "levanté",
+    "liberando",
+    "libertas",
+    "libra",
+    "libras",
+    "libros",
+    "licencia",
+    "ligamos",
+    "ligan",
+    "ligero",
+    "limpio",
+    "linda",
+    "lindo",
+    "lindos",
+    "listo",
+    "llamabas",
+    "llamado",
+    "llaman",
+    "llamar",
+    "llamarse",
+    "llame",
+    "llames",
+    "llamo",
+    "llamó",
+    "llave",
+    "llega",
+    "llegado",
+    "llegamos",
+    "llegan",
+    "llegando",
+    "llegar",
+    "llegas",
+    "llegaste",
+    "llego",
+    "llegue",
+    "llegué",
+    "llena",
+    "llenando",
+    "llenar",
+    "llenaste",
+    "lleno",
+    "llenos",
+    "llené",
+    "lleva",
+    "llevabas",
+    "llevamos",
+    "llevar",
+    "llevas",
+    "lleve",
+    "llevo",
+    "llorando",
+    "lloré",
+    "llovió",
+    "lluvia",
+    "lo",
+    "loba",
+    "locos",
+    "logro",
+    "loquera",
+    "loquita",
+    "los",
+    "losa",
+    "lotos",
+    "lubriques",
+    "luce",
+    "luces",
+    "luchando",
+    "luchen",
+    "lucida",
+    "lunares",
+    "luz",
+    "luzca",
+    "lías",
+    "línea",
+    "machetazos",
+    "madera",
+    "madre",
+    "madrugada",
+    "maduro",
+    "mafia",
+    "magnates",
+    "malas",
+    "maldito",
+    "males",
+    "malla",
+    "malo",
+    "malos",
+    "maltratar",
+    "mama",
+    "mamacita",
+    "mamando",
+    "mamar",
+    "mamá",
+    "mamón",
+    "manchas",
+    "manco",
+    "manda",
+    "mandado",
+    "mandan",
+    "mandar",
+    "mandas",
+    "mandase",
+    "manden",
+    "mando",
+    "mandé",
+    "mandó",
+    "maneja",
+    "manejos",
+    "mangamos",
+    "manifiesta",
+    "manito",
+    "mano",
+    "manos",
+    "mantener",
+    "mantengo",
+    "manzana",
+    "manía",
+    "marcas",
+    "marino",
+    "maroma",
+    "marquesina",
+    "mata",
+    "matamos",
+    "matar",
+    "mataron",
+    "matas",
+    "mateo",
+    "mates",
+    "maté",
+    "mayor",
+    "mayores",
+    "me",
+    "media",
+    "medias",
+    "medicina",
+    "medicó",
+    "medida",
+    "medidas",
+    "medio",
+    "mejor",
+    "mejorado",
+    "mejoran",
+    "mejores",
+    "mella",
+    "menea",
+    "menor",
+    "mental",
+    "menudo",
+    "meta",
+    "metales",
+    "metan",
+    "metas",
+    "mete",
+    "metemos",
+    "meten",
+    "meter",
+    "metes",
+    "metiendo",
+    "metió",
+    "metía",
+    "mezcla",
+    "mezclamos",
+    "mezclo",
+    "midan",
+    "mierda",
+    "mil",
+    "milagros",
+    "miles",
+    "millo",
+    "millonario",
+    "millonarios",
+    "millón",
+    "mina",
+    "mira",
+    "mirada",
+    "miramos",
+    "miras",
+    "miro",
+    "mismas",
+    "mismos",
+    "mito",
+    "moco",
+    "moda",
+    "mohosas",
+    "moja",
+    "mojan",
+    "mojar",
+    "mojas",
+    "mojen",
+    "mojes",
+    "mojo",
+    "mojás",
+    "mojó",
+    "molesta",
+    "molestar",
+    "molestes",
+    "molesto",
+    "monstruo",
+    "monta",
+    "montan",
+    "montar",
+    "montas",
+    "montaste",
+    "montaña",
+    "montañas",
+    "monte",
+    "monto",
+    "monté",
+    "montó",
+    "morder",
+    "mordidos",
+    "morenas",
+    "morir",
+    "moré",
+    "mote",
+    "motor",
+    "mover",
+    "movido",
+    "moviera",
+    "movimiento",
+    "moñas",
+    "muchacho",
+    "mucho",
+    "mudó",
+    "muelas",
+    "muelle",
+    "muere",
+    "muero",
+    "muerto",
+    "mueva",
+    "muevas",
+    "mueve",
+    "mueves",
+    "muevete",
+    "muevo",
+    "multiplicando",
+    "mundial",
+    "mundo",
+    "mutilás",
+    "muñeca",
+    "máquina",
+    "máquinas",
+    "más",
+    "máscara",
+    "mías",
+    "míos",
+    "nace",
+    "nacho",
+    "nacidos",
+    "nalgas",
+    "narcos",
+    "nata",
+    "naturaleza",
+    "navaja",
+    "navajas",
+    "necesidad",
+    "negativo",
+    "negociantes",
+    "negro",
+    "negros",
+    "nena",
+    "nenas",
+    "nene",
+    "nevera",
+    "neverita",
+    "nido",
+    "niego",
+    "nieve",
+    "ninguna",
+    "ningún",
+    "nivel",
+    "niño",
+    "no",
+    "noche",
+    "nombre",
+    "nomás",
+    "nos",
+    "nosotras",
+    "nota",
+    "notados",
+    "notas",
+    "notes",
+    "novia",
+    "nueves",
+    "nuevos",
+    "obligado",
+    "octavo",
+    "ocupará",
+    "oeste",
+    "ofenden",
+    "oiste",
+    "ojalái",
+    "ola",
+    "olvida",
+    "olvidé",
+    "opere",
+    "operes",
+    "opongo",
+    "ordenes",
+    "organización",
+    "organizando",
+    "oscuridad",
+    "otoño",
+    "otras",
+    "otro",
+    "otros",
+    "oye",
+    "oyen",
+    "oíste",
+    "pa",
+    "pacas",
+    "pacto",
+    "paga",
+    "pagan",
+    "pagar",
+    "pago",
+    "pagué",
+    "pailas",
+    "pajarito",
+    "palabra",
+    "paladar",
+    "palestinos",
+    "palo",
+    "palomo",
+    "palos",
+    "panas",
+    "panel",
+    "pantalla",
+    "pantallas",
+    "papeles",
+    "papito",
+    "papá",
+    "para",
+    "paraba",
+    "paralizara",
+    "paran",
+    "paraos",
+    "parar",
+    "parcha",
+    "pare",
+    "parece",
+    "parecen",
+    "pareces",
+    "pareciera",
+    "parecíamos",
+    "parecían",
+    "pareja",
+    "paremos",
+    "paren",
+    "parental",
+    "pares",
+    "parezco",
+    "parta",
+    "partes",
+    "partido",
+    "partimos",
+    "partir",
+    "partió",
+    "partíos",
+    "pasa",
+    "pasado",
+    "pasajero",
+    "pasamos",
+    "pasan",
+    "pasando",
+    "pasaron",
+    "pasaría",
+    "pasas",
+    "pasaste",
+    "pase",
+    "pasear",
+    "pasee",
+    "pasión",
+    "paso",
+    "pasta",
+    "pastor",
+    "pastoso",
+    "pasé",
+    "pasó",
+    "patana",
+    "patas",
+    "patines",
+    "pauta",
+    "payaso",
+    "pecera",
+    "pedir",
+    "pediste",
+    "pedí",
+    "pega",
+    "pegado",
+    "pegan",
+    "pegando",
+    "pegar",
+    "pegas",
+    "pego",
+    "pegue",
+    "peguen",
+    "pegues",
+    "pegué",
+    "pegó",
+    "pelea",
+    "peleado",
+    "peleamos",
+    "peleando",
+    "peleas",
+    "pelee",
+    "pelees",
+    "pelito",
+    "pelos",
+    "pelota",
+    "pena",
+    "pendeja",
+    "pendejo",
+    "pendejos",
+    "pendiente",
+    "pendientes",
+    "pensaba",
+    "pensabas",
+    "pensando",
+    "pensar",
+    "pensiones",
+    "pensé",
+    "peor",
+    "pepas",
+    "pequeño",
+    "perdamos",
+    "perdemos",
+    "perdición",
+    "perdida",
+    "perdiendo",
+    "perdió",
+    "perdona",
+    "perdone",
+    "perdí",
+    "perdía",
+    "perfecta",
+    "perfecto",
+    "perico",
+    "permanencias",
+    "permitas",
+    "perra",
+    "perreando",
+    "perrear",
+    "perreés",
+    "persiga",
+    "persiguen",
+    "perversa",
+    "pesa",
+    "pesadilla",
+    "pesadillas",
+    "pesado",
+    "pesan",
+    "peso",
+    "pesos",
+    "picamos",
+    "picar",
+    "pichado",
+    "pichamos",
+    "picharás",
+    "pichea",
+    "pico",
+    "pidan",
+    "piden",
+    "pides",
+    "pidiendo",
+    "pidió",
+    "pie",
+    "piel",
+    "piensa",
+    "piensas",
+    "pienso",
+    "pierda",
+    "pierdas",
+    "pierde",
+    "pierdes",
+    "pierdo",
+    "piernas",
+    "pies",
+    "pieza",
+    "pila",
+    "pilla",
+    "pillan",
+    "pille",
+    "pillo",
+    "pillos",
+    "pillé",
+    "pincho",
+    "pinta",
+    "piola",
+    "pique",
+    "piquete",
+    "piquetes",
+    "piquetúa",
+    "pisado",
+    "pisar",
+    "pise",
+    "pistas",
+    "pistola",
+    "pistolas",
+    "placas",
+    "plan",
+    "plantío",
+    "plata",
+    "plato",
+    "pocas",
+    "poco",
+    "pocos",
+    "podemos",
+    "poder",
+    "poderoso",
+    "podrá",
+    "podrían",
+    "podrías",
+    "poesía",
+    "polares",
+    "policía",
+    "polo",
+    "polvos",
+    "pon",
+    "ponchado",
+    "pondrías",
+    "pone",
+    "ponen",
+    "poner",
+    "pones",
+    "ponga",
+    "pongan",
+    "pongo",
+    "poniendo",
+    "ponía",
+    "por",
+    "porquería",
+    "porra",
+    "porte",
+    "porto",
+    "pos",
+    "posar",
+    "posición",
+    "postees",
+    "practica",
+    "pregunta",
+    "preguntan",
+    "preguntando",
+    "pregunto",
+    "pregunté",
+    "prenda",
+    "prendan",
+    "prendas",
+    "prendemos",
+    "prender",
+    "prendidos",
+    "prendiendo",
+    "prendiera",
+    "prendimos",
+    "prendió",
+    "prendo",
+    "prendías",
+    "preocupes",
+    "prepa",
+    "presenta",
+    "presidentes",
+    "presiones",
+    "prime",
+    "primeras",
+    "primeros",
+    "probando",
+    "probar",
+    "problema",
+    "problemas",
+    "productor",
+    "produzco",
+    "programación",
+    "prohibidas",
+    "promete",
+    "prospecto",
+    "provoca",
+    "provoqué",
+    "pruebas",
+    "pruebe",
+    "pruebes",
+    "pruebo",
+    "pude",
+    "pudiendo",
+    "pudiera",
+    "pudo",
+    "pueblo",
+    "pueda",
+    "puedan",
+    "puede",
+    "pueden",
+    "puerco",
+    "puertas",
+    "pues",
+    "puestos",
+    "puntos",
+    "puro",
+    "puré",
+    "pusiera",
+    "pusimos",
+    "pusiste",
+    "putas",
+    "puteros",
+    "puñetas",
+    "público",
+    "que",
+    "queda",
+    "quedaba",
+    "quedamos",
+    "quedan",
+    "quedando",
+    "quedar",
+    "quedaron",
+    "quedará",
+    "quedaría",
+    "quedas",
+    "quedaste",
+    "quede",
+    "queden",
+    "quedes",
+    "quedo",
+    "quedás",
+    "quedé",
+    "quedó",
+    "quemamos",
+    "quemando",
+    "quemar",
+    "quemaron",
+    "queme",
+    "quemé",
+    "querer",
+    "querida",
+    "queridos",
+    "queriendo",
+    "querían",
+    "quieran",
+    "quieras",
+    "quieta",
+    "quilates",
+    "quince",
+    "quise",
+    "quisiera",
+    "quiso",
+    "quitado",
+    "quitamos",
+    "quitar",
+    "quitaron",
+    "quitas",
+    "quitaste",
+    "quite",
+    "quiten",
+    "quito",
+    "quité",
+    "quitó",
+    "rabia",
+    "ramera",
+    "rancho",
+    "rara",
+    "raro",
+    "rastro",
+    "raya",
+    "rayo",
+    "re",
+    "reales",
+    "rebaño",
+    "receta",
+    "recibas",
+    "recibe",
+    "reciben",
+    "recibo",
+    "reclama",
+    "recoge",
+    "recoger",
+    "recojas",
+    "recojo",
+    "recorras",
+    "recorrer",
+    "recorro",
+    "recuerda",
+    "recuperes",
+    "redes",
+    "reemplazar",
+    "refiero",
+    "reflejo",
+    "reflejos",
+    "regala",
+    "regalo",
+    "reglas",
+    "regresa",
+    "regresas",
+    "regular",
+    "regó",
+    "reina",
+    "relacionado",
+    "relaciones",
+    "relación",
+    "relajo",
+    "religioso",
+    "remedio",
+    "renta",
+    "rentó",
+    "reparo",
+    "repetición",
+    "repetí",
+    "repita",
+    "repite",
+    "repitió",
+    "repito",
+    "reporta",
+    "reportan",
+    "res",
+    "resbala",
+    "rescatar",
+    "resistir",
+    "resisto",
+    "respeto",
+    "responda",
+    "responder",
+    "respondo",
+    "responsable",
+    "resucita",
+    "resucito",
+    "resulta",
+    "retira",
+    "retirar",
+    "retire",
+    "retires",
+    "retiro",
+    "retirás",
+    "retrate",
+    "retratos",
+    "retrocedo",
+    "retumban",
+    "revelás",
+    "revienta",
+    "revueltas",
+    "revés",
+    "rica",
+    "riego",
+    "rinda",
+    "ritmo",
+    "robo",
+    "roce",
+    "rocé",
+    "rojo",
+    "rolas",
+    "roles",
+    "romana",
+    "rompa",
+    "rompan",
+    "rompe",
+    "rompemos",
+    "romper",
+    "rompiste",
+    "rompió",
+    "rompo",
+    "rompí",
+    "rompías",
+    "ronca",
+    "roncamos",
+    "roncan",
+    "roncando",
+    "ronco",
+    "ronquen",
+    "rotar",
+    "rotas",
+    "rubia",
+    "rubio",
+    "rápida",
+    "ríe",
+    "ríes",
+    "río",
+    "saber",
+    "sabor",
+    "sabrá",
+    "saca",
+    "sacamos",
+    "sacan",
+    "sacando",
+    "sacar",
+    "sacas",
+    "sacaste",
+    "saco",
+    "sacos",
+    "sacrificio",
+    "sacó",
+    "sal",
+    "sala",
+    "saldos",
+    "saldrán",
+    "sale",
+    "salen",
+    "sales",
+    "salgas",
+    "salida",
+    "salido",
+    "saliendo",
+    "saliera",
+    "salieron",
+    "saliste",
+    "salió",
+    "salsa",
+    "salte",
+    "saluden",
+    "saludo",
+    "salvaje",
+    "salvajes",
+    "salvo",
+    "salíos",
+    "sana",
+    "sanar",
+    "sano",
+    "santidad",
+    "santo",
+    "saque",
+    "saquen",
+    "saqué",
+    "satisfacción",
+    "satisface",
+    "saturar",
+    "se",
+    "seamos",
+    "sean",
+    "secamos",
+    "secuela",
+    "secuestramos",
+    "seguidas",
+    "seguimos",
+    "seguir",
+    "seguirse",
+    "seguiré",
+    "seguiste",
+    "segundo",
+    "segura",
+    "seguras",
+    "seguridad",
+    "seguro",
+    "seguía",
+    "sellos",
+    "semanal",
+    "sencilla",
+    "sendo",
+    "sensación",
+    "sentar",
+    "sentido",
+    "sentir",
+    "sentiste",
+    "sentí",
+    "sentía",
+    "sentías",
+    "sepa",
+    "seque",
+    "seres",
+    "seria",
+    "serio",
+    "sesenta",
+    "señal",
+    "señale",
+    "señor",
+    "señora",
+    "señorita",
+    "si",
+    "sicaria",
+    "sienta",
+    "siente",
+    "sienten",
+    "sientes",
+    "siete",
+    "siga",
+    "sigan",
+    "sigas",
+    "siglos",
+    "significo",
+    "sigo",
+    "sigue",
+    "siguen",
+    "sigues",
+    "siguiendo",
+    "sillón",
+    "simple",
+    "singo",
+    "sintiendo",
+    "sintonía",
+    "sirve",
+    "sirvo",
+    "sobra",
+    "sobran",
+    "sobre",
+    "sofoques",
+    "sola",
+    "soledad",
+    "solicita",
+    "solo",
+    "soltaron",
+    "soltero",
+    "solté",
+    "sombra",
+    "sonaba",
+    "sonando",
+    "sonó",
+    "soplando",
+    "soporta",
+    "soportando",
+    "sorprenden",
+    "soñamos",
+    "su",
+    "suave",
+    "suba",
+    "suban",
+    "sube",
+    "suben",
+    "subes",
+    "subido",
+    "subidos",
+    "subiendo",
+    "subimos",
+    "subir",
+    "subiste",
+    "subió",
+    "subo",
+    "subí",
+    "sucias",
+    "suelo",
+    "suelta",
+    "suelte",
+    "sueltes",
+    "suelto",
+    "suena",
+    "suenan",
+    "suenen",
+    "sueno",
+    "suerte",
+    "sueñas",
+    "sueño",
+    "sufra",
+    "sufren",
+    "sufro",
+    "suicidas",
+    "sujeto",
+    "sumando",
+    "superó",
+    "supieras",
+    "suplica",
+    "supone",
+    "sus",
+    "sustancia",
+    "suya",
+    "sí",
+    "sólido",
+    "sólo",
+    "tacas",
+    "tajo",
+    "tampoco",
+    "tantas",
+    "tanto",
+    "tapar",
+    "tardaron",
+    "tardes",
+    "tardo",
+    "tardé",
+    "tarima",
+    "te",
+    "teatro",
+    "televisión",
+    "televisor",
+    "teléfono",
+    "temas",
+    "temblar",
+    "tembleque",
+    "teme",
+    "ten",
+    "tendrá",
+    "tengamos",
+    "tengan",
+    "tensión",
+    "tenía",
+    "tenías",
+    "termina",
+    "terminamos",
+    "terminan",
+    "terminas",
+    "termines",
+    "termino",
+    "terminó",
+    "terreno",
+    "tetas",
+    "tickets",
+    "tictac",
+    "tiembla",
+    "tiemblan",
+    "tiempos",
+    "tiene",
+    "tierra",
+    "tiesos",
+    "time",
+    "tipo",
+    "tira",
+    "tiran",
+    "tirando",
+    "tiraos",
+    "tirar",
+    "tirara",
+    "tiraron",
+    "tiras",
+    "tiraste",
+    "tire",
+    "tiren",
+    "tires",
+    "tiros",
+    "tiré",
+    "toca",
+    "tocaba",
+    "tocado",
+    "tocan",
+    "tocar",
+    "tocara",
+    "toco",
+    "tocó",
+    "toma",
+    "tomé",
+    "tonto",
+    "tope",
+    "topos",
+    "toque",
+    "toquen",
+    "torcí",
+    "torturamos",
+    "torturar",
+    "torturas",
+    "torturo",
+    "toítas",
+    "trabaje",
+    "trabajé",
+    "traes",
+    "traficando",
+    "trafique",
+    "traigo",
+    "trajo",
+    "trama",
+    "tranca",
+    "tranquilo",
+    "tranquilos",
+    "transforma",
+    "trapero",
+    "traperos",
+    "traqueo",
+    "tras",
+    "trastornado",
+    "trata",
+    "tratan",
+    "tratando",
+    "trates",
+    "traviesa",
+    "treinta",
+    "tremenda",
+    "trepa",
+    "trepan",
+    "trepó",
+    "tropiezo",
+    "trucha",
+    "trucos",
+    "tubo",
+    "tuesto",
+    "turno",
+    "tuve",
+    "tuvo",
+    "tv",
+    "tímida",
+    "títeres",
+    "tónica",
+    "un",
+    "unir",
+    "unos",
+    "unta",
+    "usar",
+    "use",
+    "uso",
+    "va",
+    "vacilar",
+    "vacilón",
+    "vajilla",
+    "vale",
+    "valen",
+    "valgan",
+    "valores",
+    "valía",
+    "vamos",
+    "vapor",
+    "vas",
+    "vaya",
+    "vayamos",
+    "vayan",
+    "vea",
+    "veces",
+    "veintiuno",
+    "velar",
+    "velas",
+    "vele",
+    "vemos",
+    "venado",
+    "vencidos",
+    "vendidos",
+    "vendrán",
+    "veneno",
+    "venga",
+    "vengamos",
+    "vengan",
+    "vengas",
+    "vengo",
+    "venida",
+    "venimos",
+    "ventaja",
+    "venía",
+    "venías",
+    "veníos",
+    "verdad",
+    "verdadera",
+    "verdaderos",
+    "verde",
+    "veremos",
+    "verso",
+    "versos",
+    "verán",
+    "ves",
+    "vestimos",
+    "vestir",
+    "vestí",
+    "vete",
+    "veterano",
+    "vibras",
+    "vieja",
+    "viejo",
+    "viendo",
+    "viene",
+    "vienen",
+    "vienes",
+    "vieron",
+    "vimos",
+    "vinieron",
+    "viniste",
+    "vino",
+    "vio",
+    "vira",
+    "virado",
+    "viran",
+    "vire",
+    "virtudes",
+    "virás",
+    "viró",
+    "vista",
+    "vistas",
+    "viste",
+    "vistiera",
+    "vistió",
+    "visto",
+    "vive",
+    "vivido",
+    "vivieron",
+    "vivimos",
+    "vivir",
+    "voces",
+    "volado",
+    "volando",
+    "volar",
+    "volvemos",
+    "volver",
+    "volveremos",
+    "volverá",
+    "volviera",
+    "volviste",
+    "volvió",
+    "volví",
+    "volvía",
+    "voten",
+    "vueltas",
+    "vueltita",
+    "vuelto",
+    "vuelva",
+    "vuelve",
+    "vuelven",
+    "vuelves",
+    "vuelvo",
+    "vía",
+    "vías",
+    "ya",
+    "yendo",
+    "yerba",
+    "zeta",
+    "zetas",
+    "zona",
+    "zorra",
+    "zumbé",
+    "él",
+    "índica",
+    "último",
+    "única",
+    "único"
+  ],
+  "true_sense_menu_change_words": [
+    "besos",
+    "buenas",
+    "dale",
+    "diablo",
+    "frontear",
+    "fulete",
+    "ponerse",
+    "sea",
+    "uno"
+  ],
+  "meaningfully_changed_records": [
+    {
+      "word": "adentro",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "3a9",
+        "fa4"
+      ],
+      "sense_ids_after": [
+        "3a9",
+        "fa4"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5553950:7"
+        ],
+        "removed_ids": [
+          "3726733:37"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ahí",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "41c",
+        "727"
+      ],
+      "sense_ids_after": [
+        "727",
+        "41c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "10901838:12",
+          "11180508:10",
+          "3652331:28"
+        ],
+        "removed_ids": [
+          "3007462:17",
+          "3022353:25",
+          "5320881:38"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "alma",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "44e",
+        "502"
+      ],
+      "sense_ids_after": [
+        "502",
+        "44e"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5002336:39"
+        ],
+        "removed_ids": [
+          "9614083:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "amo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "18c",
+        "dd2"
+      ],
+      "sense_ids_after": [
+        "dd2",
+        "18c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614083:58"
+        ],
+        "removed_ids": [
+          "9614090:22"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ando",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "144",
+        "4c6",
+        "b12",
+        "c0b",
+        "edd",
+        "eff"
+      ],
+      "sense_ids_after": [
+        "b12",
+        "4c6",
+        "144",
+        "c0b",
+        "eff",
+        "edd"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3529948:57"
+        ],
+        "removed_ids": [
+          "3529948:36"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "arriba",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "150",
+        "410",
+        "4106",
+        "4c1",
+        "742"
+      ],
+      "sense_ids_after": [
+        "4c1",
+        "150",
+        "410",
+        "742",
+        "4106"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614069:67"
+        ],
+        "removed_ids": [
+          "3006211:49"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "bebes",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "bbf",
+        "bbfd13"
+      ],
+      "sense_ids_after": [
+        "bbf",
+        "bbfd13"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2953251:26"
+        ],
+        "removed_ids": [
+          "2953251:30"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "besos",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "generated:artist-master:07abcbb02a14",
+        "8b3",
+        "d83",
+        "generated:artist-master:48effa71987e",
+        "generated:artist-master:736f5c50d12d",
+        "8b3:8f43"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:07abcbb02a14",
+        "generated:artist-master:48effa71987e",
+        "generated:artist-master:736f5c50d12d",
+        "d83",
+        "generated:artist-master:07abcbb02a14:8f43",
+        "8b3"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "bicho",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "2af",
+        "807",
+        "generated:artist-master:24da791253a0"
+      ],
+      "sense_ids_after": [
+        "2af",
+        "generated:artist-master:24da791253a0",
+        "807"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7967934:3"
+        ],
+        "removed_ids": [
+          "3001094:27"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "bien",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3db",
+        "3dba",
+        "7d8",
+        "d71"
+      ],
+      "sense_ids_after": [
+        "3db",
+        "7d8",
+        "d71",
+        "3dba"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5629827:44"
+        ],
+        "removed_ids": [
+          "3804898:5"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "buenas",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "6ce",
+        "f0a"
+      ],
+      "sense_ids_after": [],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "bueno",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0f5",
+        "0f5644",
+        "68a",
+        "a82",
+        "afd"
+      ],
+      "sense_ids_after": [
+        "afd",
+        "0f5",
+        "68a",
+        "a82",
+        "0f5644"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7934367:47"
+        ],
+        "removed_ids": [
+          "5002336:7"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "busco",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "309",
+        "30938",
+        "3f2",
+        "generated:artist-master:79245a4ac120",
+        "generated:artist-master:c2b0eec8927e"
+      ],
+      "sense_ids_after": [
+        "309",
+        "3f2",
+        "generated:artist-master:79245a4ac120",
+        "30938",
+        "generated:artist-master:c2b0eec8927e"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7967967:2"
+        ],
+        "removed_ids": [
+          "2829722:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "cabrones",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "b09",
+        "b96",
+        "e7a",
+        "f55",
+        "generated:artist-master:64d3a2d2a652"
+      ],
+      "sense_ids_after": [
+        "b96",
+        "generated:artist-master:64d3a2d2a652",
+        "e7a",
+        "f55",
+        "b09"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2832039:39"
+        ],
+        "removed_ids": [
+          "9614087:54"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "cae",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "07d",
+        "225",
+        "402",
+        "46f",
+        "6e9",
+        "acb",
+        "generated:artist-master:c72339d87114"
+      ],
+      "sense_ids_after": [
+        "6e9",
+        "generated:artist-master:c72339d87114",
+        "07d",
+        "225",
+        "402",
+        "acb",
+        "46f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3334750:12"
+        ],
+        "removed_ids": [
+          "3289205:15"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "carajo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "197",
+        "27c",
+        "884",
+        "fcf"
+      ],
+      "sense_ids_after": [
+        "884",
+        "197",
+        "fcf",
+        "27c"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "2927716:38"
+        ],
+        "removed_ids": [
+          "7401420:10"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "casa",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "7ed",
+        "9fc"
+      ],
+      "sense_ids_after": [
+        "9fc",
+        "7ed"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "6211005:11"
+        ],
+        "removed_ids": [
+          "11292885:19"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "casi",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "754",
+        "950"
+      ],
+      "sense_ids_after": [
+        "754",
+        "950"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3048221:68"
+        ],
+        "removed_ids": [
+          "5305006:6"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "chingando",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "176",
+        "5d2"
+      ],
+      "sense_ids_after": [
+        "5d2",
+        "176"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305008:30"
+        ],
+        "removed_ids": [
+          "9614087:45"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "cojones",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "a16",
+        "b09",
+        "692",
+        "a16:fa1a"
+      ],
+      "sense_ids_after": [
+        "a16",
+        "b09",
+        "692",
+        "a16:fa1a"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305006:5",
+          "9614079:15"
+        ],
+        "removed_ids": [
+          "3640901:9",
+          "3749052:14"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "confío",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3da3",
+        "generated:artist-master:92d46e488f66"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:92d46e488f66",
+        "3da3"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3015945:39"
+        ],
+        "removed_ids": [
+          "4179002:13"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "conozco",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "2cc",
+        "2cc2",
+        "2cc2c",
+        "fb7",
+        "generated:artist-master:c78f91ec77ad"
+      ],
+      "sense_ids_after": [
+        "2cc",
+        "generated:artist-master:c78f91ec77ad",
+        "2cc2",
+        "fb7",
+        "2cc2c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614068:86"
+        ],
+        "removed_ids": [
+          "5305036:54"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "cosas",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "33c",
+        "24e",
+        "33c:6890",
+        "4f1",
+        "4f14",
+        "807",
+        "be5"
+      ],
+      "sense_ids_after": [
+        "33c",
+        "be5",
+        "24e",
+        "4f14",
+        "807",
+        "4f1",
+        "33c:6890"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4662271:35"
+        ],
+        "removed_ids": [
+          "11296557:3"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "culo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "202",
+        "df3",
+        "generated:artist-master:26977586fd32",
+        "generated:artist-master:3c2aaea66502"
+      ],
+      "sense_ids_after": [
+        "202",
+        "generated:artist-master:26977586fd32",
+        "generated:artist-master:3c2aaea66502",
+        "df3"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2976831:19"
+        ],
+        "removed_ids": [
+          "8659966:17"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "culpa",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "132",
+        "ac0"
+      ],
+      "sense_ids_after": [
+        "132",
+        "ac0"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3749052:21"
+        ],
+        "removed_ids": [
+          "9614081:40"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "da",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "286",
+        "662",
+        "6627",
+        "6bfc",
+        "6cd",
+        "76f",
+        "791",
+        "9e4",
+        "d68",
+        "ed5",
+        "fa0",
+        "generated:artist-master:0536db432392"
+      ],
+      "sense_ids_after": [
+        "d68",
+        "662",
+        "6cd",
+        "286",
+        "6627",
+        "791",
+        "fa0",
+        "9e4",
+        "76f",
+        "ed5",
+        "generated:artist-master:0536db432392",
+        "6bfc"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3104973:22"
+        ],
+        "removed_ids": [
+          "2914746:25"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dale",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "05b",
+        "823",
+        "9ef",
+        "c6e",
+        "generated:artist-master:61906d843a54"
+      ],
+      "sense_ids_after": [],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dando",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "662",
+        "6bfc0",
+        "89d",
+        "9ce",
+        "generated:artist-master:28cb3cbaaba9"
+      ],
+      "sense_ids_after": [
+        "662",
+        "generated:artist-master:28cb3cbaaba9",
+        "89d",
+        "9ce",
+        "6bfc0"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4641326:49"
+        ],
+        "removed_ids": [
+          "11292695:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "deja",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "11e",
+        "419",
+        "4194a1",
+        "4194a19",
+        "c45",
+        "generated:artist-master:6ff18ced7b31"
+      ],
+      "sense_ids_after": [
+        "419",
+        "11e",
+        "generated:artist-master:6ff18ced7b31",
+        "c45",
+        "4194a1",
+        "4194a19"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4662262:13",
+          "5529171:30"
+        ],
+        "removed_ids": [
+          "5002336:39",
+          "5305008:15"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dejó",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "11e",
+        "419",
+        "4194",
+        "4194a",
+        "4194a1",
+        "4194a19",
+        "573",
+        "d53"
+      ],
+      "sense_ids_after": [
+        "419",
+        "11e",
+        "4194",
+        "4194a1",
+        "4194a19",
+        "573",
+        "d53",
+        "4194a"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3753517:159"
+        ],
+        "removed_ids": [
+          "9246653:50"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "del",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "215",
+        "215b",
+        "6c1"
+      ],
+      "sense_ids_after": [
+        "6c1",
+        "215",
+        "215b"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5629886:54"
+        ],
+        "removed_ids": [
+          "5629827:11"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "después",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "36b",
+        "c94",
+        "fdd"
+      ],
+      "sense_ids_after": [
+        "36b",
+        "c94",
+        "fdd"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3022353:15",
+          "5320881:40",
+          "8659966:7"
+        ],
+        "removed_ids": [
+          "11304595:14",
+          "3115965:24",
+          "9614098:68"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "diablo",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "032",
+        "634",
+        "634e",
+        "generated:artist-master:2dcfedf8f7ae",
+        "714"
+      ],
+      "sense_ids_after": [
+        "634",
+        "generated:artist-master:2dcfedf8f7ae",
+        "032",
+        "634e"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "5422982:16"
+        ],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dicen",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "375",
+        "c70",
+        "c70bc"
+      ],
+      "sense_ids_after": [
+        "c70",
+        "375",
+        "c70bc"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2924481:2"
+        ],
+        "removed_ids": [
+          "2832039:43"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dijo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "375",
+        "375a",
+        "c70",
+        "c70b"
+      ],
+      "sense_ids_after": [
+        "c70",
+        "375",
+        "375a",
+        "c70b"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3140715:5",
+          "3173788:2",
+          "4179006:12"
+        ],
+        "removed_ids": [
+          "2832039:21",
+          "4179012:37",
+          "7420852:22"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "disco",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "892",
+        "919",
+        "generated:artist-master:e8fc27ae7283"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:e8fc27ae7283",
+        "892",
+        "919"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11292888:7",
+          "5305039:61",
+          "9237319:14",
+          "9614069:20"
+        ],
+        "removed_ids": [
+          "6353964:3",
+          "7967942:63",
+          "9614079:38",
+          "9614081:23"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "doy",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "01c",
+        "286",
+        "662",
+        "6627",
+        "6627dd",
+        "791",
+        "ed5",
+        "fa0"
+      ],
+      "sense_ids_after": [
+        "662",
+        "fa0",
+        "6627",
+        "791",
+        "ed5",
+        "286",
+        "6627dd",
+        "01c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3046295:34"
+        ],
+        "removed_ids": [
+          "3726733:6"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dura",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "3b6",
+        "c6d",
+        "ceb",
+        "generated:artist-master:441324f62115"
+      ],
+      "sense_ids_after": [
+        "3b6",
+        "c6d",
+        "ceb",
+        "generated:artist-master:441324f62115"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4179021:20"
+        ],
+        "removed_ids": [
+          "3726733:4"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dé",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "01c",
+        "662",
+        "6bf",
+        "6bfc0",
+        "9ce",
+        "generated:artist-master:69d0769febb0",
+        "generated:artist-master:8ff2f0003a79",
+        "generated:artist-master:94eade5bc7a6"
+      ],
+      "sense_ids_after": [
+        "662",
+        "generated:artist-master:69d0769febb0",
+        "generated:artist-master:8ff2f0003a79",
+        "generated:artist-master:94eade5bc7a6",
+        "01c",
+        "6bfc0",
+        "9ce",
+        "6bf"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2935271:39",
+          "3726733:3",
+          "7420852:35"
+        ],
+        "removed_ids": [
+          "3108097:39",
+          "4179001:29",
+          "5305018:56"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "dímelo",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "a56",
+        "ef8"
+      ],
+      "sense_ids_after": [
+        "a56",
+        "ef8"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3749052:71"
+        ],
+        "removed_ids": [
+          "5091581:84"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ella",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "eb9",
+        "fc0"
+      ],
+      "sense_ids_after": [
+        "eb9",
+        "fc0"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5529070:14"
+        ],
+        "removed_ids": [
+          "3167974:11"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "encima",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0bf",
+        "44d",
+        "c76",
+        "f4d"
+      ],
+      "sense_ids_after": [
+        "44d",
+        "c76",
+        "0bf",
+        "f4d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3176687:109",
+          "4035827:44"
+        ],
+        "removed_ids": [
+          "3523266:41",
+          "9614069:47"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "entera",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "440",
+        "cf2",
+        "generated:artist-master:45dc3f5ceedf"
+      ],
+      "sense_ids_after": [
+        "cf2",
+        "generated:artist-master:45dc3f5ceedf",
+        "440"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3529948:50"
+        ],
+        "removed_ids": [
+          "3529948:14"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "escuchando",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "a9a",
+        "a9ad"
+      ],
+      "sense_ids_after": [
+        "a9a",
+        "a9ad"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11289772:7"
+        ],
+        "removed_ids": [
+          "11304636:17"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "estaba",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "464",
+        "717",
+        "913",
+        "9138",
+        "9138e",
+        "9138e8",
+        "9138e81a5ace02",
+        "9138e81a5ace02a"
+      ],
+      "sense_ids_after": [
+        "913",
+        "464",
+        "717",
+        "9138",
+        "9138e",
+        "9138e81a5ace02",
+        "9138e81a5ace02a",
+        "9138e8"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614076:11"
+        ],
+        "removed_ids": [
+          "6717116:31"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "estamos",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "12d",
+        "913",
+        "9138",
+        "9138e",
+        "9138e8",
+        "9138e81a5ace02",
+        "generated:artist-master:bfae4bfdc8c6",
+        "generated:artist-master:db2efe9148be"
+      ],
+      "sense_ids_after": [
+        "913",
+        "9138e8",
+        "generated:artist-master:db2efe9148be",
+        "generated:artist-master:bfae4bfdc8c6",
+        "9138",
+        "12d",
+        "9138e81a5ace02",
+        "9138e"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614083:49"
+        ],
+        "removed_ids": [
+          "3176687:106"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "están",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "12d",
+        "464",
+        "913",
+        "9138",
+        "9138e8",
+        "9138e81a",
+        "9138e81a5ac",
+        "9138e81a5ace02a",
+        "f2d",
+        "generated:artist-master:21531286ab24",
+        "generated:artist-master:23bcbc0d0bdc",
+        "generated:artist-master:ae34b00781d2",
+        "generated:artist-master:f86de5bfc447"
+      ],
+      "sense_ids_after": [
+        "913",
+        "9138e8",
+        "f2d",
+        "generated:artist-master:21531286ab24",
+        "generated:artist-master:f86de5bfc447",
+        "generated:artist-master:23bcbc0d0bdc",
+        "generated:artist-master:ae34b00781d2",
+        "9138e81a5ac",
+        "9138",
+        "12d",
+        "9138e81a",
+        "464",
+        "9138e81a5ace02a"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3256611:18"
+        ],
+        "removed_ids": [
+          "2832039:12"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "final",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "254",
+        "a8b",
+        "generated:artist-master:85eb95b7e2c7"
+      ],
+      "sense_ids_after": [
+        "a8b",
+        "generated:artist-master:85eb95b7e2c7",
+        "254"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305036:35"
+        ],
+        "removed_ids": [
+          "6211010:28"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "frontear",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "2b8",
+        "ece"
+      ],
+      "sense_ids_after": [],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305015:50"
+        ],
+        "removed_ids": [
+          "2871746:39"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "fulete",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "28b",
+        "813"
+      ],
+      "sense_ids_after": [],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "gente",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "6c5",
+        "9ed",
+        "cda"
+      ],
+      "sense_ids_after": [
+        "9ed",
+        "cda",
+        "6c5"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3106600:40"
+        ],
+        "removed_ids": [
+          "4763027:9"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "grande",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "874",
+        "932",
+        "9e0",
+        "e74",
+        "ed2",
+        "generated:artist-master:447d622899d7"
+      ],
+      "sense_ids_after": [
+        "ed2",
+        "9e0",
+        "e74",
+        "generated:artist-master:447d622899d7",
+        "932",
+        "874"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3268371:8"
+        ],
+        "removed_ids": [
+          "11304595:60"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "guayar",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "070",
+        "generated:artist-master:8bb4fb978e55"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:8bb4fb978e55",
+        "070"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3529948:50"
+        ],
+        "removed_ids": [
+          "3529948:14"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "gustan",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "ebc",
+        "ebcf"
+      ],
+      "sense_ids_after": [
+        "ebc",
+        "ebcf"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5529171:16",
+          "9614084:67"
+        ],
+        "removed_ids": [
+          "3041103:21",
+          "5553950:24"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "hasta",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0a1",
+        "8aa",
+        "a70",
+        "fda"
+      ],
+      "sense_ids_after": [
+        "fda",
+        "a70",
+        "0a1",
+        "8aa"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "9614098:125"
+        ],
+        "removed_ids": [
+          "5529070:24"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "hijo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "c1e",
+        "generated:artist-master:4e689f5e523b",
+        "generated:artist-master:eb420a9bf857"
+      ],
+      "sense_ids_after": [
+        "c1e",
+        "generated:artist-master:eb420a9bf857",
+        "generated:artist-master:4e689f5e523b"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4706730:12"
+        ],
+        "removed_ids": [
+          "9614079:4"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "importa",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "519",
+        "66c",
+        "dbb",
+        "generated:artist-master:2ba7a79315be"
+      ],
+      "sense_ids_after": [
+        "66c",
+        "generated:artist-master:2ba7a79315be",
+        "519",
+        "dbb"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4628729:42"
+        ],
+        "removed_ids": [
+          "5305021:46"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "juro",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "159",
+        "159b",
+        "generated:artist-master:d889fb30dee0"
+      ],
+      "sense_ids_after": [
+        "159",
+        "generated:artist-master:d889fb30dee0",
+        "159b"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "6717116:16"
+        ],
+        "removed_ids": [
+          "5320909:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "lejos",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "031",
+        "abd"
+      ],
+      "sense_ids_after": [
+        "031",
+        "abd"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2915707:1"
+        ],
+        "removed_ids": [
+          "2914746:34"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "les",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "04c",
+        "1c1"
+      ],
+      "sense_ids_after": [
+        "04c",
+        "1c1"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2832039:27"
+        ],
+        "removed_ids": [
+          "4726686:5"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "llegó",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "d42",
+        "f3c",
+        "f3c8"
+      ],
+      "sense_ids_after": [
+        "f3c",
+        "d42",
+        "f3c8"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3529948:27",
+          "3640901:41"
+        ],
+        "removed_ids": [
+          "4082272:48",
+          "4706730:6"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "loca",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "b40",
+        "b402",
+        "b85",
+        "d04b",
+        "generated:artist-master:068a5188ad5f",
+        "generated:artist-master:1d7a1d92064b"
+      ],
+      "sense_ids_after": [
+        "b40",
+        "b402",
+        "generated:artist-master:1d7a1d92064b",
+        "generated:artist-master:068a5188ad5f",
+        "d04b",
+        "b85"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305018:56"
+        ],
+        "removed_ids": [
+          "3173788:7"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "loco",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "b40",
+        "b402",
+        "b85"
+      ],
+      "sense_ids_after": [
+        "b40",
+        "b402",
+        "b85"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2978566:49"
+        ],
+        "removed_ids": [
+          "6211005:6"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "luego",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "3a5",
+        "484"
+      ],
+      "sense_ids_after": [
+        "3a5",
+        "484"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3059630:101"
+        ],
+        "removed_ids": [
+          "3749052:27"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "líos",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "6cf",
+        "f29"
+      ],
+      "sense_ids_after": [
+        "6cf",
+        "f29"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2953251:26"
+        ],
+        "removed_ids": [
+          "2953251:30"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mal",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "363",
+        "83c"
+      ],
+      "sense_ids_after": [
+        "363",
+        "83c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3022353:23",
+          "4726686:79"
+        ],
+        "removed_ids": [
+          "11292888:9",
+          "2976831:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mala",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "a1b",
+        "a48",
+        "ab8",
+        "ab88",
+        "ab88d34",
+        "generated:artist-master:d8d2ea00f993"
+      ],
+      "sense_ids_after": [
+        "ab8",
+        "generated:artist-master:d8d2ea00f993",
+        "a1b",
+        "ab88",
+        "a48",
+        "ab88d34"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5002336:36"
+        ],
+        "removed_ids": [
+          "7967944:16"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mami",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "2d1",
+        "34a",
+        "b89"
+      ],
+      "sense_ids_after": [
+        "34a",
+        "2d1",
+        "b89"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3804898:43"
+        ],
+        "removed_ids": [
+          "4662262:13"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mañana",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "220",
+        "a65",
+        "e05"
+      ],
+      "sense_ids_after": [
+        "a65",
+        "220",
+        "e05"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "9614084:50"
+        ],
+        "removed_ids": [
+          "11296730:1",
+          "2978566:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "meto",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "29d",
+        "53f",
+        "703",
+        "generated:artist-master:9eab5e06535e",
+        "generated:artist-master:b9f4fad7939b",
+        "generated:artist-master:ff9125fd2e9d"
+      ],
+      "sense_ids_after": [
+        "703",
+        "29d",
+        "generated:artist-master:ff9125fd2e9d",
+        "generated:artist-master:b9f4fad7939b",
+        "generated:artist-master:9eab5e06535e",
+        "53f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3006211:117",
+          "3523266:36",
+          "5305013:81",
+          "7927935:23"
+        ],
+        "removed_ids": [
+          "2951579:48",
+          "3046295:57",
+          "5629886:24",
+          "5629919:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "metí",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "102",
+        "703",
+        "762",
+        "generated:artist-master:69ffeb3dcfee",
+        "generated:artist-master:9256a7191032",
+        "generated:artist-master:beacd974777a",
+        "generated:artist-master:e9fe20ac392e",
+        "generated:artist-master:eb31d4780b3e"
+      ],
+      "sense_ids_after": [
+        "703",
+        "generated:artist-master:beacd974777a",
+        "generated:artist-master:eb31d4780b3e",
+        "generated:artist-master:e9fe20ac392e",
+        "generated:artist-master:69ffeb3dcfee",
+        "generated:artist-master:9256a7191032",
+        "102",
+        "762"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2941576:8"
+        ],
+        "removed_ids": [
+          "5529171:25"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mientras",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3e0",
+        "728",
+        "728d"
+      ],
+      "sense_ids_after": [
+        "728",
+        "3e0",
+        "728d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2919428:17",
+          "3431731:34",
+          "4082272:17",
+          "4706730:80"
+        ],
+        "removed_ids": [
+          "2976831:52",
+          "3424254:51",
+          "3825550:66",
+          "9614069:29"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mirando",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "181",
+        "36f"
+      ],
+      "sense_ids_after": [
+        "181",
+        "36f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614083:48"
+        ],
+        "removed_ids": [
+          "3104973:47"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mismo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "4b1",
+        "aa2",
+        "b71",
+        "de0",
+        "generated:artist-master:34f4abd7b064"
+      ],
+      "sense_ids_after": [
+        "4b1",
+        "generated:artist-master:34f4abd7b064",
+        "de0",
+        "aa2",
+        "b71"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "4035827:38"
+        ],
+        "removed_ids": [
+          "5002336:15"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mujer",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "2e9",
+        "756",
+        "fba"
+      ],
+      "sense_ids_after": [
+        "2e9",
+        "756",
+        "fba"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614092:17"
+        ],
+        "removed_ids": [
+          "2941576:12"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "mía",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "generated:artist-master:b7d487b8f435",
+        "generated:artist-master:db50ef18e9e8",
+        "e07"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:b7d487b8f435",
+        "generated:artist-master:db50ef18e9e8",
+        "e07"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2503547:40"
+        ],
+        "removed_ids": [
+          "2967123:23"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "nada",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "644",
+        "e6f"
+      ],
+      "sense_ids_after": [
+        "644",
+        "e6f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4969980:44",
+          "9614079:15"
+        ],
+        "removed_ids": [
+          "3106600:51",
+          "9237319:37"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "nadie",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "7dd",
+        "9db",
+        "f16",
+        "fe3"
+      ],
+      "sense_ids_after": [
+        "9db",
+        "f16",
+        "fe3",
+        "7dd"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614095:5"
+        ],
+        "removed_ids": [
+          "4969980:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ni",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "8f6",
+        "df0"
+      ],
+      "sense_ids_after": [
+        "8f6",
+        "df0"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11292683:23",
+          "4140387:28",
+          "4759404:17",
+          "5553966:25",
+          "9614081:8"
+        ],
+        "removed_ids": [
+          "11289772:22",
+          "11300220:14",
+          "7967959:19",
+          "7967980:34",
+          "9614104:40"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ninguno",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "1e3",
+        "1e38",
+        "53f",
+        "generated:artist-master:714f13a6f0eb",
+        "generated:artist-master:ccf395740c68"
+      ],
+      "sense_ids_after": [
+        "1e3",
+        "generated:artist-master:ccf395740c68",
+        "generated:artist-master:714f13a6f0eb",
+        "53f",
+        "1e38"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2915707:45"
+        ],
+        "removed_ids": [
+          "4628729:41"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "nueva",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "d5e",
+        "d5e24",
+        "d5e241",
+        "d5e241f"
+      ],
+      "sense_ids_after": [
+        "d5e",
+        "d5e241",
+        "d5e241f",
+        "d5e24"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5091581:74"
+        ],
+        "removed_ids": [
+          "5305010:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "nuevo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "d5e",
+        "d5e24",
+        "d5e241f"
+      ],
+      "sense_ids_after": [
+        "d5e",
+        "d5e241f",
+        "d5e24"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4662273:13"
+        ],
+        "removed_ids": [
+          "5305000:17"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "número",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "443",
+        "4437",
+        "443753"
+      ],
+      "sense_ids_after": [
+        "443",
+        "443753",
+        "4437"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3080797:33"
+        ],
+        "removed_ids": [
+          "2935271:89"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "otra",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0ae",
+        "0ae9",
+        "24b"
+      ],
+      "sense_ids_after": [
+        "0ae",
+        "24b",
+        "0ae9"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4662271:24",
+          "5305006:27"
+        ],
+        "removed_ids": [
+          "3626034:37",
+          "9614095:14"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "papi",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "57e",
+        "e79",
+        "f22"
+      ],
+      "sense_ids_after": [
+        "57e",
+        "e79",
+        "f22"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3424254:7"
+        ],
+        "removed_ids": [
+          "8598733:12"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "par",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "8ae",
+        "9f5"
+      ],
+      "sense_ids_after": [
+        "8ae",
+        "9f5"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3377480:15",
+          "4641326:23"
+        ],
+        "removed_ids": [
+          "3021794:5",
+          "3749052:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "parte",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "37d",
+        "a6d",
+        "a6d6",
+        "b87",
+        "f9d",
+        "generated:artist-master:e3f1a28a5cee"
+      ],
+      "sense_ids_after": [
+        "b87",
+        "a6d",
+        "37d",
+        "a6d6",
+        "generated:artist-master:e3f1a28a5cee",
+        "f9d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3256611:156"
+        ],
+        "removed_ids": [
+          "9614081:77"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "pasar",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0f1",
+        "0f15",
+        "405",
+        "5bd",
+        "80a",
+        "ab2",
+        "f79",
+        "generated:artist-master:ca1ccdf58c67"
+      ],
+      "sense_ids_after": [
+        "0f1",
+        "ab2",
+        "generated:artist-master:ca1ccdf58c67",
+        "80a",
+        "405",
+        "0f15",
+        "f79",
+        "5bd"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "6211010:1"
+        ],
+        "removed_ids": [
+          "5305008:33"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "pasto",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "1d0",
+        "cf3"
+      ],
+      "sense_ids_after": [
+        "cf3",
+        "1d0"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3591240:42"
+        ],
+        "removed_ids": [
+          "2915707:62"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "paz",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "6b6",
+        "6b6f"
+      ],
+      "sense_ids_after": [
+        "6b6",
+        "6b6f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7401420:45"
+        ],
+        "removed_ids": [
+          "2914746:4"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "perder",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "9fa",
+        "a52",
+        "a525",
+        "b39",
+        "ccd",
+        "e93",
+        "e933",
+        "f2d",
+        "generated:artist-master:b2a5b63ed76f"
+      ],
+      "sense_ids_after": [
+        "a52",
+        "a525",
+        "9fa",
+        "generated:artist-master:b2a5b63ed76f",
+        "f2d",
+        "e93",
+        "ccd",
+        "e933",
+        "b39"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "6862415:72"
+        ],
+        "removed_ids": [
+          "2914746:41"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "picheo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "13f",
+        "a46",
+        "generated:artist-master:a0c2455fcd82",
+        "generated:artist-master:e40508ef7697"
+      ],
+      "sense_ids_after": [
+        "a46",
+        "generated:artist-master:a0c2455fcd82",
+        "generated:artist-master:e40508ef7697",
+        "13f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614081:3"
+        ],
+        "removed_ids": [
+          "3359025:46"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "pide",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "1e8",
+        "6ab8",
+        "c26",
+        "generated:artist-master:0030301489d3",
+        "generated:artist-master:90d2bd678ce0",
+        "generated:artist-master:ff825f120577"
+      ],
+      "sense_ids_after": [
+        "c26",
+        "generated:artist-master:ff825f120577",
+        "generated:artist-master:0030301489d3",
+        "generated:artist-master:90d2bd678ce0",
+        "6ab8",
+        "1e8"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3268371:26"
+        ],
+        "removed_ids": [
+          "3140715:12"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "pista",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "275",
+        "275c",
+        "5f7",
+        "6f3",
+        "ccb"
+      ],
+      "sense_ids_after": [
+        "275",
+        "ccb",
+        "6f3",
+        "275c",
+        "5f7"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614081:20"
+        ],
+        "removed_ids": [
+          "9614098:81"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ponerse",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "generated:artist-master:3968ed3bbfcb",
+        "generated:artist-master:a3c4056f4551",
+        "generated:artist-master:d1323f2c5c33",
+        "87d",
+        "8a2",
+        "e16"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:a3c4056f4551",
+        "generated:artist-master:3968ed3bbfcb",
+        "generated:artist-master:d1323f2c5c33",
+        "generated:artist-master:a3c4056f4551:ae22",
+        "generated:artist-master:3968ed3bbfcb:5798",
+        "generated:artist-master:d1323f2c5c33:de13"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "porque",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "8dc",
+        "c8e"
+      ],
+      "sense_ids_after": [
+        "8dc",
+        "c8e"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3529948:35"
+        ],
+        "removed_ids": [
+          "2919428:50"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "prende",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3c6",
+        "661",
+        "d2a",
+        "e54",
+        "generated:artist-master:2982717c66f1",
+        "generated:artist-master:f6523e18476c"
+      ],
+      "sense_ids_after": [
+        "e54",
+        "generated:artist-master:2982717c66f1",
+        "3c6",
+        "generated:artist-master:f6523e18476c",
+        "d2a",
+        "661"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2976831:31",
+          "3825550:53",
+          "9614069:40"
+        ],
+        "removed_ids": [
+          "2915707:72",
+          "2976947:20",
+          "6852775:36"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "prendido",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "0d5",
+        "8ce"
+      ],
+      "sense_ids_after": [
+        "0d5",
+        "8ce"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "2951579:15"
+        ],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "primero",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "835",
+        "f94",
+        "f941"
+      ],
+      "sense_ids_after": [
+        "f94",
+        "f941",
+        "835"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "puedo",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "31d",
+        "31d99",
+        "366f417"
+      ],
+      "sense_ids_after": [
+        "31d",
+        "31d99",
+        "366f417"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2914746:27"
+        ],
+        "removed_ids": [
+          "6211005:4"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "punto",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "035",
+        "03e",
+        "1ea",
+        "76c",
+        "76c1",
+        "9bb6",
+        "generated:artist-master:12a340a74c82"
+      ],
+      "sense_ids_after": [
+        "1ea",
+        "76c",
+        "035",
+        "generated:artist-master:12a340a74c82",
+        "9bb6",
+        "03e",
+        "76c1"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2935271:25"
+        ],
+        "removed_ids": [
+          "9614068:37"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "puse",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "07d",
+        "0f5",
+        "4bc",
+        "4bc9",
+        "4bc93",
+        "704",
+        "87d",
+        "be9",
+        "c7c",
+        "d21",
+        "e16",
+        "e2f",
+        "generated:artist-master:3017bdf99362",
+        "generated:artist-master:b16e0ea93e3b"
+      ],
+      "sense_ids_after": [
+        "4bc",
+        "0f5",
+        "4bc9",
+        "be9",
+        "e2f",
+        "d21",
+        "704",
+        "generated:artist-master:3017bdf99362",
+        "generated:artist-master:b16e0ea93e3b",
+        "87d",
+        "4bc93",
+        "07d",
+        "e16",
+        "c7c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3749052:4"
+        ],
+        "removed_ids": [
+          "3297866:37"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "puso",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "4bc",
+        "4bc9",
+        "be9",
+        "e16",
+        "generated:artist-master:abd476bb662b"
+      ],
+      "sense_ids_after": [
+        "4bc",
+        "generated:artist-master:abd476bb662b",
+        "be9",
+        "4bc9",
+        "e16"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305021:42"
+        ],
+        "removed_ids": [
+          "7927935:20"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "puta",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "189",
+        "ba0",
+        "e2e"
+      ],
+      "sense_ids_after": [
+        "e2e",
+        "189",
+        "ba0"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7967960:38"
+        ],
+        "removed_ids": [
+          "3059630:47"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "quería",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "477",
+        "bb1"
+      ],
+      "sense_ids_after": [
+        "477",
+        "bb1"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "6387245:7"
+        ],
+        "removed_ids": [
+          "9614068:66"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "quien",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "12d",
+        "7d1"
+      ],
+      "sense_ids_after": [
+        "7d1",
+        "12d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2976947:44"
+        ],
+        "removed_ids": [
+          "2919428:40"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "quiera",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "477",
+        "generated:artist-master:11522bd98f45",
+        "generated:artist-master:51f225f1e682"
+      ],
+      "sense_ids_after": [
+        "477",
+        "generated:artist-master:11522bd98f45",
+        "generated:artist-master:51f225f1e682"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3100770:12"
+        ],
+        "removed_ids": [
+          "4641326:45"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "quieren",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "04d",
+        "477",
+        "bb1"
+      ],
+      "sense_ids_after": [
+        "477",
+        "bb1",
+        "04d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3021794:39",
+          "5529070:41"
+        ],
+        "removed_ids": [
+          "11300220:12",
+          "3424254:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "quita",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "03a",
+        "3ef",
+        "588",
+        "b37",
+        "be4"
+      ],
+      "sense_ids_after": [
+        "03a",
+        "be4",
+        "3ef",
+        "588",
+        "b37"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3359025:53"
+        ],
+        "removed_ids": [
+          "5629886:12"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "quién",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "973",
+        "e1e",
+        "e1e7"
+      ],
+      "sense_ids_after": [
+        "e1e",
+        "973",
+        "e1e7"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4147689:7",
+          "9246653:59"
+        ],
+        "removed_ids": [
+          "11036575:16",
+          "7967942:41"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "rato",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "7ab",
+        "b28"
+      ],
+      "sense_ids_after": [
+        "b28",
+        "7ab"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3208907:65",
+          "4726686:53"
+        ],
+        "removed_ids": [
+          "7967967:7",
+          "7967968:49"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "razón",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "2cf",
+        "2cf7",
+        "c49"
+      ],
+      "sense_ids_after": [
+        "c49",
+        "2cf",
+        "2cf7"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7967980:29"
+        ],
+        "removed_ids": [
+          "2978566:26"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "real",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "068",
+        "ecf"
+      ],
+      "sense_ids_after": [
+        "068",
+        "ecf"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7967942:54",
+          "9614081:50"
+        ],
+        "removed_ids": [
+          "2976947:65",
+          "5553950:45"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "rico",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "022",
+        "162",
+        "556",
+        "5562",
+        "8b7",
+        "bae",
+        "f34"
+      ],
+      "sense_ids_after": [
+        "556",
+        "162",
+        "5562",
+        "f34",
+        "022",
+        "bae",
+        "8b7"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3001094:69"
+        ],
+        "removed_ids": [
+          "3753517:60"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "rápido",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0ba",
+        "1a2",
+        "e72"
+      ],
+      "sense_ids_after": [
+        "0ba",
+        "e72",
+        "1a2"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "4662261:11"
+        ],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "sabe",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "07b",
+        "64e",
+        "e2c",
+        "generated:artist-master:598f1e2ba526",
+        "generated:artist-master:d1fb5237ca77"
+      ],
+      "sense_ids_after": [
+        "07b",
+        "64e",
+        "generated:artist-master:598f1e2ba526",
+        "generated:artist-master:d1fb5237ca77",
+        "e2c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2967123:60",
+          "7967975:18"
+        ],
+        "removed_ids": [
+          "3022353:20",
+          "4082272:48"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "saben",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "07b",
+        "64e"
+      ],
+      "sense_ids_after": [
+        "07b",
+        "64e"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3007462:40",
+          "6852775:69"
+        ],
+        "removed_ids": [
+          "3104979:25",
+          "9614098:113"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "salga",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "5ff",
+        "6b1",
+        "8cb",
+        "92b",
+        "98e",
+        "cb9"
+      ],
+      "sense_ids_after": [
+        "8cb",
+        "98e",
+        "92b",
+        "5ff",
+        "6b1",
+        "cb9"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4706730:48"
+        ],
+        "removed_ids": [
+          "3006211:172"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "salgo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "5ff",
+        "611",
+        "6114",
+        "98ef",
+        "cb9",
+        "cb9b8"
+      ],
+      "sense_ids_after": [
+        "cb9",
+        "611",
+        "cb9b8",
+        "6114",
+        "5ff",
+        "98ef"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3424254:2"
+        ],
+        "removed_ids": [
+          "5557738:18"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "salimos",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "53e",
+        "611",
+        "6114",
+        "6df",
+        "8cb",
+        "cb9",
+        "cb9b8"
+      ],
+      "sense_ids_after": [
+        "cb9",
+        "611",
+        "8cb",
+        "cb9b8",
+        "6114",
+        "53e",
+        "6df"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "6862415:61"
+        ],
+        "removed_ids": [
+          "5305015:10"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "salir",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "660",
+        "6df",
+        "8cb",
+        "92b",
+        "98e",
+        "98efddb",
+        "cb9",
+        "cb9b",
+        "cb9b8",
+        "generated:artist-master:882c50eb439e"
+      ],
+      "sense_ids_after": [
+        "98e",
+        "cb9",
+        "generated:artist-master:882c50eb439e",
+        "8cb",
+        "cb9b",
+        "cb9b8",
+        "92b",
+        "660",
+        "6df",
+        "98efddb"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614103:14"
+        ],
+        "removed_ids": [
+          "5557738:14"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "salí",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "611",
+        "6b1",
+        "8cb",
+        "cb9",
+        "cb9b",
+        "cb9b8"
+      ],
+      "sense_ids_after": [
+        "cb9",
+        "611",
+        "6b1",
+        "cb9b",
+        "cb9b8",
+        "8cb"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "7967968:56"
+        ],
+        "removed_ids": [
+          "5305039:67"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "sea",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "generated:artist-master:4199b05edb74",
+        "654"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:4199b05edb74",
+        "generated:artist-master:4199b05edb74:8934"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ser",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "654",
+        "65418",
+        "65418d20"
+      ],
+      "sense_ids_after": [
+        "654",
+        "65418",
+        "65418d20"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4662262:17"
+        ],
+        "removed_ids": [
+          "2832039:52"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "sexo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "82c",
+        "b97"
+      ],
+      "sense_ids_after": [
+        "b97",
+        "82c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2976947:24",
+          "3092934:6",
+          "3102293:34",
+          "3431731:27",
+          "3726733:21"
+        ],
+        "removed_ids": [
+          "2829388:6",
+          "3001094:31",
+          "3048221:84",
+          "4641326:14",
+          "9614083:2"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "siento",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "acf",
+        "acf53",
+        "b76",
+        "e4e"
+      ],
+      "sense_ids_after": [
+        "acf",
+        "e4e",
+        "b76",
+        "acf53"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2953251:47"
+        ],
+        "removed_ids": [
+          "3256611:79"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "somos",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "654",
+        "6541",
+        "generated:artist-master:80bd8579c301"
+      ],
+      "sense_ids_after": [
+        "654",
+        "generated:artist-master:80bd8579c301",
+        "6541"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3006211:114",
+          "3297866:10",
+          "5002336:14",
+          "5305033:39"
+        ],
+        "removed_ids": [
+          "2976831:9",
+          "3140715:1",
+          "3253426:69",
+          "4179006:21"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "son",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "654",
+        "6541",
+        "65418d20b"
+      ],
+      "sense_ids_after": [
+        "654",
+        "65418d20b",
+        "6541"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11289772:32",
+          "11300220:5",
+          "7967959:21",
+          "7967980:28",
+          "9614104:21"
+        ],
+        "removed_ids": [
+          "2979218:29",
+          "4140387:36",
+          "4662271:35",
+          "5305006:25",
+          "9614098:108"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "también",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "513",
+        "5139",
+        "c53",
+        "c53f"
+      ],
+      "sense_ids_after": [
+        "c53",
+        "513",
+        "5139",
+        "c53f"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11300220:12",
+          "11304595:14",
+          "3726733:33",
+          "5557738:21"
+        ],
+        "removed_ids": [
+          "11180508:42",
+          "3101741:81",
+          "7967934:13",
+          "9614084:67"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tan",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "064",
+        "7d7"
+      ],
+      "sense_ids_after": [
+        "7d7",
+        "064"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3652331:25"
+        ],
+        "removed_ids": [
+          "9237319:22"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tarde",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0be",
+        "58f",
+        "0e2",
+        "generated:artist-master:b6989a1cfbbd"
+      ],
+      "sense_ids_after": [
+        "0be",
+        "58f",
+        "generated:artist-master:b6989a1cfbbd",
+        "0e2"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tema",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "5ab",
+        "7cb",
+        "7cbd",
+        "generated:artist-master:049db9ec5f1b",
+        "generated:artist-master:65945374ad6f"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:049db9ec5f1b",
+        "generated:artist-master:65945374ad6f",
+        "7cbd",
+        "5ab",
+        "7cb"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305036:65"
+        ],
+        "removed_ids": [
+          "5318195:2"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "terminar",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "415",
+        "415c",
+        "5ec",
+        "8ba"
+      ],
+      "sense_ids_after": [
+        "415",
+        "5ec",
+        "8ba",
+        "415c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3176687:19"
+        ],
+        "removed_ids": [
+          "2978566:29"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tienen",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "01e",
+        "586",
+        "9b6",
+        "9b652",
+        "9b6529",
+        "d71",
+        "generated:artist-master:3d3b70ef7b48"
+      ],
+      "sense_ids_after": [
+        "9b6",
+        "586",
+        "01e",
+        "generated:artist-master:3d3b70ef7b48",
+        "9b652",
+        "9b6529",
+        "d71"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5091581:22"
+        ],
+        "removed_ids": [
+          "2832039:42"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tienes",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "9b6",
+        "9b652",
+        "9b65296a8b",
+        "9b65296a8b0"
+      ],
+      "sense_ids_after": [
+        "9b6",
+        "9b65296a8b0",
+        "9b65296a8b",
+        "9b652"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11292885:48",
+          "7032468:5"
+        ],
+        "removed_ids": [
+          "3104973:47",
+          "4662273:33"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tiro",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "e82",
+        "generated:artist-master:dc357c7f7635",
+        "181",
+        "46d",
+        "a18",
+        "a68",
+        "a6801",
+        "cec",
+        "generated:artist-master:0f2c1a670352"
+      ],
+      "sense_ids_after": [
+        "e82",
+        "generated:artist-master:dc357c7f7635",
+        "cec",
+        "a68",
+        "generated:artist-master:0f2c1a670352",
+        "a18",
+        "46d",
+        "a6801",
+        "181"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "11304636:41"
+        ],
+        "removed_ids": [
+          "5305036:11"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "toda",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3a9",
+        "342",
+        "45c",
+        "15e",
+        "313",
+        "3f7",
+        "9a2",
+        "b52"
+      ],
+      "sense_ids_after": [
+        "3a9",
+        "342",
+        "45c",
+        "313",
+        "15e",
+        "9a2",
+        "3f7",
+        "b52"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3753517:17",
+          "5553967:37"
+        ],
+        "removed_ids": [
+          "5557738:53",
+          "7032468:27"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "todas",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "181",
+        "b40",
+        "f72",
+        "313",
+        "9a2",
+        "342",
+        "45c"
+      ],
+      "sense_ids_after": [
+        "181",
+        "b40",
+        "f72",
+        "313",
+        "9a2",
+        "342",
+        "45c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9614068:21"
+        ],
+        "removed_ids": [
+          "8659966:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "todavía",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "3e9",
+        "a57"
+      ],
+      "sense_ids_after": [
+        "3e9",
+        "a57"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5320909:20"
+        ],
+        "removed_ids": [
+          "3410963:45"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "todos",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "15e",
+        "313",
+        "9a2",
+        "b52",
+        "e39",
+        "generated:artist-master:179367c87925",
+        "342",
+        "45c"
+      ],
+      "sense_ids_after": [
+        "15e",
+        "generated:artist-master:179367c87925",
+        "b52",
+        "313",
+        "e39",
+        "9a2",
+        "342",
+        "45c"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "9237319:23"
+        ],
+        "removed_ids": [
+          "9614084:56"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "trabajo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "5b5",
+        "5b56",
+        "a01",
+        "ada",
+        "de9"
+      ],
+      "sense_ids_after": [
+        "5b5",
+        "a01",
+        "5b56",
+        "ada",
+        "de9"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "3006211:45"
+        ],
+        "removed_ids": [
+          "6862415:47"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "traje",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "7f8",
+        "a31",
+        "711"
+      ],
+      "sense_ids_after": [
+        "7f8",
+        "a31",
+        "711"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "3140715:38"
+        ],
+        "removed_ids": [],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "tranquila",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "0a1",
+        "1a9",
+        "a23",
+        "generated:artist-master:0b610a62b32c",
+        "generated:artist-master:5b3b1aad0f67"
+      ],
+      "sense_ids_after": [
+        "0a1",
+        "a23",
+        "generated:artist-master:0b610a62b32c",
+        "1a9",
+        "generated:artist-master:5b3b1aad0f67"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305006:18"
+        ],
+        "removed_ids": [
+          "7967938:19"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "uno",
+      "menu_content_changed": true,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "04b",
+        "5b4",
+        "870",
+        "870f",
+        "generated:artist-master:0bfb30a36519"
+      ],
+      "sense_ids_after": [
+        "870",
+        "generated:artist-master:0bfb30a36519",
+        "5b4",
+        "870f"
+      ],
+      "scalar_fields_changed": [
+        "abs"
+      ],
+      "examples": {
+        "added_ids": [
+          "3108097:19",
+          "4506147:27"
+        ],
+        "removed_ids": [
+          "9614076:12"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ustedes",
+      "menu_content_changed": false,
+      "menu_order_changed": false,
+      "sense_ids_before": [
+        "051",
+        "051:356d"
+      ],
+      "sense_ids_after": [
+        "051",
+        "051:356d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5629886:65"
+        ],
+        "removed_ids": [
+          "9614095:11"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "van",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3b6",
+        "3e7",
+        "3e714",
+        "3e7142",
+        "3e7142b56",
+        "4aa",
+        "8d5",
+        "946"
+      ],
+      "sense_ids_after": [
+        "3e7",
+        "4aa",
+        "3e714",
+        "3e7142",
+        "946",
+        "8d5",
+        "3b6",
+        "3e7142b56"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "2832039:18"
+        ],
+        "removed_ids": [
+          "5305033:41"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ve",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "1bf",
+        "337",
+        "3e7",
+        "3e71",
+        "3e714",
+        "3e7142",
+        "3e7142b",
+        "946",
+        "d6f",
+        "dd9",
+        "74d",
+        "f02"
+      ],
+      "sense_ids_after": [
+        "1bf",
+        "337",
+        "3e7",
+        "3e714",
+        "3e7142b",
+        "946",
+        "3e71",
+        "d6f",
+        "3e7142",
+        "dd9",
+        "f02",
+        "74d"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5553950:53"
+        ],
+        "removed_ids": [
+          "5553967:17"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "ven",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "74d",
+        "74db",
+        "74db3",
+        "ea9",
+        "generated:artist-master:6ad4d08f6c96",
+        "generated:artist-master:79a4c196e5eb",
+        "generated:artist-master:d40d8dd87548",
+        "generated:artist-master:fffda21ea22b",
+        "420"
+      ],
+      "sense_ids_after": [
+        "generated:artist-master:79a4c196e5eb",
+        "generated:artist-master:fffda21ea22b",
+        "generated:artist-master:6ad4d08f6c96",
+        "74d",
+        "74db",
+        "ea9",
+        "74db3",
+        "generated:artist-master:d40d8dd87548",
+        "420"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "4179001:1"
+        ],
+        "removed_ids": [
+          "7257949:8"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "veo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "74d",
+        "74db3",
+        "74db36",
+        "74db369b6",
+        "c6e",
+        "f02"
+      ],
+      "sense_ids_after": [
+        "74d",
+        "f02",
+        "c6e",
+        "74db36",
+        "74db3",
+        "74db369b6"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305000:39"
+        ],
+        "removed_ids": [
+          "3080797:4"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "vi",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "3d8",
+        "40a",
+        "5d2",
+        "74d",
+        "74db",
+        "74db3",
+        "74db36",
+        "74db369",
+        "7bb",
+        "87a",
+        "c6e",
+        "ea9"
+      ],
+      "sense_ids_after": [
+        "74d",
+        "7bb",
+        "c6e",
+        "40a",
+        "ea9",
+        "74db",
+        "74db3",
+        "74db36",
+        "5d2",
+        "74db369",
+        "3d8",
+        "87a"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "5305051:29",
+          "7967938:15"
+        ],
+        "removed_ids": [
+          "5305006:10",
+          "5305007:4"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "vivo",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "56f",
+        "777",
+        "generated:artist-master:b000287bd41d",
+        "548",
+        "eb5",
+        "eb5b",
+        "eb5b1"
+      ],
+      "sense_ids_after": [
+        "777",
+        "generated:artist-master:b000287bd41d",
+        "56f",
+        "eb5",
+        "548",
+        "eb5b1",
+        "eb5b"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3059630:84"
+        ],
+        "removed_ids": [
+          "3167974:53"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    },
+    {
+      "word": "vuelta",
+      "menu_content_changed": false,
+      "menu_order_changed": true,
+      "sense_ids_before": [
+        "2a5",
+        "7d3",
+        "84e",
+        "cb7",
+        "e1e"
+      ],
+      "sense_ids_after": [
+        "7d3",
+        "2a5",
+        "cb7",
+        "84e",
+        "e1e"
+      ],
+      "scalar_fields_changed": [],
+      "examples": {
+        "added_ids": [
+          "3256611:134"
+        ],
+        "removed_ids": [
+          "4133643:16"
+        ],
+        "changed_fields": {
+          "spanish": [],
+          "english": [],
+          "song": [],
+          "pos": []
+        },
+        "samples": []
+      }
+    }
+  ],
+  "transitions": {
+    "removed_from_prompt_queue": [
+      {
+        "word": "agüero",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "alejarse",
+        "before": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "arroyo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "auch",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "beatles",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "bebo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "bob",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "brasa",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "cachete",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 9,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 9,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "caracol",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "chi",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "cristina",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "cuta",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "damilola",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "dize",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "ea",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "ela",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "enchulo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "formula",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "frontón",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "juliana",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "kaponi",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "kariri",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "kronix",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "l",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "lanalizer",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "lego",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 11,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 11,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "lysi",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "marco",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "mariana",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "mini",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "molina",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "mona",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "nacha",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "ojeda",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "omb",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "pancho",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 10,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 10,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "papo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 15,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 15,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "pichyboyz",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "pino",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "pipo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "piqué",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 51,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 51,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "play",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "polaco",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 8,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 8,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "químico",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "rompiendo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "santa",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 6,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 6,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "simón",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 2,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "soto",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 3,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "tata",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 7,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "terrero",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "trae",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 5,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "vander",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "wuff",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "yaga",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "yomo",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      }
+    ],
+    "added_to_prompt_queue": [
+      {
+        "word": "apretadito",
+        "before": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": false
+        },
+        "after": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "atreve",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "atrevo",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "bellaquera",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "cel",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "celu",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "cheki",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "chichar",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "desquitarse",
+        "before": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [],
+          "sense_count": 6,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "fotitos",
+        "before": {
+          "routes": [],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "juqueado",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "lejitos",
+        "before": {
+          "routes": [],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "mojaítas",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "puesto",
+        "before": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.conjugation"
+          ],
+          "sense_count": 4,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "roleta",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "tenqui",
+        "before": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "sense_discovery"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      },
+      {
+        "word": "todito",
+        "before": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": 1,
+          "in_inventory": true
+        },
+        "after": {
+          "routes": [
+            "classifier.normal_vocab"
+          ],
+          "sense_count": null,
+          "in_inventory": true
+        }
+      }
+    ]
+  },
+  "noise_linked_removed_raw_examples": [
+    {
+      "word": "cohol",
+      "example_id": "4662257:48",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Humo y alcohol-cohol, debajo 'el sol-sol"
+    },
+    {
+      "word": "dir",
+      "example_id": "2942055:49",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Me gustan así, si, que no paren de pedir-dir"
+    },
+    {
+      "word": "gar",
+      "example_id": "5629919:12",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Que vamo' a llegar, que vamo a llegar-gar llegar"
+    },
+    {
+      "word": "huana",
+      "example_id": "9614083:2",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Pero yo no me inventé el sexo ni la marihuana-huana"
+    },
+    {
+      "word": "llá",
+      "example_id": "3542120:10",
+      "labels": [
+        "adlib",
+        "echo"
+      ],
+      "spanish": "Yeah, yeah, un polvo aquí, un polvo allá-llá (-llá)"
+    },
+    {
+      "word": "luego",
+      "example_id": "3749052:27",
+      "labels": [
+        "adlib"
+      ],
+      "spanish": "Y luego me das (Y luego me das)"
+    },
+    {
+      "word": "mor",
+      "example_id": "3001094:32",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "La diabla no siente temor-mor (Uh), quiere sexo y no amor-mor (No)"
+    },
+    {
+      "word": "oh",
+      "example_id": "2953251:55",
+      "labels": [
+        "stutter"
+      ],
+      "spanish": "A mí no me hable de un millón, háblame de vario', oh, oh-oh-oh"
+    },
+    {
+      "word": "over",
+      "example_id": "3523266:84",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Y tú quieres mover, -over"
+    },
+    {
+      "word": "prende",
+      "example_id": "6852775:36",
+      "labels": [
+        "adlib"
+      ],
+      "spanish": "Prende la mierda esa, vámono' pa'l carajo (Prende, prende)"
+    },
+    {
+      "word": "puesto",
+      "example_id": "5305033:12",
+      "labels": [
+        "adlib"
+      ],
+      "spanish": "Que 'toy puesto pa' guerrear (Yo 'toy puesto pa' guerrear), ey"
+    },
+    {
+      "word": "rrear",
+      "example_id": "11292888:43",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Ahora te suelta' y sale' pa' la disco a perrear, -rrear"
+    },
+    {
+      "word": "tera",
+      "example_id": "3529948:14",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Vamo' a guayar la noche entera-tera"
+    },
+    {
+      "word": "terminar",
+      "example_id": "2978566:29",
+      "labels": [
+        "adlib"
+      ],
+      "spanish": "Pasaron las hora' y yo estaba lejo' de todavía terminar (Terminar)"
+    },
+    {
+      "word": "truck",
+      "example_id": "9614095:41",
+      "labels": [
+        "echo"
+      ],
+      "spanish": "Les pasé po' encima en la Cybertruck, -truck"
+    }
+  ],
+  "stable_example_pos_changes": []
+}

@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260812d';
+import './state.js?v=20260812e';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -1657,6 +1657,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
                 if (m.sense_id_aliases?.length) meaning.senseIdAliases = m.sense_id_aliases;
                 if (m.context) meaning.context = m.context;
+                if (m.headword) meaning.headword = m.headword;
                 if (m.type) meaning.type = m.type;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;

@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260812d';
-import './speech.js?v=20260812d';
+import './state.js?v=20260812e';
+import './speech.js?v=20260812e';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260812d';
+} from './example-personalisation.js?v=20260812e';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -4023,6 +4023,16 @@ function updateCard({ announceHeadword = false } = {}) {
         // deliberately opts out because it walks those sub-senses itself.
         selectInitialMeaningGroup(card, card._grouping);
 
+        // A surface-keyed card can hold senses belonging to several headwords
+        // (casa → casa "home", casar → "to marry"). Label the groups so the
+        // learner can see which word each meaning belongs to. Single-headword
+        // cards — about four in five — render exactly as before.
+        const cardHeadwords = [...new Set(
+            card.meanings.filter(m => !m.exampleOnly && m.headword).map(m => m.headword)
+        )];
+        const showHeadwordGroups = cardHeadwords.length > 1;
+        const headwordSeen = new Set();
+
         card.meanings.forEach((m, idx) => {
             if (m.exampleOnly) return;
             const isSelected = idx === currentMeaningIndex;
@@ -4043,6 +4053,16 @@ function updateCard({ announceHeadword = false } = {}) {
                 (isMWE || isClitic) && !card.isChainChild ? traySections : scrollSections,
                 sectionPos
             );
+
+            // Emit the group label before the first row of each headword. Kept
+            // additive: it pushes its own row and leaves every meaning row, and
+            // the meaning-index state behind them, untouched.
+            if (showHeadwordGroups && m.headword && !headwordSeen.has(m.headword)) {
+                headwordSeen.add(m.headword);
+                target.push(`
+                <div class="headword-group-label">${escapeCardText(m.headword)}</div>
+                `);
+            }
             // For MWE pill, show the current expression/translation based on MWE index
             const mweIdx = (isMWE && isSelected) ? currentMWEIndex % (m.allMWEs ? m.allMWEs.length : 1) : 0;
             const mweExpr = isMWE && m.allMWEs ? m.allMWEs[mweIdx].expression : m.expression;
@@ -6141,7 +6161,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260812d';
+const ASSET_VERSION = '20260812e';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

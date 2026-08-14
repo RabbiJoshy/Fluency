@@ -1,0 +1,21 @@
+{
+  "artist": "Rosalía",
+  "claims": 206,
+  "labels": {
+    "figurative": 35,
+    "idiom": 1,
+    "loanword": 18,
+    "proper_noun": 5,
+    "regional": 20,
+    "slang": 35
+  },
+  "occurrence_assertions": 208,
+  "raw_type_records": 121,
+  "resolved_records": 139,
+  "run_id": "run_709ec0dace114529ef1df2cb",
+  "source_records": 139,
+  "standardized_tag_records": 90,
+  "unresolved": [],
+  "unresolved_records": 0,
+  "unstandardized_type_records": 31
+}

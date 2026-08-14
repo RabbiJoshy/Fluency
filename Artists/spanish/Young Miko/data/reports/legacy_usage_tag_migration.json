@@ -1,0 +1,21 @@
+{
+  "artist": "Young Miko",
+  "claims": 418,
+  "labels": {
+    "figurative": 55,
+    "loanword": 150,
+    "proper_noun": 12,
+    "regional": 29,
+    "slang": 85,
+    "vulgar": 1
+  },
+  "occurrence_assertions": 420,
+  "raw_type_records": 261,
+  "resolved_records": 268,
+  "run_id": "run_ec09bf50c6f30e8e5891a30c",
+  "source_records": 268,
+  "standardized_tag_records": 224,
+  "unresolved": [],
+  "unresolved_records": 0,
+  "unstandardized_type_records": 37
+}

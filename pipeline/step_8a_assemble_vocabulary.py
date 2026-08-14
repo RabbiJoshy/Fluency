@@ -37,7 +37,7 @@ import gzip
 import hashlib
 import json
 import re
-from collections import defaultdict
+from collections import OrderedDict, defaultdict
 from pathlib import Path
 
 import argparse
@@ -353,6 +353,89 @@ def _is_analysis_based_menu(senses_data):
     return isinstance(first, dict) and "senses" in first and isinstance(first.get("senses"), dict)
 
 
+def merge_entries_by_surface(entries, used_ids):
+    """Collapse the per-lemma entries of one surface into a single card.
+
+    Identity becomes the surface form. Lemma stops being part of the key and
+    survives as ``headword`` on each meaning, which is what lets the UI group
+    the card's meanings by lemma without the split being baked into the ID.
+
+    Two bugs disappear as a side effect. ``corpus_count`` is summed back to the
+    surface's real total, undoing the proportional split that divided it by how
+    many examples each lemma happened to be assigned. And re-running the
+    classifier can no longer delete a card: only the surface identifies it, and
+    surfaces come from the corpus, not from a decision.
+
+    Order within a card is by evidence — meanings with more examples first.
+    """
+    by_surface = OrderedDict()
+    for entry in entries:
+        by_surface.setdefault(entry["word"].lower(), []).append(entry)
+
+    merged = []
+    for surface, group in by_surface.items():
+        # Most-attested lemma leads, so its metadata represents the card.
+        group.sort(key=lambda e: (-len(e["meanings_lean"]), -e["corpus_count"]))
+        primary = group[0]
+        if len(group) == 1:
+            card = dict(primary)
+        else:
+            card = dict(primary)
+            for other in group[1:]:
+                card["meanings_full"] = card["meanings_full"] + other["meanings_full"]
+                card["meanings_lean"] = card["meanings_lean"] + other["meanings_lean"]
+                card["examples_by_meaning"] = (card["examples_by_meaning"]
+                                               + other["examples_by_meaning"])
+                for field in ("mwe_memberships", "synonyms", "antonyms",
+                              "clitic_memberships"):
+                    if not card.get(field) and other.get(field):
+                        card[field] = other[field]
+                if not card.get("morphology") and other.get("morphology"):
+                    card["morphology"] = other["morphology"]
+
+        # The surface's real frequency, not a share of it.
+        card["corpus_count"] = sum(e["corpus_count"] for e in group)
+        card["lemma"] = primary["lemma"]
+        card["headwords"] = list(dict.fromkeys(
+            m["headword"] for e in group for m in e["meanings_lean"]
+            if m.get("headword")))
+
+        # Order by evidence, but keep a headword's meanings contiguous. A plain
+        # evidence sort interleaves them (queda -> quedar, quedo, quedar), and
+        # anything rendering a group label on first appearance then files the
+        # second quedar row under quedo. Groups are ranked by their own total,
+        # so the best-attested headword still leads the card.
+        group_weight = defaultdict(int)
+        for i, exs in enumerate(card["examples_by_meaning"]):
+            group_weight[card["meanings_lean"][i].get("headword") or ""] += len(exs)
+        group_rank = {hw: n for n, (hw, _) in enumerate(sorted(
+            group_weight.items(), key=lambda kv: (-kv[1], kv[0])))}
+        order = sorted(range(len(card["meanings_lean"])),
+                       key=lambda i: (group_rank[card["meanings_lean"][i].get("headword") or ""],
+                                      -len(card["examples_by_meaning"][i])))
+        card["meanings_lean"] = [card["meanings_lean"][i] for i in order]
+        card["meanings_full"] = [card["meanings_full"][i] for i in order]
+        card["examples_by_meaning"] = [card["examples_by_meaning"][i] for i in order]
+
+        # Shares are recomputed over the whole card. Carrying the per-lemma
+        # values through would leave several meanings each claiming 1.00.
+        total = sum(len(x) for x in card["examples_by_meaning"])
+        if total:
+            for lean, full, exs in zip(card["meanings_lean"], card["meanings_full"],
+                                       card["examples_by_meaning"]):
+                share = f"{len(exs) / total:.2f}"
+                lean["frequency"] = share
+                full["frequency"] = share
+
+        card["id"] = make_stable_id(surface, surface, used_ids)
+        used_ids.add(card["id"])
+        merged.append(card)
+
+    print("  surface cards: %d lemma entries -> %d surfaces"
+          % (len(entries), len(merged)))
+    return merged
+
+
 def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
     """Return a flat list of sense dicts and a {sense_id: sense} map for a word|lemma.
 
@@ -410,6 +493,16 @@ def main():
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards; unassigned examples dropped)")
+    parser.add_argument("--surface-cards", action="store_true",
+                        help="One card per surface form. Lemma stops being part of the\n"
+                             "card ID and stays as `headword` on each meaning, so the\n"
+                             "UI can group by lemma. Also restores the surface's real\n"
+                             "corpus_count instead of a proportional split.")
+    parser.add_argument("--evidence-only", action="store_true",
+                        help="Only emit cards for words a classifier actually "
+                             "claimed a sense on. Drops inventory words with no "
+                             "assignment, which would otherwise render the first "
+                             "menu sense at 100%% with nothing behind it.")
     parser.add_argument("--prompt-policy", default=None,
                         help="Named policy in config/prompt_registry.json. Only "
                              "model-authored claims whose prompt_id is on that "
@@ -774,11 +867,21 @@ def main():
     stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0,
              "with_morphology": 0, "with_synonyms": 0, "clitic_merged": len(clitic_data)}
 
+    evidence_only_skipped = 0
     for inv_entry in inventory:
         word = inv_entry["word"]
         wl = word.lower()
 
         if wl in clitic_merged_words:
+            continue
+
+        # --evidence-only: emit a card only where a classifier actually claimed
+        # a sense against a sentence. Without it the inventory mints a card for
+        # every word, and words with no examples fall back to "first menu sense
+        # at 100%" — a confident-looking meaning nothing was ever observed to
+        # support (banco -> "bench", 1.00, zero examples).
+        if args.evidence_only and wl not in assignment_lemmas_by_word:
+            evidence_only_skipped += 1
             continue
 
         total_count = inv_entry.get("corpus_count", 0)
@@ -921,6 +1024,9 @@ def main():
                 src = senses[0].get("source")
                 if src:
                     meaning_lean["source"] = src
+                headword = senses[0].get("headword")
+                if headword:
+                    meaning_lean["headword"] = headword
                 meanings_lean.append(meaning_lean)
                 meanings_full.append({**meaning_lean, "examples": []})
                 examples_by_meaning.append([])
@@ -982,6 +1088,14 @@ def main():
                     src = sense.get("source")
                     if src:
                         meaning_lean["source"] = src
+                    # The headword this sense belongs to. Today it equals the
+                    # card's lemma, because the card is one lemma. Carried
+                    # anyway: it is the only thing that lets a card holding
+                    # more than one headword group its meanings by lemma, and
+                    # the menu has always had it — assembly was dropping it.
+                    headword = sense.get("headword")
+                    if headword:
+                        meaning_lean["headword"] = headword
                     # Preserve the SpanishDict context field for later
                     # disambiguation: if two senses share (pos, translation)
                     # but have different contexts, we'll expose the context
@@ -1020,7 +1134,15 @@ def main():
                 merged_exs = {}
                 order = []
                 for m_lean, m_full, exs in zip(meanings_lean, meanings_full, examples_by_meaning):
-                    key2 = (m_lean.get("pos"), m_lean.get("translation"), m_lean.get("context") or "")
+                    # Headword is part of the key. Today every meaning on a card
+                    # shares one, so this changes nothing. On a card holding more
+                    # than one headword it stops "to marry" under `casar` and
+                    # under `casarse` collapsing into a single row whose surviving
+                    # headword is whichever happened to be built first. Merging a
+                    # reflexive pair is a display decision; it should not happen
+                    # by accident inside a dedup on translation text.
+                    key2 = (m_lean.get("headword") or "", m_lean.get("pos"),
+                            m_lean.get("translation"), m_lean.get("context") or "")
                     if key2 not in merged_lean:
                         order.append(key2)
                         merged_lean[key2] = dict(m_lean)
@@ -1240,6 +1362,9 @@ def main():
             if synonyms_list or antonyms_list:
                 stats["with_synonyms"] += 1
 
+    if args.surface_cards:
+        all_entries = merge_entries_by_surface(all_entries, used_ids)
+
     # Re-sort by corpus_count desc so lemma-split entries slot into their
     # true frequency position (otherwise e.g. para|parar (323) would sit
     # right after para|para (6145) because both inherited inventory order).
@@ -1434,6 +1559,9 @@ def main():
     print(f"\n{'='*55}")
     print("BUILD RESULTS")
     print(f"{'='*55}")
+    if args.evidence_only:
+        print(f"Evidence-only:      {evidence_only_skipped:>6} inventory words "
+              f"skipped (no assignment)")
     print(f"Total entries:      {len(monolith):>6}")
     print(f"With examples:      {stats['with_examples']:>6}")
     print(f"No senses (pos=X):  {stats['no_senses']:>6}")

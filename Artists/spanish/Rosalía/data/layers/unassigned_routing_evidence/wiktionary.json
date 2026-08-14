@@ -1,0 +1,266 @@
+{
+  "solo|solo": [
+    {
+      "example_index": 1,
+      "example_id": "seg_b316536789d813501e1c1e03",
+      "occurrence_ids": [
+        "occ_aafc897a5b9dccddfe8af758"
+      ]
+    },
+    {
+      "example_index": 3,
+      "example_id": "seg_6ff275bce5d9b88270699185",
+      "occurrence_ids": [
+        "occ_71927500d3a750eece5dc104"
+      ]
+    },
+    {
+      "example_index": 4,
+      "example_id": "seg_887df95428cb5a3a99b3c14f",
+      "occurrence_ids": [
+        "occ_5b34582f35bcef6142e263d7"
+      ]
+    },
+    {
+      "example_index": 5,
+      "example_id": "seg_e6ace9a237c994493515471a",
+      "occurrence_ids": [
+        "occ_f01b44f0d2daaee299d5e25a"
+      ]
+    },
+    {
+      "example_index": 6,
+      "example_id": "seg_b92475f8c010fa630fcc0448",
+      "occurrence_ids": [
+        "occ_bb976a65a3f5bd113b769598"
+      ]
+    },
+    {
+      "example_index": 7,
+      "example_id": "seg_3d1a8c0e2f76cde76b733d5f",
+      "occurrence_ids": [
+        "occ_5937b0a986a5ae9e38ea7000"
+      ]
+    },
+    {
+      "example_index": 8,
+      "example_id": "seg_120fa02096c898836d317597",
+      "occurrence_ids": [
+        "occ_3a5ed000b00f915d6f836143"
+      ]
+    },
+    {
+      "example_index": 9,
+      "example_id": "seg_af200ccd94e3d97d71e87748",
+      "occurrence_ids": [
+        "occ_6fa24fa1674e4e3390df65a1"
+      ]
+    }
+  ],
+  "mal|mal": [
+    {
+      "example_index": 2,
+      "example_id": "seg_78c10e58f55fe86120ccf1ad",
+      "occurrence_ids": [
+        "occ_4f9e834792549c165e95be06"
+      ]
+    }
+  ],
+  "hasta|hasta": [
+    {
+      "example_index": 8,
+      "example_id": "seg_bf3f4877fcef1461f18b622c",
+      "occurrence_ids": [
+        "occ_894057764e43d40e012e75b3"
+      ]
+    }
+  ],
+  "esto|esto": [
+    {
+      "example_index": 5,
+      "example_id": "seg_ca8e8797bd499089187148e3",
+      "occurrence_ids": [
+        "occ_da50169b03a02511395d4f0e"
+      ]
+    }
+  ],
+  "mejor|mejor": [
+    {
+      "example_index": 6,
+      "example_id": "seg_e81b45436cfbfd918cc7a387",
+      "occurrence_ids": [
+        "occ_6c6799f4a82e15c60aed21f7"
+      ]
+    }
+  ],
+  "go|go": [
+    {
+      "example_index": 1,
+      "example_id": "seg_5fd13832048ab4b61272ceed",
+      "occurrence_ids": [
+        "occ_83f6f8388aa7f735338fba0a"
+      ]
+    }
+  ],
+  "primero|primero": [
+    {
+      "example_index": 0,
+      "example_id": "seg_81960fd96e2214726fdc98e8",
+      "occurrence_ids": [
+        "occ_6c515a6ab29df7c36cfbb3c8"
+      ]
+    },
+    {
+      "example_index": 2,
+      "example_id": "seg_ae4ff84f9d17743f4ad3c43f",
+      "occurrence_ids": [
+        "occ_4d45fddea420cfdec4951027"
+      ]
+    }
+  ],
+  "santo|santo": [
+    {
+      "example_index": 0,
+      "example_id": "seg_ca4d7973ea7074f124cd180d",
+      "occurrence_ids": [
+        "occ_93fb44b54cb6cbe4c45d6c37"
+      ]
+    },
+    {
+      "example_index": 2,
+      "example_id": "seg_13a55b9e1acd9af7b9f9076f",
+      "occurrence_ids": [
+        "occ_9d5fba86bccb416501637c57"
+      ]
+    }
+  ],
+  "bajo|bajo": [
+    {
+      "example_index": 2,
+      "example_id": "seg_64b1afaea0ae19c973688583",
+      "occurrence_ids": [
+        "occ_1684847febd07342e831f3fc"
+      ]
+    }
+  ],
+  "blanco|blanco": [
+    {
+      "example_index": 0,
+      "example_id": "seg_717e3f9fdae49767143aa491",
+      "occurrence_ids": [
+        "occ_388e65213f4083463736ca90"
+      ]
+    },
+    {
+      "example_index": 1,
+      "example_id": "seg_61af72810e6d8fb6134c0f65",
+      "occurrence_ids": [
+        "occ_a1503dbd54b39a31c762506d"
+      ]
+    },
+    {
+      "example_index": 2,
+      "example_id": "seg_51d8b04bf9ab6ad4ce11e03c",
+      "occurrence_ids": [
+        "occ_3c210a542ffca838799f7098"
+      ]
+    }
+  ],
+  "rojo|rojo": [
+    {
+      "example_index": 0,
+      "example_id": "seg_05ba44d02e674b471d9e31d0",
+      "occurrence_ids": [
+        "occ_833eeb8d00ecb0613a22c929"
+      ]
+    },
+    {
+      "example_index": 1,
+      "example_id": "seg_c078d101b49f24c8e09673b0",
+      "occurrence_ids": [
+        "occ_38e1215b7d1905e4f4884300"
+      ]
+    }
+  ],
+  "mai|mai": [
+    {
+      "example_index": 1,
+      "example_id": "seg_cc2fc7b50e176853c46a1bb9",
+      "occurrence_ids": [
+        "occ_50f7c44963df10410a13cc68"
+      ]
+    }
+  ],
+  "perdido|perdido": [
+    {
+      "example_index": 2,
+      "example_id": "seg_9a22cb9d4c99ddb721defc96",
+      "occurrence_ids": [
+        "occ_ceb36ebf626cbe2aca84c20a"
+      ]
+    }
+  ],
+  "afilado|afilado": [
+    {
+      "example_index": 1,
+      "example_id": "seg_e923be8991e05e10245aeef6",
+      "occurrence_ids": [
+        "occ_ad9f161c00d0f2950cf5e680"
+      ]
+    }
+  ],
+  "cruz|cruz": [
+    {
+      "example_index": 3,
+      "example_id": "seg_8e7e07fb0cddd8c16d144a84",
+      "occurrence_ids": [
+        "occ_619fdbe4c30adf8c0780486d"
+      ]
+    }
+  ],
+  "pesado|pesado": [
+    {
+      "example_index": 1,
+      "example_id": "seg_78b1cd72d88ae71277e3b222",
+      "occurrence_ids": [
+        "occ_7c5755cc96a8a8bfcb675962"
+      ]
+    }
+  ],
+  "so|so": [
+    {
+      "example_index": 2,
+      "example_id": "seg_0ec7ee2f42bb502b6bff8362",
+      "occurrence_ids": [
+        "occ_671c6327a12901b7785368c6"
+      ]
+    }
+  ],
+  "salida|salida": [
+    {
+      "example_index": 2,
+      "example_id": "seg_bd80a5eda367edc2f53f6c6d",
+      "occurrence_ids": [
+        "occ_6dae248accda0b9a5774c7cc"
+      ]
+    }
+  ],
+  "compás|compás": [
+    {
+      "example_index": 1,
+      "example_id": "seg_c7b6ea1795fdfb8b80422165",
+      "occurrence_ids": [
+        "occ_3469228958611034d6ffe246"
+      ]
+    }
+  ],
+  "feliz|feliz": [
+    {
+      "example_index": 1,
+      "example_id": "seg_3da77756283babdf6d8ca5ec",
+      "occurrence_ids": [
+        "occ_f25fef0253a3d7886d2b9203"
+      ]
+    }
+  ]
+}

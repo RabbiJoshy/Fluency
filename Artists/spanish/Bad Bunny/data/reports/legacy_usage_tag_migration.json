@@ -1,0 +1,102 @@
+{
+  "artist": "Bad Bunny",
+  "claims": 3360,
+  "labels": {
+    "figurative": 475,
+    "idiom": 3,
+    "interjection": 1,
+    "loanword": 181,
+    "proper_noun": 7,
+    "regional": 229,
+    "slang": 1369,
+    "vulgar": 97
+  },
+  "occurrence_assertions": 3364,
+  "raw_type_records": 1830,
+  "resolved_records": 2035,
+  "run_id": "run_f3ebdf63fc7cbbad95a05529",
+  "source_records": 2042,
+  "standardized_tag_records": 1640,
+  "unresolved": [
+    {
+      "assignment_method": "gap-fill",
+      "construction": null,
+      "example_ids": [
+        "3825550:82"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": null,
+      "record_index": 0,
+      "word": "polaroid"
+    },
+    {
+      "assignment_method": "gap-fill",
+      "construction": null,
+      "example_ids": [
+        "3167974:22"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": null,
+      "record_index": 0,
+      "word": "butacas"
+    },
+    {
+      "assignment_method": "gap-fill",
+      "construction": null,
+      "example_ids": [
+        "3167974:22"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": null,
+      "record_index": 0,
+      "word": "espejos"
+    },
+    {
+      "assignment_method": "gap-fill",
+      "construction": null,
+      "example_ids": [
+        "3167974:167"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": null,
+      "record_index": 0,
+      "word": "tumbamos"
+    },
+    {
+      "assignment_method": "gap-fill",
+      "construction": null,
+      "example_ids": [
+        "11292695:5"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": null,
+      "record_index": 0,
+      "word": "stalkeando"
+    },
+    {
+      "assignment_method": "gap-fill",
+      "construction": null,
+      "example_ids": [
+        "8915218:9",
+        "8598733:58"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": null,
+      "record_index": 0,
+      "word": "chapea"
+    },
+    {
+      "assignment_method": "gap-fill",
+      "construction": "ponerse pa'",
+      "example_ids": [
+        "4506147:64"
+      ],
+      "prompt_id": "sd-cop-v2",
+      "raw_type": "slang",
+      "record_index": 1,
+      "word": "ponerse"
+    }
+  ],
+  "unresolved_records": 7,
+  "unstandardized_type_records": 190
+}

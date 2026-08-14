@@ -2822,6 +2822,24 @@
            translation. A leading "·" separates it from the translation. If
            the context is long we truncate at a word boundary and show a
            clickable "…" that expands the full text. */
+        /* Headword group label on a surface-keyed card. Only rendered when the
+           card holds senses from more than one headword (casa / casar), so it
+           never appears on the ~4-in-5 single-headword cards. */
+        .headword-group-label {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: lowercase;
+            color: rgb(var(--sense-match-rgb));
+            opacity: 0.85;
+            padding: 2px 6px 1px;
+            margin: 6px 0 2px;
+            border-bottom: 1px solid rgba(var(--sense-match-rgb), 0.25);
+        }
+        .headword-group-label:first-child {
+            margin-top: 0;
+        }
+
         .meaning-context {
             font-size: 13px;
             font-weight: 400;

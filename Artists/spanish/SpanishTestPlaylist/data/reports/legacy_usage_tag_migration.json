@@ -1,0 +1,23 @@
+{
+  "artist": "Spanish Test Playlist",
+  "claims": 100,
+  "labels": {
+    "figurative": 20,
+    "idiom": 8,
+    "loanword": 3,
+    "onomatopoeia": 5,
+    "proper_noun": 7,
+    "regional": 3,
+    "slang": 30,
+    "vulgar": 1
+  },
+  "occurrence_assertions": 100,
+  "raw_type_records": 74,
+  "resolved_records": 89,
+  "run_id": "run_1ee877d6064386e74e6b6a8c",
+  "source_records": 89,
+  "standardized_tag_records": 72,
+  "unresolved": [],
+  "unresolved_records": 0,
+  "unstandardized_type_records": 2
+}

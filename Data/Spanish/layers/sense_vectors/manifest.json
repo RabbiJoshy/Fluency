@@ -1,0 +1,12 @@
+{
+ "model": "gemini-embedding-001",
+ "task_type": "SEMANTIC_SIMILARITY",
+ "dim": 3072,
+ "dtype": "float16",
+ "vectors": 17861,
+ "normalised": true,
+ "key": "the exact text that was embedded; sense glosses use the rendering '\"word\" (POS): translation \u2014 context'",
+ "contents": "sense glosses + Spanish sentences already paid for during the 2026-08-11 lever experiments and the harness panels",
+ "coverage_note": "PARTIAL \u2014 839 words' senses, not the full 96,279-sense inventory. A miss is a normal cache miss and gets embedded live.",
+ "invalidation": "keyed by gloss TEXT, so any menu edit (merges, filling empty translations, enrichment) silently orphans the old vector and the new gloss simply misses. Safe by construction."
+}

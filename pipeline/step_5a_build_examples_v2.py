@@ -187,7 +187,8 @@ def embed(texts):
         from google.genai import types
         cl = genai.Client(api_key=load_key())
         out = [None] * ((len(todo) + 99) // 100)
-        st, lock = {"i": 0, "t0": time.time(), "done": 0}, threading.Lock()
+        st, lock = ({"i": 0, "t0": time.time(), "done": 0, "last": 0.0},
+                    threading.Lock())
 
         def take(k):
             while True:
@@ -209,8 +210,19 @@ def embed(texts):
                     out[i] = np.asarray([e.values for e in r.embeddings], np.float32)
                     with lock:
                         st["done"] += len(ch)
-                        if st["done"] % 5000 < 100:
-                            print(f"    {st['done']:,}/{len(todo):,}", flush=True)
+                        # Time-based, not count-based: at the rate limit a
+                        # every-5000 print is one line every ~2 minutes, which
+                        # reads as a hang.
+                        now = time.time()
+                        if now - st["last"] >= 10 or st["done"] == len(todo):
+                            st["last"] = now
+                            el = now - st["t0"]
+                            rate = st["done"] / max(el, 1e-9)
+                            left = (len(todo) - st["done"]) / max(rate, 1e-9)
+                            print(f"    {st['done']:,}/{len(todo):,} "
+                                  f"({st['done']/len(todo):.0%})  "
+                                  f"{rate*60:,.0f}/min  eta {left/60:.1f} min",
+                                  flush=True)
                     return
                 except Exception:
                     if a == 5:

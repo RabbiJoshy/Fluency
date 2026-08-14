@@ -45,9 +45,15 @@ import threading
 import time
 from pathlib import Path
 
+import sys
+
 import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from util_6a_assignment_format import stamp_example_ids  # noqa: E402
+
 LAYERS = REPO / "Data/Spanish/layers"
 CACHE = LAYERS / "sense_vectors"
 METHOD = "spanishdict-embed-v1"
@@ -143,10 +149,16 @@ def main():
     menus = {w: {sid: v for e in entries for sid, v in e.get("senses", {}).items()}
              for w, entries in raw.items()}
 
-    words = [w for w in examples if menus.get(w)]
-    no_menu = [w for w in examples if not menus.get(w)]
-    print(f"{len(examples)} words with examples; {len(words)} have a sense menu, "
-          f"{len(no_menu)} do not")
+    # examples_raw.json keeps a key for every inventory word, most with an empty
+    # list. Those words have no sentence to classify, so embedding their menus
+    # is pure cost — it was inflating the job roughly twentyfold.
+    with_examples = [w for w in examples if examples[w]]
+    words = [w for w in with_examples if menus.get(w)]
+    no_menu = [w for w in with_examples if not menus.get(w)]
+    print(f"{len(examples)} words in the layer; {len(with_examples)} have at least "
+          f"one example")
+    print(f"  classifying {len(words)} of those ({len(no_menu)} have no sense menu); "
+          f"{len(examples) - len(with_examples)} skipped as example-free")
 
     sent_texts, sense_texts = [], []
     for w in words:
@@ -215,8 +227,17 @@ def main():
             e["band"].append(band)
         out[w] = {METHOD: list(by_sense.values())}
 
+    # A list position is not a reference: rebuilding examples_raw.json puts
+    # different sentences at the same offsets and silently re-points every
+    # claim. Stamp the content hash alongside, as step_6b and step_6c do — the
+    # resolver prefers it and falls back to the index only for older claims.
+    stamp_example_ids(out, examples)
+    stamped = sum(1 for m in out.values() for items in m.values()
+                  for it in items for x in (it.get("example_ids") or []) if x)
+
     n = sum(len(v) for v in per_word.values())
     print(f"\nassigned {n:,} examples across {len(out)} words")
+    print(f"  stable example IDs stamped: {stamped:,} of {n:,}")
     print(f"  senses used: {len({(w, i['sense']) for w, m in out.items() for i in m[METHOD]}):,}")
     print(f"  words whose menu collapses to one meaning: {singles}")
     for b in ("high", "medium", "low"):
