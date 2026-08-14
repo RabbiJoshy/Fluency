@@ -54,7 +54,8 @@ from util_7a_lemma_split import plural_lemma_redirects
 # Mirrors pipeline/artist/step_8b_assemble_artist_vocabulary.py.
 KEYWORD_PRIORITY_THRESHOLD = 15
 from util_6a_method_priority import METHOD_PRIORITY
-from util_8a_assembly_helpers import make_stable_id, split_count_proportionally
+from util_8a_assembly_helpers import (make_stable_id, make_surface_id,
+                                     split_count_proportionally)
 from util_pipeline_config import get_default_min_priority
 from util_pipeline_meta import make_meta, write_sidecar
 from util_sense_ids import carry_sense_identity, merge_sense_identity
@@ -386,6 +387,10 @@ def merge_entries_by_surface(entries, used_ids):
                 card["meanings_lean"] = card["meanings_lean"] + other["meanings_lean"]
                 card["examples_by_meaning"] = (card["examples_by_meaning"]
                                                + other["examples_by_meaning"])
+                for alias in other.get("alias_ids") or []:
+                    card.setdefault("alias_ids", [])
+                    if alias not in card["alias_ids"]:
+                        card["alias_ids"].append(alias)
                 for field in ("mwe_memberships", "synonyms", "antonyms",
                               "clitic_memberships"):
                     if not card.get(field) and other.get(field):
@@ -427,7 +432,7 @@ def merge_entries_by_surface(entries, used_ids):
                 lean["frequency"] = share
                 full["frequency"] = share
 
-        card["id"] = make_stable_id(surface, surface, used_ids)
+        card["id"] = make_surface_id(surface, used_ids)
         used_ids.add(card["id"])
         merged.append(card)
 
@@ -837,6 +842,14 @@ def main():
         }
         base_entry.setdefault("variants", []).append(wl)
         clitic_merged_words.add(wl)
+        # Mint the clitic surface its own ID even though it is being merged
+        # away, and hang it off the base card as an alias. Merging `dame` into
+        # `dar` is a tokenisation decision; without an ID of its own, reversing
+        # that decision later makes 544 cards appear from nowhere with no
+        # history, which is the same failure as deriving identity from a lemma.
+        # With the alias, merging and unmerging is a display change.
+        base_entry.setdefault("alias_ids", []).append(
+            {"id": make_surface_id(wl, set()), "surface": wl, "kind": "clitic"})
 
     if clitic_data:
         print(f"  {len(clitic_data)} clitic forms merged into base verbs")
@@ -1186,6 +1199,12 @@ def main():
                 mwe_examples_by_idx = []
                 for mwe in word_mwes_raw:
                     mwe_entry = {"expression": mwe["expression"]}
+                    # The durable identity, minted once by
+                    # tool_5d_stamp_mwe_ids. js/knowledge.js prefers it and
+                    # otherwise hashes the expression TEXT — so without this
+                    # passthrough, re-wording a phrase orphans its progress.
+                    if mwe.get("id"):
+                        mwe_entry["id"] = mwe["id"]
                     if mwe.get("translation"):
                         mwe_entry["translation"] = mwe["translation"]
                     # Two context tiers:
@@ -1354,6 +1373,7 @@ def main():
                 "synonyms": synonyms_list,
                 "antonyms": antonyms_list,
                 "variants": inv_entry.get("variants"),
+                "alias_ids": inv_entry.get("alias_ids"),
                 "related_lemma": related_lemma,
                 "derivation_relation": derivation_relation,
             })
@@ -1469,6 +1489,11 @@ def main():
             merged_ids = merged_ids_by_base.get(word_id)
             if merged_ids:
                 mono_entry["merged_clitic_ids"] = merged_ids
+        # Each merged clitic surface keeps its own durable ID here, so
+        # unrolling the merge later is a display change rather than 544 new
+        # cards with no history.
+        if e.get("alias_ids"):
+            mono_entry["alias_ids"] = e["alias_ids"]
         monolith.append(mono_entry)
 
         idx_entry = {
@@ -1483,6 +1508,8 @@ def main():
             idx_entry["cognate_score"] = e["cognate_obj"]["score"]
             if e["cognate_obj"].get("cognet"):
                 idx_entry["cognet_cognate"] = True
+        if e.get("alias_ids"):
+            idx_entry["alias_ids"] = e["alias_ids"]
         if e["mwe_memberships"]:
             idx_entry["mwe_memberships"] = e["mwe_memberships"]
         if e.get("clitic_memberships"):

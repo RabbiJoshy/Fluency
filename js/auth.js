@@ -1,7 +1,7 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
-import './state.js?v=20260812e';
-import { dbGet, dbPut } from './offline-db.js?v=20260812e';
+import './state.js?v=20260812f';
+import { dbGet, dbPut } from './offline-db.js?v=20260812f';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
 // enqueues to IndexedDB when offline/failed. The overlay helpers keep
 // un-synced card and granular knowledge answers visible after a Sheets reload.
@@ -10,7 +10,7 @@ import {
     applyPendingProgressOverlay,
     applyPendingItemProgressOverlay,
     applyPendingMetaProgressOverlay
-} from './sync-queue.js?v=20260812e';
+} from './sync-queue.js?v=20260812f';
 
 async function loadSecrets() {
     const controller = new AbortController();
@@ -270,15 +270,23 @@ async function migrateLocalStorageIds() {
     localStorage.setItem('id_migration_v1', 'done');
 }
 
-// Migrate localStorage progress from 4-char hex IDs to 6-char hex IDs
-// Uses the same id_migration.json files (which now include 4char→6char mappings)
+// Migrate localStorage progress through Data/{Lang}/id_migration.json.
+//
+// v3 carries speech mode from word|lemma card IDs to surface-form IDs. The map
+// is composed, so a learner still sitting on a pre-clitic ID resolves to its
+// final surface ID in this single lookup.
+//
+// This is NOT idempotent and the flag version is what enforces once-only. Some
+// new surface IDs are themselves old word|lemma IDs, so a second pass would
+// remap an already-migrated card onto a different word. Never reuse a flag
+// version to re-run a migration; add the next one.
 async function migrateLocalStorageIdsV2() {
-    if (localStorage.getItem('id_migration_v2') === 'done') return;
+    if (localStorage.getItem('id_migration_v3') === 'done') return;
 
     const key = 'flashcard_progress_guest';
     const guestProgress = JSON.parse(localStorage.getItem(key) || '{}');
     if (Object.keys(guestProgress).length === 0) {
-        localStorage.setItem('id_migration_v2', 'done');
+        localStorage.setItem('id_migration_v3', 'done');
         return;
     }
 
@@ -321,7 +329,7 @@ async function migrateLocalStorageIdsV2() {
         localStorage.setItem(key, JSON.stringify(migrated));
         console.log(`Migrated ${remapped} localStorage progress IDs (4-char → 6-char)`);
     }
-    localStorage.setItem('id_migration_v2', 'done');
+    localStorage.setItem('id_migration_v3', 'done');
 }
 
 // ========== GOOGLE SHEETS INTEGRATION ==========

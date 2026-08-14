@@ -278,7 +278,7 @@ function saveItemProgress(params) {
   if (!params.user || !params.itemId || !params.parentWordId) {
     return createResponse(false, 'Missing required fields: user, itemId, parentWordId');
   }
-  if (['sense', 'mwe', 'clitic'].indexOf(itemType) < 0) {
+  if (['sense', 'mwe', 'clitic', 'lemma'].indexOf(itemType) < 0) {
     return createResponse(false, 'Invalid itemType: ' + itemType);
   }
   const normalized = {
@@ -399,7 +399,7 @@ function loadItemProgress(params) {
     const row = data[i];
     if (row[P.USER] !== user) continue;
     const itemType = normalizeItemType(row[P.ITEM_TYPE]);
-    if (['sense', 'mwe', 'clitic'].indexOf(itemType) < 0) continue;
+    if (['sense', 'mwe', 'clitic', 'lemma'].indexOf(itemType) < 0) continue;
     const rowMode = normalizeMode(row[P.MODE], row[P.PARENT_ID]);
     if (modeFilter !== 'all' && rowMode !== modeFilter) continue;
     items.push({
@@ -456,7 +456,7 @@ function deleteItemProgress(params) {
   for (let i = data.length - 1; i >= 1; i--) {
     const row = data[i];
     const itemType = normalizeItemType(row[P.ITEM_TYPE]);
-    if (row[P.USER] === user && ['sense', 'mwe', 'clitic'].indexOf(itemType) >= 0
+    if (row[P.USER] === user && ['sense', 'mwe', 'clitic', 'lemma'].indexOf(itemType) >= 0
         && parentSet[row[P.PARENT_ID]]) {
       sheet.deleteRow(i + 1);
       deleted++;
