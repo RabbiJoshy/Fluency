@@ -100,7 +100,10 @@ def load_script_url():
         sys.exit(1)
 
 
-def post_json(script_url, payload):
+BULK_CHUNK = 50   # rows per bulkSave request
+
+
+def post_json(script_url, payload, timeout=60):
     data = json.dumps(payload).encode()
     req = urllib.request.Request(
         script_url,
@@ -109,7 +112,7 @@ def post_json(script_url, payload):
         method='POST'
     )
     try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode())
     except urllib.error.URLError as e:
         print(f"Error: {e}")
@@ -289,15 +292,28 @@ def main():
             print(f"  Pushing {len(to_upsert)} rows to {sheet_name}...")
             rows_payload = ([flag_push_payload(r) for r in to_upsert]
                             if sheet_name == 'FlaggedWords' else to_upsert)
-            result = post_json(script_url, {
-                'action': 'bulkSave',
-                'sheet': sheet_name,
-                'rows': rows_payload
-            })
-            if result.get('success'):
-                print(f"    {result['message']}")
-            else:
-                print(f"    Error: {result.get('message')}")
+            # Chunked: Apps Script spends ~2.4s per row, so one request for
+            # 400+ rows blows through both the client timeout and Apps Script's
+            # own 6-minute execution ceiling — and a timeout there leaves a
+            # partial write with no report of how far it got. Each chunk is its
+            # own request; the changeset is recomputed on the next run, so an
+            # interrupted push resumes rather than duplicating.
+            written = 0
+            for start in range(0, len(rows_payload), BULK_CHUNK):
+                chunk = rows_payload[start:start + BULK_CHUNK]
+                result = post_json(script_url, {
+                    'action': 'bulkSave',
+                    'sheet': sheet_name,
+                    'rows': chunk
+                }, timeout=300)
+                if result.get('success'):
+                    written += len(chunk)
+                    print(f"    {written}/{len(rows_payload)} — {result['message']}",
+                          flush=True)
+                else:
+                    print(f"    Error after {written}/{len(rows_payload)}: "
+                          f"{result.get('message')}")
+                    break
 
         if to_delete:
             print(f"  Deleting {len(to_delete)} rows from {sheet_name} "

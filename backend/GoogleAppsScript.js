@@ -490,6 +490,49 @@ function deleteExactProgressRow(params) {
   return createResponse(true, 'Deleted ' + deleted + ' exact progress rows');
 }
 
+/**
+ * Batch-scoped row index.
+ *
+ * existingProgressRow() and upsertProgressRow() each read the WHOLE sheet and
+ * scan it linearly. bulkSave called both per row, so pushing 423 rows onto a
+ * 3,500-row sheet meant 846 full-sheet reads and millions of key comparisons —
+ * about 6 seconds per row, which times out any client long before the batch
+ * finishes, leaving a partial write.
+ *
+ * This reads the sheet once per bulkSave and keeps the index current as rows
+ * are appended, so a batch is linear in its own size rather than quadratic in
+ * the sheet's. Single-row callers are untouched.
+ */
+function makeProgressIndex() {
+  const sheet = getProgressSheet();
+  const data = sheet.getDataRange().getValues();
+  const index = {};
+  for (let i = 1; i < data.length; i++) {
+    index[progressRowKey(data[i])] = i + 1;
+  }
+  return { sheet: sheet, data: data, index: index, nextRow: data.length + 1 };
+}
+
+function existingProgressRowIndexed(params, ctx) {
+  const rowIndex = ctx.index[progressRowKey(buildProgressRow(params, []))];
+  return rowIndex ? ctx.data[rowIndex - 1] : [];
+}
+
+function upsertProgressRowIndexed(row, ctx) {
+  const key = progressRowKey(row);
+  const rowIndex = ctx.index[key];
+  if (rowIndex) {
+    ctx.sheet.getRange(rowIndex, 1, 1, PROGRESS_HEADERS.length).setValues([row]);
+    ctx.data[rowIndex - 1] = row;
+    return 'updated';
+  }
+  ctx.sheet.appendRow(row);
+  ctx.index[key] = ctx.nextRow;
+  ctx.data.push(row);
+  ctx.nextRow += 1;
+  return 'inserted';
+}
+
 function bulkSave(params) {
   const rows = params.rows;
   if (!rows || !Array.isArray(rows) || rows.length === 0) {
@@ -498,6 +541,7 @@ function bulkSave(params) {
   if (params.sheet === 'FlaggedWords') return bulkSaveFlaggedWords(rows);
 
   const legacyMode = legacySheetMode(params.sheet);
+  const ctx = makeProgressIndex();
   let updated = 0;
   let inserted = 0;
   rows.forEach(function(row) {
@@ -522,8 +566,8 @@ function bulkSave(params) {
         srsStage: '',
         value: row.value
       };
-      const existing = existingProgressRow(normalized);
-      responseKind = upsertProgressRow(buildProgressRow(normalized, existing));
+      const existing = existingProgressRowIndexed(normalized, ctx);
+      responseKind = upsertProgressRowIndexed(buildProgressRow(normalized, existing), ctx);
     } else if (itemType === 'word') {
       const normalized = {
         user: row.user,
@@ -543,8 +587,8 @@ function bulkSave(params) {
         value: ''
       };
       if (normalized.itemId === undefined) return;
-      const existing = existingProgressRow(normalized);
-      responseKind = upsertProgressRow(buildProgressRow(normalized, existing));
+      const existing = existingProgressRowIndexed(normalized, ctx);
+      responseKind = upsertProgressRowIndexed(buildProgressRow(normalized, existing), ctx);
     } else {
       const normalized = {
         user: row.user,
@@ -564,8 +608,8 @@ function bulkSave(params) {
         value: ''
       };
       if (!normalized.itemId || !normalized.parentWordId) return;
-      const existing = existingProgressRow(normalized);
-      responseKind = upsertProgressRow(buildProgressRow(normalized, existing));
+      const existing = existingProgressRowIndexed(normalized, ctx);
+      responseKind = upsertProgressRowIndexed(buildProgressRow(normalized, existing), ctx);
     }
     if (responseKind === 'updated') updated++;
     else if (responseKind === 'inserted') inserted++;
