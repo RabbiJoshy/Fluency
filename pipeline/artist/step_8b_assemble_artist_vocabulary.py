@@ -90,7 +90,8 @@ STEP_VERSION_NOTES = {
     16: "+ suppress common-noun fallback meanings when every occurrence exactly names its credited artist",
     17: "+ coalesce multiple analyses that resolve to one persistent card identity",
 }
-from util_8a_assembly_helpers import split_count_proportionally
+from util_8a_assembly_helpers import (make_surface_id,
+                                     split_count_proportionally)
 
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 PYTHON = os.path.join(os.path.dirname(os.path.dirname(SCRIPTS_DIR)), ".venv", "bin", "python3")
@@ -399,8 +400,18 @@ def _build_menu_free_groups(word, lemma_assignments, min_priority,
 # ID assignment (same logic as 6_llm_analyze.py)
 # ---------------------------------------------------------------------------
 
-def assign_ids_from_master(entries, master, registry_path=None, language="und"):
-    """Assign legacy card IDs through a persistent identity registry."""
+def assign_ids_from_master(entries, master, registry_path=None, language="und",
+                           surface_cards=False):
+    """Assign card IDs through a persistent identity registry.
+
+    With ``surface_cards``, the minted ID is a function of the surface alone.
+    Every lemma of one surface therefore arrives at the same preferred ID, and
+    the registry attaches each ``(surface, lemma)`` alias to that one card —
+    which is what its own contract already allows, and what
+    ``_coalesce_card_identities`` then merges into a single display row.
+    The master-ID lookup is bypassed in that mode: reusing the old word|lemma
+    ID would keep the split it is the point of the migration to remove.
+    """
     wl_to_id = {}
     wl_to_ids = {}
     for mid, mentry in master.items():
@@ -450,7 +461,11 @@ def assign_ids_from_master(entries, master, registry_path=None, language="und"):
         surface_counts[surface] = surface_counts.get(surface, 0) + 1
     for entry in entries:
         wl = (entry["word"], entry["lemma"])
-        preferred_id = wl_to_id.get(wl)
+        if surface_cards:
+            surface = str(entry.get("word") or "").strip().lower()
+            preferred_id = make_surface_id(surface, used)
+        else:
+            preferred_id = wl_to_id.get(wl)
         if preferred_id is None:
             h = hashlib.md5((entry["word"] + "|" + entry["lemma"]).encode("utf-8")).hexdigest()
             final_id = h[:6]
@@ -999,7 +1014,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                          sense_source="wiktionary", skip_words_path=None,
                          emit_remainders=False, min_priority=0,
                          stamp_cognate_scores=False, min_prompt_tier=0,
-                         prompt_policy_id=CURRENT_SD_POLICY_ID):
+                         prompt_policy_id=CURRENT_SD_POLICY_ID,
+                         surface_cards=False):
     """Assemble vocabulary entries from layer files.
 
     Returns (entries, master) where entries is the full monolith list and
@@ -2498,6 +2514,7 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
         master,
         registry_path=registry_path,
         language=registry_language,
+        surface_cards=surface_cards,
     )
     entries = _coalesce_card_identities(entries, master)
     # Coalescing can combine corpus counts from aliases with different lemmas,
@@ -3295,6 +3312,12 @@ def main():
         help="Sense adapter/source filename stem (default: spanishdict). Custom "
              "and menu-free sources are accepted when their assignment layer exists.",
     )
+    parser.add_argument("--surface-cards", action="store_true",
+                        help="Mint new card IDs from the surface form alone, "
+                             "matching speech mode. Existing cards already "
+                             "resolve to their surface ID once the registry "
+                             "migration has run; this covers surfaces the "
+                             "registry has not seen before.")
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards, but unassigned examples are dropped)")
@@ -3382,7 +3405,8 @@ def main():
         min_priority=args.min_priority,
         min_prompt_tier=args.min_prompt_tier,
         prompt_policy_id=args.prompt_policy,
-        stamp_cognate_scores=args.stamp_cognate_scores)
+        stamp_cognate_scores=args.stamp_cognate_scores,
+        surface_cards=args.surface_cards)
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)
