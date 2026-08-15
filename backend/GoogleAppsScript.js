@@ -510,7 +510,8 @@ function makeProgressIndex() {
   for (let i = 1; i < data.length; i++) {
     index[progressRowKey(data[i])] = i + 1;
   }
-  return { sheet: sheet, data: data, index: index, nextRow: data.length + 1 };
+  return { sheet: sheet, data: data, index: index,
+           nextRow: data.length + 1, pending: [] };
 }
 
 function existingProgressRowIndexed(params, ctx) {
@@ -526,11 +527,25 @@ function upsertProgressRowIndexed(row, ctx) {
     ctx.data[rowIndex - 1] = row;
     return 'updated';
   }
-  ctx.sheet.appendRow(row);
+  // Queue the append instead of calling appendRow per row. Each appendRow is a
+  // separate round trip to the Spreadsheets service, and a few hundred of them
+  // in one execution makes Google itself time out ("Service Spreadsheets timed
+  // out while accessing document"). flushProgressAppends writes them all with a
+  // single setValues.
+  ctx.pending.push(row);
   ctx.index[key] = ctx.nextRow;
   ctx.data.push(row);
   ctx.nextRow += 1;
   return 'inserted';
+}
+
+function flushProgressAppends(ctx) {
+  if (!ctx.pending.length) return;
+  ctx.sheet
+    .getRange(ctx.nextRow - ctx.pending.length, 1,
+              ctx.pending.length, PROGRESS_HEADERS.length)
+    .setValues(ctx.pending);
+  ctx.pending = [];
 }
 
 function bulkSave(params) {
@@ -614,6 +629,7 @@ function bulkSave(params) {
     if (responseKind === 'updated') updated++;
     else if (responseKind === 'inserted') inserted++;
   });
+  flushProgressAppends(ctx);
   return createResponse(true, 'Bulk save complete: ' + updated + ' updated, ' + inserted + ' inserted');
 }
 
