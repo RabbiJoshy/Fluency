@@ -369,6 +369,7 @@ def merge_entries_by_surface(entries, used_ids):
 
     Order within a card is by evidence — meanings with more examples first.
     """
+    surface_used = set()
     by_surface = OrderedDict()
     for entry in entries:
         by_surface.setdefault(entry["word"].lower(), []).append(entry)
@@ -432,8 +433,16 @@ def merge_entries_by_surface(entries, used_ids):
                 lean["frequency"] = share
                 full["frequency"] = share
 
-        card["id"] = make_surface_id(surface, used_ids)
-        used_ids.add(card["id"])
+        # Deliberately NOT seeded with the reserved artist IDs. That reservation
+        # existed because each mode minted from word|lemma independently and a
+        # six-hex collision could give one pair two different IDs. Now both mints
+        # from the surface, so artist already holding `que` as d6ffed1a is the
+        # agreement we want — treating it as a collision slides speech onto
+        # 6ffed1a9 and separates the modes again, which is exactly what this
+        # migration removed. Two different surfaces colliding at eight hex is
+        # effectively never; `surface_used` still guards it.
+        card["id"] = make_surface_id(surface, surface_used)
+        surface_used.add(card["id"])
         merged.append(card)
 
     print("  surface cards: %d lemma entries -> %d surfaces"
