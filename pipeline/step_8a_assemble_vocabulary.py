@@ -1138,6 +1138,32 @@ def main():
                                     key=lambda m: METHOD_PRIORITY.get(m, 0))
                         meaning_lean["assignment_method"] = stamp
 
+                    # SpanishDict's own illustration of this exact sense. It is
+                    # gold-standard disambiguated — the dictionary filed it under
+                    # this sense itself — which makes it the one example on the
+                    # card that cannot be a WSD error, and the thing to read the
+                    # classifier's pick against.
+                    #
+                    # Tagged `dictionary` and appended last so it never displaces
+                    # corpus evidence. It cannot affect sense share either:
+                    # frequency is computed from assignment example counts above,
+                    # and this is attached after, from the menu rather than from
+                    # any assignment. A sense with no corpus evidence stays at
+                    # zero share and simply gains an illustration.
+                    sd_examples = sense.get("examples") or []
+                    if sd_examples:
+                        first = sd_examples[0]
+                        target = (first.get("original") or "").strip()
+                        english = (first.get("translated") or "").strip()
+                        if target and not any(
+                                (x.get("target") or "") == target for x in exs):
+                            exs = exs + [{
+                                "target": target,
+                                "english": english,
+                                "source": "spanishdict",
+                                "evidence": "dictionary",
+                            }]
+
                     meanings_lean.append(meaning_lean)
                     meanings_full.append({**meaning_lean, "examples": exs})
                     examples_by_meaning.append(exs)
