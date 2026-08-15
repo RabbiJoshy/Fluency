@@ -38,6 +38,7 @@ Data/Spanish/layers/example_store.json
 Data/Spanish/Senses/spanishdict/
 
 # Large corpus files (downloaded, not generated)
+Data/Spanish/corpora/imdb/
 Data/Spanish/corpora/opensubtitles/OpenSubtitles.*
 Data/Spanish/corpora/embeddings_cache/
 Data/Spanish/corpora/wiktionary/kaikki-eswiktionary-spanish.jsonl

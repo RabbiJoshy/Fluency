@@ -154,7 +154,8 @@ def provenance(ids):
 
 # ---------------------------------------------------------------- harvest
 
-def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id):
+def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id,
+            skip_lines=0):
     """Stream the corpus once, keeping the best sentences per target word.
 
     Two pools per word. `heaps` holds sentences the current policy wants.
@@ -185,6 +186,26 @@ def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id):
     with es_p.open(encoding="utf-8", errors="ignore") as es_f, \
          en_p.open(encoding="utf-8", errors="ignore") as en_f, \
          id_p.open(encoding="utf-8", errors="ignore") as id_f:
+        if skip_lines:
+            # Read and discard in lockstep. The three files must stay
+            # line-aligned or provenance points at the wrong subtitle, and they
+            # cannot be byte-seeked to the same place — .ids is twice the size
+            # of .es, so the same offset is a different line in each. Discarding
+            # is still far cheaper than harvesting, because it skips
+            # tokenisation and the gates.
+            #
+            # The corpus is ordered by IMDb id, which tracks release year, so
+            # this is really an era control: skipping half starts the harvest in
+            # the 2000s instead of the 1930s.
+            skipped = 0
+            for _ in zip(es_f, en_f, id_f):
+                skipped += 1
+                if skipped >= skip_lines:
+                    break
+            print("  skipped %s lines (%.0f%% in)"
+                  % ("{:,}".format(skipped), 100.0 * skipped / max(skip_lines, 1)),
+                  flush=True)
+            n = skipped
         for es, en, ids in zip(es_f, en_f, id_f):
             n += 1
             if max_lines and n > max_lines:
@@ -284,6 +305,11 @@ def main():
                     help="target the top N inventory words (0 = all)")
     ap.add_argument("--max-lines", type=int, default=0,
                     help="stop after N corpus lines (0 = whole corpus)")
+    ap.add_argument("--skip-lines", type=int, default=0,
+                    help="discard the first N lines before harvesting. The "
+                         "corpus is ordered by IMDb id, which tracks release "
+                         "year, so this selects an era: ~32M starts in the "
+                         "2000s rather than the 1930s.")
     ap.add_argument("--per-word-cap", type=int, default=60,
                     help="clean candidates retained per word; the pick step "
                          "needs headroom because alignment rejects afterwards")
@@ -310,7 +336,7 @@ def main():
 
     heaps, held, rows, rejects, word_rejects, banked, scanned = harvest(
         sc, targets, args.max_lines, args.per_word_cap, args.taste_cap,
-        args.compact_every, run_id)
+        args.compact_every, run_id, skip_lines=args.skip_lines)
 
     def ordered_ids(heap):
         """Best first, deduped: a repeated subtitle line hashes to one id."""
@@ -346,6 +372,7 @@ def main():
         "harvest_version": HARVEST_VERSION,
         "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "args": {"top": args.top, "max_lines": args.max_lines,
+                 "skip_lines": args.skip_lines,
                  "per_word_cap": args.per_word_cap,
                  "taste_cap": args.taste_cap},
         "lines_scanned": scanned,
