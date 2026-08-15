@@ -1,4 +1,4 @@
-import './state.js?v=20260815d';
+import './state.js?v=20260815e';
 
 async function loadConfig() {
     try {

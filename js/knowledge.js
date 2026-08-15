@@ -1,8 +1,8 @@
 // Granular sense / expression knowledge layered over whole-card progress.
 // Whole-card answers are the baseline; only explicit row-level answers create
 // ItemProgress records. The newest card-level or item-level event wins.
-import './state.js?v=20260815d';
-import { sendOrQueue } from './sync-queue.js?v=20260815d';
+import './state.js?v=20260815e';
+import { sendOrQueue } from './sync-queue.js?v=20260815e';
 
 const KNOWLEDGE_SCHEMA_VERSION = 1;
 
@@ -140,6 +140,52 @@ function knowledgeItemsForMeaning(card, meaning, meaningIndex) {
         detail: context,
         pos
     }];
+}
+
+/**
+ * The pill on the card back — one (POS, headword) group — as a learnable item.
+ *
+ * This is the granularity worth recording. Measured on the 9,338-card deck,
+ * "by POS" (11,690 units), "by lemma" (10,721) and "by the pair" (11,897) are
+ * within 10% of each other: only 693 headwords span more than one POS and only
+ * 204 POS span more than one headword. So the pair is not a third option, it is
+ * both of the other two, and it is the one that gets `fue` right — ir and ser
+ * are separate readings that lemma-alone would merge and POS-alone would too.
+ *
+ * It is also robust to the errors this WSD actually makes. Its mistakes are
+ * near-misses inside one part of speech and one headword — tiempo's "day" for
+ * "time", hacer's "to take" for "to do" — which are wrong at sense level and
+ * right here. Knowing `tiempo` is the noun tiempo is the real target; knowing
+ * which of its near-equivalent glosses applies is not.
+ *
+ * Keyed on lemma alone, not the pair, so it lines up with the lemma rows the
+ * surface migration already wrote to Sheets. Where a headword spans two POS the
+ * two pills share one record, the same way an item inherits from its card.
+ */
+function knowledgeItemForPill(card, pos, headword) {
+    if (!card?.fullId || !pos) return null;
+    const label = headword || card.targetWord || '';
+    return makeKnowledgeItem(
+        card,
+        'lemma',
+        `lemma|${normalizeKnowledgeText(label)}`,
+        label,
+        -1
+    );
+}
+
+function getPillKnowledgeItems(card) {
+    if (!card?.fullId || !Array.isArray(card.meanings)) return [];
+    const unique = new Map();
+    card.meanings.forEach(meaning => {
+        if (!meaning || meaning.exampleOnly) return;
+        const pos = meaning.pos === 'SENSE_CYCLE'
+            ? (meaning.cycle_pos || 'X') : meaning.pos;
+        if (!pos || pos === 'MWE' || pos === 'CLITIC') return;
+        const item = knowledgeItemForPill(card, pos, meaning.headword);
+        if (item && !unique.has(item.itemId)) unique.set(item.itemId, item);
+    });
+    return Array.from(unique.values());
 }
 
 function getCardKnowledgeItems(card) {
@@ -627,6 +673,8 @@ async function markCurrentKnowledge(event, isCorrect) {
 
 window.knowledgeItemsForMeaning = knowledgeItemsForMeaning;
 window.getCardKnowledgeItems = getCardKnowledgeItems;
+window.knowledgeItemForPill = knowledgeItemForPill;
+window.getPillKnowledgeItems = getPillKnowledgeItems;
 window.getActiveKnowledgeItems = getActiveKnowledgeItems;
 window.getKnowledgeItemState = getKnowledgeItemState;
 window.getCardKnowledgeSummary = getCardKnowledgeSummary;

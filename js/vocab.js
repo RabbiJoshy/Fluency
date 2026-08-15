@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260815d';
+import './state.js?v=20260815e';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 

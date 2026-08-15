@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260815d';
-import './speech.js?v=20260815d';
+import './state.js?v=20260815e';
+import './speech.js?v=20260815e';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260815d';
+} from './example-personalisation.js?v=20260815e';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -3990,6 +3990,14 @@ function updateCard({ announceHeadword = false } = {}) {
                     ? `<span class="pos-pill-more">+${g.senses.length - 1}</span>` : '';
                 const pct = g.pct > 0
                     ? `<span class="pos-pill-pct">${Math.round(g.pct * 100)}%</span>` : '';
+                // Whether this reading is known. Recorded per (POS, headword),
+                // which is the granularity that survives this classifier's
+                // errors — they are near-misses inside one pill.
+                const kItem = window.knowledgeItemForPill?.(card, g.pos, g.headword);
+                const kState = kItem ? window.getKnowledgeItemState?.(card, kItem) : null;
+                const known = kState && (kState.status === 'known' || kState.known
+                    || kState.status === 'learned');
+                const mark = known ? '<span class="pos-pill-known">✓</span>' : '';
                 return `
                 <section class="meaning-pos-section pos-collapsible${open ? ' is-open' : ''}"
                          data-pos="${pos}" style="${accent}">
@@ -3998,7 +4006,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         <span class="pos-section-label">${escapeCardText(pos)}</span>
                         ${hw}
                         <span class="pos-section-summary">${escapeCardText(g.senses[0] || '')}</span>
-                        ${extra}${pct}
+                        ${extra}${pct}${mark}
                         <span class="pos-section-chevron">${open ? '\u25BE' : '\u25B8'}</span>
                     </button>
                     <div class="meaning-pos-rows">${rows.join('')}</div>
@@ -6251,7 +6259,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260815d';
+const ASSET_VERSION = '20260815e';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
