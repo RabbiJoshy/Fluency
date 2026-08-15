@@ -155,7 +155,7 @@ def provenance(ids):
 # ---------------------------------------------------------------- harvest
 
 def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id,
-            skip_lines=0):
+            skip_lines=0, cap_top=0, tail_cap=0):
     """Stream the corpus once, keeping the best sentences per target word.
 
     Two pools per word. `heaps` holds sentences the current policy wants.
@@ -167,6 +167,17 @@ def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id,
     the sentence table of anything no word still points at. Without the sweep a
     full-corpus run over 10k targets would hold every surviving line in RAM.
     """
+    # Per-word cap by frequency rank. Depth only pays for two things:
+    # showing a learner more than one example, and measuring how sense share
+    # divides. The second is worthless until the WSD is trustworthy, so a first
+    # pass buys depth for the words you will actually inspect and one or two
+    # sentences for the long tail.
+    caps = {}
+    for word in targets:
+        rank = sc.rank.get(word)
+        caps[word] = (cap if (cap_top and rank is not None and rank < cap_top)
+                      else (tail_cap or cap))
+
     heaps = defaultdict(list)   # word -> bounded min-heap of (score, sentence id)
     held = defaultdict(list)    # word -> same, for taste-rejected sentences
     rows = {}                   # sentence id -> bank row, periodically swept
@@ -217,7 +228,8 @@ def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id,
             if n % compact_every == 0:
                 live = {s for p in (heaps, held) for h in p.values() for _, s in h}
                 rows = {k: v for k, v in rows.items() if k in live}
-                filled = sum(1 for h in heaps.values() if len(h) >= cap)
+                filled = sum(1 for w, h in heaps.items()
+                             if len(h) >= caps.get(w, cap))
                 rate = int(n / max(1e-9, time.time() - t0))
                 print(f"  {n:,} lines | {filled}/{len(targets)} words full | "
                       f"{len(rows):,} sentences held | {rate:,} lines/s",
@@ -242,7 +254,7 @@ def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id,
 
             metrics = sc.structural(es)
             score = metrics["score"]
-            pool, limit = (heaps, cap) if taste is None else (held, taste_cap)
+            clean_pool = taste is None
             sid = None
             for w in hits:
                 word_why = gate_word(raw, t, w)
@@ -251,7 +263,8 @@ def harvest(sc, targets, max_lines, cap, taste_cap, compact_every, run_id,
                     # line, so it cannot be added to the per-line tallies.
                     word_rejects[word_why] += 1
                     continue
-                h = pool[w]
+                limit = caps.get(w, cap) if clean_pool else taste_cap
+                h = (heaps if clean_pool else held)[w]
                 # This word's pool is already full and this sentence cannot beat
                 # its worst survivor, so there is nothing to store.
                 if len(h) >= limit and score <= h[0][0]:
@@ -313,6 +326,12 @@ def main():
     ap.add_argument("--per-word-cap", type=int, default=60,
                     help="clean candidates retained per word; the pick step "
                          "needs headroom because alignment rejects afterwards")
+    ap.add_argument("--cap-top", type=int, default=0,
+                    help="apply --per-word-cap only to the top N words by "
+                         "frequency; everything below gets --tail-cap")
+    ap.add_argument("--tail-cap", type=int, default=0,
+                    help="cap for words outside --cap-top (default: same as "
+                         "--per-word-cap)")
     ap.add_argument("--taste-cap", type=int, default=20,
                     help="per word, how many sentences that fail only a taste "
                          "gate to bank anyway, so a later policy change is a "
@@ -330,13 +349,17 @@ def main():
     inv = sc.inv if not args.top else sc.inv[:args.top]
     targets = {r["word"] for r in inv}
     print("harvest %s" % run_id)
-    print("  targets: %d words | cap %d clean + %d held per word | lines: %s"
-          % (len(targets), args.per_word_cap, args.taste_cap,
+    cap_desc = ("%d for top %d, %d after" % (args.per_word_cap, args.cap_top,
+                                            args.tail_cap or args.per_word_cap)
+                if args.cap_top else "%d" % args.per_word_cap)
+    print("  targets: %d words | clean cap %s (+%d held) | lines: %s"
+          % (len(targets), cap_desc, args.taste_cap,
              "all" if not args.max_lines else "{:,}".format(args.max_lines)))
 
     heaps, held, rows, rejects, word_rejects, banked, scanned = harvest(
         sc, targets, args.max_lines, args.per_word_cap, args.taste_cap,
-        args.compact_every, run_id, skip_lines=args.skip_lines)
+        args.compact_every, run_id, skip_lines=args.skip_lines,
+        cap_top=args.cap_top, tail_cap=args.tail_cap)
 
     def ordered_ids(heap):
         """Best first, deduped: a repeated subtitle line hashes to one id."""
@@ -374,6 +397,7 @@ def main():
         "args": {"top": args.top, "max_lines": args.max_lines,
                  "skip_lines": args.skip_lines,
                  "per_word_cap": args.per_word_cap,
+                 "cap_top": args.cap_top, "tail_cap": args.tail_cap,
                  "taste_cap": args.taste_cap},
         "lines_scanned": scanned,
         "targets": len(targets),
