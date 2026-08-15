@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260815c';
-import './speech.js?v=20260815c';
+import './state.js?v=20260815d';
+import './speech.js?v=20260815d';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260815c';
+} from './example-personalisation.js?v=20260815d';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2760,12 +2760,15 @@ function highlightAttachedForm(sentence, form) {
 // Open/close one part-of-speech group on the card back. State lives on the
 // card, not the DOM, because selecting a sense re-renders — a DOM-only toggle
 // would close the group the moment you clicked a row inside it.
-function toggleBackPosSection(pos) {
+function toggleBackPosSection(key) {
     const card = flashcards?.[currentIndex];
     if (!card) return;
+    // The group key is POS + NUL + headword; NUL cannot survive an inline
+    // onclick attribute, so it travels as ~~ and is restored here.
+    const real = String(key).replace(/~~/g, '\u0000');
     if (!card._expandedPos) card._expandedPos = new Set();
-    if (card._expandedPos.has(pos)) card._expandedPos.delete(pos);
-    else card._expandedPos.add(pos);
+    if (card._expandedPos.has(real)) card._expandedPos.delete(real);
+    else card._expandedPos.add(real);
     updateCard();
 }
 window.toggleBackPosSection = toggleBackPosSection;
@@ -3933,65 +3936,74 @@ function updateCard({ announceHeadword = false } = {}) {
             if (!sections.has(pos)) sections.set(pos, []);
             return sections.get(pos);
         };
-        // Distinct translations per POS — the card's "main senses", with the
-        // context variants left for the expanded view. Median 2 per POS, p90 3,
-        // so the whole summary fits on one line per part of speech.
-        const posMainSenses = new Map();
+        // One group per (POS, headword). Those are not independent axes: only
+        // 201 POS groups in the deck contain more than one headword, so opening
+        // a part of speech almost always resolves the lemma too. Keying on the
+        // pair collapses them into one level instead of nesting two, and still
+        // splits `fue` into ser and ir, which POS alone cannot.
+        //
+        // 75% of cards produce a single group, 98% two or fewer, so the pill row
+        // is always short.
+        const groupInfo = new Map();
         (card.meanings || []).forEach(m => {
             if (!m || m.exampleOnly) return;
             const pos = m.pos === 'SENSE_CYCLE' ? (m.cycle_pos || 'X') : m.pos;
             if (!pos || pos === 'MWE' || pos === 'CLITIC') return;
+            const key = pos + '\u0000' + (m.headword || '');
+            if (!groupInfo.has(key)) {
+                groupInfo.set(key, { pos, headword: m.headword || '', senses: [], pct: 0 });
+            }
+            const g = groupInfo.get(key);
+            g.pct += Number(m.percentage || 0);
             const text = String(getConjugatedEnglish(card, m.meaning) || m.meaning || '').trim();
-            if (!text) return;
-            if (!posMainSenses.has(pos)) posMainSenses.set(pos, []);
-            const list = posMainSenses.get(pos);
-            if (!list.includes(text)) list.push(text);
+            // Main senses only. Two rows sharing a translation are one meaning
+            // seen in two contexts; the contexts belong in the expanded view.
+            if (text && !g.senses.includes(text)) g.senses.push(text);
         });
 
-        // Which POS are open. Defaults to the one the selected meaning is in,
-        // so the card still shows content on arrival instead of a list of
-        // closed drawers. Stored on the card so selecting a row — which
-        // re-renders — does not collapse what you just opened.
         if (!card._expandedPos) {
-            const openPos = currentMeaning
+            const cur = currentMeaning
                 ? (currentMeaning.pos === 'SENSE_CYCLE'
                     ? (currentMeaning.cycle_pos || 'X') : currentMeaning.pos)
-                : activeBackPos;
-            card._expandedPos = new Set(openPos ? [openPos] : []);
+                    + '\u0000' + (currentMeaning.headword || '')
+                : null;
+            card._expandedPos = new Set(cur ? [cur] : []);
         }
 
-        // One POS is not a hierarchy — 59% of cards are a single part of speech
-        // with a single headword, and a header plus chevron there is chrome
-        // around a two-line list. Those render exactly as before.
-        const renderSections = (sections, filterToActivePos = false) => {
-            const entries = Array.from(sections);
-            const collapsible = entries.length > 1;
-            return entries
-                .filter(([pos]) => !collapsible && filterToActivePos
-                    ? pos === activeBackPos : true)
-                .map(([pos, rows]) => {
-                    const accent = `--sense-match-rgb: ${getPosAccentRgb(pos)};`;
-                    if (!collapsible) {
-                        return `
+        const renderSections = (sections) => Array.from(sections)
+            .map(([key, rows]) => {
+                const g = groupInfo.get(key);
+                const pos = g ? g.pos : String(key).split('\u0000')[0];
+                const accent = `--sense-match-rgb: ${getPosAccentRgb(pos)};`;
+                if (!g) {
+                    return `
                 <section class="meaning-pos-section" data-pos="${pos}" style="${accent}">
                     <div class="meaning-pos-rows">${rows.join('')}</div>
                 </section>`;
-                    }
-                    const open = card._expandedPos.has(pos);
-                    const summary = (posMainSenses.get(pos) || []).join(' · ');
-                    return `
+                }
+                const open = card._expandedPos.has(key);
+                // The headword only when it differs from the word on the card —
+                // `casa · casa` says nothing, `una · unir` is the whole point.
+                const hw = (g.headword && g.headword !== card.targetWord)
+                    ? `<span class="pos-pill-lemma">${escapeCardText(g.headword)}</span>` : '';
+                const extra = g.senses.length > 1
+                    ? `<span class="pos-pill-more">+${g.senses.length - 1}</span>` : '';
+                const pct = g.pct > 0
+                    ? `<span class="pos-pill-pct">${Math.round(g.pct * 100)}%</span>` : '';
+                return `
                 <section class="meaning-pos-section pos-collapsible${open ? ' is-open' : ''}"
                          data-pos="${pos}" style="${accent}">
                     <button type="button" class="pos-section-head"
-                            onclick="event.stopPropagation(); toggleBackPosSection('${pos}')">
+                            onclick="event.stopPropagation(); toggleBackPosSection('${key.replace(/\u0000/g, '~~')}')">
                         <span class="pos-section-label">${escapeCardText(pos)}</span>
-                        <span class="pos-section-summary">${escapeCardText(summary)}</span>
-                        <span class="pos-section-chevron">${open ? '▾' : '▸'}</span>
+                        ${hw}
+                        <span class="pos-section-summary">${escapeCardText(g.senses[0] || '')}</span>
+                        ${extra}${pct}
+                        <span class="pos-section-chevron">${open ? '\u25BE' : '\u25B8'}</span>
                     </button>
                     <div class="meaning-pos-rows">${rows.join('')}</div>
                 </section>`;
-                }).join('');
-        };
+            }).join('');
 
         // Render-side grouping: collapse rows that share either
         // translation OR context into a single "group card" — shared
@@ -4128,7 +4140,8 @@ function updateCard({ announceHeadword = false } = {}) {
             // those entries leave via the phrase handoff instead.
             const target = rowsForSection(
                 (isMWE || isClitic) && !card.isChainChild ? traySections : scrollSections,
-                sectionPos
+                (isMWE || isClitic) ? sectionPos
+                    : sectionPos + '\u0000' + (m.headword || '')
             );
 
             // Emit the group label before the first row of each headword. Kept
@@ -4462,7 +4475,7 @@ function updateCard({ announceHeadword = false } = {}) {
         // Emit the scroll region first, then the pinned tray underneath
         // (MWE/CLITIC rows that stay visible when the user scrolls).
         if (scrollSections.size > 0) {
-            backHTML += `<div class="meanings-scroll">${renderSections(scrollSections, hasBackPosTabs)}</div>`;
+            backHTML += `<div class="meanings-scroll">${renderSections(scrollSections)}</div>`;
         }
         // Phrases mode off restores the pinned tray; on, MWE/CLITIC entries
         // leave silently as chain children (no on-card announcement).
@@ -6238,7 +6251,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260815c';
+const ASSET_VERSION = '20260815d';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

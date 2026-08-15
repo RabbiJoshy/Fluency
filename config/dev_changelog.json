@@ -3,13 +3,15 @@
   "entries": [
     {
       "date": "2026-08-15",
-      "commit": "2132a1e9",
-      "summary": "Card back groups by part of speech, and the deck is now 9,338 words",
+      "commit": "de5d4127",
+      "summary": "Card back opens as pills — part of speech, word, main meaning, share",
       "details": [
-        "A card with more than one part of speech opens as a summary — one line per POS listing its main meanings — and each opens for the full senses with contexts",
-        "Cards with a single part of speech are unchanged; that is 81% of them, and a header there would be chrome around a two-line list",
-        "Headwords appear only where they disambiguate: nothing when the headword is the word itself, once in the header otherwise, per-group on cards holding several",
-        "Speech deck rebuilt from 2000s-era subtitles instead of the pre-1960 films the old scan was limited to"
+        "One pill per part of speech and headword, showing its main meaning, how many more sit behind it, and its share; tap to open the full senses with their contexts",
+        "fue now separates into ir and ser, which grouping by part of speech alone could not do",
+        "The headword shows only when it differs from the word on the card, so casa says nothing and una shows unir",
+        "A pill with no observed examples shows no percentage rather than 0%, because that is no evidence yet, not a measurement",
+        "Cards no longer claim a single lemma when they hold several — una was displaying unir whichever sense you looked at, on 1,342 cards",
+        "Speech deck rebuilt to 9,338 words from 2000s subtitles instead of the pre-1960 films the old scan reached"
       ]
     },
     {

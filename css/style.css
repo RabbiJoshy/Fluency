@@ -2548,6 +2548,34 @@
             font-size: 13px;
             font-weight: 600;
         }
+        /* The headword, when it differs from the word on the card. Carried on
+           the pill rather than as a row tag or a nested level: only 201 POS
+           groups in the deck hold more than one headword, so the pair is one
+           level, not two. */
+        .pos-collapsible .pos-pill-lemma {
+            flex-shrink: 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-style: italic;
+        }
+        /* How many further meanings sit behind this pill. Makes the expand
+           affordance honest — one meaning shown is not the whole story. */
+        .pos-collapsible .pos-pill-more {
+            flex-shrink: 0;
+            color: var(--text-muted);
+            font-size: 10px;
+            font-family: var(--font-mono, monospace);
+        }
+        /* Absent, not zero, when nothing was observed. A pill reading 0% looks
+           like a measurement; blank reads as no evidence yet, which is true. */
+        .pos-collapsible .pos-pill-pct {
+            flex-shrink: 0;
+            color: rgb(var(--sense-match-rgb));
+            font-size: 10px;
+            font-weight: 700;
+            font-family: var(--font-mono, monospace);
+        }
+
         .pos-collapsible .pos-section-chevron {
             flex-shrink: 0;
             color: var(--text-muted);
