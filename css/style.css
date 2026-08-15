@@ -11976,6 +11976,39 @@
             color: var(--accent-secondary);
         }
 
+        /* Whether the card is done. Same pill geometry as .fw-status so the two
+           line up, but filled rather than outlined — this is the thing being
+           looked up, not a footnote about it. */
+        .find-word-result .fw-done {
+            flex-shrink: 0;
+            padding: 3px 7px;
+            border-radius: 999px;
+            font-family: var(--font-emphasis);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+        .find-word-result .fw-done--unseen {
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+        .find-word-result .fw-done--known {
+            color: var(--success);
+            background: color-mix(in srgb, var(--success) 14%, transparent);
+            border: 1px solid color-mix(in srgb, var(--success) 38%, transparent);
+        }
+        .find-word-result .fw-done--due {
+            color: var(--warning);
+            background: color-mix(in srgb, var(--warning) 14%, transparent);
+            border: 1px solid color-mix(in srgb, var(--warning) 38%, transparent);
+        }
+        .find-word-result .fw-done--review {
+            color: var(--error);
+            background: color-mix(in srgb, var(--error) 14%, transparent);
+            border: 1px solid color-mix(in srgb, var(--error) 38%, transparent);
+        }
+
 /* Data freshness in the JST-only App data tab (see trackDataFreshness in
    vocab.js). Diagnostic for service-worker staleness. */
 .data-freshness-footer {

@@ -1,18 +1,18 @@
-import './state.js?v=20260812f';
-import './offline-db.js?v=20260812f';
-import './sync-queue.js?v=20260812f';
-import { initOfflineContent } from './offline-content.js?v=20260812f';
-import './speech.js?v=20260812f';
-import './artist-ui.js?v=20260812f';
-import './auth.js?v=20260812f';
-import './about-example.js?v=20260812f';
-import './estimation.js?v=20260812f';
-import './config.js?v=20260812f';
-import './progress.js?v=20260812f';
-import './knowledge.js?v=20260812f';
-import './ui.js?v=20260812f';
-import './vocab.js?v=20260812f';
-import './flashcards.js?v=20260812f';
+import './state.js?v=20260815a';
+import './offline-db.js?v=20260815a';
+import './sync-queue.js?v=20260815a';
+import { initOfflineContent } from './offline-content.js?v=20260815a';
+import './speech.js?v=20260815a';
+import './artist-ui.js?v=20260815a';
+import './auth.js?v=20260815a';
+import './about-example.js?v=20260815a';
+import './estimation.js?v=20260815a';
+import './config.js?v=20260815a';
+import './progress.js?v=20260815a';
+import './knowledge.js?v=20260815a';
+import './ui.js?v=20260815a';
+import './vocab.js?v=20260815a';
+import './flashcards.js?v=20260815a';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -21,7 +21,7 @@ import './flashcards.js?v=20260812f';
 const _initialParams = new URLSearchParams(window.location.search);
 const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260812f').catch(error => {
+    ? import('./spotify.js?v=20260815a').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -293,7 +293,7 @@ loadConfig().then(async () => {
         try {
             selectedLanguage = 'spanish';
             applyLanguageColorTheme();
-            const speechVnext = await import('./speech-vnext.js?v=20260812f');
+            const speechVnext = await import('./speech-vnext.js?v=20260815a');
             await speechVnext.startSpeechVnext();
         } catch (error) {
             console.error('Speech vNext preview failed to load:', error);
@@ -811,9 +811,17 @@ async function buildFindWordIndex() {
             && (!activeArtist || Number(meaning.frequency || 0) > 0));
         const firstMeaning = matchedMeanings.find(m =>
             m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
+        // Headwords, not lemma: a surface-keyed card can group several
+        // (casa -> casa + casar), and the single `lemma` field is the old
+        // one-lemma-per-card model.
+        const headwords = [...new Set(
+            meanings.map(meaning => meaning && meaning.headword).filter(Boolean)
+        )];
         return {
             targetWord: item.word || item.targetWord || '',
             lemma: item.lemma || '',
+            headwords,
+            fullId: window.getWordId(item),
             rank: item.rank,
             displayRank: byRank.get(item.rank) || null,
             id: item.id || window.getWordId(item),
@@ -841,10 +849,13 @@ function renderFindResults(query) {
     const matches = [];
     for (const entry of _findWordIndex) {
         const w = normalizeForSearch(entry.targetWord);
-        const l = normalizeForSearch(entry.lemma);
-        const exact = w === q || l === q;
-        const starts = w.startsWith(q) || l.startsWith(q);
-        const contains = w.includes(q) || l.includes(q);
+        // Searching a headword should still find the card that carries it —
+        // `casar` lands on the `casa` card, because that is where the meaning
+        // now lives.
+        const heads = (entry.headwords || []).map(normalizeForSearch);
+        const exact = w === q || heads.includes(q);
+        const starts = w.startsWith(q) || heads.some(h => h.startsWith(q));
+        const contains = w.includes(q) || heads.some(h => h.includes(q));
         if (exact || starts || contains) {
             matches.push({ entry, score: exact ? 0 : (starts ? 1 : 2) });
         }
@@ -861,8 +872,34 @@ function renderFindResults(query) {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'find-word-result';
-        const lemmaHTML = (entry.lemma && entry.lemma !== entry.targetWord)
-            ? `<span class="fw-lemma">${entry.lemma}</span>` : '';
+        // Headwords only when the card groups more than one, or when the single
+        // headword differs from the surface. One headword equal to the surface
+        // is the common case and says nothing worth a chip.
+        const heads = (entry.headwords || []).filter(Boolean);
+        const showHeads = heads.length > 1
+            || (heads.length === 1 && heads[0] !== entry.targetWord);
+        const lemmaHTML = showHeads
+            ? `<span class="fw-lemma">${heads.join(' · ')}</span>` : '';
+
+        // Whether this card is done. Without it there is no way to check a card
+        // from search — the whole reason for looking one up. Falls back to the
+        // other mode's record, so a word studied only in lyrics reads as known
+        // in speech, which is exactly what surface identity restored.
+        const progress = progressData?.[entry.fullId]
+            || (window.getCrossModeId?.(entry.fullId)
+                ? progressData?.[window.getCrossModeId(entry.fullId)]
+                : null);
+        const state = window.getProgressState?.(progress) || { status: 'unseen' };
+        let doneHTML = '<span class="fw-done fw-done--unseen">Not seen</span>';
+        if (state.status === 'learned') {
+            doneHTML = `<span class="fw-done fw-done--known">Known${
+                state.lastCorrect ? ` · ${new Date(state.lastCorrect).toLocaleDateString()}` : ''}</span>`;
+        } else if (state.status === 'review') {
+            doneHTML = state.reviewReason === 'due'
+                ? '<span class="fw-done fw-done--due">Due</span>'
+                : '<span class="fw-done fw-done--review">Review</span>';
+        }
+
         const statusHTML = entry.exclusionReason
             ? `<span class="fw-status fw-status--excluded">Excluded · ${entry.exclusionReason}</span>`
             : (entry.examplesOnly
@@ -872,6 +909,7 @@ function renderFindResults(query) {
             <span class="fw-word">${entry.targetWord}</span>
             ${lemmaHTML}
             <span class="fw-meaning">${(entry.firstMeaning || '').replace(/</g, '&lt;')}</span>
+            ${doneHTML}
             ${statusHTML}`;
         btn.addEventListener('click', () => jumpToFoundWord(entry));
         resultsEl.appendChild(btn);

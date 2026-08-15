@@ -2,6 +2,17 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-15",
+      "commit": "0bacaf6a",
+      "summary": "Search now matches how cards actually work, and says whether you've done them",
+      "details": [
+        "Every result shows Known, Due, Review or Not seen, so a word can be checked from search instead of only by finding it in a deck",
+        "Status falls back to the other mode, so a word studied only in lyrics now reads as Known in speech — which the shared surface IDs made possible",
+        "The lemma chip is gone; a card that groups several headwords lists them (casa · casar), and a card whose single headword is its own surface shows nothing",
+        "Searching a headword finds the card carrying it — casar lands on the casa card, because that is where the meaning lives now"
+      ]
+    },
+    {
       "date": "2026-08-12",
       "commit": "4f2e22ef",
       "summary": "Mixed lyric forms now use evidence-level rules, not global guesses",
