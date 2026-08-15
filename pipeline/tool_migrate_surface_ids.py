@@ -220,6 +220,11 @@ def main():
         for row, card in members:
             headword = card.get("lemma") or card["word"]
             lemma_rows.append({
+                # `user` is not optional: bulkSave drops any row without one,
+                # silently and before it looks at the type. These rows are built
+                # from scratch rather than copied, so it has to be carried over
+                # explicitly.
+                "user": row.get("user"),
                 "itemId": lemma_item_id(new_full, headword),
                 "itemType": "lemma",
                 "mode": row.get("mode", "normal"),

@@ -16,6 +16,7 @@ import argparse
 import json
 import os
 import sys
+import time
 import urllib.request
 import urllib.error
 from datetime import datetime
@@ -128,8 +129,28 @@ def load_local(sheet_name):
         return json.load(f)
 
 
-def dump_remote(script_url, sheet_name):
-    body = post_json(script_url, {'action': 'dump', 'sheet': sheet_name})
+def dump_remote(script_url, sheet_name, attempts=5):
+    """Fetch the sheet, retrying the transient doGet fallthrough.
+
+    Apps Script answers a POST by redirecting to a googleusercontent URL that
+    serves the result. Intermittently — cold starts, and more often on the large
+    dump response — that redirect lands on doGet instead, which replies
+    "Flashcard API is running" with no data. It is not an error worth aborting a
+    migration for; the same call succeeds on the next try.
+    """
+    body = None
+    for attempt in range(1, attempts + 1):
+        body = post_json(script_url, {'action': 'dump', 'sheet': sheet_name},
+                         timeout=180)
+        if body.get('success') and body.get('data'):
+            break
+        message = str(body.get('message', ''))
+        if 'API is running' not in message:
+            break
+        wait = 3 * attempt
+        print(f"  transient backend fallthrough ({message}) — "
+              f"retry {attempt}/{attempts} in {wait}s", flush=True)
+        time.sleep(wait)
     if not body.get('success'):
         print(f"API error: {body.get('message')}")
         sys.exit(1)
