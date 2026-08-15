@@ -1,5 +1,5 @@
 {
-  "6d7805": {
+  "d46d8d74": {
     "base_verb": "pensar",
     "lemma": "pensar",
     "corpus_count": 1,
@@ -26,10 +26,10 @@
         "end_timestamp_ms": 31460
       }
     ],
-    "id": "6d7805",
-    "base_id": "196911"
+    "id": "d46d8d74",
+    "base_id": "7fc19d79"
   },
-  "e3cf92": {
+  "f9dc9557": {
     "base_verb": "detener",
     "lemma": "detener",
     "corpus_count": 1,
@@ -56,10 +56,10 @@
         "end_timestamp_ms": 62490
       }
     ],
-    "id": "e3cf92",
-    "base_id": "48aa0e"
+    "id": "f9dc9557",
+    "base_id": "876ec465"
   },
-  "c63169": {
+  "6d2a5590": {
     "base_verb": "valer",
     "lemma": "válgame",
     "corpus_count": 1,
@@ -94,10 +94,10 @@
         "end_timestamp_ms": 235000
       }
     ],
-    "id": "c63169",
-    "base_id": "bdf21f"
+    "id": "6d2a5590",
+    "base_id": "b885d5ff"
   },
-  "9d0681": {
+  "01061a9a": {
     "base_verb": "haber",
     "lemma": "haberle",
     "corpus_count": 1,
@@ -129,10 +129,10 @@
         "end_timestamp_ms": 48230
       }
     ],
-    "id": "9d0681",
-    "base_id": "7ec30d"
+    "id": "01061a9a",
+    "base_id": "0d742d05"
   },
-  "5d4e03": {
+  "b8e5493a": {
     "base_verb": "bajar",
     "lemma": "bájame",
     "corpus_count": 1,
@@ -164,10 +164,10 @@
         "end_timestamp_ms": 117310
       }
     ],
-    "id": "5d4e03",
-    "base_id": "5efe67"
+    "id": "b8e5493a",
+    "base_id": "7ce55610"
   },
-  "977eb6": {
+  "2f6628d4": {
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
@@ -199,10 +199,10 @@
         "end_timestamp_ms": 103170
       }
     ],
-    "id": "977eb6",
-    "base_id": "bd48e8"
+    "id": "2f6628d4",
+    "base_id": "bcf5e3b4"
   },
-  "780570": {
+  "f9b83fc6": {
     "base_verb": "amar",
     "lemma": "amarle",
     "corpus_count": 1,
@@ -227,10 +227,10 @@
         "is_variant": false
       }
     ],
-    "id": "780570",
-    "base_id": "eb56ef"
+    "id": "f9b83fc6",
+    "base_id": "e20afd7c"
   },
-  "0eb62e": {
+  "c40f4df4": {
     "base_verb": "besar",
     "lemma": "besar",
     "corpus_count": 1,
@@ -259,10 +259,10 @@
         "is_variant": false
       }
     ],
-    "id": "0eb62e",
-    "base_id": "16a666"
+    "id": "c40f4df4",
+    "base_id": "dd122f41"
   },
-  "967db0": {
+  "63d611d6": {
     "base_verb": "mirar",
     "lemma": "mirar",
     "corpus_count": 3,
@@ -317,10 +317,10 @@
         "end_timestamp_ms": 118860
       }
     ],
-    "id": "967db0",
-    "base_id": "d9ba72"
+    "id": "63d611d6",
+    "base_id": "7046e318"
   },
-  "efe4e3": {
+  "a9570be5": {
     "base_verb": "colgar",
     "lemma": "colgarlo",
     "corpus_count": 1,
@@ -347,10 +347,10 @@
         "end_timestamp_ms": 113040
       }
     ],
-    "id": "efe4e3",
-    "base_id": "a76f44"
+    "id": "a9570be5",
+    "base_id": "75cfe406"
   },
-  "0d4ce0": {
+  "6e7d8e5f": {
     "base_verb": "medirse",
     "lemma": "medirse",
     "corpus_count": 2,
@@ -382,10 +382,10 @@
         "end_timestamp_ms": 157440
       }
     ],
-    "id": "0d4ce0",
-    "base_id": "0d4ce0"
+    "id": "6e7d8e5f",
+    "base_id": "6e7d8e5f"
   },
-  "ffeb2f": {
+  "2c946132": {
     "base_verb": "vestirse",
     "lemma": "vestirme",
     "corpus_count": 1,
@@ -418,9 +418,9 @@
         "end_timestamp_ms": 154820
       }
     ],
-    "id": "ffeb2f"
+    "id": "2c946132"
   },
-  "85aada": {
+  "7f1f6607": {
     "base_verb": "cantar",
     "lemma": "cantándote",
     "corpus_count": 1,
@@ -447,10 +447,10 @@
         "end_timestamp_ms": 204160
       }
     ],
-    "id": "85aada",
-    "base_id": "30f1ae"
+    "id": "7f1f6607",
+    "base_id": "d28c8067"
   },
-  "8f3d39": {
+  "99431c80": {
     "base_verb": "divertirse",
     "lemma": "divertirme",
     "corpus_count": 1,
@@ -477,10 +477,10 @@
         "end_timestamp_ms": 84310
       }
     ],
-    "id": "8f3d39",
-    "base_id": "b8e435"
+    "id": "99431c80",
+    "base_id": "2322dc68"
   },
-  "ce29b6": {
+  "31aa5cce": {
     "base_verb": "amar",
     "lemma": "amándote",
     "corpus_count": 1,
@@ -507,10 +507,10 @@
         "end_timestamp_ms": 87060
       }
     ],
-    "id": "ce29b6",
-    "base_id": "eb56ef"
+    "id": "31aa5cce",
+    "base_id": "e20afd7c"
   },
-  "8589b2": {
+  "dc8676ea": {
     "base_verb": "dedicar",
     "lemma": "dedicar",
     "corpus_count": 1,
@@ -542,10 +542,10 @@
         "end_timestamp_ms": 24800
       }
     ],
-    "id": "8589b2",
-    "base_id": "3c1b8d"
+    "id": "dc8676ea",
+    "base_id": "cf58a5bc"
   },
-  "b0d365": {
+  "4d070ef7": {
     "base_verb": "prenderse",
     "lemma": "prendaste",
     "corpus_count": 1,
@@ -567,10 +567,9 @@
         "end_timestamp_ms": 94090
       }
     ],
-    "id": "b0d365",
-    "base_id": "49b251"
+    "id": "4d070ef7"
   },
-  "78b583": {
+  "1ead66f2": {
     "base_verb": "hacer",
     "lemma": "hacerlo",
     "corpus_count": 6,
@@ -654,10 +653,10 @@
         "is_variant": false
       }
     ],
-    "id": "78b583",
-    "base_id": "7a798b"
+    "id": "1ead66f2",
+    "base_id": "22a2d1c1"
   },
-  "1a104b": {
+  "c390e496": {
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
@@ -688,10 +687,10 @@
         "end_timestamp_ms": 69540
       }
     ],
-    "id": "1a104b",
-    "base_id": "bd48e8"
+    "id": "c390e496",
+    "base_id": "bcf5e3b4"
   },
-  "074c9b": {
+  "ff5ab363": {
     "base_verb": "pedir",
     "lemma": "pedirte",
     "corpus_count": 1,
@@ -718,10 +717,10 @@
         "end_timestamp_ms": 6240
       }
     ],
-    "id": "074c9b",
-    "base_id": "fa9385"
+    "id": "ff5ab363",
+    "base_id": "9b781260"
   },
-  "00279e": {
+  "9a6180f3": {
     "base_verb": "despertarse",
     "lemma": "despiértate",
     "corpus_count": 1,
@@ -748,10 +747,9 @@
         "end_timestamp_ms": 106250
       }
     ],
-    "id": "00279e",
-    "base_id": "068240"
+    "id": "9a6180f3"
   },
-  "bb5e9f": {
+  "0377e296": {
     "base_verb": "quedarse",
     "lemma": "quedar",
     "corpus_count": 2,
@@ -780,10 +778,10 @@
         "is_variant": false
       }
     ],
-    "id": "bb5e9f",
-    "base_id": "bb5e9f"
+    "id": "0377e296",
+    "base_id": "0377e296"
   },
-  "4eb945": {
+  "379f3ab9": {
     "base_verb": "amarrarse",
     "lemma": "amarrar",
     "corpus_count": 2,
@@ -810,10 +808,10 @@
         "end_timestamp_ms": 33080
       }
     ],
-    "id": "4eb945",
-    "base_id": "4eb945"
+    "id": "379f3ab9",
+    "base_id": "379f3ab9"
   },
-  "40a47d": {
+  "6695d5b7": {
     "base_verb": "levantar",
     "lemma": "levantarte",
     "corpus_count": 1,
@@ -840,10 +838,10 @@
         "end_timestamp_ms": 29010
       }
     ],
-    "id": "40a47d",
-    "base_id": "c4cf70"
+    "id": "6695d5b7",
+    "base_id": "0c83a6cf"
   },
-  "7fe1ac": {
+  "e6082513": {
     "base_verb": "decir",
     "lemma": "di",
     "corpus_count": 2,
@@ -881,10 +879,10 @@
         "end_timestamp_ms": 131240
       }
     ],
-    "id": "7fe1ac",
-    "base_id": "2159c9"
+    "id": "e6082513",
+    "base_id": "c0a77f7e"
   },
-  "e7f0b4": {
+  "3d6d2564": {
     "base_verb": "chingar",
     "lemma": "chingar",
     "corpus_count": 2,
@@ -932,10 +930,10 @@
         "end_timestamp_ms": 74260
       }
     ],
-    "id": "e7f0b4",
-    "base_id": "209610"
+    "id": "3d6d2564",
+    "base_id": "0a5a60d8"
   },
-  "839e9b": {
+  "3eac902b": {
     "base_verb": "traer",
     "lemma": "tráeme",
     "corpus_count": 1,
@@ -966,10 +964,10 @@
         "end_timestamp_ms": 35980
       }
     ],
-    "id": "839e9b",
-    "base_id": "37411b"
+    "id": "3eac902b",
+    "base_id": "a2b022e5"
   },
-  "396530": {
+  "bb098df1": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 1,
@@ -996,10 +994,10 @@
         "end_timestamp_ms": 176510
       }
     ],
-    "id": "396530",
-    "base_id": "695915"
+    "id": "bb098df1",
+    "base_id": "1e9e9b53"
   },
-  "c976a8": {
+  "9b3219cf": {
     "base_verb": "dejar",
     "lemma": "déjalo",
     "corpus_count": 1,
@@ -1026,10 +1024,10 @@
         "end_timestamp_ms": 99430
       }
     ],
-    "id": "c976a8",
-    "base_id": "023f8c"
+    "id": "9b3219cf",
+    "base_id": "9a098f76"
   },
-  "eaa79e": {
+  "ad8bd686": {
     "base_verb": "curar",
     "lemma": "curarnos",
     "corpus_count": 1,
@@ -1053,10 +1051,10 @@
         "end_timestamp_ms": 69420
       }
     ],
-    "id": "eaa79e",
-    "base_id": "402649"
+    "id": "ad8bd686",
+    "base_id": "ac812646"
   },
-  "e1bec8": {
+  "6bb673f4": {
     "base_verb": "comerse",
     "lemma": "comer",
     "corpus_count": 1,
@@ -1087,10 +1085,10 @@
         "end_timestamp_ms": 74610
       }
     ],
-    "id": "e1bec8",
-    "base_id": "45bce2"
+    "id": "6bb673f4",
+    "base_id": "1e8ac2cd"
   },
-  "507fdf": {
+  "71cb504d": {
     "base_verb": "pensar",
     "lemma": "piénsalo",
     "corpus_count": 1,
@@ -1129,10 +1127,10 @@
         "end_timestamp_ms": 112130
       }
     ],
-    "id": "507fdf",
-    "base_id": "196911"
+    "id": "71cb504d",
+    "base_id": "7fc19d79"
   },
-  "820dab": {
+  "5b903ed3": {
     "base_verb": "hacer",
     "lemma": "hacer",
     "corpus_count": 5,
@@ -1221,10 +1219,10 @@
         "end_timestamp_ms": 92450
       }
     ],
-    "id": "820dab",
-    "base_id": "7a798b"
+    "id": "5b903ed3",
+    "base_id": "22a2d1c1"
   },
-  "68f966": {
+  "38a541ee": {
     "base_verb": "ver",
     "lemma": "verle",
     "corpus_count": 1,
@@ -1255,10 +1253,10 @@
         "end_timestamp_ms": 196310
       }
     ],
-    "id": "68f966",
-    "base_id": "cd9482"
+    "id": "38a541ee",
+    "base_id": "03a9bad5"
   },
-  "60e236": {
+  "46631b1e": {
     "base_verb": "tatuar",
     "lemma": "tatuar",
     "corpus_count": 1,
@@ -1285,10 +1283,10 @@
         "end_timestamp_ms": 44890
       }
     ],
-    "id": "60e236",
-    "base_id": "88bd7a"
+    "id": "46631b1e",
+    "base_id": "c0de5a78"
   },
-  "0bd8c0": {
+  "ead48a00": {
     "base_verb": "castigar",
     "lemma": "castigarme",
     "corpus_count": 1,
@@ -1315,10 +1313,10 @@
         "end_timestamp_ms": 42570
       }
     ],
-    "id": "0bd8c0",
-    "base_id": "98aad0"
+    "id": "ead48a00",
+    "base_id": "62c66bbf"
   },
-  "264345": {
+  "1902f852": {
     "base_verb": "relajarse",
     "lemma": "relajar",
     "corpus_count": 1,
@@ -1349,10 +1347,9 @@
         "end_timestamp_ms": 113980
       }
     ],
-    "id": "264345",
-    "base_id": "a90105"
+    "id": "1902f852"
   },
-  "1d5283": {
+  "6abcf5f8": {
     "base_verb": "acostar",
     "lemma": "acostar",
     "corpus_count": 1,
@@ -1385,10 +1382,10 @@
         "end_timestamp_ms": 78860
       }
     ],
-    "id": "1d5283",
-    "base_id": "09308e"
+    "id": "6abcf5f8",
+    "base_id": "4975e43d"
   },
-  "a5ff5f": {
+  "198628a1": {
     "base_verb": "doler",
     "lemma": "dolerme",
     "corpus_count": 1,
@@ -1415,10 +1412,10 @@
         "end_timestamp_ms": 57140
       }
     ],
-    "id": "a5ff5f",
-    "base_id": "9a9a15"
+    "id": "198628a1",
+    "base_id": "afe35caa"
   },
-  "9a7ae2": {
+  "e0850b0f": {
     "base_verb": "querer",
     "lemma": "quererte",
     "corpus_count": 2,
@@ -1460,10 +1457,10 @@
         "end_timestamp_ms": 53770
       }
     ],
-    "id": "9a7ae2",
-    "base_id": "86094c"
+    "id": "e0850b0f",
+    "base_id": "ae515695"
   },
-  "2733c9": {
+  "f9a9edc6": {
     "base_verb": "aliviar",
     "lemma": "aliviarnos",
     "corpus_count": 1,
@@ -1495,10 +1492,10 @@
         "end_timestamp_ms": 69420
       }
     ],
-    "id": "2733c9",
-    "base_id": "e1f2d6"
+    "id": "f9a9edc6",
+    "base_id": "b8ac0109"
   },
-  "a93350": {
+  "5322926a": {
     "base_verb": "juzgar",
     "lemma": "juzgarme",
     "corpus_count": 1,
@@ -1525,10 +1522,10 @@
         "end_timestamp_ms": 17750
       }
     ],
-    "id": "a93350",
-    "base_id": "c07630"
+    "id": "5322926a",
+    "base_id": "01882a82"
   },
-  "60033f": {
+  "ab7ced40": {
     "base_verb": "secarse",
     "lemma": "secarte",
     "corpus_count": 1,
@@ -1559,10 +1556,10 @@
         "end_timestamp_ms": 74610
       }
     ],
-    "id": "60033f",
-    "base_id": "1dc70f"
+    "id": "ab7ced40",
+    "base_id": "256222bb"
   },
-  "c27a24": {
+  "7c4bf164": {
     "base_verb": "echar",
     "lemma": "échale",
     "corpus_count": 1,
@@ -1589,10 +1586,10 @@
         "end_timestamp_ms": 5950
       }
     ],
-    "id": "c27a24",
-    "base_id": "121655"
+    "id": "7c4bf164",
+    "base_id": "a2e165bc"
   },
-  "201760": {
+  "67c7388e": {
     "base_verb": "encontrarse",
     "lemma": "encontrarte",
     "corpus_count": 1,
@@ -1623,10 +1620,10 @@
         "end_timestamp_ms": 31590
       }
     ],
-    "id": "201760",
-    "base_id": "0ffe00"
+    "id": "67c7388e",
+    "base_id": "51725e16"
   },
-  "ce63c0": {
+  "eece6926": {
     "base_verb": "esperar",
     "lemma": "espérame",
     "corpus_count": 2,
@@ -1670,10 +1667,10 @@
         "end_timestamp_ms": 81390
       }
     ],
-    "id": "ce63c0",
-    "base_id": "b7fae3"
+    "id": "eece6926",
+    "base_id": "68cd17e5"
   },
-  "362c65": {
+  "010ede60": {
     "base_verb": "mandar",
     "lemma": "mandar",
     "corpus_count": 2,
@@ -1700,10 +1697,10 @@
         "end_timestamp_ms": 170380
       }
     ],
-    "id": "362c65",
-    "base_id": "9945a2"
+    "id": "010ede60",
+    "base_id": "0bd8fed4"
   },
-  "47074c": {
+  "12fa997b": {
     "base_verb": "crucificar",
     "lemma": "crucificar",
     "corpus_count": 1,
@@ -1728,10 +1725,10 @@
         "is_variant": false
       }
     ],
-    "id": "47074c",
-    "base_id": "01fea8"
+    "id": "12fa997b",
+    "base_id": "94a9ea48"
   },
-  "abd7c9": {
+  "069e2e81": {
     "base_verb": "perdonar",
     "lemma": "perdóname",
     "corpus_count": 4,
@@ -1756,10 +1753,10 @@
         "is_variant": false
       }
     ],
-    "id": "abd7c9",
-    "base_id": "7da956"
+    "id": "069e2e81",
+    "base_id": "3455d41a"
   },
-  "f1f2d0": {
+  "2a6c4eae": {
     "base_verb": "avisar",
     "lemma": "avisarte",
     "corpus_count": 1,
@@ -1790,10 +1787,10 @@
         "end_timestamp_ms": 48820
       }
     ],
-    "id": "f1f2d0",
-    "base_id": "8a5ab2"
+    "id": "2a6c4eae",
+    "base_id": "3ef92407"
   },
-  "79f7e3": {
+  "176de5f9": {
     "base_verb": "mirarse",
     "lemma": "mírate",
     "corpus_count": 1,
@@ -1820,10 +1817,10 @@
         "end_timestamp_ms": 6340
       }
     ],
-    "id": "79f7e3",
-    "base_id": "700c8a"
+    "id": "176de5f9",
+    "base_id": "06b51e67"
   },
-  "f5e3fb": {
+  "1e1f8338": {
     "base_verb": "cansar",
     "lemma": "cansarme",
     "corpus_count": 1,
@@ -1854,10 +1851,10 @@
         "is_variant": false
       }
     ],
-    "id": "f5e3fb",
-    "base_id": "de2350"
+    "id": "1e1f8338",
+    "base_id": "1133772b"
   },
-  "c0a2a2": {
+  "53e59e19": {
     "base_verb": "mirar",
     "lemma": "míralas",
     "corpus_count": 1,
@@ -1892,10 +1889,10 @@
         "end_timestamp_ms": 83640
       }
     ],
-    "id": "c0a2a2",
-    "base_id": "d9ba72"
+    "id": "53e59e19",
+    "base_id": "7046e318"
   },
-  "092e1e": {
+  "e15bbb37": {
     "base_verb": "aniquilarse",
     "lemma": "aniquilar",
     "corpus_count": 2,
@@ -1922,10 +1919,10 @@
         "end_timestamp_ms": 36230
       }
     ],
-    "id": "092e1e",
-    "base_id": "092e1e"
+    "id": "e15bbb37",
+    "base_id": "e15bbb37"
   },
-  "59ebce": {
+  "9f07502b": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 2,
@@ -1973,10 +1970,10 @@
         "end_timestamp_ms": 87350
       }
     ],
-    "id": "59ebce",
-    "base_id": "695915"
+    "id": "9f07502b",
+    "base_id": "1e9e9b53"
   },
-  "ea3422": {
+  "735691a9": {
     "base_verb": "olvidarse",
     "lemma": "olvidar",
     "corpus_count": 4,
@@ -2064,10 +2061,9 @@
         "end_timestamp_ms": 19610
       }
     ],
-    "id": "ea3422",
-    "base_id": "f0a7bb"
+    "id": "735691a9"
   },
-  "d59656": {
+  "511d2d0c": {
     "base_verb": "cruzar",
     "lemma": "cruzarlo",
     "corpus_count": 1,
@@ -2094,10 +2090,10 @@
         "end_timestamp_ms": 67080
       }
     ],
-    "id": "d59656",
-    "base_id": "4740fa"
+    "id": "511d2d0c",
+    "base_id": "3af473e4"
   },
-  "043f0b": {
+  "c7b7d7fb": {
     "base_verb": "esperar",
     "lemma": "esperarme",
     "corpus_count": 1,
@@ -2130,10 +2126,10 @@
         "end_timestamp_ms": 72410
       }
     ],
-    "id": "043f0b",
-    "base_id": "b7fae3"
+    "id": "c7b7d7fb",
+    "base_id": "68cd17e5"
   },
-  "cd2dc3": {
+  "eacfe749": {
     "base_verb": "conocer",
     "lemma": "conocer",
     "corpus_count": 1,
@@ -2164,10 +2160,10 @@
         "end_timestamp_ms": 70190
       }
     ],
-    "id": "cd2dc3",
-    "base_id": "959ef1"
+    "id": "eacfe749",
+    "base_id": "730637a5"
   },
-  "75fa95": {
+  "eb89e1ec": {
     "base_verb": "poner",
     "lemma": "poniéndome",
     "corpus_count": 1,
@@ -2199,10 +2195,10 @@
         "end_timestamp_ms": 103170
       }
     ],
-    "id": "75fa95",
-    "base_id": "1fa2ba"
+    "id": "eb89e1ec",
+    "base_id": "9a41a2ce"
   },
-  "134a59": {
+  "8d5b50cf": {
     "base_verb": "llamar",
     "lemma": "llamarme",
     "corpus_count": 2,
@@ -2229,10 +2225,10 @@
         "end_timestamp_ms": 97750
       }
     ],
-    "id": "134a59",
-    "base_id": "cc6577"
+    "id": "8d5b50cf",
+    "base_id": "17a79bf3"
   },
-  "d79414": {
+  "a40623f5": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 2,
@@ -2270,10 +2266,10 @@
         "end_timestamp_ms": 81300
       }
     ],
-    "id": "d79414",
-    "base_id": "695915"
+    "id": "a40623f5",
+    "base_id": "1e9e9b53"
   },
-  "9143b5": {
+  "fda22d1e": {
     "base_verb": "equivocar",
     "lemma": "equivocarme",
     "corpus_count": 2,
@@ -2319,10 +2315,10 @@
         "is_variant": false
       }
     ],
-    "id": "9143b5",
-    "base_id": "09caca"
+    "id": "fda22d1e",
+    "base_id": "00a044d7"
   },
-  "4d05d2": {
+  "febe4ff7": {
     "base_verb": "hacer",
     "lemma": "hacer",
     "corpus_count": 1,
@@ -2349,10 +2345,10 @@
         "end_timestamp_ms": 50440
       }
     ],
-    "id": "4d05d2",
-    "base_id": "7a798b"
+    "id": "febe4ff7",
+    "base_id": "22a2d1c1"
   },
-  "0f2841": {
+  "cc5aea48": {
     "base_verb": "decir",
     "lemma": "decirlo",
     "corpus_count": 2,
@@ -2390,10 +2386,10 @@
         "end_timestamp_ms": 66260
       }
     ],
-    "id": "0f2841",
-    "base_id": "2159c9"
+    "id": "cc5aea48",
+    "base_id": "c0a77f7e"
   },
-  "854d87": {
+  "6e562ffb": {
     "base_verb": "regalar",
     "lemma": "regálame",
     "corpus_count": 1,
@@ -2424,10 +2420,10 @@
         "end_timestamp_ms": 126630
       }
     ],
-    "id": "854d87",
-    "base_id": "508c04"
+    "id": "6e562ffb",
+    "base_id": "5bf9d4b4"
   },
-  "ae06ca": {
+  "07e9f6ca": {
     "base_verb": "hablar",
     "lemma": "hablar",
     "corpus_count": 2,
@@ -2469,10 +2465,10 @@
         "end_timestamp_ms": 17910
       }
     ],
-    "id": "ae06ca",
-    "base_id": "04cb0b"
+    "id": "07e9f6ca",
+    "base_id": "061094be"
   },
-  "a49c83": {
+  "d59e0330": {
     "base_verb": "decir",
     "lemma": "dime",
     "corpus_count": 15,
@@ -2602,10 +2598,10 @@
         "is_variant": false
       }
     ],
-    "id": "a49c83",
-    "base_id": "2159c9"
+    "id": "d59e0330",
+    "base_id": "c0a77f7e"
   },
-  "a90d78": {
+  "d2aaf325": {
     "base_verb": "poder",
     "lemma": "poderle",
     "corpus_count": 1,
@@ -2632,10 +2628,10 @@
         "end_timestamp_ms": 58930
       }
     ],
-    "id": "a90d78",
-    "base_id": "d477e6"
+    "id": "d2aaf325",
+    "base_id": "13d9d062"
   },
-  "d84ed8": {
+  "e9dfb108": {
     "base_verb": "arrancar",
     "lemma": "arrancarlo",
     "corpus_count": 1,
@@ -2667,10 +2663,10 @@
         "end_timestamp_ms": 5070
       }
     ],
-    "id": "d84ed8",
-    "base_id": "4bf49f"
+    "id": "e9dfb108",
+    "base_id": "0485cea1"
   },
-  "7eacb5": {
+  "73ba87ba": {
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 1,
@@ -2701,10 +2697,10 @@
         "end_timestamp_ms": 55170
       }
     ],
-    "id": "7eacb5",
-    "base_id": "2159c9"
+    "id": "73ba87ba",
+    "base_id": "c0a77f7e"
   },
-  "94fd61": {
+  "760de32d": {
     "base_verb": "seguir",
     "lemma": "sígueme",
     "corpus_count": 1,
@@ -2736,10 +2732,10 @@
         "end_timestamp_ms": 61160
       }
     ],
-    "id": "94fd61",
-    "base_id": "99594c"
+    "id": "760de32d",
+    "base_id": "96082e12"
   },
-  "ad9c07": {
+  "fa7a551d": {
     "base_verb": "pegarse",
     "lemma": "pegar",
     "corpus_count": 2,
@@ -2766,10 +2762,9 @@
         "end_timestamp_ms": 109570
       }
     ],
-    "id": "ad9c07",
-    "base_id": "cb6b02"
+    "id": "fa7a551d"
   },
-  "4be1c4": {
+  "50b37d0e": {
     "base_verb": "quedarse",
     "lemma": "quédate",
     "corpus_count": 1,
@@ -2801,10 +2796,10 @@
         "end_timestamp_ms": 74260
       }
     ],
-    "id": "4be1c4",
-    "base_id": "bb5e9f"
+    "id": "50b37d0e",
+    "base_id": "0377e296"
   },
-  "8f4822": {
+  "26395004": {
     "base_verb": "preguntarse",
     "lemma": "pregúntate",
     "corpus_count": 1,
@@ -2835,10 +2830,9 @@
         "end_timestamp_ms": 140630
       }
     ],
-    "id": "8f4822",
-    "base_id": "beae2a"
+    "id": "26395004"
   },
-  "7eff61": {
+  "1891cc9c": {
     "base_verb": "desquitarse",
     "lemma": "desquitar",
     "corpus_count": 1,
@@ -2865,10 +2859,9 @@
         "end_timestamp_ms": 23830
       }
     ],
-    "id": "7eff61",
-    "base_id": "199e7c"
+    "id": "1891cc9c"
   },
-  "981749": {
+  "11b77ac5": {
     "base_verb": "invitar",
     "lemma": "invitarme",
     "corpus_count": 1,
@@ -2899,10 +2892,10 @@
         "is_variant": false
       }
     ],
-    "id": "981749",
-    "base_id": "5e588f"
+    "id": "11b77ac5",
+    "base_id": "19b60f2e"
   },
-  "a19896": {
+  "dc58cb17": {
     "base_verb": "intentar",
     "lemma": "inténtalo",
     "corpus_count": 2,
@@ -2927,10 +2920,10 @@
         "is_variant": false
       }
     ],
-    "id": "a19896",
-    "base_id": "301eae"
+    "id": "dc58cb17",
+    "base_id": "b6b6681e"
   },
-  "e1b8e0": {
+  "d3886ef3": {
     "base_verb": "cortar",
     "lemma": "córtala",
     "corpus_count": 2,
@@ -2957,10 +2950,10 @@
         "end_timestamp_ms": 120350
       }
     ],
-    "id": "e1b8e0",
-    "base_id": "e7dd88"
+    "id": "d3886ef3",
+    "base_id": "76c75e70"
   },
-  "0345d1": {
+  "95482146": {
     "base_verb": "tirar",
     "lemma": "tíralo",
     "corpus_count": 1,
@@ -2987,10 +2980,10 @@
         "end_timestamp_ms": 134070
       }
     ],
-    "id": "0345d1",
-    "base_id": "bd48e8"
+    "id": "95482146",
+    "base_id": "bcf5e3b4"
   },
-  "14ba09": {
+  "ddad11ff": {
     "base_verb": "quemar",
     "lemma": "quemarlos",
     "corpus_count": 1,
@@ -3009,10 +3002,10 @@
         "end_timestamp_ms": 14040
       }
     ],
-    "id": "14ba09",
-    "base_id": "975069"
+    "id": "ddad11ff",
+    "base_id": "34a384ba"
   },
-  "e364d5": {
+  "6bfdf8b3": {
     "base_verb": "vadear",
     "lemma": "vadear",
     "corpus_count": 1,
@@ -3039,10 +3032,10 @@
         "end_timestamp_ms": 98320
       }
     ],
-    "id": "e364d5",
-    "base_id": "3ba12a"
+    "id": "6bfdf8b3",
+    "base_id": "c82636ff"
   },
-  "3d37aa": {
+  "0bb382c5": {
     "base_verb": "poner",
     "lemma": "ponme",
     "corpus_count": 5,
@@ -3078,10 +3071,10 @@
         "end_timestamp_ms": 51770
       }
     ],
-    "id": "3d37aa",
-    "base_id": "1fa2ba"
+    "id": "0bb382c5",
+    "base_id": "9a41a2ce"
   },
-  "9c6e17": {
+  "763bfaa6": {
     "base_verb": "partir",
     "lemma": "partirme",
     "corpus_count": 1,
@@ -3113,10 +3106,10 @@
         "end_timestamp_ms": 162710
       }
     ],
-    "id": "9c6e17",
-    "base_id": "d5e20c"
+    "id": "763bfaa6",
+    "base_id": "5c5da907"
   },
-  "027726": {
+  "5da6f111": {
     "base_verb": "reír",
     "lemma": "reírme",
     "corpus_count": 2,
@@ -3160,10 +3153,10 @@
         "end_timestamp_ms": 171930
       }
     ],
-    "id": "027726",
-    "base_id": "009d2a"
+    "id": "5da6f111",
+    "base_id": "d94c267f"
   },
-  "8ff944": {
+  "6682b279": {
     "base_verb": "ir",
     "lemma": "ir",
     "corpus_count": 1,
@@ -3196,10 +3189,10 @@
         "end_timestamp_ms": 126650
       }
     ],
-    "id": "8ff944",
-    "base_id": "be037b"
+    "id": "6682b279",
+    "base_id": "741ca0c8"
   },
-  "045fde": {
+  "64fb5a2a": {
     "base_verb": "morirse",
     "lemma": "morir",
     "corpus_count": 5,
@@ -3243,10 +3236,10 @@
         "end_timestamp_ms": 119250
       }
     ],
-    "id": "045fde",
-    "base_id": "aed0ec"
+    "id": "64fb5a2a",
+    "base_id": "466528dd"
   },
-  "7b6113": {
+  "e6d7b935": {
     "base_verb": "querer",
     "lemma": "quererme",
     "corpus_count": 1,
@@ -3277,10 +3270,10 @@
         "end_timestamp_ms": 53770
       }
     ],
-    "id": "7b6113",
-    "base_id": "86094c"
+    "id": "e6d7b935",
+    "base_id": "ae515695"
   },
-  "7d0f0f": {
+  "c5afaa49": {
     "base_verb": "mantener",
     "lemma": "mantenerme",
     "corpus_count": 1,
@@ -3307,10 +3300,10 @@
         "end_timestamp_ms": 22510
       }
     ],
-    "id": "7d0f0f",
-    "base_id": "415f01"
+    "id": "c5afaa49",
+    "base_id": "65b24064"
   },
-  "214313": {
+  "44aaaab4": {
     "base_verb": "ver",
     "lemma": "verlas",
     "corpus_count": 1,
@@ -3337,10 +3330,10 @@
         "end_timestamp_ms": 77660
       }
     ],
-    "id": "214313",
-    "base_id": "cd9482"
+    "id": "44aaaab4",
+    "base_id": "03a9bad5"
   },
-  "a82ce3": {
+  "09a3c702": {
     "base_verb": "sentirse",
     "lemma": "siéntate",
     "corpus_count": 1,
@@ -3367,10 +3360,10 @@
         "end_timestamp_ms": 52480
       }
     ],
-    "id": "a82ce3",
-    "base_id": "a1944a"
+    "id": "09a3c702",
+    "base_id": "a68111bc"
   },
-  "4f0bed": {
+  "c4e767f7": {
     "base_verb": "despertar",
     "lemma": "despertarnos",
     "corpus_count": 1,
@@ -3395,10 +3388,10 @@
         "is_variant": false
       }
     ],
-    "id": "4f0bed",
-    "base_id": "3276e4"
+    "id": "c4e767f7",
+    "base_id": "5e156a15"
   },
-  "50dc2b": {
+  "e0f31575": {
     "base_verb": "transformar",
     "lemma": "transformar",
     "corpus_count": 1,
@@ -3429,10 +3422,10 @@
         "end_timestamp_ms": 121580
       }
     ],
-    "id": "50dc2b",
-    "base_id": "f90c4c"
+    "id": "e0f31575",
+    "base_id": "ff7137d1"
   },
-  "beae9d": {
+  "baff13fc": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 1,
@@ -3457,10 +3450,10 @@
         "is_variant": false
       }
     ],
-    "id": "beae9d",
-    "base_id": "695915"
+    "id": "baff13fc",
+    "base_id": "1e9e9b53"
   },
-  "67465b": {
+  "ff6b75fe": {
     "base_verb": "pensar",
     "lemma": "pensar",
     "corpus_count": 1,
@@ -3487,10 +3480,10 @@
         "end_timestamp_ms": 109460
       }
     ],
-    "id": "67465b",
-    "base_id": "196911"
+    "id": "ff6b75fe",
+    "base_id": "7fc19d79"
   },
-  "2bc1fa": {
+  "c851da72": {
     "base_verb": "acordar",
     "lemma": "acordarme",
     "corpus_count": 1,
@@ -3517,10 +3510,10 @@
         "end_timestamp_ms": 53180
       }
     ],
-    "id": "2bc1fa",
-    "base_id": "4cfa9a"
+    "id": "c851da72",
+    "base_id": "7d0b613d"
   },
-  "301427": {
+  "f2c78061": {
     "base_verb": "recordar",
     "lemma": "recordarlo",
     "corpus_count": 1,
@@ -3547,10 +3540,10 @@
         "end_timestamp_ms": 80860
       }
     ],
-    "id": "301427",
-    "base_id": "5fd027"
+    "id": "f2c78061",
+    "base_id": "1d21d45d"
   },
-  "1c4feb": {
+  "c78e4bf7": {
     "base_verb": "llevar",
     "lemma": "llévame",
     "corpus_count": 8,
@@ -3597,10 +3590,10 @@
         "is_variant": false
       }
     ],
-    "id": "1c4feb",
-    "base_id": "903283"
+    "id": "c78e4bf7",
+    "base_id": "c8fd5c9a"
   },
-  "5d5767": {
+  "d69d13e4": {
     "base_verb": "entregarse",
     "lemma": "entrégate",
     "corpus_count": 1,
@@ -3627,10 +3620,9 @@
         "end_timestamp_ms": 26510
       }
     ],
-    "id": "5d5767",
-    "base_id": "0fc318"
+    "id": "d69d13e4"
   },
-  "8a34ba": {
+  "1e27cf4c": {
     "base_verb": "perrear",
     "lemma": "perrear",
     "corpus_count": 4,
@@ -3663,10 +3655,10 @@
         "end_timestamp_ms": 57240
       }
     ],
-    "id": "8a34ba",
-    "base_id": "e5cddf"
+    "id": "1e27cf4c",
+    "base_id": "b0ecae32"
   },
-  "edd1b2": {
+  "cac0b119": {
     "base_verb": "poder",
     "lemma": "poderte",
     "corpus_count": 1,
@@ -3693,10 +3685,10 @@
         "end_timestamp_ms": 105270
       }
     ],
-    "id": "edd1b2",
-    "base_id": "d477e6"
+    "id": "cac0b119",
+    "base_id": "13d9d062"
   },
-  "1fb98f": {
+  "1b7ba045": {
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 2,
@@ -3721,10 +3713,10 @@
         "is_variant": true
       }
     ],
-    "id": "1fb98f",
-    "base_id": "023f8c"
+    "id": "1b7ba045",
+    "base_id": "9a098f76"
   },
-  "08c5da": {
+  "c59fdaa4": {
     "base_verb": "usar",
     "lemma": "usarlo",
     "corpus_count": 2,
@@ -3749,10 +3741,10 @@
         "is_variant": false
       }
     ],
-    "id": "08c5da",
-    "base_id": "fc967d"
+    "id": "c59fdaa4",
+    "base_id": "9857fccd"
   },
-  "cebeee": {
+  "03b9c6cf": {
     "base_verb": "desnudarse",
     "lemma": "desnudarse",
     "corpus_count": 2,
@@ -3779,10 +3771,10 @@
         "end_timestamp_ms": 223430
       }
     ],
-    "id": "cebeee",
-    "base_id": "cebeee"
+    "id": "03b9c6cf",
+    "base_id": "03b9c6cf"
   },
-  "c7ad89": {
+  "d93eb262": {
     "base_verb": "tratar",
     "lemma": "tratarme",
     "corpus_count": 1,
@@ -3811,10 +3803,10 @@
         "is_variant": false
       }
     ],
-    "id": "c7ad89",
-    "base_id": "7631b1"
+    "id": "d93eb262",
+    "base_id": "4ec98ce1"
   },
-  "203384": {
+  "b7bcef10": {
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
@@ -3841,10 +3833,10 @@
         "end_timestamp_ms": 47590
       }
     ],
-    "id": "203384",
-    "base_id": "bd48e8"
+    "id": "b7bcef10",
+    "base_id": "bcf5e3b4"
   },
-  "42cf73": {
+  "ffaa0230": {
     "base_verb": "guardar",
     "lemma": "guárdame",
     "corpus_count": 2,
@@ -3879,10 +3871,10 @@
         "end_timestamp_ms": 166820
       }
     ],
-    "id": "42cf73",
-    "base_id": "bf88cc"
+    "id": "ffaa0230",
+    "base_id": "eb277265"
   },
-  "c09a30": {
+  "c19141bc": {
     "base_verb": "mantener",
     "lemma": "mantenme",
     "corpus_count": 1,
@@ -3913,10 +3905,10 @@
         "end_timestamp_ms": 35980
       }
     ],
-    "id": "c09a30",
-    "base_id": "415f01"
+    "id": "c19141bc",
+    "base_id": "65b24064"
   },
-  "b1ca21": {
+  "6c73ff89": {
     "base_verb": "perseguir",
     "lemma": "perseguirlo",
     "corpus_count": 1,
@@ -3943,10 +3935,10 @@
         "end_timestamp_ms": 128790
       }
     ],
-    "id": "b1ca21",
-    "base_id": "3afde5"
+    "id": "6c73ff89",
+    "base_id": "b90023be"
   },
-  "2f5946": {
+  "5d3701cd": {
     "base_verb": "estrellar",
     "lemma": "estrellarme",
     "corpus_count": 1,
@@ -3973,10 +3965,10 @@
         "end_timestamp_ms": 59690
       }
     ],
-    "id": "2f5946",
-    "base_id": "47d576"
+    "id": "5d3701cd",
+    "base_id": "aedb1650"
   },
-  "307014": {
+  "76efceb6": {
     "base_verb": "hacerse",
     "lemma": "hacer",
     "corpus_count": 1,
@@ -4003,10 +3995,10 @@
         "end_timestamp_ms": 57850
       }
     ],
-    "id": "307014",
-    "base_id": "8b11a2"
+    "id": "76efceb6",
+    "base_id": "d841d0e6"
   },
-  "834324": {
+  "66d1ec3c": {
     "base_verb": "hacer",
     "lemma": "hacerte",
     "corpus_count": 5,
@@ -4077,10 +4069,10 @@
         "end_timestamp_ms": 31590
       }
     ],
-    "id": "834324",
-    "base_id": "7a798b"
+    "id": "66d1ec3c",
+    "base_id": "22a2d1c1"
   },
-  "0f6556": {
+  "654f5cf8": {
     "base_verb": "escaparse",
     "lemma": "escapar",
     "corpus_count": 2,
@@ -4115,10 +4107,10 @@
         "end_timestamp_ms": 164450
       }
     ],
-    "id": "0f6556",
-    "base_id": "0f6556"
+    "id": "654f5cf8",
+    "base_id": "654f5cf8"
   },
-  "e2f9e5": {
+  "1fb92134": {
     "base_verb": "ponerse",
     "lemma": "poner",
     "corpus_count": 3,
@@ -4166,10 +4158,10 @@
         "end_timestamp_ms": 83060
       }
     ],
-    "id": "e2f9e5",
-    "base_id": "fa8264"
+    "id": "1fb92134",
+    "base_id": "18b74383"
   },
-  "518f48": {
+  "fbda4e38": {
     "base_verb": "ir",
     "lemma": "ir",
     "corpus_count": 1,
@@ -4202,10 +4194,10 @@
         "end_timestamp_ms": 131320
       }
     ],
-    "id": "518f48",
-    "base_id": "be037b"
+    "id": "fbda4e38",
+    "base_id": "741ca0c8"
   },
-  "280980": {
+  "7241bc17": {
     "base_verb": "desvestirse",
     "lemma": "desvestir",
     "corpus_count": 1,
@@ -4238,10 +4230,10 @@
         "end_timestamp_ms": 154820
       }
     ],
-    "id": "280980",
-    "base_id": "50d298"
+    "id": "7241bc17",
+    "base_id": "3a7c42fc"
   },
-  "c890f6": {
+  "26ec5e14": {
     "base_verb": "dejar",
     "lemma": "déjame",
     "corpus_count": 2,
@@ -4281,10 +4273,10 @@
         "is_variant": false
       }
     ],
-    "id": "c890f6",
-    "base_id": "023f8c"
+    "id": "26ec5e14",
+    "base_id": "9a098f76"
   },
-  "1135d9": {
+  "33299711": {
     "base_verb": "abrazar",
     "lemma": "abrázame",
     "corpus_count": 1,
@@ -4311,10 +4303,10 @@
         "end_timestamp_ms": 112350
       }
     ],
-    "id": "1135d9",
-    "base_id": "f408ca"
+    "id": "33299711",
+    "base_id": "d00f8da2"
   },
-  "245862": {
+  "fb88214e": {
     "base_verb": "follar",
     "lemma": "follar",
     "corpus_count": 1,
@@ -4346,10 +4338,10 @@
         "end_timestamp_ms": 43450
       }
     ],
-    "id": "245862",
-    "base_id": "5decd2"
+    "id": "fb88214e",
+    "base_id": "e2d8b6f4"
   },
-  "a6d083": {
+  "becce2a4": {
     "base_verb": "escuchar",
     "lemma": "escucharlo",
     "corpus_count": 1,
@@ -4376,10 +4368,10 @@
         "end_timestamp_ms": 26050
       }
     ],
-    "id": "a6d083",
-    "base_id": "6c70aa"
+    "id": "becce2a4",
+    "base_id": "5586aa2f"
   },
-  "f03ac6": {
+  "a3fc55ed": {
     "base_verb": "rezar",
     "lemma": "rezarle",
     "corpus_count": 1,
@@ -4406,10 +4398,10 @@
         "end_timestamp_ms": 117000
       }
     ],
-    "id": "f03ac6",
-    "base_id": "825fdd"
+    "id": "a3fc55ed",
+    "base_id": "615297dc"
   },
-  "9f5071": {
+  "99005368": {
     "base_verb": "callar",
     "lemma": "callarme",
     "corpus_count": 1,
@@ -4444,10 +4436,10 @@
         "end_timestamp_ms": 45320
       }
     ],
-    "id": "9f5071",
-    "base_id": "784e47"
+    "id": "99005368",
+    "base_id": "18b0f1d8"
   },
-  "4040fd": {
+  "1f692ce0": {
     "base_verb": "obligar",
     "lemma": "oblígame",
     "corpus_count": 1,
@@ -4478,10 +4470,10 @@
         "is_variant": false
       }
     ],
-    "id": "4040fd",
-    "base_id": "b1c579"
+    "id": "1f692ce0",
+    "base_id": "54326328"
   },
-  "a866df": {
+  "d555b175": {
     "base_verb": "quitarse",
     "lemma": "quítate",
     "corpus_count": 7,
@@ -4519,10 +4511,10 @@
         "end_timestamp_ms": 18600
       }
     ],
-    "id": "a866df",
-    "base_id": "15cf87"
+    "id": "d555b175",
+    "base_id": "941273b4"
   },
-  "5aedbd": {
+  "c8231958": {
     "base_verb": "buscar",
     "lemma": "buscar",
     "corpus_count": 1,
@@ -4549,10 +4541,10 @@
         "end_timestamp_ms": 73800
       }
     ],
-    "id": "5aedbd",
-    "base_id": "02ca62"
+    "id": "c8231958",
+    "base_id": "c3095405"
   },
-  "91f10d": {
+  "60717c3d": {
     "base_verb": "escucharse",
     "lemma": "escucharme",
     "corpus_count": 1,
@@ -4584,10 +4576,10 @@
         "end_timestamp_ms": 26040
       }
     ],
-    "id": "91f10d",
-    "base_id": "5111ea"
+    "id": "60717c3d",
+    "base_id": "26bc2363"
   },
-  "9cfa60": {
+  "b8e07530": {
     "base_verb": "dejar",
     "lemma": "dejándote",
     "corpus_count": 1,
@@ -4614,10 +4606,10 @@
         "end_timestamp_ms": 67790
       }
     ],
-    "id": "9cfa60",
-    "base_id": "023f8c"
+    "id": "b8e07530",
+    "base_id": "9a098f76"
   },
-  "ec77c1": {
+  "e4a83b10": {
     "base_verb": "coger",
     "lemma": "comer",
     "corpus_count": 2,
@@ -4644,10 +4636,10 @@
         "end_timestamp_ms": 120350
       }
     ],
-    "id": "ec77c1",
-    "base_id": "e2557e"
+    "id": "e4a83b10",
+    "base_id": "2f002280"
   },
-  "24b351": {
+  "eaef69c7": {
     "base_verb": "caerse",
     "lemma": "caer",
     "corpus_count": 4,
@@ -4685,10 +4677,10 @@
         "end_timestamp_ms": 166520
       }
     ],
-    "id": "24b351",
-    "base_id": "24b351"
+    "id": "eaef69c7",
+    "base_id": "eaef69c7"
   },
-  "f76fc9": {
+  "63eb8dc0": {
     "base_verb": "comerse",
     "lemma": "comer",
     "corpus_count": 1,
@@ -4721,10 +4713,10 @@
         "end_timestamp_ms": 174590
       }
     ],
-    "id": "f76fc9",
-    "base_id": "45bce2"
+    "id": "63eb8dc0",
+    "base_id": "1e8ac2cd"
   },
-  "ec7361": {
+  "4a453521": {
     "base_verb": "mirar",
     "lemma": "mirarlos",
     "corpus_count": 1,
@@ -4751,10 +4743,10 @@
         "end_timestamp_ms": 38190
       }
     ],
-    "id": "ec7361",
-    "base_id": "d9ba72"
+    "id": "4a453521",
+    "base_id": "7046e318"
   },
-  "3eb8f8": {
+  "7b97e163": {
     "base_verb": "aborrecer",
     "lemma": "aborrecer",
     "corpus_count": 1,
@@ -4779,10 +4771,10 @@
         "is_variant": false
       }
     ],
-    "id": "3eb8f8",
-    "base_id": "ef95a3"
+    "id": "7b97e163",
+    "base_id": "41277b84"
   },
-  "d3dea5": {
+  "a9cb3fbf": {
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 2,
@@ -4827,10 +4819,10 @@
         "end_timestamp_ms": 143140
       }
     ],
-    "id": "d3dea5",
-    "base_id": "a132bf"
+    "id": "a9cb3fbf",
+    "base_id": "5d1684c0"
   },
-  "1c514c": {
+  "3b00c4b9": {
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 1,
@@ -4855,10 +4847,10 @@
         "is_variant": false
       }
     ],
-    "id": "1c514c",
-    "base_id": "a132bf"
+    "id": "3b00c4b9",
+    "base_id": "5d1684c0"
   },
-  "cc1fb6": {
+  "79936450": {
     "base_verb": "mirar",
     "lemma": "mírame",
     "corpus_count": 3,
@@ -4901,10 +4893,10 @@
         "end_timestamp_ms": 169810
       }
     ],
-    "id": "cc1fb6",
-    "base_id": "d9ba72"
+    "id": "79936450",
+    "base_id": "7046e318"
   },
-  "56b922": {
+  "50be459f": {
     "base_verb": "tratar",
     "lemma": "tratar",
     "corpus_count": 1,
@@ -4935,10 +4927,10 @@
         "is_variant": false
       }
     ],
-    "id": "56b922",
-    "base_id": "7631b1"
+    "id": "50be459f",
+    "base_id": "4ec98ce1"
   },
-  "baf9f9": {
+  "6f511834": {
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 2,
@@ -4981,10 +4973,10 @@
         "end_timestamp_ms": 137490
       }
     ],
-    "id": "baf9f9",
-    "base_id": "cd9482"
+    "id": "6f511834",
+    "base_id": "03a9bad5"
   },
-  "10de05": {
+  "4b126412": {
     "base_verb": "amar",
     "lemma": "amarme",
     "corpus_count": 1,
@@ -5015,10 +5007,10 @@
         "end_timestamp_ms": 28990
       }
     ],
-    "id": "10de05",
-    "base_id": "eb56ef"
+    "id": "4b126412",
+    "base_id": "e20afd7c"
   },
-  "166cea": {
+  "6a2bfdb7": {
     "base_verb": "rozarse",
     "lemma": "rozar",
     "corpus_count": 2,
@@ -5045,10 +5037,10 @@
         "end_timestamp_ms": 36570
       }
     ],
-    "id": "166cea",
-    "base_id": "166cea"
+    "id": "6a2bfdb7",
+    "base_id": "6a2bfdb7"
   },
-  "f2bb42": {
+  "9411cfc4": {
     "base_verb": "mirar",
     "lemma": "mira",
     "corpus_count": 1,
@@ -5075,10 +5067,10 @@
         "end_timestamp_ms": 99660
       }
     ],
-    "id": "f2bb42",
-    "base_id": "d9ba72"
+    "id": "9411cfc4",
+    "base_id": "7046e318"
   },
-  "85c170": {
+  "caa1a8e9": {
     "base_verb": "matar",
     "lemma": "mátame",
     "corpus_count": 1,
@@ -5111,10 +5103,10 @@
         "end_timestamp_ms": 124160
       }
     ],
-    "id": "85c170",
-    "base_id": "b3a90f"
+    "id": "caa1a8e9",
+    "base_id": "f7c5e1c0"
   },
-  "e9e3f7": {
+  "9d0a1938": {
     "base_verb": "dar",
     "lemma": "dándole",
     "corpus_count": 2,
@@ -5147,10 +5139,10 @@
         "end_timestamp_ms": 19180
       }
     ],
-    "id": "e9e3f7",
-    "base_id": "695915"
+    "id": "9d0a1938",
+    "base_id": "1e9e9b53"
   },
-  "766996": {
+  "bc80f378": {
     "base_verb": "cobrar",
     "lemma": "cobrarle",
     "corpus_count": 1,
@@ -5177,10 +5169,10 @@
         "end_timestamp_ms": 122740
       }
     ],
-    "id": "766996",
-    "base_id": "d11869"
+    "id": "bc80f378",
+    "base_id": "698bfa22"
   },
-  "630701": {
+  "bff1e406": {
     "base_verb": "dar",
     "lemma": "dame",
     "corpus_count": 6,
@@ -5263,10 +5255,10 @@
         "end_timestamp_ms": 117310
       }
     ],
-    "id": "630701",
-    "base_id": "695915"
+    "id": "bff1e406",
+    "base_id": "1e9e9b53"
   },
-  "da63a2": {
+  "a0d8df3f": {
     "base_verb": "montar",
     "lemma": "montarme",
     "corpus_count": 1,
@@ -5297,10 +5289,10 @@
         "end_timestamp_ms": 101710
       }
     ],
-    "id": "da63a2",
-    "base_id": "efb683"
+    "id": "a0d8df3f",
+    "base_id": "0f9e8e16"
   },
-  "a78335": {
+  "28c847bd": {
     "base_verb": "poder",
     "lemma": "poderla",
     "corpus_count": 1,
@@ -5327,10 +5319,10 @@
         "end_timestamp_ms": 243250
       }
     ],
-    "id": "a78335",
-    "base_id": "d477e6"
+    "id": "28c847bd",
+    "base_id": "13d9d062"
   },
-  "34dbb6": {
+  "3ae5d73a": {
     "base_verb": "apuntar",
     "lemma": "apúnteme",
     "corpus_count": 5,
@@ -5357,10 +5349,10 @@
         "end_timestamp_ms": 165740
       }
     ],
-    "id": "34dbb6",
-    "base_id": "f2f1fa"
+    "id": "3ae5d73a",
+    "base_id": "96f3da6c"
   },
-  "885d00": {
+  "701f685f": {
     "base_verb": "desquitarse",
     "lemma": "desquítate",
     "corpus_count": 1,
@@ -5383,10 +5375,9 @@
         "end_timestamp_ms": 193440
       }
     ],
-    "id": "885d00",
-    "base_id": "199e7c"
+    "id": "701f685f"
   },
-  "293698": {
+  "3dca00fa": {
     "base_verb": "permitir",
     "lemma": "permiteme",
     "corpus_count": 1,
@@ -5404,10 +5395,10 @@
         "end_timestamp_ms": 206580
       }
     ],
-    "id": "293698",
-    "base_id": "9c0ed3"
+    "id": "3dca00fa",
+    "base_id": "1ce6ec72"
   },
-  "1e7b15": {
+  "ba9428b2": {
     "base_verb": "refugiarse",
     "lemma": "refúgiate",
     "corpus_count": 1,
@@ -5430,10 +5421,9 @@
         "end_timestamp_ms": 189700
       }
     ],
-    "id": "1e7b15",
-    "base_id": "1a2961"
+    "id": "ba9428b2"
   },
-  "fbade3": {
+  "688c0f78": {
     "base_verb": "mover",
     "lemma": "muévetelo",
     "corpus_count": 1,
@@ -5456,10 +5446,10 @@
         "end_timestamp_ms": 62890
       }
     ],
-    "id": "fbade3",
-    "base_id": "7cfb5a"
+    "id": "688c0f78",
+    "base_id": "c4c311df"
   },
-  "97210a": {
+  "0b2af271": {
     "base_verb": "llevar",
     "lemma": "llévame",
     "corpus_count": 1,
@@ -5484,10 +5474,10 @@
         "is_variant": false
       }
     ],
-    "id": "97210a",
-    "base_id": "903283"
+    "id": "0b2af271",
+    "base_id": "c8fd5c9a"
   },
-  "65a70e": {
+  "d0eb1e9e": {
     "base_verb": "bajar",
     "lemma": "bájale",
     "corpus_count": 4,
@@ -5514,10 +5504,10 @@
         "end_timestamp_ms": 52680
       }
     ],
-    "id": "65a70e",
-    "base_id": "5efe67"
+    "id": "d0eb1e9e",
+    "base_id": "7ce55610"
   },
-  "beb40c": {
+  "e74e908a": {
     "base_verb": "atreverse",
     "lemma": "atreverse",
     "corpus_count": 1,
@@ -5544,10 +5534,10 @@
         "end_timestamp_ms": 76570
       }
     ],
-    "id": "beb40c",
-    "base_id": "ca5b89"
+    "id": "e74e908a",
+    "base_id": "91179f09"
   },
-  "cbb60a": {
+  "ec9b88fa": {
     "base_verb": "chulear",
     "lemma": "chulear",
     "corpus_count": 1,
@@ -5580,10 +5570,10 @@
         "end_timestamp_ms": 11670
       }
     ],
-    "id": "cbb60a",
-    "base_id": "8e4d4f"
+    "id": "ec9b88fa",
+    "base_id": "63a70f02"
   },
-  "8f6c9e": {
+  "f3c22307": {
     "base_verb": "decir",
     "lemma": "decírmelo",
     "corpus_count": 1,
@@ -5610,10 +5600,10 @@
         "end_timestamp_ms": 214170
       }
     ],
-    "id": "8f6c9e",
-    "base_id": "2159c9"
+    "id": "f3c22307",
+    "base_id": "c0a77f7e"
   },
-  "3fe80f": {
+  "f7629656": {
     "base_verb": "dar",
     "lemma": "dártelo",
     "corpus_count": 1,
@@ -5635,10 +5625,10 @@
         "end_timestamp_ms": 89760
       }
     ],
-    "id": "3fe80f",
-    "base_id": "695915"
+    "id": "f7629656",
+    "base_id": "1e9e9b53"
   },
-  "4ace2a": {
+  "056f3b61": {
     "base_verb": "quedar",
     "lemma": "quédate",
     "corpus_count": 1,
@@ -5665,7 +5655,7 @@
         "end_timestamp_ms": 66970
       }
     ],
-    "id": "4ace2a",
-    "base_id": "4afe69"
+    "id": "056f3b61",
+    "base_id": "41a90d49"
   }
 }

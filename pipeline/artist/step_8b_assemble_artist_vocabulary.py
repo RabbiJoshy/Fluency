@@ -2546,14 +2546,22 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             key = (clitic_word.lower(), clitic_word.lower())
             if key in wl_existing:
                 continue
-            h = hashlib.md5((clitic_word + "|" + clitic_word).encode("utf-8")).hexdigest()
-            cid = h[:6]
-            if cid in used_ids:
-                for start in range(0, len(h) - 5):
-                    cand = h[start:start + 6]
-                    if cand not in used_ids:
-                        cid = cand
-                        break
+            if surface_cards:
+                # A clitic form is a surface like any other. Minting it from
+                # word|lemma here is what left 492 six-hex IDs in an otherwise
+                # re-keyed master, and it would also stop `soltarte` ever
+                # matching the same surface in speech mode.
+                cid = make_surface_id(clitic_word.lower(), used_ids)
+            else:
+                h = hashlib.md5(
+                    (clitic_word + "|" + clitic_word).encode("utf-8")).hexdigest()
+                cid = h[:6]
+                if cid in used_ids:
+                    for start in range(0, len(h) - 5):
+                        cand = h[start:start + 6]
+                        if cand not in used_ids:
+                            cid = cand
+                            break
             master[cid] = {
                 "word": clitic_word,
                 "lemma": clitic_word,

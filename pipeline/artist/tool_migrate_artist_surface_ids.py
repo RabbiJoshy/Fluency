@@ -132,11 +132,19 @@ def main():
         if not sources:
             continue
         if target not in registry.records:
-            # Seed the target from the first source's alias so the new record
-            # owns a real (surface, lemma) pair before anything merges into it.
-            first = registry.records[sources[0]]
-            alias = (first.get("aliases") or [{}])[0]
-            registry.seed(target, surface, alias.get("lemma") or surface)
+            # Create the target empty rather than seeding it. Every alias this
+            # card should own is still held by a source that has not been
+            # merged yet, and seed() refuses an alias owned by another active
+            # record. merge() handles that correctly — it retires the source
+            # before rebinding, and the alias index is built from active
+            # records only — so the target just needs to exist.
+            registry.records[target] = {
+                "card_id": target,
+                "status": "active",
+                "aliases": [],
+                "evidence_ids": [],
+            }
+            registry.invalidate_indexes()
             seeded += 1
         for source in sources:
             registry.merge(source, target,
