@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260815b';
-import './speech.js?v=20260815b';
+import './state.js?v=20260815c';
+import './speech.js?v=20260815c';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260815b';
+} from './example-personalisation.js?v=20260815c';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -3271,7 +3271,19 @@ function updateCard({ announceHeadword = false } = {}) {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
     const displaySurface = card.displaySurface || card.targetWord;
-    const citationForm = card.citationForm || card.lemma || displaySurface;
+    // A surface-keyed card can hold senses from several headwords, and
+    // card.lemma is just whichever contributed most senses — for `una` that is
+    // `unir`, which then shows regardless of which sense you are looking at.
+    // One headword can be asserted; several cannot, so say nothing and let the
+    // card back attribute each group.
+    const cardHeadwords = [...new Set(
+        (card.meanings || [])
+            .map(m => m && m.headword)
+            .filter(Boolean)
+    )];
+    const citationForm = cardHeadwords.length > 1
+        ? ''
+        : (cardHeadwords[0] || card.citationForm || card.lemma || displaySurface);
     const formNote = card.isPronominal ? 'verb with se' : '';
     window._currentDisplayedExample = null;
     const reportShortcut = document.getElementById('cardMetaBtn');
@@ -6226,7 +6238,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260815b';
+const ASSET_VERSION = '20260815c';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
