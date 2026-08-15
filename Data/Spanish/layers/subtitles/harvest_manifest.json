@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-08-15T1257Z_harvest-v1",
+  "harvest_version": "harvest-v1",
+  "created": "2026-08-15T12:58:18+00:00",
+  "args": {
+    "top": 0,
+    "max_lines": 34000000,
+    "skip_lines": 32000000,
+    "per_word_cap": 5,
+    "cap_top": 1000,
+    "tail_cap": 3,
+    "taste_cap": 2
+  },
+  "lines_scanned": 34000001,
+  "targets": 9999,
+  "words_with_clean": 9905,
+  "words_with_none": 94,
+  "sentences_new": 42650,
+  "sentences_total": 42650,
+  "banked_by_gate": {
+    "clean": 435926,
+    "length": 288116,
+    "3+ clauses": 128506,
+    "dialogue dash": 58708,
+    "no terminal punct": 38309,
+    "no finite verb": 36896,
+    "trailing ellipsis": 9657
+  },
+  "dropped_as_broken": {
+    "merged lines": 58536,
+    "length ratio": 28430,
+    "english fragment": 27541,
+    "junk chars": 6591,
+    "parenthetical": 1618,
+    "all caps": 511,
+    "identical sides": 484
+  },
+  "word_level_rejects": {
+    "proper noun": 86386
+  }
+}

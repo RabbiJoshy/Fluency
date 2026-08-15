@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-15",
+      "commit": "2132a1e9",
+      "summary": "Card back groups by part of speech, and the deck is now 9,338 words",
+      "details": [
+        "A card with more than one part of speech opens as a summary — one line per POS listing its main meanings — and each opens for the full senses with contexts",
+        "Cards with a single part of speech are unchanged; that is 81% of them, and a header there would be chrome around a two-line list",
+        "Headwords appear only where they disambiguate: nothing when the headword is the word itself, once in the header otherwise, per-group on cards holding several",
+        "Speech deck rebuilt from 2000s-era subtitles instead of the pre-1960 films the old scan was limited to"
+      ]
+    },
+    {
+      "date": "2026-08-15",
       "commit": "0bacaf6a",
       "summary": "Search now matches how cards actually work, and says whether you've done them",
       "details": [

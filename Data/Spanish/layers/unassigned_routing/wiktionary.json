@@ -1,54 +1,32 @@
 {
-  "que|que": [
-    3
-  ],
   "de|de": [
     1,
     2
   ],
   "la|la": [
-    1,
-    4
+    1
   ],
   "es|ser": [
     0,
     1,
-    2,
-    4
-  ],
-  "y|y": [
-    4
+    2
   ],
   "en|en": [
-    2,
-    3,
-    4
+    2
   ],
   "un|un": [
     0,
     1,
-    2,
-    3,
-    4
+    2
   ],
   "por|por": [
     1,
-    2,
-    3
-  ],
-  "qué|qué": [
-    3,
-    4
-  ],
-  "me|me": [
-    3,
-    4
+    2
   ],
   "una|un": [
     0,
     1,
-    2,
-    3
+    2
   ],
   "te|te": [
     0,
@@ -56,36 +34,25 @@
   ],
   "se|se": [
     0,
-    2,
-    3,
-    4
-  ],
-  "para|para": [
-    4
+    2
   ],
   "mi|mi": [
-    0,
-    3,
-    4
+    0
   ],
   "está|estar": [
     1,
-    2,
-    4
+    2
   ],
   "bien|bien": [
-    2,
-    4
+    2
   ],
   "pero|pero": [
-    0,
-    3
+    0
   ],
   "las|la": [
     0,
     1,
-    2,
-    3
+    2
   ],
   "más|más": [
     1,
@@ -96,37 +63,20 @@
   ],
   "esta|esta": [
     0,
-    1,
-    4
+    1
   ],
   "vamos|ir": [
-    0,
-    3,
-    4
-  ],
-  "hay|haber": [
-    4
+    0
   ],
   "estoy|estar": [
     0,
-    2,
-    3
-  ],
-  "nos|nos": [
-    3,
-    4
+    2
   ],
   "este|este": [
-    1,
-    3
+    1
   ],
   "estás|estar": [
-    1,
-    3,
-    4
-  ],
-  "puedo|poder": [
-    3
+    1
   ],
   "soy|ser": [
     0,
@@ -134,76 +84,51 @@
   ],
   "como|comer": [
     1,
-    2,
-    4
+    2
   ],
   "ser|ser": [
     1
-  ],
-  "hacer|hacer": [
-    4
   ],
   "son|ser": [
     0,
     1
   ],
-  "todos|todo": [
-    4
-  ],
   "era|ser": [
-    1,
-    3,
-    4
+    1
   ],
   "eres|ser": [
-    1,
-    3,
-    4
+    1
   ],
   "vez|vez": [
     0,
-    2,
-    4
+    2
   ],
   "voy|ir": [
     0,
     2
   ],
-  "dios|dios": [
-    4
-  ],
   "tan|tanto": [
-    2,
-    4
+    2
   ],
   "tiempo|tiempo": [
     0
   ],
   "estaba|estar": [
     1,
-    2,
-    3
+    2
   ],
   "están|estar": [
-    0,
-    3
+    0
   ],
   "va|ir": [
     1
   ],
   "mucho|mucho": [
     0,
-    2,
-    3,
-    4
+    2
   ],
   "hace|hacer": [
-    0,
-    3,
-    4
-  ],
-  "entonces|entonces": [
-    4
+    0
   ],
   "vida|vida": [
     2
@@ -216,21 +141,11 @@
     1,
     2
   ],
-  "sobre|sobre": [
-    3
-  ],
-  "decir|decir": [
-    4
-  ],
   "siempre|siempre": [
     1
   ],
-  "oh|oh": [
-    3
-  ],
   "ir|ir": [
-    1,
-    4
+    1
   ],
   "antes|antes": [
     2
@@ -238,15 +153,7 @@
   "ni|ni": [
     0,
     1,
-    2,
-    3,
-    4
-  ],
-  "estar|estar": [
-    3
-  ],
-  "estamos|estar": [
-    4
+    2
   ],
   "fue|ser": [
     1,
@@ -254,75 +161,40 @@
   ],
   "otra|otro": [
     1,
-    2,
-    3
-  ],
-  "quiere|querer": [
-    3
+    2
   ],
   "parece|parecer": [
     0
   ],
-  "vas|ir": [
-    3,
-    4
-  ],
   "les|les": [
-    2,
-    4
+    2
   ],
   "mismo|mismo": [
-    1,
-    3
-  ],
-  "dijo|decir": [
-    4
-  ],
-  "pasa|pasar": [
-    4
+    1
   ],
   "tal|tal": [
     0,
-    1,
-    3,
-    4
-  ],
-  "hablar|hablar": [
-    3
-  ],
-  "claro|claro": [
-    4
+    1
   ],
   "estas|este": [
     0,
     1,
-    2,
-    3,
-    4
-  ],
-  "lugar|lugar": [
-    3
+    2
   ],
   "mundo|mundo": [
-    2,
-    4
+    2
   ],
   "han|haber": [
-    0,
-    4
+    0
   ],
   "mierda|mierda": [
     0,
     1,
-    2,
-    3,
-    4
+    2
   ],
   "sabe|saber": [
     0,
-    1,
-    3,
-    4
+    1
   ],
   "casa|casa": [
     0
@@ -332,32 +204,17 @@
   ],
   "momento|momento": [
     0,
-    2,
-    4
-  ],
-  "desde|desde": [
-    3
-  ],
-  "tipo|tipo": [
-    4
+    2
   ],
   "gran|grande": [
     0
   ],
   "siento|sentir": [
-    2,
-    3
+    2
   ],
   "podría|poder": [
     0,
-    2,
-    4
-  ],
-  "papá|papá": [
-    3
-  ],
-  "tener|tener": [
-    3
+    2
   ],
   "nuevo|nuevo": [
     0,
@@ -368,24 +225,16 @@
   ],
   "buen|bueno": [
     1,
-    2,
-    4
+    2
   ],
   "había|haber": [
     1,
-    2,
-    4
-  ],
-  "menos|menos": [
-    3
+    2
   ],
   "tenía|tener": [
     0,
     1,
     2
-  ],
-  "mal|mal": [
-    4
   ],
   "conmigo|conmigo": [
     2
@@ -395,53 +244,33 @@
   ],
   "sido|ser": [
     0,
-    1,
-    3,
-    4
+    1
   ],
   "tienen|tener": [
     1,
-    2,
-    3,
-    4
+    2
   ],
   "luego|luego": [
     1
   ],
-  "hora|hora": [
-    4
-  ],
-  "haces|hacer": [
-    3,
-    4
-  ],
   "visto|ver": [
     0,
     1,
-    2,
-    4
+    2
   ],
   "importa|importar": [
-    0,
-    3
+    0
   ],
   "oye|oír": [
     0,
-    1,
-    3,
-    4
+    1
   ],
   "haber|haber": [
-    2,
-    4
+    2
   ],
   "tanto|tanto": [
     1,
-    2,
-    3
-  ],
-  "ustedes|usted": [
-    3
+    2
   ],
   "van|ir": [
     0
@@ -451,8 +280,7 @@
   ],
   "unos|un": [
     1,
-    2,
-    3
+    2
   ],
   "policía|policía": [
     0,
@@ -461,30 +289,18 @@
   "hecho|hacer": [
     1
   ],
-  "hecho|hecho": [
-    3,
-    4
-  ],
-  "cabeza|cabeza": [
-    3,
-    4
-  ],
   "pueden|poder": [
     2
   ],
   "hemos|haber": [
-    0,
-    3
+    0
   ],
   "cariño|cariño": [
     0,
-    1,
-    3
+    1
   ],
   "lado|lado": [
-    2,
-    3,
-    4
+    2
   ],
   "allá|allá": [
     1
@@ -494,39 +310,26 @@
   ],
   "digo|decir": [
     1,
-    2,
-    3
+    2
   ],
   "serio|serio": [
     0,
     1
   ],
   "pasó|pasar": [
-    1,
-    3,
-    4
+    1
   ],
   "buenas|bueno": [
     1,
-    2,
-    4
+    2
   ],
   "somos|ser": [
     0,
-    1,
-    3,
-    4
-  ],
-  "ah|ah": [
-    3
+    1
   ],
   "suerte|suerte": [
     1,
-    2,
-    4
-  ],
-  "eh|eh": [
-    3
+    2
   ],
   "rápido|rápido": [
     0
@@ -534,33 +337,19 @@
   "pues|pues": [
     0,
     1,
-    2,
-    3,
-    4
-  ],
-  "casi|casi": [
-    3
-  ],
-  "debes|deber": [
-    4
+    2
   ],
   "espera|esperar": [
     1
   ],
   "forma|forma": [
-    0,
-    4
+    0
   ],
   "sabía|saber": [
-    2,
-    3
-  ],
-  "dentro|dentro": [
-    3
+    2
   ],
   "hice|hacer": [
-    2,
-    4
+    2
   ],
   "cosa|cosa": [
     2
@@ -568,48 +357,34 @@
   "hacia|hacia": [
     0,
     1,
-    2,
-    3,
-    4
+    2
   ],
   "vi|ver": [
     1,
-    2,
-    3
-  ],
-  "viejo|viejo": [
-    4
+    2
   ],
   "deja|dejar": [
     1,
-    2,
-    3,
-    4
+    2
   ],
   "año|año": [
-    0,
-    4
+    0
   ],
   "da|dar": [
     0
   ],
   "hablando|hablar": [
     0,
-    2,
-    3,
-    4
+    2
   ],
   "manos|mano": [
     0,
     1,
-    2,
-    3,
-    4
+    2
   ],
   "problemas|problema": [
     1,
-    2,
-    3
+    2
   ],
   "mano|mano": [
     0,
@@ -621,9 +396,7 @@
   ],
   "acuerdo|acuerdo": [
     1,
-    2,
-    3,
-    4
+    2
   ],
   "cuál|cuál": [
     0
@@ -637,24 +410,17 @@
   ],
   "horas|hora": [
     1,
-    2,
-    3,
-    4
+    2
   ],
   "adelante|adelante": [
     0,
     2
   ],
   "listo|listo": [
-    1,
-    3,
-    4
+    1
   ],
   "ven|venir": [
     1
-  ],
-  "buenos|bueno": [
-    4
   ],
   "grande|grande": [
     0,
@@ -662,9 +428,7 @@
   ],
   "otros|otro": [
     0,
-    1,
-    3,
-    4
+    1
   ],
   "sigue|seguir": [
     0
@@ -672,8 +436,7 @@
   "arriba|arriba": [
     0,
     1,
-    2,
-    3
+    2
   ],
   "supongo|suponer": [
     0,
@@ -681,48 +444,35 @@
     2
   ],
   "significa|significar": [
-    2,
-    3,
-    4
+    2
   ],
   "fin|fin": [
     1
   ],
   "hiciste|hacer": [
-    2,
-    3,
-    4
+    2
   ],
   "ojos|ojo": [
     0,
     1,
-    2,
-    4
+    2
   ],
   "entrar|entrar": [
     0
   ],
   "corazón|corazón": [
-    0,
-    4
+    0
   ],
   "atrás|atrás": [
     0
   ],
   "abajo|abajo": [
     1,
-    2,
-    3
+    2
   ],
   "dr|doctor": [
     1,
-    2,
-    3,
-    4
-  ],
-  "necesita|necesitar": [
-    3,
-    4
+    2
   ],
   "hago|hacer": [
     2
@@ -730,12 +480,8 @@
   "señora|señora": [
     2
   ],
-  "cree|creer": [
-    4
-  ],
   "genial|genial": [
-    0,
-    4
+    0
   ],
   "ninguna|ninguno": [
     0,
@@ -746,17 +492,11 @@
   ],
   "parte|parte": [
     0,
-    1,
-    4
-  ],
-  "conozco|conocer": [
-    3
+    1
   ],
   "maldito|maldito": [
     0,
-    2,
-    3,
-    4
+    2
   ],
   "hubiera|haber": [
     1
@@ -765,33 +505,22 @@
     2
   ],
   "igual|igual": [
-    1,
-    3,
-    4
+    1
   ],
   "ay|ay": [
     0,
-    1,
-    3,
-    4
-  ],
-  "fuerte|fuerte": [
-    4
+    1
   ],
   "venga|venir": [
-    0,
-    3
+    0
   ],
   "realidad|realidad": [
     0,
-    1,
-    4
+    1
   ],
   "puta|puta": [
     1,
-    2,
-    3,
-    4
+    2
   ],
   "saben|saber": [
     0
@@ -800,24 +529,15 @@
     1
   ],
   "sra|señora": [
-    2,
-    3,
-    4
+    2
   ],
   "e|y": [
     0,
     1
   ],
-  "alto|alto": [
-    4
-  ],
   "fuera|ir": [
     1,
-    2,
-    3
-  ],
-  "hagas|hacer": [
-    3
+    2
   ],
   "maldita|maldito": [
     0,
@@ -825,81 +545,52 @@
     2
   ],
   "comer|comer": [
-    0,
-    3,
-    4
+    0
   ],
   "dar|dar": [
-    1,
-    3
+    1
   ],
   "punto|punto": [
     0,
-    1,
-    4
-  ],
-  "última|último": [
-    4
-  ],
-  "malo|malo": [
-    3
+    1
   ],
   "estabas|estar": [
     1,
-    2,
-    4
-  ],
-  "haga|hacer": [
-    4
+    2
   ],
   "queda|quedar": [
     2
   ],
   "hacen|hacer": [
-    2,
-    3
+    2
   ],
   "medio|medio": [
     0,
-    1,
-    4
+    1
   ],
   "cuarto|cuarto": [
     0,
     1,
-    2,
-    3,
-    4
+    2
   ],
   "meses|mes": [
     0,
-    2,
-    3,
-    4
-  ],
-  "esté|estar": [
-    3,
-    4
+    2
   ],
   "carajo|carajo": [
     1
   ],
   "eran|ser": [
-    1,
-    3,
-    4
+    1
   ],
   "final|final": [
-    0,
-    3,
-    4
+    0
   ],
   "luz|luz": [
     2
   ],
   "trata|tratar": [
-    1,
-    3
+    1
   ],
   "exactamente|exactamente": [
     1,
@@ -908,50 +599,13173 @@
   "chicas|chica": [
     0,
     1,
-    2,
-    4
-  ],
-  "esperando|esperar": [
-    3
+    2
   ],
   "pasando|pasar": [
-    2,
-    3,
-    4
+    2
   ],
   "podía|poder": [
     0,
     1,
-    2,
-    3
+    2
   ],
   "seguridad|seguridad": [
-    2,
-    4
-  ],
-  "acá|acá": [
-    4
+    2
   ],
   "fuego|fuego": [
     1
   ],
   "teléfono|teléfono": [
     0,
-    1,
-    4
+    1
   ],
   "murió|morir": [
     0,
     1,
-    2,
-    4
+    2
   ],
   "estuvo|estar": [
     0,
     2
   ],
-  "tenido|tener": [
-    3
+  "cuidado|cuidado": [
+    0,
+    1,
+    2
+  ],
+  "paz|paz": [
+    2
+  ],
+  "pensando|pensar": [
+    1
+  ],
+  "caballeros|caballero": [
+    0,
+    1,
+    2
+  ],
+  "cuenta|cuenta": [
+    0,
+    2
+  ],
+  "dio|dar": [
+    0,
+    1,
+    2
+  ],
+  "idiota|idiota": [
+    0,
+    1
+  ],
+  "palabra|palabra": [
+    2
+  ],
+  "pasado|pasado": [
+    2
+  ],
+  "podrías|poder": [
+    0
+  ],
+  "sucede|suceder": [
+    0,
+    1,
+    2
+  ],
+  "dicho|decir": [
+    2
+  ],
+  "di|dar": [
+    0,
+    1,
+    2
+  ],
+  "mil|mil": [
+    1
+  ],
+  "diciendo|decir": [
+    0,
+    1,
+    2
+  ],
+  "general|general": [
+    0,
+    1,
+    2
+  ],
+  "ido|ir": [
+    0
+  ],
+  "perder|perder": [
+    1
+  ],
+  "niña|niña": [
+    2
+  ],
+  "además|además": [
+    2
+  ],
+  "especial|especial": [
+    2
+  ],
+  "buscar|buscar": [
+    1
+  ],
+  "libre|libre": [
+    0,
+    1
+  ],
+  "piensa|pensar": [
+    1,
+    2
+  ],
+  "agente|agente": [
+    1
+  ],
+  "llamar|llamar": [
+    1
+  ],
+  "viste|ver": [
+    0
+  ],
+  "grandes|grande": [
+    2
+  ],
+  "estaban|estar": [
+    1,
+    2
+  ],
+  "frente|frente": [
+    1,
+    2
+  ],
+  "llamo|llamar": [
+    0
+  ],
+  "mía|mío": [
+    0,
+    2
+  ],
+  "perdido|perder": [
+    0
+  ],
+  "vale|valer": [
+    0
+  ],
+  "millones|millón": [
+    0,
+    1,
+    2
+  ],
+  "quisiera|querer": [
+    1,
+    2
+  ],
+  "caso|caso": [
+    1
+  ],
+  "hará|hacer": [
+    0,
+    1,
+    2
+  ],
+  "estaré|estar": [
+    2
+  ],
+  "haría|hacer": [
+    0
+  ],
+  "quieras|querer": [
+    1
+  ],
+  "secreto|secreto": [
+    0
+  ],
+  "cerca|cerca": [
+    2
+  ],
+  "otras|otro": [
+    1
+  ],
+  "boca|boca": [
+    2
+  ],
+  "habla|hablar": [
+    0,
+    2
+  ],
+  "poner|poner": [
+    1
+  ],
+  "llama|llamar": [
+    1,
+    2
+  ],
+  "siendo|ser": [
+    0,
+    1
+  ],
+  "tonto|tonto": [
+    2
+  ],
+  "acabó|acabar": [
+    2
+  ],
+  "estuve|estar": [
+    1,
+    2
+  ],
+  "listos|listo": [
+    1,
+    2
+  ],
+  "llevar|llevar": [
+    2
+  ],
+  "sitio|sitio": [
+    0,
+    2
+  ],
+  "llegó|llegar": [
+    0,
+    1,
+    2
+  ],
+  "palabras|palabra": [
+    0,
+    1,
+    2
+  ],
+  "pase|pasar": [
+    0,
+    1
+  ],
+  "raro|raro": [
+    0,
+    1
+  ],
+  "anda|andar": [
+    0,
+    1,
+    2
+  ],
+  "creí|creer": [
+    0
+  ],
+  "haya|haber": [
+    1
+  ],
+  "permiso|permiso": [
+    1
+  ],
+  "suena|sonar": [
+    0,
+    1,
+    2
+  ],
+  "vio|ver": [
+    0,
+    1
+  ],
+  "entendido|entender": [
+    0
+  ],
+  "señorita|señorita": [
+    0
+  ],
+  "trasero|trasero": [
+    0,
+    1,
+    2
+  ],
+  "conoce|conocer": [
+    0
+  ],
+  "juego|juego": [
+    0
+  ],
+  "diferente|diferente": [
+    0,
+    1
+  ],
+  "modo|modo": [
+    0,
+    1
+  ],
+  "encontré|encontrar": [
+    1,
+    2
+  ],
+  "mensaje|mensaje": [
+    1
+  ],
+  "dijeron|decir": [
+    0,
+    1
+  ],
+  "entra|entrar": [
+    1,
+    2
+  ],
+  "eras|ser": [
+    0,
+    1,
+    2
+  ],
+  "ganar|ganar": [
+    1,
+    2
+  ],
+  "podríamos|poder": [
+    0,
+    1,
+    2
+  ],
+  "segundos|segundo": [
+    0,
+    1,
+    2
+  ],
+  "vive|vivir": [
+    1
+  ],
+  "lindo|lindo": [
+    1,
+    2
+  ],
+  "abre|abrir": [
+    1,
+    2
+  ],
+  "supone|suponer": [
+    2
+  ],
+  "vuelta|vuelta": [
+    0,
+    1,
+    2
+  ],
+  "basura|basura": [
+    2
+  ],
+  "encanta|encantar": [
+    0,
+    2
+  ],
+  "mejores|mejor": [
+    1
+  ],
+  "vienen|venir": [
+    1
+  ],
+  "culo|culo": [
+    0
+  ],
+  "dale|dar": [
+    1
+  ],
+  "dejó|dejar": [
+    1
+  ],
+  "hambre|hambre": [
+    1,
+    2
+  ],
+  "pie|pie": [
+    1,
+    2
+  ],
+  "pudo|poder": [
+    0,
+    1,
+    2
+  ],
+  "fui|ser": [
+    2
+  ],
+  "gustan|gustar": [
+    0
+  ],
+  "pude|poder": [
+    0,
+    1,
+    2
+  ],
+  "tipos|tipo": [
+    0,
+    1,
+    2
+  ],
+  "das|dar": [
+    0,
+    1
+  ],
+  "hicieron|hacer": [
+    2
+  ],
+  "nena|nena": [
+    0
+  ],
+  "señal|señal": [
+    0,
+    2
+  ],
+  "tendrá|tener": [
+    0
+  ],
+  "fueron|ir": [
+    0,
+    2
+  ],
+  "honor|honor": [
+    1
+  ],
+  "corre|correr": [
+    1,
+    2
+  ],
+  "dan|dar": [
+    0,
+    1
+  ],
+  "humano|humano": [
+    0
+  ],
+  "paso|paso": [
+    0,
+    1
+  ],
+  "sol|sol": [
+    1,
+    2
+  ],
+  "hablo|hablar": [
+    0
+  ],
+  "llegado|llegar": [
+    1,
+    2
+  ],
+  "estan|estar": [
+    1,
+    2
+  ],
+  "norte|norte": [
+    1
+  ],
+  "pensaba|pensar": [
+    0,
+    1,
+    2
+  ],
+  "terminar|terminar": [
+    1
+  ],
+  "alrededor|alrededor": [
+    0,
+    2
+  ],
+  "completamente|completamente": [
+    0,
+    1
+  ],
+  "siete|siete": [
+    1
+  ],
+  "doy|dar": [
+    1
+  ],
+  "ley|ley": [
+    0
+  ],
+  "salió|salir": [
+    0,
+    1,
+    2
+  ],
+  "existe|existir": [
+    0,
+    1,
+    2
+  ],
+  "hacía|hacer": [
+    1,
+    2
+  ],
+  "sargento|sargento": [
+    1
+  ],
+  "cualquiera|cualquiera": [
+    0
+  ],
+  "decía|decir": [
+    1
+  ],
+  "deje|dejar": [
+    0,
+    1
+  ],
+  "diablo|diablo": [
+    0,
+    1,
+    2
+  ],
+  "estábamos|estar": [
+    0,
+    1,
+    2
+  ],
+  "ocurrió|ocurrir": [
+    1,
+    2
+  ],
+  "pudiera|poder": [
+    0,
+    2
+  ],
+  "sucedió|suceder": [
+    0
+  ],
+  "sueños|sueño": [
+    0,
+    2
+  ],
+  "creía|creer": [
+    0,
+    1,
+    2
+  ],
+  "estés|estar": [
+    0,
+    1
+  ],
+  "pies|pie": [
+    1
+  ],
+  "sorpresa|sorpresa": [
+    1
+  ],
+  "terminado|terminar": [
+    1
+  ],
+  "encuentra|encontrar": [
+    0,
+    1,
+    2
+  ],
+  "hicimos|hacer": [
+    0
+  ],
+  "necesitan|necesitar": [
+    1
+  ],
+  "teniente|teniente": [
+    1
+  ],
+  "carrera|carrera": [
+    0
+  ],
+  "dulce|dulce": [
+    0,
+    2
+  ],
+  "encontrado|encontrar": [
+    1
+  ],
+  "encontramos|encontrar": [
+    1,
+    2
+  ],
+  "harás|hacer": [
+    1
+  ],
+  "planeta|planeta": [
+    2
+  ],
+  "pelear|pelear": [
+    0
+  ],
+  "llega|llegar": [
+    0,
+    1
+  ],
+  "rato|rato": [
+    2
+  ],
+  "verás|ver": [
+    0
+  ],
+  "broma|broma": [
+    0
+  ],
+  "mar|mar": [
+    2
+  ],
+  "según|según": [
+    0
+  ],
+  "acerca|acerca": [
+    0,
+    1,
+    2
+  ],
+  "despierta|despertar": [
+    2
+  ],
+  "segunda|segundo": [
+    0,
+    1,
+    2
+  ],
+  "trato|tratar": [
+    0
+  ],
+  "cambio|cambio": [
+    1
+  ],
+  "falta|falta": [
+    1
+  ],
+  "duele|doler": [
+    0,
+    1
+  ],
+  "esperaba|esperar": [
+    0
+  ],
+  "seré|ser": [
+    0
+  ],
+  "drogas|droga": [
+    1,
+    2
+  ],
+  "extraño|extraño": [
+    2
+  ],
+  "luces|luz": [
+    0,
+    1,
+    2
+  ],
+  "excepto|excepto": [
+    2
+  ],
+  "investigación|investigación": [
+    1
+  ],
+  "quedan|quedar": [
+    0,
+    1
+  ],
+  "dieron|dar": [
+    1,
+    2
+  ],
+  "hogar|hogar": [
+    2
+  ],
+  "ninguno|ninguno": [
+    0
+  ],
+  "reglas|regla": [
+    0,
+    1,
+    2
+  ],
+  "bailar|bailar": [
+    1,
+    2
+  ],
+  "calle|calle": [
+    1
+  ],
+  "papa|papa": [
+    0
+  ],
+  "simple|simple": [
+    0
+  ],
+  "viendo|ver": [
+    0,
+    1
+  ],
+  "guardia|guardia": [
+    0,
+    2
+  ],
+  "hablas|habla": [
+    0
+  ],
+  "odio|odiar": [
+    1
+  ],
+  "principio|principio": [
+    0
+  ],
+  "bonita|bonito": [
+    0,
+    1,
+    2
+  ],
+  "imbécil|imbécil": [
+    1
+  ],
+  "podrían|poder": [
+    1,
+    2
+  ],
+  "pone|poner": [
+    2
+  ],
+  "viva|vivir": [
+    0,
+    1
+  ],
+  "fantástico|fantástico": [
+    2
+  ],
+  "jugando|jugar": [
+    1,
+    2
+  ],
+  "metros|metro": [
+    0,
+    1,
+    2
+  ],
+  "mirar|mirar": [
+    2
+  ],
+  "compañero|compañero": [
+    1
+  ],
+  "quedar|quedar": [
+    2
+  ],
+  "vea|ver": [
+    1
+  ],
+  "apenas|apenas": [
+    0,
+    2
+  ],
+  "dejé|dejar": [
+    0,
+    1,
+    2
+  ],
+  "fuerza|fuerza": [
+    0
+  ],
+  "lamento|lamentar": [
+    1,
+    2
+  ],
+  "lee|leer": [
+    0,
+    1
+  ],
+  "leer|leer": [
+    2
+  ],
+  "pensado|pensar": [
+    2
+  ],
+  "rico|rico": [
+    0
+  ],
+  "suyo|suyo": [
+    0
+  ],
+  "acción|acción": [
+    2
+  ],
+  "dado|dar": [
+    1
+  ],
+  "dejaré|dejar": [
+    0,
+    2
+  ],
+  "llamado|llamado": [
+    0
+  ],
+  "oído|oír": [
+    1
+  ],
+  "toca|tocar": [
+    0,
+    1
+  ],
+  "cierra|cerrar": [
+    1,
+    2
+  ],
+  "damas|dama": [
+    2
+  ],
+  "estuviste|estar": [
+    1,
+    2
+  ],
+  "llaves|llave": [
+    0,
+    1,
+    2
+  ],
+  "llegue|llegar": [
+    0
+  ],
+  "llevó|llevar": [
+    1,
+    2
+  ],
+  "memoria|memoria": [
+    1,
+    2
+  ],
+  "montón|montón": [
+    0,
+    1,
+    2
+  ],
+  "muévanse|mover": [
+    1
+  ],
+  "parecía|parecer": [
+    0,
+    1
+  ],
+  "preguntas|pregunta": [
+    0
+  ],
+  "preguntas|preguntar": [
+    2
+  ],
+  "sientes|sentir": [
+    1
+  ],
+  "código|código": [
+    2
+  ],
+  "delante|delante": [
+    0
+  ],
+  "don|don": [
+    0
+  ],
+  "fe|fe": [
+    1
+  ],
+  "haz|hacer": [
+    0
+  ],
+  "muere|morir": [
+    1
+  ],
+  "puertas|puerta": [
+    0,
+    1,
+    2
+  ],
+  "valor|valor": [
+    0,
+    1
+  ],
+  "alta|alta": [
+    0,
+    1,
+    2
+  ],
+  "beber|beber": [
+    2
+  ],
+  "escribir|escribir": [
+    1
+  ],
+  "golpe|golpe": [
+    2
+  ],
+  "llevas|llevar": [
+    0,
+    1,
+    2
+  ],
+  "opinión|opinión": [
+    0
+  ],
+  "prueba|prueba": [
+    2
+  ],
+  "querido|querer": [
+    0,
+    2
+  ],
+  "querido|querido": [
+    1
+  ],
+  "contar|contar": [
+    0
+  ],
+  "dejo|dejar": [
+    1,
+    2
+  ],
+  "habían|haber": [
+    1
+  ],
+  "tenían|tener": [
+    1
+  ],
+  "vuelvo|volver": [
+    2
+  ],
+  "empieza|empezar": [
+    1,
+    2
+  ],
+  "encontró|encontrar": [
+    0,
+    1,
+    2
+  ],
+  "estilo|estilo": [
+    2
+  ],
+  "pista|pista": [
+    0
+  ],
+  "viejos|viejo": [
+    1
+  ],
+  "debía|deber": [
+    2
+  ],
+  "estén|estar": [
+    1,
+    2
+  ],
+  "mami|mami": [
+    1
+  ],
+  "podido|poder": [
+    0
+  ],
+  "sirve|servir": [
+    0,
+    1,
+    2
+  ],
+  "despacio|despacio": [
+    2
+  ],
+  "bienvenida|bienvenida": [
+    1
+  ],
+  "especie|especie": [
+    1,
+    2
+  ],
+  "hablado|hablar": [
+    2
+  ],
+  "leo|leer": [
+    2
+  ],
+  "mama|mama": [
+    1,
+    2
+  ],
+  "pidió|pedir": [
+    1
+  ],
+  "principal|principal": [
+    0,
+    1
+  ],
+  "éxito|éxito": [
+    1,
+    2
+  ],
+  "cabrón|cabrón": [
+    0,
+    1,
+    2
+  ],
+  "habías|haber": [
+    1,
+    2
+  ],
+  "piel|piel": [
+    0,
+    2
+  ],
+  "común|común": [
+    0
+  ],
+  "necesitaba|necesitar": [
+    0,
+    1,
+    2
+  ],
+  "preocupa|preocupar": [
+    0
+  ],
+  "quienes|quien": [
+    2
+  ],
+  "siente|sentar": [
+    1
+  ],
+  "tiempos|tiempo": [
+    0,
+    2
+  ],
+  "traje|traje": [
+    1
+  ],
+  "últimos|último": [
+    0,
+    2
+  ],
+  "brillante|brillante": [
+    0,
+    1
+  ],
+  "correr|correr": [
+    1,
+    2
+  ],
+  "largo|largo": [
+    1
+  ],
+  "pena|pena": [
+    0,
+    1
+  ],
+  "piso|piso": [
+    0,
+    2
+  ],
+  "recordar|recordar": [
+    0
+  ],
+  "señores|señor": [
+    0,
+    1,
+    2
+  ],
+  "tomó|tomar": [
+    0,
+    1,
+    2
+  ],
+  "cine|cine": [
+    2
+  ],
+  "dando|dar": [
+    0,
+    1,
+    2
+  ],
+  "dejaste|dejar": [
+    2
+  ],
+  "fuiste|ir": [
+    1
+  ],
+  "policías|policía": [
+    0,
+    1
+  ],
+  "puntos|punto": [
+    1,
+    2
+  ],
+  "socio|socio": [
+    0
+  ],
+  "teníamos|tener": [
+    0,
+    1
+  ],
+  "bebe|beber": [
+    0
+  ],
+  "estupendo|estupendo": [
+    0,
+    1
+  ],
+  "juicio|juicio": [
+    1
+  ],
+  "tanta|tanto": [
+    2
+  ],
+  "viento|viento": [
+    0,
+    2
+  ],
+  "acabado|acabar": [
+    0,
+    1,
+    2
+  ],
+  "dejas|dejar": [
+    1
+  ],
+  "encontraron|encontrar": [
+    1,
+    2
+  ],
+  "ibas|ir": [
+    0,
+    1
+  ],
+  "muevas|mover": [
+    0,
+    1,
+    2
+  ],
+  "seguramente|seguramente": [
+    0,
+    1,
+    2
+  ],
+  "sigo|seguir": [
+    2
+  ],
+  "vayamos|ir": [
+    0
+  ],
+  "volverá|volver": [
+    2
+  ],
+  "área|área": [
+    0
+  ],
+  "cliente|cliente": [
+    0
+  ],
+  "empezó|empezar": [
+    1,
+    2
+  ],
+  "hagamos|hacer": [
+    1
+  ],
+  "ridículo|ridículo": [
+    2
+  ],
+  "terminó|terminar": [
+    0,
+    1,
+    2
+  ],
+  "tomando|tomar": [
+    0,
+    1,
+    2
+  ],
+  "américa|América": [
+    0,
+    1
+  ],
+  "ayude|ayudar": [
+    1
+  ],
+  "definitivamente|definitivamente": [
+    0
+  ],
+  "inmediatamente|inmediatamente": [
+    0,
+    1,
+    2
+  ],
+  "locos|loco": [
+    1,
+    2
+  ],
+  "malditos|maldito": [
+    0
+  ],
+  "medicina|medicina": [
+    2
+  ],
+  "parecer|parecer": [
+    1
+  ],
+  "pelo|pelo": [
+    0,
+    1,
+    2
+  ],
+  "quedarse|quedar": [
+    0,
+    2
+  ],
+  "desea|desear": [
+    1
+  ],
+  "hable|hablar": [
+    1
+  ],
+  "leyes|ley": [
+    0,
+    2
+  ],
+  "lugares|lugar": [
+    0,
+    1,
+    2
+  ],
+  "objetivo|objetivo": [
+    0
+  ],
+  "tonterías|tontería": [
+    1
+  ],
+  "baja|baja": [
+    1
+  ],
+  "baja|bajo": [
+    2
+  ],
+  "bala|bala": [
+    2
+  ],
+  "corriendo|correr": [
+    0,
+    1,
+    2
+  ],
+  "disculpa|disculpa": [
+    0
+  ],
+  "divertido|divertido": [
+    1,
+    2
+  ],
+  "joder|joder": [
+    0,
+    1,
+    2
+  ],
+  "llamas|llama": [
+    2
+  ],
+  "querida|querido": [
+    0,
+    1
+  ],
+  "salido|salir": [
+    0,
+    1
+  ],
+  "vuelto|volver": [
+    1
+  ],
+  "harán|hacer": [
+    1
+  ],
+  "lleve|llevar": [
+    2
+  ],
+  "media|media": [
+    0,
+    1,
+    2
+  ],
+  "negocios|negociar": [
+    2
+  ],
+  "regreso|regreso": [
+    1
+  ],
+  "ruido|ruido": [
+    1,
+    2
+  ],
+  "supe|saber": [
+    0,
+    2
+  ],
+  "costa|costa": [
+    2
+  ],
+  "dé|dar": [
+    0
+  ],
+  "hubieras|haber": [
+    0
+  ],
+  "lengua|lengua": [
+    0,
+    2
+  ],
+  "poderes|poder": [
+    2
+  ],
+  "tomado|tomar": [
+    1,
+    2
+  ],
+  "total|total": [
+    0,
+    1
+  ],
+  "bienvenidos|bienvenido": [
+    0
+  ],
+  "busca|busca": [
+    1
+  ],
+  "deber|deber": [
+    0,
+    1,
+    2
+  ],
+  "destruir|destruir": [
+    2
+  ],
+  "diste|dar": [
+    0,
+    1
+  ],
+  "débil|débil": [
+    1
+  ],
+  "lados|lado": [
+    0,
+    1,
+    2
+  ],
+  "luchar|luchar": [
+    0
+  ],
+  "partir|partir": [
+    0,
+    1,
+    2
+  ],
+  "refieres|referir": [
+    0,
+    2
+  ],
+  "saliendo|salir": [
+    0
+  ],
+  "siguen|seguir": [
+    2
+  ],
+  "trajo|traer": [
+    0,
+    2
+  ],
+  "vieron|ver": [
+    0
+  ],
+  "caray|caray": [
+    0,
+    1,
+    2
+  ],
+  "carro|carro": [
+    1
+  ],
+  "doc|doctor": [
+    0,
+    2
+  ],
+  "entero|entero": [
+    1,
+    2
+  ],
+  "mato|matar": [
+    0,
+    1,
+    2
+  ],
+  "permite|permitir": [
+    1,
+    2
+  ],
+  "profesional|profesional": [
+    2
+  ],
+  "puse|poner": [
+    0,
+    2
+  ],
+  "quede|quedar": [
+    0,
+    1,
+    2
+  ],
+  "quedó|quedar": [
+    1,
+    2
+  ],
+  "quiso|querer": [
+    0,
+    1
+  ],
+  "calma|calma": [
+    0
+  ],
+  "cena|cena": [
+    1
+  ],
+  "dará|dar": [
+    0,
+    2
+  ],
+  "diario|diario": [
+    1
+  ],
+  "encantaría|encantar": [
+    2
+  ],
+  "envió|enviar": [
+    0,
+    1,
+    2
+  ],
+  "movimiento|movimiento": [
+    0,
+    1
+  ],
+  "siga|seguir": [
+    0
+  ],
+  "tesoro|tesoro": [
+    0,
+    1
+  ],
+  "valiente|valiente": [
+    2
+  ],
+  "cabo|cabo": [
+    0,
+    2
+  ],
+  "directo|directo": [
+    0,
+    1
+  ],
+  "encuentras|encontrar": [
+    2
+  ],
+  "mueve|mover": [
+    0,
+    1
+  ],
+  "quieto|quieto": [
+    1
+  ],
+  "tamaño|tamaño": [
+    1
+  ],
+  "termine|terminar": [
+    0
+  ],
+  "tomé|tomar": [
+    0,
+    1,
+    2
+  ],
+  "traído|traer": [
+    2
+  ],
+  "usando|usar": [
+    0,
+    1,
+    2
+  ],
+  "yendo|ir": [
+    0,
+    2
+  ],
+  "cerrar|cerrar": [
+    2
+  ],
+  "clases|clase": [
+    1
+  ],
+  "hablé|hablar": [
+    1
+  ],
+  "negros|negro": [
+    0,
+    2
+  ],
+  "pecho|pecho": [
+    0
+  ],
+  "saca|sacar": [
+    0,
+    1
+  ],
+  "actuar|actuar": [
+    2
+  ],
+  "aguanta|aguantar": [
+    0
+  ],
+  "aviones|avión": [
+    1,
+    2
+  ],
+  "cambia|cambiar": [
+    0,
+    2
+  ],
+  "conocía|conocer": [
+    0
+  ],
+  "detener|detener": [
+    2
+  ],
+  "llegué|llegar": [
+    1
+  ],
+  "llevará|llevar": [
+    1
+  ],
+  "murieron|morir": [
+    0,
+    1,
+    2
+  ],
+  "profundo|profundo": [
+    0
+  ],
+  "pudiste|poder": [
+    1
+  ],
+  "quedo|quedar": [
+    1,
+    2
+  ],
+  "sabia|sabio": [
+    0,
+    2
+  ],
+  "serie|serie": [
+    0
+  ],
+  "tropas|tropa": [
+    0,
+    1,
+    2
+  ],
+  "éramos|ser": [
+    0,
+    1,
+    2
+  ],
+  "base|base": [
+    2
+  ],
+  "desapareció|desaparecer": [
+    1,
+    2
+  ],
+  "disculpen|disculpar": [
+    0,
+    1
+  ],
+  "elección|elección": [
+    1
+  ],
+  "entró|entrar": [
+    0,
+    1,
+    2
+  ],
+  "llamando|llamar": [
+    0,
+    1
+  ],
+  "pacientes|paciente": [
+    0,
+    2
+  ],
+  "sujeto|sujeto": [
+    0,
+    1,
+    2
+  ],
+  "termina|terminar": [
+    1,
+    2
+  ],
+  "tomo|tomar": [
+    0,
+    1,
+    2
+  ],
+  "época|época": [
+    2
+  ],
+  "detalles|detalle": [
+    1,
+    2
+  ],
+  "discutir|discutir": [
+    1,
+    2
+  ],
+  "droga|droga": [
+    2
+  ],
+  "necesitar|necesitar": [
+    2
+  ],
+  "partes|parte": [
+    0,
+    1,
+    2
+  ],
+  "periódico|periódico": [
+    0
+  ],
+  "robar|robar": [
+    2
+  ],
+  "barrio|barrio": [
+    1,
+    2
+  ],
+  "confía|confiar": [
+    2
+  ],
+  "guardias|guardia": [
+    0,
+    1,
+    2
+  ],
+  "huele|oler": [
+    1,
+    2
+  ],
+  "intento|intentar": [
+    1,
+    2
+  ],
+  "local|local": [
+    2
+  ],
+  "premio|premio": [
+    0
+  ],
+  "salida|salida": [
+    0,
+    2
+  ],
+  "sospechoso|sospechoso": [
+    0
+  ],
+  "talento|talento": [
+    1
+  ],
+  "teniendo|tener": [
+    0,
+    1
+  ],
+  "agentes|agente": [
+    0,
+    1,
+    2
+  ],
+  "andando|andar": [
+    1,
+    2
+  ],
+  "cantar|cantar": [
+    0
+  ],
+  "causa|causa": [
+    0,
+    1,
+    2
+  ],
+  "dias|día": [
+    0,
+    2
+  ],
+  "efecto|efecto": [
+    0
+  ],
+  "fumar|fumar": [
+    1
+  ],
+  "llevamos|llevar": [
+    0,
+    1
+  ],
+  "matando|matar": [
+    0,
+    1,
+    2
+  ],
+  "nieve|nieve": [
+    2
+  ],
+  "números|número": [
+    0,
+    1,
+    2
+  ],
+  "olvidé|olvidar": [
+    0,
+    1
+  ],
+  "papeles|papel": [
+    1,
+    2
+  ],
+  "pastel|pastel": [
+    2
+  ],
+  "quedas|quedar": [
+    0,
+    2
+  ],
+  "respirar|respirar": [
+    2
+  ],
+  "tantas|tanto": [
+    1
+  ],
+  "vergüenza|vergüenza": [
+    2
+  ],
+  "veía|ver": [
+    0,
+    2
+  ],
+  "vimos|ver": [
+    0,
+    1,
+    2
+  ],
+  "camioneta|camioneta": [
+    1,
+    2
+  ],
+  "canal|canal": [
+    2
+  ],
+  "cargo|cargo": [
+    0,
+    1,
+    2
+  ],
+  "corriente|corriente": [
+    0,
+    1,
+    2
+  ],
+  "coño|coño": [
+    2
+  ],
+  "echar|echar": [
+    1
+  ],
+  "llorar|llorar": [
+    0,
+    2
+  ],
+  "pareció|parecer": [
+    0
+  ],
+  "perdiste|perder": [
+    0,
+    2
+  ],
+  "seguimos|seguir": [
+    2
+  ],
+  "sentía|sentir": [
+    0,
+    1,
+    2
+  ],
+  "acciones|acción": [
+    0,
+    1,
+    2
+  ],
+  "aspecto|aspecto": [
+    1
+  ],
+  "cable|cable": [
+    0
+  ],
+  "contó|contar": [
+    1,
+    2
+  ],
+  "entera|entero": [
+    0,
+    1
+  ],
+  "hablan|hablar": [
+    2
+  ],
+  "idiotas|idiota": [
+    1,
+    2
+  ],
+  "ladrón|ladrón": [
+    0
+  ],
+  "libres|libre": [
+    1
+  ],
+  "llego|llegar": [
+    0,
+    1,
+    2
+  ],
+  "llevaron|llevar": [
+    0,
+    2
+  ],
+  "ocurrido|ocurrir": [
+    0,
+    2
+  ],
+  "pasé|pasar": [
+    0
+  ],
+  "poniendo|poner": [
+    1,
+    2
+  ],
+  "recuerdos|recuerdo": [
+    1
+  ],
+  "relaciones|relación": [
+    0
+  ],
+  "acto|acto": [
+    0,
+    2
+  ],
+  "andar|andar": [
+    2
+  ],
+  "cadena|cadena": [
+    0,
+    1,
+    2
+  ],
+  "dispara|disparar": [
+    1,
+    2
+  ],
+  "fuertes|fuerte": [
+    0,
+    1,
+    2
+  ],
+  "inspector|inspector": [
+    1
+  ],
+  "intención|intención": [
+    0,
+    1,
+    2
+  ],
+  "olvida|olvidar": [
+    0,
+    1,
+    2
+  ],
+  "pasan|pasar": [
+    0,
+    1
+  ],
+  "perfectamente|perfectamente": [
+    1,
+    2
+  ],
+  "preguntaba|preguntar": [
+    0,
+    1,
+    2
+  ],
+  "querían|querer": [
+    1
+  ],
+  "truco|truco": [
+    1
+  ],
+  "volviendo|volver": [
+    2
+  ],
+  "aseguro|asegurar": [
+    1
+  ],
+  "dejaron|dejar": [
+    0
+  ],
+  "derechos|derecho": [
+    0,
+    2
+  ],
+  "directamente|directamente": [
+    0,
+    2
+  ],
+  "disparen|disparar": [
+    0,
+    1
+  ],
+  "entrada|entrada": [
+    2
+  ],
+  "gloria|gloria": [
+    0
+  ],
+  "gracia|gracia": [
+    0,
+    2
+  ],
+  "habia|haber": [
+    2
+  ],
+  "llegaron|llegar": [
+    0,
+    2
+  ],
+  "llevaba|llevar": [
+    0,
+    1,
+    2
+  ],
+  "matado|matar": [
+    0,
+    1,
+    2
+  ],
+  "pasos|paso": [
+    0,
+    2
+  ],
+  "policia|policía": [
+    1
+  ],
+  "pongo|poner": [
+    0
+  ],
+  "tengamos|tener": [
+    0
+  ],
+  "tonta|tonto": [
+    1,
+    2
+  ],
+  "unidos|unido": [
+    0,
+    2
+  ],
+  "alemanes|alemán": [
+    0,
+    1
+  ],
+  "caminando|caminar": [
+    0
+  ],
+  "criatura|criatura": [
+    2
+  ],
+  "duerme|dormir": [
+    1,
+    2
+  ],
+  "habéis|haber": [
+    0,
+    1,
+    2
+  ],
+  "hayas|haber": [
+    0,
+    2
+  ],
+  "inteligencia|inteligencia": [
+    1
+  ],
+  "quedado|quedar": [
+    2
+  ],
+  "razones|razón": [
+    0,
+    1
+  ],
+  "u|o": [
+    0
+  ],
+  "urgencias|urgencia": [
+    2
+  ],
+  "campamento|campamento": [
+    2
+  ],
+  "cartera|cartera": [
+    0
+  ],
+  "dejamos|dejar": [
+    1,
+    2
+  ],
+  "durmiendo|dormir": [
+    0,
+    2
+  ],
+  "formas|forma": [
+    1,
+    2
+  ],
+  "guapo|guapo": [
+    0
+  ],
+  "guarda|guardar": [
+    0,
+    1
+  ],
+  "impresionante|impresionante": [
+    0,
+    2
+  ],
+  "licencia|licencia": [
+    0
+  ],
+  "llegará|llegar": [
+    2
+  ],
+  "lleno|lleno": [
+    0
+  ],
+  "llevado|llevar": [
+    1,
+    2
+  ],
+  "pata|pata": [
+    1,
+    2
+  ],
+  "podamos|podar": [
+    1
+  ],
+  "pérdida|pérdida": [
+    0,
+    1
+  ],
+  "quedamos|quedar": [
+    0,
+    2
+  ],
+  "quedará|quedar": [
+    1
+  ],
+  "recién|recién": [
+    0,
+    2
+  ],
+  "ricos|rico": [
+    1
+  ],
+  "servir|servir": [
+    0,
+    1
+  ],
+  "tráfico|tráfico": [
+    0
+  ],
+  "viven|vivir": [
+    1
+  ],
+  "análisis|análisis": [
+    0,
+    2
+  ],
+  "bravo|bravo": [
+    0,
+    2
+  ],
+  "celular|celular": [
+    2
+  ],
+  "cortar|cortar": [
+    0,
+    2
+  ],
+  "dejan|dejar": [
+    0
+  ],
+  "estados|estar": [
+    2
+  ],
+  "extra|extra": [
+    1
+  ],
+  "hablaré|hablar": [
+    0
+  ],
+  "mueva|mover": [
+    0
+  ],
+  "míos|mío": [
+    2
+  ],
+  "pensamos|pensar": [
+    2
+  ],
+  "pondré|poner": [
+    1
+  ],
+  "pregunté|preguntar": [
+    0,
+    2
+  ],
+  "sabido|saber": [
+    0,
+    1,
+    2
+  ],
+  "volando|volar": [
+    2
+  ],
+  "antiguo|antiguo": [
+    2
+  ],
+  "cambiado|cambiar": [
+    0,
+    1,
+    2
+  ],
+  "conseguí|conseguir": [
+    0,
+    2
+  ],
+  "consigue|conseguir": [
+    0
+  ],
+  "enviar|enviar": [
+    0
+  ],
+  "escribió|escribir": [
+    0,
+    1,
+    2
+  ],
+  "feo|feo": [
+    2
+  ],
+  "hubieran|haber": [
+    1
+  ],
+  "informe|informe": [
+    2
+  ],
+  "médicos|médico": [
+    0,
+    1,
+    2
+  ],
+  "niñas|niña": [
+    0,
+    1
+  ],
+  "nota|nota": [
+    1,
+    2
+  ],
+  "pasamos|pasar": [
+    1,
+    2
+  ],
+  "pienses|pensar": [
+    1,
+    2
+  ],
+  "podías|poder": [
+    0,
+    1
+  ],
+  "ponen|poner": [
+    0,
+    1,
+    2
+  ],
+  "propios|propio": [
+    1
+  ],
+  "quedaré|quedar": [
+    1,
+    2
+  ],
+  "señoras|señora": [
+    1,
+    2
+  ],
+  "superior|superior": [
+    0,
+    1
+  ],
+  "vinieron|venir": [
+    1,
+    2
+  ],
+  "íbamos|ir": [
+    2
+  ],
+  "arena|arena": [
+    1,
+    2
+  ],
+  "cambió|cambiar": [
+    0,
+    2
+  ],
+  "chino|chino": [
+    1
+  ],
+  "conciencia|conciencia": [
+    1,
+    2
+  ],
+  "conseguiste|conseguir": [
+    1
+  ],
+  "correo|correo": [
+    1
+  ],
+  "estemos|estar": [
+    1,
+    2
+  ],
+  "guía|guía": [
+    0
+  ],
+  "hablaba|hablar": [
+    1
+  ],
+  "importancia|importancia": [
+    2
+  ],
+  "labios|labio": [
+    0,
+    1,
+    2
+  ],
+  "pensó|pensar": [
+    2
+  ],
+  "pintura|pintura": [
+    0,
+    2
+  ],
+  "pura|puro": [
+    2
+  ],
+  "rara|raro": [
+    1,
+    2
+  ],
+  "salimos|salir": [
+    2
+  ],
+  "sistemas|sistema": [
+    2
+  ],
+  "solas|solo": [
+    1
+  ],
+  "testigos|testigo": [
+    0,
+    1,
+    2
+  ],
+  "tiro|tiro": [
+    0,
+    1,
+    2
+  ],
+  "traeré|traer": [
+    2
+  ],
+  "tuvieron|tener": [
+    2
+  ],
+  "vehículo|vehículo": [
+    0,
+    1,
+    2
+  ],
+  "comunidad|comunidad": [
+    2
+  ],
+  "condiciones|condición": [
+    1,
+    2
+  ],
+  "construir|construir": [
+    0,
+    1
+  ],
+  "creas|creer": [
+    1
+  ],
+  "cumplir|cumplir": [
+    2
+  ],
+  "daría|dar": [
+    1
+  ],
+  "disparó|disparar": [
+    0,
+    1,
+    2
+  ],
+  "fuimos|ser": [
+    2
+  ],
+  "huesos|hueso": [
+    0,
+    1,
+    2
+  ],
+  "ira|ira": [
+    0,
+    1,
+    2
+  ],
+  "permitir|permitir": [
+    0
+  ],
+  "piense|pensar": [
+    2
+  ],
+  "pierde|perder": [
+    2
+  ],
+  "placa|placa": [
+    0
+  ],
+  "podria|poder": [
+    0,
+    2
+  ],
+  "podrán|poder": [
+    0
+  ],
+  "posibilidades|posibilidad": [
+    0,
+    1
+  ],
+  "precisamente|precisamente": [
+    2
+  ],
+  "quita|quitar": [
+    2
+  ],
+  "salvó|salvar": [
+    0,
+    1,
+    2
+  ],
+  "servicios|servicio": [
+    0,
+    1
+  ],
+  "trajiste|traer": [
+    0
+  ],
+  "vengas|venir": [
+    0
+  ],
+  "verán|ver": [
+    0,
+    1
+  ],
+  "visión|visión": [
+    2
+  ],
+  "aparte|aparte": [
+    0,
+    2
+  ],
+  "asesinatos|asesinato": [
+    0,
+    1,
+    2
+  ],
+  "buscamos|buscar": [
+    0,
+    1,
+    2
+  ],
+  "completo|completo": [
+    0,
+    2
+  ],
+  "convierte|convertir": [
+    0,
+    2
+  ],
+  "estarías|estar": [
+    0
+  ],
+  "existen|existir": [
+    0,
+    1
+  ],
+  "faltan|faltar": [
+    2
+  ],
+  "fuerzas|fuerza": [
+    0,
+    1,
+    2
+  ],
+  "herido|herir": [
+    0,
+    1,
+    2
+  ],
+  "larga|largo": [
+    0,
+    1
+  ],
+  "líneas|línea": [
+    0,
+    1,
+    2
+  ],
+  "maten|matar": [
+    0,
+    1
+  ],
+  "olvide|olvidar": [
+    0,
+    1
+  ],
+  "pensamientos|pensamiento": [
+    2
+  ],
+  "preparado|preparar": [
+    0
+  ],
+  "rompió|romper": [
+    2
+  ],
+  "rumbo|rumbo": [
+    0,
+    1,
+    2
+  ],
+  "sois|ser": [
+    0,
+    1,
+    2
+  ],
+  "traes|traer": [
+    0,
+    1,
+    2
+  ],
+  "tratamiento|tratamiento": [
+    1
+  ],
+  "adoro|adorar": [
+    0,
+    1,
+    2
+  ],
+  "agujero|agujero": [
+    2
+  ],
+  "altura|altura": [
+    0,
+    2
+  ],
+  "amistad|amistad": [
+    1
+  ],
+  "antigua|antiguo": [
+    0
+  ],
+  "carga|carga": [
+    2
+  ],
+  "compartir|compartir": [
+    0
+  ],
+  "cómodo|cómodo": [
+    1
+  ],
+  "dulces|dulce": [
+    0
+  ],
+  "entendí|entender": [
+    0
+  ],
+  "estuvimos|estar": [
+    0,
+    1
+  ],
+  "estáis|estar": [
+    0,
+    1
+  ],
+  "guapa|guapo": [
+    2
+  ],
+  "humo|humo": [
+    2
+  ],
+  "juega|jugar": [
+    2
+  ],
+  "leyendo|leer": [
+    1,
+    2
+  ],
+  "lío|lío": [
+    0
+  ],
+  "orgullosa|orgulloso": [
+    1
+  ],
+  "personalmente|personalmente": [
+    0
+  ],
+  "raza|raza": [
+    2
+  ],
+  "refiere|referir": [
+    2
+  ],
+  "sencillo|sencillo": [
+    2
+  ],
+  "suave|suave": [
+    0,
+    1,
+    2
+  ],
+  "vaso|vaso": [
+    0
+  ],
+  "vigilancia|vigilancia": [
+    1,
+    2
+  ],
+  "vivía|vivir": [
+    0
+  ],
+  "beso|beso": [
+    0,
+    1,
+    2
+  ],
+  "bombas|bomba": [
+    0
+  ],
+  "burro|burro": [
+    2
+  ],
+  "buscan|buscar": [
+    1
+  ],
+  "cabezas|cabeza": [
+    2
+  ],
+  "cajas|caja": [
+    1,
+    2
+  ],
+  "cargos|cargo": [
+    1,
+    2
+  ],
+  "curiosidad|curiosidad": [
+    0,
+    1,
+    2
+  ],
+  "dirige|dirigir": [
+    1,
+    2
+  ],
+  "encuentran|encontrar": [
+    0
+  ],
+  "experto|experto": [
+    2
+  ],
+  "ganó|ganar": [
+    0,
+    1,
+    2
+  ],
+  "identificación|identificación": [
+    1
+  ],
+  "impresión|impresión": [
+    0,
+    1
+  ],
+  "madera|madera": [
+    1
+  ],
+  "mantiene|mantener": [
+    1
+  ],
+  "mortal|mortal": [
+    0
+  ],
+  "peso|peso": [
+    0
+  ],
+  "pieza|pieza": [
+    0
+  ],
+  "pongas|poner": [
+    2
+  ],
+  "propias|propio": [
+    1
+  ],
+  "puro|puro": [
+    0
+  ],
+  "recibí|recibir": [
+    0,
+    1,
+    2
+  ],
+  "repito|repetir": [
+    0,
+    1,
+    2
+  ],
+  "salgo|salir": [
+    2
+  ],
+  "supiera|saber": [
+    0
+  ],
+  "tontos|tonto": [
+    0
+  ],
+  "vía|vía": [
+    2
+  ],
+  "almas|alma": [
+    1,
+    2
+  ],
+  "ambas|ambos": [
+    2
+  ],
+  "ambiente|ambiente": [
+    2
+  ],
+  "archivos|archivo": [
+    0,
+    1,
+    2
+  ],
+  "baje|bajar": [
+    0
+  ],
+  "bolas|bola": [
+    0
+  ],
+  "casado|casado": [
+    1
+  ],
+  "consiguió|conseguir": [
+    0,
+    1
+  ],
+  "cuento|cuento": [
+    2
+  ],
+  "deba|deber": [
+    2
+  ],
+  "debido|debido": [
+    0,
+    1,
+    2
+  ],
+  "encontraré|encontrar": [
+    0
+  ],
+  "estudiar|estudiar": [
+    0,
+    2
+  ],
+  "fiestas|fiesta": [
+    0,
+    1,
+    2
+  ],
+  "ganado|ganar": [
+    0,
+    2
+  ],
+  "grado|grado": [
+    1
+  ],
+  "instrucciones|instrucción": [
+    1
+  ],
+  "kilos|kilo": [
+    0,
+    1,
+    2
+  ],
+  "limpio|limpio": [
+    2
+  ],
+  "llegan|llegar": [
+    0
+  ],
+  "llegando|llegar": [
+    2
+  ],
+  "lograr|lograr": [
+    1,
+    2
+  ],
+  "mandó|mandar": [
+    2
+  ],
+  "mental|mental": [
+    1
+  ],
+  "opinas|opinar": [
+    1
+  ],
+  "paga|paga": [
+    0
+  ],
+  "paga|pagar": [
+    1,
+    2
+  ],
+  "pasaba|pasar": [
+    0,
+    1,
+    2
+  ],
+  "pistas|pista": [
+    0,
+    2
+  ],
+  "pondrá|poner": [
+    0,
+    1
+  ],
+  "pongan|poner": [
+    2
+  ],
+  "porquería|porquería": [
+    0,
+    2
+  ],
+  "prometí|prometer": [
+    0
+  ],
+  "queria|querer": [
+    1,
+    2
+  ],
+  "rapido|rápido": [
+    1,
+    2
+  ],
+  "ritmo|ritmo": [
+    2
+  ],
+  "robaron|robar": [
+    1,
+    2
+  ],
+  "saltar|saltar": [
+    0
+  ],
+  "sucediendo|suceder": [
+    1,
+    2
+  ],
+  "terroristas|terrorista": [
+    0,
+    2
+  ],
+  "tiburones|tiburón": [
+    0,
+    1,
+    2
+  ],
+  "venía|venir": [
+    0,
+    1,
+    2
+  ],
+  "vinimos|venir": [
+    0
+  ],
+  "apesta|apestar": [
+    0,
+    1,
+    2
+  ],
+  "cambios|cambio": [
+    0,
+    1
+  ],
+  "caras|cara": [
+    0,
+    1,
+    2
+  ],
+  "casino|casino": [
+    1
+  ],
+  "centavos|centavo": [
+    0,
+    1,
+    2
+  ],
+  "conocimiento|conocimiento": [
+    2
+  ],
+  "convirtió|convertir": [
+    0,
+    1,
+    2
+  ],
+  "cruz|cruz": [
+    0,
+    1
+  ],
+  "cámaras|cámara": [
+    0,
+    1,
+    2
+  ],
+  "daba|dar": [
+    0,
+    1
+  ],
+  "daños|daño": [
+    0
+  ],
+  "dejará|dejar": [
+    1
+  ],
+  "desgraciado|desgraciado": [
+    0,
+    1,
+    2
+  ],
+  "emociones|emoción": [
+    1,
+    2
+  ],
+  "envía|enviar": [
+    2
+  ],
+  "expediente|expediente": [
+    0,
+    1
+  ],
+  "federal|federal": [
+    2
+  ],
+  "gané|ganar": [
+    0,
+    1,
+    2
+  ],
+  "gritar|gritar": [
+    0
+  ],
+  "habíamos|haber": [
+    1,
+    2
+  ],
+  "hacerse|hacer": [
+    0
+  ],
+  "identidad|identidad": [
+    1,
+    2
+  ],
+  "importaría|importar": [
+    0,
+    1,
+    2
+  ],
+  "lanzamiento|lanzamiento": [
+    1
+  ],
+  "maravilla|maravilla": [
+    1,
+    2
+  ],
+  "marcha|marcha": [
+    0,
+    2
+  ],
+  "marcha|marchar": [
+    1
+  ],
+  "minas|mina": [
+    0,
+    1,
+    2
+  ],
+  "monstruos|monstruo": [
+    0,
+    1
+  ],
+  "numero|número": [
+    0,
+    2
+  ],
+  "pelotas|pelota": [
+    0,
+    1
+  ],
+  "pense|pensar": [
+    0,
+    1,
+    2
+  ],
+  "preguntó|preguntar": [
+    0,
+    1,
+    2
+  ],
+  "sales|salir": [
+    1
+  ],
+  "vivido|vivir": [
+    2
+  ],
+  "alla|allá": [
+    2
+  ],
+  "asco|asco": [
+    0,
+    1,
+    2
+  ],
+  "camina|caminar": [
+    1
+  ],
+  "conocimos|conocer": [
+    0,
+    2
+  ],
+  "decidí|decidir": [
+    0
+  ],
+  "enseñó|enseñar": [
+    2
+  ],
+  "estuvieron|estar": [
+    0,
+    1,
+    2
+  ],
+  "extraña|extrañar": [
+    2
+  ],
+  "irán|ir": [
+    1
+  ],
+  "logramos|lograr": [
+    0,
+    2
+  ],
+  "lucha|luchar": [
+    0
+  ],
+  "magnífico|magnífico": [
+    0
+  ],
+  "moda|moda": [
+    1,
+    2
+  ],
+  "noble|noble": [
+    2
+  ],
+  "olvidado|olvidar": [
+    0,
+    1,
+    2
+  ],
+  "pago|pagar": [
+    1,
+    2
+  ],
+  "procedimiento|procedimiento": [
+    2
+  ],
+  "pudieron|poder": [
+    1,
+    2
+  ],
+  "página|página": [
+    0
+  ],
+  "quitar|quitar": [
+    2
+  ],
+  "sentado|sentado": [
+    0
+  ],
+  "título|título": [
+    1
+  ],
+  "vendrán|venir": [
+    0,
+    1
+  ],
+  "virgen|virgen": [
+    1,
+    2
+  ],
+  "últimas|último": [
+    0
+  ],
+  "aguantar|aguantar": [
+    0
+  ],
+  "alegría|alegría": [
+    2
+  ],
+  "aprendí|aprender": [
+    0,
+    1,
+    2
+  ],
+  "asombroso|asombroso": [
+    0
+  ],
+  "asusta|asustar": [
+    0,
+    1
+  ],
+  "caro|caro": [
+    2
+  ],
+  "celebrar|celebrar": [
+    1
+  ],
+  "cinturón|cinturón": [
+    0
+  ],
+  "comercial|comercial": [
+    2
+  ],
+  "compromiso|compromiso": [
+    2
+  ],
+  "damos|dar": [
+    0
+  ],
+  "encantado|encantado": [
+    1,
+    2
+  ],
+  "estudio|estudio": [
+    0
+  ],
+  "estudios|estudio": [
+    1
+  ],
+  "exterior|exterior": [
+    1,
+    2
+  ],
+  "hablaste|hablar": [
+    1,
+    2
+  ],
+  "hechos|hecho": [
+    0,
+    2
+  ],
+  "jodido|jodido": [
+    0,
+    1
+  ],
+  "lisa|liso": [
+    1,
+    2
+  ],
+  "llevando|llevar": [
+    0,
+    1,
+    2
+  ],
+  "luce|lucir": [
+    0
+  ],
+  "maleta|maleta": [
+    0
+  ],
+  "mandar|mandar": [
+    1
+  ],
+  "mayores|mayor": [
+    1
+  ],
+  "ocasión|ocasión": [
+    2
+  ],
+  "papas|papa": [
+    1,
+    2
+  ],
+  "paraíso|paraíso": [
+    1,
+    2
+  ],
+  "parezco|parecer": [
+    1
+  ],
+  "pasen|pasar": [
+    2
+  ],
+  "potencia|potencia": [
+    0,
+    1,
+    2
+  ],
+  "prepárense|preparar": [
+    0
+  ],
+  "punta|punta": [
+    2
+  ],
+  "pusiste|poner": [
+    2
+  ],
+  "recuerde|recordar": [
+    1
+  ],
+  "romano|romano": [
+    1
+  ],
+  "rusos|ruso": [
+    1,
+    2
+  ],
+  "salieron|salir": [
+    1
+  ],
+  "salta|saltar": [
+    1,
+    2
+  ],
+  "soportar|soportar": [
+    0,
+    1
+  ],
+  "tanque|tanque": [
+    0
+  ],
+  "tenéis|tener": [
+    2
+  ],
+  "traiga|traer": [
+    2
+  ],
+  "apoyo|apoyo": [
+    2
+  ],
+  "aprendido|aprender": [
+    1,
+    2
+  ],
+  "autoridades|autoridad": [
+    1,
+    2
+  ],
+  "bello|bello": [
+    1
+  ],
+  "buscado|buscar": [
+    0,
+    2
+  ],
+  "comisario|comisario": [
+    0
+  ],
+  "consecuencias|consecuencia": [
+    0,
+    1,
+    2
+  ],
+  "cuesta|costar": [
+    1
+  ],
+  "decidido|decidido": [
+    0
+  ],
+  "desaparece|desaparecer": [
+    0,
+    1
+  ],
+  "desgracia|desgracia": [
+    0
+  ],
+  "entrando|entrar": [
+    0
+  ],
+  "escribí|escribir": [
+    0,
+    1,
+    2
+  ],
+  "ganamos|ganar": [
+    0,
+    2
+  ],
+  "gano|ganar": [
+    2
+  ],
+  "igualmente|igualmente": [
+    1,
+    2
+  ],
+  "jugo|jugo": [
+    2
+  ],
+  "lata|lata": [
+    0
+  ],
+  "mensajes|mensaje": [
+    1,
+    2
+  ],
+  "miro|mirar": [
+    1,
+    2
+  ],
+  "nene|nene": [
+    0,
+    1
+  ],
+  "oyó|oír": [
+    0,
+    1
+  ],
+  "paliza|paliza": [
+    0,
+    1,
+    2
+  ],
+  "particular|particular": [
+    1,
+    2
+  ],
+  "pasaron|pasar": [
+    0,
+    1,
+    2
+  ],
+  "posiblemente|posiblemente": [
+    0,
+    1
+  ],
+  "prepara|preparar": [
+    1,
+    2
+  ],
+  "pudieras|poder": [
+    0,
+    1,
+    2
+  ],
+  "quedes|quedar": [
+    0
+  ],
+  "queríamos|querer": [
+    0
+  ],
+  "refuerzos|refuerzo": [
+    1,
+    2
+  ],
+  "supo|saber": [
+    0
+  ],
+  "terminé|terminar": [
+    0
+  ],
+  "terreno|terreno": [
+    2
+  ],
+  "toque|toque": [
+    1,
+    2
+  ],
+  "uso|usar": [
+    0
+  ],
+  "viniendo|venir": [
+    0,
+    1,
+    2
+  ],
+  "aca|acá": [
+    2
+  ],
+  "bebiendo|beber": [
+    0,
+    1,
+    2
+  ],
+  "canta|cantar": [
+    1
+  ],
+  "civiles|civil": [
+    1,
+    2
+  ],
+  "comunicación|comunicación": [
+    2
+  ],
+  "dispararon|disparar": [
+    0,
+    1,
+    2
+  ],
+  "echa|echar": [
+    0,
+    1
+  ],
+  "encontrará|encontrar": [
+    2
+  ],
+  "entrado|entrar": [
+    0,
+    1,
+    2
+  ],
+  "entramos|entrar": [
+    1,
+    2
+  ],
+  "extrañas|extrañar": [
+    2
+  ],
+  "gritando|gritar": [
+    0,
+    1,
+    2
+  ],
+  "llamadas|llamada": [
+    1
+  ],
+  "mantenga|mantener": [
+    2
+  ],
+  "medios|medio": [
+    0,
+    1
+  ],
+  "móvil|móvil": [
+    1,
+    2
+  ],
+  "olvidó|olvidar": [
+    1,
+    2
+  ],
+  "pendejo|pendejo": [
+    0
+  ],
+  "podían|poder": [
+    0
+  ],
+  "preferiría|preferir": [
+    0,
+    1,
+    2
+  ],
+  "putas|puta": [
+    0,
+    1,
+    2
+  ],
+  "recuerden|recordar": [
+    0
+  ],
+  "rica|rico": [
+    1
+  ],
+  "sentimiento|sentimiento": [
+    0
+  ],
+  "sentimos|sentir": [
+    2
+  ],
+  "techo|techo": [
+    1
+  ],
+  "termino|terminar": [
+    0,
+    2
+  ],
+  "tomas|tomar": [
+    0,
+    1
+  ],
+  "tomaste|tomar": [
+    0,
+    1,
+    2
+  ],
+  "tuvieras|tener": [
+    1
+  ],
+  "vuelven|volver": [
+    0
+  ],
+  "aliento|aliento": [
+    1,
+    2
+  ],
+  "arreglo|arreglo": [
+    0,
+    1,
+    2
+  ],
+  "asustado|asustado": [
+    0,
+    2
+  ],
+  "calla|callar": [
+    1
+  ],
+  "compañías|compañía": [
+    0,
+    1
+  ],
+  "creyó|creer": [
+    2
+  ],
+  "delicioso|delicioso": [
+    0
+  ],
+  "divorcio|divorcio": [
+    0,
+    1
+  ],
+  "esclavos|esclavo": [
+    0,
+    2
+  ],
+  "escudo|escudo": [
+    2
+  ],
+  "fotografía|fotografía": [
+    0,
+    1,
+    2
+  ],
+  "función|función": [
+    1,
+    2
+  ],
+  "judíos|judío": [
+    0,
+    1,
+    2
+  ],
+  "juguetes|juguete": [
+    2
+  ],
+  "lleven|llevar": [
+    0,
+    1,
+    2
+  ],
+  "logró|lograr": [
+    1,
+    2
+  ],
+  "lógica|lógica": [
+    1,
+    2
+  ],
+  "movimientos|movimiento": [
+    0,
+    1,
+    2
+  ],
+  "objeto|objeto": [
+    1,
+    2
+  ],
+  "onda|onda": [
+    0,
+    1,
+    2
+  ],
+  "palo|palo": [
+    1,
+    2
+  ],
+  "patio|patio": [
+    1
+  ],
+  "podíamos|poder": [
+    0,
+    1,
+    2
+  ],
+  "preguntado|preguntar": [
+    0
+  ],
+  "preguntando|preguntar": [
+    1
+  ],
+  "probado|probar": [
+    0,
+    1,
+    2
+  ],
+  "pudimos|poder": [
+    0,
+    2
+  ],
+  "recibe|recibir": [
+    0,
+    1,
+    2
+  ],
+  "reino|reino": [
+    1,
+    2
+  ],
+  "resistencia|resistencia": [
+    1
+  ],
+  "rumores|rumor": [
+    0,
+    2
+  ],
+  "sabría|saber": [
+    0
+  ],
+  "saldremos|salir": [
+    2
+  ],
+  "sonar|sonar": [
+    0
+  ],
+  "zorra|zorra": [
+    0,
+    1
+  ],
+  "acepta|aceptar": [
+    0
+  ],
+  "actividad|actividad": [
+    0
+  ],
+  "agarrar|agarrar": [
+    0
+  ],
+  "alianza|alianza": [
+    2
+  ],
+  "apostar|apostar": [
+    2
+  ],
+  "aterrizar|aterrizar": [
+    1
+  ],
+  "autorización|autorización": [
+    0,
+    1,
+    2
+  ],
+  "buscaré|buscar": [
+    1
+  ],
+  "ciudades|ciudad": [
+    0,
+    1,
+    2
+  ],
+  "colores|color": [
+    0,
+    2
+  ],
+  "comprender|comprender": [
+    0
+  ],
+  "conociste|conocer": [
+    0,
+    1
+  ],
+  "conseguimos|conseguir": [
+    0
+  ],
+  "controla|controlar": [
+    0,
+    1
+  ],
+  "corto|corto": [
+    0,
+    2
+  ],
+  "demasiada|demasiado": [
+    0
+  ],
+  "detalle|detalle": [
+    2
+  ],
+  "disculpas|disculpa": [
+    1,
+    2
+  ],
+  "empezado|empezar": [
+    1
+  ],
+  "entregar|entregar": [
+    0
+  ],
+  "escribiendo|escribir": [
+    0,
+    1,
+    2
+  ],
+  "existencia|existencia": [
+    0
+  ],
+  "familiares|familiar": [
+    2
+  ],
+  "fondos|fondo": [
+    1
+  ],
+  "furia|furia": [
+    0,
+    1,
+    2
+  ],
+  "hacían|hacer": [
+    0,
+    2
+  ],
+  "ideal|ideal": [
+    1
+  ],
+  "impacto|impacto": [
+    1
+  ],
+  "importan|importar": [
+    0
+  ],
+  "inocentes|inocente": [
+    0,
+    1,
+    2
+  ],
+  "joyas|joya": [
+    0,
+    1,
+    2
+  ],
+  "letra|letra": [
+    2
+  ],
+  "malditas|maldito": [
+    0,
+    1
+  ],
+  "mete|meter": [
+    0,
+    1
+  ],
+  "mirada|mirada": [
+    0,
+    2
+  ],
+  "miserable|miserable": [
+    0,
+    2
+  ],
+  "pensamiento|pensamiento": [
+    2
+  ],
+  "prometiste|prometer": [
+    0,
+    2
+  ],
+  "requiere|requerir": [
+    1
+  ],
+  "respiración|respiración": [
+    0
+  ],
+  "robaste|robar": [
+    0,
+    1,
+    2
+  ],
+  "rueda|rueda": [
+    1
+  ],
+  "rutina|rutina": [
+    2
+  ],
+  "suba|subir": [
+    2
+  ],
+  "super|súper": [
+    0,
+    1,
+    2
+  ],
+  "tendrías|tener": [
+    0
+  ],
+  "tocado|tocar": [
+    1,
+    2
+  ],
+  "tíos|tío": [
+    0,
+    1,
+    2
+  ],
+  "volviste|volver": [
+    2
+  ],
+  "vuela|volar": [
+    0,
+    1,
+    2
+  ],
+  "abrió|abrir": [
+    0,
+    1,
+    2
+  ],
+  "acerques|acercar": [
+    0
+  ],
+  "actúa|actuar": [
+    0,
+    1
+  ],
+  "adecuado|adecuado": [
+    0,
+    1,
+    2
+  ],
+  "anciano|anciano": [
+    0,
+    1,
+    2
+  ],
+  "ataques|ataque": [
+    2
+  ],
+  "borde|borde": [
+    0,
+    2
+  ],
+  "cambiando|cambiar": [
+    0,
+    1,
+    2
+  ],
+  "comen|comer": [
+    2
+  ],
+  "consciente|consciente": [
+    2
+  ],
+  "corta|corto": [
+    1,
+    2
+  ],
+  "cuartel|cuartel": [
+    0,
+    1
+  ],
+  "cuentos|cuento": [
+    0,
+    1,
+    2
+  ],
+  "células|célula": [
+    0,
+    1,
+    2
+  ],
+  "darán|dar": [
+    1
+  ],
+  "dejando|dejar": [
+    1,
+    2
+  ],
+  "desaparecido|desaparecer": [
+    0
+  ],
+  "dijimos|decir": [
+    2
+  ],
+  "dimos|decir": [
+    0,
+    1
+  ],
+  "enviaron|enviar": [
+    2
+  ],
+  "espaldas|espalda": [
+    1,
+    2
+  ],
+  "estelar|estelar": [
+    0,
+    1,
+    2
+  ],
+  "estuvieras|estar": [
+    0
+  ],
+  "explotar|explotar": [
+    1
+  ],
+  "gallina|gallina": [
+    1
+  ],
+  "grasa|grasa": [
+    1
+  ],
+  "hacías|hacer": [
+    0,
+    1,
+    2
+  ],
+  "ingleses|inglés": [
+    0
+  ],
+  "invito|invitar": [
+    0
+  ],
+  "luchando|luchar": [
+    0,
+    1,
+    2
+  ],
+  "maricón|maricón": [
+    0,
+    1,
+    2
+  ],
+  "medicinas|medicina": [
+    0,
+    2
+  ],
+  "mereces|merecer": [
+    2
+  ],
+  "moneda|moneda": [
+    1
+  ],
+  "moral|moral": [
+    0,
+    1
+  ],
+  "muevan|mover": [
+    0
+  ],
+  "máxima|máximo": [
+    1,
+    2
+  ],
+  "mínimo|mínimo": [
+    2
+  ],
+  "necesite|necesitar": [
+    1,
+    2
+  ],
+  "ocurrir|ocurrir": [
+    2
+  ],
+  "ordenes|orden": [
+    0
+  ],
+  "oyeron|oír": [
+    0,
+    1,
+    2
+  ],
+  "plaza|plaza": [
+    2
+  ],
+  "preciso|preciso": [
+    1
+  ],
+  "pregunte|preguntar": [
+    0,
+    2
+  ],
+  "prácticamente|prácticamente": [
+    0,
+    1,
+    2
+  ],
+  "representa|representar": [
+    0,
+    1
+  ],
+  "residencia|residencia": [
+    0,
+    2
+  ],
+  "restos|resto": [
+    0,
+    1,
+    2
+  ],
+  "retrocedan|retroceder": [
+    0,
+    1
+  ],
+  "revés|revés": [
+    1,
+    2
+  ],
+  "reír|reír": [
+    1
+  ],
+  "robado|robar": [
+    0,
+    1,
+    2
+  ],
+  "sed|sed": [
+    1,
+    2
+  ],
+  "servirá|servir": [
+    2
+  ],
+  "sincero|sincero": [
+    2
+  ],
+  "socorro|socorro": [
+    1,
+    2
+  ],
+  "soñando|soñar": [
+    1,
+    2
+  ],
+  "terror|terror": [
+    0,
+    1,
+    2
+  ],
+  "terrorista|terrorista": [
+    2
+  ],
+  "tono|tono": [
+    1
+  ],
+  "usas|usar": [
+    0
+  ],
+  "usó|usar": [
+    0
+  ],
+  "vais|ir": [
+    0
+  ],
+  "advierto|advertir": [
+    0,
+    2
+  ],
+  "alcance|alcance": [
+    0,
+    1
+  ],
+  "andas|andar": [
+    0,
+    2
+  ],
+  "atractivo|atractivo": [
+    2
+  ],
+  "bailando|bailar": [
+    0,
+    1,
+    2
+  ],
+  "bolsas|bolsa": [
+    0,
+    1,
+    2
+  ],
+  "capa|capa": [
+    0,
+    2
+  ],
+  "ceremonia|ceremonia": [
+    1
+  ],
+  "cocinar|cocinar": [
+    0,
+    1,
+    2
+  ],
+  "comienzo|comienzo": [
+    1,
+    2
+  ],
+  "compras|compra": [
+    0,
+    2
+  ],
+  "conoció|conocer": [
+    1,
+    2
+  ],
+  "cretino|cretino": [
+    0,
+    1,
+    2
+  ],
+  "dió|dar": [
+    0
+  ],
+  "entro|entrar": [
+    0,
+    1,
+    2
+  ],
+  "entré|entrar": [
+    0,
+    2
+  ],
+  "fatal|fatal": [
+    0,
+    1
+  ],
+  "firme|firme": [
+    2
+  ],
+  "flota|flotar": [
+    1,
+    2
+  ],
+  "fué|ir": [
+    0,
+    1,
+    2
+  ],
+  "ganando|ganar": [
+    0,
+    1,
+    2
+  ],
+  "gravedad|gravedad": [
+    0
+  ],
+  "indica|indicar": [
+    0,
+    1
+  ],
+  "indios|indio": [
+    1,
+    2
+  ],
+  "intereses|interés": [
+    0,
+    1,
+    2
+  ],
+  "jaula|jaula": [
+    0
+  ],
+  "limpia|limpio": [
+    2
+  ],
+  "limpieza|limpieza": [
+    0
+  ],
+  "llevé|llevar": [
+    1,
+    2
+  ],
+  "lograste|lograr": [
+    0,
+    1
+  ],
+  "maldad|maldad": [
+    0,
+    2
+  ],
+  "matamos|matar": [
+    2
+  ],
+  "molestar|molestar": [
+    1
+  ],
+  "muelle|muelle": [
+    0
+  ],
+  "mueres|morir": [
+    1
+  ],
+  "oídos|oído": [
+    0,
+    1,
+    2
+  ],
+  "pastillas|pastilla": [
+    0,
+    1,
+    2
+  ],
+  "pico|pico": [
+    0
+  ],
+  "prefiere|preferir": [
+    2
+  ],
+  "presentimiento|presentimiento": [
+    1
+  ],
+  "proceso|proceso": [
+    1
+  ],
+  "publicidad|publicidad": [
+    0,
+    1,
+    2
+  ],
+  "pública|público": [
+    2
+  ],
+  "recibimos|recibir": [
+    0,
+    1,
+    2
+  ],
+  "registros|registro": [
+    0,
+    1,
+    2
+  ],
+  "rescate|rescate": [
+    0
+  ],
+  "rompe|romper": [
+    1
+  ],
+  "sabíamos|saber": [
+    1
+  ],
+  "sirven|servir": [
+    0,
+    1,
+    2
+  ],
+  "suceda|suceder": [
+    0,
+    1
+  ],
+  "telefono|teléfono": [
+    1,
+    2
+  ],
+  "tina|tina": [
+    1
+  ],
+  "tradición|tradición": [
+    0,
+    2
+  ],
+  "vecino|vecino": [
+    0,
+    1,
+    2
+  ],
+  "venimos|venir": [
+    0,
+    1
+  ],
+  "ví|ver": [
+    0,
+    1
+  ],
+  "atacó|atacar": [
+    0,
+    1
+  ],
+  "cambian|cambiar": [
+    1
+  ],
+  "cantando|cantar": [
+    0,
+    1,
+    2
+  ],
+  "cazar|cazar": [
+    0,
+    2
+  ],
+  "cerrada|cerrado": [
+    0
+  ],
+  "cierren|cerrar": [
+    2
+  ],
+  "citas|cita": [
+    0,
+    1,
+    2
+  ],
+  "cortó|cortar": [
+    1
+  ],
+  "cuidando|cuidar": [
+    2
+  ],
+  "deberias|deber": [
+    0
+  ],
+  "discos|disco": [
+    0,
+    1,
+    2
+  ],
+  "enano|enano": [
+    2
+  ],
+  "esconde|esconder": [
+    0
+  ],
+  "expedientes|expediente": [
+    0,
+    2
+  ],
+  "expresión|expresión": [
+    1
+  ],
+  "fama|fama": [
+    1
+  ],
+  "fuese|ir": [
+    2
+  ],
+  "herida|herida": [
+    1
+  ],
+  "letras|letra": [
+    0,
+    1,
+    2
+  ],
+  "llegara|llegar": [
+    2
+  ],
+  "muchísimo|mucho": [
+    1
+  ],
+  "ocurriendo|ocurrir": [
+    0,
+    1
+  ],
+  "ofrece|ofrecer": [
+    2
+  ],
+  "olvidaste|olvidar": [
+    2
+  ],
+  "parecido|parecido": [
+    0
+  ],
+  "perdida|perdido": [
+    0,
+    1,
+    2
+  ],
+  "plataforma|plataforma": [
+    2
+  ],
+  "preparen|preparar": [
+    0
+  ],
+  "preso|preso": [
+    0,
+    1
+  ],
+  "principios|principio": [
+    0,
+    1,
+    2
+  ],
+  "rebeldes|rebelde": [
+    0,
+    2
+  ],
+  "resultó|resultar": [
+    2
+  ],
+  "robando|robar": [
+    1,
+    2
+  ],
+  "rollo|rollo": [
+    0,
+    1
+  ],
+  "sano|sano": [
+    1
+  ],
+  "seguí|seguir": [
+    0,
+    1,
+    2
+  ],
+  "sienta|sentir": [
+    0,
+    1,
+    2
+  ],
+  "subiendo|subir": [
+    1,
+    2
+  ],
+  "supieras|saber": [
+    2
+  ],
+  "tabaco|tabaco": [
+    2
+  ],
+  "tanques|tanque": [
+    0,
+    2
+  ],
+  "teléfonos|teléfono": [
+    0,
+    2
+  ],
+  "tira|tirar": [
+    0,
+    1
+  ],
+  "tomaron|tomar": [
+    0,
+    1,
+    2
+  ],
+  "trajeron|traer": [
+    0,
+    1,
+    2
+  ],
+  "tratamos|tratar": [
+    2
+  ],
+  "usamos|usar": [
+    0,
+    1
+  ],
+  "vaquero|vaquero": [
+    2
+  ],
+  "afecta|afectar": [
+    1
+  ],
+  "aguas|agua": [
+    0
+  ],
+  "antecedentes|antecedente": [
+    1,
+    2
+  ],
+  "arruinar|arruinar": [
+    2
+  ],
+  "asientos|asiento": [
+    0,
+    1,
+    2
+  ],
+  "atravesar|atravesar": [
+    0,
+    1
+  ],
+  "bendición|bendición": [
+    0
+  ],
+  "brindis|brindis": [
+    2
+  ],
+  "cabrones|cabrón": [
+    0,
+    1,
+    2
+  ],
+  "cambie|cambiar": [
+    0,
+    1,
+    2
+  ],
+  "cambié|cambiar": [
+    0,
+    1
+  ],
+  "camiones|camión": [
+    0,
+    1
+  ],
+  "cerdos|cerdo": [
+    1,
+    2
+  ],
+  "colgar|colgar": [
+    2
+  ],
+  "comido|comer": [
+    2
+  ],
+  "comió|comer": [
+    1
+  ],
+  "completa|completo": [
+    2
+  ],
+  "compra|comprar": [
+    0
+  ],
+  "compra|compra": [
+    1,
+    2
+  ],
+  "considerando|considerar": [
+    0,
+    1,
+    2
+  ],
+  "contado|contar": [
+    0,
+    1,
+    2
+  ],
+  "corredor|corredor": [
+    0
+  ],
+  "costumbre|costumbre": [
+    0,
+    1,
+    2
+  ],
+  "creó|creer": [
+    0,
+    1,
+    2
+  ],
+  "debilidad|debilidad": [
+    2
+  ],
+  "dejara|dejar": [
+    1,
+    2
+  ],
+  "descuida|descuidar": [
+    1,
+    2
+  ],
+  "despierto|despierto": [
+    0
+  ],
+  "disco|disco": [
+    2
+  ],
+  "disfruta|disfrutar": [
+    1,
+    2
+  ],
+  "dolores|dolor": [
+    2
+  ],
+  "empezaron|empezar": [
+    1
+  ],
+  "enseña|enseñar": [
+    2
+  ],
+  "enviado|enviar": [
+    0,
+    1,
+    2
+  ],
+  "episodio|episodio": [
+    0,
+    2
+  ],
+  "espiritual|espiritual": [
+    0,
+    1
+  ],
+  "espíritus|espíritu": [
+    0,
+    2
+  ],
+  "eternidad|eternidad": [
+    0,
+    1
+  ],
+  "extraordinario|extraordinario": [
+    0,
+    1
+  ],
+  "fiel|fiel": [
+    1
+  ],
+  "formación|formación": [
+    0,
+    1,
+    2
+  ],
+  "formar|formar": [
+    1
+  ],
+  "fortaleza|fortaleza": [
+    1
+  ],
+  "ganaste|ganar": [
+    1,
+    2
+  ],
+  "gane|ganar": [
+    0,
+    1
+  ],
+  "graduación|graduación": [
+    1,
+    2
+  ],
+  "griegos|griego": [
+    0,
+    1,
+    2
+  ],
+  "hayamos|haber": [
+    0,
+    1
+  ],
+  "hoja|hoja": [
+    1,
+    2
+  ],
+  "influencia|influencia": [
+    0
+  ],
+  "instinto|instinto": [
+    1
+  ],
+  "intenciones|intención": [
+    0
+  ],
+  "invitado|invitar": [
+    2
+  ],
+  "lanzar|lanzar": [
+    0
+  ],
+  "lavar|lavar": [
+    0
+  ],
+  "madres|madre": [
+    0
+  ],
+  "medias|medio": [
+    2
+  ],
+  "miente|mentir": [
+    1
+  ],
+  "miraba|mirar": [
+    1
+  ],
+  "mirad|mirar": [
+    0
+  ],
+  "molestia|molestia": [
+    0
+  ],
+  "monedas|moneda": [
+    1,
+    2
+  ],
+  "motores|motor": [
+    0,
+    1,
+    2
+  ],
+  "niveles|nivel": [
+    0,
+    1,
+    2
+  ],
+  "oido|oído": [
+    1
+  ],
+  "ordenó|ordenar": [
+    2
+  ],
+  "oso|oso": [
+    0
+  ],
+  "pandilla|pandilla": [
+    2
+  ],
+  "pasaste|pasar": [
+    0,
+    1,
+    2
+  ],
+  "pirámide|pirámide": [
+    1,
+    2
+  ],
+  "pistolas|pistola": [
+    0,
+    1,
+    2
+  ],
+  "posesión|posesión": [
+    0
+  ],
+  "practicar|practicar": [
+    1,
+    2
+  ],
+  "preguntaste|preguntar": [
+    2
+  ],
+  "preocupación|preocupación": [
+    1,
+    2
+  ],
+  "producción|producción": [
+    0
+  ],
+  "prometió|prometer": [
+    1,
+    2
+  ],
+  "quema|quemar": [
+    2
+  ],
+  "rango|rango": [
+    0
+  ],
+  "raras|raro": [
+    0,
+    1
+  ],
+  "reconocimiento|reconocimiento": [
+    2
+  ],
+  "revisa|revisar": [
+    1
+  ],
+  "sos|ser": [
+    1,
+    2
+  ],
+  "sospechosos|sospechoso": [
+    0,
+    1,
+    2
+  ],
+  "temor|temor": [
+    1
+  ],
+  "tomaremos|tomar": [
+    0
+  ],
+  "traen|traer": [
+    2
+  ],
+  "tragos|trago": [
+    0,
+    1,
+    2
+  ],
+  "trenes|tren": [
+    2
+  ],
+  "trono|trono": [
+    0
+  ],
+  "viajes|viaje": [
+    0,
+    1,
+    2
+  ],
+  "viera|ver": [
+    0
+  ],
+  "ánimo|ánimo": [
+    0,
+    1
+  ],
+  "altos|alto": [
+    0,
+    1,
+    2
+  ],
+  "amantes|amante": [
+    0,
+    1,
+    2
+  ],
+  "aparato|aparato": [
+    2
+  ],
+  "ataca|atacar": [
+    0,
+    1,
+    2
+  ],
+  "atacaron|atacar": [
+    0,
+    2
+  ],
+  "atractiva|atractivo": [
+    1
+  ],
+  "atrapado|atrapado": [
+    1
+  ],
+  "atrapado|atrapar": [
+    2
+  ],
+  "automático|automático": [
+    0
+  ],
+  "autopsia|autopsia": [
+    1
+  ],
+  "aviso|avisar": [
+    0
+  ],
+  "bancos|banco": [
+    0,
+    2
+  ],
+  "besar|besar": [
+    2
+  ],
+  "bienes|bien": [
+    0,
+    2
+  ],
+  "billetes|billete": [
+    1,
+    2
+  ],
+  "bingo|bingo": [
+    2
+  ],
+  "bromas|broma": [
+    0,
+    1,
+    2
+  ],
+  "brujas|bruja": [
+    0,
+    1,
+    2
+  ],
+  "calientes|caliente": [
+    2
+  ],
+  "centavo|centavo": [
+    0,
+    1,
+    2
+  ],
+  "chiste|chiste": [
+    0
+  ],
+  "ciertos|cierto": [
+    1
+  ],
+  "columna|columna": [
+    0,
+    2
+  ],
+  "coma|comer": [
+    1
+  ],
+  "combinación|combinación": [
+    0,
+    1
+  ],
+  "comes|comer": [
+    0
+  ],
+  "comisión|comisión": [
+    1
+  ],
+  "comprende|comprender": [
+    1,
+    2
+  ],
+  "conflicto|conflicto": [
+    1
+  ],
+  "conseguido|conseguir": [
+    0,
+    1,
+    2
+  ],
+  "construyó|construir": [
+    0,
+    1
+  ],
+  "cubierta|cubierto": [
+    0
+  ],
+  "célula|célula": [
+    0
+  ],
+  "códigos|código": [
+    1,
+    2
+  ],
+  "darse|dar": [
+    0
+  ],
+  "dejarán|dejar": [
+    1
+  ],
+  "dejarás|dejar": [
+    0,
+    1
+  ],
+  "desean|desear": [
+    1,
+    2
+  ],
+  "diarios|diario": [
+    0,
+    1,
+    2
+  ],
+  "diera|dar": [
+    0
+  ],
+  "digno|digno": [
+    0,
+    2
+  ],
+  "dispare|disparar": [
+    0,
+    1
+  ],
+  "enfrentar|enfrentar": [
+    2
+  ],
+  "engañar|engañar": [
+    0,
+    2
+  ],
+  "entraron|entrar": [
+    0,
+    2
+  ],
+  "esencia|esencia": [
+    0,
+    1,
+    2
+  ],
+  "esposas|esposa": [
+    2
+  ],
+  "estabamos|estar": [
+    0,
+    1,
+    2
+  ],
+  "fantástica|fantástico": [
+    1
+  ],
+  "fuentes|fuente": [
+    0,
+    2
+  ],
+  "furioso|furioso": [
+    0,
+    1,
+    2
+  ],
+  "fusión|fusión": [
+    1
+  ],
+  "gastos|gasto": [
+    2
+  ],
+  "generoso|generoso": [
+    0
+  ],
+  "global|global": [
+    2
+  ],
+  "habrían|haber": [
+    0
+  ],
+  "habrías|haber": [
+    1
+  ],
+  "heredero|heredero": [
+    2
+  ],
+  "heridas|herida": [
+    0,
+    1,
+    2
+  ],
+  "importar|importar": [
+    2
+  ],
+  "infantil|infantil": [
+    0,
+    1
+  ],
+  "interno|interno": [
+    1,
+    2
+  ],
+  "invitados|invitado": [
+    0,
+    2
+  ],
+  "jodas|joder": [
+    2
+  ],
+  "levante|levantar": [
+    2
+  ],
+  "llegues|llegar": [
+    1
+  ],
+  "mafia|mafia": [
+    0,
+    1,
+    2
+  ],
+  "maneja|manejar": [
+    0,
+    1,
+    2
+  ],
+  "manejando|manejar": [
+    0,
+    1,
+    2
+  ],
+  "marica|marica": [
+    0,
+    1,
+    2
+  ],
+  "masa|masa": [
+    0,
+    1
+  ],
+  "metes|meter": [
+    0
+  ],
+  "mia|mío": [
+    2
+  ],
+  "miré|mirar": [
+    0,
+    1
+  ],
+  "monte|monte": [
+    1,
+    2
+  ],
+  "necesidades|necesidad": [
+    0,
+    2
+  ],
+  "ordeno|ordenar": [
+    0
+  ],
+  "origen|origen": [
+    0
+  ],
+  "oyen|oír": [
+    1
+  ],
+  "pases|pasar": [
+    1
+  ],
+  "pensabas|pensar": [
+    2
+  ],
+  "permitiré|permitir": [
+    0,
+    1,
+    2
+  ],
+  "plano|plano": [
+    0,
+    1
+  ],
+  "planos|plano": [
+    2
+  ],
+  "poesía|poesía": [
+    0
+  ],
+  "ponemos|poner": [
+    1,
+    2
+  ],
+  "porno|porno": [
+    0
+  ],
+  "posiciones|posición": [
+    0,
+    1,
+    2
+  ],
+  "páginas|página": [
+    0,
+    1,
+    2
+  ],
+  "quedarás|quedar": [
+    0,
+    1,
+    2
+  ],
+  "quirófano|quirófano": [
+    1,
+    2
+  ],
+  "realizar|realizar": [
+    1
+  ],
+  "recompensa|recompensa": [
+    2
+  ],
+  "registro|registro": [
+    0,
+    1
+  ],
+  "robé|robar": [
+    2
+  ],
+  "seco|seco": [
+    0
+  ],
+  "seguía|seguir": [
+    0
+  ],
+  "sintió|sentir": [
+    0,
+    1,
+    2
+  ],
+  "sitios|sitio": [
+    0,
+    1
+  ],
+  "suelte|soltar": [
+    0,
+    2
+  ],
+  "sufrió|sufrir": [
+    0,
+    2
+  ],
+  "tiró|tirar": [
+    0,
+    1,
+    2
+  ],
+  "tocó|tocar": [
+    0,
+    1,
+    2
+  ],
+  "trajes|traje": [
+    0,
+    1,
+    2
+  ],
+  "tristeza|tristeza": [
+    0,
+    2
+  ],
+  "tuyas|tuyo": [
+    2
+  ],
+  "violación|violación": [
+    2
+  ],
+  "volvieron|volver": [
+    1,
+    2
+  ],
+  "órganos|órgano": [
+    1
+  ],
+  "abandonó|abandonar": [
+    2
+  ],
+  "acabaron|acabar": [
+    1,
+    2
+  ],
+  "actividades|actividad": [
+    0,
+    1,
+    2
+  ],
+  "adolescente|adolescente": [
+    1
+  ],
+  "alegre|alegre": [
+    1
+  ],
+  "asesinó|asesinar": [
+    0,
+    1,
+    2
+  ],
+  "asociación|asociación": [
+    0,
+    1,
+    2
+  ],
+  "asustaste|asustar": [
+    0,
+    1,
+    2
+  ],
+  "baila|bailar": [
+    1,
+    2
+  ],
+  "balón|balón": [
+    0,
+    2
+  ],
+  "bebida|beber": [
+    0,
+    1
+  ],
+  "beneficio|beneficio": [
+    2
+  ],
+  "beneficios|beneficio": [
+    0,
+    1
+  ],
+  "campana|campana": [
+    0,
+    1,
+    2
+  ],
+  "cargando|cargar": [
+    0,
+    1
+  ],
+  "caído|caer": [
+    0,
+    1
+  ],
+  "cañones|cañón": [
+    0,
+    1,
+    2
+  ],
+  "cintas|cinta": [
+    1,
+    2
+  ],
+  "contrató|contratar": [
+    0,
+    1,
+    2
+  ],
+  "convertido|convertir": [
+    1
+  ],
+  "curar|curar": [
+    0,
+    2
+  ],
+  "danos|dar": [
+    0
+  ],
+  "desaparecieron|desaparecer": [
+    0,
+    1,
+    2
+  ],
+  "descubierto|descubrir": [
+    0,
+    1
+  ],
+  "despedido|despedir": [
+    0,
+    1,
+    2
+  ],
+  "detuvo|detener": [
+    1,
+    2
+  ],
+  "divino|divino": [
+    1
+  ],
+  "divirtiendo|divertir": [
+    1
+  ],
+  "eco|eco": [
+    0
+  ],
+  "empiezan|empezar": [
+    0
+  ],
+  "empresas|empresa": [
+    0,
+    2
+  ],
+  "empuja|empujar": [
+    1,
+    2
+  ],
+  "escuelas|escuela": [
+    0,
+    1,
+    2
+  ],
+  "espantoso|espantoso": [
+    1,
+    2
+  ],
+  "esperé|esperar": [
+    1,
+    2
+  ],
+  "estudiando|estudiar": [
+    0,
+    1,
+    2
+  ],
+  "fines|fin": [
+    0
+  ],
+  "fingir|fingir": [
+    0,
+    1
+  ],
+  "fritas|frito": [
+    0,
+    1,
+    2
+  ],
+  "gota|gota": [
+    0,
+    1,
+    2
+  ],
+  "habrás|haber": [
+    2
+  ],
+  "hubiéramos|haber": [
+    1
+  ],
+  "hueco|hueco": [
+    0,
+    2
+  ],
+  "huyendo|huir": [
+    2
+  ],
+  "imbéciles|imbécil": [
+    0,
+    1
+  ],
+  "importaba|importar": [
+    2
+  ],
+  "jodiendo|joder": [
+    0,
+    1,
+    2
+  ],
+  "largos|largo": [
+    0,
+    1
+  ],
+  "levanten|levantar": [
+    2
+  ],
+  "líos|lío": [
+    2
+  ],
+  "maestra|maestro": [
+    0
+  ],
+  "manda|manda": [
+    2
+  ],
+  "mientes|mentir": [
+    1
+  ],
+  "misericordia|misericordia": [
+    0,
+    1
+  ],
+  "monos|mono": [
+    0,
+    1,
+    2
+  ],
+  "mordió|morder": [
+    0,
+    1,
+    2
+  ],
+  "multitud|multitud": [
+    0
+  ],
+  "observación|observación": [
+    1
+  ],
+  "ocupo|ocupar": [
+    0,
+    1,
+    2
+  ],
+  "ocurrirá|ocurrir": [
+    2
+  ],
+  "ofrecer|ofrecer": [
+    2
+  ],
+  "oportunidades|oportunidad": [
+    1
+  ],
+  "ordena|ordenar": [
+    0,
+    2
+  ],
+  "parto|partir": [
+    0,
+    1
+  ],
+  "pelotón|pelotón": [
+    0,
+    1,
+    2
+  ],
+  "persecución|persecución": [
+    2
+  ],
+  "podrias|poder": [
+    0
+  ],
+  "probabilidades|probabilidad": [
+    1
+  ],
+  "pudieran|poder": [
+    0,
+    1
+  ],
+  "pudiéramos|poder": [
+    0,
+    2
+  ],
+  "quedaron|quedar": [
+    0,
+    1,
+    2
+  ],
+  "quieta|quieto": [
+    0
+  ],
+  "reconoce|reconocer": [
+    2
+  ],
+  "resiste|resistir": [
+    0
+  ],
+  "revistas|revista": [
+    0,
+    1
+  ],
+  "rompí|romper": [
+    0,
+    1
+  ],
+  "saliera|salir": [
+    1
+  ],
+  "seguido|seguido": [
+    0,
+    1,
+    2
+  ],
+  "sienten|sentir": [
+    1
+  ],
+  "sinceramente|sinceramente": [
+    0,
+    1,
+    2
+  ],
+  "sintiendo|sentir": [
+    1,
+    2
+  ],
+  "sonríe|sonreír": [
+    1,
+    2
+  ],
+  "sucedido|suceder": [
+    0
+  ],
+  "suele|soler": [
+    2
+  ],
+  "tareas|tarea": [
+    0,
+    1,
+    2
+  ],
+  "terminaste|terminar": [
+    0,
+    2
+  ],
+  "tiros|tiro": [
+    0,
+    1
+  ],
+  "toco|tocar": [
+    0,
+    1
+  ],
+  "tremendo|tremendo": [
+    0,
+    1,
+    2
+  ],
+  "usado|usar": [
+    0
+  ],
+  "valioso|valioso": [
+    0,
+    1
+  ],
+  "vencer|vencer": [
+    1
+  ],
+  "vestidos|vestido": [
+    0,
+    2
+  ],
+  "violento|violento": [
+    2
+  ],
+  "visual|visual": [
+    2
+  ],
+  "votos|voto": [
+    0,
+    1,
+    2
+  ],
+  "abandonado|abandonado": [
+    0
+  ],
+  "acercando|acercar": [
+    0,
+    2
+  ],
+  "acerque|acercar": [
+    2
+  ],
+  "advertí|advertir": [
+    0,
+    1
+  ],
+  "aguanto|aguantar": [
+    1,
+    2
+  ],
+  "anteriormente|anteriormente": [
+    0,
+    1
+  ],
+  "arresto|arresto": [
+    0,
+    1,
+    2
+  ],
+  "asalto|asalto": [
+    1
+  ],
+  "astuto|astuto": [
+    0
+  ],
+  "asustada|asustado": [
+    2
+  ],
+  "bebes|beber": [
+    0,
+    2
+  ],
+  "bonitas|bonito": [
+    0,
+    1
+  ],
+  "brigada|brigada": [
+    1
+  ],
+  "calzones|calzón": [
+    0,
+    1
+  ],
+  "candidato|candidato": [
+    0
+  ],
+  "carajos|carajo": [
+    0,
+    2
+  ],
+  "causó|causar": [
+    0,
+    1,
+    2
+  ],
+  "caza|caza": [
+    1
+  ],
+  "chip|chip": [
+    0
+  ],
+  "comedor|comedor": [
+    1
+  ],
+  "comentarios|comentario": [
+    0,
+    1
+  ],
+  "comí|comer": [
+    0,
+    1
+  ],
+  "conviene|convenir": [
+    0
+  ],
+  "copas|copa": [
+    0,
+    1,
+    2
+  ],
+  "cruzando|cruzar": [
+    0,
+    1
+  ],
+  "delicado|delicado": [
+    2
+  ],
+  "despidieron|despedir": [
+    1,
+    2
+  ],
+  "detectives|detective": [
+    0,
+    2
+  ],
+  "detiene|detener": [
+    1
+  ],
+  "deudas|deuda": [
+    1
+  ],
+  "débiles|débil": [
+    0
+  ],
+  "emergencias|emergencia": [
+    1
+  ],
+  "encender|encender": [
+    1
+  ],
+  "entran|entrar": [
+    0,
+    1
+  ],
+  "escapa|escapar": [
+    0,
+    1
+  ],
+  "estaciones|estación": [
+    0,
+    1,
+    2
+  ],
+  "estupenda|estupendo": [
+    0,
+    1,
+    2
+  ],
+  "extrañé|extrañar": [
+    0,
+    1,
+    2
+  ],
+  "falla|fallar": [
+    1
+  ],
+  "forense|forense": [
+    0,
+    1
+  ],
+  "fuga|fuga": [
+    2
+  ],
+  "gastar|gastar": [
+    1
+  ],
+  "harto|harto": [
+    0,
+    1
+  ],
+  "harían|hacer": [
+    2
+  ],
+  "hecha|hecho": [
+    0
+  ],
+  "hecha|hacer": [
+    1
+  ],
+  "hogares|hogar": [
+    0,
+    1,
+    2
+  ],
+  "homosexual|homosexual": [
+    0,
+    1,
+    2
+  ],
+  "huye|huir": [
+    0
+  ],
+  "impuestos|imponer": [
+    0,
+    1,
+    2
+  ],
+  "indio|indio": [
+    2
+  ],
+  "jodan|joder": [
+    2
+  ],
+  "lindos|lindo": [
+    0
+  ],
+  "llevara|llevar": [
+    2
+  ],
+  "llevarse|llevar": [
+    2
+  ],
+  "logré|lograr": [
+    0,
+    2
+  ],
+  "macho|macho": [
+    0
+  ],
+  "mamita|mamita": [
+    1,
+    2
+  ],
+  "marchar|marchar": [
+    0
+  ],
+  "menores|menor": [
+    0,
+    2
+  ],
+  "meterse|meter": [
+    2
+  ],
+  "miró|mirar": [
+    0,
+    1,
+    2
+  ],
+  "musical|musical": [
+    1,
+    2
+  ],
+  "nacer|nacer": [
+    0,
+    2
+  ],
+  "ocuparé|ocupar": [
+    0,
+    2
+  ],
+  "olvidas|olvidar": [
+    0,
+    1,
+    2
+  ],
+  "olviden|olvidar": [
+    1
+  ],
+  "oscura|oscuro": [
+    2
+  ],
+  "oyendo|oír": [
+    1
+  ],
+  "pasaremos|pasar": [
+    0,
+    1,
+    2
+  ],
+  "personajes|personaje": [
+    2
+  ],
+  "perímetro|perímetro": [
+    1,
+    2
+  ],
+  "pesado|pesado": [
+    0,
+    2
+  ],
+  "pides|pedir": [
+    2
+  ],
+  "preguntan|preguntar": [
+    2
+  ],
+  "probando|probar": [
+    1,
+    2
+  ],
+  "profundidad|profundidad": [
+    2
+  ],
+  "promesas|promesa": [
+    0,
+    1
+  ],
+  "pueblos|pueblo": [
+    2
+  ],
+  "puestos|puesto": [
+    0,
+    1
+  ],
+  "quedaba|quedar": [
+    1
+  ],
+  "ratón|ratón": [
+    0
+  ],
+  "repugnante|repugnante": [
+    0
+  ],
+  "rusa|ruso": [
+    0,
+    1
+  ],
+  "sabio|sabio": [
+    1,
+    2
+  ],
+  "subtitulado|subtitulado": [
+    0
+  ],
+  "sufre|sufrir": [
+    0,
+    1,
+    2
+  ],
+  "sufriendo|sufrir": [
+    0,
+    1
+  ],
+  "superar|superar": [
+    1
+  ],
+  "superiores|superior": [
+    2
+  ],
+  "susto|susto": [
+    0,
+    1,
+    2
+  ],
+  "toquen|tocar": [
+    0
+  ],
+  "vió|ver": [
+    0,
+    1,
+    2
+  ],
+  "vé|ver": [
+    0,
+    1,
+    2
+  ],
+  "aclarar|aclarar": [
+    0
+  ],
+  "alcanza|alcanzar": [
+    2
+  ],
+  "andan|andar": [
+    0,
+    1,
+    2
+  ],
+  "anillos|anillo": [
+    0,
+    1,
+    2
+  ],
+  "apetito|apetito": [
+    2
+  ],
+  "aprecio|aprecio": [
+    0
+  ],
+  "ardiendo|arder": [
+    0,
+    1,
+    2
+  ],
+  "arregla|arreglar": [
+    0
+  ],
+  "arreglaré|arreglar": [
+    1
+  ],
+  "arriesgar|arriesgar": [
+    2
+  ],
+  "asistencia|asistencia": [
+    2
+  ],
+  "bajó|bajar": [
+    1
+  ],
+  "baños|baño": [
+    0,
+    1,
+    2
+  ],
+  "busquemos|buscar": [
+    2
+  ],
+  "caballería|caballería": [
+    2
+  ],
+  "camaradas|camarada": [
+    0,
+    1,
+    2
+  ],
+  "camas|cama": [
+    0,
+    1
+  ],
+  "cambiaron|cambiar": [
+    0,
+    2
+  ],
+  "capullo|capullo": [
+    2
+  ],
+  "celos|celo": [
+    2
+  ],
+  "cheques|cheque": [
+    1,
+    2
+  ],
+  "clérigo|clérigo": [
+    0
+  ],
+  "cobrar|cobrar": [
+    0
+  ],
+  "cometí|cometer": [
+    1,
+    2
+  ],
+  "corazon|corazón": [
+    2
+  ],
+  "costillas|costilla": [
+    0,
+    1,
+    2
+  ],
+  "creación|creación": [
+    0
+  ],
+  "creado|crear": [
+    0,
+    1,
+    2
+  ],
+  "cuentan|contar": [
+    0,
+    1,
+    2
+  ],
+  "culpo|culpar": [
+    1
+  ],
+  "cumple|cumplir": [
+    0,
+    1,
+    2
+  ],
+  "demos|dar": [
+    1,
+    2
+  ],
+  "despacho|despacho": [
+    2
+  ],
+  "despejado|despejar": [
+    2
+  ],
+  "disfrutando|disfrutar": [
+    0,
+    1,
+    2
+  ],
+  "disfrute|disfrutar": [
+    0,
+    1,
+    2
+  ],
+  "disfruten|disfrutar": [
+    1
+  ],
+  "durará|durar": [
+    2
+  ],
+  "echaré|echar": [
+    1,
+    2
+  ],
+  "ejecución|ejecución": [
+    0
+  ],
+  "elegido|elegir": [
+    1,
+    2
+  ],
+  "encaja|encajar": [
+    0
+  ],
+  "encantará|encantar": [
+    0,
+    1
+  ],
+  "encantó|encantar": [
+    0,
+    1,
+    2
+  ],
+  "engañando|engañar": [
+    1,
+    2
+  ],
+  "entraste|entrar": [
+    0
+  ],
+  "entrenar|entrenar": [
+    1
+  ],
+  "escape|escapar": [
+    0,
+    1,
+    2
+  ],
+  "escribo|escribir": [
+    0
+  ],
+  "especialista|especialista": [
+    1
+  ],
+  "espías|espía": [
+    0,
+    1
+  ],
+  "estatal|estatal": [
+    1
+  ],
+  "estes|estar": [
+    0,
+    1
+  ],
+  "estuviese|estar": [
+    1,
+    2
+  ],
+  "falló|fallar": [
+    0,
+    2
+  ],
+  "fraude|fraude": [
+    0,
+    1
+  ],
+  "fumando|fumar": [
+    0,
+    1
+  ],
+  "galería|galería": [
+    0
+  ],
+  "grita|gritar": [
+    0
+  ],
+  "heridos|herido": [
+    0,
+    1
+  ],
+  "hermandad|hermandad": [
+    2
+  ],
+  "horno|horno": [
+    1,
+    2
+  ],
+  "impulso|impulso": [
+    2
+  ],
+  "incómodo|incómodo": [
+    0
+  ],
+  "informar|informar": [
+    1
+  ],
+  "insignificante|insignificante": [
+    0
+  ],
+  "iris|iris": [
+    0,
+    1,
+    2
+  ],
+  "jodida|jodido": [
+    0
+  ],
+  "jugado|jugar": [
+    0,
+    1,
+    2
+  ],
+  "justa|justo": [
+    2
+  ],
+  "juzgar|juzgar": [
+    0
+  ],
+  "llamaban|llamar": [
+    0
+  ],
+  "llegarán|llegar": [
+    0
+  ],
+  "locas|loco": [
+    0
+  ],
+  "lógico|lógico": [
+    1,
+    2
+  ],
+  "mande|mandar": [
+    0,
+    1,
+    2
+  ],
+  "mantienen|mantener": [
+    2
+  ],
+  "manzanas|manzana": [
+    1,
+    2
+  ],
+  "marcas|marca": [
+    0,
+    1,
+    2
+  ],
+  "matara|matar": [
+    0
+  ],
+  "matemáticas|matemática": [
+    0,
+    1,
+    2
+  ],
+  "metieron|meter": [
+    2
+  ],
+  "mierdas|mierda": [
+    1
+  ],
+  "mochila|mochila": [
+    0,
+    1
+  ],
+  "negras|negro": [
+    0,
+    1,
+    2
+  ],
+  "nocturno|nocturno": [
+    0
+  ],
+  "oficio|oficio": [
+    1,
+    2
+  ],
+  "ofrezco|ofrecer": [
+    0,
+    1,
+    2
+  ],
+  "orina|orina": [
+    2
+  ],
+  "papás|papá": [
+    1
+  ],
+  "pasas|pasar": [
+    0
+  ],
+  "patatas|patata": [
+    0,
+    1,
+    2
+  ],
+  "perspectiva|perspectiva": [
+    2
+  ],
+  "placas|placa": [
+    0,
+    2
+  ],
+  "plena|pleno": [
+    0,
+    1
+  ],
+  "podia|poder": [
+    1
+  ],
+  "pondrás|poner": [
+    1,
+    2
+  ],
+  "píldoras|píldora": [
+    0,
+    1,
+    2
+  ],
+  "póngase|poner": [
+    0,
+    1
+  ],
+  "quedaremos|quedar": [
+    0,
+    1
+  ],
+  "quedaría|quedar": [
+    0,
+    1
+  ],
+  "queden|quedar": [
+    0,
+    2
+  ],
+  "quitaron|quitar": [
+    1,
+    2
+  ],
+  "quitó|quitar": [
+    2
+  ],
+  "reparar|reparar": [
+    1
+  ],
+  "residente|residente": [
+    1
+  ],
+  "retírense|retirar": [
+    0
+  ],
+  "rompiste|romper": [
+    1,
+    2
+  ],
+  "sacado|sacar": [
+    1,
+    2
+  ],
+  "santuario|santuario": [
+    1
+  ],
+  "secuestro|secuestro": [
+    2
+  ],
+  "sentar|sentar": [
+    0
+  ],
+  "sobrevivió|sobrevivir": [
+    1,
+    2
+  ],
+  "subió|subir": [
+    0,
+    1,
+    2
+  ],
+  "suicidó|suicidar": [
+    1,
+    2
+  ],
+  "taller|taller": [
+    2
+  ],
+  "tardará|tardar": [
+    0
+  ],
+  "temen|temer": [
+    0,
+    1,
+    2
+  ],
+  "traerá|traer": [
+    2
+  ],
+  "transferencia|transferencia": [
+    0
+  ],
+  "trates|tratar": [
+    2
+  ],
+  "uniformes|uniforme": [
+    0,
+    1,
+    2
+  ],
+  "usaste|usar": [
+    2
+  ],
+  "vital|vital": [
+    1,
+    2
+  ],
+  "acabando|acabar": [
+    0,
+    2
+  ],
+  "acabé|acabar": [
+    0,
+    1,
+    2
+  ],
+  "acceder|acceder": [
+    0,
+    1
+  ],
+  "accidentes|accidente": [
+    0,
+    2
+  ],
+  "acento|acento": [
+    0
+  ],
+  "aceptas|aceptar": [
+    2
+  ],
+  "activado|activar": [
+    0,
+    1
+  ],
+  "acusación|acusación": [
+    1,
+    2
+  ],
+  "ademas|además": [
+    2
+  ],
+  "adora|adorar": [
+    0,
+    1,
+    2
+  ],
+  "agarró|agarrar": [
+    0,
+    2
+  ],
+  "aguarda|aguardar": [
+    0,
+    2
+  ],
+  "ancianos|anciano": [
+    0,
+    1,
+    2
+  ],
+  "anuncios|anuncio": [
+    0,
+    1,
+    2
+  ],
+  "aprendiendo|aprender": [
+    1,
+    2
+  ],
+  "apuestas|apostar": [
+    1
+  ],
+  "armado|armado": [
+    1
+  ],
+  "arrestar|arrestar": [
+    0,
+    2
+  ],
+  "arrestaron|arrestar": [
+    0,
+    1,
+    2
+  ],
+  "arrogante|arrogante": [
+    0,
+    2
+  ],
+  "atacando|atacar": [
+    1,
+    2
+  ],
+  "atiende|atender": [
+    2
+  ],
+  "atraparon|atrapar": [
+    0,
+    1,
+    2
+  ],
+  "avancen|avanzar": [
+    0,
+    1
+  ],
+  "bandas|banda": [
+    0,
+    1,
+    2
+  ],
+  "bichos|bicho": [
+    0,
+    1,
+    2
+  ],
+  "billete|billete": [
+    0
+  ],
+  "billetera|billetera": [
+    0
+  ],
+  "bonitos|bonito": [
+    0,
+    1
+  ],
+  "bosques|bosque": [
+    0,
+    1,
+    2
+  ],
+  "botones|botón": [
+    0,
+    2
+  ],
+  "buscaremos|buscar": [
+    0,
+    1
+  ],
+  "cabe|caber": [
+    0,
+    1,
+    2
+  ],
+  "cagar|cagar": [
+    0
+  ],
+  "calmado|calmar": [
+    0,
+    2
+  ],
+  "cambiaste|cambiar": [
+    0,
+    1,
+    2
+  ],
+  "canales|canal": [
+    0,
+    1,
+    2
+  ],
+  "cancelar|cancelar": [
+    1
+  ],
+  "cerró|cerrar": [
+    2
+  ],
+  "charla|charla": [
+    1
+  ],
+  "clínica|clínico": [
+    2
+  ],
+  "comemos|comer": [
+    1
+  ],
+  "cometido|cometer": [
+    0,
+    1,
+    2
+  ],
+  "cometió|cometer": [
+    1
+  ],
+  "comunista|comunista": [
+    2
+  ],
+  "condicional|condicional": [
+    0,
+    1,
+    2
+  ],
+  "conquistar|conquistar": [
+    0
+  ],
+  "consejero|consejero": [
+    0,
+    1,
+    2
+  ],
+  "conservar|conservar": [
+    1
+  ],
+  "cortina|cortina": [
+    2
+  ],
+  "cosmos|cosmos": [
+    0,
+    1
+  ],
+  "creíste|creer": [
+    2
+  ],
+  "cuidados|cuidado": [
+    0
+  ],
+  "dañado|dañado": [
+    1
+  ],
+  "deberiamos|deber": [
+    2
+  ],
+  "dejaras|dejar": [
+    0
+  ],
+  "dejare|dejar": [
+    1,
+    2
+  ],
+  "descubre|descubrir": [
+    0
+  ],
+  "despejen|despejar": [
+    0
+  ],
+  "destruido|destruir": [
+    2
+  ],
+  "destruye|destruir": [
+    2
+  ],
+  "detenido|detenido": [
+    0
+  ],
+  "detenido|detener": [
+    1,
+    2
+  ],
+  "diagnóstico|diagnóstico": [
+    1,
+    2
+  ],
+  "dificultades|dificultad": [
+    0,
+    2
+  ],
+  "diremos|decir": [
+    1
+  ],
+  "discutiendo|discutir": [
+    0,
+    2
+  ],
+  "disparan|disparar": [
+    0,
+    1,
+    2
+  ],
+  "disposición|disposición": [
+    0,
+    1
+  ],
+  "distintos|distinto": [
+    1
+  ],
+  "doler|doler": [
+    2
+  ],
+  "duermas|dormir": [
+    0
+  ],
+  "echaron|echar": [
+    0
+  ],
+  "ejercicios|ejercicio": [
+    0,
+    1,
+    2
+  ],
+  "empiecen|empezar": [
+    1
+  ],
+  "encanto|encanto": [
+    0,
+    1
+  ],
+  "enhorabuena|enhorabuena": [
+    1,
+    2
+  ],
+  "enlace|enlace": [
+    0
+  ],
+  "entere|enterar": [
+    0
+  ],
+  "enteré|enterar": [
+    0
+  ],
+  "escudos|escudo": [
+    0,
+    2
+  ],
+  "espectacular|espectacular": [
+    0,
+    2
+  ],
+  "esperado|esperar": [
+    0,
+    1
+  ],
+  "estare|estar": [
+    1
+  ],
+  "eterno|eterno": [
+    0
+  ],
+  "excitante|excitante": [
+    1
+  ],
+  "experiencias|experiencia": [
+    0,
+    1,
+    2
+  ],
+  "explosivo|explosivo": [
+    2
+  ],
+  "falsos|falso": [
+    2
+  ],
+  "faltaba|faltar": [
+    0,
+    1
+  ],
+  "felicito|felicitar": [
+    0
+  ],
+  "fingiendo|fingir": [
+    0,
+    1,
+    2
+  ],
+  "funciones|función": [
+    0,
+    2
+  ],
+  "garras|garra": [
+    0,
+    1
+  ],
+  "gemelos|gemelo": [
+    0,
+    1,
+    2
+  ],
+  "geniales|genial": [
+    0
+  ],
+  "girar|girar": [
+    1
+  ],
+  "gusanos|gusano": [
+    0,
+    1,
+    2
+  ],
+  "hablará|hablar": [
+    0
+  ],
+  "habríamos|haber": [
+    2
+  ],
+  "hacha|hacha": [
+    1
+  ],
+  "hallamos|hallar": [
+    1
+  ],
+  "hallaron|hallar": [
+    2
+  ],
+  "hallé|hallar": [
+    0,
+    1,
+    2
+  ],
+  "hilo|hilo": [
+    2
+  ],
+  "huella|huella": [
+    0,
+    1,
+    2
+  ],
+  "huracán|huracán": [
+    1
+  ],
+  "indican|indicar": [
+    0,
+    2
+  ],
+  "inteligentes|inteligente": [
+    0,
+    1,
+    2
+  ],
+  "investigador|investigador": [
+    2
+  ],
+  "joda|joder": [
+    2
+  ],
+  "juegan|jugar": [
+    0
+  ],
+  "justamente|justamente": [
+    0,
+    1,
+    2
+  ],
+  "llora|llorar": [
+    0,
+    1
+  ],
+  "localizar|localizar": [
+    1
+  ],
+  "logra|lograr": [
+    2
+  ],
+  "logrado|lograr": [
+    1,
+    2
+  ],
+  "logro|logro": [
+    1
+  ],
+  "maestros|maestro": [
+    0,
+    1,
+    2
+  ],
+  "magnífica|magnífico": [
+    0,
+    1
+  ],
+  "mandé|mandar": [
+    0,
+    1,
+    2
+  ],
+  "mantenimiento|mantenimiento": [
+    1
+  ],
+  "mensajero|mensajero": [
+    2
+  ],
+  "miseria|miseria": [
+    2
+  ],
+  "mostró|mostrar": [
+    1,
+    2
+  ],
+  "muestran|mostrar": [
+    2
+  ],
+  "muestras|muestra": [
+    0,
+    1
+  ],
+  "muestre|mostrar": [
+    1
+  ],
+  "muriera|morir": [
+    2
+  ],
+  "muñeco|muñeco": [
+    0,
+    2
+  ],
+  "módulo|módulo": [
+    1
+  ],
+  "naciste|nacer": [
+    0,
+    1,
+    2
+  ],
+  "necesitabas|necesitar": [
+    1,
+    2
+  ],
+  "novato|novato": [
+    0,
+    1
+  ],
+  "nudos|nudo": [
+    0,
+    1,
+    2
+  ],
+  "oficinas|oficina": [
+    2
+  ],
+  "olvido|olvidar": [
+    0,
+    1,
+    2
+  ],
+  "organizar|organizar": [
+    1
+  ],
+  "orilla|orilla": [
+    1,
+    2
+  ],
+  "pagado|pagar": [
+    0,
+    1
+  ],
+  "panel|panel": [
+    0
+  ],
+  "peleas|pelea": [
+    1,
+    2
+  ],
+  "pendiente|pendiente": [
+    1,
+    2
+  ],
+  "peste|peste": [
+    0
+  ],
+  "pintar|pintar": [
+    0,
+    1,
+    2
+  ],
+  "planeado|planeado": [
+    1
+  ],
+  "pondría|poner": [
+    2
+  ],
+  "presos|preso": [
+    0,
+    1,
+    2
+  ],
+  "protector|protector": [
+    0,
+    1
+  ],
+  "pum|pum": [
+    0
+  ],
+  "pónganse|poner": [
+    0
+  ],
+  "quedarán|quedar": [
+    0,
+    1
+  ],
+  "quemando|quemar": [
+    0,
+    1,
+    2
+  ],
+  "raíces|raíz": [
+    0,
+    1,
+    2
+  ],
+  "recibiste|recibir": [
+    1
+  ],
+  "reciente|reciente": [
+    1
+  ],
+  "recoge|recoger": [
+    0,
+    2
+  ],
+  "recuperado|recuperar": [
+    0,
+    1,
+    2
+  ],
+  "región|región": [
+    1
+  ],
+  "repetir|repetir": [
+    0,
+    1
+  ],
+  "reportes|reporte": [
+    0,
+    1,
+    2
+  ],
+  "residentes|residente": [
+    0,
+    2
+  ],
+  "ridícula|ridículo": [
+    0
+  ],
+  "roba|robar": [
+    0,
+    2
+  ],
+  "salchichas|salchicha": [
+    0
+  ],
+  "saldrás|salir": [
+    1
+  ],
+  "saltó|saltar": [
+    2
+  ],
+  "servido|servir": [
+    1
+  ],
+  "sierra|sierra": [
+    0,
+    2
+  ],
+  "simples|simple": [
+    1
+  ],
+  "simpático|simpático": [
+    1
+  ],
+  "soltar|soltar": [
+    0,
+    2
+  ],
+  "soñé|soñar": [
+    0,
+    1,
+    2
+  ],
+  "subido|subir": [
+    2
+  ],
+  "suelten|soltar": [
+    0,
+    1
+  ],
+  "sugiere|sugerir": [
+    0,
+    2
+  ],
+  "suicida|suicida": [
+    0,
+    2
+  ],
+  "tarado|tarado": [
+    0,
+    1,
+    2
+  ],
+  "timón|timón": [
+    2
+  ],
+  "tirando|tirar": [
+    0,
+    1,
+    2
+  ],
+  "toneladas|tonelada": [
+    0,
+    1,
+    2
+  ],
+  "torpe|torpe": [
+    0
+  ],
+  "tremenda|tremendo": [
+    2
+  ],
+  "tuviéramos|tener": [
+    0,
+    2
+  ],
+  "valores|valor": [
+    0
+  ],
+  "vientre|vientre": [
+    0
+  ],
+  "visitas|visita": [
+    0,
+    1,
+    2
+  ],
+  "vitales|vital": [
+    0
+  ],
+  "voluntario|voluntario": [
+    0
+  ],
+  "voló|volar": [
+    2
+  ],
+  "ángulo|ángulo": [
+    0
+  ],
+  "abdomen|abdomen": [
+    2
+  ],
+  "abismo|abismo": [
+    0
+  ],
+  "acercan|acercar": [
+    0,
+    2
+  ],
+  "adecuada|adecuado": [
+    0,
+    1
+  ],
+  "adelantado|adelantado": [
+    0,
+    1,
+    2
+  ],
+  "administrador|administrador": [
+    0
+  ],
+  "agarren|agarrar": [
+    1
+  ],
+  "agotado|agotar": [
+    2
+  ],
+  "alcanzado|alcanzar": [
+    0,
+    2
+  ],
+  "alimentos|alimento": [
+    1
+  ],
+  "amada|amado": [
+    1
+  ],
+  "amado|amar": [
+    0
+  ],
+  "andaba|andar": [
+    0,
+    1,
+    2
+  ],
+  "ansioso|ansioso": [
+    0
+  ],
+  "aplauso|aplauso": [
+    1
+  ],
+  "arde|arder": [
+    0,
+    1,
+    2
+  ],
+  "ardiente|ardiente": [
+    0,
+    1,
+    2
+  ],
+  "artificial|artificial": [
+    2
+  ],
+  "atado|atado": [
+    1
+  ],
+  "ataquen|atacar": [
+    0,
+    1
+  ],
+  "atrapa|atrapar": [
+    1,
+    2
+  ],
+  "atrapó|atrapar": [
+    0,
+    1,
+    2
+  ],
+  "aumenta|aumentar": [
+    0,
+    2
+  ],
+  "avance|avance": [
+    1,
+    2
+  ],
+  "avanza|avanzar": [
+    0,
+    2
+  ],
+  "avisa|avisar": [
+    0,
+    1
+  ],
+  "bajas|baja": [
+    0,
+    2
+  ],
+  "bajos|bajo": [
+    0,
+    2
+  ],
+  "bandeja|bandeja": [
+    1
+  ],
+  "banquete|banquete": [
+    1,
+    2
+  ],
+  "barra|barra": [
+    0,
+    1
+  ],
+  "barril|barril": [
+    2
+  ],
+  "bastantes|bastante": [
+    1,
+    2
+  ],
+  "bendita|bendito": [
+    1,
+    2
+  ],
+  "besos|beso": [
+    1
+  ],
+  "bicho|bicho": [
+    2
+  ],
+  "bién|bien": [
+    0,
+    1
+  ],
+  "bobo|bobo": [
+    0,
+    1,
+    2
+  ],
+  "botes|bote": [
+    0,
+    2
+  ],
+  "capturado|capturar": [
+    0,
+    1,
+    2
+  ],
+  "caramelos|caramelo": [
+    2
+  ],
+  "cazas|caza": [
+    1
+  ],
+  "cazas|cazar": [
+    2
+  ],
+  "circuito|circuito": [
+    0,
+    2
+  ],
+  "clan|clan": [
+    0,
+    1,
+    2
+  ],
+  "clara|claro": [
+    0
+  ],
+  "comercio|comercio": [
+    2
+  ],
+  "comparado|comparado": [
+    0,
+    1,
+    2
+  ],
+  "compartimos|compartir": [
+    1,
+    2
+  ],
+  "comprendido|comprender": [
+    2
+  ],
+  "comprobar|comprobar": [
+    2
+  ],
+  "condenada|condenado": [
+    1
+  ],
+  "congelado|congelar": [
+    0,
+    1
+  ],
+  "conocidos|conocido": [
+    1
+  ],
+  "consuelo|consuelo": [
+    0,
+    1
+  ],
+  "contaba|contar": [
+    0,
+    2
+  ],
+  "convención|convención": [
+    0
+  ],
+  "conveniente|conveniente": [
+    0,
+    2
+  ],
+  "cortas|cortar": [
+    0,
+    1
+  ],
+  "creando|crear": [
+    0,
+    1,
+    2
+  ],
+  "criado|criar": [
+    1
+  ],
+  "cristiano|cristiano": [
+    0
+  ],
+  "cruzado|cruzar": [
+    0,
+    1,
+    2
+  ],
+  "culpables|culpable": [
+    0,
+    2
+  ],
+  "cómico|cómico": [
+    1
+  ],
+  "dada|dar": [
+    0,
+    1,
+    2
+  ],
+  "dedica|dedicar": [
+    2
+  ],
+  "demuestra|demostrar": [
+    0,
+    1
+  ],
+  "desafío|desafío": [
+    1
+  ],
+  "descarga|descarga": [
+    0,
+    1
+  ],
+  "desconocidos|desconocer": [
+    0,
+    1,
+    2
+  ],
+  "descubrieron|descubrir": [
+    0
+  ],
+  "deseado|desear": [
+    0
+  ],
+  "deseado|deseado": [
+    2
+  ],
+  "desperdicio|desperdicio": [
+    1
+  ],
+  "destruyendo|destruir": [
+    0,
+    2
+  ],
+  "diferencias|diferencia": [
+    0,
+    1,
+    2
+  ],
+  "direcciones|dirección": [
+    0,
+    1,
+    2
+  ],
+  "dirigen|dirigir": [
+    0,
+    2
+  ],
+  "disparado|disparar": [
+    0,
+    1
+  ],
+  "disparaste|disparar": [
+    1
+  ],
+  "disparé|disparar": [
+    0,
+    1,
+    2
+  ],
+  "divina|divino": [
+    2
+  ],
+  "dormí|dormir": [
+    2
+  ],
+  "duermen|dormir": [
+    0
+  ],
+  "dulzura|dulzura": [
+    0,
+    2
+  ],
+  "echando|echar": [
+    0,
+    1,
+    2
+  ],
+  "encantaba|encantar": [
+    2
+  ],
+  "encantar|encantar": [
+    1
+  ],
+  "encontraba|encontrar": [
+    0,
+    1,
+    2
+  ],
+  "enseñé|enseñar": [
+    0
+  ],
+  "enterrado|enterrar": [
+    2
+  ],
+  "enviamos|enviar": [
+    0,
+    1
+  ],
+  "escondidas|esconder": [
+    0,
+    1,
+    2
+  ],
+  "escondido|escondido": [
+    0
+  ],
+  "escondido|esconder": [
+    1,
+    2
+  ],
+  "escotilla|escotilla": [
+    2
+  ],
+  "escriba|escribir": [
+    0
+  ],
+  "escribiste|escribir": [
+    2
+  ],
+  "esencial|esencial": [
+    2
+  ],
+  "espléndido|espléndido": [
+    1
+  ],
+  "eventos|evento": [
+    0,
+    1
+  ],
+  "extranjeros|extranjero": [
+    0,
+    1,
+    2
+  ],
+  "extraordinaria|extraordinario": [
+    1
+  ],
+  "flujo|flujo": [
+    0
+  ],
+  "fuí|ir": [
+    0,
+    2
+  ],
+  "gigantes|gigante": [
+    0,
+    1
+  ],
+  "hallado|hallar": [
+    1,
+    2
+  ],
+  "huésped|huésped": [
+    1
+  ],
+  "huéspedes|huésped": [
+    0,
+    1,
+    2
+  ],
+  "independencia|independencia": [
+    2
+  ],
+  "individuo|individuo": [
+    0,
+    1
+  ],
+  "injusto|injusto": [
+    0
+  ],
+  "instintos|instinto": [
+    0,
+    1,
+    2
+  ],
+  "inventó|inventar": [
+    2
+  ],
+  "invita|invitar": [
+    0
+  ],
+  "involucrado|involucrado": [
+    2
+  ],
+  "jugaba|jugar": [
+    1
+  ],
+  "juguemos|jugar": [
+    1
+  ],
+  "juzgado|juzgar": [
+    0,
+    1
+  ],
+  "lanza|lanzar": [
+    0,
+    2
+  ],
+  "listas|listo": [
+    0,
+    2
+  ],
+  "llamará|llamar": [
+    1
+  ],
+  "llenas|lleno": [
+    2
+  ],
+  "llevarás|llevar": [
+    1
+  ],
+  "llevaste|llevar": [
+    0,
+    1
+  ],
+  "llover|llover": [
+    1,
+    2
+  ],
+  "madrina|madrina": [
+    2
+  ],
+  "mandaron|mandar": [
+    0
+  ],
+  "maní|maní": [
+    0
+  ],
+  "marchó|marchar": [
+    1,
+    2
+  ],
+  "mejorando|mejorar": [
+    2
+  ],
+  "meto|meter": [
+    0,
+    1
+  ],
+  "mezcla|mezclar": [
+    1
+  ],
+  "mirado|mirar": [
+    0,
+    1,
+    2
+  ],
+  "molestaría|molestar": [
+    0
+  ],
+  "monitor|monitor": [
+    2
+  ],
+  "murio|morir": [
+    1,
+    2
+  ],
+  "mínima|mínimo": [
+    1
+  ],
+  "novias|novia": [
+    0,
+    1,
+    2
+  ],
+  "novios|novio": [
+    0,
+    1,
+    2
+  ],
+  "ordenado|ordenar": [
+    2
+  ],
+  "pariente|pariente": [
+    0,
+    1
+  ],
+  "pasteles|pastel": [
+    1,
+    2
+  ],
+  "pañuelo|pañuelo": [
+    0
+  ],
+  "peleamos|pelear": [
+    0,
+    2
+  ],
+  "perderemos|perder": [
+    2
+  ],
+  "perfectos|perfecto": [
+    2
+  ],
+  "permites|permitir": [
+    0,
+    2
+  ],
+  "planetas|planeta": [
+    0,
+    1,
+    2
+  ],
+  "policias|policía": [
+    0,
+    1
+  ],
+  "ponía|poner": [
+    0,
+    1
+  ],
+  "posee|poseer": [
+    1,
+    2
+  ],
+  "prometido|prometido": [
+    0
+  ],
+  "prometido|prometer": [
+    1
+  ],
+  "proxima|próximo": [
+    2
+  ],
+  "próximas|próximo": [
+    0
+  ],
+  "pusimos|poner": [
+    0,
+    1
+  ],
+  "quedaste|quedar": [
+    0,
+    1,
+    2
+  ],
+  "rebelión|rebelión": [
+    2
+  ],
+  "recomiendo|recomendar": [
+    0,
+    1
+  ],
+  "reconocí|reconocer": [
+    0,
+    1,
+    2
+  ],
+  "regimiento|regimiento": [
+    1
+  ],
+  "repite|repetir": [
+    2
+  ],
+  "reservas|reserva": [
+    0,
+    2
+  ],
+  "retrato|retrato": [
+    0,
+    1
+  ],
+  "reunido|reunir": [
+    0,
+    1
+  ],
+  "revisen|revisar": [
+    1
+  ],
+  "rindo|rendir": [
+    0,
+    1
+  ],
+  "ríes|reír": [
+    0
+  ],
+  "salto|saltar": [
+    0,
+    2
+  ],
+  "saludo|saludar": [
+    0,
+    2
+  ],
+  "salvación|salvación": [
+    2
+  ],
+  "salvé|salvar": [
+    0,
+    1,
+    2
+  ],
+  "sana|sano": [
+    2
+  ],
+  "saturación|saturación": [
+    0,
+    1
+  ],
+  "secuestrado|secuestrar": [
+    0,
+    1,
+    2
+  ],
+  "sencilla|sencillo": [
+    0,
+    1,
+    2
+  ],
+  "sentiste|sentir": [
+    1
+  ],
+  "sospechas|sospecha": [
+    2
+  ],
+  "suenas|sonar": [
+    1
+  ],
+  "sufrido|sufrir": [
+    0,
+    2
+  ],
+  "sumamente|sumamente": [
+    0,
+    1,
+    2
+  ],
+  "supervisor|supervisor": [
+    2
+  ],
+  "supuse|suponer": [
+    0,
+    1,
+    2
+  ],
+  "talentos|talento": [
+    0,
+    1,
+    2
+  ],
+  "tardar|tardar": [
+    0,
+    1
+  ],
+  "tardaré|tardar": [
+    2
+  ],
+  "tejido|tejer": [
+    1
+  ],
+  "terminaron|terminar": [
+    0,
+    1,
+    2
+  ],
+  "tierno|tierno": [
+    2
+  ],
+  "tiras|tira": [
+    0,
+    1,
+    2
+  ],
+  "tiren|tirar": [
+    0,
+    1
+  ],
+  "tiré|tirar": [
+    1
+  ],
+  "tocan|tocar": [
+    1
+  ],
+  "tomaba|tomar": [
+    0,
+    1,
+    2
+  ],
+  "trabajador|trabajador": [
+    0
+  ],
+  "trajimos|traer": [
+    0,
+    2
+  ],
+  "traten|tratar": [
+    0,
+    1,
+    2
+  ],
+  "universal|universal": [
+    1
+  ],
+  "usaremos|usar": [
+    0,
+    2
+  ],
+  "usaré|usar": [
+    2
+  ],
+  "valen|valer": [
+    0
+  ],
+  "vera|ver": [
+    0,
+    1,
+    2
+  ],
+  "viuda|viuda": [
+    1
+  ],
+  "voluntarios|voluntario": [
+    0,
+    1
+  ],
+  "volvía|volver": [
+    0,
+    1,
+    2
+  ],
+  "abriendo|abrir": [
+    0,
+    1,
+    2
+  ],
+  "abrí|abrir": [
+    0,
+    2
+  ],
+  "abuso|abuso": [
+    0
+  ],
+  "aceptó|aceptar": [
+    2
+  ],
+  "acerquen|acercar": [
+    1,
+    2
+  ],
+  "acompaño|acompañar": [
+    0,
+    1
+  ],
+  "acondicionado|acondicionado": [
+    0,
+    1
+  ],
+  "afectado|afectado": [
+    0
+  ],
+  "agradecemos|agradecer": [
+    1,
+    2
+  ],
+  "agradecimiento|agradecimiento": [
+    2
+  ],
+  "agresión|agresión": [
+    2
+  ],
+  "ando|andar": [
+    0,
+    2
+  ],
+  "aprendió|aprender": [
+    1
+  ],
+  "aprobación|aprobación": [
+    0,
+    2
+  ],
+  "apuntando|apuntar": [
+    0,
+    1
+  ],
+  "arreglado|arreglado": [
+    0
+  ],
+  "arreglado|arreglar": [
+    1,
+    2
+  ],
+  "arreglaremos|arreglar": [
+    2
+  ],
+  "arregló|arreglar": [
+    1,
+    2
+  ],
+  "arruinado|arruinado": [
+    0
+  ],
+  "asegurado|asegurado": [
+    0,
+    1
+  ],
+  "asegurado|asegurar": [
+    2
+  ],
+  "asesinaron|asesinar": [
+    0,
+    1,
+    2
+  ],
+  "asustan|asustar": [
+    0,
+    1
+  ],
+  "asustar|asustar": [
+    2
+  ],
+  "asusté|asustar": [
+    1
+  ],
+  "aterrador|aterrador": [
+    0,
+    1,
+    2
+  ],
+  "ayudara|ayudar": [
+    0
+  ],
+  "barras|barra": [
+    0,
+    1,
+    2
+  ],
+  "barrera|barrera": [
+    1
+  ],
+  "bases|base": [
+    0,
+    1,
+    2
+  ],
+  "basurero|basurero": [
+    2
+  ],
+  "borrachos|borracho": [
+    0
+  ],
+  "brillo|brillo": [
+    1,
+    2
+  ],
+  "bruto|bruto": [
+    1
+  ],
+  "calentamiento|calentamiento": [
+    2
+  ],
+  "cambias|cambiar": [
+    2
+  ],
+  "canalla|canalla": [
+    0,
+    1,
+    2
+  ],
+  "cancha|cancha": [
+    0
+  ],
+  "caravana|caravana": [
+    0,
+    1
+  ],
+  "carros|carro": [
+    0,
+    1
+  ],
+  "cerrando|cerrar": [
+    0,
+    1,
+    2
+  ],
+  "chiflado|chiflado": [
+    1
+  ],
+  "cifras|cifra": [
+    0,
+    1
+  ],
+  "cinturones|cinturón": [
+    0
+  ],
+  "cobra|cobrar": [
+    1,
+    2
+  ],
+  "cofre|cofre": [
+    1
+  ],
+  "cogió|coger": [
+    0,
+    1,
+    2
+  ],
+  "cojo|cojo": [
+    0,
+    1,
+    2
+  ],
+  "cojones|cojón": [
+    1,
+    2
+  ],
+  "complace|complacer": [
+    2
+  ],
+  "complicada|complicado": [
+    0,
+    1
+  ],
+  "comprado|comprar": [
+    1,
+    2
+  ],
+  "condenados|condenado": [
+    1
+  ],
+  "confuso|confuso": [
+    2
+  ],
+  "confíe|confiar": [
+    1,
+    2
+  ],
+  "conociera|conocer": [
+    2
+  ],
+  "conocieron|conocer": [
+    2
+  ],
+  "conozcan|conocer": [
+    0
+  ],
+  "conseguiremos|conseguir": [
+    0,
+    2
+  ],
+  "conseguirás|conseguir": [
+    1
+  ],
+  "conversaciones|conversación": [
+    0,
+    1,
+    2
+  ],
+  "convirtiendo|convertir": [
+    0,
+    1,
+    2
+  ],
+  "cortado|cortar": [
+    0
+  ],
+  "cortando|cortar": [
+    1
+  ],
+  "cristianos|cristiano": [
+    0,
+    1,
+    2
+  ],
+  "cruza|cruzar": [
+    0
+  ],
+  "cuadra|cuadra": [
+    0,
+    1,
+    2
+  ],
+  "cuarentena|cuarentena": [
+    2
+  ],
+  "cuervos|cuervo": [
+    0,
+    1,
+    2
+  ],
+  "cueste|costar": [
+    0
+  ],
+  "culto|culto": [
+    0
+  ],
+  "cálculos|cálculo": [
+    1,
+    2
+  ],
+  "danza|danza": [
+    0,
+    1
+  ],
+  "deberás|deber": [
+    2
+  ],
+  "declarar|declarar": [
+    0,
+    2
+  ],
+  "demas|demás": [
+    0
+  ],
+  "desaparición|desaparición": [
+    0
+  ],
+  "desarrollar|desarrollar": [
+    2
+  ],
+  "desconocido|desconocido": [
+    0,
+    1,
+    2
+  ],
+  "desesperada|desesperado": [
+    0,
+    2
+  ],
+  "detención|detención": [
+    2
+  ],
+  "dibujo|dibujo": [
+    1,
+    2
+  ],
+  "dinosaurios|dinosaurio": [
+    0,
+    1,
+    2
+  ],
+  "discreción|discreción": [
+    0
+  ],
+  "discutimos|discutir": [
+    2
+  ],
+  "diseñado|diseñado": [
+    0,
+    1
+  ],
+  "diseñado|diseñar": [
+    2
+  ],
+  "disfruto|disfrutar": [
+    0
+  ],
+  "dolerá|doler": [
+    2
+  ],
+  "doncella|doncella": [
+    0
+  ],
+  "duelo|duelo": [
+    1
+  ],
+  "duras|duro": [
+    0,
+    2
+  ],
+  "echado|echar": [
+    0,
+    1,
+    2
+  ],
+  "echas|echar": [
+    0,
+    1,
+    2
+  ],
+  "ejércitos|ejército": [
+    0,
+    2
+  ],
+  "elegiste|elegir": [
+    2
+  ],
+  "elemento|elemento": [
+    2
+  ],
+  "empacar|empacar": [
+    1,
+    2
+  ],
+  "encontre|encontrar": [
+    1,
+    2
+  ],
+  "engaño|engaño": [
+    2
+  ],
+  "engañó|engañar": [
+    0,
+    1,
+    2
+  ],
+  "enseñando|enseñar": [
+    0,
+    1,
+    2
+  ],
+  "enteró|enterar": [
+    0,
+    1,
+    2
+  ],
+  "entrego|entregar": [
+    2
+  ],
+  "escapando|escapar": [
+    0,
+    1,
+    2
+  ],
+  "escondida|escondido": [
+    0
+  ],
+  "escrita|escribir": [
+    1
+  ],
+  "estudié|estudiar": [
+    2
+  ],
+  "etapa|etapa": [
+    1
+  ],
+  "existía|existir": [
+    0,
+    2
+  ],
+  "explota|explotar": [
+    0,
+    2
+  ],
+  "extras|extra": [
+    0,
+    1,
+    2
+  ],
+  "femenino|femenino": [
+    0,
+    2
+  ],
+  "firmes|firme": [
+    2
+  ],
+  "flotando|flotar": [
+    0,
+    2
+  ],
+  "francos|franco": [
+    0,
+    2
+  ],
+  "freno|freno": [
+    2
+  ],
+  "frito|frito": [
+    0
+  ],
+  "físicamente|físicamente": [
+    0,
+    1
+  ],
+  "ganaron|ganar": [
+    0,
+    1
+  ],
+  "gancho|gancho": [
+    0
+  ],
+  "garantía|garantía": [
+    2
+  ],
+  "golfo|golfo": [
+    1
+  ],
+  "grandeza|grandeza": [
+    1
+  ],
+  "guarde|guardar": [
+    0,
+    1
+  ],
+  "hablabas|hablar": [
+    1
+  ],
+  "hablaron|hablar": [
+    0
+  ],
+  "hablábamos|hablar": [
+    0,
+    1,
+    2
+  ],
+  "hacienda|hacienda": [
+    1
+  ],
+  "halló|hallar": [
+    0,
+    1
+  ],
+  "hirieron|herir": [
+    0,
+    1
+  ],
+  "honrado|honrado": [
+    0
+  ],
+  "hábil|hábil": [
+    1,
+    2
+  ],
+  "imbecil|imbécil": [
+    1
+  ],
+  "ingenioso|ingenioso": [
+    2
+  ],
+  "inicial|inicial": [
+    2
+  ],
+  "inicio|inicio": [
+    0,
+    2
+  ],
+  "inocencia|inocencia": [
+    1,
+    2
+  ],
+  "insiste|insistir": [
+    0
+  ],
+  "instalaciones|instalación": [
+    0,
+    1
+  ],
+  "integridad|integridad": [
+    2
+  ],
+  "invertir|invertir": [
+    0
+  ],
+  "italianos|italiano": [
+    1,
+    2
+  ],
+  "jueces|juez": [
+    0,
+    1,
+    2
+  ],
+  "langosta|langosta": [
+    1
+  ],
+  "levantado|levantado": [
+    0
+  ],
+  "levántese|levantar": [
+    1
+  ],
+  "liberación|liberación": [
+    0,
+    2
+  ],
+  "llamados|llamado": [
+    1
+  ],
+  "llueve|llover": [
+    0,
+    1,
+    2
+  ],
+  "localizado|localizar": [
+    1
+  ],
+  "lograremos|lograr": [
+    0,
+    1,
+    2
+  ],
+  "lograron|lograr": [
+    0,
+    1,
+    2
+  ],
+  "mandan|mandar": [
+    1,
+    2
+  ],
+  "mantendré|mantener": [
+    1
+  ],
+  "mantuvo|mantener": [
+    1,
+    2
+  ],
+  "maravillas|maravilla": [
+    0,
+    1,
+    2
+  ],
+  "marcar|marcar": [
+    0,
+    1
+  ],
+  "marcos|marco": [
+    0,
+    1
+  ],
+  "margen|margen": [
+    0
+  ],
+  "mariscal|mariscal": [
+    0,
+    1,
+    2
+  ],
+  "mascotas|mascota": [
+    1
+  ],
+  "matrícula|matrícula": [
+    1
+  ],
+  "medida|medida": [
+    0,
+    1
+  ],
+  "mejora|mejorar": [
+    0,
+    2
+  ],
+  "memorias|memoria": [
+    2
+  ],
+  "meten|meter": [
+    2
+  ],
+  "metiendo|meter": [
+    1,
+    2
+  ],
+  "miento|mentir": [
+    0,
+    1
+  ],
+  "misterios|misterio": [
+    2
+  ],
+  "mortales|mortal": [
+    2
+  ],
+  "moviéndose|mover": [
+    0,
+    1,
+    2
+  ],
+  "mudo|mudar": [
+    0,
+    2
+  ],
+  "mueran|morir": [
+    2
+  ],
+  "muerde|morder": [
+    2
+  ],
+  "mueven|mover": [
+    0,
+    2
+  ],
+  "muévase|mover": [
+    0
+  ],
+  "novedad|novedad": [
+    1
+  ],
+  "obras|obra": [
+    0,
+    1,
+    2
+  ],
+  "observador|observador": [
+    2
+  ],
+  "ocupa|ocupar": [
+    0
+  ],
+  "ocurren|ocurrir": [
+    0
+  ],
+  "oriental|oriental": [
+    2
+  ],
+  "pares|parar": [
+    0,
+    1,
+    2
+  ],
+  "partidos|partido": [
+    0,
+    1,
+    2
+  ],
+  "pasta|pasta": [
+    2
+  ],
+  "patear|patear": [
+    0
+  ],
+  "patrones|patrón": [
+    0,
+    1
+  ],
+  "pendientes|pendiente": [
+    0,
+    1,
+    2
+  ],
+  "permitirá|permitir": [
+    1
+  ],
+  "permitió|permitir": [
+    0
+  ],
+  "pertenecen|pertenecer": [
+    2
+  ],
+  "perteneces|pertenecer": [
+    0
+  ],
+  "pila|pila": [
+    2
+  ],
+  "pinta|pinta": [
+    0,
+    1
+  ],
+  "pinta|pintar": [
+    2
+  ],
+  "plumas|pluma": [
+    0,
+    1,
+    2
+  ],
+  "pobreza|pobreza": [
+    1
+  ],
+  "políticas|político": [
+    0,
+    2
+  ],
+  "postal|postal": [
+    0,
+    1,
+    2
+  ],
+  "precisa|preciso": [
+    2
+  ],
+  "premios|premio": [
+    0,
+    1,
+    2
+  ],
+  "preparo|preparar": [
+    2
+  ],
+  "presentado|presentar": [
+    1,
+    2
+  ],
+  "prudente|prudente": [
+    0,
+    1,
+    2
+  ],
+  "quedando|quedar": [
+    0,
+    1,
+    2
+  ],
+  "quedaras|quedar": [
+    0,
+    1,
+    2
+  ],
+  "quemaduras|quemadura": [
+    0,
+    1,
+    2
+  ],
+  "queridos|querido": [
+    0
+  ],
+  "quitas|quitar": [
+    2
+  ],
+  "quito|quitar": [
+    2
+  ],
+  "rastros|rastro": [
+    1
+  ],
+  "reactor|reactor": [
+    1
+  ],
+  "reconocido|reconocer": [
+    1
+  ],
+  "reconocido|reconocido": [
+    2
+  ],
+  "recorrido|recorrido": [
+    0,
+    2
+  ],
+  "refugio|refugiar": [
+    0
+  ],
+  "refugio|refugio": [
+    2
+  ],
+  "registrado|registrar": [
+    0,
+    2
+  ],
+  "reservado|reservar": [
+    0
+  ],
+  "respeta|respetar": [
+    0,
+    1,
+    2
+  ],
+  "respire|respirar": [
+    1,
+    2
+  ],
+  "retiro|retirar": [
+    0,
+    1
+  ],
+  "revelar|revelar": [
+    1
+  ],
+  "revisando|revisar": [
+    0,
+    1
+  ],
+  "revisión|revisión": [
+    2
+  ],
+  "reza|rezar": [
+    1
+  ],
+  "reúne|reunir": [
+    0
+  ],
+  "rival|rival": [
+    0,
+    1
+  ],
+  "rompiendo|romper": [
+    0,
+    2
+  ],
+  "romántica|romántico": [
+    0,
+    1
+  ],
+  "rubio|rubio": [
+    0
+  ],
+  "sabrías|saber": [
+    1,
+    2
+  ],
+  "sacrificios|sacrificio": [
+    0,
+    1,
+    2
+  ],
+  "saldrán|salir": [
+    0,
+    1,
+    2
+  ],
+  "salidas|salida": [
+    0,
+    1,
+    2
+  ],
+  "salio|salir": [
+    0,
+    1
+  ],
+  "secundario|secundario": [
+    0,
+    1,
+    2
+  ],
+  "semillas|semilla": [
+    0,
+    1,
+    2
+  ],
+  "senos|seno": [
+    1,
+    2
+  ],
+  "sentimental|sentimental": [
+    0,
+    1,
+    2
+  ],
+  "sentirá|sentir": [
+    0
+  ],
+  "separación|separación": [
+    0,
+    1
+  ],
+  "separamos|separar": [
+    0,
+    2
+  ],
+  "sientan|sentar": [
+    0,
+    2
+  ],
+  "significaba|significar": [
+    1,
+    2
+  ],
+  "sincera|sincero": [
+    0,
+    1
+  ],
+  "sirva|servir": [
+    0,
+    1
+  ],
+  "sirves|servir": [
+    1,
+    2
+  ],
+  "sirvió|servir": [
+    0
+  ],
+  "sonaba|sonar": [
+    0,
+    1,
+    2
+  ],
+  "sonó|sonar": [
+    0,
+    1,
+    2
+  ],
+  "subo|subir": [
+    1
+  ],
+  "suponer|suponer": [
+    0,
+    1
+  ],
+  "suspendido|suspender": [
+    0,
+    1,
+    2
+  ],
+  "sustancia|sustancia": [
+    0
+  ],
+  "temblando|temblar": [
+    0,
+    1,
+    2
+  ],
+  "terminada|terminado": [
+    1,
+    2
+  ],
+  "terriblemente|terriblemente": [
+    2
+  ],
+  "tirado|tirado": [
+    0,
+    1,
+    2
+  ],
+  "tirador|tirador": [
+    1,
+    2
+  ],
+  "toallas|toalla": [
+    0,
+    1,
+    2
+  ],
+  "toqué|tocar": [
+    1,
+    2
+  ],
+  "tratos|trato": [
+    0,
+    1
+  ],
+  "tubos|tubo": [
+    0,
+    1,
+    2
+  ],
+  "tuvieran|tener": [
+    1,
+    2
+  ],
+  "usaron|usar": [
+    0
+  ],
+  "venían|venir": [
+    1
+  ],
+  "vestuario|vestuario": [
+    0,
+    2
+  ],
+  "vientos|viento": [
+    0,
+    1,
+    2
+  ],
+  "visiones|visión": [
+    0,
+    1,
+    2
+  ],
+  "volverse|volver": [
+    1,
+    2
+  ],
+  "abrirá|abrir": [
+    2
+  ],
+  "abriré|abrir": [
+    0,
+    2
+  ],
+  "abuelos|abuelo": [
+    1,
+    2
+  ],
+  "acabaré|acabar": [
+    0,
+    1,
+    2
+  ],
+  "acaben|acabar": [
+    2
+  ],
+  "acelera|acelerar": [
+    0,
+    1
+  ],
+  "aceptado|aceptar": [
+    0,
+    1,
+    2
+  ],
+  "aceptan|aceptar": [
+    0
+  ],
+  "acompaña|acompañar": [
+    0
+  ],
+  "aconsejo|aconsejar": [
+    1
+  ],
+  "acordamos|acordar": [
+    2
+  ],
+  "acoso|acoso": [
+    1
+  ],
+  "acoso|acosar": [
+    2
+  ],
+  "activa|activo": [
+    2
+  ],
+  "activar|activar": [
+    2
+  ],
+  "actúas|actuar": [
+    0,
+    1,
+    2
+  ],
+  "admite|admitir": [
+    1
+  ],
+  "adoran|adorar": [
+    1
+  ],
+  "agarro|agarrar": [
+    0,
+    2
+  ],
+  "ahorrar|ahorrar": [
+    0
+  ],
+  "aires|aire": [
+    1
+  ],
+  "aislado|aislado": [
+    0
+  ],
+  "ajá|ajá": [
+    1
+  ],
+  "alboroto|alboroto": [
+    1
+  ],
+  "amenazó|amenazar": [
+    0,
+    1,
+    2
+  ],
+  "anfitrión|anfitrión": [
+    0
+  ],
+  "anunciar|anunciar": [
+    2
+  ],
+  "apoyar|apoyar": [
+    2
+  ],
+  "apreciar|apreciar": [
+    0
+  ],
+  "armada|armada": [
+    1,
+    2
+  ],
+  "arteria|arteria": [
+    0,
+    1
+  ],
+  "artificiales|artificial": [
+    0,
+    2
+  ],
+  "asistir|asistir": [
+    0
+  ],
+  "atascado|atascar": [
+    0,
+    2
+  ],
+  "atento|atento": [
+    0,
+    1
+  ],
+  "atrapamos|atrapar": [
+    0,
+    1,
+    2
+  ],
+  "atravesó|atravesar": [
+    1,
+    2
+  ],
+  "avisado|avisar": [
+    1,
+    2
+  ],
+  "ayudé|ayudar": [
+    1,
+    2
+  ],
+  "babor|babor": [
+    0
+  ],
+  "ballenas|ballena": [
+    0,
+    1,
+    2
+  ],
+  "baterías|batería": [
+    0,
+    1,
+    2
+  ],
+  "bloqueado|bloquear": [
+    0,
+    1,
+    2
+  ],
+  "bodega|bodega": [
+    0,
+    1,
+    2
+  ],
+  "bonos|bono": [
+    0,
+    1,
+    2
+  ],
+  "botín|botín": [
+    1
+  ],
+  "brilla|brillar": [
+    0
+  ],
+  "brindo|brindar": [
+    0,
+    1
+  ],
+  "brutal|brutal": [
+    0,
+    1
+  ],
+  "cangrejo|cangrejo": [
+    0,
+    2
+  ],
+  "cargada|cargado": [
+    2
+  ],
+  "cargas|carga": [
+    2
+  ],
+  "carguen|cargar": [
+    2
+  ],
+  "castigado|castigar": [
+    0,
+    1
+  ],
+  "categoría|categoría": [
+    0,
+    1
+  ],
+  "causas|causa": [
+    0,
+    1
+  ],
+  "celebración|celebración": [
+    0,
+    1,
+    2
+  ],
+  "celebrando|celebrar": [
+    0,
+    1,
+    2
+  ],
+  "cepillo|cepillo": [
+    0
+  ],
+  "certificado|certificado": [
+    1
+  ],
+  "cigarros|cigarro": [
+    0,
+    2
+  ],
+  "cogí|coger": [
+    0
+  ],
+  "colgando|colgar": [
+    0
+  ],
+  "coloca|colocar": [
+    2
+  ],
+  "comunes|común": [
+    1
+  ],
+  "conecta|conectar": [
+    0,
+    2
+  ],
+  "conectados|conectado": [
+    1
+  ],
+  "confiable|confiable": [
+    1
+  ],
+  "confirmación|confirmación": [
+    0
+  ],
+  "confirmado|confirmar": [
+    0,
+    1,
+    2
+  ],
+  "considerado|considerar": [
+    0,
+    2
+  ],
+  "consiguen|conseguir": [
+    2
+  ],
+  "consiguieron|conseguir": [
+    0,
+    1,
+    2
+  ],
+  "contactos|contacto": [
+    2
+  ],
+  "convenció|convencer": [
+    0,
+    1,
+    2
+  ],
+  "convierta|convertir": [
+    0,
+    1,
+    2
+  ],
+  "cordero|cordero": [
+    0,
+    1,
+    2
+  ],
+  "corría|correr": [
+    0,
+    2
+  ],
+  "cortos|corto": [
+    0,
+    1,
+    2
+  ],
+  "corté|cortar": [
+    0
+  ],
+  "cosita|cosa": [
+    0,
+    1,
+    2
+  ],
+  "costas|costa": [
+    0,
+    1,
+    2
+  ],
+  "costumbres|costumbre": [
+    0,
+    2
+  ],
+  "creador|creador": [
+    0
+  ],
+  "crecimiento|crecimiento": [
+    0
+  ],
+  "creerán|creer": [
+    0
+  ],
+  "creían|creer": [
+    0
+  ],
+  "criada|criar": [
+    0
+  ],
+  "cría|criar": [
+    0,
+    1,
+    2
+  ],
+  "cuestan|costar": [
+    1
+  ],
+  "cumplí|cumplir": [
+    0,
+    2
+  ],
+  "curado|curar": [
+    0,
+    2
+  ],
+  "curva|curva": [
+    1
+  ],
+  "daban|dar": [
+    0,
+    2
+  ],
+  "darías|dar": [
+    0
+  ],
+  "debían|deber": [
+    0,
+    2
+  ],
+  "decia|decir": [
+    0
+  ],
+  "declarado|declarado": [
+    0
+  ],
+  "declarado|declarar": [
+    1
+  ],
+  "dedicas|dedicar": [
+    0
+  ],
+  "defecto|defecto": [
+    0
+  ],
+  "dejaran|dejar": [
+    0
+  ],
+  "delgada|delgado": [
+    2
+  ],
+  "delgado|delgado": [
+    1
+  ],
+  "deliciosa|delicioso": [
+    1
+  ],
+  "demente|demente": [
+    1,
+    2
+  ],
+  "demostrado|demostrar": [
+    0,
+    1
+  ],
+  "desarrollado|desarrollar": [
+    2
+  ],
+  "descenso|descenso": [
+    2
+  ],
+  "desconocida|desconocido": [
+    0,
+    2
+  ],
+  "desesperación|desesperación": [
+    0
+  ],
+  "despedida|despedida": [
+    0,
+    2
+  ],
+  "despido|despedir": [
+    0
+  ],
+  "despido|despido": [
+    2
+  ],
+  "despreciable|despreciable": [
+    0,
+    2
+  ],
+  "dicha|decir": [
+    0,
+    1,
+    2
+  ],
+  "dieran|dar": [
+    0,
+    1,
+    2
+  ],
+  "digital|digital": [
+    1
+  ],
+  "dirijo|dirigir": [
+    0,
+    2
+  ],
+  "disculpan|disculpar": [
+    1
+  ],
+  "disculpo|disculpar": [
+    0
+  ],
+  "disfraces|disfraz": [
+    0,
+    1,
+    2
+  ],
+  "domingos|domingo": [
+    1
+  ],
+  "dominio|dominio": [
+    0
+  ],
+  "duende|duende": [
+    1
+  ],
+  "duró|durar": [
+    0
+  ],
+  "eché|echar": [
+    2
+  ],
+  "elegí|elegir": [
+    0
+  ],
+  "eliges|elegir": [
+    2
+  ],
+  "eliminado|eliminar": [
+    0,
+    2
+  ],
+  "enemigas|enemiga": [
+    0
+  ],
+  "enojes|enojar": [
+    1,
+    2
+  ],
+  "enseñan|enseñar": [
+    1
+  ],
+  "enseñaste|enseñar": [
+    0,
+    1,
+    2
+  ],
+  "enteras|entero": [
+    2
+  ],
+  "entierro|entierro": [
+    0
+  ],
+  "entregó|entregar": [
+    2
+  ],
+  "envuelto|envuelto": [
+    2
+  ],
+  "envían|enviar": [
+    1,
+    2
+  ],
+  "escala|escala": [
+    1,
+    2
+  ],
+  "escapado|escapar": [
+    0,
+    1
+  ],
+  "escocés|escocés": [
+    1
+  ],
+  "escondidos|escondido": [
+    0,
+    1,
+    2
+  ],
+  "esfera|esfera": [
+    1
+  ],
+  "esperaban|esperar": [
+    0
+  ],
+  "estimado|estimar": [
+    0
+  ],
+  "estimado|estimado": [
+    1,
+    2
+  ],
+  "estrelló|estrellar": [
+    0
+  ],
+  "evaluación|evaluación": [
+    0
+  ],
+  "excepcional|excepcional": [
+    0,
+    2
+  ],
+  "exige|exigir": [
+    0
+  ],
+  "experimentar|experimentar": [
+    0,
+    2
+  ],
+  "explorador|explorador": [
+    1
+  ],
+  "explotó|explotar": [
+    0,
+    1,
+    2
+  ],
+  "factor|factor": [
+    2
+  ],
+  "fichas|ficha": [
+    0,
+    1
+  ],
+  "fijado|fijar": [
+    0
+  ],
+  "fijo|fijo": [
+    1,
+    2
+  ],
+  "financiero|financiero": [
+    0,
+    1
+  ],
+  "formen|formar": [
+    2
+  ],
+  "fracaso|fracaso": [
+    0,
+    1
+  ],
+  "frenos|freno": [
+    0,
+    1
+  ],
+  "frio|freír": [
+    0,
+    1,
+    2
+  ],
+  "fórmula|fórmula": [
+    1
+  ],
+  "gastado|gastar": [
+    1
+  ],
+  "gemelas|gemelo": [
+    1,
+    2
+  ],
+  "gotas|gota": [
+    0
+  ],
+  "guardado|guardar": [
+    0,
+    1,
+    2
+  ],
+  "guarida|guarida": [
+    1
+  ],
+  "habias|haber": [
+    1,
+    2
+  ],
+  "habiendo|haber": [
+    2
+  ],
+  "halla|hallar": [
+    0,
+    2
+  ],
+  "helada|helada": [
+    1,
+    2
+  ],
+  "hubiesen|haber": [
+    0,
+    1,
+    2
+  ],
+  "hubieses|haber": [
+    0,
+    1,
+    2
+  ],
+  "hábitos|hábito": [
+    0,
+    1,
+    2
+  ],
+  "implica|implicar": [
+    2
+  ],
+  "inmenso|inmenso": [
+    2
+  ],
+  "inscripción|inscripción": [
+    1
+  ],
+  "inspección|inspección": [
+    0
+  ],
+  "instalación|instalación": [
+    1,
+    2
+  ],
+  "intenso|intenso": [
+    0,
+    1
+  ],
+  "intercambio|intercambio": [
+    1
+  ],
+  "intercambio|intercambiar": [
+    2
+  ],
+  "interesados|interesado": [
+    2
+  ],
+  "interferencia|interferencia": [
+    0
+  ],
+  "interna|interno": [
+    2
+  ],
+  "inventado|inventar": [
+    0,
+    1,
+    2
+  ],
+  "inventé|inventar": [
+    0,
+    1,
+    2
+  ],
+  "inversiones|inversión": [
+    0,
+    1,
+    2
+  ],
+  "jode|joder": [
+    0,
+    2
+  ],
+  "jodidamente|jodidamente": [
+    1
+  ],
+  "judía|judío": [
+    2
+  ],
+  "juntar|juntar": [
+    0,
+    2
+  ],
+  "lancha|lancha": [
+    0,
+    1
+  ],
+  "lanzó|lanzar": [
+    1,
+    2
+  ],
+  "largas|largo": [
+    0
+  ],
+  "latas|lata": [
+    0,
+    2
+  ],
+  "lavado|lavar": [
+    0,
+    1,
+    2
+  ],
+  "lentes|lente": [
+    0
+  ],
+  "leve|leve": [
+    2
+  ],
+  "liberado|liberar": [
+    0,
+    1,
+    2
+  ],
+  "logre|lograr": [
+    1
+  ],
+  "luchado|luchar": [
+    0,
+    1,
+    2
+  ],
+  "manden|mandar": [
+    1
+  ],
+  "mantenemos|mantener": [
+    1
+  ],
+  "mantenido|mantener": [
+    0,
+    2
+  ],
+  "marcado|marcar": [
+    1
+  ],
+  "marcado|marcado": [
+    2
+  ],
+  "marcho|marchar": [
+    1,
+    2
+  ],
+  "marciales|marcial": [
+    2
+  ],
+  "maricas|marica": [
+    0,
+    1,
+    2
+  ],
+  "materiales|material": [
+    2
+  ],
+  "mecánica|mecánica": [
+    0,
+    2
+  ],
+  "medidas|medida": [
+    0,
+    1
+  ],
+  "mejorado|mejorar": [
+    0,
+    1,
+    2
+  ],
+  "mocoso|mocoso": [
+    1,
+    2
+  ],
+  "molino|molino": [
+    2
+  ],
+  "montones|montón": [
+    0,
+    1,
+    2
+  ],
+  "mudó|mudar": [
+    0,
+    2
+  ],
+  "mueves|mover": [
+    1,
+    2
+  ],
+  "naval|naval": [
+    2
+  ],
+  "necesitábamos|necesitar": [
+    2
+  ],
+  "nevada|nevada": [
+    0,
+    1,
+    2
+  ],
+  "nocturna|nocturno": [
+    1
+  ],
+  "notar|notar": [
+    0,
+    1
+  ],
+  "nueces|nuez": [
+    0,
+    1,
+    2
+  ],
+  "obedece|obedecer": [
+    1
+  ],
+  "obligación|obligación": [
+    1
+  ],
+  "ofrecen|ofrecer": [
+    2
+  ],
+  "olvidamos|olvidar": [
+    0
+  ],
+  "ordene|ordenar": [
+    0,
+    1
+  ],
+  "oren|orar": [
+    0
+  ],
+  "oscuros|oscuro": [
+    2
+  ],
+  "paisaje|paisaje": [
+    1
+  ],
+  "pajarito|pajarito": [
+    0,
+    2
+  ],
+  "palanca|palanca": [
+    0
+  ],
+  "panza|panza": [
+    0,
+    1,
+    2
+  ],
+  "paramos|parar": [
+    2
+  ],
+  "paranoia|paranoia": [
+    0,
+    1
+  ],
+  "paras|parar": [
+    0,
+    1,
+    2
+  ],
+  "parecería|parecer": [
+    0,
+    2
+  ],
+  "parecían|parecer": [
+    2
+  ],
+  "pasajero|pasajero": [
+    2
+  ],
+  "patética|patético": [
+    1,
+    2
+  ],
+  "peleado|pelear": [
+    0
+  ],
+  "pelean|pelear": [
+    2
+  ],
+  "peludo|peludo": [
+    2
+  ],
+  "penas|pena": [
+    0,
+    1
+  ],
+  "pensará|pensar": [
+    0
+  ],
+  "perdidas|perdido": [
+    1,
+    2
+  ],
+  "permitido|permitir": [
+    0,
+    1,
+    2
+  ],
+  "planear|planear": [
+    2
+  ],
+  "planeo|planear": [
+    2
+  ],
+  "podriamos|poder": [
+    0,
+    1,
+    2
+  ],
+  "postura|postura": [
+    0
+  ],
+  "practicando|practicar": [
+    0,
+    1,
+    2
+  ],
+  "precios|precio": [
+    0,
+    2
+  ],
+  "preguntaron|preguntar": [
+    2
+  ],
+  "preocupaba|preocupar": [
+    0,
+    1
+  ],
+  "prestado|prestado": [
+    1
+  ],
+  "primaria|primario": [
+    1
+  ],
+  "privados|privado": [
+    2
+  ],
+  "probabilidad|probabilidad": [
+    1,
+    2
+  ],
+  "protegido|proteger": [
+    1
+  ],
+  "provecho|provecho": [
+    1,
+    2
+  ],
+  "prácticas|práctica": [
+    0,
+    1
+  ],
+  "pudiese|poder": [
+    0,
+    1,
+    2
+  ],
+  "pérdidas|pérdida": [
+    1,
+    2
+  ],
+  "quebrado|quebrar": [
+    0,
+    2
+  ],
+  "quemó|quemar": [
+    0,
+    1
+  ],
+  "queramos|querer": [
+    2
+  ],
+  "queriendo|querer": [
+    0,
+    1
+  ],
+  "quiten|quitar": [
+    2
+  ],
+  "químicos|químico": [
+    1,
+    2
+  ],
+  "realista|realista": [
+    2
+  ],
+  "rechazado|rechazar": [
+    2
+  ],
+  "reciba|recibir": [
+    1,
+    2
+  ],
+  "recibes|recibir": [
+    2
+  ],
+  "referencia|referencia": [
+    0,
+    1,
+    2
+  ],
+  "reflejos|reflejo": [
+    0
+  ],
+  "rehabilitación|rehabilitación": [
+    1,
+    2
+  ],
+  "relajate|relajar": [
+    0,
+    1
+  ],
+  "relojes|reloj": [
+    0,
+    1,
+    2
+  ],
+  "represento|representar": [
+    0,
+    2
+  ],
+  "respetable|respetable": [
+    0
+  ],
+  "reto|reto": [
+    0
+  ],
+  "retorno|retorno": [
+    1
+  ],
+  "retroceder|retroceder": [
+    2
+  ],
+  "revisado|revisar": [
+    0,
+    1,
+    2
+  ],
+  "revólver|revólver": [
+    1
+  ],
+  "rezando|rezar": [
+    0,
+    1,
+    2
+  ],
+  "rifles|rifle": [
+    0,
+    1,
+    2
+  ],
+  "rio|reír": [
+    0,
+    1,
+    2
+  ],
+  "roban|robar": [
+    0,
+    1
+  ],
+  "rotos|roto": [
+    1
+  ],
+  "sacrificar|sacrificar": [
+    2
+  ],
+  "salvará|salvar": [
+    2
+  ],
+  "sangrar|sangrar": [
+    0,
+    1
+  ],
+  "satisfecho|satisfecho": [
+    2
+  ],
+  "selección|selección": [
+    0,
+    2
+  ],
+  "sentados|sentado": [
+    2
+  ],
+  "significado|significado": [
+    0
+  ],
+  "siguieron|seguir": [
+    0,
+    1
+  ],
+  "sobra|sobra": [
+    0,
+    1,
+    2
+  ],
+  "sobrevivido|sobrevivir": [
+    0,
+    1,
+    2
+  ],
+  "solicito|solicitar": [
+    1
+  ],
+  "sopla|soplar": [
+    0,
+    2
+  ],
+  "soporte|soportar": [
+    1
+  ],
+  "sorprendido|sorprendido": [
+    1
+  ],
+  "sospecho|sospechar": [
+    0,
+    1
+  ],
+  "subes|subir": [
+    0
+  ],
+  "subimos|subir": [
+    1,
+    2
+  ],
+  "suene|sonar": [
+    0
+  ],
+  "suprema|supremo": [
+    0,
+    2
+  ],
+  "terminan|terminar": [
+    1
+  ],
+  "timbre|timbre": [
+    0,
+    1
+  ],
+  "tiraste|tirar": [
+    0,
+    1
+  ],
+  "traidores|traidor": [
+    1,
+    2
+  ],
+  "tripas|tripa": [
+    0,
+    1
+  ],
+  "triple|triple": [
+    0,
+    1,
+    2
+  ],
+  "tropa|tropa": [
+    0
+  ],
+  "turnos|turno": [
+    0,
+    1,
+    2
+  ],
+  "tuviese|tener": [
+    2
+  ],
+  "técnicas|técnica": [
+    0,
+    2
+  ],
+  "técnicos|técnico": [
+    2
+  ],
+  "une|unir": [
+    0,
+    1,
+    2
+  ],
+  "urgencia|urgencia": [
+    1,
+    2
+  ],
+  "viajado|viajar": [
+    0,
+    1,
+    2
+  ],
+  "vieras|ver": [
+    0,
+    1
+  ],
+  "violar|violar": [
+    0
+  ],
+  "voto|voto": [
+    2
+  ],
+  "vulgar|vulgar": [
+    2
+  ],
+  "víbora|víbora": [
+    1
+  ],
+  "zapatillas|zapatilla": [
+    0,
+    1,
+    2
+  ],
+  "abandona|abandonar": [
+    0,
+    1
+  ],
+  "abandono|abandonar": [
+    2
+  ],
+  "abdominal|abdominal": [
+    1,
+    2
+  ],
+  "aborten|abortar": [
+    0
+  ],
+  "abrieron|abrir": [
+    1,
+    2
+  ],
+  "abrimos|abrir": [
+    2
+  ],
+  "acepté|aceptar": [
+    2
+  ],
+  "acercamos|acercar": [
+    0
+  ],
+  "acercándose|acercar": [
+    0,
+    2
+  ],
+  "acostaste|acostar": [
+    2
+  ],
+  "acusa|acusar": [
+    0,
+    1,
+    2
+  ],
+  "adictos|adicto": [
+    0,
+    1
+  ],
+  "adjunto|adjunto": [
+    0
+  ],
+  "agallas|agalla": [
+    2
+  ],
+  "agarramos|agarrar": [
+    0,
+    1
+  ],
+  "agarraron|agarrar": [
+    0,
+    1,
+    2
+  ],
+  "aguante|aguantar": [
+    1
+  ],
+  "aguante|aguante": [
+    2
+  ],
+  "ahogó|ahogar": [
+    0,
+    1,
+    2
+  ],
+  "aislamiento|aislamiento": [
+    1
+  ],
+  "alcanzo|alcanzar": [
+    0,
+    1,
+    2
+  ],
+  "aleja|alejar": [
+    2
+  ],
+  "aleluya|aleluya": [
+    0
+  ],
+  "aliado|aliado": [
+    2
+  ],
+  "altas|alto": [
+    0,
+    1,
+    2
+  ],
+  "alterado|alterado": [
+    1
+  ],
+  "alérgico|alérgico": [
+    0
+  ],
+  "amenazando|amenazar": [
+    0,
+    2
+  ],
+  "antepasados|antepasado": [
+    1,
+    2
+  ],
+  "aparatos|aparato": [
+    0,
+    2
+  ],
+  "aparta|apartar": [
+    2
+  ],
+  "apertura|apertura": [
+    1
+  ],
+  "aproxima|aproximar": [
+    0,
+    1,
+    2
+  ],
+  "apunto|apuntar": [
+    0
+  ],
+  "argentina|argentino": [
+    0
+  ],
+  "armamento|armamento": [
+    1
+  ],
+  "armar|armar": [
+    0
+  ],
+  "arreglando|arreglar": [
+    0,
+    1,
+    2
+  ],
+  "arresten|arrestar": [
+    0,
+    2
+  ],
+  "arruiné|arruinar": [
+    0,
+    1
+  ],
+  "asegura|asegurar": [
+    0,
+    1,
+    2
+  ],
+  "asesina|asesino": [
+    0
+  ],
+  "asesinada|asesinar": [
+    0,
+    1,
+    2
+  ],
+  "asesinaste|asesinar": [
+    0,
+    1,
+    2
+  ],
+  "asignado|asignado": [
+    0
+  ],
+  "asignado|asignar": [
+    1
+  ],
+  "asombrosa|asombroso": [
+    1
+  ],
+  "atacado|atacar": [
+    0,
+    1,
+    2
+  ],
+  "atraco|atraco": [
+    1,
+    2
+  ],
+  "atrapan|atrapar": [
+    1,
+    2
+  ],
+  "atraviesa|atravesar": [
+    0,
+    1,
+    2
+  ],
+  "atrevido|atrevido": [
+    0,
+    1,
+    2
+  ],
+  "aumento|aumento": [
+    2
+  ],
+  "ausente|ausente": [
+    2
+  ],
+  "autorizada|autorizado": [
+    0
+  ],
+  "bailamos|bailar": [
+    1
+  ],
+  "bailas|bailar": [
+    1,
+    2
+  ],
+  "balcón|balcón": [
+    1
+  ],
+  "bando|bando": [
+    0
+  ],
+  "besa|besar": [
+    0,
+    1,
+    2
+  ],
+  "bloque|bloque": [
+    1,
+    2
+  ],
+  "bloqueando|bloquear": [
+    1,
+    2
+  ],
+  "bombardeo|bombardeo": [
+    0,
+    1
+  ],
+  "brazalete|brazalete": [
+    0,
+    1,
+    2
+  ],
+  "buenísimo|bueno": [
+    0,
+    1,
+    2
+  ],
+  "bárbaro|bárbaro": [
+    0
+  ],
+  "calabozo|calabozo": [
+    0,
+    2
+  ],
+  "caminaba|caminar": [
+    0,
+    1,
+    2
+  ],
+  "caminas|caminar": [
+    2
+  ],
+  "camine|caminar": [
+    2
+  ],
+  "cansé|cansar": [
+    1,
+    2
+  ],
+  "caros|caro": [
+    2
+  ],
+  "casaré|casar": [
+    2
+  ],
+  "caída|caída": [
+    1
+  ],
+  "cera|cera": [
+    1
+  ],
+  "cerramos|cerrar": [
+    2
+  ],
+  "cerré|cerrar": [
+    0
+  ],
+  "cesar|cesar": [
+    0,
+    1,
+    2
+  ],
+  "chaleco|chaleco": [
+    1,
+    2
+  ],
+  "chispas|chispa": [
+    0,
+    1,
+    2
+  ],
+  "chupa|chupar": [
+    0
+  ],
+  "ciclo|ciclo": [
+    0,
+    2
+  ],
+  "claras|claro": [
+    1
+  ],
+  "clavo|clavo": [
+    2
+  ],
+  "cogido|coger": [
+    1,
+    2
+  ],
+  "colapso|colapso": [
+    0,
+    2
+  ],
+  "colchón|colchón": [
+    0
+  ],
+  "comisionado|comisionado": [
+    1,
+    2
+  ],
+  "comparar|comparar": [
+    1
+  ],
+  "comprensión|comprensión": [
+    0,
+    2
+  ],
+  "comunicado|comunicado": [
+    0,
+    2
+  ],
+  "concreto|concreto": [
+    1,
+    2
+  ],
+  "conducto|conducto": [
+    0
+  ],
+  "confiado|confiar": [
+    1,
+    2
+  ],
+  "confirma|confirmar": [
+    0
+  ],
+  "confié|confiar": [
+    0,
+    2
+  ],
+  "conquista|conquista": [
+    1,
+    2
+  ],
+  "consideran|considerar": [
+    2
+  ],
+  "conteo|conteo": [
+    1,
+    2
+  ],
+  "continuará|continuar": [
+    2
+  ],
+  "continúan|continuar": [
+    1
+  ],
+  "convertí|convertir": [
+    1,
+    2
+  ],
+  "copiado|copiar": [
+    0,
+    1
+  ],
+  "correctas|correcto": [
+    0
+  ],
+  "corregir|corregir": [
+    2
+  ],
+  "corrió|correr": [
+    1,
+    2
+  ],
+  "corrí|correr": [
+    0,
+    1,
+    2
+  ],
+  "cortada|cortado": [
+    0,
+    1,
+    2
+  ],
+  "cosecha|cosecha": [
+    2
+  ],
+  "crearon|crear": [
+    0,
+    1,
+    2
+  ],
+  "crecido|crecer": [
+    1,
+    2
+  ],
+  "creyendo|creer": [
+    0,
+    1,
+    2
+  ],
+  "creído|creído": [
+    0
+  ],
+  "creído|creer": [
+    2
+  ],
+  "cristales|cristal": [
+    0,
+    1,
+    2
+  ],
+  "cruzó|cruzar": [
+    0,
+    1
+  ],
+  "cuadrante|cuadrante": [
+    0
+  ],
+  "cuerdas|cuerda": [
+    0,
+    1
+  ],
+  "cuerno|cuerno": [
+    1,
+    2
+  ],
+  "culos|culo": [
+    2
+  ],
+  "cumplió|cumplir": [
+    0,
+    1,
+    2
+  ],
+  "cumplo|cumplir": [
+    2
+  ],
+  "cápsula|cápsula": [
+    1,
+    2
+  ],
+  "decido|decidir": [
+    2
+  ],
+  "declaraciones|declaración": [
+    0,
+    2
+  ],
+  "declaró|declarar": [
+    2
+  ],
+  "defectos|defecto": [
+    0,
+    1,
+    2
+  ],
+  "demandar|demandar": [
+    2
+  ],
+  "demandas|demanda": [
+    0,
+    1,
+    2
+  ],
+  "dental|dental": [
+    0,
+    1,
+    2
+  ],
+  "desaparecen|desaparecer": [
+    0,
+    2
+  ],
+  "desarrollo|desarrollo": [
+    0,
+    1,
+    2
+  ],
+  "describir|describir": [
+    1
+  ],
+  "descubrimos|descubrir": [
+    0,
+    1,
+    2
+  ],
+  "deshacer|deshacer": [
+    0,
+    1,
+    2
+  ],
+  "despegue|despegar": [
+    1
+  ],
+  "destruya|destruir": [
+    1
+  ],
+  "destruyeron|destruir": [
+    1,
+    2
+  ],
+  "devuelvo|devolver": [
+    1
+  ],
+  "diana|diana": [
+    0,
+    2
+  ],
+  "directores|director": [
+    0,
+    1,
+    2
+  ],
+  "dirigimos|dirigir": [
+    0,
+    1
+  ],
+  "divertida|divertido": [
+    1,
+    2
+  ],
+  "divertimos|divertir": [
+    1,
+    2
+  ],
+  "divierte|divertir": [
+    0,
+    1,
+    2
+  ],
+  "doblar|doblar": [
+    1,
+    2
+  ],
+  "dobles|doble": [
+    0,
+    2
+  ],
+  "dudar|dudar": [
+    2
+  ],
+  "décadas|década": [
+    0,
+    1
+  ],
+  "echamos|echar": [
+    0,
+    1,
+    2
+  ],
+  "echen|echar": [
+    2
+  ],
+  "eches|echar": [
+    0,
+    1
+  ],
+  "ejecutar|ejecutar": [
+    1,
+    2
+  ],
+  "empleos|empleo": [
+    0,
+    1,
+    2
+  ],
+  "empuje|empuje": [
+    0
+  ],
+  "empuje|empujar": [
+    1
+  ],
+  "enfrenta|enfrentar": [
+    1,
+    2
+  ],
+  "enfrentamos|enfrentar": [
+    1
+  ],
+  "engañado|engañar": [
+    0,
+    1,
+    2
+  ],
+  "entorno|entorno": [
+    1
+  ],
+  "entraremos|entrar": [
+    0,
+    2
+  ],
+  "entraré|entrar": [
+    0
+  ],
+  "entrenando|entrenar": [
+    1
+  ],
+  "entrevistas|entrevista": [
+    1,
+    2
+  ],
+  "escondes|esconder": [
+    1,
+    2
+  ],
+  "estreno|estreno": [
+    0,
+    2
+  ],
+  "estuviéramos|estar": [
+    0
+  ],
+  "exista|existir": [
+    0,
+    1
+  ],
+  "expulsado|expulsar": [
+    0,
+    2
+  ],
+  "exquisito|exquisito": [
+    0
+  ],
+  "extiende|extender": [
+    0,
+    1,
+    2
+  ],
+  "fallado|fallar": [
+    0,
+    1,
+    2
+  ],
+  "fallaste|fallar": [
+    0,
+    2
+  ],
+  "fallo|fallo": [
+    2
+  ],
+  "fallé|fallar": [
+    1,
+    2
+  ],
+  "fanático|fanático": [
+    1
+  ],
+  "ferrocarril|ferrocarril": [
+    0,
+    1
+  ],
+  "ficha|ficha": [
+    1,
+    2
+  ],
+  "figuras|figura": [
+    0,
+    1,
+    2
+  ],
+  "financiera|financiero": [
+    1
+  ],
+  "firmas|firma": [
+    2
+  ],
+  "flaco|flaco": [
+    0,
+    1
+  ],
+  "flexible|flexible": [
+    1
+  ],
+  "forman|formar": [
+    0
+  ],
+  "forzado|forzado": [
+    1
+  ],
+  "fracasado|fracasar": [
+    0,
+    1,
+    2
+  ],
+  "frecuencias|frecuencia": [
+    0,
+    2
+  ],
+  "fundamental|fundamental": [
+    0,
+    2
+  ],
+  "furiosa|furioso": [
+    0,
+    1
+  ],
+  "futura|futuro": [
+    2
+  ],
+  "ganadores|ganador": [
+    0,
+    1,
+    2
+  ],
+  "gasto|gastar": [
+    0,
+    1,
+    2
+  ],
+  "gelatina|gelatina": [
+    2
+  ],
+  "girando|girar": [
+    0,
+    1,
+    2
+  ],
+  "globos|globo": [
+    0,
+    1,
+    2
+  ],
+  "gordos|gordo": [
+    1,
+    2
+  ],
+  "guardan|guardar": [
+    2
+  ],
+  "habria|haber": [
+    1
+  ],
+  "histórico|histórico": [
+    0,
+    1
+  ],
+  "ibamos|ir": [
+    2
+  ],
+  "ignorante|ignorante": [
+    0,
+    2
+  ],
+  "importará|importar": [
+    0,
+    1
+  ],
+  "importe|importar": [
+    0,
+    1
+  ],
+  "incluido|incluir": [
+    2
+  ],
+  "inconveniente|inconveniente": [
+    1
+  ],
+  "indicios|indicio": [
+    0,
+    1
+  ],
+  "industrias|industria": [
+    0,
+    2
+  ],
+  "infinito|infinito": [
+    0,
+    1
+  ],
+  "informó|informar": [
+    0,
+    1,
+    2
+  ],
+  "inmediata|inmediato": [
+    0,
+    2
+  ],
+  "inodoro|inodoro": [
+    1
+  ],
+  "interese|interesar": [
+    0,
+    1,
+    2
+  ],
+  "intruso|intruso": [
+    2
+  ],
+  "invertido|invertir": [
+    0,
+    1
+  ],
+  "invitaron|invitar": [
+    1
+  ],
+  "invité|invitar": [
+    1
+  ],
+  "iríamos|ir": [
+    0
+  ],
+  "irías|ir": [
+    1
+  ],
+  "irónico|irónico": [
+    1
+  ],
+  "jodidos|jodido": [
+    0
+  ],
+  "jugó|jugar": [
+    0,
+    1,
+    2
+  ],
+  "lanzado|lanzar": [
+    1,
+    2
+  ],
+  "lastimó|lastimar": [
+    0
+  ],
+  "lecturas|lectura": [
+    2
+  ],
+  "libera|liberar": [
+    0,
+    1,
+    2
+  ],
+  "libra|libra": [
+    1
+  ],
+  "lino|lino": [
+    2
+  ],
+  "llevaban|llevar": [
+    0,
+    1
+  ],
+  "locuras|locura": [
+    0,
+    2
+  ],
+  "logras|lograr": [
+    0,
+    1
+  ],
+  "luchamos|luchar": [
+    2
+  ],
+  "luchas|lucha": [
+    1,
+    2
+  ],
+  "manada|manada": [
+    0,
+    1
+  ],
+  "mancha|mancha": [
+    2
+  ],
+  "mandaste|mandar": [
+    0,
+    1,
+    2
+  ],
+  "manejo|manejo": [
+    1
+  ],
+  "maniobra|maniobra": [
+    1
+  ],
+  "mantienes|mantener": [
+    2
+  ],
+  "marchen|marchar": [
+    1,
+    2
+  ],
+  "marea|marea": [
+    0,
+    2
+  ],
+  "marino|marino": [
+    1,
+    2
+  ],
+  "matemática|matemática": [
+    1
+  ],
+  "maya|maya": [
+    1
+  ],
+  "meteré|meter": [
+    0,
+    2
+  ],
+  "mexicanos|mexicano": [
+    1,
+    2
+  ],
+  "miligramos|miligramo": [
+    1,
+    2
+  ],
+  "miramos|mirar": [
+    1
+  ],
+  "molestan|molestar": [
+    1,
+    2
+  ],
+  "monta|montar": [
+    1,
+    2
+  ],
+  "mostrando|mostrar": [
+    2
+  ],
+  "movido|mover": [
+    0,
+    2
+  ],
+  "movió|mover": [
+    2
+  ],
+  "mudar|mudar": [
+    0,
+    1
+  ],
+  "muevete|mover": [
+    2
+  ],
+  "mutación|mutación": [
+    2
+  ],
+  "mérito|mérito": [
+    0,
+    1,
+    2
+  ],
+  "nace|nacer": [
+    0,
+    1
+  ],
+  "navegación|navegación": [
+    2
+  ],
+  "necesitaban|necesitar": [
+    0,
+    2
+  ],
+  "negociaciones|negociación": [
+    0,
+    1,
+    2
+  ],
+  "negó|negar": [
+    0
+  ],
+  "noto|notar": [
+    1,
+    2
+  ],
+  "náuseas|náusea": [
+    1
+  ],
+  "obliga|obligar": [
+    0
+  ],
+  "obligado|obligado": [
+    0
+  ],
+  "obligado|obligar": [
+    1
+  ],
+  "obreros|obrero": [
+    0,
+    1,
+    2
+  ],
+  "oculta|ocultar": [
+    1,
+    2
+  ],
+  "ocuparse|ocupar": [
+    0,
+    2
+  ],
+  "ofrecido|ofrecer": [
+    1,
+    2
+  ],
+  "ofreciendo|ofrecer": [
+    0,
+    1,
+    2
+  ],
+  "ofrecieron|ofrecer": [
+    0,
+    2
+  ],
+  "ogros|ogro": [
+    0
+  ],
+  "olvidaba|olvidar": [
+    1,
+    2
+  ],
+  "operador|operador": [
+    1
+  ],
+  "operativo|operativo": [
+    1,
+    2
+  ],
+  "oraciones|oración": [
+    0,
+    1,
+    2
+  ],
+  "pagos|pago": [
+    0,
+    2
+  ],
+  "pandillas|pandilla": [
+    2
+  ],
+  "parados|parado": [
+    0
+  ],
+  "pasadas|pasada": [
+    1
+  ],
+  "pasadas|pasado": [
+    2
+  ],
+  "pasados|pasado": [
+    2
+  ],
+  "paseando|pasear": [
+    0
+  ],
+  "pasemos|pasar": [
+    1
+  ],
+  "pega|pegar": [
+    1
+  ],
+  "pegado|pegar": [
+    0
+  ],
+  "peleo|pelear": [
+    2
+  ],
+  "pensaban|pensar": [
+    2
+  ],
+  "pensábamos|pensar": [
+    2
+  ],
+  "pesa|pesar": [
+    0,
+    2
+  ],
+  "pierdan|perder": [
+    1
+  ],
+  "pillado|pillado": [
+    1,
+    2
+  ],
+  "pollos|pollo": [
+    0,
+    1
+  ],
+  "pondrán|poner": [
+    1
+  ],
+  "porquerías|porquería": [
+    0,
+    1,
+    2
+  ],
+  "portero|portero": [
+    1
+  ],
+  "preocupaciones|preocupación": [
+    0,
+    2
+  ],
+  "preparación|preparación": [
+    1
+  ],
+  "presentaré|presentar": [
+    0
+  ],
+  "presiento|presentar": [
+    0,
+    1,
+    2
+  ],
+  "pretender|pretender": [
+    2
+  ],
+  "prisiones|prisión": [
+    0,
+    2
+  ],
+  "proceder|proceder": [
+    2
+  ],
+  "prometer|prometer": [
+    2
+  ],
+  "promoción|promoción": [
+    2
+  ],
+  "propietario|propietario": [
+    1
+  ],
+  "protegida|protegido": [
+    1,
+    2
+  ],
+  "provoca|provocar": [
+    0,
+    2
+  ],
+  "psiquiátrico|psiquiátrico": [
+    0,
+    2
+  ],
+  "puros|puro": [
+    0,
+    1,
+    2
+  ],
+  "queja|queja": [
+    0
+  ],
+  "queja|quejar": [
+    1
+  ],
+  "quejarte|quejar": [
+    1,
+    2
+  ],
+  "quiebra|quiebra": [
+    1,
+    2
+  ],
+  "quisiéramos|querer": [
+    0
+  ],
+  "quites|quitar": [
+    0,
+    1,
+    2
+  ],
+  "rastreo|rastreo": [
+    0
+  ],
+  "raya|raya": [
+    0,
+    1
+  ],
+  "realizado|realizar": [
+    1,
+    2
+  ],
+  "rechazar|rechazar": [
+    0
+  ],
+  "rechazo|rechazo": [
+    0,
+    1,
+    2
+  ],
+  "recupera|recuperar": [
+    0,
+    2
+  ],
+  "recupere|recuperar": [
+    0,
+    1
+  ],
+  "reemplazo|reemplazo": [
+    0,
+    1,
+    2
+  ],
+  "registrar|registrar": [
+    0,
+    2
+  ],
+  "remolque|remolque": [
+    2
+  ],
+  "responden|responder": [
+    1
+  ],
+  "respondió|responder": [
+    0,
+    2
+  ],
+  "resurrección|resurrección": [
+    0
+  ],
+  "retira|retirar": [
+    0,
+    1,
+    2
+  ],
+  "retirado|retirar": [
+    1
+  ],
+  "retraso|retraso": [
+    0,
+    1,
+    2
+  ],
+  "revela|revelar": [
+    0,
+    1
+  ],
+  "reventar|reventar": [
+    1
+  ],
+  "rezo|rezar": [
+    1,
+    2
+  ],
+  "rituales|ritual": [
+    0,
+    2
+  ],
+  "riñones|riñón": [
+    0,
+    1,
+    2
+  ],
+  "rodaje|rodaje": [
+    0,
+    1,
+    2
+  ],
+  "rodea|rodear": [
+    0,
+    2
+  ],
+  "ruptura|ruptura": [
+    0,
+    2
+  ],
+  "salva|salvo": [
+    0
+  ],
+  "salvavidas|salvavidas": [
+    1
+  ],
+  "sangra|sangrar": [
+    0,
+    1,
+    2
+  ],
+  "seca|seco": [
+    0
+  ],
+  "separe|separar": [
+    0
+  ],
+  "serias|serio": [
+    1,
+    2
+  ],
+  "signifique|significar": [
+    1,
+    2
+  ],
+  "sirviendo|servir": [
+    2
+  ],
+  "sospecha|sospechar": [
+    2
+  ],
+  "sostener|sostener": [
+    2
+  ],
+  "sostiene|sostener": [
+    1,
+    2
+  ],
+  "suavemente|suavemente": [
+    0,
+    2
+  ],
+  "suceso|suceso": [
+    0
+  ],
+  "sucias|sucio": [
+    2
+  ],
+  "suero|suero": [
+    0
+  ],
+  "sueña|soñar": [
+    0,
+    1
+  ],
+  "sugerir|sugerir": [
+    0
+  ],
+  "sugieres|sugerir": [
+    0
+  ],
+  "sujeta|sujeto": [
+    0
+  ],
+  "superado|superar": [
+    2
+  ],
+  "supieran|saber": [
+    0
+  ],
+  "surgió|surgir": [
+    2
+  ],
+  "tardaste|tardar": [
+    0,
+    1,
+    2
+  ],
+  "tesoros|tesoro": [
+    0,
+    1,
+    2
+  ],
+  "tires|tirar": [
+    0
+  ],
+  "tito|Tito": [
+    0,
+    1,
+    2
+  ],
+  "tomada|tomar": [
+    0,
+    2
+  ],
+  "traficantes|traficante": [
+    0,
+    1,
+    2
+  ],
+  "traicionaste|traicionar": [
+    0,
+    1,
+    2
+  ],
+  "tramando|tramar": [
+    0
+  ],
+  "transbordador|transbordador": [
+    1
+  ],
+  "tranvía|tranvía": [
+    0,
+    2
+  ],
+  "traslado|traslado": [
+    0,
+    1,
+    2
+  ],
+  "trayendo|traer": [
+    0,
+    1
+  ],
+  "tumbas|tumba": [
+    0,
+    1
+  ],
+  "tácticas|táctica": [
+    1,
+    2
+  ],
+  "utilizado|utilizar": [
+    0
+  ],
+  "vacíos|vacío": [
+    1
+  ],
+  "vago|vago": [
+    0
+  ],
+  "vales|valer": [
+    1
+  ],
+  "valga|valer": [
+    1
+  ],
+  "valía|valer": [
+    1
+  ],
+  "vendrían|venir": [
+    0,
+    2
+  ],
+  "ventilación|ventilación": [
+    2
+  ],
+  "verduras|verdura": [
+    1,
+    2
+  ],
+  "verga|verga": [
+    0,
+    2
+  ],
+  "vigilante|vigilante": [
+    0,
+    2
+  ],
+  "violenta|violento": [
+    1,
+    2
+  ],
+  "violó|violar": [
+    0,
+    1,
+    2
+  ],
+  "volado|volar": [
+    0
+  ],
+  "ídolo|ídolo": [
+    2
+  ],
+  "abandone|abandonar": [
+    2
+  ],
+  "abuelita|abuela": [
+    0,
+    1,
+    2
+  ],
+  "acabaremos|acabar": [
+    1,
+    2
+  ],
+  "acabarás|acabar": [
+    1
+  ],
+  "acabaría|acabar": [
+    2
+  ],
+  "aceptamos|aceptar": [
+    2
+  ],
+  "aceptará|aceptar": [
+    1
+  ],
+  "acompañante|acompañante": [
+    2
+  ],
+  "acosté|acostar": [
+    2
+  ],
+  "acusar|acusar": [
+    1
+  ],
+  "admirable|admirable": [
+    1
+  ],
+  "afectar|afectar": [
+    1
+  ],
+  "afectó|afectar": [
+    0,
+    2
+  ],
+  "agrado|agrado": [
+    0,
+    1,
+    2
+  ],
+  "agujas|aguja": [
+    0,
+    1
+  ],
+  "ajustar|ajustar": [
+    0
+  ],
+  "alabado|alabar": [
+    1
+  ],
+  "alejada|alejado": [
+    2
+  ],
+  "aliados|aliado": [
+    0,
+    1,
+    2
+  ],
+  "amenazado|amenazar": [
+    2
+  ],
+  "amenazas|amenaza": [
+    0,
+    1,
+    2
+  ],
+  "amorcito|amor": [
+    0,
+    1
+  ],
+  "analítica|analítica": [
+    0,
+    1,
+    2
+  ],
+  "ancho|ancho": [
+    2
+  ],
+  "anota|anotar": [
+    0,
+    1,
+    2
+  ],
+  "anular|anular": [
+    2
+  ],
+  "aparición|aparición": [
+    2
+  ],
+  "apoya|apoyar": [
+    1
+  ],
+  "apoyado|apoyar": [
+    1,
+    2
+  ],
+  "apuntar|apuntar": [
+    1,
+    2
+  ],
+  "apuntes|apunte": [
+    2
+  ],
+  "apúrese|apurar": [
+    0
+  ],
+  "aroma|aroma": [
+    0,
+    1,
+    2
+  ],
+  "arrepiento|arrepentir": [
+    1,
+    2
+  ],
+  "arriesgando|arriesgar": [
+    2
+  ],
+  "arroja|arrojar": [
+    0,
+    1
+  ],
+  "arrojó|arrojar": [
+    1,
+    2
+  ],
+  "arruine|arruinar": [
+    0,
+    1,
+    2
+  ],
+  "aspectos|aspecto": [
+    0,
+    1,
+    2
+  ],
+  "atacaremos|atacar": [
+    2
+  ],
+  "atraparemos|atrapar": [
+    2
+  ],
+  "autorizado|autorizado": [
+    0,
+    2
+  ],
+  "avisaré|avisar": [
+    2
+  ],
+  "azafata|azafata": [
+    2
+  ],
+  "bailes|baile": [
+    0,
+    2
+  ],
+  "bailo|bailar": [
+    1,
+    2
+  ],
+  "bajé|bajar": [
+    0,
+    2
+  ],
+  "balsa|balsa": [
+    1,
+    2
+  ],
+  "batallas|batalla": [
+    0,
+    1,
+    2
+  ],
+  "bebido|beber": [
+    1,
+    2
+  ],
+  "besando|besar": [
+    0,
+    1,
+    2
+  ],
+  "borrado|borrado": [
+    1,
+    2
+  ],
+  "bragas|braga": [
+    0
+  ],
+  "brindar|brindar": [
+    2
+  ],
+  "burbujas|burbuja": [
+    0,
+    1
+  ],
+  "buscaste|buscar": [
+    2
+  ],
+  "buscó|buscar": [
+    1,
+    2
+  ],
+  "calefacción|calefacción": [
+    0
+  ],
+  "camarones|camarón": [
+    1
+  ],
+  "cancela|cancelar": [
+    0,
+    2
+  ],
+  "capas|capa": [
+    0,
+    1,
+    2
+  ],
+  "carreteras|carretera": [
+    1,
+    2
+  ],
+  "cascos|casco": [
+    1
+  ],
+  "castro|castrar": [
+    1
+  ],
+  "cebolla|cebolla": [
+    0,
+    1
+  ],
+  "celulares|celular": [
+    2
+  ],
+  "choque|chocar": [
+    0
+  ],
+  "choque|choque": [
+    2
+  ],
+  "cifra|cifra": [
+    0,
+    2
+  ],
+  "circuitos|circuito": [
+    1,
+    2
+  ],
+  "civilizado|civilizado": [
+    2
+  ],
+  "claves|clave": [
+    0,
+    1,
+    2
+  ],
+  "cobre|cobre": [
+    2
+  ],
+  "cobro|cobrar": [
+    0
+  ],
+  "codigo|código": [
+    2
+  ],
+  "coges|coger": [
+    0
+  ],
+  "cogiendo|coger": [
+    0,
+    1,
+    2
+  ],
+  "cometiste|cometer": [
+    1,
+    2
+  ],
+  "comieron|comer": [
+    2
+  ],
+  "comprobado|comprobado": [
+    0,
+    1,
+    2
+  ],
+  "conectar|conectar": [
+    1
+  ],
+  "confiaba|confiar": [
+    0,
+    1
+  ],
+  "conforme|conforme": [
+    0
+  ],
+  "congelada|congelado": [
+    0,
+    2
+  ],
+  "conmoción|conmoción": [
+    0,
+    1,
+    2
+  ],
+  "conocían|conocer": [
+    0,
+    1,
+    2
+  ],
+  "conseguirá|conseguir": [
+    1
+  ],
+  "consideras|considerar": [
+    2
+  ],
+  "consiste|consistir": [
+    0,
+    1,
+    2
+  ],
+  "construido|construir": [
+    1,
+    2
+  ],
+  "contratado|contratar": [
+    1,
+    2
+  ],
+  "contraté|contratar": [
+    0,
+    1,
+    2
+  ],
+  "controlada|controlado": [
+    2
+  ],
+  "controlan|controlar": [
+    0,
+    1
+  ],
+  "controles|control": [
+    0,
+    2
+  ],
+  "controlo|controlar": [
+    1
+  ],
+  "convertiré|convertir": [
+    2
+  ],
+  "convierten|convertir": [
+    1
+  ],
+  "corras|correr": [
+    2
+  ],
+  "corredores|corredor": [
+    0,
+    1
+  ],
+  "corrientes|corriente": [
+    0,
+    2
+  ],
+  "coñac|coñac": [
+    2
+  ],
+  "creamos|crear": [
+    0,
+    1
+  ],
+  "creyeron|creer": [
+    1,
+    2
+  ],
+  "creíamos|creer": [
+    1
+  ],
+  "creímos|creer": [
+    0,
+    1,
+    2
+  ],
+  "crucial|crucial": [
+    0,
+    1,
+    2
+  ],
+  "crueldad|crueldad": [
+    2
+  ],
+  "cruzada|cruzado": [
+    2
+  ],
+  "crías|cría": [
+    0,
+    1,
+    2
+  ],
+  "cuestiones|cuestión": [
+    0
+  ],
+  "cuiden|cuidar": [
+    1
+  ],
+  "cumpla|cumplir": [
+    1,
+    2
+  ],
+  "cumpliendo|cumplir": [
+    0,
+    1,
+    2
+  ],
+  "cálido|cálido": [
+    0
+  ],
+  "dadas|dar": [
+    0,
+    1
+  ],
+  "debéis|deber": [
+    2
+  ],
+  "dejad|dejar": [
+    0,
+    1
+  ],
+  "desaparezca|desaparecer": [
+    1
+  ],
+  "desconectado|desconectado": [
+    0,
+    1
+  ],
+  "dese|dar": [
+    0,
+    1,
+    2
+  ],
+  "desesperado|desesperado": [
+    2
+  ],
+  "desgraciada|desgraciado": [
+    1,
+    2
+  ],
+  "desnudas|desnudo": [
+    1
+  ],
+  "despidió|despedir": [
+    1,
+    2
+  ],
+  "destrozado|destrozar": [
+    0
+  ],
+  "destrozado|destrozado": [
+    1,
+    2
+  ],
+  "detuvieron|detener": [
+    0,
+    1,
+    2
+  ],
+  "devuelves|devolver": [
+    0,
+    1
+  ],
+  "diplomático|diplomático": [
+    2
+  ],
+  "diputado|diputado": [
+    1
+  ],
+  "directiva|directiva": [
+    1,
+    2
+  ],
+  "dirigida|dirigir": [
+    0,
+    1,
+    2
+  ],
+  "discursos|discurso": [
+    0,
+    1,
+    2
+  ],
+  "diseñó|diseñar": [
+    0,
+    1,
+    2
+  ],
+  "disfrutado|disfrutar": [
+    0,
+    1,
+    2
+  ],
+  "distinguir|distinguir": [
+    1
+  ],
+  "donación|donación": [
+    0,
+    2
+  ],
+  "dorado|dorado": [
+    0,
+    1,
+    2
+  ],
+  "dragones|dragón": [
+    0,
+    1,
+    2
+  ],
+  "drogada|drogado": [
+    0,
+    1
+  ],
+  "drogado|drogar": [
+    1
+  ],
+  "drogado|drogado": [
+    2
+  ],
+  "duela|doler": [
+    0,
+    2
+  ],
+  "dure|durar": [
+    2
+  ],
+  "echan|echar": [
+    0,
+    1,
+    2
+  ],
+  "echaste|echar": [
+    0,
+    1
+  ],
+  "ejecutado|ejecutar": [
+    0,
+    1,
+    2
+  ],
+  "elijo|elegir": [
+    2
+  ],
+  "empujar|empujar": [
+    2
+  ],
+  "empujen|empujar": [
+    0
+  ],
+  "empujó|empujar": [
+    0,
+    1,
+    2
+  ],
+  "enamorados|enamorado": [
+    0,
+    1
+  ],
+  "encendido|encendido": [
+    1,
+    2
+  ],
+  "encerrada|encerrado": [
+    0,
+    2
+  ],
+  "encerrados|encerrado": [
+    2
+  ],
+  "enfadada|enfadado": [
+    1
+  ],
+  "engañaste|engañar": [
+    0,
+    1
+  ],
+  "ensayos|ensayo": [
+    0
+  ],
+  "enseñado|enseñar": [
+    0,
+    2
+  ],
+  "entendieron|entender": [
+    2
+  ],
+  "entendía|entender": [
+    1
+  ],
+  "enterar|enterar": [
+    2
+  ],
+  "entregado|entregar": [
+    0,
+    2
+  ],
+  "entregaré|entregar": [
+    1
+  ],
+  "entrenado|entrenado": [
+    0
+  ],
+  "entrenado|entrenar": [
+    2
+  ],
+  "enviarán|enviar": [
+    0
+  ],
+  "envidia|envidia": [
+    2
+  ],
+  "envío|envío": [
+    0
+  ],
+  "escombros|escombro": [
+    0
+  ],
+  "escrituras|escritura": [
+    0
+  ],
+  "espectro|espectro": [
+    1
+  ],
+  "esperó|esperar": [
+    0,
+    2
+  ],
+  "espuma|espuma": [
+    1,
+    2
+  ],
+  "estais|estar": [
+    0,
+    1
+  ],
+  "esten|estar": [
+    1,
+    2
+  ],
+  "estirar|estirar": [
+    2
+  ],
+  "estrecho|estrecho": [
+    0
+  ],
+  "estudia|estudiar": [
+    1,
+    2
+  ],
+  "excavación|excavación": [
+    2
+  ],
+  "expectativas|expectativa": [
+    0,
+    1,
+    2
+  ],
+  "experimentado|experimentar": [
+    0,
+    2
+  ],
+  "exploradores|explorador": [
+    0,
+    1,
+    2
+  ],
+  "exteriores|exterior": [
+    0,
+    1,
+    2
+  ],
+  "extrañamos|extrañar": [
+    2
+  ],
+  "facilidad|facilidad": [
+    0,
+    2
+  ],
+  "facturas|factura": [
+    0,
+    1,
+    2
+  ],
+  "fallas|falla": [
+    1
+  ],
+  "fantastico|fantástico": [
+    2
+  ],
+  "fanáticos|fanático": [
+    0,
+    1,
+    2
+  ],
+  "farsante|farsante": [
+    1
+  ],
+  "fenómenos|fenómeno": [
+    1
+  ],
+  "fieles|fiel": [
+    0,
+    1
+  ],
+  "finge|fingir": [
+    0
+  ],
+  "fluido|fluido": [
+    1,
+    2
+  ],
+  "fogata|fogata": [
+    2
+  ],
+  "formal|formal": [
+    1
+  ],
+  "formidable|formidable": [
+    1
+  ],
+  "franco|franco": [
+    0,
+    1
+  ],
+  "frijoles|frijol": [
+    0,
+    1,
+    2
+  ],
+  "fritos|frito": [
+    1,
+    2
+  ],
+  "fuéramos|ir": [
+    0
+  ],
+  "fíjense|fijar": [
+    0,
+    1,
+    2
+  ],
+  "físicos|físico": [
+    2
+  ],
+  "ganaba|ganar": [
+    0,
+    1,
+    2
+  ],
+  "ganadora|ganador": [
+    1
+  ],
+  "ganarse|ganar": [
+    0
+  ],
+  "generosidad|generosidad": [
+    0,
+    1,
+    2
+  ],
+  "gesto|gesto": [
+    0,
+    1,
+    2
+  ],
+  "giro|giro": [
+    0,
+    1,
+    2
+  ],
+  "gordito|gordito": [
+    0,
+    2
+  ],
+  "gorro|gorro": [
+    0
+  ],
+  "gritaba|gritar": [
+    0,
+    1,
+    2
+  ],
+  "grite|gritar": [
+    0,
+    1
+  ],
+  "grito|grito": [
+    2
+  ],
+  "gusten|gustar": [
+    0
+  ],
+  "gustes|gustar": [
+    1
+  ],
+  "habian|haber": [
+    0,
+    2
+  ],
+  "harta|harto": [
+    0,
+    1
+  ],
+  "hirió|herir": [
+    1
+  ],
+  "hongos|hongo": [
+    0,
+    1
+  ],
+  "huido|huido": [
+    2
+  ],
+  "humedad|humedad": [
+    2
+  ],
+  "ida|ido": [
+    0,
+    1,
+    2
+  ],
+  "identificado|identificado": [
+    0,
+    1,
+    2
+  ],
+  "imaginado|imaginar": [
+    1,
+    2
+  ],
+  "impecable|impecable": [
+    0,
+    1,
+    2
+  ],
+  "importas|importar": [
+    0,
+    1,
+    2
+  ],
+  "importó|importar": [
+    0,
+    1
+  ],
+  "impulsos|impulso": [
+    1,
+    2
+  ],
+  "inauguración|inauguración": [
+    1
+  ],
+  "indicado|indicado": [
+    2
+  ],
+  "infiel|infiel": [
+    1
+  ],
+  "ingenieros|ingeniero": [
+    0,
+    1,
+    2
+  ],
+  "iniciativa|iniciativa": [
+    2
+  ],
+  "intensidad|intensidad": [
+    0
+  ],
+  "interpretación|interpretación": [
+    2
+  ],
+  "intervención|intervención": [
+    0
+  ],
+  "inventando|inventar": [
+    2
+  ],
+  "involucrados|involucrado": [
+    0
+  ],
+  "jala|jalar": [
+    0,
+    2
+  ],
+  "jaque|jaque": [
+    1
+  ],
+  "jovencito|joven": [
+    0,
+    1
+  ],
+  "jugué|jugar": [
+    2
+  ],
+  "jura|jurar": [
+    0,
+    1,
+    2
+  ],
+  "juré|jurar": [
+    1,
+    2
+  ],
+  "juró|jurar": [
+    1,
+    2
+  ],
+  "lance|lanzar": [
+    0,
+    1,
+    2
+  ],
+  "lanzas|lanza": [
+    0
+  ],
+  "lanzas|lanzar": [
+    1,
+    2
+  ],
+  "lastimando|lastimar": [
+    0,
+    1,
+    2
+  ],
+  "llantas|llanta": [
+    0,
+    1,
+    2
+  ],
+  "lloras|llorar": [
+    2
+  ],
+  "lloro|llorar": [
+    2
+  ],
+  "logrará|lograr": [
+    0,
+    1
+  ],
+  "lograrás|lograr": [
+    0,
+    1
+  ],
+  "lote|lote": [
+    0
+  ],
+  "lucen|lucir": [
+    1
+  ],
+  "luchó|luchar": [
+    0,
+    2
+  ],
+  "maligno|maligno": [
+    1,
+    2
+  ],
+  "mandado|mandar": [
+    1
+  ],
+  "manteniendo|mantener": [
+    0,
+    2
+  ],
+  "marchando|marchar": [
+    0,
+    1
+  ],
+  "mares|mar": [
+    1,
+    2
+  ],
+  "mariquita|mariquita": [
+    0,
+    1
+  ],
+  "masas|masa": [
+    0
+  ],
+  "mataremos|matar": [
+    0
+  ],
+  "matarían|matar": [
+    1
+  ],
+  "medallón|medallón": [
+    0,
+    1,
+    2
+  ],
+  "medir|medir": [
+    2
+  ],
+  "metemos|meter": [
+    0
+  ],
+  "molestado|molestar": [
+    1,
+    2
+  ],
+  "montado|montar": [
+    0,
+    1,
+    2
+  ],
+  "monton|montón": [
+    0,
+    1,
+    2
+  ],
+  "morí|morir": [
+    0
+  ],
+  "movemos|mover": [
+    0,
+    1
+  ],
+  "movía|mover": [
+    1
+  ],
+  "mozo|mozo": [
+    0,
+    1
+  ],
+  "nacen|nacer": [
+    0,
+    1,
+    2
+  ],
+  "necesitado|necesitar": [
+    0,
+    1
+  ],
+  "necesitado|necesitado": [
+    2
+  ],
+  "negado|negar": [
+    1
+  ],
+  "noroeste|noroeste": [
+    1
+  ],
+  "obligaciones|obligación": [
+    1,
+    2
+  ],
+  "obsesionado|obsesionado": [
+    1
+  ],
+  "obstante|obstante": [
+    0,
+    1,
+    2
+  ],
+  "obstrucción|obstrucción": [
+    0
+  ],
+  "obtenido|obtener": [
+    0,
+    1,
+    2
+  ],
+  "oculto|oculto": [
+    0,
+    2
+  ],
+  "ocuparemos|ocupar": [
+    0
+  ],
+  "ocupará|ocupar": [
+    2
+  ],
+  "ocupe|ocupar": [
+    1
+  ],
+  "ofendas|ofender": [
+    1,
+    2
+  ],
+  "ofrecí|ofrecer": [
+    2
+  ],
+  "opino|opinar": [
+    1
+  ],
+  "opio|opio": [
+    2
+  ],
+  "ordené|ordenar": [
+    0,
+    1
+  ],
+  "organismo|organismo": [
+    2
+  ],
+  "pabellón|pabellón": [
+    0
+  ],
+  "pacto|pacto": [
+    1
+  ],
+  "papito|papito": [
+    1
+  ],
+  "partió|partir": [
+    1
+  ],
+  "pasarás|pasar": [
+    1
+  ],
+  "patrullas|patrulla": [
+    1,
+    2
+  ],
+  "payasos|payaso": [
+    0,
+    1,
+    2
+  ],
+  "pecadores|pecador": [
+    0,
+    1,
+    2
+  ],
+  "pelearon|pelear": [
+    1
+  ],
+  "peleaste|pelear": [
+    1
+  ],
+  "pelee|pelear": [
+    0,
+    1
+  ],
+  "peleó|pelear": [
+    1
+  ],
+  "pellejo|pellejo": [
+    1,
+    2
+  ],
+  "perdición|perdición": [
+    1,
+    2
+  ],
+  "permitiría|permitir": [
+    0,
+    1,
+    2
+  ],
+  "pesada|pesado": [
+    2
+  ],
+  "pesas|pesa": [
+    0,
+    1,
+    2
+  ],
+  "pica|picar": [
+    0,
+    1
+  ],
+  "pieles|piel": [
+    1
+  ],
+  "plaga|plaga": [
+    2
+  ],
+  "planeó|planear": [
+    0,
+    1
+  ],
+  "pleno|pleno": [
+    0
+  ],
+  "podrido|podrido": [
+    1
+  ],
+  "portado|portar": [
+    0
+  ],
+  "posada|posada": [
+    1,
+    2
+  ],
+  "precauciones|precaución": [
+    0,
+    1,
+    2
+  ],
+  "preciosos|precioso": [
+    2
+  ],
+  "predecir|predecir": [
+    0
+  ],
+  "presiones|presión": [
+    1
+  ],
+  "prioridades|prioridad": [
+    0,
+    1,
+    2
+  ],
+  "probaré|probar": [
+    1
+  ],
+  "procura|procurar": [
+    2
+  ],
+  "proponer|proponer": [
+    1
+  ],
+  "proposición|proposición": [
+    2
+  ],
+  "propósitos|propósito": [
+    0,
+    1
+  ],
+  "prototipo|prototipo": [
+    1
+  ],
+  "puesta|puesto": [
+    2
+  ],
+  "puja|pujar": [
+    1
+  ],
+  "pulgas|pulga": [
+    0,
+    1,
+    2
+  ],
+  "quisieran|querer": [
+    2
+  ],
+  "rabia|rabia": [
+    0
+  ],
+  "rapidez|rapidez": [
+    0,
+    1,
+    2
+  ],
+  "recibieron|recibir": [
+    0,
+    1,
+    2
+  ],
+  "recibirán|recibir": [
+    1,
+    2
+  ],
+  "recibirás|recibir": [
+    0
+  ],
+  "recogiendo|recoger": [
+    0,
+    1,
+    2
+  ],
+  "recogió|recoger": [
+    2
+  ],
+  "recomendación|recomendación": [
+    1
+  ],
+  "recordando|recordar": [
+    0,
+    1,
+    2
+  ],
+  "reemplazar|reemplazar": [
+    0
+  ],
+  "regaló|regalar": [
+    0,
+    1
+  ],
+  "reinos|reino": [
+    0,
+    1,
+    2
+  ],
+  "rejas|reja": [
+    0,
+    2
+  ],
+  "rendir|rendir": [
+    0,
+    1
+  ],
+  "representar|representar": [
+    0
+  ],
+  "resaca|resaca": [
+    1
+  ],
+  "respetado|respetar": [
+    0,
+    1,
+    2
+  ],
+  "respondes|responder": [
+    2
+  ],
+  "resuelto|resolver": [
+    0
+  ],
+  "resuelto|resuelto": [
+    1
+  ],
+  "retardado|retardado": [
+    1
+  ],
+  "retirada|retirado": [
+    0,
+    1,
+    2
+  ],
+  "retiró|retirar": [
+    0,
+    1
+  ],
+  "retrasado|retrasar": [
+    0
+  ],
+  "retrasado|retrasado": [
+    1,
+    2
+  ],
+  "revancha|revancha": [
+    1
+  ],
+  "revelado|revelar": [
+    1,
+    2
+  ],
+  "revisaré|revisar": [
+    2
+  ],
+  "rindas|rendir": [
+    0,
+    1
+  ],
+  "robada|robado": [
+    0,
+    1
+  ],
+  "robados|robado": [
+    2
+  ],
+  "robamos|robar": [
+    0,
+    1,
+    2
+  ],
+  "rodeada|rodear": [
+    0,
+    1,
+    2
+  ],
+  "rodeado|rodear": [
+    0
+  ],
+  "rompieron|romper": [
+    0
+  ],
+  "rompimos|romper": [
+    2
+  ],
+  "rompo|romper": [
+    2
+  ],
+  "rostros|rostro": [
+    0,
+    1,
+    2
+  ],
+  "rutas|ruta": [
+    1,
+    2
+  ],
+  "ríen|reír": [
+    0,
+    1
+  ],
+  "salas|sala": [
+    1,
+    2
+  ],
+  "saltando|saltar": [
+    2
+  ],
+  "sede|sede": [
+    0,
+    1
+  ],
+  "seguiste|seguir": [
+    1
+  ],
+  "sensual|sensual": [
+    0,
+    1,
+    2
+  ],
+  "sentamos|sentar": [
+    2
+  ],
+  "sentidos|sentir": [
+    0,
+    1,
+    2
+  ],
+  "sentó|sentar": [
+    0,
+    2
+  ],
+  "separados|separado": [
+    0
+  ],
+  "seríamos|ser": [
+    1,
+    2
+  ],
+  "sesiones|sesión": [
+    0,
+    1,
+    2
+  ],
+  "simpática|simpático": [
+    1
+  ],
+  "sobrevivirá|sobrevivir": [
+    2
+  ],
+  "solicita|solicitar": [
+    1,
+    2
+  ],
+  "sonando|sonar": [
+    1,
+    2
+  ],
+  "sonrían|sonreír": [
+    1,
+    2
+  ],
+  "soporta|soportar": [
+    0,
+    2
+  ],
+  "soñaba|soñar": [
+    2
+  ],
+  "soñado|soñar": [
+    0,
+    1,
+    2
+  ],
+  "suaves|suave": [
+    1
+  ],
+  "suben|subir": [
+    2
+  ],
+  "submarinos|submarino": [
+    0
+  ],
+  "suburbios|suburbio": [
+    0,
+    1,
+    2
+  ],
+  "subí|subir": [
+    0,
+    1,
+    2
+  ],
+  "suceden|suceder": [
+    0
+  ],
+  "sucediera|suceder": [
+    0
+  ],
+  "sueltos|suelto": [
+    1
+  ],
+  "sujetos|sujeto": [
+    1,
+    2
+  ],
+  "suma|suma": [
+    2
+  ],
+  "sumo|sumar": [
+    0,
+    1,
+    2
+  ],
+  "sádico|sádico": [
+    1
+  ],
+  "tacto|tacto": [
+    0,
+    2
+  ],
+  "temible|temible": [
+    0,
+    1,
+    2
+  ],
+  "tendra|tener": [
+    0
+  ],
+  "teniamos|tener": [
+    0,
+    1
+  ],
+  "terminando|terminar": [
+    1
+  ],
+  "tirano|tirano": [
+    1
+  ],
+  "tolerar|tolerar": [
+    0
+  ],
+  "tomarás|tomar": [
+    1
+  ],
+  "traducido|traducir": [
+    0,
+    1
+  ],
+  "tragar|tragar": [
+    2
+  ],
+  "traicionado|traicionar": [
+    0,
+    1,
+    2
+  ],
+  "tratara|tratar": [
+    1
+  ],
+  "trayectoria|trayectoria": [
+    1
+  ],
+  "turcos|turco": [
+    0,
+    1,
+    2
+  ],
+  "unido|unir": [
+    1,
+    2
+  ],
+  "unió|unir": [
+    2
+  ],
+  "usará|usar": [
+    1
+  ],
+  "valium|valium": [
+    0
+  ],
+  "valió|valer": [
+    1
+  ],
+  "vara|vara": [
+    2
+  ],
+  "vena|vena": [
+    1
+  ],
+  "vendas|venda": [
+    1
+  ],
+  "vendo|vender": [
+    0,
+    1
+  ],
+  "vieran|ver": [
+    1,
+    2
+  ],
+  "violeta|violeta": [
+    1
+  ],
+  "vivirán|vivir": [
+    0,
+    1
+  ],
+  "voluntaria|voluntario": [
+    0,
+    1,
+    2
+  ],
+  "volé|volar": [
+    2
+  ],
+  "voten|votar": [
+    2
+  ],
+  "vómito|vómito": [
+    2
+  ],
+  "árabes|árabe": [
+    2
+  ],
+  "éxtasis|éxtasis": [
+    0
+  ],
+  "índice|índice": [
+    1,
+    2
+  ],
+  "íntimo|íntimo": [
+    0,
+    1,
+    2
+  ],
+  "íntimos|íntimo": [
+    0,
+    1,
+    2
+  ],
+  "bebidas|bebida": [
+    0,
+    1,
+    2
+  ],
+  "comidas|comer": [
+    0
+  ],
+  "conocida|conocido": [
+    0
   ],
   "he|haber": [
     1
@@ -962,31 +13776,415 @@
   ],
   "sea|ser": [
     1,
-    2,
-    3,
-    4
+    2
   ],
   "dice|decir": [
     1,
-    2,
-    3
+    2
   ],
   "pensé|pensar": [
     0,
-    1,
-    3,
-    4
+    1
   ],
   "contra|contra": [
     0,
     1,
-    2,
-    4
+    2
   ],
   "unas|un": [
     0,
+    1
+  ],
+  "vine|venir": [
+    0,
+    2
+  ],
+  "ten|tener": [
+    0,
+    2
+  ],
+  "usa|usar": [
+    0
+  ],
+  "cartas|carta": [
+    0,
     1,
-    3,
-    4
+    2
+  ],
+  "conocí|conocer": [
+    0,
+    1,
+    2
+  ],
+  "flores|flor": [
+    0,
+    2
+  ],
+  "come|comer": [
+    1
+  ],
+  "red|red": [
+    1,
+    2
+  ],
+  "perdiendo|perder": [
+    0,
+    1
+  ],
+  "modos|modo": [
+    0,
+    1,
+    2
+  ],
+  "repente|repente": [
+    0,
+    1,
+    2
+  ],
+  "bordo|bordo": [
+    1
+  ],
+  "menudo|menudo": [
+    0,
+    1,
+    2
+  ],
+  "des|dar": [
+    2
+  ],
+  "árboles|árbol": [
+    0,
+    1,
+    2
+  ],
+  "grados|grado": [
+    0,
+    1,
+    2
+  ],
+  "pare|parar": [
+    2
+  ],
+  "cuentas|contar": [
+    2
+  ],
+  "golpes|golpe": [
+    0,
+    1,
+    2
+  ],
+  "vecinos|vecino": [
+    2
+  ],
+  "fiscal|fiscal": [
+    0,
+    1,
+    2
+  ],
+  "extraños|extraño": [
+    0,
+    1,
+    2
+  ],
+  "calles|calle": [
+    1,
+    2
+  ],
+  "echo|echar": [
+    2
+  ],
+  "pájaros|pájaro": [
+    1
+  ],
+  "temas|tema": [
+    2
+  ],
+  "contando|contar": [
+    0,
+    1,
+    2
+  ],
+  "disparos|disparo": [
+    1,
+    2
+  ],
+  "grano|grano": [
+    0,
+    2
+  ],
+  "copias|copia": [
+    0,
+    1,
+    2
+  ],
+  "doctores|doctor": [
+    2
+  ],
+  "habitaciones|habitación": [
+    0,
+    1
+  ],
+  "libras|libra": [
+    0,
+    1
+  ],
+  "use|usar": [
+    2
+  ],
+  "decías|decir": [
+    0,
+    1,
+    2
+  ],
+  "chinos|chino": [
+    1
+  ],
+  "decían|decir": [
+    2
+  ],
+  "graves|grave": [
+    2
+  ],
+  "vacas|vaca": [
+    0
+  ],
+  "botas|bota": [
+    0,
+    1,
+    2
+  ],
+  "pechos|pecho": [
+    0,
+    1,
+    2
+  ],
+  "quite|quitar": [
+    1
+  ],
+  "cortinas|cortina": [
+    1,
+    2
+  ],
+  "olas|ola": [
+    1,
+    2
+  ],
+  "cables|cable": [
+    0,
+    1,
+    2
+  ],
+  "cuadras|cuadra": [
+    0,
+    1,
+    2
+  ],
+  "hamburguesas|hamburguesa": [
+    1,
+    2
+  ],
+  "ondas|onda": [
+    1
+  ],
+  "vías|vía": [
+    1,
+    2
+  ],
+  "manchas|mancha": [
+    0,
+    1,
+    2
+  ],
+  "mesas|mesa": [
+    0,
+    1,
+    2
+  ],
+  "navaja|navaja": [
+    0,
+    1,
+    2
+  ],
+  "produce|producir": [
+    1,
+    2
+  ],
+  "responsables|responsable": [
+    1,
+    2
+  ],
+  "times|timar": [
+    0,
+    1
+  ],
+  "verse|ver": [
+    2
+  ],
+  "asustando|asustar": [
+    0,
+    1
+  ],
+  "fu|fu": [
+    0,
+    1,
+    2
+  ],
+  "grabado|grabar": [
+    1
+  ],
+  "grabado|grabado": [
+    2
+  ],
+  "ire|ir": [
+    0,
+    1
+  ],
+  "noté|notar": [
+    0,
+    2
+  ],
+  "orcos|orco": [
+    0,
+    1,
+    2
+  ],
+  "tire|tirar": [
+    1,
+    2
+  ],
+  "elle|elle": [
+    1
+  ],
+  "labor|labor": [
+    0
+  ],
+  "palos|palo": [
+    0
+  ],
+  "primos|primo": [
+    0,
+    1,
+    2
+  ],
+  "carmen|carmen": [
+    0,
+    1
+  ],
+  "cartuchos|cartucho": [
+    0,
+    1
+  ],
+  "dense|dar": [
+    0,
+    1,
+    2
+  ],
+  "fantasías|fantasía": [
+    0,
+    1
+  ],
+  "leyendas|leyenda": [
+    0
+  ],
+  "madrugada|madrugada": [
+    1
+  ],
+  "martín|martín": [
+    1,
+    2
+  ],
+  "áreas|área": [
+    0
+  ],
+  "cabras|cabra": [
+    1
+  ],
+  "claridad|claridad": [
+    2
+  ],
+  "menuda|menudo": [
+    1,
+    2
+  ],
+  "paces|pacer": [
+    2
+  ],
+  "protocolos|protocolo": [
+    0,
+    1,
+    2
+  ],
+  "retire|retirar": [
+    1,
+    2
+  ],
+  "revisé|revisar": [
+    0,
+    2
+  ],
+  "series|serie": [
+    0,
+    2
+  ],
+  "apuros|apuro": [
+    0,
+    1
+  ],
+  "coincide|coincidir": [
+    1,
+    2
+  ],
+  "colorado|colorado": [
+    1
+  ],
+  "fresas|fresa": [
+    0,
+    2
+  ],
+  "iras|ir": [
+    2
+  ],
+  "natal|natal": [
+    0,
+    2
+  ],
+  "puestas|puesto": [
+    0,
+    1,
+    2
+  ],
+  "reduce|reducir": [
+    0
+  ],
+  "sere|ser": [
+    0
+  ],
+  "sombreros|sombrero": [
+    0,
+    1,
+    2
+  ],
+  "sudando|sudar": [
+    0,
+    1
+  ],
+  "lola|Lola": [
+    0,
+    1
+  ],
+  "maté|matar": [
+    0,
+    1
+  ],
+  "mate|matar": [
+    0,
+    1
+  ],
+  "chistes|chiste": [
+    0,
+    2
+  ],
+  "lgual|igual": [
+    0
   ]
 }

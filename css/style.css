@@ -2510,6 +2510,57 @@
             margin-top: 6px;
         }
 
+        /* Collapsible part-of-speech group. Only rendered when a card has more
+           than one POS; a single-POS card keeps the plain section it always
+           had, because a header and chevron around a two-line list is chrome
+           with nothing to hide. */
+        .pos-collapsible .pos-section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            width: 100%;
+            padding: 5px 8px;
+            background: rgba(var(--sense-match-rgb), 0.10);
+            border: none;
+            border-left: 3px solid rgb(var(--sense-match-rgb));
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            font: inherit;
+        }
+        .pos-collapsible .pos-section-label {
+            flex-shrink: 0;
+            color: rgb(var(--sense-match-rgb));
+            font-family: var(--font-emphasis);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+        /* The main senses, no contexts. Truncates rather than wraps: the
+           summary is a glance, and the detail is one tap away. */
+        .pos-collapsible .pos-section-summary {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .pos-collapsible .pos-section-chevron {
+            flex-shrink: 0;
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+        .pos-collapsible .meaning-pos-rows {
+            display: none;
+        }
+        .pos-collapsible.is-open .meaning-pos-rows {
+            display: block;
+            margin-top: 4px;
+        }
+
         /* The legend owns the top-right corner of the card back and keeps it
            whether there is one pill or several: `margin-left: auto` pushes it
            off the headword, and the pills pack to the right edge so a second

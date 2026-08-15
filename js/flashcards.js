@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260815a';
-import './speech.js?v=20260815a';
+import './state.js?v=20260815b';
+import './speech.js?v=20260815b';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260815a';
+} from './example-personalisation.js?v=20260815b';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2757,6 +2757,19 @@ function highlightAttachedForm(sentence, form) {
     }
 }
 
+// Open/close one part-of-speech group on the card back. State lives on the
+// card, not the DOM, because selecting a sense re-renders — a DOM-only toggle
+// would close the group the moment you clicked a row inside it.
+function toggleBackPosSection(pos) {
+    const card = flashcards?.[currentIndex];
+    if (!card) return;
+    if (!card._expandedPos) card._expandedPos = new Set();
+    if (card._expandedPos.has(pos)) card._expandedPos.delete(pos);
+    else card._expandedPos.add(pos);
+    updateCard();
+}
+window.toggleBackPosSection = toggleBackPosSection;
+
 // Where a corpus example actually came from. OpenSubtitles ships an .ids file
 // aligned line-for-line with the text; step_5a_build_examples_v2 carries the
 // title/subtitle/line through onto each example. The title_id is an IMDb id
@@ -3908,13 +3921,65 @@ function updateCard({ announceHeadword = false } = {}) {
             if (!sections.has(pos)) sections.set(pos, []);
             return sections.get(pos);
         };
-        const renderSections = (sections, filterToActivePos = false) => Array.from(sections)
-            .filter(([pos]) => !filterToActivePos || pos === activeBackPos)
-            .map(([pos, rows]) => `
-                <section class="meaning-pos-section" data-pos="${pos}" style="--sense-match-rgb: ${getPosAccentRgb(pos)};">
+        // Distinct translations per POS — the card's "main senses", with the
+        // context variants left for the expanded view. Median 2 per POS, p90 3,
+        // so the whole summary fits on one line per part of speech.
+        const posMainSenses = new Map();
+        (card.meanings || []).forEach(m => {
+            if (!m || m.exampleOnly) return;
+            const pos = m.pos === 'SENSE_CYCLE' ? (m.cycle_pos || 'X') : m.pos;
+            if (!pos || pos === 'MWE' || pos === 'CLITIC') return;
+            const text = String(getConjugatedEnglish(card, m.meaning) || m.meaning || '').trim();
+            if (!text) return;
+            if (!posMainSenses.has(pos)) posMainSenses.set(pos, []);
+            const list = posMainSenses.get(pos);
+            if (!list.includes(text)) list.push(text);
+        });
+
+        // Which POS are open. Defaults to the one the selected meaning is in,
+        // so the card still shows content on arrival instead of a list of
+        // closed drawers. Stored on the card so selecting a row — which
+        // re-renders — does not collapse what you just opened.
+        if (!card._expandedPos) {
+            const openPos = currentMeaning
+                ? (currentMeaning.pos === 'SENSE_CYCLE'
+                    ? (currentMeaning.cycle_pos || 'X') : currentMeaning.pos)
+                : activeBackPos;
+            card._expandedPos = new Set(openPos ? [openPos] : []);
+        }
+
+        // One POS is not a hierarchy — 59% of cards are a single part of speech
+        // with a single headword, and a header plus chevron there is chrome
+        // around a two-line list. Those render exactly as before.
+        const renderSections = (sections, filterToActivePos = false) => {
+            const entries = Array.from(sections);
+            const collapsible = entries.length > 1;
+            return entries
+                .filter(([pos]) => !collapsible && filterToActivePos
+                    ? pos === activeBackPos : true)
+                .map(([pos, rows]) => {
+                    const accent = `--sense-match-rgb: ${getPosAccentRgb(pos)};`;
+                    if (!collapsible) {
+                        return `
+                <section class="meaning-pos-section" data-pos="${pos}" style="${accent}">
                     <div class="meaning-pos-rows">${rows.join('')}</div>
-                </section>
-            `).join('');
+                </section>`;
+                    }
+                    const open = card._expandedPos.has(pos);
+                    const summary = (posMainSenses.get(pos) || []).join(' · ');
+                    return `
+                <section class="meaning-pos-section pos-collapsible${open ? ' is-open' : ''}"
+                         data-pos="${pos}" style="${accent}">
+                    <button type="button" class="pos-section-head"
+                            onclick="event.stopPropagation(); toggleBackPosSection('${pos}')">
+                        <span class="pos-section-label">${escapeCardText(pos)}</span>
+                        <span class="pos-section-summary">${escapeCardText(summary)}</span>
+                        <span class="pos-section-chevron">${open ? '▾' : '▸'}</span>
+                    </button>
+                    <div class="meaning-pos-rows">${rows.join('')}</div>
+                </section>`;
+                }).join('');
+        };
 
         // Render-side grouping: collapse rows that share either
         // translation OR context into a single "group card" — shared
@@ -6161,7 +6226,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260815a';
+const ASSET_VERSION = '20260815b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
