@@ -2,6 +2,17 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-17",
+      "commit": "cf3ce8f9",
+      "summary": "English-first cards now ask for many more of the forms they actually need",
+      "details": [
+        "Gerunds and past participles now use their real English forms, so hablando can show talking or speaking and hablado can show spoken or called",
+        "Conditional and command cards gain natural prompts such as I would speak, give!, and let's go!, while a surface with two valid analyses can show both compactly",
+        "Spanish imperfect and subjunctive remain explicitly grammar-labelled dictionary glosses because sentence context is required to choose one honest English realization",
+        "Focused Python and JavaScript regressions pass; usable verb-card cues rise from 1,674 to 3,368 in the 9,338-card Spanish deck; cache v248→v249 / assets 20260816n→20260817a"
+      ]
+    },
+    {
       "date": "2026-08-16",
       "commit": "adfcb088",
       "summary": "Finishing and flagging cards now give an immediate, continuous response",
