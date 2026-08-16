@@ -154,6 +154,25 @@ test('card rows use distinct POS themes and content-aware bilingual typography',
     assert.match(css, /\.row-text-sm\s*\{[^}]*--row-context-size: 11\.5px;/s);
 });
 
+test('conjugation panel reserves emphasis for its title and uses reading typography elsewhere', async () => {
+    const css = await text('css/style.css');
+    assert.match(css, /\.conj-infinitive\s*\{[^}]*font-family: var\(--font-emphasis\);/s);
+    for (const selector of [
+        'conj-close-btn', 'conj-mood-toggle-btn', 'conj-tense-btn',
+        'conj-pronoun', 'conj-form'
+    ]) {
+        assert.match(
+            css,
+            new RegExp(`\\.${selector}\\s*\\{[^}]*font-family: var\\(--font-reading\\);`, 's')
+        );
+    }
+    const panelTypography = css.slice(
+        css.indexOf('.conj-close-btn'),
+        css.indexOf('/* SpanishDict "full paradigm" button')
+    );
+    assert.doesNotMatch(panelTypography, /font-family: var\(--font-data\);/);
+});
+
 test('card grammar uses an occupied identity row and a separate verb morphology row', async () => {
     const [cards, css] = await Promise.all([
         text('js/flashcards.js'), text('css/style.css')

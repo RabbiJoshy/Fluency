@@ -7995,6 +7995,7 @@
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.18);
             color: var(--text-primary);
+            font-family: var(--font-reading);
             font-size: 32px;
             cursor: pointer;
             padding: 0;
@@ -8102,7 +8103,7 @@
             color: var(--text-muted);
             font-size: 14px;
             font-weight: 600;
-            font-family: var(--font-data);
+            font-family: var(--font-reading);
             padding: 9px 18px;
             border-radius: 8px;
             cursor: pointer;
@@ -8137,7 +8138,7 @@
             color: var(--text-muted);
             font-size: 12px;
             font-weight: 600;
-            font-family: var(--font-data);
+            font-family: var(--font-reading);
             padding: 6px 12px;
             border-radius: 7px;
             cursor: pointer;
@@ -8211,14 +8212,14 @@
             padding: 9px 16px 9px 14px;
             color: var(--text-muted);
             font-size: 14px;
-            font-family: var(--font-data);
+            font-family: var(--font-reading);
             white-space: nowrap;
             text-align: right;
         }
         .conj-form {
             padding: 9px 14px 9px 6px;
             font-size: 19px;
-            font-family: var(--font-emphasis);
+            font-family: var(--font-reading);
             text-align: left;
             min-width: 120px;
         }
