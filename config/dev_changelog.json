@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "8761de64",
+      "summary": "The back of each SpanishDict card now has a dictionary-data browser",
+      "details": [
+        "A visible Dictionary tile opens a full-card list of the SpanishDict senses packaged with that card; no long-press gesture or owner-only menu is required",
+        "Each disclosure shows its raw context, headword, part of speech, stable sense ID, available region labels and packaged dictionary example",
+        "Usage notes additionally show the friendly parsed label and every spelling the UI may highlight, with the same explicit warning that textual presence does not prove grammatical attachment",
+        "Five focused metadata/parser regressions plus relevant card, theme, syntax and asset-version checks pass; cache v244→v245 / assets 20260816j→20260816k"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "1a2d53e3",
       "summary": "Cards now explain SpanishDict usage notes instead of hiding them",
       "details": [

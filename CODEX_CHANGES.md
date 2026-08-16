@@ -26,6 +26,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The original warm-paper light direction is superseded by a cool daylight hierarchy: a blue-grey app canvas, true-white working surfaces, subtly tinted nested panels, and crisp neutral shadows. This is still the same Fluency visual language—not a separate product skin—and existing typography, rounded card construction, density, accent framing, radial interactions, and semantic colours stay authoritative.
 - Light appearance must not inherit literal white text or translucent-white chrome except on solid semantic fills, artwork, branded media, and floating dark toasts. Muted ink must meet WCAG AA on the darkest light neutral, and POS light-mode ink is authoritative even inside more-specific component selectors.
 - SpanishDict usage metadata is a visible sense qualifier, not an automatic MWE claim. Cards keep ordinary semantic context separate from compact usage cues, and a companion found in an example is labelled only as a possible textual match because co-occurrence does not prove same-clause attachment.
+- SpanishDict-backed cards expose a visible Dictionary tile on the back. Its disclosure browser shows only source fields actually packaged with the card plus the app's explicitly labelled presentation parsing; it never presents estimated sense share or model output as SpanishDict metadata.
 - Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
 - A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English uses the first two and labels pronominal lemmas in plain language. English→Spanish uses the production answer: exact surface when unmerged, lemma when merged, and the complete `-se` citation for older pronominal data, with the evidenced example form shown separately.
@@ -40,6 +41,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Open handoff notes
 
+- The Dictionary browser is ready to display `regions` once deck assembly begins shipping them. Current normal and artist compact decks omit that field, and artist decks also omit SpanishDict examples, so the browser truthfully shows only the raw fields that reached each card rather than fetching or reconstructing missing source data in the app.
 - SpanishDict usage cues are presentation-only for now. A later WSD experiment should preserve that boundary and measure clause/attachment evidence before using a companion token as a feature. Other promising upstream features currently absent from the embedding gloss include sense regions, exact headword/lemma identity, redirect/conjugation relation, the second dictionary example, and sense-aligned thesaurus links; these should be evaluated as priors/features rather than silently folded into observed corpus frequency.
 - `backend/GoogleAppsScript.js` commit `b4fac72e` adds the `SongSets` sheet contract, but the Apps Script deployment is deliberately manual and has not been performed by Codex. Until Josh deploys that revision, per-song choices remain durable on-device and queued account writes will retry from Offline & sync.
 - The accepted pipeline, app, compact decks, assignments, and register are protected by release commit `1e6b70b6`. Large local Evidence Store ledgers and generated candidate previews remain deliberately outside Git; closing this chat does not remove those local artifacts.
@@ -50,6 +52,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The full Node suite currently has seven pre-existing failures against `HEAD`: five stale `tests/ui-refinements.test.mjs` assertions (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names), one reviewed personalised-frame/data mismatch, and the already-recorded offline-manifest checksum mismatch for the rebuilt Spanish index. Theme-focused and relevant UI/offline-policy tests pass; this unrelated test/data debt was not rewritten as part of appearance work.
 
 ## Codex task history
+
+### 2026-08-16 — Add a card-back SpanishDict data browser
+
+- Commit `8761de64`; front-end cache `flashcards-v245` / `20260816k`.
+- Added a visible Dictionary tile to every card carrying SpanishDict senses. It opens a full-card, scrollable disclosure browser rather than relying on a hidden long press or the owner-only model-provenance menu.
+- Each sense exposes the raw fields actually packaged with the card: English gloss, headword, part of speech, stable sense ID, raw context, optional regions, and any packaged dictionary example. The usage parser's friendly label and display-only candidate spellings sit alongside the raw note with an explicit no-attachment/no-WSD caveat.
+- Kept estimated corpus percentages, assignment methods, and model provenance out of the dictionary panel. App-side joins now preserve future `headword` and `regions` fields when deck assembly supplies them; no runtime source fetch or guessed metadata was added.
+- Verification: five focused parser/metadata/rendering regressions; eleven relevant card/surface/theme regressions; JavaScript syntax for the card renderer and vocabulary join; all 72 asset tags in lockstep; `git diff --check`. The five relevant offline policy/version checks pass; the pre-existing Spanish index manifest-size assertion remains stale. Browser preview was not used, per repository policy.
 
 ### 2026-08-16 — Present SpanishDict usage metadata on sense examples
 
