@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260816d';
+import './state.js?v=20260816e';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -281,9 +281,10 @@ const LANG_CODES = {
 };
 
 /**
- * Compute a stable composite word ID: {2-char lang}{0=normal|1=lyrics}{hex}.
- * Hex is 6 chars for artist mode (master vocab), 4 chars for normal mode.
- * Examples: "es00001" (Spanish normal rank 1), "es1a1b2c3" (artist hex a1b2c3).
+ * Compute a stable composite word ID: {2-char lang}{0=normal|1=lyrics}{surface ID}.
+ * Current Spanish surface IDs are eight lowercase hex characters; the rank
+ * fallback remains only for older language data that has no explicit ID.
+ * Examples: "es0a1b2c3d4" (Spanish Speech), "es1a1b2c3d4" (Spanish Lyrics).
  * Always contains letters → Google Sheets never auto-converts to a number.
  */
 function getWordId(item) {

@@ -19,29 +19,31 @@
          weights = fewer round trips to fonts.gstatic.com on cold start. -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
-    <link rel="stylesheet" href="css/style.css?v=20260816d">
+    <link rel="stylesheet" href="css/style.css?v=20260816e">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260816d">
-    <link rel="modulepreload" href="js/state.js?v=20260816d">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260816d">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260816d">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260816d">
-    <link rel="modulepreload" href="js/speech.js?v=20260816d">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260816d">
-    <link rel="modulepreload" href="js/auth.js?v=20260816d">
-    <link rel="modulepreload" href="js/about-example.js?v=20260816d">
-    <link rel="modulepreload" href="js/estimation.js?v=20260816d">
-    <link rel="modulepreload" href="js/config.js?v=20260816d">
-    <link rel="modulepreload" href="js/progress.js?v=20260816d">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260816d">
-    <link rel="modulepreload" href="js/ui.js?v=20260816d">
-    <link rel="modulepreload" href="js/vocab.js?v=20260816d">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260816d">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260816d">
+    <link rel="modulepreload" href="js/main.js?v=20260816e">
+    <link rel="modulepreload" href="js/state.js?v=20260816e">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260816e">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260816e">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260816e">
+    <link rel="modulepreload" href="js/speech.js?v=20260816e">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260816e">
+    <link rel="modulepreload" href="js/auth.js?v=20260816e">
+    <link rel="modulepreload" href="js/about-example.js?v=20260816e">
+    <link rel="modulepreload" href="js/estimation.js?v=20260816e">
+    <link rel="modulepreload" href="js/config.js?v=20260816e">
+    <link rel="modulepreload" href="js/progress.js?v=20260816e">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260816e">
+    <link rel="modulepreload" href="js/ui.js?v=20260816e">
+    <link rel="modulepreload" href="js/vocab.js?v=20260816e">
+    <link rel="modulepreload" href="js/vocabulary-import-core.js?v=20260816e">
+    <link rel="modulepreload" href="js/vocabulary-import.js?v=20260816e">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260816e">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260816e">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -1216,6 +1218,13 @@
                     <span>Logged in as</span>
                     <span id="accountUserBadge" style="font-weight: 700;">GUEST</span>
                 </div>
+                <button type="button" class="stat-row settings-action-row" id="openVocabularyImportBtn" hidden>
+                    <span>
+                        <strong>Import vocabulary</strong>
+                        <small>Mark Spanish Speech cards from a text, CSV or TSV list</small>
+                    </span>
+                    <span class="settings-row-action">Open</span>
+                </button>
                 <div class="stat-row" style="cursor: pointer;" id="aboutProjectSettingsRow">
                     <span>About this project</span>
                     <span style="color: var(--text-muted);">
@@ -1277,6 +1286,49 @@
                      an old date here means the service worker served cached data. -->
                 <div id="dataFreshnessFooter" class="data-freshness-footer"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Surface-keyed Spanish Speech vocabulary import -->
+    <div id="vocabularyImportModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="vocabularyImportTitle">
+        <div class="modal-content vocabulary-import-modal-content">
+            <div class="modal-header">
+                <div>
+                    <span class="progress-modal-eyebrow">Account progress</span>
+                    <h3 id="vocabularyImportTitle">Import Spanish Speech vocabulary</h3>
+                </div>
+                <button type="button" class="modal-close" id="closeVocabularyImportModal" aria-label="Close vocabulary import">✕</button>
+            </div>
+            <p class="settings-data-intro">
+                Paste one exact Spanish surface form per line, or use UTF-8 CSV/TSV with
+                <code>surface</code> and optional <code>lemma</code>, <code>last_correct</code>,
+                and <code>last_incorrect</code> columns. Accents and punctuation distinguish cards;
+                lemma is accepted for interoperability but never used to match.
+            </p>
+            <label class="vocabulary-import-input-label" for="vocabularyImportText">Vocabulary list</label>
+            <textarea id="vocabularyImportText" class="vocabulary-import-text" rows="9"
+                      placeholder="hablo&#10;comieron&#10;sí" spellcheck="false"></textarea>
+            <div class="vocabulary-import-actions vocabulary-import-actions--source">
+                <label class="secondary-btn vocabulary-import-file-label" for="vocabularyImportFile">Choose .txt, .csv or .tsv</label>
+                <input type="file" id="vocabularyImportFile" accept=".txt,.csv,.tsv,text/plain,text/csv,text/tab-separated-values" hidden>
+                <button type="button" id="previewVocabularyImportBtn">Preview import</button>
+            </div>
+            <p id="vocabularyImportStatus" class="vocabulary-import-status" role="status" aria-live="polite"></p>
+            <section id="vocabularyImportPreview" class="vocabulary-import-preview" hidden aria-labelledby="vocabularyImportPreviewTitle">
+                <h4 id="vocabularyImportPreviewTitle">Preview</h4>
+                <div id="vocabularyImportSummary" class="vocabulary-import-summary"></div>
+                <details id="vocabularyImportSkipped" hidden>
+                    <summary>Review skipped rows</summary>
+                    <pre id="vocabularyImportSkippedText"></pre>
+                </details>
+                <p class="settings-data-intro">
+                    Existing newer answers, counts and review stages are preserved. A newer imported
+                    incorrect date stays in Review; rows without dates are marked correct now.
+                </p>
+                <div class="vocabulary-import-actions">
+                    <button type="button" id="confirmVocabularyImportBtn" disabled>Confirm import</button>
+                </div>
+            </section>
         </div>
     </div>
 
@@ -1344,6 +1396,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260816d"></script>
+    <script type="module" src="js/main.js?v=20260816e"></script>
 </body>
 </html>

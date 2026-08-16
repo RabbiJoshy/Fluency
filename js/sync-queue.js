@@ -1,6 +1,6 @@
 // Durable, local-first synchronization queue.
-import './state.js?v=20260816d';
-import { dbDelete, dbGetAll, dbPut, makeOperationId, openOfflineDb } from './offline-db.js?v=20260816d';
+import './state.js?v=20260816e';
+import { dbDelete, dbGetAll, dbPut, makeOperationId, openOfflineDb } from './offline-db.js?v=20260816e';
 
 const LEGACY_QUEUE_KEY = 'fluency_sync_queue_v1';
 const LAST_SYNC_KEY = 'fluency_last_sync_v1';
@@ -283,12 +283,24 @@ async function updateSyncDetails() {
 
 export function applyPendingProgressOverlay(progress) {
     for (const { payload: p } of queue) {
-        if (!p || p.action !== 'save' || p.sheet === 'FlaggedWords' ||
-            p.word === '_LEVEL_ESTIMATE_' || p.itemType === 'meta' || !p.wordId) continue;
-        progress[p.wordId] = {
-            word: p.word, language: p.language, correct: p.correct, wrong: p.wrong,
-            lastCorrect: p.lastCorrect, lastWrong: p.lastWrong, lastSeen: p.lastSeen, srsStage: p.srsStage
-        };
+        if (!p || p.sheet === 'FlaggedWords') continue;
+        const rows = p.action === 'bulkSave' && Array.isArray(p.rows)
+            ? p.rows
+            : p.action === 'save' ? [p] : [];
+        for (const row of rows) {
+            const wordId = row.itemId || row.wordId;
+            if (row.word === '_LEVEL_ESTIMATE_' || row.itemType === 'meta' || !wordId) continue;
+            progress[wordId] = {
+                word: row.label || row.word,
+                language: row.language,
+                correct: row.correct,
+                wrong: row.wrong,
+                lastCorrect: row.lastCorrect,
+                lastWrong: row.lastWrong,
+                lastSeen: row.lastSeen,
+                srsStage: row.srsStage
+            };
+        }
     }
     return progress;
 }

@@ -169,6 +169,35 @@ assert.equal(post({
 }).success, true);
 assert.equal(post({ action: 'load', sheet: 'Lyrics', user: 'JT' }).data.progress[0].correct, 5);
 
+const importRow = {
+    user: 'JT', itemId: 'es0deadbeef', itemType: 'word', mode: 'normal',
+    label: 'hubiera', language: 'spanish', correct: 1, wrong: 1,
+    lastCorrect: '2026-07-01T00:00:00.000Z',
+    lastWrong: '2026-07-02T00:00:00.000Z',
+    lastSeen: '2026-07-02T00:00:00.000Z', srsStage: 0
+};
+assert.equal(post({
+    action: 'bulkSave', sheet: 'Progress', rows: [
+        importRow,
+        { ...importRow, itemId: 'es0bad00000', user: '' }
+    ]
+}).success, true);
+let imported = post({ action: 'load', sheet: 'UserProgress', user: 'JT' }).data.progress
+    .find(row => row.wordId === 'es0deadbeef');
+assert.equal(imported.word, 'hubiera');
+assert.equal(imported.mode, 'normal');
+assert.equal(imported.lastCorrect, '2026-07-01T00:00:00.000Z');
+assert.equal(imported.lastWrong, '2026-07-02T00:00:00.000Z');
+assert.equal(imported.srsStage, 0);
+assert.equal(post({ action: 'load', sheet: 'UserProgress', user: 'JT' }).data.progress
+    .some(row => row.wordId === 'es0bad00000'), false);
+const beforeImportRetry = spreadsheet.getSheetByName('Progress').getLastRow();
+assert.equal(post({ action: 'bulkSave', sheet: 'Progress', rows: [importRow] }).success, true);
+assert.equal(spreadsheet.getSheetByName('Progress').getLastRow(), beforeImportRetry);
+imported = post({ action: 'load', sheet: 'UserProgress', user: 'JT' }).data.progress
+    .find(row => row.wordId === 'es0deadbeef');
+assert.equal(imported.correct, 1);
+
 for (const sourceName of ['bad-bunny', 'rosalia']) {
     assert.equal(post({
         action: 'saveMeta', user: 'JT', metaKey: 'level-done', metaId: 'c1800',
