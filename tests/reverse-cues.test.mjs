@@ -32,6 +32,17 @@ const conjugatedEnglish = {
             presente: ['I manage to', 'you manage to', 'he manages to', 'we manage to', 'you (pl) manage to', 'they manage to'],
         },
     },
+    dar: {
+        'to give': {
+            'indicativo/presente': ['I give', 'you give', 'he gives', 'we give', 'you (pl) give', 'they give'],
+        },
+    },
+    hablar: {
+        'to speak': {
+            'gerundio/gerundio': ['speaking'],
+            'participo/participo': ['spoken'],
+        },
+    },
 };
 
 test('reverse fingerprint covers distinct lemmas before adding extra senses', () => {
@@ -136,7 +147,7 @@ test('English production handles noun and verb readings of the same surface sepa
     );
 });
 
-test('English production declines to guess across ambiguous Spanish analyses', () => {
+test('English production shows supported ambiguous analyses without guessing at unsupported ones', () => {
     const card = {
         targetWord: 'da',
         lemma: 'dar',
@@ -148,8 +159,50 @@ test('English production declines to guess across ambiguous Spanish analyses', (
 
     assert.equal(
         englishProductionCue(card, { pos: 'VERB', headword: 'dar', meaning: 'to give' }, conjugatedEnglish),
-        null,
+        'he/she/it gives / give!',
     );
+
+    const partlySupported = {
+        ...card,
+        targetWord: 'dé',
+        morphology: [
+            { mood: 'subjuntivo', tense: 'presente', person: '3s' },
+            { mood: 'imperativo', tense: 'afirmativo', person: '3s' },
+        ],
+    };
+    assert.equal(
+        englishProductionCue(partlySupported, { pos: 'VERB', headword: 'dar', meaning: 'to give' }, conjugatedEnglish),
+        'give!',
+    );
+});
+
+test('English production covers conditional, gerund, and participle analyses', () => {
+    const meaning = { pos: 'VERB', headword: 'hablar', meaning: 'to speak' };
+
+    assert.equal(englishProductionCue({
+        targetWord: 'hablaría',
+        morphology: { mood: 'condicional', tense: 'presente', person: '3s' },
+    }, meaning, conjugatedEnglish), 'he/she/it would speak');
+    assert.equal(englishProductionCue({
+        targetWord: 'hablando',
+        morphology: { mood: 'gerundio', tense: 'gerundio', person: '' },
+    }, meaning, conjugatedEnglish), 'speaking');
+    assert.equal(englishProductionCue({
+        targetWord: 'hablado',
+        morphology: { mood: 'participio', tense: 'participio', person: '' },
+    }, meaning, conjugatedEnglish), 'spoken');
+});
+
+test('English production abstains from context-dependent imperfect and subjunctive', () => {
+    const meaning = { pos: 'VERB', headword: 'hablar', meaning: 'to speak' };
+
+    for (const morphology of [
+        { mood: 'indicativo', tense: 'pretérito-imperfecto', person: '1s' },
+        { mood: 'subjuntivo', tense: 'presente', person: '1s' },
+        { mood: 'subjuntivo', tense: 'pretérito-imperfecto', person: '1s' },
+    ]) {
+        assert.equal(englishProductionCue({ targetWord: 'hablara', morphology }, meaning, conjugatedEnglish), null);
+    }
 });
 
 test('English-first card renderer consumes the bounded, sense-aware cues', () => {

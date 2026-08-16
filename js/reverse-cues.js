@@ -6,13 +6,9 @@ const REVERSE_CUE_LIMIT = 4;
 const SPECIAL_POS = new Set(['MWE', 'CLITIC', 'SENSE_CYCLE', 'EXAMPLE_ONLY']);
 const VERB_POS = new Set(['VERB', 'AUX']);
 
-const MORPH_TENSE_TO_ENGLISH = {
-    presente: 'presente',
-    'pretérito-perfecto-simple': 'pretérito-perfecto-simple',
-    futuro: 'futuro',
-};
-
 const PERSON_TO_INDEX = { '1s': 0, '2s': 1, '3s': 2, '1p': 3, '2p': 4, '3p': 5 };
+const ENGLISH_PRONOUNS = ['I', 'you', 'he', 'we', 'you (pl)', 'they'];
+const NONFINITE_MOODS = new Set(['gerundio', 'participo']);
 
 const IRREGULAR_ENGLISH_PLURALS = {
     child: 'children',
@@ -194,6 +190,75 @@ function nounProductionCue(card, meaning, translation) {
     return pluralizeEnglishWord(translation);
 }
 
+function normalizeAnalysis(morph) {
+    let mood = String(morph?.mood || '').toLocaleLowerCase('es');
+    let tense = String(morph?.tense || '').toLocaleLowerCase('es');
+    if (mood === 'participio' || mood === 'participio-pasado') mood = 'participo';
+    if (tense === 'participio' || tense === 'participio-pasado') tense = 'participo';
+    return { mood, tense, key: mood && tense ? `${mood}/${tense}` : '' };
+}
+
+function expandThirdSingular(form) {
+    if (/^he\s/iu.test(form)) return form.replace(/^he\s/iu, 'he/she/it ');
+    if (/^he'/iu.test(form)) return form.replace(/^he'/iu, "he/she/it'");
+    return form;
+}
+
+function infinitiveParts(translation) {
+    const value = String(translation || '').trim();
+    if (!value.startsWith('to ')) return null;
+    const body = value.slice(3).trim();
+    if (!body) return null;
+    const splitAt = body.indexOf(' ');
+    return splitAt === -1
+        ? { head: body, rest: '' }
+        : { head: body.slice(0, splitAt), rest: body.slice(splitAt) };
+}
+
+function deriveRegularAnalysisCue(translation, analysis, personIdx) {
+    const parts = infinitiveParts(translation);
+    if (!parts || personIdx === undefined) return null;
+    const verb = `${parts.head}${parts.rest}`;
+    if (analysis.mood === 'condicional' && analysis.tense === 'presente') {
+        return `${ENGLISH_PRONOUNS[personIdx]} would ${verb}`;
+    }
+    if (analysis.mood !== 'imperativo' || personIdx === 0) return null;
+    if (analysis.tense === 'negativo') {
+        return personIdx === 3 ? `let's not ${verb}!` : `don't ${verb}!`;
+    }
+    if (analysis.tense !== 'afirmativo') return null;
+    return personIdx === 3 ? `let's ${verb}!` : `${verb}!`;
+}
+
+function cueForAnalysis(analysisRows, morph, translation) {
+    const analysis = normalizeAnalysis(morph);
+    if (!analysis.key) return null;
+
+    // Step 5e v3 uses full mood/tense keys. Retain the indicative-tense
+    // fallback so an already-open client with the v2 data layer still works
+    // while the cache update arrives.
+    const row = analysisRows?.[analysis.key]
+        || (analysis.mood === 'indicativo' ? analysisRows?.[analysis.tense] : null);
+    const personIdx = PERSON_TO_INDEX[morph?.person];
+    if (!Array.isArray(row)) {
+        const derived = deriveRegularAnalysisCue(translation, analysis, personIdx);
+        return derived && personIdx === 2 && analysis.mood !== 'imperativo'
+            ? expandThirdSingular(derived)
+            : derived;
+    }
+
+    if (NONFINITE_MOODS.has(analysis.mood)) return row[0] || null;
+    if (personIdx === undefined) return null;
+    const form = row[personIdx] || null;
+    if (!form) return null;
+
+    // Spanish indicative/conditional 3sg covers he, she, it, and formal you.
+    // Imperative 3sg is instead an usted command, so its subject stays implicit.
+    return personIdx === 2 && analysis.mood !== 'imperativo'
+        ? expandThirdSingular(form)
+        : form;
+}
+
 /**
  * Return a surface-appropriate English cue, or null when the available data
  * cannot support one confidently. Each meaning's own lemma is authoritative;
@@ -216,30 +281,22 @@ export function englishProductionCue(card, meaningOrTranslation, conjugatedEngli
     if (pos && !VERB_POS.has(pos)) return null;
     if (!conjugatedEnglishData) return null;
 
+    const lemma = String(meaning?.headword || card.lemma || '').toLocaleLowerCase('es');
+    const analysisRows = conjugatedEnglishData?.[lemma]?.[translation];
+    if (!analysisRows) return null;
+
     const rawMorph = card.mergedLemma ? card._activeExampleMorphology : card.morphology;
     const morphCandidates = (Array.isArray(rawMorph) ? rawMorph : [rawMorph]).filter(Boolean);
-    // A form such as `da` can be indicative or imperative. Without analysis-
-    // level alignment, choosing one would manufacture a confidently wrong cue.
-    if (morphCandidates.length !== 1) return null;
-    const morph = morphCandidates[0];
-    if (morph.mood !== 'indicativo') return null;
+    const forms = morphCandidates
+        .map(morph => cueForAnalysis(analysisRows, morph, translation))
+        .filter((form, index, all) => form && all.indexOf(form) === index);
+    if (!forms.length) return null;
 
-    const tenseKey = MORPH_TENSE_TO_ENGLISH[morph.tense];
-    const personIdx = PERSON_TO_INDEX[morph.person];
-    if (tenseKey === undefined || personIdx === undefined) return null;
-
-    const lemma = String(meaning?.headword || card.lemma || '').toLocaleLowerCase('es');
-    const row = conjugatedEnglishData?.[lemma]?.[translation]?.[tenseKey];
-    const form = row ? (row[personIdx] || null) : null;
-    if (!form) return null;
-
-    // Spanish 3sg covers he, she, it, and formal you. Retain the established
-    // compact expansion rather than falsely committing to a single subject.
-    if (personIdx === 2) {
-        if (/^he\s/iu.test(form)) return form.replace(/^he\s/iu, 'he/she/it ');
-        if (/^he'/iu.test(form)) return form.replace(/^he'/iu, "he/she/it'");
-    }
-    return form;
+    // Some Spanish surfaces genuinely encode more than one supported reading
+    // (da = indicative "gives" or command "give!"). Showing both compactly is
+    // more useful than reverting the entire card to an uninflected dictionary
+    // gloss; unsupported/context-sensitive analyses simply abstain.
+    return forms.join(' / ');
 }
 
 /**

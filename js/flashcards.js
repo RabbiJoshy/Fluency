@@ -1,29 +1,29 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816n';
-import './speech.js?v=20260816n';
+import './state.js?v=20260817a';
+import './speech.js?v=20260817a';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816n';
+} from './example-personalisation.js?v=20260817a';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260816n';
+} from './spanishdict-usage.js?v=20260817a';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260816n';
+} from './reverse-cues.js?v=20260817a';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
 let _spanishRanksLoading = false;
 let _conjugationData = null;  // lemma -> {tenses, gerund, past_participle, translation}
 let _conjugationLoadPromise = null;  // shared in-flight promise so concurrent callers don't double-fetch
-let _conjugatedEnglishData = null;  // lemma -> translation -> tense -> 6-element person-indexed array
+let _conjugatedEnglishData = null;  // lemma -> translation -> mood/tense -> person row (or one nonfinite form)
 let _conjugatedEnglishLoading = false;
 let _deckScrubberActive = false;
 let _suppressDeckScrubberClickUntil = 0;
@@ -6458,7 +6458,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816n';
+const ASSET_VERSION = '20260817a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

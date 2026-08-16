@@ -100,7 +100,7 @@ Most files have the **same shape** in normal mode (`Data/Spanish/layers/`) and a
 | `clitic_forms.json` | same shape |
 | `ranking.json` | artist-only |
 | `lyrics_timestamps.json` | artist-only |
-| `cognates.json`, `conjugations.json`, `conjugation_reverse.json`, `mwe_phrases.json` | normal-only (shared via `Data/Spanish/`) |
+| `cognates.json`, `conjugations.json`, `conjugation_reverse.json`, `senses_conjugated_english.json`, `mwe_phrases.json` | normal-only (shared via `Data/Spanish/`) |
 | `derivational_relations.json` | shared Spanish layer, consumed by both modes |
 
 ## Sense-source branch
@@ -331,6 +331,32 @@ Adds `lemma` and a `morphology` block; drops `context`.
   ]
 }
 ```
+
+## `senses_conjugated_english.json` *(normal-mode only — shared production cues)*
+
+Keyed by Spanish sense headword, then the exact English translation stored in
+the sense menu. Each full `mood/tense` key contains either a six-person row in
+`1s, 2s, 3s, 1p, 2p, 3p` order or, for nonfinite forms, a one-item row.
+
+```jsonc
+{
+  "hablar": {
+    "to speak": {
+      "indicativo/presente": ["I speak", "you speak", "he speaks", "we speak", "you (pl) speak", "they speak"],
+      "indicativo/pretérito-perfecto-simple": ["I spoke", "you spoke", "he spoke", "we spoke", "you (pl) spoke", "they spoke"],
+      "indicativo/futuro": ["I will speak", "you will speak", "he will speak", "we will speak", "you (pl) will speak", "they will speak"],
+      "gerundio/gerundio": ["speaking"],
+      "participo/participo": ["spoken"]
+    }
+  }
+}
+```
+
+Conditional and imperative prompts are regular frames derived in the app from
+the same infinitive translation, so this multi-megabyte layer does not repeat
+those strings for every person and sense. Spanish imperfect and subjunctive are
+deliberately absent: neither has one context-free English realization, and the
+app instead retains the dictionary gloss beside its explicit grammar cue.
 
 ## `mwe_phrases.json` *(normal-mode only)*
 Keyed by **anchor word** → list of MWEs containing it.
