@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "bf0148c2",
+      "summary": "Light appearance now keeps text and controls clearly visible",
+      "details": [
+        "Removed inherited white-on-light text and translucent-white chrome from the card scrubber, reporting, Knowledge, synonyms, conjugation, provenance and secondary-control surfaces",
+        "All 21 part-of-speech colour families now retain their intended dark light-mode ink even inside higher-specificity components",
+        "Muted copy and placeholders are darker, current progress markers use contrast-safe ink, and Known, Review, phrase and active-conjugation states remain visibly semantic",
+        "Five theme regressions plus relevant UI, offline-cache, asset-version, CSS and JavaScript checks pass; cache v242→v243 / assets 20260816h→20260816i"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "8cc332fc",
       "summary": "Light appearance now feels like Fluency in daylight",
       "details": [
