@@ -89,8 +89,9 @@ test('possible UI matches include transparent Spanish realizations but remain no
 });
 
 test('card UI labels SpanishDict metadata and possible matches without claiming WSD proof', async () => {
-    const [cards, css, sw, html] = await Promise.all([
+    const [cards, vocab, css, sw, html] = await Promise.all([
         text('js/flashcards.js'),
+        text('js/vocab.js'),
         text('css/style.css'),
         text('service-worker.js'),
         text('index.html'),
@@ -98,9 +99,15 @@ test('card UI labels SpanishDict metadata and possible matches without claiming 
     assert.match(cards, /renderSenseContextHTML\(m\.context\)/);
     assert.match(cards, /data-source="spanishdict"/);
     assert.match(cards, /Possible match for this SpanishDict usage note; grammatical attachment is not verified/);
+    assert.match(cards, /buildSpanishDictPanelHTML/);
+    assert.match(cards, />Dictionary<\/span>/);
+    assert.match(cards, /Raw dictionary fields that reached this card/);
+    assert.match(vocab, /meaning\.regions = \[\.\.\.sense\.regions\]/);
+    assert.match(vocab, /meaning\.regions = \[\.\.\.m\.regions\]/);
     assert.doesNotMatch(cards, /function _extractUsedWith/);
     assert.match(css, /\.meaning-usage-pill/);
     assert.match(css, /\.example-usage-highlight/);
+    assert.match(css, /\.spanish-dict-panel \.sd-meta-sense/);
     assert.match(sw, /js\/spanishdict-usage\.js/);
     assert.match(html, /modulepreload" href="js\/spanishdict-usage\.js\?v=/);
 
@@ -127,4 +134,59 @@ test('card UI labels SpanishDict metadata and possible matches without claiming 
     assert.match(context.result.row, /\+ por \/ a por/);
     assert.equal((context.result.sentence.match(/example-usage-highlight/g) || []).length, 2);
     assert.doesNotMatch(context.result.sentence, /example-usage-highlight[^>]*><span/);
+});
+
+test('dictionary panel exposes raw and parsed sense metadata without frequency claims', async () => {
+    const cards = await text('js/flashcards.js');
+    const helpers = cards.slice(
+        cards.indexOf('function spanishDictMeaningsForCard'),
+        cards.indexOf('// Sense-assignment provenance panel')
+    );
+    const context = {
+        window: {},
+        parseSpanishDictUsageContext,
+        spanishDictUsageCandidateForms,
+        escapeCardText: value => String(value || '').replace(/[&<>"']/g, character => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[character]),
+    };
+    runInNewContext(`${helpers}; result = buildSpanishDictPanelHTML({
+        targetWord: 'llego',
+        lemma: 'llegar',
+        links: { spanishDict: 'https://www.spanishdict.com/translate/llegar' },
+        meanings: [{
+            source: 'spanishdict',
+            senseId: 'abc',
+            pos: 'VERB',
+            headword: 'llegar',
+            meaning: 'to reach',
+            context: 'to reach a place; often used with "a"',
+            regions: ['Mexico', 'Puerto Rico'],
+            percentage: 0.73,
+            allExamples: [{
+                target: 'Llegamos a casa.',
+                english: 'We reached home.',
+                source: 'spanishdict',
+                evidence: 'dictionary'
+            }]
+        }, {
+            source: 'gemini',
+            senseId: 'outside-menu',
+            meaning: 'model-only gloss'
+        }]
+    });`, context);
+
+    const panel = context.result;
+    assert.match(panel, /SpanishDict data/);
+    assert.match(panel, /to reach a place; often used with &quot;a&quot;/);
+    assert.match(panel, /often \+ a/);
+    assert.match(panel, /Mexico · Puerto Rico/);
+    assert.match(panel, /Possible text matches/);
+    assert.match(panel, /<code>al<\/code>/);
+    assert.match(panel, /same-sentence presence does not verify grammatical attachment/);
+    assert.match(panel, /Llegamos a casa\./);
+    assert.match(panel, /Sense ID/);
+    assert.match(panel, />abc</);
+    assert.doesNotMatch(panel, /model-only gloss/);
+    assert.doesNotMatch(panel, /0\.73|73%/);
 });

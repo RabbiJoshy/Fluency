@@ -7859,6 +7859,186 @@
             font-size: 14px;
         }
 
+        .spanish-dict-panel[hidden] {
+            display: none;
+        }
+        .spanish-dict-panel .sd-meta-intro {
+            margin: -2px 34px 14px 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+        .spanish-dict-panel .sd-meta-sense {
+            margin: 0 0 8px;
+            border: 1px solid var(--border-subtle, rgba(255,255,255,0.1));
+            border-radius: 10px;
+            background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
+            overflow: hidden;
+        }
+        .spanish-dict-panel .sd-meta-sense summary {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 6px 12px;
+            align-items: baseline;
+            padding: 10px 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            list-style: none;
+        }
+        .spanish-dict-panel .sd-meta-sense summary::-webkit-details-marker {
+            display: none;
+        }
+        .spanish-dict-panel .sd-meta-sense summary::after {
+            content: '›';
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            align-self: center;
+            color: var(--text-secondary);
+            font-size: 18px;
+            line-height: 1;
+            transform: rotate(90deg);
+            transition: transform 140ms ease;
+        }
+        .spanish-dict-panel .sd-meta-sense[open] summary::after {
+            transform: rotate(-90deg);
+        }
+        .spanish-dict-panel .sd-meta-summary-gloss {
+            min-width: 0;
+            font-size: 15px;
+            font-weight: 650;
+            overflow-wrap: anywhere;
+        }
+        .spanish-dict-panel .sd-meta-summary-identity {
+            grid-column: 1;
+            color: var(--text-secondary);
+            font-family: var(--font-data);
+            font-size: 10px;
+            letter-spacing: 0.025em;
+        }
+        .spanish-dict-panel .sd-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 12px;
+            margin: 0;
+            padding: 10px 12px;
+            border-top: 1px solid var(--border-subtle, rgba(255,255,255,0.08));
+        }
+        .spanish-dict-panel .sd-meta-field {
+            min-width: 0;
+        }
+        .spanish-dict-panel .sd-meta-field--wide {
+            grid-column: 1 / -1;
+        }
+        .spanish-dict-panel .sd-meta-field dt,
+        .spanish-dict-panel .sd-meta-examples-heading,
+        .spanish-dict-panel .sd-meta-candidates > span {
+            color: var(--text-secondary);
+            font-family: var(--font-data);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.055em;
+            text-transform: uppercase;
+        }
+        .spanish-dict-panel .sd-meta-field dd {
+            margin: 2px 0 0;
+            color: var(--text-primary);
+            font-size: 12px;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+        }
+        .spanish-dict-panel .sd-meta-field dd.sd-meta-code,
+        .spanish-dict-panel .sd-meta-candidates code {
+            font-family: var(--font-data);
+        }
+        .spanish-dict-panel .sd-meta-field dd.sd-meta-code {
+            color: var(--accent-secondary);
+        }
+        .spanish-dict-panel .sd-meta-usage {
+            margin: 0 12px 10px;
+            padding: 9px 10px;
+            border: 1px solid color-mix(in srgb, var(--accent-secondary) 32%, transparent);
+            border-radius: 8px;
+            background: color-mix(in srgb, var(--accent-secondary) 9%, transparent);
+        }
+        .spanish-dict-panel .sd-meta-usage-heading {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            align-items: baseline;
+            color: var(--text-secondary);
+            font-size: 10px;
+        }
+        .spanish-dict-panel .sd-meta-usage-heading strong {
+            color: var(--accent-secondary);
+            font-size: 12px;
+        }
+        .spanish-dict-panel .sd-meta-usage-detail,
+        .spanish-dict-panel .sd-meta-caveat {
+            margin-top: 5px;
+            color: var(--text-secondary);
+            font-size: 10px;
+            line-height: 1.35;
+        }
+        .spanish-dict-panel .sd-meta-candidates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+            margin-top: 7px;
+        }
+        .spanish-dict-panel .sd-meta-candidates code {
+            padding: 1px 5px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.08);
+            color: var(--text-primary);
+            font-size: 10px;
+        }
+        .spanish-dict-panel .sd-meta-examples-heading {
+            margin: 0 12px 5px;
+        }
+        .spanish-dict-panel .sd-meta-example,
+        .spanish-dict-panel .sd-meta-empty {
+            margin: 0 12px 10px;
+            padding: 8px 9px;
+            border-radius: 7px;
+            background: rgba(255,255,255,0.045);
+        }
+        .spanish-dict-panel .sd-meta-example-target {
+            color: var(--text-primary);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        .spanish-dict-panel .sd-meta-example-english,
+        .spanish-dict-panel .sd-meta-empty {
+            margin-top: 3px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        .spanish-dict-panel .sd-meta-source-link {
+            display: inline-flex;
+            gap: 5px;
+            align-items: center;
+            margin-top: 5px;
+            color: var(--accent-secondary);
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .spanish-dict-panel .sd-meta-source-link:hover,
+        .spanish-dict-panel .sd-meta-source-link:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 520px) {
+            .spanish-dict-panel .sd-meta-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .spanish-dict-panel .sd-meta-sense summary {
+                grid-template-columns: minmax(0, 1fr) auto;
+            }
+        }
+
         /* Owner-only audit marker appended to a definition when the model had
            to propose a gloss outside SpanishDict's supplied sense menu. */
         .model-proposed-marker {

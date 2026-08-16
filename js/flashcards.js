@@ -1,17 +1,17 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816j';
-import './speech.js?v=20260816j';
+import './state.js?v=20260816k';
+import './speech.js?v=20260816k';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816j';
+} from './example-personalisation.js?v=20260816k';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260816j';
+} from './spanishdict-usage.js?v=20260816k';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -4948,6 +4948,17 @@ function updateCard({ announceHeadword = false } = {}) {
     // space from the ordinary study flow.
     backHTML += renderKnowledgeOverviewButton(card);
 
+    const hasSpanishDictData = spanishDictMeaningsForCard(card).length > 0;
+    if (hasSpanishDictData) {
+        backHTML += `<button class="ref-tile ref-dictionary-btn" onclick="event.stopPropagation(); toggleSpanishDictPanel();">
+            <svg class="ref-tile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5z"></path>
+                <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5z"></path>
+            </svg>
+            <span class="ref-tile-label">Dictionary</span>
+        </button>`;
+    }
+
     const hasSynonyms = (card.synonyms && card.synonyms.length) || (card.antonyms && card.antonyms.length);
     if (hasSynonyms) {
         backHTML += `<button class="ref-tile ref-syn-btn" onclick="toggleSynonymsPanel()">
@@ -5009,6 +5020,10 @@ function updateCard({ announceHeadword = false } = {}) {
 
     if (hasSynonyms) {
         backHTML += buildSynonymsPanelHTML(card.synonyms || [], card.antonyms || [], card.lemma || card.targetWord);
+    }
+
+    if (hasSpanishDictData) {
+        backHTML += buildSpanishDictPanelHTML(card);
     }
 
     if (isJstOwner()) {
@@ -5898,6 +5913,107 @@ function modelProposalMarkerHTML(meaning) {
     return `<span class="model-proposed-marker" title="Gemini proposed this definition because it was not in the SpanishDict sense menu" aria-label="Gemini-proposed definition">AI</span>`;
 }
 
+function spanishDictMeaningsForCard(card) {
+    return (card?.meanings || []).filter(meaning => (
+        String(meaning?.source || '').toLocaleLowerCase('en') === 'spanishdict'
+    ));
+}
+
+function buildSpanishDictPanelHTML(card) {
+    const meanings = spanishDictMeaningsForCard(card);
+    const field = (label, value, { code = false, wide = false } = {}) => {
+        const rendered = Array.isArray(value) ? value.filter(Boolean).join(' · ') : String(value || '').trim();
+        if (!rendered) return '';
+        return `<div class="sd-meta-field${wide ? ' sd-meta-field--wide' : ''}">
+            <dt>${escapeCardText(label)}</dt>
+            <dd${code ? ' class="sd-meta-code"' : ''}>${escapeCardText(rendered)}</dd>
+        </div>`;
+    };
+
+    const rows = meanings.map((meaning, index) => {
+        const translation = meaning.meaning || meaning.translation || '(no English gloss)';
+        const headword = meaning.headword || card?.lemma || card?.targetWord || '';
+        const rawContext = String(meaning.context || '').trim();
+        const usage = rawContext ? parseSpanishDictUsageContext(rawContext) : null;
+        const candidates = usage ? spanishDictUsageCandidateForms(usage) : [];
+        const dictionaryExamples = (meaning.allExamples || []).filter(example => (
+            String(example?.source || '').toLocaleLowerCase('en') === 'spanishdict'
+            || String(example?.evidence || '').toLocaleLowerCase('en') === 'dictionary'
+        ));
+        const exampleHTML = dictionaryExamples.length
+            ? dictionaryExamples.map(example => `<div class="sd-meta-example">
+                <div class="sd-meta-example-target">${escapeCardText(example.target || example.spanish || '')}</div>
+                ${example.english ? `<div class="sd-meta-example-english">${escapeCardText(example.english)}</div>` : ''}
+            </div>`).join('')
+            : '<div class="sd-meta-empty">No SpanishDict example is packaged in this deck for this sense.</div>';
+        const usageHTML = usage
+            ? `<div class="sd-meta-usage">
+                <div class="sd-meta-usage-heading">
+                    <span>Parsed usage</span>
+                    <strong>${escapeCardText(usage.label)}</strong>
+                </div>
+                ${usage.detail ? `<div class="sd-meta-usage-detail">Semantic detail: ${escapeCardText(usage.detail)}</div>` : ''}
+                ${candidates.length ? `<div class="sd-meta-candidates"><span>Possible text matches</span>${candidates.map(candidate => `<code>${escapeCardText(candidate)}</code>`).join('')}</div>` : ''}
+                <div class="sd-meta-caveat">Display aid only · same-sentence presence does not verify grammatical attachment.</div>
+            </div>`
+            : '';
+
+        return `<details class="sd-meta-sense"${index === 0 ? ' open' : ''}>
+            <summary>
+                <span class="sd-meta-summary-gloss">${escapeCardText(translation)}</span>
+                <span class="sd-meta-summary-identity">${escapeCardText([meaning.pos, headword].filter(Boolean).join(' · '))}</span>
+            </summary>
+            <dl class="sd-meta-grid">
+                ${field('Headword', headword)}
+                ${field('Part of speech', meaning.pos)}
+                ${field('Sense ID', meaning.senseId, { code: true })}
+                ${field('Regions', meaning.regions)}
+                ${field('Raw context', rawContext, { wide: true })}
+            </dl>
+            ${usageHTML}
+            <div class="sd-meta-examples-heading">Dictionary example</div>
+            ${exampleHTML}
+        </details>`;
+    }).join('');
+
+    const sourceLink = card?.links?.spanishDict
+        ? `<a class="sd-meta-source-link" href="${escapeCardText(card.links.spanishDict)}" target="_blank" rel="noopener noreferrer">Open this entry on SpanishDict <span aria-hidden="true">↗</span></a>`
+        : '';
+    return `<div id="spanishDictPanel" class="provenance-panel spanish-dict-panel" hidden
+            role="region" aria-labelledby="spanishDictPanelTitle"
+            onclick="event.stopPropagation();">
+        <button class="prov-close" title="Close" aria-label="Close SpanishDict data" onclick="event.stopPropagation(); toggleSpanishDictPanel(false);">&times;</button>
+        <div id="spanishDictPanelTitle" class="prov-title">SpanishDict data</div>
+        <p class="sd-meta-intro">Raw dictionary fields that reached this card, plus the app’s presentation-only parsing. They describe the source menu; they do not prove which sense an example uses.</p>
+        ${rows || '<div class="prov-empty">No SpanishDict sense metadata is packaged on this card.</div>'}
+        ${sourceLink}
+    </div>`;
+}
+
+function ensureSpanishDictPanelForCurrentCard() {
+    let panel = document.getElementById('spanishDictPanel');
+    if (panel) return panel;
+    const card = flashcards[currentIndex];
+    const back = document.getElementById('backContent');
+    if (!card || !back || !spanishDictMeaningsForCard(card).length) return null;
+    back.insertAdjacentHTML('beforeend', buildSpanishDictPanelHTML(card));
+    return document.getElementById('spanishDictPanel');
+}
+
+function toggleSpanishDictPanel(forceOpen) {
+    const panel = ensureSpanishDictPanelForCurrentCard();
+    if (!panel) return;
+    const shouldOpen = forceOpen == null ? panel.hidden : Boolean(forceOpen);
+    panel.hidden = !shouldOpen;
+    if (shouldOpen) {
+        const provenancePanel = document.getElementById('provenancePanel');
+        if (provenancePanel) provenancePanel.style.display = 'none';
+        document.getElementById('flashcard')?.classList.add('flipped');
+        panel.querySelector('.prov-close')?.focus();
+    }
+}
+window.toggleSpanishDictPanel = toggleSpanishDictPanel;
+
 // Sense-assignment provenance panel (JST diagnostic). Lists every ordinary
 // meaning and resolves stamped prompts against window._promptRegistry (loaded
 // in config.js). A missing prompt is identified as deterministic/retained
@@ -6018,7 +6134,11 @@ function toggleProvenancePanel(forceOpen) {
         ? (panel.style.display === 'none' || !panel.style.display)
         : Boolean(forceOpen);
     panel.style.display = shouldOpen ? 'block' : 'none';
-    if (shouldOpen) document.getElementById('flashcard')?.classList.add('flipped');
+    if (shouldOpen) {
+        const dictionaryPanel = document.getElementById('spanishDictPanel');
+        if (dictionaryPanel) dictionaryPanel.hidden = true;
+        document.getElementById('flashcard')?.classList.add('flipped');
+    }
 }
 window.toggleProvenancePanel = toggleProvenancePanel;
 
@@ -6274,7 +6394,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816j';
+const ASSET_VERSION = '20260816k';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

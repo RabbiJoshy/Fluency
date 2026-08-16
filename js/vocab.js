@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260816j';
+import './state.js?v=20260816k';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -461,7 +461,11 @@ function joinWithMaster(indexData, master) {
                 meaning.unassigned = true;
             }
             if (sense.source) meaning.source = sense.source;
+            if (sense.headword) meaning.headword = sense.headword;
             if (sense.context) meaning.context = sense.context;
+            if (Array.isArray(sense.regions) && sense.regions.length) {
+                meaning.regions = [...sense.regions];
+            }
             // Register/dialect tag stamped by the classify-or-propose prompt
             // (slang | regional | figurative | vulgar | loanword | proper_noun).
             // Copy-through matters: meanings are rebuilt from scratch here and
@@ -1673,6 +1677,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.sense_id_aliases?.length) meaning.senseIdAliases = m.sense_id_aliases;
                 if (m.context) meaning.context = m.context;
                 if (m.headword) meaning.headword = m.headword;
+                if (Array.isArray(m.regions) && m.regions.length) meaning.regions = [...m.regions];
                 if (m.type) meaning.type = m.type;
                 if (m.allSenses) meaning.allSenses = m.allSenses;
                 if (m.cycle_pos) meaning.cycle_pos = m.cycle_pos;

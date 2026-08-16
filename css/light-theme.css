@@ -956,6 +956,18 @@
     color: #6240a6;
 }
 
+:root[data-theme="light"] .spanish-dict-panel .sd-meta-sense,
+:root[data-theme="light"] .spanish-dict-panel .sd-meta-example,
+:root[data-theme="light"] .spanish-dict-panel .sd-meta-empty,
+:root[data-theme="light"] .spanish-dict-panel .sd-meta-candidates code {
+    border-color: var(--border-color);
+    background: #f3f6f8;
+}
+
+:root[data-theme="light"] .spanish-dict-panel .sd-meta-usage {
+    background: rgba(var(--accent-primary-rgb), 0.07);
+}
+
 :root[data-theme="light"] .conj-type-badge,
 :root[data-theme="light"] .conj-ending {
     color: #087f68;
