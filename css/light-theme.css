@@ -19,7 +19,7 @@
 
     --text-primary: #17212b;
     --text-secondary: #354353;
-    --text-muted: #667484;
+    --text-muted: #5d6b7a;
 
     --accent-orange: #c84f24;
     --accent-amber: #946000;
@@ -529,27 +529,27 @@
 /* Light POS colours use the same semantic hue families with darker ink and a
    lower-opacity wash. This keeps each part of speech distinct without the
    neon-on-charcoal treatment of the dark cards. */
-:root[data-theme="light"] .pos-noun { background: rgba(74, 158, 255, 0.12); border-color: rgba(23, 100, 168, 0.36); color: #1764a8; }
-:root[data-theme="light"] .pos-propn { background: rgba(14, 165, 233, 0.12); border-color: rgba(8, 116, 154, 0.36); color: #08749a; }
-:root[data-theme="light"] .pos-verb { background: rgba(0, 212, 170, 0.11); border-color: rgba(8, 127, 104, 0.36); color: #087f68; }
-:root[data-theme="light"] .pos-aux { background: rgba(45, 212, 191, 0.11); border-color: rgba(13, 117, 109, 0.36); color: #0d756d; }
-:root[data-theme="light"] .pos-adj { background: rgba(245, 166, 35, 0.13); border-color: rgba(138, 90, 0, 0.36); color: #8a5a00; }
-:root[data-theme="light"] .pos-adv { background: rgba(168, 85, 247, 0.11); border-color: rgba(116, 52, 179, 0.34); color: #7434b3; }
-:root[data-theme="light"] .pos-prep { background: rgba(236, 72, 153, 0.1); border-color: rgba(168, 45, 107, 0.34); color: #a82d6b; }
-:root[data-theme="light"] .pos-conj { background: rgba(20, 184, 166, 0.1); border-color: rgba(8, 123, 112, 0.34); color: #087b70; }
-:root[data-theme="light"] .pos-cconj { background: rgba(34, 197, 94, 0.1); border-color: rgba(21, 125, 56, 0.34); color: #157d38; }
-:root[data-theme="light"] .pos-sconj { background: rgba(132, 204, 22, 0.12); border-color: rgba(82, 124, 13, 0.35); color: #527c0d; }
-:root[data-theme="light"] .pos-pron { background: rgba(99, 102, 241, 0.1); border-color: rgba(76, 79, 178, 0.34); color: #4c4fb2; }
-:root[data-theme="light"] .pos-det { background: rgba(244, 63, 94, 0.1); border-color: rgba(183, 47, 75, 0.34); color: #b72f4b; }
-:root[data-theme="light"] .pos-int { background: rgba(234, 179, 8, 0.13); border-color: rgba(125, 97, 0, 0.36); color: #7d6100; }
-:root[data-theme="light"] .pos-num { background: rgba(6, 182, 212, 0.11); border-color: rgba(8, 123, 145, 0.35); color: #087b91; }
-:root[data-theme="light"] .pos-mwe { background: rgba(251, 191, 36, 0.13); border-color: rgba(140, 98, 0, 0.36); color: #8c6200; }
-:root[data-theme="light"] .pos-clitic { background: rgba(249, 115, 22, 0.11); border-color: rgba(169, 73, 11, 0.35); color: #a9490b; }
-:root[data-theme="light"] .pos-part { background: rgba(192, 132, 252, 0.11); border-color: rgba(120, 62, 177, 0.34); color: #783eb1; }
-:root[data-theme="light"] .pos-prefix { background: rgba(163, 230, 53, 0.12); border-color: rgba(82, 122, 15, 0.35); color: #527a0f; }
-:root[data-theme="light"] .pos-suffix { background: rgba(74, 222, 128, 0.1); border-color: rgba(22, 116, 67, 0.34); color: #167443; }
-:root[data-theme="light"] .pos-contraction { background: rgba(248, 113, 113, 0.1); border-color: rgba(170, 61, 61, 0.34); color: #aa3d3d; }
-:root[data-theme="light"] .pos-other { background: rgba(148, 163, 184, 0.13); border-color: rgba(82, 97, 112, 0.34); color: #526170; }
+:root[data-theme="light"] .pos-noun { background: rgba(74, 158, 255, 0.12); border-color: rgba(23, 100, 168, 0.36); color: #1764a8 !important; }
+:root[data-theme="light"] .pos-propn { background: rgba(14, 165, 233, 0.12); border-color: rgba(8, 116, 154, 0.36); color: #08749a !important; }
+:root[data-theme="light"] .pos-verb { background: rgba(0, 212, 170, 0.11); border-color: rgba(8, 127, 104, 0.36); color: #087f68 !important; }
+:root[data-theme="light"] .pos-aux { background: rgba(45, 212, 191, 0.11); border-color: rgba(13, 117, 109, 0.36); color: #0d756d !important; }
+:root[data-theme="light"] .pos-adj { background: rgba(245, 166, 35, 0.13); border-color: rgba(138, 90, 0, 0.36); color: #8a5a00 !important; }
+:root[data-theme="light"] .pos-adv { background: rgba(168, 85, 247, 0.11); border-color: rgba(116, 52, 179, 0.34); color: #7434b3 !important; }
+:root[data-theme="light"] .pos-prep { background: rgba(236, 72, 153, 0.1); border-color: rgba(168, 45, 107, 0.34); color: #a82d6b !important; }
+:root[data-theme="light"] .pos-conj { background: rgba(20, 184, 166, 0.1); border-color: rgba(8, 123, 112, 0.34); color: #087b70 !important; }
+:root[data-theme="light"] .pos-cconj { background: rgba(34, 197, 94, 0.1); border-color: rgba(21, 125, 56, 0.34); color: #157d38 !important; }
+:root[data-theme="light"] .pos-sconj { background: rgba(132, 204, 22, 0.12); border-color: rgba(82, 124, 13, 0.35); color: #527c0d !important; }
+:root[data-theme="light"] .pos-pron { background: rgba(99, 102, 241, 0.1); border-color: rgba(76, 79, 178, 0.34); color: #4c4fb2 !important; }
+:root[data-theme="light"] .pos-det { background: rgba(244, 63, 94, 0.1); border-color: rgba(183, 47, 75, 0.34); color: #b72f4b !important; }
+:root[data-theme="light"] .pos-int { background: rgba(234, 179, 8, 0.13); border-color: rgba(125, 97, 0, 0.36); color: #7d6100 !important; }
+:root[data-theme="light"] .pos-num { background: rgba(6, 182, 212, 0.11); border-color: rgba(8, 123, 145, 0.35); color: #087b91 !important; }
+:root[data-theme="light"] .pos-mwe { background: rgba(251, 191, 36, 0.13); border-color: rgba(140, 98, 0, 0.36); color: #8c6200 !important; }
+:root[data-theme="light"] .pos-clitic { background: rgba(249, 115, 22, 0.11); border-color: rgba(169, 73, 11, 0.35); color: #a9490b !important; }
+:root[data-theme="light"] .pos-part { background: rgba(192, 132, 252, 0.11); border-color: rgba(120, 62, 177, 0.34); color: #783eb1 !important; }
+:root[data-theme="light"] .pos-prefix { background: rgba(163, 230, 53, 0.12); border-color: rgba(82, 122, 15, 0.35); color: #527a0f !important; }
+:root[data-theme="light"] .pos-suffix { background: rgba(74, 222, 128, 0.1); border-color: rgba(22, 116, 67, 0.34); color: #167443 !important; }
+:root[data-theme="light"] .pos-contraction { background: rgba(248, 113, 113, 0.1); border-color: rgba(170, 61, 61, 0.34); color: #aa3d3d !important; }
+:root[data-theme="light"] .pos-other { background: rgba(148, 163, 184, 0.13); border-color: rgba(82, 97, 112, 0.34); color: #526170 !important; }
 
 :root[data-theme="light"] .pos-info-overlay {
     background: rgba(23, 31, 39, 0.38);
@@ -750,6 +750,277 @@
     background: #f3f6f8;
 }
 
+/* Contrast repair for components whose original dark-only rules used literal
+   white foregrounds or translucent-white chrome. These selectors are kept
+   explicit so media-backed white glyphs and filled status buttons remain
+   untouched. */
+:root[data-theme="light"] .flag-menu-sense {
+    border-color: var(--border-color);
+    background: #f3f6f8;
+}
+
+:root[data-theme="light"] .flag-menu-sense:hover {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .flag-menu-sense .fm-gloss,
+:root[data-theme="light"] .flag-pairing-sense {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .flag-menu-sense .fm-pos,
+:root[data-theme="light"] .flag-menu-sense .fm-pct,
+:root[data-theme="light"] .flag-pairing-example small {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .flag-menu-status {
+    color: var(--success);
+}
+
+:root[data-theme="light"] .flag-menu-status.is-error {
+    color: var(--error);
+}
+
+:root[data-theme="light"] .cbs-strip {
+    border-color: var(--border-color);
+    background: #edf2f5;
+}
+
+:root[data-theme="light"] .cbs-return,
+:root[data-theme="light"] .cbs-chevron-prev,
+:root[data-theme="light"] .cbs-chevron-next {
+    border-color: var(--border-color);
+    background: #f7f9fb;
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .cbs-return:hover,
+:root[data-theme="light"] .cbs-return:active,
+:root[data-theme="light"] .cbs-chevron-prev:hover,
+:root[data-theme="light"] .cbs-chevron-next:hover {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .cbs-return-arrow,
+:root[data-theme="light"] .cbs-return-label {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .cbs-return-kicker {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .cbp-pip {
+    background: #cbd5dd;
+}
+
+:root[data-theme="light"] .cbp-pip.is-visited {
+    background: #8ea0ae;
+}
+
+:root[data-theme="light"] .cbp-pip.is-current {
+    background: var(--accent-primary);
+    color: var(--accent-primary-text);
+    box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.2);
+}
+
+:root[data-theme="light"] .cbp-pip.is-current.is-phrases {
+    background: var(--accent-phrases);
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(var(--accent-phrases-rgb), 0.24);
+}
+
+:root[data-theme="light"] .swipe-legend-sep,
+:root[data-theme="light"] .pos-info-divider {
+    background: var(--border-color);
+}
+
+:root[data-theme="light"] .deck-progress-segment.is-current {
+    color: var(--text-primary);
+    border-color: color-mix(in srgb, var(--accent-primary) 70%, #17212b);
+    text-shadow: none;
+}
+
+:root[data-theme="light"] .deck-progress-segment.is-current.is-phrases {
+    color: #33235c;
+    border-color: color-mix(in srgb, var(--accent-phrases) 72%, #17212b);
+    text-shadow: none;
+}
+
+:root[data-theme="light"] .knowledge-overview-sheet {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    box-shadow: 0 24px 70px rgba(27, 39, 51, 0.2);
+}
+
+:root[data-theme="light"] .knowledge-overview-close,
+:root[data-theme="light"] .knowledge-overview-mark,
+:root[data-theme="light"] .knowledge-overview-section h3 span {
+    border-color: var(--border-color);
+    background: #f3f6f8;
+}
+
+:root[data-theme="light"] .knowledge-overview-summary,
+:root[data-theme="light"] .knowledge-overview-row {
+    border-color: var(--border-color);
+    background: #f3f6f8;
+}
+
+:root[data-theme="light"] .knowledge-overview-row.is-known {
+    border-color: rgba(8, 127, 104, 0.34);
+    background: rgba(8, 127, 104, 0.07);
+}
+
+:root[data-theme="light"] .knowledge-overview-row.is-review {
+    border-color: rgba(189, 56, 71, 0.32);
+    background: rgba(189, 56, 71, 0.065);
+}
+
+:root[data-theme="light"] .knowledge-overview-mark.mark-known:hover,
+:root[data-theme="light"] .knowledge-overview-mark.mark-known.is-active {
+    border-color: var(--success);
+    background: rgba(8, 127, 104, 0.12);
+    color: var(--success);
+}
+
+:root[data-theme="light"] .knowledge-overview-mark.mark-review:hover,
+:root[data-theme="light"] .knowledge-overview-mark.mark-review.is-active {
+    border-color: var(--error);
+    background: rgba(189, 56, 71, 0.1);
+}
+
+:root[data-theme="light"] .knowledge-overview-summary-review,
+:root[data-theme="light"] .knowledge-overview-mark.mark-review:hover,
+:root[data-theme="light"] .knowledge-overview-mark.mark-review.is-active {
+    color: var(--error);
+}
+
+:root[data-theme="light"] .syn-header,
+:root[data-theme="light"] .conj-header,
+:root[data-theme="light"] .conj-nonfinite {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .syn-headword {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .syn-tab,
+:root[data-theme="light"] .syn-item,
+:root[data-theme="light"] .syn-close-btn,
+:root[data-theme="light"] .conj-close-btn,
+:root[data-theme="light"] .conj-nf-item,
+:root[data-theme="light"] .conj-sd-link,
+:root[data-theme="light"] .provenance-panel .prov-close,
+:root[data-theme="light"] .provenance-panel .prov-meta code {
+    border-color: var(--border-color);
+    background: #f3f6f8;
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .syn-tab.selected {
+    border-color: var(--accent-primary);
+    background: rgba(var(--accent-primary-rgb), 0.12);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .syn-tab-count {
+    background: rgba(27, 39, 51, 0.08);
+}
+
+:root[data-theme="light"] .syn-item:hover,
+:root[data-theme="light"] .syn-item:focus-visible {
+    border-color: color-mix(in srgb, var(--accent-primary) 60%, var(--border-color));
+    background: rgba(var(--accent-primary-rgb), 0.1);
+}
+
+:root[data-theme="light"] .syn-item:hover .syn-go,
+:root[data-theme="light"] .conj-close-btn:hover,
+:root[data-theme="light"] .conj-sd-link:hover {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .syn-close-btn:hover,
+:root[data-theme="light"] .conj-close-btn:hover,
+:root[data-theme="light"] .provenance-panel .prov-close:hover {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .provenance-panel .prov-proposal,
+:root[data-theme="light"] .model-proposed-marker {
+    color: #6240a6;
+}
+
+:root[data-theme="light"] .conj-type-badge,
+:root[data-theme="light"] .conj-ending {
+    color: #087f68;
+}
+
+:root[data-theme="light"] .conj-nf-item.is-active {
+    border-color: rgba(8, 127, 104, 0.4);
+    background: rgba(8, 127, 104, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(8, 127, 104, 0.12);
+}
+
+:root[data-theme="light"] .conj-mood-toggle-btn.conj-mood-toggle-active,
+:root[data-theme="light"] .conj-tense-btn.conj-tense-active,
+:root[data-theme="light"] .conj-nf-item.is-active .conj-nf-form,
+:root[data-theme="light"] .conj-table tr.conj-active .conj-pronoun,
+:root[data-theme="light"] .conj-table tr.conj-active .conj-stem,
+:root[data-theme="light"] .conj-table tr.conj-active .conj-ending {
+    color: #123b33;
+    text-shadow: none;
+}
+
+:root[data-theme="light"] .conj-table tr:nth-child(even) td {
+    background: #f6f8fa;
+}
+
+:root[data-theme="light"] .link-btn,
+:root[data-theme="light"] .breakdown-btn,
+:root[data-theme="light"] .homograph-chip {
+    border-color: var(--border-color);
+    background: #edf2f5;
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .homograph-chip:active,
+:root[data-theme="light"] .breakdown-btn:hover {
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .ref-conj-btn svg rect {
+    fill: #f3f6f8;
+    stroke: #c1ccd6;
+}
+
+:root[data-theme="light"] #reverseLangBtn:hover .reverse-swap-glyph {
+    color: var(--accent-primary-text);
+    border-color: color-mix(in srgb, var(--accent-primary) 65%, #17212b);
+}
+
+:root[data-theme="light"] .nav-btn-inline:disabled {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .vocabulary-import-actions button:not(.secondary-btn),
+:root[data-theme="light"] .song-set-footer #applySongSetBtn {
+    color: var(--accent-primary-text);
+}
+
+:root[data-theme="light"] .deck-complete-btn.exit-btn.has-next-set:hover {
+    color: var(--accent-secondary-text);
+}
+
+:root[data-theme="light"] .deck-stat.correct-stat {
+    background: rgba(8, 127, 104, 0.1);
+}
+
+:root[data-theme="light"] .deck-stat.incorrect-stat {
+    background: rgba(189, 56, 71, 0.1);
+}
+
 /* Native fields and dynamically-created inputs should agree with the light
    document even when they have no component-specific class. */
 :root[data-theme="light"] input,
@@ -760,7 +1031,7 @@
 
 :root[data-theme="light"] input::placeholder,
 :root[data-theme="light"] textarea::placeholder {
-    color: #788492;
+    color: var(--text-muted);
     opacity: 1;
 }
 

@@ -74,7 +74,37 @@ test('light appearance is a semantic palette rather than an inversion', async ()
     for (const name of ['text-primary', 'text-secondary', 'text-muted', 'success', 'error', 'warning']) {
         assert.ok(contrast(variable(name), card) >= 4.5, `${name} must meet WCAG AA on cards`);
     }
+    assert.ok(contrast(variable('text-muted'), variable('bg-tertiary')) >= 4.5,
+        'muted text must remain readable on the darkest light-theme neutral');
     assert.ok(contrast('#17212b', '#ffcc00') >= 4.5, 'dark ink must remain readable on Spanish yellow');
+
+    const posColours = [...css.matchAll(/\.pos-[\w-]+\s*\{[^}]*color:\s*(#[0-9a-f]{6})\s*!important/gi)];
+    assert.equal(posColours.length, 21, 'every light POS family must defeat dark-mode white text specificity');
+    for (const [, colour] of posColours) {
+        assert.ok(contrast(colour, card) >= 4.5, `${colour} POS ink must meet WCAG AA on light cards`);
+    }
+});
+
+test('light appearance replaces dark-only white chrome on every major sheet', async () => {
+    const css = await text('css/light-theme.css');
+    const requiredOverrides = [
+        '.flag-menu-sense',
+        '.cbs-return',
+        '.cbp-pip.is-current',
+        '.deck-progress-segment.is-current',
+        '.knowledge-overview-sheet',
+        '.syn-headword',
+        '.syn-tab.selected',
+        '.conj-mood-toggle-btn.conj-mood-toggle-active',
+        '.conj-table tr.conj-active .conj-ending',
+        '.provenance-panel .prov-meta code',
+        '.link-btn',
+        '.breakdown-btn'
+    ];
+
+    for (const selector of requiredOverrides) {
+        assert.ok(css.includes(`:root[data-theme="light"] ${selector}`), `missing light contrast override for ${selector}`);
+    }
 });
 
 test('theme module persists choices, follows the system, and synchronizes controls', async () => {
