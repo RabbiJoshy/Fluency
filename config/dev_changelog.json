@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "8cc332fc",
+      "summary": "Light appearance now feels like Fluency in daylight",
+      "details": [
+        "Replaced the muddy paper wash with a clean cool-grey canvas, crisp white working surfaces and restrained blue-grey depth while preserving Fluency’s typography, rounded card geometry and compact controls",
+        "Language, artist, part-of-speech and progress colours remain the visual anchors; nested panels, study-set indicators, examples, artwork, radial pickers and authentication now have deliberate light-surface states",
+        "The browser theme colour follows the new daylight canvas, with Dark, Light and System behavior unchanged",
+        "Theme, contrast, Settings, offline-cache, asset-version, CSS and JavaScript checks pass; cache v241→v242 / assets 20260816g→20260816h"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "d0dbda26",
       "summary": "The app now has a designed light appearance",
       "details": [
