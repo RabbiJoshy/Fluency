@@ -45,6 +45,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-16 — Activate imperfect-subjunctive conjugation data
+
+- Generator commit `d6b00155`; generated-data/cache commit `616c1b01`; front-end cache `flashcards-v238` / `20260816d`; GitHub issue #57.
+- Added Verbecc's `subjuntivo / pretérito-imperfecto-1` to the learner-facing table as `Subj. Imperfecto`, including the exact `haber` paradigm `hubiera`, `hubieras`, `hubiera`, `hubiéramos`, `hubierais`, `hubieran`.
+- Kept the reverse lookup keyed to Verbecc's explicit `-1` table, while mapping Wiktionary's intentionally normalized `subjuntivo / pretérito-imperfecto` fallback into the same display slot without pretending it distinguishes `-ra` from `-se`.
+- Rebuilt both conjugation layers from active generator version 4. The checked-in artifacts had remained on version 2, so this also materializes the already-committed version-3 morphology fallback: 1,496 verb entries now carry the new table, with the generator's current source set adding 104 lemmas, removing 15, and changing four other paradigms.
+- Verification: two focused generator regressions, exact `haber` JSON assertion, sidecar-version checks, full JSON parsing, JavaScript asset-version lockstep, and whitespace validation pass.
+
 ### 2026-08-16 — Normalize conjugation-panel typography
 
 - Commit `7ee58393`; front-end cache `flashcards-v237` / `20260816c`; scope update recorded on GitHub issue #8.

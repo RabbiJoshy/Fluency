@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "616c1b01",
+      "summary": "Verb cards now include the -ra imperfect subjunctive",
+      "details": [
+        "The active conjugation generator now exposes Spanish’s six-form -ra imperfect-subjunctive paradigm as Subj. Imperfecto",
+        "haber now displays hubiera, hubieras, hubiera, hubiéramos, hubierais and hubieran; normalized morphology can reconstruct the same slot when the conjugator has no result",
+        "Rebuilt both conjugation layers from generator version 4 and invalidated cached unversioned data; cache v237→v238 / assets 20260816c→20260816d"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "7ee58393",
       "summary": "The conjugation panel now uses the card’s reading typography consistently",
       "details": [
