@@ -1,13 +1,13 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816a';
-import './speech.js?v=20260816a';
+import './state.js?v=20260816b';
+import './speech.js?v=20260816b';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816a';
+} from './example-personalisation.js?v=20260816b';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -2380,28 +2380,6 @@ async function goBackToSetup() {
     };
 }
 
-/** Build the useful surface spellings recorded for this card. */
-const MIN_VARIANT_COUNT = 2;
-function getVariantForms(card) {
-    if (!card.variants) return null;
-
-    // Plain arrays are clitic/conjugation families, not alternative spellings
-    // the learner needs piled onto the card headword. Their exact form is
-    // already taught in the expression chain and highlighted in its evidence.
-    if (Array.isArray(card.variants)) {
-        return null;
-    }
-
-    const entries = Object.entries(card.variants);
-    if (entries.length === 0) return null;
-    entries.sort((a, b) => Number(b[1] || 0) - Number(a[1] || 0));
-    // Keep the primary (highest-count) form unconditionally; drop lower
-    // entries that fall under the min-count threshold.
-    const [primary, ...rest] = entries;
-    return [primary, ...rest.filter(([, count]) => Number(count || 0) >= MIN_VARIANT_COUNT)]
-        .map(([form]) => form);
-}
-
 function foldSurfaceForm(value) {
     return String(value || '')
         .normalize('NFD')
@@ -2631,39 +2609,31 @@ function isTrivialCanonicalRelation(surface, canonical) {
         || isTrivialElision(surface, canonical);
 }
 
-/**
- * Build "variant1 | variant2" for the card face. On the back, lead with the
- * canonical card word and retain only forms whose relationship is not an
- * obvious plural or one-letter elision.
- */
-// Both faces answer the same question — which spellings are worth learning —
-// so both apply the same informativeness filter. The front used to skip it
-// entirely and render every recorded form, which turned a headword into a
-// pile-up ("vamo | vamoh | vamos | vamo'"). MAX_DISPLAY_VARIANTS caps what
-// survives: past three the row stops reading as a word and starts reading as
-// a list.
-const MAX_DISPLAY_VARIANTS = 3;
-function buildVariantDisplay(card, { back = false } = {}) {
-    const forms = getVariantForms(card);
-    if (!forms || forms.length === 0) return null;
+// Surface spellings belong in their example sentence, where the exact
+// occurrence is highlighted. Only these deliberately reviewed restorations
+// need a persistent cue beside the card's own word; generic variants,
+// conjugation families, plurals, and transparent final-letter drops must not
+// replace the headword again.
+const NOTABLE_SURFACE_RELATIONS = Object.freeze({
+    para: "pa'",
+    nada: "na'",
+    cometamos: "cometamo'",
+});
 
-    const canonical = String(card.displaySurface || card.targetWord || '').trim();
-    const canonicalFolded = foldSurfaceForm(canonical);
-    const informative = forms.filter(form =>
-        foldSurfaceForm(form) !== canonicalFolded
-        && !isTrivialCanonicalRelation(form, canonical)
-    );
-    if (informative.length === 0) return null;
+function relationSurfaceKey(value) {
+    return foldSurfaceForm(value).replace(/[’']/g, '');
+}
 
-    // The back leads with the canonical card word; the front keeps the
-    // corpus order it was recorded in, with the primary form first.
-    let displayForms = back
-        ? [canonical, ...informative]
-        : [...forms.filter(form => foldSurfaceForm(form) === canonicalFolded), ...informative];
-
-    displayForms = [...new Set(displayForms.filter(Boolean))].slice(0, MAX_DISPLAY_VARIANTS);
-    if (displayForms.length < 2) return null;
-    return displayForms.join('<span class="variant-sep">|</span>');
+function getNotableSurfaceRelation(card) {
+    if (!card || card.mergedLemma) return null;
+    const canonical = String(card.targetWord || card.displaySurface || '').trim();
+    const surface = NOTABLE_SURFACE_RELATIONS[foldSurfaceForm(canonical)];
+    const recorded = String(card.displayForm || '').trim();
+    if (!surface || !recorded
+        || relationSurfaceKey(recorded) !== relationSurfaceKey(surface)) {
+        return null;
+    }
+    return { surface, canonical };
 }
 
 // ---------------------------------------------------------------------------
@@ -3489,11 +3459,14 @@ function updateCard({ announceHeadword = false } = {}) {
     exampleSentence = stripAdlibParentheticals(exampleSentence);
     exampleTranslation = stripAdlibParentheticals(exampleTranslation);
 
-    // Build variant display if available (e.g. "la'o | lado")
-    const variantDisplay = card.mergedLemma ? null : buildVariantDisplay(card);
-    const backVariantDisplay = card.mergedLemma ? null : buildVariantDisplay(card, { back: true });
-    if (variantDisplay && !isFlipped) {
-        frontText = variantDisplay;
+    const notableSurfaceRelation = getNotableSurfaceRelation(card);
+    const frontSurfaceRelationEl = document.getElementById('frontSurfaceRelation');
+    if (frontSurfaceRelationEl) {
+        const showRelation = Boolean(notableSurfaceRelation && !isFlipped && !flippedFrontMeanings);
+        frontSurfaceRelationEl.hidden = !showRelation;
+        frontSurfaceRelationEl.textContent = showRelation
+            ? `${notableSurfaceRelation.surface} → ${notableSurfaceRelation.canonical}`
+            : '';
     }
 
     const frontWordEl = document.getElementById('frontWord');
@@ -3747,9 +3720,7 @@ function updateCard({ announceHeadword = false } = {}) {
         frontRankingEl.style.display = 'none';
     }
 
-    // Keep the back focused on forms that teach a non-obvious relationship.
-    // Routine plurals and transparent one-letter elisions add no useful cue.
-    let backWordText = backVariantDisplay || backWord;
+    let backWordText = backWord;
     let wordDisplay = backWordText;
     let backCitationHTML = '';
     let backDerivationHTML = '';
@@ -3891,6 +3862,9 @@ function updateCard({ announceHeadword = false } = {}) {
                     <span class="back-headword" style="font-size: ${backHeadwordSize}px; font-weight: bold; line-height: 1.1;">${wordDisplay}</span>
                     ${backPosLegendHTML}
                 </div>
+                ${notableSurfaceRelation
+                    ? `<div class="surface-relation-cue back-surface-relation">${escapeCardText(notableSurfaceRelation.surface)} <span aria-hidden="true">→</span> ${escapeCardText(notableSurfaceRelation.canonical)}</div>`
+                    : ''}
                 ${backGrammarHTML}
             </div>
             ${backDerivationHTML}
@@ -6259,7 +6233,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816a';
+const ASSET_VERSION = '20260816b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

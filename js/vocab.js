@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260816a';
+import './state.js?v=20260816b';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -1862,6 +1862,7 @@ async function loadVocabularyData(rangeString, opts = {}) {
                     langConfig.referenceLinks
                 ),
                 isMultiMeaning: true,
+                displayForm: item.display_form || null,
                 variants: item.variants || null,
                 homographIds: item.homograph_ids || null,
                 morphology: item.morphology || null,

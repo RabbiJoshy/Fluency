@@ -3053,12 +3053,35 @@
             text-align: center;
         }
 
-        .variant-sep {
-            font-weight: 200;
-            opacity: 0.45;
-            padding: 0 4px;
-            font-size: 0.75em;
-            vertical-align: middle;
+        .surface-relation-cue {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            width: fit-content;
+            max-width: 100%;
+            padding: 3px 10px;
+            border: 1px solid rgba(var(--card-pos-rgb), 0.28);
+            border-radius: 999px;
+            background: rgba(var(--card-pos-rgb), 0.1);
+            color: color-mix(in srgb, rgb(var(--card-pos-rgb)) 52%, white);
+            font-family: var(--font-reading);
+            font-size: 14px;
+            font-weight: 650;
+            line-height: 1.2;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+
+        .surface-relation-cue[hidden] {
+            display: none;
+        }
+
+        .front-surface-relation {
+            margin: -2px auto 10px;
+        }
+
+        .back-surface-relation {
+            margin-top: 4px;
         }
 
         .front-meaning-pos {

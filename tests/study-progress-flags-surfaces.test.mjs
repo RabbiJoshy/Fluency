@@ -103,10 +103,14 @@ test('example highlighting prefers the exact occurrence surface and hides clitic
         cards.indexOf('function foldSurfaceForm'),
         cards.indexOf('// 18px-wide slot')
     );
+    const relations = cards.slice(
+        cards.indexOf('const NOTABLE_SURFACE_RELATIONS'),
+        cards.indexOf('// ---------------------------------------------------------------------------\n// Phrase / clitic chaining')
+    );
     const context = {
         _cachedRegex: (source, flags) => new RegExp(source, flags)
     };
-    runInNewContext(`${helpers}; result = {
+    runInNewContext(`${helpers}\n${relations}; result = {
         elision: getExampleOccurrenceSurface(
             { targetWord: 'cometamos' },
             { surface: "cometamo'" },
@@ -119,22 +123,35 @@ test('example highlighting prefers the exact occurrence surface and hides clitic
         ),
         missing: getExampleOccurrenceSurface(
             { targetWord: 'cometamos' }, {}, 'Otro ejemplo'
+        ),
+        paraRelation: getNotableSurfaceRelation(
+            { targetWord: 'para', displayForm: "pa'" }
+        ),
+        nadaRelation: getNotableSurfaceRelation(
+            { targetWord: 'nada', displayForm: 'na' }
+        ),
+        cometamosRelation: getNotableSurfaceRelation(
+            { targetWord: 'cometamos', displayForm: "cometamo'" }
+        ),
+        routineElision: getNotableSurfaceRelation(
+            { targetWord: 'vamos', displayForm: "vamo'" }
         )
     };`, context);
     assert.equal(context.result.elision, "cometamo'");
     assert.equal(context.result.pooled, 'quieres');
     assert.equal(context.result.missing, '');
-
-    const variants = cards.slice(
-        cards.indexOf('const MIN_VARIANT_COUNT'),
-        cards.indexOf('function foldSurfaceForm')
+    assert.deepEqual({ ...context.result.paraRelation }, { surface: "pa'", canonical: 'para' });
+    assert.deepEqual({ ...context.result.nadaRelation }, { surface: "na'", canonical: 'nada' });
+    assert.deepEqual(
+        { ...context.result.cometamosRelation },
+        { surface: "cometamo'", canonical: 'cometamos' }
     );
-    runInNewContext(`${variants}; result = {
-        clitics: getVariantForms({ variants: ['dime', 'dile', 'decirme'] }),
-        elisions: getVariantForms({ variants: { "pa'": 9, para: 4 } })
-    };`, context);
-    assert.equal(context.result.clitics, null);
-    assert.deepEqual([...context.result.elisions], ["pa'", 'para']);
+    assert.equal(context.result.routineElision, null);
     assert.match(cards, /currentExample, displayTargetSentence/);
     assert.match(cards, /title="Recorded form in this example"/);
+    assert.doesNotMatch(cards, /buildVariantDisplay|getVariantForms|frontText = variantDisplay/);
+    assert.match(cards, /frontSurfaceRelationEl\.textContent/);
+
+    const vocab = await text('js/vocab.js');
+    assert.match(vocab, /displayForm: item\.display_form \|\| null/);
 });
