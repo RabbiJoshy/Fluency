@@ -45,6 +45,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-16 — Seek Spotify to each lyric example timestamp
+
+- Commit `875ddbb8`; front-end cache `flashcards-v235` / `20260816a`; GitHub issue #56.
+- Direct lyric playback now identifies a request by both Spotify track and requested start time. Choosing another example from the same song therefore issues a fresh timestamped play command instead of entering the same-track pause/resume branch.
+- Repeated activation of the same example retains the existing pause/resume behavior. Desktop card-wide autoplay remains unchanged: it still uses the SDK's local seek/resume path for consecutive snippets on one loaded track.
+- Verification: focused executable playback-identity regression, JavaScript syntax check, asset-version lockstep, and whitespace validation pass. The unrelated offline-manifest integrity assertion remains stale against the already-present rebuilt Spanish index (`15,795,398` actual bytes vs `15,104,343` recorded); the remaining offline policy/version tests pass.
+
 ### 2026-08-12 — Replace mixed-scope curations and gate shared-register membership
 
 - Commit `4f2e22ef`; front-end cache `flashcards-v225` / `20260812d`.

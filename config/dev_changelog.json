@@ -2,6 +2,16 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-16",
+      "commit": "875ddbb8",
+      "summary": "Spotify now jumps to each lyric example’s own timestamp",
+      "details": [
+        "Playing a second example from the same song now seeks to that line instead of treating the loaded song as the same playback request and continuing from its current position",
+        "The same example’s control still toggles pause and resume, while card-wide autoplay keeps its faster same-track seek path",
+        "Added a focused timestamp-identity regression; cache v234→v235 / assets 20260815e→20260816a"
+      ]
+    },
+    {
       "date": "2026-08-15",
       "commit": "de5d4127",
       "summary": "Card back opens as pills — part of speech, word, main meaning, share",
