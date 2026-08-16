@@ -99,7 +99,9 @@ test('asset versions remain in lockstep', async () => {
     assert.doesNotMatch(main, /v=20260729/);
     assert.doesNotMatch(html, /v=20260729/);
     assert.match(cards, new RegExp(`const ASSET_VERSION = '${version}'`));
-    for (const file of ['main.js', 'state.js', 'offline-db.js', 'sync-queue.js', 'offline-content.js']) {
+    for (const file of [
+        'main.js', 'state.js', 'offline-db.js', 'sync-queue.js', 'offline-content.js', 'reverse-cues.js'
+    ]) {
         assert.ok(worker.includes(`/js/${file}?v=\${ASSET_VERSION}`), file);
     }
 });

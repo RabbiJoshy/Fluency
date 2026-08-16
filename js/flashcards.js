@@ -1,17 +1,21 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816k';
-import './speech.js?v=20260816k';
+import './state.js?v=20260816l';
+import './speech.js?v=20260816l';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816k';
+} from './example-personalisation.js?v=20260816l';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260816k';
+} from './spanishdict-usage.js?v=20260816l';
+import {
+    englishProductionCue,
+    selectReverseCueMeanings,
+} from './reverse-cues.js?v=20260816l';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -22,17 +26,6 @@ let _conjugatedEnglishData = null;  // lemma -> translation -> tense -> 6-elemen
 let _conjugatedEnglishLoading = false;
 let _deckScrubberActive = false;
 let _suppressDeckScrubberClickUntil = 0;
-
-// Map verbecc tense keys (used in vocabulary.index.json's morphology field) to
-// the keys produced by step_5e_build_conjugated_english.py. Identical today, but
-// the indirection makes the mapping explicit and easy to extend.
-const _MORPH_TENSE_TO_CONJ_EN = {
-    "presente": "presente",
-    "pretérito-perfecto-simple": "pretérito-perfecto-simple",
-    "futuro": "futuro",
-};
-
-const _PERSON_TO_INDEX = { "1s": 0, "2s": 1, "3s": 2, "1p": 3, "2p": 4, "3p": 5 };
 
 // Regex cache for the render hot path. Word/MWE/clitic highlight + filter
 // patterns are deterministic in their inputs, so compiling once per unique
@@ -84,43 +77,10 @@ function _matchedMweForm(mwe, text, preferred = '') {
     return '';
 }
 
-function getConjugatedEnglish(card, translation) {
-    if (!_conjugatedEnglishData || !card || !translation) return null;
-    // Reverse-direction merged cards still prompt the dictionary lemma, so
-    // their English side stays infinitival. In the ordinary direction an
-    // explicit example-derived morphology is safe: the visible Spanish form
-    // and the English gloss describe the same evidence line.
-    if (card.mergedLemma && isFlipped) return null;
-    const rawMorph = card.mergedLemma
-        ? card._activeExampleMorphology
-        : card.morphology;
-    const morphCandidates = (Array.isArray(rawMorph) ? rawMorph : [rawMorph]).filter(Boolean);
-    // A surface such as `da` can be either indicative or imperative. Show
-    // both analyses visually, but do not choose one and manufacture a
-    // potentially wrong English conjugation for the sentence.
-    if (morphCandidates.length !== 1) return null;
-    const morph = morphCandidates[0];
-    if (!morph || morph.mood !== "indicativo") return null;
-    const tenseKey = _MORPH_TENSE_TO_CONJ_EN[morph.tense];
-    const personIdx = _PERSON_TO_INDEX[morph.person];
-    if (tenseKey === undefined || personIdx === undefined) return null;
-    const lemma = (card.lemma || "").toLowerCase();
-    const row = _conjugatedEnglishData?.[lemma]?.[translation]?.[tenseKey];
-    const form = row ? (row[personIdx] || null) : null;
-    if (!form) return null;
-    // 3rd-person singular in Spanish covers he/she/it. The data file stores
-    // only "he X"; expand to "he/she/it X" so the displayed translation
-    // reflects the actual pronoun coverage. Handles "he X" and "he's X"
-    // (contracted forms like "he's eating" → "he/she/it's eating").
-    if (personIdx === 2) {
-        if (/^he\s/i.test(form)) {
-            return form.replace(/^he\s/i, 'he/she/it ');
-        }
-        if (/^he'/i.test(form)) {
-            return form.replace(/^he'/i, "he/she/it'");
-        }
-    }
-    return form;
+function getProductionEnglishCue(card, meaningOrTranslation) {
+    return englishProductionCue(card, meaningOrTranslation, _conjugatedEnglishData, {
+        reverseDirection: isFlipped,
+    });
 }
 
 function joinSpokenGlossAndContext(gloss, context) {
@@ -141,7 +101,7 @@ function joinSpokenGlossAndContext(gloss, context) {
 function getSpokenEnglish(card, meaning) {
     const translation = meaning && (meaning.meaning || meaning.translation);
     if (!translation) return '';
-    const gloss = getConjugatedEnglish(card, translation) || translation;
+    const gloss = getProductionEnglishCue(card, meaning) || translation;
     return joinSpokenGlossAndContext(gloss, meaning.context);
 }
 
@@ -177,12 +137,12 @@ function getCurrentSpokenEnglish(card) {
     if (!meaning) return '';
     if (!currentGroupSelection?.members?.length) return getSpokenEnglish(card, meaning);
     if (currentGroupSelection.axis === 'translation') {
-        return getConjugatedEnglish(card, meaning.meaning) || meaning.meaning || '';
+        return getProductionEnglishCue(card, meaning) || meaning.meaning || '';
     }
     const glosses = currentGroupSelection.members
         .map(index => card.meanings[index])
         .filter(Boolean)
-        .map(member => getConjugatedEnglish(card, member.meaning) || member.meaning || '')
+        .map(member => getProductionEnglishCue(card, member) || member.meaning || '')
         .filter((gloss, index, all) => gloss && all.indexOf(gloss) === index);
     return joinSpokenGlossAndContext(glosses.join(', '), currentGroupSelection.groupKey);
 }
@@ -3431,29 +3391,10 @@ function updateCard({ announceHeadword = false } = {}) {
                     m.pos !== 'MWE' && m.pos !== 'CLITIC' && m.pos !== 'SENSE_CYCLE');
             }
 
-            // Pick meanings to show: those with frequency, else keyword-assigned, else top per POS
-            let frontMeanings = normalMeanings.filter(m => (m.percentage || 0) > 0);
-            if (frontMeanings.length === 0) {
-                frontMeanings = normalMeanings.filter(m => m.assignment_method && m.assignment_method.includes('keyword'));
-            }
-            if (frontMeanings.length === 0) {
-                // Fall back: one meaning per unique POS
-                const seenPOS = new Set();
-                for (const m of normalMeanings) {
-                    if (!seenPOS.has(m.pos)) {
-                        frontMeanings.push(m);
-                        seenPOS.add(m.pos);
-                    }
-                }
-            }
-            // Deduplicate by translation text
-            const seenText = new Set();
-            frontMeanings = frontMeanings.filter(m => {
-                const key = (m.meaning || '').toLowerCase();
-                if (seenText.has(key)) return false;
-                seenText.add(key);
-                return true;
-            });
+            // English-first cards use several senses as a semantic fingerprint
+            // for one exact surface. Cover each lemma/POS reading before adding
+            // extra frequent senses; four concise cues keep the front scannable.
+            const frontMeanings = selectReverseCueMeanings(normalMeanings, { card });
 
             const uniquePOS = new Set(frontMeanings.map(m => m.pos));
             const multiPOS = uniquePOS.size > 1;
@@ -3620,9 +3561,9 @@ function updateCard({ announceHeadword = false } = {}) {
         // flipping no longer relocates it. Rare multi-POS cards collapse to
         // one pill per distinct POS up there rather than repeating per row.
         for (const m of fMeanings) {
-            const productionGloss = getConjugatedEnglish(card, m.meaning) || m.meaning;
+            const productionGloss = getProductionEnglishCue(card, m) || m.meaning;
             html += `<div class="front-meaning-row">
-                <span class="front-meaning-text" style="font-size: ${fontSize}px;">${productionGloss}</span>
+                <span class="front-meaning-text" style="font-size: ${fontSize}px;">${escapeCardText(productionGloss)}</span>
             </div>`;
         }
         frontMeaningsEl.innerHTML = html;
@@ -3973,7 +3914,7 @@ function updateCard({ announceHeadword = false } = {}) {
             }
             const g = groupInfo.get(key);
             g.pct += Number(m.percentage || 0);
-            const text = String(getConjugatedEnglish(card, m.meaning) || m.meaning || '').trim();
+            const text = String(getProductionEnglishCue(card, m) || m.meaning || '').trim();
             // Main senses only. Two rows sharing a translation are one meaning
             // seen in two contexts; the contexts belong in the expanded view.
             if (text && !g.senses.includes(text)) g.senses.push(text);
@@ -4193,7 +4134,7 @@ function updateCard({ announceHeadword = false } = {}) {
             const cleanMweMeaning = isMWE ? mweMeaning.replace(/\s*\(elided\)/gi, '') : '';
             const displayMeaning = isMWE
                 ? (cleanMweMeaning || '<span style="font-style: italic; opacity: 0.5;">Translation unavailable</span>')
-                : (getConjugatedEnglish(card, m.meaning) || m.meaning);
+                : (getProductionEnglishCue(card, m) || m.meaning);
             if (isMWE) {
                 if (compactKnowledgeView && !isSelected) return;
                 // Expression row: plain bold expression (left), translation
@@ -4373,7 +4314,7 @@ function updateCard({ announceHeadword = false } = {}) {
                             const member = card.meanings[memberIdx];
                             return isTransAxis
                                 ? (member.context || '')
-                                : (getConjugatedEnglish(card, member.meaning) || member.meaning || '');
+                                : (getProductionEnglishCue(card, member) || member.meaning || '');
                         })
                     );
                     // Group-level selection: clicking the shared field selects
@@ -4416,7 +4357,7 @@ function updateCard({ announceHeadword = false } = {}) {
                                 ? `<span class="meaning-context-cell" style="line-height: 1.3; min-width: 0; overflow-wrap: anywhere; word-break: break-word;">${renderSenseContextHTML(ctxRaw, { leadingDot: false })}</span>`
                                 : `<span style="opacity: 0.4; font-style: italic; font-size: 12px;">—</span>`;
                         } else {
-                            const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
+                            const transRaw = getProductionEnglishCue(card, mm) || mm.meaning || '';
                             const transSafe = String(transRaw).replace(/"/g, '&quot;');
                             varyingHtml = `<span class="row-adaptive-text" style="font-weight: 600; color: var(--text-primary); line-height: 1.25; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${transSafe}${modelProposalMarkerHTML(mm)}</span>`;
                         }
@@ -6394,7 +6335,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816k';
+const ASSET_VERSION = '20260816l';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

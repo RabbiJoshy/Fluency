@@ -5,7 +5,7 @@
 // Bump CACHE_NAME alongside any change to ASSET_VERSION below — old caches
 // are deleted in the activate handler, so a bump forces the new pre-cache
 // list to be rebuilt on next install.
-const CACHE_NAME = 'flashcards-v245';
+const CACHE_NAME = 'flashcards-v246';
 const SHELL_CACHE_PREFIX = 'flashcards-v';
 const CONTENT_CACHE_PREFIX = 'fluency-content-';
 const CONTENT_STAGING_PREFIX = `${CONTENT_CACHE_PREFIX}staging-`;
@@ -13,7 +13,7 @@ const CONTENT_STAGING_PREFIX = `${CONTENT_CACHE_PREFIX}staging-`;
 // Single source of truth for the module/CSS version tags. Must match
 // js/main.js's import URLs and index.html's modulepreload links. When you
 // bump the ?v= tags, change this and bump CACHE_NAME above.
-const ASSET_VERSION = '20260816k';
+const ASSET_VERSION = '20260816l';
 
 // Pre-cache the boot-critical static assets on install. Without this, the
 // first install populates the cache lazily — visit 1 doesn't go through
@@ -52,6 +52,7 @@ const urlsToCache = [
   `/js/vocabulary-import-core.js?v=${ASSET_VERSION}`,
   `/js/vocabulary-import.js?v=${ASSET_VERSION}`,
   `/js/spanishdict-usage.js?v=${ASSET_VERSION}`,
+  `/js/reverse-cues.js?v=${ASSET_VERSION}`,
   `/js/flashcards.js?v=${ASSET_VERSION}`,
   `/js/example-personalisation.js?v=${ASSET_VERSION}`,
   `/js/flashcards-modals.js?v=${ASSET_VERSION}`,
