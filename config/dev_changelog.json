@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "afccfd1a",
+      "summary": "Card cues and sense lists now use their space more clearly",
+      "details": [
+        "English-first verb cards keep the exact person and grammatical form visible; the existing verb pill still opens the fuller morphology explanation",
+        "An optional Sentence hint reveals a true cloze only when the active example contains the exact Spanish surface the learner is being asked to produce",
+        "Spanish-first sense groups open together by default when they genuinely fit, while dense cards retain collapse controls and remember the learner's manual choice",
+        "Sense summaries now read like to throw +3 before the percentage, POS filters no longer say Choose, and ordinary sense text is slightly larger; cache v246→v247 / assets 20260816l→20260816m"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "347aa1bf",
       "summary": "English-first cards now use several correctly inflected senses as one clue",
       "details": [

@@ -31,6 +31,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
 - A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English uses the first two and labels pronominal lemmas in plain language. English→Spanish uses the production answer: exact surface when unmerged, lemma when merged, and the complete `-se` citation for older pronominal data, with the evidenced example form shown separately.
 - English-first surface cards use a bounded semantic fingerprint: one distinct cue per lemma/POS reading first, then other strong senses, with duplicate English text removed and a four-cue cap. English morphology is resolved against each sense's lemma rather than the card's majority lemma, and incompatible non-verb lemma-menu leakage is suppressed when a surface-compatible cue exists.
+- English-first verb morphology is a persistent coupled subject + tense/mood cue, with the full analysis still available from the POS pill. Sentence context is optional and may become a cloze only when the active example contains the exact production answer; merged/restored mismatches abstain. Recognition sense groups default to all-open only when their measured rendered height fits, and manual expansion always wins thereafter.
 - Regular plural dictionary twins share their explicit singular lemma identity while preserving every source sense ID. Derivational families such as `besito` → `beso` remain separate cards/progress records and use a conservative, auditable relation layer rather than suffix-only collapsing.
 - Card reporting has one owner-facing route: both visible report controls open the structured audit sheet directly; the obsolete metadata/field-flag sheet is retired.
 - Artist clitic rows consume split-example `c` buckets in single- and multi-artist decks. They teach the exact attached form as an infinitive, gerund, or affirmative command plus the clitic's person/case and English role, rather than presenting only the base infinitive gloss.
@@ -54,6 +55,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The full Node suite currently has seven pre-existing failures against `HEAD`: five stale `tests/ui-refinements.test.mjs` assertions (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names), one reviewed personalised-frame/data mismatch, and the already-recorded offline-manifest checksum mismatch for the rebuilt Spanish index. Theme-focused and relevant UI/offline-policy tests pass; this unrelated test/data debt was not rewritten as part of appearance work.
 
 ## Codex task history
+
+### 2026-08-16 — Refine production cues and recognition sense density
+
+- Commit `afccfd1a`; front-end cache `flashcards-v247` / `20260816m`.
+- English-first verb cards now keep each coupled person + tense/mood analysis visible beneath the semantic fingerprint. The verb POS pill still opens the complete explanation, while recognition cards retain the quieter popover-only treatment.
+- Added an optional Sentence hint outside the flip target. It blanks context only when the active example contains the exact production answer, with boundary-safe matching across whitespace and straight/curly apostrophes; uncertain merged/restored mismatches do not manufacture a cloze.
+- Recognition backs now place `+N` directly after the summary gloss, omit the pressuring `Choose` label above POS filters, and give ordinary sense copy a one-pixel type increase. Multi-POS groups are all opened on first presentation when their measured natural height fits the remaining card space; dense cards keep the active group open, and any manual expansion choice disables the automatic default.
+- Verification: 12 reverse/presentation regressions, 20 relevant SpanishDict/surface/theme checks, JavaScript syntax for every module and service worker, asset/cache lockstep, and `git diff --check`. The full Node suite is 60/67 after the three added passing regressions; the same seven documented baseline failures remain. No service-worker browser preview was used.
 
 ### 2026-08-16 — Improve English-first semantic and morphological cues
 
