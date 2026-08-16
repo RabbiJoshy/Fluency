@@ -39,6 +39,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Source setup keeps parsed indexes by data path and shares one source/settings/examples-keyed filtered vocabulary across level, progress, exclusion, and set UI. Artist frequency extraction must use that same canonical loader rather than parsing the index independently.
 - Google Sheets schema v4 has one discriminated `Progress` tab for word, sense, MWE, clitic, and metadata rows, plus the separate `FlaggedWords` tab. Speech/Lyrics are a `Mode`, item rows use `ParentWordId`, and artist-specific routing metadata carries a `Source`; the automatic migration retains the old three progress tabs as `*_legacy` backups and accepts cached v3 clients during rollout.
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
+- Completing a new-card set automatically continues after a short 1.2-second completion beat. The router verifies rendered set progress, skips nominal levels with no unseen cards, and never falls back to replaying a completed set; Main menu and Redo remain explicit cancellation choices. Audit flags acknowledge the gesture immediately and resolve in a global `Card flagged` status above all app surfaces.
 - Artist corpus evidence now has a language-neutral segment/occurrence ledger contract. Mutable normalization, routing, POS, lemma, and sense decisions address persisted evidence IDs; model methods coexist under an active profile; card identity is registered separately from mutable lemma/gloss properties. The artist orchestrator now inserts a provider-neutral occurrence-level vocal-artifact claim run and a strict-parity active-view materializer before legacy normalization, so compact app decks can be rebuilt from the ledger without making the browser load it. Classification labels remain separate from exclusion policy.
 
 ## Open handoff notes
@@ -55,6 +56,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The full Node suite currently has seven pre-existing failures against `HEAD`: five stale `tests/ui-refinements.test.mjs` assertions (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names), one reviewed personalised-frame/data mismatch, and the already-recorded offline-manifest checksum mismatch for the rebuilt Spanish index. Theme-focused and relevant UI/offline-policy tests pass; this unrelated test/data debt was not rewritten as part of appearance work.
 
 ## Codex task history
+
+### 2026-08-16 — Auto-continue new study sets and make flag confirmation unmistakable
+
+- Commit `adfcb088`; front-end cache `flashcards-v248` / `20260816n`.
+- Completing a new-card set now retains the completion card for 1.2 seconds and then invokes its continuation automatically. Main menu and Redo cancel the timer, review completion remains deliberate, and a failed load reopens a stable non-retrying error state.
+- Next-level routing now verifies the candidate level's rendered sets and scans forward until it finds a genuinely unfinished set. It no longer falls back to replaying an arbitrary completed set when progress metadata is stale or filters empty a nominal level.
+- Flag submission now raises a global `Flagging card…` status before awaiting the durable save/queue, then resolves the same card to `Card flagged` or `Flag not sent`. Its stacking level sits above menus, modals, cards, and the loading surface, and success remains visible for 2.6 seconds.
+- Verification: two new continuation/flag regressions plus 19 focused routing, progress, surface, and English-first checks; JavaScript syntax for every module and service worker; asset/cache lockstep; `git diff --check`. The full Node suite is 62/69, with the same seven documented baseline failures unchanged. No browser preview was used.
 
 ### 2026-08-16 — Refine production cues and recognition sense density
 

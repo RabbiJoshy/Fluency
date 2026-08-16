@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "adfcb088",
+      "summary": "Finishing and flagging cards now give an immediate, continuous response",
+      "details": [
+        "A completed new-card set keeps its short completion moment, then starts the next unfinished set automatically after 1.2 seconds",
+        "When a level has no genuinely unseen set, continuation now scans forward instead of replaying completed cards or sending the learner back through setup",
+        "Flagging immediately opens a global saving confirmation that resolves to Card flagged or an explicit failure, above every card, menu and loading surface",
+        "Two focused regressions plus the relevant routing, progress and card checks pass; cache v247→v248 / assets 20260816m→20260816n"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "afccfd1a",
       "summary": "Card cues and sense lists now use their space more clearly",
       "details": [
