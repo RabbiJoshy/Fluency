@@ -1,5 +1,14 @@
 # Speech mode — layer and identity restructure
 
+> **Implemented 2026-08-15, with corrections.** See
+> `docs/reference/surface_identity_migration.md` for what was actually built and
+> how to roll it back. Two numbers below did not survive re-derivation: the
+> "1,126 fabricated lemmas" are 89% real SpanishDict headwords for that surface
+> (only 4 are fabrications), and the "15% of corpus mass" split proportionally
+> falls to 3.1% once lemmas come from `word_inventory.known_lemmas`. The
+> decision still stands, on the re-run blast radius instead: re-running the
+> classifier destroyed 1,185 card IDs while only 52 surfaces changed.
+
 Design note, 2026-08-12. Written from a working session that rebuilt speech mode
 end to end, so every number here was measured on the repo rather than estimated.
 The point of writing it down is that these decisions should not be re-litigated.

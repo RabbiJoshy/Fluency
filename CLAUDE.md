@@ -66,6 +66,7 @@ Fluency/
 - **Pipeline layer files?** Read `Data/Spanish/layers/CLAUDE.md`
 - **Live backlog?** Search [GitHub Issues](https://github.com/RabbiJoshy/Fluency/issues) and use the ownership/label/closure workflow in `COLLABORATION.md`; consult `TODO.md` / `TODO_PIPELINE.md` only for historical detail
 - **Design docs** — `docs/design/` (WSD exploration, example selection, vocab filter design)
+- **Card identity / surface migration** — `docs/reference/surface_identity_migration.md`; read before touching card IDs, progress keys, or anything that rebuilds a deck
 - **On-demand reference** — `docs/reference/` (pipeline behaviors, builder flags, method priority, sense-assignment internals)
 - **Setup guides** — `docs/setup/` (Google Sheets, artist pipeline quick start, new-artist onboarding)
 
