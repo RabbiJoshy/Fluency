@@ -346,10 +346,36 @@
 :root[data-theme="light"] .phrase-example-target,
 :root[data-theme="light"] .card-stat-value,
 :root[data-theme="light"] .front-meaning-pos,
+:root[data-theme="light"] .front-morph-analysis strong,
 :root[data-theme="light"] .morph-pop-subject,
 :root[data-theme="light"] .morph-pop-form,
 :root[data-theme="light"] .morph-pop-more-sign {
     color: var(--text-primary);
+}
+
+:root[data-theme="light"] .front-morph-analysis {
+    border-color: color-mix(in srgb, rgb(var(--card-pos-rgb)) 34%, transparent);
+    background: color-mix(in srgb, rgb(var(--card-pos-rgb)) 8%, transparent);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .front-production-hint-toggle {
+    border-color: var(--border-color);
+    background: rgba(23, 33, 43, 0.035);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .front-production-hint-toggle.is-open {
+    border-color: rgba(var(--card-pos-rgb), 0.42);
+    background: rgba(var(--card-pos-rgb), 0.09);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .front-production-cloze {
+    border-color: rgba(var(--card-pos-rgb), 0.3);
+    background: rgba(255, 255, 255, 0.97);
+    color: var(--text-primary);
+    box-shadow: 0 8px 24px rgba(27, 39, 51, 0.14);
 }
 
 :root[data-theme="light"] .card-rank-label,

@@ -2561,10 +2561,13 @@
         /* How many further meanings sit behind this pill. Makes the expand
            affordance honest — one meaning shown is not the whole story. */
         .pos-collapsible .pos-pill-more {
-            flex-shrink: 0;
+            display: inline-block;
+            margin-left: 5px;
             color: var(--text-muted);
-            font-size: 10px;
+            font-size: 0.78em;
             font-family: var(--font-mono, monospace);
+            font-weight: 650;
+            vertical-align: 0.08em;
         }
         /* Absent, not zero, when nothing was observed. A pill reading 0% looks
            like a measurement; blank reads as no evidence yet, which is true. */
@@ -2599,9 +2602,7 @@
         /* The legend owns the top-right corner of the card back and keeps it
            whether there is one pill or several: `margin-left: auto` pushes it
            off the headword, and the pills pack to the right edge so a second
-           or third POS grows the group leftwards instead of relocating it.
-           The "Choose" hint claims a full row of the legend, which places it
-           in the small gap directly above the pills rather than beside them. */
+           or third POS grows the group leftwards instead of relocating it. */
         .back-pos-legend {
             display: flex;
             flex-wrap: wrap;
@@ -2612,15 +2613,7 @@
             flex: 0 1 auto;
         }
         .back-pos-legend.has-tabs {
-            gap: 4px 5px;
-        }
-        .back-pos-tab-label {
-            flex: 0 0 100%;
-            color: var(--text-muted);
-            font: 650 12px/1 var(--font-data);
-            letter-spacing: 0.08em;
-            text-align: right;
-            text-transform: uppercase;
+            gap: 5px;
         }
 
         /* Word + its single POS pill share the top line (.back-headword-row,
@@ -2853,6 +2846,14 @@
 
         .row-adaptive-text {
             font-size: var(--row-primary-size, 17px);
+        }
+
+        /* The ordinary dictionary senses are the card's primary reading
+           content. Give them one extra step without enlarging the denser
+           bilingual Expression/clitic rows that use the same type scale. */
+        .meaning-row-regular .row-adaptive-text,
+        .meaning-row-group .row-adaptive-text {
+            font-size: calc(var(--row-primary-size, 17px) + 1px);
         }
 
         .meaning-row-mwe > .example-counter-group,
@@ -3205,11 +3206,110 @@
             position: relative;
         }
 
-        /* Morphology is a popover hung off the verb POS pill, not a strip
-           with a place on the card. It anchors to the pill's wrapper, so no
-           coordinates are measured and it works identically on both faces. */
+        /* Recognition keeps morphology in the verb-pill popover. Production
+           additionally uses this compact coupled strip beneath the English
+           senses, so person and tense are visible before the learner answers. */
         .card-morph {
-            display: none !important;
+            display: none;
+        }
+        .card-morph.front-morph-visible {
+            display: flex !important;
+            max-width: min(100%, 520px);
+            margin: 4px auto 0;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 6px 8px;
+            color: #66e4cc;
+        }
+        .front-morph-title {
+            color: var(--text-muted);
+            font: 650 10px/1 var(--font-data);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .front-morph-analyses {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+        }
+        .front-morph-analysis {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 5px;
+            padding: 5px 9px;
+            border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+            border-radius: 999px;
+            background: color-mix(in srgb, currentColor 10%, transparent);
+            color: var(--text-secondary);
+            font: 550 12px/1.15 var(--font-reading);
+            white-space: nowrap;
+        }
+        .front-morph-analysis strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Optional production context stays outside #flipBtn, so revealing it
+           does not flip the card. Only the small trigger occupies space until
+           the learner asks for help. */
+        .front-production-hint {
+            position: absolute;
+            left: 50%;
+            bottom: 46px;
+            z-index: 5;
+            width: min(86%, 620px);
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .front-production-hint[hidden] {
+            display: none;
+        }
+        .front-production-hint-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            font: 650 11px/1 var(--font-reading);
+            cursor: pointer;
+        }
+        .front-production-hint-toggle.is-open {
+            border-color: rgba(var(--card-pos-rgb), 0.44);
+            background: rgba(var(--card-pos-rgb), 0.12);
+            color: var(--text-primary);
+        }
+        .front-production-hint-icon {
+            color: rgb(var(--card-pos-rgb));
+            font-size: 15px;
+            line-height: 0.8;
+        }
+        .front-production-cloze {
+            max-height: 96px;
+            margin-top: 7px;
+            padding: 9px 12px;
+            overflow-y: auto;
+            border: 1px solid rgba(var(--card-pos-rgb), 0.3);
+            border-radius: 12px;
+            background: rgba(13, 18, 25, 0.94);
+            color: var(--text-primary);
+            font: 550 16px/1.35 var(--font-reading);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+        }
+        .front-production-cloze[hidden] {
+            display: none;
+        }
+        .production-cloze-blank {
+            display: inline-block;
+            min-width: 4.5em;
+            margin-inline: 0.18em;
+            border-bottom: 2px solid rgb(var(--card-pos-rgb));
+            color: transparent;
+            line-height: 0.95;
         }
         .morph-popover {
             position: absolute;
@@ -12523,7 +12623,7 @@
            left the top-right corner and fell back into flow at the bottom of
            the card, in lyrics mode only. Elements that own their positioning
            are excluded and get their stacking order below instead. */
-        body.artist-mode .card-face > *:not(.card-pos-list):not(.card-ranking):not(.card-tint):not(.stacked-exit-btn) {
+        body.artist-mode .card-face > *:not(.card-pos-list):not(.card-ranking):not(.front-production-hint):not(.card-tint):not(.stacked-exit-btn) {
             position: relative;
             z-index: 1;
         }
@@ -12536,6 +12636,7 @@
            on needs restating here. .card-tint keeps its own z-index: 50. */
         body.artist-mode .card-pos-list,
         body.artist-mode .card-ranking,
+        body.artist-mode .front-production-hint,
         body.artist-mode .stacked-exit-btn {
             z-index: 5;
         }

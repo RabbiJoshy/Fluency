@@ -1,21 +1,22 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816l';
-import './speech.js?v=20260816l';
+import './state.js?v=20260816m';
+import './speech.js?v=20260816m';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816l';
+} from './example-personalisation.js?v=20260816m';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260816l';
+} from './spanishdict-usage.js?v=20260816m';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
-} from './reverse-cues.js?v=20260816l';
+    splitProductionCloze,
+} from './reverse-cues.js?v=20260816m';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -591,6 +592,31 @@ function fitBackHeadword(root) {
         if (el.scrollWidth <= budget) break;
     }
     el.style.whiteSpace = prevWS;
+}
+
+// Measure the vertical room that belongs to the meanings scroller after every
+// other in-flow child has taken its rendered space. Both auto-expansion and the
+// final overflow cap use this same live budget, so "open when it fits" cannot
+// disagree with the point where the card becomes scrollable.
+function availableHeightForMeaningScroll(backEl, scroll) {
+    if (!backEl || !scroll) return 0;
+    let overhead = 0;
+    let otherFlowChildren = 0;
+    for (const child of backEl.children) {
+        if (child === scroll || child.classList.contains('conjugation-panel')) continue;
+        const cs = getComputedStyle(child);
+        if (cs.position === 'absolute' || cs.position === 'fixed') continue;
+        otherFlowChildren++;
+        overhead += child.offsetHeight
+            + (parseFloat(cs.marginTop) || 0)
+            + (parseFloat(cs.marginBottom) || 0);
+    }
+    // With the scroller included, N other children create N gaps in the flex
+    // column. (The old cap counted N - 1 and could overestimate spare room.)
+    const backStyle = getComputedStyle(backEl);
+    overhead += otherFlowChildren
+        * (parseFloat(backStyle.rowGap || backStyle.gap) || 0);
+    return backEl.clientHeight - overhead;
 }
 
 // Cache of known words built from progressData — rebuilt when progress changes
@@ -2517,6 +2543,45 @@ function getExampleProductionForm(card, meaning, example, targetSentence) {
     return exact ? exact[1] : '';
 }
 
+function buildFrontProductionHint(card, meaning, activeAnswer) {
+    // The hint must blank the same surface the learner is expected to produce.
+    // Merged-lemma and restored/elided cards can deliberately answer with a
+    // different form from the example, so they wait for a future framed hint
+    // rather than quietly changing the task under the learner.
+    if (!card || !meaning || card.mergedLemma || !activeAnswer) return '';
+
+    let examples;
+    if (meaning.allMWEs?.length) {
+        const active = meaning.allMWEs[currentMWEIndex % meaning.allMWEs.length];
+        examples = active?.examples || [];
+    } else if (meaning.allClitics?.length) {
+        const active = meaning.allClitics[currentMWEIndex % meaning.allClitics.length];
+        examples = active?.examples || [];
+    } else {
+        examples = meaning.allExamples || [];
+    }
+    examples = dedupeExamples(examples);
+    if (examples.length > 1) examples = sortExamplesByRelevance(examples);
+    const example = examples.length
+        ? examples[currentExampleIndex % examples.length]
+        : null;
+    const sentence = stripAdlibParentheticals(
+        example?.target || example?.spanish || meaning.targetSentence || card.targetSentence || ''
+    );
+    if (!sentence) return '';
+
+    const answerInSentence = (meaning.allMWEs || meaning.allClitics || card.isPronominal)
+        ? getExampleProductionForm(card, meaning, example, sentence)
+        : (getExampleOccurrenceSurface(card, example, sentence)
+            || getExampleProductionForm(card, meaning, example, sentence));
+    if (!answerInSentence
+        || foldSurfaceForm(answerInSentence) !== foldSurfaceForm(activeAnswer)) return '';
+
+    const cloze = splitProductionCloze(sentence, answerInSentence);
+    if (!cloze) return '';
+    return `${escapeCardText(cloze.before)}<span class="production-cloze-blank" aria-label="missing Spanish answer">______</span>${escapeCardText(cloze.after)}`;
+}
+
 function getActiveProductionAnswer(card, meaning = null) {
     if (!card) return '';
     const activeMeaning = meaning
@@ -2741,6 +2806,9 @@ function toggleBackPosSection(key) {
     // onclick attribute, so it travels as ~~ and is restored here.
     const real = String(key).replace(/~~/g, '\u0000');
     if (!card._expandedPos) card._expandedPos = new Set();
+    // Once the learner expresses a preference, preserve it. The automatic
+    // "open everything if it fits" pass is only a first-presentation default.
+    card._backSectionsManuallySet = true;
     if (card._expandedPos.has(real)) card._expandedPos.delete(real);
     else card._expandedPos.add(real);
     updateCard();
@@ -3444,6 +3512,21 @@ function updateCard({ announceHeadword = false } = {}) {
     exampleSentence = stripAdlibParentheticals(exampleSentence);
     exampleTranslation = stripAdlibParentheticals(exampleTranslation);
 
+    const frontProductionHintEl = document.getElementById('frontProductionHint');
+    const productionHintHTML = isFlipped && flippedFrontMeanings
+        ? buildFrontProductionHint(card, currentMeaning, activeProductionAnswer)
+        : '';
+    if (frontProductionHintEl) {
+        frontProductionHintEl.hidden = !productionHintHTML;
+        frontProductionHintEl.innerHTML = productionHintHTML
+            ? `<button type="button" class="front-production-hint-toggle" aria-expanded="false" aria-controls="frontProductionCloze" onclick="toggleFrontProductionHint(event)">
+                    <span class="front-production-hint-icon" aria-hidden="true">⌁</span>
+                    <span class="front-production-hint-label">Sentence hint</span>
+               </button>
+               <div class="front-production-cloze" id="frontProductionCloze" hidden>${productionHintHTML}</div>`
+            : '';
+    }
+
     const notableSurfaceRelation = getNotableSurfaceRelation(card);
     const frontSurfaceRelationEl = document.getElementById('frontSurfaceRelation');
     if (frontSurfaceRelationEl) {
@@ -3482,10 +3565,10 @@ function updateCard({ announceHeadword = false } = {}) {
         return labels[String(pos || '').toUpperCase()]
             || String(pos || '').toLowerCase().replace(/^./, char => char.toUpperCase());
     };
-    // Morphology no longer occupies the card. It used to render as a permanent
-    // (or toggled-in-place) strip that reflowed the header around it and needed
-    // its own reveal control; now the verb POS pill is the only trigger and the
-    // grammar arrives as a popover anchored under that pill.
+    // The verb POS pill retains the complete popover on every face. In the
+    // production direction its coupled subject + tense/mood rows are also
+    // repeated as a compact, always-visible cue beneath the English senses;
+    // knowing which surface to produce should not depend on discovering a tap.
     //
     // Each analysis is ONE row that owns both halves: the Spanish subject on
     // the left, the tense/mood it belongs to on the right. Person and tense
@@ -3536,9 +3619,9 @@ function updateCard({ announceHeadword = false } = {}) {
             ${altBlock}
         </div>`;
     };
-    // Mirrors the back face: a verb pill is a press-to-reveal control for its
-    // morphology rather than a permanent strip. The grammar is available on
-    // demand instead of competing with the headword on every card.
+    // The pill remains a press-to-reveal control for the complete explanation.
+    // English-first cards additionally receive the compact persistent rendering
+    // below; Spanish-first recognition keeps the quieter popover-only treatment.
     const renderFrontPosUnit = (pos, includeMorph = false, pillClass = 'card-pos') => {
         const hasMorph = includeMorph && isVerbPos(pos) && morphLabels.length > 0;
         const colour = getPosColorClass(pos);
@@ -3648,12 +3731,26 @@ function updateCard({ announceHeadword = false } = {}) {
         frontLemmaEl.style.display = 'none';
     }
 
-    // Legacy node retained for cached HTML. Morphology now belongs directly
-    // beneath the verb pill rendered in frontPOS/frontMeanings.
+    // English-first production needs the form constraint in sight. Keep each
+    // possible analysis coupled (subject + tense/mood) and let it wrap as one
+    // compact row; the verb pill still opens the fuller labelled popover.
     const frontMorphEl = document.getElementById('frontMorph');
     if (frontMorphEl) {
-        frontMorphEl.innerHTML = '';
-        frontMorphEl.style.display = 'none';
+        const frontHasVerb = Boolean(flippedFrontMeanings?.meanings?.some(
+            meaning => isVerbPos(meaning.pos)));
+        const showFrontMorph = Boolean(isFlipped && frontHasVerb && morphLabels.length);
+        frontMorphEl.classList.toggle('front-morph-visible', showFrontMorph);
+        frontMorphEl.innerHTML = showFrontMorph
+            ? `<span class="front-morph-title">Form</span>
+               <span class="front-morph-analyses">${morphLabels.map(label => {
+                    const form = label.grammar || describeMorphForm(label);
+                    const subject = label.person
+                        ? `<strong>${escapeCardText(label.person)}</strong>`
+                        : '';
+                    return `<span class="front-morph-analysis">${subject}<span>${escapeCardText(form)}</span></span>`;
+                }).join('')}</span>`
+            : '';
+        frontMorphEl.style.display = showFrontMorph ? 'flex' : 'none';
     }
 
     const vocabularyRank = card.vocabularyRank || card.rank;
@@ -3816,7 +3913,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     ${renderMorphPopover()}
                 </span>`;
             });
-            backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Parts of speech">${hasBackPosTabs ? '<span class="back-pos-tab-label" role="presentation">Choose</span>' : ''}${posPills.join('')}</div>`;
+            backPosLegendHTML = `<div class="back-pos-legend${hasBackPosTabs ? ' has-tabs' : ''}"${hasBackPosTabs ? ' role="tablist"' : ''} aria-label="Filter senses by part of speech">${posPills.join('')}</div>`;
         }
     }
 
@@ -3959,13 +4056,13 @@ function updateCard({ announceHeadword = false } = {}) {
                 const mark = known ? '<span class="pos-pill-known">✓</span>' : '';
                 return `
                 <section class="meaning-pos-section pos-collapsible${open ? ' is-open' : ''}"
-                         data-pos="${pos}" style="${accent}">
+                         data-pos="${pos}" data-group-key="${escapeCardText(key.replace(/\u0000/g, '~~'))}" style="${accent}">
                     <button type="button" class="pos-section-head"
                             onclick="event.stopPropagation(); toggleBackPosSection('${key.replace(/\u0000/g, '~~')}')">
                         <span class="pos-section-label">${escapeCardText(pos)}</span>
                         ${hw}
-                        <span class="pos-section-summary">${escapeCardText(g.senses[0] || '')}</span>
-                        ${extra}${pct}${mark}
+                        <span class="pos-section-summary">${escapeCardText(g.senses[0] || '')}${extra}</span>
+                        ${pct}${mark}
                         <span class="pos-section-chevron">${open ? '\u25BE' : '\u25B8'}</span>
                     </button>
                     <div class="meaning-pos-rows">${rows.join('')}</div>
@@ -5013,6 +5110,39 @@ function updateCard({ announceHeadword = false } = {}) {
             // Cap the headword against the POS pill first: it can change the
             // header's height, which the scroll-cap measurement below reads.
             fitBackHeadword(backEl);
+
+            const scroll = backEl.querySelector('.meanings-scroll');
+            if (scroll) {
+                // Clear any prior cap so the default-open decision sees every
+                // row's natural height. Multi-POS cards initially retain the
+                // active group only; if all groups fit in the real remaining
+                // card space, promote that sparse layout to all-open.
+                scroll.style.maxHeight = '';
+                const sections = Array.from(
+                    scroll.querySelectorAll('.pos-collapsible[data-group-key]'));
+                const layoutKey = `${backEl.clientWidth}x${backEl.clientHeight}`;
+                if (sections.length > 1
+                    && !card._backSectionsManuallySet
+                    && card._backSectionsAutoLayout !== layoutKey) {
+                    const priorOpen = sections.map(section => section.classList.contains('is-open'));
+                    for (const section of sections) section.classList.add('is-open');
+                    const availableForScroll = availableHeightForMeaningScroll(backEl, scroll);
+                    if (availableForScroll > 0
+                        && scroll.scrollHeight <= availableForScroll + 1) {
+                        card._expandedPos = new Set(sections.map(section =>
+                            String(section.dataset.groupKey || '').replace(/~~/g, '\u0000')));
+                        for (const section of sections) {
+                            const chevron = section.querySelector('.pos-section-chevron');
+                            if (chevron) chevron.textContent = '\u25BE';
+                        }
+                    } else {
+                        sections.forEach((section, index) =>
+                            section.classList.toggle('is-open', priorOpen[index]));
+                    }
+                    card._backSectionsAutoLayout = layoutKey;
+                }
+            }
+
             // Two-phase: collect overflowing rows in a read-only pass, then
             // add the .is-clamped class in a separate write pass. Mixing
             // reads and writes per row would force layout flush per row;
@@ -5025,33 +5155,8 @@ function updateCard({ announceHeadword = false } = {}) {
             });
             for (const el of toClamp) el.classList.add('is-clamped');
 
-            const scroll = backEl.querySelector('.meanings-scroll');
             if (scroll) {
-                // Clear any prior cap so we can measure natural heights
-                // before deciding whether a new cap is needed.
-                scroll.style.maxHeight = '';
-                const availableHeight = backEl.clientHeight;
-                let overhead = 0;
-                let flowChildCount = 0;
-                // The conjugation panel is the only known position:absolute
-                // direct child of #backContent; skip by class to avoid one
-                // getComputedStyle call per render on verb cards. Other
-                // direct children are in flow, so we still need the call
-                // for their margin values.
-                for (const child of backEl.children) {
-                    if (child === scroll) continue;
-                    if (child.classList.contains('conjugation-panel')) continue;
-                    const cs = getComputedStyle(child);
-                    if (cs.position === 'absolute' || cs.position === 'fixed') continue;
-                    flowChildCount++;
-                    overhead += child.offsetHeight
-                        + (parseFloat(cs.marginTop) || 0)
-                        + (parseFloat(cs.marginBottom) || 0);
-                }
-                const backStyle = getComputedStyle(backEl);
-                overhead += Math.max(0, flowChildCount - 1)
-                    * (parseFloat(backStyle.rowGap || backStyle.gap) || 0);
-                const availableForScroll = availableHeight - overhead;
+                const availableForScroll = availableHeightForMeaningScroll(backEl, scroll);
                 // Cap meanings-scroll whenever its natural content overflows
                 // the remaining room. Floor the cap value (not the gate) at
                 // 60px so the scroller stays usable even when overhead is
@@ -5475,6 +5580,21 @@ function toggleMorphAlternatives(event) {
     button.classList.toggle('is-open', opening);
     const sign = button.querySelector('.morph-pop-more-sign');
     if (sign) sign.textContent = opening ? '−' : '+';
+}
+
+function toggleFrontProductionHint(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+    const button = event?.currentTarget;
+    const host = button?.closest('.front-production-hint');
+    const cloze = host?.querySelector('.front-production-cloze');
+    if (!button || !cloze) return;
+    const opening = cloze.hidden;
+    cloze.hidden = !opening;
+    button.setAttribute('aria-expanded', String(opening));
+    button.classList.toggle('is-open', opening);
+    const label = button.querySelector('.front-production-hint-label');
+    if (label) label.textContent = opening ? 'Hide hint' : 'Sentence hint';
 }
 
 // The card-wide knowledge overview can jump directly to any individual item,
@@ -6207,6 +6327,7 @@ window.selectMeaning = selectMeaning;
 window.selectPartOfSpeech = selectPartOfSpeech;
 window.toggleMorphPopover = toggleMorphPopover;
 window.toggleMorphAlternatives = toggleMorphAlternatives;
+window.toggleFrontProductionHint = toggleFrontProductionHint;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
@@ -6335,7 +6456,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816l';
+const ASSET_VERSION = '20260816m';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

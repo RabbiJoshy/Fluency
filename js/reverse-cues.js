@@ -241,3 +241,30 @@ export function englishProductionCue(card, meaningOrTranslation, conjugatedEngli
     }
     return form;
 }
+
+/**
+ * Split one real target-language sentence around an exact answer occurrence.
+ * The renderer escapes the returned text and substitutes its own blank, so
+ * this helper stays presentation-neutral and straightforward to test.
+ */
+export function splitProductionCloze(sentence, answerSurface) {
+    const text = String(sentence || '');
+    const answer = String(answerSurface || '').trim();
+    if (!text || !answer) return null;
+    const body = answer
+        .replace(/[.*+?^${}()|[\]\\]/gu, '\\$&')
+        .replace(/[’']/gu, "[’']")
+        .replace(/\s+/gu, '\\s+');
+    let match;
+    try {
+        match = text.match(new RegExp(`(?<![\\p{L}\\p{N}])(${body})(?![\\p{L}\\p{N}])`, 'iu'));
+    } catch (_) {
+        return null;
+    }
+    if (!match || match.index === undefined) return null;
+    return {
+        before: text.slice(0, match.index),
+        matched: match[0],
+        after: text.slice(match.index + match[0].length),
+    };
+}

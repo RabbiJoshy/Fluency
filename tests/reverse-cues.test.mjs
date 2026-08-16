@@ -5,6 +5,7 @@ import test from 'node:test';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
+    splitProductionCloze,
 } from '../js/reverse-cues.js';
 
 const conjugatedEnglish = {
@@ -156,4 +157,45 @@ test('English-first card renderer consumes the bounded, sense-aware cues', () =>
     assert.match(source, /selectReverseCueMeanings\(normalMeanings, \{ card \}\)/u);
     assert.match(source, /getProductionEnglishCue\(card, m\) \|\| m\.meaning/u);
     assert.doesNotMatch(source, /getConjugatedEnglish\(card, m\.meaning\)/u);
+});
+
+test('optional production cloze finds the exact answer across apostrophe styles', () => {
+    assert.deepEqual(splitProductionCloze('Esto es pa’ ti.', "pa'"), {
+        before: 'Esto es ',
+        matched: 'pa’',
+        after: ' ti.',
+    });
+    assert.deepEqual(splitProductionCloze('Lo voy   a hacer.', 'voy a'), {
+        before: 'Lo ',
+        matched: 'voy   a',
+        after: ' hacer.',
+    });
+    assert.equal(splitProductionCloze('La parada está cerca.', 'para'), null,
+        'a production blank must not consume a substring of another word');
+});
+
+test('English-first presentation keeps grammar visible and context optional', () => {
+    const source = fs.readFileSync(new URL('../js/flashcards.js', import.meta.url), 'utf8');
+    const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+    const css = fs.readFileSync(new URL('../css/style.css', import.meta.url), 'utf8');
+
+    assert.match(source, /const showFrontMorph = Boolean\(isFlipped && frontHasVerb && morphLabels\.length\)/u);
+    assert.match(source, /class="front-morph-analysis"/u);
+    assert.match(source, /foldSurfaceForm\(answerInSentence\) !== foldSurfaceForm\(activeAnswer\)/u);
+    assert.match(source, /toggleFrontProductionHint\(event\)/u);
+    assert.match(html, /<\/button>\s*<div class="front-production-hint" id="frontProductionHint" hidden><\/div>\s*<!-- POS pill/u);
+    assert.match(css, /\.front-production-cloze\[hidden\]\s*\{\s*display: none;/u);
+});
+
+test('recognition back makes sense density calmer without weakening filters', () => {
+    const source = fs.readFileSync(new URL('../js/flashcards.js', import.meta.url), 'utf8');
+    const css = fs.readFileSync(new URL('../css/style.css', import.meta.url), 'utf8');
+
+    assert.doesNotMatch(source, /back-pos-tab-label[^\n]*Choose/u);
+    assert.match(source, /aria-label="Filter senses by part of speech"/u);
+    assert.match(source, /pos-section-summary[^\n]*g\.senses\[0\][^\n]*\$\{extra\}/u,
+        'the extra-sense count belongs beside the gloss');
+    assert.match(source, /card\._backSectionsManuallySet = true/u);
+    assert.match(source, /scroll\.scrollHeight <= availableForScroll \+ 1/u);
+    assert.match(css, /\.meaning-row-group \.row-adaptive-text\s*\{\s*font-size: calc\(var\(--row-primary-size, 17px\) \+ 1px\)/u);
 });
