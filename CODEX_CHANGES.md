@@ -36,6 +36,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Open handoff notes
 
+- `backend/GoogleAppsScript.js` commit `b4fac72e` adds the `SongSets` sheet contract, but the Apps Script deployment is deliberately manual and has not been performed by Codex. Until Josh deploys that revision, per-song choices remain durable on-device and queued account writes will retry from Offline & sync.
 - The accepted pipeline, app, compact decks, assignments, and register are protected by release commit `1e6b70b6`. Large local Evidence Store ledgers and generated candidate previews remain deliberately outside Git; closing this chat does not remove those local artifacts.
 - Spanish Test Playlist, Bad Bunny, Rosalía, Young Miko, J Balvin, and Rels B now have Evidence Store ledgers. Bad Bunny, Rosalía, and Young Miko have been rebuilt into the live compact app decks; J Balvin and Rels B have deterministic inventory/POS checkpoints but still need SpanishDict cache coverage and sense work before they become configured live sources.
 - The large artist evidence directories total roughly 3 GB and Git LFS is not installed. They remain local pending an explicit artifact-storage/compression decision; do not attempt to push the raw 100+ MB J Balvin normalization shards to ordinary GitHub storage.
@@ -44,6 +45,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - `tests/ui-refinements.test.mjs` has five stale assertions against the current `HEAD` UI (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names). The cutover changed those files only for cache tags or playlist Spotify IDs, so this unrelated test debt was left out of the release rather than rewriting UI behavior here.
 
 ## Codex task history
+
+### 2026-08-16 — Select and persist Lyrics decks by song
+
+- Commit `b4fac72e`; front-end cache `flashcards-v240` / `20260816f`; GitHub issue #60.
+- Added a reproducible compact song-catalog generator that joins the surface-keyed final indexes to complete `song_ids` membership from merged evidence. Shipped catalogs cover Bad Bunny (295 songs / 10,685 linked cards), Rosalía (107 / 3,215), Young Miko (90 / 4,460), and Create your own (17 / 1,108).
+- Artist setup now opens a searchable multi-song picker. The selected union filters cards without changing IDs or global order; sampled lyric examples from unselected songs are removed while songless SpanishDict evidence remains. Spanish Test Playlist is relabelled `Create your own`.
+- Selections persist locally, are included in exact study-session snapshots, and queue one idempotent named-account record per source. Word and granular knowledge remain on their existing surface IDs and continue to share across Lyrics sources.
+- Added a version-1 `SongSets` Apps Script sheet with save/load/delete actions and capability reporting. The production script is ready in the repository, but deployment remains Josh's manual step; the app degrades safely to local persistence against the older deployment.
+- Added each song catalog to its retained offline source manifest and invalidated cache-first configuration/data. Verification: focused pipeline generator parity, five card/example/config/session/backend app regressions, extended in-memory Apps Script round trip, JavaScript syntax, catalog/index referential integrity, JSON parsing, asset-version lockstep, and whitespace validation pass. Browser preview was not used, per repository policy.
 
 ### 2026-08-16 — Import surface-keyed Spanish Speech vocabulary
 

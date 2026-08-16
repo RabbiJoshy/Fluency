@@ -3,6 +3,18 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "b4fac72e",
+      "summary": "Lyrics decks can now be built from the songs you choose",
+      "details": [
+        "Artist setup opens a searchable multi-song picker; cards use complete per-song membership and sampled lyric examples are restricted to the selected tracks while dictionary evidence remains available",
+        "The chosen songs are saved on the device, included in exact resume snapshots, and queued to the new idempotent SongSets account contract; word knowledge remains shared through the existing surface IDs",
+        "Spanish Test Playlist is now Create your own, offering its 17 mixed-artist tracks as a selectable set",
+        "Generated and validated song catalogs cover 509 tracks across the four live Spanish Lyrics sources; cache v239→v240 / assets 20260816e→20260816f",
+        "Account song-set synchronization starts after the updated Apps Script is deployed manually; local selection already works without that deployment"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "bd0fc096",
       "summary": "Signed-in learners can import Spanish vocabulary into Speech progress",
       "details": [
