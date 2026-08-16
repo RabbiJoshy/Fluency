@@ -1,6 +1,6 @@
 // Spotify OAuth PKCE + Web Playback SDK for in-browser playback.
 // Key functions: spotifyLogin(), spotifyPlayTrack(trackId, positionMs), isSpotifyConnected().
-import './state.js?v=20260815e';
+import './state.js?v=20260816a';
 
 const SPOTIFY_SCOPES = 'streaming user-modify-playback-state user-read-playback-state user-read-email user-read-private';
 const _isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -11,6 +11,7 @@ let _playerInitStarted = false;
 let _sdkPlaybackActivated = false;
 let _connectDeviceId = null;
 let _currentTrackId = null;
+let _currentTrackStartMs = null;
 let _isPlaying = false;
 let _snippetTimer = null;
 let _snippetRunId = 0;
@@ -379,6 +380,16 @@ window._spotifyTryInit = _tryInitPlayer;
 
 // --- Playback ---
 
+function _normalizedSpotifyPosition(positionMs) {
+    const value = Number(positionMs);
+    return Number.isFinite(value) && value > 0 ? Math.round(value) : 0;
+}
+
+function _isCurrentPlaybackRequest(trackId, positionMs) {
+    return _currentTrackId === trackId
+        && _currentTrackStartMs === _normalizedSpotifyPosition(positionMs);
+}
+
 async function spotifyPlayTrack(trackId, positionMs, options = {}) {
   try {
     if (!options.fromSnippet) {
@@ -388,8 +399,11 @@ async function spotifyPlayTrack(trackId, positionMs, options = {}) {
     }
     _debugLog('spotifyPlayTrack: ' + trackId + ' @' + positionMs + 'ms (' + (_isMobile ? 'mobile' : 'desktop') + ')');
 
-    // Toggle play/pause if same track
-    if (_currentTrackId === trackId && !options.forceStart) {
+    // Toggle only when this is the same example, not merely another lyric
+    // line from the same song. A different timestamp must issue a fresh play
+    // command so Spotify seeks to that example instead of continuing the
+    // already-loaded track.
+    if (_isCurrentPlaybackRequest(trackId, positionMs) && !options.forceStart) {
         if (_isPlaying) {
             if (_isMobile) {
                 const t = await getSpotifyToken();
@@ -534,6 +548,7 @@ async function _playViaConnect(trackId, positionMs, token, retry = {}) {
         if (resp.status === 204 || resp.status === 202) {
             _debugLog('Connect: playing OK');
             _currentTrackId = trackId;
+            _currentTrackStartMs = _normalizedSpotifyPosition(positionMs);
             _setPlaying(true);
             return true;
         }
@@ -620,6 +635,7 @@ async function _playViaSdk(trackId, positionMs, token) {
         if (resp.status === 204 || resp.status === 202) {
             console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms in browser`);
             _currentTrackId = trackId;
+            _currentTrackStartMs = _normalizedSpotifyPosition(positionMs);
             _setPlaying(true);
             _sdkPlaybackActivated = true;
             return true;
@@ -643,6 +659,7 @@ async function _playViaSdk(trackId, positionMs, token) {
             if (retry.status === 204 || retry.status === 202) {
                 console.log(`Spotify SDK: playing track ${trackId} at ${positionMs}ms (after refresh)`);
                 _currentTrackId = trackId;
+                _currentTrackStartMs = _normalizedSpotifyPosition(positionMs);
                 _setPlaying(true);
                 _sdkPlaybackActivated = true;
                 return true;
@@ -667,7 +684,10 @@ async function spotifyPausePlayback(clearTrack = false) {
     if (!_isPlaying) {
         // Nothing to pause, but never leave the playing ripple behind.
         _setPlayingIndicator(false);
-        if (clearTrack) _currentTrackId = null;
+        if (clearTrack) {
+            _currentTrackId = null;
+            _currentTrackStartMs = null;
+        }
         return true;
     }
     try {
@@ -686,7 +706,10 @@ async function spotifyPausePlayback(clearTrack = false) {
             return false;
         }
         _setPlaying(false);
-        if (clearTrack) _currentTrackId = null;
+        if (clearTrack) {
+            _currentTrackId = null;
+            _currentTrackStartMs = null;
+        }
         return true;
     } catch (error) {
         _debugLog('Pause failed: ' + error.message);
@@ -708,6 +731,7 @@ async function cancelSpotifySnippet(pause = true, clearTrack = true) {
         await spotifyPausePlayback(clearTrack);
     } else if (clearTrack) {
         _currentTrackId = null;
+        _currentTrackStartMs = null;
         _setPlaying(false);
     }
 }
@@ -717,6 +741,7 @@ async function _resumeCurrentSdkTrackAt(positionMs) {
     try {
         await _player.seek(positionMs);
         await _player.resume();
+        _currentTrackStartMs = _normalizedSpotifyPosition(positionMs);
         _setPlaying(true);
         _debugLog('SDK: reused current track @' + positionMs + 'ms');
         return true;
