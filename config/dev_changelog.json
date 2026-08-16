@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "d0dbda26",
+      "summary": "The app now has a designed light appearance",
+      "details": [
+        "Account settings now offers Dark, Light and System appearance choices; the device-persistent choice applies before the first paint and System follows live OS changes",
+        "Light appearance uses warm paper surfaces, dark ink, quieter shadows and deeper semantic status colours rather than an inversion; language and artist accents remain intact",
+        "Cards, setup, modals, authentication, artist artwork, radial pickers, inputs, progress controls, audit sheets and offline surfaces all receive dedicated light treatment",
+        "Four focused theme/persistence/contrast tests and relevant UI/offline-policy checks pass; cache v240→v241 / assets 20260816f→20260816g"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "b4fac72e",
       "summary": "Lyrics decks can now be built from the songs you choose",
       "details": [
