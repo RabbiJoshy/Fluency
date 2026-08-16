@@ -64,9 +64,13 @@ test('light appearance is a semantic palette rather than an inversion', async ()
     assert.match(css, /:root\[data-theme="light"\] \.study-radial-picker/);
     assert.match(css, /:root\[data-theme="light"\] \.meaning-pos-section \.meaning-row/);
     assert.match(css, /:root\[data-theme="light"\] \.pos-noun/);
+    assert.match(css, /:root\[data-theme="light"\] \.setup-step/);
+    assert.match(css, /:root\[data-theme="light"\] \.study-set-dot/);
     assert.match(ui, /const onLightAccent = '#17212b'/);
 
     const card = variable('bg-card');
+    assert.equal(variable('bg-primary'), '#eef2f5', 'light canvas should use a cool daylight neutral');
+    assert.equal(card, '#ffffff', 'primary working surfaces should remain crisp white');
     for (const name of ['text-primary', 'text-secondary', 'text-muted', 'success', 'error', 'warning']) {
         assert.ok(contrast(variable(name), card) >= 4.5, `${name} must meet WCAG AA on cards`);
     }
@@ -135,7 +139,7 @@ test('theme module persists choices, follows the system, and synchronizes contro
         assert.equal(saved.get(theme.THEME_STORAGE_KEY), 'light');
         assert.equal(documentElement.dataset.theme, 'light');
         assert.equal(documentElement.style.colorScheme, 'light');
-        assert.equal(meta.content, '#f5f2ec');
+        assert.equal(meta.content, '#eef2f5');
         assert.equal(buttons[1].attributes['aria-checked'], 'true');
 
         buttons[2].listeners.click();

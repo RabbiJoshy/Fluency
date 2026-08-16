@@ -10,11 +10,12 @@
 :root[data-theme="light"] {
     color-scheme: light;
 
-    --bg-primary: #f5f2ec;
-    --bg-secondary: #ece8df;
-    --bg-tertiary: #e4ded4;
-    --bg-card: #fffdf9;
-    --bg-card-hover: #f7f1e8;
+    /* Cool daylight neutrals keep the industrial Fluency grammar crisp. */
+    --bg-primary: #eef2f5;
+    --bg-secondary: #f6f8fa;
+    --bg-tertiary: #e6ebef;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f8;
 
     --text-primary: #17212b;
     --text-secondary: #354353;
@@ -31,8 +32,8 @@
     --error: #bd3847;
     --warning: #946000;
 
-    --border-color: #d7d0c5;
-    --border-light: #c4bbae;
+    --border-color: #d7dfe6;
+    --border-light: #c1ccd6;
 
     --glow-orange: rgba(200, 79, 36, 0.18);
     --glow-blue: rgba(23, 105, 170, 0.17);
@@ -42,8 +43,9 @@
 :root[data-theme="light"] body {
     background-color: var(--bg-primary);
     background-image:
-        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.82) 0%, transparent 52%),
-        radial-gradient(ellipse at bottom right, rgba(var(--accent-primary-rgb, 200, 16, 46), 0.055) 0%, transparent 42%);
+        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.96) 0%, transparent 48%),
+        radial-gradient(ellipse at bottom right, rgba(var(--accent-primary-rgb, 200, 16, 46), 0.045) 0%, transparent 40%),
+        linear-gradient(180deg, #f7f9fb 0%, #eef2f5 58%, #e9eef2 100%);
 }
 
 :root[data-theme="light"] .header {
@@ -51,16 +53,16 @@
 }
 
 :root[data-theme="light"] .card-face {
-    box-shadow: 0 15px 42px rgba(69, 55, 37, 0.13), 0 1px 2px rgba(69, 55, 37, 0.08);
+    box-shadow: 0 18px 48px rgba(27, 39, 51, 0.14), 0 2px 6px rgba(27, 39, 51, 0.08);
 }
 
 :root[data-theme="light"] .modal {
-    background: rgba(39, 34, 29, 0.42);
+    background: rgba(23, 31, 39, 0.38);
 }
 
 :root[data-theme="light"] .modal-content,
 :root[data-theme="light"] .settings-modal-content > .settings-tabs-header {
-    box-shadow: 0 22px 60px rgba(55, 45, 33, 0.18);
+    box-shadow: 0 24px 64px rgba(27, 39, 51, 0.18);
 }
 
 :root[data-theme="light"] .settings-modal-content > .settings-tabs-header {
@@ -69,7 +71,51 @@
 
 :root[data-theme="light"] .appearance-settings-card {
     border-color: var(--border-color);
-    background: var(--bg-secondary);
+    background: #f2f6f8;
+}
+
+/* Keep Fluency's existing rounded-panel grammar, but make the hierarchy read
+   naturally in daylight: a cool canvas, white working surfaces, and quiet
+   blue-grey depth instead of a page full of equally pale boxes. */
+:root[data-theme="light"] .setup-step,
+:root[data-theme="light"] .personal-coverage-wrapper,
+:root[data-theme="light"] .offline-panel {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 1px 2px rgba(27, 39, 51, 0.035), 0 8px 24px rgba(27, 39, 51, 0.045);
+}
+
+:root[data-theme="light"] .study-set-panel,
+:root[data-theme="light"] .settings-defaults-card,
+:root[data-theme="light"] .total-progress-grid .stat-row,
+:root[data-theme="light"] .level-suggestion-toggle {
+    background: #f3f6f8;
+}
+
+:root[data-theme="light"] .settings-default-row {
+    border-top-color: var(--border-color);
+}
+
+:root[data-theme="light"] .resume-set-button {
+    box-shadow: 0 8px 22px rgba(27, 39, 51, 0.1);
+}
+
+:root[data-theme="light"] .level-suggestion-toggle:hover {
+    background: var(--bg-card-hover);
+}
+
+:root[data-theme="light"] .study-set-legend i {
+    background: #dce4ea;
+    box-shadow: inset 0 0 0 1px rgba(27, 39, 51, 0.08);
+}
+
+:root[data-theme="light"] .study-set-dot {
+    background: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--success) 58%, var(--bg-card)) 0 var(--set-known-end),
+        color-mix(in srgb, var(--warning) 66%, var(--bg-card)) var(--set-known-end) var(--set-review-end),
+        #e3e9ee var(--set-review-end) 100%
+    );
 }
 
 :root[data-theme="light"] .appearance-selector .theme-preference-btn:hover:not(.selected) {
@@ -128,7 +174,7 @@
 :root[data-theme="light"] .deck-ghost-next {
     border-color: var(--border-color);
     filter: none;
-    box-shadow: 0 8px 24px rgba(69, 55, 37, 0.08);
+    box-shadow: 0 8px 24px rgba(27, 39, 51, 0.09);
 }
 
 :root[data-theme="light"] .deck-ghost-prev-2,
@@ -141,8 +187,8 @@
    glass island. */
 :root[data-theme="light"] .kb-content {
     border-color: var(--border-color);
-    background: rgba(255, 253, 249, 0.8);
-    box-shadow: 0 8px 28px rgba(55, 45, 33, 0.14);
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 8px 28px rgba(27, 39, 51, 0.14);
 }
 
 :root[data-theme="light"] .kb-section + .kb-section::before {
@@ -152,9 +198,9 @@
 :root[data-theme="light"] .kb-key,
 :root[data-theme="light"] .kb-info-btn {
     border-color: var(--border-light);
-    background: linear-gradient(180deg, #fffdf9 0%, #ebe6dc 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #e9eef2 100%);
     color: var(--text-primary);
-    box-shadow: 0 1px 0 rgba(69, 55, 37, 0.15), inset 0 1px 0 #fff;
+    box-shadow: 0 1px 0 rgba(27, 39, 51, 0.16), inset 0 1px 0 #fff;
 }
 
 :root[data-theme="light"] .kb-label,
@@ -171,7 +217,7 @@
 /* Metadata and audit sheets use the same light modal grammar as Settings. */
 :root[data-theme="light"] .card-meta-popover,
 :root[data-theme="light"] .flag-menu {
-    background: rgba(58, 50, 41, 0.38);
+    background: rgba(23, 31, 39, 0.38);
     color: var(--text-secondary);
 }
 
@@ -179,7 +225,7 @@
 :root[data-theme="light"] .flag-menu .card-meta-modal-content {
     border-color: var(--border-color);
     background: var(--bg-card);
-    box-shadow: 0 22px 60px rgba(55, 45, 33, 0.2);
+    box-shadow: 0 24px 64px rgba(27, 39, 51, 0.2);
 }
 
 :root[data-theme="light"] .card-meta-header,
@@ -239,7 +285,7 @@
 }
 
 :root[data-theme="light"] .range-btn-new:not(.has-progress):not(:hover) {
-    background-color: rgba(255, 253, 249, 0.72);
+    background-color: rgba(255, 255, 255, 0.78);
 }
 
 /* Card content had several dark-only literal surfaces because the original
@@ -334,7 +380,7 @@
 :root[data-theme="light"] .phrase-example {
     border-color: var(--border-color);
     border-left-color: #087b70;
-    background: #f1ece3;
+    background: #f2f6f8;
 }
 
 :root[data-theme="light"] .wild-row {
@@ -390,14 +436,14 @@
 
 :root[data-theme="light"] .morph-popover {
     background: var(--bg-card);
-    box-shadow: 0 10px 28px rgba(55, 45, 33, 0.18);
+    box-shadow: 0 10px 28px rgba(27, 39, 51, 0.16);
 }
 
 :root[data-theme="light"] .sentence,
 :root[data-theme="light"] .sentence.example-is-matched {
     border-color: var(--border-color);
     border-left-color: rgb(var(--sense-match-rgb));
-    background: #f1ece3;
+    background: #f2f6f8;
     color: var(--text-primary);
 }
 
@@ -444,13 +490,13 @@
     border-color: var(--border-color);
     background: var(--bg-secondary);
     color: var(--text-primary);
-    box-shadow: 0 6px 18px rgba(55, 45, 33, 0.16);
+    box-shadow: 0 6px 18px rgba(27, 39, 51, 0.13);
 }
 
 :root[data-theme="light"] .card-control-btn:hover {
     border-color: var(--border-light);
     background: var(--bg-tertiary);
-    box-shadow: 0 4px 12px rgba(55, 45, 33, 0.12);
+    box-shadow: 0 4px 12px rgba(27, 39, 51, 0.1);
 }
 
 :root[data-theme="light"] .control-action-btn {
@@ -462,7 +508,7 @@
 :root[data-theme="light"] .control-action-btn:hover {
     border-color: var(--border-light);
     background: var(--bg-tertiary);
-    box-shadow: 0 4px 12px rgba(55, 45, 33, 0.12);
+    box-shadow: 0 4px 12px rgba(27, 39, 51, 0.1);
 }
 
 :root[data-theme="light"] .control-action-btn:active {
@@ -477,7 +523,7 @@
     border-color: var(--border-color);
     background: var(--bg-card);
     color: var(--text-secondary);
-    box-shadow: 0 8px 24px rgba(55, 45, 33, 0.16);
+    box-shadow: 0 8px 24px rgba(27, 39, 51, 0.14);
 }
 
 /* Light POS colours use the same semantic hue families with darker ink and a
@@ -506,23 +552,23 @@
 :root[data-theme="light"] .pos-other { background: rgba(148, 163, 184, 0.13); border-color: rgba(82, 97, 112, 0.34); color: #526170; }
 
 :root[data-theme="light"] .pos-info-overlay {
-    background: rgba(58, 50, 41, 0.38);
+    background: rgba(23, 31, 39, 0.38);
 }
 
 :root[data-theme="light"] .resume-entry-modal,
 :root[data-theme="light"] .knowledge-overview-modal,
 :root[data-theme="light"] .step-info-tooltip {
-    background: rgba(58, 50, 41, 0.38);
+    background: rgba(23, 31, 39, 0.38);
 }
 
 :root[data-theme="light"] .step-info-tooltip-inner {
-    box-shadow: 0 18px 50px rgba(55, 45, 33, 0.2);
+    box-shadow: 0 18px 50px rgba(27, 39, 51, 0.18);
 }
 
 :root[data-theme="light"] .spotify-autoplay-popover {
     border-color: var(--border-color);
     background: var(--bg-card);
-    box-shadow: 0 10px 26px rgba(55, 45, 33, 0.18);
+    box-shadow: 0 10px 26px rgba(27, 39, 51, 0.16);
 }
 
 :root[data-theme="light"] .spotify-autoplay-popover-text,
@@ -550,7 +596,7 @@
 :root[data-theme="light"] .pos-info-popover {
     border-color: var(--border-color);
     background: var(--bg-card);
-    box-shadow: 0 18px 50px rgba(55, 45, 33, 0.2);
+    box-shadow: 0 18px 50px rgba(27, 39, 51, 0.18);
 }
 
 :root[data-theme="light"] .pos-info-close:hover,
@@ -571,7 +617,7 @@
 :root[data-theme="light"] .direction-popover {
     border-color: var(--border-color);
     background: var(--bg-card);
-    box-shadow: 0 10px 26px rgba(55, 45, 33, 0.18);
+    box-shadow: 0 10px 26px rgba(27, 39, 51, 0.16);
 }
 
 :root[data-theme="light"] .direction-popover-text,
@@ -626,14 +672,14 @@
     color: var(--text-muted);
 }
 
-/* Album art remains atmospheric. A warm paper scrim keeps the card genuinely
-   light while leaving enough image to identify the artist and release. */
+/* Album art remains atmospheric. A cool translucent scrim keeps the card
+   genuinely light while leaving enough image to identify the release. */
 :root[data-theme="light"] body.artist-mode .card-face::after {
-    background: rgba(255, 253, 249, 0.9);
+    background: rgba(250, 252, 253, 0.91);
 }
 
 :root[data-theme="light"] body.artist-mode .card-face {
-    box-shadow: 0 16px 44px rgba(45, 37, 29, 0.18), 0 1px 2px rgba(45, 37, 29, 0.1);
+    box-shadow: 0 16px 44px rgba(27, 39, 51, 0.16), 0 1px 2px rgba(27, 39, 51, 0.08);
 }
 
 /* Artwork thumbnails and branded Spotify controls still sit directly on
@@ -646,31 +692,31 @@
 }
 
 :root[data-theme="light"] .artist-source-image {
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.46), 0 3px 12px rgba(45, 37, 29, 0.16);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.46), 0 3px 12px rgba(27, 39, 51, 0.15);
 }
 
 /* Full-screen pickers keep a readable sense of depth without turning into a
    dark-mode island. Their picture labels retain an on-image shadow. */
 :root[data-theme="light"] .artist-radial-overlay {
-    background: rgba(58, 50, 41, 0.32);
+    background: rgba(23, 31, 39, 0.32);
 }
 
 :root[data-theme="light"] .artist-radial-hub {
-    box-shadow: 0 8px 24px rgba(45, 37, 29, 0.18);
+    box-shadow: 0 8px 24px rgba(27, 39, 51, 0.16);
 }
 
 :root[data-theme="light"] .artist-radial-disc {
-    box-shadow: 0 7px 18px rgba(45, 37, 29, 0.22);
+    box-shadow: 0 7px 18px rgba(27, 39, 51, 0.2);
 }
 
 :root[data-theme="light"] .study-radial-picker {
-    background: rgba(245, 242, 236, 0.82);
+    background: rgba(238, 242, 245, 0.86);
 }
 
 :root[data-theme="light"] .study-radial-picker .artist-radial-hub {
     background: color-mix(in srgb, var(--bg-card) 94%, transparent);
     border-color: var(--border-color);
-    box-shadow: 0 10px 30px rgba(45, 37, 29, 0.17);
+    box-shadow: 0 10px 30px rgba(27, 39, 51, 0.15);
 }
 
 :root[data-theme="light"] .study-radial-picker .artist-radial-disc,
@@ -690,18 +736,18 @@
 :root[data-theme="light"] #authModal {
     background:
         radial-gradient(circle at 50% 10%, rgba(var(--accent-primary-rgb), 0.11), transparent 38%),
-        rgba(245, 242, 236, 0.91);
+        rgba(238, 242, 245, 0.94);
 }
 
 :root[data-theme="light"] .auth-modal-content {
     background:
         linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.055), transparent 44%),
         var(--bg-card);
-    box-shadow: 0 26px 70px rgba(55, 45, 33, 0.19);
+    box-shadow: 0 26px 70px rgba(27, 39, 51, 0.18);
 }
 
 :root[data-theme="light"] .auth-modal-content .auth-btn {
-    background: rgba(23, 33, 43, 0.025);
+    background: #f3f6f8;
 }
 
 /* Native fields and dynamically-created inputs should agree with the light
@@ -731,5 +777,5 @@
 :root[data-theme="light"] .flag-toast {
     border-color: rgba(255, 255, 255, 0.2);
     color: #fff;
-    box-shadow: 0 10px 30px rgba(45, 37, 29, 0.24);
+    box-shadow: 0 10px 30px rgba(23, 31, 39, 0.22);
 }

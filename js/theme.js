@@ -50,7 +50,7 @@ export function applyThemePreference(preference, { persist = false, announce = t
         root.dataset.theme = resolved;
         root.style.colorScheme = resolved;
         const meta = browserDocument.querySelector('meta[name="theme-color"]');
-        if (meta) meta.content = resolved === 'light' ? '#f5f2ec' : '#0a0e14';
+        if (meta) meta.content = resolved === 'light' ? '#eef2f5' : '#0a0e14';
         updateThemeControls(normalized);
 
         if (announce) {
