@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "1a2d53e3",
+      "summary": "Cards now explain SpanishDict usage notes instead of hiding them",
+      "details": [
+        "Sense rows separate the ordinary definition context from a compact SpanishDict cue such as + con, often + a, or + por + infinitive",
+        "When the active example literally contains a named companion, that occurrence receives its own possible-match highlight and an explicit warning that grammatical attachment has not been verified",
+        "The parser covers every one of the 5,855 usage-note occurrences in the current SpanishDict menu, including alternatives, grammar complements and often/frequently wording",
+        "Four focused parser/rendering regressions plus relevant surface, theme, syntax and asset-version checks pass; cache v243→v244 / assets 20260816i→20260816j"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "bf0148c2",
       "summary": "Light appearance now keeps text and controls clearly visible",
       "details": [
