@@ -108,6 +108,24 @@ def has_target(word, sent):
     return w in set(re.findall(r"[a-z0-9áéíóúüñ']+", s))
 
 
+def render_query(word, sent, mode):
+    """The query text handed to the embedder.
+
+    'plain' is what ships: the bare sentence, which is IDENTICAL for every target
+    word in it. A sentence carrying three menu words produces one vector serving
+    all three disambiguations — the model is never told which token it is being
+    asked about. The marked variants name the target so the vector can be about
+    the word rather than about the topic.
+    """
+    if mode == "plain":
+        return sent
+    if mode == "mark_prefix":
+        return f'"{word}" en: {sent}'
+    if mode == "mark_suffix":
+        return f'{sent} — "{word}"'
+    raise ValueError(mode)
+
+
 def load_menus():
     raw = json.loads((LAYERS / "sense_menu/spanishdict.json").read_text(encoding="utf-8"))
     return {w: {s: v for e in entries for s, v in e.get("senses", {}).items()}
@@ -129,6 +147,13 @@ def build_gold(menus):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--query", default="plain",
+                    choices=["plain", "mark_prefix", "mark_suffix"],
+                    help="how the sentence is rendered before embedding")
+    ap.add_argument("--target-present-only", action="store_true",
+                    help="restrict gold to sentences containing the lookup form")
+    ap.add_argument("--allow-embed", action="store_true",
+                    help="embed any query strings not already cached")
     ap.add_argument("--reflexive-gate", default="off",
                     choices=["off", "permissive", "se-only", "oracle"],
                     help="prune the wrong half of an X/Xse pair before argmax")
@@ -140,7 +165,10 @@ def main():
 
     menus = load_menus()
     gold = build_gold(menus)
-    print(f"menus {len(menus):,}  gold items {len(gold):,}", flush=True)
+    if args.target_present_only:
+        gold = {k: v for k, v in gold.items() if has_target(k[0], k[1])}
+    qtext = {k: render_query(k[0], k[1], args.query) for k in gold}
+    print(f"menus {len(menus):,}  gold items {len(gold):,}  query={args.query}", flush=True)
 
     idx = json.loads((CACHE / "vec_index.json").read_text())
     M = np.load(CACHE / "vec.npy", mmap_mode="r")
@@ -160,14 +188,22 @@ def main():
 
     # ---- everything we need a vector for
     need = set()
-    for (w, sent) in gold:
-        need.add(sent)
+    for k in gold:
+        need.add(qtext[k])
     for w, sids in pool.items():
         for s in sids:
             need.add(gloss(w, menus[w][s]))
     missing = [t for t in need if t not in idx]
+    if missing and args.allow_embed:
+        sys.path.insert(0, str(REPO / "pipeline"))
+        from step_6d_assign_senses_embeddings import embed as _embed
+        print(f"embedding {len(missing):,} new query strings", flush=True)
+        _embed(missing)
+        idx = json.loads((CACHE / "vec_index.json").read_text())
+        M = np.load(CACHE / "vec.npy", mmap_mode="r")
+        missing = [t for t in need if t not in idx]
     if missing:
-        print(f"MISSING {len(missing):,} vectors — run embed_gold_sents.py first")
+        print(f"MISSING {len(missing):,} vectors — pass --allow-embed")
         print("  e.g. " + repr(missing[0])[:120])
         sys.exit(1)
 
@@ -175,10 +211,11 @@ def main():
     # sentences, but never from the word's own pool, and identical for all words)
     sents_in_order = []
     seen = set()
-    for (w, sent) in gold:
-        if sent not in seen:
-            seen.add(sent)
-            sents_in_order.append(sent)
+    for k in gold:
+        t = qtext[k]
+        if t not in seen:
+            seen.add(t)
+            sents_in_order.append(t)
     rng = np.random.default_rng(0)
     bg_texts = (sents_in_order if len(sents_in_order) <= BG_N else
                 [sents_in_order[i] for i in rng.choice(len(sents_in_order), BG_N, False)])
@@ -186,15 +223,15 @@ def main():
 
     # ---- group gold by word
     by_word = collections.defaultdict(list)
-    for (w, sent), gsids in gold.items():
-        by_word[w].append((sent, gsids))
+    for k, gsids in gold.items():
+        by_word[k[0]].append((k[1], gsids, qtext[k]))
 
     rows = []          # one per gold item
     for w, items in by_word.items():
         sids = pool[w]
         m = menus[w]
         S = np.asarray(M[[idx[gloss(w, m[s])] for s in sids]], np.float32)
-        Q = np.asarray(M[[idx[sent] for sent, _ in items]], np.float32)
+        Q = np.asarray(M[[idx[q] for _, _, q in items]], np.float32)
         hub = np.sort(BG @ S.T, axis=0)[-min(BG_K, BG.shape[0]):].mean(0)
         C = Q @ S.T - hub[None, :]
 
@@ -220,7 +257,7 @@ def main():
         lems = {tup(w, m[s])[0] for s in sids}
         refl_ambiguous = any(L + "se" in lems for L in lems)
 
-        for j, (sent, gsids) in enumerate(items):
+        for j, (sent, gsids, _q) in enumerate(items):
             row = C[j]
             gold_tups = {tup(w, m[s]) for s in gsids}
 
