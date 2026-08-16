@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "bd0fc096",
+      "summary": "Signed-in learners can import Spanish vocabulary into Speech progress",
+      "details": [
+        "Account settings now accepts exact surface forms from pasted text or UTF-8 CSV/TSV, with an explicit preview before any progress changes",
+        "Optional lemma is accepted but never used for identity; optional correct/incorrect dates preserve real Known, Review and Due state while unmatched, ambiguous, invalid and future-dated rows are skipped visibly",
+        "Imports use the shipped es0 plus eight-hex card IDs, preserve newer existing answers, collapse duplicates, and queue idempotent 50-row bulk updates without an Apps Script deployment",
+        "Seven focused importer tests and the existing schema-v4 backend round trip pass; cache v238→v239 / assets 20260816d→20260816e"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "616c1b01",
       "summary": "Verb cards now include the -ra imperfect subjunctive",
       "details": [

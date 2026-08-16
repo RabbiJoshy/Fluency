@@ -45,6 +45,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-16 — Import surface-keyed Spanish Speech vocabulary
+
+- Commit `bd0fc096`; front-end cache `flashcards-v239` / `20260816e`; GitHub issue #59.
+- Added a named-account importer under Account settings with paste/file input, exact preview, skipped-row evidence, projected Known/Review/Due state, and explicit confirmation. It accepts one surface per line or UTF-8 CSV/TSV with `surface`/`word` plus optional lemma and last-correct/last-incorrect fields.
+- Matches only the shipped Spanish Speech index after trim, NFC, and Spanish lowercase. Accents and punctuation remain identity-bearing, lemma is never a fallback, unmatched rows are never hashed, and every imported ID is explicitly `es0` plus the index's authoritative eight-hex ID even when opened from Lyrics.
+- Historical dates remain truthful: undated rows receive a correct event at confirmation, a newer imported mistake remains Review, invalid/future dates are skipped, and newer existing progress, cumulative counts, and review stages never regress. Duplicate input and re-import are idempotent.
+- Reused the deployed schema-v4 `bulkSave` path in 50-row chunks, with the account on every row and pending bulk rows included in the local overlay. Production Apps Script did not change and needs no deployment.
+- Verification: seven focused parser/identity/date/merge/batch/UI/queue regressions; the existing in-memory Apps Script migration and round-trip suite extended with bulk insert/update/idempotency; all 9,338 shipped Spanish Speech surfaces are unique with valid eight-hex IDs; JavaScript syntax, asset/cache lockstep, JSON parsing, and whitespace validation pass. Browser preview was not used, per repository policy.
+
 ### 2026-08-16 — Activate imperfect-subjunctive conjugation data
 
 - Generator commit `d6b00155`; generated-data/cache commit `616c1b01`; front-end cache `flashcards-v238` / `20260816d`; GitHub issue #57.
