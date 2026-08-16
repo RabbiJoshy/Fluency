@@ -7,8 +7,13 @@ back on, keyed by sense_id, changing nothing else — card ids, examples,
 frequencies and every other field are untouched.
 
 Adds to each meaning that has an embedding assignment:
-    confidence      max class gap over the examples assigned to this sense
-    band            high / medium / low, absolute cuts from the labelled panel
+    confidence      max TUPLE gap over the examples assigned to this sense —
+                    confidence in the (headword, POS), which is where learner
+                    knowledge is recorded. Was the class gap until 2026-08-16;
+                    that key omitted the headword and so returned maximum
+                    confidence on undecided hacer/hacerse calls.
+    band            high / medium / low, absolute cuts measured on 16,016
+                    dictionary-gold sentences (99% / 95% accuracy)
     method          the assigning method id
 
 Usage:
@@ -25,7 +30,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 LAYERS = REPO / "Data/Spanish/layers"
 METHOD = "spanishdict-embed-v1"
-HIGH_CUT, MEDIUM_CUT = 0.035, 0.021
+HIGH_CUT, MEDIUM_CUT = 0.043, 0.020
 
 
 def band(gap):

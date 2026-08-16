@@ -6,8 +6,10 @@ Data/Spanish/Intermediates/wsd_sense_harness/README.md:
 
   * sense vector from the English gloss: '"word" (POS): translation — context'
   * the sentence embedded once; nearest sense by cosine
-  * confidence is the gap between the top two MEANINGS, not the top two leaves,
-    so a near-tie between synonymous leaves is not read as uncertainty
+  * confidence is the gap between the top two (headword, POS) TUPLES — the
+    level learner knowledge is recorded at. A near-tie between synonymous
+    leaves is not read as uncertainty, and neither is the hacer/hacerse
+    distinction read as certainty just because both glosses say "to make"
   * a per-sense hubness offset, measured OFFLINE against a fixed background
     sample, is subtracted first. Some senses sit near everything and win by
     default; the gap cannot see that because it only compares scores within one
@@ -16,20 +18,24 @@ Data/Spanish/Intermediates/wsd_sense_harness/README.md:
     realistic Zipfian one, so the background sample is fixed and shared.
 
 Every example is assigned; none are dropped. Each carries its confidence and a
-band read off the harness panel, so a low-confidence assignment is visible in the
-app rather than silently equal to a high-confidence one.
+band, so a low-confidence assignment is visible in the app rather than silently
+equal to a high-confidence one. Both gaps are written: `confidence` is the tuple
+gap (which lemma+POS) and `class_confidence` the older class gap (which gloss).
 
-    high    gap >= 0.035   panel measured 100.0% acceptable at this cut
-    medium  gap >= 0.021   panel measured  91.9% acceptable
-    low     below          panel measured  84.5% overall; assigned anyway so no
-                           card is starved
+    high    gap >= 0.043   measured 99% lemma+POS accurate at this cut
+    medium  gap >= 0.020   measured 95% lemma+POS accurate
+    low     below          82% overall; assigned anyway so no card is starved
 
-The cuts are ABSOLUTE values transferred from the hand-labelled panel
-(Data/Spanish/Intermediates/wsd_sense_harness), not quantiles of the current run.
-Cutting on a run's own quantiles makes "high" mean "top 10% of whatever this run
-happened to contain", which is circular and hides exactly the thing worth seeing:
-subtitle sentences score lower than dictionary examples, so a faithful banding
-returns fewer highs here than on the panel.
+The cuts are ABSOLUTE values derived from 16,016 dictionary-gold sentences that
+contain the target form (the production-shaped slice), not quantiles of the
+current run. They replace cuts transferred from the 150-sentence hand-labelled
+panel, which were calibrated on leaf-level acceptability and on a confidence
+signal that could not see the lemma distinction at all.
+
+Cutting on a run's own quantiles instead would make "high" mean "top 10% of
+whatever this run happened to contain", which is circular and hides exactly the
+thing worth seeing: subtitle sentences score lower than dictionary examples, so a
+faithful banding returns fewer highs on real text than on gold.
 
 Usage:
     python3 pipeline/step_6d_assign_senses_embeddings.py [--dry-run]
@@ -57,10 +63,12 @@ from util_6a_assignment_format import stamp_example_ids  # noqa: E402
 LAYERS = REPO / "Data/Spanish/layers"
 CACHE = LAYERS / "sense_vectors"
 METHOD = "spanishdict-embed-v1"
-PROMPT_ID = "embed-gloss-classgap-hub-v1"
+# bumped 2026-08-16: same picks, but `confidence` now means the tuple gap, so
+# claims either side of this id are not comparable on confidence
+PROMPT_ID = "embed-gloss-tuplegap-hub-v1"
 BG_N, BG_K = 1200, 40
-# absolute, transferred from the labelled panel — see the module docstring
-HIGH_CUT, MEDIUM_CUT = 0.035, 0.021
+# absolute, measured on dictionary gold — see the module docstring
+HIGH_CUT, MEDIUM_CUT = 0.043, 0.020
 
 
 def load_key():
@@ -198,24 +206,50 @@ def main():
         hub = np.sort(BG @ S.T, axis=0)[-min(BG_K, BG.shape[0]):].mean(0)
         C = Q @ S.T - hub[None, :]
 
-        cls, cid = {}, []
+        # Confidence is the gap between the top two (headword, POS) TUPLES.
+        # Until 2026-08-16 it was measured between (POS, translation) classes,
+        # a key with no headword in it — so leaves of `hacer` and `hacerse`
+        # sharing a translation collapsed into ONE bucket and the gap skipped
+        # past the real contest to some unrelated third meaning. That returned
+        # maximum confidence on a coin flip: `olvide` in "Me olvidé que era
+        # nuestro aniversario" scored 1.0000 (all five leaves read "to forget",
+        # so there was only one class) while the actual olvidar/olvidarse
+        # decision was a dead tie.
+        #
+        # Measured over 84,174 dictionary-gold sentences, yield at 99% lemma+POS
+        # accuracy goes from 6 items to 13,224 (15.7%). The PICK is untouched:
+        # argmax over per-tuple maxima is always the tuple holding the global
+        # argmax leaf, so this reorders confidence without changing a single
+        # assignment. Both gaps are emitted; the class gap is still the right
+        # signal for "which gloss", it is just the wrong one for "which lemma".
+        # See Data/Spanish/Intermediates/wsd_sense_harness/README.md section 4.
+        cls, cid, tls, tid = {}, [], {}, []
         for s in sids:
             m = menus[w][s]
             cid.append(cls.setdefault(
                 (m.get("pos", ""), norm_tr(m.get("translation"))), len(cls)))
-        cid = np.array(cid)
-        n_cls = int(cid.max()) + 1
-        if n_cls == 1:
+            tid.append(tls.setdefault(
+                ((m.get("headword") or w).strip().lower(),
+                 (m.get("pos") or "").strip()), len(tls)))
+        cid, tid = np.array(cid), np.array(tid)
+        n_cls, n_tup = len(cls), len(tls)
+        if n_tup == 1:
             singles += 1
 
         picks = []
         for j in range(len(examples[w])):
             row = C[j]
-            best = np.full(n_cls, -np.inf)
-            np.maximum.at(best, cid, row)
-            o = np.argsort(-best)
-            gap = float(best[o[0]] - best[o[1]]) if n_cls > 1 else 1.0
-            picks.append((sids[int(np.argmax(row))], gap))
+            k = int(np.argmax(row))
+            # signed against the pick, so the two gaps stay comparable
+            tbest = np.full(n_tup, -np.inf)
+            np.maximum.at(tbest, tid, row)
+            gap = (float(tbest[tid[k]] - np.delete(tbest, tid[k]).max())
+                   if n_tup > 1 else 1.0)
+            cbest = np.full(n_cls, -np.inf)
+            np.maximum.at(cbest, cid, row)
+            cgap = (float(cbest[cid[k]] - np.delete(cbest, cid[k]).max())
+                    if n_cls > 1 else 1.0)
+            picks.append((sids[k], gap, cgap))
             gaps.append(gap)
         per_word[w] = picks
 
@@ -227,11 +261,12 @@ def main():
 
     for w, picks in per_word.items():
         by_sense = {}
-        for j, (sid, gap) in enumerate(picks):
+        for j, (sid, gap, cgap) in enumerate(picks):
             band = "high" if gap >= hi_cut else "medium" if gap >= md_cut else "low"
             bands[band] += 1
             e = by_sense.setdefault(sid, {"sense": sid, "examples": [],
                                           "confidence": [], "band": [],
+                                          "class_confidence": [],
                                           "method": METHOD,
                                           "prompt_id": PROMPT_ID,
                                           "run_ts": dt.datetime.now(
@@ -239,6 +274,7 @@ def main():
                                               "%Y-%m-%dT%H:%MZ")})
             e["examples"].append(j)
             e["confidence"].append(round(gap, 4))
+            e["class_confidence"].append(round(cgap, 4))
             e["band"].append(band)
         out[w] = {METHOD: list(by_sense.values())}
 
@@ -254,7 +290,7 @@ def main():
     print(f"\nassigned {n:,} examples across {len(out)} words")
     print(f"  stable example IDs stamped: {stamped:,} of {n:,}")
     print(f"  senses used: {len({(w, i['sense']) for w, m in out.items() for i in m[METHOD]}):,}")
-    print(f"  words whose menu collapses to one meaning: {singles}")
+    print(f"  words whose menu collapses to one lemma+POS: {singles}")
     for b in ("high", "medium", "low"):
         print(f"  {b:<7} {bands[b]:>5} ({bands[b]/n:.0%})")
 
