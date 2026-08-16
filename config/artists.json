@@ -5,6 +5,7 @@
     "masterPath": "Artists/spanish/vocabulary_master.json",
     "indexPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
     "examplesPath": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
+    "songsPath": "Artists/spanish/Bad Bunny/BadBunnysongs.json",
     "albumsDictionary": "Artists/spanish/Bad Bunny/bad_bunny_albums_dictionary.json",
     "albumImageMap": {
       "X 100PRE (2018)": "Artists/spanish/Bad Bunny/Images/X100PRE.jpg",
@@ -30,6 +31,7 @@
     "masterPath": "Artists/spanish/vocabulary_master.json",
     "indexPath": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
     "examplesPath": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
+    "songsPath": "Artists/spanish/Rosalía/Rosaliasongs.json",
     "albumsDictionary": "Artists/spanish/Rosalía/rosalia_albums_dictionary.json",
     "albumImageMap": {
       "Los Ángeles (2017)": "Artists/spanish/Rosalía/Images/LOS_ANGELES.jpg",
@@ -53,6 +55,7 @@
     "masterPath": "Artists/spanish/vocabulary_master.json",
     "indexPath": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
     "examplesPath": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
+    "songsPath": "Artists/spanish/Young Miko/YoungMikosongs.json",
     "colorTheme": {
       "primary": "#8B5CF6",
       "secondary": "#C4B5FD"
@@ -70,11 +73,13 @@
     "maxLevel": 4000
   },
   "spanish-test-playlist": {
-    "name": "Spanish Test Playlist",
+    "name": "Create your own",
     "language": "spanish",
     "masterPath": "Artists/spanish/vocabulary_master.json",
     "indexPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
     "examplesPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
+    "songsPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistsongs.json",
+    "customSongSource": true,
     "colorTheme": {
       "primary": "#10B981",
       "secondary": "#6EE7B7"

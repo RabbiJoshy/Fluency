@@ -568,7 +568,10 @@ async function popupFoundWord(entry, opts) {
         if (langConfig.examplesPath && !window._cachedExamplesData) {
             try {
                 const r = await fetch(langConfig.examplesPath);
-                if (r.ok) window._cachedExamplesData = await r.json();
+                if (r.ok) {
+                    const examples = await r.json();
+                    window.setActiveExamplesData?.(examples) || (window._cachedExamplesData = examples);
+                }
             } catch (e) {
                 console.warn('popupFoundWord: failed to fetch examples', e);
             }

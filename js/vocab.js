@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260816e';
+import './state.js?v=20260816f';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -33,6 +33,7 @@ function activeStudySessionScope() {
         mode: 'lyrics',
         artistSlug: window._urlArtistSlug || null,
         artistSlugs: (window._selectedArtistSlugs || []).slice(),
+        songIds: activeArtist ? selectedSongIds.slice() : [],
         language: activeArtist.language || selectedLanguage
     });
 }
@@ -148,6 +149,7 @@ function saveStudySessionSnapshot() {
         mode: activeArtist ? 'lyrics' : 'speech',
         artistSlug: window._urlArtistSlug || null,
         artistSlugs: (window._selectedArtistSlugs || []).slice(),
+        songIds: activeArtist ? selectedSongIds.slice() : [],
         artistName: activeArtist?.name || null,
         artistVocabularyScope: activeArtist ? artistVocabularyScope : null,
         language: selectedLanguage,
@@ -250,6 +252,15 @@ async function resumeLastStudySession() {
         window._selectedArtistSlugs = snapshot.artistSlugs.slice();
         localStorage.setItem('selected_artists', JSON.stringify(snapshot.artistSlugs));
     }
+    if (snapshot.mode === 'lyrics' && Array.isArray(snapshot.songIds) && artistSongCatalog) {
+        const available = new Set(artistSongCatalog.songs.map(song => String(song.id)));
+        const restored = snapshot.songIds.map(String).filter(id => available.has(id));
+        if (restored.length) {
+            selectedSongIds = restored;
+            window.setActiveExamplesData?.(window._cachedExamplesDataRaw || window._cachedExamplesData);
+        }
+    }
+    window.renderArtistSourceSummary?.();
     document.querySelectorAll('.lemma-toggle-btn').forEach(button =>
         button.classList.toggle('selected', (button.dataset.lemma === 'on') === useLemmaMode));
     document.querySelectorAll('.cognate-toggle-btn').forEach(button =>
@@ -890,7 +901,8 @@ async function fetchActiveVocabularyData(langConfig) {
     const selectedSlugs = window._selectedArtistSlugs || [];
     const allConfigs = window._allArtistsConfig;
     if (!(activeArtist && selectedSlugs.length > 1 && allConfigs)) {
-        return fetchAndJoinIndex(langConfig);
+        const vocabulary = await fetchAndJoinIndex(langConfig);
+        return window.filterActiveSongVocabulary?.(vocabulary) || vocabulary;
     }
 
     if (!window._cachedMasterVocab) {
@@ -908,8 +920,9 @@ async function fetchActiveVocabularyData(langConfig) {
         window._cachedMergedIndex = mergedIndex;
         window._cachedMergedExamples = mergedExamples;
     }
-    window._cachedExamplesData = window._cachedMergedExamples;
-    return window._cachedMergedIndex;
+    window.setActiveExamplesData?.(window._cachedMergedExamples)
+        || (window._cachedExamplesData = window._cachedMergedExamples);
+    return window.filterActiveSongVocabulary?.(window._cachedMergedIndex) || window._cachedMergedIndex;
 }
 
 async function ensureLemmaPoolingData(langConfig) {
@@ -921,8 +934,8 @@ async function ensureLemmaPoolingData(langConfig) {
         const response = await fetch(langConfig.examplesPath);
         if (!response.ok) return null;
         trackDataFreshness(response);
-        window._cachedExamplesData = await response.json();
-        return window._cachedExamplesData;
+        const examples = await response.json();
+        return window.setActiveExamplesData?.(examples) || (window._cachedExamplesData = examples);
     } catch (error) {
         console.warn('Failed to load examples for lemma pooling:', error);
         return null;
@@ -1550,7 +1563,8 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 const exResponse = await fetch(langConfig.examplesPath);
                 if (exResponse.ok) {
                     trackDataFreshness(exResponse);
-                    window._cachedExamplesData = await exResponse.json();
+                    const examples = await exResponse.json();
+                    window.setActiveExamplesData?.(examples) || (window._cachedExamplesData = examples);
                 }
             }
             const examplesData = window._cachedExamplesData;

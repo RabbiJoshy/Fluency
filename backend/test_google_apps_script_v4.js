@@ -142,7 +142,31 @@ function post(payload) {
     return JSON.parse(response.text);
 }
 
-assert.equal(post({ action: 'capabilities' }).data.schemaVersion, 4);
+const capabilities = post({ action: 'capabilities' }).data;
+assert.equal(capabilities.schemaVersion, 4);
+assert.equal(capabilities.songSetSchemaVersion, 1);
+
+assert.equal(post({
+    action: 'saveSongSet', user: 'JT', setId: 'active', source: 'bad-bunny',
+    name: 'Bad Bunny', language: 'spanish', songIds: ['song-a', 'song-b', 'song-a'],
+    updatedAt: '2026-08-16T10:00:00.000Z'
+}).success, true);
+let songSets = post({ action: 'loadSongSets', user: 'JT' }).data.songSets;
+assert.equal(songSets.length, 1);
+assert.deepEqual(songSets[0].songIds, ['song-a', 'song-b']);
+const songSetRows = spreadsheet.getSheetByName('SongSets').getLastRow();
+assert.equal(post({
+    action: 'saveSongSet', user: 'JT', setId: 'active', source: 'bad-bunny',
+    name: 'Bad Bunny', language: 'spanish', songIds: ['song-b'],
+    updatedAt: '2026-08-16T11:00:00.000Z'
+}).success, true);
+assert.equal(spreadsheet.getSheetByName('SongSets').getLastRow(), songSetRows);
+songSets = post({ action: 'loadSongSets', user: 'JT' }).data.songSets;
+assert.deepEqual(songSets[0].songIds, ['song-b']);
+assert.equal(post({
+    action: 'deleteSongSet', user: 'JT', setId: 'active', source: 'bad-bunny'
+}).success, true);
+assert.equal(post({ action: 'loadSongSets', user: 'JT' }).data.songSets.length, 0);
 
 const migrated = post({ action: 'load', sheet: 'Progress', mode: 'all', user: 'JT' });
 assert.equal(migrated.success, true);

@@ -1,19 +1,20 @@
-import './state.js?v=20260816e';
-import './offline-db.js?v=20260816e';
-import './sync-queue.js?v=20260816e';
-import { initOfflineContent } from './offline-content.js?v=20260816e';
-import './speech.js?v=20260816e';
-import './artist-ui.js?v=20260816e';
-import './auth.js?v=20260816e';
-import './about-example.js?v=20260816e';
-import './estimation.js?v=20260816e';
-import './config.js?v=20260816e';
-import './progress.js?v=20260816e';
-import './knowledge.js?v=20260816e';
-import './ui.js?v=20260816e';
-import './vocab.js?v=20260816e';
-import './vocabulary-import.js?v=20260816e';
-import './flashcards.js?v=20260816e';
+import './state.js?v=20260816f';
+import './offline-db.js?v=20260816f';
+import './sync-queue.js?v=20260816f';
+import { initOfflineContent } from './offline-content.js?v=20260816f';
+import './speech.js?v=20260816f';
+import './artist-ui.js?v=20260816f';
+import './auth.js?v=20260816f';
+import './about-example.js?v=20260816f';
+import './estimation.js?v=20260816f';
+import './config.js?v=20260816f';
+import './progress.js?v=20260816f';
+import './knowledge.js?v=20260816f';
+import './ui.js?v=20260816f';
+import './vocab.js?v=20260816f';
+import './song-sets.js?v=20260816f';
+import './vocabulary-import.js?v=20260816f';
+import './flashcards.js?v=20260816f';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -22,7 +23,7 @@ import './flashcards.js?v=20260816e';
 const _initialParams = new URLSearchParams(window.location.search);
 const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260816e').catch(error => {
+    ? import('./spotify.js?v=20260816f').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -294,7 +295,7 @@ loadConfig().then(async () => {
         try {
             selectedLanguage = 'spanish';
             applyLanguageColorTheme();
-            const speechVnext = await import('./speech-vnext.js?v=20260816e');
+            const speechVnext = await import('./speech-vnext.js?v=20260816f');
             await speechVnext.startSpeechVnext();
         } catch (error) {
             console.error('Speech vNext preview failed to load:', error);
@@ -313,6 +314,15 @@ loadConfig().then(async () => {
     perfMark('after migrations');
     await loadSecrets();
     perfMark('after loadSecrets');
+    if (activeArtist?.songsPath && window.initArtistSongSelection) {
+        try {
+            await window.initArtistSongSelection();
+        } catch (error) {
+            console.warn('Per-song Lyrics selection unavailable; using the full artist deck.', error);
+            artistSongCatalog = null;
+            selectedSongIds = [];
+        }
+    }
     // Retry Spotify player init now that client ID is available (handles race with SDK load)
     _spotifyModulePromise?.then(() => window._spotifyTryInit?.());
     // Offline sync: wire connectivity listeners, render the status indicator,
@@ -406,14 +416,17 @@ function artistPickerImage(cfg) {
 function renderArtistSourceSummary() {
     const step = document.getElementById('artistSourceStep');
     const picker = document.getElementById('artistSourcePickerBtn');
+    const artistBtn = document.getElementById('artistSourceArtistBtn');
     const speechBtn = document.getElementById('artistSourceSpeechBtn');
     const name = document.getElementById('artistSourceName');
+    const selectionLabel = document.getElementById('artistSourceSelectionLabel');
     const image = document.getElementById('artistSourceImage');
-    if (!step || !picker || !speechBtn || !name || !image || !activeArtist) return;
+    if (!step || !picker || !artistBtn || !speechBtn || !name || !image || !activeArtist) return;
 
     const artistName = activeArtist.name || 'Artist';
     const art = artistPickerImage(activeArtist);
     name.textContent = artistName;
+    if (selectionLabel) selectionLabel.textContent = window.songSelectionSummary?.() || 'Choose songs';
     image.textContent = art ? '' : artistInitials(artistName);
     image.classList.toggle('artist-source-image--fallback', !art);
     image.style.backgroundImage = art ? `url('${art}')` : '';
@@ -457,6 +470,13 @@ function renderArtistSourceSummary() {
     }
 
     picker.onclick = () => {
+        if (artistSongCatalog?.songs?.length && window.showSongSetPicker) {
+            window.showSongSetPicker();
+            return;
+        }
+        artistBtn.click();
+    };
+    artistBtn.onclick = () => {
         const language = activeArtist.language || 'spanish';
         const matchingArtists = Object.fromEntries(Object.entries(allArtistsConfig || {}).filter(([, cfg]) =>
             (cfg.language || 'spanish') === language));
@@ -470,6 +490,25 @@ function renderArtistSourceSummary() {
 }
 
 window.renderArtistSourceSummary = renderArtistSourceSummary;
+
+window.addEventListener('fluency-song-selection-changed', async () => {
+    if (!activeArtist) return;
+    cachedVocabularyData = null;
+    selectedLevel = null;
+    selectedRanges = [];
+    _findWordIndex = null;
+    _findWordIndexKey = null;
+    document.getElementById('step4').style.display = 'none';
+    renderArtistSourceSummary();
+    const loading = document.getElementById('dataLoadingIndicator');
+    loading?.classList.add('visible');
+    try {
+        await renderLevelSelector(selectedLanguage, { preferActionable: true });
+        await updateExclusionBars();
+    } finally {
+        loading?.classList.remove('visible');
+    }
+});
 
 async function setArtistVocabularyScope(scope, { autoStart = false } = {}) {
     if (!activeArtist || !['main', 'extra'].includes(scope)) return;

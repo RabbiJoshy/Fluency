@@ -110,6 +110,8 @@ export const state = {
     activeArtist: null,         // null = normal mode, object = artist config from artists.json
     artistAlbumsDictionary: null,
     songToAlbumMap: {},
+    artistSongCatalog: null,
+    selectedSongIds: [],
 
     // Lyric breakdown
     cardNavStack: [],

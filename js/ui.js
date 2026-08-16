@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260816e';
+import './state.js?v=20260816f';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -2297,7 +2297,10 @@ async function showTotalStatsModal() {
     if (langConfig && langConfig.examplesPath && !window._cachedExamplesData) {
         try {
             const r = await fetch(langConfig.examplesPath);
-            if (r.ok) window._cachedExamplesData = await r.json();
+            if (r.ok) {
+                const examples = await r.json();
+                window.setActiveExamplesData?.(examples) || (window._cachedExamplesData = examples);
+            }
         } catch (e) {
             console.warn('Could not load examples for stats:', e);
         }

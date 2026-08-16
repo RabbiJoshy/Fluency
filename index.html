@@ -19,31 +19,33 @@
          weights = fewer round trips to fonts.gstatic.com on cold start. -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
     <title>Language Flashcards</title>
-    <link rel="stylesheet" href="css/style.css?v=20260816e">
+    <link rel="stylesheet" href="css/style.css?v=20260816f">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260816e">
-    <link rel="modulepreload" href="js/state.js?v=20260816e">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260816e">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260816e">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260816e">
-    <link rel="modulepreload" href="js/speech.js?v=20260816e">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260816e">
-    <link rel="modulepreload" href="js/auth.js?v=20260816e">
-    <link rel="modulepreload" href="js/about-example.js?v=20260816e">
-    <link rel="modulepreload" href="js/estimation.js?v=20260816e">
-    <link rel="modulepreload" href="js/config.js?v=20260816e">
-    <link rel="modulepreload" href="js/progress.js?v=20260816e">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260816e">
-    <link rel="modulepreload" href="js/ui.js?v=20260816e">
-    <link rel="modulepreload" href="js/vocab.js?v=20260816e">
-    <link rel="modulepreload" href="js/vocabulary-import-core.js?v=20260816e">
-    <link rel="modulepreload" href="js/vocabulary-import.js?v=20260816e">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260816e">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260816e">
+    <link rel="modulepreload" href="js/main.js?v=20260816f">
+    <link rel="modulepreload" href="js/state.js?v=20260816f">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260816f">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260816f">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260816f">
+    <link rel="modulepreload" href="js/speech.js?v=20260816f">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260816f">
+    <link rel="modulepreload" href="js/auth.js?v=20260816f">
+    <link rel="modulepreload" href="js/about-example.js?v=20260816f">
+    <link rel="modulepreload" href="js/estimation.js?v=20260816f">
+    <link rel="modulepreload" href="js/config.js?v=20260816f">
+    <link rel="modulepreload" href="js/progress.js?v=20260816f">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260816f">
+    <link rel="modulepreload" href="js/ui.js?v=20260816f">
+    <link rel="modulepreload" href="js/vocab.js?v=20260816f">
+    <link rel="modulepreload" href="js/song-sets-core.js?v=20260816f">
+    <link rel="modulepreload" href="js/song-sets.js?v=20260816f">
+    <link rel="modulepreload" href="js/vocabulary-import-core.js?v=20260816f">
+    <link rel="modulepreload" href="js/vocabulary-import.js?v=20260816f">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260816f">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260816f">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -341,7 +343,7 @@
                 <div class="step-header artist-source-header">
                     <div>
                         <span class="artist-source-eyebrow">Learning from lyrics</span>
-                        <span class="step-title">Artist</span>
+                        <span class="step-title">Songs</span>
                     </div>
                 </div>
                 <div class="artist-source-card">
@@ -349,13 +351,14 @@
                         <span id="artistSourceImage" class="artist-source-image" aria-hidden="true"></span>
                         <span class="artist-source-copy">
                             <span id="artistSourceName" class="artist-source-name"></span>
-                            <span>Choose another artist</span>
+                            <span id="artistSourceSelectionLabel">Choose songs</span>
                         </span>
                         <span class="language-picker-btn-arrow" aria-hidden="true">›</span>
                     </button>
-                    <button type="button" id="artistSourceSpeechBtn" class="artist-source-speech-btn">
-                        Switch to Speech
-                    </button>
+                    <div class="artist-source-secondary-actions">
+                        <button type="button" id="artistSourceArtistBtn" class="artist-source-speech-btn">Change artist</button>
+                        <button type="button" id="artistSourceSpeechBtn" class="artist-source-speech-btn">Switch to Speech</button>
+                    </div>
                     <div class="artist-vocabulary-scope" id="artistVocabularyScope" role="group" aria-label="Artist vocabulary">
                         <span class="artist-vocabulary-scope-title">Vocabulary set</span>
                         <div class="artist-vocabulary-scope-buttons">
@@ -1037,6 +1040,34 @@
         </div>
     </div>
 
+    <!-- Per-song Lyrics source picker -->
+    <div id="songSetModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="songSetTitle">
+        <div class="modal-content song-set-modal-content">
+            <div class="modal-header">
+                <div>
+                    <span class="progress-modal-eyebrow">Lyrics source</span>
+                    <h3 id="songSetTitle">Choose songs</h3>
+                </div>
+                <button type="button" class="modal-close" id="closeSongSetModal" aria-label="Close song picker">✕</button>
+            </div>
+            <p id="songSetIntro" class="settings-data-intro">Cards and lyric examples will come from the songs you select.</p>
+            <div class="song-set-toolbar">
+                <input type="search" id="songSetSearch" placeholder="Search songs or artists" autocomplete="off">
+                <span id="songSetCount" aria-live="polite"></span>
+            </div>
+            <div class="song-set-bulk-actions">
+                <button type="button" id="selectAllSongsBtn">Select all</button>
+                <button type="button" id="clearAllSongsBtn">Clear all</button>
+            </div>
+            <div id="songSetList" class="song-set-list"></div>
+            <p id="songSetStatus" class="vocabulary-import-status" role="status" aria-live="polite"></p>
+            <div class="song-set-footer">
+                <button type="button" id="cancelSongSetBtn" class="secondary-btn">Cancel</button>
+                <button type="button" id="applySongSetBtn">Use selected songs</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Total Stats Modal (All-time stats for the current language) -->
     <div id="totalStatsModal" class="modal hidden">
         <div class="modal-content progress-modal-content total-progress-modal-content">
@@ -1396,6 +1427,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260816e"></script>
+    <script type="module" src="js/main.js?v=20260816f"></script>
 </body>
 </html>

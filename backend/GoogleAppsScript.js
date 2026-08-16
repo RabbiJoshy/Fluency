@@ -13,6 +13,11 @@ const PROGRESS_HEADERS = [
   'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen',
   'SchemaVersion', 'SrsStage', 'Value'
 ];
+const SONG_SET_SCHEMA_VERSION = 1;
+const SONG_SETS_SHEET_NAME = 'SongSets';
+const SONG_SET_HEADERS = [
+  'User', 'SetId', 'Source', 'Name', 'Language', 'SongIdsJson', 'UpdatedAt', 'SchemaVersion'
+];
 // Flag schema v2. v1 was the progress-shaped eight-column tab
 // (User, Word, WordId, Language, Correct, Wrong, LastCorrect, LastWrong) where
 // the whole audit report was crammed into Word, fieldPath was smuggled through
@@ -95,11 +100,15 @@ function doPost(e) {
     if (action === 'loadItems') return loadItemProgress(params);
     if (action === 'deleteItems') return deleteItemProgress(params);
     if (action === 'saveMeta') return saveMetaProgress(params);
+    if (action === 'saveSongSet') return saveSongSet(params);
+    if (action === 'loadSongSets') return loadSongSets(params);
+    if (action === 'deleteSongSet') return deleteSongSet(params);
     if (action === 'capabilities') {
       return createResponse(true, 'Backend capabilities', {
         schemaVersion: PROGRESS_SCHEMA_VERSION,
         flagSchemaVersion: FLAG_SCHEMA_VERSION,
-        sheets: [PROGRESS_SHEET_NAME, FLAGGED_WORDS_SHEET_NAME]
+        songSetSchemaVersion: SONG_SET_SCHEMA_VERSION,
+        sheets: [PROGRESS_SHEET_NAME, FLAGGED_WORDS_SHEET_NAME, SONG_SETS_SHEET_NAME]
       });
     }
     if (action === 'migrateProgress') {
@@ -124,10 +133,103 @@ function doGet() {
     message: 'Flashcard API is running',
     schemaVersion: PROGRESS_SCHEMA_VERSION,
     flagSchemaVersion: FLAG_SCHEMA_VERSION,
+    songSetSchemaVersion: SONG_SET_SCHEMA_VERSION,
     progressMigrationComplete: props.getProperty(PROGRESS_MIGRATION_PROPERTY) === '1',
     flagMigrationComplete: props.getProperty(FLAG_MIGRATION_PROPERTY) === '1',
     timestamp: new Date().toISOString()
   })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function getSongSetsSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(SONG_SETS_SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(SONG_SETS_SHEET_NAME);
+    sheet.getRange(1, 1, 1, SONG_SET_HEADERS.length).setValues([SONG_SET_HEADERS]);
+    sheet.getRange(1, 1, 1, SONG_SET_HEADERS.length).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+    sheet.autoResizeColumns(1, SONG_SET_HEADERS.length);
+  }
+  return sheet;
+}
+
+function normalizedSongIds(value) {
+  if (!Array.isArray(value)) return [];
+  const seen = {};
+  const result = [];
+  value.forEach(function(songId) {
+    const id = String(songId || '').trim();
+    if (!id || seen[id] || result.length >= 1000) return;
+    seen[id] = true;
+    result.push(id);
+  });
+  return result;
+}
+
+function findSongSetRow(data, user, source, setId) {
+  for (let i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === user && String(data[i][1]) === setId &&
+        String(data[i][2]) === source) return i + 1;
+  }
+  return -1;
+}
+
+function saveSongSet(params) {
+  const user = String(params.user || '').trim();
+  const setId = String(params.setId || '').trim();
+  const source = String(params.source || '').trim();
+  const songIds = normalizedSongIds(params.songIds);
+  if (!user || !setId || !source || !songIds.length) {
+    return createResponse(false, 'Missing required song-set fields');
+  }
+  const sheet = getSongSetsSheet();
+  const data = sheet.getDataRange().getValues();
+  const row = [
+    user, setId, source, String(params.name || ''), String(params.language || ''),
+    JSON.stringify(songIds), params.updatedAt || new Date().toISOString(), SONG_SET_SCHEMA_VERSION
+  ];
+  const rowIndex = findSongSetRow(data, user, source, setId);
+  if (rowIndex > 0) sheet.getRange(rowIndex, 1, 1, SONG_SET_HEADERS.length).setValues([row]);
+  else sheet.appendRow(row);
+  return createResponse(true, rowIndex > 0 ? 'Song set updated' : 'Song set saved');
+}
+
+function loadSongSets(params) {
+  const user = String(params.user || '').trim();
+  if (!user) return createResponse(false, 'Missing required field: user');
+  const data = getSongSetsSheet().getDataRange().getValues();
+  const songSets = [];
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
+    if (String(row[0]) !== user) continue;
+    let songIds = [];
+    try { songIds = normalizedSongIds(JSON.parse(row[5] || '[]')); } catch (_) {}
+    songSets.push({
+      setId: String(row[1] || ''),
+      source: String(row[2] || ''),
+      name: String(row[3] || ''),
+      language: String(row[4] || ''),
+      songIds: songIds,
+      updatedAt: row[6] || '',
+      schemaVersion: Number(row[7]) || SONG_SET_SCHEMA_VERSION
+    });
+  }
+  return createResponse(true, 'Song sets loaded', {
+    schemaVersion: SONG_SET_SCHEMA_VERSION,
+    songSets: songSets
+  });
+}
+
+function deleteSongSet(params) {
+  const user = String(params.user || '').trim();
+  const setId = String(params.setId || '').trim();
+  const source = String(params.source || '').trim();
+  if (!user || !setId || !source) return createResponse(false, 'Missing required song-set fields');
+  const sheet = getSongSetsSheet();
+  const data = sheet.getDataRange().getValues();
+  const rowIndex = findSongSetRow(data, user, source, setId);
+  if (rowIndex > 0) sheet.deleteRow(rowIndex);
+  return createResponse(true, rowIndex > 0 ? 'Song set deleted' : 'Song set not found');
 }
 
 function normalizeMode(mode, id) {

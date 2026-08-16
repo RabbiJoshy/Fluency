@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-08-12-principled-curations-v1",
-  "generatedAt": "2026-08-12T23:00:00Z",
+  "contentVersion": "2026-08-16-song-sets-v1",
+  "generatedAt": "2026-08-16T18:50:00Z",
   "sources": [
     {
       "id": "language-spanish",
@@ -96,9 +96,9 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "bad-bunny",
-      "contentVersion": "2026-08-12-principled-curations-v1",
-      "storageBytes": 34315217,
-      "transferBytes": 5485087,
+      "contentVersion": "2026-08-16-song-sets-v1",
+      "storageBytes": 34928027,
+      "transferBytes": 6097897,
       "dependencies": [
         "shared-spanish-artist"
       ],
@@ -117,6 +117,11 @@
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
           "bytes": 14298498,
           "sha256": "61097bca6224e1b70c15be727d968ce34c27d6a9394b981f031442fc05bb67bc"
+        },
+        {
+          "path": "Artists/spanish/Bad Bunny/BadBunnysongs.json",
+          "bytes": 612810,
+          "sha256": "6a87deadea23453e61dfaa881c8484a228188cc41eaee27ab236e4a02f9acec8"
         }
       ]
     },
@@ -127,9 +132,9 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "rosalia",
-      "contentVersion": "2026-08-12-principled-curations-v1",
-      "storageBytes": 15291421,
-      "transferBytes": 2199212,
+      "contentVersion": "2026-08-16-song-sets-v1",
+      "storageBytes": 15395154,
+      "transferBytes": 2302945,
       "dependencies": [
         "shared-spanish-artist"
       ],
@@ -148,6 +153,11 @@
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
           "bytes": 4030317,
           "sha256": "a35dda897eb454708bba23fd19893445109ce1d557e8a42efd1cfe4a5d7dc2ad"
+        },
+        {
+          "path": "Artists/spanish/Rosalía/Rosaliasongs.json",
+          "bytes": 103733,
+          "sha256": "5e65cc03b8cc60bd8417a873e427caccc3f0a042327390684d92970ca34c681c"
         }
       ]
     },
@@ -158,9 +168,9 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "young-miko",
-      "contentVersion": "2026-08-12-principled-curations-v1",
-      "storageBytes": 18713485,
-      "transferBytes": 2704075,
+      "contentVersion": "2026-08-16-song-sets-v1",
+      "storageBytes": 18873689,
+      "transferBytes": 2864279,
       "dependencies": [
         "shared-spanish-artist"
       ],
@@ -179,19 +189,24 @@
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
           "bytes": 5958868,
           "sha256": "3e0b1368778ecfc8003383e59e7272210b74e5a294f73558327cf5b227a14510"
+        },
+        {
+          "path": "Artists/spanish/Young Miko/YoungMikosongs.json",
+          "bytes": 160204,
+          "sha256": "2c0cebafc6b7ddb230eeb841205a028aa668b448a4c28380c2572961cdfa0fba"
         }
       ]
     },
     {
       "id": "artist-spanish-test-playlist",
-      "name": "Spanish Test Playlist",
+      "name": "Create your own",
       "scope": "artist",
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "spanish-test-playlist",
-      "contentVersion": "2026-08-12-principled-curations-v1",
-      "storageBytes": 8185028,
-      "transferBytes": 8185028,
+      "contentVersion": "2026-08-16-song-sets-v1",
+      "storageBytes": 8210126,
+      "transferBytes": 8210126,
       "dependencies": [
         "shared-spanish-artist"
       ],
@@ -210,6 +225,11 @@
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
           "bytes": 675269,
           "sha256": "fa8aab87af63da67d98912beef6f1430078447990b4ca1213598a4c80121d49b"
+        },
+        {
+          "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistsongs.json",
+          "bytes": 25098,
+          "sha256": "324ffaccaf39aebd7c3fdfd77f6e0e74784e22f88223d13c7885bc50f61799e9"
         }
       ]
     }
