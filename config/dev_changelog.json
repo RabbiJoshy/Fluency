@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "75911281",
+      "summary": "Cards keep one headword and explain only the tricky lyric restorations",
+      "details": [
+        "Removed the dormant generic form-list path, so future variant, conjugation and clitic arrays cannot replace a card’s own word with a header pile",
+        "Exact lyric spellings continue to be highlighted inside the sentence where they occur",
+        "Only the reviewed non-obvious restorations get a compact cue: pa’ → para, na’ → nada, and cometamo’ → cometamos",
+        "Six focused card/progress/surface regressions pass; cache v235→v236 / assets 20260816a→20260816b"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "875ddbb8",
       "summary": "Spotify now jumps to each lyric example’s own timestamp",
       "details": [

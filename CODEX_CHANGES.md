@@ -45,6 +45,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-16 — Replace header form piles with explicit elision cues
+
+- Commit `75911281`; front-end cache `flashcards-v236` / `20260816b`; GitHub issue #58.
+- Verified first: all shipped Speech and Spanish Artist decks already render zero generic header form lists, and exact occurrence-surface highlighting is healthy across 6,398 artist examples. The remaining risk was dormant object-variant code that could revive a pile later, while none of the requested non-obvious restorations was visible.
+- Removed generic variant-driven headword replacement. The card's own word now remains the headword in every deck; exact occurrence surfaces continue to be highlighted in the example sentence.
+- Preserved only three reviewed, metadata-gated relations as compact cues: `pa' → para`, `na' → nada`, and `cometamo' → cometamos`. Ordinary final-letter elisions, plurals, conjugation families, and clitic arrays cannot enter the header path.
+- Verification: six focused executable surface/card/progress regressions, JavaScript syntax checks, asset-version lockstep, JSON parsing, and whitespace validation pass.
+
 ### 2026-08-16 — Seek Spotify to each lyric example timestamp
 
 - Commit `875ddbb8`; front-end cache `flashcards-v235` / `20260816a`; GitHub issue #56.
