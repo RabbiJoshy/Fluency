@@ -2953,6 +2953,51 @@
             opacity: 1;
         }
 
+        /* SpanishDict sense metadata, separated from ordinary semantic
+           context so a construction such as `used with "con"` reads as a
+           usable language hint rather than another fragment of the gloss. */
+        .meaning-usage-pill {
+            display: inline-flex;
+            align-items: center;
+            max-width: 100%;
+            margin-inline-start: 0.28em;
+            border: 1px solid color-mix(in srgb, var(--accent-secondary) 42%, transparent);
+            border-radius: 999px;
+            background: color-mix(in srgb, var(--accent-secondary) 11%, transparent);
+            color: var(--text-primary);
+            font-family: var(--font-reading);
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 650;
+            line-height: 1.25;
+            vertical-align: 0.08em;
+            overflow: hidden;
+        }
+
+        .meaning-usage-source {
+            align-self: stretch;
+            display: inline-flex;
+            align-items: center;
+            padding: 1px 5px;
+            border-inline-end: 1px solid color-mix(in srgb, var(--accent-secondary) 32%, transparent);
+            color: var(--accent-secondary);
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.025em;
+            white-space: nowrap;
+        }
+
+        .meaning-usage-label {
+            min-width: 0;
+            padding: 1px 6px;
+            overflow-wrap: anywhere;
+        }
+
+        .meaning-context-cell .meaning-usage-pill,
+        .group-card-shared .meaning-usage-pill {
+            margin-block: 1px;
+        }
+
         /* Register/dialect tag on a sense row (slang, vulgar, regional…).
            Deliberately quieter than the translation and not POS-coloured: it
            qualifies how a word is used, it does not compete with the meaning
@@ -3926,6 +3971,18 @@
             box-shadow:
                 inset 0 -2px 0 rgba(var(--sense-match-rgb), 0.88),
                 0 0 0 1px rgba(var(--sense-match-rgb), 0.16);
+        }
+
+        .example-usage-highlight {
+            border-radius: 3px;
+            padding: 0 0.12em;
+            color: #fff;
+            background: color-mix(in srgb, var(--accent-secondary) 12%, transparent);
+            box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--accent-secondary) 72%, transparent);
+            font-style: normal;
+            font-weight: 700;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
         }
 
         .example-related-highlight {

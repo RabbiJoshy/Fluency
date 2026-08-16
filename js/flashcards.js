@@ -1,13 +1,17 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816i';
-import './speech.js?v=20260816i';
+import './state.js?v=20260816j';
+import './speech.js?v=20260816j';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816i';
+} from './example-personalisation.js?v=20260816j';
+import {
+    parseSpanishDictUsageContext,
+    spanishDictUsageCandidateForms,
+} from './spanishdict-usage.js?v=20260816j';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -78,12 +82,6 @@ function _matchedMweForm(mwe, text, preferred = '') {
         if (_mweRegex(form, 'iu').test(plain)) return form;
     }
     return '';
-}
-
-function _extractUsedWith(context) {
-    if (selectedLanguage !== 'spanish' || typeof context !== 'string') return '';
-    const match = context.match(/\bused with\s+["“]([^"”]+)["”]/iu);
-    return match ? match[1].trim() : '';
 }
 
 function getConjugatedEnglish(card, translation) {
@@ -2442,6 +2440,52 @@ function escapeCardText(value) {
     })[character]);
 }
 
+function renderSenseContextHTML(context, { leadingDot = true } = {}) {
+    const raw = String(context || '').trim();
+    if (!raw) return '';
+    const usage = selectedLanguage === 'spanish'
+        ? parseSpanishDictUsageContext(raw)
+        : null;
+    if (!usage) {
+        return `<span class="meaning-context">${leadingDot ? '· ' : ''}${escapeCardText(raw)}</span>`;
+    }
+
+    const detail = usage.detail
+        ? `<span class="meaning-context">${leadingDot ? '· ' : ''}${escapeCardText(usage.detail)}</span> `
+        : '';
+    const title = escapeCardText(`SpanishDict usage note: ${usage.raw}`);
+    const label = escapeCardText(usage.label);
+    return `${detail}<span class="meaning-usage-pill" data-source="spanishdict" title="${title}" aria-label="${title}"><span class="meaning-usage-source">SpanishDict</span><span class="meaning-usage-label">${label}</span></span>`;
+}
+
+function highlightPossibleSpanishDictUsage(sentenceHTML, usage, targetWord = '') {
+    const candidates = spanishDictUsageCandidateForms(usage);
+    const target = String(targetWord || '').toLocaleLowerCase('es');
+    let html = String(sentenceHTML || '');
+    const protectedMatches = [];
+    for (const form of candidates) {
+        if (form.toLocaleLowerCase('es') === target) continue;
+        const tokens = form.trim().split(/\s+/u).filter(Boolean);
+        if (!tokens.length) continue;
+        const body = tokens
+            .map(token => token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+            .join('\\s+');
+        const regex = _cachedRegex(
+            `(?<![\\p{L}\\p{N}])(${body})(?![\\p{L}\\p{N}])(?![^<]*>)`,
+            'giu'
+        );
+        html = html.replace(regex, (_whole, matched) => {
+            const index = protectedMatches.length;
+            protectedMatches.push(`<span class="example-usage-highlight" title="Possible match for this SpanishDict usage note; grammatical attachment is not verified">${matched}</span>`);
+            // Protect a longer match such as `a por` from being re-matched by
+            // its shorter alternatives (`por`, `a`) later in the same pass.
+            return `\uE000${index}\uE001`;
+        });
+    }
+    html = html.replace(/\uE000(\d+)\uE001/gu, (_whole, index) => protectedMatches[Number(index)] || '');
+    return { html, candidates };
+}
+
 // Choose a type scale from the amount of visible copy in a sense row. Short
 // glosses should use the room the card gives them; long glosses step down
 // before the existing wrap/clamp rules take over. Considering both the
@@ -4368,9 +4412,8 @@ function updateCard({ announceHeadword = false } = {}) {
                         let varyingHtml;
                         if (isTransAxis) {
                             const ctxRaw = mm.context || '';
-                            const ctxSafe = String(ctxRaw).replace(/"/g, '&quot;');
                             varyingHtml = ctxRaw
-                                ? `<span class="meaning-context" style="line-height: 1.3; min-width: 0; overflow-wrap: anywhere; word-break: break-word;">${ctxSafe}</span>`
+                                ? `<span class="meaning-context-cell" style="line-height: 1.3; min-width: 0; overflow-wrap: anywhere; word-break: break-word;">${renderSenseContextHTML(ctxRaw, { leadingDot: false })}</span>`
                                 : `<span style="opacity: 0.4; font-style: italic; font-size: 12px;">—</span>`;
                         } else {
                             const transRaw = getConjugatedEnglish(card, mm.meaning) || mm.meaning || '';
@@ -4400,7 +4443,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
                         ? `<div class="group-card-shared row-adaptive-text" style="${sharedSpan} font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}${modelProposalMarkerHTML(members.some(memberIdx => card.meanings[memberIdx].modelProposed) ? { modelProposed: true } : null)}</div>`
-                        : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;"><span class="meaning-context">${sharedText}</span></div>`;
+                        : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${renderSenseContextHTML(m.context, { leadingDot: false })}</div>`;
 
                     // Body grid: shared + varying. The pct column lives in the
                     // outer grid; POS lives in the header legend.
@@ -4426,8 +4469,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     // context. POS is represented by the header legend and tint.
                     let contextInline = '';
                     if (m.context) {
-                        const safeFull = String(m.context).replace(/"/g, '&quot;');
-                        contextInline = ` <span class="meaning-context">· ${safeFull}</span>`;
+                        contextInline = ` ${renderSenseContextHTML(m.context)}`;
                     }
                     contextInline += registerTagHTML(m);
                     contextInline += modelProposalMarkerHTML(m);
@@ -4682,29 +4724,28 @@ function updateCard({ announceHeadword = false } = {}) {
                 }
             }
 
-            // SpanishDict context can specify a companion word or phrase,
-            // e.g. `used with "a"`. Highlight that evidence in the target
-            // sentence too, with no vocabulary whitelist: the structured
-            // context itself is authoritative.
-            const usedWith = _extractUsedWith(currentMeaning.context);
-            if (usedWith) currentMeaning.usedWith = usedWith;
-            if (usedWith && usedWith.toLocaleLowerCase('es') !== card.targetWord.toLocaleLowerCase('es')) {
-                const usedWithEscaped = usedWith.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-                const usedWithRegex = _cachedRegex(
-                    `(?<![\\p{L}\\p{N}])(${usedWithEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`,
-                    'giu'
-                );
-                displayTargetSentence = displayTargetSentence.replace(
-                    usedWithRegex,
-                    '<span class="example-word-highlight">$1</span>'
-                );
-            }
+            // Surface a literal companion match as a possible realization of
+            // the SpanishDict note, not as proven WSD evidence. Same-sentence
+            // co-occurrence does not establish that a/de/con/etc. attaches to
+            // the target; the distinct style and tooltip make that limitation
+            // explicit until a future syntax-aware evidence layer exists.
+            const spanishDictUsage = selectedLanguage === 'spanish'
+                ? parseSpanishDictUsageContext(currentMeaning.context)
+                : null;
+            const usageMatch = spanishDictUsage
+                ? highlightPossibleSpanishDictUsage(
+                    displayTargetSentence, spanishDictUsage, card.targetWord)
+                : { html: displayTargetSentence, candidates: [] };
+            displayTargetSentence = usageMatch.html;
+            const usageCandidateKeys = new Set(usageMatch.candidates.map(
+                form => form.toLocaleLowerCase('es')));
 
             // Highlight other study set words in the sentence (same style for now)
             const deckWords = getDeckWords();
             const targetLower = card.targetWord.toLowerCase();
             for (const dw of deckWords) {
-                if (dw === targetLower || dw.length <= 2) continue;
+                if (dw === targetLower || dw.length <= 2
+                    || usageCandidateKeys.has(dw.toLocaleLowerCase('es'))) continue;
                 // Skip if already inside a <span> tag (already highlighted)
                 const dwEscaped = dw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const dwRegex = _cachedRegex(`(?<![\\p{L}\\p{N}])(${dwEscaped})(?![\\p{L}\\p{N}])(?![^<]*>)`, 'giu');
@@ -6233,7 +6274,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816i';
+const ASSET_VERSION = '20260816j';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
