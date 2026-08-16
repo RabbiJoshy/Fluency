@@ -34,11 +34,12 @@ sys.path.insert(0, str(PROJECT_ROOT / "pipeline"))
 from util_5c_sense_paths import sense_menu_path  # noqa: E402
 from util_pipeline_meta import make_meta, write_sidecar  # noqa: E402
 
-STEP_VERSION = 3
+STEP_VERSION = 4
 STEP_VERSION_NOTES = {
     1: "verbecc conjugations + jehle override + reverse lookup",
     2: "union artist-master verb lemmas + reflexive alias keys",
     3: "+ reconstruct core tables from Wiktionary morphology when verbecc fails",
+    4: "+ learner-facing -ra imperfect subjunctive paradigm",
 }
 
 LAYERS = PROJECT_ROOT / "Data" / "Spanish" / "layers"
@@ -64,6 +65,7 @@ CORE_TENSES = {
     ],
     "subjuntivo": [
         ("presente", "Subj. Presente"),
+        ("pretérito-imperfecto-1", "Subj. Imperfecto"),
     ],
 }
 
@@ -74,6 +76,15 @@ DISPLAY_TENSE_TO_REVERSE = {
     "Futuro": ("indicativo", "futuro"),
     "Condicional": ("condicional", "presente"),
     "Subj. Presente": ("subjuntivo", "presente"),
+    "Subj. Imperfecto": ("subjuntivo", "pretérito-imperfecto-1"),
+}
+
+# Wiktionary's morphology rows intentionally collapse the two Spanish
+# imperfect-subjunctive paradigms (-ra and -se) to one normalized tense. The
+# learner-facing table uses verbecc's common -ra paradigm, so a failed verbecc
+# conjugation can still recover that display slot from the normalized rows.
+MORPHOLOGY_DISPLAY_ALIASES = {
+    ("subjuntivo", "pretérito-imperfecto"): "Subj. Imperfecto",
 }
 
 INDEX_TO_PERSON = {
@@ -391,6 +402,8 @@ def build_morphology_fallbacks(morphology: dict, missing_lemmas: set[str],
                 continue
             display_name = next((display for display, pair in DISPLAY_TENSE_TO_REVERSE.items()
                                  if pair == (mood, tense)), None)
+            if display_name is None:
+                display_name = MORPHOLOGY_DISPLAY_ALIASES.get((mood, tense))
             person_idx = PERSON_TO_INDEX.get(person)
             if (display_name is not None and person_idx is not None
                     and tables[lemma][display_name][person_idx] == "—"):
