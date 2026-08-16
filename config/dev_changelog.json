@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "347aa1bf",
+      "summary": "English-first cards now use several correctly inflected senses as one clue",
+      "details": [
+        "The front covers each distinct lemma and part-of-speech reading before adding other strong senses, with duplicate English text removed and a four-cue cap",
+        "English verb forms now follow each sense's own lemma, so fue can show he/she/it went and he/she/it was instead of applying ir to both readings",
+        "Exact regular noun plurals are produced separately from verb readings, so casas can show houses, companies and you marry; incompatible lemma-menu leakage such as power on puedes is suppressed",
+        "Eight focused regressions, all JavaScript syntax checks, and a 9,338-card shipped-data audit pass; cache v245→v246 / assets 20260816k→20260816l"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "8761de64",
       "summary": "The back of each SpanishDict card now has a dictionary-data browser",
       "details": [

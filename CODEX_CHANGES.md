@@ -30,6 +30,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Spaced repetition is an optional, device-persistent Study setting and defaults Off while the app is under development. When enabled it is level-scoped, with transparent 1, 3, 7, 14, 30, 60, and 120-day intervals. Pausing suppresses time-based due status without erasing stages/timestamps; explicit mistakes and partial cards always remain in Review.
 - Level estimation is a 30-item receptive check over the normal Speech frequency list. It samples the full distribution before adapting around the uncertain boundary, reports a range, and persists the curve's point estimate through the existing single-rank contract. It is deliberately not labelled as productive ability or calibrated IRT.
 - A card's stable `targetWord` identity is separate from `displaySurface`, `citationForm`, and `productionAnswer`. Spanish→English uses the first two and labels pronominal lemmas in plain language. English→Spanish uses the production answer: exact surface when unmerged, lemma when merged, and the complete `-se` citation for older pronominal data, with the evidenced example form shown separately.
+- English-first surface cards use a bounded semantic fingerprint: one distinct cue per lemma/POS reading first, then other strong senses, with duplicate English text removed and a four-cue cap. English morphology is resolved against each sense's lemma rather than the card's majority lemma, and incompatible non-verb lemma-menu leakage is suppressed when a surface-compatible cue exists.
 - Regular plural dictionary twins share their explicit singular lemma identity while preserving every source sense ID. Derivational families such as `besito` → `beso` remain separate cards/progress records and use a conservative, auditable relation layer rather than suffix-only collapsing.
 - Card reporting has one owner-facing route: both visible report controls open the structured audit sheet directly; the obsolete metadata/field-flag sheet is retired.
 - Artist clitic rows consume split-example `c` buckets in single- and multi-artist decks. They teach the exact attached form as an infinitive, gerund, or affirmative command plus the clitic's person/case and English role, rather than presenting only the base infinitive gloss.
@@ -41,6 +42,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Open handoff notes
 
+- The current English production layer is intentionally conservative beyond indicative present/preterite/future and regular one-word noun plurals. Ambiguous analyses and moods without a clean English equivalent remain uninflected, and blank dictionary translations such as the `venir` reading of `vino` cannot yet produce `came`; the durable follow-up is an analysis-aligned production-cue field from the pipeline rather than additional runtime guesses.
 - The Dictionary browser is ready to display `regions` once deck assembly begins shipping them. Current normal and artist compact decks omit that field, and artist decks also omit SpanishDict examples, so the browser truthfully shows only the raw fields that reached each card rather than fetching or reconstructing missing source data in the app.
 - SpanishDict usage cues are presentation-only for now. A later WSD experiment should preserve that boundary and measure clause/attachment evidence before using a companion token as a feature. Other promising upstream features currently absent from the embedding gloss include sense regions, exact headword/lemma identity, redirect/conjugation relation, the second dictionary example, and sense-aligned thesaurus links; these should be evaluated as priors/features rather than silently folded into observed corpus frequency.
 - `backend/GoogleAppsScript.js` commit `b4fac72e` adds the `SongSets` sheet contract, but the Apps Script deployment is deliberately manual and has not been performed by Codex. Until Josh deploys that revision, per-song choices remain durable on-device and queued account writes will retry from Offline & sync.
@@ -52,6 +54,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The full Node suite currently has seven pre-existing failures against `HEAD`: five stale `tests/ui-refinements.test.mjs` assertions (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names), one reviewed personalised-frame/data mismatch, and the already-recorded offline-manifest checksum mismatch for the rebuilt Spanish index. Theme-focused and relevant UI/offline-policy tests pass; this unrelated test/data debt was not rewritten as part of appearance work.
 
 ## Codex task history
+
+### 2026-08-16 — Improve English-first semantic and morphological cues
+
+- Commit `347aa1bf`; front-end cache `flashcards-v246` / `20260816l`.
+- English-first cards now present a bounded semantic fingerprint rather than only positive-frequency leaves: every distinct lemma/POS reading gets first consideration, followed by other strong senses, with duplicate glosses removed and a four-cue cap.
+- English production now consumes each sense's own lemma. Homographs such as `fue` render both `he/she/it went` and `he/she/it was`; mixed readings such as `casas` independently render `houses`, `companies`, and `you marry`.
+- A conservative surface-compatibility gate removes lemma-menu leakage such as noun `power` from finite `puedes`, while an explicit fallback guarantees that older/incomplete cards never acquire a blank reverse face. Ambiguous Spanish analyses still decline to manufacture one English form.
+- Verification: eight focused reverse-cue regressions, JavaScript syntax for every module, asset/cache lockstep, `git diff --check`, and a shipped-data audit covering all 9,338 Spanish cards. The full Node suite remains at its documented 57/64 baseline: one personalised-frame fixture mismatch, one stale offline-manifest checksum, and five stale broad UI assertions are unchanged. No service-worker browser preview was used.
 
 ### 2026-08-16 — Add a card-back SpanishDict data browser
 
