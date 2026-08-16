@@ -3,6 +3,16 @@
   "entries": [
     {
       "date": "2026-08-16",
+      "commit": "7ee58393",
+      "summary": "The conjugation panel now uses the card’s reading typography consistently",
+      "details": [
+        "Audited every panel text role before changing it: the infinitive remains the emphasized title, while ordinary content and controls now share the reading face",
+        "Mood and tense tabs, pronouns, conjugated forms and the close control no longer mix data, emphasis and browser-default fonts",
+        "A focused CSS regression reserves the emphasis face for the title and rejects data typography in the core paradigm; cache v236→v237 / assets 20260816b→20260816c"
+      ]
+    },
+    {
+      "date": "2026-08-16",
       "commit": "75911281",
       "summary": "Cards keep one headword and explain only the tricky lyric restorations",
       "details": [

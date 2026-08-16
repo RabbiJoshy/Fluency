@@ -45,6 +45,13 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-16 — Normalize conjugation-panel typography
+
+- Commit `7ee58393`; front-end cache `flashcards-v237` / `20260816c`; scope update recorded on GitHub issue #8.
+- Audited the panel before editing. The ordinary panel copy correctly inherited `--font-reading` and the infinitive correctly used `--font-emphasis`, but mood/tense tabs and pronouns used `--font-data`, conjugated forms used `--font-emphasis`, and the close control had no author font token.
+- The infinitive remains the only emphasized panel title. Close control, text tabs, subjects, and conjugated forms now explicitly use the card's reading face; the data face remains reserved for counts, codes, and diagnostics elsewhere.
+- Verification: focused executable CSS regression proves the core conjugation block contains no data-face declaration and only the infinitive retains emphasis; asset-version lockstep and whitespace validation pass. The five unrelated stale assertions already documented under Open handoff notes remain outside this typography scope.
+
 ### 2026-08-16 — Replace header form piles with explicit elision cues
 
 - Commit `75911281`; front-end cache `flashcards-v236` / `20260816b`; GitHub issue #58.
