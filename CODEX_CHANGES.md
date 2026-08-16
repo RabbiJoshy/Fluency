@@ -60,7 +60,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ### 2026-08-17 — Expand analysis-aligned English production forms
 
-- Commit `cf3ce8f9`; front-end cache `flashcards-v249` / `20260817a`; GitHub issue #61.
+- Commit `9df65d81`; front-end cache `flashcards-v249` / `20260817a`; GitHub issue #61.
 - Step 5e v3 now keys its shared English layer by complete mood/tense analysis and adds LemmInflect-backed gerund and past-participle spellings. Conditional and command frames are derived from the same exact infinitive sense in the app, keeping the shared layer at 5.6 MB instead of repeating predictable strings for every person.
 - English-first cards now render conditionals, affirmative/negative commands, gerunds, and past participles as well as the existing indicative forms. Multiple supported analyses are deduplicated and displayed compactly (`da` can show indicative and command prompts); unsupported alternatives do not suppress a supported one.
 - Spanish imperfect and subjunctive still abstain because there is no single context-free English realization. The card retains its dictionary gloss and the already-persistent person + grammar cue, avoiding a confidently wrong paraphrase.
