@@ -9,6 +9,7 @@ Vanilla JS with native ES modules. No framework, no bundler, no build step.
 | File | Purpose | Key functions |
 |------|---------|--------------|
 | `main.js` | Entry point, imports all modules, registers SW | |
+| `theme.js` | Persistent Dark/Light/System appearance + live system-theme sync | `applyThemePreference()` |
 | `state.js` | Shared mutable state + globalThis proxy | (35+ state variables) |
 | `vocab.js` | Vocabulary loading, filtering, ID generation | `buildFilteredVocab()`, `loadVocabularyData()`, `getWordId()`, `mergeArtistVocabularies()` |
 | `flashcards.js` | Card rendering, flip, swipe, keyboard, init | `initializeApp()`, `updateCard()`, `flipCard()`, `nextCard()`, `handleSwipeAction()`, `selectMeaning()`, `cycleExample()` |
@@ -66,7 +67,9 @@ keeps the standalone coverage card.
 Note: Lemma/cognate toggles are inline containers (`lemmaToggleContainer`/`cognateToggleContainer`) between step 2 and the set progress panel. DOM `id="step4"` is the automatic next-set panel (visual step 3).
 
 The main settings modal is bounded/scrollable and has Account, Study, and Offline & sync
-tabs, plus a JST-only App data audit tab. The active deck's Study preferences entry opens
+tabs, plus a JST-only App data audit tab. Account begins with the device-persistent
+Dark/Light/System appearance selector; dark remains the no-preference default, and the
+small synchronous head bootstrap applies the stored choice before CSS paints. The active deck's Study preferences entry opens
 the same Study content as a single-surface modal without exposing the other tabs. Artist/album selection is intentionally absent
 until its combined selector is redesigned. `fluency_global_study_defaults_v1` persists Merge Lemmas, Cognates,
 card direction, and automatic speech. In-study direction/audio changes write the

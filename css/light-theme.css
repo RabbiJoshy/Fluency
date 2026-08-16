@@ -1,0 +1,735 @@
+/*
+ * Fluency light appearance
+ *
+ * This is a designed light palette, not a visual inversion. Shared components
+ * inherit the semantic surface/text variables below; the scoped rules handle
+ * controls whose dark treatment intentionally used literal translucent white
+ * or black because they sit on media, glass, or a full-screen scrim.
+ */
+
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --bg-primary: #f5f2ec;
+    --bg-secondary: #ece8df;
+    --bg-tertiary: #e4ded4;
+    --bg-card: #fffdf9;
+    --bg-card-hover: #f7f1e8;
+
+    --text-primary: #17212b;
+    --text-secondary: #354353;
+    --text-muted: #667484;
+
+    --accent-orange: #c84f24;
+    --accent-amber: #946000;
+    --accent-blue: #1769aa;
+    --accent-green: #087f68;
+    --accent-phrases: #7453c6;
+    --accent-phrases-rgb: 116, 83, 198;
+
+    --success: #087f68;
+    --error: #bd3847;
+    --warning: #946000;
+
+    --border-color: #d7d0c5;
+    --border-light: #c4bbae;
+
+    --glow-orange: rgba(200, 79, 36, 0.18);
+    --glow-blue: rgba(23, 105, 170, 0.17);
+    --glow-green: rgba(8, 127, 104, 0.17);
+}
+
+:root[data-theme="light"] body {
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.82) 0%, transparent 52%),
+        radial-gradient(ellipse at bottom right, rgba(var(--accent-primary-rgb, 200, 16, 46), 0.055) 0%, transparent 42%);
+}
+
+:root[data-theme="light"] .header {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .card-face {
+    box-shadow: 0 15px 42px rgba(69, 55, 37, 0.13), 0 1px 2px rgba(69, 55, 37, 0.08);
+}
+
+:root[data-theme="light"] .modal {
+    background: rgba(39, 34, 29, 0.42);
+}
+
+:root[data-theme="light"] .modal-content,
+:root[data-theme="light"] .settings-modal-content > .settings-tabs-header {
+    box-shadow: 0 22px 60px rgba(55, 45, 33, 0.18);
+}
+
+:root[data-theme="light"] .settings-modal-content > .settings-tabs-header {
+    background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+}
+
+:root[data-theme="light"] .appearance-settings-card {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .appearance-selector .theme-preference-btn:hover:not(.selected) {
+    background: rgba(23, 33, 43, 0.055);
+}
+
+:root[data-theme="light"] .appearance-selector .theme-preference-btn:focus-visible {
+    outline-color: color-mix(in srgb, var(--accent-primary) 62%, #17212b);
+}
+
+:root[data-theme="light"] .stacked-exit-btn,
+:root[data-theme="light"] .card-top-banner button,
+:root[data-theme="light"] .card-link-btn,
+:root[data-theme="light"] .card-icon-btn {
+    border-color: rgba(23, 33, 43, 0.18);
+}
+
+:root[data-theme="light"] .stacked-exit-btn {
+    background: rgba(23, 33, 43, 0.07);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .stacked-exit-btn:hover {
+    background: rgba(23, 33, 43, 0.12);
+    color: var(--text-primary);
+}
+
+/* Desktop study chrome lives outside the card and therefore follows the page
+   foreground in light appearance. Correct/incorrect discs keep white glyphs
+   because their fills are deliberately darkened semantic colours. */
+:root[data-theme="light"] .desktop-nav-btn-outside .nav-icon,
+:root[data-theme="light"] .answer-hint kbd {
+    border-color: rgba(23, 33, 43, 0.16);
+    background: rgba(23, 33, 43, 0.07);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .desktop-answer-btn-outside:hover,
+:root[data-theme="light"] .desktop-nav-btn-outside:hover,
+:root[data-theme="light"] .desktop-nav-btn-outside:hover .nav-icon {
+    background: rgba(23, 33, 43, 0.08);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .desktop-answer-btn-outside.incorrect .answer-icon,
+:root[data-theme="light"] .desktop-answer-btn-outside.correct .answer-icon {
+    color: #fff;
+}
+
+:root[data-theme="light"] .side-nav-chevron,
+:root[data-theme="light"] .side-nav-zone:hover:not(:disabled) .side-nav-chevron {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .deck-ghost-prev,
+:root[data-theme="light"] .deck-ghost-next {
+    border-color: var(--border-color);
+    filter: none;
+    box-shadow: 0 8px 24px rgba(69, 55, 37, 0.08);
+}
+
+:root[data-theme="light"] .deck-ghost-prev-2,
+:root[data-theme="light"] .deck-ghost-next-2 {
+    background: var(--bg-secondary);
+    opacity: 0.72;
+}
+
+/* The keyboard guide is a quiet paper-and-keycap panel instead of a dark
+   glass island. */
+:root[data-theme="light"] .kb-content {
+    border-color: var(--border-color);
+    background: rgba(255, 253, 249, 0.8);
+    box-shadow: 0 8px 28px rgba(55, 45, 33, 0.14);
+}
+
+:root[data-theme="light"] .kb-section + .kb-section::before {
+    background: var(--border-color);
+}
+
+:root[data-theme="light"] .kb-key,
+:root[data-theme="light"] .kb-info-btn {
+    border-color: var(--border-light);
+    background: linear-gradient(180deg, #fffdf9 0%, #ebe6dc 100%);
+    color: var(--text-primary);
+    box-shadow: 0 1px 0 rgba(69, 55, 37, 0.15), inset 0 1px 0 #fff;
+}
+
+:root[data-theme="light"] .kb-label,
+:root[data-theme="light"] .kb-hint,
+:root[data-theme="light"] .kb-plus {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .kb-info-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Metadata and audit sheets use the same light modal grammar as Settings. */
+:root[data-theme="light"] .card-meta-popover,
+:root[data-theme="light"] .flag-menu {
+    background: rgba(58, 50, 41, 0.38);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .card-meta-modal-content,
+:root[data-theme="light"] .flag-menu .card-meta-modal-content {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    box-shadow: 0 22px 60px rgba(55, 45, 33, 0.2);
+}
+
+:root[data-theme="light"] .card-meta-header,
+:root[data-theme="light"] .card-meta-footer {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .card-meta-title,
+:root[data-theme="light"] .card-meta-close,
+:root[data-theme="light"] .card-meta-kv dd,
+:root[data-theme="light"] .flag-menu-pairing,
+:root[data-theme="light"] .flag-pairing-target,
+:root[data-theme="light"] .flag-pairing-example,
+:root[data-theme="light"] .flag-menu-note {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .card-meta-close:hover {
+    color: var(--accent-primary);
+}
+
+:root[data-theme="light"] .card-meta-section h4,
+:root[data-theme="light"] .card-meta-kv dt,
+:root[data-theme="light"] .card-meta-ex,
+:root[data-theme="light"] .card-meta-empty,
+:root[data-theme="light"] .flag-menu-hint,
+:root[data-theme="light"] .flag-menu-section-label,
+:root[data-theme="light"] .flag-pairing-context,
+:root[data-theme="light"] .flag-menu-note-label,
+:root[data-theme="light"] .flag-menu-note-label span {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .card-meta-tag,
+:root[data-theme="light"] .flag-menu-pairing.is-secondary {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .flag-menu-note {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .flag-menu-note::placeholder {
+    color: var(--text-muted);
+}
+
+/* Progress and choice controls use a quiet ink tint on their unselected half;
+   language/artist colour still owns the selected and filled states. */
+:root[data-theme="light"] .level-btn:hover,
+:root[data-theme="light"] .group-size-btn:hover:not(.selected),
+:root[data-theme="light"] .settings-tab:hover:not(.active),
+:root[data-theme="light"] .card-btn-pill:hover {
+    background: rgba(23, 33, 43, 0.055);
+}
+
+:root[data-theme="light"] .range-btn-new:not(.has-progress):not(:hover) {
+    background-color: rgba(255, 253, 249, 0.72);
+}
+
+/* Card content had several dark-only literal surfaces because the original
+   application had a single palette. These are remapped by role rather than
+   inverted, leaving semantic and language accents intact. */
+:root[data-theme="light"] .card-back-scrubber,
+:root[data-theme="light"] .cbs-strip,
+:root[data-theme="light"] .cbs-chevron,
+:root[data-theme="light"] .cbs-gear,
+:root[data-theme="light"] .deck-progress-track .study-menu-btn {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .cbs-chevron,
+:root[data-theme="light"] .cbs-gear {
+    border-color: var(--border-color);
+    background: rgba(23, 33, 43, 0.055);
+}
+
+:root[data-theme="light"] .cbs-chevron:disabled {
+    border-color: var(--border-color);
+    background: rgba(23, 33, 43, 0.025);
+    color: color-mix(in srgb, var(--text-muted) 45%, transparent);
+}
+
+:root[data-theme="light"] .deck-progress-track .study-menu-btn:hover,
+:root[data-theme="light"] .deck-progress-track .study-menu-btn:focus-visible {
+    color: var(--text-primary);
+    background: rgba(23, 33, 43, 0.055);
+}
+
+:root[data-theme="light"] .back-pos-legend .card-pos,
+:root[data-theme="light"] .back-pos-unit .card-pos,
+:root[data-theme="light"] .back-pos-legend .back-pos-tab {
+    border-color: color-mix(in srgb, currentColor 34%, transparent);
+    background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+:root[data-theme="light"] .meaning-pos-section .meaning-row {
+    border-color: var(--border-color);
+    background: var(--bg-secondary) !important;
+}
+
+:root[data-theme="light"] .meaning-row.is-current-sense {
+    background: rgba(var(--sense-match-rgb), 0.11) !important;
+}
+
+:root[data-theme="light"] .mwe-expression,
+:root[data-theme="light"] .card-details .special-meaning-copy strong,
+:root[data-theme="light"] .card-word,
+:root[data-theme="light"] .front-meaning-text,
+:root[data-theme="light"] .back-headword,
+:root[data-theme="light"] .meaning-text,
+:root[data-theme="light"] .meaning-pos,
+:root[data-theme="light"] .phrase-expression,
+:root[data-theme="light"] .clitic-row-translation,
+:root[data-theme="light"] .wild-target,
+:root[data-theme="light"] .phrase-example-target,
+:root[data-theme="light"] .card-stat-value,
+:root[data-theme="light"] .front-meaning-pos,
+:root[data-theme="light"] .morph-pop-subject,
+:root[data-theme="light"] .morph-pop-form,
+:root[data-theme="light"] .morph-pop-more-sign {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .card-rank-label,
+:root[data-theme="light"] .card-freq-label,
+:root[data-theme="light"] .card-freq-btn,
+:root[data-theme="light"] .reverse-example-form,
+:root[data-theme="light"] .phrase-context,
+:root[data-theme="light"] .clitic-row-detail {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .card-freq-btn:hover {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .phrase-translation,
+:root[data-theme="light"] .wild-english,
+:root[data-theme="light"] .phrase-example-translation {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .phrase-summary-item,
+:root[data-theme="light"] .wild-english,
+:root[data-theme="light"] .phrase-example-translation {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .phrase-example {
+    border-color: var(--border-color);
+    border-left-color: #087b70;
+    background: #f1ece3;
+}
+
+:root[data-theme="light"] .wild-row {
+    border-color: var(--border-color);
+    background: rgba(23, 33, 43, 0.025);
+}
+
+:root[data-theme="light"] .wild-row:hover {
+    background: rgba(23, 33, 43, 0.055);
+}
+
+:root[data-theme="light"] .wild-row.is-revealed {
+    border-color: rgba(var(--accent-phrases-rgb), 0.4);
+    background: rgba(var(--accent-phrases-rgb), 0.075);
+}
+
+:root[data-theme="light"] .phrase-kind-badge {
+    border-color: rgba(8, 123, 112, 0.4);
+    background: rgba(20, 184, 166, 0.11);
+    color: #087b70;
+}
+
+:root[data-theme="light"] .clitic-group-suffix,
+:root[data-theme="light"] .clitic-row-key,
+:root[data-theme="light"] .clitic-more-toggle,
+:root[data-theme="light"] .clitic-form-hit {
+    color: #a9490b;
+}
+
+:root[data-theme="light"] .clitic-more-toggle {
+    border-color: rgba(169, 73, 11, 0.4);
+    background: rgba(249, 115, 22, 0.09);
+}
+
+:root[data-theme="light"] .bilingual-meaning-copy .mwe-translation,
+:root[data-theme="light"] .translation {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .surface-relation-cue {
+    color: color-mix(in srgb, rgb(var(--card-pos-rgb)) 56%, #17212b);
+}
+
+:root[data-theme="light"] .card-exclusion-label {
+    color: color-mix(in srgb, var(--accent-secondary) 65%, #17212b);
+}
+
+:root[data-theme="light"] .card-exclusion-label--examples {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .morph-popover {
+    background: var(--bg-card);
+    box-shadow: 0 10px 28px rgba(55, 45, 33, 0.18);
+}
+
+:root[data-theme="light"] .sentence,
+:root[data-theme="light"] .sentence.example-is-matched {
+    border-color: var(--border-color);
+    border-left-color: rgb(var(--sense-match-rgb));
+    background: #f1ece3;
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .translation,
+:root[data-theme="light"] .ref-tile,
+:root[data-theme="light"] .ref-tile-label {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .example-word-highlight,
+:root[data-theme="light"] .example-related-highlight {
+    color: color-mix(in srgb, rgb(var(--sense-match-rgb)) 56%, #17212b);
+}
+
+:root[data-theme="light"] .example-vocalist-credit {
+    color: var(--text-muted);
+}
+
+:root[data-theme="light"] .example-autoplay-btn,
+:root[data-theme="light"] .example-cycle-btn,
+:root[data-theme="light"] .mwe-cycle-btn,
+:root[data-theme="light"] .nav-btn-inline,
+:root[data-theme="light"] .card-action-small {
+    border-color: rgba(23, 33, 43, 0.16);
+    background: rgba(23, 33, 43, 0.06);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .example-cycle-btn:hover,
+:root[data-theme="light"] .mwe-cycle-btn:hover,
+:root[data-theme="light"] .nav-btn-inline:hover,
+:root[data-theme="light"] .card-action-small:hover {
+    background: rgba(23, 33, 43, 0.1);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .example-autoplay-btn.is-active {
+    color: #fff;
+}
+
+:root[data-theme="light"] .lookup-sheet-icon,
+:root[data-theme="light"] .card-control-btn,
+:root[data-theme="light"] #reverseLangBtn .reverse-swap-glyph {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: 0 6px 18px rgba(55, 45, 33, 0.16);
+}
+
+:root[data-theme="light"] .card-control-btn:hover {
+    border-color: var(--border-light);
+    background: var(--bg-tertiary);
+    box-shadow: 0 4px 12px rgba(55, 45, 33, 0.12);
+}
+
+:root[data-theme="light"] .control-action-btn {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .control-action-btn:hover {
+    border-color: var(--border-light);
+    background: var(--bg-tertiary);
+    box-shadow: 0 4px 12px rgba(55, 45, 33, 0.12);
+}
+
+:root[data-theme="light"] .control-action-btn:active {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .card-control-btn:active {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .freq-tooltip {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    box-shadow: 0 8px 24px rgba(55, 45, 33, 0.16);
+}
+
+/* Light POS colours use the same semantic hue families with darker ink and a
+   lower-opacity wash. This keeps each part of speech distinct without the
+   neon-on-charcoal treatment of the dark cards. */
+:root[data-theme="light"] .pos-noun { background: rgba(74, 158, 255, 0.12); border-color: rgba(23, 100, 168, 0.36); color: #1764a8; }
+:root[data-theme="light"] .pos-propn { background: rgba(14, 165, 233, 0.12); border-color: rgba(8, 116, 154, 0.36); color: #08749a; }
+:root[data-theme="light"] .pos-verb { background: rgba(0, 212, 170, 0.11); border-color: rgba(8, 127, 104, 0.36); color: #087f68; }
+:root[data-theme="light"] .pos-aux { background: rgba(45, 212, 191, 0.11); border-color: rgba(13, 117, 109, 0.36); color: #0d756d; }
+:root[data-theme="light"] .pos-adj { background: rgba(245, 166, 35, 0.13); border-color: rgba(138, 90, 0, 0.36); color: #8a5a00; }
+:root[data-theme="light"] .pos-adv { background: rgba(168, 85, 247, 0.11); border-color: rgba(116, 52, 179, 0.34); color: #7434b3; }
+:root[data-theme="light"] .pos-prep { background: rgba(236, 72, 153, 0.1); border-color: rgba(168, 45, 107, 0.34); color: #a82d6b; }
+:root[data-theme="light"] .pos-conj { background: rgba(20, 184, 166, 0.1); border-color: rgba(8, 123, 112, 0.34); color: #087b70; }
+:root[data-theme="light"] .pos-cconj { background: rgba(34, 197, 94, 0.1); border-color: rgba(21, 125, 56, 0.34); color: #157d38; }
+:root[data-theme="light"] .pos-sconj { background: rgba(132, 204, 22, 0.12); border-color: rgba(82, 124, 13, 0.35); color: #527c0d; }
+:root[data-theme="light"] .pos-pron { background: rgba(99, 102, 241, 0.1); border-color: rgba(76, 79, 178, 0.34); color: #4c4fb2; }
+:root[data-theme="light"] .pos-det { background: rgba(244, 63, 94, 0.1); border-color: rgba(183, 47, 75, 0.34); color: #b72f4b; }
+:root[data-theme="light"] .pos-int { background: rgba(234, 179, 8, 0.13); border-color: rgba(125, 97, 0, 0.36); color: #7d6100; }
+:root[data-theme="light"] .pos-num { background: rgba(6, 182, 212, 0.11); border-color: rgba(8, 123, 145, 0.35); color: #087b91; }
+:root[data-theme="light"] .pos-mwe { background: rgba(251, 191, 36, 0.13); border-color: rgba(140, 98, 0, 0.36); color: #8c6200; }
+:root[data-theme="light"] .pos-clitic { background: rgba(249, 115, 22, 0.11); border-color: rgba(169, 73, 11, 0.35); color: #a9490b; }
+:root[data-theme="light"] .pos-part { background: rgba(192, 132, 252, 0.11); border-color: rgba(120, 62, 177, 0.34); color: #783eb1; }
+:root[data-theme="light"] .pos-prefix { background: rgba(163, 230, 53, 0.12); border-color: rgba(82, 122, 15, 0.35); color: #527a0f; }
+:root[data-theme="light"] .pos-suffix { background: rgba(74, 222, 128, 0.1); border-color: rgba(22, 116, 67, 0.34); color: #167443; }
+:root[data-theme="light"] .pos-contraction { background: rgba(248, 113, 113, 0.1); border-color: rgba(170, 61, 61, 0.34); color: #aa3d3d; }
+:root[data-theme="light"] .pos-other { background: rgba(148, 163, 184, 0.13); border-color: rgba(82, 97, 112, 0.34); color: #526170; }
+
+:root[data-theme="light"] .pos-info-overlay {
+    background: rgba(58, 50, 41, 0.38);
+}
+
+:root[data-theme="light"] .resume-entry-modal,
+:root[data-theme="light"] .knowledge-overview-modal,
+:root[data-theme="light"] .step-info-tooltip {
+    background: rgba(58, 50, 41, 0.38);
+}
+
+:root[data-theme="light"] .step-info-tooltip-inner {
+    box-shadow: 0 18px 50px rgba(55, 45, 33, 0.2);
+}
+
+:root[data-theme="light"] .spotify-autoplay-popover {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    box-shadow: 0 10px 26px rgba(55, 45, 33, 0.18);
+}
+
+:root[data-theme="light"] .spotify-autoplay-popover-text,
+:root[data-theme="light"] .spotify-autoplay-toggle {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .spotify-autoplay-toggle {
+    border-color: var(--border-color);
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .spotify-autoplay-toggle-dot {
+    background: var(--text-muted);
+}
+
+:root[data-theme="light"] .breakdown-trigger {
+    text-decoration-color: color-mix(in srgb, var(--text-muted) 55%, transparent);
+}
+
+:root[data-theme="light"] .breakdown-trigger:hover {
+    text-decoration-color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .pos-info-popover {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    box-shadow: 0 18px 50px rgba(55, 45, 33, 0.2);
+}
+
+:root[data-theme="light"] .pos-info-close:hover,
+:root[data-theme="light"] .pos-info-close:focus-visible {
+    border-color: var(--border-light);
+    background: var(--bg-tertiary);
+}
+
+:root[data-theme="light"] .flip-circle {
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .flip-circle:hover {
+    border-color: var(--border-light);
+    background: rgba(23, 33, 43, 0.025);
+}
+
+:root[data-theme="light"] .direction-popover {
+    border-color: var(--border-color);
+    background: var(--bg-card);
+    box-shadow: 0 10px 26px rgba(55, 45, 33, 0.18);
+}
+
+:root[data-theme="light"] .direction-popover-text,
+:root[data-theme="light"] .direction-popover-btn {
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .back-lemma {
+    text-shadow: none;
+}
+
+:root[data-theme="light"] .back-derivation-line strong,
+:root[data-theme="light"] .reverse-example-form strong {
+    color: color-mix(in srgb, rgb(var(--sense-match-rgb, var(--accent-primary-rgb))) 58%, #17212b);
+}
+
+/* The About walkthrough embeds real card grammar, so it follows the same
+   surfaces rather than remaining a dark miniature inside a light modal. */
+:root[data-theme="light"] .about-demo-back-word,
+:root[data-theme="light"] .about-demo-card-inner .about-demo-example-target {
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .about-demo-card-inner .meaning-row-regular {
+    background: var(--bg-secondary);
+}
+
+:root[data-theme="light"] .about-demo-pos-legend .card-pos {
+    border-color: color-mix(in srgb, currentColor 34%, transparent);
+    background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+:root[data-theme="light"] .about-demo-highlight {
+    background: rgba(23, 33, 43, 0.08);
+    color: var(--text-primary);
+}
+
+:root[data-theme="light"] .about-demo-spotify-row {
+    border-color: var(--border-color);
+}
+
+@media (max-width: 767px) {
+    :root[data-theme="light"] .nav-row-icon {
+        color: var(--text-secondary);
+    }
+}
+
+:root[data-theme="light"] .swipe-indicator,
+:root[data-theme="light"] .keyboard-guide-key,
+:root[data-theme="light"] .card-ranking,
+:root[data-theme="light"] .card-hint {
+    color: var(--text-muted);
+}
+
+/* Album art remains atmospheric. A warm paper scrim keeps the card genuinely
+   light while leaving enough image to identify the artist and release. */
+:root[data-theme="light"] body.artist-mode .card-face::after {
+    background: rgba(255, 253, 249, 0.9);
+}
+
+:root[data-theme="light"] body.artist-mode .card-face {
+    box-shadow: 0 16px 44px rgba(45, 37, 29, 0.18), 0 1px 2px rgba(45, 37, 29, 0.1);
+}
+
+/* Artwork thumbnails and branded Spotify controls still sit directly on
+   saturated media, so their local white foreground remains intentional. */
+:root[data-theme="light"] .artist-source-image,
+:root[data-theme="light"] .artist-radial-disc--fallback,
+:root[data-theme="light"] .spotify-play-btn,
+:root[data-theme="light"] .spotify-icon {
+    color: #fff;
+}
+
+:root[data-theme="light"] .artist-source-image {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.46), 0 3px 12px rgba(45, 37, 29, 0.16);
+}
+
+/* Full-screen pickers keep a readable sense of depth without turning into a
+   dark-mode island. Their picture labels retain an on-image shadow. */
+:root[data-theme="light"] .artist-radial-overlay {
+    background: rgba(58, 50, 41, 0.32);
+}
+
+:root[data-theme="light"] .artist-radial-hub {
+    box-shadow: 0 8px 24px rgba(45, 37, 29, 0.18);
+}
+
+:root[data-theme="light"] .artist-radial-disc {
+    box-shadow: 0 7px 18px rgba(45, 37, 29, 0.22);
+}
+
+:root[data-theme="light"] .study-radial-picker {
+    background: rgba(245, 242, 236, 0.82);
+}
+
+:root[data-theme="light"] .study-radial-picker .artist-radial-hub {
+    background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px rgba(45, 37, 29, 0.17);
+}
+
+:root[data-theme="light"] .study-radial-picker .artist-radial-disc,
+:root[data-theme="light"] .study-radial-picker .artist-radial-label {
+    color: var(--text-secondary);
+    text-shadow: none;
+}
+
+:root[data-theme="light"] .study-radial-picker .artist-radial-thumb:hover .artist-radial-disc,
+:root[data-theme="light"] .study-radial-picker .artist-radial-thumb:focus-visible .artist-radial-disc {
+    border-color: var(--border-color);
+    background: rgba(23, 33, 43, 0.055);
+}
+
+/* Authentication is a first-class app surface, not a dark splash laid over a
+   light application. */
+:root[data-theme="light"] #authModal {
+    background:
+        radial-gradient(circle at 50% 10%, rgba(var(--accent-primary-rgb), 0.11), transparent 38%),
+        rgba(245, 242, 236, 0.91);
+}
+
+:root[data-theme="light"] .auth-modal-content {
+    background:
+        linear-gradient(145deg, rgba(var(--accent-primary-rgb), 0.055), transparent 44%),
+        var(--bg-card);
+    box-shadow: 0 26px 70px rgba(55, 45, 33, 0.19);
+}
+
+:root[data-theme="light"] .auth-modal-content .auth-btn {
+    background: rgba(23, 33, 43, 0.025);
+}
+
+/* Native fields and dynamically-created inputs should agree with the light
+   document even when they have no component-specific class. */
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select {
+    color-scheme: light;
+}
+
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder {
+    color: #788492;
+    opacity: 1;
+}
+
+:root[data-theme="light"] input:-webkit-autofill,
+:root[data-theme="light"] input:-webkit-autofill:hover,
+:root[data-theme="light"] input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary);
+    box-shadow: 0 0 0 1000px var(--bg-tertiary) inset;
+}
+
+/* Toasts intentionally float above both the light page and album artwork. */
+:root[data-theme="light"] .toast,
+:root[data-theme="light"] .external-toast,
+:root[data-theme="light"] .flag-toast {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(45, 37, 29, 0.24);
+}

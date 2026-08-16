@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260816f';
+import './state.js?v=20260816g';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -1688,9 +1688,12 @@ function applyLanguageColorTheme() {
             return 0.2126 * r + 0.7152 * g + 0.0722 * b;
         };
 
-        const bgPrimary = getComputedStyle(root).getPropertyValue('--bg-primary').trim() || '#0f0f1a';
-        root.style.setProperty('--accent-primary-text', luminance(langConfig.colorTheme.primary) < 0.4 ? '#ffffff' : bgPrimary);
-        root.style.setProperty('--accent-secondary-text', luminance(langConfig.colorTheme.secondary) < 0.4 ? '#ffffff' : bgPrimary);
+        // On light accents, use a stable dark ink rather than the current page
+        // background. The latter becomes near-white in light appearance and
+        // would make yellow language/artist controls unreadable after a switch.
+        const onLightAccent = '#17212b';
+        root.style.setProperty('--accent-primary-text', luminance(langConfig.colorTheme.primary) < 0.4 ? '#ffffff' : onLightAccent);
+        root.style.setProperty('--accent-secondary-text', luminance(langConfig.colorTheme.secondary) < 0.4 ? '#ffffff' : onLightAccent);
 
         root.style.setProperty('--accent-primary-rgb', hexToRgb(langConfig.colorTheme.primary));
         root.style.setProperty('--accent-secondary-rgb', hexToRgb(langConfig.colorTheme.secondary));

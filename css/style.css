@@ -8712,6 +8712,60 @@
             font-size: 13px;
             line-height: 1.45;
         }
+        .appearance-settings-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 8px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+        .appearance-settings-copy {
+            min-width: 0;
+        }
+        .appearance-settings-copy strong,
+        .appearance-settings-copy small {
+            display: block;
+        }
+        .appearance-settings-copy strong {
+            color: var(--text-primary);
+            font-family: var(--font-emphasis);
+            font-size: 14px;
+        }
+        .appearance-settings-copy small {
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.35;
+        }
+        .appearance-selector {
+            flex: 0 0 auto;
+        }
+        .appearance-selector .theme-preference-btn {
+            min-width: 58px;
+        }
+        .appearance-selector .theme-preference-btn:focus-visible {
+            position: relative;
+            z-index: 1;
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+        @media (max-width: 520px) {
+            .appearance-settings-card {
+                align-items: stretch;
+                flex-direction: column;
+                gap: 11px;
+            }
+            .appearance-selector {
+                width: 100%;
+            }
+            .appearance-selector .theme-preference-btn {
+                flex: 1 1 0;
+            }
+        }
         .settings-action-row {
             width: 100%;
             border: 0;

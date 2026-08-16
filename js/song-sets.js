@@ -1,10 +1,10 @@
-import './state.js?v=20260816f';
-import { sendOrQueue } from './sync-queue.js?v=20260816f';
+import './state.js?v=20260816g';
+import { sendOrQueue } from './sync-queue.js?v=20260816g';
 import {
     filterExamplesForSongs,
     filterVocabularyForSongs,
     selectedSongIdSet
-} from './song-sets-core.js?v=20260816f';
+} from './song-sets-core.js?v=20260816g';
 
 const STORAGE_PREFIX = 'fluency_song_set_v1:';
 let draftSongIds = new Set();
