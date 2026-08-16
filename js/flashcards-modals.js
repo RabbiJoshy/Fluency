@@ -923,7 +923,16 @@ function peekHomograph(siblingId) {
 // initializeApp via lazy stubs.
 // ---------------------------------------------------------------------------
 
-function showEndOfDeckOptions() {
+let _deckCompleteAutoTimer = null;
+
+function _cancelDeckCompleteAutoContinue() {
+    if (!_deckCompleteAutoTimer) return;
+    clearTimeout(_deckCompleteAutoTimer);
+    _deckCompleteAutoTimer = null;
+}
+
+function showEndOfDeckOptions({ autoContinue = true } = {}) {
+    _cancelDeckCompleteAutoContinue();
     // A completed deck is no longer resumable. Starting a follow-up or redo
     // set will create a fresh snapshot on its first rendered card.
     window.clearStudySessionSnapshot?.();
@@ -948,6 +957,7 @@ function showEndOfDeckOptions() {
     const finishBtn = document.getElementById('markCompleteBtn');
     const finishLabel = document.getElementById('markCompleteLabel');
     const finishIcon = document.getElementById('markCompleteIcon');
+    let hasContinuation = false;
 
     if (finishBtn && finishLabel && finishIcon) {
         // A level can be exhausted before its final physical dot when every
@@ -961,6 +971,7 @@ function showEndOfDeckOptions() {
             finishBtn.dataset.action = 'next-set';
             finishBtn.classList.add('has-next-set');
             finishBtn.style.display = '';
+            hasContinuation = true;
         } else if (nextLevel) {
             finishLabel.textContent = (nextLevel.scope === 'extra' || nextLevel.label)
                 ? `Start ${nextLevel.label}`
@@ -969,21 +980,41 @@ function showEndOfDeckOptions() {
             finishBtn.dataset.action = 'next-level';
             finishBtn.classList.add('has-next-set');
             finishBtn.style.display = '';
+            hasContinuation = true;
         } else {
             finishBtn.classList.remove('has-next-set');
             finishBtn.style.display = 'none';
         }
     }
 
-    // The stats already communicate misses. Keep this line empty during the
-    // normal completion state and reserve it for actionable loading errors.
-    messageEl.textContent = '';
+    // Keep the completion beat, then continue without making the learner
+    // reopen setup and hunt through levels. The visible primary action still
+    // works immediately; Main menu or Redo set cancel this timer through the
+    // normal hide path.
+    const shouldAutoContinue = Boolean(
+        autoContinue && hasContinuation && stats.studyMode === 'new');
+    messageEl.textContent = shouldAutoContinue
+        ? `${finishLabel.textContent} automatically…`
+        : '';
 
     // Show the modal
-    document.getElementById('deckCompleteModal').classList.remove('hidden');
+    const modal = document.getElementById('deckCompleteModal');
+    modal.classList.remove('hidden');
+    if (shouldAutoContinue) {
+        _deckCompleteAutoTimer = setTimeout(() => {
+            _deckCompleteAutoTimer = null;
+            if (modal.classList.contains('hidden')) return;
+            if (finishBtn.dataset.action
+                && finishBtn.dataset.loading !== 'true'
+                && !finishBtn.disabled) {
+                finishBtn.click();
+            }
+        }, 1200);
+    }
 }
 
 function hideDeckCompleteModal() {
+    _cancelDeckCompleteAutoContinue();
     document.getElementById('deckCompleteModal').classList.add('hidden');
 }
 
@@ -1562,25 +1593,31 @@ function _simpleFlagStatus(message, isError = false) {
     status.classList.toggle('is-error', isError);
 }
 
-function showFlagSentToast(typeLabel, isError = false) {
+function showFlagSentToast(typeLabel, isError = false, isPending = false) {
     const toast = document.getElementById('flagSentToast');
     const title = document.getElementById('flagSentToastTitle');
     const type = document.getElementById('flagSentToastType');
     const icon = toast?.querySelector('.flag-sent-toast-icon');
     if (!toast || !title || !type) return;
     if (_flagSentToastTimer) clearTimeout(_flagSentToastTimer);
-    title.textContent = isError ? 'Flag not sent' : 'Flag sent';
+    title.textContent = isPending
+        ? 'Flagging card…'
+        : (isError ? 'Flag not sent' : 'Card flagged');
     type.textContent = typeLabel;
-    if (icon) icon.textContent = isError ? '×' : '✓';
+    if (icon) icon.textContent = isPending ? '…' : (isError ? '×' : '✓');
     toast.classList.toggle('is-error', isError);
+    toast.classList.toggle('is-pending', isPending);
+    toast.setAttribute('aria-busy', String(isPending));
     toast.hidden = false;
     // Restart the entrance transition even when two flags are sent quickly.
     toast.classList.remove('is-visible');
     requestAnimationFrame(() => toast.classList.add('is-visible'));
-    _flagSentToastTimer = setTimeout(() => {
-        toast.classList.remove('is-visible');
-        setTimeout(() => { toast.hidden = true; }, 220);
-    }, 1800);
+    if (!isPending) {
+        _flagSentToastTimer = setTimeout(() => {
+            toast.classList.remove('is-visible');
+            setTimeout(() => { toast.hidden = true; }, 220);
+        }, 2600);
+    }
 }
 
 function _simpleFlagExample(meaning, index) {
@@ -1710,6 +1747,10 @@ async function _sendSimpleFlag(target, options = {}) {
     _simpleFlagBusy = true;
     document.getElementById('flagMenuContent')?.classList.add('is-sending');
     hideFlagMenu();
+    // Confirm the gesture immediately rather than leaving a blank screen while
+    // the durable save/queue resolves. This same card then resolves to success
+    // or failure, so the learner is never left wondering whether the tap took.
+    showFlagSentToast(typeLabel, false, true);
     try {
         const ok = await flagWord(card, fieldPath, report, fields);
         if (!ok) {

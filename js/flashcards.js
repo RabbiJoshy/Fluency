@@ -1,22 +1,22 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260816m';
-import './speech.js?v=20260816m';
+import './state.js?v=20260816n';
+import './speech.js?v=20260816n';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260816m';
+} from './example-personalisation.js?v=20260816n';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260816m';
+} from './spanishdict-usage.js?v=20260816n';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260816m';
+} from './reverse-cues.js?v=20260816n';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -1662,7 +1662,9 @@ function initializeApp() {
             }
         } catch (error) {
             console.error('Could not continue from completed set:', error);
-            await window.showEndOfDeckOptions?.();
+            // Reopen as a stable error state. Automatically retrying here
+            // would create a loop when the next level genuinely cannot load.
+            await window.showEndOfDeckOptions?.({ autoContinue: false });
             const message = document.getElementById('completeMessage');
             if (message) message.textContent = 'Could not open the next level. Please try again.';
         } finally {
@@ -6456,7 +6458,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260816m';
+const ASSET_VERSION = '20260816n';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

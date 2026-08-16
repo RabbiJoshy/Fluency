@@ -1526,7 +1526,10 @@
             position: fixed;
             top: max(18px, env(safe-area-inset-top));
             left: 50%;
-            z-index: 240;
+            /* This confirmation is global, not part of the flag sheet. Keep it
+               above modals and the app loading surface so a completed queue
+               write cannot resolve invisibly behind whatever opened next. */
+            z-index: 30002;
             display: flex;
             align-items: center;
             gap: 11px;
@@ -1551,6 +1554,10 @@
             border-color: color-mix(in srgb, var(--error) 50%, var(--border-color));
             background: color-mix(in srgb, var(--bg-card) 92%, var(--error) 8%);
         }
+        .flag-sent-toast.is-pending {
+            border-color: color-mix(in srgb, var(--accent-primary) 48%, var(--border-color));
+            background: color-mix(in srgb, var(--bg-card) 92%, var(--accent-primary) 8%);
+        }
         .flag-sent-toast-icon {
             display: grid;
             place-items: center;
@@ -1565,6 +1572,10 @@
         .flag-sent-toast.is-error .flag-sent-toast-icon {
             background: color-mix(in srgb, var(--error) 18%, transparent);
             color: var(--error);
+        }
+        .flag-sent-toast.is-pending .flag-sent-toast-icon {
+            background: color-mix(in srgb, var(--accent-primary) 18%, transparent);
+            color: var(--accent-primary);
         }
         .flag-sent-toast-copy {
             display: flex;

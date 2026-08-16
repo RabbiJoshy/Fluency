@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260816m';
+import './state.js?v=20260816n';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -2087,36 +2087,50 @@ function getNextStudyLevelMeta() {
 }
 
 async function startNextStudyLevelFirstSet() {
-    const nextMeta = getNextStudyLevelMeta();
-    if (!nextMeta) throw new Error('No next study level is available');
-    if (nextMeta?.scope === 'extra') {
-        await window.goBackToSetup?.();
-        await window.setArtistVocabularyScope?.('extra', { autoStart: true });
+    // A progress percentage can be stale by the time the final card is
+    // answered (or filters can leave a nominal level with no eligible unseen
+    // set). Verify the rendered sets and keep walking forward until we find
+    // real new cards. Never fall back to replaying a completed set: that made
+    // continuation appear to "stick" and forced the learner back into setup.
+    const visitedLevels = new Set();
+    while (true) {
+        const nextMeta = getNextStudyLevelMeta();
+        if (!nextMeta) throw new Error('No next study level with new cards is available');
+        if (nextMeta.scope === 'extra') {
+            await window.goBackToSetup?.();
+            await window.setArtistVocabularyScope?.('extra', { autoStart: true });
+            return;
+        }
+        if (!nextMeta.level || visitedLevels.has(nextMeta.level)) {
+            throw new Error('Could not resolve a distinct next study level');
+        }
+        visitedLevels.add(nextMeta.level);
+
+        // Stay in the active study surface and render the candidate level's
+        // stable sets. Clicking updates selectedLevel, so another loop pass
+        // naturally searches only the levels after this candidate.
+        const next = document.querySelector(
+            `.level-btn[data-level="${CSS.escape(nextMeta.level)}"]`);
+        if (!next) throw new Error(`Could not find next level ${nextMeta.level}`);
+
+        next.click();
+        if (!next._rangeRenderPromise) {
+            throw new Error('Next level did not begin rendering its sets');
+        }
+        await next._rangeRenderPromise;
+        const setDots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
+        const firstUnseenSet = setDots.find(dot =>
+            !dot.disabled && Number(dot.dataset.pct || 0) < 100);
+        if (!firstUnseenSet) continue;
+
+        await loadVocabularyData(firstUnseenSet.dataset.range, {
+            rankBasis: firstUnseenSet.dataset.rankBasis || 'stable',
+            setNumber: Number(firstUnseenSet.dataset.index) + 1,
+            levelSetCount: setDots.length,
+            levelNumber: nextMeta.levelNumber
+        });
         return;
     }
-
-    // Stay in the active study surface and launch the next level directly,
-    // just like next-set continuation. Returning through setup first rebuilt
-    // the partly completed current level and could race the next-level range
-    // render, especially after jumping to its final physical set.
-    const next = nextMeta?.level
-        ? document.querySelector(`.level-btn[data-level="${CSS.escape(nextMeta.level)}"]`)
-        : null;
-    if (!next) throw new Error(`Could not find next level ${nextMeta.level}`);
-
-    next.click();
-    if (!next._rangeRenderPromise) throw new Error('Next level did not begin rendering its sets');
-    await next._rangeRenderPromise;
-    const setDots = Array.from(document.querySelectorAll('#rangeSelector .study-set-dot'));
-    const firstSet = setDots.find(dot => !dot.disabled && Number(dot.dataset.pct || 0) < 100)
-        || setDots.find(dot => !dot.disabled);
-    if (!firstSet) throw new Error(`Next level ${nextMeta.level} has no available set`);
-    await loadVocabularyData(firstSet.dataset.range, {
-        rankBasis: firstSet.dataset.rankBasis || 'stable',
-        setNumber: Number(firstSet.dataset.index) + 1,
-        levelSetCount: setDots.length,
-        levelNumber: nextMeta.levelNumber
-    });
 }
 
 
