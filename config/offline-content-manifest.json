@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-08-17-beto-cal-v3",
-  "generatedAt": "2026-08-17T20:59:44Z",
+  "contentVersion": "2026-08-17-beto-cal-v4",
+  "generatedAt": "2026-08-17T21:06:42Z",
   "sources": [
     {
       "id": "language-spanish",
@@ -96,7 +96,7 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "bad-bunny",
-      "contentVersion": "2026-08-17-beto-cal-v3",
+      "contentVersion": "2026-08-17-beto-cal-v4",
       "storageBytes": 34226402,
       "transferBytes": 6097897,
       "dependencies": [
@@ -132,7 +132,7 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "rosalia",
-      "contentVersion": "2026-08-17-beto-cal-v3",
+      "contentVersion": "2026-08-17-beto-cal-v4",
       "storageBytes": 14987215,
       "transferBytes": 2302945,
       "dependencies": [
@@ -168,7 +168,7 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "young-miko",
-      "contentVersion": "2026-08-17-beto-cal-v3",
+      "contentVersion": "2026-08-17-beto-cal-v4",
       "storageBytes": 18405106,
       "transferBytes": 2864279,
       "dependencies": [
@@ -204,8 +204,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "spanish-test-playlist",
-      "contentVersion": "2026-08-17-beto-cal-v3",
-      "storageBytes": 10714238,
+      "contentVersion": "2026-08-17-beto-cal-v4",
+      "storageBytes": 10803820,
       "transferBytes": 8210126,
       "dependencies": [
         "shared-spanish-artist"
@@ -218,8 +218,8 @@
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
-          "bytes": 1752905,
-          "sha256": "8e7e31c35a2618988fa145572986a95dcf678fe189733ac370d4c5987c820281"
+          "bytes": 1842487,
+          "sha256": "613173cea71397c42ad2e5df32169695f91b2dda1100079573e9c295b5a04dfe"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",

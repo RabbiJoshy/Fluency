@@ -69,21 +69,21 @@
       "capability_tier": 30,
       "model": "gemini-embedding-001",
       "date": "2026-08",
-      "notes": "Same picks as embed-gloss-classgap-hub-v1; confidence regrouped from (POS, translation) classes to (headword, POS) TUPLES. Yield at 99% lemma+POS goes 6 items -> 13,224 of 84,174. Band cuts re-derived to 0.043/0.020 on 16,016 target-present gold sentences."
+      "notes": "Gloss embeddings; confidence is the gap between the top two lemma+POS readings."
     },
     "sd-beto-cal-v1": {
       "family": "token-prototype-calibrated",
       "capability_tier": 40,
       "model": "gemini-embedding-001 + dccuchile/bert-base-spanish-wwm-cased",
       "date": "2026-08",
-      "notes": "Gloss embeddings + BETO token-prototype scoring + se-only clitic gate, ranked by a learned calibrator. Held-out yield at 99% lemma+POS 43.7% on the full population (22.9% for the tuple gap alone); 53.7% on the 64% with prototype coverage."
+      "notes": "Gloss embeddings + BETO token prototypes + clitic gate, ranked by a learned calibrator."
     },
     "sd-beto-cal-esc-v1": {
       "family": "token-prototype-calibrated-escalated",
       "capability_tier": 45,
       "model": "gemini-3.5-flash-lite",
       "date": "2026-08",
-      "notes": "Second opinion on the low-confidence band of sd-beto-cal-v1. Gemini rescues 81.3% of what the embedding path gets wrong and damages 5% of what it gets right; on disagreement Gemini is taken, measured right 80.3% vs 18.0%. Its own certainty is NOT a usable ranking signal, so this improves the pick and never the confidence."
+      "notes": "Low-confidence cases sent to Gemini for a second opinion; Gemini wins on disagreement."
     }
   },
   "acceptance_policies": {

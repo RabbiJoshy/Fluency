@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260817f';
+import './state.js?v=20260817g';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -434,6 +434,8 @@ function joinWithMaster(indexData, master) {
         const methods = idx.sense_methods || [];
         const promptIds = idx.sense_prompt_ids || [];
         const runTimes = idx.sense_run_ts || [];
+        const confidences = idx.sense_confidence || [];
+        const bands = idx.sense_band || [];
         const modelProposed = idx.sense_model_proposed || [];
         const freqs = idx.sense_frequencies || [];
         const meanings = [];
@@ -452,6 +454,11 @@ function joinWithMaster(indexData, master) {
             if (freq > 0 && promptIds[i] && !isAutomatic) {
                 meaning.prompt_id = promptIds[i];
                 if (runTimes[i]) meaning.run_ts = runTimes[i];
+            }
+            // Model confidence for the provenance panel, aligned per sense.
+            if (freq > 0 && confidences[i] != null) {
+                meaning.confidence = confidences[i];
+                if (bands[i]) meaning.band = bands[i];
             }
             if (freq > 0 && modelProposed[i]) meaning.model_proposed = true;
             if (sense.id || sense.sense_id) meaning.sense_id = sense.id || sense.sense_id;

@@ -3087,6 +3087,12 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
         sense_methods = []
         sense_prompt_ids = []
         sense_run_ts = []
+        # Model confidence per sense, parallel to sense_prompt_ids. Emitted at
+        # index level rather than left only on examples, because the card's
+        # meaning is rebuilt from the index and anything not carried there is
+        # invisible to the provenance panel.
+        sense_confidence = []
+        sense_band = []
         sense_model_proposed = []
         sense_examples = []
         total_ex = 0
@@ -3125,6 +3131,18 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             sense_examples.append(exs)
             total_ex += len(exs)
             sense_methods.append(matching.get("assignment_method") if matching else None)
+            # Best (highest) confidence among the examples assigned to this
+            # sense, with the band that example carried. A sense is as trusted
+            # as its strongest evidence.
+            _pairs = [(e.get("confidence"), e.get("band")) for e in exs
+                      if isinstance(e, dict) and e.get("confidence") is not None]
+            if _pairs:
+                _c, _b = max(_pairs, key=lambda pair: pair[0])
+                sense_confidence.append(round(float(_c), 4))
+                sense_band.append(_b)
+            else:
+                sense_confidence.append(None)
+                sense_band.append(None)
             # Provenance aligned per-sense (parallel to sense_methods): which
             # prompt/model produced this sense, for the card's info panel.
             # Primary source is the authoritative layer map keyed by sense_id
@@ -3173,6 +3191,9 @@ def write_split_files(entries, master, vocab_path, master_path, clitic_data=None
             idx_entry["extra_category"] = entry["extra_category"]
         if any(sense_methods):
             idx_entry["sense_methods"] = sense_methods
+        if any(c is not None for c in sense_confidence):
+            idx_entry["sense_confidence"] = sense_confidence
+            idx_entry["sense_band"] = sense_band
         if any(sense_prompt_ids):
             idx_entry["sense_prompt_ids"] = sense_prompt_ids
         if any(sense_run_ts):
