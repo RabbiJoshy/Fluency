@@ -1,22 +1,22 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260817c';
-import './speech.js?v=20260817c';
+import './state.js?v=20260817d';
+import './speech.js?v=20260817d';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260817c';
+} from './example-personalisation.js?v=20260817d';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260817c';
+} from './spanishdict-usage.js?v=20260817d';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260817c';
+} from './reverse-cues.js?v=20260817d';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -6189,18 +6189,29 @@ function buildProvenancePanelHTML(card) {
     }
 
     const rows = (card.meanings || []).map(m => {
-            const reg = registry[m.prompt_id] || {};
-            const isAutomatic = typeof m.assignment_method === 'string'
-                && m.assignment_method.endsWith('-auto');
-            const hasPrompt = Boolean(m.prompt_id) && !isAutomatic;
-            const automaticLabel = m.assignment_method === 'shared-register-auto'
+            // Meaning-level provenance can be lost between the index and the
+            // card. buildFilteredVocab() and mergeArtistVocabularies() rebuild
+            // meanings from scratch, and lemma mode pools sibling forms onto a
+            // host — any of those can drop prompt_id while the evidence itself
+            // is intact. The examples split stamps prompt_id / run_ts /
+            // assignment_method on every assigned example, so fall back to the
+            // example rather than reporting "No model prompt" for a sense that
+            // plainly has a model behind it.
+            const psrc = (m.examples || []).find(e => e && (e.prompt_id || e.assignment_method)) || {};
+            const promptId = m.prompt_id || psrc.prompt_id || null;
+            const runTs = m.run_ts || psrc.run_ts || null;
+            const method = m.assignment_method || psrc.assignment_method || null;
+            const reg = registry[promptId] || {};
+            const isAutomatic = typeof method === 'string' && method.endsWith('-auto');
+            const hasPrompt = Boolean(promptId) && !isAutomatic;
+            const automaticLabel = method === 'shared-register-auto'
                 ? 'Shared sense register auto · no model call'
-                : m.assignment_method === 'pos-auto'
+                : method === 'pos-auto'
                     ? 'POS-filtered auto · no model call'
                     : 'SpanishDict auto · no model call';
-            const automaticDetail = m.assignment_method === 'shared-register-auto'
+            const automaticDetail = method === 'shared-register-auto'
                 ? 'exact line reused from another registered artist'
-                : m.assignment_method === 'pos-auto'
+                : method === 'pos-auto'
                     ? 'one menu sense remained after occurrence POS filtering'
                     : 'single available dictionary sense';
             const model = isAutomatic
@@ -6208,15 +6219,15 @@ function buildProvenancePanelHTML(card) {
                 : (hasPrompt ? (reg.model || 'Unregistered model') : 'Deterministic or retained evidence');
             const family = reg.family || '';
             const tier = (reg.capability_tier != null) ? `tier ${reg.capability_tier}` : '';
-            const ts = fmtTs(m.run_ts);
+            const ts = fmtTs(runTs);
             const meta = [family, tier, ts].filter(Boolean).join(' · ');
             const notes = reg.notes ? `<div class="prov-notes">${esc(reg.notes)}</div>` : '';
             const proposal = m.modelProposed
                 ? '<div class="prov-proposal">AI-proposed definition · outside the SpanishDict menu</div>'
                 : '';
             const stamp = hasPrompt
-                ? `<div class="prov-meta"><code>${esc(m.prompt_id)}</code>${meta ? ` · ${esc(meta)}` : ''}</div>`
-                : `<div class="prov-meta">${esc(m.assignment_method || 'No model prompt')}${isAutomatic ? ` · ${esc(automaticDetail)}` : ''}</div>`;
+                ? `<div class="prov-meta"><code>${esc(promptId)}</code>${meta ? ` · ${esc(meta)}` : ''}</div>`
+                : `<div class="prov-meta">${esc(method || 'No model prompt')}${isAutomatic ? ` · ${esc(automaticDetail)}` : ''}</div>`;
             // Confidence, when the assigning method reports one. The band cuts
             // are absolute values transferred from the hand-labelled panel in
             // Data/Spanish/Intermediates/wsd_sense_harness, not quantiles of a
@@ -6553,7 +6564,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260817c';
+const ASSET_VERSION = '20260817d';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

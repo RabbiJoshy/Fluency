@@ -1244,3 +1244,13 @@ Cache: `CACHE_NAME` -> flashcards-v224, `ASSET_VERSION` -> 20260812c,
 - Rebuilt `SpanishTestPlaylist` with hubness disabled and Gemini escalation on the low-confidence band. 1,122 entries; 908 senses stamped `sd-beto-cal-v1`, 337 `sd-beto-cal-esc-v1`.
 - Escalation changed the pick on 361 of 494 low-band assignments (73%), matching the measured 81% rescue rate on that band.
 - Known remaining defect: 3,049 cards still carry duplicated sense rows (5,159 pairs at cos ≥ 0.93). Proposal and migration map exist at `Data/Spanish/layers/sense_merge_proposal.json`, deliberately not applied because sense IDs carry per-sense progress.
+
+### 2026-08-17 — Provenance panel: fall back to per-example stamps
+
+- **Author: Claude, editing `js/flashcards.js` by explicit user request while Codex was unavailable.** Recorded so future Codex sessions know the app surface was touched from the engine side.
+- Symptom: a card whose sense was assigned by the new WSD run showed **"No model prompt"** in the `ⓘ` panel. Verified the shipped data is correct at every level — assignments layer carries `prompt_id: sd-beto-cal-v1`, the index's `sense_prompt_ids[3]` matches with arrays aligned 5/5/5, and the examples split stamps `prompt_id` / `run_ts` / `assignment_method` on the assigned example. `joinWithMaster()`'s attach condition passes and `reconcileMeaningProvenanceFromExamples()` does not strip it (the method does not end in `-auto`).
+- So the meaning-level `prompt_id` is dropped somewhere between the index and the card. Candidate paths, all of which rebuild or relocate meanings: the `buildFilteredVocab()` meaning rebuild (`vocab.js:1728`), `mergeArtistVocabularies()` (`vocab.js:2420`), and lemma-mode sibling pooling.
+- Rather than guess which, the panel now reads `prompt_id` / `run_ts` / `assignment_method` from the meaning **and falls back to the first assigned example** it is already rendering. That is authoritative data on the same object, so the panel can no longer claim "no model prompt" for evidence that has one. The underlying drop is still worth finding — this makes it non-user-visible, not fixed.
+- Asset versions bumped by pattern per `js/CLAUDE.md`: 74 `?v=` tags → `20260817d`, both `ASSET_VERSION` constants (`service-worker.js` and `flashcards.js`), `CACHE_NAME` → `flashcards-v253`. `tools/check_asset_versions.py` passes.
+- Known gap, not addressed: artist decks carry no per-sense `confidence`/`band`, so the panel's confidence block stays empty there. `tool_8a_patch_confidence_into_index.py` only patches the normal-mode index.
+- Not verified in a browser (repo policy). Josh should confirm the panel now names `sd-beto-cal-v1` on the `maté` card.
