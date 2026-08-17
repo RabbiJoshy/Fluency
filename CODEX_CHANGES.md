@@ -62,6 +62,15 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-17 — Align merged lemmas, sense selection, and setup continuation
+
+- Commit `b19b5230`; front-end cache `flashcards-v251` / `20260817c`; overlapping sense-navigation backlog tracked by GitHub issue #4.
+- Merge Lemmas no longer treats the pipeline's representative flag as a uniqueness guarantee. It elects exactly one highest-ranked host after the active source/song/filter pass; the shipped Bad Bunny `trepar` conflict (both `trepó` and `trepados` stamped representative) now produces one merged card, while sibling examples and frequency remain pooled under the same normalized lemma.
+- Standardized **lemma–POS group** for the `(lemma, POS)` back-card unit. Every group states its lemma; selecting a group changes the header lemma, sense, example pool, POS treatment, and explicit selection together. The chosen low-frequency sense/subsense and its group render first/open without mutating the stable meaning array or IDs, and duplicate-sense grouping can no longer cross lemma boundaries.
+- Homepage level suggestion now calls the same progress resolver as the set dots and Learn New, including cross-mode surface progress, granular knowledge, lemma inheritance, and estimates. A completed Level 1 therefore advances to the next level with a real unfinished set instead of selecting Level 1's last completed set.
+- Removed the generic `link-btn` treatment from Spotify controls and suppressed theme-coloured touch focus chrome on mobile while retaining a green keyboard focus affordance on desktop.
+- Verification: 28 focused card/routing/playback regressions, JavaScript syntax for every module and service worker, 74 asset tags in lockstep, valid changelog JSON, and `git diff --check`. The full Node suite is 70/77 with the same seven documented baseline failures (one reviewed-frame fixture, one offline checksum, and five stale broad UI assertions). No browser preview was used.
+
 ### 2026-08-17 — Simplify source navigation and add custom Lyrics decks
 
 - Commit `273a971f`; front-end cache `flashcards-v250` / `20260817b`; GitHub issue #60.

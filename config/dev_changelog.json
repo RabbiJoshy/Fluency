@@ -3,14 +3,14 @@
   "entries": [
     {
       "date": "2026-08-17",
-      "commit": "PENDING",
+      "commit": "b19b5230",
       "summary": "Merged lemmas, sense navigation and homepage continuation now stay aligned",
       "details": [
         "Merge Lemmas elects exactly one active representative per lemma, repairing the shipped trepar conflict where both trepó and trepados were marked as representatives",
         "The back card now names every lemma–POS group; switching one changes its lemma, selected sense and examples together",
         "A chosen low-frequency sense/subsense moves to the top and remains open instead of disappearing below the scroll position",
         "The homepage now skips fully completed levels using the same exact progress rules as its set dots, and mobile Spotify controls no longer inherit a red touch/focus ring",
-        "Eight focused regressions and relevant syntax/card/playback checks pass; cache v250→v251 / assets 20260817b→20260817c"
+        "Focused card, routing and playback regressions plus relevant syntax checks pass; cache v250→v251 / assets 20260817b→20260817c"
       ]
     },
     {
