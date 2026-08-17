@@ -1,7 +1,7 @@
 {
   "step_name": "assemble_artist_vocabulary",
   "step_version": 17,
-  "generated_at": 1786791325,
+  "generated_at": 1786986434,
   "ledger_run": "run_3df75929cb720b9525d672cf",
   "corpus_profile_hash": "sha256:6dc2a0e52627857bafad01b2ea93b3b8fb04b0bcdb60d7c2a82730f324b9a109",
   "excluded_labels": [
@@ -13,7 +13,7 @@
     "word_inventory": "4991b3783ffd88b7f0e1407e13ae90aaf09821cffac5ec3b337ff7dd6ade526f",
     "examples_raw": "f6ef57300e27d8be2c20fdc696a2e6cfa68a699a4ae22fc543a4e511a69c3664",
     "example_pos": "ff0e264b99c9b00c38cd1c5a150d3473ad2f1ab1ecf6d130cfb23d5d805d3e13",
-    "sense_assignments_lemma": "db10f73673d86671d9cbd05d9cfc61e1af3a334ed0bc99a547d82b2c2907da64",
+    "sense_assignments_lemma": "77d61575a19e482f26ad93b7684fec5e09c56c393e08e2c7237253383b8e16aa",
     "word_routing": "eaf72802558d7eecbc87a12417aa9fcbb4bdd93c36a39eeb9d9a94a39712fe86",
     "ranking": "a1a56a3093cea728d7e5e4a45322bea8f218c50e9d37fef519afbd6013e4e93f",
     "example_translations": "5694c7ab7d80d842cbea33147c06b1fb069f82133d2215477f266c722b5fc1d1",

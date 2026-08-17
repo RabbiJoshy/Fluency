@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "contentVersion": "2026-08-16-song-sets-v1",
-  "generatedAt": "2026-08-16T18:50:00Z",
+  "contentVersion": "2026-08-17-beto-cal-v1",
+  "generatedAt": "2026-08-17T17:57:53Z",
   "sources": [
     {
       "id": "language-spanish",
@@ -9,20 +9,20 @@
       "scope": "language",
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
-      "contentVersion": "2026-08-05-backup-examples-3",
-      "storageBytes": 30282361,
+      "contentVersion": "2026-08-17-beto-cal-v1",
+      "storageBytes": 39584122,
       "transferBytes": 30168139,
       "dependencies": [],
       "files": [
         {
           "path": "Data/Spanish/vocabulary.index.json",
-          "bytes": 15104343,
-          "sha256": "d3029c5359f650e9b12a386524f06fad14ae3f7895168abdfeb65a12a7881082"
+          "bytes": 15795398,
+          "sha256": "a5c9fe2717bfd2b636bb0f2e07fc0925c6b646ecaa22b4df5527b5a32a5b6b6f"
         },
         {
           "path": "Data/Spanish/vocabulary.examples.json",
-          "bytes": 1276204,
-          "sha256": "39e3b3e93130d614d155ee745fb5acf9837de5c6ff1bd5d50d822a3465bc7fa4"
+          "bytes": 9886910,
+          "sha256": "905ff0bd93d7d751e6f7c62ae1ea5d67973cb29e24da776b0552e440a6b1f626"
         },
         {
           "path": "Data/Spanish/vocabulary.backup_examples.index.json",
@@ -96,8 +96,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "bad-bunny",
-      "contentVersion": "2026-08-16-song-sets-v1",
-      "storageBytes": 34928027,
+      "contentVersion": "2026-08-17-beto-cal-v1",
+      "storageBytes": 34215424,
       "transferBytes": 6097897,
       "dependencies": [
         "shared-spanish-artist"
@@ -105,18 +105,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6730974,
-          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
+          "bytes": 6443844,
+          "sha256": "48236d0495d13a15bd2d0e2a5a09d53361011b3a295aedf8acd0cb18dc254418"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
-          "bytes": 13285745,
-          "sha256": "1b4a9c0cb12daf6bd0b2890063033efb76bdde9b66aa9774518e99c6c31694c0"
+          "bytes": 13112857,
+          "sha256": "263be3c9653d92639122708bf89a95219410814a293c4766b20982f8d0978b11"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.examples.json",
-          "bytes": 14298498,
-          "sha256": "61097bca6224e1b70c15be727d968ce34c27d6a9394b981f031442fc05bb67bc"
+          "bytes": 14045913,
+          "sha256": "70a90fc6427efae2a2d8d0ac11452e7ba3d894aaf9415b5b2e3678dac64d074c"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnysongs.json",
@@ -132,8 +132,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "rosalia",
-      "contentVersion": "2026-08-16-song-sets-v1",
-      "storageBytes": 15395154,
+      "contentVersion": "2026-08-17-beto-cal-v1",
+      "storageBytes": 14976237,
       "transferBytes": 2302945,
       "dependencies": [
         "shared-spanish-artist"
@@ -141,18 +141,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6730974,
-          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
+          "bytes": 6443844,
+          "sha256": "48236d0495d13a15bd2d0e2a5a09d53361011b3a295aedf8acd0cb18dc254418"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
-          "bytes": 4530130,
-          "sha256": "9632ca8e950b5384dcd06a7f8b505a352c092b8f14f37799ddb370e433a1684a"
+          "bytes": 4495957,
+          "sha256": "9d142251468716888e2254119678e078f452edd959f86d98ff242de6e2cc4525"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
-          "bytes": 4030317,
-          "sha256": "a35dda897eb454708bba23fd19893445109ce1d557e8a42efd1cfe4a5d7dc2ad"
+          "bytes": 3932703,
+          "sha256": "53ee7cdad454cee54099642296fbee773f2944de2f4966d91149921bb464389e"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliasongs.json",
@@ -168,8 +168,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "young-miko",
-      "contentVersion": "2026-08-16-song-sets-v1",
-      "storageBytes": 18873689,
+      "contentVersion": "2026-08-17-beto-cal-v1",
+      "storageBytes": 18394128,
       "transferBytes": 2864279,
       "dependencies": [
         "shared-spanish-artist"
@@ -177,18 +177,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6730974,
-          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
+          "bytes": 6443844,
+          "sha256": "48236d0495d13a15bd2d0e2a5a09d53361011b3a295aedf8acd0cb18dc254418"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
-          "bytes": 6023643,
-          "sha256": "c5cbab536a5d4d9635c869042e16c52d7f59be95dcef8ba25a9095d83a6b1ff8"
+          "bytes": 5946334,
+          "sha256": "a7b1f74b87ffd8680d451b93530acd5a68515d460023ebaa725e87b4c1526cc3"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.examples.json",
-          "bytes": 5958868,
-          "sha256": "3e0b1368778ecfc8003383e59e7272210b74e5a294f73558327cf5b227a14510"
+          "bytes": 5843746,
+          "sha256": "052413e457f64391b1e99b5574f5ce1f20a881ad0c9be0d05b0ed18fe45ce5cd"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikosongs.json",
@@ -204,8 +204,8 @@
       "scopeLabel": "Lyrics · shared Spanish meanings included",
       "language": "spanish",
       "artist": "spanish-test-playlist",
-      "contentVersion": "2026-08-16-song-sets-v1",
-      "storageBytes": 8210126,
+      "contentVersion": "2026-08-17-beto-cal-v1",
+      "storageBytes": 10637405,
       "transferBytes": 8210126,
       "dependencies": [
         "shared-spanish-artist"
@@ -213,18 +213,18 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6730974,
-          "sha256": "31316c4591bc5bad318006128ff02fdc595ced32cba5fd4e54da48602720bb2f"
+          "bytes": 6443844,
+          "sha256": "48236d0495d13a15bd2d0e2a5a09d53361011b3a295aedf8acd0cb18dc254418"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
-          "bytes": 778785,
-          "sha256": "029c5b0f9eacdb59f77af260cc28297539e3e1dab438c67f0421f0da67587716"
+          "bytes": 1754196,
+          "sha256": "6f49c8d5761549bccc0eadd6115dbec9fb07857848869e5e6724b82bb70fa791"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
-          "bytes": 675269,
-          "sha256": "fa8aab87af63da67d98912beef6f1430078447990b4ca1213598a4c80121d49b"
+          "bytes": 2414267,
+          "sha256": "30debf0a9011e8fb806d490eb8e13bae8091363f15910c40ef9ef694a644f92c"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistsongs.json",

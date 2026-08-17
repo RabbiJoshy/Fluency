@@ -1228,3 +1228,12 @@ high = gap >= 0.035 (100% acceptable measured), medium >= 0.021 (91.9%).
 
 Cache: `CACHE_NAME` -> flashcards-v224, `ASSET_VERSION` -> 20260812c,
 `flashcards.js?v=` -> 20260812c in `js/main.js` and `index.html`.
+
+### 2026-08-17 — Offline manifest refresh after the calibrated-WSD deck rebuild
+
+- **Author: Claude (engine side), touching the app surface by explicit user request.** Recorded here so future Codex sessions know Claude edited `service-worker.js` and `config/offline-content-manifest.json`.
+- Rebuilt `Artists/spanish/SpanishTestPlaylist` ("Create your own" in the app) from the new calibrated WSD stack, which also rewrote the shared `Artists/spanish/vocabulary_master.json`.
+- **The manifest was already stale before this work.** `language-spanish`, `artist-bad-bunny`, `artist-rosalia` and `artist-young-miko` all carried byte counts and sha256s that did not match disk — earlier sessions rebuilt those decks without re-running `scripts/update_offline_content_manifest.py`. Regenerating fixed all of them (0 stale files remaining).
+- Because content genuinely changed on disk, `contentVersion` was bumped to `2026-08-17-beto-cal-v1` for every source whose hashes moved. Leaving it unchanged would have been worse than leaving the manifest stale: the manifest would advertise new sha256s while an offline client kept serving old bytes under the same cache key (`fluency-content-{id}-{contentVersion}`). **This forces a re-download for anyone holding those four decks offline** — unavoidable given the content really did change, but worth knowing.
+- `CACHE_NAME` bumped `flashcards-v249` → `flashcards-v250` so the service worker re-installs and re-precaches `/config/offline-content-manifest.json`. `ASSET_VERSION` and the `?v=` tags are deliberately unchanged — no module or CSS was edited.
+- Not verified in a browser (repo policy: Claude does not run previews). Codex/Josh should confirm "Create your own" serves the new deck and that offline re-download behaves.
