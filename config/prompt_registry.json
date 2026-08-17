@@ -77,6 +77,13 @@
       "model": "gemini-embedding-001 + dccuchile/bert-base-spanish-wwm-cased",
       "date": "2026-08",
       "notes": "Gloss embeddings + BETO token-prototype scoring + se-only clitic gate, ranked by a learned calibrator. Held-out yield at 99% lemma+POS 43.7% on the full population (22.9% for the tuple gap alone); 53.7% on the 64% with prototype coverage."
+    },
+    "sd-beto-cal-esc-v1": {
+      "family": "token-prototype-calibrated-escalated",
+      "capability_tier": 45,
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-08",
+      "notes": "Second opinion on the low-confidence band of sd-beto-cal-v1. Gemini rescues 81.3% of what the embedding path gets wrong and damages 5% of what it gets right; on disagreement Gemini is taken, measured right 80.3% vs 18.0%. Its own certainty is NOT a usable ranking signal, so this improves the pick and never the confidence."
     }
   },
   "acceptance_policies": {
@@ -126,9 +133,11 @@
     "testplaylist-beto-cal-pinned": {
       "description": "Deliberately PINNED to one run so a deck can be evaluated in isolation. Unlike the *-current policies, which admit several generators and let preference_order pick the best evidence per example, this admits exactly one -- so every card is attributable to sd-beto-cal-v1 and nothing else. Intended for Artists/spanish/SpanishTestPlaylist.",
       "accepted_prompt_ids": [
+        "sd-beto-cal-esc-v1",
         "sd-beto-cal-v1"
       ],
       "preference_order": [
+        "sd-beto-cal-esc-v1",
         "sd-beto-cal-v1"
       ],
       "evaluation_prompt_ids": [],

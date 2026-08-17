@@ -40,13 +40,10 @@ import numpy as np
 REPO = Path(__file__).resolve().parents[1]
 OUT_DIR = REPO / "Data/Spanish/layers/wsd_calibrator"
 
-# The feature order is a CONTRACT. step_6d must build its vector identically, so
-# it is written into the manifest and asserted at load time.
-FEATURES = [
-    "tuple_gap", "class_gap", "class_gap_collapsed", "n_tup", "n_leaf",
-    "leaf_split_ratio", "sent_len", "pred_is_se", "pred_is_verb", "pred_is_nounadj",
-    "token_available", "token_gap", "token_agrees",
-]
+import sys
+sys.path.insert(0, str(REPO))
+from pipeline.util_6d_wsd_features import (  # noqa: E402
+    FEATURES, FEATURE_VERSION, build as build_features, companion_features)
 
 
 def split_of(word: str) -> str:
@@ -55,21 +52,22 @@ def split_of(word: str) -> str:
     return "dev" if int(hashlib.sha1(word.encode()).hexdigest()[:8], 16) % 100 < 35 else "test"
 
 
-def featurise(r: dict, tk: dict | None) -> list[float]:
-    return [
-        r["tgap"],
-        r["cgap"],
-        float(r["cgap"] >= 0.999),          # the collapsed-class pathology
-        r["n_tup"], r["n_leaf"],
-        r["n_leaf"] / max(r["n_tup"], 1),
-        len(r["sent"].split()),
-        float(str(r["pred_tup"][0]).endswith("se")),
-        float(r["pred_tup"][1] == "VERB"),
-        float(r["pred_tup"][1] in ("NOUN", "ADJ")),
-        0.0 if tk is None else 1.0,
-        0.0 if tk is None else tk["gap"],
-        0.0 if tk is None else float(tuple(tk["pred"]) == tuple(r["pred_tup"])),
-    ]
+def _tuple_of(word, sense):
+    return ((sense.get("headword") or word).strip().lower(), (sense.get("pos") or "").strip())
+
+
+def featurise(r: dict, tk: dict | None, menus: dict, no_companion=False) -> list[float]:
+    menu = menus.get(r["word"], {})
+    comp = ([0.0] * 5 if no_companion else
+            companion_features(r["word"], r["sent"], menu, r.get("pred_leaf"), _tuple_of))
+    pred_sense = menu.get(r.get("pred_leaf")) or {}
+    return build_features(
+        tuple_gap=r["tgap"], class_gap=r["cgap"], n_tup=r["n_tup"], n_leaf=r["n_leaf"],
+        sent_len=len(r["sent"].split()), pred_tuple=tuple(r["pred_tup"]),
+        pred_empty=not (pred_sense.get("translation") or "").strip(),
+        token=((0.0, 0.0, 0.0) if tk is None else
+               (1.0, tk["gap"], float(tuple(tk["pred"]) == tuple(r["pred_tup"])))),
+        companion=comp)
 
 
 def yield_at(scores, ok, target=0.99):
@@ -87,8 +85,15 @@ def main():
     ap.add_argument("--rows", required=True, help="bench_tuple_accuracy --out json")
     ap.add_argument("--token", default="", help="bench_token_prototypes --out json")
     ap.add_argument("--out", default=str(OUT_DIR))
+    ap.add_argument("--no-companion", action="store_true",
+                    help="ablation: zero the used-with features")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+
+    menu_raw = json.loads((REPO / "Data/Spanish/layers/sense_menu/spanishdict.json")
+                          .read_text(encoding="utf-8"))
+    menus = {w: {sid: v for e in ent for sid, v in e.get("senses", {}).items()}
+             for w, ent in menu_raw.items()}
 
     rows = [r for r in json.loads(Path(args.rows).read_text()) if r["n_tup"] > 1]
     tok = {}
@@ -97,7 +102,8 @@ def main():
             tok[(t["word"], t["sent"])] = t
     print(f"{len(rows):,} training items; {len(tok):,} carry token predictions")
 
-    X = np.array([featurise(r, tok.get((r["word"], r["sent"]))) for r in rows], np.float64)
+    X = np.array([featurise(r, tok.get((r["word"], r["sent"])), menus, args.no_companion)
+                  for r in rows], np.float64)
     y = np.array([int(r["ok_tup"]) for r in rows])
     words = [r["word"] for r in rows]
     dev = np.array([split_of(w) == "dev" for w in words])
@@ -150,6 +156,7 @@ def main():
     joblib.dump(final, out / "calibrator.joblib")
     (out / "manifest.json").write_text(json.dumps({
         "features": FEATURES,
+        "feature_version": FEATURE_VERSION,
         "n_train": len(rows),
         "held_out_yield_at_99": round(got, 4),
         "band_cuts": band_cuts,

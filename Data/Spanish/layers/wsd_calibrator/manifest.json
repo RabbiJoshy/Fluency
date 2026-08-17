@@ -10,17 +10,24 @@
     "pred_is_se",
     "pred_is_verb",
     "pred_is_nounadj",
+    "pred_empty_gloss",
     "token_available",
     "token_gap",
-    "token_agrees"
+    "token_agrees",
+    "companion_in_menu",
+    "companion_on_pred",
+    "companion_present",
+    "companion_adjacent",
+    "companion_discriminates"
   ],
+  "feature_version": 2,
   "n_train": 16016,
-  "held_out_yield_at_99": 0.4367,
+  "held_out_yield_at_99": 0.4584,
   "band_cuts": {
-    "high": 0.977,
-    "medium": 0.7601
+    "high": 0.9722,
+    "medium": 0.7696
   },
   "tuple_gap_yield_at_99": 0.2289,
-  "trained": "2026-08-17T17:03Z",
+  "trained": "2026-08-17T18:32Z",
   "note": "refit on all rows after the held-out estimate above"
 }

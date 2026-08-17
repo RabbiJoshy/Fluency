@@ -54,10 +54,16 @@ from pipeline.util_5c_token_prototypes import (  # noqa: E402
     proto_key, reflexive_evidence, tuple_of)
 from step_6d_assign_senses_embeddings import embed, gloss, norm_tr  # noqa: E402
 from util_6a_assignment_format import stamp_example_ids  # noqa: E402
+from pipeline.util_6d_wsd_features import (  # noqa: E402
+    FEATURE_VERSION, build as build_features, companion_features)
 
 LAYERS_DIR = REPO / "Data/Spanish/layers"
 METHOD = "spanishdict-beto-cal-v1"
 PROMPT_ID = "sd-beto-cal-v1"
+# Escalated picks carry their own id: a Gemini-authored claim is different
+# evidence from a locally-scored one and must stay separable in provenance.
+PROMPT_ID_ESC = "sd-beto-cal-esc-v1"
+ESC_MODEL = "gemini-3.5-flash-lite"
 BG_N, BG_K = 1200, 40
 # P(correct) cuts, derived from the calibrator's own held-out curve at train time
 # and overridden by its manifest when present.
@@ -76,6 +82,84 @@ def ex_surface(c, word):
     return c.get("surface") or word
 
 
+def escalate(items, menus, model=ESC_MODEL, workers=8):
+    """Second opinion from Gemini on the low-confidence band.
+
+    Measured on 300 stratified items: rescues 81.3% of what the embedding path
+    gets wrong while damaging 5% of what it gets right, and its accuracy is FLAT
+    (83-100%) across confidence deciles where the embedding path collapses
+    100%->53%. They fail on different things, which is what makes escalation
+    worth the call rather than just a pricier classifier.
+
+    On disagreement the caller should take Gemini: measured right 80.3% against
+    18.0% when the two differ. Gemini's own certainty is NOT usable as a ranking
+    signal (flat ~92% at every self-reported level), so this only improves the
+    pick -- never the confidence.
+
+    items: [(word, sentence, [sense_id, ...])] -> {(word, sentence): sense_id}
+    """
+    import re as _re, threading
+    from concurrent.futures import ThreadPoolExecutor
+    from google import genai
+    from google.genai import types
+
+    key = None
+    for line in (REPO / ".env").open(encoding="utf-8"):
+        k, _, v = line.partition("=")
+        if k.strip() == "GEMINI_API_KEY":
+            key = v.strip().strip('"').strip("'")
+    if not key:
+        print("  no GEMINI_API_KEY — escalation skipped")
+        return {}
+    client = genai.Client(api_key=key)
+    lock, done = threading.Lock(), [0]
+
+    def ask(job):
+        w, sent, sids = job
+        lines = []
+        for sid in sids:
+            m = menus[w][sid]
+            tr = (m.get("translation") or "").strip() or "(no gloss)"
+            cx = (m.get("context") or "").strip()
+            lines.append(f'{sid}\t{m.get("headword","")} ({m.get("pos","")})\t{tr}'
+                         + (f"  [{cx}]" if cx else ""))
+        prompt = f"""You are disambiguating one Spanish word in one line of song lyrics.
+
+Line: {sent}
+Target word as it appears: "{w}"
+
+Candidate senses (id, headword and part of speech, English gloss):
+{chr(10).join(lines)}
+
+Pick the single sense id that this occurrence of "{w}" has in this line.
+The headword matters: a reflexive lemma (ending -se) is correct only if this
+occurrence is genuinely reflexive or pronominal. Lyrics are informal — prefer the
+everyday reading over a rare or literary one.
+
+Reply with ONLY compact JSON: {{"id": "<sense id>"}}"""
+        for attempt in range(4):
+            try:
+                r = client.models.generate_content(
+                    model=model, contents=prompt,
+                    config=types.GenerateContentConfig(temperature=0, max_output_tokens=2000))
+                mm = _re.search(r"\{.*\}", (r.text or ""), _re.S)
+                out = json.loads(mm.group(0)) if mm else {}
+                with lock:
+                    done[0] += 1
+                    if done[0] % 100 == 0:
+                        print(f"    escalated {done[0]:,}/{len(items):,}", flush=True)
+                sid = out.get("id")
+                return ((w, sent), sid if sid in menus[w] else None)
+            except Exception:
+                if attempt == 3:
+                    return ((w, sent), None)
+                threading.Event().wait(3 * (attempt + 1))
+
+    with ThreadPoolExecutor(workers) as exr:
+        res = list(exr.map(ask, items))
+    return {k: v for k, v in res if v}
+
+
 def load_prototypes(base):
     d = base / "token_prototypes"
     if not (d / "proto.npy").exists():
@@ -90,6 +174,12 @@ def load_prototypes(base):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--artist-dir", default="")
+    ap.add_argument("--hub", default="off", choices=["off", "on"],
+                    help="hubness offset. OFF by default: measured net negative "
+                         "(80.06%%->80.34%%) and it systematically demotes function "
+                         "words, flipping the winner on 13.3%% of assignments")
+    ap.add_argument("--escalate", default="", choices=["", "low", "low+medium"],
+                    help="send these bands to Gemini flash-lite for a second opinion")
     ap.add_argument("--gate", default="se-only",
                     choices=["off", "se-only", "permissive"])
     ap.add_argument("--device", default="mps")
@@ -120,6 +210,12 @@ def main():
         import joblib
         cal = joblib.load(cal_dir / "calibrator.joblib")
         cman = json.loads((cal_dir / "manifest.json").read_text(encoding="utf-8"))
+        fv = cman.get("feature_version")
+        if fv != FEATURE_VERSION:
+            raise SystemExit(
+                f"calibrator was trained on feature_version {fv}, this build emits "
+                f"{FEATURE_VERSION}. Retrain with tool_6d_train_calibrator.py — "
+                f"silently scoring a mismatched vector is worse than stopping.")
         bc = cman.get("band_cuts") or {}
         cuts = (bc.get("high", HIGH_CUT), bc.get("medium", MEDIUM_CUT))
         print(f"calibrator loaded; band cuts high>={cuts[0]:.2f} medium>={cuts[1]:.2f}")
@@ -185,7 +281,13 @@ def main():
         sids = list(menus[w])
         S = np.stack([V[gloss(w, menus[w][s])] for s in sids])
         Q = np.stack([V[ex_text(c)] for c in examples[w]])
-        hub = np.sort(BG @ S.T, axis=0)[-min(BG_K, BG.shape[0]):].mean(0)
+        # The offset penalises senses that sit near everything. For a generic
+        # high-frequency gloss ("una" (DET): a - singular) that centrality is
+        # TRUE, not spurious, so it punishes the correct answer hardest. Measured
+        # net negative on 16,016 gold items and it inverted `una` to a verb on
+        # every occurrence in the first playlist run.
+        hub = (np.zeros(S.shape[0], np.float32) if a.hub == "off"
+               else np.sort(BG @ S.T, axis=0)[-min(BG_K, BG.shape[0]):].mean(0))
         C = Q @ S.T - hub[None, :]
 
         cid, cls, tid, tls = [], {}, [], {}
@@ -237,24 +339,56 @@ def main():
 
             m = menus[w][sids[k]]
             pt = tuple_of(w, m)
-            feats = [tgap, cgap, float(cgap >= 0.999), n_tup, len(sids),
-                     len(sids) / max(n_tup, 1), len(ex_text(c).split()),
-                     float(pt[0].endswith("se")), float(pt[1] == "VERB"),
-                     float(pt[1] in ("NOUN", "ADJ")), tok_avail, tok_gap, tok_agree]
+            feats = build_features(
+                tuple_gap=tgap, class_gap=cgap, n_tup=n_tup, n_leaf=len(sids),
+                sent_len=len(ex_text(c).split()), pred_tuple=pt,
+                pred_empty=not (m.get("translation") or "").strip(),
+                token=(tok_avail, tok_gap, tok_agree),
+                companion=companion_features(w, ex_text(c), menus[w], sids[k], tuple_of))
             conf = (float(cal.predict_proba(np.array([feats]))[0, 1]) if cal
                     else min(max(tgap, 0.0), 1.0))
             band = "high" if conf >= cuts[0] else "medium" if conf >= cuts[1] else "low"
             bands[band] += 1
-            picks.append((sids[k], conf, tgap, band))
+            picks.append((sids[k], conf, tgap, band, j))
         per_word[w] = picks
+
+    # ---- escalate the weak band to Gemini
+    esc_of = {}
+    if a.escalate:
+        want = {"low"} if a.escalate == "low" else {"low", "medium"}
+        jobs = [(w, ex_text(examples[w][ji]), list(menus[w]))
+                for w, picks in per_word.items()
+                for (_sid, _cf, _tg, band, ji) in picks if band in want]
+        print(f"\nescalating {len(jobs):,} {a.escalate}-band assignments to {ESC_MODEL} "
+              f"(~${len(jobs)*347/1e6*0.10 + len(jobs)*30/1e6*0.40:.3f})", flush=True)
+        esc_of = escalate(jobs, menus)
+        print(f"  {len(esc_of):,} returned a valid sense")
+        changed = 0
+        for w, picks in per_word.items():
+            for i, (sid, cf, tg, band, ji) in enumerate(picks):
+                if band not in want:
+                    continue
+                new = esc_of.get((w, ex_text(examples[w][ji])))
+                if new and new != sid:
+                    changed += 1
+                # take Gemini on disagreement: measured right 4.5x as often
+                if new:
+                    picks[i] = (new, cf, tg, band, ji, True)
+                else:
+                    picks[i] = (sid, cf, tg, band, ji, False)
+        print(f"  changed the pick on {changed:,}")
+    for w, picks in per_word.items():
+        per_word[w] = [(p + (False,))[:6] if len(p) == 5 else p for p in picks]
 
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     for w, picks in per_word.items():
         by_sense = {}
-        for j, (sid, conf, tgap, band) in enumerate(picks):
-            e = by_sense.setdefault(sid, {"sense": sid, "examples": [], "confidence": [],
-                                          "band": [], "tuple_gap": [], "method": METHOD,
-                                          "prompt_id": PROMPT_ID, "run_ts": ts})
+        for j, (sid, conf, tgap, band, _ji, was_esc) in enumerate(picks):
+            pid = PROMPT_ID_ESC if was_esc else PROMPT_ID
+            e = by_sense.setdefault((sid, pid),
+                                    {"sense": sid, "examples": [], "confidence": [],
+                                     "band": [], "tuple_gap": [], "method": METHOD,
+                                     "prompt_id": pid, "run_ts": ts})
             e["examples"].append(j)
             e["confidence"].append(round(conf, 4))
             e["tuple_gap"].append(round(tgap, 4))
