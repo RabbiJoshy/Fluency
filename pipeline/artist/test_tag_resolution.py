@@ -26,6 +26,22 @@ class TagResolutionTests(unittest.TestCase):
         self.assertIn(
             {"tag": "unresolved", "source": "routing_low_frequency"}, tags)
 
+    def test_sense_discovery_is_an_abstention_not_core(self):
+        # A sense_discovery word is one we are asking a model about, not one we
+        # have evidence for. Since the frequency floor stopped diverting these
+        # to exclude.low_frequency, falling through to `core` would ship a word
+        # the model declines to gloss (a brand, a name) as a blank Main card.
+        tags, category = _source_from_dashboard_row({
+            "bucket": "sense_discovery",
+            "loanword": False,
+            "en50k": False,
+            "spanish_form": False,
+            "word_eq_trans": False,
+        })
+        self.assertEqual(category, "unresolved")
+        self.assertIn(
+            {"tag": "unresolved", "source": "routing_sense_discovery"}, tags)
+
     def test_positive_classifier_evidence_remains_core(self):
         tags, category = _source_from_dashboard_row({
             "bucket": "classifier.conjugation",

@@ -1,9 +1,10 @@
 {
   "_meta": {
     "source": "spanishdict",
-    "classifier": "classify-or-propose",
+    "classifier": "lexical-wsd-propose",
+    "prompt_id": "sd-lexical-v2-g35",
     "model": "gemini-3.5-flash-lite",
-    "count": 75
+    "count": 101
   },
   "items": [
     {
@@ -177,6 +178,24 @@
       "translation": ""
     },
     {
+      "word": "brum",
+      "lemma": "brum",
+      "abstain_reason": "noise",
+      "corpus_count": 4,
+      "example_index": 0,
+      "example": "Si lo hacemos en mi carro hace brum-brum-brum-brum",
+      "translation": ""
+    },
+    {
+      "word": "chiqui",
+      "lemma": "chiqui",
+      "abstain_reason": "noise",
+      "corpus_count": 4,
+      "example_index": 0,
+      "example": "Chiqui-cha, chiqui-cha, chiqui-cha, chiqui-cha (Jaja, ah)",
+      "translation": "Chiqui-cha, chiqui-cha, chiqui-cha, chiqui-cha (Haha, ah)"
+    },
+    {
       "word": "tanto",
       "lemma": "tanto",
       "proposed": "aware",
@@ -325,6 +344,40 @@
       "corpus_count": 2,
       "example": "Cuando yo siento eso es una vaina ratatá",
       "translation": ""
+    },
+    {
+      "word": "desconfigu",
+      "lemma": "desconfigu",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Ay, si me besa' me desconfigu-gu-guro",
+      "translation": "Oh, if you kiss me, I'll lose my mind"
+    },
+    {
+      "word": "guro",
+      "lemma": "guro",
+      "abstain_reason": "construction_only",
+      "corpus_count": 2,
+      "example_index": 0,
+      "example": "Ay, si me besa' me desconfigu-gu-guro",
+      "translation": "Oh, if you kiss me, I'll lose my mind"
+    },
+    {
+      "word": "ratatá",
+      "lemma": "ratatá",
+      "proposed": "sensational",
+      "corpus_count": 2,
+      "example": "Cuando yo siento eso es una vaina ratatá",
+      "translation": ""
+    },
+    {
+      "word": "tigueres",
+      "lemma": "tigueres",
+      "proposed": "street guys",
+      "corpus_count": 2,
+      "example": "Ando con lo' tigueres, estamo' en modo safari (Brr)",
+      "translation": "I walk with the tigers, we're in safari mode (Brr)"
     },
     {
       "word": "coco",
@@ -755,6 +808,176 @@
       "corpus_count": 1,
       "example": "arrebatarse conmigo, vamo' lúcete",
       "translation": "Get high with me, show off"
+    },
+    {
+      "word": "acura",
+      "lemma": "acura",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Me encanta cuando lo hacemo' en la Acura (En la Acura)",
+      "translation": "I love when we do it in the Acura (In the Acura)"
+    },
+    {
+      "word": "barbasol",
+      "lemma": "barbasol",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "El prepa que les tiró Barbasol",
+      "translation": ""
+    },
+    {
+      "word": "bellaqueos",
+      "lemma": "bellaqueos",
+      "proposed": "freaking out",
+      "corpus_count": 1,
+      "example": "Los bellaqueos no se olvidan (No se olvidan; ey)",
+      "translation": ""
+    },
+    {
+      "word": "botelleo",
+      "lemma": "botelleo",
+      "proposed": "heavy drinking",
+      "corpus_count": 1,
+      "example": "Y las babie' perreando y pendiente' al botelleo (Al botelleo)",
+      "translation": "And the girls twerking and on top of the drinks (Of the drinks)"
+    },
+    {
+      "word": "bruk",
+      "lemma": "bruk",
+      "abstain_reason": "foreign",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Yuh, bruk",
+      "translation": ""
+    },
+    {
+      "word": "cuquen",
+      "lemma": "cuquen",
+      "proposed": "to provoke",
+      "corpus_count": 1,
+      "example": "Hijueputas, no me cuquen (No)",
+      "translation": ""
+    },
+    {
+      "word": "debility",
+      "lemma": "debility",
+      "abstain_reason": "foreign",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Te pones insanity porque soy tu debility",
+      "translation": "You go insane because I'm your debility"
+    },
+    {
+      "word": "despeluquen",
+      "lemma": "despeluquen",
+      "proposed": "to mess up hair",
+      "corpus_count": 1,
+      "example": "Y el que no baile que lo despeluquen (Ey)",
+      "translation": ""
+    },
+    {
+      "word": "dynell",
+      "lemma": "dynell",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Dynell",
+      "translation": "Dynell"
+    },
+    {
+      "word": "embichar",
+      "lemma": "embichar",
+      "proposed": "to act arrogant",
+      "corpus_count": 1,
+      "example": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
+      "translation": ""
+    },
+    {
+      "word": "glopeta",
+      "lemma": "glopeta",
+      "proposed": "pistol",
+      "corpus_count": 1,
+      "example": "Ah, y peligrosa como una glopeta",
+      "translation": "Ah, and dangerous like a little pistol"
+    },
+    {
+      "word": "gotay",
+      "lemma": "gotay",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Dímelo, Gotay",
+      "translation": "What's up, Gotay"
+    },
+    {
+      "word": "locotrón",
+      "lemma": "locotrón",
+      "proposed": "crazy man",
+      "corpus_count": 1,
+      "example": "Tú mi loca y yo tu locotrón",
+      "translation": ""
+    },
+    {
+      "word": "maybach",
+      "lemma": "maybach",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Es un Maybach, no un Benz (Wuh, wuh)",
+      "translation": "It's a Maybach, not a Benz (Wuh, wuh)"
+    },
+    {
+      "word": "pelúa",
+      "lemma": "pelúa",
+      "abstain_reason": "proper_noun",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Los pongo a bailar \"La Pelúa\" (Wuh)",
+      "translation": ""
+    },
+    {
+      "word": "rulay",
+      "lemma": "rulay",
+      "proposed": "to chill",
+      "corpus_count": 1,
+      "example": "Estamo' a rulay",
+      "translation": ""
+    },
+    {
+      "word": "switchear",
+      "lemma": "switchear",
+      "proposed": "to switch",
+      "corpus_count": 1,
+      "example": "Yankee se retira y vamo' a switchear (Ah; uh)",
+      "translation": ""
+    },
+    {
+      "word": "trajaja",
+      "lemma": "trajaja",
+      "abstain_reason": "noise",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Tra, tra, tra, tra, tra, tra, tra, traJaja",
+      "translation": ""
+    },
+    {
+      "word": "vvs",
+      "lemma": "vvs",
+      "proposed": "vvs diamond",
+      "corpus_count": 1,
+      "example": "'Toy brillando de lejo' el cuello, lo tengo lleno en VVS",
+      "translation": ""
+    },
+    {
+      "word": "yasso",
+      "lemma": "yasso",
+      "abstain_reason": "noise",
+      "corpus_count": 1,
+      "example_index": 0,
+      "example": "Yasso",
+      "translation": "Yasso"
     }
   ]
 }

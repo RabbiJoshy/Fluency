@@ -131,14 +131,16 @@
       "deterministic_evidence_is_separate": true
     },
     "testplaylist-beto-cal-pinned": {
-      "description": "Deliberately PINNED to one run so a deck can be evaluated in isolation. Unlike the *-current policies, which admit several generators and let preference_order pick the best evidence per example, this admits exactly one -- so every card is attributable to sd-beto-cal-v1 and nothing else. Intended for Artists/spanish/SpanishTestPlaylist.",
+      "description": "Deliberately PINNED so a deck can be evaluated in isolation: every WSD decision is attributable to sd-beto-cal-v1 and nothing else. sd-lexical-v2-g35 is admitted alongside it for one non-competing job — inventing senses for words with NO dictionary menu, which step_6e skips by construction (it iterates words where menus.get(w) is truthy). The two therefore claim disjoint words, and the isolation the policy exists to protect is unaffected. Without this the sense_discovery run is computed and then silently discarded at build time. Intended for Artists/spanish/SpanishTestPlaylist.",
       "accepted_prompt_ids": [
         "sd-beto-cal-esc-v1",
-        "sd-beto-cal-v1"
+        "sd-beto-cal-v1",
+        "sd-lexical-v2-g35"
       ],
       "preference_order": [
         "sd-beto-cal-esc-v1",
-        "sd-beto-cal-v1"
+        "sd-beto-cal-v1",
+        "sd-lexical-v2-g35"
       ],
       "evaluation_prompt_ids": [],
       "rejected_prompt_ids": {

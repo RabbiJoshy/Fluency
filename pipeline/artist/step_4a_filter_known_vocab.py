@@ -17,7 +17,11 @@ Five phases, one source of truth for "known Spanish", no heuristic detectors:
                                 diminutives as headwords, so ordering alone
                                 used to hide them from this phase forever.
   Phase 4: English fallback     (en_50k for words not in spanish_forms)
-  Phase 5: Frequency floor
+  Phase 5: Frequency floor      (only with --floor-drops; by default every
+                                unanalysed word reaches sense_discovery, because
+                                a fixed lyric corpus shows most genre slang
+                                exactly once and a count cannot tell slang from
+                                a brand name)
            → everything else   → sense_discovery
 
 Output bucket names (word_routing.json schema_version 2):
@@ -517,6 +521,11 @@ def main():
     add_artist_arg(parser)
     parser.add_argument("--min-freq", type=int, default=2,
                         help="Minimum corpus frequency to keep (default 2).")
+    parser.add_argument("--floor-drops", action="store_true",
+                        help="Send below-floor unknowns to exclude.low_frequency "
+                             "(the pre-2026-08 behaviour) instead of letting "
+                             "sense discovery decide what they are. Cheaper on a "
+                             "large corpus; costs you the genre slang.")
     args = parser.parse_args()
 
     artist_dir = os.path.abspath(args.artist_dir)
@@ -988,16 +997,47 @@ def main():
     # ------------------------------------------------------------------
     # Phase 5 — Frequency floor; everything else → gemini
     # ------------------------------------------------------------------
+    # By this point `remaining` holds only words with NO Spanish analysis at
+    # all -- phases 1-4 took the known forms, clitics, derivations and English.
+    # Corpus frequency cannot tell wordhood apart from noise here: a playlist is
+    # a fixed corpus, so genre slang almost always appears once. Applying the
+    # floor first sent `bellaqueos`, `bichota`, `feka`, `switchear` and
+    # `tenqui` to exclude.low_frequency -- a bucket no downstream step reads --
+    # while `sense_discovery` kept only the six words frequent enough to clear
+    # it, which were `brum`, `ratatá`, `guro` and other ad-lib noise. The deck
+    # lost exactly the vocabulary it exists to teach and gained nothing.
+    #
+    # Frequency is not the discriminator; "is this a word or an entity" is, and
+    # step_6c already decides that far better than a count can -- its
+    # classify-or-propose path abstains with `proper_noun` / `noise` / `foreign`
+    # and is told not to gloss an entity. step_8b then routes an abstention to
+    # the Extra proper_noun group and promotes `unresolved` to `core` as soon as
+    # a real meaning arrives. Both halves of the behaviour already existed; the
+    # floor was preventing either from ever running.
+    #
+    # Measured on the test playlist: neither capitalisation (6 of 11 entities,
+    # and it exiles `bichota`) nor orthographic plausibility (keeps `acura` and
+    # `barbasol`, exiles `feka`, `rulay`, `switchear`) can make this call
+    # offline. Brand names are orthographically Spanish and Spanglish slang is
+    # not, so the split is semantic and belongs to the model.
     print("\n--- Phase 5: Frequency floor ---")
     lo_count = 0
-    for w in list(remaining):
-        if word_freq[w] < args.min_freq:
-            buckets["low_frequency"].add(w)
-            trail[w]["bucket"] = "low_frequency"
-            trail[w]["source"] = f"freq<{args.min_freq}"
-            remaining.discard(w)
-            lo_count += 1
-    print(f"  Low frequency: {lo_count}")
+    if args.floor_drops:
+        for w in list(remaining):
+            if word_freq[w] < args.min_freq:
+                buckets["low_frequency"].add(w)
+                trail[w]["bucket"] = "low_frequency"
+                trail[w]["source"] = f"freq<{args.min_freq}"
+                remaining.discard(w)
+                lo_count += 1
+        print(f"  Low frequency: {lo_count}")
+    else:
+        below = sum(1 for w in remaining if word_freq[w] < args.min_freq)
+        for w in remaining:
+            if word_freq[w] < args.min_freq:
+                trail[w]["source"] = f"below floor (freq<{args.min_freq}), kept for discovery"
+        print(f"  Low frequency: 0 kept out ({below} below the floor routed to "
+              f"sense_discovery instead; --floor-drops restores the old cut)")
 
     sense_discovery = sorted(remaining, key=lambda w: -word_freq[w])
     for w in remaining:

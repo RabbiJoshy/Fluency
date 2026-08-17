@@ -64,6 +64,16 @@ def _source_from_dashboard_row(r):
         # a name, or noise. Keep that uncertainty explicit instead of
         # silently promoting the word to Main as ``core``.
         tags.append({"tag": "unresolved", "source": "routing_low_frequency"})
+    elif b == "sense_discovery":
+        # Same reasoning, different bucket. A sense_discovery word is one we are
+        # ASKING a model about, not one we have evidence for -- it reaches this
+        # bucket precisely because no dictionary has it. Since 2026-08 the
+        # frequency floor no longer diverts these to exclude.low_frequency, so
+        # without this branch they fell through to `core` and a word the model
+        # declines to gloss (a brand, a name) would ship as a blank Main card.
+        # Staying `unresolved` is the safe default: step_8b promotes it to
+        # `core` the moment a real meaning actually arrives.
+        tags.append({"tag": "unresolved", "source": "routing_sense_discovery"})
     # base category derived from the routing bucket (already incorporates the
     # loanword/en-not-es/word==translation detectors we ran).
     if b == "exclude.proper_nouns":
@@ -74,7 +84,7 @@ def _source_from_dashboard_row(r):
         base = "cognate"
     elif b == "exclude.noise":
         base = "noise"
-    elif b == "exclude.low_frequency":
+    elif b == "exclude.low_frequency" or b == "sense_discovery":
         base = "unresolved"
     else:
         base = "core"  # positive classifier/sense evidence = learnable Main

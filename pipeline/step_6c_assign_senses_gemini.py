@@ -1362,6 +1362,7 @@ def main():
         routing_path = os.path.join(layers_dir, "word_routing.json")
     skip_set = set()
     routing_data = {}
+    discovery_words = set()
     if os.path.isfile(routing_path):
         with open(routing_path) as f:
             routing_data = json.load(f)
@@ -1381,6 +1382,14 @@ def main():
                 skip_set.update(cat_value)
             elif isinstance(cat_value, dict):
                 skip_set.update(cat_value.keys())
+        # Words step_4a positively routed to sense discovery: no dictionary has
+        # them, and phases 1-4 already established they are not English, not a
+        # known Spanish form, not a clitic or derivation, not noise and not a
+        # proper noun. That is real evidence, and it is what the corpus_count
+        # floor on the gap-fill queue below is a poor proxy for.
+        # schema_v2 renamed gemini → sense_discovery; read both.
+        discovery_words = set(
+            routing_data.get("sense_discovery", routing_data.get("gemini", [])) or [])
         if not args.all_gemini:
             # schema_v2 renamed biencoder.* → classifier.* and dropped the
             # always-empty `shared` sub-bucket; the .get() chain returns []
@@ -1778,7 +1787,17 @@ def main():
 
         if not combined:
             # No entry — queue for gap-fill for either Wiktionary or custom menu sources.
-            if corpus_count > 1:
+            # `corpus_count > 1` was the only gate here, and on a fixed lyric
+            # corpus it excludes almost all genre slang: `bellaqueos`, `feka`,
+            # `switchear`, `tenqui` and `bichota` each appear exactly once in
+            # the test playlist, so none of them could ever reach gap-fill. The
+            # six words that did get through were the ad-libs frequent enough to
+            # clear it (`brum`, `ratatá`, `guro`). This is the same floor
+            # step_4a applies -- applying it twice does not make it better
+            # evidence, and a hapax in a playlist is not a hapax in the language.
+            # Routing to sense_discovery is the stronger signal, so it admits;
+            # the count stays as the fallback where no routing data exists.
+            if word in discovery_words or corpus_count > 1:
                 no_senses_queue.append((word, lemma, examples, abs_indices))
             continue
 

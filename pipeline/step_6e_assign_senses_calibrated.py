@@ -56,6 +56,8 @@ from step_6d_assign_senses_embeddings import embed, gloss, norm_tr  # noqa: E402
 from util_6a_assignment_format import stamp_example_ids  # noqa: E402
 from pipeline.util_6d_wsd_features import (  # noqa: E402
     FEATURE_VERSION, build as build_features, companion_features)
+from pipeline.util_6e_leaf_selection import (  # noqa: E402
+    companion_of, companion_satisfied, renderable, select_display_leaf)
 
 LAYERS_DIR = REPO / "Data/Spanish/layers"
 METHOD = "spanishdict-beto-cal-v1"
@@ -289,8 +291,8 @@ def main():
                   f"({len(prior)} other method(s) preserved)")
         except Exception:
             out = {}
-    bands, gated, tok_used = collections.Counter(), 0, 0
-    per_word = {}
+    bands, gated, tok_used, releaf = collections.Counter(), 0, 0, 0
+    per_word, leaf_ctx = {}, {}
 
     for w in words:
         sids = list(menus[w])
@@ -354,6 +356,10 @@ def main():
 
             m = menus[w][sids[k]]
             pt = tuple_of(w, m)
+            # Features describe the ARGMAX pick, always -- the calibrator was
+            # trained on that distribution, and re-scoring it against a leaf the
+            # trainer never saw would silently shift its input. Leaf selection
+            # below changes what is displayed, never what is scored.
             feats = build_features(
                 tuple_gap=tgap, class_gap=cgap, n_tup=n_tup, n_leaf=len(sids),
                 sent_len=len(ex_text(c).split()), pred_tuple=pt,
@@ -367,6 +373,10 @@ def main():
             bands[band] += 1
             picks.append((sids[k], conf, tgap, band, j))
         per_word[w] = picks
+        # Kept so leaf selection can run once, AFTER escalation has had its say:
+        # Gemini picks a raw leaf off the same menu and lands on empty glosses
+        # too, so gating only the embedding pick would leave half the defect.
+        leaf_ctx[w] = (sids, tid, C)
 
     # ---- escalate the weak band to Gemini
     esc_of = {}
@@ -404,6 +414,31 @@ def main():
     for w, picks in per_word.items():
         per_word[w] = [(p + (False,))[:6] if len(p) == 5 else p for p in picks]
 
+    # ---- leaf selection: which gloss the card actually shows
+    # The tuple is settled above and is NOT touched here, so lemma+POS accuracy
+    # and the calibrator's P(ok_tup) both stay exactly as measured. This only
+    # stops a card rendering an empty English gloss, or a gloss whose
+    # "used with X" note the line does not satisfy.
+    releaf_empty = releaf_comp = 0
+    for w, picks in per_word.items():
+        sids, tid, C = leaf_ctx[w]
+        pos = {s: i for i, s in enumerate(sids)}
+        for i, (sid, conf, tgap, band, ji, was_esc) in enumerate(picks):
+            k = pos.get(sid)
+            if k is None:                       # escalation returned an unknown id
+                continue
+            old = menus[w][sid]
+            kd = select_display_leaf(ex_text(examples[w][ji]), menus[w],
+                                     sids, C[ji], k, tid)
+            if kd == k:
+                continue
+            if not renderable(old):
+                releaf_empty += 1
+            elif not companion_satisfied(companion_of(old), ex_text(examples[w][ji])):
+                releaf_comp += 1
+            releaf += 1
+            picks[i] = (sids[kd], conf, tgap, band, ji, was_esc)
+
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     for w, picks in per_word.items():
         by_sense = {}
@@ -428,6 +463,9 @@ def main():
     print(f"\nassigned {n:,} examples across {len(out):,} words  [{METHOD}]")
     print(f"  clitic gate fired on {gated:,}")
     print(f"  token prototypes used on {tok_used:,} ({tok_used/max(n,1):.0%})")
+    print(f"  leaf reselected within the tuple on {releaf:,} "
+          f"({releaf_empty:,} had no English gloss, {releaf_comp:,} broke a "
+          f"'used with' note); tuple unchanged on all of them")
     for b in ("high", "medium", "low"):
         print(f"  {b:<7} {bands[b]:>6,} ({bands[b]/max(n,1):.0%})")
 
@@ -438,8 +476,14 @@ def main():
     # playlist's flash-lite claims.
     try:
         from util_evidence_store import archive_json_artifact
+        # adapter must be a MAPPING -- build_run_manifest does dict(adapter).
+        # Passing the bare method string raised ValueError on every run since
+        # this step was written, so the artifact was archived but the manifest
+        # and the profile pointer never were: exactly the re-run protection this
+        # call exists to provide was silently absent.
         archive_json_artifact(base.parent / "evidence", "sense_assignments/spanishdict",
-                              out, language="spanish", adapter=METHOD)
+                              out, language="spanish",
+                              adapter={"name": METHOD, "prompt_id": PROMPT_ID})
     except Exception as exc:
         print(f"  (archive skipped: {exc})")
     out_path.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")

@@ -3,6 +3,18 @@
   "entries": [
     {
       "date": "2026-08-17",
+      "commit": "b186e146",
+      "summary": "Cards no longer ship with a blank English gloss, and playlist slang reaches the learnable deck",
+      "details": [
+        "A card's gloss is now chosen inside the meaning the model already picked, so a word can no longer display an empty English translation: bien, vez, poco, caer, haber, dar, carajo and diablo were all blank and now read normally (216 fixed, 47 blank Main cards down to 15)",
+        "The same stage drops a gloss whose dictionary note names a companion word the lyric does not contain, so eres and sea no longer say 'to root for' on lines with no de",
+        "Regional slang appearing once in a playlist now reaches sense discovery instead of a frequency floor: bellaqueos, switchear, glopeta, locotron, botelleo, rulay, cuquen, despeluquen, embichar and tigueres moved from Extra 'Needs classification' into the main deck with real meanings",
+        "Brands and artist names the model declines to define (maybach, acura, dynell, yasso, floyymenor) stay in Extra rather than shipping as blank cards",
+        "Neither change can move a card's lemma or part of speech, so every existing accuracy and confidence figure still holds; cache v258 to v259, module assets unchanged"
+      ]
+    },
+    {
+      "date": "2026-08-17",
       "commit": "b19b5230",
       "summary": "Merged lemmas, sense navigation and homepage continuation now stay aligned",
       "details": [

@@ -115,8 +115,8 @@
   },
   "acura": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -851,8 +851,8 @@
   },
   "barbasol": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -918,8 +918,8 @@
   },
   "bellaqueos": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -979,8 +979,8 @@
   },
   "bichota": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -1073,8 +1073,8 @@
   },
   "botelleo": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -1124,8 +1124,8 @@
   },
   "bruk": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -1975,8 +1975,8 @@
   },
   "confundía'": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -2316,8 +2316,8 @@
   },
   "cuquen": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -2533,8 +2533,8 @@
   },
   "debility": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -2788,8 +2788,8 @@
   },
   "despeluquen": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -3242,8 +3242,8 @@
   },
   "dynell": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -3415,8 +3415,8 @@
   },
   "embichar": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4311,8 +4311,8 @@
   },
   "feka": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4408,8 +4408,8 @@
   },
   "floyymenor": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4442,8 +4442,8 @@
   },
   "frontear": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4674,8 +4674,8 @@
   },
   "glopeta": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -4712,8 +4712,8 @@
   },
   "gotay": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -6111,8 +6111,8 @@
   },
   "locotrón": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -6284,8 +6284,8 @@
   },
   "maleanteo": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -6524,8 +6524,8 @@
   },
   "maybach": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -8082,8 +8082,8 @@
   },
   "pelúa": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -9486,8 +9486,8 @@
   },
   "rulay": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10339,8 +10339,8 @@
   },
   "switchear": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10564,8 +10564,8 @@
   },
   "tenqui": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -10907,8 +10907,8 @@
   },
   "trajaja": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11698,8 +11698,8 @@
   },
   "vvs": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
@@ -11774,8 +11774,8 @@
   },
   "yasso": {
     "freq": 1,
-    "bucket": "low_frequency",
-    "source": "freq<2",
+    "source": "below floor (freq<2), kept for discovery",
+    "bucket": "sense_discovery",
     "in_spanish_forms": false,
     "in_en_50k": false
   },
