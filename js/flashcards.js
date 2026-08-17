@@ -1,22 +1,22 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260817e';
-import './speech.js?v=20260817e';
+import './state.js?v=20260817f';
+import './speech.js?v=20260817f';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260817e';
+} from './example-personalisation.js?v=20260817f';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260817e';
+} from './spanishdict-usage.js?v=20260817f';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260817e';
+} from './reverse-cues.js?v=20260817f';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -6197,7 +6197,10 @@ function buildProvenancePanelHTML(card) {
             // assignment_method on every assigned example, so fall back to the
             // example rather than reporting "No model prompt" for a sense that
             // plainly has a model behind it.
-            const psrc = (m.examples || []).find(e => e && (e.prompt_id || e.assignment_method)) || {};
+            // Card meanings expose `allExamples`; the joined/index shape uses
+            // `examples`. Read both — the panel is rendered from the card.
+            const pex = m.allExamples || m.examples || [];
+            const psrc = pex.find(e => e && (e.prompt_id || e.assignment_method || e.confidence != null)) || {};
             const promptId = m.prompt_id || psrc.prompt_id || null;
             const runTs = m.run_ts || psrc.run_ts || null;
             const method = m.assignment_method || psrc.assignment_method || null;
@@ -6258,7 +6261,7 @@ function buildProvenancePanelHTML(card) {
             // The sentences this sense was actually assigned to. Without these
             // the panel says a model made a decision but never shows the
             // evidence it decided on, which is the only thing worth auditing.
-            const exs = (m.examples || []).map(x => {
+            const exs = pex.map(x => {
                 const pv = x.provenance;
                 let src = '';
                 if (pv && pv.corpus === 'opensubtitles' && pv.title_id) {
@@ -6578,7 +6581,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260817e';
+const ASSET_VERSION = '20260817f';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

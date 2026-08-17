@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260817e';
+import './state.js?v=20260817f';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -1727,6 +1727,11 @@ async function loadVocabularyData(rangeString, opts = {}) {
                 if (m.assignment_method) meaning.assignment_method = m.assignment_method;
                 if (m.prompt_id) meaning.prompt_id = m.prompt_id;
                 if (m.run_ts) meaning.run_ts = m.run_ts;
+                // Model confidence for the provenance panel. Rebuilt meanings
+                // drop anything not explicitly copied here — the same trap that
+                // silently lost assignment_method once already.
+                if (m.confidence != null) meaning.confidence = m.confidence;
+                if (m.band) meaning.band = m.band;
                 if (m.model_proposed) meaning.modelProposed = true;
                 if (m.source) meaning.source = m.source;
                 if (m.sense_id || m.id) meaning.senseId = m.sense_id || m.id;
