@@ -136,7 +136,11 @@ The headword matters: a reflexive lemma (ending -se) is correct only if this
 occurrence is genuinely reflexive or pronominal. Lyrics are informal — prefer the
 everyday reading over a rare or literary one.
 
-Reply with ONLY compact JSON: {{"id": "<sense id>"}}"""
+If NONE of the listed senses fits this occurrence -- common in lyrics, where
+regional slang is often missing from the dictionary entirely -- reply with
+{{"id": null}} rather than forcing the nearest one.
+
+Reply with ONLY compact JSON: {{"id": "<sense id>"}} or {{"id": null}}"""
         for attempt in range(4):
             try:
                 r = client.models.generate_content(
@@ -149,6 +153,8 @@ Reply with ONLY compact JSON: {{"id": "<sense id>"}}"""
                     if done[0] % 100 == 0:
                         print(f"    escalated {done[0]:,}/{len(items):,}", flush=True)
                 sid = out.get("id")
+                if sid is None or (isinstance(sid, str) and sid.lower() == "null"):
+                    return ((w, sent), "__ABSTAIN__")
                 return ((w, sent), sid if sid in menus[w] else None)
             except Exception:
                 if attempt == 3:
@@ -158,6 +164,9 @@ Reply with ONLY compact JSON: {{"id": "<sense id>"}}"""
     with ThreadPoolExecutor(workers) as exr:
         res = list(exr.map(ask, items))
     return {k: v for k, v in res if v}
+
+
+ABSTAIN = "__ABSTAIN__"
 
 
 def load_prototypes(base):
@@ -364,20 +373,28 @@ def main():
               f"(~${len(jobs)*347/1e6*0.10 + len(jobs)*30/1e6*0.40:.3f})", flush=True)
         esc_of = escalate(jobs, menus)
         print(f"  {len(esc_of):,} returned a valid sense")
-        changed = 0
+        changed = abstained = 0
         for w, picks in per_word.items():
             for i, (sid, cf, tg, band, ji) in enumerate(picks):
                 if band not in want:
                     continue
                 new = esc_of.get((w, ex_text(examples[w][ji])))
+                if new == ABSTAIN:
+                    # No menu sense fits. Forcing the nearest one is how a
+                    # missing slang sense becomes a confidently wrong card, so
+                    # the claim is dropped instead. ~4% of real speech has no
+                    # correct answer in the menu; lyrics will be worse.
+                    picks[i] = None
+                    abstained += 1
+                    continue
                 if new and new != sid:
                     changed += 1
                 # take Gemini on disagreement: measured right 4.5x as often
-                if new:
-                    picks[i] = (new, cf, tg, band, ji, True)
-                else:
-                    picks[i] = (sid, cf, tg, band, ji, False)
-        print(f"  changed the pick on {changed:,}")
+                picks[i] = (new, cf, tg, band, ji, True) if new else (sid, cf, tg, band, ji, False)
+        for w in per_word:
+            per_word[w] = [p for p in per_word[w] if p is not None]
+        print(f"  changed the pick on {changed:,}; abstained on {abstained:,} "
+              f"(no menu sense fits -- likely missing slang)")
     for w, picks in per_word.items():
         per_word[w] = [(p + (False,))[:6] if len(p) == 5 else p for p in picks]
 
