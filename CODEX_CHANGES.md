@@ -1237,3 +1237,10 @@ Cache: `CACHE_NAME` -> flashcards-v224, `ASSET_VERSION` -> 20260812c,
 - Because content genuinely changed on disk, `contentVersion` was bumped to `2026-08-17-beto-cal-v1` for every source whose hashes moved. Leaving it unchanged would have been worse than leaving the manifest stale: the manifest would advertise new sha256s while an offline client kept serving old bytes under the same cache key (`fluency-content-{id}-{contentVersion}`). **This forces a re-download for anyone holding those four decks offline** — unavoidable given the content really did change, but worth knowing.
 - `CACHE_NAME` bumped `flashcards-v249` → `flashcards-v250` so the service worker re-installs and re-precaches `/config/offline-content-manifest.json`. `ASSET_VERSION` and the `?v=` tags are deliberately unchanged — no module or CSS was edited.
 - Not verified in a browser (repo policy: Claude does not run previews). Codex/Josh should confirm "Create your own" serves the new deck and that offline re-download behaves.
+
+### 2026-08-17 — Second calibrated-WSD deck for "Create your own"
+
+- **Author: Claude (engine side), app-surface files touched by explicit user request** — `service-worker.js` (`CACHE_NAME` v250 → v251) and `config/offline-content-manifest.json` (`contentVersion` → `2026-08-17-beto-cal-v2`). `ASSET_VERSION` and the `?v=` tags are untouched; no module or CSS changed.
+- Rebuilt `SpanishTestPlaylist` with hubness disabled and Gemini escalation on the low-confidence band. 1,122 entries; 908 senses stamped `sd-beto-cal-v1`, 337 `sd-beto-cal-esc-v1`.
+- Escalation changed the pick on 361 of 494 low-band assignments (73%), matching the measured 81% rescue rate on that band.
+- Known remaining defect: 3,049 cards still carry duplicated sense rows (5,159 pairs at cos ≥ 0.93). Proposal and migration map exist at `Data/Spanish/layers/sense_merge_proposal.json`, deliberately not applied because sense IDs carry per-sense progress.
