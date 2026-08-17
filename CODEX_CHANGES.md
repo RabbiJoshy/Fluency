@@ -59,6 +59,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-17 — Simplify source navigation and add custom Lyrics decks
+
+- Commit `273a971f`; front-end cache `flashcards-v250` / `20260817b`; GitHub issue #60.
+- Choosing or changing a language now continues directly into Speech. The intermediate Speech/Lyrics radial (including its emoji discs and ellipsis hub) is removed; Browse Lyrics opens the Lyrics-source picker directly, and artist/source changes remain inside Lyrics.
+- Spanish Test Playlist is restored as its own configured and generated source. A separate `Choose your own` route unions the four live Spanish catalogues into 506 unique searchable songs, deduplicating three shared song IDs while preserving the complete card membership from every source.
+- Custom selections persist locally under their own source key and reuse the existing optional SongSets account contract. Source-qualified example filtering prevents identical song IDs from leaking evidence across artists, and changing songs now invalidates/rebuilds both vocabulary and frequency-level caches.
+- Verification: seven focused song-set/catalog regressions, deterministic generator check for all four catalogues, JavaScript syntax for every module and service worker, asset-version lockstep, JSON validation, and `git diff --check`. The full Node suite is 66/73 with the same seven documented baseline failures (one reviewed-frame fixture, one offline checksum, five stale UI assertions). No browser preview was used.
+
 ### 2026-08-17 — Expand analysis-aligned English production forms
 
 - Commit `9df65d81`; front-end cache `flashcards-v249` / `20260817a`; GitHub issue #61.

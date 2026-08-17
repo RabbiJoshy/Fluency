@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-17",
-      "commit": "pending",
+      "commit": "273a971f",
       "summary": "Speech and Lyrics sources now take fewer clicks, with a real custom-song deck",
       "details": [
         "Choosing or changing a language continues directly into Speech; Browse Lyrics opens the Lyrics-source picker without the extra emoji mode wheel",
