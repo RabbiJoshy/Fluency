@@ -1,111 +1,145 @@
 {
- "_meta": {
-  "description": "Provenance registry for sense-assignment runs. Each prompt_id names a specific prompt-contract/model combination. Named acceptance policies, not numeric tiers, decide which model claims may enter a live deck. Historical capability_tier fields remain descriptive migration metadata only.",
-  "updated": "2026-08-11",
-  "schema_version": 1
- },
- "prompts": {
-  "sd-cop-v1": {
-   "family": "spanishdict-menu-pick",
-   "capability_tier": 10,
-   "model": "gemini-2.5-flash-lite",
-   "date": "2026-05",
-   "notes": "Menu-pick only — Gemini picks a sense from the SpanishDict menu; no off-menu proposal path."
+  "_meta": {
+    "description": "Provenance registry for sense-assignment runs. Each prompt_id names a specific prompt-contract/model combination. Named acceptance policies, not numeric tiers, decide which model claims may enter a live deck. Historical capability_tier fields remain descriptive migration metadata only.",
+    "updated": "2026-08-17",
+    "schema_version": 1
   },
-  "sd-cop-v2": {
-   "family": "classify-or-propose",
-   "capability_tier": 20,
-   "model": "gemini-3.1-flash-lite",
-   "date": "2026-07",
-   "notes": "Classify-or-propose — Gemini may return sense=null and propose an off-menu meaning (pos/type/construction). The gap-fill / off-menu signature in the data."
+  "prompts": {
+    "sd-cop-v1": {
+      "family": "spanishdict-menu-pick",
+      "capability_tier": 10,
+      "model": "gemini-2.5-flash-lite",
+      "date": "2026-05",
+      "notes": "Menu-pick only — Gemini picks a sense from the SpanishDict menu; no off-menu proposal path."
+    },
+    "sd-cop-v2": {
+      "family": "classify-or-propose",
+      "capability_tier": 20,
+      "model": "gemini-3.1-flash-lite",
+      "date": "2026-07",
+      "notes": "Classify-or-propose — Gemini may return sense=null and propose an off-menu meaning (pos/type/construction). The gap-fill / off-menu signature in the data."
+    },
+    "sd-cop-v3": {
+      "family": "classify-or-propose",
+      "capability_tier": 30,
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-07",
+      "notes": "Same classify-or-propose prompt as sd-cop-v2 on the newer gemini-3.5-flash-lite. Higher tier: supersedes sd-cop-v2 answers once the tier-based resolver is wired. Current default (SD_DEFAULT_MODEL); step_6c stamps new runs with this id."
+    },
+    "sd-lexical-v1-g31": {
+      "family": "lexical-wsd-propose",
+      "capability_tier": 40,
+      "model": "gemini-3.1-flash-lite",
+      "date": "2026-08-09",
+      "notes": "Lexical WSD only. Picks a stable menu sense or proposes a short missing lexical gloss, including genuine slang. Proper-noun, usage-tag, construction and POS decisions are owned by separate upstream evidence layers; construction-only and excluded material must abstain."
+    },
+    "sd-lexical-v2-g35": {
+      "family": "lexical-wsd-propose",
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-08-11",
+      "notes": "Gemini 3.5 successor to sd-lexical-v1-g31. Preserves the menu-first lexical-only contract and adds exact one-call-per-example, verbatim menu-id, and non-empty null-answer requirements after 74 invalid outputs were observed in the completed 3.1 reports."
+    },
+    "sd-lexical-v2-g31": {
+      "family": "lexical-wsd-propose",
+      "model": "gemini-3.1-flash-lite",
+      "date": "2026-08-11",
+      "notes": "Revised lexical-only prompt on the validated Gemini 3.1 baseline. Same semantic contract as v1 plus exact output-completeness requirements. Evaluation candidate until explicitly accepted."
+    },
+    "sd-lexical-v2-g25": {
+      "family": "lexical-wsd-propose",
+      "model": "gemini-2.5-flash-lite",
+      "date": "2026-08-11",
+      "notes": "Cost-control evaluation candidate using the exact revised lexical-only prompt. Never accepted merely because it is cheaper."
+    },
+    "legacy-unknown": {
+      "family": "legacy",
+      "capability_tier": 0,
+      "model": "unknown",
+      "date": "",
+      "notes": "Pre-provenance assignment. Exact model/prompt is not recoverable from the stored format (bare menu-picks look identical across 2.5 and 3.1). Any stamped run supersedes this tier."
+    },
+    "embed-gloss-classgap-hub-v1": {
+      "family": "embedding-wsd-classify",
+      "model": "gemini-embedding-001",
+      "date": "2026-08-12",
+      "notes": "Not a generative prompt. Sense vector from the English gloss '\"word\" (POS): translation — context'; sentence embedded once; nearest sense by cosine after subtracting a per-sense hubness offset measured offline against a fixed background sample; confidence is the gap between the top two MEANINGS, not leaves. Precision measured on a hand-labelled panel at Data/Spanish/Intermediates/wsd_sense_harness: 100% acceptable at gap>=0.035, 91.9% at gap>=0.021, 84.5% overall."
+    },
+    "embed-gloss-tuplegap-hub-v1": {
+      "family": "embedding-wsd",
+      "capability_tier": 30,
+      "model": "gemini-embedding-001",
+      "date": "2026-08",
+      "notes": "Same picks as embed-gloss-classgap-hub-v1; confidence regrouped from (POS, translation) classes to (headword, POS) TUPLES. Yield at 99% lemma+POS goes 6 items -> 13,224 of 84,174. Band cuts re-derived to 0.043/0.020 on 16,016 target-present gold sentences."
+    },
+    "sd-beto-cal-v1": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 40,
+      "model": "gemini-embedding-001 + dccuchile/bert-base-spanish-wwm-cased",
+      "date": "2026-08",
+      "notes": "Gloss embeddings + BETO token-prototype scoring + se-only clitic gate, ranked by a learned calibrator. Held-out yield at 99% lemma+POS 43.7% on the full population (22.9% for the tuple gap alone); 53.7% on the 64% with prototype coverage."
+    }
   },
-  "sd-cop-v3": {
-   "family": "classify-or-propose",
-   "capability_tier": 30,
-   "model": "gemini-3.5-flash-lite",
-   "date": "2026-07",
-   "notes": "Same classify-or-propose prompt as sd-cop-v2 on the newer gemini-3.5-flash-lite. Higher tier: supersedes sd-cop-v2 answers once the tier-based resolver is wired. Current default (SD_DEFAULT_MODEL); step_6c stamps new runs with this id."
-  },
-  "sd-lexical-v1-g31": {
-   "family": "lexical-wsd-propose",
-   "capability_tier": 40,
-   "model": "gemini-3.1-flash-lite",
-   "date": "2026-08-09",
-   "notes": "Lexical WSD only. Picks a stable menu sense or proposes a short missing lexical gloss, including genuine slang. Proper-noun, usage-tag, construction and POS decisions are owned by separate upstream evidence layers; construction-only and excluded material must abstain."
-  },
-  "sd-lexical-v2-g35": {
-   "family": "lexical-wsd-propose",
-   "model": "gemini-3.5-flash-lite",
-   "date": "2026-08-11",
-   "notes": "Gemini 3.5 successor to sd-lexical-v1-g31. Preserves the menu-first lexical-only contract and adds exact one-call-per-example, verbatim menu-id, and non-empty null-answer requirements after 74 invalid outputs were observed in the completed 3.1 reports."
-  },
-  "sd-lexical-v2-g31": {
-   "family": "lexical-wsd-propose",
-   "model": "gemini-3.1-flash-lite",
-   "date": "2026-08-11",
-   "notes": "Revised lexical-only prompt on the validated Gemini 3.1 baseline. Same semantic contract as v1 plus exact output-completeness requirements. Evaluation candidate until explicitly accepted."
-  },
-  "sd-lexical-v2-g25": {
-   "family": "lexical-wsd-propose",
-   "model": "gemini-2.5-flash-lite",
-   "date": "2026-08-11",
-   "notes": "Cost-control evaluation candidate using the exact revised lexical-only prompt. Never accepted merely because it is cheaper."
-  },
-  "legacy-unknown": {
-   "family": "legacy",
-   "capability_tier": 0,
-   "model": "unknown",
-   "date": "",
-   "notes": "Pre-provenance assignment. Exact model/prompt is not recoverable from the stored format (bare menu-picks look identical across 2.5 and 3.1). Any stamped run supersedes this tier."
-  },
-  "embed-gloss-classgap-hub-v1": {
-   "family": "embedding-wsd-classify",
-   "model": "gemini-embedding-001",
-   "date": "2026-08-12",
-   "notes": "Not a generative prompt. Sense vector from the English gloss '\"word\" (POS): translation — context'; sentence embedded once; nearest sense by cosine after subtracting a per-sense hubness offset measured offline against a fixed background sample; confidence is the gap between the top two MEANINGS, not leaves. Precision measured on a hand-labelled panel at Data/Spanish/Intermediates/wsd_sense_harness: 100% acceptable at gap>=0.035, 91.9% at gap>=0.021, 84.5% overall."
+  "acceptance_policies": {
+    "artist-lexical-wsd-current": {
+      "description": "Model-authored lexical WSD claims allowed into active Artist decks and inspectors.",
+      "accepted_prompt_ids": [
+        "sd-lexical-v1-g31",
+        "sd-lexical-v2-g31"
+      ],
+      "preference_order": [
+        "sd-lexical-v1-g31",
+        "sd-lexical-v2-g31"
+      ],
+      "evaluation_prompt_ids": [
+        "sd-lexical-v2-g25",
+        "sd-lexical-v2-g35"
+      ],
+      "rejected_prompt_ids": {
+        "sd-cop-v1": "old menu-pick contract",
+        "sd-cop-v2": "old mixed-task prompt with known over-translation failures",
+        "sd-cop-v3": "same old mixed-task prompt",
+        "legacy-unknown": "prompt and model cannot be established"
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "speech-embed-wsd-current": {
+      "description": "Speech/normal mode: only embedding-WSD runs may author sense claims. Every historical Gemini pass is rejected -- they carry legacy-unknown provenance. preference_order is NAMED, not numeric: earlier ids win ties.",
+      "accepted_prompt_ids": [
+        "embed-gloss-tuplegap-hub-v1",
+        "embed-gloss-classgap-hub-v1"
+      ],
+      "preference_order": [
+        "embed-gloss-tuplegap-hub-v1",
+        "embed-gloss-classgap-hub-v1"
+      ],
+      "evaluation_prompt_ids": [],
+      "rejected_prompt_ids": {
+        "legacy-unknown": "prompt and model cannot be established; all 46,985 historical normal-mode claims carry this",
+        "sd-cop-v1": "old menu-pick contract",
+        "sd-cop-v2": "old mixed-task prompt with known over-translation failures",
+        "sd-cop-v3": "same old mixed-task prompt"
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "testplaylist-beto-cal-pinned": {
+      "description": "Deliberately PINNED to one run so a deck can be evaluated in isolation. Unlike the *-current policies, which admit several generators and let preference_order pick the best evidence per example, this admits exactly one -- so every card is attributable to sd-beto-cal-v1 and nothing else. Intended for Artists/spanish/SpanishTestPlaylist.",
+      "accepted_prompt_ids": [
+        "sd-beto-cal-v1"
+      ],
+      "preference_order": [
+        "sd-beto-cal-v1"
+      ],
+      "evaluation_prompt_ids": [],
+      "rejected_prompt_ids": {
+        "sd-lexical-v1-g31": "pinned run: excluded by design, not by quality",
+        "sd-lexical-v2-g31": "pinned run: excluded by design, not by quality",
+        "embed-gloss-tuplegap-hub-v1": "pinned run: excluded by design, not by quality",
+        "legacy-unknown": "prompt and model cannot be established"
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    }
   }
- },
- "acceptance_policies": {
-  "artist-lexical-wsd-current": {
-   "description": "Model-authored lexical WSD claims allowed into active Artist decks and inspectors.",
-   "accepted_prompt_ids": [
-    "sd-lexical-v1-g31",
-    "sd-lexical-v2-g31"
-   ],
-   "preference_order": [
-    "sd-lexical-v1-g31",
-    "sd-lexical-v2-g31"
-   ],
-   "evaluation_prompt_ids": [
-    "sd-lexical-v2-g25",
-    "sd-lexical-v2-g35"
-   ],
-   "rejected_prompt_ids": {
-    "sd-cop-v1": "old menu-pick contract",
-    "sd-cop-v2": "old mixed-task prompt with known over-translation failures",
-    "sd-cop-v3": "same old mixed-task prompt",
-    "legacy-unknown": "prompt and model cannot be established"
-   },
-   "require_stable_evidence_join": true,
-   "deterministic_evidence_is_separate": true
-  },
-  "speech-embed-wsd-current": {
-   "description": "Speech/normal mode: only the embedding WSD run may author sense claims. Every historical Gemini pass is rejected — they carry legacy-unknown provenance and cannot be attributed to a model or prompt.",
-   "accepted_prompt_ids": [
-    "embed-gloss-classgap-hub-v1"
-   ],
-   "preference_order": [
-    "embed-gloss-classgap-hub-v1"
-   ],
-   "evaluation_prompt_ids": [],
-   "rejected_prompt_ids": {
-    "legacy-unknown": "prompt and model cannot be established; all 46,985 historical normal-mode claims carry this",
-    "sd-cop-v1": "old menu-pick contract",
-    "sd-cop-v2": "old mixed-task prompt with known over-translation failures",
-    "sd-cop-v3": "same old mixed-task prompt"
-   },
-   "require_stable_evidence_join": true,
-   "deterministic_evidence_is_separate": true
-  }
- }
 }
