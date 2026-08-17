@@ -1,21 +1,21 @@
-import './theme.js?v=20260817a';
-import './state.js?v=20260817a';
-import './offline-db.js?v=20260817a';
-import './sync-queue.js?v=20260817a';
-import { initOfflineContent } from './offline-content.js?v=20260817a';
-import './speech.js?v=20260817a';
-import './artist-ui.js?v=20260817a';
-import './auth.js?v=20260817a';
-import './about-example.js?v=20260817a';
-import './estimation.js?v=20260817a';
-import './config.js?v=20260817a';
-import './progress.js?v=20260817a';
-import './knowledge.js?v=20260817a';
-import './ui.js?v=20260817a';
-import './vocab.js?v=20260817a';
-import './song-sets.js?v=20260817a';
-import './vocabulary-import.js?v=20260817a';
-import './flashcards.js?v=20260817a';
+import './theme.js?v=20260817b';
+import './state.js?v=20260817b';
+import './offline-db.js?v=20260817b';
+import './sync-queue.js?v=20260817b';
+import { initOfflineContent } from './offline-content.js?v=20260817b';
+import './speech.js?v=20260817b';
+import './artist-ui.js?v=20260817b';
+import './auth.js?v=20260817b';
+import './about-example.js?v=20260817b';
+import './estimation.js?v=20260817b';
+import './config.js?v=20260817b';
+import './progress.js?v=20260817b';
+import './knowledge.js?v=20260817b';
+import './ui.js?v=20260817b';
+import './vocab.js?v=20260817b';
+import './song-sets.js?v=20260817b';
+import './vocabulary-import.js?v=20260817b';
+import './flashcards.js?v=20260817b';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -24,7 +24,7 @@ import './flashcards.js?v=20260817a';
 const _initialParams = new URLSearchParams(window.location.search);
 const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260817a').catch(error => {
+    ? import('./spotify.js?v=20260817b').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -124,6 +124,7 @@ if ('serviceWorker' in navigator) {
 let allArtistsConfig = null;
 // Slugs of artists currently selected for multi-artist merge
 let selectedArtistSlugs = [];
+const CUSTOM_ARTIST_SLUG = 'custom';
 const ARTIST_EXTRA_UNLOCK_KEY = 'fluency_artist_extra_unlocked_v1';
 const ARTIST_EXTRA_UNLOCK_PCT = 60;
 
@@ -177,7 +178,33 @@ async function resolveArtist() {
             cfg.slug = slug;
         }
 
-        const artistConfig = allArtistsConfig[artistSlug];
+        let artistConfig = allArtistsConfig[artistSlug];
+        if (artistSlug === CUSTOM_ARTIST_SLUG) {
+            const customLanguage = params.get('language') || 'spanish';
+            const customSources = Object.entries(allArtistsConfig)
+                .filter(([, cfg]) => (cfg.language || 'spanish') === customLanguage
+                    && cfg.songsPath && (cfg.indexPath || cfg.dataPath))
+                .map(([slug]) => slug);
+            const primary = allArtistsConfig[customSources[0]];
+            if (primary && customSources.length) {
+                artistConfig = {
+                    ...primary,
+                    slug: CUSTOM_ARTIST_SLUG,
+                    name: 'Choose your own',
+                    customSongSource: true,
+                    customSourceSlugs: customSources,
+                    songsPath: null,
+                    albumsDictionary: null,
+                    albumImageMap: null,
+                    defaultAlbumArt: '',
+                    pickerImage: '',
+                    colorTheme: { primary: '#10B981', secondary: '#6EE7B7' },
+                    maxLevel: Object.entries(allArtistsConfig)
+                        .filter(([slug]) => customSources.includes(slug))
+                        .reduce((total, [, cfg]) => total + (Number(cfg.maxLevel) || 0), 0)
+                };
+            }
+        }
         if (artistConfig) {
             activeArtist = artistConfig;
             // Store the URL artist slug — this is the immutable primary artist
@@ -192,8 +219,11 @@ async function resolveArtist() {
                 history.replaceState(null, '', url);
             }
 
-            // Start with the URL artist; user can add more via settings
-            selectedArtistSlugs = [artistSlug];
+            // Custom Lyrics loads every real source, then the song selector
+            // narrows that union. Ordinary sources retain their single slug.
+            selectedArtistSlugs = artistConfig.customSongSource
+                ? artistConfig.customSourceSlugs.slice()
+                : [artistSlug];
         } else {
             console.warn(`Unknown artist slug: ${artistSlug}`);
         }
@@ -212,7 +242,11 @@ window._selectedArtistSlugs = selectedArtistSlugs;
 // Add artist mode class to body and load albums dictionary
 if (activeArtist) {
     document.body.classList.add('artist-mode');
-    loadArtistAlbumsDictionary();
+    if (activeArtist.customSongSource) {
+        loadMultiArtistAlbumsDictionaries(selectedArtistSlugs, allArtistsConfig);
+    } else {
+        loadArtistAlbumsDictionary();
+    }
 }
 
 loadConfig().then(async () => {
@@ -296,7 +330,7 @@ loadConfig().then(async () => {
         try {
             selectedLanguage = 'spanish';
             applyLanguageColorTheme();
-            const speechVnext = await import('./speech-vnext.js?v=20260817a');
+            const speechVnext = await import('./speech-vnext.js?v=20260817b');
             await speechVnext.startSpeechVnext();
         } catch (error) {
             console.error('Speech vNext preview failed to load:', error);
@@ -315,7 +349,7 @@ loadConfig().then(async () => {
     perfMark('after migrations');
     await loadSecrets();
     perfMark('after loadSecrets');
-    if (activeArtist?.songsPath && window.initArtistSongSelection) {
+    if ((activeArtist?.songsPath || activeArtist?.customSongSource) && window.initArtistSongSelection) {
         try {
             await window.initArtistSongSelection();
         } catch (error) {
@@ -344,6 +378,7 @@ loadConfig().then(async () => {
 
     // Render UI immediately using cached progress data
     if (activeArtist) {
+        const promptForCustomSongs = activeArtist.customSongSource && selectedSongIds.length === 0;
         try {
             selectedLanguage = activeArtist.language || 'spanish';
             applyLanguageColorTheme();
@@ -369,6 +404,7 @@ loadConfig().then(async () => {
         } finally {
             if (!isResumeNavigation) hideAppLoading();
         }
+        if (promptForCustomSongs) window.showSongSetPicker?.();
         perfMark('after artist init');
     } else {
         const pendingSpeechLanguage = sessionStorage.getItem('fluencyPendingSpeechLanguage');
@@ -414,6 +450,10 @@ function artistPickerImage(cfg) {
     return cfg.pickerImage || cfg.image || cfg.defaultAlbumArt || '';
 }
 
+function customSongsIcon() {
+    return '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h10M4 12h10M4 18h7"/><path d="M18 11v8m-4-4h8"/></svg>';
+}
+
 function renderArtistSourceSummary() {
     const step = document.getElementById('artistSourceStep');
     const picker = document.getElementById('artistSourcePickerBtn');
@@ -426,12 +466,16 @@ function renderArtistSourceSummary() {
 
     const artistName = activeArtist.name || 'Artist';
     const art = artistPickerImage(activeArtist);
+    const isCustom = activeArtist.customSongSource === true;
     name.textContent = artistName;
     if (selectionLabel) selectionLabel.textContent = window.songSelectionSummary?.() || 'Choose songs';
-    image.textContent = art ? '' : artistInitials(artistName);
-    image.classList.toggle('artist-source-image--fallback', !art);
+    image.innerHTML = isCustom ? customSongsIcon() : '';
+    if (!art && !isCustom) image.textContent = artistInitials(artistName);
+    image.classList.toggle('artist-source-image--fallback', !art && !isCustom);
+    image.classList.toggle('artist-source-image--custom', isCustom);
     image.style.backgroundImage = art ? `url('${art}')` : '';
-    image.style.backgroundColor = art ? '' : (activeArtist.colorTheme?.primary || 'var(--accent-primary)');
+    image.style.backgroundColor = art || isCustom ? '' : (activeArtist.colorTheme?.primary || 'var(--accent-primary)');
+    artistBtn.textContent = isCustom ? 'Change source' : 'Change artist';
     step.style.display = 'block';
 
     const scopeHint = document.getElementById('artistVocabularyScopeHint');
@@ -464,7 +508,9 @@ function renderArtistSourceSummary() {
     });
     if (scopeHint) {
         scopeHint.textContent = artistVocabularyScope === 'extra'
-            ? `One-off ${artistName} lemma families, supported by shared Speech examples where available`
+            ? isCustom
+                ? 'One-off lemma families from your selected songs'
+                : `One-off ${artistName} lemma families, supported by shared Speech examples where available`
             : extraUnlocked
                 ? 'Recurring lemma families · Extra unlocked'
                 : `Extra unlocks at 60% lyrics understood · ${Math.min(59.9, window._artistMainCoveragePct || 0).toFixed(1)}% now`;
@@ -495,6 +541,8 @@ window.renderArtistSourceSummary = renderArtistSourceSummary;
 window.addEventListener('fluency-song-selection-changed', async () => {
     if (!activeArtist) return;
     cachedVocabularyData = null;
+    ppmData = null;
+    totalPpm = 0;
     selectedLevel = null;
     selectedRanges = [];
     _findWordIndex = null;
@@ -504,6 +552,8 @@ window.addEventListener('fluency-song-selection-changed', async () => {
     const loading = document.getElementById('dataLoadingIndicator');
     loading?.classList.add('visible');
     try {
+        window.invalidateLyricsSourceCaches?.(selectedLanguage);
+        await loadPpmData(selectedLanguage);
         await renderLevelSelector(selectedLanguage, { preferActionable: true });
         await updateExclusionBars();
     } finally {
@@ -701,6 +751,7 @@ window.closeRadialPicker = closeRadialPicker;
 
 // Artist adapter: album art around the shared radial component.
 function showArtistPicker(anchorBtn, artists) {
+    const pickerLanguage = Object.values(artists)[0]?.language || 'spanish';
     const entries = Object.entries(artists).map(([slug, cfg]) => ({
         label: cfg.name,
         image: artistPickerImage(cfg),
@@ -711,17 +762,29 @@ function showArtistPicker(anchorBtn, artists) {
             window.location.href = `${window.location.pathname}?artist=${slug}`;
         }
     }));
+    if (Object.values(artists).some(cfg => cfg.songsPath)) {
+        entries.push({
+            label: 'Choose your own',
+            iconHTML: customSongsIcon(),
+            accent: '#10B981',
+            onSelect: () => {
+                showAppLoading('Opening your songs', 'Combining the available Lyrics catalogues…', true);
+                window.location.href = `${window.location.pathname}?artist=${CUSTOM_ARTIST_SLUG}&language=${encodeURIComponent(pickerLanguage)}`;
+            }
+        });
+    }
     showRadialPicker({
         id: 'artistRadialPicker',
-        ariaLabel: 'Choose an artist',
-        hubHTML: 'Choose<br>an artist',
+        ariaLabel: 'Choose a Lyrics source',
+        hubHTML: 'Lyrics<br>source',
         entries
     });
 }
 
-// Language is deliberately chosen first so Lyrics can offer only artists
-// whose material matches it. Speech continues the existing standard setup.
-async function showLearningSourcePicker(language, onSpeech) {
+// Speech is the default after a language choice. This direct Lyrics route
+// keeps changing modes to one explicit action instead of opening another
+// Speech-versus-Lyrics decision wheel.
+async function showLyricsPicker(language, anchorBtn = null) {
     let artists = allArtistsConfig;
     try {
         if (!artists) {
@@ -736,32 +799,10 @@ async function showLearningSourcePicker(language, onSpeech) {
 
     const matchingArtists = Object.fromEntries(Object.entries(artists || {}).filter(([, cfg]) =>
         (cfg.language || 'spanish') === language));
-    const hasLyrics = Object.keys(matchingArtists).length > 0;
-    showRadialPicker({
-        id: 'learningSourceRadialPicker',
-        ariaLabel: 'Choose speech or lyrics',
-        hubHTML: 'Learn from<br>…',
-        entries: [
-            {
-                label: 'Speech',
-                fallbackText: '💬',
-                discClass: 'learning-source-radial-disc',
-                accent: 'var(--accent-secondary)',
-                onSelect: onSpeech
-            },
-            {
-                label: 'Lyrics',
-                fallbackText: '♫',
-                discClass: 'learning-source-radial-disc',
-                accent: 'var(--accent-primary)',
-                disabled: !hasLyrics,
-                onSelect: () => showArtistPicker(null, matchingArtists)
-            }
-        ]
-    });
+    if (Object.keys(matchingArtists).length) showArtistPicker(anchorBtn, matchingArtists);
 }
 
-window.showLearningSourcePicker = showLearningSourcePicker;
+window.showLyricsPicker = showLyricsPicker;
 window.showArtistPicker = showArtistPicker;
 
 // Standard-mode language adapter: flag pictures + existing hidden language

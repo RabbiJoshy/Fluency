@@ -40,37 +40,37 @@
             document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#eef2f5' : '#0a0e14';
         })();
     </script>
-    <link rel="stylesheet" href="css/style.css?v=20260817a">
-    <link rel="stylesheet" href="css/light-theme.css?v=20260817a">
+    <link rel="stylesheet" href="css/style.css?v=20260817b">
+    <link rel="stylesheet" href="css/light-theme.css?v=20260817b">
     <!-- Module preloads. Without these the browser waits to discover the
          imports inside main.js before kicking off the per-module fetches,
          which serializes ~11 round trips behind the main.js parse step.
          Preload starts them all in parallel during HTML parse. Versions
          must stay in lockstep with main.js's import URLs. -->
-    <link rel="modulepreload" href="js/main.js?v=20260817a">
-    <link rel="modulepreload" href="js/theme.js?v=20260817a">
-    <link rel="modulepreload" href="js/state.js?v=20260817a">
-    <link rel="modulepreload" href="js/offline-db.js?v=20260817a">
-    <link rel="modulepreload" href="js/sync-queue.js?v=20260817a">
-    <link rel="modulepreload" href="js/offline-content.js?v=20260817a">
-    <link rel="modulepreload" href="js/speech.js?v=20260817a">
-    <link rel="modulepreload" href="js/artist-ui.js?v=20260817a">
-    <link rel="modulepreload" href="js/auth.js?v=20260817a">
-    <link rel="modulepreload" href="js/about-example.js?v=20260817a">
-    <link rel="modulepreload" href="js/estimation.js?v=20260817a">
-    <link rel="modulepreload" href="js/config.js?v=20260817a">
-    <link rel="modulepreload" href="js/progress.js?v=20260817a">
-    <link rel="modulepreload" href="js/knowledge.js?v=20260817a">
-    <link rel="modulepreload" href="js/ui.js?v=20260817a">
-    <link rel="modulepreload" href="js/vocab.js?v=20260817a">
-    <link rel="modulepreload" href="js/song-sets-core.js?v=20260817a">
-    <link rel="modulepreload" href="js/song-sets.js?v=20260817a">
-    <link rel="modulepreload" href="js/vocabulary-import-core.js?v=20260817a">
-    <link rel="modulepreload" href="js/vocabulary-import.js?v=20260817a">
-    <link rel="modulepreload" href="js/spanishdict-usage.js?v=20260817a">
-    <link rel="modulepreload" href="js/reverse-cues.js?v=20260817a">
-    <link rel="modulepreload" href="js/flashcards.js?v=20260817a">
-    <link rel="modulepreload" href="js/example-personalisation.js?v=20260817a">
+    <link rel="modulepreload" href="js/main.js?v=20260817b">
+    <link rel="modulepreload" href="js/theme.js?v=20260817b">
+    <link rel="modulepreload" href="js/state.js?v=20260817b">
+    <link rel="modulepreload" href="js/offline-db.js?v=20260817b">
+    <link rel="modulepreload" href="js/sync-queue.js?v=20260817b">
+    <link rel="modulepreload" href="js/offline-content.js?v=20260817b">
+    <link rel="modulepreload" href="js/speech.js?v=20260817b">
+    <link rel="modulepreload" href="js/artist-ui.js?v=20260817b">
+    <link rel="modulepreload" href="js/auth.js?v=20260817b">
+    <link rel="modulepreload" href="js/about-example.js?v=20260817b">
+    <link rel="modulepreload" href="js/estimation.js?v=20260817b">
+    <link rel="modulepreload" href="js/config.js?v=20260817b">
+    <link rel="modulepreload" href="js/progress.js?v=20260817b">
+    <link rel="modulepreload" href="js/knowledge.js?v=20260817b">
+    <link rel="modulepreload" href="js/ui.js?v=20260817b">
+    <link rel="modulepreload" href="js/vocab.js?v=20260817b">
+    <link rel="modulepreload" href="js/song-sets-core.js?v=20260817b">
+    <link rel="modulepreload" href="js/song-sets.js?v=20260817b">
+    <link rel="modulepreload" href="js/vocabulary-import-core.js?v=20260817b">
+    <link rel="modulepreload" href="js/vocabulary-import.js?v=20260817b">
+    <link rel="modulepreload" href="js/spanishdict-usage.js?v=20260817b">
+    <link rel="modulepreload" href="js/reverse-cues.js?v=20260817b">
+    <link rel="modulepreload" href="js/flashcards.js?v=20260817b">
+    <link rel="modulepreload" href="js/example-personalisation.js?v=20260817b">
     <script>
         // Fail open if a boot-time script error prevents main.js from taking
         // ownership of the loading screen. Normal boot removes this class as
@@ -358,7 +358,7 @@
                         <span class="language-picker-btn-arrow" aria-hidden="true">›</span>
                     </button>
                     <button type="button" id="standardSourcePickerBtn" class="artist-source-speech-btn">
-                        Switch to Lyrics
+                        Browse Lyrics
                     </button>
                     <div id="standardSourceProgress" class="standard-source-progress"></div>
                 </div>
@@ -381,7 +381,7 @@
                         <span class="language-picker-btn-arrow" aria-hidden="true">›</span>
                     </button>
                     <div class="artist-source-secondary-actions">
-                        <button type="button" id="artistSourceArtistBtn" class="artist-source-speech-btn">Change artist</button>
+                        <button type="button" id="artistSourceArtistBtn" class="artist-source-speech-btn">Change source</button>
                         <button type="button" id="artistSourceSpeechBtn" class="artist-source-speech-btn">Switch to Speech</button>
                     </div>
                     <div class="artist-vocabulary-scope" id="artistVocabularyScope" role="group" aria-label="Artist vocabulary">
@@ -1424,7 +1424,7 @@
                     <p><strong>How are percentages calculated?</strong></p>
                     <p>The coverage percentage tells you what fraction of all words in the lyrics you'd recognize. For example, at 70% coverage you know enough words to understand roughly 70% of the words in any song. The remaining 30% are rarer words that appear less often.</p>
                     <p><strong>How does it work?</strong></p>
-                    <p>Choose a language, then Speech or Lyrics. Pick a numbered frequency level and learn the first small set with unseen cards; due and unfinished cards stay in that level's separate review.</p>
+                    <p>Choose a language to start in Speech, or open Lyrics directly from the language card. Pick a numbered frequency level and learn the first small set with unseen cards; due and unfinished cards stay in that level's separate review.</p>
                     <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
                     <p style="margin-top: 18px;">
                         <button class="help-more-info-btn" id="helpMoreInfoBtn" type="button">More about this project →</button>
@@ -1434,7 +1434,7 @@
             <!-- How to Study tab -->
             <div class="settings-tab-content" id="helpStudyTabContent">
                 <div class="help-content">
-                    <p><strong>Picking a set:</strong> Choose a language, then Speech or Lyrics. Choose a numbered level and the first small set containing unseen cards is selected for you. Later levels extend further into rarer vocabulary; Merge Lemmas and Cognates can shorten a set without moving cards between sets.</p>
+                    <p><strong>Picking a set:</strong> Choose a language to start in Speech, or browse Lyrics and select an artist, playlist, or your own songs. Choose a numbered level and the first small set containing unseen cards is selected for you. Later levels extend further into rarer vocabulary; Merge Lemmas and Cognates can shorten a set without moving cards between sets.</p>
                     <p><strong>Learning and review:</strong> Learn new contains only cards you have not attempted. Incorrect or partly learned cards move into the selected level's separate Review queue. Correct recalls return after 1, 3, 7, 14, 30, 60, and 120 days; mistakes reset the schedule.</p>
                     <p><strong>Continuing:</strong> If you leave an unfinished set, a Welcome back prompt offers to restore the exact card, order, card side, and settings next time you enter. Finishing the set clears it.</p>
                     <p><strong>Tap card</strong> to flip and see the translation</p>
@@ -1468,6 +1468,6 @@
             }
         })();
     </script>
-    <script type="module" src="js/main.js?v=20260817a"></script>
+    <script type="module" src="js/main.js?v=20260817b"></script>
 </body>
 </html>

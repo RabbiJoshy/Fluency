@@ -3,6 +3,17 @@
   "entries": [
     {
       "date": "2026-08-17",
+      "commit": "pending",
+      "summary": "Speech and Lyrics sources now take fewer clicks, with a real custom-song deck",
+      "details": [
+        "Choosing or changing a language continues directly into Speech; Browse Lyrics opens the Lyrics-source picker without the extra emoji mode wheel",
+        "Spanish Test Playlist is restored as its own source, while Choose your own separately searches all 506 unique songs across the four live Spanish catalogues",
+        "Custom choices are remembered immediately on this device and can be edited at any time; the existing SongSets account sync remains optional until its manual Apps Script deployment",
+        "Cards, lyric examples and frequency levels all rebuild from the selected songs with exact source provenance; seven focused regressions pass and the full suite remains at its documented 66/73 baseline; cache v249→v250 / assets 20260817a→20260817b"
+      ]
+    },
+    {
+      "date": "2026-08-17",
       "commit": "9df65d81",
       "summary": "English-first cards now ask for many more of the forms they actually need",
       "details": [

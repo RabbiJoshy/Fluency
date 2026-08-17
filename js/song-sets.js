@@ -1,10 +1,11 @@
-import './state.js?v=20260817a';
-import { sendOrQueue } from './sync-queue.js?v=20260817a';
+import './state.js?v=20260817b';
+import { sendOrQueue } from './sync-queue.js?v=20260817b';
 import {
+    combineSongCatalogs,
     filterExamplesForSongs,
     filterVocabularyForSongs,
     selectedSongIdSet
-} from './song-sets-core.js?v=20260817a';
+} from './song-sets-core.js?v=20260817b';
 
 const STORAGE_PREFIX = 'fluency_song_set_v1:';
 let draftSongIds = new Set();
@@ -35,22 +36,48 @@ function validSongIds(songIds) {
     return Array.from(selectedSongIdSet(artistSongCatalog, songIds));
 }
 
-export async function initArtistSongSelection() {
-    if (!activeArtist?.songsPath) {
-        artistSongCatalog = null;
-        selectedSongIds = [];
-        return null;
-    }
-    const response = await fetch(activeArtist.songsPath);
+async function fetchSongCatalog(path) {
+    const response = await fetch(path);
     if (!response.ok) throw new Error(`Song catalog HTTP ${response.status}`);
     window.trackDataFreshness?.(response);
     const catalog = await response.json();
     if (catalog?.schemaVersion !== 1 || !Array.isArray(catalog.songs) || !catalog.songs.length) {
         throw new Error('Song catalog is empty or unsupported.');
     }
+    return catalog;
+}
+
+async function fetchCustomSongCatalog() {
+    const configs = window._allArtistsConfig || {};
+    const slugs = activeArtist?.customSourceSlugs || window._selectedArtistSlugs || [];
+    const sources = await Promise.all(slugs.map(async slug => {
+        const config = configs[slug];
+        if (!config?.songsPath) return null;
+        return {
+            slug,
+            name: config.name,
+            catalog: await fetchSongCatalog(config.songsPath)
+        };
+    }));
+    const catalog = combineSongCatalogs(sources.filter(Boolean));
+    if (!catalog.songs.length) throw new Error('No songs are available for this language.');
+    return catalog;
+}
+
+export async function initArtistSongSelection() {
+    if (!activeArtist?.songsPath && !activeArtist?.customSongSource) {
+        artistSongCatalog = null;
+        selectedSongIds = [];
+        return null;
+    }
+    const catalog = activeArtist.customSongSource
+        ? await fetchCustomSongCatalog()
+        : await fetchSongCatalog(activeArtist.songsPath);
     artistSongCatalog = catalog;
     const local = readLocalSongSet();
-    selectedSongIds = validSongIds(local?.songIds || catalog.songs.map(song => song.id));
+    const initialIds = local?.songIds
+        || (catalog.requireSelection ? [] : catalog.songs.map(song => song.id));
+    selectedSongIds = validSongIds(initialIds);
     window._activeSongSetUpdatedAt = local?.updatedAt || '';
     reconcileRemoteSongSet().catch(error => console.warn('Song-set sync deferred:', error));
     return catalog;
@@ -105,6 +132,7 @@ export function songSelectionSummary() {
     if (!artistSongCatalog?.songs?.length) return 'Choose another artist';
     const count = selectedSongIds.length;
     const total = artistSongCatalog.songs.length;
+    if (count === 0 && artistSongCatalog.requireSelection) return 'Choose songs';
     if (count === total) return `All ${total} songs`;
     if (count === 1) {
         return artistSongCatalog.songs.find(song => String(song.id) === String(selectedSongIds[0]))?.title
@@ -169,8 +197,12 @@ export function showSongSetPicker() {
     const title = document.getElementById('songSetTitle');
     const intro = document.getElementById('songSetIntro');
     const search = document.getElementById('songSetSearch');
-    if (title) title.textContent = `Choose ${activeArtist?.name || 'Lyrics'} songs`;
-    if (intro) intro.textContent = 'Cards are limited by complete per-song membership; sampled lyric examples are limited to the selected songs too.';
+    if (title) title.textContent = activeArtist?.customSongSource
+        ? 'Choose your own songs'
+        : `Choose ${activeArtist?.name || 'Lyrics'} songs`;
+    if (intro) intro.textContent = activeArtist?.customSongSource
+        ? 'Pick songs from every available Lyrics source. Your deck and lyric examples update together, and this selection is remembered on this device.'
+        : 'Cards are limited by complete per-song membership; sampled lyric examples are limited to the selected songs too.';
     if (search) search.value = '';
     document.getElementById('songSetStatus').textContent = '';
     renderSongOptions();

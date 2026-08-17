@@ -48,7 +48,7 @@ DECKS = (
     },
     {
         "slug": "spanish-test-playlist",
-        "name": "Create your own",
+        "name": "Spanish Test Playlist",
         "directory": ROOT / "Artists" / "spanish" / "SpanishTestPlaylist",
         "index": "SpanishTestPlaylistvocabulary.index.json",
         "examples": "SpanishTestPlaylistvocabulary.examples.json",

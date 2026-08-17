@@ -9294,7 +9294,11 @@
             cursor: pointer;
         }
         .song-set-option:last-child { border-bottom: 0; }
-        .song-set-option input { accent-color: var(--accent-primary); }
+        .song-set-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-primary);
+        }
         .song-set-option strong,
         .song-set-option small { display: block; }
         .song-set-option strong {
@@ -11016,11 +11020,23 @@
             color: #fff;
             text-align: center;
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-            max-width: 120px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            max-width: 132px;
+            line-height: 1.15;
+            overflow: visible;
+            text-overflow: clip;
+            white-space: normal;
             pointer-events: none;
+        }
+
+        .artist-source-image--custom {
+            background: color-mix(in srgb, #10B981 18%, var(--bg-secondary));
+            color: #10B981;
+            border-color: color-mix(in srgb, #10B981 55%, var(--border-color));
+        }
+
+        .artist-source-image--custom svg {
+            width: 58%;
+            height: 58%;
         }
 
         /* Inline language pill (compact, sits in the step header row) */

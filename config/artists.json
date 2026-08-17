@@ -73,13 +73,12 @@
     "maxLevel": 4000
   },
   "spanish-test-playlist": {
-    "name": "Create your own",
+    "name": "Spanish Test Playlist",
     "language": "spanish",
     "masterPath": "Artists/spanish/vocabulary_master.json",
     "indexPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
     "examplesPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
     "songsPath": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistsongs.json",
-    "customSongSource": true,
     "colorTheme": {
       "primary": "#10B981",
       "secondary": "#6EE7B7"

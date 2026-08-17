@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260817a';
+import './state.js?v=20260817b';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -363,7 +363,6 @@ function setupLanguageTabs() {
     // The compact language summary reopens the radial picker directly.
     const reopenLanguagePicker = function(event) {
         event.stopPropagation();
-        window.closeRadialPicker?.('learningSourceRadialPicker');
         window.closeRadialPicker?.('artistRadialPicker');
         unmergeStandardProgressFromLanguageStep();
         inlinePill.style.display = 'none';
@@ -420,8 +419,8 @@ function setupLanguageTabs() {
             inlinePill.textContent = langConfig ? langConfig.name : selectedLanguage;
             document.getElementById('languageTabs').style.display = 'none';
             inlinePill.style.display = 'inline-flex';
-            sourceLabel.textContent = 'Choose source';
-            sourcePill.classList.add('source-pill-inline--pending');
+            sourceLabel.textContent = 'Speech';
+            sourcePill.classList.remove('source-pill-inline--pending');
             mergeStandardProgressIntoLanguageStep();
 
             // Hide all subsequent steps while loading
@@ -478,22 +477,16 @@ function setupLanguageTabs() {
                 }
             };
 
-            // Speech setup keeps the source choice reachable. Choosing Lyrics
-            // from this same clock opens the artist picker for this language.
+            // Speech is the stable default for a language. Lyrics remains one
+            // direct action away and opens the source picker immediately.
             sourcePill.onclick = event => {
                 event.stopPropagation();
-                window.showLearningSourcePicker?.(newLanguage, continueToSpeech);
+                window.showLyricsPicker?.(newLanguage, sourceCardButton);
             };
             sourceCardButton.onclick = sourcePill.onclick;
 
-            // Source is the next decision. A deliberate return from an artist
-            // card skips the clock and resumes Speech in the same language.
-            if (sessionStorage.getItem('fluencyPendingSpeechLanguage') === newLanguage) {
-                sessionStorage.removeItem('fluencyPendingSpeechLanguage');
-                await continueToSpeech();
-            } else {
-                window.showLearningSourcePicker?.(newLanguage, continueToSpeech);
-            }
+            sessionStorage.removeItem('fluencyPendingSpeechLanguage');
+            await continueToSpeech();
         });
     });
 }
@@ -1154,8 +1147,15 @@ function invalidatePreparedSetupVocabulary() {
     _preparedSetupVocabulary = null;
 }
 
+function invalidateLyricsSourceCaches(language = selectedLanguage) {
+    delete _levelSliderRawCache[language];
+    _smartLevelRangesCache = null;
+    invalidatePreparedSetupVocabulary();
+}
+
 window.getPreparedSetupVocabulary = getPreparedSetupVocabulary;
 window.invalidatePreparedSetupVocabulary = invalidatePreparedSetupVocabulary;
+window.invalidateLyricsSourceCaches = invalidateLyricsSourceCaches;
 
 function _samplesFromRaw(rawVocab, language = selectedLanguage) {
     return getPreparedSetupVocabulary(language, rawVocab)?.samples || [];
@@ -2669,7 +2669,7 @@ function getNormalHelpContent() {
         <p><strong>Why frequency order?</strong></p>
         <p>Language follows a power law: a small number of words make up the vast majority of everyday speech. In Spanish, the top 1,000 words cover roughly 81% of spoken language, and the top 3,000 cover around 91%. By learning frequent words first, you build practical comprehension faster.</p>
         <p><strong>How does it work?</strong></p>
-        <p>Choose a language, then Speech or Lyrics. Speech continues to numbered levels; Lyrics opens the artist clock. The app selects a level's first small set containing unseen cards, while incorrect and partly learned cards collect in that level's separate review. When Spaced repetition is enabled in Study settings, due cards join that review and correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
+        <p>Choose a language to start in Speech. Browse Lyrics from the language card to select an artist, a playlist, or your own mix of songs. The app selects a level's first small set containing unseen cards, while incorrect and partly learned cards collect in that level's separate review. When Spaced repetition is enabled in Study settings, due cards join that review and correct recalls graduate through 1, 3, 7, 14, 30, 60, and 120-day intervals; mistakes reset the schedule. Merge Lemmas and Cognate exclusions can shorten sets without moving cards between them. Subtitle examples favour nearby-frequency vocabulary. If you leave an unfinished set, a Welcome back prompt offers to restore the exact card and settings next time you enter; finishing the set clears it.</p>
         <p>The progress bar tracks your coverage based on the frequency of words you've learned — learning a common word contributes more to your coverage than a rare one.</p>
     `;
 }

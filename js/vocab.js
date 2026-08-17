@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260817a';
+import './state.js?v=20260817b';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -2410,6 +2410,24 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                     existing.extra_raw_examples = (existing.extra_raw_examples || [])
                         .concat(tagExamples(entry.extra_raw_examples));
                 }
+                if (entry.mwe_memberships?.length) {
+                    const existingByExpression = new Map((existing.mwe_memberships || [])
+                        .map(mwe => [String(mwe.id || mwe.expression || '').toLocaleLowerCase('es'), mwe]));
+                    for (const incoming of entry.mwe_memberships) {
+                        const key = String(incoming.id || incoming.expression || '').toLocaleLowerCase('es');
+                        const current = existingByExpression.get(key);
+                        if (current) {
+                            current.examples = (current.examples || [])
+                                .concat(tagExamples(incoming.examples || []));
+                        } else {
+                            const added = structuredClone(incoming);
+                            added.examples = tagExamples(added.examples || []);
+                            if (!existing.mwe_memberships) existing.mwe_memberships = [];
+                            existing.mwe_memberships.push(added);
+                            existingByExpression.set(key, added);
+                        }
+                    }
+                }
                 if (entry.clitic_memberships?.length) {
                     const existingByForm = new Map((existing.clitic_memberships || [])
                         .map(clitic => [String(clitic.form || '').toLocaleLowerCase('es'), clitic]));
@@ -2430,6 +2448,24 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                         }
                     }
                 }
+                if (entry.sense_cycles?.length) {
+                    const existingBySense = new Map((existing.sense_cycles || [])
+                        .map(cycle => [`${cycle.pos || ''}\u0000${cycle.translation || ''}`, cycle]));
+                    for (const incoming of entry.sense_cycles) {
+                        const key = `${incoming.pos || ''}\u0000${incoming.translation || ''}`;
+                        const current = existingBySense.get(key);
+                        if (current) {
+                            current.examples = (current.examples || [])
+                                .concat(tagExamples(incoming.examples || []));
+                        } else {
+                            const added = structuredClone(incoming);
+                            added.examples = tagExamples(added.examples || []);
+                            if (!existing.sense_cycles) existing.sense_cycles = [];
+                            existing.sense_cycles.push(added);
+                            existingBySense.set(key, added);
+                        }
+                    }
+                }
             } else {
                 // First time seeing this word — clone and tag.
                 // structuredClone is the native deep-clone primitive; ~2-3×
@@ -2444,8 +2480,14 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 if (clone.extra_raw_examples) {
                     clone.extra_raw_examples = tagExamples(clone.extra_raw_examples);
                 }
+                for (const mwe of (clone.mwe_memberships || [])) {
+                    mwe.examples = tagExamples(mwe.examples || []);
+                }
                 for (const clitic of (clone.clitic_memberships || [])) {
                     clitic.examples = tagExamples(clitic.examples || []);
+                }
+                for (const cycle of (clone.sense_cycles || [])) {
+                    cycle.examples = tagExamples(cycle.examples || []);
                 }
                 byId.set(id, clone);
             }
@@ -2481,6 +2523,18 @@ async function mergeArtistVocabularies(artistConfigs, master) {
         for (const clitic of (entry.clitic_memberships || [])) {
             const seen = new Set();
             clitic.examples = (clitic.examples || []).filter(example => {
+                const key = exampleSentenceKey(example);
+                if (!key || seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
+        for (const membership of [
+            ...(entry.mwe_memberships || []),
+            ...(entry.sense_cycles || [])
+        ]) {
+            const seen = new Set();
+            membership.examples = (membership.examples || []).filter(example => {
                 const key = exampleSentenceKey(example);
                 if (!key || seen.has(key)) return false;
                 seen.add(key);
@@ -2538,6 +2592,15 @@ async function mergeArtistVocabularies(artistConfigs, master) {
             merged.clitic_memberships.forEach((clitic, i) => {
                 mergedExamples[id].c[i] = clitic.examples || [];
             });
+        }
+        if (merged.sense_cycles) {
+            mergedExamples[id].s = [];
+            merged.sense_cycles.forEach((cycle, i) => {
+                mergedExamples[id].s[i] = cycle.examples || [];
+            });
+        }
+        if (merged.extra_raw_examples?.length) {
+            mergedExamples[id].r = merged.extra_raw_examples;
         }
     }
 
