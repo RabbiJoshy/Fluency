@@ -128,3 +128,63 @@ def encode_spans(sentences, spans_by_sent, tok, model, device="mps",
 def proto_key(word: str, t: tuple[str, str]) -> str:
     """Flat key for the persisted prototype index."""
     return f"{word}\t{t[0]}\t{t[1]}"
+
+
+CLITICS = {"me", "te", "se", "nos", "os", "lo", "la", "le", "los", "las", "les"}
+REFL = {"me", "te", "se", "nos", "os"}
+# A genuine verb+enclitic must leave an INFINITIVE or GERUND when the pronoun is
+# stripped. Testing the suffix alone over-fires badly: "parte" ends in `ar`+`te`,
+# as do muerte / suerte / fuerte / arte. Imperative+clitic (levántate) is missed
+# rather than guessed, which is the safe direction for a gate.
+ENCLITIC_PRONOUNS = ("se", "me", "te", "nos", "os")
+VERB_STEM = re.compile(r"(?:[aei]r|[aáeéií]ndo)$")
+
+
+def _is_verb_enclitic(w: str) -> bool:
+    for suf in ENCLITIC_PRONOUNS:
+        if len(w) > len(suf) + 2 and w.endswith(suf):
+            if VERB_STEM.search(w[:-len(suf)]):
+                return True
+    return False
+
+
+def reflexive_evidence(word: str, sentence: str, mode: str = "se-only"):
+    """Is a reflexive clitic bound to THIS occurrence of the target form?
+
+    Spanish proclitics form a tight cluster immediately before the verb
+    (no + se + 2nd + 1st + 3rd), so scanning backwards over consecutive clitic
+    pronouns is the whole parse. Enclitics ride on the form itself.
+
+    Returns True (reflexive lemma), False (plain lemma) or None (no opinion).
+
+    Measured on the production-shaped slice: 'se-only' fires on 64% of
+    reflexive-ambiguous items and is 96.8% correct; 'permissive' fires on 68% at
+    94.0%, because me/te/nos are usually INDIRECT OBJECTS (`me lo dio` is `dar`,
+    not `darse`). se-only is the default for that reason.
+
+    Worth knowing before reaching for a trained replacement: a perfect oracle is
+    worth only +4.3pp accuracy on this slice, and this regex already captures
+    100% of the YIELD headroom -- regex and oracle both land at 24.5%.
+    """
+    w = deacc(word)
+    toks = WORD_RE.findall(deacc(sentence))
+    if w not in toks:
+        # production always classifies a sentence containing the form; guessing
+        # when it is absent is worthless
+        return None
+    # No enclitic branch. Deciding "is this word a verb+clitic" from the string
+    # alone over-fires on parte / muerte / suerte (all end in -Xr + te), and the
+    # conjugation lexicon cannot adjudicate either -- verbecc generates a
+    # paradigm for "par", so `par` is listed as an infinitive. The branch was
+    # near-worthless anyway: when the lookup key really is `hacerse`, its menu
+    # holds only -se tuples, so there is nothing for the gate to prune.
+    i = toks.index(w)
+    cluster = []
+    j = i - 1
+    while j >= 0 and toks[j] in CLITICS:
+        cluster.append(toks[j])
+        j -= 1
+    want = REFL if mode == "permissive" else {"se"}
+    if any(c in want for c in cluster):
+        return True
+    return False if not cluster or mode == "permissive" else None

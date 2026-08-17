@@ -53,42 +53,10 @@ def deacc(s):
                    if unicodedata.category(c) != "Mn")
 
 
-CLITICS = {"me", "te", "se", "nos", "os", "lo", "la", "le", "los", "las", "les"}
-REFL = {"me", "te", "se", "nos", "os"}
-TOKEN = re.compile(r"[a-z0-9áéíóúüñ]+")
-# a genuine verb+enclitic, not merely a word ending in -se/-te (parte, duerme)
-ENCLITIC = re.compile(r"(?:[aei]r|[aei]ndo|[aeiou])(?:se|me|te|nos|os)$")
-
-
-def reflexive_evidence(word, sent, mode):
-    """Is a reflexive clitic bound to THIS occurrence of the target form?
-
-    Spanish proclitics form a tight cluster immediately before the verb
-    (no + se + 2nd + 1st + 3rd), so scanning backwards over consecutive clitic
-    pronouns is the whole parse. Enclitics ride on the form itself.
-
-    Returns True (reflexive lemma), False (plain lemma), or None (no opinion).
-    'permissive' treats any reflexive-capable pronoun as evidence; 'se-only'
-    counts just `se`, which cannot be an indirect object the way `me lo dio` is.
-    """
-    w = deacc(word)
-    toks = TOKEN.findall(deacc(sent))
-    if w not in toks:
-        # production always classifies a sentence containing the form; the
-        # dictionary gold usually does not, and guessing there is worthless
-        return None
-    if ENCLITIC.search(w) and len(w) > 4:
-        return True                      # hacerse, haciéndose, hazte
-    i = toks.index(w)
-    cluster = []
-    j = i - 1
-    while j >= 0 and toks[j] in CLITICS:
-        cluster.append(toks[j])
-        j -= 1
-    want = REFL if mode == "permissive" else {"se"}
-    if any(c in want for c in cluster):
-        return True
-    return False if not cluster or mode == "permissive" else None
+# The reflexive gate lives in pipeline/util_5c_token_prototypes so the bench
+# and step_6e can never drift on it.
+sys.path.insert(0, str(REPO))
+from pipeline.util_5c_token_prototypes import reflexive_evidence  # noqa: E402
 
 
 def has_target(word, sent):

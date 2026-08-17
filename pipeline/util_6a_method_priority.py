@@ -22,6 +22,16 @@ METHOD_PRIORITY = {
     # hand-labelled panel (Data/Spanish/Intermediates/wsd_sense_harness).
     "spanishdict-embed-v1": 80,
 
+    # Gloss embeddings + BETO token prototypes + a se-only clitic gate, ranked by
+    # a learned calibrator. Above embed-v1 because it strictly extends it: same
+    # gloss scoring, plus two independent signals, and its confidence is a
+    # calibrated P(correct) rather than a cosine margin. Held-out yield at 99%
+    # lemma+POS is 43.7% against 22.9% for the tuple gap alone.
+    # NOTE: an entry here is REQUIRED, not cosmetic. Spanish sets minPriority 50
+    # and an unregistered method scores 0, so omitting it drops every claim
+    # silently and yields an empty-looking deck with no error.
+    "spanishdict-beto-cal-v1": 85,
+
     # Lexical-only WSD (new evidence architecture). These method ids are kept
     # distinct from historical classify-or-propose runs so their provenance
     # cannot be collapsed by same-method/same-sense merging.

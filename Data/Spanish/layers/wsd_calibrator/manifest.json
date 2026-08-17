@@ -16,7 +16,11 @@
   ],
   "n_train": 16016,
   "held_out_yield_at_99": 0.4367,
+  "band_cuts": {
+    "high": 0.977,
+    "medium": 0.7601
+  },
   "tuple_gap_yield_at_99": 0.2289,
-  "trained": "2026-08-17T13:39Z",
+  "trained": "2026-08-17T17:03Z",
   "note": "refit on all rows after the held-out estimate above"
 }

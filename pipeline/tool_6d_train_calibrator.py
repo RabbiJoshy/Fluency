@@ -121,6 +121,20 @@ def main():
         b = y[tst][np.argsort(-p)[:k]].mean()
         print(f"  {K:>8}%{a:>12.2%}{b:>12.2%}")
 
+    # Band cuts are P(correct) thresholds read off the held-out curve, not
+    # guessed. step_6e reads them from the manifest.
+    band_cuts = {}
+    order = np.argsort(-p)
+    for label, target in (("high", 0.99), ("medium", 0.95)):
+        good = cut = 0
+        for i, j in enumerate(order, 1):
+            good += y[tst][j]
+            if good / i >= target:
+                cut = float(p[j])
+        band_cuts[label] = round(cut, 4)
+    print(f"\n  band cuts from the held-out curve: "
+          f"high P>={band_cuts['high']:.4f} (99%), medium P>={band_cuts['medium']:.4f} (95%)")
+
     if args.dry_run:
         return print("\n--dry-run: nothing written")
 
@@ -138,6 +152,7 @@ def main():
         "features": FEATURES,
         "n_train": len(rows),
         "held_out_yield_at_99": round(got, 4),
+        "band_cuts": band_cuts,
         "tuple_gap_yield_at_99": round(base, 4),
         "trained": time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()),
         "note": "refit on all rows after the held-out estimate above",
