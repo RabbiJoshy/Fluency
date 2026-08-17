@@ -470,6 +470,16 @@ def resolve_best_per_example(word_data, min_priority=0, method_priority=None,
                 for i, ex in enumerate(examples)
                 if i < len(example_ids) and example_ids[i]
             }
+            # Per-example confidence/band, positionally aligned with `examples`
+            # exactly as `example_ids` is. Carried so the card's provenance panel
+            # can show how sure the model was about THIS occurrence, rather than
+            # only which model produced it.
+            confidences = item.get("confidence") or []
+            bands = item.get("band") or []
+            idx_to_conf = {ex: confidences[i] for i, ex in enumerate(examples)
+                           if i < len(confidences)}
+            idx_to_band = {ex: bands[i] for i, ex in enumerate(examples)
+                           if i < len(bands)}
             occurrence_refs = item.get("occurrence_refs") or []
             evidence_rows = []
             if occurrence_refs:
@@ -498,6 +508,7 @@ def resolve_best_per_example(word_data, min_priority=0, method_priority=None,
                     best[evidence_key] = (
                         prio, method, sid, ex_idx, ex_id, occurrence_id,
                         prompt_id, run_ts,
+                        idx_to_conf.get(ex_idx), idx_to_band.get(ex_idx),
                     )
 
     # Regroup by sense_id with ex_idx-sorted example lists.
@@ -505,7 +516,7 @@ def resolve_best_per_example(word_data, min_priority=0, method_priority=None,
     grouped = {}
     for evidence_key in sorted(best.keys(), key=lambda value: canonical_evidence_key(value)):
         (_, method, sid, ex_idx, ex_id, occurrence_id,
-         prompt_id, run_ts) = best[evidence_key]
+         prompt_id, run_ts, confidence, band) = best[evidence_key]
         display_key = (sid, ex_id if ex_id else ("index", ex_idx), method,
                        prompt_id, run_ts)
         entry = grouped.get(display_key)
@@ -520,6 +531,10 @@ def resolve_best_per_example(word_data, min_priority=0, method_priority=None,
             entry["prompt_id"] = prompt_id
         if run_ts:
             entry["run_ts"] = run_ts
+        if confidence is not None:
+            entry["confidence"] = confidence
+        if band:
+            entry["band"] = band
     for (sid, _display, _method, _prompt, _run), entry in grouped.items():
         if entry.get("occurrence_ids"):
             entry["occurrence_ids"] = sorted(set(entry["occurrence_ids"]))

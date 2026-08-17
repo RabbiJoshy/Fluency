@@ -1728,11 +1728,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             ex_method = entry.get("method")
                             ex_prompt_id = entry.get("prompt_id")
                             ex_run_ts = entry.get("run_ts")
+                            ex_conf = entry.get("confidence")
+                            ex_band = entry.get("band")
                         else:
                             ex_idx = entry
                             ex_method = None
                             ex_prompt_id = None
                             ex_run_ts = None
+                            ex_conf = None
+                            ex_band = None
                         raw_ex = resolve_example_reference(
                             entry, raw_examples, raw_examples_by_id)
                         if raw_ex is None:
@@ -1762,6 +1766,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             if ex_run_ts:
                                 ex_dict["run_ts"] = ex_run_ts
                             prov_candidates.append((ex_run_ts or "", ex_prompt_id, ex_run_ts))
+                        # How sure the model was about THIS occurrence. Shown in
+                        # the card's provenance panel next to the prompt id.
+                        if ex_conf is not None:
+                            ex_dict["confidence"] = ex_conf
+                        if ex_band:
+                            ex_dict["band"] = ex_band
                         score_entry = translation_scores.get(spanish, {})
                         if isinstance(score_entry, dict) and "score" in score_entry:
                             ex_dict["translation_quality"] = score_entry["score"]
@@ -2053,11 +2063,15 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             ex_method = entry.get("method")
                             ex_prompt_id = entry.get("prompt_id")
                             ex_run_ts = entry.get("run_ts")
+                            ex_conf = entry.get("confidence")
+                            ex_band = entry.get("band")
                         else:
                             ex_idx = entry
                             ex_method = None
                             ex_prompt_id = None
                             ex_run_ts = None
+                            ex_conf = None
+                            ex_band = None
                         raw_ex = resolve_example_reference(
                             entry, raw_examples, raw_examples_by_id)
                         if raw_ex is None:
@@ -2081,6 +2095,12 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                             if ex_run_ts:
                                 ex_dict["run_ts"] = ex_run_ts
                             prov_candidates.append((ex_run_ts or "", ex_prompt_id, ex_run_ts))
+                        # How sure the model was about THIS occurrence. Shown in
+                        # the card's provenance panel next to the prompt id.
+                        if ex_conf is not None:
+                            ex_dict["confidence"] = ex_conf
+                        if ex_band:
+                            ex_dict["band"] = ex_band
                         _copy_example_priority(raw_ex, ex_dict)
                         _copy_example_identity_evidence(raw_ex, ex_dict)
                         _copy_example_surface(raw_ex, ex_dict, word)

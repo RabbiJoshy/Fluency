@@ -1,22 +1,22 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260817d';
-import './speech.js?v=20260817d';
+import './state.js?v=20260817e';
+import './speech.js?v=20260817e';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260817d';
+} from './example-personalisation.js?v=20260817e';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260817d';
+} from './spanishdict-usage.js?v=20260817e';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260817d';
+} from './reverse-cues.js?v=20260817e';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -6232,13 +6232,27 @@ function buildProvenancePanelHTML(card) {
             // are absolute values transferred from the hand-labelled panel in
             // Data/Spanish/Intermediates/wsd_sense_harness, not quantiles of a
             // run: high is the gap at which that panel measured 100% acceptable.
-            const conf = (m.confidence != null)
-                ? `<div class="prov-conf prov-conf--${esc(m.band || 'low')}">
-                       <span class="prov-conf-band">${esc(m.band || '?')}</span>
-                       <span class="prov-conf-val">gap ${esc(Number(m.confidence).toFixed(4))}</span>
-                       <span class="prov-conf-note">${m.band === 'high' ? '100% acceptable on panel'
-                           : m.band === 'medium' ? '91.9% acceptable on panel'
-                           : '84.5% acceptable on panel'}</span>
+            // Confidence means different things per method and must not be
+            // labelled identically. step_6d reports a COSINE GAP between the top
+            // two lemma+POS tuples; step_6e reports a calibrated P(correct) from
+            // a learned ranker. Showing "gap 0.9857" for a probability would be
+            // actively misleading, so the unit follows the prompt family.
+            const cVal = (m.confidence != null) ? m.confidence : psrc.confidence;
+            const cBand = m.band || psrc.band || null;
+            const calibrated = typeof promptId === 'string' && promptId.startsWith('sd-beto-cal');
+            const conf = (cVal != null)
+                ? `<div class="prov-conf prov-conf--${esc(cBand || 'low')}">
+                       <span class="prov-conf-band">${esc(cBand || '?')}</span>
+                       <span class="prov-conf-val">${calibrated
+                           ? `P(correct) ${esc((Number(cVal) * 100).toFixed(1))}%`
+                           : `gap ${esc(Number(cVal).toFixed(4))}`}</span>
+                       <span class="prov-conf-note">${calibrated
+                           ? (cBand === 'high' ? 'held-out: 99% lemma+POS correct at this cut'
+                               : cBand === 'medium' ? 'held-out: 95% lemma+POS correct at this cut'
+                               : 'below the 95% cut — least reliable band')
+                           : (cBand === 'high' ? '100% acceptable on the 150-sentence panel'
+                               : cBand === 'medium' ? '91.9% acceptable on that panel'
+                               : '84.5% acceptable on that panel')}</span>
                    </div>`
                 : '';
             // The sentences this sense was actually assigned to. Without these
@@ -6564,7 +6578,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260817d';
+const ASSET_VERSION = '20260817e';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
