@@ -125,6 +125,8 @@ def main():
     ap.add_argument("--reflexive-gate", default="off",
                     choices=["off", "permissive", "se-only", "oracle"],
                     help="prune the wrong half of an X/Xse pair before argmax")
+    ap.add_argument("--no-hub", action="store_true",
+                    help="disable the hubness offset")
     ap.add_argument("--drop-empty", action="store_true",
                     help="remove empty-translation leaves from the candidate pool")
     ap.add_argument("--out", default="")
@@ -200,7 +202,8 @@ def main():
         m = menus[w]
         S = np.asarray(M[[idx[gloss(w, m[s])] for s in sids]], np.float32)
         Q = np.asarray(M[[idx[q] for _, _, q in items]], np.float32)
-        hub = np.sort(BG @ S.T, axis=0)[-min(BG_K, BG.shape[0]):].mean(0)
+        hub = (np.zeros(S.shape[0], np.float32) if args.no_hub
+               else np.sort(BG @ S.T, axis=0)[-min(BG_K, BG.shape[0]):].mean(0))
         C = Q @ S.T - hub[None, :]
 
         # class ids for the SHIPPED gap: (pos, normalised translation)
