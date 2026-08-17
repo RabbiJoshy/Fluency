@@ -1,22 +1,22 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260817b';
-import './speech.js?v=20260817b';
+import './state.js?v=20260817c';
+import './speech.js?v=20260817c';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260817b';
+} from './example-personalisation.js?v=20260817c';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260817b';
+} from './spanishdict-usage.js?v=20260817c';
 import {
     englishProductionCue,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260817b';
+} from './reverse-cues.js?v=20260817c';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -803,13 +803,14 @@ function selectInitialMeaningGroup(card, grouping) {
     if (axis !== 'translation' && axis !== 'context') return;
     const groupKey = groupKeyOf.get(currentMeaningIndex);
     const meaning = card.meanings[currentMeaningIndex];
-    const compKey = `${meaning.pos}\u0000${axis}\u0000${groupKey}`;
+    const compKey = `${meaning.pos}\u0000${meaning.headword || ''}\u0000${axis}\u0000${groupKey}`;
     const members = groupMembers.get(compKey);
     if (!members || members.length < 2) return;
     currentGroupSelection = {
         axis,
         groupKey,
         pos: meaning.pos,
+        headword: meaning.headword || '',
         members: [...members]
     };
 }
@@ -2817,6 +2818,58 @@ function toggleBackPosSection(key) {
 }
 window.toggleBackPosSection = toggleBackPosSection;
 
+function lemmaPosGroupKeyForMeaning(meaning) {
+    if (!meaning) return '';
+    const pos = meaning.pos === 'SENSE_CYCLE'
+        ? (meaning.cycle_pos || 'X')
+        : meaning.pos;
+    return `${pos || 'X'}\u0000${meaning.headword || ''}`;
+}
+
+// A lemma–POS heading is a selection control, not only an accordion label.
+// Switching it moves the card's complete active state (lemma, sense, examples,
+// and POS colour) in one operation. The selected group is always left open so
+// a chosen low-frequency sense cannot disappear behind a collapsed section.
+function selectLemmaPosGroup(event, key, meaningIndex) {
+    event?.stopPropagation();
+    stopExampleAutoplay(true);
+    const card = flashcards?.[currentIndex];
+    const meaning = card?.meanings?.[meaningIndex];
+    if (!card || !meaning) return;
+    const real = String(key).replace(/~~/g, '\u0000');
+    if (!card._expandedPos) card._expandedPos = new Set();
+    card._backSectionsManuallySet = true;
+    card._expandedPos.add(real);
+
+    const alreadyActive = lemmaPosGroupKeyForMeaning(card.meanings[currentMeaningIndex]) === real
+        && !currentGroupSelection;
+    if (alreadyActive) return;
+
+    currentGroupSelection = null;
+    currentMeaningIndex = meaningIndex;
+    const selectedPos = meaning.pos === 'SENSE_CYCLE'
+        ? (meaning.cycle_pos || 'X')
+        : meaning.pos;
+    if (selectedPos) card._activePosTab = selectedPos;
+    currentExampleIndex = 0;
+    currentMWEIndex = 0;
+    _explicitMeaningSelectionKey = meaningSelectionKey(card, meaningIndex);
+    updateCard();
+}
+window.selectLemmaPosGroup = selectLemmaPosGroup;
+
+// Visual order only: card.meanings remains stable for IDs, knowledge state,
+// and click indices. Rerender the active sense first so the freshly selected
+// row and its lemma–POS section land at scrollTop 0 even when its corpus share
+// is lower than the rows that originally preceded it.
+function orderMeaningEntriesForDisplay(meanings, activeIndex) {
+    const entries = (meanings || []).map((meaning, index) => ({ meaning, index }));
+    if (!Number.isInteger(activeIndex) || activeIndex < 0 || activeIndex >= entries.length) {
+        return entries;
+    }
+    return [entries[activeIndex], ...entries.filter(entry => entry.index !== activeIndex)];
+}
+
 // Where a corpus example actually came from. OpenSubtitles ships an .ids file
 // aligned line-for-line with the text; step_5a_build_examples_v2 carries the
 // title/subtitle/line through onto each example. The title_id is an IMDb id
@@ -3318,17 +3371,15 @@ function updateCard({ announceHeadword = false } = {}) {
     const card = flashcards[currentIndex];
     const langConfig = config.languages[selectedLanguage];
     const displaySurface = card.displaySurface || card.targetWord;
-    // A surface-keyed card can hold senses from several headwords, and
-    // card.lemma is just whichever contributed most senses — for `una` that is
-    // `unir`, which then shows regardless of which sense you are looking at.
-    // One headword can be asserted; several cannot, so say nothing and let the
-    // card back attribute each group.
+    // A surface-keyed card can hold senses from several headwords. Start with
+    // the only unambiguous card-level citation; once currentMeaning is resolved
+    // below, the selected lemma–POS group becomes authoritative instead.
     const cardHeadwords = [...new Set(
         (card.meanings || [])
             .map(m => m && m.headword)
             .filter(Boolean)
     )];
-    const citationForm = cardHeadwords.length > 1
+    let citationForm = cardHeadwords.length > 1
         ? ''
         : (cardHeadwords[0] || card.citationForm || card.lemma || displaySurface);
     const formNote = card.isPronominal ? 'verb with se' : '';
@@ -3393,7 +3444,10 @@ function updateCard({ announceHeadword = false } = {}) {
     if (currentGroupSelection) {
         const sel = currentGroupSelection;
         const inRange = card.isMultiMeaning && sel.members && sel.members.length >= 2
-            && sel.members.every(i => i >= 0 && i < card.meanings.length && card.meanings[i].pos === sel.pos);
+            && sel.members.every(i => i >= 0
+                && i < card.meanings.length
+                && card.meanings[i].pos === sel.pos
+                && (card.meanings[i].headword || '') === (sel.headword || ''));
         if (!inRange) {
             currentGroupSelection = null;
         } else {
@@ -3409,6 +3463,13 @@ function updateCard({ announceHeadword = false } = {}) {
 
     // Get the current meaning for multi-meaning cards
     const currentMeaning = card.isMultiMeaning ? card.meanings[currentMeaningIndex] : null;
+    if (currentMeaning && card._expandedPos) {
+        card._expandedPos.add(lemmaPosGroupKeyForMeaning(currentMeaning));
+    }
+    // Keep the lemma in the header synchronized with the selected group. This
+    // is especially important for homographic surfaces such as fue (ser/ir):
+    // changing the lemma–POS group must change the label and example together.
+    if (currentMeaning?.headword) citationForm = currentMeaning.headword;
     const activeDisplayPos = currentMeaning?.pos === 'SENSE_CYCLE'
         ? (currentMeaning.cycle_pos || 'X')
         : (currentMeaning?.pos || card.partOfSpeech || '');
@@ -4003,13 +4064,19 @@ function updateCard({ announceHeadword = false } = {}) {
         // 75% of cards produce a single group, 98% two or fewer, so the pill row
         // is always short.
         const groupInfo = new Map();
-        (card.meanings || []).forEach(m => {
+        (card.meanings || []).forEach((m, meaningIndex) => {
             if (!m || m.exampleOnly) return;
             const pos = m.pos === 'SENSE_CYCLE' ? (m.cycle_pos || 'X') : m.pos;
             if (!pos || pos === 'MWE' || pos === 'CLITIC') return;
             const key = pos + '\u0000' + (m.headword || '');
             if (!groupInfo.has(key)) {
-                groupInfo.set(key, { pos, headword: m.headword || '', senses: [], pct: 0 });
+                groupInfo.set(key, {
+                    pos,
+                    headword: m.headword || '',
+                    senses: [],
+                    pct: 0,
+                    firstMeaningIndex: meaningIndex,
+                });
             }
             const g = groupInfo.get(key);
             g.pct += Number(m.percentage || 0);
@@ -4027,6 +4094,10 @@ function updateCard({ announceHeadword = false } = {}) {
                 : null;
             card._expandedPos = new Set(cur ? [cur] : []);
         }
+        const activeLemmaPosKey = lemmaPosGroupKeyForMeaning(currentMeaning);
+        const activeGroupSense = String(
+            getProductionEnglishCue(card, currentMeaning) || currentMeaning?.meaning || ''
+        ).trim();
 
         const renderSections = (sections) => Array.from(sections)
             .map(([key, rows]) => {
@@ -4040,10 +4111,14 @@ function updateCard({ announceHeadword = false } = {}) {
                 </section>`;
                 }
                 const open = card._expandedPos.has(key);
-                // The headword only when it differs from the word on the card —
-                // `casa · casa` says nothing, `una · unir` is the whole point.
-                const hw = (g.headword && g.headword !== card.targetWord)
+                // Always state the lemma. Apart from making the grouping model
+                // inspectable, this prevents a POS/group switch from looking
+                // like it changed only the colour while retaining the old word.
+                const hw = g.headword
                     ? `<span class="pos-pill-lemma">${escapeCardText(g.headword)}</span>` : '';
+                const summarySense = key === activeLemmaPosKey && activeGroupSense
+                    ? activeGroupSense
+                    : (g.senses[0] || '');
                 const extra = g.senses.length > 1
                     ? `<span class="pos-pill-more">+${g.senses.length - 1}</span>` : '';
                 const pct = g.pct > 0
@@ -4060,10 +4135,10 @@ function updateCard({ announceHeadword = false } = {}) {
                 <section class="meaning-pos-section pos-collapsible${open ? ' is-open' : ''}"
                          data-pos="${pos}" data-group-key="${escapeCardText(key.replace(/\u0000/g, '~~'))}" style="${accent}">
                     <button type="button" class="pos-section-head"
-                            onclick="event.stopPropagation(); toggleBackPosSection('${key.replace(/\u0000/g, '~~')}')">
+                            onclick="selectLemmaPosGroup(event, '${key.replace(/\u0000/g, '~~')}', ${g.firstMeaningIndex})">
                         <span class="pos-section-label">${escapeCardText(pos)}</span>
                         ${hw}
-                        <span class="pos-section-summary">${escapeCardText(g.senses[0] || '')}${extra}</span>
+                        <span class="pos-section-summary">${escapeCardText(summarySense)}${extra}</span>
                         ${pct}${mark}
                         <span class="pos-section-chevron">${open ? '\u25BE' : '\u25B8'}</span>
                     </button>
@@ -4110,10 +4185,11 @@ function updateCard({ announceHeadword = false } = {}) {
                         axisOf.set(idx, 'special');
                         return;
                     }
-                    const tk = `${m.pos}\u0000${m.meaning || ''}`;
+                    const groupPrefix = `${m.pos}\u0000${m.headword || ''}\u0000`;
+                    const tk = `${groupPrefix}${m.meaning || ''}`;
                     transRawSize.set(tk, (transRawSize.get(tk) || 0) + 1);
                     if (m.context) {
-                        const ck = `${m.pos}\u0000${m.context}`;
+                        const ck = `${groupPrefix}${m.context}`;
                         ctxRawSize.set(ck, (ctxRawSize.get(ck) || 0) + 1);
                     }
                 });
@@ -4123,9 +4199,10 @@ function updateCard({ announceHeadword = false } = {}) {
                 card.meanings.forEach((m, idx) => {
                     if (axisOf.get(idx) === 'special') return;
                     const tk = m.meaning || '';
-                    const ts = transRawSize.get(`${m.pos}\u0000${tk}`) || 0;
+                    const groupPrefix = `${m.pos}\u0000${m.headword || ''}\u0000`;
+                    const ts = transRawSize.get(`${groupPrefix}${tk}`) || 0;
                     const ck = m.context || null;
-                    const cs = ck ? (ctxRawSize.get(`${m.pos}\u0000${ck}`) || 0) : 0;
+                    const cs = ck ? (ctxRawSize.get(`${groupPrefix}${ck}`) || 0) : 0;
                     if (ts > 1 && cs > 1) {
                         if (ts >= cs) { axisOf.set(idx, 'translation'); groupKeyOf.set(idx, tk); }
                         else { axisOf.set(idx, 'context'); groupKeyOf.set(idx, ck); }
@@ -4152,7 +4229,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         const ax = axisOf.get(idx);
                         if (ax !== 'translation' && ax !== 'context') return;
                         const k = groupKeyOf.get(idx);
-                        const compKey = `${m.pos}\u0000${ax}\u0000${k}`;
+                        const compKey = `${m.pos}\u0000${m.headword || ''}\u0000${ax}\u0000${k}`;
                         if (!groupMembers.has(compKey)) groupMembers.set(compKey, []);
                         groupMembers.get(compKey).push(idx);
                         if (!groupFirstIdx.has(compKey)) groupFirstIdx.set(compKey, idx);
@@ -4188,7 +4265,7 @@ function updateCard({ announceHeadword = false } = {}) {
         const showHeadwordGroups = cardHeadwords.length > 1;
         const headwordSeen = new Set();
 
-        card.meanings.forEach((m, idx) => {
+        orderMeaningEntriesForDisplay(card.meanings, currentMeaningIndex).forEach(({ meaning: m, index: idx }) => {
             if (m.exampleOnly) return;
             const isSelected = idx === currentMeaningIndex;
             const rowStateClasses = isSelected ? ' is-current-sense' : '';
@@ -4394,13 +4471,22 @@ function updateCard({ announceHeadword = false } = {}) {
                 const axis = GROUP_DUPLICATE_MEANINGS ? (axisOf.get(idx) || 'singleton') : 'singleton';
                 const isGrouped = axis === 'translation' || axis === 'context';
                 const groupKey = isGrouped ? groupKeyOf.get(idx) : null;
-                const compKey = isGrouped ? `${m.pos}\u0000${axis}\u0000${groupKey}` : null;
+                const compKey = isGrouped
+                    ? `${m.pos}\u0000${m.headword || ''}\u0000${axis}\u0000${groupKey}`
+                    : null;
                 if (isGrouped) {
                     const firstIdx = groupFirstIdx.get(compKey);
-                    if (firstIdx !== idx) return;
+                    const members = groupMembers.get(compKey) || [];
+                    const displayLeader = members.includes(currentMeaningIndex)
+                        ? currentMeaningIndex
+                        : firstIdx;
+                    if (displayLeader !== idx) return;
                 }
                 if (isGrouped) {
                     const members = groupMembers.get(compKey);
+                    const orderedMembers = members.includes(currentMeaningIndex)
+                        ? [currentMeaningIndex, ...members.filter(memberIdx => memberIdx !== currentMeaningIndex)]
+                        : members;
                     const pctSumRaw = groupPctSum.get(compKey);
                     const sumPct = Math.round((pctSumRaw || 0) * 100);
                     const isTransAxis = axis === 'translation';
@@ -4409,7 +4495,7 @@ function updateCard({ announceHeadword = false } = {}) {
                         : String(m.context || '').replace(/"/g, '&quot;');
                     const groupedTextClass = adaptiveRowTextClass(
                         sharedText,
-                        members.map(memberIdx => {
+                        orderedMembers.map(memberIdx => {
                             const member = card.meanings[memberIdx];
                             return isTransAxis
                                 ? (member.context || '')
@@ -4422,12 +4508,13 @@ function updateCard({ announceHeadword = false } = {}) {
                     const groupSelected = !!(currentGroupSelection
                         && currentGroupSelection.axis === axis
                         && currentGroupSelection.pos === m.pos
+                        && (currentGroupSelection.headword || '') === (m.headword || '')
                         && currentGroupSelection.groupKey === groupKey);
                     // Outer row mirrors singleton: body | pct.
                     // The body's internal grid stays simple (shared + varying):
                     //   trans-axis: shared trans | varying ctx
                     //   ctx-axis:   varying trans | shared ctx
-                    const anyMemberSelected = members.some(mi => mi === currentMeaningIndex);
+                    const anyMemberSelected = orderedMembers.some(mi => mi === currentMeaningIndex);
                     const groupIsCurrent = groupSelected || anyMemberSelected;
                     if (compactKnowledgeView && !groupIsCurrent) return;
                     const groupStateClasses = groupIsCurrent ? ' is-current-sense' : '';
@@ -4438,7 +4525,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     const sharedBg = 'transparent';
                     const sharedBorder = '';
 
-                    const memberCells = members.map((memberIdx, rowIdx) => {
+                    const memberCells = orderedMembers.map((memberIdx, rowIdx) => {
                         const mm = card.meanings[memberIdx];
                         const isMemberSelected = !groupSelected && memberIdx === currentMeaningIndex;
                         const cellBg = isMemberSelected
@@ -4468,7 +4555,7 @@ function updateCard({ announceHeadword = false } = {}) {
                     // Pct stack — lives outside the highlight box, in its own
                     // outer-grid column on the right edge of the row, so the
                     // %s align with singleton-card %s.
-                    const pctStackHtml = members.map((memberIdx) => {
+                    const pctStackHtml = orderedMembers.map((memberIdx) => {
                         const mm = card.meanings[memberIdx];
                         const memberPct = Math.round((mm.percentage || 0) * 100);
                         if (memberPct >= 100) {
@@ -4480,9 +4567,9 @@ function updateCard({ announceHeadword = false } = {}) {
 
                     // Shared cell — spans all body rows.
                     const sharedCol = isTransAxis ? 1 : 2;
-                    const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${members.length}; align-self: center;`;
+                    const sharedSpan = `grid-column: ${sharedCol}; grid-row: 1 / span ${orderedMembers.length}; align-self: center;`;
                     const sharedCellHtml = isTransAxis
-                        ? `<div class="group-card-shared row-adaptive-text" style="${sharedSpan} font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}${modelProposalMarkerHTML(members.some(memberIdx => card.meanings[memberIdx].modelProposed) ? { modelProposed: true } : null)}</div>`
+                        ? `<div class="group-card-shared row-adaptive-text" style="${sharedSpan} font-weight: 600; color: var(--text-primary); text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${sharedText}${modelProposalMarkerHTML(orderedMembers.some(memberIdx => card.meanings[memberIdx].modelProposed) ? { modelProposed: true } : null)}</div>`
                         : `<div class="group-card-shared" style="${sharedSpan} text-align: center; line-height: 1.25; min-width: 0; word-break: break-word;">${renderSenseContextHTML(m.context, { leadingDot: false })}</div>`;
 
                     // Body grid: shared + varying. The pct column lives in the
@@ -4822,8 +4909,8 @@ function updateCard({ announceHeadword = false } = {}) {
             // is actually available — otherwise behave exactly as before.
             const spotifyBtnActiveClass = cardAutoplayAvailable && _exampleAutoplayActive ? ' autoplay-active' : '';
             const spotifyBtn = spotifyTrackId
-                ? `<button type="button" class="spotify-btn link-btn${spotifyBtnActiveClass}" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="${cardAutoplayAvailable ? 'Play in Spotify · hold to toggle lyric autoplay' : 'Play in Spotify'}" style="cursor:pointer; margin:0;" onclick="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})" ontouchend="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})"${cardAutoplayAvailable ? ` onmousedown="spotifyBtnPressStart(event)" onmouseup="spotifyBtnPressEnd()" onmouseleave="spotifyBtnPressEnd()" ontouchstart="spotifyBtnPressStart(event)" ontouchcancel="spotifyBtnPressEnd()"` : ''}>${spotifySvg}</button>`
-                : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn link-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
+                ? `<button type="button" class="spotify-btn${spotifyBtnActiveClass}" data-track-id="${spotifyTrackId}" data-position-ms="${positionMs}" title="${cardAutoplayAvailable ? 'Play in Spotify · hold to toggle lyric autoplay' : 'Play in Spotify'}" style="cursor:pointer; margin:0;" onclick="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})" ontouchend="spotifyBtnActivate(event, '${spotifyTrackId}', ${positionMs})"${cardAutoplayAvailable ? ` onmousedown="spotifyBtnPressStart(event)" onmouseup="spotifyBtnPressEnd()" onmouseleave="spotifyBtnPressEnd()" ontouchstart="spotifyBtnPressStart(event)" ontouchcancel="spotifyBtnPressEnd()"` : ''}>${spotifySvg}</button>`
+                : (spotifyUrl ? `<a href="${spotifyUrl}" target="_blank" class="spotify-btn" title="Open in Spotify">${spotifySvg}</a>` : '');
             // Card-wide availability keeps this visible even when only a
             // later sense has a playable clip. Once a Spotify button is on
             // screen, autoplay control is reached by holding it instead of a
@@ -5620,8 +5707,8 @@ function focusKnowledgeCardItem(meaningIndex, cycleIndex = 0) {
 // stays trivial and overlapping duplicate groups do not absorb one another.
 // The anchor remains currentMeaning for downstream code that expects one.
 //
-// Group membership includes the anchor's POS so a grouped row never crosses
-// the section boundary rendered above it.
+// Group membership includes the anchor's lemma and POS so a grouped row never
+// crosses the lemma–POS section boundary rendered above it.
 function selectGroup(axis, anchorIdx) {
     stopExampleAutoplay(true);
     const card = flashcards[currentIndex];
@@ -5634,18 +5721,26 @@ function selectGroup(axis, anchorIdx) {
     } else {
         groupKey = anchor.context || '';
     }
-    const effectiveKey = `${anchor.pos}\u0000${axis}\u0000${groupKey}`;
+    const effectiveKey = `${anchor.pos}\u0000${anchor.headword || ''}\u0000${axis}\u0000${groupKey}`;
     members = card._grouping?.groupMembers?.get(effectiveKey);
     if (!members) {
         const field = axis === 'translation' ? 'meaning' : 'context';
         members = card.meanings
             .map((mm, i) => ({ mm, i }))
-            .filter(({ mm }) => mm.pos === anchor.pos && (mm[field] || '') === groupKey)
+            .filter(({ mm }) => mm.pos === anchor.pos
+                && (mm.headword || '') === (anchor.headword || '')
+                && (mm[field] || '') === groupKey)
             .map(({ i }) => i);
     }
     if (members.length < 2) return;
     _explicitMeaningSelectionKey = null;
-    currentGroupSelection = { axis, groupKey, pos: anchor.pos, members };
+    currentGroupSelection = {
+        axis,
+        groupKey,
+        pos: anchor.pos,
+        headword: anchor.headword || '',
+        members,
+    };
     currentMeaningIndex = anchorIdx;
     currentExampleIndex = 0;
     currentMWEIndex = 0;
@@ -6458,7 +6553,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260817b';
+const ASSET_VERSION = '20260817c';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

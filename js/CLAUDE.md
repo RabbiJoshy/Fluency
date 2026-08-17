@@ -237,6 +237,17 @@ but `displaySurface` becomes the citation lemma. Thus the merged `estar` card is
 headed/spoken as `estar` even when `está` is its internal host. Morphology from
 that representative inflection is suppressed when it would describe the lemma
 incorrectly; each example still highlights its actual pooled surface form.
+The runtime elects exactly one host per normalized lemma from the entries that
+survive the active source/song/filter pass, using the smallest `stableRank`.
+Do not trust `most_frequent_lemma_instance` as a uniqueness constraint: older
+artist indexes can contain two `true` rows for one lemma.
+
+On the card back, call each `(lemma, POS)` section a **lemma–POS group**. It is
+the learner-facing unit that owns a sense/subsense list and its examples; it is
+not a separate card identity. Selecting a group must update the active lemma,
+sense, example pool, POS styling, and scroll order together. The active group
+and active sense remain first/open visually without reordering `card.meanings`
+or changing any stable sense/card indices.
 
 ## Artist / Lyrics Mode Differences
 

@@ -1,6 +1,6 @@
 // Setup panel UI: language tabs, stable level selector, and automatic set progress.
 // Key functions: renderLanguageTabs(), renderLevelSelector(), renderRangeSelector().
-import './state.js?v=20260817b';
+import './state.js?v=20260817c';
 
 const GLOBAL_STUDY_DEFAULTS_KEY = 'fluency_global_study_defaults_v1';
 let _setupLevelSelectionWasManual = false;
@@ -560,19 +560,18 @@ async function findFirstIncompleteLevelBtn(language, buttons) {
     const estimatedIds = activeArtist && currentUser && !currentUser.isGuest
         ? await buildEstimatedKnownIds(estimate)
         : null;
+    const seenLemmas = await window.buildSeenLemmaSet?.(vocabularyData) || new Set();
     const wordSeen = item => {
-        if (!currentUser || currentUser.isGuest || !progressData) return false;
-        const wordId = getWordId(item);
-        const recorded = getWordProgressState(wordId);
-        // Review is a separate route. Once a card has been encountered, it
-        // must not hold new-set progression on this level indefinitely.
-        if (recorded.seen || wordHasKnowledgeProgress(wordId)) return true;
-        if (activeArtist) {
-            if (item.id && estimatedIds?.has(item.id)) return true;
-        } else if (item.rank <= estimate) {
-            return true;
-        }
-        return false;
+        // Use the exact same identity rules as the set dots and Learn New:
+        // current + cross-mode surface progress, granular knowledge, merged
+        // lemma inheritance, and the level estimate. The former coarse check
+        // could call Level 1 incomplete while every one of its sets was 100%,
+        // which then made renderRangeSelector fall back to its last set.
+        return getSetupLearningState(item, {
+            seenLemmas,
+            estimatedIds,
+            estimate,
+        }).seen;
     };
 
     let firstIncomplete = null;

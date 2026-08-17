@@ -246,8 +246,10 @@ test('recognition back makes sense density calmer without weakening filters', ()
 
     assert.doesNotMatch(source, /back-pos-tab-label[^\n]*Choose/u);
     assert.match(source, /aria-label="Filter senses by part of speech"/u);
-    assert.match(source, /pos-section-summary[^\n]*g\.senses\[0\][^\n]*\$\{extra\}/u,
+    assert.match(source, /pos-section-summary[^\n]*summarySense[^\n]*\$\{extra\}/u,
         'the extra-sense count belongs beside the gloss');
+    assert.match(source, /key === activeLemmaPosKey && activeGroupSense/u,
+        'the active low-frequency sense must also lead its lemma–POS summary');
     assert.match(source, /card\._backSectionsManuallySet = true/u);
     assert.match(source, /scroll\.scrollHeight <= availableForScroll \+ 1/u);
     assert.match(css, /\.meaning-row-group \.row-adaptive-text\s*\{\s*font-size: calc\(var\(--row-primary-size, 17px\) \+ 1px\)/u);

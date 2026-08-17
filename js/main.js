@@ -1,21 +1,21 @@
-import './theme.js?v=20260817b';
-import './state.js?v=20260817b';
-import './offline-db.js?v=20260817b';
-import './sync-queue.js?v=20260817b';
-import { initOfflineContent } from './offline-content.js?v=20260817b';
-import './speech.js?v=20260817b';
-import './artist-ui.js?v=20260817b';
-import './auth.js?v=20260817b';
-import './about-example.js?v=20260817b';
-import './estimation.js?v=20260817b';
-import './config.js?v=20260817b';
-import './progress.js?v=20260817b';
-import './knowledge.js?v=20260817b';
-import './ui.js?v=20260817b';
-import './vocab.js?v=20260817b';
-import './song-sets.js?v=20260817b';
-import './vocabulary-import.js?v=20260817b';
-import './flashcards.js?v=20260817b';
+import './theme.js?v=20260817c';
+import './state.js?v=20260817c';
+import './offline-db.js?v=20260817c';
+import './sync-queue.js?v=20260817c';
+import { initOfflineContent } from './offline-content.js?v=20260817c';
+import './speech.js?v=20260817c';
+import './artist-ui.js?v=20260817c';
+import './auth.js?v=20260817c';
+import './about-example.js?v=20260817c';
+import './estimation.js?v=20260817c';
+import './config.js?v=20260817c';
+import './progress.js?v=20260817c';
+import './knowledge.js?v=20260817c';
+import './ui.js?v=20260817c';
+import './vocab.js?v=20260817c';
+import './song-sets.js?v=20260817c';
+import './vocabulary-import.js?v=20260817c';
+import './flashcards.js?v=20260817c';
 
 // Spotify is lyrics-only and its module is sizeable. Start the dynamic import
 // immediately for an artist URL so it races setup/data loading, but keep it
@@ -24,7 +24,7 @@ import './flashcards.js?v=20260817b';
 const _initialParams = new URLSearchParams(window.location.search);
 const _speechVnextRoute = _initialParams.get('speech') === 'vnext';
 const _spotifyModulePromise = (_initialParams.has('artist') || _initialParams.get('mode') === 'badbunny')
-    ? import('./spotify.js?v=20260817b').catch(error => {
+    ? import('./spotify.js?v=20260817c').catch(error => {
         console.warn('Spotify controls deferred:', error);
         return null;
     })
@@ -330,7 +330,7 @@ loadConfig().then(async () => {
         try {
             selectedLanguage = 'spanish';
             applyLanguageColorTheme();
-            const speechVnext = await import('./speech-vnext.js?v=20260817b');
+            const speechVnext = await import('./speech-vnext.js?v=20260817c');
             await speechVnext.startSpeechVnext();
         } catch (error) {
             console.error('Speech vNext preview failed to load:', error);

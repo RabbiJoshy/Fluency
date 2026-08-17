@@ -7544,6 +7544,10 @@
             border: 1px solid transparent;
             border-radius: 50%;
             background: none;
+            appearance: none;
+            -webkit-appearance: none;
+            box-shadow: none;
+            text-decoration: none;
             opacity: 0.85;
             transition: opacity 0.2s, border-color 0.16s ease, background 0.16s ease;
             -webkit-tap-highlight-color: transparent;
@@ -7556,6 +7560,14 @@
         .spotify-btn:hover {
             opacity: 1;
             background: none;
+        }
+        .spotify-btn:focus-visible {
+            outline: 2px solid #1db954;
+            outline-offset: 2px;
+            box-shadow: none;
+        }
+        .spotify-btn:active {
+            box-shadow: none;
         }
         /* Long-press on the Spotify button toggles card-wide lyric autoplay
            (merged from the old standalone autoplay button) — this ring shows
@@ -7646,6 +7658,25 @@
             .spotify-btn.spotify-playing:not(.spotify-loading)::after {
                 animation: none;
                 opacity: 0;
+            }
+        }
+
+        /* Touch browsers can retain a generic button/link focus ring after a
+           tap. That ring inherits the Spanish theme red and reads as part of
+           Spotify's green mark. The control already has loading/autoplay state
+           in Spotify green, so suppress only the touch focus decoration. */
+        @media (hover: none), (max-width: 767px) {
+            .spotify-btn,
+            .spotify-btn:focus,
+            .spotify-btn:focus-visible,
+            .spotify-btn:active {
+                border-color: transparent;
+                outline: none;
+                box-shadow: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .spotify-btn.autoplay-active {
+                border-color: #1db954;
             }
         }
 

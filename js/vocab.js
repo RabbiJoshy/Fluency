@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260817b';
+import './state.js?v=20260817c';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -656,13 +656,22 @@ function mergeArtistExtraSupport(item, splitExamples) {
     }
 }
 
+// One normalized identity for the runtime's lemma-level operations. Preserve
+// accents (papa and papá are different lemmas), but remove accidental casing,
+// whitespace, and Unicode-composition differences that must not mint two
+// Merge Lemmas cards.
+function lemmaGroupKey(item) {
+    return String(item?.lemma || '').normalize('NFC').toLocaleLowerCase('es').trim();
+}
+
 function computeLemmaExampleCounts(vocabData, examplesData) {
     const linesByLemma = new Map();
     let hasExampleBasis = false;
     for (const item of vocabData) {
-        if (!item.lemma || item.is_english || item.is_noise || item.is_interjection || item.duplicate) continue;
-        if (!linesByLemma.has(item.lemma)) linesByLemma.set(item.lemma, new Set());
-        const lines = linesByLemma.get(item.lemma);
+        const lemmaKey = lemmaGroupKey(item);
+        if (!lemmaKey || item.is_english || item.is_noise || item.is_interjection || item.duplicate) continue;
+        if (!linesByLemma.has(lemmaKey)) linesByLemma.set(lemmaKey, new Set());
+        const lines = linesByLemma.get(lemmaKey);
         (item.meanings || []).forEach((meaning, i) => {
             for (const example of examplesForMeaning(item, meaning, i, examplesData)) {
                 const key = exampleSentenceKey(example);
@@ -681,13 +690,14 @@ function computeLemmaExampleCounts(vocabData, examplesData) {
 function poolLemmaSiblingExamples(filteredData, allVocabData, examplesData) {
     const hosts = new Map();
     for (const item of filteredData) {
-        if (item.lemma && !hosts.has(item.lemma)) hosts.set(item.lemma, item);
+        const lemmaKey = lemmaGroupKey(item);
+        if (lemmaKey && !hosts.has(lemmaKey)) hosts.set(lemmaKey, item);
     }
     if (hosts.size === 0) return;
 
     const normalize = t => (t || '').trim().toLowerCase();
     for (const sib of allVocabData) {
-        const host = sib.lemma && hosts.get(sib.lemma);
+        const host = hosts.get(lemmaGroupKey(sib));
         if (!host || sib === host || (sib.id && sib.id === host.id)) continue;
         if (sib.is_english || sib.is_noise || sib.is_interjection || sib.duplicate) continue;
         if (!sib.meanings || sib.meanings.length === 0) continue;
@@ -1153,6 +1163,41 @@ function assignStableVocabularyRanks(vocabData, spuriousSelfInfinitives = new Se
     return candidates;
 }
 
+// Upstream artist indexes historically stamped the representative per build
+// path, and a late-restored surface could leave two rows marked `true` for the
+// same lemma (Bad Bunny's trepó + trepados is one shipped example). Elect the
+// host from the entries that actually survived the current source/song/filter
+// pass. The smallest stable rank is the highest-frequency available surface,
+// with source rank as a deterministic final tie-breaker.
+function selectLemmaModeRepresentatives(items) {
+    const representativeByLemma = new Map();
+    for (const item of items) {
+        item._lemmaModeRepresentative = false;
+        const lemmaKey = lemmaGroupKey(item);
+        if (!lemmaKey) {
+            item._lemmaModeRepresentative = true;
+            continue;
+        }
+        const previous = representativeByLemma.get(lemmaKey);
+        const itemStable = Number.isFinite(item.stableRank) ? item.stableRank : Infinity;
+        const previousStable = Number.isFinite(previous?.stableRank) ? previous.stableRank : Infinity;
+        const itemRank = Number.isFinite(item.rank) ? item.rank : Infinity;
+        const previousRank = Number.isFinite(previous?.rank) ? previous.rank : Infinity;
+        if (!previous
+            || itemStable < previousStable
+            || (itemStable === previousStable && (item.corpus_count || 0) > (previous.corpus_count || 0))
+            || (itemStable === previousStable
+                && (item.corpus_count || 0) === (previous.corpus_count || 0)
+                && itemRank < previousRank)) {
+            representativeByLemma.set(lemmaKey, item);
+        }
+    }
+    for (const representative of representativeByLemma.values()) {
+        representative._lemmaModeRepresentative = true;
+    }
+    return items.filter(item => item._lemmaModeRepresentative === true);
+}
+
 function getVocabularyExclusionReason(item) {
     if (!item || !item.word || item.duplicate) return 'unavailable entry';
     const meanings = Array.isArray(item.meanings)
@@ -1176,7 +1221,10 @@ function getVocabularyExclusionReason(item) {
     if (excludeCognates && Number(item.cognate_score || 0) >= cognateThreshold) {
         return 'cognate';
     }
-    if (useLemmaMode && lemmaFieldAvailable && item.most_frequent_lemma_instance !== true) {
+    const runtimeRepresentative = item._lemmaModeRepresentative;
+    if (useLemmaMode && lemmaFieldAvailable
+        && (runtimeRepresentative === false
+            || (runtimeRepresentative === undefined && item.most_frequent_lemma_instance !== true))) {
         return 'merged lemma form';
     }
     return null;
@@ -1215,7 +1263,7 @@ function buildFilteredVocab(vocabData) {
     const counts = { english: 0, cognates: 0, singleOcc: 0, lemma: 0 };
     const hasCorpusFrequency = vocabData.length > 0
         && vocabData[0].hasOwnProperty('corpus_count');
-    const result = [];
+    let result = [];
     for (const item of vocabData) {
         if (!item.word || item.word.trim() === '' || item.duplicate
             || spuriousSelfInfinitives.has(item)) continue;
@@ -1292,11 +1340,16 @@ function buildFilteredVocab(vocabData) {
             counts.cognates++;
             continue;
         }
-        if (useLemmaMode && lemmaFieldAvailable && item.most_frequent_lemma_instance !== true) {
-            counts.lemma++;
-            continue;
-        }
         result.push(item);
+    }
+
+    // Apply lemma collapsing only after every other inclusion rule. This
+    // guarantees one host inside the active song/source subset even when the
+    // pipeline's preferred surface is absent or conflicting flags are shipped.
+    if (useLemmaMode && lemmaFieldAvailable) {
+        const beforeLemmaMerge = result.length;
+        result = selectLemmaModeRepresentatives(result);
+        counts.lemma += beforeLemmaMerge - result.length;
     }
 
     // In lemma mode, pool each surviving representative's frequency across all
@@ -1309,27 +1362,30 @@ function buildFilteredVocab(vocabData) {
         // Merge Lemmas from moving the card to a different level or set.
         const lemmaStableRanks = new Map();
         for (const entry of vocabData) {
-            if (!entry.lemma || !Number.isFinite(entry.stableRank)) continue;
-            const previous = lemmaStableRanks.get(entry.lemma);
+            const lemmaKey = lemmaGroupKey(entry);
+            if (!lemmaKey || !Number.isFinite(entry.stableRank)) continue;
+            const previous = lemmaStableRanks.get(lemmaKey);
             if (previous === undefined || entry.stableRank < previous) {
-                lemmaStableRanks.set(entry.lemma, entry.stableRank);
+                lemmaStableRanks.set(lemmaKey, entry.stableRank);
             }
         }
         const lemmaTotals = new Map();
         for (const e of vocabData) {
-            if (!e.lemma || e.is_english || e.is_noise || e.is_interjection || e.duplicate) continue;
-            lemmaTotals.set(e.lemma, (lemmaTotals.get(e.lemma) || 0) + (e.corpus_count || 0));
+            const lemmaKey = lemmaGroupKey(e);
+            if (!lemmaKey || e.is_english || e.is_noise || e.is_interjection || e.duplicate) continue;
+            lemmaTotals.set(lemmaKey, (lemmaTotals.get(lemmaKey) || 0) + (e.corpus_count || 0));
         }
         const exampleBasis = computeLemmaExampleCounts(vocabData, window._cachedExamplesData);
         for (const item of result) {
-            item.stableRank = lemmaStableRanks.get(item.lemma) || item.stableRank;
-            item.lemma_total_count = lemmaTotals.get(item.lemma) || item.corpus_count || 0;
+            const lemmaKey = lemmaGroupKey(item);
+            item.stableRank = lemmaStableRanks.get(lemmaKey) || item.stableRank;
+            item.lemma_total_count = lemmaTotals.get(lemmaKey) || item.corpus_count || 0;
             // The pipeline stamp includes raw one-off lyric evidence that may
             // intentionally have no assigned sense and therefore no `m`
             // bucket. Never erase it with the smaller assigned-example count.
             item.lemma_example_count = Math.max(
                 artistLemmaEvidenceCount(item),
-                exampleBasis.counts.get(item.lemma) || 0
+                exampleBasis.counts.get(lemmaKey) || 0
             );
             item.pooled_frequency = exampleBasis.hasExampleBasis
                 ? item.lemma_example_count

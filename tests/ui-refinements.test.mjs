@@ -232,7 +232,10 @@ test('setup routing advances past fully seen and suggestion-skipped levels', asy
         const progressData = {};
         const percentageMode = true;
         const ppmData = [{}];
-        const window = { isLevelMarkedDone: level => skipped.has(level) };
+        const window = {
+            isLevelMarkedDone: level => skipped.has(level),
+            buildSeenLemmaSet: async () => new Set()
+        };
         const document = { querySelector: () => null };
         const fetchActiveVocabularyData = async () => items;
         const getPreparedSetupVocabulary = (_language, vocab) => ({ vocab });
@@ -240,6 +243,7 @@ test('setup routing advances past fully seen and suggestion-skipped levels', asy
         const getWordId = item => item.id;
         const getWordProgressState = id => ({ seen: seenIds.has(id), needsReview: id === 'w1' });
         const wordHasKnowledgeProgress = () => false;
+        const getSetupLearningState = item => ({ seen: seenIds.has(item.id) });
         ${helper}
         result = (async () => {
             const afterSeen = await findFirstIncompleteLevelBtn('spanish', buttons);

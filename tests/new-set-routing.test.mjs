@@ -66,3 +66,15 @@ test('Learn New never falls back to the complete set', async () => {
     assert.match(vocab, /No unseen flashcards remain in this set/);
     assert.match(vocab, /if \(studyMode === 'new'\) await window\.renderRangeSelector\?\.\(\)/);
 });
+
+test('homepage level routing uses the same seen-state rules as its set dots', async () => {
+    const ui = await text('js/ui.js');
+    const start = ui.indexOf('async function findFirstIncompleteLevelBtn');
+    const end = ui.indexOf('\nasync function renderLevelSelector', start);
+    const routing = ui.slice(start, end);
+    assert.match(routing, /await window\.buildSeenLemmaSet\?\.\(vocabularyData\)/);
+    assert.match(routing, /return getSetupLearningState\(item, \{/);
+    assert.match(routing, /seenLemmas,[\s\S]*?estimatedIds,[\s\S]*?estimate,/);
+    assert.doesNotMatch(routing, /const recorded = getWordProgressState/,
+        'level selection must not use a coarser identity model than set completion');
+});
