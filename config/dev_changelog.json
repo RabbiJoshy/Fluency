@@ -2,6 +2,18 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-18",
+      "commit": "88b0f717",
+      "summary": "Card meanings are right 85% of the time instead of 71%, measured on the actual lyric cards",
+      "details": [
+        "First real measurement of deck quality: 600 rendered cards judged on the lyrics themselves rather than on dictionary examples, which is what every previous accuracy number was based on",
+        "The local embeddings+BETO path scored 67% and the Gemini second opinion scored 82%, but the second opinion only ran on the weakest quarter of the deck; it now runs on all of it, which changed the chosen meaning on 1,087 examples",
+        "Deck accuracy 71.3% to 84.8%, and wrong meanings roughly halved",
+        "Words with several meanings were the worst failure and are now fixed: cards with 5+ meanings scored 33% and now sit in line with everything else at 81-86%",
+        "New tool_8j_render_cards shows exactly what a card displays, so quality claims can be checked against the same thing you see rather than the raw data files"
+      ]
+    },
+    {
       "date": "2026-08-17",
       "commit": "b186e146",
       "summary": "Cards no longer ship with a blank English gloss, and playlist slang reaches the learnable deck",

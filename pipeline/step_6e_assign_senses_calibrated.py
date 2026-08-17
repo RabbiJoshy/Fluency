@@ -190,8 +190,11 @@ def main():
                     help="hubness offset. OFF by default: measured net negative "
                          "(80.06%%->80.34%%) and it systematically demotes function "
                          "words, flipping the winner on 13.3%% of assignments")
-    ap.add_argument("--escalate", default="", choices=["", "low", "low+medium"],
-                    help="send these bands to Gemini flash-lite for a second opinion")
+    ap.add_argument("--escalate", default="", choices=["", "low", "low+medium", "all"],
+                    help="send these bands to Gemini flash-lite for a second opinion. "
+                         "`all` is the measured best: judged on 600 rendered lyric "
+                         "cards, escalated picks score 82.5%% against 67.1%% for the "
+                         "local path, and the whole deck costs ~$0.08 to escalate")
     ap.add_argument("--allow-abstain", action="store_true",
                     help="let escalation reply 'none of these fit' and DROP the "
                          "claim. Off by default: it trades a wrong card for a "
@@ -381,7 +384,9 @@ def main():
     # ---- escalate the weak band to Gemini
     esc_of = {}
     if a.escalate:
-        want = {"low"} if a.escalate == "low" else {"low", "medium"}
+        want = ({"low"} if a.escalate == "low"
+                else {"low", "medium"} if a.escalate == "low+medium"
+                else {"low", "medium", "high"})
         jobs = [(w, ex_text(examples[w][ji]), list(menus[w]))
                 for w, picks in per_word.items()
                 for (_sid, _cf, _tg, band, ji) in picks if band in want]
