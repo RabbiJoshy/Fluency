@@ -82,7 +82,7 @@ def ex_surface(c, word):
     return c.get("surface") or word
 
 
-def escalate(items, menus, model=ESC_MODEL, workers=8):
+def escalate(items, menus, model=ESC_MODEL, workers=8, allow_abstain=False):
     """Second opinion from Gemini on the low-confidence band.
 
     Measured on 300 stratified items: rescues 81.3% of what the embedding path
@@ -123,6 +123,10 @@ def escalate(items, menus, model=ESC_MODEL, workers=8):
             cx = (m.get("context") or "").strip()
             lines.append(f'{sid}\t{m.get("headword","")} ({m.get("pos","")})\t{tr}'
                          + (f"  [{cx}]" if cx else ""))
+        abstain_clause = ("""If NONE of the listed senses fits this occurrence -- common in lyrics, where
+regional slang is often missing from the dictionary entirely -- reply
+{"id": null} rather than forcing the nearest one.
+""" if allow_abstain else "")
         prompt = f"""You are disambiguating one Spanish word in one line of song lyrics.
 
 Line: {sent}
@@ -136,11 +140,8 @@ The headword matters: a reflexive lemma (ending -se) is correct only if this
 occurrence is genuinely reflexive or pronominal. Lyrics are informal — prefer the
 everyday reading over a rare or literary one.
 
-If NONE of the listed senses fits this occurrence -- common in lyrics, where
-regional slang is often missing from the dictionary entirely -- reply with
-{{"id": null}} rather than forcing the nearest one.
-
-Reply with ONLY compact JSON: {{"id": "<sense id>"}} or {{"id": null}}"""
+{abstain_clause}
+Reply with ONLY compact JSON: {{"id": "<sense id>"}}"""
         for attempt in range(4):
             try:
                 r = client.models.generate_content(
@@ -189,6 +190,11 @@ def main():
                          "words, flipping the winner on 13.3%% of assignments")
     ap.add_argument("--escalate", default="", choices=["", "low", "low+medium"],
                     help="send these bands to Gemini flash-lite for a second opinion")
+    ap.add_argument("--allow-abstain", action="store_true",
+                    help="let escalation reply 'none of these fit' and DROP the "
+                         "claim. Off by default: it trades a wrong card for a "
+                         "hole, and inventing the missing sense (step_6c gap-fill) "
+                         "is the better answer for slang SpanishDict lacks.")
     ap.add_argument("--gate", default="se-only",
                     choices=["off", "se-only", "permissive"])
     ap.add_argument("--device", default="mps")
@@ -371,7 +377,7 @@ def main():
                 for (_sid, _cf, _tg, band, ji) in picks if band in want]
         print(f"\nescalating {len(jobs):,} {a.escalate}-band assignments to {ESC_MODEL} "
               f"(~${len(jobs)*347/1e6*0.10 + len(jobs)*30/1e6*0.40:.3f})", flush=True)
-        esc_of = escalate(jobs, menus)
+        esc_of = escalate(jobs, menus, allow_abstain=a.allow_abstain)
         print(f"  {len(esc_of):,} returned a valid sense")
         changed = abstained = 0
         for w, picks in per_word.items():
