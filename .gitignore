@@ -143,3 +143,7 @@ Data/Spanish/layers/sense_vectors/*.npy
 
 # layer snapshots (large, rebuildable rollback points)
 Data/Spanish/Intermediates/snapshots/
+
+# Token-prototype asset: rebuilt by tool_5c_build_token_prototypes (57s, no API)
+Data/Spanish/layers/token_prototypes/*.npy
+Data/Spanish/layers/wsd_calibrator/*.joblib

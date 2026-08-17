@@ -1,0 +1,22 @@
+{
+  "features": [
+    "tuple_gap",
+    "class_gap",
+    "class_gap_collapsed",
+    "n_tup",
+    "n_leaf",
+    "leaf_split_ratio",
+    "sent_len",
+    "pred_is_se",
+    "pred_is_verb",
+    "pred_is_nounadj",
+    "token_available",
+    "token_gap",
+    "token_agrees"
+  ],
+  "n_train": 16016,
+  "held_out_yield_at_99": 0.4367,
+  "tuple_gap_yield_at_99": 0.2289,
+  "trained": "2026-08-17T13:39Z",
+  "note": "refit on all rows after the held-out estimate above"
+}
