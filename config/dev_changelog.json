@@ -3,6 +3,18 @@
   "entries": [
     {
       "date": "2026-08-18",
+      "commit": "fc7e7e41",
+      "summary": "Fixed the wrong lemmas — cards were showing another word's dictionary form",
+      "details": [
+        "The card's lemma came from the winning sense's headword, but the lookup was keyed by sense id alone, and a sense id is only unique within a word: 96,279 senses share just 8,416 ids, so 82% of senses sat on an id another word also claims",
+        "One word's headword was therefore stamped onto unrelated cards: cama showed 'haberes', pero showed 'loco', sexo showed 'esos', timida showed 'conquistar'",
+        "The lookup is now keyed by word and sense id together; 5,744 headwords corrected and 5,615 that cannot be attributed to any word were cleared so those cards fall back to their own lemma",
+        "The repair covers the shared master, so other artists' decks are fixed too rather than waiting for each to be rebuilt",
+        "A regression test pins the invariant that sense ids are word-scoped"
+      ]
+    },
+    {
+      "date": "2026-08-18",
       "commit": "88b0f717",
       "summary": "Card meanings are right 85% of the time instead of 71%, measured on the actual lyric cards",
       "details": [

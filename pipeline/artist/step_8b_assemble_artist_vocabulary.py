@@ -2793,30 +2793,61 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
     # instead of by the sense that actually won -- which is how `mate` ended up
     # displaying lemma `matar` while its assigned sense is `mate`/NOUN
     # "checkmate". One lemmatisation, owned by the sense.
-    _hw_by_sense_id = {}
+    # A sense_id is unique WITHIN A WORD, never globally: 96,279 SpanishDict
+    # senses share only 8,416 distinct ids, so 81.6% of sense rows sit on an id
+    # some other word also claims. Keying this map by sense_id alone therefore
+    # let the last word processed win each id and stamped its headword onto
+    # unrelated cards -- `cama` displayed lemma `haberes`, `pero` displayed
+    # `loco`, `sexo` displayed `esos`. Because buildCardFormModel prefers the
+    # assigned sense's headword over item.lemma, that corruption became the
+    # single most visible field on the card. Key by (word, sense_id).
+    _hw_by_word_sense = {}
     try:
-        _raw_menu_hw = load_layer(
+        _menus = []
+        _menus.append(load_layer(
             artist_sense_menu_path(layers_dir, sense_source, prefer_new=False),
-            "sense_menu", required=False) or {}
-        for _w, _entries in (_raw_menu_hw or {}).items():
-            for _e in (_entries or []):
-                for _sid, _sv in ((_e or {}).get("senses") or {}).items():
-                    if _sv.get("headword"):
-                        _hw_by_sense_id[_sid] = _sv["headword"]
+            "sense_menu", required=False) or {})
+        # Also read the language-wide menu: `master` is shared by every artist,
+        # so an artist-only map would leave other artists' senses holding the
+        # corrupt headwords until each of them happens to be rebuilt.
+        _canon = os.path.join(_PROJECT_ROOT, "Data", "Spanish", "layers",
+                              "sense_menu", "%s.json" % sense_source)
+        if os.path.isfile(_canon):
+            with open(_canon, "r", encoding="utf-8") as _f:
+                _menus.append(json.load(_f))
+        for _menu in _menus:
+            for _w, _entries in (_menu or {}).items():
+                for _e in (_entries or []):
+                    for _sid, _sv in ((_e or {}).get("senses") or {}).items():
+                        if _sv.get("headword"):
+                            _hw_by_word_sense.setdefault((_w, _sid), _sv["headword"])
     except Exception as _exc:
         print("  (headword carry skipped: %s)" % _exc)
-    _hw_set = 0
+    _hw_set = _hw_cleared = 0
     for master_entry in master.values():
+        _mw = master_entry.get("word")
         for sense in master_entry.get("senses", []):
-            if sense.get("headword"):
-                continue
+            _found = None
             for _sid in [sense.get("sense_id")] + list(sense.get("sense_id_aliases") or []):
-                if _sid and _sid in _hw_by_sense_id:
-                    sense["headword"] = _hw_by_sense_id[_sid]
-                    _hw_set += 1
+                if _sid and (_mw, _sid) in _hw_by_word_sense:
+                    _found = _hw_by_word_sense[(_mw, _sid)]
                     break
-    if _hw_set:
-        print("  Sense headwords carried onto master: %d" % _hw_set)
+            if _found:
+                # Overwrite unconditionally: an existing value is as likely to
+                # be a collision victim as not, and this lookup is authoritative.
+                if sense.get("headword") != _found:
+                    _hw_set += 1
+                sense["headword"] = _found
+            elif sense.get("headword") and _hw_by_word_sense:
+                # No menu row owns this (word, sense_id), so any headword on it
+                # can only have come from the old global map. Drop it and let
+                # the card fall back to item.lemma, which is at least this
+                # word's own lemma rather than another word's.
+                sense.pop("headword", None)
+                _hw_cleared += 1
+    if _hw_set or _hw_cleared:
+        print("  Sense headwords on master: %d set, %d cleared as unattributable"
+              % (_hw_set, _hw_cleared))
 
     # Some legacy union senses exist only in the shared master and therefore
     # have no current source-menu row to donate an ID. Mint a deterministic
