@@ -2754,6 +2754,8 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 existing_sense = _seen[key]
                 merge_sense_identity(existing_sense, meaning)
                 carry_sense_tags(existing_sense, meaning)
+                if meaning.get("headword") and not existing_sense.get("headword"):
+                    existing_sense["headword"] = meaning["headword"]
                 continue
             s_entry = {"pos": pos, "translation": translation}
             carry_sense_identity(
@@ -2767,6 +2769,14 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
             src = meaning.get("source")
             if src:
                 s_entry["source"] = src
+            # SpanishDict's own headword for this sense. Without it the app has
+            # no way to know that sense 915 of `mate` belongs to the lemma
+            # `mate` and not to `matar`, so the card falls back to the upstream
+            # inventory lemma and the two disagree. There must be one
+            # lemmatisation, and the assigned sense is the one with evidence.
+            hw = meaning.get("headword")
+            if hw:
+                s_entry["headword"] = hw
             m["senses"].append(s_entry)
             existing_keys.add(key)
             _seen[key] = s_entry
@@ -2775,6 +2785,38 @@ def assemble_from_layers(layers_dir, master, curated_translations_path=None,
                 if sense_id:
                     existing_by_sense_id[sense_id] = s_entry
             new_senses += 1
+
+    # Carry SpanishDict's headword onto every master sense, keyed by sense_id.
+    # Done here as a post-pass rather than threaded through meaning construction
+    # because there are several meaning-build paths and any one that missed it
+    # would silently leave the card lemmatised by the upstream inventory layer
+    # instead of by the sense that actually won -- which is how `mate` ended up
+    # displaying lemma `matar` while its assigned sense is `mate`/NOUN
+    # "checkmate". One lemmatisation, owned by the sense.
+    _hw_by_sense_id = {}
+    try:
+        _raw_menu_hw = load_layer(
+            artist_sense_menu_path(layers_dir, sense_source, prefer_new=False),
+            "sense_menu", required=False) or {}
+        for _w, _entries in (_raw_menu_hw or {}).items():
+            for _e in (_entries or []):
+                for _sid, _sv in ((_e or {}).get("senses") or {}).items():
+                    if _sv.get("headword"):
+                        _hw_by_sense_id[_sid] = _sv["headword"]
+    except Exception as _exc:
+        print("  (headword carry skipped: %s)" % _exc)
+    _hw_set = 0
+    for master_entry in master.values():
+        for sense in master_entry.get("senses", []):
+            if sense.get("headword"):
+                continue
+            for _sid in [sense.get("sense_id")] + list(sense.get("sense_id_aliases") or []):
+                if _sid and _sid in _hw_by_sense_id:
+                    sense["headword"] = _hw_by_sense_id[_sid]
+                    _hw_set += 1
+                    break
+    if _hw_set:
+        print("  Sense headwords carried onto master: %d" % _hw_set)
 
     # Some legacy union senses exist only in the shared master and therefore
     # have no current source-menu row to donate an ID. Mint a deterministic

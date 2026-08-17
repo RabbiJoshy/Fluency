@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260817g';
+import './state.js?v=20260817i';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -795,8 +795,25 @@ function buildCardFormModel(item, meanings = [], options = {}) {
         || item?.targetWord
         || ''
     ).trim();
+    // The headword SpanishDict attached to the sense that was actually picked.
+    // `item.lemma` is decided upstream by the inventory/lemma layer, entirely
+    // independently of WSD, so the two can disagree: the `mate` card was
+    // lemmatised `matar` while its winning sense is `mate`/NOUN "checkmate".
+    // There must not be two lemmatisations telling the learner different things,
+    // and the assigned sense is the one with evidence behind it, so it wins.
+    // Ties are broken by assigned frequency — the sense the card is actually about.
+    const assignedHeadword = (() => {
+        const scored = (meanings || [])
+            .filter(mn => mn && mn.headword
+                && Number(mn.percentage ?? mn.frequency ?? 0) > 0)
+            .map(mn => [Number(mn.percentage ?? mn.frequency ?? 0), String(mn.headword).trim()])
+            .filter(pair => pair[1]);
+        if (!scored.length) return '';
+        return scored.reduce((a, b) => (b[0] > a[0] ? b : a))[1];
+    })();
     const citationForm = String(
-        item?.citation_form
+        assignedHeadword
+        || item?.citation_form
         || item?.citationForm
         || item?.lemma
         || representativeSurface
