@@ -20,7 +20,7 @@
     "companion_adjacent",
     "companion_discriminates"
   ],
-  "feature_version": 2,
+  "feature_version": 4,
   "n_train": 16016,
   "held_out_yield_at_99": 0.4584,
   "band_cuts": {
@@ -28,6 +28,6 @@
     "medium": 0.7696
   },
   "tuple_gap_yield_at_99": 0.2289,
-  "trained": "2026-08-17T18:32Z",
+  "trained": "2026-08-17T18:48Z",
   "note": "refit on all rows after the held-out estimate above"
 }

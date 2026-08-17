@@ -344,7 +344,8 @@ def main():
                 sent_len=len(ex_text(c).split()), pred_tuple=pt,
                 pred_empty=not (m.get("translation") or "").strip(),
                 token=(tok_avail, tok_gap, tok_agree),
-                companion=companion_features(w, ex_text(c), menus[w], sids[k], tuple_of))
+                companion=companion_features(w, ex_text(c), menus[w], sids[k], tuple_of),
+                menu_pos=list(menus[w]).index(sids[k]))
             conf = (float(cal.predict_proba(np.array([feats]))[0, 1]) if cal
                     else min(max(tgap, 0.0), 1.0))
             band = "high" if conf >= cuts[0] else "medium" if conf >= cuts[1] else "low"

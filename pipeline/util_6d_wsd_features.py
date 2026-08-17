@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import re
 
-FEATURE_VERSION = 2
+FEATURE_VERSION = 4
 
 FEATURES = [
     # --- gloss path
@@ -88,8 +88,18 @@ def companion_features(word, sentence, menu, pred_sense_id, tuple_of):
 
 
 def build(*, tuple_gap, class_gap, n_tup, n_leaf, sent_len, pred_tuple,
-          pred_empty, token, companion):
-    """Assemble one feature vector in FEATURES order."""
+          pred_empty, token, companion, menu_pos=0):
+    """Assemble one feature vector in FEATURES order.
+
+    `menu_pos` is accepted and DELIBERATELY UNUSED. SpanishDict orders leaves by
+    frequency and accuracy really does fall with position (86.3% at leaves 0-2,
+    66.3% at 15+), but adding it as a feature dropped held-out yield at 99% from
+    45.8% to 41.3%. It was already rejected in 2026-08 as a standalone prior
+    (43.7% vs 53.6%); it is now also rejected in combination. The correlation is
+    real and the feature still does not generalise across the word-level split,
+    because menu shape differs per word. Kept in the signature so the next person
+    does not spend an afternoon rediscovering this.
+    """
     hw, pos = pred_tuple
     tok_avail, tok_gap, tok_agree = token
     return [

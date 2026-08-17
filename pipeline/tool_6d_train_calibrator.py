@@ -61,13 +61,15 @@ def featurise(r: dict, tk: dict | None, menus: dict, no_companion=False) -> list
     comp = ([0.0] * 5 if no_companion else
             companion_features(r["word"], r["sent"], menu, r.get("pred_leaf"), _tuple_of))
     pred_sense = menu.get(r.get("pred_leaf")) or {}
+    order = list(menu)
+    mpos = order.index(r["pred_leaf"]) if r.get("pred_leaf") in order else 0
     return build_features(
         tuple_gap=r["tgap"], class_gap=r["cgap"], n_tup=r["n_tup"], n_leaf=r["n_leaf"],
         sent_len=len(r["sent"].split()), pred_tuple=tuple(r["pred_tup"]),
         pred_empty=not (pred_sense.get("translation") or "").strip(),
         token=((0.0, 0.0, 0.0) if tk is None else
                (1.0, tk["gap"], float(tuple(tk["pred"]) == tuple(r["pred_tup"])))),
-        companion=comp)
+        companion=comp, menu_pos=mpos)
 
 
 def yield_at(scores, ok, target=0.99):
