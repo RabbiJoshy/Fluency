@@ -71,15 +71,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "ere'",
-    "full_word": "eres",
     "target_word": "eres",
     "display_form": "ere'",
-    "target_lemma": "ser",
-    "elided_ppm": 1301.32,
-    "full_ppm": 1182.03,
-    "combined_ppm": 2483.35
+    "target_lemma": "erar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "eres",
+        "eren"
+      ],
+      "reason": "Subject pronoun 'tú' requires second-person singular 'eres'.",
+      "corpus_count": 5,
+      "evidence": [
+        "Te aseguro que ere' mi filosofía y yo Platón",
+        "Yo soy bandida, y tú ere' gánster",
+        "Tú ere' like for me y yo 'toy pa' ti"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -119,39 +133,80 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "ve'",
-    "full_word": "ves",
     "target_word": "ves",
     "display_form": "ve'",
     "target_lemma": "ver",
-    "elided_ppm": 1257.94,
-    "full_ppm": 157.24,
-    "combined_ppm": 1415.19
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "ves",
+        "ved",
+        "vez",
+        "ver",
+        "ven"
+      ],
+      "reason": "Subject pronoun 'tú' requires second-person singular 'ves'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Tú lo ve', tú lo ve', tú lo ve', tú lo ve, tú lo ve', tú lo ve, tú lo ve'",
+        "Tú lo ve', tú lo ve', tú lo ve', tú lo ve', tú lo ve', tú lo ve, tú lo ve' (Tú lo ve')"
+      ]
+    }
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "está'",
-    "full_word": "estás",
     "target_word": "estás",
     "display_form": "está'",
     "target_lemma": "estar",
-    "elided_ppm": 406.66,
-    "full_ppm": 813.33,
-    "combined_ppm": 1219.99
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "estás",
+        "están"
+      ],
+      "reason": "Subject pronoun 'tú' requires second-person singular 'estás'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Y tú está' esperando a que te lo meta",
+        "Gata, tú está' only, mándame tu ubi"
+      ]
+    }
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "do'",
-    "full_word": "dos",
     "target_word": "dos",
     "display_form": "do'",
-    "target_lemma": "dos",
-    "elided_ppm": 374.13,
-    "full_ppm": 840.44,
-    "combined_ppm": 1214.57
+    "target_lemma": "do",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "dos",
+        "don"
+      ],
+      "reason": "Numeral 'dos' matches 'los do'' meaning both of you.",
+      "corpus_count": 1,
+      "evidence": [
+        "Me atrevo a comerme los do'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -167,27 +222,57 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "tiene'",
-    "full_word": "tienes",
     "target_word": "tienes",
     "display_form": "tiene'",
     "target_lemma": "tener",
-    "elided_ppm": 618.13,
-    "full_ppm": 509.68,
-    "combined_ppm": 1127.81
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "tienes",
+        "tienen"
+      ],
+      "reason": "Subject 'tú' requires second-person singular 'tienes'.",
+      "corpus_count": 5,
+      "evidence": [
+        "Pero dime cuál es el secreto que tiene' guarda'o",
+        "Tú tiene' el feeling tú lo sabe' hacer",
+        "¿Sigue' soltera o ya tiene' marido? (Wuh)"
+      ]
+    }
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "sabe'",
-    "full_word": "sabes",
     "target_word": "sabes",
     "display_form": "sabe'",
     "target_lemma": "saber",
-    "elided_ppm": 753.68,
-    "full_ppm": 352.44,
-    "combined_ppm": 1106.12
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "sabes",
+        "sabed",
+        "saber",
+        "saben"
+      ],
+      "reason": "Subject 'tú' or direct address requires second-person singular 'sabes'.",
+      "corpus_count": 5,
+      "evidence": [
+        "No sabe' cuánto quiero que vuelva otra noche de",
+        "Tú tiene' el feeling tú lo sabe' hacer",
+        "Papi y eso lo sabe' muy bien"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -239,15 +324,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "le'",
-    "full_word": "les",
     "target_word": "les",
     "display_form": "le'",
-    "target_lemma": "él",
-    "elided_ppm": 162.67,
-    "full_ppm": 715.73,
-    "combined_ppm": 878.39
+    "target_lemma": "l",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "les",
+        "led",
+        "len"
+      ],
+      "reason": "Plural indirect object pronoun matching plural referents.",
+      "corpus_count": 2,
+      "evidence": [
+        "Ganan siempre, todo se le' da (Wuh, wuh, wuh, wuh)",
+        "Le' molesta mi premio de compositor"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -391,27 +490,52 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "tre'",
-    "full_word": "tres",
     "target_word": "tres",
     "display_form": "tre'",
     "target_lemma": "tres",
-    "elided_ppm": 146.4,
-    "full_ppm": 319.91,
-    "combined_ppm": 466.31
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "tres",
+        "tren"
+      ],
+      "reason": "Cardinal number indicating three people",
+      "corpus_count": 1,
+      "evidence": [
+        "Le quito el estrés, polvo echamos tre'"
+      ]
+    }
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "esto'",
-    "full_word": "estos",
     "target_word": "estos",
     "display_form": "esto'",
-    "target_lemma": "este",
-    "elided_ppm": 130.13,
-    "full_ppm": 330.75,
-    "combined_ppm": 460.88
+    "target_lemma": "esto",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "estos",
+        "estor",
+        "estol"
+      ],
+      "reason": "Plural determiner 'estos' matches plural noun 'haters'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Te tengo en mi cama y todo esto' haters se muerden"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -426,16 +550,29 @@
     "combined_ppm": 450.04
   },
   {
-    "action": "merge",
-    "merge_type": "elision_pair",
-    "elided_word": "ma'",
-    "full_word": "mas",
-    "target_word": "mas",
-    "display_form": "ma'",
-    "target_lemma": "mas",
-    "elided_ppm": 200.62,
-    "full_ppm": 211.46,
-    "combined_ppm": 412.08
+    "action": "skip",
+    "merge_type": "gemini_elision",
+    "provenance": "gemini_elision",
+    "word": "ma'",
+    "note": "Gemini abstained: Slang term meaning baby/mama, not on the candidate list",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.0,
+      "candidates": [
+        "mas",
+        "mad",
+        "mar",
+        "mal",
+        "man"
+      ],
+      "reason": "Slang term meaning baby/mama, not on the candidate list",
+      "corpus_count": 1,
+      "evidence": [
+        "Cuando no te tengo, ma'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -463,15 +600,28 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "ha'",
-    "full_word": "has",
     "target_word": "has",
     "display_form": "ha'",
     "target_lemma": "haber",
-    "elided_ppm": 70.49,
-    "full_ppm": 303.64,
-    "combined_ppm": 374.13
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "has",
+        "haz",
+        "han"
+      ],
+      "reason": "Pronoun 'tú' requires second-person auxiliary 'has'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Ya es suficiente lo que tú ha' comido (Ah)"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -499,15 +649,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "llama'",
-    "full_word": "llamas",
     "target_word": "llamas",
     "display_form": "llama'",
     "target_lemma": "llamar",
-    "elided_ppm": 119.29,
-    "full_ppm": 227.73,
-    "combined_ppm": 347.02
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "llamas",
+        "llamad",
+        "llamar",
+        "llaman"
+      ],
+      "reason": "Second person singular 'tú me llamas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Pero tú me llama' o yo te llamo y le caemo' ahí"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -605,27 +769,54 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "quiera'",
-    "full_word": "quieras",
     "target_word": "quieras",
     "display_form": "quiera'",
-    "target_lemma": "quieros",
-    "elided_ppm": 178.93,
-    "full_ppm": 113.87,
-    "combined_ppm": 292.8
+    "target_lemma": "querer",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "quieras",
+        "quieran"
+      ],
+      "reason": "Addressing 'tú' with subjunctive 'lo que quieras'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Pide lo que quiera', que lo que quiero yo es ponértelo",
+        "Hace' con tu vida lo que quiera' y yo lo permití"
+      ]
+    }
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "meno'",
-    "full_word": "menos",
     "target_word": "menos",
     "display_form": "meno'",
-    "target_lemma": "menos",
-    "elided_ppm": 162.67,
-    "full_ppm": 130.13,
-    "combined_ppm": 292.8
+    "target_lemma": "meno",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "menos",
+        "menor"
+      ],
+      "reason": "Fixed adverbial phrase 'y menos si' / 'al menos'.",
+      "corpus_count": 3,
+      "evidence": [
+        "Con nadie se compromete y meno' si tú le promete'",
+        "Al meno' un instante (Baby)",
+        "Por ende, el meno' e'perado te sorprende"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -665,15 +856,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "hace'",
-    "full_word": "haces",
     "target_word": "haces",
     "display_form": "hace'",
     "target_lemma": "hacer",
-    "elided_ppm": 162.67,
-    "full_ppm": 124.71,
-    "combined_ppm": 287.38
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "haces",
+        "haced",
+        "hacer",
+        "hacen"
+      ],
+      "reason": "Second-person singular subject 'tú' implied by 'tu vida'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Hace' con tu vida lo que quiera' y yo lo permití"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -689,15 +894,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "día'",
-    "full_word": "días",
     "target_word": "días",
     "display_form": "día'",
     "target_lemma": "día",
-    "elided_ppm": 157.24,
-    "full_ppm": 108.44,
-    "combined_ppm": 265.69
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "días",
+        "díaz"
+      ],
+      "reason": "Plural noun 'días' matches 'los' and 'volando'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Ahora nos 'tamo alejando, no te estoy viendo, los día' volando"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -833,27 +1050,55 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "gana'",
-    "full_word": "ganas",
     "target_word": "ganas",
     "display_form": "gana'",
-    "target_lemma": "gana",
-    "elided_ppm": 140.98,
-    "full_ppm": 70.49,
-    "combined_ppm": 211.46
+    "target_lemma": "ganar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "ganas",
+        "ganad",
+        "ganar",
+        "ganan"
+      ],
+      "reason": "Noun 'ganas' in expression 'tengo ganas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "De tenerte también tengo gana'"
+      ]
+    }
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "esta'",
-    "full_word": "estas",
     "target_word": "estas",
     "display_form": "esta'",
-    "target_lemma": "este",
-    "elided_ppm": 32.53,
-    "full_ppm": 173.51,
-    "combined_ppm": 206.04
+    "target_lemma": "esta",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "estas",
+        "estad",
+        "estar",
+        "estan"
+      ],
+      "reason": "Plural determiner 'estas' matches plural noun 'ganas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Con esta' ganas que tengo yo"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -1023,15 +1268,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "pone'",
-    "full_word": "pones",
     "target_word": "pones",
     "display_form": "pone'",
     "target_lemma": "poner",
-    "elided_ppm": 65.07,
-    "full_ppm": 97.6,
-    "combined_ppm": 162.67
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "pones",
+        "poned",
+        "poner",
+        "ponen"
+      ],
+      "reason": "Addressed to 'Tú te pones'",
+      "corpus_count": 1,
+      "evidence": [
+        "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -1932,15 +2191,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "pide'",
-    "full_word": "pides",
     "target_word": "pides",
     "display_form": "pide'",
     "target_lemma": "pedir",
-    "elided_ppm": 81.33,
-    "full_ppm": 5.42,
-    "combined_ppm": 86.75
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "pides",
+        "piden"
+      ],
+      "reason": "Addressed to 'tú' (si me pides)",
+      "corpus_count": 1,
+      "evidence": [
+        "E' que si me pide' que te espere, te espero sentado"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2160,15 +2431,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "sigue'",
-    "full_word": "sigues",
     "target_word": "sigues",
     "display_form": "sigue'",
-    "target_lemma": "sigu",
-    "elided_ppm": 43.38,
-    "full_ppm": 37.96,
-    "combined_ppm": 81.33
+    "target_lemma": "seguir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "sigues",
+        "siguen"
+      ],
+      "reason": "Addressed to 'tú' (Sigue' soltera)",
+      "corpus_count": 1,
+      "evidence": [
+        "¿Sigue' soltera o ya tiene' marido? (Wuh)"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2434,15 +2717,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "parece'",
-    "full_word": "pareces",
     "target_word": "pareces",
     "display_form": "parece'",
-    "target_lemma": "pareces",
-    "elided_ppm": 27.11,
-    "full_ppm": 43.38,
-    "combined_ppm": 70.49
+    "target_lemma": "parecer",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "pareces",
+        "pareced",
+        "parecer",
+        "parecen"
+      ],
+      "reason": "Addressed to 'tú' (motociclista comparison)",
+      "corpus_count": 1,
+      "evidence": [
+        "Das muchas vuelta', parece' motociclista, ey"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2632,15 +2929,30 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "besa'",
-    "full_word": "besas",
     "target_word": "besas",
     "display_form": "besa'",
     "target_lemma": "besar",
-    "elided_ppm": 43.38,
-    "full_ppm": 21.69,
-    "combined_ppm": 65.07
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "besas",
+        "besad",
+        "besar",
+        "besan"
+      ],
+      "reason": "Conditional clause with 'si' addressing 'tú' uses 'besas'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Ay, si me besa' me desconfigu-gu-guro",
+        "Si me besa' me desconfigu-gu-guro"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2668,15 +2980,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "venga'",
-    "full_word": "vengas",
     "target_word": "vengas",
     "display_form": "venga'",
-    "target_lemma": "vengar",
-    "elided_ppm": 32.53,
-    "full_ppm": 32.53,
-    "combined_ppm": 65.07
+    "target_lemma": "venir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "vengas",
+        "vengad",
+        "vengar",
+        "vengan"
+      ],
+      "reason": "Translation 'Don't give me' points to 2nd person singular.",
+      "corpus_count": 1,
+      "evidence": [
+        "No me venga' con esa actitud"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2738,12 +3064,26 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "preocupe'",
     "target_word": "preocupes",
     "display_form": "preocupe'",
     "target_lemma": "preocupar",
-    "elided_ppm": 59.64,
-    "combined_ppm": 59.64
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "preocupes",
+        "preocupen"
+      ],
+      "reason": "Preceded by 'No te' indicating 2nd person singular",
+      "corpus_count": 1,
+      "evidence": [
+        "No te preocupe', despreocúpate"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -4142,15 +4482,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "vacacione'",
-    "full_word": "vacaciones",
     "target_word": "vacaciones",
     "display_form": "vacacione'",
-    "target_lemma": "vacación",
-    "elided_ppm": 16.27,
-    "full_ppm": 21.69,
-    "combined_ppm": 37.96
+    "target_lemma": "vacacione",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.99,
+      "candidates": [
+        "vacaciones",
+        "vacacionen"
+      ],
+      "reason": "English translation 'on vacation' indicates plural noun vacaciones.",
+      "corpus_count": 1,
+      "evidence": [
+        "Tú de vacacione' en Boston y otro apareció primero"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -5291,15 +5643,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "tira'",
-    "full_word": "tiras",
     "target_word": "tiras",
     "display_form": "tira'",
-    "target_lemma": null,
-    "elided_ppm": 21.69,
-    "full_ppm": 5.42,
-    "combined_ppm": 27.11
+    "target_lemma": "tirar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "tiras",
+        "tirad",
+        "tirar",
+        "tiran"
+      ],
+      "reason": "Addressed to 'tú' (me tira')",
+      "corpus_count": 1,
+      "evidence": [
+        "Tiene lo que quiero (Woh); me tira', que yo le llego (Yeah, eh)"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -6384,15 +6750,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "parte'",
-    "full_word": "partes",
     "target_word": "partes",
     "display_form": "parte'",
     "target_lemma": "partir",
-    "elided_ppm": 16.27,
-    "full_ppm": 5.42,
-    "combined_ppm": 21.69
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "partes",
+        "parten"
+      ],
+      "reason": "Plural noun following 'las'",
+      "corpus_count": 1,
+      "evidence": [
+        "Allá abajo mojarte toa' las parte'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -7157,12 +7535,26 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "insista'",
     "target_word": "insistas",
     "display_form": "insista'",
-    "target_lemma": "insista",
-    "elided_ppm": 16.27,
-    "combined_ppm": 16.27
+    "target_lemma": "insistir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "insistas",
+        "insistan"
+      ],
+      "reason": "Negative imperative addressing 'José' (singular tú).",
+      "corpus_count": 1,
+      "evidence": [
+        "Ay, José, no me insista'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -8761,12 +9153,26 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "apague'",
     "target_word": "apagues",
     "display_form": "apague'",
     "target_lemma": "apagar",
-    "elided_ppm": 10.84,
-    "combined_ppm": 10.84
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 1.0,
+      "candidates": [
+        "apagues",
+        "apaguen"
+      ],
+      "reason": "Addressing 'tú' with subjunctive after 'antes que'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Antes que me apague' se apaga el sol"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -19797,11 +20203,26 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "prefiere'",
     "target_word": "prefieres",
     "display_form": "prefiere'",
-    "elided_ppm": 0,
-    "combined_ppm": 0
+    "target_lemma": "preferir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "prefieres",
+        "prefieren"
+      ],
+      "reason": "Addressed to 'tú' (Estar sola tú prefieres)",
+      "corpus_count": 1,
+      "evidence": [
+        "Estar sola tú prefiere'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -20097,6 +20518,30 @@
       "corpus_count": 1,
       "evidence": [
         "Con nadie se compromete y meno' si tú le promete'"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "confundía'",
+    "target_word": "confundías",
+    "display_form": "confundía'",
+    "target_lemma": "confundir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T20:44:26Z",
+      "step_version": 1,
+      "confidence": 0.8,
+      "candidates": [
+        "confundías",
+        "confundían"
+      ],
+      "reason": "Context implies second-person singular tú in feminine form confundida.",
+      "corpus_count": 1,
+      "evidence": [
+        "La tengo confundía' fumando maría"
       ]
     }
   }

@@ -205,6 +205,31 @@ def load_mapping(path=MAPPING_PATH):
         return json.load(f)
 
 
+def frequency_derived_words(mapping):
+    """Surfaces claimed by an auto-generated, frequency-only merge record.
+
+    The mapping mixes three classes: ~1,870 records generated from corpus ppm
+    alone (they carry elided_ppm/full_ppm and no provenance), 14 hand-curated
+    records, and this step's own gemini records. Only the first class is a
+    guess — it picks a target from general-corpus frequency having never seen
+    a line. ma' -> mas ("but") is one, and it outranked the vocative on
+    200.62 vs 211.46 ppm, which is not evidence about any occurrence.
+
+    Those are the records `--reconsider-mapped` is allowed to re-open. The
+    curated 14 and anything a human touched are never in this set.
+    """
+    out = set()
+    for r in mapping:
+        if r.get("action") != "merge" or r.get("provenance"):
+            continue
+        if "elided_ppm" not in r and "combined_ppm" not in r:
+            continue          # hand-curated: no frequency provenance
+        w = r.get("elided_word")
+        if w:
+            out.add(w)
+    return out
+
+
 def mapping_known_words(mapping):
     """Every surface the mapping already has an opinion about.
 
@@ -291,18 +316,84 @@ def infer_target_lemma(form, spanish_forms, conj_reverse):
     return form
 
 
+def reconsider_mapped(entry, merge_targets, reopenable, spanish_forms,
+                      translations, max_examples):
+    """Elided surfaces inside this entry that a frequency guess already claimed.
+
+    By the time this step runs the mapping has ALREADY been applied: step_2a
+    normalizes at counting time, so `ma'` reaches us folded into the entry for
+    `mas` and the surface survives only on the examples. Filtering on
+    entry["word"] therefore cannot see it -- which is why this step saw six
+    words while the mapping was quietly deciding thousands.
+
+    Reopen a surface only when all three hold:
+      * a frequency-only record claimed it (never a curated one),
+      * >=2 real Spanish forms restore it, so the surface genuinely is
+        ambiguous -- this is what protects the plural/2sg -s restorations,
+        which are the overwhelming majority and are right,
+      * we have an aligned English line to decide on.
+
+    The English is not scored here. It goes to Gemini, which already treats it
+    as its strongest signal and can abstain; abstention leaves the surface
+    unmerged for step_4a's `elision` bucket, which is the correct outcome when
+    the singer's word is not any restoration of the surface at all.
+    """
+    by_surface = {}
+    for ex in entry.get("examples", []):
+        surface = (ex.get("surface") or "").strip()
+        line = ex.get("line", "")
+        if not surface or not surface.endswith("'") or not line:
+            continue
+        if surface not in reopenable or surface not in merge_targets:
+            continue
+        if not translations.get(line):
+            continue
+        by_surface.setdefault(surface, []).append(ex)
+
+    out = []
+    for surface, examples in by_surface.items():
+        cands = candidate_forms(surface, spanish_forms)
+        if len(cands) < 2:
+            continue
+        # The incumbent must be on the ballot. candidate_forms restores ONE
+        # dropped consonant, so it cannot express pa' -> para or to' -> todo;
+        # for those the choice set does not contain the right answer, and
+        # re-opening could only damage them -- an abstain writes a skip record
+        # and would unmerge 45 correct `para` occurrences to chase one bad
+        # `ma'`. Adjudicate only where the mapping's own target is a candidate.
+        if merge_targets[surface]["target_word"] not in cands:
+            continue
+        out.append({
+            "word": surface,
+            "corpus_count": len(examples),
+            "candidates": cands,
+            "examples": [{"line": ex.get("line", ""),
+                          "english": translations.get(ex.get("line", ""), ""),
+                          "title": ex.get("title", "")}
+                         for ex in examples[:max_examples]],
+            "reconsidered": True,
+            "mapped_to": merge_targets[surface]["target_word"],
+        })
+    return out
+
+
 def collect_targets(evidence, mapping, spanish_forms, known_vocab,
                     merge_targets, max_examples, translations,
-                    already_known, force_words):
+                    already_known, force_words, reopenable=frozenset()):
     """Partition trailing-apostrophe survivors into ask / no-candidate / cached.
 
     A survivor is a `word'` that every deterministic rule in
     `step_3a_merge_elisions` declines: explicit mapping, d-elision,
     double-elision and the exactly-one trailing-apos tiebreaker.
+
+    Plus, when `reopenable` is non-empty, surfaces a frequency-only mapping
+    record claimed without ever seeing a line -- see `reconsider_mapped`.
     """
     ask, no_candidates, cached = [], [], []
 
     for entry in evidence:
+        ask.extend(reconsider_mapped(entry, merge_targets, reopenable,
+                                     spanish_forms, translations, max_examples))
         word = entry.get("word", "")
         if not word.endswith("'"):
             continue
@@ -380,9 +471,13 @@ def resolve_batch_gemini(batch, api_key, model, spanish_forms, conj_reverse,
         " list, or abstain. NEVER invent a form outside the list.\n"
         "ABSTAIN whenever the line is too short, too garbled, the token is a"
         " fragment/English/a proper noun, or two candidates remain equally"
-        " plausible: set \"choice\": null. Abstaining is the CORRECT answer in"
-        " those cases and costs nothing — a wrong merge silently folds the"
-        " word's counts into the wrong lemma.\n"
+        " plausible: set \"choice\": null. Abstain ALSO when the singer is"
+        " plainly using a word that is not on the list at all — in this"
+        " register a clipped form is often a vocative or a slang term rather"
+        " than any restoration of the spelling (ma' addressing someone, not"
+        " the conjunction mas). Abstaining is the CORRECT answer in those"
+        " cases and costs nothing — a wrong merge silently folds the word's"
+        " counts into the wrong lemma.\n"
         "\"confidence\" is 0.0-1.0 for the choice. \"reason\" is at most 12"
         " words naming the cue you used.\n"
         "Return ONLY JSON: [{\"word\":\"x\",\"choice\":\"<candidate|null>\","
@@ -509,12 +604,13 @@ def build_record(rec, decision, model, run_at, spanish_forms, conj_reverse):
     }
 
 
-def apply_records(mapping, records):
+def apply_records(mapping, records, reopenable=frozenset()):
     """Splice records into the mapping list.
 
-    Replaces an existing record only when that record is itself
-    `provenance: gemini_elision` — curated/deterministic entries are never
-    overwritten, they simply cause the new record to be dropped.
+    Replaces an existing record when that record is this step's own
+    (`provenance: gemini_elision`) or when it is a frequency-only guess the
+    caller reopened (`reopenable`, built by `frequency_derived_words`). A
+    hand-curated entry is never overwritten; it drops the new record instead.
     """
     by_word = {}
     for i, r in enumerate(mapping):
@@ -530,7 +626,8 @@ def apply_records(mapping, records):
         if idx is None:
             mapping.append(new)
             added += 1
-        elif mapping[idx].get("provenance") == "gemini_elision":
+        elif (mapping[idx].get("provenance") == "gemini_elision"
+              or word in reopenable):
             mapping[idx] = new
             replaced += 1
         else:
@@ -577,6 +674,19 @@ def main():
     parser.add_argument("--force", action="store_true",
                         help="Re-ask words this step already resolved. Never "
                              "re-asks curated / deterministic mapping entries.")
+    parser.add_argument("--reconsider-mapped", dest="reconsider_mapped",
+                        action="store_true", default=True,
+                        help="Also re-open elided surfaces that a FREQUENCY-ONLY "
+                             "mapping record already claimed (the ~1,870 records "
+                             "carrying ppm and no provenance). They were decided "
+                             "from general-corpus frequency without ever seeing a "
+                             "line; ma' -> mas beat the vocative 211 ppm to 200. "
+                             "Only ambiguous surfaces with an aligned English "
+                             "line are re-asked. Curated records are untouched.")
+    parser.add_argument("--no-reconsider-mapped", dest="reconsider_mapped",
+                        action="store_false",
+                        help="Trust every existing mapping record; only ask about "
+                             "surfaces no rule claimed (the old behaviour).")
     parser.add_argument("--no-gemini", action="store_true",
                         help="Print the plan (candidate sets, lyric lines) "
                              "without making any API call.")
@@ -623,6 +733,8 @@ def main():
     known_vocab = elision_rules.load_known_vocab()
     already_known, gemini_owned = mapping_known_words(mapping)
     force_words = gemini_owned if args.force else set()
+    reopenable = (frequency_derived_words(mapping)
+                  if args.reconsider_mapped else frozenset())
 
     print("Forms:      %d canonical Spanish forms" % len(spanish_forms))
     print("Mapping:    %d records (%d written by this step)"
@@ -631,13 +743,19 @@ def main():
 
     ask, no_candidates, cached = collect_targets(
         evidence, mapping, spanish_forms, known_vocab, merge_targets,
-        args.max_examples, translations, already_known, force_words)
+        args.max_examples, translations, already_known, force_words,
+        reopenable=reopenable)
 
     if args.limit is not None:
         ask = ask[:args.limit]
 
+    n_reconsidered = sum(1 for r in ask if r.get("reconsidered"))
+    if args.reconsider_mapped:
+        print("Reopenable: %d frequency-only mapping records" % len(reopenable))
+
     print("\n--- Survivors of step_3a_merge_elisions (elision normalization) ---")
-    print("  ambiguous, to ask:      %d" % len(ask))
+    print("  ambiguous, to ask:      %d (%d reopened from a frequency guess)"
+          % (len(ask), n_reconsidered))
     print("  already in mapping:     %d (use --force to re-ask this step's own)"
           % len(cached))
     print("  no Spanish candidate:   %d (left untouched; not English-filterable here)"
@@ -722,7 +840,7 @@ def main():
               "records to %s" % MAPPING_PATH)
         return
 
-    added, replaced, refused = apply_records(mapping, records)
+    added, replaced, refused = apply_records(mapping, records, reopenable)
     write_mapping(mapping)
     print("\nWrote %s" % MAPPING_PATH)
     print("  added:    %d" % added)

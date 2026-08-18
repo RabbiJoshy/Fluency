@@ -1,110 +1,539 @@
 {
-  "run_at": "2026-08-07T23:43:50Z",
+  "run_at": "2026-08-18T20:44:26Z",
   "model": "gemini-3.5-flash-lite",
   "min_confidence": 0.75,
-  "merges": 5,
+  "merges": 31,
   "skips": 1,
   "no_candidate_words": [
-    "apretaíta'",
-    "bakin'",
-    "discoteka'",
-    "mordío'",
-    "tíguere'"
+    "bakin'"
   ],
   "proposals": [
+    {
+      "word": "ere'",
+      "candidates": [
+        "eres",
+        "eren"
+      ],
+      "decision": "merge",
+      "choice": "eres",
+      "confidence": 1.0,
+      "reason": "Subject pronoun 'tú' requires second-person singular 'eres'.",
+      "corpus_count": 5,
+      "evidence": [
+        "Te aseguro que ere' mi filosofía y yo Platón",
+        "Yo soy bandida, y tú ere' gánster",
+        "Tú ere' like for me y yo 'toy pa' ti",
+        "Tú ere' like for me, yo tu Brad Pitt",
+        "Tú ere' bellaca, deja la timidez"
+      ]
+    },
+    {
+      "word": "sabe'",
+      "candidates": [
+        "sabes",
+        "sabed",
+        "saber",
+        "saben"
+      ],
+      "decision": "merge",
+      "choice": "sabes",
+      "confidence": 1.0,
+      "reason": "Subject 'tú' or direct address requires second-person singular 'sabes'.",
+      "corpus_count": 5,
+      "evidence": [
+        "No sabe' cuánto quiero que vuelva otra noche de",
+        "Tú tiene' el feeling tú lo sabe' hacer",
+        "Papi y eso lo sabe' muy bien",
+        "No sabe' cuánto quiero que vuelva otra",
+        "No sabe' cuánto quiero que vuelva otra noche más (Brr)"
+      ]
+    },
+    {
+      "word": "tiene'",
+      "candidates": [
+        "tienes",
+        "tienen"
+      ],
+      "decision": "merge",
+      "choice": "tienes",
+      "confidence": 1.0,
+      "reason": "Subject 'tú' requires second-person singular 'tienes'.",
+      "corpus_count": 5,
+      "evidence": [
+        "Pero dime cuál es el secreto que tiene' guarda'o",
+        "Tú tiene' el feeling tú lo sabe' hacer",
+        "¿Sigue' soltera o ya tiene' marido? (Wuh)",
+        "Tú me tiene' en una nube",
+        "Me tiene' mal con ese cu-l-o"
+      ]
+    },
+    {
+      "word": "meno'",
+      "candidates": [
+        "menos",
+        "menor"
+      ],
+      "decision": "merge",
+      "choice": "menos",
+      "confidence": 1.0,
+      "reason": "Fixed adverbial phrase 'y menos si' / 'al menos'.",
+      "corpus_count": 3,
+      "evidence": [
+        "Con nadie se compromete y meno' si tú le promete'",
+        "Al meno' un instante (Baby)",
+        "Por ende, el meno' e'perado te sorprende"
+      ]
+    },
+    {
+      "word": "besa'",
+      "candidates": [
+        "besas",
+        "besad",
+        "besar",
+        "besan"
+      ],
+      "decision": "merge",
+      "choice": "besas",
+      "confidence": 1.0,
+      "reason": "Conditional clause with 'si' addressing 'tú' uses 'besas'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Ay, si me besa' me desconfigu-gu-guro",
+        "Si me besa' me desconfigu-gu-guro"
+      ]
+    },
+    {
+      "word": "está'",
+      "candidates": [
+        "estás",
+        "están"
+      ],
+      "decision": "merge",
+      "choice": "estás",
+      "confidence": 1.0,
+      "reason": "Subject pronoun 'tú' requires second-person singular 'estás'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Y tú está' esperando a que te lo meta",
+        "Gata, tú está' only, mándame tu ubi"
+      ]
+    },
+    {
+      "word": "le'",
+      "candidates": [
+        "les",
+        "led",
+        "len"
+      ],
+      "decision": "merge",
+      "choice": "les",
+      "confidence": 1.0,
+      "reason": "Plural indirect object pronoun matching plural referents.",
+      "corpus_count": 2,
+      "evidence": [
+        "Ganan siempre, todo se le' da (Wuh, wuh, wuh, wuh)",
+        "Le' molesta mi premio de compositor"
+      ]
+    },
+    {
+      "word": "quiera'",
+      "candidates": [
+        "quieras",
+        "quieran"
+      ],
+      "decision": "merge",
+      "choice": "quieras",
+      "confidence": 1.0,
+      "reason": "Addressing 'tú' with subjunctive 'lo que quieras'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Pide lo que quiera', que lo que quiero yo es ponértelo",
+        "Hace' con tu vida lo que quiera' y yo lo permití"
+      ]
+    },
+    {
+      "word": "ve'",
+      "candidates": [
+        "ves",
+        "ved",
+        "vez",
+        "ver",
+        "ven"
+      ],
+      "decision": "merge",
+      "choice": "ves",
+      "confidence": 1.0,
+      "reason": "Subject pronoun 'tú' requires second-person singular 'ves'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Tú lo ve', tú lo ve', tú lo ve', tú lo ve, tú lo ve', tú lo ve, tú lo ve'",
+        "Tú lo ve', tú lo ve', tú lo ve', tú lo ve', tú lo ve', tú lo ve, tú lo ve' (Tú lo ve')"
+      ]
+    },
+    {
+      "word": "apague'",
+      "candidates": [
+        "apagues",
+        "apaguen"
+      ],
+      "decision": "merge",
+      "choice": "apagues",
+      "confidence": 1.0,
+      "reason": "Addressing 'tú' with subjunctive after 'antes que'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Antes que me apague' se apaga el sol"
+      ]
+    },
     {
       "word": "confundía'",
       "candidates": [
         "confundías",
         "confundían"
       ],
-      "decision": "abstain",
-      "choice": null,
-      "confidence": 0.0,
-      "reason": "Ambiguous subject agreement with feminine participle or imperfect verb.",
+      "decision": "merge",
+      "choice": "confundías",
+      "confidence": 0.8,
+      "reason": "Context implies second-person singular tú in feminine form confundida.",
       "corpus_count": 1,
       "evidence": [
         "La tengo confundía' fumando maría"
       ]
     },
     {
-      "word": "importe'",
+      "word": "do'",
       "candidates": [
-        "importes",
-        "importen"
+        "dos",
+        "don"
       ],
       "decision": "merge",
-      "choice": "importes",
+      "choice": "dos",
       "confidence": 0.95,
-      "reason": "Preceded by 'me', addressing 'tú' (me importe' -> importes).",
+      "reason": "Numeral 'dos' matches 'los do'' meaning both of you.",
       "corpus_count": 1,
       "evidence": [
-        "Nada va a hacer que me importe'"
+        "Me atrevo a comerme los do'"
       ]
     },
     {
-      "word": "misione'",
+      "word": "día'",
       "candidates": [
-        "misiones",
-        "misionen"
+        "días",
+        "díaz"
       ],
       "decision": "merge",
-      "choice": "misiones",
+      "choice": "días",
+      "confidence": 0.95,
+      "reason": "Plural noun 'días' matches 'los' and 'volando'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Ahora nos 'tamo alejando, no te estoy viendo, los día' volando"
+      ]
+    },
+    {
+      "word": "esta'",
+      "candidates": [
+        "estas",
+        "estad",
+        "estar",
+        "estan"
+      ],
+      "decision": "merge",
+      "choice": "estas",
+      "confidence": 0.95,
+      "reason": "Plural determiner 'estas' matches plural noun 'ganas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Con esta' ganas que tengo yo"
+      ]
+    },
+    {
+      "word": "esto'",
+      "candidates": [
+        "estos",
+        "estor",
+        "estol"
+      ],
+      "decision": "merge",
+      "choice": "estos",
+      "confidence": 0.95,
+      "reason": "Plural determiner 'estos' matches plural noun 'haters'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Te tengo en mi cama y todo esto' haters se muerden"
+      ]
+    },
+    {
+      "word": "gana'",
+      "candidates": [
+        "ganas",
+        "ganad",
+        "ganar",
+        "ganan"
+      ],
+      "decision": "merge",
+      "choice": "ganas",
+      "confidence": 0.95,
+      "reason": "Noun 'ganas' in expression 'tengo ganas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "De tenerte también tengo gana'"
+      ]
+    },
+    {
+      "word": "ha'",
+      "candidates": [
+        "has",
+        "haz",
+        "han"
+      ],
+      "decision": "merge",
+      "choice": "has",
+      "confidence": 0.95,
+      "reason": "Pronoun 'tú' requires second-person auxiliary 'has'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Ya es suficiente lo que tú ha' comido (Ah)"
+      ]
+    },
+    {
+      "word": "hace'",
+      "candidates": [
+        "haces",
+        "haced",
+        "hacer",
+        "hacen"
+      ],
+      "decision": "merge",
+      "choice": "haces",
       "confidence": 0.9,
-      "reason": "Plural noun following determiner 'toa' las'.",
+      "reason": "Second-person singular subject 'tú' implied by 'tu vida'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Hace' con tu vida lo que quiera' y yo lo permití"
+      ]
+    },
+    {
+      "word": "insista'",
+      "candidates": [
+        "insistas",
+        "insistan"
+      ],
+      "decision": "merge",
+      "choice": "insistas",
+      "confidence": 0.95,
+      "reason": "Negative imperative addressing 'José' (singular tú).",
+      "corpus_count": 1,
+      "evidence": [
+        "Ay, José, no me insista'"
+      ]
+    },
+    {
+      "word": "llama'",
+      "candidates": [
+        "llamas",
+        "llamad",
+        "llamar",
+        "llaman"
+      ],
+      "decision": "merge",
+      "choice": "llamas",
+      "confidence": 0.9,
+      "reason": "Second person singular 'tú me llamas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Pero tú me llama' o yo te llamo y le caemo' ahí"
+      ]
+    },
+    {
+      "word": "ma'",
+      "candidates": [
+        "mas",
+        "mad",
+        "mar",
+        "mal",
+        "man"
+      ],
+      "decision": "abstain",
+      "choice": null,
+      "confidence": 0.0,
+      "reason": "Slang term meaning baby/mama, not on the candidate list",
+      "corpus_count": 1,
+      "evidence": [
+        "Cuando no te tengo, ma'"
+      ]
+    },
+    {
+      "word": "parece'",
+      "candidates": [
+        "pareces",
+        "pareced",
+        "parecer",
+        "parecen"
+      ],
+      "decision": "merge",
+      "choice": "pareces",
+      "confidence": 0.9,
+      "reason": "Addressed to 'tú' (motociclista comparison)",
+      "corpus_count": 1,
+      "evidence": [
+        "Das muchas vuelta', parece' motociclista, ey"
+      ]
+    },
+    {
+      "word": "parte'",
+      "candidates": [
+        "partes",
+        "parten"
+      ],
+      "decision": "merge",
+      "choice": "partes",
+      "confidence": 0.9,
+      "reason": "Plural noun following 'las'",
+      "corpus_count": 1,
+      "evidence": [
+        "Allá abajo mojarte toa' las parte'"
+      ]
+    },
+    {
+      "word": "pide'",
+      "candidates": [
+        "pides",
+        "piden"
+      ],
+      "decision": "merge",
+      "choice": "pides",
+      "confidence": 0.9,
+      "reason": "Addressed to 'tú' (si me pides)",
+      "corpus_count": 1,
+      "evidence": [
+        "E' que si me pide' que te espere, te espero sentado"
+      ]
+    },
+    {
+      "word": "pone'",
+      "candidates": [
+        "pones",
+        "poned",
+        "poner",
+        "ponen"
+      ],
+      "decision": "merge",
+      "choice": "pones",
+      "confidence": 0.9,
+      "reason": "Addressed to 'Tú te pones'",
       "corpus_count": 1,
       "evidence": [
         "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'"
       ]
     },
     {
-      "word": "muerde'",
+      "word": "prefiere'",
       "candidates": [
-        "muerdes",
-        "muerden"
+        "prefieres",
+        "prefieren"
       ],
       "decision": "merge",
-      "choice": "muerdes",
-      "confidence": 0.95,
-      "reason": "Addressed to 'tú' ('tú eres' ... te muerde').",
-      "corpus_count": 1,
-      "evidence": [
-        "Que tú eres bellaca por cómo los labios te muerde'"
-      ]
-    },
-    {
-      "word": "pena'",
-      "candidates": [
-        "penas",
-        "penad",
-        "penar",
-        "penal",
-        "penan"
-      ],
-      "decision": "merge",
-      "choice": "penas",
+      "choice": "prefieres",
       "confidence": 0.9,
-      "reason": "Plural noun after 'las' ('las pena'').",
+      "reason": "Addressed to 'tú' (Estar sola tú prefieres)",
       "corpus_count": 1,
       "evidence": [
-        "Al carajo las pena', si quieres más, ten"
+        "Estar sola tú prefiere'"
       ]
     },
     {
-      "word": "promete'",
+      "word": "preocupe'",
       "candidates": [
-        "prometes",
-        "prometed",
-        "prometer",
-        "prometen"
+        "preocupes",
+        "preocupen"
       ],
       "decision": "merge",
-      "choice": "prometes",
-      "confidence": 0.95,
-      "reason": "Addressed to 'tú' ('si tú le promete'').",
+      "choice": "preocupes",
+      "confidence": 0.9,
+      "reason": "Preceded by 'No te' indicating 2nd person singular",
       "corpus_count": 1,
       "evidence": [
-        "Con nadie se compromete y meno' si tú le promete'"
+        "No te preocupe', despreocúpate"
+      ]
+    },
+    {
+      "word": "sigue'",
+      "candidates": [
+        "sigues",
+        "siguen"
+      ],
+      "decision": "merge",
+      "choice": "sigues",
+      "confidence": 0.9,
+      "reason": "Addressed to 'tú' (Sigue' soltera)",
+      "corpus_count": 1,
+      "evidence": [
+        "¿Sigue' soltera o ya tiene' marido? (Wuh)"
+      ]
+    },
+    {
+      "word": "tira'",
+      "candidates": [
+        "tiras",
+        "tirad",
+        "tirar",
+        "tiran"
+      ],
+      "decision": "merge",
+      "choice": "tiras",
+      "confidence": 0.9,
+      "reason": "Addressed to 'tú' (me tira')",
+      "corpus_count": 1,
+      "evidence": [
+        "Tiene lo que quiero (Woh); me tira', que yo le llego (Yeah, eh)"
+      ]
+    },
+    {
+      "word": "tre'",
+      "candidates": [
+        "tres",
+        "tren"
+      ],
+      "decision": "merge",
+      "choice": "tres",
+      "confidence": 0.9,
+      "reason": "Cardinal number indicating three people",
+      "corpus_count": 1,
+      "evidence": [
+        "Le quito el estrés, polvo echamos tre'"
+      ]
+    },
+    {
+      "word": "vacacione'",
+      "candidates": [
+        "vacaciones",
+        "vacacionen"
+      ],
+      "decision": "merge",
+      "choice": "vacaciones",
+      "confidence": 0.99,
+      "reason": "English translation 'on vacation' indicates plural noun vacaciones.",
+      "corpus_count": 1,
+      "evidence": [
+        "Tú de vacacione' en Boston y otro apareció primero"
+      ]
+    },
+    {
+      "word": "venga'",
+      "candidates": [
+        "vengas",
+        "vengad",
+        "vengar",
+        "vengan"
+      ],
+      "decision": "merge",
+      "choice": "vengas",
+      "confidence": 0.95,
+      "reason": "Translation 'Don't give me' points to 2nd person singular.",
+      "corpus_count": 1,
+      "evidence": [
+        "No me venga' con esa actitud"
       ]
     }
   ]

@@ -8,6 +8,15 @@ live manual overrides.  This tool makes the consumer contract explicit and
 also removes a small reviewed set of generated targets that restore the wrong
 letter; those forms are subsequently handled by the conservative frequency
 gate in :mod:`step_3a_merge_elisions`.
+
+One class of ``skip`` row IS live and must survive compaction: the abstentions
+written by :mod:`step_2c_resolve_elisions_gemini`, which carry
+``provenance: gemini_elision``.  :mod:`step_4a_filter_known_vocab` reads them
+(see its Phase 3c) and routes the surface to the ``elision`` bucket, leaving it
+unmerged on purpose.  That is the whole point of letting the model abstain --
+``ma'`` is a vocative and folding it into ``mas`` ("but") is the error the
+abstention exists to prevent -- so dropping these rows would silently restore
+the bad merge.
 """
 
 from __future__ import annotations
@@ -35,6 +44,9 @@ def compact(records):
             removed["same_word_dup"] += 1
             continue
         if record.get("action") == "skip":
+            if record.get("provenance") == "gemini_elision":
+                kept.append(record)      # live: step_4a routes these
+                continue
             removed["skip"] += 1
             continue
         surface = str(record.get("elided_word") or record.get("word") or "").casefold()

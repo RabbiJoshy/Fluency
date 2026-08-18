@@ -52,6 +52,22 @@ class ElisionCurationContractTests(unittest.TestCase):
         self.assertEqual(compacted, mappings)
         self.assertEqual(sum(removed.values()), 0)
 
+    def test_gemini_abstentions_survive_compaction(self):
+        """A gemini skip row is live, not inert — step_4a routes it.
+
+        compact() strips `action: skip` because the historical rows were dead.
+        step_2c's abstentions are not: step_4a_filter_known_vocab Phase 3c
+        reads them and leaves the surface unmerged, which is the only thing
+        keeping ma' out of mas. Compaction used to delete them, silently
+        restoring the merge the abstention was written to prevent.
+        """
+        row = {"action": "skip", "merge_type": "gemini_elision",
+               "provenance": "gemini_elision", "word": "ma'", "note": "x"}
+        dead = {"action": "skip", "merge_type": "elision_pair", "word": "zzz'"}
+        kept, removed = compact([row, dead])
+        self.assertEqual(kept, [row])
+        self.assertEqual(removed["skip"], 1)
+
     def test_mixed_lexical_surfaces_are_not_globally_noise(self):
         with open(CURATIONS / "noise.json", encoding="utf-8") as handle:
             noise = json.load(handle)

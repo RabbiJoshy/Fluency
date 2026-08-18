@@ -97,11 +97,18 @@ def _stamp_master(language, loanwords, keep_set, dry_run, sample_limit):
 
     Master is a dict {id: entry}; the front-end reads it via joinWithMaster,
     so stamping here gives immediate deck effect without re-running the
-    pipeline. Mirrors tool_8a_stamp_propernoun_corpus.py.
+    pipeline.
 
-    Caveat (same as the propernoun stamper): tool_8c_merge_to_master
-    rebuilds the master from per-artist monoliths and drops unknown fields,
-    so re-running tool_8c requires re-running this stamper.
+    Caveat: tool_8c_merge_to_master rebuilds the master from per-artist
+    monoliths and drops unknown fields, so re-running tool_8c requires
+    re-running this stamper.
+
+    There was a sibling, tool_8a_stamp_propernoun_corpus.py, deleted Aug 2026.
+    It recomputed a capitalisation rate from the CAPPED example sample, which
+    is precisely what tool_2a_caps_stats.py exists to avoid, and step_4a's
+    Phase 1g already routes on the full-ledger version at a looser threshold.
+    At its defaults it added three words over step_4a: glock (a name), real (a
+    common adjective, and the flag deletes the card) and t. Don't rebuild it.
     """
     artist_dir = _LANG_TO_ARTIST_DIR.get(language, language.lower())
     master_path = os.path.join(_PROJECT_ROOT, "Artists", artist_dir,
