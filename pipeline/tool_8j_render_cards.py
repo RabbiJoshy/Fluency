@@ -184,13 +184,23 @@ def main():
         for c in cards:
             if str(c.get("word", "")).lower() not in want:
                 continue
+            reasons = {}
             for scope in ("main", "extra"):
                 r, why = render(c, index.get(c["id"]), excl, scope)
                 if r:
                     print(show(r) + "\n")
                     break
+                reasons[scope] = why
             else:
-                print(f"### {c.get('word')} — NOT SHOWN: {why}\n")
+                # Report why it failed in the scope it BELONGS to. Reporting
+                # the last loop iteration blamed "not in extra scope" for a
+                # core card whose real problem was an empty gloss -- the one
+                # thing this tool exists not to do.
+                cat = str((index.get(c["id"]) or {}).get("extra_category") or "").lower()
+                home = "extra" if cat in ARTIST_EXTRA_CATEGORIES else "main"
+                other = "main" if home == "extra" else "extra"
+                print(f"### {c.get('word')} — NOT SHOWN in {home}: {reasons[home]}"
+                      f"\n      (and in {other}: {reasons[other]})\n")
         return
 
     rendered, dropped = [], collections.Counter()

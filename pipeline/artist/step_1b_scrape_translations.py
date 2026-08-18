@@ -595,31 +595,30 @@ def build_aligned_translations(artist_dir, max_diff_pct=0.10):
 
         aligned = []
 
-        if len(sp_content) == len(en_content):
-            # Exact match — zip all lines
-            quality = "exact"
-            stats["exact"] += 1
-            for sp_line, en_line in zip(sp_content, en_content):
-                aligned.append({"spanish": sp_line, "english": en_line})
-                if sp_line not in index:
-                    index[sp_line] = en_line
-                    stats["lines_indexed"] += 1
-        else:
-            # Close match — section-aware alignment
-            quality = "close"
-            stats["close"] += 1
-            sp_sections = _split_sections(sp_raw)
-            en_sections = _split_sections(en_raw)
-            for i in range(min(len(sp_sections), len(en_sections))):
-                sp_sec = sp_sections[i]
-                en_sec = en_sections[i]
-                if len(sp_sec) == len(en_sec):
-                    for sp_line, en_line in zip(sp_sec, en_sec):
-                        aligned.append({"spanish": sp_line, "english": en_line})
-                        if sp_line not in index:
-                            index[sp_line] = en_line
-                            stats["lines_indexed"] += 1
-                # Mismatched sections are skipped — no cascading errors
+        # Section-aware alignment, ALWAYS — never a blind whole-song zip.
+        # Equal line counts do not imply line correspondence: a translator who
+        # merges one line and splits another lands on the same total while
+        # every line between the two is shifted. That is a local drift a
+        # whole-song offset check cannot see (X SI VOLVEMOS reads correctly at
+        # offset 0 overall while a middle stretch is off by one). Verifying
+        # section by section contains the damage to the section that drifted,
+        # and it also indexes MORE lines, because it rescues sections from
+        # songs whose totals never matched: 748 lines here against 593 for the
+        # zip, and 7,309 against 4,748 on Bad Bunny.
+        quality = "exact" if len(sp_content) == len(en_content) else "close"
+        stats[quality] += 1
+        sp_sections = _split_sections(sp_raw)
+        en_sections = _split_sections(en_raw)
+        for i in range(min(len(sp_sections), len(en_sections))):
+            sp_sec = sp_sections[i]
+            en_sec = en_sections[i]
+            if len(sp_sec) == len(en_sec):
+                for sp_line, en_line in zip(sp_sec, en_sec):
+                    aligned.append({"spanish": sp_line, "english": en_line})
+                    if sp_line not in index:
+                        index[sp_line] = en_line
+                        stats["lines_indexed"] += 1
+            # Mismatched sections are skipped — no cascading errors
 
         songs_out[song_id] = {
             "title": tdata.get("song_title", ""),
@@ -704,8 +703,9 @@ def run_alignment(artist_dir):
                 existing = json.load(f)
         except ValueError:
             existing = {}
-    added = updated = 0
-    for spanish, english in result.get("index", {}).items():
+    index = result.get("index", {})
+    added = updated = dropped = 0
+    for spanish, english in index.items():
         if not spanish or not english:
             continue
         prior = existing.get(spanish)
@@ -718,10 +718,20 @@ def run_alignment(artist_dir):
         else:
             updated += 1
         existing[spanish] = {"english": english, "source": "genius"}
+
+    # Prune genius lines this run no longer stands behind. Without this the
+    # layer only ever grows: a line dropped because its section stopped
+    # matching, or a song removed from the corpus, kept its old English
+    # forever and went on feeding the classifier and the card.
+    for spanish in [k for k, v in existing.items()
+                    if (not isinstance(v, dict) or v.get("source") in (None, "genius"))
+                    and k not in index]:
+        del existing[spanish]
+        dropped += 1
     with open(layer_path, "w", encoding="utf-8") as f:
         json.dump(existing, f, ensure_ascii=False)
-    print("Wrote %s (%d new, %d corrected, %d total)"
-          % (layer_path, added, updated, len(existing)))
+    print("Wrote %s (%d new, %d corrected, %d pruned, %d total)"
+          % (layer_path, added, updated, dropped, len(existing)))
 
 
 def print_summary(translations, total_songs):

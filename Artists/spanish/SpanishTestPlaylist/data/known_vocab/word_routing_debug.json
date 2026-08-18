@@ -176,7 +176,7 @@
     "in_en_50k": false
   },
   "ah": {
-    "freq": 4,
+    "freq": 2,
     "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -833,7 +833,7 @@
     "in_en_50k": false
   },
   "balvin": {
-    "freq": 5,
+    "freq": 2,
     "bucket": "proper_nouns",
     "source": "curated_drop",
     "in_spanish_forms": false,
@@ -1706,17 +1706,6 @@
     "in_spanish_forms": false,
     "in_en_50k": true
   },
-  "claros": {
-    "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
   "clase": {
     "freq": 1,
     "wikt_pos": [
@@ -1752,17 +1741,6 @@
   "coincidimos": {
     "freq": 1,
     "wikt_pos": [
-      "verb"
-    ],
-    "bucket": "conjugation",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
-  "colores": {
-    "freq": 1,
-    "wikt_pos": [
-      "noun",
       "verb"
     ],
     "bucket": "conjugation",
@@ -1973,11 +1951,14 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "confundía'": {
+  "confundías": {
     "freq": 1,
-    "source": "below floor (freq<2), kept for discovery",
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
+    "wikt_pos": [
+      "verb"
+    ],
+    "bucket": "conjugation",
+    "source": "spanish_forms",
+    "in_spanish_forms": true,
     "in_en_50k": false
   },
   "conmigo": {
@@ -3240,13 +3221,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "dynell": {
-    "freq": 1,
-    "source": "below floor (freq<2), kept for discovery",
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
-    "in_en_50k": false
-  },
   "dándote": {
     "freq": 2,
     "wikt_pos": [
@@ -3372,21 +3346,9 @@
     "in_en_50k": true
   },
   "el": {
-    "freq": 67,
+    "freq": 65,
     "wikt_pos": [
       "det"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "elena": {
-    "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "name",
-      "noun"
     ],
     "bucket": "normal_vocab",
     "source": "spanish_forms",
@@ -5334,13 +5296,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "hyde": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "héctor": {
     "freq": 1,
     "bucket": "proper_nouns",
@@ -5550,13 +5505,6 @@
     "bucket": "english",
     "source": "en_50k",
     "in_spanish_forms": false,
-    "in_en_50k": true
-  },
-  "j": {
-    "freq": 3,
-    "bucket": "noise",
-    "source": "curated_noise",
-    "in_spanish_forms": true,
     "in_en_50k": true
   },
   "ja": {
@@ -6246,6 +6194,13 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
+  "ma'": {
+    "freq": 2,
+    "bucket": "elision",
+    "source": "elision_skip",
+    "in_spanish_forms": false,
+    "in_en_50k": false
+  },
   "mai": {
     "freq": 1,
     "wikt_pos": [
@@ -6352,13 +6307,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "man": {
-    "freq": 2,
-    "bucket": "english",
-    "source": "english_loanwords",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
   "mandé": {
     "freq": 1,
     "wikt_pos": [
@@ -6448,18 +6396,6 @@
     "freq": 1,
     "wikt_pos": [
       "name",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": true
-  },
-  "mas": {
-    "freq": 2,
-    "wikt_pos": [
-      "adv",
-      "conj",
       "noun"
     ],
     "bucket": "normal_vocab",
@@ -7297,17 +7233,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "negrito": {
-    "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
   "nena": {
     "freq": 4,
     "wikt_pos": [
@@ -7613,7 +7538,7 @@
     "in_en_50k": false
   },
   "ojos": {
-    "freq": 5,
+    "freq": 4,
     "wikt_pos": [
       "noun"
     ],
@@ -7699,13 +7624,6 @@
     "in_spanish_forms": true,
     "in_en_50k": false
   },
-  "ozuna": {
-    "freq": 2,
-    "bucket": "proper_nouns",
-    "source": "curated_drop",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
   "oído": {
     "freq": 1,
     "wikt_pos": [
@@ -7770,7 +7688,7 @@
     "in_en_50k": true
   },
   "para": {
-    "freq": 45,
+    "freq": 44,
     "wikt_pos": [
       "prep",
       "verb"
@@ -9083,17 +9001,6 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "químico": {
-    "freq": 1,
-    "wikt_pos": [
-      "adj",
-      "noun"
-    ],
-    "bucket": "normal_vocab",
-    "source": "spanish_forms",
-    "in_spanish_forms": true,
-    "in_en_50k": false
-  },
   "raptar": {
     "freq": 1,
     "wikt_pos": [
@@ -9436,7 +9343,7 @@
     "in_en_50k": false
   },
   "rompiendo": {
-    "freq": 2,
+    "freq": 1,
     "wikt_pos": [
       "verb"
     ],
@@ -10063,13 +9970,6 @@
     "freq": 1,
     "bucket": "english",
     "source": "en_not_es",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
-  "sky": {
-    "freq": 1,
-    "bucket": "english",
-    "source": "en_50k",
     "in_spanish_forms": false,
     "in_en_50k": true
   },
@@ -11112,7 +11012,7 @@
     "in_en_50k": false
   },
   "uh": {
-    "freq": 2,
+    "freq": 1,
     "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": true,
@@ -11725,7 +11625,7 @@
     "in_en_50k": false
   },
   "wuh": {
-    "freq": 5,
+    "freq": 2,
     "bucket": "noise",
     "source": "curated_noise",
     "in_spanish_forms": false,
@@ -11754,13 +11654,6 @@
     "in_spanish_forms": true,
     "in_en_50k": true
   },
-  "yah": {
-    "freq": 5,
-    "bucket": "noise",
-    "source": "curated_noise",
-    "in_spanish_forms": false,
-    "in_en_50k": true
-  },
   "yankee": {
     "freq": 1,
     "wikt_pos": [
@@ -11771,13 +11664,6 @@
     "source": "spanish_forms",
     "in_spanish_forms": true,
     "in_en_50k": true
-  },
-  "yasso": {
-    "freq": 1,
-    "source": "below floor (freq<2), kept for discovery",
-    "bucket": "sense_discovery",
-    "in_spanish_forms": false,
-    "in_en_50k": false
   },
   "yeah": {
     "freq": 4,

@@ -45,14 +45,14 @@
     "song_count": 16
   },
   {
-    "word": "el",
-    "corpus_count": 67,
-    "song_count": 16
-  },
-  {
     "word": "te",
     "corpus_count": 66,
     "song_count": 15
+  },
+  {
+    "word": "el",
+    "corpus_count": 65,
+    "song_count": 16
   },
   {
     "word": "lo",
@@ -71,7 +71,7 @@
   },
   {
     "word": "para",
-    "corpus_count": 45,
+    "corpus_count": 44,
     "song_count": 16
   },
   {
@@ -154,8 +154,7 @@
   {
     "word": "las",
     "corpus_count": 20,
-    "song_count": 10,
-    "display_form": "la'"
+    "song_count": 10
   },
   {
     "word": "los",
@@ -242,8 +241,7 @@
   {
     "word": "estás",
     "corpus_count": 12,
-    "song_count": 5,
-    "display_form": "está'"
+    "song_count": 5
   },
   {
     "word": "nos",
@@ -264,8 +262,7 @@
   {
     "word": "ves",
     "corpus_count": 12,
-    "song_count": 1,
-    "display_form": "ve'"
+    "song_count": 1
   },
   {
     "word": "está",
@@ -323,8 +320,7 @@
   {
     "word": "eres",
     "corpus_count": 9,
-    "song_count": 6,
-    "display_form": "ere'"
+    "song_count": 6
   },
   {
     "word": "eso",
@@ -375,14 +371,12 @@
   {
     "word": "sabes",
     "corpus_count": 8,
-    "song_count": 4,
-    "display_form": "sabe'"
+    "song_count": 4
   },
   {
     "word": "tienes",
     "corpus_count": 8,
-    "song_count": 5,
-    "display_form": "tiene'"
+    "song_count": 5
   },
   {
     "word": "todas",
@@ -543,11 +537,6 @@
     "song_count": 3
   },
   {
-    "word": "balvin",
-    "corpus_count": 5,
-    "song_count": 4
-  },
-  {
     "word": "bebé",
     "corpus_count": 5,
     "song_count": 4
@@ -560,8 +549,7 @@
   {
     "word": "dios",
     "corpus_count": 5,
-    "song_count": 1,
-    "display_form": "dio'"
+    "song_count": 1
   },
   {
     "word": "dónde",
@@ -596,8 +584,7 @@
   {
     "word": "les",
     "corpus_count": 5,
-    "song_count": 3,
-    "display_form": "le'"
+    "song_count": 3
   },
   {
     "word": "mío",
@@ -608,12 +595,6 @@
     "word": "nunca",
     "corpus_count": 5,
     "song_count": 5
-  },
-  {
-    "word": "ojos",
-    "corpus_count": 5,
-    "song_count": 5,
-    "display_form": "ojo'"
   },
   {
     "word": "sin",
@@ -662,23 +643,8 @@
     "song_count": 4
   },
   {
-    "word": "wuh",
-    "corpus_count": 5,
-    "song_count": 1
-  },
-  {
-    "word": "yah",
-    "corpus_count": 5,
-    "song_count": 2
-  },
-  {
     "word": "él",
     "corpus_count": 5,
-    "song_count": 3
-  },
-  {
-    "word": "ah",
-    "corpus_count": 4,
     "song_count": 3
   },
   {
@@ -810,6 +776,12 @@
     "song_count": 3
   },
   {
+    "word": "ojos",
+    "corpus_count": 4,
+    "song_count": 4,
+    "display_form": "ojo'"
+  },
+  {
     "word": "pues",
     "corpus_count": 4,
     "song_count": 1,
@@ -818,8 +790,7 @@
   {
     "word": "quieres",
     "corpus_count": 4,
-    "song_count": 3,
-    "display_form": "quiere'"
+    "song_count": 3
   },
   {
     "word": "salimos",
@@ -896,8 +867,7 @@
   {
     "word": "besas",
     "corpus_count": 3,
-    "song_count": 1,
-    "display_form": "besa'"
+    "song_count": 1
   },
   {
     "word": "brr",
@@ -1004,8 +974,7 @@
   {
     "word": "ganas",
     "corpus_count": 3,
-    "song_count": 3,
-    "display_form": "gana'"
+    "song_count": 3
   },
   {
     "word": "gente",
@@ -1042,8 +1011,7 @@
   {
     "word": "has",
     "corpus_count": 3,
-    "song_count": 2,
-    "display_form": "ha'"
+    "song_count": 2
   },
   {
     "word": "hubiera",
@@ -1054,11 +1022,6 @@
     "word": "ido",
     "corpus_count": 3,
     "song_count": 1
-  },
-  {
-    "word": "j",
-    "corpus_count": 3,
-    "song_count": 2
   },
   {
     "word": "locura",
@@ -1083,8 +1046,7 @@
   {
     "word": "menos",
     "corpus_count": 3,
-    "song_count": 3,
-    "display_form": "meno'"
+    "song_count": 3
   },
   {
     "word": "mucho",
@@ -1239,6 +1201,11 @@
     "song_count": 2
   },
   {
+    "word": "ah",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
     "word": "amanezca",
     "corpus_count": 2,
     "song_count": 2
@@ -1255,6 +1222,11 @@
   },
   {
     "word": "bailar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "balvin",
     "corpus_count": 2,
     "song_count": 2
   },
@@ -1402,8 +1374,7 @@
   {
     "word": "dos",
     "corpus_count": 2,
-    "song_count": 2,
-    "display_form": "do'"
+    "song_count": 2
   },
   {
     "word": "duro",
@@ -1562,6 +1533,11 @@
     "song_count": 1
   },
   {
+    "word": "ma'",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
     "word": "mal",
     "corpus_count": 2,
     "song_count": 1
@@ -1572,20 +1548,9 @@
     "song_count": 2
   },
   {
-    "word": "man",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
     "word": "marido",
     "corpus_count": 2,
     "song_count": 2
-  },
-  {
-    "word": "mas",
-    "corpus_count": 2,
-    "song_count": 2,
-    "display_form": "ma'"
   },
   {
     "word": "merezco",
@@ -1689,11 +1654,6 @@
     "song_count": 1
   },
   {
-    "word": "ozuna",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
     "word": "par",
     "corpus_count": 2,
     "song_count": 2
@@ -1767,8 +1727,7 @@
   {
     "word": "pones",
     "corpus_count": 2,
-    "song_count": 2,
-    "display_form": "pone'"
+    "song_count": 2
   },
   {
     "word": "primero",
@@ -1788,8 +1747,7 @@
   {
     "word": "quieras",
     "corpus_count": 2,
-    "song_count": 2,
-    "display_form": "quiera'"
+    "song_count": 2
   },
   {
     "word": "quién",
@@ -1848,11 +1806,6 @@
     "song_count": 2
   },
   {
-    "word": "rompiendo",
-    "corpus_count": 2,
-    "song_count": 1
-  },
-  {
     "word": "sabor",
     "corpus_count": 2,
     "song_count": 1
@@ -1880,8 +1833,7 @@
   {
     "word": "sigues",
     "corpus_count": 2,
-    "song_count": 1,
-    "display_form": "sigue'"
+    "song_count": 1
   },
   {
     "word": "solitas",
@@ -1960,11 +1912,6 @@
     "song_count": 2
   },
   {
-    "word": "uh",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
     "word": "van",
     "corpus_count": 2,
     "song_count": 2
@@ -1989,6 +1936,11 @@
     "corpus_count": 2,
     "song_count": 1,
     "display_form": "volvemo'"
+  },
+  {
+    "word": "wuh",
+    "corpus_count": 2,
+    "song_count": 1
   },
   {
     "word": "abajo",
@@ -2585,11 +2537,6 @@
     "song_count": 1
   },
   {
-    "word": "claros",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "clase",
     "corpus_count": 1,
     "song_count": 1
@@ -2601,11 +2548,6 @@
   },
   {
     "word": "coincidimos",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "colores",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -2685,7 +2627,7 @@
     "song_count": 1
   },
   {
-    "word": "confundía'",
+    "word": "confundías",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -2838,8 +2780,7 @@
   {
     "word": "das",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "da'"
+    "song_count": 1
   },
   {
     "word": "dato",
@@ -3075,11 +3016,6 @@
     "song_count": 1
   },
   {
-    "word": "dynell",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "dé",
     "corpus_count": 1,
     "song_count": 1
@@ -3087,8 +3023,7 @@
   {
     "word": "días",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "día'"
+    "song_count": 1
   },
   {
     "word": "echa",
@@ -3103,11 +3038,6 @@
   },
   {
     "word": "eduquen",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "elena",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -3358,8 +3288,7 @@
   {
     "word": "estas",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "esta'"
+    "song_count": 1
   },
   {
     "word": "ester",
@@ -3369,8 +3298,7 @@
   {
     "word": "estos",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "esto'"
+    "song_count": 1
   },
   {
     "word": "estrés",
@@ -3692,8 +3620,7 @@
   {
     "word": "haces",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "hace'"
+    "song_count": 1
   },
   {
     "word": "had",
@@ -3768,11 +3695,6 @@
     "corpus_count": 1,
     "song_count": 1,
     "display_form": "hora'"
-  },
-  {
-    "word": "hyde",
-    "corpus_count": 1,
-    "song_count": 1
   },
   {
     "word": "héctor",
@@ -3964,8 +3886,7 @@
   {
     "word": "llamas",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "llama'"
+    "song_count": 1
   },
   {
     "word": "lleca",
@@ -4386,11 +4307,6 @@
     "song_count": 1
   },
   {
-    "word": "negrito",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "nice",
     "corpus_count": 1,
     "song_count": 1
@@ -4541,8 +4457,7 @@
   {
     "word": "pareces",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "parece'"
+    "song_count": 1
   },
   {
     "word": "parezca",
@@ -4557,8 +4472,7 @@
   {
     "word": "partes",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "parte'"
+    "song_count": 1
   },
   {
     "word": "pasajera",
@@ -4698,8 +4612,7 @@
   {
     "word": "pides",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "pide'"
+    "song_count": 1
   },
   {
     "word": "pin",
@@ -4962,11 +4875,6 @@
     "song_count": 1
   },
   {
-    "word": "químico",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "raptar",
     "corpus_count": 1,
     "song_count": 1
@@ -5083,6 +4991,11 @@
     "corpus_count": 1,
     "song_count": 1,
     "display_form": "rojo'"
+  },
+  {
+    "word": "rompiendo",
+    "corpus_count": 1,
+    "song_count": 1
   },
   {
     "word": "rompimos",
@@ -5301,11 +5214,6 @@
     "song_count": 1
   },
   {
-    "word": "sky",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "so",
     "corpus_count": 1,
     "song_count": 1
@@ -5355,8 +5263,7 @@
   {
     "word": "sus",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "su'"
+    "song_count": 1
   },
   {
     "word": "suya",
@@ -5458,8 +5365,7 @@
   {
     "word": "tiras",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "tira'"
+    "song_count": 1
   },
   {
     "word": "tiro",
@@ -5570,8 +5476,7 @@
   {
     "word": "tres",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "tre'"
+    "song_count": 1
   },
   {
     "word": "tuya",
@@ -5609,6 +5514,11 @@
     "song_count": 1
   },
   {
+    "word": "uh",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
     "word": "usar",
     "corpus_count": 1,
     "song_count": 1
@@ -5616,8 +5526,7 @@
   {
     "word": "vacaciones",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "vacacione'"
+    "song_count": 1
   },
   {
     "word": "vacilo",
@@ -5653,8 +5562,7 @@
   {
     "word": "veas",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "vea'"
+    "song_count": 1
   },
   {
     "word": "vendidos",
@@ -5669,8 +5577,7 @@
   {
     "word": "vengas",
     "corpus_count": 1,
-    "song_count": 1,
-    "display_form": "venga'"
+    "song_count": 1
   },
   {
     "word": "ventana",
@@ -5797,11 +5704,6 @@
     "song_count": 1
   },
   {
-    "word": "yasso",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "yeh",
     "corpus_count": 1,
     "song_count": 1
@@ -5822,82 +5724,12 @@
     "song_count": 1
   },
   {
-    "word": "montarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "pegar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
     "word": "dar",
-    "corpus_count": 5,
-    "song_count": 4
-  },
-  {
-    "word": "ir",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "conquistar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "tirarse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "despedirse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "tocar",
-    "corpus_count": 1,
+    "corpus_count": 2,
     "song_count": 1
   },
   {
     "word": "fallar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "recordar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "mojar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "presentar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "comerse",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "regalar",
-    "corpus_count": 2,
-    "song_count": 2
-  },
-  {
-    "word": "calentar",
-    "corpus_count": 1,
-    "song_count": 1
-  },
-  {
-    "word": "venir",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -5907,22 +5739,17 @@
     "song_count": 1
   },
   {
-    "word": "mandar",
+    "word": "tocar",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "dejarse",
-    "corpus_count": 6,
-    "song_count": 3
-  },
-  {
-    "word": "mover",
+    "word": "pegar",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "poner",
+    "word": "tirarse",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -5932,12 +5759,92 @@
     "song_count": 1
   },
   {
+    "word": "montarse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mojar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "dejarse",
+    "corpus_count": 6,
+    "song_count": 3
+  },
+  {
+    "word": "recordar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "conquistar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mover",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "regalar",
+    "corpus_count": 2,
+    "song_count": 2
+  },
+  {
+    "word": "ir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "venir",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "mandar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "comerse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "calentar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "presentar",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "despedirse",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "poner",
+    "corpus_count": 1,
+    "song_count": 1
+  },
+  {
+    "word": "caer",
+    "corpus_count": 2,
+    "song_count": 1
+  },
+  {
     "word": "guayar",
     "corpus_count": 1,
     "song_count": 1
   },
   {
-    "word": "perrear",
+    "word": "gemir",
     "corpus_count": 1,
     "song_count": 1
   },
@@ -5952,12 +5859,7 @@
     "song_count": 1
   },
   {
-    "word": "caer",
-    "corpus_count": 2,
-    "song_count": 1
-  },
-  {
-    "word": "gemir",
+    "word": "perrear",
     "corpus_count": 1,
     "song_count": 1
   }

@@ -3,9 +3,9 @@
     {
       "expression": "ir a + infinitive",
       "translation": "go or be going to + verb",
-      "count": 19,
-      "occurrence_count": 20,
-      "num_songs": 8,
+      "count": 20,
+      "occurrence_count": 21,
+      "num_songs": 9,
       "examples": [
         {
           "id": "5302840:28",
@@ -70,7 +70,7 @@
         "van a"
       ],
       "variant_counts": {
-        "voy a": 9,
+        "voy a": 10,
         "va a": 6,
         "vamos a": 3,
         "van a": 2
@@ -1447,6 +1447,47 @@
       "source": "artist-curated"
     },
     {
+      "expression": "tener que + infinitive",
+      "translation": "have to + verb",
+      "count": 2,
+      "occurrence_count": 2,
+      "num_songs": 2,
+      "examples": [
+        {
+          "id": "5929713:11",
+          "line": "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)",
+          "title": "Una Locura",
+          "matched_variant": "tengo que dejar",
+          "matched_surface": "tengo que dejar",
+          "segment_id": "seg_fef50b1a9a0c7fd5d475a011",
+          "occurrence_ids": [
+            "occ_f4997b288f6cc6413f8d3c3b"
+          ]
+        },
+        {
+          "id": "3687950:20",
+          "line": "Sencilla, bonita; no se tiene que maquillar",
+          "title": "Vaina Loca",
+          "matched_variant": "tiene que maquillar",
+          "matched_surface": "tiene que maquillar",
+          "segment_id": "seg_bda3396fe0c1cb24e157b6a8",
+          "occurrence_ids": [
+            "occ_ae4815129381f8683889bf3b"
+          ]
+        }
+      ],
+      "variants": [
+        "tengo que",
+        "tiene que"
+      ],
+      "variant_counts": {
+        "tengo que": 1,
+        "tiene que": 1
+      },
+      "family": "tener que + infinitive",
+      "source": "artist-construction"
+    },
+    {
       "expression": "por ahí",
       "translation": "around there, out and about",
       "count": 1,
@@ -1727,34 +1768,6 @@
       "source": "artist-curated"
     },
     {
-      "expression": "tener que + infinitive",
-      "translation": "have to + verb",
-      "count": 1,
-      "occurrence_count": 1,
-      "num_songs": 1,
-      "examples": [
-        {
-          "id": "5929713:11",
-          "line": "Me dice: \"Vida mía, yo sé que tengo que dejar que tú hagas tus locuras\" (Eh-eh, eh-eh)",
-          "title": "Una Locura",
-          "matched_variant": "tengo que dejar",
-          "matched_surface": "tengo que dejar",
-          "segment_id": "seg_fef50b1a9a0c7fd5d475a011",
-          "occurrence_ids": [
-            "occ_f4997b288f6cc6413f8d3c3b"
-          ]
-        }
-      ],
-      "variants": [
-        "tengo que"
-      ],
-      "variant_counts": {
-        "tengo que": 1
-      },
-      "family": "tener que + infinitive",
-      "source": "artist-construction"
-    },
-    {
       "expression": "haber que + infinitive",
       "translation": "one must + verb",
       "count": 1,
@@ -1837,15 +1850,6 @@
       },
       "family": "jurar que",
       "source": "artist-construction"
-    },
-    {
-      "expression": "yo hago lo que",
-      "translation": "I do what(ever)",
-      "count": 0,
-      "occurrence_count": 0,
-      "num_songs": 0,
-      "examples": [],
-      "source": "artist-curated"
     }
   ],
   "pmi_detected": [],
@@ -2026,7 +2030,7 @@
   ],
   "candidates": [],
   "stats": {
-    "confirmed_count": 47,
+    "confirmed_count": 46,
     "pmi_detected_count": 0,
     "patterns_count": 3,
     "candidate_count": 0

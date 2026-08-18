@@ -1,11 +1,11 @@
 {
   "que": {
     "0": "CCONJ",
-    "1": "PRON",
-    "2": "CCONJ",
-    "3": "CCONJ",
+    "1": "CCONJ",
+    "2": "PRON",
+    "3": "PRON",
     "4": "CCONJ",
-    "5": "PRON",
+    "5": "CCONJ",
     "6": "PRON",
     "7": "CCONJ",
     "8": "CCONJ",
@@ -48,15 +48,15 @@
     "9": "CCONJ"
   },
   "la": {
-    "0": "DET",
-    "1": "PRON",
+    "0": "PRON",
+    "1": "DET",
     "2": "DET",
     "3": "DET",
     "4": "DET",
-    "5": "PRON",
+    "5": "DET",
     "6": "DET",
     "7": "DET",
-    "8": "DET",
+    "8": "PRON",
     "9": "DET"
   },
   "a": {
@@ -101,8 +101,8 @@
     "3": "ADP",
     "4": "ADP",
     "5": "ADP",
+    "6": "ADP",
     "7": "ADP",
-    "8": "ADP",
     "9": "ADP"
   },
   "el": {
@@ -167,9 +167,9 @@
   },
   "para": {
     "0": "ADP",
+    "1": "ADP",
     "2": "ADP",
     "3": "ADP",
-    "4": "ADP",
     "5": "ADP",
     "6": "ADP",
     "7": "ADP",
@@ -201,10 +201,10 @@
     "9": "DET"
   },
   "ey": {
-    "0": "INTJ",
-    "1": "CCONJ",
+    "0": "CCONJ",
+    "2": "CCONJ",
     "3": "CCONJ",
-    "4": "CCONJ"
+    "6": "INTJ"
   },
   "por": {
     "0": "ADP",
@@ -260,9 +260,9 @@
     "2": "PRON",
     "3": "DET",
     "4": "DET",
-    "5": "DET",
+    "5": "PRON",
     "6": "PRON",
-    "7": "PRON",
+    "7": "DET",
     "8": "DET",
     "9": "PRON"
   },
@@ -350,7 +350,7 @@
     "9": "DET"
   },
   "ti": {
-    "1": "PRON",
+    "0": "PRON",
     "2": "PRON",
     "3": "PRON",
     "4": "PRON",
@@ -361,10 +361,10 @@
     "0": "DET",
     "1": "DET",
     "2": "DET",
-    "3": "PRON",
+    "3": "DET",
     "4": "DET",
     "5": "DET",
-    "6": "DET",
+    "6": "PRON",
     "7": "DET",
     "8": "DET",
     "9": "DET"
@@ -410,8 +410,8 @@
     "7": "PRON"
   },
   "estoy": {
-    "2": "VERB",
-    "4": "VERB",
+    "1": "VERB",
+    "3": "VERB",
     "5": "VERB",
     "6": "VERB",
     "7": "VERB"
@@ -472,8 +472,8 @@
     "8": "VERB"
   },
   "baby": {
-    "0": "ADV",
-    "1": "INTJ",
+    "0": "INTJ",
+    "1": "ADV",
     "2": "ADV",
     "3": "NOUN",
     "4": "NOUN",
@@ -491,8 +491,8 @@
   },
   "conmigo": {
     "0": "PRON",
-    "1": "PRON",
-    "2": "ADV",
+    "1": "ADV",
+    "2": "PRON",
     "3": "PRON",
     "4": "PRON",
     "5": "PRON",
@@ -529,9 +529,9 @@
     "7": "CCONJ"
   },
   "solo": {
-    "0": "ADJ",
+    "0": "ADV",
     "1": "ADJ",
-    "2": "ADV",
+    "2": "ADJ",
     "3": "ADV",
     "4": "ADV",
     "5": "ADV",
@@ -549,7 +549,7 @@
   },
   "está": {
     "0": "VERB",
-    "1": "VERB",
+    "2": "VERB",
     "3": "VERB",
     "4": "VERB",
     "5": "VERB",
@@ -603,20 +603,20 @@
     "4": "VERB"
   },
   "nada": {
-    "0": "PRON",
+    "0": "NOUN",
     "1": "PRON",
     "2": "PRON",
     "3": "PRON",
-    "4": "NOUN",
+    "4": "PRON",
     "5": "PRON"
   },
   "contigo": {
-    "0": "PRON",
-    "1": "PRON",
-    "2": "ADV",
+    "0": "ADV",
+    "1": "ADV",
+    "2": "PRON",
     "3": "PRON",
     "4": "PRON",
-    "5": "ADV",
+    "5": "PRON",
     "6": "PRON",
     "7": "PRON"
   },
@@ -671,8 +671,8 @@
     "3": "DET"
   },
   "ese": {
-    "0": "PRON",
-    "1": "DET",
+    "0": "DET",
+    "1": "PRON",
     "2": "DET",
     "3": "DET",
     "4": "DET",
@@ -710,9 +710,9 @@
     "0": "DET",
     "1": "DET",
     "2": "DET",
-    "3": "DET",
+    "3": "PRON",
     "4": "DET",
-    "5": "PRON"
+    "5": "DET"
   },
   "ahora": {
     "0": "ADV",
@@ -878,8 +878,8 @@
     "2": "ADV"
   },
   "bebé": {
-    "1": "NOUN",
-    "2": "NOUN"
+    "0": "NOUN",
+    "3": "NOUN"
   },
   "cuánto": {
     "0": "PRON",
@@ -900,10 +900,10 @@
     "2": "PRON"
   },
   "eh": {
-    "0": "ADV",
-    "1": "ADV",
-    "2": "ADJ",
-    "3": "INTJ"
+    "0": "INTJ",
+    "1": "ADJ",
+    "2": "ADV",
+    "3": "ADV"
   },
   "hace": {
     "0": "VERB",
@@ -937,7 +937,7 @@
   "sin": {
     "0": "ADP",
     "1": "ADP",
-    "2": "ADP"
+    "3": "ADP"
   },
   "sola": {
     "0": "ADJ",
@@ -977,9 +977,6 @@
   "wuh": {
     "0": "NOUN"
   },
-  "yah": {
-    "0": "INTJ"
-  },
   "él": {
     "0": "PRON",
     "1": "PRON",
@@ -1004,8 +1001,7 @@
   },
   "ah": {
     "0": "INTJ",
-    "1": "INTJ",
-    "2": "INTJ"
+    "1": "INTJ"
   },
   "aunque": {
     "0": "CCONJ",
@@ -1087,14 +1083,14 @@
   "mundo": {
     "0": "NOUN",
     "1": "NOUN",
-    "3": "NOUN"
+    "2": "NOUN"
   },
   "nena": {
     "0": "NOUN"
   },
   "ni": {
-    "0": "CCONJ",
-    "1": "ADV",
+    "0": "ADV",
+    "1": "CCONJ",
     "2": "CCONJ"
   },
   "pues": {
@@ -1278,7 +1274,7 @@
     "0": "NOUN"
   },
   "mami": {
-    "0": "NOUN",
+    "1": "NOUN",
     "2": "INTJ"
   },
   "mate": {
@@ -1303,8 +1299,8 @@
     "1": "PRON"
   },
   "nuestro": {
-    "0": "PRON",
-    "1": "DET"
+    "0": "DET",
+    "1": "PRON"
   },
   "o": {
     "0": "CCONJ",
@@ -1316,7 +1312,7 @@
   },
   "party": {
     "0": "NOUN",
-    "1": "NOUN"
+    "2": "NOUN"
   },
   "pedí": {
     "0": "VERB",
@@ -1390,7 +1386,7 @@
     "0": "INTJ"
   },
   "única": {
-    "0": "ADJ"
+    "1": "ADJ"
   },
   "botellas": {
     "0": "NOUN",
@@ -1615,19 +1611,11 @@
     "0": "VERB",
     "1": "VERB"
   },
-  "mas": {
-    "0": "ADV",
-    "1": "ADV"
-  },
   "mal": {
     "0": "ADV"
   },
   "mamita": {
     "1": "INTJ"
-  },
-  "man": {
-    "0": "NOUN",
-    "1": "NOUN"
   },
   "marido": {
     "0": "NOUN",
@@ -1775,7 +1763,7 @@
     "0": "ADJ"
   },
   "real": {
-    "1": "ADJ"
+    "0": "ADJ"
   },
   "regálame": {
     "0": "VERB",
@@ -1809,7 +1797,7 @@
     "0": "NOUN"
   },
   "shorty": {
-    "0": "NOUN"
+    "1": "NOUN"
   },
   "sigue": {
     "0": "VERB",
@@ -1851,9 +1839,6 @@
   "tuviste": {
     "0": "VERB",
     "1": "VERB"
-  },
-  "uh": {
-    "1": "INTJ"
   },
   "usted": {
     "0": "PRON",
@@ -2186,9 +2171,6 @@
   },
   "coincidimos": {
     "0": "VERB"
-  },
-  "colores": {
-    "0": "NOUN"
   },
   "combo": {
     "0": "NOUN"
@@ -3156,9 +3138,6 @@
   "olvidan": {
     "0": "VERB"
   },
-  "on": {
-    "0": "ADP"
-  },
   "orillita": {
     "0": "NOUN"
   },
@@ -3942,6 +3921,12 @@
   "pasaste": {
     "0": "VERB"
   },
+  "confundías": {
+    "0": "VERB"
+  },
+  "on": {
+    "0": "ADP"
+  },
   "_example_ids": {
     "que": [
       "seg_3e00cf9239a2e90fe11c16aa",
@@ -3968,11 +3953,11 @@
       "seg_eb5f3e500f11744ac0fd983a"
     ],
     "no": [
-      "seg_2a2c797c46b9823af1520a53",
-      "seg_15e54601e1a1219c4df2bf76",
       "seg_4e66fe859f05c376267c8da5",
       "seg_2ea8e8d26626d038df024f4a",
       "seg_d2e3abe31ea26011cfa8528b",
+      "seg_2a2c797c46b9823af1520a53",
+      "seg_15e54601e1a1219c4df2bf76",
       "seg_a32bbe1fbb7775ef7a85c9a0",
       "seg_bfae617c77784a2b52eb08e0",
       "seg_56ed90ab51843eafe6336186",
@@ -3981,6 +3966,7 @@
     ],
     "y": [
       "seg_e8e1644f895f953664e3d61a",
+      "seg_3e0599ccc854c6b7fa5fde2c",
       "seg_b7fcf42ab67ffc8b0ee81aad",
       "seg_7e201489f97eb52b58a91918",
       "seg_31a303a9709275cdc0511317",
@@ -3988,16 +3974,15 @@
       "seg_59255f3d557be5235c8c3a97",
       "seg_7036cd7d00334e5bbc4e0b7a",
       "seg_2a2c797c46b9823af1520a53",
-      "seg_cb170cee4081b6acceedc78c",
-      "seg_3e0599ccc854c6b7fa5fde2c"
+      "seg_cb170cee4081b6acceedc78c"
     ],
     "la": [
+      "seg_4f886fb98f80cae7eb4dcb61",
       "seg_1c5536b402e29e3b038941df",
       "seg_d08cebc129a88e4038f1afe0",
       "seg_725b508677673a64b0fd38d6",
       "seg_79bb6b94be098cd1dba0c299",
       "seg_e21ae5f5c78957839913118b",
-      "seg_4f886fb98f80cae7eb4dcb61",
       "seg_067c7a61242b220c53e86a2e",
       "seg_64daf73ff727420ca45e5b85",
       "seg_e7b1d172b8eed4ef7b8a7c2c",
@@ -4016,24 +4001,24 @@
       "seg_2173ac17e29ff0074b82f5fc"
     ],
     "yo": [
-      "seg_c70f50b2062c27fe90097384",
       "seg_fef50b1a9a0c7fd5d475a011",
       "seg_d0f607e6c996e532179447ae",
       "seg_a735aeafe5fd187ca0f5bf70",
       "seg_2ec994f26f237d7758b417e4",
       "seg_e8cb12def6618e3dd9245ce1",
+      "seg_c70f50b2062c27fe90097384",
       "seg_4afdb9674206d05608c6f6fa",
       "seg_114c98944ddcc3b4fea24e47",
       "seg_cedc75660229397e577ff1d6",
       "seg_b48de4bddfeb688ef56211ca"
     ],
     "tú": [
-      "seg_da3b17604eb9a04357f7bf6b",
-      "seg_31049c390f31646f1d0f2f8c",
-      "seg_cb170cee4081b6acceedc78c",
       "seg_d7b31daed26ee4c986cf1269",
       "seg_c4c6b948167d0299e537440b",
       "seg_7811ee236d258ce9aee45937",
+      "seg_da3b17604eb9a04357f7bf6b",
+      "seg_31049c390f31646f1d0f2f8c",
+      "seg_cb170cee4081b6acceedc78c",
       "seg_fef50b1a9a0c7fd5d475a011",
       "seg_bfbb90cc5dee085fc7b5af4c",
       "seg_7cfc5d0d82933e52324cfe5c",
@@ -4043,37 +4028,37 @@
       "seg_6406b84e744a2ba0e5ae4ac8",
       "seg_3448b0657ca9cf433ae81748",
       "seg_8704fbebc8c0885d84d6b919",
+      "seg_79bb6b94be098cd1dba0c299",
       "seg_81004b04676c0b43b144230a",
       "seg_5be88c3f779a8a34161cd600",
+      "seg_ba3e95bf8302fe9765e23501",
       "seg_bf11d340aaeebc81c8d4eb48",
       "seg_f2ccfe168f4e169f3772d438",
-      "seg_dea708b87718816e688605ed",
-      "seg_79bb6b94be098cd1dba0c299",
-      "seg_ba3e95bf8302fe9765e23501"
-    ],
-    "el": [
-      "seg_cf3c34494dbe5b66d6505902",
-      "seg_479f5a588ae4ab887aa6ae92",
-      "seg_6406b84e744a2ba0e5ae4ac8",
-      "seg_b742ecb8d239e1656f7f9c3f",
-      "seg_f6dc60a1466c17fd47faec24",
-      "seg_4136e3634ee9379531356415",
-      "seg_6b7166c6700b3299750e7f68",
-      "seg_64daf73ff727420ca45e5b85",
-      "seg_0cc0ae99d5b4aaf18f41f534",
-      "seg_0e94c5e0b486f05756cc528f"
+      "seg_dea708b87718816e688605ed"
     ],
     "te": [
       "seg_f4449f3959e890b2b9b91e8d",
-      "seg_188724f0255a866824e3b7d7",
-      "seg_114c98944ddcc3b4fea24e47",
-      "seg_af226c75e330c439e326a131",
-      "seg_6f9f259776045edbf613efd6",
+      "seg_c70f50b2062c27fe90097384",
       "seg_dab1025abbb74f48414b7b7a",
-      "seg_e8e1644f895f953664e3d61a",
-      "seg_a1c74ec0b0ab18edac3bfdeb",
-      "seg_a32bbe1fbb7775ef7a85c9a0",
-      "seg_274aa3385c10f9ed47205163"
+      "seg_274aa3385c10f9ed47205163",
+      "seg_183f8fe68a351c8a18007d4b",
+      "seg_3175c7b595be54c896eb35e0",
+      "seg_188724f0255a866824e3b7d7",
+      "seg_f106a54749fec0b0ec610fe4",
+      "seg_9dffec859c1312acae55c7d6",
+      "seg_114c98944ddcc3b4fea24e47"
+    ],
+    "el": [
+      "seg_479f5a588ae4ab887aa6ae92",
+      "seg_0cc0ae99d5b4aaf18f41f534",
+      "seg_94fecaa8fb8c35c5470ec738",
+      "seg_2a2c797c46b9823af1520a53",
+      "seg_6406b84e744a2ba0e5ae4ac8",
+      "seg_cf3c34494dbe5b66d6505902",
+      "seg_1aa880e0bd3ecf5ca8c2788d",
+      "seg_73618153e87db879093e06a1",
+      "seg_2b5752d163a2f7cd144a1666",
+      "seg_b742ecb8d239e1656f7f9c3f"
     ],
     "lo": [
       "seg_caf3dcd09d95ee2c0269d721",
@@ -4090,105 +4075,105 @@
     "en": [
       "seg_e8cb12def6618e3dd9245ce1",
       "seg_77f6f63053e82f220e3dbbb7",
+      "seg_3448b0657ca9cf433ae81748",
+      "seg_2ce6bf35e102c1f0c0212767",
       "seg_2ea8e8d26626d038df024f4a",
       "seg_257670fce705a75d0bce2f1d",
       "seg_e21ae5f5c78957839913118b",
       "seg_dc49534d7677a3d79dccf22c",
       "seg_067c7a61242b220c53e86a2e",
-      "seg_3448b0657ca9cf433ae81748",
-      "seg_64daf73ff727420ca45e5b85",
-      "seg_2ce6bf35e102c1f0c0212767"
+      "seg_64daf73ff727420ca45e5b85"
     ],
     "se": [
       "seg_5429cf95b578cf6cd81903a9",
       "seg_f2ccfe168f4e169f3772d438",
+      "seg_0558c2248faf844d72079ec6",
+      "seg_257670fce705a75d0bce2f1d",
       "seg_3e00cf9239a2e90fe11c16aa",
       "seg_80a23632a75a053da7c173f8",
       "seg_77f6f63053e82f220e3dbbb7",
-      "seg_0558c2248faf844d72079ec6",
-      "seg_257670fce705a75d0bce2f1d",
       "seg_3c0ca88de2ca7382975629c7",
       "seg_4f886fb98f80cae7eb4dcb61",
       "seg_10bee9c03b5844afa6c6aeb5"
     ],
     "para": [
-      "seg_59255f3d557be5235c8c3a97",
-      "seg_0cc0ae99d5b4aaf18f41f534",
-      "seg_025ec0702e8c57d4e1e1458a",
       "seg_cf3c34494dbe5b66d6505902",
-      "seg_649b424bdfd59dd3871ee916",
-      "seg_3e00cf9239a2e90fe11c16aa",
       "seg_7036cd7d00334e5bbc4e0b7a",
       "seg_8437eeced2a0cd8c7650a833",
       "seg_5a873aba555578f57fd25777",
-      "seg_486dac65e1674514a888edae"
+      "seg_0cc0ae99d5b4aaf18f41f534",
+      "seg_59255f3d557be5235c8c3a97",
+      "seg_025ec0702e8c57d4e1e1458a",
+      "seg_486dac65e1674514a888edae",
+      "seg_649b424bdfd59dd3871ee916",
+      "seg_3e00cf9239a2e90fe11c16aa"
     ],
     "es": [
-      "seg_5e06a604596affaa188cb91c",
       "seg_5429cf95b578cf6cd81903a9",
-      "seg_d0f607e6c996e532179447ae",
-      "seg_ae352c930830ad2847b7cab2",
       "seg_7e201489f97eb52b58a91918",
-      "seg_51d75364c79f83f62e3150a1",
-      "seg_725b508677673a64b0fd38d6",
       "seg_4cadbb2cc2e07e043f7f427f",
+      "seg_5e06a604596affaa188cb91c",
+      "seg_725b508677673a64b0fd38d6",
+      "seg_51d75364c79f83f62e3150a1",
       "seg_39aee870c94222892a93f557",
-      "seg_99d0f7e353ce884de2bc442e"
+      "seg_99d0f7e353ce884de2bc442e",
+      "seg_d0f607e6c996e532179447ae",
+      "seg_ae352c930830ad2847b7cab2"
     ],
     "mi": [
       "seg_e85477a65318cc9f3bc2c1f7",
-      "seg_8ad5f901d1edf97a9710ca9f",
-      "seg_d472b3e8f2dcaff3035c9e44",
-      "seg_57f286c49d7d507cbb16babe",
-      "seg_0057a02bce248ceac1fb5296",
-      "seg_6b9cc8bd860a89cf6a69006d",
-      "seg_7e2f571809243bf69740fb34",
-      "seg_b57620140e573cd882583d56",
       "seg_2be1c8a94c168ec5be91671a",
-      "seg_257670fce705a75d0bce2f1d"
+      "seg_257670fce705a75d0bce2f1d",
+      "seg_b57620140e573cd882583d56",
+      "seg_57f286c49d7d507cbb16babe",
+      "seg_8ad5f901d1edf97a9710ca9f",
+      "seg_0057a02bce248ceac1fb5296",
+      "seg_d472b3e8f2dcaff3035c9e44",
+      "seg_6b9cc8bd860a89cf6a69006d",
+      "seg_7e2f571809243bf69740fb34"
     ],
     "ey": [
-      "seg_d18f2dd1a2622efdf9c9e602",
       "seg_2147510e0f56be0a4888f8ed",
       "seg_551b19b11b41aa3a13192b4c",
       "seg_bf11d340aaeebc81c8d4eb48",
       "seg_debd30c2dd6b75a56fb2a64a",
       "seg_61894f0ef85e479672073ac6",
-      "seg_6b7166c6700b3299750e7f68"
+      "seg_6b7166c6700b3299750e7f68",
+      "seg_d18f2dd1a2622efdf9c9e602"
     ],
     "por": [
       "seg_6936d174173508bf891be27c",
       "seg_7fe76de5938ab99027df5271",
+      "seg_ae687ed65b690b1cf477feb2",
       "seg_10bee9c03b5844afa6c6aeb5",
+      "seg_31814c3bf5d17ced7731c019",
       "seg_bdf6cb8592d14493c9247f29",
       "seg_94cee8f04992ee05c04ea939",
-      "seg_ae687ed65b690b1cf477feb2",
       "seg_ff42b3d267481a5d671ac6c4",
-      "seg_31814c3bf5d17ced7731c019",
-      "seg_c2807e7b9e38eec0399b013a",
-      "seg_c5ee07db157d7f474f1063e2"
+      "seg_c5ee07db157d7f474f1063e2",
+      "seg_c2807e7b9e38eec0399b013a"
     ],
     "con": [
       "seg_783b46bc109ad9a62f0f1f99",
-      "seg_4a905922b2855a65af17b7c5",
       "seg_ad11e24058c96ff44ee2c7f0",
       "seg_bfbb90cc5dee085fc7b5af4c",
       "seg_b43aa0794ea59161dd861936",
       "seg_b57620140e573cd882583d56",
-      "seg_e85477a65318cc9f3bc2c1f7",
-      "seg_60296b0e538fa5efe193bc08",
       "seg_4931453fe634e53afdbd470f",
-      "seg_435e1d1aea0c4fbd5c18d176"
+      "seg_435e1d1aea0c4fbd5c18d176",
+      "seg_4a905922b2855a65af17b7c5",
+      "seg_60296b0e538fa5efe193bc08",
+      "seg_e85477a65318cc9f3bc2c1f7"
     ],
     "pero": [
       "seg_55989de1cdfffc63bc50b2f5",
       "seg_6936d174173508bf891be27c",
-      "seg_af226c75e330c439e326a131",
       "seg_47be6ecc4b2e315abb5c3ae7",
-      "seg_e5a1369ae1925f3e4b9baa88",
-      "seg_c00cadb83305479c48445221",
       "seg_7c087074fb964a50506f1ddc",
       "seg_0e94c5e0b486f05756cc528f",
+      "seg_af226c75e330c439e326a131",
+      "seg_c00cadb83305479c48445221",
+      "seg_e5a1369ae1925f3e4b9baa88",
       "seg_e6cf91f952e93ed0c470d97e",
       "seg_c918463e041e308c2330be6a"
     ],
@@ -4198,9 +4183,9 @@
       "seg_6406b84e744a2ba0e5ae4ac8",
       "seg_bfbb90cc5dee085fc7b5af4c",
       "seg_cddd223dd08fa9a91aef6a8f",
-      "seg_d69de27c612ff14e7c6aa1cf",
       "seg_6a79f4f58aba3e6166e3b206",
       "seg_31049c390f31646f1d0f2f8c",
+      "seg_d69de27c612ff14e7c6aa1cf",
       "seg_c3531c9a01d04697a4197a17",
       "seg_a1c74ec0b0ab18edac3bfdeb"
     ],
@@ -4210,134 +4195,134 @@
       "seg_d7fd478a66a0f94741d1a54c",
       "seg_2f9612b27d4b173e65ca6502",
       "seg_5643160b364d8e5f9e88561f",
+      "seg_31814c3bf5d17ced7731c019",
+      "seg_fd0253b62d7b9d9ef9e34303",
       "seg_ad11e24058c96ff44ee2c7f0",
       "seg_c70f50b2062c27fe90097384",
-      "seg_7cfc5d0d82933e52324cfe5c",
-      "seg_31814c3bf5d17ced7731c019",
-      "seg_fd0253b62d7b9d9ef9e34303"
+      "seg_7cfc5d0d82933e52324cfe5c"
     ],
     "un": [
       "seg_7811ee236d258ce9aee45937",
       "seg_e8cb12def6618e3dd9245ce1",
-      "seg_3a150e8358027c4bdb05427b",
-      "seg_8437eeced2a0cd8c7650a833",
       "seg_5dc307ba17935c7eeaf6f4e6",
       "seg_f2ccfe168f4e169f3772d438",
       "seg_97771a9f87e4577b90176725",
       "seg_99d0f7e353ce884de2bc442e",
-      "seg_a26d0896b0dff5ef4c749527",
-      "seg_2147510e0f56be0a4888f8ed"
+      "seg_2147510e0f56be0a4888f8ed",
+      "seg_3a150e8358027c4bdb05427b",
+      "seg_8437eeced2a0cd8c7650a833",
+      "seg_a26d0896b0dff5ef4c749527"
     ],
     "como": [
       "seg_e7b1d172b8eed4ef7b8a7c2c",
       "seg_c648ef7fa679eb6dd9d54291",
-      "seg_e6579abec285f3dec3143b82",
-      "seg_da3b17604eb9a04357f7bf6b",
       "seg_f2ccfe168f4e169f3772d438",
       "seg_d2e3abe31ea26011cfa8528b",
       "seg_8d8882538cc7a69b3fe644aa",
       "seg_8704fbebc8c0885d84d6b919",
+      "seg_da3b17604eb9a04357f7bf6b",
+      "seg_e6579abec285f3dec3143b82",
       "seg_42d4d7c4f2b846f0ea8c8d53",
       "seg_2a89873506bbdb91219a89cf"
     ],
     "si": [
       "seg_15e54601e1a1219c4df2bf76",
-      "seg_7811ee236d258ce9aee45937",
+      "seg_e1ab81f3ab11d51ce912547d",
+      "seg_3175c7b595be54c896eb35e0",
       "seg_dc49534d7677a3d79dccf22c",
       "seg_b43aa0794ea59161dd861936",
-      "seg_e1ab81f3ab11d51ce912547d",
-      "seg_89244552d18f0b48e2fde3ba",
-      "seg_c5ee07db157d7f474f1063e2",
       "seg_7e2f571809243bf69740fb34",
+      "seg_7811ee236d258ce9aee45937",
       "seg_3c0ca88de2ca7382975629c7",
-      "seg_3175c7b595be54c896eb35e0"
+      "seg_89244552d18f0b48e2fde3ba",
+      "seg_c5ee07db157d7f474f1063e2"
     ],
     "le": [
       "seg_9e9707cf5b2ccfdfc364f0ca",
-      "seg_ba53b38529e2e18a90efc782",
-      "seg_881e2a799e7b519046174320",
-      "seg_4136e3634ee9379531356415",
       "seg_4d448c77918fb4cda3facb4c",
       "seg_1aa880e0bd3ecf5ca8c2788d",
       "seg_ff42b3d267481a5d671ac6c4",
+      "seg_881e2a799e7b519046174320",
+      "seg_4136e3634ee9379531356415",
+      "seg_ba53b38529e2e18a90efc782",
+      "seg_c00cadb83305479c48445221",
       "seg_2147510e0f56be0a4888f8ed",
-      "seg_6ee6c9c206108f88268ac904",
-      "seg_c00cadb83305479c48445221"
+      "seg_6ee6c9c206108f88268ac904"
     ],
     "más": [
-      "seg_a1c74ec0b0ab18edac3bfdeb",
       "seg_5be88c3f779a8a34161cd600",
-      "seg_93cc9f91bf71ed54b659f64b",
       "seg_ae352c930830ad2847b7cab2",
       "seg_ff42b3d267481a5d671ac6c4",
       "seg_641489e70be36f34249a544f",
-      "seg_0c4e137215749b558ca432a7",
+      "seg_02dec71f5965f03267fce596",
       "seg_7ea2551e8c6069a4930352e7",
-      "seg_02dec71f5965f03267fce596"
+      "seg_a1c74ec0b0ab18edac3bfdeb",
+      "seg_93cc9f91bf71ed54b659f64b",
+      "seg_0c4e137215749b558ca432a7"
     ],
     "voy": [
       "seg_4e66fe859f05c376267c8da5",
-      "seg_5643160b364d8e5f9e88561f",
-      "seg_6acc31b69c9255d0e3a6721f",
       "seg_87ba37c027b8eb58b2c8d811",
       "seg_a2b695d89b63a455c1149e6d",
       "seg_5e3616a438211a0303f54732",
-      "seg_bdf6cb8592d14493c9247f29",
       "seg_fda6a294ecd134b6ef0d4a54",
       "seg_84cc04982a6fe33be582a580",
-      "seg_78d957c6f4b399c1d2146dd3"
+      "seg_78d957c6f4b399c1d2146dd3",
+      "seg_5643160b364d8e5f9e88561f",
+      "seg_bdf6cb8592d14493c9247f29",
+      "seg_6acc31b69c9255d0e3a6721f"
     ],
     "ti": [
       "seg_03fff9d042a70aa1cfd12536",
       "seg_47cf2cd254cc0678b77d7b66",
       "seg_8ee00a864778847f9f6669f1",
       "seg_47be6ecc4b2e315abb5c3ae7",
-      "seg_78d957c6f4b399c1d2146dd3",
       "seg_6520c96492e046c1de2ce833",
-      "seg_2ec994f26f237d7758b417e4"
+      "seg_2ec994f26f237d7758b417e4",
+      "seg_78d957c6f4b399c1d2146dd3"
     ],
     "las": [
       "seg_3738bc2f56c851338fbdc7ac",
-      "seg_59255f3d557be5235c8c3a97",
       "seg_d7b31daed26ee4c986cf1269",
       "seg_89244552d18f0b48e2fde3ba",
       "seg_5be88c3f779a8a34161cd600",
       "seg_94cee8f04992ee05c04ea939",
       "seg_496e9a1c17a7d3677119e49e",
-      "seg_f969c50051c8a5e03dc3b97a",
+      "seg_468b3342d5589d312ab45456",
+      "seg_59255f3d557be5235c8c3a97",
       "seg_0c4e137215749b558ca432a7",
-      "seg_468b3342d5589d312ab45456"
+      "seg_f969c50051c8a5e03dc3b97a"
     ],
     "los": [
       "seg_79bb6b94be098cd1dba0c299",
-      "seg_bf11d340aaeebc81c8d4eb48",
       "seg_1acfe59c4afb9b71f7b8907a",
-      "seg_df9059c2da674f55b668e678",
       "seg_881e2a799e7b519046174320",
       "seg_783b46bc109ad9a62f0f1f99",
-      "seg_306f1593a0388f4eb89ba2ad",
+      "seg_99d0f7e353ce884de2bc442e",
+      "seg_df9059c2da674f55b668e678",
+      "seg_bf11d340aaeebc81c8d4eb48",
       "seg_c3531c9a01d04697a4197a17",
       "seg_435e1d1aea0c4fbd5c18d176",
-      "seg_99d0f7e353ce884de2bc442e"
+      "seg_306f1593a0388f4eb89ba2ad"
     ],
     "tu": [
       "seg_672128f817dc4cd0c778e06b",
       "seg_e85477a65318cc9f3bc2c1f7",
-      "seg_bfbb90cc5dee085fc7b5af4c",
       "seg_fa605e34abfa7514dd56908b",
-      "seg_8e32ed8785fc87b2a39cc714",
       "seg_5dc307ba17935c7eeaf6f4e6",
       "seg_b3f69ac3aa18d18ce20a5911",
       "seg_c5ee07db157d7f474f1063e2",
+      "seg_8e32ed8785fc87b2a39cc714",
+      "seg_bfbb90cc5dee085fc7b5af4c",
       "seg_31a303a9709275cdc0511317",
       "seg_a025f918c4aa49692751bb65"
     ],
     "al": [
       "seg_420b70613752aafc05b41e08",
-      "seg_7787ffe38e27776a741fab2d",
       "seg_89244552d18f0b48e2fde3ba",
-      "seg_306f1593a0388f4eb89ba2ad",
-      "seg_c5ee07db157d7f474f1063e2"
+      "seg_c5ee07db157d7f474f1063e2",
+      "seg_7787ffe38e27776a741fab2d",
+      "seg_306f1593a0388f4eb89ba2ad"
     ],
     "todo": [
       "seg_81004b04676c0b43b144230a",
@@ -4346,28 +4331,28 @@
       "seg_479f5a588ae4ab887aa6ae92",
       "seg_7cfc5d0d82933e52324cfe5c",
       "seg_257670fce705a75d0bce2f1d",
-      "seg_7c087074fb964a50506f1ddc",
-      "seg_a5bc27b384b9d92fb20dd07e"
+      "seg_a5bc27b384b9d92fb20dd07e",
+      "seg_7c087074fb964a50506f1ddc"
     ],
     "una": [
       "seg_b4a72e7347e0e875e4c9a504",
       "seg_d0f607e6c996e532179447ae",
-      "seg_fa77dae2cc548a868cb7363f",
-      "seg_b35ac34ad379c601ced95352",
       "seg_af226c75e330c439e326a131",
+      "seg_6520c96492e046c1de2ce833",
+      "seg_b35ac34ad379c601ced95352",
+      "seg_fa77dae2cc548a868cb7363f",
       "seg_8704fbebc8c0885d84d6b919",
       "seg_69c86c147ed53a8dec9a8592",
-      "seg_6520c96492e046c1de2ce833",
       "seg_23f4e2074721be1e57944772"
     ],
     "estoy": [
       "seg_2b5752d163a2f7cd144a1666",
       "seg_8437eeced2a0cd8c7650a833",
       "seg_51ab46411bcfe08e26f5c1c0",
-      "seg_a99b2487a9f81454681e2986",
       "seg_144e017918495028fafe0bbd",
       "seg_47cf2cd254cc0678b77d7b66",
       "seg_c5ee07db157d7f474f1063e2",
+      "seg_a99b2487a9f81454681e2986",
       "seg_8ffbc9e5f5be686e0de8b31d"
     ],
     "sé": [
@@ -4375,20 +4360,20 @@
       "seg_a32bbe1fbb7775ef7a85c9a0",
       "seg_82d98373b37f4c30fc6709bb",
       "seg_f4449f3959e890b2b9b91e8d",
-      "seg_a735aeafe5fd187ca0f5bf70",
       "seg_39aee870c94222892a93f557",
+      "seg_a735aeafe5fd187ca0f5bf70",
       "seg_fef50b1a9a0c7fd5d475a011",
       "seg_65cd498288374292bc6f3fd7"
     ],
     "ya": [
       "seg_025ec0702e8c57d4e1e1458a",
       "seg_ab3149f7761a45ccdddabf58",
-      "seg_e5a1369ae1925f3e4b9baa88",
       "seg_4d448c77918fb4cda3facb4c",
-      "seg_9de099b577b1727d67b9c59a",
       "seg_6b82ff1077a4eca428361368",
-      "seg_0860df6475bad8827667197d",
-      "seg_65cd498288374292bc6f3fd7"
+      "seg_65cd498288374292bc6f3fd7",
+      "seg_e5a1369ae1925f3e4b9baa88",
+      "seg_9de099b577b1727d67b9c59a",
+      "seg_0860df6475bad8827667197d"
     ],
     "noche": [
       "seg_0558c2248faf844d72079ec6",
@@ -4400,23 +4385,23 @@
     "tengo": [
       "seg_97771a9f87e4577b90176725",
       "seg_7811ee236d258ce9aee45937",
-      "seg_9be585ca8d3ddcbb0a6e97ed",
-      "seg_f106a54749fec0b0ec610fe4",
       "seg_69c86c147ed53a8dec9a8592",
       "seg_fef50b1a9a0c7fd5d475a011",
-      "seg_e44c9056ea4c2d1553d8cfd1",
-      "seg_c006dc02d172d6557175a8fd"
+      "seg_c006dc02d172d6557175a8fd",
+      "seg_9be585ca8d3ddcbb0a6e97ed",
+      "seg_f106a54749fec0b0ec610fe4",
+      "seg_e44c9056ea4c2d1553d8cfd1"
     ],
     "soy": [
       "seg_4dbfd16518f483ffedb1ac1b",
       "seg_6406b84e744a2ba0e5ae4ac8",
       "seg_d1f80286a10bbd93724b810c",
       "seg_6a79f4f58aba3e6166e3b206",
-      "seg_cf2b363f2b1af8d29ce9e0da",
-      "seg_52c8989389bac41f1c9c9892",
       "seg_13410d7b2f47597c98281ea9",
       "seg_731a5377933c522cef97c0ce",
-      "seg_4e0b99d9d4c4c493158071a5"
+      "seg_4e0b99d9d4c4c493158071a5",
+      "seg_cf2b363f2b1af8d29ce9e0da",
+      "seg_52c8989389bac41f1c9c9892"
     ],
     "baby": [
       "seg_a2ed80d905908f3d36d35e9c",
@@ -4436,11 +4421,11 @@
     ],
     "mí": [
       "seg_eb5f3e500f11744ac0fd983a",
-      "seg_0057a02bce248ceac1fb5296",
       "seg_b029f124da1970b5f7c4b87c",
-      "seg_7cfc5d0d82933e52324cfe5c",
       "seg_94cee8f04992ee05c04ea939",
       "seg_c00cadb83305479c48445221",
+      "seg_0057a02bce248ceac1fb5296",
+      "seg_7cfc5d0d82933e52324cfe5c",
       "seg_23f4e2074721be1e57944772"
     ],
     "conmigo": [
@@ -4454,13 +4439,13 @@
     ],
     "cómo": [
       "seg_f4449f3959e890b2b9b91e8d",
-      "seg_110116a5ec86fa2298cd965d",
       "seg_539f293fdacf53b30566bfc8",
       "seg_114c98944ddcc3b4fea24e47",
       "seg_af940e8b58d0225454b05c0b",
       "seg_4bc2d12c18eb53fda6bf3a87",
       "seg_a1c74ec0b0ab18edac3bfdeb",
-      "seg_23f4e2074721be1e57944772"
+      "seg_23f4e2074721be1e57944772",
+      "seg_110116a5ec86fa2298cd965d"
     ],
     "estás": [
       "seg_e8e1644f895f953664e3d61a",
@@ -4472,12 +4457,12 @@
     "nos": [
       "seg_70364fa3fc5ee39d39562af7",
       "seg_222908eb3809716380a012b7",
-      "seg_7811ee236d258ce9aee45937",
       "seg_5be88c3f779a8a34161cd600",
-      "seg_d65d8b114f5a7dbf96168622",
       "seg_0558c2248faf844d72079ec6",
       "seg_7c087074fb964a50506f1ddc",
-      "seg_ef1bafc382d7aa613c606883"
+      "seg_ef1bafc382d7aa613c606883",
+      "seg_7811ee236d258ce9aee45937",
+      "seg_d65d8b114f5a7dbf96168622"
     ],
     "porque": [
       "seg_4f886fb98f80cae7eb4dcb61",
@@ -4494,9 +4479,9 @@
       "seg_067c7a61242b220c53e86a2e",
       "seg_7fe76de5938ab99027df5271",
       "seg_7e2f571809243bf69740fb34",
-      "seg_49b5a6336e0fdff2f64c5e86",
       "seg_0d35ee42dddb3e4e34b95861",
-      "seg_2bb03a00f1884bfba813f0de"
+      "seg_2bb03a00f1884bfba813f0de",
+      "seg_49b5a6336e0fdff2f64c5e86"
     ],
     "ves": [
       "seg_585a6b9a8a03e39f4efb5cfd"
@@ -4518,13 +4503,13 @@
     ],
     "nadie": [
       "seg_c17b60da4272a89928f9f997",
-      "seg_97a68318368be585f7bb7bd3",
       "seg_e7b1d172b8eed4ef7b8a7c2c",
       "seg_6b9cc8bd860a89cf6a69006d",
       "seg_b43aa0794ea59161dd861936",
       "seg_602b000db74ca36ce048abbb",
       "seg_77f6f63053e82f220e3dbbb7",
       "seg_2147510e0f56be0a4888f8ed",
+      "seg_97a68318368be585f7bb7bd3",
       "seg_ae687ed65b690b1cf477feb2"
     ],
     "va": [
@@ -4568,9 +4553,9 @@
       "seg_4f3fb6dd9cf9179c562dd5d5",
       "seg_23b97027e420571f2c46676e",
       "seg_0cc0ae99d5b4aaf18f41f534",
-      "seg_869953ad3cd967ef0d644c07",
       "seg_cb170cee4081b6acceedc78c",
-      "seg_57f286c49d7d507cbb16babe"
+      "seg_57f286c49d7d507cbb16babe",
+      "seg_869953ad3cd967ef0d644c07"
     ],
     "después": [
       "seg_c918463e041e308c2330be6a",
@@ -4581,19 +4566,19 @@
     ],
     "eres": [
       "seg_4afdb9674206d05608c6f6fa",
-      "seg_c1baab7e69fdd51732560b85",
       "seg_47cf2cd254cc0678b77d7b66",
       "seg_719886c1b33ecc751f214f0f",
       "seg_115d4c73a75cd8f06f145cd3",
-      "seg_af940e8b58d0225454b05c0b"
+      "seg_af940e8b58d0225454b05c0b",
+      "seg_c1baab7e69fdd51732560b85"
     ],
     "eso": [
       "seg_6936d174173508bf891be27c",
       "seg_d0f607e6c996e532179447ae",
       "seg_31814c3bf5d17ced7731c019",
       "seg_c9acc8d7f34568d6cc86a434",
-      "seg_bf21c73379115183742d5f6f",
-      "seg_35c783e5bac0bf44f746bf5d"
+      "seg_35c783e5bac0bf44f746bf5d",
+      "seg_bf21c73379115183742d5f6f"
     ],
     "hay": [
       "seg_1acfe59c4afb9b71f7b8907a",
@@ -4839,12 +4824,6 @@
       "seg_7e2f571809243bf69740fb34",
       "seg_bfae617c77784a2b52eb08e0"
     ],
-    "balvin": [
-      "seg_0bb548fa7965469281ddbde4",
-      "seg_d2df93523cad64007182c7d7",
-      "seg_7bcf9b450723860b3f7bc11f",
-      "seg_c9b671de403dd95437d09878"
-    ],
     "bebé": [
       "seg_55989de1cdfffc63bc50b2f5",
       "seg_cf3c34494dbe5b66d6505902",
@@ -4910,13 +4889,6 @@
       "seg_ce9ae91ec9542360811205ee",
       "seg_274aa3385c10f9ed47205163"
     ],
-    "ojos": [
-      "seg_79bb6b94be098cd1dba0c299",
-      "seg_cedc75660229397e577ff1d6",
-      "seg_1f36490091b4ef40eb8e108f",
-      "seg_e7b1d172b8eed4ef7b8a7c2c",
-      "seg_87bfb18126bdcba8d4ffd758"
-    ],
     "sin": [
       "seg_6b7166c6700b3299750e7f68",
       "seg_4dbfd16518f483ffedb1ac1b",
@@ -4967,22 +4939,10 @@
       "seg_da3b17604eb9a04357f7bf6b",
       "seg_3a150e8358027c4bdb05427b"
     ],
-    "wuh": [
-      "seg_3448b0657ca9cf433ae81748"
-    ],
-    "yah": [
-      "seg_d1fae44bae3493becfb8a003",
-      "seg_57f89c3f9a655f273adf2439"
-    ],
     "él": [
       "seg_7036cd7d00334e5bbc4e0b7a",
       "seg_eae99936fd45ae4637b51f86",
       "seg_e6cf91f952e93ed0c470d97e"
-    ],
-    "ah": [
-      "seg_b35ac34ad379c601ced95352",
-      "seg_1328a30e25c5d73f5450ef2d",
-      "seg_fba1bf2bf8fd15142957ecdf"
     ],
     "amigos": [
       "seg_1958cd7c0ec620c5bf9baaf6",
@@ -5092,6 +5052,12 @@
       "seg_7e21e2bff846d89287dcb74a",
       "seg_ae687ed65b690b1cf477feb2",
       "seg_7f762dbc54c95640d5b008c3"
+    ],
+    "ojos": [
+      "seg_79bb6b94be098cd1dba0c299",
+      "seg_cedc75660229397e577ff1d6",
+      "seg_e7b1d172b8eed4ef7b8a7c2c",
+      "seg_87bfb18126bdcba8d4ffd758"
     ],
     "pues": [
       "seg_a1c74ec0b0ab18edac3bfdeb"
@@ -5288,10 +5254,6 @@
     "ido": [
       "seg_a1c74ec0b0ab18edac3bfdeb"
     ],
-    "j": [
-      "seg_0bb548fa7965469281ddbde4",
-      "seg_c9b671de403dd95437d09878"
-    ],
     "locura": [
       "seg_856d068a54cd6900e4302351"
     ],
@@ -5439,6 +5401,10 @@
       "seg_3e0599ccc854c6b7fa5fde2c",
       "seg_13fb0241216f542890857e33"
     ],
+    "ah": [
+      "seg_b35ac34ad379c601ced95352",
+      "seg_1328a30e25c5d73f5450ef2d"
+    ],
     "amanezca": [
       "seg_c9acc8d7f34568d6cc86a434",
       "seg_b5d0491ed9f46b8f66176b8f"
@@ -5453,6 +5419,10 @@
     "bailar": [
       "seg_0a170cc6d94e0ad22e13e8ad",
       "seg_fb2390b78b06d74c8d9904c5"
+    ],
+    "balvin": [
+      "seg_d2df93523cad64007182c7d7",
+      "seg_7bcf9b450723860b3f7bc11f"
     ],
     "bellaca": [
       "seg_af940e8b58d0225454b05c0b"
@@ -5660,6 +5630,10 @@
     "ma": [
       "seg_a6b0a13f44c6479a19aa40d8"
     ],
+    "ma'": [
+      "seg_03516c4f8b7a70caadc64196",
+      "seg_322c36b21040f26b9d71e0b9"
+    ],
     "mal": [
       "seg_54e22f0a23863c78f20679d5"
     ],
@@ -5667,17 +5641,9 @@
       "seg_8e32ed8785fc87b2a39cc714",
       "seg_b28ad7582f9b462194f85ee6"
     ],
-    "man": [
-      "seg_0bb548fa7965469281ddbde4",
-      "seg_c9b671de403dd95437d09878"
-    ],
     "marido": [
       "seg_84783a6d66b75ff729ed69b4",
       "seg_e3973f4cd25770723c608ae2"
-    ],
-    "mas": [
-      "seg_03516c4f8b7a70caadc64196",
-      "seg_322c36b21040f26b9d71e0b9"
     ],
     "merezco": [
       "seg_4e66fe859f05c376267c8da5"
@@ -5752,10 +5718,6 @@
     ],
     "olvido": [
       "seg_dea708b87718816e688605ed"
-    ],
-    "ozuna": [
-      "seg_5164103dd593f2a4dbd225f4",
-      "seg_a337b06452cebce51d793e9f"
     ],
     "par": [
       "seg_5468d3aea78735a9795062a0",
@@ -5869,9 +5831,6 @@
       "seg_783b46bc109ad9a62f0f1f99",
       "seg_52c8989389bac41f1c9c9892"
     ],
-    "rompiendo": [
-      "seg_3d3146d7db118f76eccc2e45"
-    ],
     "sabor": [
       "seg_774d2200b554d000b350e28d"
     ],
@@ -5945,10 +5904,6 @@
       "seg_6406b84e744a2ba0e5ae4ac8",
       "seg_1b01d04dc57e2e74064b2922"
     ],
-    "uh": [
-      "seg_464921589aca293784c1e589",
-      "seg_ab078516c868ccbc0a415158"
-    ],
     "van": [
       "seg_97771a9f87e4577b90176725",
       "seg_962ed584aadf77843cad0757"
@@ -5966,6 +5921,9 @@
     ],
     "volvemos": [
       "seg_c5ee07db157d7f474f1063e2"
+    ],
+    "wuh": [
+      "seg_3448b0657ca9cf433ae81748"
     ],
     "abajo": [
       "seg_e7bf63cab1dd1b7d155c4a2f"
@@ -6321,9 +6279,6 @@
     "city": [
       "seg_a6e49692b6cd547b821846b6"
     ],
-    "claros": [
-      "seg_1f36490091b4ef40eb8e108f"
-    ],
     "clase": [
       "seg_672128f817dc4cd0c778e06b"
     ],
@@ -6332,9 +6287,6 @@
     ],
     "coincidimos": [
       "seg_55989de1cdfffc63bc50b2f5"
-    ],
-    "colores": [
-      "seg_5f0ee00f0fb57d7babf58f06"
     ],
     "combo": [
       "seg_65114b762b8abc8eab5e5816"
@@ -6381,7 +6333,7 @@
     "confianza": [
       "seg_2147510e0f56be0a4888f8ed"
     ],
-    "confundía'": [
+    "confundías": [
       "seg_4c9ecf8629a0115bbc4c15d5"
     ],
     "conocen": [
@@ -6612,9 +6564,6 @@
     "dura": [
       "seg_503307b3a3e77756033063c9"
     ],
-    "dynell": [
-      "seg_29d203d9beb48a383021a171"
-    ],
     "dé": [
       "seg_b7fcf42ab67ffc8b0ee81aad"
     ],
@@ -6629,9 +6578,6 @@
     ],
     "eduquen": [
       "seg_80a23632a75a053da7c173f8"
-    ],
-    "elena": [
-      "seg_b6ba29aeb70eee74575aa27e"
     ],
     "ellos": [
       "seg_7f762dbc54c95640d5b008c3"
@@ -7020,9 +6966,6 @@
     "horas": [
       "seg_0c4e137215749b558ca432a7"
     ],
-    "hyde": [
-      "seg_99cf5ac87bff6849fff4a318"
-    ],
     "héctor": [
       "seg_783b46bc109ad9a62f0f1f99"
     ],
@@ -7386,9 +7329,6 @@
     "necesita": [
       "seg_e25d98668f5e23d323c2ffb3"
     ],
-    "negrito": [
-      "seg_1f36490091b4ef40eb8e108f"
-    ],
     "nice": [
       "seg_2a3ba5db564344c1a1d65cf5"
     ],
@@ -7725,9 +7665,6 @@
     "quito": [
       "seg_ba53b38529e2e18a90efc782"
     ],
-    "químico": [
-      "seg_99cf5ac87bff6849fff4a318"
-    ],
     "raptar": [
       "seg_5643160b364d8e5f9e88561f"
     ],
@@ -7796,6 +7733,9 @@
     ],
     "rojos": [
       "seg_79bb6b94be098cd1dba0c299"
+    ],
+    "rompiendo": [
+      "seg_725cbd2733afa4a92f44895b"
     ],
     "rompimos": [
       "seg_77a041422fa20dfd33c56f73"
@@ -7925,9 +7865,6 @@
     ],
     "size": [
       "seg_310644047b909f83f8b1937a"
-    ],
-    "sky": [
-      "seg_3d3146d7db118f76eccc2e45"
     ],
     "so": [
       "seg_71cd0495f754844fed973bd1"
@@ -8106,6 +8043,9 @@
     "uff": [
       "seg_629bed6a33ba8f8a48ee010d"
     ],
+    "uh": [
+      "seg_464921589aca293784c1e589"
+    ],
     "usar": [
       "seg_4dbfd16518f483ffedb1ac1b"
     ],
@@ -8214,9 +8154,6 @@
     "yankee": [
       "seg_d95c442ee347dbace3cfe9d2"
     ],
-    "yasso": [
-      "seg_3a64b0a9dc7c7149a6a792bd"
-    ],
     "yeh": [
       "seg_7bcf9b450723860b3f7bc11f"
     ],
@@ -8229,79 +8166,79 @@
     "único": [
       "seg_d1f80286a10bbd93724b810c"
     ],
-    "montarse": [
-      "seg_89baeb411485ad732b83a9cd"
-    ],
-    "recordar": [
-      "seg_ba3e95bf8302fe9765e23501"
-    ],
-    "mandar": [
-      "seg_0d51694a403de62fffeebac9"
-    ],
-    "ir": [
-      "seg_67b179d5d2f43d3e2e66d8ff"
-    ],
     "dar": [
+      "seg_bdf6cb8592d14493c9247f29",
+      "seg_15e2271695fff3ad3cae5fd4",
+      "seg_1c0b08a884f22af1cfb884d5",
       "seg_b7c50079f16e5365033329ae",
       "seg_af226c75e330c439e326a131",
       "seg_3a150e8358027c4bdb05427b",
-      "seg_95a37a37c786d75d36f57016",
-      "seg_1c0b08a884f22af1cfb884d5",
-      "seg_bdf6cb8592d14493c9247f29",
-      "seg_15e2271695fff3ad3cae5fd4"
+      "seg_95a37a37c786d75d36f57016"
     ],
     "fallar": [
       "seg_110116a5ec86fa2298cd965d"
     ],
-    "comerse": [
-      "seg_df9059c2da674f55b668e678"
+    "devorar": [
+      "seg_a025f918c4aa49692751bb65"
     ],
-    "confesar": [
-      "seg_31814c3bf5d17ced7731c019"
+    "tocar": [
+      "seg_bfe934379fb8365ad9b0742f",
+      "seg_8ffbc9e5f5be686e0de8b31d"
+    ],
+    "pegar": [
+      "seg_8704fbebc8c0885d84d6b919"
     ],
     "tirarse": [
       "seg_a212233e4e904360e0632839"
     ],
-    "tocar": [
-      "seg_8ffbc9e5f5be686e0de8b31d",
-      "seg_bfe934379fb8365ad9b0742f"
+    "confesar": [
+      "seg_31814c3bf5d17ced7731c019"
     ],
-    "despedirse": [
-      "seg_84cc04982a6fe33be582a580"
-    ],
-    "mover": [
-      "seg_2178be8b83bb4468bcd84ad7"
-    ],
-    "conquistar": [
-      "seg_cf3c34494dbe5b66d6505902",
-      "seg_88a975773b81b293c0d00208"
+    "montarse": [
+      "seg_89baeb411485ad732b83a9cd"
     ],
     "mojar": [
       "seg_e7bf63cab1dd1b7d155c4a2f"
-    ],
-    "regalar": [
-      "seg_ce9ae91ec9542360811205ee",
-      "seg_fd0253b62d7b9d9ef9e34303"
     ],
     "dejarse": [
       "seg_2f562fae36ed4f4de66b4da0",
       "seg_1acb5b5a0d07534135a47b5b",
       "seg_d0316bcc20e59fddaf764cd5"
     ],
+    "recordar": [
+      "seg_ba3e95bf8302fe9765e23501"
+    ],
+    "conquistar": [
+      "seg_cf3c34494dbe5b66d6505902",
+      "seg_88a975773b81b293c0d00208"
+    ],
+    "mover": [
+      "seg_2178be8b83bb4468bcd84ad7"
+    ],
+    "regalar": [
+      "seg_ce9ae91ec9542360811205ee",
+      "seg_fd0253b62d7b9d9ef9e34303"
+    ],
+    "ir": [
+      "seg_67b179d5d2f43d3e2e66d8ff"
+    ],
     "venir": [
       "seg_61fd6f9370e6ffcd6d433429"
     ],
-    "pegar": [
-      "seg_8704fbebc8c0885d84d6b919"
+    "mandar": [
+      "seg_0d51694a403de62fffeebac9"
+    ],
+    "comerse": [
+      "seg_df9059c2da674f55b668e678"
+    ],
+    "calentar": [
+      "seg_bfe934379fb8365ad9b0742f"
     ],
     "presentar": [
       "seg_84783a6d66b75ff729ed69b4"
     ],
-    "devorar": [
-      "seg_a025f918c4aa49692751bb65"
-    ],
-    "calentar": [
-      "seg_bfe934379fb8365ad9b0742f"
+    "despedirse": [
+      "seg_84cc04982a6fe33be582a580"
     ],
     "poner": [
       "seg_a212233e4e904360e0632839",
@@ -8310,8 +8247,11 @@
     "caer": [
       "seg_67c907dbe07fd344dde24ca7"
     ],
-    "perrear": [
-      "seg_2a89873506bbdb91219a89cf"
+    "guayar": [
+      "seg_3a150e8358027c4bdb05427b"
+    ],
+    "gemir": [
+      "seg_1b29e558eedd044a13d6ad68"
     ],
     "arrebatarse": [
       "seg_3218d37925d33035235f2cd8"
@@ -8319,25 +8259,23 @@
     "lucirse": [
       "seg_3218d37925d33035235f2cd8"
     ],
-    "guayar": [
-      "seg_3a150e8358027c4bdb05427b"
-    ],
-    "gemir": [
-      "seg_1b29e558eedd044a13d6ad68"
+    "perrear": [
+      "seg_2a89873506bbdb91219a89cf"
     ]
   },
   "_meta": {
     "step_name": "tag_example_pos",
     "step_version": 6,
-    "generated_at": 1786492643,
+    "generated_at": 1787095733,
     "tool_versions": {
       "spacy_model": "dep_news_trf"
     },
-    "input_sha256": "62ba111b3828ac345e841606d265b7fffc0fca833757cb20de2370c1343bf79b",
+    "input_sha256": "a1759b362975c9cd5007f4a67d9b7b1805265d2fd15f46038702f769e956f807",
     "ledger_run": "run_3df75929cb720b9525d672cf",
-    "corpus_profile_hash": "sha256:6dc2a0e52627857bafad01b2ea93b3b8fb04b0bcdb60d7c2a82730f324b9a109",
+    "corpus_profile_hash": "sha256:130b0027ffc0692512267479a5a7d06bcd5e548171700f03300428f16e5bfecc",
     "excluded_labels": [
       "adlib",
+      "credit",
       "echo",
       "stutter"
     ]

@@ -36,15 +36,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "la'",
-    "full_word": "las",
     "target_word": "las",
     "display_form": "la'",
-    "target_lemma": "el",
-    "elided_ppm": 981.41,
-    "full_ppm": 5243.24,
-    "combined_ppm": 6224.65
+    "target_lemma": "la",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "las",
+        "lar"
+      ],
+      "reason": "Determiner before plural noun 'sábana'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Despué' de lo' polvo' conmigo la' sábana' hay que botarla'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -109,15 +121,28 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "quiere'",
-    "full_word": "quieres",
     "target_word": "quieres",
     "display_form": "quiere'",
-    "target_lemma": "quier",
-    "elided_ppm": 1100.7,
-    "full_ppm": 694.04,
-    "combined_ppm": 1794.74
+    "target_lemma": "querer",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "quieres",
+        "quieren"
+      ],
+      "reason": "Context uses 'tú', pointing to 2nd person singular 'quieres'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Y si quiere' te busco en la Lamborghi (-ghi)",
+        "¿Qué quiere' hacer? Yo hago lo que tú diga'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -349,16 +374,28 @@
     }
   },
   {
-    "action": "merge",
-    "merge_type": "elision_pair",
-    "elided_word": "dio'",
-    "full_word": "dios",
-    "target_word": "dios",
-    "display_form": "dio'",
-    "target_lemma": "dar",
-    "elided_ppm": 211.46,
-    "full_ppm": 634.39,
-    "combined_ppm": 845.86
+    "action": "skip",
+    "merge_type": "gemini_elision",
+    "provenance": "gemini_elision",
+    "word": "dio'",
+    "note": "Gemini abstained: Caribbean elision of final s in Dios; not on list.",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.0,
+      "candidates": [
+        "dios",
+        "diol",
+        "dion"
+      ],
+      "reason": "Caribbean elision of final s in Dios; not on list.",
+      "corpus_count": 2,
+      "evidence": [
+        "To'a la noche arrodillado a Dio' le rezo",
+        "Ese culo e' grande' liga', que Dio' te lo bendiga"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -832,15 +869,28 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "su'",
-    "full_word": "sus",
     "target_word": "sus",
     "display_form": "su'",
     "target_lemma": "su",
-    "elided_ppm": 27.11,
-    "full_ppm": 265.69,
-    "combined_ppm": 292.8
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "sus",
+        "sud",
+        "sur"
+      ],
+      "reason": "Plural possessive determiner before 'tricky'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Soy el que sabe su' tricky (Eh, yeah-yeah)"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -918,15 +968,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "diga'",
-    "full_word": "digas",
     "target_word": "digas",
     "display_form": "diga'",
-    "target_lemma": "digar",
-    "elided_ppm": 140.98,
-    "full_ppm": 113.87,
-    "combined_ppm": 254.84
+    "target_lemma": "decir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "digas",
+        "digan"
+      ],
+      "reason": "Subject 'tú' matches second-person singular subjunctive 'digas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "¿Qué quiere' hacer? Yo hago lo que tú diga'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -1687,15 +1749,30 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "da'",
-    "full_word": "das",
     "target_word": "das",
     "display_form": "da'",
-    "target_lemma": "da",
-    "elided_ppm": 21.69,
-    "full_ppm": 103.02,
-    "combined_ppm": 124.71
+    "target_lemma": "dar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "das",
+        "dad",
+        "dar",
+        "dan"
+      ],
+      "reason": "Pronoun 'me' and 'tú' match 2nd person singular 'das'.",
+      "corpus_count": 2,
+      "evidence": [
+        "Si me da' tu dirección, yo te mando mil carta'",
+        "Si me da' tu cuenta de banco, un millón de peso'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2575,15 +2652,28 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "sale'",
-    "full_word": "sales",
     "target_word": "sales",
     "display_form": "sale'",
-    "target_lemma": "sal",
-    "elided_ppm": 65.07,
-    "full_ppm": 10.84,
-    "combined_ppm": 75.91
+    "target_lemma": "salar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "sales",
+        "salen"
+      ],
+      "reason": "Second person singular addressed in 'de mi cabeza'.",
+      "corpus_count": 2,
+      "evidence": [
+        "No sale' de mi cabeza",
+        "No sale' de mi cabeza, ey"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2635,15 +2725,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "siente'",
-    "full_word": "sientes",
     "target_word": "sientes",
     "display_form": "siente'",
-    "target_lemma": "sentir",
-    "elided_ppm": 10.84,
-    "full_ppm": 65.07,
-    "combined_ppm": 75.91
+    "target_lemma": "sentar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "sientes",
+        "sienten"
+      ],
+      "reason": "Subject is 'tú' (tú sientes la diferencia).",
+      "corpus_count": 1,
+      "evidence": [
+        "Y ahí e', ahí e' cuando tú siente' la diferencia"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2767,15 +2869,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "tenga'",
-    "full_word": "tengas",
     "target_word": "tengas",
     "display_form": "tenga'",
-    "target_lemma": "tengar",
-    "elided_ppm": 16.27,
-    "full_ppm": 54.22,
-    "combined_ppm": 70.49
+    "target_lemma": "tener",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "tengas",
+        "tengan"
+      ],
+      "reason": "Follows 'sin que', addressing 'tú' (que tengas que pedir).",
+      "corpus_count": 1,
+      "evidence": [
+        "Te lo doy sin que tenga' que pedir, eh"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -2845,15 +2959,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "tenía'",
-    "full_word": "tenías",
     "target_word": "tenías",
     "display_form": "tenía'",
     "target_lemma": "tener",
-    "elided_ppm": 59.64,
-    "full_ppm": 5.42,
-    "combined_ppm": 65.07
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "tenías",
+        "tenían"
+      ],
+      "reason": "Subject is 'tú' implied in 'Te montaste'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Te montaste en la Jeepeta y no tenía' panty"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -3644,15 +3770,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "vea'",
-    "full_word": "veas",
     "target_word": "veas",
     "display_form": "vea'",
     "target_lemma": "ver",
-    "elided_ppm": 21.69,
-    "full_ppm": 27.11,
-    "combined_ppm": 48.8
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "veas",
+        "vean"
+      ],
+      "reason": "Follows 'Pa' que', addressing 'tú' (Pa' que veas).",
+      "corpus_count": 1,
+      "evidence": [
+        "Pa' que vea' lo que pasa, ey"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -3850,15 +3988,30 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "casa'",
-    "full_word": "casas",
     "target_word": "casas",
     "display_form": "casa'",
-    "target_lemma": null,
-    "elided_ppm": 37.96,
-    "full_ppm": 5.42,
-    "combined_ppm": 43.38
+    "target_lemma": "casar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "casas",
+        "casad",
+        "casar",
+        "casal",
+        "casan"
+      ],
+      "reason": "Conditional consequence for 'tú', 2nd person singular 'casas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Si tú me prueba', te casa', ey"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -4102,15 +4255,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "busque'",
-    "full_word": "busques",
     "target_word": "busques",
     "display_form": "busque'",
-    "target_lemma": "busquser",
-    "elided_ppm": 16.27,
-    "full_ppm": 27.11,
-    "combined_ppm": 43.38
+    "target_lemma": "buscar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "busques",
+        "busquen"
+      ],
+      "reason": "Addressed to 'mami', 2nd person singular negative imperative 'busques'.",
+      "corpus_count": 1,
+      "evidence": [
+        "No me busque' en Instagram, mami, búscame en casa"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -4126,15 +4291,28 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "de'",
-    "full_word": "des",
     "target_word": "des",
     "display_form": "de'",
-    "target_lemma": "dser",
-    "elided_ppm": 10.84,
-    "full_ppm": 32.53,
-    "combined_ppm": 43.38
+    "target_lemma": "dar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "des",
+        "del",
+        "den"
+      ],
+      "reason": "Subject 'tú' matches second-person singular subjunctive 'des'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Pa' que ante' que se acabe el año tú me de' un beso"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -6161,15 +6339,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "olvida'",
-    "full_word": "olvidas",
     "target_word": "olvidas",
     "display_form": "olvida'",
     "target_lemma": "olvidar",
-    "elided_ppm": 5.42,
-    "full_ppm": 21.69,
-    "combined_ppm": 27.11
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "olvidas",
+        "olvidad",
+        "olvidar",
+        "olvidan"
+      ],
+      "reason": "Implied subject 'tú' matches 'olvidas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "A mí no me olvida' tan siquiera un poco"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -6966,15 +7158,28 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "peso'",
-    "full_word": "pesos",
     "target_word": "pesos",
     "display_form": "peso'",
-    "target_lemma": null,
-    "elided_ppm": 16.27,
-    "full_ppm": 5.42,
-    "combined_ppm": 21.69
+    "target_lemma": "peso",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "pesos",
+        "pesoz",
+        "pesor"
+      ],
+      "reason": "Plural noun following 'millón de'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Si me da' tu cuenta de banco, un millón de peso'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -7819,12 +8024,28 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "suda'",
     "target_word": "sudas",
     "display_form": "suda'",
     "target_lemma": "sudar",
-    "elided_ppm": 16.27,
-    "combined_ppm": 16.27
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "sudas",
+        "sudad",
+        "sudar",
+        "sudan"
+      ],
+      "reason": "Subject is 'tú' (que tú te bañe').",
+      "corpus_count": 1,
+      "evidence": [
+        "Con él ni suda', no hace falta ni que tú te bañe'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -8206,15 +8427,27 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "prueba'",
-    "full_word": "pruebas",
     "target_word": "pruebas",
     "display_form": "prueba'",
     "target_lemma": "probar",
-    "elided_ppm": 10.84,
-    "full_ppm": 5.42,
-    "combined_ppm": 16.27
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "pruebas",
+        "prueban"
+      ],
+      "reason": "Subject 'tú' matches second-person singular 'pruebas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Si tú me prueba', te casa', ey"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -8950,15 +9183,29 @@
   },
   {
     "action": "merge",
-    "merge_type": "elision_pair",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "apena'",
-    "full_word": "apenas",
     "target_word": "apenas",
     "display_form": "apena'",
-    "target_lemma": "apenas",
-    "elided_ppm": 5.42,
-    "full_ppm": 10.84,
-    "combined_ppm": 16.27
+    "target_lemma": "apenar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "apenas",
+        "apenad",
+        "apenar",
+        "apenan"
+      ],
+      "reason": "Subject 'tú' matches second person singular 'apenas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Que cuando él termina e' cuando tú apena' comienza'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -13451,14 +13698,28 @@
     "combined_ppm": 5.42
   },
   {
-    "action": "merge",
-    "merge_type": "elided_only",
-    "elided_word": "liga'",
-    "target_word": "ligas",
-    "display_form": "liga'",
-    "target_lemma": "liga",
-    "elided_ppm": 5.42,
-    "combined_ppm": 5.42
+    "action": "skip",
+    "merge_type": "gemini_elision",
+    "provenance": "gemini_elision",
+    "word": "liga'",
+    "note": "Gemini abstained: Slang or noun usage not fitting standard candidates.",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.8,
+      "candidates": [
+        "ligas",
+        "ligad",
+        "ligar",
+        "ligan"
+      ],
+      "reason": "Slang or noun usage not fitting standard candidates.",
+      "corpus_count": 1,
+      "evidence": [
+        "Ese culo e' grande' liga', que Dio' te lo bendiga"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -15853,12 +16114,27 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "extrañe'",
     "target_word": "extrañes",
     "display_form": "extrañe'",
-    "target_lemma": null,
-    "elided_ppm": 5.42,
-    "combined_ppm": 5.42
+    "target_lemma": "extrañar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "extrañes",
+        "extrañez",
+        "extrañen"
+      ],
+      "reason": "Subject 'tú' implied by 'me' and context matches 'extrañes'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Que e' imposible que no me extrañe'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -16263,12 +16539,26 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "comienza'",
     "target_word": "comienzas",
     "display_form": "comienza'",
     "target_lemma": "comenzar",
-    "elided_ppm": 5.42,
-    "combined_ppm": 5.42
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "comienzas",
+        "comienzan"
+      ],
+      "reason": "Subject 'tú' matches second person singular 'comienzas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Que cuando él termina e' cuando tú apena' comienza'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -19033,12 +19323,26 @@
   {
     "action": "merge",
     "merge_type": "elided_only",
+    "provenance": "gemini_elision",
     "elided_word": "bañe'",
     "target_word": "bañes",
     "display_form": "bañe'",
-    "target_lemma": null,
-    "elided_ppm": 5.42,
-    "combined_ppm": 5.42
+    "target_lemma": "bañar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "bañes",
+        "bañen"
+      ],
+      "reason": "Subject 'tú' matches subjunctive 'bañes'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Con él ni suda', no hace falta ni que tú te bañe'"
+      ]
+    }
   },
   {
     "action": "merge",
@@ -20542,6 +20846,132 @@
       "corpus_count": 1,
       "evidence": [
         "La tengo confundía' fumando maría"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "brilla'",
+    "target_word": "brillas",
+    "display_form": "brilla'",
+    "target_lemma": "brillar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "brillas",
+        "brillad",
+        "brillar",
+        "brillan"
+      ],
+      "reason": "Subject 'tú' matches second person singular 'brillas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Te la escupo y tú brilla' como Morol"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "encuentra'",
+    "target_word": "encuentras",
+    "display_form": "encuentra'",
+    "target_lemma": "encontrar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "encuentras",
+        "encuentran"
+      ],
+      "reason": "Subject 'tú' matches second-person singular 'encuentras'.",
+      "corpus_count": 1,
+      "evidence": [
+        "Poniéndome la ropa que tú no encuentra' barato (Ah)"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "entrega'",
+    "target_word": "entregas",
+    "display_form": "entrega'",
+    "target_lemma": "entregar",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "entregas",
+        "entregad",
+        "entregar",
+        "entregan"
+      ],
+      "reason": "Reflexive 'te' and subject 'tú' imply 'entregas'.",
+      "corpus_count": 1,
+      "evidence": [
+        "¿Qué tal si chingamo' y te me entrega'?"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "resista'",
+    "target_word": "resistas",
+    "display_form": "resista'",
+    "target_lemma": "resistir",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.95,
+      "candidates": [
+        "resistas",
+        "resistan"
+      ],
+      "reason": "Follows 'te', addressing 'tú' (no te resistas).",
+      "corpus_count": 1,
+      "evidence": [
+        "Oye, ma, no te resista'"
+      ]
+    }
+  },
+  {
+    "action": "merge",
+    "merge_type": "elided_only",
+    "provenance": "gemini_elision",
+    "elided_word": "vocea'",
+    "target_word": "vocear",
+    "display_form": "vocea'",
+    "target_lemma": "vocear",
+    "gemini": {
+      "model": "gemini-3.5-flash-lite",
+      "run_at": "2026-08-18T21:04:57Z",
+      "step_version": 1,
+      "confidence": 0.9,
+      "candidates": [
+        "voceas",
+        "vocead",
+        "vocear",
+        "vocean"
+      ],
+      "reason": "Follows preposition 'a' (a vocear como demente).",
+      "corpus_count": 1,
+      "evidence": [
+        "Se sentaba en el frente a vocea' como demente"
       ]
     }
   }

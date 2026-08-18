@@ -16419,6 +16419,35 @@
     ]
   },
   {
+    "word": "ma'",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3687950",
+      "6838492"
+    ],
+    "examples": [
+      {
+        "id": "3687950:46",
+        "line": "Cuando no te tengo, ma'",
+        "title": "Vaina Loca",
+        "segment_id": "seg_03516c4f8b7a70caadc64196",
+        "occurrence_ids": [
+          "occ_e4a2b7924d22c94476ab4b26"
+        ]
+      },
+      {
+        "id": "6838492:14",
+        "line": "Ma', ¿qué lo que? (¿Qué lo que?) ¿Dónde estás? Dime, a ver (Dime, a ver)",
+        "title": "Qué Más Pues?",
+        "segment_id": "seg_322c36b21040f26b9d71e0b9",
+        "occurrence_ids": [
+          "occ_d71e882403dc5ba1ee815710"
+        ]
+      }
+    ]
+  },
+  {
     "word": "mal",
     "corpus_count": 2,
     "song_count": 1,
@@ -16500,37 +16529,6 @@
         "segment_id": "seg_e3973f4cd25770723c608ae2",
         "occurrence_ids": [
           "occ_21891bfae4a3fdcb393cb0c1"
-        ]
-      }
-    ]
-  },
-  {
-    "word": "mas",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "3687950",
-      "6838492"
-    ],
-    "examples": [
-      {
-        "id": "3687950:46",
-        "line": "Cuando no te tengo, ma'",
-        "title": "Vaina Loca",
-        "surface": "ma'",
-        "segment_id": "seg_03516c4f8b7a70caadc64196",
-        "occurrence_ids": [
-          "occ_e4a2b7924d22c94476ab4b26"
-        ]
-      },
-      {
-        "id": "6838492:14",
-        "line": "Ma', ¿qué lo que? (¿Qué lo que?) ¿Dónde estás? Dime, a ver (Dime, a ver)",
-        "title": "Qué Más Pues?",
-        "surface": "ma'",
-        "segment_id": "seg_322c36b21040f26b9d71e0b9",
-        "occurrence_ids": [
-          "occ_d71e882403dc5ba1ee815710"
         ]
       }
     ]
@@ -21277,7 +21275,7 @@
     ]
   },
   {
-    "word": "confundía'",
+    "word": "confundías",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -21288,6 +21286,7 @@
         "id": "10304179:25",
         "line": "La tengo confundía' fumando maría",
         "title": "Tengo Un Plan",
+        "surface": "confundía'",
         "segment_id": "seg_4c9ecf8629a0115bbc4c15d5",
         "occurrence_ids": [
           "occ_2662969d41ca00f52ae493b6"
@@ -22699,6 +22698,25 @@
         "segment_id": "seg_69c86c147ed53a8dec9a8592",
         "occurrence_ids": [
           "occ_ee1da41b45b0a613e77cdf5c"
+        ]
+      }
+    ]
+  },
+  {
+    "word": "drums",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "8417047"
+    ],
+    "examples": [
+      {
+        "id": "8417047:51",
+        "line": "O-O-Ovy On The Drums",
+        "title": "X SI VOLVEMOS",
+        "segment_id": "seg_422495c05c477b493f5f6922",
+        "occurrence_ids": [
+          "occ_55c2f7f925d305f7373e7319"
         ]
       }
     ]
@@ -27921,6 +27939,25 @@
     ]
   },
   {
+    "word": "on",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "8417047"
+    ],
+    "examples": [
+      {
+        "id": "8417047:51",
+        "line": "O-O-Ovy On The Drums",
+        "title": "X SI VOLVEMOS",
+        "segment_id": "seg_422495c05c477b493f5f6922",
+        "occurrence_ids": [
+          "occ_4b083317f40df17a405ebd4d"
+        ]
+      }
+    ]
+  },
+  {
     "word": "only",
     "corpus_count": 1,
     "song_count": 1,
@@ -31510,6 +31547,25 @@
         "segment_id": "seg_7e201489f97eb52b58a91918",
         "occurrence_ids": [
           "occ_f497d3890e74b54b99aecdf7"
+        ]
+      }
+    ]
+  },
+  {
+    "word": "the",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "8417047"
+    ],
+    "examples": [
+      {
+        "id": "8417047:51",
+        "line": "O-O-Ovy On The Drums",
+        "title": "X SI VOLVEMOS",
+        "segment_id": "seg_422495c05c477b493f5f6922",
+        "occurrence_ids": [
+          "occ_6e18855ad62ab9a9625fb53b"
         ]
       }
     ]

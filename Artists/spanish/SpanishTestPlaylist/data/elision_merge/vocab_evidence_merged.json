@@ -1140,131 +1140,6 @@
     ]
   },
   {
-    "word": "el",
-    "corpus_count": 67,
-    "song_count": 16,
-    "song_ids": [
-      "10304179",
-      "10471373",
-      "10489180",
-      "10627178",
-      "10919676",
-      "1469974",
-      "1556090",
-      "3687950",
-      "5302840",
-      "5302844",
-      "5929713",
-      "5960780",
-      "6211036",
-      "6838492",
-      "8417047",
-      "9991217"
-    ],
-    "examples": [
-      {
-        "id": "10489180:31",
-        "line": "Bebé, pa' conquistarte que me pasen el manual",
-        "title": "Si Antes Te Hubiera Conocido",
-        "segment_id": "seg_cf3c34494dbe5b66d6505902",
-        "occurrence_ids": [
-          "occ_aba9f8537ad590884fedcc55"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "9991217:42",
-        "line": "Y yo la sigo enamorando, regalando, to' el día comprando",
-        "title": "Gata Only",
-        "segment_id": "seg_479f5a588ae4ab887aa6ae92",
-        "occurrence_ids": [
-          "occ_a48d07dbaf053dc81fe0741a"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "1556090:3",
-        "line": "¿Por qué no tuviste el valor de ver quién soy?",
-        "title": "Me Voy",
-        "segment_id": "seg_6406b84e744a2ba0e5ae4ac8",
-        "occurrence_ids": [
-          "occ_4d0f09aa642c83913ac7564a"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "5929713:45",
-        "line": "Me activa el deseo, de ti me dan ganas",
-        "title": "Una Locura",
-        "segment_id": "seg_b742ecb8d239e1656f7f9c3f",
-        "occurrence_ids": [
-          "occ_c0874a79568d9ccb8cc1fce4"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "1469974:28",
-        "line": "Ella quiere que baje pa'l sur",
-        "title": "Una Vaina Loca",
-        "surface": "pa'l",
-        "segment_id": "seg_f6dc60a1466c17fd47faec24",
-        "occurrence_ids": [
-          "occ_8b5417138f9b673236bb1954"
-        ]
-      },
-      {
-        "id": "3687950:21",
-        "line": "Me mata el piquete, baila duro y le mete",
-        "title": "Vaina Loca",
-        "segment_id": "seg_4136e3634ee9379531356415",
-        "occurrence_ids": [
-          "occ_a793a162b1b6aea3a08ea8a5"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "5302844:21",
-        "line": "Sin escalera', aquí en el top ten, ey",
-        "title": "Verde",
-        "segment_id": "seg_6b7166c6700b3299750e7f68",
-        "occurrence_ids": [
-          "occ_943c302c347889bf0877efe3"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "8417047:6",
-        "line": "Que en el amor no, pero en la cama nos entendemos (Oh)",
-        "title": "X SI VOLVEMOS",
-        "segment_id": "seg_64daf73ff727420ca45e5b85",
-        "occurrence_ids": [
-          "occ_2aa69a6eefe2554a6d6761fc"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "10919676:12",
-        "line": "Me fuera escapa'o contigo pa' ver llegar el sol (Pa' ver, ver, pa' ver, ver)",
-        "title": "frente al mar",
-        "segment_id": "seg_0cc0ae99d5b4aaf18f41f534",
-        "occurrence_ids": [
-          "occ_08e8f0dded2716884591d85e"
-        ],
-        "surface": "el"
-      },
-      {
-        "id": "10471373:1",
-        "line": "Pero dime cuál es el secreto que tiene' guarda'o",
-        "title": "orióN",
-        "segment_id": "seg_0e94c5e0b486f05756cc528f",
-        "occurrence_ids": [
-          "occ_b3fcda5daa3d7eebd5bdd13f"
-        ],
-        "surface": "el"
-      }
-    ]
-  },
-  {
     "word": "te",
     "corpus_count": 66,
     "song_count": 15,
@@ -1297,82 +1172,12 @@
         "surface": "te"
       },
       {
-        "id": "5751052:2",
-        "line": "Yo no te estaba buscando, babe",
-        "title": "Ay, DiOs Mío!",
-        "segment_id": "seg_188724f0255a866824e3b7d7",
-        "occurrence_ids": [
-          "occ_db3bcb27632528ee76363038"
-        ],
-        "surface": "te"
-      },
-      {
-        "id": "5302840:5",
-        "line": "Y yo no me complico (Eh), ¿cómo te explico (Eh)",
-        "title": "Amarillo",
-        "segment_id": "seg_114c98944ddcc3b4fea24e47",
-        "occurrence_ids": [
-          "occ_f0e71eafdf1efc9179c627dc"
-        ],
-        "surface": "te"
-      },
-      {
-        "id": "5960780:30",
-        "line": "Pero dame una razón y te bajamo' el de'o (Brr)",
-        "title": "Antes",
-        "segment_id": "seg_af226c75e330c439e326a131",
-        "occurrence_ids": [
-          "occ_472c715db98096ddfa7c4903"
-        ],
-        "surface": "te"
-      },
-      {
-        "id": "6211036:16",
-        "line": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
-        "title": "BOOKER T",
-        "segment_id": "seg_6f9f259776045edbf613efd6",
-        "occurrence_ids": [
-          "occ_0634ebb5933b7f1d0612c21a"
-        ],
-        "surface": "te"
-      },
-      {
         "id": "9991217:2",
         "line": "Mami, te siento lejo', dime dónde está'",
         "title": "Gata Only",
         "segment_id": "seg_dab1025abbb74f48414b7b7a",
         "occurrence_ids": [
           "occ_d9710036c1a25df97b3118b0"
-        ],
-        "surface": "te"
-      },
-      {
-        "id": "10627178:32",
-        "line": "Y tú está' esperando a que te lo meta",
-        "title": "PELIGROSA",
-        "segment_id": "seg_e8e1644f895f953664e3d61a",
-        "occurrence_ids": [
-          "occ_b25cd216970aa6ea8fe145f1"
-        ],
-        "surface": "te"
-      },
-      {
-        "id": "6838492:4",
-        "line": "¿Qué más pues? ¿Cómo te ha ido? (Eh)",
-        "title": "Qué Más Pues?",
-        "segment_id": "seg_a1c74ec0b0ab18edac3bfdeb",
-        "occurrence_ids": [
-          "occ_f93bd4be0963b1397de6931f"
-        ],
-        "surface": "te"
-      },
-      {
-        "id": "10304179:7",
-        "line": "Yo no sé que andaba buscando, solo sé que desde que te encontré",
-        "title": "Tengo Un Plan",
-        "segment_id": "seg_a32bbe1fbb7775ef7a85c9a0",
-        "occurrence_ids": [
-          "occ_89e67fe6cd5e0e095993515c"
         ],
         "surface": "te"
       },
@@ -1385,6 +1190,203 @@
           "occ_fa4b952522dfd8bdfcbacd0f"
         ],
         "surface": "te"
+      },
+      {
+        "id": "8417047:11",
+        "line": "Pero llama cuando quiere que te deje la cama destendida",
+        "title": "X SI VOLVEMOS",
+        "segment_id": "seg_183f8fe68a351c8a18007d4b",
+        "occurrence_ids": [
+          "occ_d288c428ccfcaf2f88a0a5ca"
+        ],
+        "surface": "te"
+      },
+      {
+        "id": "10471373:4",
+        "line": "E' que si me pide' que te espere, te espero sentado",
+        "title": "orióN",
+        "segment_id": "seg_3175c7b595be54c896eb35e0",
+        "occurrence_ids": [
+          "occ_93b4e4928305d61546556b0f",
+          "occ_249034526cb3f14ca83d78f0"
+        ],
+        "surface": "te"
+      },
+      {
+        "id": "5751052:2",
+        "line": "Yo no te estaba buscando, babe",
+        "title": "Ay, DiOs Mío!",
+        "segment_id": "seg_188724f0255a866824e3b7d7",
+        "occurrence_ids": [
+          "occ_db3bcb27632528ee76363038"
+        ],
+        "surface": "te"
+      },
+      {
+        "id": "3687950:37",
+        "line": "Porque cuando te tengo cerquita",
+        "title": "Vaina Loca",
+        "segment_id": "seg_f106a54749fec0b0ec610fe4",
+        "occurrence_ids": [
+          "occ_ca6082f4d988a9e07976da11"
+        ],
+        "surface": "te"
+      },
+      {
+        "id": "5302844:33",
+        "line": "Yo te quiero pa' Ken (Wuh, wuh)",
+        "title": "Verde",
+        "segment_id": "seg_c70f50b2062c27fe90097384",
+        "occurrence_ids": [
+          "occ_3954621e9a457feee0b92ea5"
+        ],
+        "surface": "te"
+      },
+      {
+        "id": "1469974:25",
+        "line": "Cuando te choco, mami, tum-tum-tum-tum",
+        "title": "Una Vaina Loca",
+        "segment_id": "seg_9dffec859c1312acae55c7d6",
+        "occurrence_ids": [
+          "occ_2d7610f86744ef428dcc1c7f"
+        ],
+        "surface": "te"
+      },
+      {
+        "id": "5302840:5",
+        "line": "Y yo no me complico (Eh), ¿cómo te explico (Eh)",
+        "title": "Amarillo",
+        "segment_id": "seg_114c98944ddcc3b4fea24e47",
+        "occurrence_ids": [
+          "occ_f0e71eafdf1efc9179c627dc"
+        ],
+        "surface": "te"
+      }
+    ]
+  },
+  {
+    "word": "el",
+    "corpus_count": 65,
+    "song_count": 16,
+    "song_ids": [
+      "10304179",
+      "10471373",
+      "10489180",
+      "10627178",
+      "10919676",
+      "1469974",
+      "1556090",
+      "3687950",
+      "5302840",
+      "5302844",
+      "5929713",
+      "5960780",
+      "6211036",
+      "6838492",
+      "8417047",
+      "9991217"
+    ],
+    "examples": [
+      {
+        "id": "1556090:3",
+        "line": "¿Por qué no tuviste el valor de ver quién soy?",
+        "title": "Me Voy",
+        "segment_id": "seg_6406b84e744a2ba0e5ae4ac8",
+        "occurrence_ids": [
+          "occ_4d0f09aa642c83913ac7564a"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "10489180:31",
+        "line": "Bebé, pa' conquistarte que me pasen el manual",
+        "title": "Si Antes Te Hubiera Conocido",
+        "segment_id": "seg_cf3c34494dbe5b66d6505902",
+        "occurrence_ids": [
+          "occ_aba9f8537ad590884fedcc55"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "10919676:12",
+        "line": "Me fuera escapa'o contigo pa' ver llegar el sol (Pa' ver, ver, pa' ver, ver)",
+        "title": "frente al mar",
+        "segment_id": "seg_0cc0ae99d5b4aaf18f41f534",
+        "occurrence_ids": [
+          "occ_08e8f0dded2716884591d85e"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "5960780:35",
+        "line": "El AK encima pa' que to' el que me incomode (Me incomode)",
+        "title": "Antes",
+        "segment_id": "seg_94fecaa8fb8c35c5470ec738",
+        "occurrence_ids": [
+          "occ_8d8cd5d660ba88615f909c2e",
+          "occ_e075df6889e932c986f93f0d"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "6211036:3",
+        "line": "Y el que no baile que lo despeluquen (Ey)",
+        "title": "BOOKER T",
+        "segment_id": "seg_2a2c797c46b9823af1520a53",
+        "occurrence_ids": [
+          "occ_d8c6fd4052d4b2908578e9d9"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "9991217:42",
+        "line": "Y yo la sigo enamorando, regalando, to' el día comprando",
+        "title": "Gata Only",
+        "segment_id": "seg_479f5a588ae4ab887aa6ae92",
+        "occurrence_ids": [
+          "occ_a48d07dbaf053dc81fe0741a"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "10627178:2",
+        "line": "Me gusta el cortecito que le está dando",
+        "title": "PELIGROSA",
+        "segment_id": "seg_1aa880e0bd3ecf5ca8c2788d",
+        "occurrence_ids": [
+          "occ_f18b4e252481df832d8f3965"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "6838492:45",
+        "line": "Vamos a hacerlo, que está rico el clima",
+        "title": "Qué Más Pues?",
+        "segment_id": "seg_73618153e87db879093e06a1",
+        "occurrence_ids": [
+          "occ_43672a22f60fea41386f584d"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "10304179:11",
+        "line": "'Toy brillando de lejo' el cuello, lo tengo lleno en VVS",
+        "title": "Tengo Un Plan",
+        "segment_id": "seg_2b5752d163a2f7cd144a1666",
+        "occurrence_ids": [
+          "occ_51790ea9fd42349d1300901e"
+        ],
+        "surface": "el"
+      },
+      {
+        "id": "5929713:45",
+        "line": "Me activa el deseo, de ti me dan ganas",
+        "title": "Una Locura",
+        "segment_id": "seg_b742ecb8d239e1656f7f9c3f",
+        "occurrence_ids": [
+          "occ_c0874a79568d9ccb8cc1fce4"
+        ],
+        "surface": "el"
       }
     ]
   },
@@ -1763,7 +1765,7 @@
   },
   {
     "word": "para",
-    "corpus_count": 45,
+    "corpus_count": 44,
     "song_count": 16,
     "song_ids": [
       "10471373",
@@ -3744,8 +3746,7 @@
         ],
         "surface": "las"
       }
-    ],
-    "display_form": "la'"
+    ]
   },
   {
     "word": "los",
@@ -5301,8 +5302,7 @@
           "occ_73908ba10fedb6e498ce431f"
         ]
       }
-    ],
-    "display_form": "está'"
+    ]
   },
   {
     "word": "nos",
@@ -5607,8 +5607,7 @@
           "occ_7d25c5feb011ff8613785f20"
         ]
       }
-    ],
-    "display_form": "ve'"
+    ]
   },
   {
     "word": "está",
@@ -6416,8 +6415,7 @@
           "occ_7a07a48bd4bf6a52987f906b"
         ]
       }
-    ],
-    "display_form": "ere'"
+    ]
   },
   {
     "word": "eso",
@@ -7060,8 +7058,7 @@
           "occ_a26216df65e0da2db15d91ca"
         ]
       }
-    ],
-    "display_form": "sabe'"
+    ]
   },
   {
     "word": "tienes",
@@ -7125,8 +7122,7 @@
           "occ_5c4ddbad5b35bb26be00edb9"
         ]
       }
-    ],
-    "display_form": "tiene'"
+    ]
   },
   {
     "word": "todas",
@@ -8664,59 +8660,6 @@
     ]
   },
   {
-    "word": "balvin",
-    "corpus_count": 5,
-    "song_count": 4,
-    "song_ids": [
-      "5302840",
-      "5302844",
-      "5929713",
-      "6838492"
-    ],
-    "examples": [
-      {
-        "id": "5302844:49",
-        "line": "J Balvin, man",
-        "title": "Verde",
-        "segment_id": "seg_0bb548fa7965469281ddbde4",
-        "occurrence_ids": [
-          "occ_30b3eac0ae907070112a0dbf"
-        ],
-        "surface": "balvin"
-      },
-      {
-        "id": "5302840:4",
-        "line": "Saben quién es Balvin, les presento a José (Wuh)",
-        "title": "Amarillo",
-        "segment_id": "seg_d2df93523cad64007182c7d7",
-        "occurrence_ids": [
-          "occ_1b45d2306ed5aaf1730e0818"
-        ],
-        "surface": "balvin"
-      },
-      {
-        "id": "5929713:80",
-        "line": "J-J Balvin, yeh, Che (Chencho Corleone)",
-        "title": "Una Locura",
-        "segment_id": "seg_7bcf9b450723860b3f7bc11f",
-        "occurrence_ids": [
-          "occ_963d421e3029075fdbcf14b0"
-        ],
-        "surface": "balvin"
-      },
-      {
-        "id": "6838492:3",
-        "line": "J Balvin, man",
-        "title": "Qué Más Pues?",
-        "segment_id": "seg_c9b671de403dd95437d09878",
-        "occurrence_ids": [
-          "occ_9f153354ab0e9e526dece237"
-        ],
-        "surface": "balvin"
-      }
-    ]
-  },
-  {
     "word": "bebé",
     "corpus_count": 5,
     "song_count": 4,
@@ -8841,8 +8784,7 @@
         ],
         "surface": "dios"
       }
-    ],
-    "display_form": "dio'"
+    ]
   },
   {
     "word": "dónde",
@@ -9192,8 +9134,7 @@
         ],
         "surface": "les"
       }
-    ],
-    "display_form": "le'"
+    ]
   },
   {
     "word": "mío",
@@ -9279,71 +9220,6 @@
         "surface": "nunca"
       }
     ]
-  },
-  {
-    "word": "ojos",
-    "corpus_count": 5,
-    "song_count": 5,
-    "song_ids": [
-      "10304179",
-      "10919676",
-      "5751052",
-      "5929713",
-      "5960780"
-    ],
-    "examples": [
-      {
-        "id": "5751052:6",
-        "line": "Y en tus ojos yo lo noté",
-        "title": "Ay, DiOs Mío!",
-        "segment_id": "seg_87bfb18126bdcba8d4ffd758",
-        "occurrence_ids": [
-          "occ_f808c50c8605058443a2fe59"
-        ],
-        "surface": "ojos"
-      },
-      {
-        "id": "10919676:2",
-        "line": "Nadie la ve así como mis ojos la ven",
-        "title": "frente al mar",
-        "segment_id": "seg_e7b1d172b8eed4ef7b8a7c2c",
-        "occurrence_ids": [
-          "occ_bcde2c4a80bcacad9f1d52f0"
-        ],
-        "surface": "ojos"
-      },
-      {
-        "id": "5960780:26",
-        "line": "Tú mirándome a los ojo' y yo mirándote las te-te-, baby",
-        "title": "Antes",
-        "surface": "ojo'",
-        "segment_id": "seg_cedc75660229397e577ff1d6",
-        "occurrence_ids": [
-          "occ_160df5511ac7870a4bed1fb8"
-        ]
-      },
-      {
-        "id": "5929713:3",
-        "line": "El Negrito Ojo' Claro'",
-        "title": "Una Locura",
-        "surface": "ojo'",
-        "segment_id": "seg_1f36490091b4ef40eb8e108f",
-        "occurrence_ids": [
-          "occ_0cd3f4953ecdbf8d4bf15bc3"
-        ]
-      },
-      {
-        "id": "10304179:9",
-        "line": "Tengo los ojo' rojo' despué' de la hierba que yo fumé",
-        "title": "Tengo Un Plan",
-        "surface": "ojo'",
-        "segment_id": "seg_79bb6b94be098cd1dba0c299",
-        "occurrence_ids": [
-          "occ_acdfe1b62512488d614221cc"
-        ]
-      }
-    ],
-    "display_form": "ojo'"
   },
   {
     "word": "sin",
@@ -9784,60 +9660,6 @@
     ]
   },
   {
-    "word": "wuh",
-    "corpus_count": 5,
-    "song_count": 1,
-    "song_ids": [
-      "5302844"
-    ],
-    "examples": [
-      {
-        "id": "5302844:7",
-        "line": "Contigo me convierto en perro 'e raza, wuh (Grr)",
-        "title": "Verde",
-        "segment_id": "seg_3448b0657ca9cf433ae81748",
-        "occurrence_ids": [
-          "occ_862f8400482890bd514fc3ea"
-        ],
-        "surface": "wuh"
-      }
-    ]
-  },
-  {
-    "word": "yah",
-    "corpus_count": 5,
-    "song_count": 2,
-    "song_ids": [
-      "5302840",
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5302840:50",
-        "line": "Yah, yah, yah, yah",
-        "title": "Amarillo",
-        "segment_id": "seg_d1fae44bae3493becfb8a003",
-        "occurrence_ids": [
-          "occ_f49f0828e9eb484a78a05895",
-          "occ_17e33ff118c9100ad1b0723c",
-          "occ_5c523dba942bff842ad5bea9",
-          "occ_028fe3168322a255457394ca"
-        ],
-        "surface": "yah"
-      },
-      {
-        "id": "5929713:2",
-        "line": "Yah",
-        "title": "Una Locura",
-        "segment_id": "seg_57f89c3f9a655f273adf2439",
-        "occurrence_ids": [
-          "occ_075bd7d311b1c84ba48fae5a"
-        ],
-        "surface": "yah"
-      }
-    ]
-  },
-  {
     "word": "él",
     "corpus_count": 5,
     "song_count": 3,
@@ -9876,49 +9698,6 @@
           "occ_b3e75de934c857fd44836273"
         ],
         "surface": "él"
-      }
-    ]
-  },
-  {
-    "word": "ah",
-    "corpus_count": 4,
-    "song_count": 3,
-    "song_ids": [
-      "10471373",
-      "10627178",
-      "6211036"
-    ],
-    "examples": [
-      {
-        "id": "10627178:29",
-        "line": "Ah, y peligrosa como una glopeta",
-        "title": "PELIGROSA",
-        "segment_id": "seg_b35ac34ad379c601ced95352",
-        "occurrence_ids": [
-          "occ_60ec8d337119736e2709efc9"
-        ],
-        "surface": "ah"
-      },
-      {
-        "id": "10471373:44",
-        "line": "Ah, ah",
-        "title": "orióN",
-        "segment_id": "seg_fba1bf2bf8fd15142957ecdf",
-        "occurrence_ids": [
-          "occ_539421fd8c91d58180df2ae9",
-          "occ_4815cfb694dfc16c48a1ba1a"
-        ],
-        "surface": "ah"
-      },
-      {
-        "id": "6211036:12",
-        "line": "Ah, maldito Conejo",
-        "title": "BOOKER T",
-        "segment_id": "seg_1328a30e25c5d73f5450ef2d",
-        "occurrence_ids": [
-          "occ_6d5b5085cd89b5119e8bc456"
-        ],
-        "surface": "ah"
       }
     ]
   },
@@ -10810,6 +10589,60 @@
     ]
   },
   {
+    "word": "ojos",
+    "corpus_count": 4,
+    "song_count": 4,
+    "song_ids": [
+      "10304179",
+      "10919676",
+      "5751052",
+      "5960780"
+    ],
+    "examples": [
+      {
+        "id": "5751052:6",
+        "line": "Y en tus ojos yo lo noté",
+        "title": "Ay, DiOs Mío!",
+        "segment_id": "seg_87bfb18126bdcba8d4ffd758",
+        "occurrence_ids": [
+          "occ_f808c50c8605058443a2fe59"
+        ],
+        "surface": "ojos"
+      },
+      {
+        "id": "10919676:2",
+        "line": "Nadie la ve así como mis ojos la ven",
+        "title": "frente al mar",
+        "segment_id": "seg_e7b1d172b8eed4ef7b8a7c2c",
+        "occurrence_ids": [
+          "occ_bcde2c4a80bcacad9f1d52f0"
+        ],
+        "surface": "ojos"
+      },
+      {
+        "id": "5960780:26",
+        "line": "Tú mirándome a los ojo' y yo mirándote las te-te-, baby",
+        "title": "Antes",
+        "surface": "ojo'",
+        "segment_id": "seg_cedc75660229397e577ff1d6",
+        "occurrence_ids": [
+          "occ_160df5511ac7870a4bed1fb8"
+        ]
+      },
+      {
+        "id": "10304179:9",
+        "line": "Tengo los ojo' rojo' despué' de la hierba que yo fumé",
+        "title": "Tengo Un Plan",
+        "surface": "ojo'",
+        "segment_id": "seg_79bb6b94be098cd1dba0c299",
+        "occurrence_ids": [
+          "occ_acdfe1b62512488d614221cc"
+        ]
+      }
+    ],
+    "display_form": "ojo'"
+  },
+  {
     "word": "pues",
     "corpus_count": 4,
     "song_count": 1,
@@ -10870,8 +10703,7 @@
         ],
         "surface": "quieres"
       }
-    ],
-    "display_form": "quiere'"
+    ]
   },
   {
     "word": "salimos",
@@ -10990,22 +10822,22 @@
         "surface": "tener"
       },
       {
-        "id": "10304179:13",
-        "line": "Te quiero tener (Quiero tener)",
-        "title": "Tengo Un Plan",
-        "segment_id": "seg_d7fd478a66a0f94741d1a54c",
-        "occurrence_ids": [
-          "occ_93ba684acec80346404c15fe"
-        ],
-        "surface": "tener"
-      },
-      {
         "id": "5929713:14",
         "line": "No se cansa, parece no tener final",
         "title": "Una Locura",
         "segment_id": "seg_ad622d4ba0a3b0afe2075fc3",
         "occurrence_ids": [
           "occ_4b540a04a9cb175daf772f52"
+        ],
+        "surface": "tener"
+      },
+      {
+        "id": "10304179:13",
+        "line": "Te quiero tener (Quiero tener)",
+        "title": "Tengo Un Plan",
+        "segment_id": "seg_d7fd478a66a0f94741d1a54c",
+        "occurrence_ids": [
+          "occ_93ba684acec80346404c15fe"
         ],
         "surface": "tener"
       }
@@ -11405,8 +11237,7 @@
           "occ_3fcd0605f67eed92086600c0"
         ]
       }
-    ],
-    "display_form": "besa'"
+    ]
   },
   {
     "word": "brr",
@@ -12104,8 +11935,7 @@
         ],
         "surface": "ganas"
       }
-    ],
-    "display_form": "gana'"
+    ]
   },
   {
     "word": "gente",
@@ -12313,8 +12143,7 @@
           "occ_f6c19e0109a8f88b72b33418"
         ]
       }
-    ],
-    "display_form": "ha'"
+    ]
   },
   {
     "word": "hubiera",
@@ -12353,37 +12182,6 @@
           "occ_707b63e491beb69355013916"
         ],
         "surface": "ido"
-      }
-    ]
-  },
-  {
-    "word": "j",
-    "corpus_count": 3,
-    "song_count": 2,
-    "song_ids": [
-      "5302844",
-      "6838492"
-    ],
-    "examples": [
-      {
-        "id": "5302844:49",
-        "line": "J Balvin, man",
-        "title": "Verde",
-        "segment_id": "seg_0bb548fa7965469281ddbde4",
-        "occurrence_ids": [
-          "occ_d5eeb12ddf867bb9356e3cc8"
-        ],
-        "surface": "j"
-      },
-      {
-        "id": "6838492:3",
-        "line": "J Balvin, man",
-        "title": "Qué Más Pues?",
-        "segment_id": "seg_c9b671de403dd95437d09878",
-        "occurrence_ids": [
-          "occ_edd16f9cee030893563456e1"
-        ],
-        "surface": "j"
       }
     ]
   },
@@ -12551,8 +12349,7 @@
           "occ_2291cca919026d720e35eb3c"
         ]
       }
-    ],
-    "display_form": "meno'"
+    ]
   },
   {
     "word": "mucho",
@@ -13555,6 +13352,37 @@
     ]
   },
   {
+    "word": "ah",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "10627178",
+      "6211036"
+    ],
+    "examples": [
+      {
+        "id": "10627178:29",
+        "line": "Ah, y peligrosa como una glopeta",
+        "title": "PELIGROSA",
+        "segment_id": "seg_b35ac34ad379c601ced95352",
+        "occurrence_ids": [
+          "occ_60ec8d337119736e2709efc9"
+        ],
+        "surface": "ah"
+      },
+      {
+        "id": "6211036:12",
+        "line": "Ah, maldito Conejo",
+        "title": "BOOKER T",
+        "segment_id": "seg_1328a30e25c5d73f5450ef2d",
+        "occurrence_ids": [
+          "occ_6d5b5085cd89b5119e8bc456"
+        ],
+        "surface": "ah"
+      }
+    ]
+  },
+  {
     "word": "amanezca",
     "corpus_count": 2,
     "song_count": 2,
@@ -13664,6 +13492,37 @@
           "occ_9b140507a62fef8bf0e15384"
         ],
         "surface": "bailar"
+      }
+    ]
+  },
+  {
+    "word": "balvin",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "5302840",
+      "5929713"
+    ],
+    "examples": [
+      {
+        "id": "5302840:4",
+        "line": "Saben quién es Balvin, les presento a José (Wuh)",
+        "title": "Amarillo",
+        "segment_id": "seg_d2df93523cad64007182c7d7",
+        "occurrence_ids": [
+          "occ_1b45d2306ed5aaf1730e0818"
+        ],
+        "surface": "balvin"
+      },
+      {
+        "id": "5929713:80",
+        "line": "J-J Balvin, yeh, Che (Chencho Corleone)",
+        "title": "Una Locura",
+        "segment_id": "seg_7bcf9b450723860b3f7bc11f",
+        "occurrence_ids": [
+          "occ_963d421e3029075fdbcf14b0"
+        ],
+        "surface": "balvin"
       }
     ]
   },
@@ -14379,8 +14238,7 @@
           "occ_9586eacd9ff8218b327db060"
         ]
       }
-    ],
-    "display_form": "do'"
+    ]
   },
   {
     "word": "duro",
@@ -15035,22 +14893,22 @@
     ],
     "examples": [
       {
-        "id": "8417047:11",
-        "line": "Pero llama cuando quiere que te deje la cama destendida",
-        "title": "X SI VOLVEMOS",
-        "segment_id": "seg_183f8fe68a351c8a18007d4b",
-        "occurrence_ids": [
-          "occ_6f22b0c09cb67c808e0dc4f9"
-        ],
-        "surface": "llama"
-      },
-      {
         "id": "5302840:29",
         "line": "Aquí solo se para si llama mi mamá",
         "title": "Amarillo",
         "segment_id": "seg_7e2f571809243bf69740fb34",
         "occurrence_ids": [
           "occ_53dbd25040bae86881790656"
+        ],
+        "surface": "llama"
+      },
+      {
+        "id": "8417047:11",
+        "line": "Pero llama cuando quiere que te deje la cama destendida",
+        "title": "X SI VOLVEMOS",
+        "segment_id": "seg_183f8fe68a351c8a18007d4b",
+        "occurrence_ids": [
+          "occ_6f22b0c09cb67c808e0dc4f9"
         ],
         "surface": "llama"
       }
@@ -15159,6 +15017,37 @@
     ]
   },
   {
+    "word": "ma'",
+    "corpus_count": 2,
+    "song_count": 2,
+    "song_ids": [
+      "3687950",
+      "6838492"
+    ],
+    "examples": [
+      {
+        "id": "3687950:46",
+        "line": "Cuando no te tengo, ma'",
+        "title": "Vaina Loca",
+        "segment_id": "seg_03516c4f8b7a70caadc64196",
+        "occurrence_ids": [
+          "occ_e4a2b7924d22c94476ab4b26"
+        ],
+        "surface": "ma'"
+      },
+      {
+        "id": "6838492:14",
+        "line": "Ma', ¿qué lo que? (¿Qué lo que?) ¿Dónde estás? Dime, a ver (Dime, a ver)",
+        "title": "Qué Más Pues?",
+        "segment_id": "seg_322c36b21040f26b9d71e0b9",
+        "occurrence_ids": [
+          "occ_d71e882403dc5ba1ee815710"
+        ],
+        "surface": "ma'"
+      }
+    ]
+  },
+  {
     "word": "mal",
     "corpus_count": 2,
     "song_count": 1,
@@ -15210,37 +15099,6 @@
     ]
   },
   {
-    "word": "man",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "5302844",
-      "6838492"
-    ],
-    "examples": [
-      {
-        "id": "5302844:49",
-        "line": "J Balvin, man",
-        "title": "Verde",
-        "segment_id": "seg_0bb548fa7965469281ddbde4",
-        "occurrence_ids": [
-          "occ_a90bf2bf7fa566049625e42f"
-        ],
-        "surface": "man"
-      },
-      {
-        "id": "6838492:3",
-        "line": "J Balvin, man",
-        "title": "Qué Más Pues?",
-        "segment_id": "seg_c9b671de403dd95437d09878",
-        "occurrence_ids": [
-          "occ_0f8b75bd019fe57b84dc60fe"
-        ],
-        "surface": "man"
-      }
-    ]
-  },
-  {
     "word": "marido",
     "corpus_count": 2,
     "song_count": 2,
@@ -15270,38 +15128,6 @@
         "surface": "marido"
       }
     ]
-  },
-  {
-    "word": "mas",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "3687950",
-      "6838492"
-    ],
-    "examples": [
-      {
-        "id": "3687950:46",
-        "line": "Cuando no te tengo, ma'",
-        "title": "Vaina Loca",
-        "surface": "ma'",
-        "segment_id": "seg_03516c4f8b7a70caadc64196",
-        "occurrence_ids": [
-          "occ_e4a2b7924d22c94476ab4b26"
-        ]
-      },
-      {
-        "id": "6838492:14",
-        "line": "Ma', ¿qué lo que? (¿Qué lo que?) ¿Dónde estás? Dime, a ver (Dime, a ver)",
-        "title": "Qué Más Pues?",
-        "surface": "ma'",
-        "segment_id": "seg_322c36b21040f26b9d71e0b9",
-        "occurrence_ids": [
-          "occ_d71e882403dc5ba1ee815710"
-        ]
-      }
-    ],
-    "display_form": "ma'"
   },
   {
     "word": "merezco",
@@ -15859,37 +15685,6 @@
     ]
   },
   {
-    "word": "ozuna",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "5929713",
-      "5960780"
-    ],
-    "examples": [
-      {
-        "id": "5960780:4",
-        "line": "Ozuna",
-        "title": "Antes",
-        "segment_id": "seg_5164103dd593f2a4dbd225f4",
-        "occurrence_ids": [
-          "occ_ea642edb2c736be3eb925e11"
-        ],
-        "surface": "ozuna"
-      },
-      {
-        "id": "5929713:78",
-        "line": "Ozuna (Baby)",
-        "title": "Una Locura",
-        "segment_id": "seg_a337b06452cebce51d793e9f",
-        "occurrence_ids": [
-          "occ_bb7b254d5cfba1b71e0881a5"
-        ],
-        "surface": "ozuna"
-      }
-    ]
-  },
-  {
     "word": "par",
     "corpus_count": 2,
     "song_count": 2,
@@ -16309,8 +16104,7 @@
           "occ_cbe91a1d9e3e54059c0d4f97"
         ]
       }
-    ],
-    "display_form": "pone'"
+    ]
   },
   {
     "word": "primero",
@@ -16434,8 +16228,7 @@
           "occ_8916747ffb78825da2ed118b"
         ]
       }
-    ],
-    "display_form": "quiera'"
+    ]
   },
   {
     "word": "quién",
@@ -16737,26 +16530,6 @@
     ]
   },
   {
-    "word": "rompiendo",
-    "corpus_count": 2,
-    "song_count": 1,
-    "song_ids": [
-      "5302844"
-    ],
-    "examples": [
-      {
-        "id": "5302844:51",
-        "line": "Sky Rompiendo",
-        "title": "Verde",
-        "segment_id": "seg_3d3146d7db118f76eccc2e45",
-        "occurrence_ids": [
-          "occ_89d88920f28892b5e7af7d46"
-        ],
-        "surface": "rompiendo"
-      }
-    ]
-  },
-  {
     "word": "sabor",
     "corpus_count": 2,
     "song_count": 1,
@@ -16907,8 +16680,7 @@
           "occ_04ff832f147f7656cea22d75"
         ]
       }
-    ],
-    "display_form": "sigue'"
+    ]
   },
   {
     "word": "solitas",
@@ -17290,37 +17062,6 @@
     ]
   },
   {
-    "word": "uh",
-    "corpus_count": 2,
-    "song_count": 2,
-    "song_ids": [
-      "1469974",
-      "5302844"
-    ],
-    "examples": [
-      {
-        "id": "1469974:58",
-        "line": "Fuego, uh-yeah",
-        "title": "Una Vaina Loca",
-        "segment_id": "seg_464921589aca293784c1e589",
-        "occurrence_ids": [
-          "occ_52bc2dc804b1092ec454b0a8"
-        ],
-        "surface": "uh"
-      },
-      {
-        "id": "5302844:48",
-        "line": "Uh",
-        "title": "Verde",
-        "segment_id": "seg_ab078516c868ccbc0a415158",
-        "occurrence_ids": [
-          "occ_34e1bb11e8e4699494d74679"
-        ],
-        "surface": "uh"
-      }
-    ]
-  },
-  {
     "word": "van",
     "corpus_count": 2,
     "song_count": 2,
@@ -17454,6 +17195,26 @@
       }
     ],
     "display_form": "volvemo'"
+  },
+  {
+    "word": "wuh",
+    "corpus_count": 2,
+    "song_count": 1,
+    "song_ids": [
+      "5302844"
+    ],
+    "examples": [
+      {
+        "id": "5302844:7",
+        "line": "Contigo me convierto en perro 'e raza, wuh (Grr)",
+        "title": "Verde",
+        "segment_id": "seg_3448b0657ca9cf433ae81748",
+        "occurrence_ids": [
+          "occ_862f8400482890bd514fc3ea"
+        ],
+        "surface": "wuh"
+      }
+    ]
   },
   {
     "word": "abajo",
@@ -19820,26 +19581,6 @@
     ]
   },
   {
-    "word": "claros",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5929713:3",
-        "line": "El Negrito Ojo' Claro'",
-        "title": "Una Locura",
-        "surface": "claro'",
-        "segment_id": "seg_1f36490091b4ef40eb8e108f",
-        "occurrence_ids": [
-          "occ_4e64a5c5d111fa478afab567"
-        ]
-      }
-    ]
-  },
-  {
     "word": "clase",
     "corpus_count": 1,
     "song_count": 1,
@@ -19896,26 +19637,6 @@
           "occ_7123638b51b1ddfa22826ebf"
         ],
         "surface": "coincidimos"
-      }
-    ]
-  },
-  {
-    "word": "colores",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5302844"
-    ],
-    "examples": [
-      {
-        "id": "5302844:2",
-        "line": "Colores",
-        "title": "Verde",
-        "segment_id": "seg_5f0ee00f0fb57d7babf58f06",
-        "occurrence_ids": [
-          "occ_2f98915b179594e2ff43f5fb"
-        ],
-        "surface": "colores"
       }
     ]
   },
@@ -20220,7 +19941,7 @@
     ]
   },
   {
-    "word": "confundía'",
+    "word": "confundías",
     "corpus_count": 1,
     "song_count": 1,
     "song_ids": [
@@ -20231,11 +19952,11 @@
         "id": "10304179:25",
         "line": "La tengo confundía' fumando maría",
         "title": "Tengo Un Plan",
+        "surface": "confundía'",
         "segment_id": "seg_4c9ecf8629a0115bbc4c15d5",
         "occurrence_ids": [
           "occ_2662969d41ca00f52ae493b6"
-        ],
-        "surface": "confundía'"
+        ]
       }
     ]
   },
@@ -20838,8 +20559,7 @@
         ],
         "surface": "das"
       }
-    ],
-    "display_form": "da'"
+    ]
   },
   {
     "word": "dato",
@@ -21765,26 +21485,6 @@
     ]
   },
   {
-    "word": "dynell",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5929713:85",
-        "line": "Dynell",
-        "title": "Una Locura",
-        "segment_id": "seg_29d203d9beb48a383021a171",
-        "occurrence_ids": [
-          "occ_ec798c7fecfea51b6e0ed7d5"
-        ],
-        "surface": "dynell"
-      }
-    ]
-  },
-  {
     "word": "dé",
     "corpus_count": 1,
     "song_count": 1,
@@ -21822,8 +21522,7 @@
           "occ_a515cf3fcc762f8bec92823c"
         ]
       }
-    ],
-    "display_form": "día'"
+    ]
   },
   {
     "word": "echa",
@@ -21883,26 +21582,6 @@
           "occ_3ff2654e89c6ae3081aa0622"
         ],
         "surface": "eduquen"
-      }
-    ]
-  },
-  {
-    "word": "elena",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "10471373"
-    ],
-    "examples": [
-      {
-        "id": "10471373:71",
-        "line": "Elena",
-        "title": "orióN",
-        "segment_id": "seg_b6ba29aeb70eee74575aa27e",
-        "occurrence_ids": [
-          "occ_426d80028dd611a5a98fd3f5"
-        ],
-        "surface": "elena"
       }
     ]
   },
@@ -22888,8 +22567,7 @@
           "occ_468538e4d91d6a1924405553"
         ]
       }
-    ],
-    "display_form": "esta'"
+    ]
   },
   {
     "word": "ester",
@@ -22929,8 +22607,7 @@
           "occ_6ac5c6c5ef1e924382446a30"
         ]
       }
-    ],
-    "display_form": "esto'"
+    ]
   },
   {
     "word": "estrés",
@@ -24212,8 +23889,7 @@
           "occ_080963d7d8af847b2e60ec64"
         ]
       }
-    ],
-    "display_form": "hace'"
+    ]
   },
   {
     "word": "had",
@@ -24498,26 +24174,6 @@
       }
     ],
     "display_form": "hora'"
-  },
-  {
-    "word": "hyde",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5929713:83",
-        "line": "Hyde \"El Químico\"",
-        "title": "Una Locura",
-        "segment_id": "seg_99cf5ac87bff6849fff4a318",
-        "occurrence_ids": [
-          "occ_3afbf55344b3fab5b0acc3fe"
-        ],
-        "surface": "hyde"
-      }
-    ]
   },
   {
     "word": "héctor",
@@ -25279,8 +24935,7 @@
           "occ_1983ff3d5162b327aedc388a"
         ]
       }
-    ],
-    "display_form": "llama'"
+    ]
   },
   {
     "word": "lleca",
@@ -26946,26 +26601,6 @@
     ]
   },
   {
-    "word": "negrito",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5929713:3",
-        "line": "El Negrito Ojo' Claro'",
-        "title": "Una Locura",
-        "segment_id": "seg_1f36490091b4ef40eb8e108f",
-        "occurrence_ids": [
-          "occ_bbf10d4cdb9268f11c82e2d2"
-        ],
-        "surface": "negrito"
-      }
-    ]
-  },
-  {
     "word": "nice",
     "corpus_count": 1,
     "song_count": 1,
@@ -27566,8 +27201,7 @@
           "occ_c578577da090da73332d20da"
         ]
       }
-    ],
-    "display_form": "parece'"
+    ]
   },
   {
     "word": "parezca",
@@ -27627,8 +27261,7 @@
           "occ_0bbccd385e0530ed4d1298a2"
         ]
       }
-    ],
-    "display_form": "parte'"
+    ]
   },
   {
     "word": "pasajera",
@@ -28188,8 +27821,7 @@
           "occ_8d44f10e34a4d279495489d3"
         ]
       }
-    ],
-    "display_form": "pide'"
+    ]
   },
   {
     "word": "pin",
@@ -29217,26 +28849,6 @@
     ]
   },
   {
-    "word": "químico",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5929713:83",
-        "line": "Hyde \"El Químico\"",
-        "title": "Una Locura",
-        "segment_id": "seg_99cf5ac87bff6849fff4a318",
-        "occurrence_ids": [
-          "occ_bf9af2fc658205630e94f342"
-        ],
-        "surface": "químico"
-      }
-    ]
-  },
-  {
     "word": "raptar",
     "corpus_count": 1,
     "song_count": 1,
@@ -29698,6 +29310,26 @@
       }
     ],
     "display_form": "rojo'"
+  },
+  {
+    "word": "rompiendo",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "5302844"
+    ],
+    "examples": [
+      {
+        "id": "5302844:53",
+        "line": "Rompiendo en to'",
+        "title": "Verde",
+        "segment_id": "seg_725cbd2733afa4a92f44895b",
+        "occurrence_ids": [
+          "occ_c040f0835cc812359bf0e66c"
+        ],
+        "surface": "rompiendo"
+      }
+    ]
   },
   {
     "word": "rompimos",
@@ -30561,26 +30193,6 @@
     ]
   },
   {
-    "word": "sky",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5302844"
-    ],
-    "examples": [
-      {
-        "id": "5302844:51",
-        "line": "Sky Rompiendo",
-        "title": "Verde",
-        "segment_id": "seg_3d3146d7db118f76eccc2e45",
-        "occurrence_ids": [
-          "occ_0af5f11b709fce89edac392c"
-        ],
-        "surface": "sky"
-      }
-    ]
-  },
-  {
     "word": "so",
     "corpus_count": 1,
     "song_count": 1,
@@ -30780,8 +30392,7 @@
         ],
         "surface": "sus"
       }
-    ],
-    "display_form": "su'"
+    ]
   },
   {
     "word": "suya",
@@ -31183,8 +30794,7 @@
           "occ_80b1d18c19f7757f812cb8b0"
         ]
       }
-    ],
-    "display_form": "tira'"
+    ]
   },
   {
     "word": "tiro",
@@ -31625,8 +31235,7 @@
           "occ_9bba671cf5d51b76678429d8"
         ]
       }
-    ],
-    "display_form": "tre'"
+    ]
   },
   {
     "word": "tuya",
@@ -31769,6 +31378,26 @@
     ]
   },
   {
+    "word": "uh",
+    "corpus_count": 1,
+    "song_count": 1,
+    "song_ids": [
+      "1469974"
+    ],
+    "examples": [
+      {
+        "id": "1469974:58",
+        "line": "Fuego, uh-yeah",
+        "title": "Una Vaina Loca",
+        "segment_id": "seg_464921589aca293784c1e589",
+        "occurrence_ids": [
+          "occ_52bc2dc804b1092ec454b0a8"
+        ],
+        "surface": "uh"
+      }
+    ]
+  },
+  {
     "word": "usar",
     "corpus_count": 1,
     "song_count": 1,
@@ -31806,8 +31435,7 @@
           "occ_6359b06e663bffe5e9ca3ddf"
         ]
       }
-    ],
-    "display_form": "vacacione'"
+    ]
   },
   {
     "word": "vacilo",
@@ -31948,8 +31576,7 @@
         ],
         "surface": "veas"
       }
-    ],
-    "display_form": "vea'"
+    ]
   },
   {
     "word": "vendidos",
@@ -32009,8 +31636,7 @@
           "occ_86e5d2c396f7077282a0f77a"
         ]
       }
-    ],
-    "display_form": "venga'"
+    ]
   },
   {
     "word": "ventana",
@@ -32493,26 +32119,6 @@
           "occ_227025553b769b6d62aab865"
         ],
         "surface": "yankee"
-      }
-    ]
-  },
-  {
-    "word": "yasso",
-    "corpus_count": 1,
-    "song_count": 1,
-    "song_ids": [
-      "5929713"
-    ],
-    "examples": [
-      {
-        "id": "5929713:87",
-        "line": "Yasso",
-        "title": "Una Locura",
-        "segment_id": "seg_3a64b0a9dc7c7149a6a792bd",
-        "occurrence_ids": [
-          "occ_6c7232b3df6c240b2a012023"
-        ],
-        "surface": "yasso"
       }
     ]
   },
