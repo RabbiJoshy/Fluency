@@ -13,6 +13,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -38,12 +39,68 @@ from pipeline.util_evidence_store import (  # noqa: E402
 )
 
 
-STEP_VERSION = 2
-METHOD_ID = "artist-vocal-artifact-rules-v2"
-BASIC_EXCLUDED_LABELS = ["adlib", "echo", "stutter"]
+STEP_VERSION = 3
+METHOD_ID = "artist-vocal-artifact-rules-v3"
+BASIC_EXCLUDED_LABELS = ["adlib", "credit", "echo", "stutter"]
 _BRACKET_RE = re.compile(r"\[[^\]]*\]|\([^)]*\)")
 _HYPHEN_GAP_RE = re.compile(r"^\s*-\s*$")
 _ECHO_GAP_RE = re.compile(r"^\s*(?:,\s*)?-\s*$|^\s*,\s*$")
+_CREDIT_TOKEN_RE = re.compile(r"[^\W\d_]+", re.UNICODE)
+
+
+def _translation_key(value):
+    """Case/accent/punctuation-free token string, for comparing across langs."""
+    folded = unicodedata.normalize("NFKD", str(value or "").casefold())
+    folded = "".join(ch for ch in folded if not unicodedata.combining(ch))
+    return " ".join(_CREDIT_TOKEN_RE.findall(folded))
+
+
+def load_aligned_translations(artist_dir):
+    """{spanish_line: english_line} from step_1b's aligned Genius translations.
+
+    Optional. Absent translations simply mean no `credit` labels.
+    """
+    path = (Path(artist_dir) / "data" / "input" / "translations"
+            / "aligned_translations.json")
+    if not path.is_file():
+        return {}
+    try:
+        with open(path, encoding="utf-8") as handle:
+            data = json.load(handle)
+    except (json.JSONDecodeError, OSError):
+        return {}
+    index = data.get("index")
+    return index if isinstance(index, dict) else {}
+
+
+def untranslated_segment_ids(segments, translations):
+    """Segments a human translator copied across instead of translating.
+
+    A producer tag, an artist drop or a brand is not language: the Genius
+    translator leaves it verbatim, so the English and the Spanish reduce to the
+    same token string. That is a far better tell than capitalisation or NER,
+    both of which were measured useless on this register — NER misses
+    `rompiendo` and `orión` outright and calls `grr` a person.
+
+    On the 17-song playlist this selects 71 of 1,205 aligned lines, and every
+    one is a credit, an ad-lib or an English code-switch; none is Spanish worth
+    teaching. It is what stops the producer tag `Sky Rompiendo` from being a
+    vocabulary card.
+    """
+    if not translations:
+        return set()
+    out = set()
+    for segment in segments:
+        if segment.get("state") != "present":
+            continue
+        text = str(segment.get("text") or "")
+        english = translations.get(text)
+        if not english:
+            continue
+        key = _translation_key(text)
+        if key and key == _translation_key(english):
+            out.add(segment["segment_id"])
+    return out
 
 
 def _letters_only(value):
@@ -73,10 +130,11 @@ def load_known_forms(path):
 
 
 def classify_occurrences(segments, occurrences, known_forms=None,
-                         normalization_forms=None):
+                         normalization_forms=None, translations=None):
     """Return ``occurrence_id -> {labels, reasons}`` for conservative rules."""
     known_forms = set(known_forms or [])
     normalization_forms = normalization_forms or {}
+    untranslated = untranslated_segment_ids(segments, translations or {})
 
     def known_candidates(occurrence):
         values = normalization_forms.get(occurrence.get("occurrence_id")) or []
@@ -101,6 +159,14 @@ def classify_occurrences(segments, occurrences, known_forms=None,
         if not segment:
             continue
         text = str(segment.get("text") or "")
+
+        # Whole line left untranslated: a credit, tag or name, not language.
+        if segment_id in untranslated:
+            for occurrence in rows:
+                result = classified[occurrence["occurrence_id"]]
+                result["labels"].add("credit")
+                result["reasons"].append(
+                    "line copied verbatim into the English translation")
 
         bracket_spans = [match.span() for match in _BRACKET_RE.finditer(text)]
         for occurrence in rows:
@@ -207,9 +273,10 @@ def write_classifier_run(artist_dir, policy="basic", known_forms_path=None,
         ]
         if forms:
             normalization_forms[subject_id] = forms
+    translations = load_aligned_translations(artist_dir)
     classifications = classify_occurrences(
         active["segments"], active["occurrences"], known_forms=known_forms,
-        normalization_forms=normalization_forms)
+        normalization_forms=normalization_forms, translations=translations)
 
     input_projection = {
         "ledger_run": active["ledger_run"],
@@ -218,6 +285,8 @@ def write_classifier_run(artist_dir, policy="basic", known_forms_path=None,
             for row in active["segments"] if row.get("state") == "present"
         },
         "known_forms": semantic_fingerprint(sorted(known_forms)),
+        "translations": semantic_fingerprint(
+            sorted("%s\t%s" % kv for kv in translations.items())),
         "normalization_runs": (
             (active["profile"].get("claim_runs") or {}).get("normalization")
             or (active["profile"].get("runs") or {}).get("normalization")

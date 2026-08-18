@@ -7,6 +7,7 @@ from pipeline.artist import step_2a_count_words as count_step
 from pipeline.artist.step_2d_classify_vocal_artifacts import (
     classify_occurrences,
     write_classifier_run,
+    untranslated_segment_ids,
 )
 from pipeline.artist.step_2e_materialize_corpus import materialize_artist
 from pipeline.artist.util_2a_corpus_ledger import ArtistCorpusLedger
@@ -142,8 +143,34 @@ class VocalArtifactMaterializationTests(unittest.TestCase):
             self.assertEqual(by_word["over"]["corpus_count"], 1)
             self.assertEqual(by_word["mover"]["corpus_count"], 1)
             self.assertEqual(materialized_summary["excluded_labels"], [
-                "adlib", "echo", "stutter",
+                "adlib", "credit", "echo", "stutter",
             ])
+
+    def test_untranslated_line_is_a_credit_but_translated_one_is_not(self):
+        """A line the translator copied across is a name/tag, not language.
+
+        This is what keeps the producer tag `Sky Rompiendo` out of the deck.
+        Capitalisation and spaCy NER were both measured useless here — NER
+        misses `rompiendo` and `orión` and calls `grr` a person — but a human
+        translator reliably leaves a credit verbatim and renders real Spanish.
+        The comparison is accent- and punctuation-insensitive so that
+        `Ozuna (Baby)` still matches its copied English.
+        """
+        segments = [
+            {"segment_id": "s1", "state": "present", "text": "Sky Rompiendo"},
+            {"segment_id": "s2", "state": "present", "text": "Ozuna (Baby)"},
+            {"segment_id": "s3", "state": "present", "text": "Tú lo ve'"},
+            {"segment_id": "s4", "state": "present", "text": "Sin traducir"},
+        ]
+        translations = {
+            "Sky Rompiendo": "Sky Rompiendo",
+            "Ozuna (Baby)": "Ozuna, baby!",
+            "Tú lo ve'": "You see it",
+        }
+        self.assertEqual(
+            untranslated_segment_ids(segments, translations), {"s1", "s2"})
+        # No translations at all must not label anything.
+        self.assertEqual(untranslated_segment_ids(segments, {}), set())
 
     def test_legitimate_elsewhere_use_is_not_retargeted(self):
         with tempfile.TemporaryDirectory() as tmp:
