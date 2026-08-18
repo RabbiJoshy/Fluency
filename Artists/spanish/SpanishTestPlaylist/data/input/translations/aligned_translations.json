@@ -2,10 +2,26 @@
   "songs": {
     "10304179": {
       "title": "Tengo Un Plan",
-      "match_quality": "close",
-      "sp_lines": 50,
+      "match_quality": "exact",
+      "sp_lines": 51,
       "en_lines": 51,
       "lines": [
+        {
+          "spanish": "DJ Roland in the house",
+          "english": "DJ Roland in the house"
+        },
+        {
+          "spanish": "Oeh-oeh-oeh-oeh (Eh, ah, ah)",
+          "english": "Oh-eh, oh-eh, oh-eh, oh-eh (Eh, ah, ah)"
+        },
+        {
+          "spanish": "Mi tatuaje dice LMG (LMG, LMG)",
+          "english": "My tattoo says LMG (LMG, LMG)"
+        },
+        {
+          "spanish": "Todos en mi combo son Real G (Real G, Real G, baby, eh-eh)",
+          "english": "Everyone in my crew is a real G (Real G, real G, baby, eh-eh)"
+        },
         {
           "spanish": "Tengo un plan, dime tú si nos vamo' (Nos vamo')",
           "english": "I have a plan, tell me if we're going (We're going)"
@@ -199,9 +215,33 @@
     "10471373": {
       "title": "orióN",
       "match_quality": "close",
-      "sp_lines": 70,
+      "sp_lines": 71,
       "en_lines": 73,
       "lines": [
+        {
+          "spanish": "Pero dime cuál es el secreto que tiene' guarda'o",
+          "english": "But tell me, what's the secret you’re keeping"
+        },
+        {
+          "spanish": "Que nadie lo ha encontra'o",
+          "english": "That no one has found"
+        },
+        {
+          "spanish": "Y eso me tiene emboba'o (Ah)",
+          "english": "And it's got me fascinated"
+        },
+        {
+          "spanish": "E' que si me pide' que te espere, te espero sentado",
+          "english": "If you ask me to wait, I'll wait sitting down"
+        },
+        {
+          "spanish": "Tú me tiene' en una nube",
+          "english": "You’ve got me on a cloud"
+        },
+        {
+          "spanish": "Y todavía no he aterriza'o",
+          "english": "And I still haven't landed"
+        },
         {
           "spanish": "Ay, si me besa' me desconfigu-gu-guro",
           "english": "Oh, if you kiss me, I'll lose my mind"
@@ -430,10 +470,26 @@
     },
     "10489180": {
       "title": "Si Antes Te Hubiera Conocido",
-      "match_quality": "close",
-      "sp_lines": 60,
+      "match_quality": "exact",
+      "sp_lines": 61,
       "en_lines": 61,
       "lines": [
+        {
+          "spanish": "¿Qué lo que?",
+          "english": "What's up?"
+        },
+        {
+          "spanish": "Estamo' a rulay",
+          "english": "We're feeling great"
+        },
+        {
+          "spanish": "Empezó el verano",
+          "english": "The summer has started"
+        },
+        {
+          "spanish": "Fuego",
+          "english": "Fire"
+        },
         {
           "spanish": "¿Qué hubiera sido",
           "english": "What would have been"
@@ -666,10 +722,42 @@
     },
     "10627178": {
       "title": "PELIGROSA",
-      "match_quality": "close",
-      "sp_lines": 35,
+      "match_quality": "exact",
+      "sp_lines": 36,
       "en_lines": 36,
       "lines": [
+        {
+          "spanish": "Miren a esa nena, la que va pasando",
+          "english": "Look at that girl, the one passing by"
+        },
+        {
+          "spanish": "Me gusta el cortecito que le está dando",
+          "english": "I like the way she's styled her hair"
+        },
+        {
+          "spanish": "Conmigo ella se escapó (Ah-ah-ah)",
+          "english": "She ran off with me (Ah-ah-ah)"
+        },
+        {
+          "spanish": "Peligrosa como mi Glock",
+          "english": "Dangerous like my Glock"
+        },
+        {
+          "spanish": "Miren a esa nena, la que va pasando",
+          "english": "Look at that girl, the one passing by"
+        },
+        {
+          "spanish": "Me gusta el cortecito que le está dando (Ah)",
+          "english": "I like the way she's styled her hair (Ah)"
+        },
+        {
+          "spanish": "Conmigo ella se escapó",
+          "english": "She ran off with me"
+        },
+        {
+          "spanish": "Peligrosa como mi Glock (Ah-ah-ah)",
+          "english": "Dangerous like my Glock (Ah-ah-ah)"
+        },
         {
           "spanish": "La nena me sigue, es la sensación del bloque",
           "english": "The girl keeps following me, she's the sensation of the block"
@@ -787,7 +875,7 @@
     "1556090": {
       "title": "Me Voy",
       "match_quality": "close",
-      "sp_lines": 35,
+      "sp_lines": 36,
       "en_lines": 33,
       "lines": [
         {
@@ -816,12 +904,264 @@
         }
       ]
     },
+    "3035105": {
+      "title": "Me Rehúso",
+      "match_quality": "exact",
+      "sp_lines": 56,
+      "en_lines": 56,
+      "lines": [
+        {
+          "spanish": "Ba-Ba-Babylon girl, Ba-Ba-Babylon girl",
+          "english": "Ba-Ba-Babylon girl, Ba-Ba-Babylon girl"
+        },
+        {
+          "spanish": "Para todos aquellos amore' que",
+          "english": "For all those loves that"
+        },
+        {
+          "spanish": "Que fueron obligao' a ser separao'",
+          "english": "That were forced to be apart"
+        },
+        {
+          "spanish": "Ba-Ba-Babylon girl, Ba-Ba-Babylon girl",
+          "english": "Ba-Ba-Babylon girl, Ba-Ba-Babylon girl"
+        },
+        {
+          "spanish": "Esta canción es para ti",
+          "english": "This song is for you"
+        },
+        {
+          "spanish": "Dime cómo le explico a mi destino que ya no estás ahí",
+          "english": "Tell me how I explain to my destiny that you're no longer there"
+        },
+        {
+          "spanish": "Dime cómo haré para desprenderme de este frenesí",
+          "english": "Tell me how I will detach from this frenzy"
+        },
+        {
+          "spanish": "Esta locura que siento por ti",
+          "english": "This madness I feel for you"
+        },
+        {
+          "spanish": "Con esta química que haces en mí",
+          "english": "With this chemistry you create in me"
+        },
+        {
+          "spanish": "Y ya no puedo, girl, ya no puedo, girl",
+          "english": "And I can't anymore, girl, I can't anymore, girl"
+        },
+        {
+          "spanish": "Nena, discúlpame si te ilusioné, yo no lo quise hacer (Oh-uh)",
+          "english": "Baby, forgive me if I made you dream, I didn't mean to (Oh-uh)"
+        },
+        {
+          "spanish": "Sé que en el amor cuando es real, ese vuelve, vuelve (Vuelve, vuelve)",
+          "english": "I know that in love when it's real, it comes back, comes back (Comes back, comes back)"
+        },
+        {
+          "spanish": "Pero, ¿cómo olvidar tu piel?",
+          "english": "But how do I forget your skin?"
+        },
+        {
+          "spanish": "Y, ¿cómo olvidarte, mujer? (Uh-uh-uh)",
+          "english": "And how do I forget you, woman? (Uh-uh-uh)"
+        },
+        {
+          "spanish": "Ya no puedo, girl, ya no puedo, girl",
+          "english": "I can't anymore, girl, I can't anymore, girl"
+        },
+        {
+          "spanish": "Baby, no (Baby, no)",
+          "english": "Baby, no (Baby, no)"
+        },
+        {
+          "spanish": "Me rehúso a darte un último beso, así que guárdalo (Guárdalo)",
+          "english": "I refuse to give you one last kiss, so keep it (Keep it)"
+        },
+        {
+          "spanish": "Para que la próxima ve' te lo dé haciéndolo (Haciéndolo)",
+          "english": "So that next time I give it to you while doing it (Doing it)"
+        },
+        {
+          "spanish": "Haciéndotelo así, así, así",
+          "english": "Doing it like this, like this, like this"
+        },
+        {
+          "spanish": "Así como te gusta, baby",
+          "english": "Just how you like it, baby"
+        },
+        {
+          "spanish": "Sin mirar atrás, sin buscar a nadie más",
+          "english": "Without looking back, without looking for anyone else"
+        },
+        {
+          "spanish": "Solo quiero estar contigo, woah (Woah)",
+          "english": "I just want to be with you, woah (Woah)"
+        },
+        {
+          "spanish": "Si no te tengo aquí conmigo, yo no quiero ser tu amigo",
+          "english": "If I don't have you here with me, I don't want to be your friend"
+        },
+        {
+          "spanish": "Porque tú ere' mi camino, woah",
+          "english": "Because you're my path, woah"
+        },
+        {
+          "spanish": "Y yo solo quiero estar junto a ti",
+          "english": "And I just want to be next to you"
+        },
+        {
+          "spanish": "Nena, por favor entiéndelo",
+          "english": "Baby, please understand"
+        },
+        {
+          "spanish": "Solo dame tu mano y confía en mí",
+          "english": "Just give me your hand and trust me"
+        },
+        {
+          "spanish": "Si te pierdes, solo sigue mi voz",
+          "english": "If you get lost, just follow my voice"
+        },
+        {
+          "spanish": "Y dale tiempo (Tiempo), mami, al tiempo (Tiempo)",
+          "english": "And give it time (Time), baby, time (Time)"
+        },
+        {
+          "spanish": "Que tú, que yo",
+          "english": "Because you, because I"
+        },
+        {
+          "spanish": "Estamos hechos para estar los dos",
+          "english": "We're meant to be together"
+        },
+        {
+          "spanish": "Y dale tiempo (Dale tiempo), baby, al tiempo",
+          "english": "And give it time (Give it time), baby, time"
+        },
+        {
+          "spanish": "Que tú y yo, que tú y yo",
+          "english": "Because you and I, because you and I"
+        },
+        {
+          "spanish": "Estamos hechos para estar los dos",
+          "english": "We're meant to be together"
+        },
+        {
+          "spanish": "Baby, no (Baby, no)",
+          "english": "Baby, no (Baby, no)"
+        },
+        {
+          "spanish": "Me rehúso a darte un último beso, así que guárdalo (Guárdalo)",
+          "english": "I refuse to give you one last kiss, so keep it (Keep it)"
+        },
+        {
+          "spanish": "Para que la próxima ve' te lo dé haciéndolo (Haciéndolo)",
+          "english": "So that next time I give it to you while doing it (Doing it)"
+        },
+        {
+          "spanish": "Haciéndotelo así, así, así (Así, así)",
+          "english": "Doing it like this, like this, like this (Like this, like this)"
+        },
+        {
+          "spanish": "Así como te gusta, baby (Woah, woah)",
+          "english": "Just how you like it, baby (Woah, woah)"
+        },
+        {
+          "spanish": "Baby, no",
+          "english": "Baby, no"
+        },
+        {
+          "spanish": "Me rehúso a darte un último beso, así que guárdalo (Guárdalo)",
+          "english": "I refuse to give you one last kiss, so keep it (Keep it)"
+        },
+        {
+          "spanish": "Para que la próxima ve' te lo dé haciéndolo",
+          "english": "So that next time I give it to you while doing it"
+        },
+        {
+          "spanish": "Haciéndotelo así, así, así",
+          "english": "Doing it like this, like this"
+        },
+        {
+          "spanish": "Así como te gusta, baby",
+          "english": "Just how you like it, baby"
+        },
+        {
+          "spanish": "Así, así",
+          "english": "Like this, like this"
+        },
+        {
+          "spanish": "Así como te gusta, baby",
+          "english": "Just how you like it, baby"
+        },
+        {
+          "spanish": "Baby, no (Baby, no)",
+          "english": "Baby, no (Baby, no)"
+        },
+        {
+          "spanish": "Me rehúso a darte un último beso, así que guárdalo (Guárdalo)",
+          "english": "I refuse to give you one last kiss, so keep it (Keep it)"
+        },
+        {
+          "spanish": "Para que la próxima ve' te lo dé haciéndolo (Uh-uh)",
+          "english": "So that next time I give it to you while doing it (Uh-uh)"
+        },
+        {
+          "spanish": "Haciéndotelo así, así, así (Uh-uh-uh)",
+          "english": "Doing it like this, like this, like this (Uh-uh-uh)"
+        },
+        {
+          "spanish": "Así como te gusta, baby",
+          "english": "Just how you like it, baby"
+        },
+        {
+          "spanish": "Y baby, no (Baby, no)",
+          "english": "And baby, no (Baby, no)"
+        },
+        {
+          "spanish": "Me rehúso a darte un último beso, así que guárdalo (Guárdalo)",
+          "english": "I refuse to give you one last kiss, so keep it (Keep it)"
+        },
+        {
+          "spanish": "Para que la próxima ve' te lo dé haciéndolo",
+          "english": "So that next time I give it to you while doing it"
+        },
+        {
+          "spanish": "Haciéndotelo así, así",
+          "english": "Doing it like this, like this"
+        },
+        {
+          "spanish": "Así como te gusta, baby",
+          "english": "Just how you like it, baby"
+        }
+      ]
+    },
     "3687950": {
       "title": "Vaina Loca",
-      "match_quality": "close",
-      "sp_lines": 53,
+      "match_quality": "exact",
+      "sp_lines": 54,
       "en_lines": 54,
       "lines": [
+        {
+          "spanish": "(Jeje, woah-oh; Au-Aura, jaja)",
+          "english": "(Hehe, woah-oh; Au-Aura, haha)"
+        },
+        {
+          "spanish": "No va a ser tan fácil (Fácil, fácil)",
+          "english": "It's not going to be that easy (Easy, easy)"
+        },
+        {
+          "spanish": "Aunque me esquives, comoquiera",
+          "english": "Even if you avoid me, in any case"
+        },
+        {
+          "spanish": "Tras de ti, voy tras de ti (¡Ti, yeah!)",
+          "english": "Towards you, I'll go towards you (You, yeah!)"
+        },
+        {
+          "spanish": "Tú tienes todo lo que quiero para mí",
+          "english": "You have everything I want for me"
+        },
         {
           "spanish": "Y tú tan sola por ahí",
           "english": "And you're all alone over there"
@@ -1020,12 +1360,384 @@
         }
       ]
     },
-    "5302840": {
-      "title": "Amarillo",
+    "5022102": {
+      "title": "Blanco",
       "match_quality": "close",
-      "sp_lines": 53,
+      "sp_lines": 56,
       "en_lines": 54,
       "lines": [
+        {
+          "spanish": "(Acapella, acapella; leggo, leggo)",
+          "english": "(Acapella, acapella; leggo, leggo)"
+        },
+        {
+          "spanish": "Colores",
+          "english": "Colores"
+        },
+        {
+          "spanish": "Yo te como sin beat, acapella (Ey)",
+          "english": "I make love to you without the beat, acapella (Ayy)"
+        },
+        {
+          "spanish": "Suave que la noche espera (Uh; ey, ey)",
+          "english": "Soft, the night waits (Uh; hey, hey)"
+        },
+        {
+          "spanish": "Ya te encendí como vela",
+          "english": "I already lit you like a candle"
+        },
+        {
+          "spanish": "Y te apago cuando quiera",
+          "english": "And I turn you off whenever I want"
+        },
+        {
+          "spanish": "Negra está la noche como pantera",
+          "english": "The night's black like a panther"
+        },
+        {
+          "spanish": "Ella coge el plan y lo desmantela (Ey)",
+          "english": "She does what she wants (Hey)"
+        },
+        {
+          "spanish": "No es de Puerto Rico y me dice \"Mera\" (Mera)",
+          "english": "She's not from Puerto Rico and she says \"Mera\" (Mera)"
+        },
+        {
+          "spanish": "Tranquila, yo pago, guarda tu cartera",
+          "english": "Relax, I pay, put your wallet away"
+        },
+        {
+          "spanish": "For real, made in Medellín, eh",
+          "english": "For real, made in Medellín, eh"
+        },
+        {
+          "spanish": "Te lo doy sin que tenga' que pedir, eh",
+          "english": "I give it to you without you having to ask for it, hey"
+        },
+        {
+          "spanish": "Te seguí, me cambié de carril (Wuh), ey",
+          "english": "I followed you, I changed lanes (Wuh), hey"
+        },
+        {
+          "spanish": "Marea'o, no sé si ir o venir",
+          "english": "Dizzy, I don't know whether to come or go and ask"
+        },
+        {
+          "spanish": "For real, made in Medellín, ey",
+          "english": "For real, made in Medellín, ayy"
+        },
+        {
+          "spanish": "Te lo doy sin que tenga' que pedir, eh",
+          "english": "I give it to you without you having to ask for it, eh"
+        },
+        {
+          "spanish": "Te seguí, me cambié de carril, ey",
+          "english": "I followed you, I changed lanes, hey"
+        },
+        {
+          "spanish": "Marea'o, no sé si ir o venir",
+          "english": "Dizzy, I don't know whether to come or go and ask"
+        },
+        {
+          "spanish": "Yo te como sin beat, acapella (Ey)",
+          "english": "I make love to you without the beat, acapella (Ayy)"
+        },
+        {
+          "spanish": "Suave que la noche espera (Uh; ey, ey)",
+          "english": "Soft, the night waits (Uh; hey, hey)"
+        },
+        {
+          "spanish": "Ya te encendí como vela",
+          "english": "I already lit you like a candle"
+        },
+        {
+          "spanish": "Y te apago cuando quiera",
+          "english": "And I turn you off whenever I want"
+        },
+        {
+          "spanish": "Negra está la noche como pantera",
+          "english": "The night's black like a panther"
+        },
+        {
+          "spanish": "Ella coge el plan y lo desmantela (Ey)",
+          "english": "She does what she wants (Hey)"
+        },
+        {
+          "spanish": "No es de Puerto Rico y me dice \"Mera\" (Mera)",
+          "english": "She's not from Puerto Rico and she says \"Mera\" (Mera)"
+        },
+        {
+          "spanish": "Tranquila yo pago, guarda tu cartera",
+          "english": "Relax, I pay, put your wallet away"
+        },
+        {
+          "spanish": "For real, made in Medellín, eh",
+          "english": "For real, made in Medellín, eh"
+        },
+        {
+          "spanish": "Te lo doy sin que tenga' que pedir, eh",
+          "english": "I give it to you without you having to ask for it, eh"
+        },
+        {
+          "spanish": "Te seguí, me cambié de carril (Wuh), ey",
+          "english": "I followed you, I changed lanes (Wuh), hey"
+        },
+        {
+          "spanish": "Marea'o, no sé si ir o venir",
+          "english": "Dizzy, I don't know whether to come or go and ask"
+        },
+        {
+          "spanish": "For real, made in Medellín, ey",
+          "english": "For real, made in Medellín, hey"
+        },
+        {
+          "spanish": "Te lo doy sin que tenga' que pedir, eh",
+          "english": "I give it to you without you having to ask for it, eh"
+        },
+        {
+          "spanish": "Te seguí, me cambié de carril, ey",
+          "english": "I followed you, I changed lanes, hey"
+        },
+        {
+          "spanish": "Marea'o, no sé si ir o venir",
+          "english": "Dizzy, I don't know whether to come or go and ask"
+        },
+        {
+          "spanish": "For real, made in Medellín, eh",
+          "english": "For real, made in Medellín, eh"
+        },
+        {
+          "spanish": "Te lo doy sin que tenga' que pedir, eh",
+          "english": "I give it to you without you having to ask for it, eh"
+        },
+        {
+          "spanish": "Te seguí, me cambié de carril (Wuh), ey",
+          "english": "I followed you, I changed lanes (Wuh), hey"
+        },
+        {
+          "spanish": "Marea'o, no sé si ir o venir",
+          "english": "Dizzy, I don't know whether to come or go and ask"
+        },
+        {
+          "spanish": "For real, made in Medellín, ey",
+          "english": "For real, made in Medellín, hey"
+        },
+        {
+          "spanish": "Te lo doy sin que tenga' que pedir, eh",
+          "english": "I give it to you without you having to ask for it, eh"
+        },
+        {
+          "spanish": "Te seguí, me cambié de carril, ey",
+          "english": "I followed you, I changed lanes, hey"
+        },
+        {
+          "spanish": "Marea'o, no sé si ir o venir",
+          "english": "Dizzy, I don't know whether to come or go and ask"
+        },
+        {
+          "spanish": "Made in Medellín",
+          "english": "Made in Medellín"
+        },
+        {
+          "spanish": "Y el otro niño de Medellín: Sky Rompiendo",
+          "english": "And the other boy from Medellín: Sky Rompiendo"
+        },
+        {
+          "spanish": "J Balvin",
+          "english": "J Balvin"
+        },
+        {
+          "spanish": "Colores",
+          "english": "Colores"
+        }
+      ]
+    },
+    "5258555": {
+      "title": "Rojo",
+      "match_quality": "exact",
+      "sp_lines": 39,
+      "en_lines": 39,
+      "lines": [
+        {
+          "spanish": "(Colores)",
+          "english": "(Colores)"
+        },
+        {
+          "spanish": "Yeah",
+          "english": "Yeah"
+        },
+        {
+          "spanish": "J Balvin, man",
+          "english": "J Balvin, man"
+        },
+        {
+          "spanish": "Leggo, leggo",
+          "english": "Leggo, leggo"
+        },
+        {
+          "spanish": "¿A quién le mientes si en tu soledad quieres verme otra ve'?",
+          "english": "Who are you lying to if you want to see me again in your loneliness?"
+        },
+        {
+          "spanish": "Por ti respondo lo que tú me das, lo que nadie sabe",
+          "english": "I answer what you give me, what nobody knows"
+        },
+        {
+          "spanish": "Me decido por ti, te decides por mí a la misma hora",
+          "english": "I decide for you, you decide for me at the same time"
+        },
+        {
+          "spanish": "Me dan ganas de ti, te dan ganas de mí a la misma hora",
+          "english": "I want you, you want me at the same time"
+        },
+        {
+          "spanish": "Te quiero sentir aquí",
+          "english": "I want to feel you here"
+        },
+        {
+          "spanish": "Me dan ganas de ti, te dan ganas de mí a la misma hora",
+          "english": "I want you, you want me at the same time"
+        },
+        {
+          "spanish": "Tres y cuatro de la mañana (Yah)",
+          "english": "Three and four in the morning (Yah)"
+        },
+        {
+          "spanish": "Ven, mata estás gana’, vamo' a llegar a mi cama (Vamo')",
+          "english": "Come, let's do it, come to my bed (Come on)"
+        },
+        {
+          "spanish": "Que todo lo he ignorado por ti, todo ha sido por ti (Yah)",
+          "english": "I have ignored everything for you, everything has been for you (Yah)"
+        },
+        {
+          "spanish": "Mi cuerpo sin saber te llama",
+          "english": "My body without knowing calls you"
+        },
+        {
+          "spanish": "Y estas no son horas de llamar (Ey)",
+          "english": "And these aren't hours to call (Hey)"
+        },
+        {
+          "spanish": "Pero es que el deseo siempre puede más (Ey)",
+          "english": "But desire is always pushing me (Hey)"
+        },
+        {
+          "spanish": "Podemos pelearnos y hasta alejarnos",
+          "english": "We can fight and even get away"
+        },
+        {
+          "spanish": "Pero cuando llega la hora",
+          "english": "But when the time comes"
+        },
+        {
+          "spanish": "Me decido por ti, te decides por mí a la misma hora",
+          "english": "I decide for you, you decide for me at the same time"
+        },
+        {
+          "spanish": "Me dan ganas de ti, te dan ganas de mí a la misma hora",
+          "english": "I want you, you want me at the same time"
+        },
+        {
+          "spanish": "Te quiero sentir aquí",
+          "english": "I want to feel you here"
+        },
+        {
+          "spanish": "Me dan ganas de ti, te dan ganas de mí a la misma hora",
+          "english": "I want you, you want me at the same time"
+        },
+        {
+          "spanish": "Tratan y se caen de la mata (Yah)",
+          "english": "They try and never get you (Yah)"
+        },
+        {
+          "spanish": "Quieren comprarte siempre con plata (Wuh)",
+          "english": "They always want buy you with money (Wuh)"
+        },
+        {
+          "spanish": "Pero ese tesoro tiene pirata (Yeah-yeah)",
+          "english": "But that treasure has a pirate (Yeah-yeah)"
+        },
+        {
+          "spanish": "Me voy a toda’ por ti",
+          "english": "I do everything for you"
+        },
+        {
+          "spanish": "Tratan y se caen de la mata",
+          "english": "They try and never get you"
+        },
+        {
+          "spanish": "Quieren comprarte siempre con plata",
+          "english": "They always want buy you with money"
+        },
+        {
+          "spanish": "Pero ese tesoro tiene pirata (Wuh)",
+          "english": "But that treasure has a pirate (Wuh)"
+        },
+        {
+          "spanish": "Yo doy la vida por ti (Yah)",
+          "english": "I give my life for you (Yah)"
+        },
+        {
+          "spanish": "Me decido por ti, te decides por mí a la misma hora",
+          "english": "I decide for you, you decide for me at the same time"
+        },
+        {
+          "spanish": "Me dan ganas de ti, te dan ganas de mí a la misma hora",
+          "english": "I want you, you want me at the same time"
+        },
+        {
+          "spanish": "Te quiero sentir aquí",
+          "english": "I want to feel you here"
+        },
+        {
+          "spanish": "Me dan ganas de ti, te dan ganas de mí a la misma hora",
+          "english": "I want you, you want me at the same time"
+        },
+        {
+          "spanish": "Taiko",
+          "english": "Taiko"
+        },
+        {
+          "spanish": "J Balvin, man",
+          "english": "J Balvin, man"
+        },
+        {
+          "spanish": "Colores",
+          "english": "Colores"
+        },
+        {
+          "spanish": "Yah (Ah-ah)",
+          "english": "Yah (Ah-ah)"
+        },
+        {
+          "spanish": "Tú sabe' lo que yo hago por ti",
+          "english": "You know what I do for you"
+        }
+      ]
+    },
+    "5302840": {
+      "title": "Amarillo",
+      "match_quality": "exact",
+      "sp_lines": 54,
+      "en_lines": 54,
+      "lines": [
+        {
+          "spanish": "Son más de las doce, nos fuimos de roce",
+          "english": "It's past twelve o'clock, we left rubbing"
+        },
+        {
+          "spanish": "Hoy voy a lo loco, ustede' me conocen (Me conocen)",
+          "english": "Today I'm going crazy, you guys know me (Know me)"
+        },
+        {
+          "spanish": "Reggaetón de Tego pa' que se lo gocen (Ey)",
+          "english": "Reggeatón from Tego for you to enjoy (Ayy)"
+        },
+        {
+          "spanish": "Saben quién es Balvin, les presento a José (Wuh)",
+          "english": "You know who Balvin is, I introduce you to Jose (Wuh)"
+        },
         {
           "spanish": "Y yo no me complico (Eh), ¿cómo te explico (Eh)",
           "english": "And I don't mess around (Eh), how can I explain (Eh)"
@@ -1230,10 +1942,22 @@
     },
     "5302844": {
       "title": "Verde",
-      "match_quality": "close",
-      "sp_lines": 53,
+      "match_quality": "exact",
+      "sp_lines": 54,
       "en_lines": 54,
       "lines": [
+        {
+          "spanish": "Yeah, yah, yah, yah, ah, yah",
+          "english": "Yeah, yah, yah, yah, ah, yah"
+        },
+        {
+          "spanish": "Colores",
+          "english": "Colores"
+        },
+        {
+          "spanish": "Wuh, wuh, wuh, pa'",
+          "english": "Wuh, wuh, wuh, pa'"
+        },
         {
           "spanish": "Hay party en la terraza, ey",
           "english": "There's a party on the terrace, ayy"
@@ -1440,79 +2164,331 @@
         }
       ]
     },
+    "5305010": {
+      "title": "A Tu Merced",
+      "match_quality": "exact",
+      "sp_lines": 60,
+      "en_lines": 60,
+      "lines": [
+        {
+          "spanish": "Yeh, yeh, yeh, yeh",
+          "english": "Yeh, yeh, yeh, yeh"
+        },
+        {
+          "spanish": "Yeh, yeh, ey",
+          "english": "Yeh, yeh, hey"
+        },
+        {
+          "spanish": "Tengo par de babie' explotándome el cel",
+          "english": "I got a couple girls blowing up my phone"
+        },
+        {
+          "spanish": "Y yo pensando en ti, estoy a tu merced",
+          "english": "And I'm thinking of you, I'm at your mercy"
+        },
+        {
+          "spanish": "Tú siempre está' mojá' y yo que tengo sed, eh",
+          "english": "You're always wet and I happen to be thirsty, eh"
+        },
+        {
+          "spanish": "Dime qué vamo' a hacer",
+          "english": "Tell me what we are gonna do"
+        },
+        {
+          "spanish": "Que tengo par de babie' explotándome el cel",
+          "english": "I got a couple girls blowing up my phone"
+        },
+        {
+          "spanish": "Y yo pensando en ti, estoy a tu merced",
+          "english": "And I'm thinking of you, I'm at your mercy"
+        },
+        {
+          "spanish": "Tú siempre está' mojá' y yo que tengo sed",
+          "english": "You're always wet and I'm thirsty"
+        },
+        {
+          "spanish": "Ey, ey, ey",
+          "english": "Hey, hey, hey"
+        },
+        {
+          "spanish": "Y ella' están buena', pero tú 'tás mejor (Mejor)",
+          "english": "And they're hot, but you're even better (Better)"
+        },
+        {
+          "spanish": "Traje pasto y alcohol",
+          "english": "I brought weed and alcohol"
+        },
+        {
+          "spanish": "Por ti les picheo, las tengo en hold (En hold)",
+          "english": "I'll ignore them for you, I'll have 'em on hold (On hold)"
+        },
+        {
+          "spanish": "Y yo detrás de ti como Usain Bolt",
+          "english": "And I'm after you like Usain Bolt"
+        },
+        {
+          "spanish": "Y si quiere' te busco en la Lamborghi (-ghi)",
+          "english": "And if you want, I pick you up in the Lamborghi (-ghi)"
+        },
+        {
+          "spanish": "Si te lo hago te enchulo, como Anuel a Karol G (G)",
+          "english": "If I fuck you you'll fall in love, like Anuel to Karol G (G)"
+        },
+        {
+          "spanish": "Quiere' perreo, no balada",
+          "english": "She wants reggaeton, not a ballad"
+        },
+        {
+          "spanish": "Tú ere' una pitcher, pero yo estoy puesto pa' la nueva entrada",
+          "english": "You are a pitcher but I'm up next at batting"
+        },
+        {
+          "spanish": "¿Y qué? ¿Qué?",
+          "english": "And what? What?"
+        },
+        {
+          "spanish": "¿Qué quiere' hacer? Yo hago lo que tú diga'",
+          "english": "What do you want to do? I do whatever you say"
+        },
+        {
+          "spanish": "Ese culo e' grande' liga', que Dio' te lo bendiga",
+          "english": "That booty is major league, God bless it"
+        },
+        {
+          "spanish": "Y dime, ¿qué? ¿Qué?",
+          "english": "And tell me, what? What?"
+        },
+        {
+          "spanish": "¿Qué quiere' hacer?, yo hago lo que tú diga'",
+          "english": "What do you want to do? I'll do whatever you say"
+        },
+        {
+          "spanish": "Picheale a tu amiga, ey, ey",
+          "english": "Ignore your friend, hey, hey"
+        },
+        {
+          "spanish": "Porque tengo par de babie' explotándome el cel",
+          "english": "Because I got a couple girls blowing up my phone"
+        },
+        {
+          "spanish": "Y yo pensando en ti, estoy a tu merced",
+          "english": "And I'm thinking of you, I'm at your mercy"
+        },
+        {
+          "spanish": "Tú siempre está' mojá' y yo que tengo sed, ey",
+          "english": "You're always wet and I'm thirsty, eh"
+        },
+        {
+          "spanish": "Dime qué vamo' a hacer",
+          "english": "Tell me what we are gonna do"
+        },
+        {
+          "spanish": "Es que tengo par de babie' explotándome el cel",
+          "english": "It's that I got a couple girls blowing up my phone"
+        },
+        {
+          "spanish": "Y yo pensando en ti, estoy a tu merced",
+          "english": "And I'm thinking of you, I'm at your mercy"
+        },
+        {
+          "spanish": "Tú siempre está' mojá' y yo que tengo sed",
+          "english": "You're always wet and I'm thirsty"
+        },
+        {
+          "spanish": "Ey, ey, ey",
+          "english": "Hey, hey, hey"
+        },
+        {
+          "spanish": "Yo sé que no ere' fan del romanticismo",
+          "english": "I know you aren't a fan of romanticism"
+        },
+        {
+          "spanish": "Y que está' cansá' de que esto' cabrone' te digan lo mismo",
+          "english": "And that you're tired of these bastards telling you the same thing"
+        },
+        {
+          "spanish": "Moviendo el booty, no se va de ritmo",
+          "english": "Moving her booty, doesn't lose the rhythm"
+        },
+        {
+          "spanish": "Punto die', en la cama va a haber un sismo",
+          "english": "Point ten, the bed is gonna have an earthquake"
+        },
+        {
+          "spanish": "Quiero jalarte ese pelito rubio (Rubio)",
+          "english": "I want to pull on your blond hair (Blond)"
+        },
+        {
+          "spanish": "Y darte en cuatro el cuatro de julio",
+          "english": "And fuck you on all fours on July 4th"
+        },
+        {
+          "spanish": "Mañana tengo examen, pero tú lo sabe'",
+          "english": "Tomorrow I have a test, but you know it"
+        },
+        {
+          "spanish": "Que si me llama', no estudio",
+          "english": "If you call me, I won't study"
+        },
+        {
+          "spanish": "Mami, concédeme esta pieza",
+          "english": "Mami, may I have this dance"
+        },
+        {
+          "spanish": "No somo' na', no somo' na', ey",
+          "english": "We aren't anything, we aren't anything serious, hey"
+        },
+        {
+          "spanish": "Pero con un perreo se empieza",
+          "english": "But we can start with some grinding"
+        },
+        {
+          "spanish": "No sale' de mi cabeza",
+          "english": "You don't get out of my head"
+        },
+        {
+          "spanish": "Mami, concédeme esta pieza",
+          "english": "Mami, may I have this dance"
+        },
+        {
+          "spanish": "No somo' na', no somo' na', ey",
+          "english": "We aren't anything, we aren't anything serious, hey"
+        },
+        {
+          "spanish": "Pero con un perreo se empieza",
+          "english": "But we can start with some grinding"
+        },
+        {
+          "spanish": "No sale' de mi cabeza, ey",
+          "english": "You don't get out of my head, hey"
+        },
+        {
+          "spanish": "Y to' los culo' de Miami explotándome el cel",
+          "english": "And all the booty calls in Miami are blowing up my phone"
+        },
+        {
+          "spanish": "Y yo pensando en ti, estoy a tu merced",
+          "english": "And I'm thinking of you, I'm at your mercy"
+        },
+        {
+          "spanish": "Tú siempre está' mojá' y yo que tengo sed, eh",
+          "english": "You're always wet and I'm thirsty, eh"
+        },
+        {
+          "spanish": "Dime qué vamo' a hacer",
+          "english": "Tell me what we are gonna do"
+        },
+        {
+          "spanish": "Es que tengo par de babie' explotándome el cel",
+          "english": "It's that I got some girls blowing up my phone"
+        },
+        {
+          "spanish": "Y yo pensando en ti, estoy a tu merced",
+          "english": "And I'm thinking of you, I'm at your mercy"
+        },
+        {
+          "spanish": "Tú siempre está' mojá' y yo que tengo sed, eh",
+          "english": "You're always wet and I'm thirsty, eh"
+        },
+        {
+          "spanish": "Dime qué vamo' a hacer",
+          "english": "Tell me what we are gonna do"
+        },
+        {
+          "spanish": "Eh-eh-eh",
+          "english": "Eh, eh, eh"
+        },
+        {
+          "spanish": "Eh-eh-eh",
+          "english": "Eh, eh, eh"
+        },
+        {
+          "spanish": "Eh-eh-eh",
+          "english": "Eh, eh, eh"
+        },
+        {
+          "spanish": "Yeah, yeah, eh",
+          "english": "Yeah, yeah, eh"
+        }
+      ]
+    },
     "5751052": {
       "title": "Ay, DiOs Mío!",
-      "match_quality": "exact",
-      "sp_lines": 51,
+      "match_quality": "close",
+      "sp_lines": 52,
       "en_lines": 51,
       "lines": [
         {
-          "spanish": "Yo no te estaba buscando, babe",
+          "spanish": "Ovy On The Drums",
           "english": "Ovy On The Drums"
         },
         {
-          "spanish": "Pero cuando coincidimos, bebé",
+          "spanish": "Yo no te estaba buscando, babe",
           "english": "I wasn't looking for you, babe"
         },
         {
-          "spanish": "Fue una cosa que yo no sé",
+          "spanish": "Pero cuando coincidimos, bebé",
           "english": "But when we happened to meet, baby"
         },
         {
-          "spanish": "Tú fuiste conquistándome",
+          "spanish": "Fue una cosa que yo no sé",
           "english": "It was a thing that I don't know"
         },
         {
-          "spanish": "Y en tus ojos yo lo noté",
+          "spanish": "Tú fuiste conquistándome",
           "english": "You were trying to win me over"
         },
         {
-          "spanish": "Que tú querías y yo también",
+          "spanish": "Y en tus ojos yo lo noté",
           "english": "In your eyes I noticed it"
         },
         {
-          "spanish": "Entre botellas de Rosé",
+          "spanish": "Que tú querías y yo también",
           "english": "That you wanted to and me too"
         },
         {
-          "spanish": "Nos fuimos calentando",
+          "spanish": "Entre botellas de Rosé",
           "english": "Between bottles of Rosé"
         },
         {
-          "spanish": "Emma me escribió (Oh), y me dijo a mí (A mí)",
+          "spanish": "Nos fuimos calentando",
           "english": "We were getting hot"
         },
         {
-          "spanish": "Que le gustaban toda' mis cancione' (Eh, eh)",
+          "spanish": "Emma me escribió (Oh), y me dijo a mí (A mí)",
           "english": "Emma wrote to me (Oh), and he told me (Me)"
         },
         {
-          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
+          "spanish": "Que le gustaban toda' mis cancione' (Eh, eh)",
           "english": "That he liked all of my songs (Eh, eh)"
         },
         {
-          "spanish": "Luego me dijo (Oh) que le gusté yo (-té yo)",
+          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
           "english": "And I told him: \"Oh my God, how great, my God\""
         },
         {
-          "spanish": "Que conmigo quiere tener relaciones, eh",
+          "spanish": "Luego me dijo (Oh) que le gusté yo (-té yo)",
           "english": "Then he told me (Oh) that she liked me (-ed me)"
         },
         {
-          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
+          "spanish": "Que conmigo quiere tener relaciones, eh",
           "english": "That he wanted to have a relationship with me, eh"
         },
         {
-          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Mmm)",
+          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
           "english": "And I told him: \"Oh my God, how great, my God\""
         },
         {
-          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Yeh)",
+          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Mmm)",
           "english": "\"Oh my God, how great, my God\" (Mmm)"
         },
         {
-          "spanish": "\"Ay, Dios mío, qué rico\" (Qué rico)",
+          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Yeh)",
           "english": "\"Oh my God, how great, my God\" (Yeah)"
+        },
+        {
+          "spanish": "\"Ay, Dios mío, qué rico\" (Qué rico)",
+          "english": "\"Oh my God, how great, my God\" (How great)"
         },
         {
           "spanish": "\"Ay, Dios mío, qué rico\" (Qué rico)",
@@ -1520,70 +2496,66 @@
         },
         {
           "spanish": "Él me jaló y me dijo: \"Ven pa'cá\" (Oh; ah)",
-          "english": "\"Oh my God, how great, my God\" (How great)"
-        },
-        {
-          "spanish": "Yo le dije \"lento\", y me hizo tra-tra",
           "english": "He pulled me over and told me: \"Come here\" (Oh; ah)"
         },
         {
-          "spanish": "Yo sé que lo notó y no pude evitar",
+          "spanish": "Yo le dije \"lento\", y me hizo tra-tra",
           "english": "I told him \"slowly\", and he made me go tra-tra"
         },
         {
-          "spanish": "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)",
+          "spanish": "Yo sé que lo notó y no pude evitar",
           "english": "I know that he noticed it and I couldn't help"
         },
         {
-          "spanish": "Él me invitó a salir a bailar (Ah-ah)",
+          "spanish": "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)",
           "english": "To stop looking at him (Ah), and he made me (And he made me, ayy)"
         },
         {
-          "spanish": "Un perreíto de eso' bien anormal (Mmm-mmm)",
+          "spanish": "Él me invitó a salir a bailar (Ah-ah)",
           "english": "He invited me to go out and dance (Ah-ah)"
         },
         {
-          "spanish": "Cuando me fui él me mandó a buscar (Oh)",
+          "spanish": "Un perreíto de eso' bien anormal (Mmm-mmm)",
           "english": "A grind like those abnormal ones (Mmm-mmm)"
         },
         {
-          "spanish": "Y yo no pude, no (No), decirle que no",
+          "spanish": "Cuando me fui él me mandó a buscar (Oh)",
           "english": "When I left he sent them to search for me (Oh)"
         },
         {
-          "spanish": "Emma me escribió (Oh), y me dijo a mí (A mí)",
+          "spanish": "Y yo no pude, no (No), decirle que no",
           "english": "And I couldn't, no (No), tell him no"
         },
         {
-          "spanish": "Que le gustaban toda' mis cancione' (Eh, eh)",
+          "spanish": "Emma me escribió (Oh), y me dijo a mí (A mí)",
           "english": "Emma wrote to me (Oh), and he told me (Me)"
         },
         {
-          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
+          "spanish": "Que le gustaban toda' mis cancione' (Eh, eh)",
           "english": "That he liked all of my songs (Eh, eh)"
         },
         {
-          "spanish": "Luego me dijo (Oh) que le gusté yo (-té yo)",
+          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
           "english": "And I told him: \"Oh my God, how great, my God\""
         },
         {
-          "spanish": "Que conmigo quiere tener relaciones, eh (Eh, eh, ah)",
+          "spanish": "Luego me dijo (Oh) que le gusté yo (-té yo)",
           "english": "Then he told me (Oh) that he liked me (-ed me)"
         },
         {
-          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
+          "spanish": "Que conmigo quiere tener relaciones, eh (Eh, eh, ah)",
           "english": "That he wanted to have a relationship with me, eh (Eh, eh, ah)"
         },
         {
-          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Mmm)",
+          "spanish": "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"",
           "english": "And I told him: \"Oh my God, how great, my God\""
         },
         {
-          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Yeh)",
+          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Mmm)",
           "english": "\"Oh my God, how great, my God\" (Mmm)"
         },
         {
-          "spanish": "\"Ay, Dios mío, qué rico\" (Qué rico)",
+          "spanish": "\"Ay, Dios mío, qué rico, Dios mío\" (Yeh)",
           "english": "\"Oh my God, how great, my God\" (Yeah)"
         },
         {
@@ -1591,32 +2563,8 @@
           "english": "\"Oh my God, how great, my God\" (How great)"
         },
         {
-          "spanish": "Él me invitó a salir a bailar (Ah-ah)",
+          "spanish": "\"Ay, Dios mío, qué rico\" (Qué rico)",
           "english": "\"Oh my God, how great, my God\" (How great)"
-        },
-        {
-          "spanish": "Un perreíto de eso' bien anormal (Mmm-mmm)",
-          "english": "He invited me to go out and dance (Ah-ah)"
-        },
-        {
-          "spanish": "Cuando me fui él me mandó a buscar (Oh)",
-          "english": "A grind like those abnormal ones (Mmm-mmm)"
-        },
-        {
-          "spanish": "Y yo no pude, no (No), decirle que no",
-          "english": "When I left he sent them to search for me (Oh)"
-        },
-        {
-          "spanish": "No pude, no (No), decirle que no",
-          "english": "And I couldn't, no (No), tell him no"
-        },
-        {
-          "spanish": "No pude, no, decirle que no (No)",
-          "english": "I couldn't, no (No), tell him no"
-        },
-        {
-          "spanish": "Ay, Dios mío, qué rico, Dios mío",
-          "english": "Oh my God, how great, my God"
         },
         {
           "spanish": "Emma me escribió (Oh), y me dijo a mí (A mí)",
@@ -1652,12 +2600,352 @@
         }
       ]
     },
+    "5815779": {
+      "title": "La Nota",
+      "match_quality": "exact",
+      "sp_lines": 80,
+      "en_lines": 80,
+      "lines": [
+        {
+          "spanish": "Yeah",
+          "english": "Yeah"
+        },
+        {
+          "spanish": "Manuel Turizo",
+          "english": "Manuel Turizo"
+        },
+        {
+          "spanish": "Uh-oh (Uh-ah-ah)",
+          "english": "Ooh-oh (Ooh-ah-ah)"
+        },
+        {
+          "spanish": "Sin hablar tú y yo nos entendemos",
+          "english": "Without speaking we understand each other"
+        },
+        {
+          "spanish": "Ambos sabemo' lo que sigue",
+          "english": "We both know what comes next"
+        },
+        {
+          "spanish": "Aprovecha que nos conocemos",
+          "english": "Take advantage of the fact that we know each other"
+        },
+        {
+          "spanish": "Colaboremos pa' que se dé",
+          "english": "Let's collaborate so that it works"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Yeah-yeah)",
+          "english": "Let her high go up so that she moves her waist (Yeah-yeah)"
+        },
+        {
+          "spanish": "Sabe que está bien dura",
+          "english": "She knows that she's really hot"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Woh-oh)",
+          "english": "The whole world affirms it (Woah-oh)"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Yeah, yeah-yeah)",
+          "english": "Let her high go up so that she moves her waist (Yeah, yeah-yeah)"
+        },
+        {
+          "spanish": "Sabe que está bien dura (Oh)",
+          "english": "She knows that she's really hot (Oh)"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Mmm)",
+          "english": "The whole world affirms it (Mmm)"
+        },
+        {
+          "spanish": "Ey, yo",
+          "english": "Ey, yo'"
+        },
+        {
+          "spanish": "Ella quiere que la nota se le suba",
+          "english": "She wants her high to go up"
+        },
+        {
+          "spanish": "Porque dice que e' libre como Venezuela y Cuba",
+          "english": "Because she says she's free like Venezuela and Cuba"
+        },
+        {
+          "spanish": "Te conozco, ya yo te he visto desnuda",
+          "english": "I know you, I've already seen you naked"
+        },
+        {
+          "spanish": "No' perdemo' como en el triángulo de Las Bermuda'",
+          "english": "We get lost like in the Bermuda Triangle"
+        },
+        {
+          "spanish": "Parcerita, colabórame",
+          "english": "Baby, work with me"
+        },
+        {
+          "spanish": "Haciéndome el amor enamórame",
+          "english": "Making love to me, make me fall in love"
+        },
+        {
+          "spanish": "Es que tú ere' una diosa, yo te adoro, amén (Amén)",
+          "english": "You're a goddess, I adore you, amen (Amen)"
+        },
+        {
+          "spanish": "Repitamo' de nuevo, ven, devórame",
+          "english": "Let's repeat it again, come, devour me"
+        },
+        {
+          "spanish": "Y le dio conmigo",
+          "english": "And it worked with me"
+        },
+        {
+          "spanish": "Mami, cáele al condominio",
+          "english": "Mami, come down to the condominium"
+        },
+        {
+          "spanish": "Con una como tú me alineo",
+          "english": "With one like you, I'll get in line"
+        },
+        {
+          "spanish": "Yo no creo que tenga marido, oh (Woh)",
+          "english": "I don't think she has a husband, oh (Woah)"
+        },
+        {
+          "spanish": "Pero se porta mal, no le importa na'",
+          "english": "But she behaves badly, she doesn't care about anything"
+        },
+        {
+          "spanish": "Sabe que despierta el deseo carnal",
+          "english": "She knows that she awakes the carnal desires"
+        },
+        {
+          "spanish": "Hasta no comerme no se va a calmar",
+          "english": "Even not making love to me isn't going to calm them"
+        },
+        {
+          "spanish": "Lo mejor se da sin tener que planear",
+          "english": "It goes best without having to plan"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Oh-oh)",
+          "english": "Let her high go up so that she moves her waist (Oh-oh)"
+        },
+        {
+          "spanish": "Sabe' que estás bien dura (Oh)",
+          "english": "You know that you're really hot (Oh)"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Oh-oh)",
+          "english": "The whole world affirms it (Oh-oh)"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Yeah, yeah-yeah)",
+          "english": "Let her high go up so that she moves her waist (Yeah, yeah-yeah)"
+        },
+        {
+          "spanish": "Sabe' que estás bien dura (Ah)",
+          "english": "You know that you're really hot (Ah)"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Mmm)",
+          "english": "The whole world affirms it (Mmm)"
+        },
+        {
+          "spanish": "Ra-Rauw",
+          "english": "Ra-Rauw"
+        },
+        {
+          "spanish": "Yo ya loco por dártelo (Uh-wuh)",
+          "english": "I'm already crazy about giving to you (Ooh-woo)"
+        },
+        {
+          "spanish": "Por eso te gardeo (¡Yah!)",
+          "english": "That's why I guard you (Yah!)"
+        },
+        {
+          "spanish": "Quiero que caiga un aguacero (Ey)",
+          "english": "I want a downpour to fall (Ayy)"
+        },
+        {
+          "spanish": "Mala mía si soy muy sincero (¡Yah!)",
+          "english": "My bad if I'm very honest (Yah!)"
+        },
+        {
+          "spanish": "Beanie Prada de Mickey",
+          "english": "Prada Beanie from Mickey"
+        },
+        {
+          "spanish": "Pa' tapar lo' hickie'",
+          "english": "To cover the hickies"
+        },
+        {
+          "spanish": "La pista suena y en la disco se pone freaky (Wuh)",
+          "english": "The beat plays and in the club she gets freaky (Woo)"
+        },
+        {
+          "spanish": "Todo' la quieren pero la nena e' picky",
+          "english": "Everyone wants her but the babe is picky"
+        },
+        {
+          "spanish": "Soy el que sabe su' tricky (Eh, yeah-yeah)",
+          "english": "I'm the one who knows her tricks (Eh, yeah-yeah)"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Oh-oh; yeah-yeah)",
+          "english": "Let her high go up so that she moves her waist (Oh-oh; yeah-yeah)"
+        },
+        {
+          "spanish": "Sabe' que estás bien dura (Oh)",
+          "english": "She knows that she's really hot (Oh)"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Oh-oh)",
+          "english": "The whole world affirms it (Oh-oh)"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Yeah-yeah)",
+          "english": "Let her high go up so that she moves her waist (Yeah-yeah)"
+        },
+        {
+          "spanish": "Sabe' que está bien dura (Ah)",
+          "english": "She knows that she's really hot (Ah)"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Woh)",
+          "english": "The whole world affirms it (Woah)"
+        },
+        {
+          "spanish": "Tú y yo tenemos un problema serio",
+          "english": "You and I have a serious problem"
+        },
+        {
+          "spanish": "Ven pa' hablarte claro, dejemo' el misterio (Ey)",
+          "english": "Come so I can talk to you clearly, let's drop the mystery (Ayy)"
+        },
+        {
+          "spanish": "Si tiene' novio hagamo' un adulterio (-terio)",
+          "english": "If you have a boyfriend let's commit adultery (-tery)"
+        },
+        {
+          "spanish": "Y si eres seria, yo me voy en serio (Ja)",
+          "english": "And if you're serious, I'll get serious (Ha)"
+        },
+        {
+          "spanish": "Dura, qué linda figura",
+          "english": "Hot, what a beautiful figure"
+        },
+        {
+          "spanish": "La gente murmura que tú y yo no' vemo', qué rico fue (Ah)",
+          "english": "People murmur that you and I see each other, how beautiful it was (Ah)"
+        },
+        {
+          "spanish": "Cuando con la calentura",
+          "english": "When with the heat"
+        },
+        {
+          "spanish": "Llevamo' a la altura la temperatura pa' que se dé",
+          "english": "We take it to the highest temperature so that it goes"
+        },
+        {
+          "spanish": "De nuevo (Oh)",
+          "english": "Again (Oh)"
+        },
+        {
+          "spanish": "Ven repítamos el juego (Jue-Jue-Juego)",
+          "english": "Come, let's repeat the game (Gam-gam-game)"
+        },
+        {
+          "spanish": "No lo dejemos pa' luego",
+          "english": "Let's not leave it for later"
+        },
+        {
+          "spanish": "Donde yo te vea me pego y duro pa' la pared",
+          "english": "Wherever I see you I'll stick myself and to the wall hard"
+        },
+        {
+          "spanish": "Sin hablar tú y yo nos entendemos (Qué)",
+          "english": "Without speaking we understand each other (What)"
+        },
+        {
+          "spanish": "Ambos sabemo' lo que sigue (Eh-eh)",
+          "english": "We both know what comes next (Eh-eh)"
+        },
+        {
+          "spanish": "Aprovecha que nos conocemos",
+          "english": "Take advantage of the fact that we know each other"
+        },
+        {
+          "spanish": "Colaboremos pa' que se dé",
+          "english": "Let's collaborate so that it works"
+        },
+        {
+          "spanish": "Que la nota le suba pa' que mueva su cintura (Oh-oh)",
+          "english": "Let her high go up so that she moves her waist (Oh-oh)"
+        },
+        {
+          "spanish": "Sabe' que estás bien dura (Oh)",
+          "english": "You know that you're really hot (Oh)"
+        },
+        {
+          "spanish": "To' el mundo lo asegura (Oh-oh)",
+          "english": "The whole world affirms it (Oh-oh)"
+        },
+        {
+          "spanish": "(Que la nota le suba pa' que mueva su cintura",
+          "english": "(Let her high go up so that she moves her waist"
+        },
+        {
+          "spanish": "Sabe' que estás bien dura",
+          "english": "You know that you're really hot"
+        },
+        {
+          "spanish": "To' el mundo lo asegura)",
+          "english": "The whole world affirms it)"
+        },
+        {
+          "spanish": "Jeje",
+          "english": "Hehe"
+        },
+        {
+          "spanish": "Manuel Turizo",
+          "english": "Manuel Turizo"
+        },
+        {
+          "spanish": "Ra-Rauw (Duro pa' la pared)",
+          "english": "Ra-Rauw (To the wall hard)"
+        },
+        {
+          "spanish": "Myke Towers",
+          "english": "Myke Towers"
+        },
+        {
+          "spanish": "Dopamina",
+          "english": "Dopamina"
+        },
+        {
+          "spanish": "La Industria Inc",
+          "english": "La Industria Inc"
+        }
+      ]
+    },
     "5929713": {
       "title": "Una Locura",
-      "match_quality": "close",
-      "sp_lines": 88,
+      "match_quality": "exact",
+      "sp_lines": 89,
       "en_lines": 89,
       "lines": [
+        {
+          "spanish": "Woh-oh",
+          "english": "Woah-oh"
+        },
+        {
+          "spanish": "Yah",
+          "english": "Yah"
+        },
+        {
+          "spanish": "El Negrito Ojo' Claro'",
+          "english": "El Negrito Ojo' Claro'"
+        },
         {
           "spanish": "Llevo tiempo diciéndoselo (Oh, oh; oh)",
           "english": "For a while, I've been telling her (Oh, oh; oh)"
@@ -2006,10 +3294,30 @@
     },
     "5960780": {
       "title": "Antes",
-      "match_quality": "close",
-      "sp_lines": 77,
+      "match_quality": "exact",
+      "sp_lines": 78,
       "en_lines": 78,
       "lines": [
+        {
+          "spanish": "Ante'",
+          "english": "Before"
+        },
+        {
+          "spanish": "Qué rico era ante'",
+          "english": "How great it was before"
+        },
+        {
+          "spanish": "Real hasta la muerte, ¿oíste, bebé?",
+          "english": "Real until death, did you hear, bastard?"
+        },
+        {
+          "spanish": "Ozuna",
+          "english": "Ozuna"
+        },
+        {
+          "spanish": "Ozuna",
+          "english": "Ozuna"
+        },
         {
           "spanish": "Ante' (Ante')",
           "english": "Before (Before)"
@@ -2307,69 +3615,221 @@
     "6211036": {
       "title": "BOOKER T",
       "match_quality": "close",
-      "sp_lines": 53,
+      "sp_lines": 54,
       "en_lines": 55,
       "lines": [
         {
-          "spanish": "Le' molesta mi premio de compositor",
+          "spanish": "Ey, ey",
+          "english": "Ayy, ayy"
+        },
+        {
+          "spanish": "Los pongo a bailar \"La Pelúa\" (Wuh)",
+          "english": "I'll make them dance \"La Pelúa\" (Woo)"
+        },
+        {
+          "spanish": "Y el que no baile que lo despeluquen (Ey)",
+          "english": "And whoever doesn't dance, their hair shall be messed (Ayy)"
+        },
+        {
+          "spanish": "Hijueputas, no me cuquen (No)",
+          "english": "Sons of a bitch, don't provoke me (No)"
+        },
+        {
+          "spanish": "Lean los números pa' que se eduquen (Wuh)",
+          "english": "Read the numbers to educate yourself (Woo)"
+        },
+        {
+          "spanish": "Yo no hago cancione', hago himnos pa' que no caduquen (Ey)",
+          "english": "I don't make songs, I make anthems so that they don't expire (Ayy)"
+        },
+        {
+          "spanish": "En este género yo fui un Hadōken (Ey, ey, ey)",
+          "english": "In this genre, I was a hadouken (Ayy, ayy, ayy)"
+        },
+        {
+          "spanish": "Y se extinguieron como los dinosaurs (Prr; ah)",
+          "english": "And they became extinct like dinosaurs (Prr; ah)"
+        },
+        {
+          "spanish": "Antes que me apague' se apaga el sol",
+          "english": "Before you turn me off, the sun will"
+        },
+        {
+          "spanish": "Subimo' y rompimo' el ascensor (Ah)",
+          "english": "We came up and broke the еlevator (Ah)"
+        },
+        {
+          "spanish": "El prepa que les tiró Barbasol",
+          "english": "The prep that Barbasol thrеw them"
+        },
+        {
+          "spanish": "Ah, maldito Conejo",
+          "english": "Ah, damn bunny"
+        },
+        {
+          "spanish": "Ahora los miro de arriba y de lejo', ey",
+          "english": "Now I look at you all from above and from afar, ayy"
+        },
+        {
+          "spanish": "No contesto DM, no, hablen con mi manejo",
+          "english": "I don't answer DMs, no, talk to my management"
+        },
+        {
+          "spanish": "Pero él también va a pichear",
+          "english": "But they'll also ignore"
+        },
+        {
+          "spanish": "Te juro que yo no me quise embichar, ey (Ah, ah, ah)",
+          "english": "I promise, I didn't want to become a killer, ayy (Ah, ah, ah)"
+        },
+        {
+          "spanish": "Le metí a toa' mis crush, shh, ya me aburro hasta 'e chichar (Ay, rra)",
+          "english": "I fucked all of my crushes, shh, I'm getting bored of fucking too (Eyy, rra)"
+        },
+        {
+          "spanish": "Y yo sí soy milly sin usar Richard (Ey)",
+          "english": "And I'm a milly without using Richard (Ayy)"
+        },
+        {
+          "spanish": "Yankee se retira y vamo' a switchear (Ah; uh)",
+          "english": "Yankee will retire and we'll switch (Ah; ooh)"
+        },
+        {
+          "spanish": "Voy a ser el jefe, me van a fichar (Ey)",
+          "english": "I'm going to be the boss, and they're going to sign me (Ayy)"
+        },
+        {
+          "spanish": "Mi nombre por siempre se va a escuchar (Uh, uh, uh)",
+          "english": "My name is always going to be heard (Ooh, ooh, ooh)"
+        },
+        {
+          "spanish": "Porque estoy en mi peak (Ey)",
           "english": "Because I'm at my peak (Ayy)"
         },
         {
-          "spanish": "Pero es que ya nadie compone",
+          "spanish": "Estoy en mi peak (Estoy en mi peak; ey)",
           "english": "Because I'm at my peak (I'm at my peak)"
         },
         {
-          "spanish": "Ninguna 'e esta gente escribe en sus canciones, so no se emocionen (Uh)",
+          "spanish": "Soy un rey, campeón, Booker T (Wuh, wuh, wuh), ey, ey",
           "english": "I'm a king, champion, Booker T (Woo, woo, woo)"
         },
         {
-          "spanish": "El disco más vendío' de este puto año (Ey)",
+          "spanish": "Estoy en mi peak, ey (Estoy en mi peak)",
           "english": "Because I'm at my peak (Ey)"
         },
         {
-          "spanish": "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela",
+          "spanish": "Estoy en mi peak, ja (Estoy en mi peak)",
           "english": "Because I'm at my peak, ha (I'm at my peak)"
         },
         {
-          "spanish": "Siguen en la fila, nadie se me cuela (Ey)",
+          "spanish": "Mírame en lo que me convertí (Mírame, mírame)",
           "english": "Look at what I became (Look at me, look at me)"
         },
         {
+          "spanish": "Le' molesta mi premio de compositor",
+          "english": "My composer award bothers you all"
+        },
+        {
+          "spanish": "Pero es que ya nadie compone",
+          "english": "But no one composes anymore"
+        },
+        {
+          "spanish": "Ninguna 'e esta gente escribe en sus canciones, so no se emocionen (Uh)",
+          "english": "None of these people write their own songs, so don't get excited (Ooh)"
+        },
+        {
+          "spanish": "El disco más vendío' de este puto año (Ey)",
+          "english": "The most-sold album of this fucking year (Ayy)"
+        },
+        {
+          "spanish": "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela",
+          "english": "I took them to school, the whole world trying to make its sequel"
+        },
+        {
+          "spanish": "Siguen en la fila, nadie se me cuela (Ey)",
+          "english": "Stay in line, no one strains me (Ayy)"
+        },
+        {
+          "spanish": "Cheki, morena, cheki",
+          "english": "Shake it, brown-skinned girl, shake it"
+        },
+        {
+          "spanish": "Cheki, morena, eh",
+          "english": "Shake it, brown-skinned girl, eh"
+        },
+        {
+          "spanish": "Bad Bunny se llevó to' los premio' y el cabrón ni fue (Eh)",
+          "english": "Bad Bunny took all the awards and the bastard didn't even attend (Eh)"
+        },
+        {
           "spanish": "Estoy en mi peak, cabrón (Ey, ey, ey, ey, ey)",
-          "english": "You all paying to go viral (Ayy)"
+          "english": "I'm at my peak, bastard (Ayy, ayy, ayy, ayy, ayy)"
         },
         {
           "spanish": "Y vo'a seguir en mi peak, cabrón, ey",
-          "english": "Me getting hits without promoting them (Promo)"
+          "english": "I'm going to stay at my peak, bastard, ayy"
         },
         {
           "spanish": "Soy un rey, campeón, Booker T, ey (Booker T)",
-          "english": "People ask how (How?)"
+          "english": "I'm a king, champion, Booker T, ayy (Booker T)"
         },
         {
           "spanish": "Estoy en mi peak (Estoy en mi peak), ey",
-          "english": "Since I was a kid, they know how we are"
+          "english": "I'm at my peak (I'm at my peak)"
         },
         {
           "spanish": "Y vo'a seguir en mi peak, ey, ey (Normal)",
-          "english": "I never ask for Tenki"
+          "english": "And I'm going to stay at my peak, ayy"
         },
         {
           "spanish": "Mírame, ¿que tú qué?, ¿que tú qué? (Nah-nah) Nah-nah",
-          "english": "I'm coco, you guys are baking (Woo)"
+          "english": "Look at me, that you what? that you what? (Nah-nah) Nah-nah"
         },
         {
           "spanish": "Cabrón, tú eres feka",
-          "english": "Booker T throwing me a breaking"
+          "english": "Bastard, you're fake"
+        },
+        {
+          "spanish": "Can you dig it, sucka'?",
+          "english": "Can you dig it, sucker?"
+        },
+        {
+          "spanish": "Ey, ey",
+          "english": "Ayy, ayy"
+        },
+        {
+          "spanish": "Ey",
+          "english": "Ayy"
+        },
+        {
+          "spanish": "Ni voy a frontear, dale a repeat, cabrón",
+          "english": "I'm not even going to show off, repeat it,  bastard"
+        },
+        {
+          "spanish": "Pa' que veas que estoy bien hijueputa",
+          "english": "So that you see that I'm really fucking good"
         }
       ]
     },
     "6838492": {
       "title": "Qué Más Pues?",
-      "match_quality": "close",
-      "sp_lines": 64,
+      "match_quality": "exact",
+      "sp_lines": 65,
       "en_lines": 65,
       "lines": [
+        {
+          "spanish": "¿Qué más pues?",
+          "english": "What else, then?"
+        },
+        {
+          "spanish": "¿Cómo te ha ido?",
+          "english": "How's it going?"
+        },
+        {
+          "spanish": "J Balvin, man",
+          "english": "J Balvin, man"
+        },
         {
           "spanish": "¿Qué más pues? ¿Cómo te ha ido? (Eh)",
           "english": "What else, then? How's it going? (Hey)"
@@ -2620,12 +4080,580 @@
         }
       ]
     },
+    "6855744": {
+      "title": "Yonaguni",
+      "match_quality": "exact",
+      "sp_lines": 61,
+      "en_lines": 61,
+      "lines": [
+        {
+          "spanish": "Yeah-yeah-yeah-yeah",
+          "english": "Yeah-yeah-yeah-yeah"
+        },
+        {
+          "spanish": "Yeah-yeah-yeah-yeah-yeah-yeah",
+          "english": "Yeah-yeah-yeah-yeah-yeah-yeah"
+        },
+        {
+          "spanish": "Yeah-yeah-yeah-eh, yeah",
+          "english": "Yeah-yeah-yeah-eh, yeah"
+        },
+        {
+          "spanish": "Una noche más y copas de más",
+          "english": "Another night and extra glasses of wine"
+        },
+        {
+          "spanish": "Tú no me dejas en paz, de mi mente no te vas",
+          "english": "You don't leave me alone, you don't leave my mind"
+        },
+        {
+          "spanish": "Aunque sé que no debo, ey",
+          "english": "Even though I know that I shouldn't, ayy"
+        },
+        {
+          "spanish": "Pensar en ti, bebé, pero cuando bebo",
+          "english": "Think of you, baby, but when I drink"
+        },
+        {
+          "spanish": "Me viene tu nombre, tu cara, tu risa y tu pelo, ey",
+          "english": "Your name comes to mind, your face, your laugh, and your hair, ayy"
+        },
+        {
+          "spanish": "Dime dónde tú está', que yo por ti cojo un vuelo",
+          "english": "Tell me where you're at, for you I'll get on a flight"
+        },
+        {
+          "spanish": "Y a Yonaguni le llego, oh",
+          "english": "And to Yonaguni I'll make it, oh"
+        },
+        {
+          "spanish": "Aunque sé que no debo, ey",
+          "english": "Even though I know that I shouldn't, ayy"
+        },
+        {
+          "spanish": "Pensar en ti, bebé, pero cuando bebo",
+          "english": "Think of you, baby, but when I drink"
+        },
+        {
+          "spanish": "Me viene tu nombre, tu cara, tu risa y tu pelo, ey",
+          "english": "Your name comes to mind, your face, your laugh, and your hair, ayy"
+        },
+        {
+          "spanish": "Dime dónde tú está', que yo por ti cojo un vuelo",
+          "english": "Tell me where you are, for you I'll get on a flight"
+        },
+        {
+          "spanish": "Y a Yonaguni le llego, ey",
+          "english": "And to Yonaguni I'll make it, ayy"
+        },
+        {
+          "spanish": "No me busque' en Instagram, mami, búscame en casa",
+          "english": "Don't look for me on Instagram, mami, look for me at home"
+        },
+        {
+          "spanish": "Pa' que vea' lo que pasa, ey",
+          "english": "So that you see what happens, ayy"
+        },
+        {
+          "spanish": "Si tú me prueba', te casa', ey",
+          "english": "If you try me, you'll get married, ayy"
+        },
+        {
+          "spanish": "Ese cabrón ni te abraza",
+          "english": "That bastard doesn't even hug you"
+        },
+        {
+          "spanish": "Y yo loco por tocarte",
+          "english": "And I'm dying to touch you"
+        },
+        {
+          "spanish": "Pero ni me atrevo a textearte",
+          "english": "But I don't dare text you"
+        },
+        {
+          "spanish": "Tú con cualquier outfit la parte'",
+          "english": "You kill it in any outfit"
+        },
+        {
+          "spanish": "Mami, tú ere' aparte",
+          "english": "Mami, you are different"
+        },
+        {
+          "spanish": "Shorty, tiene' un culo bien grande, eh",
+          "english": "Shorty, you have a big ass, eh"
+        },
+        {
+          "spanish": "De-Demasia'o grande",
+          "english": "Ve-Very big"
+        },
+        {
+          "spanish": "Y yo lo tengo estudia'o, ya mismo me gradúo",
+          "english": "And I have it studied, I'm about to graduate"
+        },
+        {
+          "spanish": "Y en la cara me lo tatúo",
+          "english": "And on my face I'll tattoo it"
+        },
+        {
+          "spanish": "Vi que viste mi story y subiste una pa' mí",
+          "english": "I saw that you saw my story and you uploaded one for me"
+        },
+        {
+          "spanish": "Yo que me iba a dormir, ey",
+          "english": "I was going to sleep, ayy"
+        },
+        {
+          "spanish": "En la disco habían mil",
+          "english": "In the club there were a thousand women"
+        },
+        {
+          "spanish": "Y yo bailando contigo en mi mente",
+          "english": "And I'm dancing with you in my mind"
+        },
+        {
+          "spanish": "Aunque sé que no debo",
+          "english": "Even though I know that I shouldn't"
+        },
+        {
+          "spanish": "Pensar en ti, bebé, pero cuando bebo",
+          "english": "Think of you, baby, but when I drink"
+        },
+        {
+          "spanish": "Me viene tu nombre, tu cara, tu risa y tu pelo, ey",
+          "english": "Your name comes to mind, your face, your laugh, and your hair, ayy"
+        },
+        {
+          "spanish": "Dime dónde tú está', que yo por ti cojo un vuelo",
+          "english": "Tell me where you are, for you I'll get on a flight"
+        },
+        {
+          "spanish": "Y a Yonaguni le llego",
+          "english": "And to Yonaguni I'll make it"
+        },
+        {
+          "spanish": "Si me da' tu dirección, yo te mando mil carta'",
+          "english": "If you give me your address, I'll send you a thousand letters"
+        },
+        {
+          "spanish": "Si me da' tu cuenta de banco, un millón de peso'",
+          "english": "If you give me your bank account, a million pesos"
+        },
+        {
+          "spanish": "To'a la noche arrodillado a Dio' le rezo",
+          "english": "The whole night on my knees I pray to God"
+        },
+        {
+          "spanish": "Pa' que ante' que se acabe el año tú me de' un beso",
+          "english": "So that before the year ends you give me a kiss"
+        },
+        {
+          "spanish": "Y empezar el 2023 bien cabrón",
+          "english": "And to start 2023 fucking good"
+        },
+        {
+          "spanish": "Contigo y un blunt",
+          "english": "With you and a blunt"
+        },
+        {
+          "spanish": "Tú te ve' asesina con ese mahón (¡Wuh!)",
+          "english": "You look like an assassin with those jeans (Woo!)"
+        },
+        {
+          "spanish": "Me matas sin un pistolón",
+          "english": "You kill me without a pistol"
+        },
+        {
+          "spanish": "Y yo te compro un Banshee",
+          "english": "And I'll buy you a Banshee"
+        },
+        {
+          "spanish": "Gucci, Givenchy",
+          "english": "Gucci, Givenchy"
+        },
+        {
+          "spanish": "Un poodle, un frenchie",
+          "english": "A poodle, a frenchie"
+        },
+        {
+          "spanish": "El pasto, lo' munchie'",
+          "english": "The weed, the munchies"
+        },
+        {
+          "spanish": "Te canto un mariachi",
+          "english": "I'll sing mariachi to you"
+        },
+        {
+          "spanish": "Me convierto en Itachi, eh",
+          "english": "I'll become Itachi, eh"
+        },
+        {
+          "spanish": "Yeah-yeah-yeah-yeah",
+          "english": "Yeah-yeah-yeah-yeah"
+        },
+        {
+          "spanish": "Bad Bunny, baby, bebé",
+          "english": "Bad Bunny, baby, baby"
+        },
+        {
+          "spanish": "Bad Bunny, baby, bebé",
+          "english": "Bad Bunny, baby, baby"
+        },
+        {
+          "spanish": "今日はセックスしたい",
+          "english": "I want to have sex today"
+        },
+        {
+          "spanish": "でもあなたとだけ",
+          "english": "But only with you"
+        },
+        {
+          "spanish": "どこにいますか？",
+          "english": "Where are you?"
+        },
+        {
+          "spanish": "どこにいますか？",
+          "english": "Where are you?"
+        },
+        {
+          "spanish": "今日はセックスしたい",
+          "english": "I want to have sex today"
+        },
+        {
+          "spanish": "でもあなたとだけ",
+          "english": "But only with you"
+        },
+        {
+          "spanish": "どこにいますか？",
+          "english": "Where are you?"
+        },
+        {
+          "spanish": "どこにいますか？Eh",
+          "english": "Where are you? Eh"
+        }
+      ]
+    },
+    "7067014": {
+      "title": "Volví",
+      "match_quality": "exact",
+      "sp_lines": 73,
+      "en_lines": 73,
+      "lines": [
+        {
+          "spanish": "Dime por qué le tiras piedras a la luna",
+          "english": "Tell me why you are throwing stones at the moon"
+        },
+        {
+          "spanish": "Tan ilógico como extraerme de tu piel",
+          "english": "As illogical as removing me from your skin"
+        },
+        {
+          "spanish": "Después de Dios, soy tu todo, mujer",
+          "english": "After God, I'm your everything, baby"
+        },
+        {
+          "spanish": "¿Qué tal te está yendo con él?",
+          "english": "How's it going with him?"
+        },
+        {
+          "spanish": "Yo sé que al final",
+          "english": "I know in the end"
+        },
+        {
+          "spanish": "A mí no me olvidas tan siquiera un poco",
+          "english": "You won't forget me not even a little bit"
+        },
+        {
+          "spanish": "Al final, baby, tú extrañas cómo yo te toco",
+          "english": "In the end, baby, you miss how I touch you"
+        },
+        {
+          "spanish": "Recuerda, de tu cuerpo sé yo, mami",
+          "english": "Remember, I know your body, mami"
+        },
+        {
+          "spanish": "Cada rincón por dentro y por fuera",
+          "english": "Every corner inside and out"
+        },
+        {
+          "spanish": "Dile que volví por ti (Yeh, yeh, yeh, yeh)",
+          "english": "Tell him that I came back for you (Yeah, yeah, yeah, yeah)"
+        },
+        {
+          "spanish": "Yo soy ese tatuaje, mami, que no se te borra",
+          "english": "I'm that tattoo, mami, that can't be erased"
+        },
+        {
+          "spanish": "Sin palomería', yo no bajo con cotorra",
+          "english": "Without any nonsense, I'm not coming with sweet-talk"
+        },
+        {
+          "spanish": "Dile al bobo ese que еn mí siempre e' quе tú piensa'",
+          "english": "Tell that jerk that you always think of me"
+        },
+        {
+          "spanish": "Que cuando él termina e' cuando tú apena' comienza'",
+          "english": "That when he finishes is whеn you are just starting"
+        },
+        {
+          "spanish": "Y ahí e', ahí e' cuando tú siente' la diferencia",
+          "english": "And that's when, that's when you feel thе difference"
+        },
+        {
+          "spanish": "Yo siempre te daba con consistencia",
+          "english": "I always gave it to you with consistency"
+        },
+        {
+          "spanish": "Dile que se retire, haga su diligencia",
+          "english": "Tell him to give up, to do his due diligence"
+        },
+        {
+          "spanish": "Porque volví por ti (Volví)",
+          "english": "Because I came back for you"
+        },
+        {
+          "spanish": "Pa' hacértelo bien rico como te gusta a ti",
+          "english": "To do it to you really nice how you like it"
+        },
+        {
+          "spanish": "Ponte en cuatro y te la saco como lo hace Tatí'",
+          "english": "Get on all fours and I'll hit it out of you like Tatís"
+        },
+        {
+          "spanish": "Te montaste en la Jeepeta y no tenía' panty",
+          "english": "You got in the Jeep and you didn't have panties"
+        },
+        {
+          "spanish": "So no te engañes",
+          "english": "So don't deceive yourself"
+        },
+        {
+          "spanish": "Que e' imposible que no me extrañe'",
+          "english": "It's impossible that you don't miss me"
+        },
+        {
+          "spanish": "Lo nuestro e' de año', no hay forma de que se dañe",
+          "english": "Our relationship is for years, there's no way to damage it"
+        },
+        {
+          "spanish": "Con él ni suda', no hace falta ni que tú te bañe'",
+          "english": "With him you don't even sweat, you don't even have to shower after"
+        },
+        {
+          "spanish": "Despué' de lo' polvo' conmigo la' sábana' hay que botarla'",
+          "english": "After the sex with me, the bed sheets have to be thrown out"
+        },
+        {
+          "spanish": "Toalla pa' la nena pa' secarla",
+          "english": "A towel for the girl so she can get dry"
+        },
+        {
+          "spanish": "No quiero a otra, tú ere' la que sabe sacarla",
+          "english": "I don't want another, you're the one who knows how to make me climax"
+        },
+        {
+          "spanish": "Hoy vine pa' rescatarla (So nasty)",
+          "english": "Today I came to rescue you (So nasty)"
+        },
+        {
+          "spanish": "Yo sé que al final",
+          "english": "I know in the end"
+        },
+        {
+          "spanish": "A mí no me olvidas tan siquiera un poco",
+          "english": "You won't forget me not even a little bit"
+        },
+        {
+          "spanish": "Al final, baby, tú extrañas cómo yo te toco",
+          "english": "In the end, baby, you miss how I touch you"
+        },
+        {
+          "spanish": "Recuerda, de tu cuerpo sé yo, mami",
+          "english": "Remember, I know your body, mami"
+        },
+        {
+          "spanish": "Cada rincón por dentro y por fuera",
+          "english": "Every corner inside and out"
+        },
+        {
+          "spanish": "Dile que volví por ti, yeah",
+          "english": "Tell him that I came back for you, yeah"
+        },
+        {
+          "spanish": "¿Cómo carajo ese palomo va a compararse conmigo?",
+          "english": "How the fuck is that jerk going to compare with me?"
+        },
+        {
+          "spanish": "Ni te conoce mientras yo soy tu delirio",
+          "english": "He doesn't even know you while I'm your crazy passion"
+        },
+        {
+          "spanish": "Tengo la fecha escrita en el calendario",
+          "english": "I have the date written on my calendar"
+        },
+        {
+          "spanish": "Si yo volví a Aventura, tú regresas a mi lado, baby",
+          "english": "If I returned to Aventura, you come back to my side, baby"
+        },
+        {
+          "spanish": "Que cuente las horas",
+          "english": "Make the hours count"
+        },
+        {
+          "spanish": "Es su destino, tú y yo tenemo' historia",
+          "english": "It's his destiny, you and I have history"
+        },
+        {
+          "spanish": "Para que él vea que el dinero no lo es todo",
+          "english": "So that he sees that money isn't everything"
+        },
+        {
+          "spanish": "Te enamoré con mi lujuria, yo controlo",
+          "english": "I made you fall in love with my lust, I control"
+        },
+        {
+          "spanish": "Tú sabes que ese tipo es temporal",
+          "english": "You know that that guy is temporary"
+        },
+        {
+          "spanish": "Anda, arranca y dile",
+          "english": "Go, run off and tell him"
+        },
+        {
+          "spanish": "Tú despide de una vez a ese cabró— (Ey)",
+          "english": "You, say bye once and for all to that bastar— (Ay)"
+        },
+        {
+          "spanish": "Porque volví por ti",
+          "english": "Because I came back for you"
+        },
+        {
+          "spanish": "Pa' hacértelo bien rico como te gusta a ti",
+          "english": "To do it to you really nice how you like it"
+        },
+        {
+          "spanish": "Ponte en cuatro y te la saco como lo hace Tatí'",
+          "english": "Get on all fours and I'll hit it out of you like Tatís"
+        },
+        {
+          "spanish": "Te montaste en la Jeepeta y no tenía' panty",
+          "english": "You got in the Jeep and you didn't have panties"
+        },
+        {
+          "spanish": "Porque volví, mami, por ti",
+          "english": "Because I came back, mami, for you"
+        },
+        {
+          "spanish": "Lo haces con él pero pensando en mí",
+          "english": "You do it with him, but thinking of me"
+        },
+        {
+          "spanish": "Inconforme con ese infeliz",
+          "english": "Dissident with that unhappy fool"
+        },
+        {
+          "spanish": "Hey, you end up with me",
+          "english": "Hey, you end up with me"
+        },
+        {
+          "spanish": "Yo sé que al final",
+          "english": "I know in the end"
+        },
+        {
+          "spanish": "A mí no me olvida' tan siquiera un poco",
+          "english": "You won't forget me not even a little bit"
+        },
+        {
+          "spanish": "Al final, baby, tú te mojas cuando yo te toco",
+          "english": "In the end, baby, you get wet when I touch you"
+        },
+        {
+          "spanish": "Recuerda, de tu cuerpo sé yo, mami (Ey, ey)",
+          "english": "Remember, I know your body, mami (Ayy, ayy)"
+        },
+        {
+          "spanish": "Cada rincón por dentro y por fuera (Ey, ey, ey, ey)",
+          "english": "Every corner inside and out (Ayy, ayy, ayy, ayy)"
+        },
+        {
+          "spanish": "Dile que volví por ti",
+          "english": "Tell him that I came back for you"
+        },
+        {
+          "spanish": "Bad Bunny, baby, bebé",
+          "english": "Bad Bunny, baby, baby"
+        },
+        {
+          "spanish": "Bad Bunny, baby, bebé",
+          "english": "Bad Bunny, baby, baby"
+        },
+        {
+          "spanish": "Te toca a ti, Romeo",
+          "english": "It's your turn, Romeo"
+        },
+        {
+          "spanish": "Dile",
+          "english": "Tell 'em"
+        },
+        {
+          "spanish": "Aventura",
+          "english": "Aventura"
+        },
+        {
+          "spanish": "Tú ere' mía, bebé",
+          "english": "You're mine, baby"
+        },
+        {
+          "spanish": "Tú ere' mía, bebé",
+          "english": "You're mine, baby"
+        },
+        {
+          "spanish": "Vamo' a hacerlo otra ve'",
+          "english": "We're going to do it again"
+        },
+        {
+          "spanish": "Vamo' a hacerlo otra ve'",
+          "english": "We're going to do it again"
+        },
+        {
+          "spanish": "Tú ere' mía, bebé",
+          "english": "You're mine, baby"
+        },
+        {
+          "spanish": "Tú ere' mía, bebé",
+          "english": "You're mine, baby"
+        },
+        {
+          "spanish": "Vamo' a hacerlo otra ve'",
+          "english": "We're going to do it again"
+        },
+        {
+          "spanish": "Jaja, ey",
+          "english": "Haha, ayy"
+        }
+      ]
+    },
     "8417047": {
       "title": "X SI VOLVEMOS",
-      "match_quality": "close",
-      "sp_lines": 50,
+      "match_quality": "exact",
+      "sp_lines": 51,
       "en_lines": 51,
       "lines": [
+        {
+          "spanish": "No funcionamos (No funcionamos)",
+          "english": "We didn't function (We didn't function)"
+        },
+        {
+          "spanish": "Lo dimos todo, pero no se nos dio (No)",
+          "english": "We gave it all, but it didn't work out for us (No)"
+        },
+        {
+          "spanish": "Por eso nos vamos (Nos vamos)",
+          "english": "That's why we're leaving (We're leaving)"
+        },
+        {
+          "spanish": "Pero antes de irnos",
+          "english": "But before we go"
+        },
         {
           "spanish": "Vamo' a hacerlo por última vez, bebé (Bebé)",
           "english": "Let's do it for the last time, baby (Baby)"
@@ -2645,18 +4673,335 @@
         {
           "spanish": "(Pero así no; ey)",
           "english": "But not like that (Hey)"
+        },
+        {
+          "spanish": "Por la orillita, se me cuida (Ey)",
+          "english": "The little shore takes care of itself (Ey)"
+        },
+        {
+          "spanish": "Pero llama cuando quiere que te deje la cama destendida",
+          "english": "But call when you want me to give you in bed attended"
+        },
+        {
+          "spanish": "Los bellaqueo' no se olvidan (No se olvidan; ey)",
+          "english": "The sex games are not forgotten (Are not forgotten)"
+        },
+        {
+          "spanish": "A nadie de confianza se le niega un polvo de despedida, ey",
+          "english": "No one trustworthy is denied a farewell sex, ey"
+        },
+        {
+          "spanish": "Yo estoy puesta pa'l repeat (Repeat)",
+          "english": "I'm down to repeat (Repeat)"
+        },
+        {
+          "spanish": "Tú pon la cama, que yo pongo el krippy (Krippy)",
+          "english": "You put the bed, I put the krippy (Krippy)"
+        },
+        {
+          "spanish": "Para varear, en la playa en RD, Punta Cana (Ah, ah)",
+          "english": "Now we hit it at beach in DR, Punta Cana (Ah)"
+        },
+        {
+          "spanish": "En la ventana mirando la city",
+          "english": "In the window looking at the city"
+        },
+        {
+          "spanish": "Ya sé que en el amor somo' un desastre (-tre)",
+          "english": "I know that in love we are a disaster (-aster)"
+        },
+        {
+          "spanish": "Yo soy bandida, y tú ere' gánster",
+          "english": "I'm a bandit, and you're a gangster"
+        },
+        {
+          "spanish": "No sé cuánto tiempo malgastaste",
+          "english": "I don't know how long you wasted trying something serious"
+        },
+        {
+          "spanish": "Intentando algo serio",
+          "english": "I know I'm not what you thought (Eh-eh)"
+        },
+        {
+          "spanish": "Ya sé que no soy lo que pensaste (Eh-eh)",
+          "english": "But since you kissed me"
+        },
+        {
+          "spanish": "Pero desde que me besaste",
+          "english": "You became addicted with my malice"
+        },
+        {
+          "spanish": "Con mi malicia te enviciaste",
+          "english": "This is not healthy but"
+        },
+        {
+          "spanish": "(Esto no es saludable, pero)",
+          "english": "Let's do it one last time, baby"
+        },
+        {
+          "spanish": "Vamo' a hacerlo por última vez, bebé (Bebé)",
+          "english": "Because not in love, but in bed we understand each other"
+        },
+        {
+          "spanish": "Que en el amor no, pero en la cama nos entendemos",
+          "english": "It's porn, I love how we do it"
+        },
+        {
+          "spanish": "Es una porno, a mí me encanta cómo lo hacemos (Cómo ching—, cómo ching—)",
+          "english": "I won't delete your contact and I'll be aware in case we make up"
+        },
+        {
+          "spanish": "No he borrado tu contacto y estoy al tanto por si volvemos",
+          "english": "But not like this"
+        },
+        {
+          "spanish": "(Pero así no)",
+          "english": "Our love is fucked"
+        },
+        {
+          "spanish": "Nuestro amor 'tá jodío'",
+          "english": "But what a feeling when the messes end in bed"
+        },
+        {
+          "spanish": "Pero qué sensación cuando en la cama se acaban los líos",
+          "english": "Could it be that sex with you is my addiction?"
+        },
+        {
+          "spanish": "¿Será que el sexo contigo es mi adicción?",
+          "english": "Toxic loves only work for —less"
+        },
+        {
+          "spanish": "Amores tóxicos solo sirven pa' sin—",
+          "english": "We are so explicit, but it came to an end (So nasty)"
+        },
+        {
+          "spanish": "Somos tan explícitos, pero llegó a su fin (So nasty)",
+          "english": "Say goodbye naked, with my phone I'm recording you"
+        },
+        {
+          "spanish": "Despídete desnuda, con mi cel te voy grabando",
+          "english": "I tell you goodbye inside you"
+        },
+        {
+          "spanish": "Yo te digo adiós dentro de ti",
+          "english": "I save this video for when you need it"
+        },
+        {
+          "spanish": "Guarda este vídeo para cuando te haga falta",
+          "english": "And you're wet thinking of me"
+        },
+        {
+          "spanish": "Y estés moja'íta pensando en mí",
+          "english": "Let's do it for the last time, baby (Baby)"
+        },
+        {
+          "spanish": "Vamo' a hacerlo por última vez, bebé (Bebé)",
+          "english": "Because not in love, but in bed we understand each other (We understand)"
+        },
+        {
+          "spanish": "Que en el amor no, pero en la cama nos entendemos (-demos)",
+          "english": "It's porn, I love how we do it (How we fu—, how we fu—)"
+        },
+        {
+          "spanish": "Es una porno, a mí me encanta cómo lo hacemos (Cómo ching—, cómo ching—)",
+          "english": "I won't delete your contact and I'll be aware in case we make up"
+        },
+        {
+          "spanish": "No he borrado tu contacto y estoy al tanto por si volvemos",
+          "english": "But not like this"
+        },
+        {
+          "spanish": "(Pero así no)",
+          "english": "Baby, give me one night"
+        },
+        {
+          "spanish": "Bebé, regálame una noche que no termine nunca",
+          "english": "That never ends"
+        },
+        {
+          "spanish": "Hoy es noche de sexo",
+          "english": "Today is a night of sex"
+        },
+        {
+          "spanish": "¿Sí vienes?",
+          "english": "Are you coming?"
+        },
+        {
+          "spanish": "Jaja, tú supiste",
+          "english": "Haha, you knew"
+        },
+        {
+          "spanish": "Mi Romeo, The King",
+          "english": "My Romeo, The King"
+        },
+        {
+          "spanish": "Con La Bichota",
+          "english": "With the Boss Bitch"
+        },
+        {
+          "spanish": "O-O-Ovy On The Drums",
+          "english": "O-O-Ovy On The Drums"
         }
       ]
     },
     "9991217": {
       "title": "Gata Only",
       "match_quality": "close",
-      "sp_lines": 78,
+      "sp_lines": 79,
       "en_lines": 72,
-      "lines": []
+      "lines": [
+        {
+          "spanish": "Ey",
+          "english": "Ayy"
+        },
+        {
+          "spanish": "Ba-Ba-Baby, dale, ponte pa' mí, follow me",
+          "english": "Ba-ba-baby, go on, get ready for me, follow me"
+        },
+        {
+          "spanish": "Tú ere' like for me y yo 'toy pa' ti",
+          "english": "You are like for me and I am for you"
+        },
+        {
+          "spanish": "Gata, tú está' only, mándame tu ubi",
+          "english": "Girl, you're alone, send me your location"
+        },
+        {
+          "spanish": "Mueve los cachete' al ritmo del TikTok",
+          "english": "Move your ass to the rhythm of the TikTok"
+        },
+        {
+          "spanish": "Conmigo esa gata se еscapó y en su casa nadie lo notó",
+          "english": "That girl ran away with me and nobody noticed at home"
+        },
+        {
+          "spanish": "E' que conmigo la baby еsta noche la pasó cabrón",
+          "english": "Because with me that baby had a grеat time tonight"
+        },
+        {
+          "spanish": "Gata, pon el celu en modo avión",
+          "english": "Girl, put the cellphonе on airplane mode"
+        },
+        {
+          "spanish": "Tú mi loca y yo tu locotrón",
+          "english": "You're my crazy girl and I'm your crazy guy"
+        },
+        {
+          "spanish": "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'",
+          "english": "You make yourself for me and I'll go all in"
+        },
+        {
+          "spanish": "Ba-Ba-Baby, dale, ponte pa' mí, follow me",
+          "english": "Ba-ba-baby, go on, get ready for me, follow me"
+        },
+        {
+          "spanish": "Tú ere' like for me, yo tu Brad Pitt",
+          "english": "You are like for me, I'm your Brad Pitt"
+        },
+        {
+          "spanish": "Gata, tú está' only, mándame tu ubi",
+          "english": "Girl, you're only, send me your location"
+        },
+        {
+          "spanish": "Muévelo, cabecea al ritmo del TikTok",
+          "english": "Move it, dance to the rhythm of the TikTok"
+        },
+        {
+          "spanish": "Conmigo esa gata se escapó",
+          "english": "That girl ran away with me"
+        },
+        {
+          "spanish": "El que la rompe soy yo",
+          "english": "The one who fucks her is me"
+        },
+        {
+          "spanish": "Me la robo de menor",
+          "english": "I stole her when we were young"
+        },
+        {
+          "spanish": "Otra noche dándote (Eh), dándote (Eh)",
+          "english": "Another night giving you (Eh), giving you (Eh)"
+        },
+        {
+          "spanish": "Tocándote (Eh), calentándote",
+          "english": "Touching you (Eh), heating you up"
+        },
+        {
+          "spanish": "Encima viniéndote (Okey)",
+          "english": "Climaxing on top of you (Okay)"
+        },
+        {
+          "spanish": "Al oído gimiéndome (Ja)",
+          "english": "Moaning in my ear (Ha)"
+        },
+        {
+          "spanish": "Y yo la sigo enamorando, regalando, to' el día comprando",
+          "english": "And I keep making her fall in love, giving her presents, buying stuff all day long"
+        },
+        {
+          "spanish": "Lo que uste', mamita, quiere",
+          "english": "Whatever you want, baby girl"
+        },
+        {
+          "spanish": "Ahora nos 'tamo alejando, no te estoy viendo, los día' volando",
+          "english": "Now we're drifting apart, I'm not seeing you, the days go by"
+        },
+        {
+          "spanish": "Estar sola tú prefiere'",
+          "english": "Being alone is what you prefer"
+        },
+        {
+          "spanish": "Ven y dame un chance pa' guayarte",
+          "english": "Come and give me a chance to grind on you"
+        },
+        {
+          "spanish": "Allá abajo mojarte toa' las parte'",
+          "english": "To get you all wet down there"
+        },
+        {
+          "spanish": "Otra noche dándote, dándote",
+          "english": "Another night giving you, giving you"
+        },
+        {
+          "spanish": "Tocándote, calentándote",
+          "english": "Touching you, heating you up"
+        },
+        {
+          "spanish": "Baby, dale, ponte pa' mí, follow me (Brr)",
+          "english": "Baby, go on, get ready for me, follow me"
+        },
+        {
+          "spanish": "Tú ere' like for me, yo tu Brad Pitt",
+          "english": "You are like for me, I'm your Brad Pitt"
+        },
+        {
+          "spanish": "Gata, tú está' only, mándame tu ubi",
+          "english": "Girl, you're only, send me your location"
+        },
+        {
+          "spanish": "Muévelo, cabecea al ritmo del TikTok",
+          "english": "Move it, dance to the rhythm of the TikTok"
+        },
+        {
+          "spanish": "Conmigo esa gata se escapó",
+          "english": "That girl ran away with me"
+        },
+        {
+          "spanish": "El que la rompe soy yo",
+          "english": "The one who fucks her is me"
+        },
+        {
+          "spanish": "Me la robo de menor",
+          "english": "I stole her when we were young"
+        }
+      ]
     }
   },
   "index": {
+    "DJ Roland in the house": "DJ Roland in the house",
+    "Oeh-oeh-oeh-oeh (Eh, ah, ah)": "Oh-eh, oh-eh, oh-eh, oh-eh (Eh, ah, ah)",
+    "Mi tatuaje dice LMG (LMG, LMG)": "My tattoo says LMG (LMG, LMG)",
+    "Todos en mi combo son Real G (Real G, Real G, baby, eh-eh)": "Everyone in my crew is a real G (Real G, real G, baby, eh-eh)",
     "Tengo un plan, dime tú si nos vamo' (Nos vamo')": "I have a plan, tell me if we're going (We're going)",
     "Baby, por allá solo tú y yo y nos enredamo' (Nos enredamo')": "Baby, over there, just you and me, and we'll get tangled up (We'll get tangled up)",
     "Yo no sé que andaba buscando, solo sé que desde que te encontré": "I don't know what I was looking for, I only know that since I found you",
@@ -2694,6 +5039,12 @@
     "Tengo los ojo' rojo' despué' de la hierba que yo fumé (Eh-eh)": "I have red eyes after the weed that I smoked (Eh-eh)",
     "'Toy brillando de lejo' el cuello, lo tengo lleno en VVS (Eh-eh)": "I'm shining from afar, my neck is full of VVS (Eh-eh)",
     "Tiempo no te veía y ahora que te vuelvo a ver": "I hadn't seen you in a while, and now that I see you again",
+    "Pero dime cuál es el secreto que tiene' guarda'o": "But tell me, what's the secret you’re keeping",
+    "Que nadie lo ha encontra'o": "That no one has found",
+    "Y eso me tiene emboba'o (Ah)": "And it's got me fascinated",
+    "E' que si me pide' que te espere, te espero sentado": "If you ask me to wait, I'll wait sitting down",
+    "Tú me tiene' en una nube": "You’ve got me on a cloud",
+    "Y todavía no he aterriza'o": "And I still haven't landed",
     "Ay, si me besa' me desconfigu-gu-guro": "Oh, if you kiss me, I'll lose my mind",
     "Si te dañaron yo te cu-cu-curo": "If they hurt you, I'll heal you",
     "Yo tе quiero pa' mí, lo ju-u-uro": "I swear I want you for myself",
@@ -2720,6 +5071,10 @@
     "Venezuela y Panamá": "Venezuela and Panama",
     "Dímelo, Boza": "Tell me, Boza",
     "Elena": "Elena",
+    "¿Qué lo que?": "What's up?",
+    "Estamo' a rulay": "We're feeling great",
+    "Empezó el verano": "The summer has started",
+    "Fuego": "Fire",
     "¿Qué hubiera sido": "What would have been",
     "Si antes te hubiera conocido?": "If I had met you before?",
     "Seguramente, estarías bailando esta conmigo": "Surely you would be dancing this one with me",
@@ -2756,6 +5111,13 @@
     "(Si antes te hubiera conocido?)": "(If I had met you before?)",
     "Chiqui-cha, chiqui-cha, chiqui-cha, chiqui-cha (Jaja, ah)": "Chiqui-cha, chiqui-cha, chiqui-cha, chiqui-cha (Haha, ah)",
     "Ooh-ooh-ooh-ooh": "Ooh-ooh-ooh-ooh",
+    "Miren a esa nena, la que va pasando": "Look at that girl, the one passing by",
+    "Me gusta el cortecito que le está dando": "I like the way she's styled her hair",
+    "Conmigo ella se escapó (Ah-ah-ah)": "She ran off with me (Ah-ah-ah)",
+    "Peligrosa como mi Glock": "Dangerous like my Glock",
+    "Me gusta el cortecito que le está dando (Ah)": "I like the way she's styled her hair (Ah)",
+    "Conmigo ella se escapó": "She ran off with me",
+    "Peligrosa como mi Glock (Ah-ah-ah)": "Dangerous like my Glock (Ah-ah-ah)",
     "La nena me sigue, es la sensación del bloque": "The girl keeps following me, she's the sensation of the block",
     "Yo quiero con ella hasta que la micro choque": "I want to be with her until the car crashes",
     "Tú tranquila, las puerta' bajan a tope": "You stay calm, the windows are down all the way",
@@ -2767,9 +5129,6 @@
     "Y, ma, déjate llevar": "And, baby, let yourself go",
     "En la discoteca, qué rica muñeca": "In the club, what a hot doll",
     "En la discoteca se puso coqueta": "In the club, she got flirtatious",
-    "Miren a esa nena, la que va pasando": "Look at that girl, the one passing by",
-    "Me gusta el cortecito que le está dando": "I like the way she's styled her hair",
-    "Peligrosa como mi Glock": "Dangerous like my Glock",
     "Ah, y peligrosa como una glopeta": "Ah, and dangerous like a little pistol",
     "Ya la mandé pa' que se haga completa": "I already sent her to get fully prepared",
     "Mamita, que tu culo es la meta": "Baby, your ass is the goal",
@@ -2783,6 +5142,52 @@
     "Yo que pensé, nunca me iría de ti": "I thought, I would never leave you",
     "Que es amor del bueno, de toda la vida, pero": "That it is love, the good one, of all life, but",
     "Hoy entendí que no hay suficiente para los dos": "Today I understood that there is not enough for us both",
+    "Ba-Ba-Babylon girl, Ba-Ba-Babylon girl": "Ba-Ba-Babylon girl, Ba-Ba-Babylon girl",
+    "Para todos aquellos amore' que": "For all those loves that",
+    "Que fueron obligao' a ser separao'": "That were forced to be apart",
+    "Esta canción es para ti": "This song is for you",
+    "Dime cómo le explico a mi destino que ya no estás ahí": "Tell me how I explain to my destiny that you're no longer there",
+    "Dime cómo haré para desprenderme de este frenesí": "Tell me how I will detach from this frenzy",
+    "Esta locura que siento por ti": "This madness I feel for you",
+    "Con esta química que haces en mí": "With this chemistry you create in me",
+    "Y ya no puedo, girl, ya no puedo, girl": "And I can't anymore, girl, I can't anymore, girl",
+    "Nena, discúlpame si te ilusioné, yo no lo quise hacer (Oh-uh)": "Baby, forgive me if I made you dream, I didn't mean to (Oh-uh)",
+    "Sé que en el amor cuando es real, ese vuelve, vuelve (Vuelve, vuelve)": "I know that in love when it's real, it comes back, comes back (Comes back, comes back)",
+    "Pero, ¿cómo olvidar tu piel?": "But how do I forget your skin?",
+    "Y, ¿cómo olvidarte, mujer? (Uh-uh-uh)": "And how do I forget you, woman? (Uh-uh-uh)",
+    "Ya no puedo, girl, ya no puedo, girl": "I can't anymore, girl, I can't anymore, girl",
+    "Baby, no (Baby, no)": "Baby, no (Baby, no)",
+    "Me rehúso a darte un último beso, así que guárdalo (Guárdalo)": "I refuse to give you one last kiss, so keep it (Keep it)",
+    "Para que la próxima ve' te lo dé haciéndolo (Haciéndolo)": "So that next time I give it to you while doing it (Doing it)",
+    "Haciéndotelo así, así, así": "Doing it like this, like this, like this",
+    "Así como te gusta, baby": "Just how you like it, baby",
+    "Sin mirar atrás, sin buscar a nadie más": "Without looking back, without looking for anyone else",
+    "Solo quiero estar contigo, woah (Woah)": "I just want to be with you, woah (Woah)",
+    "Si no te tengo aquí conmigo, yo no quiero ser tu amigo": "If I don't have you here with me, I don't want to be your friend",
+    "Porque tú ere' mi camino, woah": "Because you're my path, woah",
+    "Y yo solo quiero estar junto a ti": "And I just want to be next to you",
+    "Nena, por favor entiéndelo": "Baby, please understand",
+    "Solo dame tu mano y confía en mí": "Just give me your hand and trust me",
+    "Si te pierdes, solo sigue mi voz": "If you get lost, just follow my voice",
+    "Y dale tiempo (Tiempo), mami, al tiempo (Tiempo)": "And give it time (Time), baby, time (Time)",
+    "Que tú, que yo": "Because you, because I",
+    "Estamos hechos para estar los dos": "We're meant to be together",
+    "Y dale tiempo (Dale tiempo), baby, al tiempo": "And give it time (Give it time), baby, time",
+    "Que tú y yo, que tú y yo": "Because you and I, because you and I",
+    "Haciéndotelo así, así, así (Así, así)": "Doing it like this, like this, like this (Like this, like this)",
+    "Así como te gusta, baby (Woah, woah)": "Just how you like it, baby (Woah, woah)",
+    "Baby, no": "Baby, no",
+    "Para que la próxima ve' te lo dé haciéndolo": "So that next time I give it to you while doing it",
+    "Así, así": "Like this, like this",
+    "Para que la próxima ve' te lo dé haciéndolo (Uh-uh)": "So that next time I give it to you while doing it (Uh-uh)",
+    "Haciéndotelo así, así, así (Uh-uh-uh)": "Doing it like this, like this, like this (Uh-uh-uh)",
+    "Y baby, no (Baby, no)": "And baby, no (Baby, no)",
+    "Haciéndotelo así, así": "Doing it like this, like this",
+    "(Jeje, woah-oh; Au-Aura, jaja)": "(Hehe, woah-oh; Au-Aura, haha)",
+    "No va a ser tan fácil (Fácil, fácil)": "It's not going to be that easy (Easy, easy)",
+    "Aunque me esquives, comoquiera": "Even if you avoid me, in any case",
+    "Tras de ti, voy tras de ti (¡Ti, yeah!)": "Towards you, I'll go towards you (You, yeah!)",
+    "Tú tienes todo lo que quiero para mí": "You have everything I want for me",
     "Y tú tan sola por ahí": "And you're all alone over there",
     "Detrás de ti voy a seguir": "Right behind you, I'll stay",
     "Yo sé que lo bueno toma tiempo, lady": "I know that the best part just takes time, lady",
@@ -2811,6 +5216,61 @@
     "Si es por ti, no hay pero": "If it's for you, there's no \"but\"",
     "Siento que por ti desespero": "I feel that I'm desperate for you",
     "Cuando no te tengo, ma'": "When I do not have you anymore, baby",
+    "(Acapella, acapella; leggo, leggo)": "(Acapella, acapella; leggo, leggo)",
+    "Colores": "Colores",
+    "Yo te como sin beat, acapella (Ey)": "I make love to you without the beat, acapella (Ayy)",
+    "Suave que la noche espera (Uh; ey, ey)": "Soft, the night waits (Uh; hey, hey)",
+    "Ya te encendí como vela": "I already lit you like a candle",
+    "Y te apago cuando quiera": "And I turn you off whenever I want",
+    "Negra está la noche como pantera": "The night's black like a panther",
+    "Ella coge el plan y lo desmantela (Ey)": "She does what she wants (Hey)",
+    "No es de Puerto Rico y me dice \"Mera\" (Mera)": "She's not from Puerto Rico and she says \"Mera\" (Mera)",
+    "Tranquila, yo pago, guarda tu cartera": "Relax, I pay, put your wallet away",
+    "For real, made in Medellín, eh": "For real, made in Medellín, eh",
+    "Te lo doy sin que tenga' que pedir, eh": "I give it to you without you having to ask for it, hey",
+    "Te seguí, me cambié de carril (Wuh), ey": "I followed you, I changed lanes (Wuh), hey",
+    "Marea'o, no sé si ir o venir": "Dizzy, I don't know whether to come or go and ask",
+    "For real, made in Medellín, ey": "For real, made in Medellín, ayy",
+    "Te seguí, me cambié de carril, ey": "I followed you, I changed lanes, hey",
+    "Suave que la noche espera (Uh; ey, ey)": "Soft, the night waits (Uh; hey, hey)",
+    "Ya te encendí como vela": "I already lit you like a candle",
+    "Negra está la noche como pantera": "The night's black like a panther",
+    "Tranquila yo pago, guarda tu cartera": "Relax, I pay, put your wallet away",
+    "Made in Medellín": "Made in Medellín",
+    "Y el otro niño de Medellín: Sky Rompiendo": "And the other boy from Medellín: Sky Rompiendo",
+    "J Balvin": "J Balvin",
+    "(Colores)": "(Colores)",
+    "Yeah": "Yeah",
+    "J Balvin, man": "J Balvin, man",
+    "Leggo, leggo": "Leggo, leggo",
+    "¿A quién le mientes si en tu soledad quieres verme otra ve'?": "Who are you lying to if you want to see me again in your loneliness?",
+    "Por ti respondo lo que tú me das, lo que nadie sabe": "I answer what you give me, what nobody knows",
+    "Me decido por ti, te decides por mí a la misma hora": "I decide for you, you decide for me at the same time",
+    "Me dan ganas de ti, te dan ganas de mí a la misma hora": "I want you, you want me at the same time",
+    "Te quiero sentir aquí": "I want to feel you here",
+    "Tres y cuatro de la mañana (Yah)": "Three and four in the morning (Yah)",
+    "Ven, mata estás gana’, vamo' a llegar a mi cama (Vamo')": "Come, let's do it, come to my bed (Come on)",
+    "Que todo lo he ignorado por ti, todo ha sido por ti (Yah)": "I have ignored everything for you, everything has been for you (Yah)",
+    "Mi cuerpo sin saber te llama": "My body without knowing calls you",
+    "Y estas no son horas de llamar (Ey)": "And these aren't hours to call (Hey)",
+    "Pero es que el deseo siempre puede más (Ey)": "But desire is always pushing me (Hey)",
+    "Podemos pelearnos y hasta alejarnos": "We can fight and even get away",
+    "Pero cuando llega la hora": "But when the time comes",
+    "Tratan y se caen de la mata (Yah)": "They try and never get you (Yah)",
+    "Quieren comprarte siempre con plata (Wuh)": "They always want buy you with money (Wuh)",
+    "Pero ese tesoro tiene pirata (Yeah-yeah)": "But that treasure has a pirate (Yeah-yeah)",
+    "Me voy a toda’ por ti": "I do everything for you",
+    "Tratan y se caen de la mata": "They try and never get you",
+    "Quieren comprarte siempre con plata": "They always want buy you with money",
+    "Pero ese tesoro tiene pirata (Wuh)": "But that treasure has a pirate (Wuh)",
+    "Yo doy la vida por ti (Yah)": "I give my life for you (Yah)",
+    "Taiko": "Taiko",
+    "Yah (Ah-ah)": "Yah (Ah-ah)",
+    "Tú sabe' lo que yo hago por ti": "You know what I do for you",
+    "Son más de las doce, nos fuimos de roce": "It's past twelve o'clock, we left rubbing",
+    "Hoy voy a lo loco, ustede' me conocen (Me conocen)": "Today I'm going crazy, you guys know me (Know me)",
+    "Reggaetón de Tego pa' que se lo gocen (Ey)": "Reggeatón from Tego for you to enjoy (Ayy)",
+    "Saben quién es Balvin, les presento a José (Wuh)": "You know who Balvin is, I introduce you to Jose (Wuh)",
     "Y yo no me complico (Eh), ¿cómo te explico (Eh)": "And I don't mess around (Eh), how can I explain (Eh)",
     "Que a mí me gusta pasarla rico? (Eh, eh)": "That I like to have a good time? (Eh, eh)",
     "¿Cómo te explico? (Wuh) No me complico (Ah)": "How can I explain? (Wuh) I don't mess around (Ah)",
@@ -2851,6 +5311,8 @@
     "No me complico (Nah)": "I don't mess around (Nah)",
     "Yo no me complico (Nah)": "I don't mess around (Nah)",
     "Yo no me complico": "I don't mess around",
+    "Yeah, yah, yah, yah, ah, yah": "Yeah, yah, yah, yah, ah, yah",
+    "Wuh, wuh, wuh, pa'": "Wuh, wuh, wuh, pa'",
     "Hay party en la terraza, ey": "There's a party on the terrace, ayy",
     "No va haber nadie en mi casa": "There isn't going to be anybody at my house",
     "Tomamo' en la misma taza": "We drink out of the same cup",
@@ -2893,43 +5355,159 @@
     "Ese booty desde lejos se ve (Yah, yah)": "That booty can be seen from far (Yah, yah)",
     "Tú lo ve', tú lo ve', tú lo ve', tú lo ve', tú lo ve', tú lo ve, tú lo ve' (Que tú lo ve')": "You see it, you see it, you see it, you see it, you see it, you see it, you see it (You see it)",
     "Uh": "Uh",
-    "J Balvin, man": "J Balvin, man",
-    "J Balvin": "J Balvin",
     "Sky Rompiendo": "Sky Rompiendo",
     "En la pista": "On the dance floor",
     "Rompiendo en to'": "Killing it",
     "Tú lo ve'": "You see it",
-    "Yo no te estaba buscando, babe": "Ovy On The Drums",
-    "Pero cuando coincidimos, bebé": "I wasn't looking for you, babe",
-    "Fue una cosa que yo no sé": "But when we happened to meet, baby",
-    "Tú fuiste conquistándome": "It was a thing that I don't know",
-    "Y en tus ojos yo lo noté": "You were trying to win me over",
-    "Que tú querías y yo también": "In your eyes I noticed it",
-    "Entre botellas de Rosé": "That you wanted to and me too",
-    "Nos fuimos calentando": "Between bottles of Rosé",
-    "Emma me escribió (Oh), y me dijo a mí (A mí)": "We were getting hot",
-    "Que le gustaban toda' mis cancione' (Eh, eh)": "Emma wrote to me (Oh), and he told me (Me)",
-    "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"": "That he liked all of my songs (Eh, eh)",
-    "Luego me dijo (Oh) que le gusté yo (-té yo)": "And I told him: \"Oh my God, how great, my God\"",
-    "Que conmigo quiere tener relaciones, eh": "Then he told me (Oh) that she liked me (-ed me)",
-    "\"Ay, Dios mío, qué rico, Dios mío\" (Mmm)": "And I told him: \"Oh my God, how great, my God\"",
-    "\"Ay, Dios mío, qué rico, Dios mío\" (Yeh)": "\"Oh my God, how great, my God\" (Mmm)",
-    "\"Ay, Dios mío, qué rico\" (Qué rico)": "\"Oh my God, how great, my God\" (Yeah)",
-    "Él me jaló y me dijo: \"Ven pa'cá\" (Oh; ah)": "\"Oh my God, how great, my God\" (How great)",
-    "Yo le dije \"lento\", y me hizo tra-tra": "He pulled me over and told me: \"Come here\" (Oh; ah)",
-    "Yo sé que lo notó y no pude evitar": "I told him \"slowly\", and he made me go tra-tra",
-    "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)": "I know that he noticed it and I couldn't help",
-    "Él me invitó a salir a bailar (Ah-ah)": "To stop looking at him (Ah), and he made me (And he made me, ayy)",
-    "Un perreíto de eso' bien anormal (Mmm-mmm)": "He invited me to go out and dance (Ah-ah)",
-    "Cuando me fui él me mandó a buscar (Oh)": "A grind like those abnormal ones (Mmm-mmm)",
-    "Y yo no pude, no (No), decirle que no": "When I left he sent them to search for me (Oh)",
-    "Que conmigo quiere tener relaciones, eh (Eh, eh, ah)": "Then he told me (Oh) that he liked me (-ed me)",
-    "No pude, no (No), decirle que no": "And I couldn't, no (No), tell him no",
-    "No pude, no, decirle que no (No)": "I couldn't, no (No), tell him no",
-    "Ay, Dios mío, qué rico, Dios mío": "Oh my God, how great, my God",
+    "Yeh, yeh, yeh, yeh": "Yeh, yeh, yeh, yeh",
+    "Yeh, yeh, ey": "Yeh, yeh, hey",
+    "Tengo par de babie' explotándome el cel": "I got a couple girls blowing up my phone",
+    "Y yo pensando en ti, estoy a tu merced": "And I'm thinking of you, I'm at your mercy",
+    "Tú siempre está' mojá' y yo que tengo sed, eh": "You're always wet and I happen to be thirsty, eh",
+    "Dime qué vamo' a hacer": "Tell me what we are gonna do",
+    "Que tengo par de babie' explotándome el cel": "I got a couple girls blowing up my phone",
+    "Y yo pensando en ti, estoy a tu merced": "And I'm thinking of you, I'm at your mercy",
+    "Tú siempre está' mojá' y yo que tengo sed": "You're always wet and I'm thirsty",
+    "Ey, ey, ey": "Hey, hey, hey",
+    "Y ella' están buena', pero tú 'tás mejor (Mejor)": "And they're hot, but you're even better (Better)",
+    "Traje pasto y alcohol": "I brought weed and alcohol",
+    "Por ti les picheo, las tengo en hold (En hold)": "I'll ignore them for you, I'll have 'em on hold (On hold)",
+    "Y yo detrás de ti como Usain Bolt": "And I'm after you like Usain Bolt",
+    "Y si quiere' te busco en la Lamborghi (-ghi)": "And if you want, I pick you up in the Lamborghi (-ghi)",
+    "Si te lo hago te enchulo, como Anuel a Karol G (G)": "If I fuck you you'll fall in love, like Anuel to Karol G (G)",
+    "Quiere' perreo, no balada": "She wants reggaeton, not a ballad",
+    "Tú ere' una pitcher, pero yo estoy puesto pa' la nueva entrada": "You are a pitcher but I'm up next at batting",
+    "¿Y qué? ¿Qué?": "And what? What?",
+    "¿Qué quiere' hacer? Yo hago lo que tú diga'": "What do you want to do? I do whatever you say",
+    "Ese culo e' grande' liga', que Dio' te lo bendiga": "That booty is major league, God bless it",
+    "Y dime, ¿qué? ¿Qué?": "And tell me, what? What?",
+    "¿Qué quiere' hacer?, yo hago lo que tú diga'": "What do you want to do? I'll do whatever you say",
+    "Picheale a tu amiga, ey, ey": "Ignore your friend, hey, hey",
+    "Porque tengo par de babie' explotándome el cel": "Because I got a couple girls blowing up my phone",
+    "Y yo pensando en ti, estoy a tu merced": "And I'm thinking of you, I'm at your mercy",
+    "Tú siempre está' mojá' y yo que tengo sed, ey": "You're always wet and I'm thirsty, eh",
+    "Es que tengo par de babie' explotándome el cel": "It's that I got a couple girls blowing up my phone",
+    "Yo sé que no ere' fan del romanticismo": "I know you aren't a fan of romanticism",
+    "Y que está' cansá' de que esto' cabrone' te digan lo mismo": "And that you're tired of these bastards telling you the same thing",
+    "Moviendo el booty, no se va de ritmo": "Moving her booty, doesn't lose the rhythm",
+    "Punto die', en la cama va a haber un sismo": "Point ten, the bed is gonna have an earthquake",
+    "Quiero jalarte ese pelito rubio (Rubio)": "I want to pull on your blond hair (Blond)",
+    "Y darte en cuatro el cuatro de julio": "And fuck you on all fours on July 4th",
+    "Mañana tengo examen, pero tú lo sabe'": "Tomorrow I have a test, but you know it",
+    "Que si me llama', no estudio": "If you call me, I won't study",
+    "Mami, concédeme esta pieza": "Mami, may I have this dance",
+    "No somo' na', no somo' na', ey": "We aren't anything, we aren't anything serious, hey",
+    "Pero con un perreo se empieza": "But we can start with some grinding",
+    "No sale' de mi cabeza": "You don't get out of my head",
+    "No sale' de mi cabeza, ey": "You don't get out of my head, hey",
+    "Y to' los culo' de Miami explotándome el cel": "And all the booty calls in Miami are blowing up my phone",
+    "Tú siempre está' mojá' y yo que tengo sed, eh": "You're always wet and I'm thirsty, eh",
+    "Eh-eh-eh": "Eh, eh, eh",
+    "Yeah, yeah, eh": "Yeah, yeah, eh",
+    "Ovy On The Drums": "Ovy On The Drums",
+    "Yo no te estaba buscando, babe": "I wasn't looking for you, babe",
+    "Pero cuando coincidimos, bebé": "But when we happened to meet, baby",
+    "Fue una cosa que yo no sé": "It was a thing that I don't know",
+    "Tú fuiste conquistándome": "You were trying to win me over",
+    "Y en tus ojos yo lo noté": "In your eyes I noticed it",
+    "Que tú querías y yo también": "That you wanted to and me too",
+    "Entre botellas de Rosé": "Between bottles of Rosé",
+    "Nos fuimos calentando": "We were getting hot",
+    "Emma me escribió (Oh), y me dijo a mí (A mí)": "Emma wrote to me (Oh), and he told me (Me)",
+    "Que le gustaban toda' mis cancione' (Eh, eh)": "That he liked all of my songs (Eh, eh)",
+    "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\"": "And I told him: \"Oh my God, how great, my God\"",
+    "Luego me dijo (Oh) que le gusté yo (-té yo)": "Then he told me (Oh) that she liked me (-ed me)",
+    "Que conmigo quiere tener relaciones, eh": "That he wanted to have a relationship with me, eh",
+    "\"Ay, Dios mío, qué rico, Dios mío\" (Mmm)": "\"Oh my God, how great, my God\" (Mmm)",
+    "\"Ay, Dios mío, qué rico, Dios mío\" (Yeh)": "\"Oh my God, how great, my God\" (Yeah)",
+    "\"Ay, Dios mío, qué rico\" (Qué rico)": "\"Oh my God, how great, my God\" (How great)",
+    "Él me jaló y me dijo: \"Ven pa'cá\" (Oh; ah)": "He pulled me over and told me: \"Come here\" (Oh; ah)",
+    "Yo le dije \"lento\", y me hizo tra-tra": "I told him \"slowly\", and he made me go tra-tra",
+    "Yo sé que lo notó y no pude evitar": "I know that he noticed it and I couldn't help",
+    "Dejar de mirarlo (Ah), y me hizo (Y me hizo, ay)": "To stop looking at him (Ah), and he made me (And he made me, ayy)",
+    "Él me invitó a salir a bailar (Ah-ah)": "He invited me to go out and dance (Ah-ah)",
+    "Un perreíto de eso' bien anormal (Mmm-mmm)": "A grind like those abnormal ones (Mmm-mmm)",
+    "Cuando me fui él me mandó a buscar (Oh)": "When I left he sent them to search for me (Oh)",
+    "Y yo no pude, no (No), decirle que no": "And I couldn't, no (No), tell him no",
+    "Que conmigo quiere tener relaciones, eh (Eh, eh, ah)": "That he wanted to have a relationship with me, eh (Eh, eh, ah)",
     "Que conmigo quiere tener relaciones, eh (Eh)": "That he wanted to have a relationship with me, eh (Eh)",
     "Y yo le dije: \"Ay, Dios mío, qué rico, Dios mío\" (Ah)": "And I told him: \"Oh my God, how great, my God\"",
     "\"Ay, Dios mío, qué rico\"": "\"Oh my God, how great\"",
+    "Manuel Turizo": "Manuel Turizo",
+    "Uh-oh (Uh-ah-ah)": "Ooh-oh (Ooh-ah-ah)",
+    "Sin hablar tú y yo nos entendemos": "Without speaking we understand each other",
+    "Ambos sabemo' lo que sigue": "We both know what comes next",
+    "Aprovecha que nos conocemos": "Take advantage of the fact that we know each other",
+    "Colaboremos pa' que se dé": "Let's collaborate so that it works",
+    "Que la nota le suba pa' que mueva su cintura (Yeah-yeah)": "Let her high go up so that she moves her waist (Yeah-yeah)",
+    "Sabe que está bien dura": "She knows that she's really hot",
+    "To' el mundo lo asegura (Woh-oh)": "The whole world affirms it (Woah-oh)",
+    "Que la nota le suba pa' que mueva su cintura (Yeah, yeah-yeah)": "Let her high go up so that she moves her waist (Yeah, yeah-yeah)",
+    "Sabe que está bien dura (Oh)": "She knows that she's really hot (Oh)",
+    "To' el mundo lo asegura (Mmm)": "The whole world affirms it (Mmm)",
+    "Ey, yo": "Ey, yo'",
+    "Ella quiere que la nota se le suba": "She wants her high to go up",
+    "Porque dice que e' libre como Venezuela y Cuba": "Because she says she's free like Venezuela and Cuba",
+    "Te conozco, ya yo te he visto desnuda": "I know you, I've already seen you naked",
+    "No' perdemo' como en el triángulo de Las Bermuda'": "We get lost like in the Bermuda Triangle",
+    "Parcerita, colabórame": "Baby, work with me",
+    "Haciéndome el amor enamórame": "Making love to me, make me fall in love",
+    "Es que tú ere' una diosa, yo te adoro, amén (Amén)": "You're a goddess, I adore you, amen (Amen)",
+    "Repitamo' de nuevo, ven, devórame": "Let's repeat it again, come, devour me",
+    "Y le dio conmigo": "And it worked with me",
+    "Mami, cáele al condominio": "Mami, come down to the condominium",
+    "Con una como tú me alineo": "With one like you, I'll get in line",
+    "Yo no creo que tenga marido, oh (Woh)": "I don't think she has a husband, oh (Woah)",
+    "Pero se porta mal, no le importa na'": "But she behaves badly, she doesn't care about anything",
+    "Sabe que despierta el deseo carnal": "She knows that she awakes the carnal desires",
+    "Hasta no comerme no se va a calmar": "Even not making love to me isn't going to calm them",
+    "Lo mejor se da sin tener que planear": "It goes best without having to plan",
+    "Que la nota le suba pa' que mueva su cintura (Oh-oh)": "Let her high go up so that she moves her waist (Oh-oh)",
+    "Sabe' que estás bien dura (Oh)": "You know that you're really hot (Oh)",
+    "To' el mundo lo asegura (Oh-oh)": "The whole world affirms it (Oh-oh)",
+    "Que la nota le suba pa' que mueva su cintura (Yeah, yeah-yeah)": "Let her high go up so that she moves her waist (Yeah, yeah-yeah)",
+    "Sabe' que estás bien dura (Ah)": "You know that you're really hot (Ah)",
+    "Ra-Rauw": "Ra-Rauw",
+    "Yo ya loco por dártelo (Uh-wuh)": "I'm already crazy about giving to you (Ooh-woo)",
+    "Por eso te gardeo (¡Yah!)": "That's why I guard you (Yah!)",
+    "Quiero que caiga un aguacero (Ey)": "I want a downpour to fall (Ayy)",
+    "Mala mía si soy muy sincero (¡Yah!)": "My bad if I'm very honest (Yah!)",
+    "Beanie Prada de Mickey": "Prada Beanie from Mickey",
+    "Pa' tapar lo' hickie'": "To cover the hickies",
+    "La pista suena y en la disco se pone freaky (Wuh)": "The beat plays and in the club she gets freaky (Woo)",
+    "Todo' la quieren pero la nena e' picky": "Everyone wants her but the babe is picky",
+    "Soy el que sabe su' tricky (Eh, yeah-yeah)": "I'm the one who knows her tricks (Eh, yeah-yeah)",
+    "Que la nota le suba pa' que mueva su cintura (Oh-oh; yeah-yeah)": "Let her high go up so that she moves her waist (Oh-oh; yeah-yeah)",
+    "Que la nota le suba pa' que mueva su cintura (Yeah-yeah)": "Let her high go up so that she moves her waist (Yeah-yeah)",
+    "Sabe' que está bien dura (Ah)": "She knows that she's really hot (Ah)",
+    "To' el mundo lo asegura (Woh)": "The whole world affirms it (Woah)",
+    "Tú y yo tenemos un problema serio": "You and I have a serious problem",
+    "Ven pa' hablarte claro, dejemo' el misterio (Ey)": "Come so I can talk to you clearly, let's drop the mystery (Ayy)",
+    "Si tiene' novio hagamo' un adulterio (-terio)": "If you have a boyfriend let's commit adultery (-tery)",
+    "Y si eres seria, yo me voy en serio (Ja)": "And if you're serious, I'll get serious (Ha)",
+    "Dura, qué linda figura": "Hot, what a beautiful figure",
+    "La gente murmura que tú y yo no' vemo', qué rico fue (Ah)": "People murmur that you and I see each other, how beautiful it was (Ah)",
+    "Cuando con la calentura": "When with the heat",
+    "Llevamo' a la altura la temperatura pa' que se dé": "We take it to the highest temperature so that it goes",
+    "De nuevo (Oh)": "Again (Oh)",
+    "Ven repítamos el juego (Jue-Jue-Juego)": "Come, let's repeat the game (Gam-gam-game)",
+    "No lo dejemos pa' luego": "Let's not leave it for later",
+    "Donde yo te vea me pego y duro pa' la pared": "Wherever I see you I'll stick myself and to the wall hard",
+    "Sin hablar tú y yo nos entendemos (Qué)": "Without speaking we understand each other (What)",
+    "Ambos sabemo' lo que sigue (Eh-eh)": "We both know what comes next (Eh-eh)",
+    "Aprovecha que nos conocemos": "Take advantage of the fact that we know each other",
+    "Colaboremos pa' que se dé": "Let's collaborate so that it works",
+    "(Que la nota le suba pa' que mueva su cintura": "(Let her high go up so that she moves her waist",
+    "Sabe' que estás bien dura": "You know that you're really hot",
+    "To' el mundo lo asegura)": "The whole world affirms it)",
+    "Jeje": "Hehe",
+    "Ra-Rauw (Duro pa' la pared)": "Ra-Rauw (To the wall hard)",
+    "Myke Towers": "Myke Towers",
+    "Dopamina": "Dopamina",
+    "La Industria Inc": "La Industria Inc",
+    "Woh-oh": "Woah-oh",
+    "Yah": "Yah",
+    "El Negrito Ojo' Claro'": "El Negrito Ojo' Claro'",
     "Llevo tiempo diciéndoselo (Oh, oh; oh)": "For a while, I've been telling her (Oh, oh; oh)",
     "Que algo mejor se merece (Se merece)": "That she deserves something better (She deserves)",
     "Perdiendo su tiempo sigue": "She keeps wasting her time",
@@ -2988,12 +5566,14 @@
     "Hi Music Hi Flow": "Hi Music Hi Flow",
     "Ajá": "Aha",
     "Hyde \"El Químico\"": "Hyde \"El Químico\"",
-    "Yah": "Yah",
     "Dynell": "Dynell",
     "Dímelo, Gotay": "What's up, Gotay",
     "Yasso": "Yasso",
     "Je": "He",
     "Ozuna": "Ozuna",
+    "Ante'": "Before",
+    "Qué rico era ante'": "How great it was before",
+    "Real hasta la muerte, ¿oíste, bebé?": "Real until death, did you hear, bastard?",
     "Ante' (Ante')": "Before (Before)",
     "Qué rico era ante' (Qué rico era ante')": "How great it was before (How great it was before)",
     "Si pudiera regresar el tiempo (Woh-oh-oh-oh)": "If I could turn back time (Woah-oh-oh-oh)",
@@ -3030,7 +5610,6 @@
     "No sabe' cuánto quiero que vuelva otra noche de": "You don't know how much I want another",
     "Discoteca (Ah-ah)": "Night at the club (Ah-ah)",
     "No sabe' cuánto quiero que vuelva otra noche má' (Ah)": "You don't know how much I want one night more (Ah)",
-    "Ante'": "Before",
     "¿Dónde te quedaste? (¿Dónde te quedaste?)": "Where were you? (Where were you?)",
     "De to' la' noche' no paro de yo recordarte (Recordarte)": "I couldn't stop thinking of you (Thinking of you)",
     "Aquella noche me bailaste (Me bailaste)": "That night you danced on me (You danced on me)",
@@ -3047,19 +5626,54 @@
     "El sabor a mie-el (Sabor a miel)": "The flavor of hone-ey (Flavor of honey)",
     "Hoy e' otra noche de discoteca (Discoteca)": "Today is another night at the club (Club)",
     "No sabe' cuánto quiero que vuelva otra noche má'": "You don't know how much I want one night more",
-    "Le' molesta mi premio de compositor": "Because I'm at my peak (Ayy)",
-    "Pero es que ya nadie compone": "Because I'm at my peak (I'm at my peak)",
-    "Ninguna 'e esta gente escribe en sus canciones, so no se emocionen (Uh)": "I'm a king, champion, Booker T (Woo, woo, woo)",
-    "El disco más vendío' de este puto año (Ey)": "Because I'm at my peak (Ey)",
-    "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela": "Because I'm at my peak, ha (I'm at my peak)",
-    "Siguen en la fila, nadie se me cuela (Ey)": "Look at what I became (Look at me, look at me)",
-    "Estoy en mi peak, cabrón (Ey, ey, ey, ey, ey)": "You all paying to go viral (Ayy)",
-    "Y vo'a seguir en mi peak, cabrón, ey": "Me getting hits without promoting them (Promo)",
-    "Soy un rey, campeón, Booker T, ey (Booker T)": "People ask how (How?)",
-    "Estoy en mi peak (Estoy en mi peak), ey": "Since I was a kid, they know how we are",
-    "Y vo'a seguir en mi peak, ey, ey (Normal)": "I never ask for Tenki",
-    "Mírame, ¿que tú qué?, ¿que tú qué? (Nah-nah) Nah-nah": "I'm coco, you guys are baking (Woo)",
-    "Cabrón, tú eres feka": "Booker T throwing me a breaking",
+    "Ey, ey": "Ayy, ayy",
+    "Los pongo a bailar \"La Pelúa\" (Wuh)": "I'll make them dance \"La Pelúa\" (Woo)",
+    "Y el que no baile que lo despeluquen (Ey)": "And whoever doesn't dance, their hair shall be messed (Ayy)",
+    "Hijueputas, no me cuquen (No)": "Sons of a bitch, don't provoke me (No)",
+    "Lean los números pa' que se eduquen (Wuh)": "Read the numbers to educate yourself (Woo)",
+    "Yo no hago cancione', hago himnos pa' que no caduquen (Ey)": "I don't make songs, I make anthems so that they don't expire (Ayy)",
+    "En este género yo fui un Hadōken (Ey, ey, ey)": "In this genre, I was a hadouken (Ayy, ayy, ayy)",
+    "Y se extinguieron como los dinosaurs (Prr; ah)": "And they became extinct like dinosaurs (Prr; ah)",
+    "Antes que me apague' se apaga el sol": "Before you turn me off, the sun will",
+    "Subimo' y rompimo' el ascensor (Ah)": "We came up and broke the еlevator (Ah)",
+    "El prepa que les tiró Barbasol": "The prep that Barbasol thrеw them",
+    "Ah, maldito Conejo": "Ah, damn bunny",
+    "Ahora los miro de arriba y de lejo', ey": "Now I look at you all from above and from afar, ayy",
+    "No contesto DM, no, hablen con mi manejo": "I don't answer DMs, no, talk to my management",
+    "Pero él también va a pichear": "But they'll also ignore",
+    "Te juro que yo no me quise embichar, ey (Ah, ah, ah)": "I promise, I didn't want to become a killer, ayy (Ah, ah, ah)",
+    "Le metí a toa' mis crush, shh, ya me aburro hasta 'e chichar (Ay, rra)": "I fucked all of my crushes, shh, I'm getting bored of fucking too (Eyy, rra)",
+    "Y yo sí soy milly sin usar Richard (Ey)": "And I'm a milly without using Richard (Ayy)",
+    "Yankee se retira y vamo' a switchear (Ah; uh)": "Yankee will retire and we'll switch (Ah; ooh)",
+    "Voy a ser el jefe, me van a fichar (Ey)": "I'm going to be the boss, and they're going to sign me (Ayy)",
+    "Mi nombre por siempre se va a escuchar (Uh, uh, uh)": "My name is always going to be heard (Ooh, ooh, ooh)",
+    "Porque estoy en mi peak (Ey)": "Because I'm at my peak (Ayy)",
+    "Estoy en mi peak (Estoy en mi peak; ey)": "Because I'm at my peak (I'm at my peak)",
+    "Soy un rey, campeón, Booker T (Wuh, wuh, wuh), ey, ey": "I'm a king, champion, Booker T (Woo, woo, woo)",
+    "Estoy en mi peak, ey (Estoy en mi peak)": "Because I'm at my peak (Ey)",
+    "Estoy en mi peak, ja (Estoy en mi peak)": "Because I'm at my peak, ha (I'm at my peak)",
+    "Mírame en lo que me convertí (Mírame, mírame)": "Look at what I became (Look at me, look at me)",
+    "Le' molesta mi premio de compositor": "My composer award bothers you all",
+    "Pero es que ya nadie compone": "But no one composes anymore",
+    "Ninguna 'e esta gente escribe en sus canciones, so no se emocionen (Uh)": "None of these people write their own songs, so don't get excited (Ooh)",
+    "El disco más vendío' de este puto año (Ey)": "The most-sold album of this fucking year (Ayy)",
+    "Los llevé pa' la escuela, to' el mundo tratando de hacerle secuela": "I took them to school, the whole world trying to make its sequel",
+    "Siguen en la fila, nadie se me cuela (Ey)": "Stay in line, no one strains me (Ayy)",
+    "Cheki, morena, cheki": "Shake it, brown-skinned girl, shake it",
+    "Cheki, morena, eh": "Shake it, brown-skinned girl, eh",
+    "Bad Bunny se llevó to' los premio' y el cabrón ni fue (Eh)": "Bad Bunny took all the awards and the bastard didn't even attend (Eh)",
+    "Estoy en mi peak, cabrón (Ey, ey, ey, ey, ey)": "I'm at my peak, bastard (Ayy, ayy, ayy, ayy, ayy)",
+    "Y vo'a seguir en mi peak, cabrón, ey": "I'm going to stay at my peak, bastard, ayy",
+    "Soy un rey, campeón, Booker T, ey (Booker T)": "I'm a king, champion, Booker T, ayy (Booker T)",
+    "Estoy en mi peak (Estoy en mi peak), ey": "I'm at my peak (I'm at my peak)",
+    "Y vo'a seguir en mi peak, ey, ey (Normal)": "And I'm going to stay at my peak, ayy",
+    "Mírame, ¿que tú qué?, ¿que tú qué? (Nah-nah) Nah-nah": "Look at me, that you what? that you what? (Nah-nah) Nah-nah",
+    "Cabrón, tú eres feka": "Bastard, you're fake",
+    "Can you dig it, sucka'?": "Can you dig it, sucker?",
+    "Ni voy a frontear, dale a repeat, cabrón": "I'm not even going to show off, repeat it,  bastard",
+    "Pa' que veas que estoy bien hijueputa": "So that you see that I'm really fucking good",
+    "¿Qué más pues?": "What else, then?",
+    "¿Cómo te ha ido?": "How's it going?",
     "¿Qué más pues? ¿Cómo te ha ido? (Eh)": "What else, then? How's it going? (Hey)",
     "¿Sigue' soltera o ya tiene' marido? (Wuh)": "You're still single or already have a husband? (Wuh)",
     "Sé que es personal, perdona lo atrevido (No)": "I know it's personal sorry for being so daring (No)",
@@ -3121,16 +5735,192 @@
     "Tú de vacacione' en Boston y otro apareció primero": "You were on vacation in Boston, and someone else showed up first",
     "Y me está' empalagando y eso que no e' golosina": "And it's making me feel too sweet, even though it's not sweet",
     "Tú mucho me está' mirando y eso que no soy vitrina": "You're staring at me a lot, even though I'm not a showcase",
+    "Yeah-yeah-yeah-yeah": "Yeah-yeah-yeah-yeah",
+    "Yeah-yeah-yeah-yeah-yeah-yeah": "Yeah-yeah-yeah-yeah-yeah-yeah",
+    "Yeah-yeah-yeah-eh, yeah": "Yeah-yeah-yeah-eh, yeah",
+    "Una noche más y copas de más": "Another night and extra glasses of wine",
+    "Tú no me dejas en paz, de mi mente no te vas": "You don't leave me alone, you don't leave my mind",
+    "Aunque sé que no debo, ey": "Even though I know that I shouldn't, ayy",
+    "Pensar en ti, bebé, pero cuando bebo": "Think of you, baby, but when I drink",
+    "Me viene tu nombre, tu cara, tu risa y tu pelo, ey": "Your name comes to mind, your face, your laugh, and your hair, ayy",
+    "Dime dónde tú está', que yo por ti cojo un vuelo": "Tell me where you're at, for you I'll get on a flight",
+    "Y a Yonaguni le llego, oh": "And to Yonaguni I'll make it, oh",
+    "Aunque sé que no debo, ey": "Even though I know that I shouldn't, ayy",
+    "Pensar en ti, bebé, pero cuando bebo": "Think of you, baby, but when I drink",
+    "Y a Yonaguni le llego, ey": "And to Yonaguni I'll make it, ayy",
+    "No me busque' en Instagram, mami, búscame en casa": "Don't look for me on Instagram, mami, look for me at home",
+    "Pa' que vea' lo que pasa, ey": "So that you see what happens, ayy",
+    "Si tú me prueba', te casa', ey": "If you try me, you'll get married, ayy",
+    "Ese cabrón ni te abraza": "That bastard doesn't even hug you",
+    "Y yo loco por tocarte": "And I'm dying to touch you",
+    "Pero ni me atrevo a textearte": "But I don't dare text you",
+    "Tú con cualquier outfit la parte'": "You kill it in any outfit",
+    "Mami, tú ere' aparte": "Mami, you are different",
+    "Shorty, tiene' un culo bien grande, eh": "Shorty, you have a big ass, eh",
+    "De-Demasia'o grande": "Ve-Very big",
+    "Y yo lo tengo estudia'o, ya mismo me gradúo": "And I have it studied, I'm about to graduate",
+    "Y en la cara me lo tatúo": "And on my face I'll tattoo it",
+    "Vi que viste mi story y subiste una pa' mí": "I saw that you saw my story and you uploaded one for me",
+    "Yo que me iba a dormir, ey": "I was going to sleep, ayy",
+    "En la disco habían mil": "In the club there were a thousand women",
+    "Y yo bailando contigo en mi mente": "And I'm dancing with you in my mind",
+    "Aunque sé que no debo": "Even though I know that I shouldn't",
+    "Y a Yonaguni le llego": "And to Yonaguni I'll make it",
+    "Si me da' tu dirección, yo te mando mil carta'": "If you give me your address, I'll send you a thousand letters",
+    "Si me da' tu cuenta de banco, un millón de peso'": "If you give me your bank account, a million pesos",
+    "To'a la noche arrodillado a Dio' le rezo": "The whole night on my knees I pray to God",
+    "Pa' que ante' que se acabe el año tú me de' un beso": "So that before the year ends you give me a kiss",
+    "Y empezar el 2023 bien cabrón": "And to start 2023 fucking good",
+    "Contigo y un blunt": "With you and a blunt",
+    "Tú te ve' asesina con ese mahón (¡Wuh!)": "You look like an assassin with those jeans (Woo!)",
+    "Me matas sin un pistolón": "You kill me without a pistol",
+    "Y yo te compro un Banshee": "And I'll buy you a Banshee",
+    "Gucci, Givenchy": "Gucci, Givenchy",
+    "Un poodle, un frenchie": "A poodle, a frenchie",
+    "El pasto, lo' munchie'": "The weed, the munchies",
+    "Te canto un mariachi": "I'll sing mariachi to you",
+    "Me convierto en Itachi, eh": "I'll become Itachi, eh",
+    "Bad Bunny, baby, bebé": "Bad Bunny, baby, baby",
+    "今日はセックスしたい": "I want to have sex today",
+    "でもあなたとだけ": "But only with you",
+    "どこにいますか？": "Where are you?",
+    "どこにいますか？Eh": "Where are you? Eh",
+    "Dime por qué le tiras piedras a la luna": "Tell me why you are throwing stones at the moon",
+    "Tan ilógico como extraerme de tu piel": "As illogical as removing me from your skin",
+    "Después de Dios, soy tu todo, mujer": "After God, I'm your everything, baby",
+    "¿Qué tal te está yendo con él?": "How's it going with him?",
+    "Yo sé que al final": "I know in the end",
+    "A mí no me olvidas tan siquiera un poco": "You won't forget me not even a little bit",
+    "Al final, baby, tú extrañas cómo yo te toco": "In the end, baby, you miss how I touch you",
+    "Recuerda, de tu cuerpo sé yo, mami": "Remember, I know your body, mami",
+    "Cada rincón por dentro y por fuera": "Every corner inside and out",
+    "Dile que volví por ti (Yeh, yeh, yeh, yeh)": "Tell him that I came back for you (Yeah, yeah, yeah, yeah)",
+    "Yo soy ese tatuaje, mami, que no se te borra": "I'm that tattoo, mami, that can't be erased",
+    "Sin palomería', yo no bajo con cotorra": "Without any nonsense, I'm not coming with sweet-talk",
+    "Dile al bobo ese que еn mí siempre e' quе tú piensa'": "Tell that jerk that you always think of me",
+    "Que cuando él termina e' cuando tú apena' comienza'": "That when he finishes is whеn you are just starting",
+    "Y ahí e', ahí e' cuando tú siente' la diferencia": "And that's when, that's when you feel thе difference",
+    "Yo siempre te daba con consistencia": "I always gave it to you with consistency",
+    "Dile que se retire, haga su diligencia": "Tell him to give up, to do his due diligence",
+    "Porque volví por ti (Volví)": "Because I came back for you",
+    "Pa' hacértelo bien rico como te gusta a ti": "To do it to you really nice how you like it",
+    "Ponte en cuatro y te la saco como lo hace Tatí'": "Get on all fours and I'll hit it out of you like Tatís",
+    "Te montaste en la Jeepeta y no tenía' panty": "You got in the Jeep and you didn't have panties",
+    "So no te engañes": "So don't deceive yourself",
+    "Que e' imposible que no me extrañe'": "It's impossible that you don't miss me",
+    "Lo nuestro e' de año', no hay forma de que se dañe": "Our relationship is for years, there's no way to damage it",
+    "Con él ni suda', no hace falta ni que tú te bañe'": "With him you don't even sweat, you don't even have to shower after",
+    "Despué' de lo' polvo' conmigo la' sábana' hay que botarla'": "After the sex with me, the bed sheets have to be thrown out",
+    "Toalla pa' la nena pa' secarla": "A towel for the girl so she can get dry",
+    "No quiero a otra, tú ere' la que sabe sacarla": "I don't want another, you're the one who knows how to make me climax",
+    "Hoy vine pa' rescatarla (So nasty)": "Today I came to rescue you (So nasty)",
+    "Dile que volví por ti, yeah": "Tell him that I came back for you, yeah",
+    "¿Cómo carajo ese palomo va a compararse conmigo?": "How the fuck is that jerk going to compare with me?",
+    "Ni te conoce mientras yo soy tu delirio": "He doesn't even know you while I'm your crazy passion",
+    "Tengo la fecha escrita en el calendario": "I have the date written on my calendar",
+    "Si yo volví a Aventura, tú regresas a mi lado, baby": "If I returned to Aventura, you come back to my side, baby",
+    "Que cuente las horas": "Make the hours count",
+    "Es su destino, tú y yo tenemo' historia": "It's his destiny, you and I have history",
+    "Para que él vea que el dinero no lo es todo": "So that he sees that money isn't everything",
+    "Te enamoré con mi lujuria, yo controlo": "I made you fall in love with my lust, I control",
+    "Tú sabes que ese tipo es temporal": "You know that that guy is temporary",
+    "Anda, arranca y dile": "Go, run off and tell him",
+    "Tú despide de una vez a ese cabró— (Ey)": "You, say bye once and for all to that bastar— (Ay)",
+    "Porque volví por ti": "Because I came back for you",
+    "Porque volví, mami, por ti": "Because I came back, mami, for you",
+    "Lo haces con él pero pensando en mí": "You do it with him, but thinking of me",
+    "Inconforme con ese infeliz": "Dissident with that unhappy fool",
+    "Hey, you end up with me": "Hey, you end up with me",
+    "A mí no me olvida' tan siquiera un poco": "You won't forget me not even a little bit",
+    "Al final, baby, tú te mojas cuando yo te toco": "In the end, baby, you get wet when I touch you",
+    "Recuerda, de tu cuerpo sé yo, mami (Ey, ey)": "Remember, I know your body, mami (Ayy, ayy)",
+    "Cada rincón por dentro y por fuera (Ey, ey, ey, ey)": "Every corner inside and out (Ayy, ayy, ayy, ayy)",
+    "Dile que volví por ti": "Tell him that I came back for you",
+    "Te toca a ti, Romeo": "It's your turn, Romeo",
+    "Dile": "Tell 'em",
+    "Aventura": "Aventura",
+    "Tú ere' mía, bebé": "You're mine, baby",
+    "Vamo' a hacerlo otra ve'": "We're going to do it again",
+    "Jaja, ey": "Haha, ayy",
+    "No funcionamos (No funcionamos)": "We didn't function (We didn't function)",
+    "Lo dimos todo, pero no se nos dio (No)": "We gave it all, but it didn't work out for us (No)",
+    "Por eso nos vamos (Nos vamos)": "That's why we're leaving (We're leaving)",
+    "Pero antes de irnos": "But before we go",
     "Vamo' a hacerlo por última vez, bebé (Bebé)": "Let's do it for the last time, baby (Baby)",
     "Que en el amor no, pero en la cama nos entendemos (Oh)": "Because not in love, but in bed we understand each other (Oh)",
     "Es una porno, a mí me encanta cómo lo hacemos": "It's porn, I love how we do it",
     "No borraré tu contacto y estoy al tanto por si volvemos": "I won't delete your contact and I'll be aware in case we make up",
-    "(Pero así no; ey)": "But not like that (Hey)"
+    "(Pero así no; ey)": "But not like that (Hey)",
+    "Por la orillita, se me cuida (Ey)": "The little shore takes care of itself (Ey)",
+    "Pero llama cuando quiere que te deje la cama destendida": "But call when you want me to give you in bed attended",
+    "Los bellaqueo' no se olvidan (No se olvidan; ey)": "The sex games are not forgotten (Are not forgotten)",
+    "A nadie de confianza se le niega un polvo de despedida, ey": "No one trustworthy is denied a farewell sex, ey",
+    "Yo estoy puesta pa'l repeat (Repeat)": "I'm down to repeat (Repeat)",
+    "Tú pon la cama, que yo pongo el krippy (Krippy)": "You put the bed, I put the krippy (Krippy)",
+    "Para varear, en la playa en RD, Punta Cana (Ah, ah)": "Now we hit it at beach in DR, Punta Cana (Ah)",
+    "En la ventana mirando la city": "In the window looking at the city",
+    "Ya sé que en el amor somo' un desastre (-tre)": "I know that in love we are a disaster (-aster)",
+    "Yo soy bandida, y tú ere' gánster": "I'm a bandit, and you're a gangster",
+    "No sé cuánto tiempo malgastaste": "I don't know how long you wasted trying something serious",
+    "Intentando algo serio": "I know I'm not what you thought (Eh-eh)",
+    "Ya sé que no soy lo que pensaste (Eh-eh)": "But since you kissed me",
+    "Pero desde que me besaste": "You became addicted with my malice",
+    "Con mi malicia te enviciaste": "This is not healthy but",
+    "(Esto no es saludable, pero)": "Let's do it one last time, baby",
+    "Vamo' a hacerlo por última vez, bebé (Bebé)": "Because not in love, but in bed we understand each other",
+    "Que en el amor no, pero en la cama nos entendemos": "It's porn, I love how we do it",
+    "Es una porno, a mí me encanta cómo lo hacemos (Cómo ching—, cómo ching—)": "I won't delete your contact and I'll be aware in case we make up",
+    "No he borrado tu contacto y estoy al tanto por si volvemos": "But not like this",
+    "(Pero así no)": "Our love is fucked",
+    "Nuestro amor 'tá jodío'": "But what a feeling when the messes end in bed",
+    "Pero qué sensación cuando en la cama se acaban los líos": "Could it be that sex with you is my addiction?",
+    "¿Será que el sexo contigo es mi adicción?": "Toxic loves only work for —less",
+    "Amores tóxicos solo sirven pa' sin—": "We are so explicit, but it came to an end (So nasty)",
+    "Somos tan explícitos, pero llegó a su fin (So nasty)": "Say goodbye naked, with my phone I'm recording you",
+    "Despídete desnuda, con mi cel te voy grabando": "I tell you goodbye inside you",
+    "Yo te digo adiós dentro de ti": "I save this video for when you need it",
+    "Guarda este vídeo para cuando te haga falta": "And you're wet thinking of me",
+    "Y estés moja'íta pensando en mí": "Let's do it for the last time, baby (Baby)",
+    "Que en el amor no, pero en la cama nos entendemos (-demos)": "It's porn, I love how we do it (How we fu—, how we fu—)",
+    "Bebé, regálame una noche que no termine nunca": "That never ends",
+    "Hoy es noche de sexo": "Today is a night of sex",
+    "¿Sí vienes?": "Are you coming?",
+    "Jaja, tú supiste": "Haha, you knew",
+    "Mi Romeo, The King": "My Romeo, The King",
+    "Con La Bichota": "With the Boss Bitch",
+    "O-O-Ovy On The Drums": "O-O-Ovy On The Drums",
+    "Ba-Ba-Baby, dale, ponte pa' mí, follow me": "Ba-ba-baby, go on, get ready for me, follow me",
+    "Tú ere' like for me y yo 'toy pa' ti": "You are like for me and I am for you",
+    "Gata, tú está' only, mándame tu ubi": "Girl, you're alone, send me your location",
+    "Mueve los cachete' al ritmo del TikTok": "Move your ass to the rhythm of the TikTok",
+    "Conmigo esa gata se еscapó y en su casa nadie lo notó": "That girl ran away with me and nobody noticed at home",
+    "E' que conmigo la baby еsta noche la pasó cabrón": "Because with me that baby had a grеat time tonight",
+    "Gata, pon el celu en modo avión": "Girl, put the cellphonе on airplane mode",
+    "Tú mi loca y yo tu locotrón": "You're my crazy girl and I'm your crazy guy",
+    "Tú te pone' pa' mí y yo por ti me tiro toa' las misione'": "You make yourself for me and I'll go all in",
+    "Tú ere' like for me, yo tu Brad Pitt": "You are like for me, I'm your Brad Pitt",
+    "Muévelo, cabecea al ritmo del TikTok": "Move it, dance to the rhythm of the TikTok",
+    "Conmigo esa gata se escapó": "That girl ran away with me",
+    "El que la rompe soy yo": "The one who fucks her is me",
+    "Me la robo de menor": "I stole her when we were young",
+    "Otra noche dándote (Eh), dándote (Eh)": "Another night giving you (Eh), giving you (Eh)",
+    "Tocándote (Eh), calentándote": "Touching you (Eh), heating you up",
+    "Encima viniéndote (Okey)": "Climaxing on top of you (Okay)",
+    "Al oído gimiéndome (Ja)": "Moaning in my ear (Ha)",
+    "Y yo la sigo enamorando, regalando, to' el día comprando": "And I keep making her fall in love, giving her presents, buying stuff all day long",
+    "Lo que uste', mamita, quiere": "Whatever you want, baby girl",
+    "Ahora nos 'tamo alejando, no te estoy viendo, los día' volando": "Now we're drifting apart, I'm not seeing you, the days go by",
+    "Estar sola tú prefiere'": "Being alone is what you prefer",
+    "Ven y dame un chance pa' guayarte": "Come and give me a chance to grind on you",
+    "Allá abajo mojarte toa' las parte'": "To get you all wet down there",
+    "Otra noche dándote, dándote": "Another night giving you, giving you",
+    "Tocándote, calentándote": "Touching you, heating you up",
+    "Baby, dale, ponte pa' mí, follow me (Brr)": "Baby, go on, get ready for me, follow me"
   },
   "stats": {
-    "exact": 1,
-    "close": 14,
+    "exact": 16,
+    "close": 6,
     "skipped": 0,
-    "lines_indexed": 469
+    "lines_indexed": 918
   }
 }

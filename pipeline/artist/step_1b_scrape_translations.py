@@ -477,16 +477,25 @@ def main():
 import re as _re
 
 _SECTION_HEADER_RE = _re.compile(r'^\[.+\]$')
+# Genius prefixes scraped lyrics with a contributor/description blob, e.g.
+# "44 ContributorsTranslationsEnglishTe Boté (Remix) Lyrics[Letra de ...".
+# Batch-format corpora carry it; the per-track playlist format does NOT, and
+# dropping line 0 unconditionally ate the first real lyric line there. On the
+# Spanish side that silently lost a line while the English side lost only a
+# [Section] header, so equal line counts could still zip a whole song off by
+# one (Ay, DiOs Mío! — 51 lines, every pair shifted).
+_GENIUS_METADATA_RE = _re.compile(r'^\s*\d+\s*Contributors?')
 
 
 def _clean_lyrics_keep_blanks(raw_text):
     """Clean raw Genius lyrics, keeping empty lines as section boundaries.
 
-    Drops the metadata first line and section headers like [Chorus].
-    Empty lines are preserved as '' for section splitting.
+    Drops the metadata first line when one is present, and section headers
+    like [Chorus]. Empty lines are preserved as '' for section splitting.
     """
     lines = raw_text.split("\n")
-    lines = lines[1:]  # drop Genius metadata
+    if lines and _GENIUS_METADATA_RE.match(lines[0]):
+        lines = lines[1:]
     result = []
     for line in lines:
         stripped = line.strip()
@@ -681,8 +690,11 @@ def run_alignment(artist_dir):
     # already {spanish: english}; the layer just tags each with its source.
     # Only the French chain wrote this file, so a Spanish artist reached step 6
     # with it missing and the run aborted there — long after the real problem.
-    # Existing entries are preserved so a Google-translate backfill
-    # (tool_1b_translate_sentences_google) is not clobbered by a re-align.
+    # Entries from another source (a Google-translate backfill via
+    # tool_1b_translate_sentences_google) are preserved so a re-align does not
+    # clobber them. Entries this step wrote itself ARE refreshed: blanket
+    # preservation meant a corrected alignment could never land, which kept 51
+    # off-by-one lines alive through the fix to the line-0 cleaner above.
     layer_path = os.path.join(artist_dir, "data", "layers", "example_translations.json")
     os.makedirs(os.path.dirname(layer_path), exist_ok=True)
     existing = {}
@@ -692,15 +704,24 @@ def run_alignment(artist_dir):
                 existing = json.load(f)
         except ValueError:
             existing = {}
-    added = 0
+    added = updated = 0
     for spanish, english in result.get("index", {}).items():
-        if not spanish or not english or spanish in existing:
+        if not spanish or not english:
             continue
+        prior = existing.get(spanish)
+        if prior is None:
+            added += 1
+        elif isinstance(prior, dict) and prior.get("source") not in (None, "genius"):
+            continue                      # another source owns this line
+        elif (prior.get("english") if isinstance(prior, dict) else prior) == english:
+            continue                      # already current
+        else:
+            updated += 1
         existing[spanish] = {"english": english, "source": "genius"}
-        added += 1
     with open(layer_path, "w", encoding="utf-8") as f:
         json.dump(existing, f, ensure_ascii=False)
-    print("Wrote %s (%d new, %d total)" % (layer_path, added, len(existing)))
+    print("Wrote %s (%d new, %d corrected, %d total)"
+          % (layer_path, added, updated, len(existing)))
 
 
 def print_summary(translations, total_songs):

@@ -560,12 +560,15 @@ def double_elision_canonical(word, known_set=None):
 
 def trailing_apos_restore(word, known_set):
     """For a `word'` form not covered by other rules, try restoring a dropped
-    final consonant (s/d/z/r/l/n). Returns (canonical, display) if exactly
-    one restoration hits the known-word set; None otherwise.
+    final consonant (s/d/z/r/l/n). Returns (canonical, display) or None.
 
-    The "exactly one" rule guards against ambiguity (e.g. pue' → pues vs pued
-    vs puer). If two restorations both hit, we give up and leave the word
-    alone for step 4 to handle.
+    A single hit wins outright. When several restorations are known words the
+    surface form alone cannot separate them, so frequency decides: a
+    fourfold-dominant candidate wins (this is what resolves the z/s and d/s
+    transcription pairs, cruz/crus and usted/ustes), and anything closer than
+    that abstains and is left for step 4. ma' -> mas/mal/mar abstains here;
+    note that it is instead resolved upstream by the static elision mapping,
+    which never sees the line.
     """
     if not word.endswith("'") or len(word) < 3:
         return None

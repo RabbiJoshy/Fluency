@@ -47,9 +47,23 @@ class SongCountPipelineTests(unittest.TestCase):
 
         self.assertEqual([entry["word"] for entry in entries], ["bravo", "alpha"])
 
-    def test_trailing_apostrophe_restores_z_only_when_unambiguous(self):
+    def test_trailing_apostrophe_restores_only_when_a_winner_is_clear(self):
+        """A single hit wins; competing hits need frequency dominance.
+
+        This test used to assert that ANY second candidate forced a None.
+        trailing_apos_restore has since gained the frequency tiebreaker its
+        docstring describes, precisely so that the z/s and d/s transcription
+        pairs resolve to the real word instead of abstaining -- cruz/crus and
+        usted/ustes are the named targets. Genuine ambiguity still abstains:
+        ma' has three real Spanish restorations and no dominant one.
+        """
         self.assertEqual(trailing_apos_restore("lu'", {"luz"}), ("luz", "lu'"))
-        self.assertIsNone(trailing_apos_restore("cru'", {"cruz", "crus"}))
+        self.assertEqual(
+            trailing_apos_restore("cru'", {"cruz", "crus"}), ("cruz", "cru'"))
+        self.assertEqual(
+            trailing_apos_restore("uste'", {"usted", "ustes"}),
+            ("usted", "uste'"))
+        self.assertIsNone(trailing_apos_restore("ma'", {"mas", "mal", "mar"}))
 
     def test_internal_apostrophe_requires_one_known_candidate(self):
         self.assertEqual(
