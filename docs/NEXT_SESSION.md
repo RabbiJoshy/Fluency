@@ -1,100 +1,189 @@
-# Fluency — Artist-mode WSD
+# Fluency — the session brief
 
-## What this is
+## The one goal
 
-Word sense disambiguation for a Spanish vocabulary app. A card is a surface form; each sense carries a `headword` and `pos` from SpanishDict. The job is assigning corpus lines to senses.
+**Work out when embeddings+BETO does not know that it is wrong, and make it escalate then.**
 
-**The only fixed constraint is cost and speed at scale** — many languages, a deck built in a minute. Everything else is negotiable including the current stack (gloss embeddings + BETO + `gemini-3.5-flash-lite`). Treat it as the thing to beat, not defend. New tools and libraries are welcome.
+That is the hard problem and the only goal. A second, related gap: when escalation
+does fire it is a closed-set `{"id": ...}` pick, so it *cannot* invent a sense even
+when no menu entry fits. Design intent is that escalation is sometimes invention.
+Both halves are in scope.
 
-Artist mode is the surface because it's the harder case: fixed corpus, hard register (slang, elision, fragments), thin evidence — usually one occurrence per word, so one bad call is the whole card. **Per-sentence accuracy is the metric, not yield.**
+## Definition of done
 
-## The working loop — non-negotiable
+An explicit change, described to Josh, tested, and shown to improve **named
+examples** he can look at. Nothing counts until that last clause. Not commits, not
+refactors, not bug fixes, not coverage numbers.
 
-Change **one** thing → rebuild the test playlist → **render the cards and grade them yourself** → sort errors into *classes* → propose options → Josh chooses.
+## Cadence — Josh must see this happening
 
-```bash
-.venv/bin/python3 pipeline/step_6e_assign_senses_calibrated.py --artist-dir "Artists/spanish/SpanishTestPlaylist" --escalate all
-```
-```bash
-.venv/bin/python3 pipeline/artist/step_7a_map_senses_to_lemmas.py --artist-dir "Artists/spanish/SpanishTestPlaylist"
-```
-```bash
-.venv/bin/python3 pipeline/artist/step_8b_assemble_artist_vocabulary.py --artist-dir "Artists/spanish/SpanishTestPlaylist" --prompt-policy testplaylist-beto-cal-pinned
-```
+The last session ran for hours in one block and produced a wall of text at the end.
+Josh could not see progress, could not steer, and could not stop a mistake early. He
+had to drag the actual accuracy number out over five messages. Do not repeat that.
 
-Then `scripts/update_offline_content_manifest.py`, bump `CACHE_NAME`, verify with `tools/check_asset_versions.py`. Deck appears as "Joshua's Test Playlist". A few cents, a few minutes.
+**Report after every discrete unit of work.** One measurement, one build, one
+experiment — then report. Never chain two of them silently. If a report would say
+"still working", say that rather than staying quiet.
 
-Three rules, each learned expensively last session:
+**Every report is short and has these four things:**
 
-- **The rendered card is the only truth.** Not the deck JSON — `js/` repairs a lot at render time, and three "findings" were phantoms from reading JSON (93 blank cards were 47; 152 junk cards were 45; 78 duplicate rows were 0). Use `pipeline/tool_8j_render_cards.py`. `test_tool_8j_render_parity.py` fails if `js/` drifts from it.
-- **You are the judge.** Outsourcing grading to a cheaper model cost £10 and produced a 4.7pp regression that didn't exist. Grading 190 cards by hand took two tool calls and found the same rate plus the actual error classes. Do not build an automated grader.
-- **One variable per pass.** Moving the prompt and the judge together made the result unattributable.
+1. What was done (one line)
+2. **The number** — `n correct / n graded`, or the count that moved
+3. A concrete example — an actual rendered card, not a summary of cards
+4. What is next, or the decision needed
 
-Weight Josh's card-level observations above any number. When he says something looks wrong, believe the symptom and find it.
+Ten lines is plenty. If it is longer than a screen, it is a status dump, not a report.
 
-## Shipped last session
+**Decisions go back to Josh one at a time, close to the work.** Do not batch four
+decisions into one question at the start and then vanish for an hour — that is what
+happened and it produced consent to a plan he could not yet evaluate.
 
-- **Leaf selection** (`pipeline/util_6e_leaf_selection.py` → `step_6e`): the `used with` leaf gate, measured 9:1 and previously unbuilt. 216 repairs; tuple never moves, so no calibration is invalidated.
-- **Routing floor removed** (`step_4a --floor-drops`, `step_6c discovery_words`): a corpus-frequency floor was applied twice and ate exactly the genre slang the deck exists to teach. `bellaqueos`, `switchear`, `glopeta`, `locotrón`, `rulay` and others now reach discovery and land in Main; brands abstain into Extra.
-- **`--escalate all`**: local path 67.1% vs escalated 82.5%, and escalation was running on 28% of the deck. **71.3% → 84.8%** on graded rendered cards.
-- **Lemma corruption fixed**: `sense_id` is unique *within a word*, not globally (96,279 senses share 8,416 ids). A global map was showing `cama` → *haberes*, `pero` → *loco*.
-- Commits `88b0f717`, `fc7e7e41`, `4ddf8189`; cache v261.
+**When offering options, do not mark them all "recommended".** Last time every option
+carried a recommendation, Josh picked all three, and that was steering dressed as a
+choice. Give the options with the evidence, state at most ONE lean, and say plainly
+what you do not know.
 
-## First: make the architecture whole
+**Stop and ask before doing anything the brief does not name.** Not "flag it in the
+final summary" — stop, ask, wait. This includes: changing the corpus, changing a
+flag, spending money, deleting anything, or fixing a bug you tripped over.
 
-Josh's direction — get the whole thing running end to end in the best predicted way *before* iterating. Each of these is a piece that exists, works, and isn't connected. The recurring shape in this codebase is **the right answer computed upstream and discarded downstream** — check upstream before writing new detection.
+**Verify before reporting success.** A background job's exit code is not proof; read
+the log. A rebuild that "completed" was reported as working when it had failed
+instantly on a bad flag.
 
-1. **Proper-noun stamping is orphaned.** `caps_stats.json` is built (`rompiendo` sits at `cap_rate 1.0`), `js/vocab.js` honours `is_propernoun_corpus` by default — and `tool_8a_stamp_propernoun_corpus.py` is a `tool_`, absent from `run_artist_pipeline.py`. **0 cards** in the playlist carry the flag. This is why "Sky Rompiendo" (a producer tag) is a vocabulary card. Check whether `--min-obs` admits 2-observation words before assuming it fixes that case.
-2. **The elision backstop is starved.** `step_2c_resolve_elisions_gemini.py` is in the orchestrator and does the right thing — Gemini on unconfident cases only — but saw **6 words**. `step_3a_merge_elisions` resolved `ma'` → `mas` (literary "but") *confidently*, so the vocative never reached it. Architecture right, confidence threshold wrong. Improve the deterministic half first; Gemini goes over the top.
-3. **Verify `step_4a` kept all three signals** from `legacy_detect_proper_nouns.py` (capitalisation ratio + spaCy NER + curated list), which claims to have superseded it.
-4. **`test_song_count_pipeline.py::test_trailing_apostrophe_restores_z_only_when_unambiguous` fails** and has for a while — same area, `trailing_apos_restore` in `step_3a`.
-5. **MWE components render standalone** though the expression is detected: `por más que` is in the layer with `count: 2`, and `más` and `por` still show their own glosses.
+## First action — measure, then STOP
 
-## MWE — options open, no decision made
+Do this before writing any fix. There are four checkpoints. **Report and wait at
+each one** — do not run two in a row.
 
-Excluding words that are members of a **known** MWE removes that error class cleanly, because membership is already computed — nothing needs detecting. That's the floor.
+1. Build the deck **with the real confidence gate**. Do NOT pass `--escalate all`;
+   that bypasses the trigger and makes the entire question unobservable. It is how
+   the previous session wasted itself.
+   → **CHECKPOINT 1** — report: how many escalated vs decided locally, and the band
+   distribution. That single number tells Josh whether the trigger is even firing.
+2. Also capture a **local-only** pass (`step_6e` with no `--escalate`) over the same
+   occurrences. Two decisions per occurrence, same inputs.
+   → **CHECKPOINT 2** — report: on how many of the 1,843 do local and escalated
+   *disagree*? Show three real disagreements as rendered cards. Ask Josh whether to
+   grade the disagreement set first or a random sample first.
+3. Grade by hand. There are **1,843 WSD decisions** — small enough to review
+   properly. Do not raise `max_examples`; the sample size is deliberate.
+   → **CHECKPOINT 3** — report the running number every ~50 cards graded, not once
+   at the end. `n correct / n graded` plus any new error class as it appears.
+4. Return one table. Every error gets a mode and a named cause:
 
-The interesting direction, Josh's: **a surface-form card carries a sense that *is* the MWE**, alongside the separate MWE page. `más` stays teachable; `por más que` owns the meaning it actually carries.
+   | mode | meaning | when |
+   |------|---------|------|
+   | **2**  | a better sense existed in the menu and it picked wrong without escalating | **PASS 1 — the whole of it** |
+   | **1b** | menu had no fitting sense, and it failed to escalate | **PASS 2 — not before** |
+   | 3      | it escalated and Gemini picked wrong | low priority |
+   | 1a     | word has no menu at all | out of scope, ignore |
 
-Live options — rank them with evidence, don't assume:
-- exclude MWE-member occurrences from word cards entirely
-- reroute the occurrence to the expression
-- keep both, mark the word
-- later-pass idea: during invention, let the prompt propose a **multi-word** gloss when no single word translates the line well
+   **Pass 1 is mode 2 only: picking the wrong leaf when a better one was sitting in
+   the menu.** Classify mode-1b errors as you meet them and count them, but do not
+   work on them. They are pass 2, and pass 2 does not start until pass 1 has shipped
+   a measured improvement Josh has seen in his deck.
 
-This touches sense identity, which is load-bearing — sense IDs carry per-sense learner progress (`COLLABORATION.md` rule 4). Agree the contract before changing it.
+5. Then answer, with evidence: **does any available signal separate the errors from
+   the correct picks?** Self-reported model certainty has failed three times — do not
+   try it a fourth. Untried candidates: disagreement between the two independent
+   methods (embeddings vs BETO), the shape of the whole score distribution rather
+   than a top-two gap, menu size / polysemy, a forced-choice probe.
+   Report it as separability at a fixed escalation budget (what share of errors is
+   caught if you escalate the worst N%), not as an anecdote.
 
-## The crux: predicting when to escalate
+   → **CHECKPOINT 4** — the table, plus the separability result.
 
-Not "which words lack a menu" — that's routing, solved. The question is **per-occurrence: does anything in this menu fit this line?** Stage-one confidence exists to make that call, and every signal tried fails there. Self-reported model certainty is worthless (flat across all levels; failed three times now, including on a local 8B).
+Only after Josh has seen that table do you propose a change. Propose ONE. Say what
+you expect it to move and on which named cards, get his yes, then build it.
 
-Sharpened by last session: **the bigger half is words that *have* a menu but lack the slang sense** — `mal` 'ill' for *me tiene' mal*, `varear` 'horseback riding', `nota` 'note' where the line means *high*, `cabrón` as an adverbial intensifier. These are structurally unreachable: `step_6e`'s escalation is a closed-set `{"id": ...}` pick, and only menu-less words reach a proposer. Roughly 4% of ordinary speech has no correct answer in the menu; lyrics are worse.
+## Out of scope — do not touch
 
-Candidate signals: disagreement between the two independent methods; the shape of the whole score distribution rather than a top-two gap; a forced-choice probe; something new.
+Elisions. Proper nouns. Credits. Translations. Plumbing. Refactors. Test repairs.
+MWEs. Duplicate senses. Register reuse.
 
-## Also open
+**If you find a bug, add it to a list and keep going. Do not fix it.** A session was
+lost to exactly this: each fix was individually justified and collectively fatal.
 
-- **Register reuse** — unwired. `apply_registers_to_menu` admits only `established` senses, so 81 playlist words with *provisional* register candidates are invisible to the inventor. That's how `rulay` got a fourth gloss minted next to three existing ones. Machinery all exists: `Artists/spanish/sense_registers/reggaeton.json`, `policy.json`, `tool_5d_build_shared_sense_registers.py`.
-- **Duplicate senses** — 5,159 mergeable pairs at cosine ≥0.93; proposal at `Data/Spanish/layers/sense_merge_proposal.json`, deliberately unapplied. Deferred; register reuse reduces new ones at source.
-- **High polysemy** (`dar` with 40+ leaves) — in scope, bad performance accepted, it's the destination not the first pass.
-- **Confidence semantics** — bands are calibrated on `ok_tup` (lemma+POS), not on the gloss, and were measured near-meaningless on lyrics. A card saying "high · P(correct) 98.6%" claims less than it appears to.
+Bugs are **paused, not cancelled**. The list gets worked through once — and only
+once — all of these are true:
 
-## Dead ends — don't redo
+1. Pass 1 has produced a change,
+2. it measurably improved mode-2 accuracy on named cards,
+3. it has been rebuilt into the deck under a **new named run** (below), and
+4. Josh has looked at it in the app and said so.
 
-Trained clitic classifier (a `se`-only regex captures 100% of the headroom). `used with` as a ranking feature or soft prior. Menu position. Deleting empty-translation leaves. Tuple-sum aggregation. Hubness offset (inverted function words). 8B generative WSD, Jina/Cohere rerankers, Spanish examples as sense vectors, pairwise yes/no prompting, WordNet as inventory.
+Until all four hold, the list only grows.
 
-Added last session: **English line in the escalation prompt** (+1.6pp on the 10% it touched — noise). **spaCy DET gate** (breaks proclitic pronouns `la ve`, `los miro`). **"Prefer the bare form" elision rule** (would break 24 correct plurals to fix 1). **Coarsening the inventory** (only 19% of errors are granularity; ceiling +3pp). **Automated LLM grading** (11.7% verdict flips, biased harsh).
+## Every pass ships under a new named run
 
-## Known-wrong, low priority
+Josh has to be able to tell, card by card, which run produced what. A change that
+cannot be identified on the back of a card did not happen.
 
-`una`/`unos` — SpanishDict's `uno`/ADJ "one" carries context *"numeral or indefinite"*, claiming the article reading that belongs to `un`/DET "a". Two words, an inventory defect, no classifier fixes it. Same pile as `ma'`.
+Any change to the classifier bumps the version — do not reuse `v1`:
 
-## Decisions come back to Josh
+| what | now | next |
+|------|-----|------|
+| `PROMPT_ID` (`step_6e`) | `sd-beto-cal-v1` | `sd-beto-cal-v2` |
+| `PROMPT_ID_ESC` | `sd-beto-cal-esc-v1` | `sd-beto-cal-esc-v2` |
+| `METHOD` | `spanishdict-beto-cal-v1` | `spanishdict-beto-cal-v2` |
 
-All of the work is yours — elision restoration, proper-noun mapping, curation, pipeline mechanisms, the escalation signal, error taxonomy. Josh is not a queue you hand tasks to.
+Then register the new ids in `config/prompt_registry.json` (family, tier, notes), or
+the card panel falls back to "provenance not recorded".
 
-What comes back to him is **decisions**: anything that changes a contract (sense identity, card identity, progress keys), anything that costs money, anything where two options have different failure modes and the evidence doesn't rank them, and anything you're about to assume rather than measure. Bring options with evidence and let him pick — don't dress a single recommendation as a conclusion. He corrected the course four times last session on card evidence alone and was right every time.
+`prompt_id` and `run_ts` are already carried on every meaning and example, and
+`run_ts` already stores minutes (`2026-08-18T23:31Z`). **But the card only prints the
+date.** `fmtTs` in `js/flashcards.js` (~line 6184) formats
+`{year, month, day}` and drops the time — so two runs on the same day are
+indistinguishable to Josh, which is exactly the thing he needs to see.
 
-## Working with Josh
+Fix it to render **date + HH:MM**. Note `js/` is Codex's surface per `CLAUDE.md`, so
+this is a deliberate cross-boundary edit: make it, keep it to that function, and say
+so in the commit.
 
-Long runs go in his terminal — print the command. Price model spend before spending it, and check `max_output_tokens` and thinking budget: a 40-token JSON reply left at 2000 with thinking on billed ~190 invisible tokens per call. Name pipeline steps canonically (`step_4a_filter_known_vocab` (word routing), not "step 4a"). `git pull --rebase` before pushing; never force-push.
+## Rules
+
+- State which part of the goal a piece of work serves *before* starting it. If you
+  cannot say it in one sentence, you are drifting — stop and ask.
+- One variable per pass.
+- The rendered card is the only truth — `pipeline/tool_8j_render_cards.py`, never the
+  deck JSON. `js/` repairs a lot at render time.
+- You are the judge. Do not build an automated grader; it cost £10 and produced a
+  4.7pp regression that did not exist.
+- Report accuracy as *number correct / number graded*. Never report activity.
+- Long runs go in the background, not handed back as commands to paste.
+- Price any model spend before spending it.
+
+## Reference
+
+Test playlist: 17 songs, 980 lines, 6,897 occurrences, 2,020 kept as examples,
+532 unique sentences, **1,843 WSD decisions**. It is a throwaway deck whose only
+purpose is being reviewable in the app.
+
+Stack: embeddings + BETO decide with a confidence band; low confidence escalates to
+`gemini-3.5-flash-lite`. Cost of escalating everything is ~$0.08, so cost is not the
+constraint — knowing *when* is.
+
+Rebuild: `run_artist_pipeline.py --artist "Artists/spanish/SpanishTestPlaylist"
+--from-step 2 --to-step 5b`, then `step_6e_assign_senses_calibrated`, then
+`step_7a_map_senses_to_lemmas`, then `step_8b_assemble_artist_vocabulary
+--prompt-policy testplaylist-beto-cal-pinned`.
+
+Known dead ends — do not redo: self-reported certainty (3×, incl. a local 8B).
+Trained clitic classifier. `used with` as a ranking feature. Menu position.
+Tuple-sum aggregation. Hubness offset. 8B generative WSD. Jina/Cohere rerankers.
+Spanish examples as sense vectors. Pairwise yes/no prompting. WordNet as inventory.
+English line in the escalation prompt (+1.6pp, noise). spaCy DET gate. Coarsening
+the inventory (ceiling +3pp). Automated LLM grading.
+
+Known-unfixable by any classifier, so do not chase: SpanishDict inventory defects —
+`fumar` has one "to smoke" leaf permanently tagged *tobacco*; `dejar` has no
+`dejar de` = "to stop"; `platón` has no *Plato*. In a 78-card graded sample, 8 of 10
+errors were of this kind.
+
+## Handoff rule
+
+If you write a handoff at the end of a session, it may contain measurements and open
+questions **only**. Never a task list. A brief written by an agent that just went
+down a rabbit hole hands the next agent the rabbit hole, with the authority of a
+checked-in file. That is what happened three sessions running.
