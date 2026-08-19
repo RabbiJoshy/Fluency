@@ -2,6 +2,18 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-19",
+      "commit": "6aff4252",
+      "summary": "English-first cards now show their Spanish sentence clue before you answer",
+      "details": [
+        "The existing English meaning fingerprint stays intact, including several translations that identify one Spanish surface",
+        "When the selected sense has an example containing the exact requested answer, its complete Spanish sentence is now shown immediately with that answer blanked",
+        "The sentence is fixed for the attempt: browsing another example after revealing the card cannot retroactively change the prompt already answered",
+        "Expressions and attached forms still blank their complete authoritative answer; merged or mismatched forms continue to abstain instead of manufacturing a clue",
+        "This is an app-only presentation change and does not alter WSD, sense selection, card identity, progress or deck data; cache v261→v262 / assets 20260817i→20260819a"
+      ]
+    },
+    {
       "date": "2026-08-18",
       "commit": "fc7e7e41",
       "summary": "Fixed the wrong lemmas — cards were showing another word's dictionary form",
