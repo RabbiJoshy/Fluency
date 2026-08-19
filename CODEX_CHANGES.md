@@ -64,7 +64,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ### 2026-08-19 — Put the fixed production cloze behind an explicit hint
 
-- Implementation commit `907a3785`; front-end cache `flashcards-v263` / `20260819b`; this supersedes only the immediate-reveal presentation from `6aff4252`.
+- Implementation commit `6a345d00`; front-end cache `flashcards-v263` / `20260819b`; this supersedes only the immediate-reveal presentation from `6aff4252`.
 - Restored the Sentence hint button so the bounded multi-sense English fingerprint remains the unaided prompt. Pressing it reveals the complete Spanish sentence with the authoritative production answer blanked.
 - Retained the new per-attempt capture: the example is fixed before the learner asks for help, and later back-side example/sense browsing cannot rewrite it. The exact-answer mechanism remains generic across supported parts of speech rather than being restricted to verbs.
 - Verification: fourteen focused reverse-cue/presentation tests, JavaScript syntax, 74 asset tags in lockstep, valid changelog JSON, and `git diff --check`.

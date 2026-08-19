@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-19",
-      "commit": "907a3785",
+      "commit": "6a345d00",
       "summary": "The fixed Spanish sentence clue now waits behind the Sentence hint button",
       "details": [
         "English-first cards keep their normal multiple-translation prompt until you explicitly ask for sentence context",
