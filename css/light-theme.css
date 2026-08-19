@@ -359,6 +359,18 @@
     color: var(--text-secondary);
 }
 
+:root[data-theme="light"] .front-production-hint-toggle {
+    border-color: var(--border-color);
+    background: rgba(23, 33, 43, 0.035);
+    color: var(--text-secondary);
+}
+
+:root[data-theme="light"] .front-production-hint-toggle.is-open {
+    border-color: rgba(var(--card-pos-rgb), 0.42);
+    background: rgba(var(--card-pos-rgb), 0.09);
+    color: var(--text-primary);
+}
+
 :root[data-theme="light"] .front-production-cloze {
     border-color: rgba(var(--card-pos-rgb), 0.3);
     background: rgba(255, 255, 255, 0.97);

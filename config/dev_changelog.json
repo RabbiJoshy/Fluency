@@ -3,6 +3,18 @@
   "entries": [
     {
       "date": "2026-08-19",
+      "commit": "907a3785",
+      "summary": "The fixed Spanish sentence clue now waits behind the Sentence hint button",
+      "details": [
+        "English-first cards keep their normal multiple-translation prompt until you explicitly ask for sentence context",
+        "Pressing Sentence hint reveals the complete Spanish example with the exact production answer blanked",
+        "The app still fixes that example when the attempt begins, so revealing it later or browsing examples on the back cannot change the prompt",
+        "The hint is generic rather than verb-only: any supported card with an exact evidenced production answer can use it",
+        "Cache v262→v263 / assets 20260819a→20260819b"
+      ]
+    },
+    {
+      "date": "2026-08-19",
       "commit": "6aff4252",
       "summary": "English-first cards now show their Spanish sentence clue before you answer",
       "details": [

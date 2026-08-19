@@ -257,7 +257,7 @@ test('production sentence prompt stays fixed for one attempt', () => {
     assert.equal(nextAttempt.html, 'Nunca habían ______ antes.');
 });
 
-test('English-first presentation keeps grammar and one fixed sentence cloze visible', () => {
+test('English-first presentation keeps grammar visible and one fixed sentence behind a hint', () => {
     const source = fs.readFileSync(new URL('../js/flashcards.js', import.meta.url), 'utf8');
     const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
     const css = fs.readFileSync(new URL('../css/style.css', import.meta.url), 'utf8');
@@ -269,11 +269,11 @@ test('English-first presentation keeps grammar and one fixed sentence cloze visi
     assert.match(source, /retainProductionPromptAttempt\(productionPrompt/u);
     assert.match(source, /reset: announceHeadword/u);
     assert.match(source, /_productionPromptByCard\.set\(card, productionPrompt\)/u);
-    assert.match(source, /class="front-production-cloze"[^>]*aria-label="Spanish sentence with the answer blanked"/u);
-    assert.doesNotMatch(source, /toggleFrontProductionHint/u);
+    assert.match(source, /toggleFrontProductionHint\(event\)/u);
+    assert.match(source, /class="front-production-cloze"[^>]*aria-label="Spanish sentence with the answer blanked" hidden/u);
     assert.match(html, /<\/button>\s*<div class="front-production-hint" id="frontProductionHint" hidden><\/div>\s*<!-- POS pill/u);
-    assert.match(css, /\.front-production-context-label\s*\{/u);
-    assert.doesNotMatch(css, /\.front-production-cloze\[hidden\]/u);
+    assert.match(css, /\.front-production-hint-toggle\s*\{/u);
+    assert.match(css, /\.front-production-cloze\[hidden\]\s*\{\s*display: none;/u);
 });
 
 test('recognition back makes sense density calmer without weakening filters', () => {

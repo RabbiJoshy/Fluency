@@ -1,23 +1,23 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260819a';
-import './speech.js?v=20260819a';
+import './state.js?v=20260819b';
+import './speech.js?v=20260819b';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260819a';
+} from './example-personalisation.js?v=20260819b';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260819a';
+} from './spanishdict-usage.js?v=20260819b';
 import {
     englishProductionCue,
     retainProductionPromptAttempt,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260819a';
+} from './reverse-cues.js?v=20260819b';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -3599,8 +3599,11 @@ function updateCard({ announceHeadword = false } = {}) {
     if (frontProductionHintEl) {
         frontProductionHintEl.hidden = !productionHintHTML;
         frontProductionHintEl.innerHTML = productionHintHTML
-            ? `<div class="front-production-context-label">In this sentence</div>
-               <div class="front-production-cloze" id="frontProductionCloze" aria-label="Spanish sentence with the answer blanked">${productionHintHTML}</div>`
+            ? `<button type="button" class="front-production-hint-toggle" aria-expanded="false" aria-controls="frontProductionCloze" onclick="toggleFrontProductionHint(event)">
+                    <span class="front-production-hint-icon" aria-hidden="true">⌁</span>
+                    <span class="front-production-hint-label">Sentence hint</span>
+               </button>
+               <div class="front-production-cloze" id="frontProductionCloze" aria-label="Spanish sentence with the answer blanked" hidden>${productionHintHTML}</div>`
             : '';
     }
 
@@ -5685,6 +5688,21 @@ function toggleMorphAlternatives(event) {
     if (sign) sign.textContent = opening ? '−' : '+';
 }
 
+function toggleFrontProductionHint(event) {
+    event?.stopPropagation();
+    event?.preventDefault();
+    const button = event?.currentTarget;
+    const host = button?.closest('.front-production-hint');
+    const cloze = host?.querySelector('.front-production-cloze');
+    if (!button || !cloze) return;
+    const opening = cloze.hidden;
+    cloze.hidden = !opening;
+    button.setAttribute('aria-expanded', String(opening));
+    button.classList.toggle('is-open', opening);
+    const label = button.querySelector('.front-production-hint-label');
+    if (label) label.textContent = opening ? 'Hide hint' : 'Sentence hint';
+}
+
 // The card-wide knowledge overview can jump directly to any individual item,
 // including a later Expression/clitic in a shared cycling row. Stamp the same
 // explicit-selection key as a sub-row click so updateCard() does not
@@ -6451,6 +6469,7 @@ window.selectMeaning = selectMeaning;
 window.selectPartOfSpeech = selectPartOfSpeech;
 window.toggleMorphPopover = toggleMorphPopover;
 window.toggleMorphAlternatives = toggleMorphAlternatives;
+window.toggleFrontProductionHint = toggleFrontProductionHint;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
@@ -6579,7 +6598,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260819a';
+const ASSET_VERSION = '20260819b';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =
