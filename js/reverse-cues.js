@@ -325,3 +325,23 @@ export function splitProductionCloze(sentence, answerSurface) {
         after: text.slice(match.index + match[0].length),
     };
 }
+
+/**
+ * Keep the sentence prompt immutable for one card attempt. Back-side example
+ * browsing rerenders the card, but only a new entry or direction change may
+ * capture a different prompt.
+ */
+export function retainProductionPromptAttempt(previous, {
+    direction,
+    reset = false,
+    createHTML,
+} = {}) {
+    const normalizedDirection = Boolean(direction);
+    if (previous && !reset && previous.direction === normalizedDirection) return previous;
+    return {
+        direction: normalizedDirection,
+        html: normalizedDirection && typeof createHTML === 'function'
+            ? String(createHTML() || '')
+            : '',
+    };
+}

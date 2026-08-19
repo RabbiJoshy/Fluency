@@ -1,22 +1,23 @@
 // Card rendering, flip, swipe, keyboard shortcuts.
 // Main function: updateCard() (~line 950) renders the current flashcard front + back.
 // Key exports: updateCard, flipCard, nextCard, handleSwipeAction, selectMeaning, cycleExample.
-import './state.js?v=20260817i';
-import './speech.js?v=20260817i';
+import './state.js?v=20260819a';
+import './speech.js?v=20260819a';
 import {
     collectRecentWrongWords,
     exampleReinforcesRecentMistake,
     filterPersonalisedExamples,
-} from './example-personalisation.js?v=20260817i';
+} from './example-personalisation.js?v=20260819a';
 import {
     parseSpanishDictUsageContext,
     spanishDictUsageCandidateForms,
-} from './spanishdict-usage.js?v=20260817i';
+} from './spanishdict-usage.js?v=20260819a';
 import {
     englishProductionCue,
+    retainProductionPromptAttempt,
     selectReverseCueMeanings,
     splitProductionCloze,
-} from './reverse-cues.js?v=20260817i';
+} from './reverse-cues.js?v=20260819a';
 
 // --- Spanish rank lookup for personal easiness ---
 let _spanishRanks = null;  // word -> rank (loaded once)
@@ -35,6 +36,9 @@ let _suppressDeckScrubberClickUntil = 0;
 // with deck size. Safe to share: callers use .test() on non-/g regexes
 // and .replace() on /g ones, both of which are stateless across calls.
 const _regexCache = new Map();
+// One immutable front-side sentence prompt per card attempt. Weak keys keep
+// this render-only state out of card/session serialization.
+const _productionPromptByCard = new WeakMap();
 function _cachedRegex(pattern, flags) {
     const key = flags + ':' + pattern;
     let re = _regexCache.get(key);
@@ -3576,17 +3580,27 @@ function updateCard({ announceHeadword = false } = {}) {
     exampleTranslation = stripAdlibParentheticals(exampleTranslation);
 
     const frontProductionHintEl = document.getElementById('frontProductionHint');
-    const productionHintHTML = isFlipped && flippedFrontMeanings
-        ? buildFrontProductionHint(card, currentMeaning, activeProductionAnswer)
-        : '';
+    // Fix one sense-linked sentence to the card attempt. Example browsing on
+    // the revealed back may change currentExampleIndex/currentMeaningIndex, but
+    // it must not retroactively rewrite the prompt the learner already answered.
+    let productionPrompt = _productionPromptByCard.get(card);
+    const retainedProductionPrompt = retainProductionPromptAttempt(productionPrompt, {
+        direction: isFlipped,
+        reset: announceHeadword,
+        createHTML: () => flippedFrontMeanings
+            ? buildFrontProductionHint(card, currentMeaning, activeProductionAnswer)
+            : '',
+    });
+    if (retainedProductionPrompt !== productionPrompt) {
+        productionPrompt = retainedProductionPrompt;
+        _productionPromptByCard.set(card, productionPrompt);
+    }
+    const productionHintHTML = productionPrompt?.html || '';
     if (frontProductionHintEl) {
         frontProductionHintEl.hidden = !productionHintHTML;
         frontProductionHintEl.innerHTML = productionHintHTML
-            ? `<button type="button" class="front-production-hint-toggle" aria-expanded="false" aria-controls="frontProductionCloze" onclick="toggleFrontProductionHint(event)">
-                    <span class="front-production-hint-icon" aria-hidden="true">⌁</span>
-                    <span class="front-production-hint-label">Sentence hint</span>
-               </button>
-               <div class="front-production-cloze" id="frontProductionCloze" hidden>${productionHintHTML}</div>`
+            ? `<div class="front-production-context-label">In this sentence</div>
+               <div class="front-production-cloze" id="frontProductionCloze" aria-label="Spanish sentence with the answer blanked">${productionHintHTML}</div>`
             : '';
     }
 
@@ -5671,21 +5685,6 @@ function toggleMorphAlternatives(event) {
     if (sign) sign.textContent = opening ? '−' : '+';
 }
 
-function toggleFrontProductionHint(event) {
-    event?.stopPropagation();
-    event?.preventDefault();
-    const button = event?.currentTarget;
-    const host = button?.closest('.front-production-hint');
-    const cloze = host?.querySelector('.front-production-cloze');
-    if (!button || !cloze) return;
-    const opening = cloze.hidden;
-    cloze.hidden = !opening;
-    button.setAttribute('aria-expanded', String(opening));
-    button.classList.toggle('is-open', opening);
-    const label = button.querySelector('.front-production-hint-label');
-    if (label) label.textContent = opening ? 'Hide hint' : 'Sentence hint';
-}
-
 // The card-wide knowledge overview can jump directly to any individual item,
 // including a later Expression/clitic in a shared cycling row. Stamp the same
 // explicit-selection key as a sub-row click so updateCard() does not
@@ -6452,7 +6451,6 @@ window.selectMeaning = selectMeaning;
 window.selectPartOfSpeech = selectPartOfSpeech;
 window.toggleMorphPopover = toggleMorphPopover;
 window.toggleMorphAlternatives = toggleMorphAlternatives;
-window.toggleFrontProductionHint = toggleFrontProductionHint;
 window.focusKnowledgeCardItem = focusKnowledgeCardItem;
 window.selectGroup = selectGroup;
 window.previousCard = previousCard;
@@ -6581,7 +6579,7 @@ document.addEventListener('click', (e) => {
 // Keep this in lockstep with service-worker.js. These lazy modules own search
 // result cards and conjugation; a stale URL here can keep running an old modal
 // implementation even after the eagerly loaded app has updated.
-const ASSET_VERSION = '20260817i';
+const ASSET_VERSION = '20260819a';
 
 let _modalsModulePromise = null;
 const lazyModals = () => _modalsModulePromise || (_modalsModulePromise =

@@ -3262,9 +3262,8 @@
             font-weight: 700;
         }
 
-        /* Optional production context stays outside #flipBtn, so revealing it
-           does not flip the card. Only the small trigger occupies space until
-           the learner asks for help. */
+        /* Production context stays outside #flipBtn, so reading or scrolling
+           the fixed cloze does not flip the card. */
         .front-production-hint {
             position: absolute;
             left: 50%;
@@ -3277,31 +3276,15 @@
         .front-production-hint[hidden] {
             display: none;
         }
-        .front-production-hint-toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text-secondary);
-            font: 650 11px/1 var(--font-reading);
-            cursor: pointer;
-        }
-        .front-production-hint-toggle.is-open {
-            border-color: rgba(var(--card-pos-rgb), 0.44);
-            background: rgba(var(--card-pos-rgb), 0.12);
-            color: var(--text-primary);
-        }
-        .front-production-hint-icon {
-            color: rgb(var(--card-pos-rgb));
-            font-size: 15px;
-            line-height: 0.8;
+        .front-production-context-label {
+            margin-bottom: 6px;
+            color: var(--text-muted);
+            font: 700 10px/1 var(--font-reading);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
         .front-production-cloze {
             max-height: 96px;
-            margin-top: 7px;
             padding: 9px 12px;
             overflow-y: auto;
             border: 1px solid rgba(var(--card-pos-rgb), 0.3);
@@ -3310,9 +3293,6 @@
             color: var(--text-primary);
             font: 550 16px/1.35 var(--font-reading);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
-        }
-        .front-production-cloze[hidden] {
-            display: none;
         }
         .production-cloze-blank {
             display: inline-block;

@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
     englishProductionCue,
+    retainProductionPromptAttempt,
     selectReverseCueMeanings,
     splitProductionCloze,
 } from '../js/reverse-cues.js';
@@ -227,7 +228,36 @@ test('optional production cloze finds the exact answer across apostrophe styles'
         'a production blank must not consume a substring of another word');
 });
 
-test('English-first presentation keeps grammar visible and context optional', () => {
+test('production sentence prompt stays fixed for one attempt', () => {
+    let captures = 0;
+    const first = retainProductionPromptAttempt(null, {
+        direction: true,
+        createHTML: () => {
+            captures += 1;
+            return 'Hemos ______ de eso.';
+        },
+    });
+    const afterBackBrowsing = retainProductionPromptAttempt(first, {
+        direction: true,
+        createHTML: () => {
+            captures += 1;
+            return 'Nunca habían ______ antes.';
+        },
+    });
+    assert.equal(afterBackBrowsing, first);
+    assert.equal(afterBackBrowsing.html, 'Hemos ______ de eso.');
+    assert.equal(captures, 1);
+
+    const nextAttempt = retainProductionPromptAttempt(afterBackBrowsing, {
+        direction: true,
+        reset: true,
+        createHTML: () => 'Nunca habían ______ antes.',
+    });
+    assert.notEqual(nextAttempt, first);
+    assert.equal(nextAttempt.html, 'Nunca habían ______ antes.');
+});
+
+test('English-first presentation keeps grammar and one fixed sentence cloze visible', () => {
     const source = fs.readFileSync(new URL('../js/flashcards.js', import.meta.url), 'utf8');
     const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
     const css = fs.readFileSync(new URL('../css/style.css', import.meta.url), 'utf8');
@@ -235,9 +265,15 @@ test('English-first presentation keeps grammar visible and context optional', ()
     assert.match(source, /const showFrontMorph = Boolean\(isFlipped && frontHasVerb && morphLabels\.length\)/u);
     assert.match(source, /class="front-morph-analysis"/u);
     assert.match(source, /foldSurfaceForm\(answerInSentence\) !== foldSurfaceForm\(activeAnswer\)/u);
-    assert.match(source, /toggleFrontProductionHint\(event\)/u);
+    assert.match(source, /const _productionPromptByCard = new WeakMap\(\)/u);
+    assert.match(source, /retainProductionPromptAttempt\(productionPrompt/u);
+    assert.match(source, /reset: announceHeadword/u);
+    assert.match(source, /_productionPromptByCard\.set\(card, productionPrompt\)/u);
+    assert.match(source, /class="front-production-cloze"[^>]*aria-label="Spanish sentence with the answer blanked"/u);
+    assert.doesNotMatch(source, /toggleFrontProductionHint/u);
     assert.match(html, /<\/button>\s*<div class="front-production-hint" id="frontProductionHint" hidden><\/div>\s*<!-- POS pill/u);
-    assert.match(css, /\.front-production-cloze\[hidden\]\s*\{\s*display: none;/u);
+    assert.match(css, /\.front-production-context-label\s*\{/u);
+    assert.doesNotMatch(css, /\.front-production-cloze\[hidden\]/u);
 });
 
 test('recognition back makes sense density calmer without weakening filters', () => {
