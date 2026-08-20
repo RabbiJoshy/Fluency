@@ -24,14 +24,24 @@ an attempt to move the leaf number, and almost nothing does.
 | **MLM substitution + per-sense synonyms** — mask the target with BETO, match predicted fillers against the sense's SpanishDict synonyms | Fires on 10% of items; proposals are mostly lateral moves inside a near-duplicate gloss group (*to waste* → *to squander*). ~2 fixes, ~2 breaks in a 100-item sample. |
 | **Sense enrichment (full replacement)** — frontier model writes a discriminative description per leaf, embed that instead of the gloss | 5 better / 11 worse / 14 neutral on hand-graded changes. A 20-word description makes the vector about the TOPIC, not the label: `aves` → *poultry (culinary)*, `argumento` NOUN → VERB. |
 | **Sense enrichment (same-gloss tie-break only)** — use the description solely to choose between leaves sharing (POS, gloss) | 2 better / 3 worse / 4 neutral. Ceiling is the 3.6pp gloss-vs-leaf gap and it does not reach it. |
+| **Sense cue words** — frontier model lists 3-6 Spanish collocates per sense, matched lexically against the sentence (discrete, so it cannot dilute a vector) | Fires on 17%, and 0 fixes / 3 breaks on graded cards. Matches are presence without RELATION: `Apaga eso para poder comer` picked *to wane* because "poder" is a cue for the power sense but is the verb here; `callejón sin salida` picked *passage* on "salida". Spanish sentences are short enough that bare co-occurrence is near-random. First attempt also had the model return inflected forms of the target itself as cues (`agradecería` -> `agradece, agradecen`), which always match. |
+| **Sense enrichment blended** (alpha=0.8 gloss / 0.2 description) | 3 good / 2 bad / 3 neutral on 8 graded changes -- better than replacing (5/11) but unresolved at that sample size. The dilution diagnosis is right; keeping the gloss dominant recovers most of it. Left open rather than shipped. |
 | **Alignment guards** — clause/relative-position and translation-length constraints on the aligned-English signal | No effect: 4.1 → 4.4 fix:break at best, dropping fixes as fast as breaks. |
 
 ## The pattern
 
 A short gloss embedded by a frontier model is a strong baseline, and **every
 attempt to add information also added noise**, because the added text is topical
-while the decision is lexical. Nine of the ten rows above lost to plain
-gloss-cosine.
+while the decision is lexical. Nearly every row above lost to plain gloss-cosine.
+
+Sharper statement of the same thing, which is the useful takeaway: every failed
+signal matched on **presence** (this topic is nearby, this cue is in the
+sentence, this example resembles the line) and the one that worked matched on
+**relation** -- aligned English is a word-to-word correspondence, so it says
+something about THIS token rather than about the sentence's subject matter.
+`argumento` matched *argumental*; the cue for `poder` matched a different
+`poder`. Anything further in this direction needs syntactic relation (does the
+target actually govern that word), which is a parse, not a lexicon.
 
 The two things that DID work in the same session both left the gloss text alone
 and changed *who decides*:
