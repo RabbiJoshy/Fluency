@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-20",
-      "commit": "3f61e558",
+      "commit": "69657291",
       "summary": "Test playlist rebuilt at 31 songs with a new WSD classifier (v3) and escalation cut to a 20% fallback",
       "detail": [
         "Playlist grew 17 -> 31 songs: 3,007 WSD decisions across 1,860 cards (was 1,776 / 1,109).",
