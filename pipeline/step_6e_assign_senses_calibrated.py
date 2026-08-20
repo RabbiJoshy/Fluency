@@ -243,6 +243,18 @@ def main():
                          "top-two tuple prototype similarity gap is >= this. "
                          "0.0 (default) means override unconditionally, including "
                          "where the token path is visibly guessing.")
+    ap.add_argument("--min-confidence", type=float, default=0.0,
+                    help="DROP any pick whose calibrated P(leaf correct) is below "
+                         "this. Speech mode selects its sentences from a corpus, so "
+                         "an unconfident occurrence should be discarded and another "
+                         "harvested -- not escalated. Measured on gold: rejecting "
+                         "50%% takes tuple accuracy 82.4%%->98.5%%, though leaf "
+                         "accuracy stays flat (leaf errors are near-synonym "
+                         "shuffles that occur everywhere, not hard sentences).")
+    ap.add_argument("--keep-best", type=int, default=0,
+                    help="per word, keep at most N picks, highest confidence first "
+                         "(0 = keep all that clear --min-confidence). Cards show a "
+                         "couple of examples, so N=1 or 2 buys precision for free.")
     ap.add_argument("--gate", default="se-only",
                     choices=["off", "se-only", "permissive", "dative-aware"],
                     help="clitic gate. `se-only` (default, 96.8%% correct where it "
@@ -531,6 +543,23 @@ def main():
                 releaf_comp += 1
             releaf += 1
             picks[i] = (sids[kd], conf, tgap, band, ji, was_esc)
+
+    # ---- rejection: drop what is not confident enough, rather than escalating it
+    if a.min_confidence > 0 or a.keep_best > 0:
+        before = sum(len(v) for v in per_word.values())
+        lost_words = 0
+        for w, picks in per_word.items():
+            keep = [p for p in picks if p[1] >= a.min_confidence]
+            if a.keep_best > 0:
+                keep = sorted(keep, key=lambda p: -p[1])[:a.keep_best]
+                keep = sorted(keep, key=lambda p: p[4])       # restore example order
+            if picks and not keep:
+                lost_words += 1
+            per_word[w] = keep
+        after = sum(len(v) for v in per_word.values())
+        print(f"\nrejection: kept {after:,} of {before:,} picks "
+              f"({after/max(before,1):.0%}); {lost_words:,} words lost every example "
+              f"(min-confidence {a.min_confidence}, keep-best {a.keep_best or 'all'})")
 
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     for w, picks in per_word.items():

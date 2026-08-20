@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Provenance registry for sense-assignment runs. Each prompt_id names a specific prompt-contract/model combination. Named acceptance policies, not numeric tiers, decide which model claims may enter a live deck. Historical capability_tier fields remain descriptive migration metadata only.",
-    "updated": "2026-08-19",
+    "updated": "2026-08-20",
     "schema_version": 1
   },
   "prompts": {
@@ -180,6 +180,26 @@
         "sd-beto-cal-v2": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect.",
         "sd-beto-cal-esc-v1": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect.",
         "sd-beto-cal-v1": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect."
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "speech-beto-cal-v3-pinned": {
+      "description": "Speech mode on the v3 calibrated stack. Only sd-beto-cal-v3 / -esc-v3 may author sense claims, so a speech deck is attributable to one run exactly as the artist deck is. The older embed-gloss-* runs are excluded by design, not by quality -- they predate the leaf-target calibrator and the BETO tuple vote, and mixing them in makes the builder union senses across methods (which is how stale provenance reached the artist deck's cards).",
+      "accepted_prompt_ids": [
+        "sd-beto-cal-esc-v3",
+        "sd-beto-cal-v3"
+      ],
+      "preference_order": [
+        "sd-beto-cal-esc-v3",
+        "sd-beto-cal-v3"
+      ],
+      "evaluation_prompt_ids": [],
+      "rejected_prompt_ids": {
+        "embed-gloss-tuplegap-hub-v1": "superseded by the v3 stack; pinned run excludes it by design",
+        "embed-gloss-classgap-hub-v1": "superseded by the v3 stack; pinned run excludes it by design",
+        "sd-cop-v3": "old mixed-task prompt",
+        "legacy-unknown": "prompt and model cannot be established"
       },
       "require_stable_evidence_join": true,
       "deterministic_evidence_is_separate": true
