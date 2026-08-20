@@ -76,6 +76,9 @@ def has_target(word, sent):
     return w in set(re.findall(r"[a-z0-9áéíóúüñ']+", s))
 
 
+_WORDS = re.compile(r"[\w\u00c0-\u017f']+")
+
+
 def render_query(word, sent, mode):
     """The query text handed to the embedder.
 
@@ -91,6 +94,22 @@ def render_query(word, sent, mode):
         return f'"{word}" en: {sent}'
     if mode == "mark_suffix":
         return f'{sent} — "{word}"'
+    if mode in ("window", "window_marked"):
+        # Locality, not topic. The shipped query is the whole line, so a line
+        # carrying three menu words yields ONE vector for all three -- the score
+        # is dominated by what the line is ABOUT. Nearly every wrong-POS pick in
+        # the graded lyric sample is decidable from the immediate neighbours and
+        # indecidable from the topic: `como una obra de arte` (una as a verb),
+        # `el ex novio fue un desastre` (fue as a noun), `las puerta' bajan`
+        # (las as a pronoun). This keeps the target plus three tokens each side.
+        toks = _WORDS.findall(sent)
+        low = [t.lower() for t in toks]
+        try:
+            i = low.index(word.lower())
+        except ValueError:
+            return sent                     # target not locatable: no window to take
+        frag = " ".join(toks[max(0, i - 3):i + 4])
+        return f'"{word}" en: {frag}' if mode == "window_marked" else frag
     raise ValueError(mode)
 
 
@@ -116,7 +135,8 @@ def build_gold(menus):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--query", default="plain",
-                    choices=["plain", "mark_prefix", "mark_suffix"],
+                    choices=["plain", "mark_prefix", "mark_suffix",
+                             "window", "window_marked"],
                     help="how the sentence is rendered before embedding")
     ap.add_argument("--target-present-only", action="store_true",
                     help="restrict gold to sentences containing the lookup form")

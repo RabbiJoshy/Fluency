@@ -184,7 +184,69 @@ def reflexive_evidence(word: str, sentence: str, mode: str = "se-only"):
     while j >= 0 and toks[j] in CLITICS:
         cluster.append(toks[j])
         j -= 1
+    if mode == "dative-aware":
+        # the ORIGINAL form, not the de-accented one: conjugation_reverse is
+        # keyed with accents, so passing `w` here silently no-ops the agreement
+        # test on salvó / pensará / disculpó and every other accented form.
+        return _dative_aware(word.lower(), cluster)
     want = REFL if mode == "permissive" else {"se"}
     if any(c in want for c in cluster):
         return True
     return False if not cluster or mode == "permissive" else None
+
+
+# 3rd person reflexive is ALWAYS `se`, so le/les are dative by definition; and a
+# reflexive clitic must agree in person with its verb, which the conjugation
+# lexicon already knows. `se-only` returns None on a me/te cluster (no opinion)
+# and `permissive` returns True (measured worse: 94.0% vs 96.8%, because me/te
+# are usually indirect objects). This third mode decides the me/te case on
+# agreement instead of guessing either way -- `me agradan los humanos` is 3rd
+# person with a 1st person clitic, so it cannot be reflexive.
+_ACC3 = {"lo", "la", "los", "las"}
+_PERSON = {"me": "1", "nos": "1", "te": "2", "os": "2"}
+_CONJ_REV = None
+
+
+def _person_of(form):
+    """Person(s) the surface form can be, from the conjugation lexicon."""
+    global _CONJ_REV
+    if _CONJ_REV is None:
+        import json
+        p = LAYERS_DIR / "conjugation_reverse.json" if "LAYERS_DIR" in globals() else None
+        try:
+            from pathlib import Path
+            p = Path(__file__).resolve().parents[1] / "Data/Spanish/layers/conjugation_reverse.json"
+            _CONJ_REV = json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            _CONJ_REV = {}
+    ents = _CONJ_REV.get(form) or []
+    # Imperative is excluded when any other reading exists. `agrada` is 3rd
+    # person present AND 2nd person imperative (the usted form), so including it
+    # makes the person set {2,3}, which overlaps a `te` clitic and defeats the
+    # agreement test on exactly the gustar-type verbs this exists to catch. A
+    # subordinate clause is not an imperative context.
+    non_imp = [e for e in ents if "imperativo" not in (e.get("mood") or "")]
+    use = non_imp or ents
+    return {(e.get("person") or "")[:1] for e in use if e.get("person")}
+
+
+def _dative_aware(form, cluster):
+    if "se" in cluster:
+        return True
+    if any(c in {"le", "les"} for c in cluster):
+        return False                      # 3rd person reflexive is `se`, never `le`
+    if any(c in _ACC3 for c in cluster):
+        return False                      # `me lo dio` -- the 3rd person clitic is the object
+    if not cluster:
+        # Same assertion se-only makes: no proclitic at all means no reflexive
+        # reading. Returning None here instead silently stops the gate pruning
+        # -se leaves on every clitic-free line, which is a regression, not a
+        # refinement.
+        return False
+    persons = {_PERSON[c] for c in cluster if c in _PERSON}
+    if not persons:
+        return None
+    verb = _person_of(form)
+    if verb and not (persons & verb):
+        return False                      # clitic and verb disagree -> dative, not reflexive
+    return True if verb else None

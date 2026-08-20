@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Provenance registry for sense-assignment runs. Each prompt_id names a specific prompt-contract/model combination. Named acceptance policies, not numeric tiers, decide which model claims may enter a live deck. Historical capability_tier fields remain descriptive migration metadata only.",
-    "updated": "2026-08-17",
+    "updated": "2026-08-19",
     "schema_version": 1
   },
   "prompts": {
@@ -78,12 +78,40 @@
       "date": "2026-08",
       "notes": "Gloss embeddings + BETO token prototypes + clitic gate, ranked by a learned calibrator."
     },
+    "sd-beto-cal-v2": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 40,
+      "model": "gemini-embedding-001 + dccuchile/bert-base-spanish-wwm-cased",
+      "date": "2026-08-19",
+      "notes": "Same stack as sd-beto-cal-v1, calibrator retrained on ok_leaf instead of ok_tup. v1's score predicted lemma+POS, 88.7% accurate on dictionary gold and nearly saturated; the exact leaf the card prints is 53.1% on the same 16,016 rows. Held-out precision of the top decile: 82.5%->99.7% under the v1 target vs 49.4%->89.1% under v2's. feature_version 5 adds five grammatical-construction features (gerund/participle/infinitive) and fixes the case where companion_of parsed 'used with a gerund' as the literal token \"a\", scoring the correct periphrastic leaf as construction-violating. Those features were a wash on dictionary gold (0.2% of rows carry one); kept for the lyric distribution, where the class was 15% of a 200-card hand-graded sample. Band cuts are precision targets on LEAF correctness (90% high, 70% medium) and are NOT comparable to v1's."
+    },
+    "sd-beto-cal-v3": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 40,
+      "model": "gemini-embedding-001 + dccuchile/bert-base-spanish-wwm-cased",
+      "date": "2026-08-19",
+      "notes": "sd-beto-cal-v2 plus the BETO tuple vote: where the token prototypes' own top-two similarity gap is >= 0.02, BETO DECIDES the (headword, POS) tuple and the gloss embedding picks the leaf inside it. Before this, BETO only contributed an advisory `token_agrees` feature to the calibrator and could never overturn a pick. Hand-graded on all 88 picks it changes: 60 better, 13 worse, 15 neutral (+2.6pp). The gate is essential -- ungated the same override graded 20/13/7, a wash, because BETO's noun bias on noun/verb homographs sits exactly where its prototypes are near-tied. Query-locality alternatives were measured on 24,675 gold rows in the same pass and rejected (window: leaf 53.09%->47.31%; mark_prefix: 52.42%)."
+    },
     "sd-beto-cal-esc-v1": {
       "family": "token-prototype-calibrated-escalated",
       "capability_tier": 45,
       "model": "gemini-3.5-flash-lite",
       "date": "2026-08",
       "notes": "Low-confidence cases sent to Gemini for a second opinion; Gemini wins on disagreement."
+    },
+    "sd-beto-cal-esc-v2": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 50,
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-08-19",
+      "notes": "Escalation half of sd-beto-cal-v2: the low band goes to flash-lite for a closed-set second opinion. Same prompt contract as sd-beto-cal-esc-v1; the id moves with the classifier version so one card's provenance names one run, not a family."
+    },
+    "sd-beto-cal-esc-v3": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 50,
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-08-19",
+      "notes": "Escalation half of sd-beto-cal-v3. Prompt contract unchanged from esc-v2; the id moves with the classifier version so one card's provenance names one run."
     }
   },
   "acceptance_policies": {
@@ -131,15 +159,15 @@
       "deterministic_evidence_is_separate": true
     },
     "testplaylist-beto-cal-pinned": {
-      "description": "Deliberately PINNED so a deck can be evaluated in isolation: every WSD decision is attributable to sd-beto-cal-v1 and nothing else. sd-lexical-v2-g35 is admitted alongside it for one non-competing job — inventing senses for words with NO dictionary menu, which step_6e skips by construction (it iterates words where menus.get(w) is truthy). The two therefore claim disjoint words, and the isolation the policy exists to protect is unaffected. Without this the sense_discovery run is computed and then silently discarded at build time. Intended for Artists/spanish/SpanishTestPlaylist.",
+      "description": "Deliberately PINNED so a deck can be evaluated in isolation: every WSD decision is attributable to one sd-beto-cal run and nothing else.",
       "accepted_prompt_ids": [
-        "sd-beto-cal-esc-v1",
-        "sd-beto-cal-v1",
+        "sd-beto-cal-esc-v3",
+        "sd-beto-cal-v3",
         "sd-lexical-v2-g35"
       ],
       "preference_order": [
-        "sd-beto-cal-esc-v1",
-        "sd-beto-cal-v1",
+        "sd-beto-cal-esc-v3",
+        "sd-beto-cal-v3",
         "sd-lexical-v2-g35"
       ],
       "evaluation_prompt_ids": [],
@@ -147,7 +175,11 @@
         "sd-lexical-v1-g31": "pinned run: excluded by design, not by quality",
         "sd-lexical-v2-g31": "pinned run: excluded by design, not by quality",
         "embed-gloss-tuplegap-hub-v1": "pinned run: excluded by design, not by quality",
-        "legacy-unknown": "prompt and model cannot be established"
+        "legacy-unknown": "prompt and model cannot be established",
+        "sd-beto-cal-esc-v2": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect.",
+        "sd-beto-cal-v2": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect.",
+        "sd-beto-cal-esc-v1": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect.",
+        "sd-beto-cal-v1": "superseded by v3. Accepting an older run alongside the current one does NOT merely break ties: the builder UNIONS senses across accepted methods, so a sense only the old run proposed keeps its own meaning row and the card renders old provenance. v3 covers every assignment, so the fallback bought nothing and cost the isolation this policy exists to protect."
       },
       "require_stable_evidence_join": true,
       "deterministic_evidence_is_separate": true

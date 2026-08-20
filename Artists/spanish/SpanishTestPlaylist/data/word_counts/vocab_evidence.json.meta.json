@@ -1,9 +1,9 @@
 {
   "step_name": "materialize_artist_corpus",
   "step_version": 2,
-  "generated_at": 1787095725,
-  "ledger_run": "run_3df75929cb720b9525d672cf",
-  "corpus_profile_hash": "sha256:130b0027ffc0692512267479a5a7d06bcd5e548171700f03300428f16e5bfecc",
+  "generated_at": 1787179066,
+  "ledger_run": "run_a72334c21c1d593be651837e",
+  "corpus_profile_hash": "sha256:5a8dc9362657203385e89765b3b26327ec50ae6ef4399388ea327a69343e6c96",
   "excluded_labels": [
     "adlib",
     "credit",

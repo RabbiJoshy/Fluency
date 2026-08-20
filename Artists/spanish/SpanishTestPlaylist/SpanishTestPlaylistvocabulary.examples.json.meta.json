@@ -1,9 +1,9 @@
 {
   "step_name": "assemble_artist_vocabulary",
   "step_version": 17,
-  "generated_at": 1787095876,
-  "ledger_run": "run_3df75929cb720b9525d672cf",
-  "corpus_profile_hash": "sha256:130b0027ffc0692512267479a5a7d06bcd5e548171700f03300428f16e5bfecc",
+  "generated_at": 1787180875,
+  "ledger_run": "run_a72334c21c1d593be651837e",
+  "corpus_profile_hash": "sha256:5a8dc9362657203385e89765b3b26327ec50ae6ef4399388ea327a69343e6c96",
   "excluded_labels": [
     "adlib",
     "credit",
@@ -11,13 +11,13 @@
     "stutter"
   ],
   "layer_sha256": {
-    "word_inventory": "4e2c3bad68b21606f3254e5e448644fc480cb587e2ad02bed20c2ef02dece6ad",
-    "examples_raw": "a1759b362975c9cd5007f4a67d9b7b1805265d2fd15f46038702f769e956f807",
-    "example_pos": "75ff712e739f3f6de74d381f488d5fe9504e216bd9e92aed353c6c11b222d1dd",
-    "sense_assignments_lemma": "900cea23d0432b5a787b4fc58b0c839eaf98e80b46674b091339ec213dafe5c7",
-    "word_routing": "44290830f67cea7cf7e32d195e01e033c915e67a5efde98d59019ac6105ee143",
+    "word_inventory": "b0493cc93b015955328eb61afaad3e9481c2961039555241f3499e4cb48d159d",
+    "examples_raw": "fa94a9954d55b1bdd8bb37c46939d6fb05dbf88afd65c8c2b93d85358d53fff1",
+    "example_pos": "d0db5b3e8e9fb7d760db2a1a395432317a4e5c14c2751c126bfcf59bd911a252",
+    "sense_assignments_lemma": "c4747bfb64128f090780c2f355e61c57de84eac31430996da7649b1a8c32fe2b",
+    "word_routing": "8184cb5e1184b1a17a0ec4c77e8a1bc00f58bf47eabd513fee7a2230c81683de",
     "ranking": "a1a56a3093cea728d7e5e4a45322bea8f218c50e9d37fef519afbd6013e4e93f",
-    "example_translations": "f05bcbfd36fe3fbd45fda4ae04bf38dd2fb8456ec151887e370581f5a43a1a46",
-    "mwe_detected": "a024dda8320c5e154e5c7a8701c897556ca6b48502f83316f30dc32345e8d5c0"
+    "example_translations": "bb2397513f1e28caa3a051e8b521842ac36c6abacccf8e9431ce29edf438ab03",
+    "mwe_detected": "c88b4d228c8acfffff53e76d68a917752c2f0982f53f8abbbd3b67eca928e42a"
   }
 }

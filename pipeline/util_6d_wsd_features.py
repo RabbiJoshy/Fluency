@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import re
 
-FEATURE_VERSION = 4
+FEATURE_VERSION = 5
 
 FEATURES = [
     # --- gloss path
@@ -27,6 +27,14 @@ FEATURES = [
     # --- SpanishDict construction metadata ("used with X")
     "companion_in_menu", "companion_on_pred", "companion_present",
     "companion_adjacent", "companion_discriminates",
+    # --- SpanishDict construction metadata, GRAMMATICAL form ("used with a
+    # gerund", "before past participle", "used in progressive constructions").
+    # Distinct from the companion block above, which only ever sees a literal
+    # token: `companion_of` reads "used with a gerund" and returns the string
+    # "a", so the correct periphrastic leaf scores as companion-ABSENT. These
+    # five test the construction morphologically instead.
+    "struct_in_menu", "struct_on_pred", "struct_satisfied",
+    "struct_discriminates", "struct_alt_satisfied",
 ]
 
 # "used with 'de'" / "used with que". SpanishDict is not consistent about quoting.
@@ -88,7 +96,7 @@ def companion_features(word, sentence, menu, pred_sense_id, tuple_of):
 
 
 def build(*, tuple_gap, class_gap, n_tup, n_leaf, sent_len, pred_tuple,
-          pred_empty, token, companion, menu_pos=0):
+          pred_empty, token, companion, structural=(0.0,) * 5, menu_pos=0):
     """Assemble one feature vector in FEATURES order.
 
     `menu_pos` is accepted and DELIBERATELY UNUSED. SpanishDict orders leaves by
@@ -108,4 +116,119 @@ def build(*, tuple_gap, class_gap, n_tup, n_leaf, sent_len, pred_tuple,
         float(str(hw).endswith("se")), float(pos == "VERB"),
         float(pos in ("NOUN", "ADJ")), float(pred_empty),
         float(tok_avail), float(tok_gap), float(tok_agree),
-    ] + list(companion)
+    ] + list(companion) + list(structural)
+
+
+# ---------------------------------------------------------------------------
+# Grammatical construction notes
+# ---------------------------------------------------------------------------
+# SpanishDict states a construction requirement in at least five wordings, and
+# only one of them is a literal token the companion block can test:
+#
+#   used with a gerund / a participle / an infinitive      90 leaves
+#   used with "por" and infinitive  (companion sees "por"  46 leaves
+#     and silently drops the infinitive half)
+#   used in progressive constructions / with the passive    70 leaves
+#     voice / before past participle / before the gerund
+#     -- no "used with" at all, so companion_of returns None
+#
+# `companion_of` takes the first bare word after "used with", so those parse to
+# the literal "a" or "an" and are then tested for presence in a Spanish
+# sentence. The correct leaf is therefore scored as construction-VIOLATING on
+# nearly every occurrence -- the clue is not merely unused, it is inverted.
+#
+# Only morphologically decidable predicates are implemented. "used with
+# adjectives", "used with quantities" and "used with verbs of perception" need a
+# parser or a lexicon to test, and a predicate that cannot be checked is worse
+# than no predicate: it would emit struct_on_pred=1 with struct_satisfied=0 on
+# every occurrence and teach the model that construction leaves are always wrong.
+
+_STRUCT_PATTERNS = (
+    ("gerund", re.compile(r"\bgerund\b|\bprogressive construction", re.I)),
+    ("participle", re.compile(r"\bparticiple\b|\bpassive voice\b", re.I)),
+    ("infinitive", re.compile(r"\binfinitive\b", re.I)),
+)
+
+# -ando/-iendo/-yendo is exceptionless for Spanish gerunds.
+_GERUND = re.compile(r"\w+(?:ando|iendo|yendo)$", re.I)
+_INFINITIVE = re.compile(r"\w{3,}(?:ar|er|ir)$", re.I)
+_PARTICIPLE = re.compile(r"\w+(?:ado|ada|ados|adas|ido|ida|idos|idas)$", re.I)
+# The irregular participles are a closed class and all of them are common.
+_IRREG_PART = {"hecho", "dicho", "visto", "puesto", "escrito", "roto", "vuelto",
+               "muerto", "abierto", "cubierto", "resuelto", "impreso", "frito"}
+
+
+def structural_of(sense):
+    """The construction a sense's note requires, or None.
+
+    Returns one of "gerund" / "participle" / "infinitive". Checked in that
+    order because "used with a participle to describe a state" must not be read
+    as an infinitive by the -ir suffix of some other word in the note.
+    """
+    ctx = (sense.get("context") or "")
+    for name, pat in _STRUCT_PATTERNS:
+        if pat.search(ctx):
+            return name
+    return None
+
+
+def structural_satisfied(kind, word, sentence):
+    """Is the required construction actually present after the target?
+
+    Windowed to the three tokens after the target, not the whole sentence: a
+    lyric line usually holds several verbs, and "somewhere in this line there is
+    a gerund" is satisfied so often that it carries no information. Falls back
+    to the whole line when the target form is not locatable (elided surfaces
+    like `'Taba` do not match the lookup key).
+    """
+    if not kind:
+        return True
+    toks = _TOKEN.findall((sentence or "").lower())
+    if not toks:
+        return False
+    try:
+        i = toks.index(word.lower())
+        window = toks[i + 1:i + 4]
+    except ValueError:
+        window = toks
+    if kind == "gerund":
+        return any(_GERUND.match(t) for t in window)
+    if kind == "participle":
+        return any(_PARTICIPLE.match(t) or t in _IRREG_PART for t in window)
+    if kind == "infinitive":
+        return any(_INFINITIVE.match(t) for t in window)
+    return True
+
+
+def structural_features(word, sentence, menu, pred_sense_id, tuple_of):
+    """Five features describing the CONSTRUCTION evidence for the prediction.
+
+    `struct_alt_satisfied` is the one that carries the periphrastic case: the
+    pick is a plain lexical leaf, and a sibling in the SAME tuple demands a
+    gerund which the line supplies. That is the shape of `Nos fuimos calentando`
+    carded as "ir: to go (to exit a place)" while "to be (used in progressive
+    constructions)" sits unpicked one row away.
+    """
+    kinds = {sid: structural_of(s) for sid, s in (menu or {}).items()}
+    if not any(kinds.values()):
+        return [0.0, 0.0, 0.0, 0.0, 0.0]
+
+    pred_kind = kinds.get(pred_sense_id)
+    with_k = {tuple_of(word, menu[sid]) for sid, k in kinds.items() if k}
+    all_t = {tuple_of(word, s) for s in menu.values()}
+    discriminates = float(bool(with_k) and with_k != all_t)
+
+    satisfied = float(bool(pred_kind) and structural_satisfied(pred_kind, word, sentence))
+
+    alt = 0.0
+    if pred_sense_id in menu:
+        pred_tup = tuple_of(word, menu[pred_sense_id])
+        for sid, k in kinds.items():
+            if not k or sid == pred_sense_id:
+                continue
+            if tuple_of(word, menu[sid]) != pred_tup:
+                continue
+            if structural_satisfied(k, word, sentence) and not satisfied:
+                alt = 1.0
+                break
+    return [1.0, float(pred_kind is not None), satisfied, discriminates, alt]

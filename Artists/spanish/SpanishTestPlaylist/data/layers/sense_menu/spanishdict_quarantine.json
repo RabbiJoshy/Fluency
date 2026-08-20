@@ -1,7 +1,377 @@
 [
   {
-    "surface": "usted",
-    "headword": "ustedes",
+    "surface": "chiqui",
+    "headword": "chicar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "haraca",
+    "headword": "hamaca",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "baño",
+    "headword": "baños",
     "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "beso",
+    "headword": "besos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "bola",
+    "headword": "bolas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "carmona",
+    "headword": "carona",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "guro",
+    "headword": "giro",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "manera",
+    "headword": "maneras",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "acapella",
+    "headword": "acapillar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "acura",
+    "headword": "acera",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "amarion",
+    "headword": "amar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "amarion",
+    "headword": "amarse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "apretadita",
+    "headword": "apretadizo",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "barbasol",
+    "headword": "barbas",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "botelleo",
+    "headword": "botella",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "bruk",
+    "headword": "brut",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "buenas",
+    "headword": "buenas noches",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "celus",
+    "headword": "celos",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "celus",
+    "headword": "celo",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "dama",
+    "headword": "damas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "debility",
+    "headword": "debilitar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "debility",
+    "headword": "debilitarse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "des",
+    "headword": "des-",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "despreocúpate",
+    "headword": "despreocuparse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "destendida",
+    "headword": "desatender",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "diligencia",
+    "headword": "diligencias",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "dize",
+    "headword": "decir",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "dize",
+    "headword": "decirse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "domi",
+    "headword": "domar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "embichar",
+    "headword": "embicharse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "enchulo",
+    "headword": "enchufar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "enchulo",
+    "headword": "enchufarse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "ende",
+    "headword": "por ende",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "entrada",
+    "headword": "entradas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "estudio",
+    "headword": "estudios",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "fecha",
+    "headword": "fechas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "forma",
+    "headword": "formas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "gotay",
+    "headword": "gota",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "gotay",
+    "headword": "gotas",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "hermano",
+    "headword": "hermanos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "igual",
+    "headword": "iguales",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "juego",
+    "headword": "juegos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "lleca",
+    "headword": "llevar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "lleca",
+    "headword": "llevarse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "malla",
+    "headword": "mallas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "mano",
+    "headword": "manos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "molleto",
+    "headword": "molleta",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "morol",
+    "headword": "moral",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "nieto",
+    "headword": "nietos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "oportunidad",
+    "headword": "oportunidades",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "palomerías",
+    "headword": "palomería",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "papá",
+    "headword": "papás",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "pasola",
+    "headword": "pasos",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "pe",
+    "headword": "p",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "pelúa",
+    "headword": "pelea",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "reflejo",
+    "headword": "reflejos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "regregando",
+    "headword": "regresar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "regregando",
+    "headword": "regresarse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "ricota",
+    "headword": "rico",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "ricota",
+    "headword": "ricos",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "sobra",
+    "headword": "sobras",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "taiko",
+    "headword": "taiga",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "tatís",
+    "headword": "andar tantas",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "tivi",
+    "headword": "titi",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "trajaja",
+    "headword": "trabajar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "trajaja",
+    "headword": "trabajarse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "turizo",
+    "headword": "trizar",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "ubi",
+    "headword": "UVI",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "viejo",
+    "headword": "viejos",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "vuelta",
+    "headword": "vueltas",
+    "reason": "plural_analysis_conflicts_with_exact_surface"
+  },
+  {
+    "surface": "vvs",
+    "headword": "ir",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "vvs",
+    "headword": "irse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "yerba",
+    "headword": "hierba",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "desprender",
+    "headword": "desprenderse",
+    "reason": "implausible_fuzzy_headword"
+  },
+  {
+    "surface": "remojar",
+    "headword": "remojarse",
+    "reason": "implausible_fuzzy_headword"
   }
 ]

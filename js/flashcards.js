@@ -6202,7 +6202,14 @@ function buildProvenancePanelHTML(card) {
         if (!ts) return '';
         const d = new Date(ts);
         if (isNaN(d.getTime())) return esc(ts);
-        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        // Date + HH:MM, not date alone. run_ts has always stored minutes
+        // (2026-08-19T20:57Z) and two classifier runs on the same day are
+        // routine while a change is being evaluated — printing only the date
+        // makes the two indistinguishable on the card, which is exactly the
+        // thing the panel exists to show.
+        const day = d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        const time = d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+        return `${day} ${time}`;
     }
 
     const rows = (card.meanings || []).map(m => {

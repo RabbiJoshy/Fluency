@@ -43,7 +43,8 @@ OUT_DIR = REPO / "Data/Spanish/layers/wsd_calibrator"
 import sys
 sys.path.insert(0, str(REPO))
 from pipeline.util_6d_wsd_features import (  # noqa: E402
-    FEATURES, FEATURE_VERSION, build as build_features, companion_features)
+    FEATURES, FEATURE_VERSION, build as build_features, companion_features,
+    structural_features)
 
 
 def split_of(word: str) -> str:
@@ -56,10 +57,13 @@ def _tuple_of(word, sense):
     return ((sense.get("headword") or word).strip().lower(), (sense.get("pos") or "").strip())
 
 
-def featurise(r: dict, tk: dict | None, menus: dict, no_companion=False) -> list[float]:
+def featurise(r: dict, tk: dict | None, menus: dict, no_companion=False,
+              no_structural=False) -> list[float]:
     menu = menus.get(r["word"], {})
     comp = ([0.0] * 5 if no_companion else
             companion_features(r["word"], r["sent"], menu, r.get("pred_leaf"), _tuple_of))
+    struct = ([0.0] * 5 if no_structural else
+              structural_features(r["word"], r["sent"], menu, r.get("pred_leaf"), _tuple_of))
     pred_sense = menu.get(r.get("pred_leaf")) or {}
     order = list(menu)
     mpos = order.index(r["pred_leaf"]) if r.get("pred_leaf") in order else 0
@@ -69,7 +73,7 @@ def featurise(r: dict, tk: dict | None, menus: dict, no_companion=False) -> list
         pred_empty=not (pred_sense.get("translation") or "").strip(),
         token=((0.0, 0.0, 0.0) if tk is None else
                (1.0, tk["gap"], float(tuple(tk["pred"]) == tuple(r["pred_tup"])))),
-        companion=comp, menu_pos=mpos)
+        companion=comp, structural=struct, menu_pos=mpos)
 
 
 def yield_at(scores, ok, target=0.99):
@@ -89,6 +93,21 @@ def main():
     ap.add_argument("--out", default=str(OUT_DIR))
     ap.add_argument("--no-companion", action="store_true",
                     help="ablation: zero the used-with features")
+    ap.add_argument("--no-structural", action="store_true",
+                    help="ablation: zero the grammatical-construction features")
+    ap.add_argument("--target", default="tup", choices=["tup", "leaf"],
+                    help="what the calibrator predicts. `tup` is lemma+POS, which "
+                         "is what shipped and is 88.7%% accurate on gold -- nearly "
+                         "saturated, so the score has little to rank. `leaf` is the "
+                         "exact sense, 53.1%% on the same rows: it is what the card "
+                         "actually displays, context note included.")
+    ap.add_argument("--band-high", type=float, default=0.0,
+                    help="precision the HIGH band must hold on held-out data. "
+                         "Default 0.99 for --target tup, 0.90 for --target leaf: "
+                         "leaf accuracy is 53%% at base, so demanding 99%% there "
+                         "finds no cut at all and every item lands in high, which "
+                         "silently switches escalation OFF.")
+    ap.add_argument("--band-medium", type=float, default=0.0)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -104,9 +123,12 @@ def main():
             tok[(t["word"], t["sent"])] = t
     print(f"{len(rows):,} training items; {len(tok):,} carry token predictions")
 
-    X = np.array([featurise(r, tok.get((r["word"], r["sent"])), menus, args.no_companion)
+    X = np.array([featurise(r, tok.get((r["word"], r["sent"])), menus,
+                            args.no_companion, args.no_structural)
                   for r in rows], np.float64)
-    y = np.array([int(r["ok_tup"]) for r in rows])
+    tgt = "ok_tup" if args.target == "tup" else "ok_leaf"
+    y = np.array([int(r[tgt]) for r in rows])
+    print(f"  target {tgt}: {y.mean():.2%} positive")
     words = [r["word"] for r in rows]
     dev = np.array([split_of(w) == "dev" for w in words])
     tst = ~dev
@@ -133,15 +155,26 @@ def main():
     # guessed. step_6e reads them from the manifest.
     band_cuts = {}
     order = np.argsort(-p)
-    for label, target in (("high", 0.99), ("medium", 0.95)):
+    hi = args.band_high or (0.99 if args.target == "tup" else 0.90)
+    md = args.band_medium or (0.95 if args.target == "tup" else 0.70)
+    prec = {"high": hi, "medium": md}
+    for label, target in (("high", hi), ("medium", md)):
         good = cut = 0
         for i, j in enumerate(order, 1):
             good += y[tst][j]
             if good / i >= target:
                 cut = float(p[j])
+        if not cut:
+            # No prefix of the ranking holds that precision. Leaving the cut at
+            # 0 would put EVERY item in the band -- for `high` that turns the
+            # escalation gate off without saying so. Fail towards escalating.
+            cut = float(p.max()) + 1e-6
+            print(f"  !! no cut reaches {target:.0%} precision for `{label}`; "
+                  f"band left EMPTY (cut {cut:.4f}) so nothing is silently trusted")
         band_cuts[label] = round(cut, 4)
     print(f"\n  band cuts from the held-out curve: "
-          f"high P>={band_cuts['high']:.4f} (99%), medium P>={band_cuts['medium']:.4f} (95%)")
+          f"high P>={band_cuts['high']:.4f} ({hi:.0%} {tgt}), "
+          f"medium P>={band_cuts['medium']:.4f} ({md:.0%} {tgt})")
 
     if args.dry_run:
         return print("\n--dry-run: nothing written")
@@ -162,6 +195,10 @@ def main():
         "n_train": len(rows),
         "held_out_yield_at_99": round(got, 4),
         "band_cuts": band_cuts,
+        "target": tgt,
+        "band_precision_targets": prec,
+        "ablations": {"no_companion": args.no_companion,
+                      "no_structural": args.no_structural},
         "tuple_gap_yield_at_99": round(base, 4),
         "trained": time.strftime("%Y-%m-%dT%H:%MZ", time.gmtime()),
         "note": "refit on all rows after the held-out estimate above",

@@ -440,9 +440,18 @@ def archive_json_artifact(evidence_dir, layer, payload, language="und",
     layer = str(layer)
     layer_dir = re.sub(r"[^A-Za-z0-9_.-]+", "__", layer).strip("_") or "layer"
     snapshot_hash = semantic_fingerprint(archived_payload)
+    # `inputs` MUST be part of the identity, not just the manifest. Two builds
+    # can emit a byte-identical artifact from different upstream layers -- the
+    # test playlist's examples split is unchanged by a WSD re-run because the
+    # lines themselves did not move, while the sense_assignments_lemma
+    # fingerprint in the build contract did. Hashing everything except `inputs`
+    # gave both builds the same run_id, and the immutability check then rejected
+    # the second one ("immutable manifest differs") after the deck files had
+    # already been written -- a half-applied build that reported failure only in
+    # the log. Anything the manifest asserts has to be in the id that guards it.
     run_id = stable_id(
         "run", "compatibility-artifact-v1", layer, effective_language,
-        snapshot_hash, adapter or {}, config or {},
+        snapshot_hash, adapter or {}, config or {}, inputs or {},
     )
     run_dir = evidence_dir / "snapshots" / layer_dir / "runs" / run_id
     artifact_path = run_dir / "artifact.json"

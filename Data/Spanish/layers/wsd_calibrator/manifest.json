@@ -18,16 +18,30 @@
     "companion_on_pred",
     "companion_present",
     "companion_adjacent",
-    "companion_discriminates"
+    "companion_discriminates",
+    "struct_in_menu",
+    "struct_on_pred",
+    "struct_satisfied",
+    "struct_discriminates",
+    "struct_alt_satisfied"
   ],
-  "feature_version": 4,
+  "feature_version": 5,
   "n_train": 16016,
-  "held_out_yield_at_99": 0.4584,
+  "held_out_yield_at_99": 0.0011,
   "band_cuts": {
-    "high": 0.9722,
-    "medium": 0.7696
+    "high": 0.8776,
+    "medium": 0.5528
   },
-  "tuple_gap_yield_at_99": 0.2289,
-  "trained": "2026-08-17T18:48Z",
+  "target": "ok_leaf",
+  "band_precision_targets": {
+    "high": 0.9,
+    "medium": 0.7
+  },
+  "ablations": {
+    "no_companion": false,
+    "no_structural": false
+  },
+  "tuple_gap_yield_at_99": 0.0,
+  "trained": "2026-08-19T20:57Z",
   "note": "refit on all rows after the held-out estimate above"
 }

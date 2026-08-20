@@ -32,6 +32,20 @@ METHOD_PRIORITY = {
     # silently and yields an empty-looking deck with no error.
     "spanishdict-beto-cal-v1": 85,
 
+    # v2 = same stack, calibrator retrained on ok_leaf instead of ok_tup. Ranked
+    # above v1 because its score predicts the leaf the card actually prints
+    # (49.4%->89.1% held-out precision on the top decile) rather than lemma+POS,
+    # which was already 88.7% accurate and had nothing left to rank. Registering
+    # it is what makes the run visible: the first v2 build wrote 1,776 claims and
+    # the deck showed v1 anyway, because an unregistered method scores 0 and
+    # Spanish drops anything under minPriority 50 without an error.
+    "spanishdict-beto-cal-v2": 86,
+
+    # v3 = v2 plus the gated BETO tuple vote (token prototypes decide lemma+POS
+    # where their own top-two gap is >= 0.02). Hand-graded on all 88 changed
+    # picks: 60 better, 13 worse, 15 neutral.
+    "spanishdict-beto-cal-v3": 87,
+
     # Lexical-only WSD (new evidence architecture). These method ids are kept
     # distinct from historical classify-or-propose runs so their provenance
     # cannot be collapsed by same-method/same-sense merging.

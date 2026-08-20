@@ -21,6 +21,25 @@ combination ranks. Held-out yield at 99% lemma+POS:
     calibrated, gloss signals only                      24.2%
     calibrated + BETO token features                    43.7%
 
+v3 (2026-08-19): BETO decides the tuple wherever its own top-two prototype gap
+is >= 0.02, and the gloss embedding then picks the leaf inside it. Hand-graded
+on every one of the 88 picks this changes: 60 better, 13 worse, 15 neutral
+(+47 net on 1,776 = +2.6pp). Ungated the same override is a wash (20/13/7 on 40
+graded) -- the gate is the whole finding: BETO's noun bias on noun/verb
+homographs (`robo`, `secuestro`, `falta`) lives exactly where its prototypes are
+near-tied, and it was announcing that and nobody was listening. Query-locality
+was tested in the same pass and REJECTED: on 24,675 gold rows, windowing the
+query to the target +/-3 tokens costs 5.8pp of leaf accuracy (53.09%->47.31%)
+and marking the target is noise (52.42%).
+
+v2 (2026-08-19): the calibrator is retrained on `ok_leaf`, not `ok_tup`. The
+tuple target was 88.7% accurate on gold and had almost nothing left to rank; the
+exact leaf -- what the card actually prints, context note included -- is 53.1% on
+the same rows. Held-out precision of the top decile went 82.5%->99.7% under the
+old target and 49.4%->89.1% under the new one, i.e. the score now separates the
+thing the learner reads. Band cuts are therefore precision targets on LEAF
+correctness (90% high, 70% medium) and are not comparable to v1's.
+
 `confidence` here is therefore P(correct) from the calibrator, NOT a cosine
 margin — a different quantity from step_6d's output, which is why this writes a
 distinct method id and prompt_id. step_6d is left untouched and still works.
@@ -55,16 +74,17 @@ from pipeline.util_5c_token_prototypes import (  # noqa: E402
 from step_6d_assign_senses_embeddings import embed, gloss, norm_tr  # noqa: E402
 from util_6a_assignment_format import stamp_example_ids  # noqa: E402
 from pipeline.util_6d_wsd_features import (  # noqa: E402
-    FEATURE_VERSION, build as build_features, companion_features)
+    FEATURE_VERSION, build as build_features, companion_features,
+    structural_features)
 from pipeline.util_6e_leaf_selection import (  # noqa: E402
     companion_of, companion_satisfied, renderable, select_display_leaf)
 
 LAYERS_DIR = REPO / "Data/Spanish/layers"
-METHOD = "spanishdict-beto-cal-v1"
-PROMPT_ID = "sd-beto-cal-v1"
+METHOD = "spanishdict-beto-cal-v3"
+PROMPT_ID = "sd-beto-cal-v3"
 # Escalated picks carry their own id: a Gemini-authored claim is different
 # evidence from a locally-scored one and must stay separable in provenance.
-PROMPT_ID_ESC = "sd-beto-cal-esc-v1"
+PROMPT_ID_ESC = "sd-beto-cal-esc-v3"
 ESC_MODEL = "gemini-3.5-flash-lite"
 BG_N, BG_K = 1200, 40
 # P(correct) cuts, derived from the calibrator's own held-out curve at train time
@@ -195,13 +215,43 @@ def main():
                          "`all` is the measured best: judged on 600 rendered lyric "
                          "cards, escalated picks score 82.5%% against 67.1%% for the "
                          "local path, and the whole deck costs ~$0.08 to escalate")
+    ap.add_argument("--escalate-budget", type=float, default=0.0,
+                    help="escalate the worst N%% of picks by confidence instead of "
+                         "whole bands. The band cuts are PRECISION targets read off "
+                         "the calibrator's held-out curve (90%%/70%% leaf), so on a "
+                         "hard corpus the low band is most of the deck -- 68%% of the "
+                         "31-song playlist -- which makes the escalator the main path "
+                         "rather than the fallback. A budget fixes the share instead: "
+                         "0.20 sends the least confident fifth and nothing else.")
     ap.add_argument("--allow-abstain", action="store_true",
                     help="let escalation reply 'none of these fit' and DROP the "
                          "claim. Off by default: it trades a wrong card for a "
                          "hole, and inventing the missing sense (step_6c gap-fill) "
                          "is the better answer for slang SpanishDict lacks.")
+    ap.add_argument("--tuple-vote", default="beto", choices=["off", "beto"],
+                    help="who decides the (headword, POS) tuple. `off` ships: the "
+                         "gloss-embedding argmax decides and BETO only contributes "
+                         "an advisory `token_agrees` feature to the calibrator. "
+                         "`beto` lets the token prototypes DECIDE the tuple wherever "
+                         "the whole menu is scoreable, and the gloss embedding then "
+                         "picks the best leaf inside it. Measured on dictionary gold "
+                         "the token path is the better tuple picker (87.75%% vs "
+                         "83.08%% on identical items); this is the plumbing that "
+                         "lets that difference reach the card.")
+    ap.add_argument("--tuple-vote-min-gap", type=float, default=0.02,
+                    help="only let --tuple-vote beto override when BETO's own "
+                         "top-two tuple prototype similarity gap is >= this. "
+                         "0.0 (default) means override unconditionally, including "
+                         "where the token path is visibly guessing.")
     ap.add_argument("--gate", default="se-only",
-                    choices=["off", "se-only", "permissive"])
+                    choices=["off", "se-only", "permissive", "dative-aware"],
+                    help="clitic gate. `se-only` (default, 96.8%% correct where it "
+                         "fires) has NO opinion on a me/te cluster, so a dative "
+                         "construction can win a reflexive leaf -- `me agradan los "
+                         "humanos` carded as agradarse `to like each other`. "
+                         "`dative-aware` decides that case on agreement: le/les are "
+                         "never reflexive, a 3rd-person accusative clitic marks the "
+                         "object, and a reflexive clitic must match the verb's person.")
     ap.add_argument("--device", default="mps")
     ap.add_argument("--no-token", action="store_true", help="gloss signals only")
     ap.add_argument("--out", default="")
@@ -295,6 +345,8 @@ def main():
         except Exception:
             out = {}
     bands, gated, tok_used, releaf = collections.Counter(), 0, 0, 0
+    voted = 0
+    vote_suppressed = 0
     per_word, leaf_ctx = {}, {}
 
     for w in words:
@@ -341,6 +393,29 @@ def main():
                     gated += 1
 
             k = int(np.argmax(grow))
+            # ---- BETO decides the tuple, the gloss embedding decides the leaf
+            # Restricting the argmax (rather than replacing it) keeps every leaf
+            # comparison inside one score family: the token path has no view on
+            # leaves at all -- 95.6% of leaves ship a single example, so
+            # prototypes exist only per tuple -- and mixing a token score with a
+            # gloss score in one argmax is the exact failure the prototype bench
+            # documents.
+            if a.tuple_vote == "beto" and TP is not None and n_tup > 1:
+                qv = tokvec.get((ex_text(c), w))
+                if qv is not None:
+                    qsims = TP @ qv
+                    qo = np.argsort(-qsims)
+                    bt = int(qo[0])
+                    # a tiny top-two gap means the token path is guessing; below
+                    # the threshold we leave the embedding's argmax alone
+                    qgap = float(qsims[qo[0]] - qsims[qo[1]])
+                    same = np.flatnonzero(tid == bt)
+                    if same.size:
+                        if qgap >= a.tuple_vote_min_gap:
+                            k = int(same[np.argmax(grow[same])])
+                            voted += 1
+                        else:
+                            vote_suppressed += 1
             # gaps on UNGATED scores, signed against the pick: a gate must not be
             # able to manufacture confidence by deleting the runner-up
             tb = np.full(n_tup, -np.inf); np.maximum.at(tb, tid, row)
@@ -369,6 +444,7 @@ def main():
                 pred_empty=not (m.get("translation") or "").strip(),
                 token=(tok_avail, tok_gap, tok_agree),
                 companion=companion_features(w, ex_text(c), menus[w], sids[k], tuple_of),
+                structural=structural_features(w, ex_text(c), menus[w], sids[k], tuple_of),
                 menu_pos=list(menus[w]).index(sids[k]))
             conf = (float(cal.predict_proba(np.array([feats]))[0, 1]) if cal
                     else min(max(tgap, 0.0), 1.0))
@@ -387,9 +463,21 @@ def main():
         want = ({"low"} if a.escalate == "low"
                 else {"low", "medium"} if a.escalate == "low+medium"
                 else {"low", "medium", "high"})
+        if a.escalate_budget > 0:
+            # Rank by confidence and take the worst N%. `want` is recomputed as
+            # a membership test on the pick itself so the code below, which is
+            # written against bands, keeps working unchanged.
+            allc = sorted(cf for picks in per_word.values() for (_s, cf, *_r) in picks)
+            cut = allc[min(int(len(allc) * a.escalate_budget), len(allc) - 1)]
+            want = None
+            in_scope = lambda cf, band: cf <= cut
+            print(f"  budget {a.escalate_budget:.0%}: escalating picks with "
+                  f"confidence <= {cut:.4f}")
+        else:
+            in_scope = lambda cf, band: band in want
         jobs = [(w, ex_text(examples[w][ji]), list(menus[w]))
                 for w, picks in per_word.items()
-                for (_sid, _cf, _tg, band, ji) in picks if band in want]
+                for (_sid, cf, _tg, band, ji) in picks if in_scope(cf, band)]
         print(f"\nescalating {len(jobs):,} {a.escalate}-band assignments to {ESC_MODEL} "
               f"(~${len(jobs)*347/1e6*0.10 + len(jobs)*30/1e6*0.40:.3f})", flush=True)
         esc_of = escalate(jobs, menus, allow_abstain=a.allow_abstain)
@@ -397,7 +485,7 @@ def main():
         changed = abstained = 0
         for w, picks in per_word.items():
             for i, (sid, cf, tg, band, ji) in enumerate(picks):
-                if band not in want:
+                if not in_scope(cf, band):
                     continue
                 new = esc_of.get((w, ex_text(examples[w][ji])))
                 if new == ABSTAIN:
@@ -467,6 +555,10 @@ def main():
     n = sum(len(v) for v in per_word.values())
     print(f"\nassigned {n:,} examples across {len(out):,} words  [{METHOD}]")
     print(f"  clitic gate fired on {gated:,}")
+    print(f"  BETO decided the tuple on {voted:,} ({voted/max(n,1):.0%})")
+    if a.tuple_vote == "beto":
+        print(f"  BETO overrides suppressed by --tuple-vote-min-gap "
+              f"{a.tuple_vote_min_gap:g}: {vote_suppressed:,}")
     print(f"  token prototypes used on {tok_used:,} ({tok_used/max(n,1):.0%})")
     print(f"  leaf reselected within the tuple on {releaf:,} "
           f"({releaf_empty:,} had no English gloss, {releaf_comp:,} broke a "

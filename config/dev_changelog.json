@@ -2,6 +2,19 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-20",
+      "commit": "3f61e558",
+      "summary": "Test playlist rebuilt at 31 songs with a new WSD classifier (v3) and escalation cut to a 20% fallback",
+      "detail": [
+        "Playlist grew 17 -> 31 songs: 3,007 WSD decisions across 1,860 cards (was 1,776 / 1,109).",
+        "Calibrator retrained to predict the LEAF the card prints, not the lemma+POS. Hand-graded on 200 cards: 160/200 -> 177/200, and the high-confidence band went from 5/39 wrong to 0/20.",
+        "BETO token prototypes now DECIDE the lemma+POS where they are confident, instead of only advising. Graded on all 88 picks it changes: 60 better, 13 worse.",
+        "Escalation to Gemini is now a fixed 20% budget (the least confident fifth) rather than a whole band, which was 69% of the deck.",
+        "Card provenance panel now prints the run time (date + HH:MM), so two runs on the same day are distinguishable.",
+        "Every classified card is stamped sd-beto-cal-v3 / sd-beto-cal-esc-v3; older runs are no longer accepted into this deck."
+      ]
+    },
+    {
       "date": "2026-08-19",
       "commit": "6a345d00",
       "summary": "The fixed Spanish sentence clue now waits behind the Sentence hint button",
