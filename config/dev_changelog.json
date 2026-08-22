@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-22",
-      "commit": "pending",
+      "commit": "38cdb3e6",
       "summary": "Audit flags are now permanent events with a resolution workflow",
       "details": [
         "Flagging the same card again appends a separate event instead of overwriting the earlier run's evidence",

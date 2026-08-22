@@ -41,7 +41,7 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - Source setup keeps parsed indexes by data path and shares one source/settings/examples-keyed filtered vocabulary across level, progress, exclusion, and set UI. Artist frequency extraction must use that same canonical loader rather than parsing the index independently.
 - Source navigation is directional rather than a mandatory mode decision: choosing or changing a language continues directly in Speech, while Browse Lyrics opens the Lyrics-source picker. Spanish Test Playlist remains a shipped source; Choose your own is a separate synthetic source that unions the live catalogues and stores one editable song selection without changing card IDs.
 - Google Sheets schema v4 has one discriminated `Progress` tab for word, sense, MWE, clitic, and metadata rows, plus the separate `FlaggedWords` tab. Speech/Lyrics are a `Mode`, item rows use `ParentWordId`, and artist-specific routing metadata carries a `Source`; the automatic migration retains the old three progress tabs as `*_legacy` backups and accepts cached v3 clients during rollout.
-- Audit flags use FlaggedWords schema v3. Every new row keeps the readable report and structured target fields, and additionally snapshots mode/source, release/run identity, prompt/model/assignment method, immutable asset paths, and release layers when available. Migration preserves old rows and creates a versioned backup before widening the sheet.
+- Audit flags use FlaggedWords schema v4 and are append-only events. Every gesture has an immutable `FlagId`; delivery retries update only that event, while a later report on the same card/field remains separate. Rows keep the readable report and structured target fields, snapshot mode/source, release/run identity, prompt/model/assignment method, client build, exact example/source-record IDs, immutable asset paths, and release layers when available. Resolution fields record open-to-fixed state and the fixing release. Migration preserves old rows and creates a versioned backup before widening the sheet.
 - The existing `SongSets` tab remains the single per-user custom-playlist store. Schema v2 keeps exact song IDs and adds the contributing artist slugs; creating a second artist-only sheet would duplicate state and permit the two selections to drift.
 - Audit privileges are an explicit capability shared by `JST` and `JSTA`; progress continues to key on the literal account initials, so audit activity never contaminates JST's learning history.
 - A marked-done level is a scoped, reversible suggestion-routing override only. It is keyed by mode + language + artist source, skips auto/estimate/resume/advance suggestions, never synthesizes card knowledge, and never prevents explicitly opening the level.
@@ -64,6 +64,14 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The full Node suite currently has eight pre-existing failures against `HEAD`: five stale `tests/ui-refinements.test.mjs` assertions (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names), one reviewed personalised-frame/data mismatch, the already-recorded offline-manifest checksum mismatch for the rebuilt Spanish index, and one Spanish test-playlist card ID (`orióN`) absent from its configured deck. Focused tests pass; this unrelated test/data debt was not rewritten as part of audit persistence work.
 
 ## Codex task history
+
+### 2026-08-22 — Make audit flags append-only and resolution-ready
+
+- Implementation commit `38cdb3e6`; front-end cache `flashcards-v265` / `20260822f`.
+- Replaced `User + WordId` overwrite semantics with immutable `FlagId` events. Offline/network retries reuse one ID and one row; every later gesture creates a new event even for the same account, card and field, preserving old-run versus new-run evidence.
+- Promoted client build, example ID and provider source-record ID into searchable columns. Added Status, ResolutionNote, ResolvedBy, ResolvedAt and FixedInReleaseId for a traceable audit-to-fix lifecycle; uncommon layer detail stays in ProvenanceJson.
+- Flag schema v4 migrates v1, v2 or v3 rows with a versioned backup. Re-running forced migration against an already-current sheet is a no-op rather than reinterpreting current rows. Pull/push tools key v4 flags by FlagId, including precise deletion.
+- Verification: Apps Script migration and append/retry round-trip tests, focused audit and asset-lockstep tests, JavaScript syntax, Python compilation, JSON validation, and `git diff --check`.
 
 ### 2026-08-22 — Persist exact flag provenance, custom-playlist artists, and JSTA audit access
 
