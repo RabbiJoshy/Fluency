@@ -167,3 +167,20 @@ more complicated than the one it replaces. Not commits, not refactors, not
 coverage numbers. If the honest answer is that the remaining 13% is mostly
 lenient-metric noise and near-synonyms nobody would mark wrong, say that plainly
 and stop — that is a useful result too.
+
+## TWO OPERATIONAL TRAPS THAT COST TIME ON 2026-08-22
+
+**A rebuilt deck is invisible in the app.** The service worker keeps deck JSON
+in a `fluency-content-*` cache and nothing in a pipeline rebuild invalidates it,
+so the app keeps serving the previous build's provenance and glosses until
+someone bumps `CACHE_NAME`/`ASSET_VERSION` in `service-worker.js` by hand. That
+file is Codex's boundary. Before concluding a change did not land, check the
+files on disk (`grep` the prompt_id in `Data/Spanish/vocabulary.examples.json`)
+or curl the JSON directly; then clear site data for localhost:8765.
+
+**`step_8a` prints no line naming the `--prompt-policy` in effect**, even though
+that policy decides which classifier authors every sense in the deck. A build
+that silently admits or excludes the wrong run looks identical in the log.
+Verify by grepping prompt_ids in the OUTPUT files, and never pipe a build log
+through `grep` at launch — that discarded the evidence needed to diagnose a real
+discrepancy where a policy-excluded run's claims survived into the deck anyway.
