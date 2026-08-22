@@ -450,11 +450,22 @@ def merge_entries_by_surface(entries, used_ids):
     return merged
 
 
-def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
+def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format,
+                         allow_surface_headword=False):
     """Return a flat list of sense dicts and a {sense_id: sense} map for a word|lemma.
 
     Handles both the old flat-list format (keyed by word|lemma) and the new
     analysis-based format (keyed by word, analyses with headword + senses dict).
+
+    `allow_surface_headword` additionally accepts the analysis whose headword is
+    the SURFACE itself. SpanishDict files conjugation-and-clitic forms as their
+    own lexical entries — `dame` is a PHRASE entry glossed "give me", not a
+    sense of `dar` — and step_7a routes such a form onto its verb lemma, so the
+    card key is `dame|dar` while the only analysis says `dame`. Without this the
+    card renders an empty meaning even though the classifier decided against
+    that very analysis. Pass it only where a claim exists for this exact card
+    key: that keeps it evidence-gated rather than a repeat of the `analyses[0]`
+    fallback removed in 2026-04, which conflated distinct lemmas of one surface.
     """
     if is_analysis_format:
         analyses = senses_data.get(word, [])
@@ -469,6 +480,14 @@ def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format):
                     merged.update(sense_map)
         if merged:
             return list(merged.values()), merged
+        if allow_surface_headword:
+            for analysis in analyses:
+                if analysis.get("headword", word) == word:
+                    sense_map = analysis.get("senses", {})
+                    if isinstance(sense_map, dict):
+                        merged.update(sense_map)
+            if merged:
+                return list(merged.values()), merged
         # No matching analysis. Don't fall back to analyses[0] when
         # lemma == word — that path would conflate distinct lemmas of the
         # same surface (e.g. a|a inheriting avoir's senses because the only
@@ -863,7 +882,8 @@ def main():
 
         first_lemma = clitic_lemmas[0] if clitic_lemmas else wl
         clitic_senses, _ = get_senses_for_lemma(
-            senses_data, wl, first_lemma, is_analysis_menu)
+            senses_data, wl, first_lemma, is_analysis_menu,
+            allow_surface_headword=bool(clitic_assigns_all))
         translation = clitic_senses[0]["translation"] if clitic_senses else ""
 
         clitic_exs = examples_raw.get(wl, examples_raw.get(entry.get("id", ""), []))
@@ -914,6 +934,7 @@ def main():
     print("  Canonical artist IDs reserved: %d" % len(canonical_artist_ids))
     all_entries = []   # (word, lemma, corpus_count, entry_dict) for sorting
     stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0,
+             "ghost_lemmas_pruned": 0, "surface_menu_used": 0,
              "with_morphology": 0, "with_synonyms": 0, "clitic_merged": len(clitic_data)}
 
     evidence_only_skipped = 0
@@ -947,6 +968,31 @@ def main():
         # Fallback: word|word if no lemma assignments found
         if not lemmas:
             lemmas = [wl]
+
+        # Drop unsupported inventory lemmas. `known_lemmas` comes from the
+        # conjugation reverse lookup, which has no entry for inflected
+        # adjectives or determiners and so answers with the surface itself:
+        # `algún -> ["algún"]` while every claim and every menu analysis says
+        # `alguno`. That mints a second card for the surface with no senses and
+        # no claims, which then swallows word_examples[:5] as an unattributed,
+        # untranslated meaning. A lemma no menu analysis and no assignment
+        # supports is not a lemma; drop it as long as a supported sibling
+        # survives to carry the surface. Where nothing is supported (`sr`,
+        # `ud` — abbreviations with no menu at all) the list is left alone, so
+        # the word still gets exactly the card it gets today.
+        ghost_lemmas = []
+        if len(lemmas) > 1:
+            def _lemma_supported(lem):
+                if assignments.get("%s|%s" % (wl, lem)):
+                    return True
+                senses_here, _ = get_senses_for_lemma(
+                    senses_data, wl, lem, is_analysis_menu)
+                return bool(senses_here)
+
+            supported = [lem for lem in lemmas if _lemma_supported(lem)]
+            if supported and len(supported) < len(lemmas):
+                ghost_lemmas = [lem for lem in lemmas if lem not in supported]
+                lemmas = supported
 
         # Deduplicate while preserving order
         seen_lemmas = set()
@@ -986,6 +1032,7 @@ def main():
             inv_entry.get("id", ""), []))
 
         # Produce one output entry per lemma
+        primary_hex_id = None
         for i, lemma in enumerate(lemmas):
             entry_count = split_counts[i]
             key = "%s|%s" % (wl, lemma)
@@ -999,16 +1046,28 @@ def main():
             if old_id and old_id != hex_id:
                 normal_id_migration[old_id] = hex_id
             used_ids.add(hex_id)
+            if primary_hex_id is None:
+                primary_hex_id = hex_id
+
+            # Assignments first: whether a claim exists for this exact card key
+            # decides whether the surface's own dictionary entry may be read as
+            # this card's menu (see get_senses_for_lemma).
+            raw_assigns = assignments.get(key, {})
 
             # Look up senses
             senses, sense_id_map = get_senses_for_lemma(
                 senses_data, wl, lemma, is_analysis_menu)
+            if not senses and raw_assigns:
+                senses, sense_id_map = get_senses_for_lemma(
+                    senses_data, wl, lemma, is_analysis_menu,
+                    allow_surface_headword=True)
+                if senses:
+                    stats["surface_menu_used"] += 1
             id_list = list(sense_id_map.keys())
 
             # Resolve assignments: per-example highest-priority method wins.
             # Each sense becomes one meaning; examples inside a meaning may
             # carry different methods (stamped per-example downstream).
-            raw_assigns = assignments.get(key, {})
             per_sense = (resolve_best_per_example(
                              raw_assigns, min_priority=args.min_priority,
                              accepted_model_prompt_ids=accepted_model_prompt_ids)
@@ -1463,6 +1522,15 @@ def main():
                 stats["with_morphology"] += 1
             if synonyms_list or antonyms_list:
                 stats["with_synonyms"] += 1
+
+        # A pruned ghost had a card ID last build. Point it at the surviving
+        # card for this surface so progress follows the word rather than being
+        # orphaned by a card that quietly stops existing.
+        for ghost in ghost_lemmas:
+            stats["ghost_lemmas_pruned"] += 1
+            ghost_old_id = old_ids_by_pair.get((wl, ghost))
+            if ghost_old_id and primary_hex_id and ghost_old_id != primary_hex_id:
+                normal_id_migration.setdefault(ghost_old_id, primary_hex_id)
 
     if args.surface_cards:
         all_entries = merge_entries_by_surface(all_entries, used_ids)
