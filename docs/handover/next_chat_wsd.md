@@ -14,9 +14,15 @@ left is two questions, and I think they are the entire remaining problem:
   1. WHEN should the common reading be overruled?
   2. WHICH uncommon sense should replace it?
 
-Everything else is bookkeeping. I want to get as close to 100% as possible while
-making the algorithm SIMPLER, not more elaborate — I would rather have three
-things that work than nine that each contribute a point.
+Everything else is bookkeeping.
+
+On complexity: I am willing to accept a MORE complex algorithm if it buys real
+accuracy. What I do not want is ten small things layered on top of each other,
+each worth a point, in something I intend to host live. So the shape I am
+looking for is a single stronger mechanism that lets me DELETE several existing
+stages — not an eleventh stage. If the honest answer is that the win requires
+more machinery and cannot replace anything, say so and I will judge the trade;
+just do not assume parsimony is the constraint.
 
 ## START WITH AN AUDIT, NOT THE WORKFLOW
 
@@ -160,10 +166,34 @@ and do not let it consume the session.
 - If two consecutive iterations are fixing your own implementation rather than
   teaching us something about the data, stop and report.
 
+## COST AND WHERE COMPUTE CAN LIVE
+
+This matters and it is not in the reference docs, so do not infer it from the
+code.
+
+- **Expensive offline, cheap online is the shape I want.** Precomputation,
+  training, embedding a whole corpus, distilling a model — all fine, they happen
+  once. Per-card or per-request cost at serve time is what I am protecting.
+- **Cloud is not ruled out.** I am happy to use a hosted service if it is fast,
+  cheap and accurate. What I ruled out was sending EVERY item to Gemini
+  Flash-Lite — that is more expensive than the job needs, not wrong in
+  principle. There is very likely something in between: a smaller or cheaper
+  hosted model, a hosted reranker, a batch/offline API tier, a cheap call on
+  the subset where the local path is uncertain rather than on everything.
+- **Part of why Gemini embeddings were chosen is that they keep improving.**
+  Frontier providers ship better embedding models over time and the repo gets
+  better for free without me doing anything. That property is worth real money
+  and should count in favour of approaches that ride it, and against approaches
+  that lock in a model I then have to maintain myself.
+- **Do not over-index on Anthropic models.** Pick whatever is actually best for
+  the job — open weights, another provider, a classical method, or nothing at
+  all. Price it before spending, and say what the per-item and total cost is.
+
 ## WHAT I WANT OUT OF IT
 
-An improvement I can see on named cards in the deck, and an algorithm that is no
-more complicated than the one it replaces. Not commits, not refactors, not
+An improvement I can see on named cards in the deck. Complexity is a cost to be
+traded, not a hard limit — a bigger mechanism that subsumes several current
+stages is a good outcome, ten stacked heuristics is not. Not commits, not refactors, not
 coverage numbers. If the honest answer is that the remaining 13% is mostly
 lenient-metric noise and near-synonyms nobody would mark wrong, say that plainly
 and stop — that is a useful result too.
