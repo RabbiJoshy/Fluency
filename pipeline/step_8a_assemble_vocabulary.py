@@ -1083,6 +1083,17 @@ def main():
                             if method:
                                 ex_copy["assignment_method"] = method
                                 methods_in_meaning.add(method)
+                            # Carry the run that produced this claim onto the
+                            # example. resolve_best_per_example already resolves
+                            # prompt_id/run_ts/confidence/band per evidence row;
+                            # dropping them here is why every speech card reads
+                            # "no model prompt" while artist cards (step_8b) show
+                            # their run. Provenance must survive to the card, or
+                            # a deck cannot be attributed to the run that built it.
+                            for field in ("prompt_id", "run_ts", "confidence", "band"):
+                                value = entry.get(field)
+                                if value is not None:
+                                    ex_copy[field] = value
                             exs.append(ex_copy)
                         else:
                             exs.append(src)

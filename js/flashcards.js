@@ -6252,9 +6252,18 @@ function buildProvenancePanelHTML(card) {
             const proposal = m.modelProposed
                 ? '<div class="prov-proposal">AI-proposed definition · outside the SpanishDict menu</div>'
                 : '';
+            // A SpanishDict example sentence is filed under its sense BY THE
+            // DICTIONARY, so no model was ever involved and "No model prompt"
+            // reads as a gap when it is actually the strongest provenance on the
+            // card. step_8a already marks these `evidence: "dictionary"`; say so
+            // rather than leaving the line blank-looking.
+            const isDictionary = !hasPrompt && !isAutomatic
+                && pex.some(e => e && e.evidence === 'dictionary');
             const stamp = hasPrompt
                 ? `<div class="prov-meta"><code>${esc(promptId)}</code>${meta ? ` · ${esc(meta)}` : ''}</div>`
-                : `<div class="prov-meta">${esc(method || 'No model prompt')}${isAutomatic ? ` · ${esc(automaticDetail)}` : ''}</div>`;
+                : isDictionary
+                    ? '<div class="prov-meta">SpanishDict example · filed by the dictionary, no model involved</div>'
+                    : `<div class="prov-meta">${esc(method || 'No model prompt')}${isAutomatic ? ` · ${esc(automaticDetail)}` : ''}</div>`;
             // Confidence, when the assigning method reports one. The band cuts
             // are absolute values transferred from the hand-labelled panel in
             // Data/Spanish/Intermediates/wsd_sense_harness, not quantiles of a

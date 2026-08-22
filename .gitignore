@@ -148,3 +148,7 @@ Data/Spanish/Intermediates/snapshots/
 Data/Spanish/layers/token_prototypes/*.npy
 Data/Spanish/layers/wsd_calibrator/*.joblib
 Data/Spanish/layers/sense_merge_proposal.json
+
+# BETO token vectors for the WSD query side (rebuildable, resumable)
+Data/Spanish/layers/token_vec_cache/
+Artists/*/*/data/layers/token_vec_cache/

@@ -265,6 +265,11 @@ def main():
                          "never reflexive, a 3rd-person accusative clitic marks the "
                          "object, and a reflexive clitic must match the verb's person.")
     ap.add_argument("--device", default="mps")
+    ap.add_argument("--max-encode", type=int, default=0,
+                    help="encode at most N new sentences this run, save, and stop. "
+                         "Lets a 25k-sentence BETO pass be done in sittings without "
+                         "cooking the laptop; every chunk is written to the token "
+                         "vector cache, so re-running continues where it left off.")
     ap.add_argument("--no-token", action="store_true", help="gloss signals only")
     ap.add_argument("--out", default="")
     ap.add_argument("--dry-run", action="store_true")
@@ -338,11 +343,60 @@ def main():
                 if sp:
                     spans[t][w] = sp
         sl = sorted(spans)
-        print(f"encoding {len(sl):,} sentences with "
-              f"{pman.get('model', DEFAULT_MODEL)}", flush=True)
-        tk, mdl = load_encoder(pman.get("model", DEFAULT_MODEL), a.device)
-        tokvec = encode_spans(sl, spans, tk, mdl, a.device,
-                              pman.get("layers", DEFAULT_LAYERS))
+        # Token vectors are CACHED on disk and the encode is resumable. Encoding
+        # 25k sentences is ~15 minutes of sustained GPU; without a cache that
+        # cost is paid again on every re-run, including a re-run that only
+        # changes a rejection threshold. Chunked with a save after each chunk so
+        # an interrupted run keeps its progress.
+        cdir = base / "token_vec_cache"
+        cidx_p, cvec_p = cdir / "index.json", cdir / "vecs.npy"
+        cidx = json.loads(cidx_p.read_text()) if cidx_p.exists() else {}
+        cvec = np.load(cvec_p) if cvec_p.exists() else np.zeros((0, 768), np.float16)
+        want = {f"{t}\t{w}" for t in sl for w in spans[t]}
+        todo = sorted({t for t in sl
+                       if any(f"{t}\t{w}" not in cidx for w in spans[t])})
+        if cidx:
+            print(f"token vector cache: {len(cidx):,} on disk, "
+                  f"{len(want - set(cidx)):,} of {len(want):,} still needed")
+        if todo:
+            if a.max_encode > 0:
+                todo = todo[:a.max_encode]
+            print(f"encoding {len(todo):,} sentences with "
+                  f"{pman.get('model', DEFAULT_MODEL)}", flush=True)
+            tk, mdl = load_encoder(pman.get("model", DEFAULT_MODEL), a.device)
+            CH = 2000
+            for i in range(0, len(todo), CH):
+                chunk = todo[i:i + CH]
+                got = encode_spans(chunk, spans, tk, mdl, a.device,
+                                   pman.get("layers", DEFAULT_LAYERS))
+                rows, keys = [], []
+                for (sent, w), v in got.items():
+                    k = f"{sent}\t{w}"
+                    if k in cidx:
+                        continue
+                    keys.append(k); rows.append(v.astype(np.float16))
+                if rows:
+                    start = cvec.shape[0]
+                    cvec = np.concatenate([cvec, np.stack(rows)]) if start else np.stack(rows)
+                    for n, k in enumerate(keys):
+                        cidx[k] = start + n
+                cdir.mkdir(parents=True, exist_ok=True)
+                np.save(cvec_p, cvec)
+                cidx_p.write_text(json.dumps(cidx), encoding="utf-8")
+                print(f"  cached {min(i + CH, len(todo)):,}/{len(todo):,} "
+                      f"({cvec.shape[0]:,} vectors on disk)", flush=True)
+        still = len(want - set(cidx))
+        if still and a.max_encode > 0:
+            print(f"\n--max-encode reached: {still:,} sentences still uncached. "
+                  f"Re-run the same command to continue; nothing else has been "
+                  f"written, so this is safe to repeat.")
+            return
+        tokvec = {}
+        for t in sl:
+            for w in spans[t]:
+                r = cidx.get(f"{t}\t{w}")
+                if r is not None:
+                    tokvec[(t, w)] = cvec[r].astype(np.float32)
         print(f"  {len(tokvec):,} token vectors")
 
     scoreable = set(pman.get("scoreable_words") or [])
