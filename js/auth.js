@@ -1,7 +1,7 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
-import './state.js?v=20260819b';
-import { dbGet, dbPut } from './offline-db.js?v=20260819b';
+import './state.js?v=20260822d';
+import { dbGet, dbPut } from './offline-db.js?v=20260822d';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
 // enqueues to IndexedDB when offline/failed. The overlay helpers keep
 // un-synced card and granular knowledge answers visible after a Sheets reload.
@@ -10,7 +10,17 @@ import {
     applyPendingProgressOverlay,
     applyPendingItemProgressOverlay,
     applyPendingMetaProgressOverlay
-} from './sync-queue.js?v=20260819b';
+} from './sync-queue.js?v=20260822d';
+
+const AUDIT_ACCOUNT_INITIALS = new Set(['JST', 'JSTA']);
+
+function isAuditAccount(user = currentUser) {
+    return Boolean(user && !user.isGuest && AUDIT_ACCOUNT_INITIALS.has(
+        String(user.initials || '').trim().toUpperCase()
+    ));
+}
+
+window.isAuditAccount = isAuditAccount;
 
 async function loadSecrets() {
     const controller = new AbortController();
@@ -846,6 +856,44 @@ async function flagWord(card, fieldPath, fieldValue, fields = null) {
         : card.targetWord;
     const language = selectedLanguage;
     const timestamp = new Date().toISOString();
+    const release = window._activeReleaseProvenance || {};
+    const languageConfig = config?.languages?.[selectedLanguage] || {};
+    let provenance = {};
+    try {
+        provenance = fields?.provenanceJson ? JSON.parse(fields.provenanceJson) : {};
+    } catch (_) {
+        provenance = {};
+    }
+    provenance = {
+        schemaVersion: 1,
+        mode: activeArtist ? 'lyrics' : 'speech',
+        source: activeArtist
+            ? String(window._urlArtistSlug || getProgressSource() || activeArtist?.slug || '')
+            : 'speech',
+        language,
+        releaseId: release.releaseId || release.release_id || card.release_id || '',
+        artistSlugs: (window._activeSongSetArtistSlugs || window._selectedArtistSlugs || []).slice(),
+        assets: {
+            index: languageConfig.indexPath || languageConfig.dataPath || '',
+            examples: languageConfig.examplesPath || '',
+            master: languageConfig.masterPath || ''
+        },
+        layers: release.layers || {},
+        ...provenance
+    };
+    const structuredFields = {
+        mode: provenance.mode,
+        source: provenance.source,
+        releaseId: provenance.releaseId || '',
+        runId: provenance.runId || '',
+        runTimestamp: provenance.runTimestamp || '',
+        promptId: provenance.promptId || '',
+        model: provenance.model || '',
+        assignmentMethod: provenance.assignmentMethod || '',
+        ...(fields || {}),
+        schemaVersion: 3,
+        provenanceJson: JSON.stringify(provenance).slice(0, 20000)
+    };
 
     // Route through the offline-durable queue so flags raised offline aren't
     // lost. De-dupe on wordId (which already encodes the flagged field path):
@@ -861,9 +909,9 @@ async function flagWord(card, fieldPath, fieldValue, fields = null) {
         lastWrong: timestamp,
         // Flag schema v2 structured columns. Explicit fallbacks keep the row
         // populated when a caller has not been migrated to pass `fields`.
-        ...(fields || {}),
-        wordText: fields?.wordText || card.targetWord || '',
-        cardId: fields?.cardId || baseId || '',
+        ...structuredFields,
+        wordText: structuredFields.wordText || card.targetWord || '',
+        cardId: structuredFields.cardId || baseId || '',
         fieldPath: fieldPath || '',
         flaggedAt: timestamp,
         report: fieldValue !== undefined && fieldValue !== null ? String(fieldValue) : ''

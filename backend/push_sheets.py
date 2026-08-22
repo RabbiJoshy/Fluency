@@ -30,7 +30,7 @@ BACKUP_DIR = os.path.join(LOCAL_DIR, 'backups')
 SHEETS = ['Progress']
 # FlaggedWords is opt-in via an explicit --sheet FlaggedWords, since pushing it
 # is a curation action, not routine progress sync. --replace deletes remote flags
-# absent from local. Its schema is v2 (FLAG_KEYS), no longer the progress-shaped
+# absent from local. Its schema is v3 (FLAG_KEYS), no longer the progress-shaped
 # eight columns.
 PUSHABLE_SHEETS = SHEETS + ['FlaggedWords']
 PROGRESS_KEYS = [
@@ -47,7 +47,8 @@ FLAG_KEYS = [
     'fieldPath', 'target', 'category', 'sensePos', 'senseId', 'senseGloss',
     'context', 'example', 'translation', 'song', 'exampleAssignment',
     'translationSource', 'senseAssignment', 'requestedTag', 'note', 'report',
-    'schemaVersion'
+    'schemaVersion', 'mode', 'source', 'releaseId', 'runId', 'runTimestamp',
+    'promptId', 'model', 'assignmentMethod', 'provenanceJson'
 ]
 HEADER_ALIASES = {
     'user': 'user', 'itemid': 'itemId', 'itemtype': 'itemType', 'mode': 'mode',
@@ -56,7 +57,7 @@ HEADER_ALIASES = {
     'correct': 'correct', 'wrong': 'wrong', 'lastcorrect': 'lastCorrect',
     'lastwrong': 'lastWrong', 'lastseen': 'lastSeen',
     'schemaversion': 'schemaVersion', 'srsstage': 'srsStage', 'value': 'value',
-    # FlaggedWords v2. The sheet's Word column maps to `wordText` because the
+    # FlaggedWords v3. The sheet's Word column maps to `wordText` because the
     # backend reserves the `word` payload key for the v1 report-blob contract.
     'flaggedat': 'flaggedAt', 'lemma': 'lemma', 'cardid': 'cardId',
     'fieldpath': 'fieldPath', 'target': 'target', 'category': 'category',
@@ -65,7 +66,10 @@ HEADER_ALIASES = {
     'song': 'song', 'exampleassignment': 'exampleAssignment',
     'translationsource': 'translationSource',
     'senseassignment': 'senseAssignment', 'requestedtag': 'requestedTag',
-    'note': 'note', 'report': 'report'
+    'note': 'note', 'report': 'report', 'releaseid': 'releaseId',
+    'runid': 'runId', 'runtimestamp': 'runTimestamp', 'promptid': 'promptId',
+    'model': 'model', 'assignmentmethod': 'assignmentMethod',
+    'provenancejson': 'provenanceJson'
 }
 
 

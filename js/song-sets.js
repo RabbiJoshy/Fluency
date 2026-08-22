@@ -1,11 +1,11 @@
-import './state.js?v=20260819b';
-import { sendOrQueue } from './sync-queue.js?v=20260819b';
+import './state.js?v=20260822d';
+import { sendOrQueue } from './sync-queue.js?v=20260822d';
 import {
     combineSongCatalogs,
     filterExamplesForSongs,
     filterVocabularyForSongs,
     selectedSongIdSet
-} from './song-sets-core.js?v=20260819b';
+} from './song-sets-core.js?v=20260822d';
 
 const STORAGE_PREFIX = 'fluency_song_set_v1:';
 let draftSongIds = new Set();
@@ -34,6 +34,21 @@ function writeLocalSongSet(record) {
 
 function validSongIds(songIds) {
     return Array.from(selectedSongIdSet(artistSongCatalog, songIds));
+}
+
+function artistSlugsForSongs(songIds) {
+    if (!activeArtist?.customSongSource) return [sourceSlug()].filter(Boolean);
+    const selected = new Set((songIds || []).map(String));
+    const slugs = new Set();
+    for (const song of artistSongCatalog?.songs || []) {
+        if (!selected.has(String(song.id))) continue;
+        for (const sourceKey of song.sourceKeys || []) {
+            const separator = String(sourceKey).indexOf(':');
+            const slug = separator > 0 ? String(sourceKey).slice(0, separator) : '';
+            if (slug) slugs.add(slug);
+        }
+    }
+    return Array.from(slugs).sort();
 }
 
 async function fetchSongCatalog(path) {
@@ -78,6 +93,9 @@ export async function initArtistSongSelection() {
     const initialIds = local?.songIds
         || (catalog.requireSelection ? [] : catalog.songs.map(song => song.id));
     selectedSongIds = validSongIds(initialIds);
+    window._activeSongSetArtistSlugs = Array.isArray(local?.artistSlugs)
+        ? local.artistSlugs.slice()
+        : artistSlugsForSongs(selectedSongIds);
     window._activeSongSetUpdatedAt = local?.updatedAt || '';
     reconcileRemoteSongSet().catch(error => console.warn('Song-set sync deferred:', error));
     return catalog;
@@ -103,8 +121,15 @@ async function reconcileRemoteSongSet() {
         const localTime = Date.parse(window._activeSongSetUpdatedAt || '') || 0;
         if (remoteTime <= localTime) return;
         selectedSongIds = validSongIds(remote.songIds);
+        window._activeSongSetArtistSlugs = Array.isArray(remote.artistSlugs)
+            ? remote.artistSlugs.slice()
+            : artistSlugsForSongs(selectedSongIds);
         window._activeSongSetUpdatedAt = remote.updatedAt;
-        writeLocalSongSet({ songIds: selectedSongIds, updatedAt: remote.updatedAt });
+        writeLocalSongSet({
+            songIds: selectedSongIds,
+            artistSlugs: window._activeSongSetArtistSlugs,
+            updatedAt: remote.updatedAt
+        });
         refilterCachedExamples();
         window.dispatchEvent(new CustomEvent('fluency-song-selection-changed', {
             detail: { source: sourceSlug(), remote: true }
@@ -223,8 +248,10 @@ async function applySongSet() {
     status.textContent = 'Saving song selection…';
     const updatedAt = new Date().toISOString();
     selectedSongIds = validSongIds(Array.from(draftSongIds));
+    const artistSlugs = artistSlugsForSongs(selectedSongIds);
+    window._activeSongSetArtistSlugs = artistSlugs;
     window._activeSongSetUpdatedAt = updatedAt;
-    writeLocalSongSet({ songIds: selectedSongIds, updatedAt });
+    writeLocalSongSet({ songIds: selectedSongIds, artistSlugs, updatedAt });
     if (currentUser && !currentUser.isGuest) {
         await sendOrQueue({
             action: 'saveSongSet',
@@ -234,6 +261,7 @@ async function applySongSet() {
             name: activeArtist?.name || sourceSlug(),
             language: activeArtist?.language || selectedLanguage,
             songIds: selectedSongIds,
+            artistSlugs,
             updatedAt
         }, `song-set|${currentUser.initials}|${sourceSlug()}|active`);
     }

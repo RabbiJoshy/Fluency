@@ -131,6 +131,8 @@ test('app stores the active song set, filters setup data, and resumes exact song
     ]);
     assert.match(module, /action: 'saveSongSet'/);
     assert.match(module, /action: 'loadSongSets'/);
+    assert.match(module, /artistSlugsForSongs/);
+    assert.match(module, /artistSlugs,/);
     assert.match(module, /song-set\|\$\{currentUser\.initials\}/);
     assert.match(main, /showSongSetPicker/);
     assert.match(main, /fluency-song-selection-changed/);
@@ -149,5 +151,7 @@ test('app stores the active song set, filters setup data, and resumes exact song
     assert.match(vocab, /filterActiveSongVocabulary/);
     assert.match(html, /id="songSetModal"/);
     assert.match(backend, /SONG_SETS_SHEET_NAME = 'SongSets'/);
+    assert.match(backend, /SONG_SET_SCHEMA_VERSION = 2/);
+    assert.match(backend, /'ArtistSlugsJson'/);
     assert.match(backend, /function saveSongSet/);
 });

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pull the unified Progress and FlaggedWords tabs to local JSON files.
+"""Pull Progress, provenance-aware flags, or saved song sets to local JSON.
 
 Usage:
     python3 backend/sync_sheets.py                    # pull both sheets
@@ -19,6 +19,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRETS_PATH = os.path.join(SCRIPT_DIR, 'secrets.json')
 LOCAL_DIR = os.path.join(SCRIPT_DIR, 'local')
 SHEETS = ['Progress', 'FlaggedWords']
+PULLABLE_SHEETS = SHEETS + ['SongSets']
 HEADER_KEYS = {
     'user': 'user',
     'itemid': 'itemId',
@@ -59,6 +60,18 @@ HEADER_KEYS = {
     'requestedtag': 'requestedTag',
     'note': 'note',
     'report': 'report',
+    'releaseid': 'releaseId',
+    'runid': 'runId',
+    'runtimestamp': 'runTimestamp',
+    'promptid': 'promptId',
+    'model': 'model',
+    'assignmentmethod': 'assignmentMethod',
+    'provenancejson': 'provenanceJson',
+    'setid': 'setId',
+    'name': 'name',
+    'songidsjson': 'songIdsJson',
+    'updatedat': 'updatedAt',
+    'artistslugsjson': 'artistSlugsJson',
 }
 
 
@@ -140,6 +153,9 @@ def show_diff(sheet_name, old_data, new_rows):
         return
 
     def row_id(row):
+        if sheet_name == 'SongSets':
+            return '|'.join((str(row.get('user', '')), str(row.get('source', '')),
+                             str(row.get('setId', ''))))
         if sheet_name != 'Progress':
             return f"{row.get('user', '')}|{row.get('wordId', '')}"
         item_type = str(row.get('itemType', 'sense')).lower()
@@ -183,7 +199,8 @@ def show_diff(sheet_name, old_data, new_rows):
 
 def main():
     parser = argparse.ArgumentParser(description='Pull Google Sheets progress data to local JSON')
-    parser.add_argument('--sheet', choices=SHEETS, help='Pull only this sheet (default: both)')
+    parser.add_argument('--sheet', choices=PULLABLE_SHEETS,
+                        help='Pull one sheet (default: Progress and FlaggedWords)')
     parser.add_argument('--diff', action='store_true', help='Show changes since last pull')
     args = parser.parse_args()
 

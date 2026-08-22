@@ -50,6 +50,7 @@ class Sheet {
         return this;
     }
     getLastRow() { return this.rows.length; }
+    getLastColumn() { return Math.max(1, ...this.rows.map(row => row.length)); }
     getDataRange() {
         const columns = Math.max(1, ...this.rows.map(row => row.length));
         return new Range(this, 1, 1, Math.max(1, this.rows.length), columns);
@@ -60,6 +61,15 @@ class Sheet {
     appendRow(row) { this.rows.push(row.slice()); return this; }
     deleteRow(row) { this.rows.splice(row - 1, 1); }
     clearContents() { this.rows = []; return this; }
+    clear() { this.rows = []; return this; }
+    copyTo(spreadsheet) {
+        let name = `${this.name}_copy`;
+        let suffix = 2;
+        while (spreadsheet.getSheetByName(name)) name = `${this.name}_copy_${suffix++}`;
+        const copy = new Sheet(spreadsheet, name, this.rows);
+        spreadsheet.sheets[name] = copy;
+        return copy;
+    }
     setFrozenRows() { return this; }
     autoResizeColumns() { return this; }
 }
@@ -144,25 +154,30 @@ function post(payload) {
 
 const capabilities = post({ action: 'capabilities' }).data;
 assert.equal(capabilities.schemaVersion, 4);
-assert.equal(capabilities.songSetSchemaVersion, 1);
+assert.equal(capabilities.flagSchemaVersion, 3);
+assert.equal(capabilities.songSetSchemaVersion, 2);
 
 assert.equal(post({
     action: 'saveSongSet', user: 'JT', setId: 'active', source: 'bad-bunny',
     name: 'Bad Bunny', language: 'spanish', songIds: ['song-a', 'song-b', 'song-a'],
+    artistSlugs: ['bad-bunny', 'bad-bunny'],
     updatedAt: '2026-08-16T10:00:00.000Z'
 }).success, true);
 let songSets = post({ action: 'loadSongSets', user: 'JT' }).data.songSets;
 assert.equal(songSets.length, 1);
 assert.deepEqual(songSets[0].songIds, ['song-a', 'song-b']);
+assert.deepEqual(songSets[0].artistSlugs, ['bad-bunny']);
 const songSetRows = spreadsheet.getSheetByName('SongSets').getLastRow();
 assert.equal(post({
     action: 'saveSongSet', user: 'JT', setId: 'active', source: 'bad-bunny',
     name: 'Bad Bunny', language: 'spanish', songIds: ['song-b'],
+    artistSlugs: ['bad-bunny'],
     updatedAt: '2026-08-16T11:00:00.000Z'
 }).success, true);
 assert.equal(spreadsheet.getSheetByName('SongSets').getLastRow(), songSetRows);
 songSets = post({ action: 'loadSongSets', user: 'JT' }).data.songSets;
 assert.deepEqual(songSets[0].songIds, ['song-b']);
+assert.deepEqual(songSets[0].artistSlugs, ['bad-bunny']);
 assert.equal(post({
     action: 'deleteSongSet', user: 'JT', setId: 'active', source: 'bad-bunny'
 }).success, true);
@@ -177,6 +192,34 @@ assert.ok(spreadsheet.getSheetByName('UserProgress_legacy'));
 assert.ok(spreadsheet.getSheetByName('Lyrics_legacy'));
 assert.ok(spreadsheet.getSheetByName('ItemProgress_legacy'));
 assert.ok(spreadsheet.getSheetByName('FlaggedWords'));
+
+const flagProvenance = {
+    schemaVersion: 1,
+    mode: 'speech',
+    source: 'speech',
+    releaseId: 'es-speech-audit-0007',
+    runId: '20260822T180000Z-abcd1234',
+    layers: { wsd_assignments: { artifact_id: 'sha256:abc' } }
+};
+assert.equal(post({
+    action: 'save', sheet: 'FlaggedWords', user: 'JSTA',
+    word: '[Audit flag]\nWord: esta', wordText: 'esta', wordId: 'es001#sense:1',
+    language: 'spanish', cardId: 'es001', fieldPath: 'sense:1',
+    target: 'sense', category: 'matching', mode: 'speech', source: 'speech',
+    releaseId: flagProvenance.releaseId, runId: flagProvenance.runId,
+    runTimestamp: '2026-08-22T18:00:00.000Z', promptId: 'sd-beto-cal-v3',
+    model: 'BETO', assignmentMethod: 'embedding-rerank',
+    provenanceJson: JSON.stringify(flagProvenance)
+}).success, true);
+const flagSheet = spreadsheet.getSheetByName('FlaggedWords');
+const flagHeaders = flagSheet.rows[0];
+const savedFlag = flagSheet.rows[1];
+assert.equal(savedFlag[flagHeaders.indexOf('User')], 'JSTA');
+assert.equal(savedFlag[flagHeaders.indexOf('ReleaseId')], 'es-speech-audit-0007');
+assert.equal(savedFlag[flagHeaders.indexOf('RunId')], '20260822T180000Z-abcd1234');
+assert.equal(savedFlag[flagHeaders.indexOf('PromptId')], 'sd-beto-cal-v3');
+assert.deepEqual(JSON.parse(savedFlag[flagHeaders.indexOf('ProvenanceJson')]), flagProvenance);
+assert.ok(spreadsheet.getSheetByName('FlaggedWords_v1_backup'));
 
 const normalOnly = post({ action: 'load', sheet: 'UserProgress', user: 'JT' });
 const artistOnly = post({ action: 'load', sheet: 'Lyrics', user: 'JT' });

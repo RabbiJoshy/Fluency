@@ -1390,6 +1390,67 @@ function flagMenuNav(delta) {
     else _renderFlagMenu();
 }
 
+function _flagRunProvenance(card, meaning, example) {
+    const release = window._activeReleaseProvenance || {};
+    const languageConfig = config?.languages?.[selectedLanguage] || {};
+    const promptId = example?.prompt_id || meaning?.prompt_id || '';
+    const prompt = window._promptRegistry?.[promptId] || {};
+    const layerSources = Object.values(release.layers || {})
+        .map(layer => layer?.source_id || layer?.sourceId || '')
+        .filter(Boolean);
+    const runId = example?.run_id || meaning?.run_id || card?.run_id
+        || release.runId || release.run_id
+        || ([...new Set(layerSources)].length === 1 ? layerSources[0] : '');
+    const runTimestamp = example?.run_ts || meaning?.run_ts || card?.run_ts
+        || release.createdAt || release.created_at || '';
+    const assignmentMethod = example?.assignment_method || meaning?.assignment_method || '';
+    const mode = activeArtist ? 'lyrics' : 'speech';
+    const source = activeArtist
+        ? String(window._urlArtistSlug || window.getProgressSource?.() || activeArtist?.slug || '')
+        : 'speech';
+    const releaseId = release.releaseId || release.release_id || card?.release_id || '';
+    const snapshot = {
+        schemaVersion: 1,
+        mode,
+        source,
+        language: selectedLanguage || '',
+        releaseId,
+        runId,
+        runTimestamp,
+        promptId,
+        model: prompt.model || example?.model || meaning?.model || '',
+        assignmentMethod,
+        artistSlugs: (window._activeSongSetArtistSlugs || window._selectedArtistSlugs || []).slice(),
+        assets: {
+            index: languageConfig.indexPath || languageConfig.dataPath || '',
+            examples: languageConfig.examplesPath || '',
+            master: languageConfig.masterPath || ''
+        },
+        layers: release.layers || {}
+    };
+    const fields = {
+        schemaVersion: 3,
+        mode,
+        source,
+        releaseId,
+        runId,
+        runTimestamp,
+        promptId,
+        model: snapshot.model,
+        assignmentMethod,
+        provenanceJson: JSON.stringify(snapshot).slice(0, 20000)
+    };
+    const reportLines = [];
+    if (releaseId) reportLines.push(`Release ID: ${releaseId}`);
+    if (runId) reportLines.push(`Run ID: ${runId}`);
+    if (runTimestamp) reportLines.push(`Run timestamp: ${runTimestamp}`);
+    if (promptId) reportLines.push(`Prompt ID: ${promptId}`);
+    if (snapshot.model) reportLines.push(`Model: ${snapshot.model}`);
+    if (assignmentMethod) reportLines.push(`Assignment method: ${assignmentMethod}`);
+    reportLines.push(`Deck source: ${mode} · ${source}`);
+    return { fields, reportLines };
+}
+
 function showFlagMenu() {
     const pop = document.getElementById('flagMenu');
     const card = _flagMenuCard();
@@ -1519,12 +1580,14 @@ function flagMenuConfirm() {
         reportLines.push(`Current cognate score: ${card.cognate_score ?? '(missing)'}`);
     }
     if (note) reportLines.push(`Note: ${note}`);
+    const runProvenance = _flagRunProvenance(card, m, example);
+    reportLines.push(...runProvenance.reportLines);
     const report = reportLines.join('\n');
 
     const isSenseTarget = FLAG_SENSE_TARGETS.has(_flagTarget);
     const isExampleTarget = _flagTarget === 'pairing' || _flagTarget === 'example';
     const fields = {
-        schemaVersion: 2,
+        ...runProvenance.fields,
         target: _flagTarget,
         category: _flagTarget === 'routing' ? _flagCategory : (_flagCategory || ''),
         requestedTag: _flagTarget === 'routing' ? _flagCategory : '',
@@ -1674,6 +1737,7 @@ function _simpleFlagReport(target, { meaningIndex = 0, note = '' } = {}) {
         lines.push(`Current card POS: ${cardPos || '(missing)'}`);
     }
     if (note) lines.push(`Note: ${note}`);
+    lines.push(..._flagRunProvenance(card, meaning, example).reportLines);
     return lines.join('\n');
 }
 
@@ -1708,7 +1772,7 @@ function _simpleFlagFields(target, { meaningIndex = 0, note = '' } = {}) {
     const isExample = target === 'pairing';
     const word = card?.targetWord || card?.word || '';
     return {
-        schemaVersion: 2,
+        ..._flagRunProvenance(card, meaning, example).fields,
         target: canonical.target,
         category: canonical.category || '',
         requestedTag: canonical.requestedTag || '',

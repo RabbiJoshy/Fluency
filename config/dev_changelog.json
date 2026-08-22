@@ -1,6 +1,19 @@
 {
-  "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
+  "_readme": "Append an entry whenever deck data or app behavior changes (newest first). Shown in the settings footer only for configured audit accounts (currently JST and JSTA). Keep summaries short; details are 1-line bullets.",
   "entries": [
+    {
+      "date": "2026-08-22",
+      "commit": "pending",
+      "summary": "Flags now identify their exact data run, custom playlists sync their artists, and JSTA is a separate audit account",
+      "details": [
+        "Every new flag stores the deck mode and source plus its release, run time, prompt, model, assignment method, immutable asset paths and layer snapshot when available",
+        "The FlaggedWords sheet upgrades from schema v2 to v3 without losing old rows and makes a backup before migration",
+        "Choose your own now saves the selected artist slugs alongside its exact song IDs in the existing per-user SongSets sheet",
+        "JSTA has the same information, provenance and flagging tools as JST while keeping completely separate learning progress",
+        "The app degrades safely when older decks omit provenance fields; the flag remains usable and records every identity field that was available",
+        "Cache v263 to v264 / assets 20260819b to 20260822d"
+      ]
+    },
     {
       "date": "2026-08-22",
       "commit": "78506bf6",

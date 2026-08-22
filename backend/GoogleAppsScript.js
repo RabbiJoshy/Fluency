@@ -13,26 +13,31 @@ const PROGRESS_HEADERS = [
   'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen',
   'SchemaVersion', 'SrsStage', 'Value'
 ];
-const SONG_SET_SCHEMA_VERSION = 1;
+const SONG_SET_SCHEMA_VERSION = 2;
 const SONG_SETS_SHEET_NAME = 'SongSets';
 const SONG_SET_HEADERS = [
-  'User', 'SetId', 'Source', 'Name', 'Language', 'SongIdsJson', 'UpdatedAt', 'SchemaVersion'
+  'User', 'SetId', 'Source', 'Name', 'Language', 'SongIdsJson', 'UpdatedAt',
+  'SchemaVersion', 'ArtistSlugsJson'
 ];
-// Flag schema v2. v1 was the progress-shaped eight-column tab
+// Flag schema v3. v1 was the progress-shaped eight-column tab
 // (User, Word, WordId, Language, Correct, Wrong, LastCorrect, LastWrong) where
 // the whole audit report was crammed into Word, fieldPath was smuggled through
 // LastCorrect, the flag timestamp through LastWrong, and Correct/Wrong were
 // always zero. The app's flag UI can emit ~29 distinct attributes, so v2 gives
 // each one a real column and keeps the rendered blob in Report for reading.
-const FLAG_SCHEMA_VERSION = 2;
+const FLAG_SCHEMA_VERSION = 3;
 const FLAGGED_WORDS_SHEET_NAME = 'FlaggedWords';
-const FLAGGED_WORDS_HEADERS = [
+const FLAGGED_WORDS_V2_HEADERS = [
   'User', 'FlaggedAt', 'Word', 'Lemma', 'Language', 'WordId', 'CardId',
   'FieldPath', 'Target', 'Category', 'SensePos', 'SenseId', 'SenseGloss',
   'Context', 'Example', 'Translation', 'Song', 'ExampleAssignment',
   'TranslationSource', 'SenseAssignment', 'RequestedTag', 'Note', 'Report',
   'SchemaVersion'
 ];
+const FLAGGED_WORDS_HEADERS = FLAGGED_WORDS_V2_HEADERS.concat([
+  'Mode', 'Source', 'ReleaseId', 'RunId', 'RunTimestamp', 'PromptId',
+  'Model', 'AssignmentMethod', 'ProvenanceJson'
+]);
 const FLAGGED_WORDS_V1_HEADERS = [
   'User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong',
   'LastCorrect', 'LastWrong'
@@ -61,10 +66,19 @@ const F = {
   REQUESTED_TAG: 20,
   NOTE: 21,
   REPORT: 22,
-  SCHEMA: 23
+  SCHEMA: 23,
+  MODE: 24,
+  SOURCE: 25,
+  RELEASE_ID: 26,
+  RUN_ID: 27,
+  RUN_TIMESTAMP: 28,
+  PROMPT_ID: 29,
+  MODEL: 30,
+  ASSIGNMENT_METHOD: 31,
+  PROVENANCE_JSON: 32
 };
 const PROGRESS_MIGRATION_PROPERTY = 'FLUENCY_PROGRESS_V4_MIGRATED';
-const FLAG_MIGRATION_PROPERTY = 'FLUENCY_FLAGS_V2_MIGRATED';
+const FLAG_MIGRATION_PROPERTY = 'FLUENCY_FLAGS_V3_MIGRATED';
 
 const P = {
   USER: 0,
@@ -149,6 +163,22 @@ function getSongSetsSheet() {
     sheet.getRange(1, 1, 1, SONG_SET_HEADERS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
     sheet.autoResizeColumns(1, SONG_SET_HEADERS.length);
+  } else {
+    const header = sheet.getRange(1, 1, 1, SONG_SET_HEADERS.length).getValues()[0];
+    let needsHeader = false;
+    for (let i = 0; i < SONG_SET_HEADERS.length; i++) {
+      if (String(header[i] || '').trim() !== SONG_SET_HEADERS[i]) {
+        needsHeader = true;
+        break;
+      }
+    }
+    if (needsHeader) {
+      // v1 used the same first eight columns. Appending ArtistSlugsJson keeps
+      // every existing selection in place and makes the upgrade non-destructive.
+      sheet.getRange(1, 1, 1, SONG_SET_HEADERS.length).setValues([SONG_SET_HEADERS]);
+      sheet.getRange(1, 1, 1, SONG_SET_HEADERS.length).setFontWeight('bold');
+      sheet.setFrozenRows(1);
+    }
   }
   return sheet;
 }
@@ -166,6 +196,19 @@ function normalizedSongIds(value) {
   return result;
 }
 
+function normalizedArtistSlugs(value) {
+  if (!Array.isArray(value)) return [];
+  const seen = {};
+  const result = [];
+  value.forEach(function(rawSlug) {
+    const slug = String(rawSlug || '').trim();
+    if (!slug || seen[slug] || result.length >= 100) return;
+    seen[slug] = true;
+    result.push(slug);
+  });
+  return result;
+}
+
 function findSongSetRow(data, user, source, setId) {
   for (let i = 1; i < data.length; i++) {
     if (String(data[i][0]) === user && String(data[i][1]) === setId &&
@@ -179,6 +222,7 @@ function saveSongSet(params) {
   const setId = String(params.setId || '').trim();
   const source = String(params.source || '').trim();
   const songIds = normalizedSongIds(params.songIds);
+  const artistSlugs = normalizedArtistSlugs(params.artistSlugs);
   if (!user || !setId || !source || !songIds.length) {
     return createResponse(false, 'Missing required song-set fields');
   }
@@ -186,7 +230,8 @@ function saveSongSet(params) {
   const data = sheet.getDataRange().getValues();
   const row = [
     user, setId, source, String(params.name || ''), String(params.language || ''),
-    JSON.stringify(songIds), params.updatedAt || new Date().toISOString(), SONG_SET_SCHEMA_VERSION
+    JSON.stringify(songIds), params.updatedAt || new Date().toISOString(),
+    SONG_SET_SCHEMA_VERSION, JSON.stringify(artistSlugs)
   ];
   const rowIndex = findSongSetRow(data, user, source, setId);
   if (rowIndex > 0) sheet.getRange(rowIndex, 1, 1, SONG_SET_HEADERS.length).setValues([row]);
@@ -203,13 +248,16 @@ function loadSongSets(params) {
     const row = data[i];
     if (String(row[0]) !== user) continue;
     let songIds = [];
+    let artistSlugs = [];
     try { songIds = normalizedSongIds(JSON.parse(row[5] || '[]')); } catch (_) {}
+    try { artistSlugs = normalizedArtistSlugs(JSON.parse(row[8] || '[]')); } catch (_) {}
     songSets.push({
       setId: String(row[1] || ''),
       source: String(row[2] || ''),
       name: String(row[3] || ''),
       language: String(row[4] || ''),
       songIds: songIds,
+      artistSlugs: artistSlugs,
       updatedAt: row[6] || '',
       schemaVersion: Number(row[7]) || SONG_SET_SCHEMA_VERSION
     });
@@ -1075,6 +1123,31 @@ function convertLegacyFlagRow(v1Row) {
   row[F.NOTE] = flagReportField(report, 'Note');
   row[F.REPORT] = report;
   row[F.SCHEMA] = 1;  // provenance: migrated from v1, not natively captured
+  row[F.RELEASE_ID] = flagReportField(report, 'Release ID');
+  row[F.RUN_ID] = flagReportField(report, 'Run ID');
+  row[F.RUN_TIMESTAMP] = flagReportField(report, 'Run timestamp');
+  row[F.PROMPT_ID] = flagReportField(report, 'Prompt ID');
+  row[F.MODEL] = flagReportField(report, 'Model');
+  row[F.ASSIGNMENT_METHOD] = flagReportField(report, 'Assignment method');
+  return row;
+}
+
+function flagHeaderValuesMatch(header, expected) {
+  if (!header || header.length < expected.length) return false;
+  for (let i = 0; i < expected.length; i++) {
+    if (String(header[i] || '').trim() !== expected[i]) return false;
+  }
+  return true;
+}
+
+function convertV2FlagRow(v2Row) {
+  const row = new Array(FLAGGED_WORDS_HEADERS.length).fill('');
+  for (let i = 0; i < Math.min(v2Row.length, FLAGGED_WORDS_V2_HEADERS.length); i++) {
+    row[i] = v2Row[i];
+  }
+  // Keep schema 2 as honest historical provenance: these rows predate the
+  // run snapshot fields, even though they now live in the wider v3 sheet.
+  row[F.SCHEMA] = Number(row[F.SCHEMA]) || 2;
   return row;
 }
 
@@ -1095,8 +1168,8 @@ function writeFlaggedWordsHeader(sheet) {
 }
 
 /**
- * Create the tab, or migrate a v1 tab in place. The pre-migration tab is copied
- * to FlaggedWords_v1_backup first, so a bad parse is always recoverable.
+ * Create the tab, or migrate a v1/v2 tab in place. The pre-migration tab is
+ * copied first, so a bad parse is always recoverable.
  * Entirely blank rows (three exist at the top of the live sheet, left over from
  * an early schema) are dropped rather than carried forward.
  */
@@ -1126,8 +1199,11 @@ function ensureFlaggedWordsSchema(force) {
     }
 
     const existing = sheet.getDataRange().getValues();
-    if (!ss.getSheetByName(FLAGGED_WORDS_SHEET_NAME + '_v1_backup')) {
-      sheet.copyTo(ss).setName(FLAGGED_WORDS_SHEET_NAME + '_v1_backup');
+    const existingHeader = existing[0] || [];
+    const isV2 = flagHeaderValuesMatch(existingHeader, FLAGGED_WORDS_V2_HEADERS);
+    const backupName = FLAGGED_WORDS_SHEET_NAME + (isV2 ? '_v2_backup' : '_v1_backup');
+    if (!ss.getSheetByName(backupName)) {
+      sheet.copyTo(ss).setName(backupName);
     }
 
     const converted = [];
@@ -1136,7 +1212,7 @@ function ensureFlaggedWordsSchema(force) {
       const raw = existing[i];
       const isBlank = raw.every(function(cell) { return String(cell || '').trim() === ''; });
       if (isBlank) { dropped++; continue; }
-      converted.push(convertLegacyFlagRow(raw));
+      converted.push(isV2 ? convertV2FlagRow(raw) : convertLegacyFlagRow(raw));
     }
 
     sheet.clear();
@@ -1160,7 +1236,7 @@ function getOrCreateFlaggedWordsSheet() {
 }
 
 /**
- * Build a v2 row from a save payload. `wordText`/`report` are the v2 fields;
+ * Build a v3 row from a save payload. `wordText`/`report` are structured fields;
  * the `word` fallback is the v1 client contract, where `word` carried the
  * rendered report and there was no separate headword field.
  */
@@ -1203,6 +1279,19 @@ function buildFlagRow(params, existing) {
   set(F.SENSE_ASSIGNMENT, params.senseAssignment);
   set(F.REQUESTED_TAG, params.requestedTag);
   set(F.NOTE, params.note);
+  set(F.MODE, params.mode);
+  set(F.SOURCE, params.source);
+  set(F.RELEASE_ID, params.releaseId);
+  set(F.RUN_ID, params.runId);
+  set(F.RUN_TIMESTAMP, params.runTimestamp);
+  set(F.PROMPT_ID, params.promptId);
+  set(F.MODEL, params.model);
+  set(F.ASSIGNMENT_METHOD, params.assignmentMethod);
+  if (params.provenanceJson !== undefined && params.provenanceJson !== null && params.provenanceJson !== '') {
+    row[F.PROVENANCE_JSON] = typeof params.provenanceJson === 'string'
+      ? params.provenanceJson
+      : JSON.stringify(params.provenanceJson);
+  }
   return row;
 }
 
