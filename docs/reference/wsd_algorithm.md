@@ -1,4 +1,36 @@
-# The WSD algorithm, as settled 2026-08-20
+# The WSD algorithm, as settled 2026-08-22 (v5)
+
+> **v5 adds two stages before everything below, and they are worth more than
+> everything below.** On 144 hand-labelled OpenSubtitles sentences: v3 65.3%
+> sense-id / 74.3% card-gloss / 14 of 26 rare senses; v5 **86.8% / 87.5% / 15 of
+> 26**. Hand-graded on a fresh random 50 from the diff set: **23 better, 5 worse,
+> 22 lateral**.
+>
+> **Stage 0 — menu prior.** SpanishDict orders senses commonest-first. The score
+> adds `0.02 * 0.5^rank`. Do not raise it: by 0.05 rare-sense accuracy collapses
+> 54% -> 19% while the overall number barely moves. It is a dial between the
+> sentence and the dictionary's ordering.
+>
+> **Stage 0b — POS filter.** Leaves whose part of speech contradicts the tag for
+> THAT occurrence are pruned, via `sense_compatible_bridged` (NOT
+> `sense_compatible_with_example_pos` — see wsd_dead_ends.md on the UD/SpanishDict
+> tagset mismatch). It is the only signal measured that RAISES rare-sense
+> accuracy (54% -> 62% alone), which is what pays for the prior's cost.
+>
+> **What the embeddings are now for.** Ablated out entirely — POS filter, then
+> take the top surviving entry — the panel scores 82.6% overall but 19% on rare
+> senses. The embeddings are worth ~2pp overall and are the ENTIRE rare-sense
+> capability. Their only remaining job is deciding when to overrule the ordering,
+> and on the diff set they do that at roughly 10 fixes / 7 breaks.
+>
+> **Known-stale below:** the confidence calibrator is trained on the dictionary
+> gold (uniform over senses) and applied to real speech, so its bands are
+> pessimistic and 58% of the v5 deck lands in "low". Retraining it on
+> real-distribution labels is the outstanding item. Do not read v5 bands.
+>
+> ---
+>
+> ## The v3 stack, unchanged below this line
 
 One sentence: **embeddings propose a leaf, BETO overrules the lemma+POS where it
 is confident, a calibrator scores the result, and you choose per run what happens

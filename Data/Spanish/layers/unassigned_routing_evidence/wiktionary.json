@@ -1848,7 +1848,7 @@
       "occurrence_ids": []
     }
   ],
-  "pasado|pasado": [
+  "pasado|pasar": [
     {
       "example_index": 2,
       "example_id": "e07840b3564b",
@@ -2890,12 +2890,14 @@
       "occurrence_ids": []
     }
   ],
-  "paso|paso": [
+  "paso|pasar": [
     {
       "example_index": 0,
       "example_id": "1cd4c53c68c7",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "paso|paso": [
     {
       "example_index": 1,
       "example_id": "34f2548a58c2",
@@ -3412,7 +3414,7 @@
       "occurrence_ids": []
     }
   ],
-  "trato|tratar": [
+  "trato|trato": [
     {
       "example_index": 0,
       "example_id": "124236cb656b",
@@ -3628,7 +3630,7 @@
       "occurrence_ids": []
     }
   ],
-  "odio|odiar": [
+  "odio|odio": [
     {
       "example_index": 1,
       "example_id": "921301c2d023",
@@ -3875,7 +3877,7 @@
       "occurrence_ids": []
     }
   ],
-  "llamado|llamado": [
+  "llamado|llamar": [
     {
       "example_index": 0,
       "example_id": "d3ca5d9554b2",
@@ -4016,14 +4018,14 @@
       "occurrence_ids": []
     }
   ],
-  "preguntas|pregunta": [
+  "preguntas|preguntar": [
     {
       "example_index": 0,
       "example_id": "bab2a764d8b0",
       "occurrence_ids": []
     }
   ],
-  "preguntas|preguntar": [
+  "preguntas|pregunta": [
     {
       "example_index": 2,
       "example_id": "e3b50bc4b5b6",
@@ -4184,15 +4186,13 @@
       "occurrence_ids": []
     },
     {
-      "example_index": 2,
-      "example_id": "da4f0abd41bd",
-      "occurrence_ids": []
-    }
-  ],
-  "querido|querido": [
-    {
       "example_index": 1,
       "example_id": "9c2bd331fb72",
+      "occurrence_ids": []
+    },
+    {
+      "example_index": 2,
+      "example_id": "da4f0abd41bd",
       "occurrence_ids": []
     }
   ],
@@ -4517,7 +4517,7 @@
       "occurrence_ids": []
     }
   ],
-  "traje|traje": [
+  "traje|traer": [
     {
       "example_index": 1,
       "example_id": "a8ba3e2e9b66",
@@ -5102,9 +5102,7 @@
       "example_index": 1,
       "example_id": "bb3ee6c2a17b",
       "occurrence_ids": []
-    }
-  ],
-  "baja|bajo": [
+    },
     {
       "example_index": 2,
       "example_id": "651695544da4",
@@ -5135,19 +5133,21 @@
       "occurrence_ids": []
     }
   ],
-  "disculpa|disculpa": [
+  "disculpa|disculpar": [
     {
       "example_index": 0,
       "example_id": "66e0a3179b34",
       "occurrence_ids": []
     }
   ],
-  "divertido|divertido": [
+  "divertido|divertir": [
     {
       "example_index": 1,
       "example_id": "21d34a1afa9f",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "divertido|divertido": [
     {
       "example_index": 2,
       "example_id": "a491ec4f1617",
@@ -5171,7 +5171,7 @@
       "occurrence_ids": []
     }
   ],
-  "llamas|llama": [
+  "llamas|llamar": [
     {
       "example_index": 2,
       "example_id": "ee32c4cdd09e",
@@ -5223,20 +5223,22 @@
       "occurrence_ids": []
     }
   ],
-  "media|media": [
+  "media|medio": [
     {
       "example_index": 0,
       "example_id": "397723f7cbe1",
       "occurrence_ids": []
     },
     {
-      "example_index": 1,
-      "example_id": "a5c80f6e26f6",
-      "occurrence_ids": []
-    },
-    {
       "example_index": 2,
       "example_id": "f324f8cf2bf1",
+      "occurrence_ids": []
+    }
+  ],
+  "media|media": [
+    {
+      "example_index": 1,
+      "example_id": "a5c80f6e26f6",
       "occurrence_ids": []
     }
   ],
@@ -6302,7 +6304,9 @@
       "example_index": 1,
       "example_id": "835fe10fd0c4",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "intento|intento": [
     {
       "example_index": 2,
       "example_id": "b85e25e0cc24",
@@ -7692,7 +7696,9 @@
       "example_index": 1,
       "example_id": "96760ab7de91",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "cambiado|cambiado": [
     {
       "example_index": 2,
       "example_id": "7d5ac025c681",
@@ -7797,7 +7803,9 @@
       "example_index": 1,
       "example_id": "c8d2b96788dd",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "nota|notar": [
     {
       "example_index": 2,
       "example_id": "fab993d7d92b",
@@ -8102,12 +8110,14 @@
       "occurrence_ids": []
     }
   ],
-  "tiro|tiro": [
+  "tiro|tirar": [
     {
       "example_index": 0,
       "example_id": "3ea7c8da093b",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "tiro|tiro": [
     {
       "example_index": 1,
       "example_id": "4038c477d4cd",
@@ -8508,20 +8518,22 @@
       "occurrence_ids": []
     }
   ],
-  "herido|herir": [
+  "herido|herido": [
     {
       "example_index": 0,
       "example_id": "063ff1dd320f",
       "occurrence_ids": []
     },
     {
-      "example_index": 1,
-      "example_id": "2ea988739388",
-      "occurrence_ids": []
-    },
-    {
       "example_index": 2,
       "example_id": "324b04872e41",
+      "occurrence_ids": []
+    }
+  ],
+  "herido|herir": [
+    {
+      "example_index": 1,
+      "example_id": "2ea988739388",
       "occurrence_ids": []
     }
   ],
@@ -8585,7 +8597,7 @@
       "occurrence_ids": []
     }
   ],
-  "preparado|preparar": [
+  "preparado|preparado": [
     {
       "example_index": 0,
       "example_id": "86d20ae9483e",
@@ -9226,7 +9238,7 @@
       "occurrence_ids": []
     }
   ],
-  "cuento|cuento": [
+  "cuento|contar": [
     {
       "example_index": 2,
       "example_id": "dca39d7f4620",
@@ -9390,14 +9402,12 @@
       "occurrence_ids": []
     }
   ],
-  "paga|paga": [
+  "paga|pagar": [
     {
       "example_index": 0,
       "example_id": "4692ef534b89",
       "occurrence_ids": []
-    }
-  ],
-  "paga|pagar": [
+    },
     {
       "example_index": 1,
       "example_id": "a81ac6f7a478",
@@ -10106,7 +10116,7 @@
       "occurrence_ids": []
     }
   ],
-  "lucha|luchar": [
+  "lucha|lucha": [
     {
       "example_index": 0,
       "example_id": "58a905593ae4",
@@ -10146,17 +10156,19 @@
       "occurrence_ids": []
     },
     {
-      "example_index": 1,
-      "example_id": "8b6cf448bfec",
-      "occurrence_ids": []
-    },
-    {
       "example_index": 2,
       "example_id": "aa4043fee362",
       "occurrence_ids": []
     }
   ],
-  "pago|pagar": [
+  "olvidado|olvidado": [
+    {
+      "example_index": 1,
+      "example_id": "8b6cf448bfec",
+      "occurrence_ids": []
+    }
+  ],
+  "pago|pago": [
     {
       "example_index": 1,
       "example_id": "c3b1f6ebe737",
@@ -10711,7 +10723,7 @@
       "occurrence_ids": []
     }
   ],
-  "decidido|decidido": [
+  "decidido|decidir": [
     {
       "example_index": 0,
       "example_id": "9d68232c4e93",
@@ -10988,7 +11000,7 @@
       "occurrence_ids": []
     }
   ],
-  "toque|toque": [
+  "toque|tocar": [
     {
       "example_index": 1,
       "example_id": "d42d1735b070",
@@ -11380,12 +11392,14 @@
       "occurrence_ids": []
     }
   ],
-  "asustado|asustado": [
+  "asustado|asustar": [
     {
       "example_index": 0,
       "example_id": "170bae17efdd",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "asustado|asustado": [
     {
       "example_index": 2,
       "example_id": "4ba35381757e",
@@ -11894,7 +11908,9 @@
       "example_index": 0,
       "example_id": "35291b1a3888",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "corto|cortar": [
     {
       "example_index": 2,
       "example_id": "b154a9d90e45",
@@ -13077,7 +13093,9 @@
       "example_index": 1,
       "example_id": "b5bf7bfc4319",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "comienzo|comenzar": [
     {
       "example_index": 2,
       "example_id": "e571510db8d8",
@@ -13173,7 +13191,7 @@
       "occurrence_ids": []
     }
   ],
-  "firme|firme": [
+  "firme|firmar": [
     {
       "example_index": 2,
       "example_id": "e1b276b0f007",
@@ -13185,7 +13203,9 @@
       "example_index": 1,
       "example_id": "ac67ada6780c",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "flota|flota": [
     {
       "example_index": 2,
       "example_id": "d732ed4186f6",
@@ -14276,22 +14296,22 @@
       "occurrence_ids": []
     }
   ],
-  "compra|comprar": [
+  "compra|compra": [
     {
       "example_index": 0,
       "example_id": "03c46999ebfd",
-      "occurrence_ids": []
-    }
-  ],
-  "compra|compra": [
-    {
-      "example_index": 1,
-      "example_id": "12f6ce24b8b5",
       "occurrence_ids": []
     },
     {
       "example_index": 2,
       "example_id": "f82894c08a71",
+      "occurrence_ids": []
+    }
+  ],
+  "compra|comprar": [
+    {
+      "example_index": 1,
+      "example_id": "12f6ce24b8b5",
       "occurrence_ids": []
     }
   ],
@@ -14661,7 +14681,7 @@
       "occurrence_ids": []
     }
   ],
-  "invitado|invitar": [
+  "invitado|invitado": [
     {
       "example_index": 2,
       "example_id": "11183bf91d4b",
@@ -15163,7 +15183,7 @@
       "occurrence_ids": []
     }
   ],
-  "aviso|avisar": [
+  "aviso|aviso": [
     {
       "example_index": 0,
       "example_id": "48c89e244b91",
@@ -16813,7 +16833,7 @@
       "occurrence_ids": []
     }
   ],
-  "manda|manda": [
+  "manda|mandar": [
     {
       "example_index": 2,
       "example_id": "a29061dd27a3",
@@ -17090,7 +17110,9 @@
       "example_index": 1,
       "example_id": "5d893c180722",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "seguido|seguir": [
     {
       "example_index": 2,
       "example_id": "e9a99f9d487c",
@@ -17298,7 +17320,7 @@
       "occurrence_ids": []
     }
   ],
-  "abandonado|abandonado": [
+  "abandonado|abandonar": [
     {
       "example_index": 0,
       "example_id": "13e90a6eae9b",
@@ -18326,7 +18348,7 @@
       "occurrence_ids": []
     }
   ],
-  "aprecio|aprecio": [
+  "aprecio|apreciar": [
     {
       "example_index": 0,
       "example_id": "8faffaf6d8f8",
@@ -18617,7 +18639,7 @@
       "occurrence_ids": []
     }
   ],
-  "despejado|despejar": [
+  "despejado|despejado": [
     {
       "example_index": 2,
       "example_id": "f9a892404e18",
@@ -18770,7 +18792,9 @@
       "example_index": 0,
       "example_id": "4630d1782042",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "escape|escape": [
     {
       "example_index": 1,
       "example_id": "441f7b156a9e",
@@ -19082,7 +19106,9 @@
       "example_index": 1,
       "example_id": "b92cd77628d0",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "marcas|marcar": [
     {
       "example_index": 2,
       "example_id": "e681892d9335",
@@ -19206,7 +19232,7 @@
       "occurrence_ids": []
     }
   ],
-  "pasas|pasar": [
+  "pasas|pasa": [
     {
       "example_index": 0,
       "example_id": "465d7130d4e8",
@@ -19416,7 +19442,7 @@
       "occurrence_ids": []
     }
   ],
-  "secuestro|secuestro": [
+  "secuestro|secuestrar": [
     {
       "example_index": 2,
       "example_id": "a90e9beaa7e9",
@@ -19626,7 +19652,7 @@
       "occurrence_ids": []
     }
   ],
-  "activado|activar": [
+  "activado|activado": [
     {
       "example_index": 0,
       "example_id": "555eac760316",
@@ -19744,7 +19770,7 @@
       "occurrence_ids": []
     }
   ],
-  "apuestas|apostar": [
+  "apuestas|apuesta": [
     {
       "example_index": 1,
       "example_id": "f8d973d915b4",
@@ -19972,7 +19998,7 @@
       "occurrence_ids": []
     }
   ],
-  "calmado|calmar": [
+  "calmado|calmado": [
     {
       "example_index": 0,
       "example_id": "40cee5bed193",
@@ -20226,14 +20252,12 @@
       "occurrence_ids": []
     }
   ],
-  "detenido|detenido": [
+  "detenido|detener": [
     {
       "example_index": 0,
       "example_id": "231d0f49ecd4",
       "occurrence_ids": []
-    }
-  ],
-  "detenido|detener": [
+    },
     {
       "example_index": 1,
       "example_id": "4c2930248849",
@@ -20374,7 +20398,9 @@
       "example_index": 0,
       "example_id": "75820a045517",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "encanto|encantar": [
     {
       "example_index": 1,
       "example_id": "26d294e61a8d",
@@ -20798,7 +20824,7 @@
       "occurrence_ids": []
     }
   ],
-  "logro|logro": [
+  "logro|lograr": [
     {
       "example_index": 1,
       "example_id": "a1e603e9b027",
@@ -21001,12 +21027,14 @@
       "occurrence_ids": []
     }
   ],
-  "olvido|olvidar": [
+  "olvido|olvido": [
     {
       "example_index": 0,
       "example_id": "842495ad5896",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "olvido|olvidar": [
     {
       "example_index": 1,
       "example_id": "d4d93469add7",
@@ -21037,12 +21065,14 @@
       "occurrence_ids": []
     }
   ],
-  "pagado|pagar": [
+  "pagado|pagado": [
     {
       "example_index": 0,
       "example_id": "024a7e484b56",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "pagado|pagar": [
     {
       "example_index": 1,
       "example_id": "7b5047d13efb",
@@ -21551,7 +21581,9 @@
       "example_index": 1,
       "example_id": "38298a8f2b4b",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "visitas|visitar": [
     {
       "example_index": 2,
       "example_id": "d5b135708017",
@@ -21655,7 +21687,7 @@
       "occurrence_ids": []
     }
   ],
-  "agotado|agotar": [
+  "agotado|agotado": [
     {
       "example_index": 2,
       "example_id": "d97c2b95c60c",
@@ -21688,7 +21720,7 @@
       "occurrence_ids": []
     }
   ],
-  "amado|amar": [
+  "amado|amado": [
     {
       "example_index": 0,
       "example_id": "11b15f5b3604",
@@ -21868,7 +21900,9 @@
       "example_index": 0,
       "example_id": "35539718f32d",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "bajas|bajo": [
     {
       "example_index": 2,
       "example_id": "fc442c72edd2",
@@ -22033,9 +22067,7 @@
       "example_index": 1,
       "example_id": "c7e55c2e494a",
       "occurrence_ids": []
-    }
-  ],
-  "cazas|cazar": [
+    },
     {
       "example_index": 2,
       "example_id": "ad39db691c55",
@@ -22085,12 +22117,14 @@
       "occurrence_ids": []
     }
   ],
-  "comparado|comparado": [
+  "comparado|comparar": [
     {
       "example_index": 0,
       "example_id": "c786786578c5",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "comparado|comparado": [
     {
       "example_index": 1,
       "example_id": "37981ff9b4e8",
@@ -22135,7 +22169,7 @@
       "occurrence_ids": []
     }
   ],
-  "congelado|congelar": [
+  "congelado|congelado": [
     {
       "example_index": 0,
       "example_id": "45f1c489e8da",
@@ -22319,12 +22353,14 @@
       "occurrence_ids": []
     }
   ],
-  "descarga|descarga": [
+  "descarga|descargar": [
     {
       "example_index": 0,
       "example_id": "b468bfce9602",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "descarga|descarga": [
     {
       "example_index": 1,
       "example_id": "78b171f4e675",
@@ -22355,14 +22391,14 @@
       "occurrence_ids": []
     }
   ],
-  "deseado|desear": [
+  "deseado|deseado": [
     {
       "example_index": 0,
       "example_id": "4fa505715ef7",
       "occurrence_ids": []
     }
   ],
-  "deseado|deseado": [
+  "deseado|desear": [
     {
       "example_index": 2,
       "example_id": "f1e67e9ec02d",
@@ -22558,7 +22594,7 @@
       "occurrence_ids": []
     }
   ],
-  "enterrado|enterrar": [
+  "enterrado|enterrado": [
     {
       "example_index": 2,
       "example_id": "7df828a7f3c4",
@@ -22599,14 +22635,14 @@
       "example_index": 0,
       "example_id": "4956cc85bfcd",
       "occurrence_ids": []
-    }
-  ],
-  "escondido|esconder": [
+    },
     {
       "example_index": 1,
       "example_id": "5cb8504024b7",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "escondido|esconder": [
     {
       "example_index": 2,
       "example_id": "e2d4d5c6c91b",
@@ -22834,7 +22870,9 @@
       "example_index": 0,
       "example_id": "b97887317fba",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "juzgado|juzgado": [
     {
       "example_index": 1,
       "example_id": "0c0a1bdcc2cb",
@@ -22853,7 +22891,7 @@
       "occurrence_ids": []
     }
   ],
-  "listas|listo": [
+  "listas|lista": [
     {
       "example_index": 0,
       "example_id": "1593269c69c4",
@@ -22962,7 +23000,7 @@
       "occurrence_ids": []
     }
   ],
-  "mezcla|mezclar": [
+  "mezcla|mezcla": [
     {
       "example_index": 1,
       "example_id": "7cd833d01984",
@@ -23187,9 +23225,7 @@
       "example_index": 0,
       "example_id": "78feb73e4c01",
       "occurrence_ids": []
-    }
-  ],
-  "prometido|prometer": [
+    },
     {
       "example_index": 1,
       "example_id": "68dd77e9ae18",
@@ -23351,7 +23387,7 @@
       "occurrence_ids": []
     }
   ],
-  "salto|saltar": [
+  "salto|salto": [
     {
       "example_index": 0,
       "example_id": "45b5eb9c1da2",
@@ -23363,12 +23399,14 @@
       "occurrence_ids": []
     }
   ],
-  "saludo|saludar": [
+  "saludo|saludo": [
     {
       "example_index": 0,
       "example_id": "5518a680866a",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "saludo|saludar": [
     {
       "example_index": 2,
       "example_id": "cfb262a0ff5d",
@@ -23428,7 +23466,9 @@
       "example_index": 1,
       "example_id": "87029df36561",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "secuestrado|secuestrado": [
     {
       "example_index": 2,
       "example_id": "deb141cb59ab",
@@ -23562,7 +23602,7 @@
       "occurrence_ids": []
     }
   ],
-  "tejido|tejer": [
+  "tejido|tejido": [
     {
       "example_index": 1,
       "example_id": "1cd7878a4eee",
@@ -23854,7 +23894,7 @@
       "occurrence_ids": []
     }
   ],
-  "afectado|afectado": [
+  "afectado|afectar": [
     {
       "example_index": 0,
       "example_id": "bcc84064e25c",
@@ -23930,19 +23970,19 @@
       "occurrence_ids": []
     }
   ],
-  "arreglado|arreglado": [
+  "arreglado|arreglar": [
     {
       "example_index": 0,
       "example_id": "cfa5deee2c36",
       "occurrence_ids": []
-    }
-  ],
-  "arreglado|arreglar": [
+    },
     {
       "example_index": 1,
       "example_id": "d83c117ba864",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "arreglado|arreglado": [
     {
       "example_index": 2,
       "example_id": "c0dee15ad6c0",
@@ -23980,14 +24020,14 @@
       "example_index": 0,
       "example_id": "5bbd35e6f147",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "asegurado|asegurar": [
     {
       "example_index": 1,
       "example_id": "3408abfbe8b5",
       "occurrence_ids": []
-    }
-  ],
-  "asegurado|asegurar": [
+    },
     {
       "example_index": 2,
       "example_id": "82cb08aefffd",
@@ -24672,7 +24712,7 @@
       "occurrence_ids": []
     }
   ],
-  "diseñado|diseñado": [
+  "diseñado|diseñar": [
     {
       "example_index": 0,
       "example_id": "ba5ff4cf2464",
@@ -24684,7 +24724,7 @@
       "occurrence_ids": []
     }
   ],
-  "diseñado|diseñar": [
+  "diseñado|diseñado": [
     {
       "example_index": 2,
       "example_id": "d851a8f3b9f9",
@@ -24904,7 +24944,7 @@
       "occurrence_ids": []
     }
   ],
-  "escrita|escribir": [
+  "escrita|escrito": [
     {
       "example_index": 1,
       "example_id": "68235b0fe030",
@@ -25282,7 +25322,7 @@
       "occurrence_ids": []
     }
   ],
-  "levantado|levantado": [
+  "levantado|levantar": [
     {
       "example_index": 0,
       "example_id": "1d6227fb64de",
@@ -25576,12 +25616,14 @@
       "occurrence_ids": []
     }
   ],
-  "mudo|mudar": [
+  "mudo|mudo": [
     {
       "example_index": 0,
       "example_id": "f56ee32093da",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "mudo|mudar": [
     {
       "example_index": 2,
       "example_id": "76acfed23fc2",
@@ -26008,9 +26050,7 @@
       "example_index": 1,
       "example_id": "6ce450f310d1",
       "occurrence_ids": []
-    }
-  ],
-  "reconocido|reconocido": [
+    },
     {
       "example_index": 2,
       "example_id": "9d9ad1ab7773",
@@ -26022,21 +26062,21 @@
       "example_index": 0,
       "example_id": "6ed1ddcb362d",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "recorrido|recorrer": [
     {
       "example_index": 2,
       "example_id": "e0cdc46d5dad",
       "occurrence_ids": []
     }
   ],
-  "refugio|refugiar": [
+  "refugio|refugio": [
     {
       "example_index": 0,
       "example_id": "3ce64b88f2ee",
       "occurrence_ids": []
-    }
-  ],
-  "refugio|refugio": [
+    },
     {
       "example_index": 2,
       "example_id": "db30a999fb4b",
@@ -26091,7 +26131,7 @@
       "occurrence_ids": []
     }
   ],
-  "retiro|retirar": [
+  "retiro|retiro": [
     {
       "example_index": 0,
       "example_id": "ab3668d7351a",
@@ -26535,7 +26575,7 @@
       "occurrence_ids": []
     }
   ],
-  "tirado|tirado": [
+  "tirado|tirar": [
     {
       "example_index": 0,
       "example_id": "1defca6ebeb5",
@@ -26823,9 +26863,7 @@
       "example_index": 1,
       "example_id": "69a0b0a60d95",
       "occurrence_ids": []
-    }
-  ],
-  "acoso|acosar": [
+    },
     {
       "example_index": 2,
       "example_id": "927c289166ae",
@@ -27238,7 +27276,7 @@
       "occurrence_ids": []
     }
   ],
-  "cargas|carga": [
+  "cargas|cargar": [
     {
       "example_index": 2,
       "example_id": "a1e877a9eefd",
@@ -27257,7 +27295,9 @@
       "example_index": 0,
       "example_id": "79065fee3e14",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "castigado|castigado": [
     {
       "example_index": 1,
       "example_id": "740425571bca",
@@ -27642,7 +27682,9 @@
       "example_index": 0,
       "example_id": "5aa1a111af2d",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "cría|cría": [
     {
       "example_index": 1,
       "example_id": "dc530e345f61",
@@ -27673,12 +27715,14 @@
       "occurrence_ids": []
     }
   ],
-  "curado|curar": [
+  "curado|curado": [
     {
       "example_index": 0,
       "example_id": "89b6de034b32",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "curado|curar": [
     {
       "example_index": 2,
       "example_id": "7c1784f9f493",
@@ -27730,14 +27774,14 @@
       "occurrence_ids": []
     }
   ],
-  "declarado|declarado": [
+  "declarado|declarar": [
     {
       "example_index": 0,
       "example_id": "590f70e6e332",
       "occurrence_ids": []
     }
   ],
-  "declarado|declarar": [
+  "declarado|declarado": [
     {
       "example_index": 1,
       "example_id": "78aeae57cc3c",
@@ -27860,9 +27904,7 @@
       "example_index": 0,
       "example_id": "fcdea53f4926",
       "occurrence_ids": []
-    }
-  ],
-  "despido|despido": [
+    },
     {
       "example_index": 2,
       "example_id": "6f879264d98f",
@@ -28171,14 +28213,12 @@
       "occurrence_ids": []
     }
   ],
-  "estimado|estimar": [
+  "estimado|estimado": [
     {
       "example_index": 0,
       "example_id": "563b19d16275",
       "occurrence_ids": []
-    }
-  ],
-  "estimado|estimado": [
+    },
     {
       "example_index": 1,
       "example_id": "0880a74ea612",
@@ -28285,12 +28325,14 @@
       "occurrence_ids": []
     }
   ],
-  "fijo|fijo": [
+  "fijo|fijar": [
     {
       "example_index": 1,
       "example_id": "23f3e9b0c8c6",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "fijo|fijo": [
     {
       "example_index": 2,
       "example_id": "d68ff143813c",
@@ -28340,7 +28382,7 @@
       "occurrence_ids": []
     }
   ],
-  "frio|freír": [
+  "frio|frío": [
     {
       "example_index": 0,
       "example_id": "a7e7bb40f655",
@@ -28565,9 +28607,7 @@
       "example_index": 1,
       "example_id": "05e57a6bdef6",
       "occurrence_ids": []
-    }
-  ],
-  "intercambio|intercambiar": [
+    },
     {
       "example_index": 2,
       "example_id": "86cda21c4468",
@@ -28708,7 +28748,7 @@
       "occurrence_ids": []
     }
   ],
-  "largas|largo": [
+  "largas|largar": [
     {
       "example_index": 0,
       "example_id": "7e7f179c0bdb",
@@ -28727,20 +28767,22 @@
       "occurrence_ids": []
     }
   ],
-  "lavado|lavar": [
+  "lavado|lavado": [
     {
       "example_index": 0,
       "example_id": "77f67d2805a3",
       "occurrence_ids": []
     },
     {
-      "example_index": 1,
-      "example_id": "d545c0707032",
-      "occurrence_ids": []
-    },
-    {
       "example_index": 2,
       "example_id": "6fc16d0d6368",
+      "occurrence_ids": []
+    }
+  ],
+  "lavado|lavar": [
+    {
+      "example_index": 1,
+      "example_id": "d545c0707032",
       "occurrence_ids": []
     }
   ],
@@ -28830,9 +28872,7 @@
       "example_index": 1,
       "example_id": "1c707ebfa886",
       "occurrence_ids": []
-    }
-  ],
-  "marcado|marcado": [
+    },
     {
       "example_index": 2,
       "example_id": "be469029f42d",
@@ -29409,7 +29449,7 @@
       "occurrence_ids": []
     }
   ],
-  "protegido|proteger": [
+  "protegido|protegido": [
     {
       "example_index": 1,
       "example_id": "80eb7c3a06f4",
@@ -29474,7 +29514,9 @@
       "example_index": 0,
       "example_id": "4f18e507fd52",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "quebrado|quebrado": [
     {
       "example_index": 2,
       "example_id": "3bc6d7c4d773",
@@ -29727,20 +29769,22 @@
       "occurrence_ids": []
     }
   ],
-  "rio|reír": [
+  "rio|río": [
     {
       "example_index": 0,
       "example_id": "00a744ac0c3e",
       "occurrence_ids": []
     },
     {
-      "example_index": 1,
-      "example_id": "0a2c33bd94c8",
-      "occurrence_ids": []
-    },
-    {
       "example_index": 2,
       "example_id": "31fecf5a97ce",
+      "occurrence_ids": []
+    }
+  ],
+  "rio|reír": [
+    {
+      "example_index": 1,
+      "example_id": "0a2c33bd94c8",
       "occurrence_ids": []
     }
   ],
@@ -29834,7 +29878,7 @@
       "occurrence_ids": []
     }
   ],
-  "sobra|sobra": [
+  "sobra|sobrar": [
     {
       "example_index": 0,
       "example_id": "a864a5ecd4a7",
@@ -29887,7 +29931,7 @@
       "occurrence_ids": []
     }
   ],
-  "soporte|soportar": [
+  "soporte|soporte": [
     {
       "example_index": 1,
       "example_id": "5169a0bde806",
@@ -30138,7 +30182,7 @@
       "occurrence_ids": []
     }
   ],
-  "voto|voto": [
+  "voto|votar": [
     {
       "example_index": 2,
       "example_id": "d485e9c0ed1e",
@@ -30343,9 +30387,7 @@
       "example_index": 1,
       "example_id": "0779bd0f6bca",
       "occurrence_ids": []
-    }
-  ],
-  "aguante|aguante": [
+    },
     {
       "example_index": 2,
       "example_id": "c420b7346768",
@@ -30644,9 +30686,7 @@
       "example_index": 0,
       "example_id": "592972f44cb6",
       "occurrence_ids": []
-    }
-  ],
-  "asignado|asignar": [
+    },
     {
       "example_index": 1,
       "example_id": "8c005c018359",
@@ -30735,7 +30775,7 @@
       "occurrence_ids": []
     }
   ],
-  "aumento|aumento": [
+  "aumento|aumentar": [
     {
       "example_index": 2,
       "example_id": "e6c61316a55e",
@@ -31059,12 +31099,14 @@
       "occurrence_ids": []
     }
   ],
-  "cogido|coger": [
+  "cogido|cogido": [
     {
       "example_index": 1,
       "example_id": "f339461045f4",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "cogido|coger": [
     {
       "example_index": 2,
       "example_id": "a9ddfa195957",
@@ -31365,14 +31407,12 @@
       "occurrence_ids": []
     }
   ],
-  "creído|creído": [
+  "creído|creer": [
     {
       "example_index": 0,
       "example_id": "fa6e2a132511",
       "occurrence_ids": []
-    }
-  ],
-  "creído|creer": [
+    },
     {
       "example_index": 2,
       "example_id": "660e84770fad",
@@ -31636,7 +31676,7 @@
       "occurrence_ids": []
     }
   ],
-  "despegue|despegar": [
+  "despegue|despegue": [
     {
       "example_index": 1,
       "example_id": "c5885e8182c2",
@@ -31864,9 +31904,7 @@
       "example_index": 0,
       "example_id": "094939f58c41",
       "occurrence_ids": []
-    }
-  ],
-  "empuje|empujar": [
+    },
     {
       "example_index": 1,
       "example_id": "156a081d925a",
@@ -31997,12 +32035,14 @@
       "occurrence_ids": []
     }
   ],
-  "expulsado|expulsar": [
+  "expulsado|expulsado": [
     {
       "example_index": 0,
       "example_id": "75430c3f0105",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "expulsado|expulsar": [
     {
       "example_index": 2,
       "example_id": "b0522b173468",
@@ -32136,7 +32176,7 @@
       "occurrence_ids": []
     }
   ],
-  "firmas|firma": [
+  "firmas|firmar": [
     {
       "example_index": 2,
       "example_id": "84e564b7b681",
@@ -32169,7 +32209,7 @@
       "occurrence_ids": []
     }
   ],
-  "forzado|forzado": [
+  "forzado|forzar": [
     {
       "example_index": 1,
       "example_id": "d351d369d9f1",
@@ -32181,7 +32221,9 @@
       "example_index": 0,
       "example_id": "1709033f80f9",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "fracasado|fracasado": [
     {
       "example_index": 1,
       "example_id": "8751665535f8",
@@ -32260,13 +32302,15 @@
       "occurrence_ids": []
     },
     {
-      "example_index": 1,
-      "example_id": "4c376743646f",
-      "occurrence_ids": []
-    },
-    {
       "example_index": 2,
       "example_id": "a42b4f017fda",
+      "occurrence_ids": []
+    }
+  ],
+  "gasto|gasto": [
+    {
+      "example_index": 1,
+      "example_id": "4c376743646f",
       "occurrence_ids": []
     }
   ],
@@ -32392,7 +32436,7 @@
       "occurrence_ids": []
     }
   ],
-  "incluido|incluir": [
+  "incluido|incluido": [
     {
       "example_index": 2,
       "example_id": "c98b8e4660d0",
@@ -32502,12 +32546,14 @@
       "occurrence_ids": []
     }
   ],
-  "invertido|invertir": [
+  "invertido|invertido": [
     {
       "example_index": 0,
       "example_id": "1f0751977308",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "invertido|invertir": [
     {
       "example_index": 1,
       "example_id": "80d90a043b79",
@@ -32616,7 +32662,7 @@
       "occurrence_ids": []
     }
   ],
-  "libra|libra": [
+  "libra|librar": [
     {
       "example_index": 1,
       "example_id": "c22bdbf60cdf",
@@ -32778,7 +32824,7 @@
       "occurrence_ids": []
     }
   ],
-  "matemática|matemática": [
+  "matemática|matemático": [
     {
       "example_index": 1,
       "example_id": "690304c437b5",
@@ -33009,14 +33055,14 @@
       "occurrence_ids": []
     }
   ],
-  "obligado|obligado": [
+  "obligado|obligar": [
     {
       "example_index": 0,
       "example_id": "573f02ec46bb",
       "occurrence_ids": []
     }
   ],
-  "obligado|obligar": [
+  "obligado|obligado": [
     {
       "example_index": 1,
       "example_id": "9b53edf26795",
@@ -33040,12 +33086,14 @@
       "occurrence_ids": []
     }
   ],
-  "oculta|ocultar": [
+  "oculta|oculto": [
     {
       "example_index": 1,
       "example_id": "c1d8775dbc42",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "oculta|ocultar": [
     {
       "example_index": 2,
       "example_id": "204d7e1dd6dd",
@@ -33186,14 +33234,14 @@
       "occurrence_ids": []
     }
   ],
-  "pasadas|pasada": [
+  "pasadas|pasado": [
     {
       "example_index": 1,
       "example_id": "b3ef89ab98f5",
       "occurrence_ids": []
     }
   ],
-  "pasadas|pasado": [
+  "pasadas|pasar": [
     {
       "example_index": 2,
       "example_id": "c273537890e7",
@@ -33228,7 +33276,7 @@
       "occurrence_ids": []
     }
   ],
-  "pegado|pegar": [
+  "pegado|pegado": [
     {
       "example_index": 0,
       "example_id": "1a343f7b758a",
@@ -33473,14 +33521,14 @@
       "occurrence_ids": []
     }
   ],
-  "queja|queja": [
+  "queja|quejar": [
     {
       "example_index": 0,
       "example_id": "77da86bcf075",
       "occurrence_ids": []
     }
   ],
-  "queja|quejar": [
+  "queja|queja": [
     {
       "example_index": 1,
       "example_id": "88d1339d68a0",
@@ -33499,7 +33547,7 @@
       "occurrence_ids": []
     }
   ],
-  "quiebra|quiebra": [
+  "quiebra|quebrar": [
     {
       "example_index": 1,
       "example_id": "d9dd50324840",
@@ -33573,12 +33621,14 @@
       "occurrence_ids": []
     }
   ],
-  "rechazo|rechazo": [
+  "rechazo|rechazar": [
     {
       "example_index": 0,
       "example_id": "047452b70aae",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "rechazo|rechazo": [
     {
       "example_index": 1,
       "example_id": "7216d02f2a8e",
@@ -33818,7 +33868,7 @@
       "occurrence_ids": []
     }
   ],
-  "salva|salvo": [
+  "salva|salvar": [
     {
       "example_index": 0,
       "example_id": "11c8638dfbb7",
@@ -33979,7 +34029,7 @@
       "occurrence_ids": []
     }
   ],
-  "sujeta|sujeto": [
+  "sujeta|sujetar": [
     {
       "example_index": 0,
       "example_id": "13c07176ab58",
@@ -34508,7 +34558,7 @@
       "occurrence_ids": []
     }
   ],
-  "amenazado|amenazar": [
+  "amenazado|amenazado": [
     {
       "example_index": 2,
       "example_id": "b89487619de2",
@@ -34544,7 +34594,7 @@
       "occurrence_ids": []
     }
   ],
-  "analítica|analítica": [
+  "analítica|analítico": [
     {
       "example_index": 0,
       "example_id": "72eb051cbc7d",
@@ -35017,14 +35067,12 @@
       "occurrence_ids": []
     }
   ],
-  "choque|chocar": [
+  "choque|choque": [
     {
       "example_index": 0,
       "example_id": "b20d5ced78c5",
       "occurrence_ids": []
-    }
-  ],
-  "choque|choque": [
+    },
     {
       "example_index": 2,
       "example_id": "ded4cb87146a",
@@ -35268,7 +35316,9 @@
       "example_index": 1,
       "example_id": "cf0937567665",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "construido|construido": [
     {
       "example_index": 2,
       "example_id": "d8c7b3bc1f27",
@@ -35650,9 +35700,7 @@
       "example_index": 0,
       "example_id": "0e4619426106",
       "occurrence_ids": []
-    }
-  ],
-  "destrozado|destrozado": [
+    },
     {
       "example_index": 1,
       "example_id": "cc1127935223",
@@ -36090,14 +36138,14 @@
       "occurrence_ids": []
     }
   ],
-  "entrenado|entrenado": [
+  "entrenado|entrenar": [
     {
       "example_index": 0,
       "example_id": "09448c204483",
       "occurrence_ids": []
     }
   ],
-  "entrenado|entrenar": [
+  "entrenado|entrenado": [
     {
       "example_index": 2,
       "example_id": "adc66ec2f723",
@@ -36118,7 +36166,7 @@
       "occurrence_ids": []
     }
   ],
-  "envío|envío": [
+  "envío|enviar": [
     {
       "example_index": 0,
       "example_id": "87ebc97eec74",
@@ -36625,7 +36673,7 @@
       "occurrence_ids": []
     }
   ],
-  "grito|grito": [
+  "grito|gritar": [
     {
       "example_index": 2,
       "example_id": "864d820ac584",
@@ -36720,7 +36768,7 @@
       "occurrence_ids": []
     }
   ],
-  "identificado|identificado": [
+  "identificado|identificar": [
     {
       "example_index": 0,
       "example_id": "c4d61d0caf2d",
@@ -36730,7 +36778,9 @@
       "example_index": 1,
       "example_id": "659c49034df0",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "identificado|identificado": [
     {
       "example_index": 2,
       "example_id": "c3af7b288ad8",
@@ -36983,14 +37033,12 @@
       "occurrence_ids": []
     }
   ],
-  "lanzas|lanza": [
+  "lanzas|lanzar": [
     {
       "example_index": 0,
       "example_id": "c62cfcb5739f",
       "occurrence_ids": []
-    }
-  ],
-  "lanzas|lanzar": [
+    },
     {
       "example_index": 1,
       "example_id": "070ef804736d",
@@ -37231,12 +37279,14 @@
       "occurrence_ids": []
     }
   ],
-  "montado|montar": [
+  "montado|montado": [
     {
       "example_index": 0,
       "example_id": "04bb08264a33",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "montado|montar": [
     {
       "example_index": 1,
       "example_id": "2b674a245076",
@@ -37320,19 +37370,19 @@
       "occurrence_ids": []
     }
   ],
-  "necesitado|necesitar": [
+  "necesitado|necesitado": [
     {
       "example_index": 0,
       "example_id": "d17f6acddf24",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "necesitado|necesitar": [
     {
       "example_index": 1,
       "example_id": "fe26d719d9d4",
       "occurrence_ids": []
-    }
-  ],
-  "necesitado|necesitado": [
+    },
     {
       "example_index": 2,
       "example_id": "f06dcbdb97fc",
@@ -37512,7 +37562,7 @@
       "occurrence_ids": []
     }
   ],
-  "papito|papito": [
+  "papito|papá": [
     {
       "example_index": 1,
       "example_id": "5811f6e73709",
@@ -38094,14 +38144,14 @@
       "occurrence_ids": []
     }
   ],
-  "resuelto|resolver": [
+  "resuelto|resuelto": [
     {
       "example_index": 0,
       "example_id": "d2aaff51d2ae",
       "occurrence_ids": []
     }
   ],
-  "resuelto|resuelto": [
+  "resuelto|resolver": [
     {
       "example_index": 1,
       "example_id": "571ce9a7ce6b",
@@ -38144,14 +38194,12 @@
       "occurrence_ids": []
     }
   ],
-  "retrasado|retrasar": [
+  "retrasado|retrasado": [
     {
       "example_index": 0,
       "example_id": "1f834554a938",
       "occurrence_ids": []
-    }
-  ],
-  "retrasado|retrasado": [
+    },
     {
       "example_index": 1,
       "example_id": "5c925671b422",
@@ -38731,7 +38779,7 @@
       "occurrence_ids": []
     }
   ],
-  "traducido|traducir": [
+  "traducido|traducido": [
     {
       "example_index": 0,
       "example_id": "1cdf5f9fa1c3",
@@ -38803,7 +38851,9 @@
       "example_index": 1,
       "example_id": "d29bb8013034",
       "occurrence_ids": []
-    },
+    }
+  ],
+  "unido|unido": [
     {
       "example_index": 2,
       "example_id": "b416d1f84a05",

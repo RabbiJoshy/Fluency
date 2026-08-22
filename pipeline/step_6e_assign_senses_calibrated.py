@@ -79,13 +79,15 @@ from pipeline.util_6d_wsd_features import (  # noqa: E402
     structural_features)
 from pipeline.util_6e_leaf_selection import (  # noqa: E402
     companion_of, companion_satisfied, renderable, select_display_leaf)
+from pipeline.util_6a_pos_menu_filter import (  # noqa: E402
+    sense_compatible_bridged)
 
 LAYERS_DIR = REPO / "Data/Spanish/layers"
-METHOD = "spanishdict-beto-cal-v3"
-PROMPT_ID = "sd-beto-cal-v3"
+METHOD = "spanishdict-beto-cal-v5"
+PROMPT_ID = "sd-beto-cal-v5"
 # Escalated picks carry their own id: a Gemini-authored claim is different
 # evidence from a locally-scored one and must stay separable in provenance.
-PROMPT_ID_ESC = "sd-beto-cal-esc-v3"
+PROMPT_ID_ESC = "sd-beto-cal-esc-v5"
 ESC_MODEL = "gemini-3.5-flash-lite"
 BG_N, BG_K = 1200, 40
 # P(correct) cuts, derived from the calibrator's own held-out curve at train time
@@ -273,6 +275,26 @@ def main():
                          "the ratio above is AFTER those fixes -- it is the flag's "
                          "honest score, not a broken one. Needs a graded sample where "
                          "fixes clearly exceed breaks, or removal.")
+    ap.add_argument("--menu-prior", type=float, default=0.02,
+                    help="head start for senses earlier in the SpanishDict menu, "
+                         "which is ordered commonest-first. Added to the cosine as "
+                         "PRIOR*DECAY^rank. Measured on 144 hand-labelled "
+                         "OpenSubtitles sentences: 0 -> 65.3%%, 0.02 -> 84.7%%. Do "
+                         "NOT raise it much: the score is a dial between the "
+                         "sentence and the dictionary's ordering, and by 0.05 rare "
+                         "senses (the true sense is not the top entry) collapse "
+                         "from 54%% to 19%% while overall barely moves. 0.02 holds "
+                         "them at 58%% WITH --pos-filter on. 0 restores v3.")
+    ap.add_argument("--menu-prior-decay", type=float, default=0.5,
+                    help="geometric decay of the menu prior down the list")
+    ap.add_argument("--pos-filter", default="on", choices=["off", "on"],
+                    help="prune leaves whose part of speech contradicts the tag "
+                         "spaCy gave THIS occurrence (Data/.../example_pos.json, "
+                         "written by tool_6a_tag_example_pos). step_6b and step_6c "
+                         "have always done this; the v3 stack silently did not. "
+                         "It is the only signal here that raises rare-sense "
+                         "accuracy on its own (54%%->62%%), because it judges the "
+                         "token's category and has no view on sense frequency.")
     ap.add_argument("--device", default="mps")
     ap.add_argument("--max-encode", type=int, default=0,
                     help="encode at most N new sentences this run, save, and stop. "
@@ -419,7 +441,27 @@ def main():
                   f"({len(prior)} other method(s) preserved)")
         except Exception:
             out = {}
+    # POS tags for THIS layer's examples, keyed word -> example index -> POS.
+    # Absent word or absent index means "no reliable tag": the menu is left
+    # whole, which is the same conservative rule filter_menu_by_pos uses.
+    expos = {}
+    if a.pos_filter != "off":
+        ep_path = base / "example_pos.json"
+        if ep_path.exists():
+            expos = json.loads(ep_path.read_text(encoding="utf-8"))
+            cov = sum(1 for w in words for i in range(len(examples[w]))
+                      if str(i) in (expos.get(w) or {}))
+            print(f"POS filter ON: {cov:,} of {n_ex:,} examples carry a tag "
+                  f"({cov/max(n_ex,1):.0%})")
+        else:
+            print(f"POS filter requested but {display_path(ep_path)} is missing — "
+                  f"run tool_6a_tag_example_pos.py. Continuing without it.")
+    if a.menu_prior:
+        print(f"menu prior ON: +{a.menu_prior:g} * {a.menu_prior_decay:g}^rank "
+              f"on the SpanishDict menu order")
+
     bands, gated, tok_used, releaf = collections.Counter(), 0, 0, 0
+    pos_filtered = 0
     voted = 0
     vote_suppressed = 0
     per_word, leaf_ctx = {}, {}
@@ -457,15 +499,47 @@ def main():
             except KeyError:
                 TP = None
 
+        # SpanishDict lists a word's senses commonest-first, and that ordering is
+        # the strongest single signal on real speech: on the 144-item labelled
+        # OpenSubtitles panel the true sense is the FIRST menu entry 82% of the
+        # time, against a mean menu of 8.3. The gloss argmax alone scores 65%
+        # there because every sense starts equal, so `esta` in "¿Qué haremos esta
+        # noche?" reached leaf 13, `este` (INTJ) "um".
+        #
+        # This was measured as useless in 2026-08 and the measurement was run on
+        # the one corpus where it cannot help: the 24,675-item dictionary gold is
+        # every sense's own example sentence, 1.02 examples per sense, so the
+        # gold is UNIFORM over senses by construction and a frequency prior has
+        # nothing to predict. See util_6d_wsd_features.build's `menu_pos` note,
+        # which rejects it as a calibrator feature -- that rejection still holds,
+        # and is a different claim from this one. A prior belongs in the SCORE,
+        # not in the confidence.
+        prior = a.menu_prior * (a.menu_prior_decay ** np.arange(len(sids),
+                                                                dtype=np.float32))
         picks = []
         for j, c in enumerate(examples[w]):
             row = C[j]
-            grow = row
+            grow = row + prior if a.menu_prior else row
             if a.gate != "off" and refl_amb:
                 ev = reflexive_evidence(ex_surface(c, w), ex_text(c), a.gate)
                 if ev is not None and (is_se == ev).any():
-                    grow = np.where(is_se == ev, row, row.min() - 1.0)
+                    grow = np.where(is_se == ev, grow, grow.min() - 1.0)
                     gated += 1
+            # ---- POS filter: the tagger already knows this token's part of
+            # speech, and step_6b/step_6c have always used it. The v3 stack
+            # dropped it. It is the only signal measured here that raises
+            # RARE-sense accuracy (54%->62% alone on the panel), because it rules
+            # out wrong-category leaves without any view on how common they are
+            # -- which is exactly what the prior needs beside it: with the prior
+            # alone rare senses fall to 46%, with both they hold at 58%.
+            if a.pos_filter != "off":
+                ep = expos.get(w, {}).get(str(j)) or expos.get(w, {}).get(j)
+                if ep:
+                    keep = np.array([bool(sense_compatible_bridged(
+                        menus[w][s].get("pos"), ep)) for s in sids])
+                    if keep.any() and not keep.all():
+                        grow = np.where(keep, grow, grow.min() - 1.0)
+                        pos_filtered += 1
 
             k = int(np.argmax(grow))
             # ---- BETO decides the tuple, the gloss embedding decides the leaf
@@ -530,7 +604,10 @@ def main():
         # Kept so leaf selection can run once, AFTER escalation has had its say:
         # Gemini picks a raw leaf off the same menu and lands on empty glosses
         # too, so gating only the embedding pick would leave half the defect.
-        leaf_ctx[w] = (sids, tid, C)
+        # Leaf repair scores with the SAME matrix the pick used, prior included.
+        # Otherwise a repair inside the won tuple silently reverts to raw cosine
+        # and can undo the prior on the one leaf it touches.
+        leaf_ctx[w] = (sids, tid, (C + prior[None, :]) if a.menu_prior else C)
 
     # ---- escalate the weak band to Gemini
     esc_of = {}
@@ -647,6 +724,8 @@ def main():
     n = sum(len(v) for v in per_word.values())
     print(f"\nassigned {n:,} examples across {len(out):,} words  [{METHOD}]")
     print(f"  clitic gate fired on {gated:,}")
+    print(f"  POS filter pruned the menu on {pos_filtered:,} "
+          f"({pos_filtered/max(n,1):.0%})")
     print(f"  BETO decided the tuple on {voted:,} ({voted/max(n,1):.0%})")
     if a.tuple_vote == "beto":
         print(f"  BETO overrides suppressed by --tuple-vote-min-gap "

@@ -1,5 +1,16 @@
 # WSD dead ends — measured, not guessed
 
+> **2026-08-22: one entry on this list was wrong, and it was wrong for a reason
+> that invalidates how everything else here was measured.** The canonical
+> 24,675-item gold is every SpanishDict sense's OWN example sentence — 1.02
+> examples per sense, 23,636 senses contributing exactly one. It is UNIFORM over
+> senses by construction. A sense-frequency prior therefore has nothing to
+> predict on it and cannot possibly help, which is why `menu_pos` was rejected.
+> On 144 hand-labelled OpenSubtitles sentences the true sense is the FIRST menu
+> entry **82%** of the time and the shipped gloss argmax scored **65%**. The
+> prior is now stage 0 of v5. Before trusting any row below, ask whether it was
+> measured on the dictionary gold and whether that gold can see the effect.
+
 Every entry here was implemented and measured. Re-running one costs a day and
 returns the same answer. The canonical accuracy split it all sits against, on
 24,675 SpanishDict gold items:
@@ -27,6 +38,15 @@ an attempt to move the leaf number, and almost nothing does.
 | **Sense cue words** — frontier model lists 3-6 Spanish collocates per sense, matched lexically against the sentence (discrete, so it cannot dilute a vector) | Fires on 17%, and 0 fixes / 3 breaks on graded cards. Matches are presence without RELATION: `Apaga eso para poder comer` picked *to wane* because "poder" is a cue for the power sense but is the verb here; `callejón sin salida` picked *passage* on "salida". Spanish sentences are short enough that bare co-occurrence is near-random. First attempt also had the model return inflected forms of the target itself as cues (`agradecería` -> `agradece, agradecen`), which always match. |
 | **Sense enrichment blended** (alpha=0.8 gloss / 0.2 description) | 3 good / 2 bad / 3 neutral on 8 graded changes -- better than replacing (5/11) but unresolved at that sample size. The dilution diagnosis is right; keeping the gloss dominant recovers most of it. Left open rather than shipped. |
 | **Alignment guards** — clause/relative-position and translation-length constraints on the aligned-English signal | No effect: 4.1 → 4.4 fix:break at best, dropping fixes as fast as breaks. |
+
+## Corrected 2026-08-22
+
+| attempt | earlier verdict | what it actually is |
+|---|---|---|
+| **Menu-position prior** | rejected twice (as a standalone prior and as a calibrator feature) | **Correct as a calibrator feature, wrong as a score term.** Both rejections were measured on the uniform-over-senses dictionary gold. In the SCORE, `+0.02 * 0.5^rank` takes the OpenSubtitles panel 65.3% -> 84.7%. A prior belongs in the score, not in the confidence — the calibrator rejection still stands and is a different claim. |
+| **POS menu filter** | abandoned as "not good enough; fails when most needed" | **A tagset mismatch, not tagger error.** spaCy is Universal Dependencies; SpanishDict publishes 17 DET senses in 96,279 and files determiners/possessives as ADJ. The filter read "tagged DET, sense is ADJ" as a contradiction and deleted the correct sense on `esta`, `este`, `otro`, `mío`, `nuestros` — the commonest words in the corpus, hence "when most needed". Unbridged: fires on 70 of 144 panel items, kills every acceptable sense on 7 (10%). Bridged (`sense_compatible_bridged`): 63 fires, 1 kill (2%), worth +2.8pp. A better tagger was NOT the answer — `es_dep_news_trf` already scores 12/12 on a hard ambiguous-surface probe where `es_core_news_lg` scores 8/12. |
+| **Per-word z-scoring of the cosines** before the prior | untried | Measured and rejected: 77.8% at best against 84.7% for raw cosine + prior. The per-word spread carries information; flattening it destroys it. |
+| **Subtracting the word's mean corpus context** from each gloss score | untried | NOT tested — `examples_raw.json` keeps only 3 sentences per word and the larger sentence bank is unembedded. Open, not dead. |
 
 ## The pattern
 

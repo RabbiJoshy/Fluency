@@ -660,7 +660,7 @@
   "palabra|palabra": [
     2
   ],
-  "pasado|pasado": [
+  "pasado|pasar": [
     2
   ],
   "podrías|poder": [
@@ -1030,8 +1030,10 @@
   "humano|humano": [
     0
   ],
+  "paso|pasar": [
+    0
+  ],
   "paso|paso": [
-    0,
     1
   ],
   "sol|sol": [
@@ -1216,7 +1218,7 @@
     1,
     2
   ],
-  "trato|tratar": [
+  "trato|trato": [
     0
   ],
   "cambio|cambio": [
@@ -1296,7 +1298,7 @@
   "hablas|habla": [
     0
   ],
-  "odio|odiar": [
+  "odio|odio": [
     1
   ],
   "principio|principio": [
@@ -1387,7 +1389,7 @@
     0,
     2
   ],
-  "llamado|llamado": [
+  "llamado|llamar": [
     0
   ],
   "oído|oír": [
@@ -1436,10 +1438,10 @@
     0,
     1
   ],
-  "preguntas|pregunta": [
+  "preguntas|preguntar": [
     0
   ],
-  "preguntas|preguntar": [
+  "preguntas|pregunta": [
     2
   ],
   "sientes|sentir": [
@@ -1499,10 +1501,8 @@
   ],
   "querido|querer": [
     0,
+    1,
     2
-  ],
-  "querido|querido": [
-    1
   ],
   "contar|contar": [
     0
@@ -1621,7 +1621,7 @@
     0,
     2
   ],
-  "traje|traje": [
+  "traje|traer": [
     1
   ],
   "últimos|último": [
@@ -1826,9 +1826,7 @@
     1
   ],
   "baja|baja": [
-    1
-  ],
-  "baja|bajo": [
+    1,
     2
   ],
   "bala|bala": [
@@ -1839,11 +1837,13 @@
     1,
     2
   ],
-  "disculpa|disculpa": [
+  "disculpa|disculpar": [
     0
   ],
+  "divertido|divertir": [
+    1
+  ],
   "divertido|divertido": [
-    1,
     2
   ],
   "joder|joder": [
@@ -1851,7 +1851,7 @@
     1,
     2
   ],
-  "llamas|llama": [
+  "llamas|llamar": [
     2
   ],
   "querida|querido": [
@@ -1871,10 +1871,12 @@
   "lleve|llevar": [
     2
   ],
-  "media|media": [
+  "media|medio": [
     0,
-    1,
     2
+  ],
+  "media|media": [
+    1
   ],
   "negocios|negociar": [
     2
@@ -2250,7 +2252,9 @@
     2
   ],
   "intento|intentar": [
-    1,
+    1
+  ],
+  "intento|intento": [
     2
   ],
   "local|local": [
@@ -2744,7 +2748,9 @@
   ],
   "cambiado|cambiar": [
     0,
-    1,
+    1
+  ],
+  "cambiado|cambiado": [
     2
   ],
   "conseguí|conseguir": [
@@ -2781,7 +2787,9 @@
     1
   ],
   "nota|nota": [
-    1,
+    1
+  ],
+  "nota|notar": [
     2
   ],
   "pasamos|pasar": [
@@ -2890,8 +2898,10 @@
     1,
     2
   ],
+  "tiro|tirar": [
+    0
+  ],
   "tiro|tiro": [
-    0,
     1,
     2
   ],
@@ -3032,10 +3042,12 @@
     1,
     2
   ],
-  "herido|herir": [
+  "herido|herido": [
     0,
-    1,
     2
+  ],
+  "herido|herir": [
+    1
   ],
   "larga|largo": [
     0,
@@ -3057,7 +3069,7 @@
   "pensamientos|pensamiento": [
     2
   ],
-  "preparado|preparar": [
+  "preparado|preparado": [
     0
   ],
   "rompió|romper": [
@@ -3294,7 +3306,7 @@
     0,
     1
   ],
-  "cuento|cuento": [
+  "cuento|contar": [
     2
   ],
   "deba|deber": [
@@ -3354,10 +3366,8 @@
   "opinas|opinar": [
     1
   ],
-  "paga|paga": [
-    0
-  ],
   "paga|pagar": [
+    0,
     1,
     2
   ],
@@ -3598,7 +3608,7 @@
     0,
     2
   ],
-  "lucha|luchar": [
+  "lucha|lucha": [
     0
   ],
   "magnífico|magnífico": [
@@ -3613,10 +3623,12 @@
   ],
   "olvidado|olvidar": [
     0,
-    1,
     2
   ],
-  "pago|pagar": [
+  "olvidado|olvidado": [
+    1
+  ],
+  "pago|pago": [
     1,
     2
   ],
@@ -3823,7 +3835,7 @@
   "cuesta|costar": [
     1
   ],
-  "decidido|decidido": [
+  "decidido|decidir": [
     0
   ],
   "desaparece|desaparecer": [
@@ -3920,7 +3932,7 @@
   "terreno|terreno": [
     2
   ],
-  "toque|toque": [
+  "toque|tocar": [
     1,
     2
   ],
@@ -4056,8 +4068,10 @@
     1,
     2
   ],
+  "asustado|asustar": [
+    0
+  ],
   "asustado|asustado": [
-    0,
     2
   ],
   "calla|callar": [
@@ -4234,7 +4248,9 @@
     1
   ],
   "corto|corto": [
-    0,
+    0
+  ],
+  "corto|cortar": [
     2
   ],
   "demasiada|demasiado": [
@@ -4645,7 +4661,9 @@
     2
   ],
   "comienzo|comienzo": [
-    1,
+    1
+  ],
+  "comienzo|comenzar": [
     2
   ],
   "compras|compra": [
@@ -4677,11 +4695,13 @@
     0,
     1
   ],
-  "firme|firme": [
+  "firme|firmar": [
     2
   ],
   "flota|flotar": [
-    1,
+    1
+  ],
+  "flota|flota": [
     2
   ],
   "fué|ir": [
@@ -5064,12 +5084,12 @@
   "completa|completo": [
     2
   ],
-  "compra|comprar": [
-    0
-  ],
   "compra|compra": [
-    1,
+    0,
     2
+  ],
+  "compra|comprar": [
+    1
   ],
   "considerando|considerar": [
     0,
@@ -5197,7 +5217,7 @@
   "intenciones|intención": [
     0
   ],
-  "invitado|invitar": [
+  "invitado|invitado": [
     2
   ],
   "lanzar|lanzar": [
@@ -5379,7 +5399,7 @@
   "autopsia|autopsia": [
     1
   ],
-  "aviso|avisar": [
+  "aviso|aviso": [
     0
   ],
   "bancos|banco": [
@@ -5949,7 +5969,7 @@
   "maestra|maestro": [
     0
   ],
-  "manda|manda": [
+  "manda|mandar": [
     2
   ],
   "mientes|mentir": [
@@ -6046,7 +6066,9 @@
   ],
   "seguido|seguido": [
     0,
-    1,
+    1
+  ],
+  "seguido|seguir": [
     2
   ],
   "sienten|sentir": [
@@ -6118,7 +6140,7 @@
     1,
     2
   ],
-  "abandonado|abandonado": [
+  "abandonado|abandonar": [
     0
   ],
   "acercando|acercar": [
@@ -6482,7 +6504,7 @@
   "apetito|apetito": [
     2
   ],
-  "aprecio|aprecio": [
+  "aprecio|apreciar": [
     0
   ],
   "ardiendo|arder": [
@@ -6585,7 +6607,7 @@
   "despacho|despacho": [
     2
   ],
-  "despejado|despejar": [
+  "despejado|despejado": [
     2
   ],
   "disfrutando|disfrutar": [
@@ -6638,7 +6660,9 @@
     1
   ],
   "escape|escapar": [
-    0,
+    0
+  ],
+  "escape|escape": [
     1,
     2
   ],
@@ -6750,7 +6774,9 @@
   ],
   "marcas|marca": [
     0,
-    1,
+    1
+  ],
+  "marcas|marcar": [
     2
   ],
   "matara|matar": [
@@ -6794,7 +6820,7 @@
   "papás|papá": [
     1
   ],
-  "pasas|pasar": [
+  "pasas|pasa": [
     0
   ],
   "patatas|patata": [
@@ -6868,7 +6894,7 @@
   "santuario|santuario": [
     1
   ],
-  "secuestro|secuestro": [
+  "secuestro|secuestrar": [
     2
   ],
   "sentar|sentar": [
@@ -6942,7 +6968,7 @@
   "aceptas|aceptar": [
     2
   ],
-  "activado|activar": [
+  "activado|activado": [
     0,
     1
   ],
@@ -6980,7 +7006,7 @@
     1,
     2
   ],
-  "apuestas|apostar": [
+  "apuestas|apuesta": [
     1
   ],
   "armado|armado": [
@@ -7056,7 +7082,7 @@
   "cagar|cagar": [
     0
   ],
-  "calmado|calmar": [
+  "calmado|calmado": [
     0,
     2
   ],
@@ -7150,10 +7176,8 @@
   "destruye|destruir": [
     2
   ],
-  "detenido|detenido": [
-    0
-  ],
   "detenido|detener": [
+    0,
     1,
     2
   ],
@@ -7202,7 +7226,9 @@
     1
   ],
   "encanto|encanto": [
-    0,
+    0
+  ],
+  "encanto|encantar": [
     1
   ],
   "enhorabuena|enhorabuena": [
@@ -7354,7 +7380,7 @@
     1,
     2
   ],
-  "logro|logro": [
+  "logro|lograr": [
     1
   ],
   "maestros|maestro": [
@@ -7425,8 +7451,10 @@
   "oficinas|oficina": [
     2
   ],
+  "olvido|olvido": [
+    0
+  ],
   "olvido|olvidar": [
-    0,
     1,
     2
   ],
@@ -7437,8 +7465,10 @@
     1,
     2
   ],
+  "pagado|pagado": [
+    0
+  ],
   "pagado|pagar": [
-    0,
     1
   ],
   "panel|panel": [
@@ -7615,7 +7645,9 @@
   ],
   "visitas|visita": [
     0,
-    1,
+    1
+  ],
+  "visitas|visitar": [
     2
   ],
   "vitales|vital": [
@@ -7655,7 +7687,7 @@
   "agarren|agarrar": [
     1
   ],
-  "agotado|agotar": [
+  "agotado|agotado": [
     2
   ],
   "alcanzado|alcanzar": [
@@ -7668,7 +7700,7 @@
   "amada|amado": [
     1
   ],
-  "amado|amar": [
+  "amado|amado": [
     0
   ],
   "andaba|andar": [
@@ -7728,7 +7760,9 @@
     1
   ],
   "bajas|baja": [
-    0,
+    0
+  ],
+  "bajas|bajo": [
     2
   ],
   "bajos|bajo": [
@@ -7785,9 +7819,7 @@
     2
   ],
   "cazas|caza": [
-    1
-  ],
-  "cazas|cazar": [
+    1,
     2
   ],
   "circuito|circuito": [
@@ -7805,8 +7837,10 @@
   "comercio|comercio": [
     2
   ],
+  "comparado|comparar": [
+    0
+  ],
   "comparado|comparado": [
-    0,
     1,
     2
   ],
@@ -7823,7 +7857,7 @@
   "condenada|condenado": [
     1
   ],
-  "congelado|congelar": [
+  "congelado|congelado": [
     0,
     1
   ],
@@ -7887,8 +7921,10 @@
   "desafío|desafío": [
     1
   ],
+  "descarga|descargar": [
+    0
+  ],
   "descarga|descarga": [
-    0,
     1
   ],
   "desconocidos|desconocer": [
@@ -7899,10 +7935,10 @@
   "descubrieron|descubrir": [
     0
   ],
-  "deseado|desear": [
+  "deseado|deseado": [
     0
   ],
-  "deseado|deseado": [
+  "deseado|desear": [
     2
   ],
   "desperdicio|desperdicio": [
@@ -7970,7 +8006,7 @@
   "enseñé|enseñar": [
     0
   ],
-  "enterrado|enterrar": [
+  "enterrado|enterrado": [
     2
   ],
   "enviamos|enviar": [
@@ -7983,10 +8019,10 @@
     2
   ],
   "escondido|escondido": [
-    0
+    0,
+    1
   ],
   "escondido|esconder": [
-    1,
     2
   ],
   "escotilla|escotilla": [
@@ -8070,14 +8106,16 @@
     1
   ],
   "juzgado|juzgar": [
-    0,
+    0
+  ],
+  "juzgado|juzgado": [
     1
   ],
   "lanza|lanzar": [
     0,
     2
   ],
-  "listas|listo": [
+  "listas|lista": [
     0,
     2
   ],
@@ -8118,7 +8156,7 @@
     0,
     1
   ],
-  "mezcla|mezclar": [
+  "mezcla|mezcla": [
     1
   ],
   "mirado|mirar": [
@@ -8195,9 +8233,7 @@
     2
   ],
   "prometido|prometido": [
-    0
-  ],
-  "prometido|prometer": [
+    0,
     1
   ],
   "proxima|próximo": [
@@ -8255,12 +8291,14 @@
   "ríes|reír": [
     0
   ],
-  "salto|saltar": [
+  "salto|salto": [
     0,
     2
   ],
+  "saludo|saludo": [
+    0
+  ],
   "saludo|saludar": [
-    0,
     2
   ],
   "salvación|salvación": [
@@ -8280,7 +8318,9 @@
   ],
   "secuestrado|secuestrar": [
     0,
-    1,
+    1
+  ],
+  "secuestrado|secuestrado": [
     2
   ],
   "sencilla|sencillo": [
@@ -8326,7 +8366,7 @@
   "tardaré|tardar": [
     2
   ],
-  "tejido|tejer": [
+  "tejido|tejido": [
     1
   ],
   "terminaron|terminar": [
@@ -8426,7 +8466,7 @@
     0,
     1
   ],
-  "afectado|afectado": [
+  "afectado|afectar": [
     0
   ],
   "agradecemos|agradecer": [
@@ -8454,11 +8494,11 @@
     0,
     1
   ],
-  "arreglado|arreglado": [
-    0
-  ],
   "arreglado|arreglar": [
-    1,
+    0,
+    1
+  ],
+  "arreglado|arreglado": [
     2
   ],
   "arreglaremos|arreglar": [
@@ -8472,10 +8512,10 @@
     0
   ],
   "asegurado|asegurado": [
-    0,
-    1
+    0
   ],
   "asegurado|asegurar": [
+    1,
     2
   ],
   "asesinaron|asesinar": [
@@ -8716,11 +8756,11 @@
   "discutimos|discutir": [
     2
   ],
-  "diseñado|diseñado": [
+  "diseñado|diseñar": [
     0,
     1
   ],
-  "diseñado|diseñar": [
+  "diseñado|diseñado": [
     2
   ],
   "disfruto|disfrutar": [
@@ -8796,7 +8836,7 @@
   "escondida|escondido": [
     0
   ],
-  "escrita|escribir": [
+  "escrita|escrito": [
     1
   ],
   "estudié|estudiar": [
@@ -8934,7 +8974,7 @@
   "langosta|langosta": [
     1
   ],
-  "levantado|levantado": [
+  "levantado|levantar": [
     0
   ],
   "levántese|levantar": [
@@ -9036,8 +9076,10 @@
     1,
     2
   ],
+  "mudo|mudo": [
+    0
+  ],
   "mudo|mudar": [
-    0,
     2
   ],
   "mueran|morir": [
@@ -9188,19 +9230,17 @@
     1
   ],
   "reconocido|reconocer": [
-    1
-  ],
-  "reconocido|reconocido": [
+    1,
     2
   ],
   "recorrido|recorrido": [
-    0,
-    2
-  ],
-  "refugio|refugiar": [
     0
   ],
+  "recorrido|recorrer": [
+    2
+  ],
   "refugio|refugio": [
+    0,
     2
   ],
   "registrado|registrar": [
@@ -9219,7 +9259,7 @@
     1,
     2
   ],
-  "retiro|retirar": [
+  "retiro|retiro": [
     0,
     1
   ],
@@ -9367,7 +9407,7 @@
   "terriblemente|terriblemente": [
     2
   ],
-  "tirado|tirado": [
+  "tirado|tirar": [
     0,
     1,
     2
@@ -9463,9 +9503,7 @@
     2
   ],
   "acoso|acoso": [
-    1
-  ],
-  "acoso|acosar": [
+    1,
     2
   ],
   "activa|activo": [
@@ -9610,14 +9648,16 @@
   "cargada|cargado": [
     2
   ],
-  "cargas|carga": [
+  "cargas|cargar": [
     2
   ],
   "carguen|cargar": [
     2
   ],
   "castigado|castigar": [
-    0,
+    0
+  ],
+  "castigado|castigado": [
     1
   ],
   "categoría|categoría": [
@@ -9750,7 +9790,9 @@
     0
   ],
   "cría|criar": [
-    0,
+    0
+  ],
+  "cría|cría": [
     1,
     2
   ],
@@ -9761,8 +9803,10 @@
     0,
     2
   ],
+  "curado|curado": [
+    0
+  ],
   "curado|curar": [
-    0,
     2
   ],
   "curva|curva": [
@@ -9782,10 +9826,10 @@
   "decia|decir": [
     0
   ],
-  "declarado|declarado": [
+  "declarado|declarar": [
     0
   ],
-  "declarado|declarar": [
+  "declarado|declarado": [
     1
   ],
   "dedicas|dedicar": [
@@ -9832,9 +9876,7 @@
     2
   ],
   "despido|despedir": [
-    0
-  ],
-  "despido|despido": [
+    0,
     2
   ],
   "despreciable|despreciable": [
@@ -9947,10 +9989,8 @@
   "esperaban|esperar": [
     0
   ],
-  "estimado|estimar": [
-    0
-  ],
   "estimado|estimado": [
+    0,
     1,
     2
   ],
@@ -9989,8 +10029,10 @@
   "fijado|fijar": [
     0
   ],
+  "fijo|fijar": [
+    1
+  ],
   "fijo|fijo": [
-    1,
     2
   ],
   "financiero|financiero": [
@@ -10008,7 +10050,7 @@
     0,
     1
   ],
-  "frio|freír": [
+  "frio|frío": [
     0,
     1,
     2
@@ -10085,9 +10127,7 @@
     1
   ],
   "intercambio|intercambio": [
-    1
-  ],
-  "intercambio|intercambiar": [
+    1,
     2
   ],
   "interesados|interesado": [
@@ -10136,17 +10176,19 @@
     1,
     2
   ],
-  "largas|largo": [
+  "largas|largar": [
     0
   ],
   "latas|lata": [
     0,
     2
   ],
-  "lavado|lavar": [
+  "lavado|lavado": [
     0,
-    1,
     2
+  ],
+  "lavado|lavar": [
+    1
   ],
   "lentes|lente": [
     0
@@ -10178,9 +10220,7 @@
     2
   ],
   "marcado|marcar": [
-    1
-  ],
-  "marcado|marcado": [
+    1,
     2
   ],
   "marcho|marchar": [
@@ -10385,7 +10425,7 @@
     1,
     2
   ],
-  "protegido|proteger": [
+  "protegido|protegido": [
     1
   ],
   "provecho|provecho": [
@@ -10406,7 +10446,9 @@
     2
   ],
   "quebrado|quebrar": [
-    0,
+    0
+  ],
+  "quebrado|quebrado": [
     2
   ],
   "quemó|quemar": [
@@ -10495,10 +10537,12 @@
     1,
     2
   ],
-  "rio|reír": [
+  "rio|río": [
     0,
-    1,
     2
+  ],
+  "rio|reír": [
+    1
   ],
   "roban|robar": [
     0,
@@ -10534,7 +10578,7 @@
     0,
     1
   ],
-  "sobra|sobra": [
+  "sobra|sobrar": [
     0,
     1,
     2
@@ -10551,7 +10595,7 @@
     0,
     2
   ],
-  "soporte|soportar": [
+  "soporte|soporte": [
     1
   ],
   "sorprendido|sorprendido": [
@@ -10638,7 +10682,7 @@
   "violar|violar": [
     0
   ],
-  "voto|voto": [
+  "voto|votar": [
     2
   ],
   "vulgar|vulgar": [
@@ -10711,9 +10755,7 @@
     2
   ],
   "aguante|aguantar": [
-    1
-  ],
-  "aguante|aguante": [
+    1,
     2
   ],
   "ahogó|ahogar": [
@@ -10816,9 +10858,7 @@
     2
   ],
   "asignado|asignado": [
-    0
-  ],
-  "asignado|asignar": [
+    0,
     1
   ],
   "asombrosa|asombroso": [
@@ -10847,7 +10887,7 @@
     1,
     2
   ],
-  "aumento|aumento": [
+  "aumento|aumentar": [
     2
   ],
   "ausente|ausente": [
@@ -10963,8 +11003,10 @@
   "clavo|clavo": [
     2
   ],
+  "cogido|cogido": [
+    1
+  ],
   "cogido|coger": [
-    1,
     2
   ],
   "colapso|colapso": [
@@ -11069,10 +11111,8 @@
     1,
     2
   ],
-  "creído|creído": [
-    0
-  ],
   "creído|creer": [
+    0,
     2
   ],
   "cristales|cristal": [
@@ -11160,7 +11200,7 @@
     1,
     2
   ],
-  "despegue|despegar": [
+  "despegue|despegue": [
     1
   ],
   "destruya|destruir": [
@@ -11236,9 +11276,7 @@
     2
   ],
   "empuje|empuje": [
-    0
-  ],
-  "empuje|empujar": [
+    0,
     1
   ],
   "enfrenta|enfrentar": [
@@ -11285,8 +11323,10 @@
     0,
     1
   ],
+  "expulsado|expulsado": [
+    0
+  ],
   "expulsado|expulsar": [
-    0,
     2
   ],
   "exquisito|exquisito": [
@@ -11332,7 +11372,7 @@
   "financiera|financiero": [
     1
   ],
-  "firmas|firma": [
+  "firmas|firmar": [
     2
   ],
   "flaco|flaco": [
@@ -11345,11 +11385,13 @@
   "forman|formar": [
     0
   ],
-  "forzado|forzado": [
+  "forzado|forzar": [
     1
   ],
   "fracasado|fracasar": [
-    0,
+    0
+  ],
+  "fracasado|fracasado": [
     1,
     2
   ],
@@ -11375,8 +11417,10 @@
   ],
   "gasto|gastar": [
     0,
-    1,
     2
+  ],
+  "gasto|gasto": [
+    1
   ],
   "gelatina|gelatina": [
     2
@@ -11420,7 +11464,7 @@
     0,
     1
   ],
-  "incluido|incluir": [
+  "incluido|incluido": [
     2
   ],
   "inconveniente|inconveniente": [
@@ -11458,8 +11502,10 @@
   "intruso|intruso": [
     2
   ],
+  "invertido|invertido": [
+    0
+  ],
   "invertido|invertir": [
-    0,
     1
   ],
   "invitaron|invitar": [
@@ -11500,7 +11546,7 @@
     1,
     2
   ],
-  "libra|libra": [
+  "libra|librar": [
     1
   ],
   "lino|lino": [
@@ -11558,7 +11604,7 @@
     1,
     2
   ],
-  "matemática|matemática": [
+  "matemática|matemático": [
     1
   ],
   "maya|maya": [
@@ -11641,10 +11687,10 @@
   "obliga|obligar": [
     0
   ],
-  "obligado|obligado": [
+  "obligado|obligar": [
     0
   ],
-  "obligado|obligar": [
+  "obligado|obligado": [
     1
   ],
   "obreros|obrero": [
@@ -11652,8 +11698,10 @@
     1,
     2
   ],
+  "oculta|oculto": [
+    1
+  ],
   "oculta|ocultar": [
-    1,
     2
   ],
   "ocuparse|ocupar": [
@@ -11702,10 +11750,10 @@
   "parados|parado": [
     0
   ],
-  "pasadas|pasada": [
+  "pasadas|pasado": [
     1
   ],
-  "pasadas|pasado": [
+  "pasadas|pasar": [
     2
   ],
   "pasados|pasado": [
@@ -11720,7 +11768,7 @@
   "pega|pegar": [
     1
   ],
-  "pegado|pegar": [
+  "pegado|pegado": [
     0
   ],
   "peleo|pelear": [
@@ -11809,17 +11857,17 @@
     1,
     2
   ],
-  "queja|queja": [
+  "queja|quejar": [
     0
   ],
-  "queja|quejar": [
+  "queja|queja": [
     1
   ],
   "quejarte|quejar": [
     1,
     2
   ],
-  "quiebra|quiebra": [
+  "quiebra|quebrar": [
     1,
     2
   ],
@@ -11845,8 +11893,10 @@
   "rechazar|rechazar": [
     0
   ],
+  "rechazo|rechazar": [
+    0
+  ],
   "rechazo|rechazo": [
-    0,
     1,
     2
   ],
@@ -11926,7 +11976,7 @@
     0,
     2
   ],
-  "salva|salvo": [
+  "salva|salvar": [
     0
   ],
   "salvavidas|salvavidas": [
@@ -11987,7 +12037,7 @@
   "sugieres|sugerir": [
     0
   ],
-  "sujeta|sujeto": [
+  "sujeta|sujetar": [
     0
   ],
   "superado|superar": [
@@ -12176,7 +12226,7 @@
     1,
     2
   ],
-  "amenazado|amenazar": [
+  "amenazado|amenazado": [
     2
   ],
   "amenazas|amenaza": [
@@ -12188,7 +12238,7 @@
     0,
     1
   ],
-  "analítica|analítica": [
+  "analítica|analítico": [
     0,
     1,
     2
@@ -12353,10 +12403,8 @@
   "celulares|celular": [
     2
   ],
-  "choque|chocar": [
-    0
-  ],
   "choque|choque": [
+    0,
     2
   ],
   "cifra|cifra": [
@@ -12440,7 +12488,9 @@
     2
   ],
   "construido|construir": [
-    1,
+    1
+  ],
+  "construido|construido": [
     2
   ],
   "contratado|contratar": [
@@ -12574,9 +12624,7 @@
     2
   ],
   "destrozado|destrozar": [
-    0
-  ],
-  "destrozado|destrozado": [
+    0,
     1,
     2
   ],
@@ -12726,10 +12774,10 @@
   "entregaré|entregar": [
     1
   ],
-  "entrenado|entrenado": [
+  "entrenado|entrenar": [
     0
   ],
-  "entrenado|entrenar": [
+  "entrenado|entrenado": [
     2
   ],
   "enviarán|enviar": [
@@ -12738,7 +12786,7 @@
   "envidia|envidia": [
     2
   ],
-  "envío|envío": [
+  "envío|enviar": [
     0
   ],
   "escombros|escombro": [
@@ -12913,7 +12961,7 @@
     0,
     1
   ],
-  "grito|grito": [
+  "grito|gritar": [
     2
   ],
   "gusten|gustar": [
@@ -12948,9 +12996,11 @@
     1,
     2
   ],
-  "identificado|identificado": [
+  "identificado|identificar": [
     0,
-    1,
+    1
+  ],
+  "identificado|identificado": [
     2
   ],
   "imaginado|imaginar": [
@@ -13039,10 +13089,8 @@
     1,
     2
   ],
-  "lanzas|lanza": [
-    0
-  ],
   "lanzas|lanzar": [
+    0,
     1,
     2
   ],
@@ -13127,8 +13175,10 @@
     1,
     2
   ],
+  "montado|montado": [
+    0
+  ],
   "montado|montar": [
-    0,
     1,
     2
   ],
@@ -13156,11 +13206,11 @@
     1,
     2
   ],
-  "necesitado|necesitar": [
-    0,
-    1
-  ],
   "necesitado|necesitado": [
+    0
+  ],
+  "necesitado|necesitar": [
+    1,
     2
   ],
   "negado|negar": [
@@ -13228,7 +13278,7 @@
   "pacto|pacto": [
     1
   ],
-  "papito|papito": [
+  "papito|papá": [
     1
   ],
   "partió|partir": [
@@ -13434,10 +13484,10 @@
   "respondes|responder": [
     2
   ],
-  "resuelto|resolver": [
+  "resuelto|resuelto": [
     0
   ],
-  "resuelto|resuelto": [
+  "resuelto|resolver": [
     1
   ],
   "retardado|retardado": [
@@ -13452,10 +13502,8 @@
     0,
     1
   ],
-  "retrasado|retrasar": [
-    0
-  ],
   "retrasado|retrasado": [
+    0,
     1,
     2
   ],
@@ -13659,7 +13707,7 @@
   "tomarás|tomar": [
     1
   ],
-  "traducido|traducir": [
+  "traducido|traducido": [
     0,
     1
   ],
@@ -13683,7 +13731,9 @@
     2
   ],
   "unido|unir": [
-    1,
+    1
+  ],
+  "unido|unido": [
     2
   ],
   "unió|unir": [

@@ -51,16 +51,16 @@ from util_6f_alignment import (  # noqa: E402
     tokenize_target)
 
 LAYERS_DIR = REPO / "Data/Spanish/layers"
-METHOD = "spanishdict-beto-cal-align-v4"
-PROMPT_ID = "sd-beto-cal-align-v4"
+METHOD = "spanishdict-beto-cal-align-v5"
+PROMPT_ID = "sd-beto-cal-align-v5"
 # The runs this corrector is allowed to read and overturn. An unlisted method is
 # left alone rather than silently corrected: the measurement is against the v3
 # local path, and nothing says it holds against a different classifier.
-SOURCE_METHODS = ("spanishdict-beto-cal-v3",)
+SOURCE_METHODS = ("spanishdict-beto-cal-v5",)
 # Escalated picks graded ~88% against ~76% for locally-decided ones. The
 # alignment measurement was against the local path, so it does not license
 # overturning a Gemini second opinion.
-ESCALATED_PROMPT_IDS = ("sd-beto-cal-esc-v3",)
+ESCALATED_PROMPT_IDS = ("sd-beto-cal-esc-v5",)
 
 _PREPOSITIONS = frozenset(
     "of in on for with from at by into onto about over under after before".split())

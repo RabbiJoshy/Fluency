@@ -74,6 +74,53 @@ def sense_compatible_with_example_pos(sense_pos, ex_pos):
     return sense_pos not in _TRUSTED_FILTER_POS
 
 
+# ---------------------------------------------------------------------------
+# Tagset bridge: spaCy is Universal Dependencies, SpanishDict is not
+# ---------------------------------------------------------------------------
+# SpanishDict publishes 17 DET senses in 96,279 and files determiners,
+# demonstratives and possessives as ADJ. UD tags every one of them DET. Because
+# ADJ is a TRUSTED filter POS and DET is not, `sense_compatible_with_example_pos`
+# reads "tagged DET, sense is ADJ" as a trusted mismatch and deletes the correct
+# sense -- on `esta`, `este`, `otro`, `mío`, `nuestros`, which are among the
+# commonest words in the corpus.
+#
+# Measured on the 144-item labelled OpenSubtitles panel: the raw filter fires on
+# 70 items and deletes every acceptable sense on 7 of them (10%), and SIX of
+# those seven are this mismatch, not a tagging error. With the bridge it fires on
+# 63 and kills 1 (2%), and the v5 stack goes 84.0% -> 86.8% (card gloss
+# 84.7% -> 87.5%).
+#
+# This is why the POS filter was abandoned once before as "not good enough when
+# I most needed it": determiners are exactly when you need it.
+#
+# Deliberately a SEPARATE function. step_6b, step_6c and step_8b call
+# sense_compatible_with_example_pos and are tuned against its current behaviour;
+# widening that in place would change three shipped classifiers as a side effect
+# of fixing one.
+_TAGSET_BRIDGE = {
+    "DET":   {"ADJ", "DET", "PRON"},      # esta, este, otro, mío, nuestros
+    "PRON":  {"PRON", "ADJ", "DET"},      # ésta/esta, mío as a pronoun
+    "NUM":   {"ADJ", "NOUN", "DET"},      # SpanishDict has no NUM at all
+    "PART":  {"ADV", "ADP", "PRON"},      # no PART either
+    "PROPN": {"PROPN", "NOUN"},
+    "ADV":   {"ADV", "PRON", "ADJ"},      # `poco` ADV vs SpanishDict PRON
+}
+
+
+def sense_compatible_bridged(sense_pos, ex_pos):
+    """Per-example compatibility across the UD / SpanishDict tagset boundary.
+
+    Same contract as sense_compatible_with_example_pos, but a tag whose category
+    SpanishDict does not use cannot delete the category SpanishDict uses instead.
+    """
+    if sense_pos in _ORTHOGONAL_POS:
+        return True
+    allowed = _TAGSET_BRIDGE.get(ex_pos)
+    if allowed is not None:
+        return sense_pos in allowed
+    return sense_compatible_with_example_pos(sense_pos, ex_pos)
+
+
 def _normalise_name(value):
     value = unicodedata.normalize("NFKD", str(value or "").casefold())
     value = "".join(ch for ch in value if not unicodedata.combining(ch))

@@ -119,6 +119,27 @@
       "model": "bert-base-multilingual-cased (SimAlign, layer 8, itermax)",
       "date": "2026-08-22",
       "notes": "Aligned-English leaf correction on top of sd-beto-cal-v3. mBERT SimAlign aligns the Spanish target token to its English subtitle word; where a candidate leaf's gloss head is that word, that leaf is taken. Authored ONLY on the occurrences it changes -- an untouched occurrence keeps its sd-beto-cal-v3 claim, so a card's provenance names the run that actually decided it. Measured before it was built: 49 better / 12 worse on 100 fresh hand-graded speech cards, firing on ~16%. It is the only added signal that has beaten plain gloss-cosine on this problem, because alignment matches on RELATION (which English word IS this token) where every rejected signal matched on PRESENCE (this topic is nearby) -- see docs/reference/wsd_dead_ends.md. Requires parallel text, so it is structurally a speech-mode signal; artist mode has translations for some songs only. Does not overturn sd-beto-cal-esc-v3: escalated picks graded ~88% and the alignment result was measured against the local path. Abstains where several leaves share the aligned word as a head -- the signal identified a gloss, not a leaf."
+    },
+    "sd-beto-cal-v5": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 60,
+      "model": "gemini-embedding-001 + dccuchile/bert-base-spanish-wwm-cased + es_dep_news_trf",
+      "date": "2026-08-22",
+      "notes": "sd-beto-cal-v3 plus two signals the v3 stack was missing. (1) MENU PRIOR: SpanishDict orders senses commonest-first and the score now adds 0.02*0.5^rank. This was previously measured as worthless, on the 24,675-item dictionary gold -- which is every sense's own example sentence, 1.02 examples per sense, so the gold is UNIFORM over senses and a frequency prior has nothing to predict. On 144 hand-labelled OpenSubtitles sentences the true sense is the FIRST menu entry 82% of the time. (2) POS FILTER: leaves whose part of speech contradicts the tag es_dep_news_trf gave that occurrence are pruned; step_6b/step_6c always did this and v3 silently did not. Panel, sense-id / card-gloss / rare-sense: v3 65.3 / 74.3 / 54%; +prior 84.7 / 85.4 / 46%; +prior+POS 86.8 / 87.5 / 58%. The POS filter is there for the third column -- it is the only signal measured that raises rare-sense accuracy, so it pays back what the prior costs. Ablation: with no embeddings at all (POS filter, then take the top surviving entry) the panel scores 82.6% overall but 19% on rare senses -- the embeddings are worth ~2pp overall and are the entire rare-sense capability. The POS filter uses sense_compatible_bridged, not sense_compatible_with_example_pos: spaCy is Universal Dependencies and SpanishDict is not -- it files determiners and possessives as ADJ and publishes 17 DET senses in 96,279 -- so the unbridged filter deleted the correct sense on esta/este/otro/mío/nuestros. Unbridged it fires on 70 of 144 panel items and kills every acceptable sense on 7 (10%); bridged, 63 fires and 1 kill (2%), worth +2.8pp. This mismatch, not tagger quality, is why the POS filter was abandoned once before. v5 was rebuilt once with the bridge before it was ever graded or shipped; no earlier v5 deck exists."
+    },
+    "sd-beto-cal-esc-v5": {
+      "family": "token-prototype-calibrated",
+      "capability_tier": 65,
+      "model": "gemini-3.5-flash-lite",
+      "date": "2026-08-22",
+      "notes": "Escalation half of sd-beto-cal-v5. Prompt contract unchanged from esc-v3; the id moves with the classifier version so one card's provenance names one run."
+    },
+    "sd-beto-cal-align-v5": {
+      "family": "token-prototype-calibrated-aligned",
+      "capability_tier": 70,
+      "model": "bert-base-multilingual-cased (SimAlign, layer 8, itermax)",
+      "date": "2026-08-22",
+      "notes": "Aligned-English leaf correction on top of sd-beto-cal-v5, same mechanism as sd-beto-cal-align-v4. Authored only on the occurrences it changes. It is the counterweight to the v5 menu prior: alignment argues FOR a rare sense on evidence (which English word IS this token), where the prior argues for the common one from frequency alone."
     }
   },
   "acceptance_policies": {
@@ -229,6 +250,55 @@
         "embed-gloss-classgap-hub-v1": "superseded by the v3 stack; pinned run excludes it by design",
         "sd-cop-v3": "old mixed-task prompt",
         "legacy-unknown": "prompt and model cannot be established"
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "speech-beto-cal-v5-pinned": {
+      "description": "Speech mode on the v5 stack (menu prior + POS filter) plus the aligned-English corrector. Three ids author claims and they do not overlap on an occurrence: sd-beto-cal-align-v5 exists only where alignment overturned the local pick, sd-beto-cal-esc-v5 only where Gemini was asked, sd-beto-cal-v5 everywhere else.",
+      "accepted_prompt_ids": [
+        "sd-beto-cal-align-v5",
+        "sd-beto-cal-esc-v5",
+        "sd-beto-cal-v5"
+      ],
+      "preference_order": [
+        "sd-beto-cal-align-v5",
+        "sd-beto-cal-esc-v5",
+        "sd-beto-cal-v5"
+      ],
+      "evaluation_prompt_ids": [],
+      "rejected_prompt_ids": {
+        "sd-beto-cal-v3": "superseded by v5; a pinned run admits one classifier generation",
+        "sd-beto-cal-esc-v3": "superseded by esc-v5",
+        "sd-beto-cal-align-v4": "corrects v3 picks, not v5 picks",
+        "embed-gloss-tuplegap-hub-v1": "predates the calibrated stack",
+        "embed-gloss-classgap-hub-v1": "predates the calibrated stack",
+        "legacy-unknown": "prompt and model cannot be established"
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "speech-beto-cal-v5-noalign": {
+      "description": "v5 classifier WITHOUT the aligned-English corrector. Hand-graded on 50 random alignment corrections against v5: 18 better / 13 worse / 19 lateral (1.4:1). The original 49/12 was measured against v3, before the menu prior and POS filter took most of what it used to catch. 9% of its corrections change the part of speech and those graded 1 better / 3 worse -- it runs after step_6e and does not apply the POS filter. Kept registered so the claims stay on disk and re-admitting them is a rebuild, not a re-run.",
+      "accepted_prompt_ids": [
+        "sd-beto-cal-esc-v5",
+        "sd-beto-cal-v5"
+      ],
+      "preference_order": [
+        "sd-beto-cal-esc-v5",
+        "sd-beto-cal-v5"
+      ],
+      "evaluation_prompt_ids": [
+        "sd-beto-cal-align-v5"
+      ],
+      "rejected_prompt_ids": {
+        "sd-beto-cal-v3": "superseded by v5; a pinned run admits one classifier generation",
+        "sd-beto-cal-esc-v3": "superseded by esc-v5",
+        "sd-beto-cal-align-v4": "corrects v3 picks, not v5 picks",
+        "embed-gloss-tuplegap-hub-v1": "predates the calibrated stack",
+        "embed-gloss-classgap-hub-v1": "predates the calibrated stack",
+        "legacy-unknown": "prompt and model cannot be established",
+        "sd-beto-cal-align-v5": "graded 18/13/19 against v5; below the bar, held for evaluation"
       },
       "require_stable_evidence_join": true,
       "deterministic_evidence_is_separate": true

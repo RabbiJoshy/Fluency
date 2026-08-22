@@ -156,3 +156,9 @@ Artists/*/*/data/layers/token_vec_cache/
 # mBERT alignment cache (util_6f_alignment). Deterministic and rebuildable from
 # the corpus in ~6 minutes; ~30 MB of JSON that would churn on every harvest.
 Data/*/layers/alignment_cache/
+
+# Pre-v5 deck snapshots. Kept on disk because Data/Spanish/vocabulary.json is
+# itself ignored (line 85) and a rebuild is destructive, but they are derived
+# data: the v3 claims live on in layers/sense_assignments/spanishdict.json, so
+# `step_8a --prompt-policy speech-beto-cal-v3-pinned` reconstructs the deck.
+Data/Spanish/archive/deck_v3_pre_menu_prior_*/

@@ -52,6 +52,23 @@ METHOD_PRIORITY = {
     # better / 12 worse on 100 hand-graded speech cards. Requires parallel text.
     "spanishdict-beto-cal-align-v4": 88,
 
+    # v5 = v3 plus the two signals it was missing: a menu-position prior (the
+    # SpanishDict list is ordered commonest-first, and on 144 hand-labelled
+    # OpenSubtitles sentences the true sense is the FIRST entry 82% of the time)
+    # and the per-occurrence POS filter that step_6b/step_6c have always applied
+    # and v3 silently did not. Panel, sense-id / card-gloss / rare-sense:
+    # v3 65.3 / 74.3 / 54%, v5 84.0 / 84.7 / 58%.
+    # The NOTE above is not decoration: this entry was omitted on the first v5
+    # build, all 29,237 claims scored 0 against Spanish's minPriority 50, and the
+    # deck came out with one meaning per card and ZERO examples -- exit code 0,
+    # no warning. Third time this table has caused that exact symptom.
+    "spanishdict-beto-cal-v5": 89,
+
+    # The aligned-English corrector rebased onto v5 picks. Same contract as
+    # align-v4: authored only where alignment overturns the local pick, so it
+    # must outrank the classifier it corrects.
+    "spanishdict-beto-cal-align-v5": 90,
+
     # Lexical-only WSD (new evidence architecture). These method ids are kept
     # distinct from historical classify-or-propose runs so their provenance
     # cannot be collapsed by same-method/same-sense merging.
