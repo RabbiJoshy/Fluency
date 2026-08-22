@@ -3,6 +3,21 @@
   "entries": [
     {
       "date": "2026-08-22",
+      "commit": "78506bf6",
+      "summary": "Speech deck: the dictionary lists meanings commonest-first, and the classifier was ignoring that. 7,393 cards changed meaning.",
+      "detail": [
+        "SpanishDict orders a word's meanings commonest-first. The classifier treated all of them as equally likely, so rare meanings won as often as common ones -- 'esta' in '¿Que haremos esta noche?' was carded as the filler noise 'um' (entry 13 of 15) instead of 'this'.",
+        "Meanings now get a small head start by how common they are. Deliberately small: leaning harder scores marginally better overall but stops the deck ever picking an uncommon meaning, which is where the interesting cards are.",
+        "The part-of-speech tagger's answer is now used to rule out meanings of the wrong word class. The two older classifiers always did this; the current one silently did not.",
+        "That filter was also deleting correct answers on the commonest words in the language -- esta, este, otro, mio, nuestros -- because SpanishDict files determiners as adjectives and the tagger calls them determiners. Bridged, so a labelling difference can no longer delete the right answer.",
+        "Measured on 144 hand-labelled subtitle sentences: the meaning printed on the card is right 87.5% of the time, up from 74.3%. 50 random changed cards graded 23 better, 5 worse, 22 neither.",
+        "Examples: 'banco' bench -> bank; 'largo' length -> long; 'verlos' the noun 'view' -> the verb 'to see'; 'papas a la francesa' French-the-language -> French-the-adjective.",
+        "The English-subtitle corrector was rebased onto the new classifier and then REMOVED from the deck: judged against the improved baseline it was 18 better / 13 worse, no longer worth the churn.",
+        "Confidence scores on this deck are not meaningful. The scorer was trained on dictionary example sentences, where every meaning appears equally often, and real speech is nothing like that -- so most cards read 'low' regardless. Ignore the band until it is retrained."
+      ]
+    },
+    {
+      "date": "2026-08-22",
       "commit": "c6f0bcc4",
       "summary": "Speech deck: 523 blank cards fixed, 1,523 glosses corrected from the English subtitle, and TV lines now name the show",
       "detail": [
