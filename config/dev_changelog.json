@@ -3,7 +3,7 @@
   "entries": [
     {
       "date": "2026-08-22",
-      "commit": "pending",
+      "commit": "6f85b7a4",
       "summary": "Flags now identify their exact data run, custom playlists sync their artists, and JSTA is a separate audit account",
       "details": [
         "Every new flag stores the deck mode and source plus its release, run time, prompt, model, assignment method, immutable asset paths and layer snapshot when available",
