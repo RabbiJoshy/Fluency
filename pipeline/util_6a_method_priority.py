@@ -46,6 +46,12 @@ METHOD_PRIORITY = {
     # picks: 60 better, 13 worse, 15 neutral.
     "spanishdict-beto-cal-v3": 87,
 
+    # v4 = the aligned-English leaf corrector layered on v3. It authors a claim
+    # ONLY where mBERT alignment overturns the v3 pick, so it must outrank v3 on
+    # exactly those occurrences and is absent everywhere else. Measured 49
+    # better / 12 worse on 100 hand-graded speech cards. Requires parallel text.
+    "spanishdict-beto-cal-align-v4": 88,
+
     # Lexical-only WSD (new evidence architecture). These method ids are kept
     # distinct from historical classify-or-propose runs so their provenance
     # cannot be collapsed by same-method/same-sense merging.

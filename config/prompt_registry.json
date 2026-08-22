@@ -112,6 +112,13 @@
       "model": "gemini-3.5-flash-lite",
       "date": "2026-08-19",
       "notes": "Escalation half of sd-beto-cal-v3. Prompt contract unchanged from esc-v2; the id moves with the classifier version so one card's provenance names one run."
+    },
+    "sd-beto-cal-align-v4": {
+      "family": "token-prototype-calibrated-aligned",
+      "capability_tier": 55,
+      "model": "bert-base-multilingual-cased (SimAlign, layer 8, itermax)",
+      "date": "2026-08-22",
+      "notes": "Aligned-English leaf correction on top of sd-beto-cal-v3. mBERT SimAlign aligns the Spanish target token to its English subtitle word; where a candidate leaf's gloss head is that word, that leaf is taken. Authored ONLY on the occurrences it changes -- an untouched occurrence keeps its sd-beto-cal-v3 claim, so a card's provenance names the run that actually decided it. Measured before it was built: 49 better / 12 worse on 100 fresh hand-graded speech cards, firing on ~16%. It is the only added signal that has beaten plain gloss-cosine on this problem, because alignment matches on RELATION (which English word IS this token) where every rejected signal matched on PRESENCE (this topic is nearby) -- see docs/reference/wsd_dead_ends.md. Requires parallel text, so it is structurally a speech-mode signal; artist mode has translations for some songs only. Does not overturn sd-beto-cal-esc-v3: escalated picks graded ~88% and the alignment result was measured against the local path. Abstains where several leaves share the aligned word as a head -- the signal identified a gloss, not a leaf."
     }
   },
   "acceptance_policies": {
@@ -191,6 +198,28 @@
         "sd-beto-cal-v3"
       ],
       "preference_order": [
+        "sd-beto-cal-esc-v3",
+        "sd-beto-cal-v3"
+      ],
+      "evaluation_prompt_ids": [],
+      "rejected_prompt_ids": {
+        "embed-gloss-tuplegap-hub-v1": "superseded by the v3 stack; pinned run excludes it by design",
+        "embed-gloss-classgap-hub-v1": "superseded by the v3 stack; pinned run excludes it by design",
+        "sd-cop-v3": "old mixed-task prompt",
+        "legacy-unknown": "prompt and model cannot be established"
+      },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "speech-beto-cal-v4-pinned": {
+      "description": "Speech mode on the v3 calibrated stack PLUS the aligned-English leaf corrector. Three ids author claims and they do not overlap on an occurrence: sd-beto-cal-align-v4 exists only where alignment overturned the local pick, sd-beto-cal-esc-v3 only where Gemini was asked, sd-beto-cal-v3 everywhere else. Isolation is preserved in the sense that matters -- one occurrence, one authoring run -- which is not true of accepting two generations of the same classifier, where the builder unions senses and stale meanings survive.",
+      "accepted_prompt_ids": [
+        "sd-beto-cal-align-v4",
+        "sd-beto-cal-esc-v3",
+        "sd-beto-cal-v3"
+      ],
+      "preference_order": [
+        "sd-beto-cal-align-v4",
         "sd-beto-cal-esc-v3",
         "sd-beto-cal-v3"
       ],
