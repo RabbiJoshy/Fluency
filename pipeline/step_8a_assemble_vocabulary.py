@@ -572,6 +572,33 @@ def main():
     # sentences no longer appear in the current per-word list (e.g. after a
     # --force rebuild of step_5a chose different sentences). Falls back to
     # integer-index lookup for items that pre-date the ID migration.
+    # OpenSubtitles title_id -> human title, built offline by
+    # tool_5a_build_subtitle_titles.py. Optional: a deck without it simply shows
+    # no source line, exactly as before.
+    subtitle_titles = {}
+    _titles_path = LAYERS / "subtitle_titles.json"
+    if _titles_path.exists():
+        with open(_titles_path, encoding="utf-8") as f:
+            subtitle_titles = json.load(f)
+        print(f"  subtitle_titles: {len(subtitle_titles):,} entries")
+
+    # example_store is trimmed to target/english/source/easiness, so provenance
+    # cannot be read off the example the builder actually holds. Key the title on
+    # the sentence text instead, which is stable and unique enough here.
+    sentence_title = {}
+    if subtitle_titles:
+        for _entries in examples_raw.values():
+            for _e in _entries:
+                _tid = str((_e.get("provenance") or {}).get("title_id") or "")
+                _meta = subtitle_titles.get(_tid)
+                _txt = (_e.get("target") or "").strip()
+                if _meta and _txt and _meta.get("title"):
+                    _label = _meta["title"]
+                    if _meta.get("year"):
+                        _label = f"{_label} ({_meta['year']})"
+                    sentence_title[_txt] = _label
+        print(f"  sentence -> source title: {len(sentence_title):,}")
+
     example_store = {}
     _store_path = LAYERS / "example_store.json"
     if _store_path.exists():
@@ -1094,6 +1121,15 @@ def main():
                                 value = entry.get(field)
                                 if value is not None:
                                     ex_copy[field] = value
+                            # Where the line came from. An artist card prints the
+                            # song; a speech card had nothing, because the corpus
+                            # carries only an OpenSubtitles title_id. `song_name`
+                            # is what the renderer reads, so it is set as well as
+                            # the semantically honest `source_title`.
+                            label = sentence_title.get((src.get("target") or "").strip())
+                            if label:
+                                ex_copy["source_title"] = label
+                                ex_copy.setdefault("song_name", label)
                             exs.append(ex_copy)
                         else:
                             exs.append(src)
