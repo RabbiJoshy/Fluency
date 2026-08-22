@@ -116,3 +116,22 @@ def dependency_metadata(input_path):
         if key in upstream:
             result[key] = upstream[key]
     return result
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def display_path(path, root=None):
+    """Repo-relative path for printing, falling back to the absolute path.
+
+    `Path.relative_to` RAISES on a path outside the root, and every step that
+    prints `wrote {out.relative_to(REPO)}` does so as its last statement, after
+    the file is already written. So a `--out` pointing at a scratch directory
+    produced a complete, correct output file and a non-zero exit -- which makes
+    a scratch run look failed, and once hid a real failure.
+    """
+    p = Path(path)
+    try:
+        return p.resolve().relative_to(Path(root or REPO_ROOT).resolve())
+    except ValueError:
+        return p

@@ -73,6 +73,7 @@ from pipeline.util_5c_token_prototypes import (  # noqa: E402
     proto_key, reflexive_evidence, tuple_of)
 from step_6d_assign_senses_embeddings import embed, gloss, norm_tr  # noqa: E402
 from util_6a_assignment_format import stamp_example_ids  # noqa: E402
+from util_pipeline_meta import display_path  # noqa: E402
 from pipeline.util_6d_wsd_features import (  # noqa: E402
     FEATURE_VERSION, build as build_features, companion_features,
     structural_features)
@@ -667,7 +668,7 @@ def main():
     except Exception as exc:
         print(f"  (archive skipped: {exc})")
     out_path.write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
-    print(f"wrote {out_path.relative_to(REPO)}")
+    print(f"wrote {display_path(out_path)}")
 
 
 if __name__ == "__main__":

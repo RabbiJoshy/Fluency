@@ -63,13 +63,15 @@ from util_sense_ids import carry_sense_identity, merge_sense_identity
 # Default language; overridden by --language at runtime.
 NORMAL_MODE_LANGUAGE = "spanish"
 
-STEP_VERSION = 5
+STEP_VERSION = 6
 STEP_VERSION_NOTES = {
     1: "monolith + index + examples split, hex IDs, lemma-proportional counts",
     2: "group per-sense assignments by sense_idx so foreign-sid fallbacks don't duplicate meanings",
     3: "carry stable sense-menu IDs and aliases into learner-facing meanings",
     4: "assemble regular plural twins under one lemma and carry derivational relation metadata",
     5: "keep orphan clitic forms as their own cards, stamped with clitic_memberships",
+    6: "read a surface's own dictionary entry where a claim names that card key "
+       "(dame|dar); drop inventory lemmas nothing supports; record unrenderable words",
 }
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -450,6 +452,26 @@ def merge_entries_by_surface(entries, used_ids):
     return merged
 
 
+# Words the dictionary will never carry an entry for, recognised by shape.
+# Deliberately explicit rather than pattern-matched: an abbreviation is a
+# judgement about Spanish, and a regex that catches `sr` also catches `sed`.
+ABBREVIATIONS = frozenset("""
+sr sra srta srs ud uds vd vds dr dra doc depto dpto etc pm am ee eeuu
+km kg cm mm ml núm no° pág págs av avda pdta pdte
+""".split())
+
+
+def unrenderable_reason(word, loanwords=frozenset(), clitic_routes=frozenset()):
+    """Why this word has no dictionary entry. Descriptive, not a decision."""
+    if word in ABBREVIATIONS:
+        return "abbreviation"
+    if word in loanwords:
+        return "english loanword"
+    if word in clitic_routes:
+        return "clitic form with no dictionary entry of its own"
+    return "no sense menu"
+
+
 def get_senses_for_lemma(senses_data, word, lemma, is_analysis_format,
                          allow_surface_headword=False):
     """Return a flat list of sense dicts and a {sense_id: sense} map for a word|lemma.
@@ -531,6 +553,14 @@ def main():
                              "card ID and stays as `headword` on each meaning, so the\n"
                              "UI can group by lemma. Also restores the surface's real\n"
                              "corpus_count instead of a proportional split.")
+    parser.add_argument("--drop-unrenderable", action="store_true",
+                        help="drop cards that have no sense menu, no claim and "
+                             "no curated gloss. They render pos=X with a blank "
+                             "English side and hang raw sentences off it, which "
+                             "is the deck's only source of unattributed "
+                             "examples. Every one is recorded with its reason in "
+                             "layers/unrenderable_cards.json whether or not this "
+                             "is set, so the exclusion stays auditable.")
     parser.add_argument("--evidence-only", action="store_true",
                         help="Only emit cards for words a classifier actually "
                              "claimed a sense on. Drops inventory words with no "
@@ -612,7 +642,12 @@ def main():
                 _meta = subtitle_titles.get(_tid)
                 _txt = (_e.get("target") or "").strip()
                 if _meta and _txt and _meta.get("title"):
+                    # An episode's own title names nothing a learner
+                    # recognises -- "Voir Dire", "Episode #1.7". Lead with the
+                    # series where the layer resolved one.
                     _label = _meta["title"]
+                    if _meta.get("series"):
+                        _label = f"{_meta['series']} — {_label}"
                     if _meta.get("year"):
                         _label = f"{_label} ({_meta['year']})"
                     sentence_title[_txt] = _label
@@ -936,6 +971,15 @@ def main():
     stats = {"no_senses": 0, "with_examples": 0, "cleaned": 0, "with_mwes": 0,
              "ghost_lemmas_pruned": 0, "surface_menu_used": 0,
              "with_morphology": 0, "with_synonyms": 0, "clitic_merged": len(clitic_data)}
+    unrenderable = {}
+    _loanwords = frozenset()
+    _loan_path = LAYERS / "english_loanwords.json"
+    if _loan_path.exists():
+        with open(_loan_path, encoding="utf-8") as f:
+            _loanwords = frozenset(json.load(f))
+    _clitic_routes = frozenset(clitic_merge_map) | set(orphan_clitic_info)
+    unrenderable_reason_for = lambda w: unrenderable_reason(
+        w, _loanwords, _clitic_routes)
 
     evidence_only_skipped = 0
     for inv_entry in inventory:
@@ -1103,6 +1147,21 @@ def main():
                 stats["no_senses"] += 1
                 c_trans = curated_entry["translation"] if curated_entry else ""
                 c_pos = curated_entry.get("pos", "X") if curated_entry else "X"
+                if not c_trans:
+                    # Nothing to teach: no dictionary entry, no claim, no
+                    # curated gloss. The card renders `pos: X` with a blank
+                    # English side and hangs raw sentences off it, which is how
+                    # the deck's only unattributed examples arise. Record every
+                    # one with the reason it has no menu, so the exclusion is
+                    # auditable rather than a silent hole in the deck.
+                    unrenderable[wl] = {
+                        "lemma": lemma,
+                        "corpus_count": entry_count,
+                        "examples": len(word_examples),
+                        "reason": unrenderable_reason_for(wl),
+                    }
+                    if args.drop_unrenderable:
+                        continue
                 if word_examples:
                     fallback_examples = word_examples[:5]
                     meanings_full.append({
@@ -1591,6 +1650,31 @@ def main():
             with open(migration_path, "w", encoding="utf-8") as f:
                 json.dump(id_migration, f, ensure_ascii=False, indent=2)
             print(f"  ID migration: {len(id_migration)} mappings -> {migration_path}")
+
+    # The words that could not be rendered, and why. Written every build, so
+    # "how many cards teach nothing" is a number you can look up rather than a
+    # number you have to re-derive from the deck.
+    unrenderable_path = LAYERS / "unrenderable_cards.json"
+    if unrenderable:
+        by_reason = defaultdict(list)
+        for w, info in sorted(unrenderable.items()):
+            by_reason[info["reason"]].append(w)
+        payload = {
+            "_meta": make_meta("assemble_vocabulary.unrenderable", STEP_VERSION),
+            "dropped_from_deck": bool(args.drop_unrenderable),
+            "counts": {r: len(ws) for r, ws in sorted(by_reason.items())},
+            "words": dict(sorted(unrenderable.items())),
+        }
+        with open(unrenderable_path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
+        verb = "dropped" if args.drop_unrenderable else "kept as blank cards"
+        print(f"  Unrenderable: {len(unrenderable)} words {verb} -> "
+              f"{unrenderable_path.name}")
+        for reason, ws in sorted(by_reason.items()):
+            print(f"      {len(ws):>3} {reason}: {', '.join(sorted(ws)[:6])}"
+                  + (" ..." if len(ws) > 6 else ""))
+    elif unrenderable_path.exists():
+        unrenderable_path.unlink()
 
     # Precompute: base_id -> {clitic_id: clitic_word} for variant annotation
     merged_ids_by_base = {}

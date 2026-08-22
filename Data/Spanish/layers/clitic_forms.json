@@ -554,6 +554,19 @@
             "f892abdeaf1b"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "e09",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "f892abdeaf1b"
+          ]
+        }
       ]
     },
     "examples": [
@@ -1235,6 +1248,19 @@
             "451f20d6fea1"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "6c8",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "a06ec69c6fff"
+          ]
+        }
       ]
     },
     "examples": [
@@ -1522,6 +1548,19 @@
             "c7e9a1218eed"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "aa7",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "c7e9a1218eed"
+          ]
+        }
       ]
     },
     "examples": [
@@ -1669,6 +1708,23 @@
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
+            "e1162cbb2224"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "aa7",
+          "examples": [
+            0,
+            1,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "4e38066f6578",
+            "cb9b3bfecdba",
             "e1162cbb2224"
           ]
         }
@@ -2311,6 +2367,19 @@
             "f67d6408d97e"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "3b2",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "cbdba7913924"
+          ]
+        }
       ]
     },
     "examples": [
@@ -2430,6 +2499,19 @@
           "example_ids": [
             "7d4bfde8c6db",
             "8559ab669e80",
+            "69ad656554d9"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "3b2",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
             "69ad656554d9"
           ]
         }
@@ -2565,6 +2647,21 @@
           "example_ids": [
             "93abb8788db1",
             "6bd7950df2b8",
+            "69668111e811"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "652",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "93abb8788db1",
             "69668111e811"
           ]
         }
@@ -2973,6 +3070,21 @@
             "470e65657ab3"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "122",
+          "examples": [
+            0,
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "1da3ae172819",
+            "6c4f497434e9"
+          ]
+        }
       ]
     },
     "examples": [
@@ -3121,6 +3233,21 @@
           "example_ids": [
             "b3d0aab474b3",
             "4009a4d6a55b"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "122",
+          "examples": [
+            0,
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "27188c239cc9",
+            "b3d0aab474b3"
           ]
         }
       ]
@@ -3704,6 +3831,19 @@
             "639f72fe7af5"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "15e",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "da28ca242020"
+          ]
+        }
       ]
     },
     "examples": [
@@ -4108,6 +4248,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "5c7178331bcf",
+            "ff0f9d09a94a"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "4d4",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
             "ff0f9d09a94a"
           ]
         }
@@ -6385,6 +6538,19 @@
             "a318268a318b"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a66",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "e497735a792d"
+          ]
+        }
       ]
     },
     "examples": [
@@ -6550,6 +6716,19 @@
             "cfd9ae4286c1"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a66",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "cfd9ae4286c1"
+          ]
+        }
       ]
     },
     "examples": [
@@ -6697,6 +6876,21 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "3c1eec7b0178",
+            "d9c3de7f199e"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a66",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "3365f890a05d",
             "d9c3de7f199e"
           ]
         }
@@ -7011,6 +7205,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "887ee7b50b69"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a66",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "887ee7b50b69"
           ]
@@ -10519,6 +10726,19 @@
             "e5225cdc2e19"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "1f3",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "e5225cdc2e19"
+          ]
+        }
       ]
     },
     "examples": [
@@ -10697,6 +10917,19 @@
             "0f7da1ef4c36"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "1f3",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "0f7da1ef4c36"
+          ]
+        }
       ]
     },
     "examples": [
@@ -10843,6 +11076,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "57cd80327775"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "0e0",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "57cd80327775"
           ]
@@ -11254,6 +11500,19 @@
           "example_ids": [
             "851966c899c0",
             "ca5a3338a4dd"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "0e0",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "6c624bb7a55d"
           ]
         }
       ]
@@ -11701,6 +11960,21 @@
           "example_ids": [
             "4cc5597a0c7a",
             "5ccdac160d6b",
+            "79a85a8048e5"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "7f8",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "4cc5597a0c7a",
             "79a85a8048e5"
           ]
         }
@@ -14079,6 +14353,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "60bc5b1a8008"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "8b1",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "60bc5b1a8008"
           ]
@@ -18963,6 +19250,19 @@
             "7af988b9dec1"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "d2a",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "0f632cebbbe1"
+          ]
+        }
       ]
     },
     "examples": [
@@ -22536,6 +22836,19 @@
             "3ce48cebbd02"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "be8",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "cc9532db24fe"
+          ]
+        }
       ]
     },
     "examples": [
@@ -22830,6 +23143,19 @@
           "example_ids": [
             "4f855d7e994c",
             "5dd541362cec",
+            "b68ed43e7c6e"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "934",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
             "b68ed43e7c6e"
           ]
         }
@@ -23157,6 +23483,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "73441b6cb6b5"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "934",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "73441b6cb6b5"
           ]
@@ -23731,6 +24070,19 @@
           "example_ids": [
             "c5c822cc527c",
             "2a5f8b32a5a6"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "573",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "c5c822cc527c"
           ]
         }
       ]
@@ -24981,6 +25333,19 @@
             "85f678b43bf8"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "0bc",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "e70ad2179c54"
+          ]
+        }
       ]
     },
     "examples": [
@@ -25521,6 +25886,19 @@
             "cfe7de3aaa6a"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a56",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "cfe7de3aaa6a"
+          ]
+        }
       ]
     },
     "examples": [
@@ -25669,6 +26047,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "b65c00ba4882"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a56",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "a1bbb2ec0848"
           ]
         }
       ]
@@ -26910,6 +27301,21 @@
             "4c53dc4aafee"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "270",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "21d99799f643",
+            "c9d3ba050e74"
+          ]
+        }
       ]
     },
     "examples": [
@@ -27039,6 +27445,23 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "745def6307ff",
+            "78c831fd2e57",
+            "a8536c44b053"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "270",
+          "examples": [
+            0,
+            1,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "745def6307ff",
             "78c831fd2e57",
@@ -28248,6 +28671,19 @@
             "8eb6327c79d8"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "974",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "8eb6327c79d8"
+          ]
+        }
       ]
     },
     "examples": [
@@ -28396,6 +28832,19 @@
           ],
           "example_ids": [
             "64116edd1a18"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "40d",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "258b57fe3e37"
           ]
         }
       ]
@@ -31093,6 +31542,19 @@
             "49ddf25aeb11"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a8b",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "49ddf25aeb11"
+          ]
+        }
       ]
     },
     "examples": [
@@ -31511,6 +31973,30 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "edd405a1c233"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "550",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "831b9fd64795"
+          ]
+        },
+        {
+          "sense": "117",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "edd405a1c233"
           ]
@@ -33691,6 +34177,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "c7c7d5d5b0a4"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "b9d",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "c61b163f8465"
           ]
         }
       ]
@@ -36264,6 +36763,19 @@
             "37f1a5b56332"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "b9d",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "37f1a5b56332"
+          ]
+        }
       ]
     },
     "examples": [
@@ -36806,6 +37318,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "d50832777e3a"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "105",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "177a2a769ca8"
           ]
         }
       ]
@@ -37489,6 +38014,19 @@
             "f9073321be15"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "90e",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "f9073321be15"
+          ]
+        }
       ]
     },
     "examples": [
@@ -37648,6 +38186,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "32d52c35443f"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "8d5",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "32d52c35443f"
           ]
@@ -37963,6 +38514,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "d1bdb1532f44"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "8d5",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "aba8b3bd7697"
           ]
         }
       ]
@@ -40353,6 +40917,19 @@
             "a48fd9a9557e"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "2ea",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "0e6cc9233b06"
+          ]
+        }
       ]
     },
     "examples": [
@@ -41879,6 +42456,19 @@
             "239961506c5d"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "f41",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "239961506c5d"
+          ]
+        }
       ]
     },
     "examples": [
@@ -42177,6 +42767,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "c7d3b55869d1"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "7ae",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "a489b7fdb76b"
           ]
         }
       ]
@@ -43382,6 +43985,21 @@
             "cd4273dea136"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "5f9",
+          "examples": [
+            0,
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "646ed404fde1",
+            "cd4273dea136"
+          ]
+        }
       ]
     },
     "examples": [
@@ -43560,6 +44178,19 @@
             "25cfb6a29cc2"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "5f9",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "3420c2636b21"
+          ]
+        }
       ]
     },
     "examples": [
@@ -43706,6 +44337,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "ae1283a48f50"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "5f9",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "ae1283a48f50"
           ]
@@ -43888,6 +44532,19 @@
             "4ebe7af3b4d4"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "a7d",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "de959419d29e"
+          ]
+        }
       ]
     },
     "examples": [
@@ -44053,6 +44710,21 @@
             "beabbb1c033c"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "5f9",
+          "examples": [
+            1,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "0b5dc4276109",
+            "beabbb1c033c"
+          ]
+        }
       ]
     },
     "examples": [
@@ -44188,6 +44860,21 @@
           ],
           "example_ids": [
             "e14e80a33874"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "2dd",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "bde00c06cc99",
+            "06b7f26ee372"
           ]
         }
       ]
@@ -48288,6 +48975,19 @@
     "corpus_count": 21,
     "translation": "to show",
     "assignments": {
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "c53",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "ab6b31dd7430"
+          ]
+        }
+      ],
       "spanishdict-embed-v1": [
         {
           "sense": "edec",
@@ -48637,6 +49337,19 @@
           "example_ids": [
             "b07a5d9139f8",
             "6f8e244de859",
+            "fbf57b77f037"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "2dd",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
             "fbf57b77f037"
           ]
         }
@@ -50238,6 +50951,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "df9a683280ea"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "f1c",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "df9a683280ea"
           ]
@@ -55750,6 +56476,21 @@
             "2845d1324c10"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "74a",
+          "examples": [
+            0,
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "a913ae7e9f9c",
+            "2845d1324c10"
+          ]
+        }
       ]
     },
     "examples": [
@@ -57263,6 +58004,19 @@
             "c27b04660600"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "e16",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "66412c82538d"
+          ]
+        }
       ]
     },
     "examples": [
@@ -57563,6 +58317,19 @@
             "d1a92112bae8"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "d04",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "d1a92112bae8"
+          ]
+        }
       ]
     },
     "examples": [
@@ -57713,6 +58480,19 @@
             "5b7967044a93"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "0ae",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "6549d2dba171"
+          ]
+        }
       ]
     },
     "examples": [
@@ -57861,6 +58641,21 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "a690ecbb8309"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "b42",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "98b44c92d098",
+            "3c488a62f581"
           ]
         }
       ]
@@ -58444,6 +59239,19 @@
             "8d0035d19588"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "c1f",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "8d0035d19588"
+          ]
+        }
       ]
     },
     "examples": [
@@ -58622,7 +59430,7 @@
       }
     ],
     "id": "0020ef",
-    "base_id": "f1c40620"
+    "base_id": "38ac68"
   },
   "deccb7": {
     "base_verb": "pregunte",
@@ -58791,6 +59599,30 @@
             "9173da9ba743"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "7f2",
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "examples": [
+            0
+          ],
+          "example_ids": [
+            "a5b398b0eda0"
+          ]
+        },
+        {
+          "sense": "e06",
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "examples": [
+            2
+          ],
+          "example_ids": [
+            "9173da9ba743"
+          ]
+        }
       ]
     },
     "examples": [
@@ -58938,6 +59770,21 @@
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
+            "2d799239dba7"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "7f2",
+          "examples": [
+            0,
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "299bdf13815e",
             "2d799239dba7"
           ]
         }
@@ -59742,6 +60589,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "3efe09db9472"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "aab",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "080abc739af8"
           ]
         }
       ]
@@ -61569,6 +62429,19 @@
             "91b9bd454af7"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "c63",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "91b9bd454af7"
+          ]
+        }
       ]
     },
     "examples": [
@@ -61850,6 +62723,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "5ee9f74818f1"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "738",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "5ee9f74818f1"
           ]
@@ -62371,6 +63257,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "bcdd116defa1"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "b37",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "6dc8af279efd"
           ]
         }
       ]
@@ -63037,6 +63936,19 @@
             "dae97fbfc801"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "2c2",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "dae97fbfc801"
+          ]
+        }
       ]
     },
     "examples": [
@@ -63185,6 +64097,19 @@
           "example_ids": [
             "72ebdd3d5dd1",
             "c0e812f8a7a5"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "2c2",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "9be76ea2abce"
           ]
         }
       ]
@@ -63348,6 +64273,19 @@
           "example_ids": [
             "b88a7102929d",
             "0aec248373ae"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "05d",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "12c6187f2885"
           ]
         }
       ]
@@ -63907,6 +64845,21 @@
             "e1067326c8d3"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "0d2",
+          "examples": [
+            0,
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "c31daafa673a",
+            "e1067326c8d3"
+          ]
+        }
       ]
     },
     "examples": [
@@ -64203,6 +65156,19 @@
           ],
           "prompt_id": "sd-beto-cal-v3",
           "run_ts": "2026-08-22T10:47Z",
+          "example_ids": [
+            "2f4a68fda5e2"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "276",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
           "example_ids": [
             "2f4a68fda5e2"
           ]
@@ -64685,6 +65651,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "9091a6937d3e"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "6d2",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "48494515d4e4"
           ]
         }
       ]
@@ -67240,6 +68219,19 @@
             "10ec78e74ed3"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "4b0",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "7ac910e544ad"
+          ]
+        }
       ]
     },
     "examples": [
@@ -68165,6 +69157,19 @@
             "a6ebfbd6db84"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "e76",
+          "examples": [
+            2
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "a6ebfbd6db84"
+          ]
+        }
       ]
     },
     "examples": [
@@ -68304,6 +69309,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "2316b27c2b58"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "e76",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "c8cb346ec7fe"
           ]
         }
       ]
@@ -71618,6 +72636,19 @@
             "f8f7ddab8d89"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "ca3",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "381c0c176092"
+          ]
+        }
       ]
     },
     "examples": [
@@ -72488,6 +73519,19 @@
             "1ab4d74fd4f0",
             "7321e3d740ea",
             "e57ce4c99592"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "0ed",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "1ab4d74fd4f0"
           ]
         }
       ]
@@ -74425,6 +75469,19 @@
             "270e8037c34c"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "e80",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "270e8037c34c"
+          ]
+        }
       ]
     },
     "examples": [
@@ -76198,6 +77255,19 @@
             "54bb311f8a45"
           ]
         }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "08f",
+          "examples": [
+            1
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "5be10b4b8813"
+          ]
+        }
       ]
     },
     "examples": [
@@ -76659,6 +77729,19 @@
           "run_ts": "2026-08-22T10:47Z",
           "example_ids": [
             "7a22d22a6b55"
+          ]
+        }
+      ],
+      "spanishdict-beto-cal-align-v4": [
+        {
+          "sense": "453",
+          "examples": [
+            0
+          ],
+          "prompt_id": "sd-beto-cal-align-v4",
+          "run_ts": "2026-08-22T13:18Z",
+          "example_ids": [
+            "667c6da6ea52"
           ]
         }
       ]

@@ -1,0 +1,412 @@
+{
+  "_meta": {
+    "step_name": "assemble_vocabulary.unrenderable",
+    "step_version": 6,
+    "generated_at": 1787404728
+  },
+  "dropped_from_deck": true,
+  "counts": {
+    "abbreviation": 12,
+    "clitic form with no dictionary entry of its own": 3,
+    "english loanword": 5,
+    "no sense menu": 46
+  },
+  "words": {
+    "alecto": {
+      "lemma": "Alecto",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "america": {
+      "lemma": "América",
+      "corpus_count": 8,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "anímate": {
+      "lemma": "animar",
+      "corpus_count": 8,
+      "examples": 3,
+      "reason": "clitic form with no dictionary entry of its own"
+    },
+    "babilonia": {
+      "lemma": "babilonio",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "bang": {
+      "lemma": "bang",
+      "corpus_count": 6,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "bares": {
+      "lemma": "bar",
+      "corpus_count": 6,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "berlín": {
+      "lemma": "Berlín",
+      "corpus_count": 26,
+      "examples": 1,
+      "reason": "no sense menu"
+    },
+    "bretaña": {
+      "lemma": "Bretaña",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "champagne": {
+      "lemma": "champagne",
+      "corpus_count": 6,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "chester": {
+      "lemma": "chéster",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "concéntrate": {
+      "lemma": "concentrar",
+      "corpus_count": 15,
+      "examples": 3,
+      "reason": "clitic form with no dictionary entry of its own"
+    },
+    "corea": {
+      "lemma": "corea",
+      "corpus_count": 15,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "cosmo": {
+      "lemma": "cosmos",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "creed": {
+      "lemma": "creer",
+      "corpus_count": 8,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "dales": {
+      "lemma": "dar",
+      "corpus_count": 9,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "depto": {
+      "lemma": "departamento",
+      "corpus_count": 8,
+      "examples": 1,
+      "reason": "abbreviation"
+    },
+    "doc": {
+      "lemma": "doctor",
+      "corpus_count": 48,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "dr": {
+      "lemma": "doctor",
+      "corpus_count": 255,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "dra": {
+      "lemma": "doctora",
+      "corpus_count": 59,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "drácula": {
+      "lemma": "Drácula",
+      "corpus_count": 28,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "eeuu": {
+      "lemma": "EEUU",
+      "corpus_count": 65,
+      "examples": 2,
+      "reason": "abbreviation"
+    },
+    "estate": {
+      "lemma": "estar",
+      "corpus_count": 7,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "etc": {
+      "lemma": "etc",
+      "corpus_count": 6,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "europa": {
+      "lemma": "Europa",
+      "corpus_count": 40,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "faché": {
+      "lemma": "fachar",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "fantasías": {
+      "lemma": "fantasía",
+      "corpus_count": 7,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "garage": {
+      "lemma": "garage",
+      "corpus_count": 5,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "gral": {
+      "lemma": "general",
+      "corpus_count": 4,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "gym": {
+      "lemma": "gym",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "english loanword"
+    },
+    "hanzo": {
+      "lemma": "hanzo",
+      "corpus_count": 8,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "helion": {
+      "lemma": "helión",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "holanda": {
+      "lemma": "holanda",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "hueón": {
+      "lemma": "hueón",
+      "corpus_count": 2,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "larguémonos": {
+      "lemma": "largar",
+      "corpus_count": 7,
+      "examples": 3,
+      "reason": "clitic form with no dictionary entry of its own"
+    },
+    "lgual": {
+      "lemma": "igual",
+      "corpus_count": 5,
+      "examples": 1,
+      "reason": "no sense menu"
+    },
+    "matrix": {
+      "lemma": "matrix",
+      "corpus_count": 6,
+      "examples": 1,
+      "reason": "no sense menu"
+    },
+    "mc": {
+      "lemma": "mc",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "mr": {
+      "lemma": "mister",
+      "corpus_count": 47,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "nochebuena": {
+      "lemma": "Nochebuena",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "okay": {
+      "lemma": "okay",
+      "corpus_count": 19,
+      "examples": 3,
+      "reason": "english loanword"
+    },
+    "oxford": {
+      "lemma": "oxford",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "pm": {
+      "lemma": "pm",
+      "corpus_count": 20,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "priorato": {
+      "lemma": "priorato",
+      "corpus_count": 17,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "queens": {
+      "lemma": "queens",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "regan": {
+      "lemma": "regan",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "ringo": {
+      "lemma": "ringar",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "roman": {
+      "lemma": "román",
+      "corpus_count": 3,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "sato": {
+      "lemma": "sato",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "saudita": {
+      "lemma": "Saudita",
+      "corpus_count": 2,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "sauditas": {
+      "lemma": "saudita",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "sgto": {
+      "lemma": "sargento",
+      "corpus_count": 9,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "sir": {
+      "lemma": "sir",
+      "corpus_count": 36,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "sr": {
+      "lemma": "señor",
+      "corpus_count": 1040,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "sra": {
+      "lemma": "señora",
+      "corpus_count": 218,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "srta": {
+      "lemma": "señorita",
+      "corpus_count": 167,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "ud": {
+      "lemma": "usted",
+      "corpus_count": 414,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "uds": {
+      "lemma": "ustedes",
+      "corpus_count": 140,
+      "examples": 3,
+      "reason": "abbreviation"
+    },
+    "uh": {
+      "lemma": "uh",
+      "corpus_count": 69,
+      "examples": 3,
+      "reason": "no sense menu"
+    },
+    "utah": {
+      "lemma": "utah",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "english loanword"
+    },
+    "vaticano": {
+      "lemma": "Vaticano",
+      "corpus_count": 12,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "vinci": {
+      "lemma": "vencer",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "winchester": {
+      "lemma": "winchester",
+      "corpus_count": 6,
+      "examples": 0,
+      "reason": "english loanword"
+    },
+    "wow": {
+      "lemma": "wow",
+      "corpus_count": 20,
+      "examples": 3,
+      "reason": "english loanword"
+    },
+    "yankees": {
+      "lemma": "yankee",
+      "corpus_count": 6,
+      "examples": 2,
+      "reason": "no sense menu"
+    },
+    "yoyo": {
+      "lemma": "yoyo",
+      "corpus_count": 5,
+      "examples": 0,
+      "reason": "no sense menu"
+    },
+    "úitima": {
+      "lemma": "último",
+      "corpus_count": 7,
+      "examples": 0,
+      "reason": "no sense menu"
+    }
+  }
+}
