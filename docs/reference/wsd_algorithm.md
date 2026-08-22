@@ -36,7 +36,7 @@ What the choice actually trades:
 |---|---|---|---|
 | **neither** | (none) | none | it stands, stamped `sd-beto-cal-v3`, low band |
 | **reject** | `--min-confidence T [--keep-best N]` | none | the claim is dropped; the example loses its card slot |
-| **escalate** | `--escalate low --escalate-budget 0.20` | ~$0.08 per 3k picks | flash-lite re-picks from the closed menu |
+| **escalate** | `--escalate low --escalate-budget 0.20` | $0.047 per 1k picks escalated (measured) | flash-lite re-picks from the closed menu |
 | **both** | all four | same as escalate | escalate the worst N%, then cut what is still under T |
 
 **No Gemini at all.** Either leave the flags off, or reject. Rejecting is not
@@ -60,6 +60,17 @@ a band: the band cuts are PRECISION targets read off the calibrator's held-out
 curve, so on a hard corpus the low band is 69% of the deck, which makes the
 escalator the main path rather than the fallback. Escalated cards graded ~88%
 against ~76% for locally-decided ones.
+
+How much it moves, measured 2026-08-22 at a 20% budget in both modes:
+
+    artist (31-song playlist)  602 escalated, 499 picks changed (83%),  $0.028
+    speech (subtitle corpus) 5,848 escalated, 4,076 picks changed (70%), $0.273
+
+Gemini disagrees with the local path on most of what it is shown, in both
+corpora. That is the point -- the budget selects the picks the calibrator ranks
+worst -- but it also means escalation is not a light touch-up: a fifth of the
+deck gets a different answer, from a different model, and only the escalated
+share carries the `-esc-v3` id that says so.
 
 **Which to choose is about the corpus, not the mode.** A fixed corpus -- a
 playlist, a user upload -- cannot re-draw a bad sentence, so escalating buys back
