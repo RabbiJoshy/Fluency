@@ -39,7 +39,7 @@ HEADER_KEYS = {
     'schemaversion': 'schemaVersion',
     'srsstage': 'srsStage',
     'value': 'value',
-    # FlaggedWords schema v2 — each audit attribute is its own column instead of
+    # FlaggedWords schema v4 — each audit attribute is its own column instead of
     # being buried in the rendered report blob.
     'flaggedat': 'flaggedAt',
     'lemma': 'lemma',
@@ -67,6 +67,15 @@ HEADER_KEYS = {
     'model': 'model',
     'assignmentmethod': 'assignmentMethod',
     'provenancejson': 'provenanceJson',
+    'flagid': 'flagId',
+    'clientbuild': 'clientBuild',
+    'exampleid': 'exampleId',
+    'sourcerecordid': 'sourceRecordId',
+    'status': 'status',
+    'resolutionnote': 'resolutionNote',
+    'resolvedby': 'resolvedBy',
+    'resolvedat': 'resolvedAt',
+    'fixedinreleaseid': 'fixedInReleaseId',
     'setid': 'setId',
     'name': 'name',
     'songidsjson': 'songIdsJson',
@@ -157,7 +166,7 @@ def show_diff(sheet_name, old_data, new_rows):
             return '|'.join((str(row.get('user', '')), str(row.get('source', '')),
                              str(row.get('setId', ''))))
         if sheet_name != 'Progress':
-            return f"{row.get('user', '')}|{row.get('wordId', '')}"
+            return str(row.get('flagId', '')) or f"{row.get('user', '')}|{row.get('wordId', '')}"
         item_type = str(row.get('itemType', 'sense')).lower()
         if item_type == 'expression':
             item_type = 'mwe'

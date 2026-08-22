@@ -119,6 +119,7 @@ const spreadsheet = new Spreadsheet({
     FlaggedWords: [['User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong']]
 });
 const properties = new Map();
+let uuidCounter = 0;
 const context = {
     console,
     Date,
@@ -134,6 +135,9 @@ const context = {
     },
     LockService: {
         getScriptLock: () => ({ waitLock() {}, releaseLock() {} })
+    },
+    Utilities: {
+        getUuid: () => `generated-flag-${++uuidCounter}`
     },
     ContentService: {
         MimeType: { JSON: 'application/json' },
@@ -154,7 +158,7 @@ function post(payload) {
 
 const capabilities = post({ action: 'capabilities' }).data;
 assert.equal(capabilities.schemaVersion, 4);
-assert.equal(capabilities.flagSchemaVersion, 3);
+assert.equal(capabilities.flagSchemaVersion, 4);
 assert.equal(capabilities.songSetSchemaVersion, 2);
 
 assert.equal(post({
@@ -203,12 +207,14 @@ const flagProvenance = {
 };
 assert.equal(post({
     action: 'save', sheet: 'FlaggedWords', user: 'JSTA',
+    flagId: 'flag-event-0001', clientBuild: '20260822f',
     word: '[Audit flag]\nWord: esta', wordText: 'esta', wordId: 'es001#sense:1',
     language: 'spanish', cardId: 'es001', fieldPath: 'sense:1',
     target: 'sense', category: 'matching', mode: 'speech', source: 'speech',
     releaseId: flagProvenance.releaseId, runId: flagProvenance.runId,
     runTimestamp: '2026-08-22T18:00:00.000Z', promptId: 'sd-beto-cal-v3',
-    model: 'BETO', assignmentMethod: 'embedding-rerank',
+    model: 'BETO', assignmentMethod: 'embedding-rerank', exampleId: 'example-44',
+    sourceRecordId: 'tatoeba-991', status: 'Open',
     provenanceJson: JSON.stringify(flagProvenance)
 }).success, true);
 const flagSheet = spreadsheet.getSheetByName('FlaggedWords');
@@ -218,8 +224,29 @@ assert.equal(savedFlag[flagHeaders.indexOf('User')], 'JSTA');
 assert.equal(savedFlag[flagHeaders.indexOf('ReleaseId')], 'es-speech-audit-0007');
 assert.equal(savedFlag[flagHeaders.indexOf('RunId')], '20260822T180000Z-abcd1234');
 assert.equal(savedFlag[flagHeaders.indexOf('PromptId')], 'sd-beto-cal-v3');
+assert.equal(savedFlag[flagHeaders.indexOf('FlagId')], 'flag-event-0001');
+assert.equal(savedFlag[flagHeaders.indexOf('ClientBuild')], '20260822f');
+assert.equal(savedFlag[flagHeaders.indexOf('ExampleId')], 'example-44');
+assert.equal(savedFlag[flagHeaders.indexOf('SourceRecordId')], 'tatoeba-991');
+assert.equal(savedFlag[flagHeaders.indexOf('Status')], 'Open');
 assert.deepEqual(JSON.parse(savedFlag[flagHeaders.indexOf('ProvenanceJson')]), flagProvenance);
 assert.ok(spreadsheet.getSheetByName('FlaggedWords_v1_backup'));
+
+const flagRowsAfterFirstEvent = flagSheet.getLastRow();
+assert.equal(post({
+    action: 'save', sheet: 'FlaggedWords', user: 'JSTA', flagId: 'flag-event-0001',
+    wordId: 'es001#sense:1', wordText: 'esta', note: 'retry payload'
+}).success, true);
+assert.equal(flagSheet.getLastRow(), flagRowsAfterFirstEvent, 'retry must not duplicate an event');
+assert.equal(post({
+    action: 'save', sheet: 'FlaggedWords', user: 'JSTA', flagId: 'flag-event-0002',
+    wordId: 'es001#sense:1', wordText: 'esta', releaseId: 'es-speech-audit-0008'
+}).success, true);
+assert.equal(flagSheet.getLastRow(), flagRowsAfterFirstEvent + 1,
+    'a later flag on the same card/field must remain a separate event');
+assert.equal(post({ action: 'migrateFlags' }).success, true);
+assert.equal(flagSheet.getLastRow(), flagRowsAfterFirstEvent + 1,
+    'forcing migration on a current schema must not rewrite event rows');
 
 const normalOnly = post({ action: 'load', sheet: 'UserProgress', user: 'JT' });
 const artistOnly = post({ action: 'load', sheet: 'Lyrics', user: 'JT' });

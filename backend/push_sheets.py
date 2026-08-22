@@ -30,7 +30,7 @@ BACKUP_DIR = os.path.join(LOCAL_DIR, 'backups')
 SHEETS = ['Progress']
 # FlaggedWords is opt-in via an explicit --sheet FlaggedWords, since pushing it
 # is a curation action, not routine progress sync. --replace deletes remote flags
-# absent from local. Its schema is v3 (FLAG_KEYS), no longer the progress-shaped
+# absent from local. Its schema is v4 (FLAG_KEYS), no longer the progress-shaped
 # eight columns.
 PUSHABLE_SHEETS = SHEETS + ['FlaggedWords']
 PROGRESS_KEYS = [
@@ -48,7 +48,9 @@ FLAG_KEYS = [
     'context', 'example', 'translation', 'song', 'exampleAssignment',
     'translationSource', 'senseAssignment', 'requestedTag', 'note', 'report',
     'schemaVersion', 'mode', 'source', 'releaseId', 'runId', 'runTimestamp',
-    'promptId', 'model', 'assignmentMethod', 'provenanceJson'
+    'promptId', 'model', 'assignmentMethod', 'provenanceJson', 'flagId',
+    'clientBuild', 'exampleId', 'sourceRecordId', 'status', 'resolutionNote',
+    'resolvedBy', 'resolvedAt', 'fixedInReleaseId'
 ]
 HEADER_ALIASES = {
     'user': 'user', 'itemid': 'itemId', 'itemtype': 'itemType', 'mode': 'mode',
@@ -57,7 +59,7 @@ HEADER_ALIASES = {
     'correct': 'correct', 'wrong': 'wrong', 'lastcorrect': 'lastCorrect',
     'lastwrong': 'lastWrong', 'lastseen': 'lastSeen',
     'schemaversion': 'schemaVersion', 'srsstage': 'srsStage', 'value': 'value',
-    # FlaggedWords v3. The sheet's Word column maps to `wordText` because the
+    # FlaggedWords v4. The sheet's Word column maps to `wordText` because the
     # backend reserves the `word` payload key for the v1 report-blob contract.
     'flaggedat': 'flaggedAt', 'lemma': 'lemma', 'cardid': 'cardId',
     'fieldpath': 'fieldPath', 'target': 'target', 'category': 'category',
@@ -69,7 +71,11 @@ HEADER_ALIASES = {
     'note': 'note', 'report': 'report', 'releaseid': 'releaseId',
     'runid': 'runId', 'runtimestamp': 'runTimestamp', 'promptid': 'promptId',
     'model': 'model', 'assignmentmethod': 'assignmentMethod',
-    'provenancejson': 'provenanceJson'
+    'provenancejson': 'provenanceJson', 'flagid': 'flagId',
+    'clientbuild': 'clientBuild', 'exampleid': 'exampleId',
+    'sourcerecordid': 'sourceRecordId', 'status': 'status',
+    'resolutionnote': 'resolutionNote', 'resolvedby': 'resolvedBy',
+    'resolvedat': 'resolvedAt', 'fixedinreleaseid': 'fixedInReleaseId'
 }
 
 
@@ -202,7 +208,7 @@ def row_key(row, sheet_name):
             ))
         return '|'.join((str(row.get('user', '')), item_type, mode,
                          str(row.get('itemId', ''))))
-    return f"{row.get('user', '')}|{row.get('wordId', '')}"
+    return str(row.get('flagId', '')) or f"{row.get('user', '')}|{row.get('wordId', '')}"
 
 
 def rows_differ(local_row, remote_row, sheet_name):
@@ -363,13 +369,14 @@ def main():
                     result = post_json(script_url, {
                         'action': 'delete',
                         'user': row['user'],
+                        'flagId': row.get('flagId'),
                         'wordId': row.get('wordId'),
                         'sheet': sheet_name
                     })
                 if result.get('success'):
                     ok += 1
                 else:
-                    failures.append((row.get('itemId') or row.get('wordId', ''), result.get('message')))
+                    failures.append((row.get('itemId') or row.get('flagId') or row.get('wordId', ''), result.get('message')))
                 if i % 25 == 0:
                     print(f"    ... {i}/{len(to_delete)}")
             print(f"    Deleted {ok}/{len(to_delete)} rows"

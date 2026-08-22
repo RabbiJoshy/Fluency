@@ -1,7 +1,7 @@
 // Authentication, Google Sheets sync, and progress persistence.
 // Key functions: saveWordProgress(), loadUserProgressFromSheet(), submitLogin().
-import './state.js?v=20260822d';
-import { dbGet, dbPut } from './offline-db.js?v=20260822d';
+import './state.js?v=20260822f';
+import { dbGet, dbPut } from './offline-db.js?v=20260822f';
 // Offline-durable write path. sendOrQueue() write-throughs when online and
 // enqueues to IndexedDB when offline/failed. The overlay helpers keep
 // un-synced card and granular knowledge answers visible after a Sheets reload.
@@ -10,7 +10,7 @@ import {
     applyPendingProgressOverlay,
     applyPendingItemProgressOverlay,
     applyPendingMetaProgressOverlay
-} from './sync-queue.js?v=20260822d';
+} from './sync-queue.js?v=20260822f';
 
 const AUDIT_ACCOUNT_INITIALS = new Set(['JST', 'JSTA']);
 
@@ -21,6 +21,20 @@ function isAuditAccount(user = currentUser) {
 }
 
 window.isAuditAccount = isAuditAccount;
+
+function createFlagId() {
+    if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
+    return `flag-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+}
+
+function currentClientBuild() {
+    try {
+        const src = document.querySelector('script[src*="js/main.js"]')?.src || '';
+        return new URL(src, window.location.href).searchParams.get('v') || '';
+    } catch (_) {
+        return '';
+    }
+}
 
 async function loadSecrets() {
     const controller = new AbortController();
@@ -856,6 +870,7 @@ async function flagWord(card, fieldPath, fieldValue, fields = null) {
         : card.targetWord;
     const language = selectedLanguage;
     const timestamp = new Date().toISOString();
+    const flagId = createFlagId();
     const release = window._activeReleaseProvenance || {};
     const languageConfig = config?.languages?.[selectedLanguage] || {};
     let provenance = {};
@@ -891,13 +906,16 @@ async function flagWord(card, fieldPath, fieldValue, fields = null) {
         model: provenance.model || '',
         assignmentMethod: provenance.assignmentMethod || '',
         ...(fields || {}),
-        schemaVersion: 3,
+        schemaVersion: 4,
+        flagId,
+        clientBuild: currentClientBuild(),
+        status: 'Open',
         provenanceJson: JSON.stringify(provenance).slice(0, 20000)
     };
 
     // Route through the offline-durable queue so flags raised offline aren't
-    // lost. De-dupe on wordId (which already encodes the flagged field path):
-    // the latest flag for a given field wins.
+    // lost. The event ID is also the queue de-dupe key: retries of this gesture
+    // collapse safely, while a later flag on the same card remains separate.
     await sendOrQueue({
         action: 'save',
         sheet: 'FlaggedWords',
@@ -907,7 +925,7 @@ async function flagWord(card, fieldPath, fieldValue, fields = null) {
         wordId: wordId,
         lastCorrect: fieldPath || '',
         lastWrong: timestamp,
-        // Flag schema v2 structured columns. Explicit fallbacks keep the row
+        // Flag schema v4 structured columns. Explicit fallbacks keep the row
         // populated when a caller has not been migrated to pass `fields`.
         ...structuredFields,
         wordText: structuredFields.wordText || card.targetWord || '',
@@ -915,7 +933,7 @@ async function flagWord(card, fieldPath, fieldValue, fields = null) {
         fieldPath: fieldPath || '',
         flaggedAt: timestamp,
         report: fieldValue !== undefined && fieldValue !== null ? String(fieldValue) : ''
-    }, `flag|${wordId}`);
+    }, `flag|${flagId}`);
     console.log(`Flagged ${word} (${wordId}) for review`);
     return true;
 }

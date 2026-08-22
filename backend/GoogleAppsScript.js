@@ -19,13 +19,13 @@ const SONG_SET_HEADERS = [
   'User', 'SetId', 'Source', 'Name', 'Language', 'SongIdsJson', 'UpdatedAt',
   'SchemaVersion', 'ArtistSlugsJson'
 ];
-// Flag schema v3. v1 was the progress-shaped eight-column tab
+// Flag schema v4. v1 was the progress-shaped eight-column tab
 // (User, Word, WordId, Language, Correct, Wrong, LastCorrect, LastWrong) where
 // the whole audit report was crammed into Word, fieldPath was smuggled through
 // LastCorrect, the flag timestamp through LastWrong, and Correct/Wrong were
 // always zero. The app's flag UI can emit ~29 distinct attributes, so v2 gives
 // each one a real column and keeps the rendered blob in Report for reading.
-const FLAG_SCHEMA_VERSION = 3;
+const FLAG_SCHEMA_VERSION = 4;
 const FLAGGED_WORDS_SHEET_NAME = 'FlaggedWords';
 const FLAGGED_WORDS_V2_HEADERS = [
   'User', 'FlaggedAt', 'Word', 'Lemma', 'Language', 'WordId', 'CardId',
@@ -34,9 +34,13 @@ const FLAGGED_WORDS_V2_HEADERS = [
   'TranslationSource', 'SenseAssignment', 'RequestedTag', 'Note', 'Report',
   'SchemaVersion'
 ];
-const FLAGGED_WORDS_HEADERS = FLAGGED_WORDS_V2_HEADERS.concat([
+const FLAGGED_WORDS_V3_HEADERS = FLAGGED_WORDS_V2_HEADERS.concat([
   'Mode', 'Source', 'ReleaseId', 'RunId', 'RunTimestamp', 'PromptId',
   'Model', 'AssignmentMethod', 'ProvenanceJson'
+]);
+const FLAGGED_WORDS_HEADERS = FLAGGED_WORDS_V3_HEADERS.concat([
+  'FlagId', 'ClientBuild', 'ExampleId', 'SourceRecordId', 'Status',
+  'ResolutionNote', 'ResolvedBy', 'ResolvedAt', 'FixedInReleaseId'
 ]);
 const FLAGGED_WORDS_V1_HEADERS = [
   'User', 'Word', 'WordId', 'Language', 'Correct', 'Wrong',
@@ -75,10 +79,19 @@ const F = {
   PROMPT_ID: 29,
   MODEL: 30,
   ASSIGNMENT_METHOD: 31,
-  PROVENANCE_JSON: 32
+  PROVENANCE_JSON: 32,
+  FLAG_ID: 33,
+  CLIENT_BUILD: 34,
+  EXAMPLE_ID: 35,
+  SOURCE_RECORD_ID: 36,
+  STATUS: 37,
+  RESOLUTION_NOTE: 38,
+  RESOLVED_BY: 39,
+  RESOLVED_AT: 40,
+  FIXED_IN_RELEASE_ID: 41
 };
 const PROGRESS_MIGRATION_PROPERTY = 'FLUENCY_PROGRESS_V4_MIGRATED';
-const FLAG_MIGRATION_PROPERTY = 'FLUENCY_FLAGS_V3_MIGRATED';
+const FLAG_MIGRATION_PROPERTY = 'FLUENCY_FLAGS_V4_MIGRATED';
 
 const P = {
   USER: 0,
@@ -1140,14 +1153,14 @@ function flagHeaderValuesMatch(header, expected) {
   return true;
 }
 
-function convertV2FlagRow(v2Row) {
+function convertStructuredFlagRow(priorRow, priorHeaders, priorSchema) {
   const row = new Array(FLAGGED_WORDS_HEADERS.length).fill('');
-  for (let i = 0; i < Math.min(v2Row.length, FLAGGED_WORDS_V2_HEADERS.length); i++) {
-    row[i] = v2Row[i];
+  for (let i = 0; i < Math.min(priorRow.length, priorHeaders.length); i++) {
+    row[i] = priorRow[i];
   }
-  // Keep schema 2 as honest historical provenance: these rows predate the
-  // run snapshot fields, even though they now live in the wider v3 sheet.
-  row[F.SCHEMA] = Number(row[F.SCHEMA]) || 2;
+  // Keep the original schema as honest historical provenance. Empty event and
+  // resolution fields show that these rows predate append-only flag events.
+  row[F.SCHEMA] = Number(row[F.SCHEMA]) || priorSchema;
   return row;
 }
 
@@ -1168,7 +1181,7 @@ function writeFlaggedWordsHeader(sheet) {
 }
 
 /**
- * Create the tab, or migrate a v1/v2 tab in place. The pre-migration tab is
+ * Create the tab, or migrate a v1/v2/v3 tab in place. The pre-migration tab is
  * copied first, so a bad parse is always recoverable.
  * Entirely blank rows (three exist at the top of the live sheet, left over from
  * an early schema) are dropped rather than carried forward.
@@ -1193,15 +1206,17 @@ function ensureFlaggedWordsSchema(force) {
       props.setProperty(FLAG_MIGRATION_PROPERTY, '1');
       return { sheet: sheet, summary: { migrated: false, created: true, rows: 0 } };
     }
-    if (flagHeadersMatch(sheet) && !force) {
+    if (flagHeadersMatch(sheet)) {
       props.setProperty(FLAG_MIGRATION_PROPERTY, '1');
       return { sheet: sheet, summary: { migrated: false, rows: Math.max(0, sheet.getLastRow() - 1) } };
     }
 
     const existing = sheet.getDataRange().getValues();
     const existingHeader = existing[0] || [];
+    const isV3 = flagHeaderValuesMatch(existingHeader, FLAGGED_WORDS_V3_HEADERS);
     const isV2 = flagHeaderValuesMatch(existingHeader, FLAGGED_WORDS_V2_HEADERS);
-    const backupName = FLAGGED_WORDS_SHEET_NAME + (isV2 ? '_v2_backup' : '_v1_backup');
+    const priorVersion = isV3 ? 3 : (isV2 ? 2 : 1);
+    const backupName = FLAGGED_WORDS_SHEET_NAME + '_v' + priorVersion + '_backup';
     if (!ss.getSheetByName(backupName)) {
       sheet.copyTo(ss).setName(backupName);
     }
@@ -1212,7 +1227,11 @@ function ensureFlaggedWordsSchema(force) {
       const raw = existing[i];
       const isBlank = raw.every(function(cell) { return String(cell || '').trim() === ''; });
       if (isBlank) { dropped++; continue; }
-      converted.push(isV2 ? convertV2FlagRow(raw) : convertLegacyFlagRow(raw));
+      converted.push(isV3
+        ? convertStructuredFlagRow(raw, FLAGGED_WORDS_V3_HEADERS, 3)
+        : (isV2
+          ? convertStructuredFlagRow(raw, FLAGGED_WORDS_V2_HEADERS, 2)
+          : convertLegacyFlagRow(raw)));
     }
 
     sheet.clear();
@@ -1236,7 +1255,7 @@ function getOrCreateFlaggedWordsSheet() {
 }
 
 /**
- * Build a v3 row from a save payload. `wordText`/`report` are structured fields;
+ * Build a v4 event row from a save payload. `wordText`/`report` are structured fields;
  * the `word` fallback is the v1 client contract, where `word` carried the
  * rendered report and there was no separate headword field.
  */
@@ -1255,7 +1274,8 @@ function buildFlagRow(params, existing) {
 
   row[F.USER] = params.user;
   row[F.WORD_ID] = params.wordId;
-  row[F.FLAGGED_AT] = params.flaggedAt || params.lastWrong || new Date().toISOString();
+  row[F.FLAG_ID] = params.flagId || params.idempotencyKey || row[F.FLAG_ID] || Utilities.getUuid();
+  row[F.FLAGGED_AT] = params.flaggedAt || params.lastWrong || row[F.FLAGGED_AT] || new Date().toISOString();
   // Preserve on re-flag: a partial payload (e.g. a bulkSave that omits these)
   // must not blank a column the row already has.
   row[F.FIELD_PATH] = params.fieldPath || params.lastCorrect || row[F.FIELD_PATH] || '';
@@ -1287,6 +1307,15 @@ function buildFlagRow(params, existing) {
   set(F.PROMPT_ID, params.promptId);
   set(F.MODEL, params.model);
   set(F.ASSIGNMENT_METHOD, params.assignmentMethod);
+  set(F.CLIENT_BUILD, params.clientBuild);
+  set(F.EXAMPLE_ID, params.exampleId);
+  set(F.SOURCE_RECORD_ID, params.sourceRecordId);
+  if (!row[F.STATUS]) row[F.STATUS] = params.status || 'Open';
+  set(F.STATUS, params.status);
+  set(F.RESOLUTION_NOTE, params.resolutionNote);
+  set(F.RESOLVED_BY, params.resolvedBy);
+  set(F.RESOLVED_AT, params.resolvedAt);
+  set(F.FIXED_IN_RELEASE_ID, params.fixedInReleaseId);
   if (params.provenanceJson !== undefined && params.provenanceJson !== null && params.provenanceJson !== '') {
     row[F.PROVENANCE_JSON] = typeof params.provenanceJson === 'string'
       ? params.provenanceJson
@@ -1295,10 +1324,11 @@ function buildFlagRow(params, existing) {
   return row;
 }
 
-/** Row index (1-based) of an existing flag for this user + wordId, else -1. */
-function findFlagRowIndex(data, user, wordId) {
+/** Row index (1-based) of an existing retry for this user + flagId, else -1. */
+function findFlagRowIndex(data, user, flagId) {
+  if (!flagId) return -1;
   for (let i = 1; i < data.length; i++) {
-    if (data[i][F.USER] === user && String(data[i][F.WORD_ID]) === String(wordId)) {
+    if (data[i][F.USER] === user && String(data[i][F.FLAG_ID]) === String(flagId)) {
       return i + 1;
     }
   }
@@ -1311,12 +1341,14 @@ function saveFlaggedWord(params) {
   }
   const sheet = getOrCreateFlaggedWordsSheet();
   const data = sheet.getDataRange().getValues();
-  const rowIndex = findFlagRowIndex(data, params.user, params.wordId);
+  const flagId = params.flagId || params.idempotencyKey || Utilities.getUuid();
+  const eventParams = Object.assign({}, params, { flagId: flagId });
+  const rowIndex = findFlagRowIndex(data, params.user, flagId);
   const existing = rowIndex > 0 ? data[rowIndex - 1] : null;
-  const values = buildFlagRow(params, existing);
+  const values = buildFlagRow(eventParams, existing);
   if (rowIndex > 0) sheet.getRange(rowIndex, 1, 1, values.length).setValues([values]);
   else sheet.appendRow(values);
-  return createResponse(true, 'Flag saved successfully');
+  return createResponse(true, rowIndex > 0 ? 'Flag retry acknowledged' : 'Flag event saved', { flagId: flagId });
 }
 
 function deleteFlaggedWord(params) {
@@ -1326,6 +1358,8 @@ function deleteFlaggedWord(params) {
   let deleted = 0;
   for (let i = data.length - 1; i >= 1; i--) {
     if (data[i][F.USER] === params.user
+        && (params.flagId === undefined || params.flagId === null || String(params.flagId) === ''
+          || String(data[i][F.FLAG_ID]) === String(params.flagId))
         && (params.wordId === undefined || String(data[i][F.WORD_ID]) === String(params.wordId))) {
       sheet.deleteRow(i + 1);
       deleted++;
@@ -1341,8 +1375,10 @@ function bulkSaveFlaggedWords(rows) {
   rows.forEach(function(row) {
     if (!row.user || row.wordId === undefined || String(row.wordId) === '') return;
     const data = sheet.getDataRange().getValues();
-    const rowIndex = findFlagRowIndex(data, row.user, row.wordId);
-    const values = buildFlagRow(row, rowIndex > 0 ? data[rowIndex - 1] : null);
+    const flagId = row.flagId || row.idempotencyKey || Utilities.getUuid();
+    const eventRow = Object.assign({}, row, { flagId: flagId });
+    const rowIndex = findFlagRowIndex(data, row.user, flagId);
+    const values = buildFlagRow(eventRow, rowIndex > 0 ? data[rowIndex - 1] : null);
     if (rowIndex > 0) {
       sheet.getRange(rowIndex, 1, 1, values.length).setValues([values]);
       updated++;

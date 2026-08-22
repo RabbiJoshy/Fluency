@@ -3,6 +3,19 @@
   "entries": [
     {
       "date": "2026-08-22",
+      "commit": "pending",
+      "summary": "Audit flags are now permanent events with a resolution workflow",
+      "details": [
+        "Flagging the same card again appends a separate event instead of overwriting the earlier run's evidence",
+        "A unique FlagId makes offline and network retries idempotent without collapsing distinct flagging gestures",
+        "Flags directly record the client build, example and source-record IDs when available",
+        "Status, resolution note, resolver, resolution time and fixed-in-release columns support an auditable open-to-fixed workflow",
+        "Existing v1, v2 and v3 flag rows migrate non-destructively with a versioned backup",
+        "Cache v264 to v265 / assets 20260822d to 20260822f"
+      ]
+    },
+    {
+      "date": "2026-08-22",
       "commit": "6f85b7a4",
       "summary": "Flags now identify their exact data run, custom playlists sync their artists, and JSTA is a separate audit account",
       "details": [

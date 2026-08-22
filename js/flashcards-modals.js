@@ -1404,6 +1404,9 @@ function _flagRunProvenance(card, meaning, example) {
     const runTimestamp = example?.run_ts || meaning?.run_ts || card?.run_ts
         || release.createdAt || release.created_at || '';
     const assignmentMethod = example?.assignment_method || meaning?.assignment_method || '';
+    const exampleId = example?.example_id || example?.exampleId || example?.id || '';
+    const sourceRecordId = example?.source_record_id || example?.sourceRecordId
+        || example?.sentence_id || example?.sentenceId || example?.tatoeba_id || '';
     const mode = activeArtist ? 'lyrics' : 'speech';
     const source = activeArtist
         ? String(window._urlArtistSlug || window.getProgressSource?.() || activeArtist?.slug || '')
@@ -1420,6 +1423,8 @@ function _flagRunProvenance(card, meaning, example) {
         promptId,
         model: prompt.model || example?.model || meaning?.model || '',
         assignmentMethod,
+        exampleId,
+        sourceRecordId,
         artistSlugs: (window._activeSongSetArtistSlugs || window._selectedArtistSlugs || []).slice(),
         assets: {
             index: languageConfig.indexPath || languageConfig.dataPath || '',
@@ -1429,7 +1434,7 @@ function _flagRunProvenance(card, meaning, example) {
         layers: release.layers || {}
     };
     const fields = {
-        schemaVersion: 3,
+        schemaVersion: 4,
         mode,
         source,
         releaseId,
@@ -1438,6 +1443,8 @@ function _flagRunProvenance(card, meaning, example) {
         promptId,
         model: snapshot.model,
         assignmentMethod,
+        exampleId,
+        sourceRecordId,
         provenanceJson: JSON.stringify(snapshot).slice(0, 20000)
     };
     const reportLines = [];

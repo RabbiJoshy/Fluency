@@ -23,12 +23,15 @@ test('flags persist an exact run snapshot in the app and Apps Script contract', 
         readFile(resolve(root, 'js/flashcards-modals.js'), 'utf8'),
         readFile(resolve(root, 'backend/GoogleAppsScript.js'), 'utf8')
     ]);
-    assert.match(auth, /schemaVersion: 3/);
+    assert.match(auth, /flagId = createFlagId\(\)/);
+    assert.match(auth, /`flag\|\$\{flagId\}`/);
+    assert.match(auth, /schemaVersion: 4/);
     assert.match(auth, /provenanceJson: JSON\.stringify\(provenance\)/);
     assert.match(modals, /function _flagRunProvenance/);
     assert.match(modals, /Release ID:/);
     assert.match(modals, /Run ID:/);
-    assert.match(backend, /FLAG_SCHEMA_VERSION = 3/);
+    assert.match(backend, /FLAG_SCHEMA_VERSION = 4/);
     assert.match(backend, /'ReleaseId', 'RunId', 'RunTimestamp', 'PromptId'/);
     assert.match(backend, /'Model', 'AssignmentMethod', 'ProvenanceJson'/);
+    assert.match(backend, /'FlagId', 'ClientBuild', 'ExampleId', 'SourceRecordId', 'Status'/);
 });
