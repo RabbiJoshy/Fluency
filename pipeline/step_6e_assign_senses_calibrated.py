@@ -264,7 +264,15 @@ def main():
                          "humanos` carded as agradarse `to like each other`. "
                          "`dative-aware` decides that case on agreement: le/les are "
                          "never reflexive, a 3rd-person accusative clitic marks the "
-                         "object, and a reflexive clitic must match the verb's person.")
+                         "object, and a reflexive clitic must match the verb's person. "
+                         "NOT SHIPPABLE as measured: 22 changed picks hand-graded 9 "
+                         "better / 6 worse / 7 lateral. Three real bugs were found and "
+                         "fixed while measuring it (dropped empty-cluster rule, "
+                         "imperative syncretism inverting the agreement test, "
+                         "de-accented lookup against an accented conjugation index), so "
+                         "the ratio above is AFTER those fixes -- it is the flag's "
+                         "honest score, not a broken one. Needs a graded sample where "
+                         "fixes clearly exceed breaks, or removal.")
     ap.add_argument("--device", default="mps")
     ap.add_argument("--max-encode", type=int, default=0,
                     help="encode at most N new sentences this run, save, and stop. "
@@ -647,8 +655,18 @@ def main():
     print(f"  leaf reselected within the tuple on {releaf:,} "
           f"({releaf_empty:,} had no English gloss, {releaf_comp:,} broke a "
           f"'used with' note); tuple unchanged on all of them")
+    # Count the bands of what was actually WRITTEN. `bands` is filled during
+    # scoring, before rejection removes picks, so dividing it by the final count
+    # printed "low 2,057 (126%)" on any run that rejected anything.
+    written = collections.Counter(p[3] for picks in per_word.values() for p in picks)
     for b in ("high", "medium", "low"):
-        print(f"  {b:<7} {bands[b]:>6,} ({bands[b]/max(n,1):.0%})")
+        print(f"  {b:<7} {written[b]:>6,} ({written[b]/max(n,1):.0%})")
+    if sum(written.values()) != sum(bands.values()):
+        dropped = sum(bands.values()) - sum(written.values())
+        print(f"  ({dropped:,} scored picks were rejected or abstained before "
+              f"this count; bands as scored were "
+              + ", ".join(f"{b} {bands[b]:,}" for b in ("high", "medium", "low"))
+              + ")")
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     # Archive an immutable run before replacing the mutable layer -- the

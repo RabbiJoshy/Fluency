@@ -3100,6 +3100,41 @@ def _load_speech_fallbacks():
     }
 
 
+def cap_examples_per_card(entries, cap):
+    """Cap examples per CARD, not per surface.
+
+    step_2a_count_words caps at selection time and caps each SURFACE
+    separately. A base verb that never occurs bare then absorbs several
+    already-capped clitic surfaces and lands over the limit: `dar` carried 11
+    sentences on the 31-song playlist, every one of them a clitic form (dame,
+    darte, dandote). The cap is a property of the card the learner opens, so it
+    is enforced once here, on the entries both the monolith and the split files
+    are written from.
+
+    Trimming takes from the widest meaning and drops its lowest-priority
+    example, so no meaning is ever emptied and no meaning disappears.
+    """
+    if cap <= 0:
+        return 0
+    trimmed = 0
+    for entry in entries:
+        meanings = [m for m in entry.get("meanings", []) if m.get("examples")]
+        total = sum(len(m["examples"]) for m in meanings)
+        while total > cap:
+            widest = max(meanings, key=lambda m: len(m["examples"]))
+            if len(widest["examples"]) <= 1:
+                break            # every meaning is down to its last example
+            victim = min(
+                range(len(widest["examples"])),
+                key=lambda i: (widest["examples"][i].get("priority", 0)
+                               if isinstance(widest["examples"][i], dict) else 0,
+                               -i))
+            widest["examples"].pop(victim)
+            total -= 1
+            trimmed += 1
+    return trimmed
+
+
 def write_split_files(entries, master, vocab_path, master_path, clitic_data=None,
                       raw_examples=None, translations=None, timestamp_map=None,
                       build_contract=None):
@@ -3440,6 +3475,13 @@ def main():
                              "resolve to their surface ID once the registry "
                              "migration has run; this covers surfaces the "
                              "registry has not seen before.")
+    parser.add_argument("--max-examples", type=int, default=10,
+                        help="cap examples per CARD (default 10, matching "
+                             "step_2a_count_words' selection cap). step_2a caps "
+                             "each SURFACE separately, so a base verb that "
+                             "absorbs several clitic surfaces lands over the "
+                             "limit -- `dar` carried 11 sentences, every one a "
+                             "clitic form. 0 disables the cap.")
     parser.add_argument("--remainders", action="store_true",
                         help="Emit SENSE_CYCLE remainder buckets for unassigned examples "
                              "(default: off — cleaner cards, but unassigned examples are dropped)")
@@ -3529,6 +3571,11 @@ def main():
         prompt_policy_id=args.prompt_policy,
         stamp_cognate_scores=args.stamp_cognate_scores,
         surface_cards=args.surface_cards)
+
+    _trimmed = cap_examples_per_card(entries, args.max_examples)
+    if _trimmed:
+        print("  Example cap: trimmed %d example(s) to keep every card at "
+              "<= %d" % (_trimmed, args.max_examples))
 
     # Write monolith (debugging)
     os.makedirs(os.path.dirname(vocab_path), exist_ok=True)

@@ -2,6 +2,20 @@
   "_readme": "Claude appends an entry here whenever deck data or app behavior changes (newest first). Shown verbose in the settings footer, but ONLY for the JST account. Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-22",
+      "commit": "c6f0bcc4",
+      "summary": "Speech deck: 523 blank cards fixed, 1,523 glosses corrected from the English subtitle, and TV lines now name the show",
+      "detail": [
+        "523 cards showed an empty meaning with no translation. Two causes: 472 were duplicate cards for a surface whose real card sat beside them (algun|algun next to algun|alguno), and 18 were forms SpanishDict files as their own entry -- dame is a phrase meaning 'give me', not a sense of dar -- whose gloss the builder discarded.",
+        "dame, apurate, vayanse, damelo and 14 others now show their real gloss with the run that chose it.",
+        "New: the English subtitle now corrects the sense. Where word alignment says which English word the Spanish one IS, and a candidate gloss is that word, that gloss wins. 2,518 corrections on 1,523 cards: quiero 'to want / to try' -> 'to want', donde 'how / where' -> 'where', nunca 'ever' -> 'never / ever', abuelita 'gran' -> 'grandma', acera 'pavement' -> 'sidewalk'.",
+        "Every example on a speech card now names the run that classified it. Previously 1,428 sentences carried nothing.",
+        "TV examples name the series: 'Without a Trace -- Voir Dire (2009)' instead of 'Voir Dire (2009)'. 18,172 example slots across 2,049 episodes.",
+        "66 words that had no dictionary entry, no classification and no gloss (sr, ud, wow, matrix) are recorded in a layer file and no longer rendered as blank cards.",
+        "Artist deck: no card exceeds its 10-example limit any more (dar carried 11, all of them clitic forms)."
+      ]
+    },
+    {
       "date": "2026-08-20",
       "commit": "69657291",
       "summary": "Test playlist rebuilt at 31 songs with a new WSD classifier (v3) and escalation cut to a 20% fallback",
