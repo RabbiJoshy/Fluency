@@ -33,8 +33,9 @@ MEASURED on the 200-item hard panel unless noted:
     panel is 35% AUX by construction, so the deck-wide value is smaller.
   - gloss embeddings: +11.1pp on hard words (NOT the ~2pp that wsd_algorithm.md
     implies from its easier 144-item panel).
-  - domain ranking: 92.6% at picking the right domain vs a 43% prior, on 500
-    dictionary examples. Applies to ~3.5% of decisions.
+  - domain ranking in ISOLATION: 92.6% at picking the right domain vs a 43%
+    prior, on 500 dictionary examples. But see below -- it buys nothing on top
+    of what is already there.
   - MWE veto: 1.8% of deck occurrences; `junto a`, `sitio web` are current errors.
 
 NOT MEASURED, hence defaulted OFF:
@@ -160,10 +161,24 @@ def rank(candidates, *, gloss_score, prior_weight=0.02, prior_decay=0.5,
     order -- v5 computes rank the same way, and computing it on the original
     menu order instead was measured to change nothing on either panel.
 
-    `domain_score(sense) -> float` is optional and applies only where the leaf's
-    context is a real domain label. Isolated domain matching scored 92.6%
-    against a 43% prior, but its marginal value ON TOP of the concatenated gloss
-    vector is UNMEASURED -- hence weight 0.0 by default.
+    `domain_score(sense) -> float` applies only where the leaf's context is a
+    real domain label (medicine, legal, nautical...). It is off by default and
+    should stay off.
+
+    Domain matching in ISOLATION is excellent -- 92.6% at picking the right
+    domain from a word's candidates, against a 43% prior, on 500 dictionary
+    examples. That looked like a lever, since domains are topical and topical
+    similarity is what embeddings are best at.
+
+    It buys nothing. Swept 0.0 -> 1.5 on the hard panel, centred so it re-ranks
+    among domain leaves rather than inflating them: flat at 78.4% to weight 0.20,
+    then -1 item beyond. On the 22 items where two or more real domains actually
+    compete, the baseline is ALREADY 90.9%.
+
+    So the dilution hypothesis is wrong: burying "medicine" as one token in
+    eight inside `"gotas" (NOUN): drops — medicine` does not waste it. The
+    encoder picks it up. This is also evidence against embedding gloss and
+    context separately, which was motivated by the same argument.
     """
     out = {}
     for position, (sense_id, sense) in enumerate(candidates):
