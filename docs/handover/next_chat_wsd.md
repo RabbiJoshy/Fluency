@@ -140,6 +140,25 @@ This is worth fixing on its own account and is NOT part of the when-to-overrule
 problem. Keep it in a separate bucket, measure around it rather than through it,
 and do not let it consume the session.
 
+## THERE IS A PARALLEL MIGRATION — DELINEATE EVERY CHANGE
+
+A separate effort is migrating this repo into a new format in
+`~/PycharmProjects/Fluency-Next`. Those sessions need to know exactly which WSD
+decisions predate their snapshot and which came after, because the WSD stack
+decides what meaning every card prints — a silent divergence there is the worst
+kind.
+
+`docs/reference/wsd_migration_boundary.md` records the boundary as it stands
+(six commits, 78506bf6..a445213c, and what each file change is). **Keep it
+current.** Any change you make to the WSD stack must be added there with its
+commit hash and marked behavioural or not, and the reference docs must say when
+a claim changed rather than silently replacing the old one. If you find yourself
+correcting something in `wsd_algorithm.md` or `wsd_dead_ends.md`, that is
+exactly the case a migrator has to be told about — the old text may already have
+been copied across.
+
+Do not work in `Fluency-Next` from this session, and do not assume its state.
+
 ## WORKING RULES
 
 - Report after every discrete unit of work. Four things, ten lines: what was
