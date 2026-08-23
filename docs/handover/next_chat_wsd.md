@@ -140,19 +140,6 @@ This is worth fixing on its own account and is NOT part of the when-to-overrule
 problem. Keep it in a separate bucket, measure around it rather than through it,
 and do not let it consume the session.
 
-## A PARALLEL MIGRATION READS THESE DOCS
-
-`~/PycharmProjects/Fluency-Next` is migrating this repo to a new format. WSD work
-happens ONLY here, so there is no divergence to reconcile — it will port whatever
-is current when it gets to WSD. One thing does matter: it builds its model
-profiles from these reference docs, and on 2026-08-22 it captured v5 with
-`provider_prior: {enabled: true}` and no weight, no POS-filter block, and
-`minimum_margin: null`. Every one of those omissions changes what a card says.
-
-So when you record a change, record the NUMBER and not just the switch — the
-prior's weight, the gate's threshold, the filter's function name. A doc that says
-a stage exists without saying what it is set to is what produced that.
-
 ## WORKING RULES
 
 - Report after every discrete unit of work. Four things, ten lines: what was
@@ -176,6 +163,10 @@ a stage exists without saying what it is set to is what produced that.
 - Anything over a minute must be cached and resumable. Price any model spend
   before spending it. Print long commands for me to run rather than running them
   inline.
+- Record the NUMBER, not just the switch. "the prior is on" is useless; "the
+  prior is 0.02 with 0.5^rank decay, and 0.05 collapses rare senses 54%->19%" is
+  the finding. A downstream reader built a config from these docs and captured
+  three stages as on/off with no values.
 - If two consecutive iterations are fixing your own implementation rather than
   teaching us something about the data, stop and report.
 
