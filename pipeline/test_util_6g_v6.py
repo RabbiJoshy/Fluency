@@ -14,7 +14,8 @@ must say so out loud.
 import unittest
 
 from util_6g_v6 import (apply_vetoes, commit, companion_of, glosskey_of,
-                        marginals, rank, render_at, tuple_of)
+                        index_mwes, marginals, mwe_candidates, rank, render_at,
+                        render_key, tuple_of)
 
 
 def leaf(sid, pos, gloss, headword, context=""):
@@ -72,11 +73,13 @@ class Vetoes(unittest.TestCase):
         kept, _ = apply_vetoes("va", "Va por su equipo.", cands)
         self.assertEqual(len(kept), 2)
 
-    def test_mwe_hit_is_reported_not_silently_applied(self):
+    def test_vetoes_do_not_know_about_mwes_at_all(self):
+        # MWEs compete as candidates; a veto would delete correct answers on
+        # compositional strings like `no tiene`.
         kept, reasons = apply_vetoes(
-            "junto", "Lo encontré junto a la galería.", QUEDAR,
-            mwe_index=[{"expression": "junto a", "translation": "next to"}])
-        self.assertEqual(reasons.get("_mwe"), ["junto a"])
+            "junto", "Lo encontré junto a la galería.", QUEDAR)
+        self.assertEqual(len(kept), len(QUEDAR))
+        self.assertNotIn("_mwe", reasons)
 
 
 class Commit(unittest.TestCase):
@@ -123,6 +126,63 @@ class Rank(unittest.TestCase):
                            domain_score=lambda s: 1.0)
         without = rank(QUEDAR, gloss_score=lambda s: 0.5)
         self.assertEqual(with_domain, without)
+
+
+MWE_PAYLOAD = {"mwes": {
+    "junto a":  {"translations": ["next to", "alongside"], "attach_words": ["junto", "a"],
+                 "corpus_freq": 4120, "id": "mwe_aaa", "examples": [{}]},
+    "de nuevo": {"translations": ["again"], "attach_words": ["nuevo"],
+                 "corpus_freq": 9900, "id": "mwe_bbb", "examples": [{}]},
+    "sin par":  {"translations": ["unequalled"], "attach_words": ["par"],
+                 "corpus_freq": 0, "id": "mwe_ccc", "examples": []},
+}}
+
+
+class Mwe(unittest.TestCase):
+    def setUp(self):
+        self.index = index_mwes(MWE_PAYLOAD)
+
+    def test_tier_two_is_never_offered_as_a_candidate(self):
+        # corpus_freq 0 means no sentence exists behind it, so it cannot be the
+        # answer for an occurrence -- only reference content.
+        self.assertNotIn("par", self.index)
+
+    def test_candidate_only_when_the_string_is_present(self):
+        got = mwe_candidates("junto", "Lo encontré junto a la galería.", self.index)
+        self.assertEqual([s["mwe_expression"] for _, s in got], ["junto a"])
+        self.assertEqual(mwe_candidates("junto", "Estaban muy junto.", self.index), [])
+
+    def test_it_carries_the_stable_mwe_id(self):
+        (sense_id, _), = mwe_candidates("nuevo", "Perdí el control de nuevo.", self.index)
+        self.assertEqual(sense_id, "mwe_bbb")
+
+    def test_it_gets_its_own_tuple_not_the_component_word_s(self):
+        (_, sense), = mwe_candidates("nuevo", "Perdí el control de nuevo.", self.index)
+        self.assertEqual(tuple_of(sense), ("PHRASE", "de nuevo"))
+        self.assertNotEqual(tuple_of(sense), ("ADJ", "nuevo"))
+
+    def test_phrase_pos_survives_the_pos_filter_without_a_special_case(self):
+        cands = mwe_candidates("nuevo", "Perdí el control de nuevo.", self.index)
+        kept, _ = apply_vetoes("nuevo", "Perdí el control de nuevo.", cands,
+                               example_pos="ADJ",
+                               pos_compatible=lambda sp, ex: sp == ex)
+        self.assertEqual(len(kept), 1, "PHRASE must be orthogonal to the filter")
+
+    def test_leaf_and_mwe_render_symmetrically(self):
+        (_, mwe), = mwe_candidates("nuevo", "Perdí el control de nuevo.", self.index)
+        leaf_key = render_key(QUEDAR[0][1], "quedar")
+        mwe_key = render_key(mwe)
+        for key in (leaf_key, mwe_key):
+            self.assertTrue(key.startswith('"'))
+            self.assertIn("): ", key)
+            self.assertIn(" — ", key)
+        self.assertTrue(mwe_key.startswith('"de nuevo" (PHRASE): again'))
+
+    def test_it_competes_in_rank_like_any_other_candidate(self):
+        cands = list(QUEDAR) + mwe_candidates(
+            "nuevo", "Perdí el control de nuevo.", self.index)
+        scores = rank(cands, gloss_score=lambda s: 0.9 if s.get("mwe_expression") else 0.5)
+        self.assertEqual(max(scores, key=scores.get), "mwe_bbb")
 
 
 if __name__ == "__main__":

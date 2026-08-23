@@ -36,7 +36,9 @@ MEASURED on the 200-item hard panel unless noted:
   - domain ranking in ISOLATION: 92.6% at picking the right domain vs a 43%
     prior, on 500 dictionary examples. But see below -- it buys nothing on top
     of what is already there.
-  - MWE veto: 1.8% of deck occurrences; `junto a`, `sitio web` are current errors.
+  - MWE as a competing candidate: on the 29 hard-panel items carrying one, the
+    multiword sense beat every leaf on 15 -- 9 clearly better by hand-grading.
+    NOT a veto; see `mwe_candidates` for why that shape was wrong.
 
 NOT MEASURED, hence defaulted OFF:
 
@@ -75,6 +77,82 @@ def leaf_of(sense_id, sense) -> tuple:
 
 
 # --------------------------------------------------------------------------
+# 0. CANDIDATES — menu leaves plus any multiword sense the line contains
+# --------------------------------------------------------------------------
+
+MWE_POS = "PHRASE"          # already in _ORTHOGONAL_POS, so the filter ignores it
+MWE_CONTEXT = "multiword expression"
+
+
+def index_mwes(payload, min_freq=1):
+    """`mwe_merged.json` -> {word: [(expression, row), ...]}.
+
+    `min_freq` keeps tier 1 only. A tier-2 entry (corpus_freq 0) is teachable
+    content with no sentence behind it, so it can never be the answer for an
+    OCCURRENCE and must not be offered as a candidate here.
+    """
+    out = defaultdict(list)
+    for expression, row in (payload.get("mwes") or {}).items():
+        if row.get("corpus_freq", 0) < min_freq:
+            continue
+        for word in row.get("attach_words", ()):
+            out[word].append((expression, row))
+    return dict(out)
+
+
+def mwe_candidates(word, sentence, index):
+    """Multiword senses whose expression is literally present in the line.
+
+    Rendered in the SAME shape as a menu leaf so they compete in `rank` on equal
+    terms rather than acting as a veto or a back-off trigger. That is the whole
+    design: a junk entry like `no tiene` competes and usually loses, which costs
+    one mediocre meaning, whereas a veto would delete a correct answer.
+
+    Measured on the 29 hard-panel items carrying an MWE, the multiword candidate
+    beat every leaf on 15 -- hand-graded 9 clearly better, 4 false positives, 2
+    borderline. The 9 include `a menos que` = unless (previously "minus sign"),
+    `por qué` = why (previously "by"), `da igual`, `en todas partes`, and
+    `dar cuenta de`, which Flash-Lite also got wrong.
+
+    POS is PHRASE, which `_ORTHOGONAL_POS` already exempts from the POS filter,
+    so no special case is needed anywhere downstream. The headword IS the
+    expression, so `tuple_of` gives it its own tuple -- correct, because it is a
+    different thing to learn than its component word.
+    """
+    flat = _flat(sentence)
+    out = []
+    for expression, row in index.get((word or "").lower(), ()):
+        if f" {expression} " not in flat:
+            continue
+        translations = row.get("translations") or []
+        if not translations:
+            continue
+        out.append((row.get("id") or f"mwe:{expression}", {
+            "pos": MWE_POS,
+            "translation": translations[0],
+            "headword": expression,
+            "context": MWE_CONTEXT,
+            "source": "mwe",
+            "mwe_expression": expression,
+            "mwe_corpus_freq": row.get("corpus_freq", 0),
+        }))
+    return out
+
+
+def render_key(sense, word=None):
+    """The text embedded for a candidate. One shape for leaves and MWEs alike.
+
+    A multiword sense passes its own expression as the word, so `de nuevo`
+    embeds as `"de nuevo" (PHRASE): again — multiword expression` against a leaf's
+    `"nuevo" (ADJ): new — recently made`. Symmetric by construction; if these
+    diverged the competition would be measuring the rendering, not the meaning.
+    """
+    head = word or sense.get("mwe_expression") or sense.get("headword") or ""
+    return (f'"{head}" ({sense.get("pos", "")}): '
+            f'{sense.get("translation") or ""} — {sense.get("context") or ""}')
+
+
+# --------------------------------------------------------------------------
 # 1. CONSTRAIN
 # --------------------------------------------------------------------------
 
@@ -97,8 +175,7 @@ def companion_of(sense):
 
 
 def apply_vetoes(word, sentence, candidates, *, example_pos=None,
-                 pos_compatible=None, mwe_index=None, use_mwe=True,
-                 use_companion=True):
+                 pos_compatible=None, use_companion=True):
     """Drop candidates that cannot be right. Returns (kept, reasons).
 
     Vetoes are HARD and each records why, because a silent veto is how the AUX
@@ -109,8 +186,13 @@ def apply_vetoes(word, sentence, candidates, *, example_pos=None,
     So the empty-keep-set fallback is kept — never return nothing — but the
     caller is told it happened.
 
-    `candidates` is [(sense_id, sense_dict), ...]. `mwe_index` is the
-    `mwe_phrases.json` payload for this word, or None.
+    Multiword expressions are deliberately NOT handled here. They were briefly
+    a veto and it was the wrong shape: only 9% of MWE hits map cleanly onto an
+    existing leaf, and roughly a quarter of hits are compositional strings like
+    `no tiene` where a veto would delete the correct answer. They belong in
+    `mwe_candidates`, competing.
+
+    `candidates` is [(sense_id, sense_dict), ...].
     """
     reasons = {}
     kept = list(candidates)
@@ -137,13 +219,6 @@ def apply_vetoes(word, sentence, candidates, *, example_pos=None,
                 survivors.append((i, s))
         if survivors:
             kept = survivors
-
-    if use_mwe and mwe_index:
-        flat = _flat(sentence)
-        hits = [e for e in mwe_index
-                if f" {_n(e.get('expression'))} " in flat]
-        if hits:
-            reasons["_mwe"] = [e.get("expression") for e in hits]
 
     return kept, reasons
 

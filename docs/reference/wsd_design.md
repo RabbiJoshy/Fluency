@@ -45,9 +45,14 @@ wrong — not aggregate points. And there is one hard line: getting the **wrong
 word** (wrong lemma, wrong part of speech) is never acceptable, because a learner
 does notice a card for a different word than the one they read.
 
-**Complexity is a cost to trade, not a limit.** A bigger mechanism that lets
-several existing stages be deleted is a good outcome. Ten heuristics stacked on
-each other, each worth a point, is not — not in something intended to run live.
+**Complexity is a cost to trade, not a limit — and not yet.** A bigger mechanism
+that lets several existing stages be deleted is a good outcome. A tower of
+heuristics each worth a point is a bad *end state* for something meant to run
+live. But that is a constraint on where this lands, not on how it gets there:
+right now the job is to find what carries signal at all, and stacking small
+wins is the way to find out which ones are real. Hunt parsimony later, once
+there is something to be parsimonious about. Do not let this rule stop a
+promising heuristic from being tried.
 
 **No loyalty to any provider or method.** Frontier API, open weights, a classical
 technique, or nothing at all — whatever is actually best for the job. Embeddings
