@@ -104,7 +104,23 @@ _TAGSET_BRIDGE = {
     "PART":  {"ADV", "ADP", "PRON"},      # no PART either
     "PROPN": {"PROPN", "NOUN"},
     "ADV":   {"ADV", "PRON", "ADJ"},      # `poco` ADV vs SpanishDict PRON
+    "AUX":   {"VERB", "AUX", "PHRASE"},   # haber, ser, estar, deber, saber
 }
+# AUX is the same mismatch as DET and was missed when DET was fixed. SpanishDict
+# has no AUX category and files every auxiliary and modal as VERB; UD tags them
+# AUX. Unbridged, `sense_compatible_with_example_pos` sees "tagged AUX, sense is
+# VERB" as a trusted mismatch and rejects it -- and since it rejects NOUN too,
+# it deletes the WHOLE menu on 11 of the 12 AUX items in the hard panel, so the
+# empty-keep-set fallback fires and the filter is a silent no-op on exactly the
+# commonest verbs in speech.
+#
+# Measured on the 200-item hard panel (pipeline/wsd_harness/panels/hard_200):
+# the POS filter over the menu prior goes 67.3% -> 74.4% with this entry, +14
+# items of 199. The AUX stratum alone goes 80.0% -> 85.7%.
+#
+# It is worth ~0 on the older 144-item OpenSubtitles panel (-1 item), which is
+# why it reads as noise there: that panel has 12 AUX items and cannot resolve
+# a 7pp effect. Do not re-measure this on the 144.
 
 
 def sense_compatible_bridged(sense_pos, ex_pos):
