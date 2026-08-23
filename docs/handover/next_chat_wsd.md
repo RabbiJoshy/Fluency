@@ -140,24 +140,18 @@ This is worth fixing on its own account and is NOT part of the when-to-overrule
 problem. Keep it in a separate bucket, measure around it rather than through it,
 and do not let it consume the session.
 
-## THERE IS A PARALLEL MIGRATION — DELINEATE EVERY CHANGE
+## A PARALLEL MIGRATION READS THESE DOCS
 
-A separate effort is migrating this repo into a new format in
-`~/PycharmProjects/Fluency-Next`. Those sessions need to know exactly which WSD
-decisions predate their snapshot and which came after, because the WSD stack
-decides what meaning every card prints — a silent divergence there is the worst
-kind.
+`~/PycharmProjects/Fluency-Next` is migrating this repo to a new format. WSD work
+happens ONLY here, so there is no divergence to reconcile — it will port whatever
+is current when it gets to WSD. One thing does matter: it builds its model
+profiles from these reference docs, and on 2026-08-22 it captured v5 with
+`provider_prior: {enabled: true}` and no weight, no POS-filter block, and
+`minimum_margin: null`. Every one of those omissions changes what a card says.
 
-`docs/reference/wsd_migration_boundary.md` records the boundary as it stands
-(six commits, 78506bf6..a445213c, and what each file change is). **Keep it
-current.** Any change you make to the WSD stack must be added there with its
-commit hash and marked behavioural or not, and the reference docs must say when
-a claim changed rather than silently replacing the old one. If you find yourself
-correcting something in `wsd_algorithm.md` or `wsd_dead_ends.md`, that is
-exactly the case a migrator has to be told about — the old text may already have
-been copied across.
-
-Do not work in `Fluency-Next` from this session, and do not assume its state.
+So when you record a change, record the NUMBER and not just the switch — the
+prior's weight, the gate's threshold, the filter's function name. A doc that says
+a stage exists without saying what it is set to is what produced that.
 
 ## WORKING RULES
 

@@ -1,11 +1,4 @@
 # The WSD algorithm, as settled 2026-08-22 (v5)
-
-> **Porting this to `Fluency-Next`?** Read
-> `docs/reference/wsd_migration_boundary.md` first. The v5 changes below are
-> recent and may postdate the migration snapshot, and two entries in
-> `wsd_dead_ends.md` were CORRECTED rather than added — a port that carries the
-> old text re-imports conclusions now known to be wrong.
-
 > **v5 adds two stages before everything below, and they are worth more than
 > everything below.** On 144 hand-labelled OpenSubtitles sentences: v3 65.3%
 > sense-id / 74.3% card-gloss / 14 of 26 rare senses; v5 **86.8% / 87.5% / 15 of
