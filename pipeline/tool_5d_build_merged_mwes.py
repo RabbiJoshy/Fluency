@@ -48,6 +48,36 @@ can only be shown *with evidence* if a sentence containing it was harvested:
 Do not collapse these. The second tier is real learner value and it is exactly
 the tier that cannot be validated against a sentence.
 
+## Scope: literal strings with a definition, nothing else
+
+An earlier idea was to fold the menu's own `used with "X"` notes in here, since
+`'to support; used with "por"'` is arguably the multiword sense `ir por`. There
+are 666 such leaves and only 6% duplicate an existing MWE, so it looked like 624
+free verb+preposition senses -- `estar de` = "to be on", `estar para` = "to be in
+the mood for" -- which is a category this inventory has none of.
+
+Rejected, because those cannot be matched as strings. `estar de` surfaces as
+"está de", "estoy de", "estuvieron de", so the only available test is "is the
+companion word somewhere in the line", and the companions are the commonest
+words in Spanish:
+
+    'de' appears in 32.5% of deck sentences,  'que' 28.1%,  'a' 19.4%
+
+`estar de` would fire on a third of all `estar` occurrences. That is not a gate.
+Companion notes stay where they are, in `util_6e_leaf_selection`.
+
+## On junk: a bigger menu is worth some noise
+
+SpanishDict and Wiktionary both list entries that are not idioms -- `no tiene`,
+`si puedo`, `que hizo`. They survive the shape gate AND the corpus pass, because
+they look like phrases and they occur.
+
+They are deliberately kept. Once MWEs compete as ordinary candidates rather than
+acting as vetoes, a junk entry that wins costs one mediocre card meaning, while a
+missing entry costs a meaning the card can never carry. Those are not symmetric.
+Do not add filters here to chase precision; the objective is a bigger meaningful
+menu, and the competition sorts the rest out.
+
 ## Output
 
 `Data/Spanish/layers/mwe_merged.json`:
