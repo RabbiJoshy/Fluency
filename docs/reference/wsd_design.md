@@ -1,5 +1,15 @@
 # Word sense disambiguation in Fluency — design, and where it stands
 
+> **Three files, and they do different jobs.**
+>
+> - **This one** holds the goals, the constraints they imply, and the vocabulary.
+>   Read it first; everything else assumes it.
+> - **`wsd_open_threads.md`** holds the live ends of the rope — the specialists,
+>   the signals that were proposed and part-measured, and the instrument gap that
+>   gates most of them. Start there when looking for what to build next.
+> - **`wsd_dead_ends.md`** holds what is ruled out, so nobody spends a day
+>   re-deriving it. Note its own warning about how the older rows were measured.
+
 ## What this is for
 
 Fluency turns real Spanish — subtitles now, song lyrics as the destination — into
@@ -299,3 +309,16 @@ scoring question in a single pass.
 - The escalation prompt says "one line of song lyrics" even in speech mode.
 - `wsd_algorithm.md` still carries both wrong numbers above.
 - The missing-sense problem is untouched by design.
+
+---
+
+## Where to go next
+
+Everything above describes what is decided. What is *undecided* — the
+specialists split across the gloss and context axes, aligned English, redraw
+versus escalation, the corpus-measured prior, and the panel bias that currently
+makes several of those unmeasurable — is in **`wsd_open_threads.md`**.
+
+That file is the one to read when the question is "what should I try", and it
+states for each thread what evidence exists, why it stopped, and what would
+settle it.
