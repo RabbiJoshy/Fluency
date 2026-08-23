@@ -14,12 +14,12 @@ Role 3 is the only genuinely new idea. v5 always emits a leaf, so an uncertain
 pick is a *wrong* card. v6 can emit a leaf, a glosskey (gloss without context),
 or a tuple (headword+POS only) — an uncertain pick becomes a *less specific*
 card instead. Declining to over-claim is always available and never wrong, which
-is more than can be said for any of the mechanisms measured on 2026-08-23.
+is more than can be said for any of the mechanisms measured so far.
 
 The shipped deck format already supports this: 7.1% of current meanings carry no
 context, so a glosskey-level answer renders today with no schema change.
 
-## Terminology (see docs/reference/wsd_state_2026-08-23.md §0)
+## Terminology (see "Vocabulary" in docs/reference/wsd_design.md)
 
     leaf        (pos, headword, gloss, context)   one SpanishDict sense id
     glosskey    (pos, headword, gloss)            leaf with context stripped
