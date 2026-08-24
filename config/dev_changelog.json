@@ -2,6 +2,19 @@
   "_readme": "Append an entry whenever deck data or app behavior changes (newest first). Shown in the settings footer only for configured audit accounts (currently JST and JSTA). Keep summaries short; details are 1-line bullets.",
   "entries": [
     {
+      "date": "2026-08-24",
+      "commit": "00b92526",
+      "summary": "Rosalía now uses the full WSD v7 run in her ordinary Lyrics deck",
+      "details": [
+        "The temporary Rosalía v7 preview source is retired; the normal Rosalía source now loads the v7-selected deck",
+        "The complete stress run classified 5,250 exact lyric occurrences and assembled 3,224 cards across all 107 songs",
+        "All 3,215 previous card IDs remain available and nine cards were added, preserving existing whole-card progress",
+        "Rosalía carries the sense master paired with this run; custom multi-artist Lyrics loading now respects each source's own master instead of joining sense percentages to the wrong gloss order",
+        "The run is active for inspection, but its 64.6% first-leaf rate remains a quality-audit warning rather than a final accuracy claim",
+        "Cache v265 to v266 / assets 20260822f to 20260824a"
+      ]
+    },
+    {
       "date": "2026-08-22",
       "commit": "38cdb3e6",
       "summary": "Audit flags are now permanent events with a resolution workflow",

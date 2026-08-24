@@ -61,9 +61,32 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 - The large artist evidence directories total roughly 3 GB and Git LFS is not installed. They remain local pending an explicit artifact-storage/compression decision; do not attempt to push the raw 100+ MB J Balvin normalization shards to ordinary GitHub storage.
 - The playlist's ignored working SpanishDict menu and assignments are now recoverable through committed immutable snapshots selected by `data/evidence/profiles/current.json`; do not reintroduce those large mutable inputs as the only replay source.
 - Speech-shaped parallel segments are accepted and tested by the shared contract, but Speech and Normal Mode have not been migrated to use the Artist evidence store or card registry.
-- The full Node suite currently has eight pre-existing failures against `HEAD`: five stale `tests/ui-refinements.test.mjs` assertions (cognate explanation naming, morphology markup, bilingual row markup, grammar markup, and reference-control class names), one reviewed personalised-frame/data mismatch, the already-recorded offline-manifest checksum mismatch for the rebuilt Spanish index, and one Spanish test-playlist card ID (`orióN`) absent from its configured deck. Focused tests pass; this unrelated test/data debt was not rewritten as part of audit persistence work.
+- The focused Node suite has one unrelated stale assertion: `tests/song-sets.test.mjs` expects the configured source name `Spanish Test Playlist`, while the live config says `Joshua's Test Playlist`. The earlier offline-manifest checksum and invalid `orióN` catalogue link are now repaired. The older broad-suite UI/personalised-frame failures were not re-audited during the Rosalía v7 promotion.
 
 ## Codex task history
+
+### 2026-08-24 — Promote Rosalía WSD v7 into the ordinary Lyrics deck
+
+- Implementation commit `00b92526`; front-end cache `flashcards-v266` / assets
+  `20260824a`.
+- Replaced the ordinary Rosalía deck's Gemini Flash Lite selection with the full
+  v7 provider run: 3,224 cards backed by 5,250 exact occurrence decisions.  The
+  temporary preview artist entry is gone, and the normal `?artist=rosalia` route
+  now opens v7 across all 107 songs.
+- Preserved all 3,215 prior card IDs and added nine.  Rosalía now ships a
+  run-matched dedicated master so its compact sense positions cannot attach to
+  the older shared Spanish gloss order.  Custom multi-artist Lyrics loading was
+  updated to fetch each source's own master and fall back to semantic-row merging
+  when inventories differ.
+- Kept the accuracy caveat explicit: the clean run has no generated-sense winners
+  and repairs the audited POS/elision regressions, but 64.59% of decisions still
+  land on the first serialized leaf and require a focused semantic audit.
+- Verification: all 3,224 catalogue cards link to a valid deck ID; exact offline
+  sizes/checksums and asset versions pass; 28 focused Python tests pass; 14 of 15
+  focused Node tests pass, with only the pre-existing test-playlist display-name
+  assertion noted above; JavaScript syntax, JSON parsing and `git diff --check`
+  pass.  The ordinary Rosalía setup was also loaded in the app and showed all
+  107 songs.
 
 ### 2026-08-24 — Define the WSD provider and portability stance
 
