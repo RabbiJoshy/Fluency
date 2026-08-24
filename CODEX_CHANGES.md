@@ -65,6 +65,21 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-24 — Define the WSD provider and portability stance
+
+- Implementation commit `b4712815`; no front-end cache change (documentation only).
+- Made SpanishDict the explicit optimisation target for Spanish because its
+  coverage, structure and pipeline integrations have earned that position, while
+  allowing provider-specific features where they measurably help.
+- Kept the architecture replaceable: SpanishDict's sense boundaries, schema and
+  ordering are not the problem definition, and a better inventory or constructed
+  menu may replace them when the quality gain justifies integration and migration.
+- Recorded cross-dictionary and cross-language portability as a positive bonus,
+  not a requirement that may weaken Spanish performance.
+- Verification: inspected the focused Markdown diff and ran `git diff --check`;
+  the pre-existing unrelated edit to `docs/reference/wsd_open_threads.md` was not
+  staged or changed.
+
 ### 2026-08-24 — Clarify WSD sampling bias and the open-world endgame
 
 - Implementation commit `e7797885`; no front-end cache change (documentation only).
