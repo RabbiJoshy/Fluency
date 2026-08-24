@@ -99,11 +99,21 @@ wins is the way to find out which ones are real. Hunt parsimony later, once
 there is something to be parsimonious about. Do not let this rule stop a
 promising heuristic from being tried.
 
-**No loyalty to any provider or method.** Frontier API, open weights, a classical
-technique, or nothing at all — whatever is actually best for the job. Embeddings
-have earned their place partly because the labs keep improving them, so the repo
-gets better without anyone doing anything; that property is worth real money and
-counts against approaches that freeze a model someone then has to maintain.
+**Optimise for SpanishDict; architect for replaceability.** SpanishDict is the
+preferred Spanish inventory because its coverage, structure and existing pipeline
+integrations provide substantial practical benefits. Provider-specific features
+may therefore be used where they genuinely help. Fluency is not, however,
+philosophically committed to SpanishDict's sense boundaries, schema or ordering.
+A better inventory — or a method that constructs a different menu — is allowed
+when its quality justifies the migration and integration costs. Techniques that
+generalise cleanly across dictionaries and languages receive an additional bonus,
+but portability must not be purchased by weakening Spanish performance.
+
+**No loyalty to any method.** Frontier API, open weights, a classical technique,
+or nothing at all — whatever is actually best for the job. Embeddings have earned
+their place partly because the labs keep improving them, so the repo gets better
+without anyone doing anything; that property is worth real money and counts
+against approaches that freeze a model someone then has to maintain.
 
 ## How the two modes relate
 
