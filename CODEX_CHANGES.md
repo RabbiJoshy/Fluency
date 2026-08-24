@@ -65,6 +65,21 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-24 — Clarify WSD sampling bias and the open-world endgame
+
+- Implementation commit `e7797885`; no front-end cache change (documentation only).
+- Added two prominent, non-optional boundaries to the WSD philosophy: reject/redraw
+  may improve selected cards but preferentially removes uncommon or ambiguous
+  meanings, and artist libraries may not contain enough occurrences to redraw.
+- Required skipped or unresolved occurrence mass to remain in the denominator of
+  any claimed leaf distribution instead of renormalising over easy assignments.
+- Made explicit that a closed dictionary menu is only the preferred cheap path for
+  covered occurrences. The endgame requires typed `missing_sense` output and an
+  open-world path that can author contextual slang, regional and novel senses.
+- Verification: inspected the focused Markdown diff and ran `git diff --check`;
+  the pre-existing unrelated edit to `docs/reference/wsd_open_threads.md` was not
+  staged or changed.
+
 ### 2026-08-22 — Make audit flags append-only and resolution-ready
 
 - Implementation commit `38cdb3e6`; front-end cache `flashcards-v265` / `20260822f`.
