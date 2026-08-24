@@ -10,6 +10,25 @@
 > - **`wsd_dead_ends.md`** holds what is ruled out, so nobody spends a day
 >   re-deriving it. Note its own warning about how the older rows were measured.
 
+## Two boundaries not to misread
+
+These are product constraints, not optional details of the current algorithm:
+
+- **Rejecting or redrawing a hard sentence is not free.** It may improve the
+  cards that survive, but it preferentially removes uncommon and difficult
+  meanings. That biases any estimate of how a surface form distributes across
+  leaves. Artist libraries may also contain too few occurrences to redraw. A
+  proposal may skip a sentence for card quality, but it must retain the skipped
+  or unresolved occurrence mass, quantify the selection bias, and must not
+  renormalise the surviving easy examples into a supposedly complete sense
+  distribution.
+- **Closed-menu classification is a cheap path, never the endgame contract.**
+  It is preferred when the dictionary menu is adequate because it keeps a
+  classification cheap and auditable. The finished system must also be able to
+  declare that no listed sense fits and create an additional contextual sense
+  for slang, regional language and novel usage. Do not describe the closed menu
+  as a fundamental design assumption in future proposals.
+
 ## What this is for
 
 Fluency turns real Spanish — subtitles now, song lyrics as the destination — into
@@ -40,12 +59,28 @@ too hard for the naive answer and too easy to be worth an API call. The
 long-running task is to keep moving work out of the expensive bucket and into
 the cheap one, and to know which bucket each item belongs in.
 
+**Skipping is a biased sampling decision, not merely a disposition.** Speech
+mode often has enough occurrences to reject one hard sentence and draw another,
+but doing so changes which meanings reach the deck: clear common readings are
+more likely to survive than rare or intrinsically ambiguous ones. This matters
+especially if Fluency estimates the share of a surface form attributable to
+each leaf. Exact assignments may support exact percentages; unresolved
+occurrences must remain visible as unresolved mass rather than being silently
+dropped from the denominator. In artist mode, a surface may occur only a few
+times, so redraw may not exist at all. Reject/redraw remains a useful card-quality
+lever, but it is not by itself a general WSD solution.
+
 **It has to survive a menu that is wrong or absent.** Speech mode mostly gets a
 usable dictionary entry. Lyrics will not: slang, regional usage and invented
 senses are the norm, and sometimes the right answer is simply not in the
 inventory. That is a separate problem from picking well among the options, and it
 is deliberately kept separate — but any design that assumes the answer is always
 in the menu is a design that will not port to the mode that matters most.
+The closed menu therefore describes the preferred low-cost classifier for the
+covered case, not the ontology or output boundary of the finished product. A
+typed `missing_sense` outcome and an open-world path that can author an additional
+contextual sense are required parts of the endgame, even if they remain outside
+the current closed-menu implementation.
 
 **It does not need to be perfect, and chasing perfection is the wrong instinct.**
 Where a dictionary splits one meaning into near-identical readings, picking the
