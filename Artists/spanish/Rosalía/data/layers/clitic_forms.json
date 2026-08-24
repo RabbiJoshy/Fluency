@@ -1,11 +1,11 @@
 {
-  "d46d8d74": {
+  "9d46d8d7": {
     "base_verb": "pensar",
     "lemma": "pensar",
     "corpus_count": 1,
     "translation": "to think",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "357",
           "examples": [
@@ -26,16 +26,16 @@
         "end_timestamp_ms": 31460
       }
     ],
-    "id": "d46d8d74",
+    "id": "9d46d8d7",
     "base_id": "7fc19d79"
   },
-  "f9dc9557": {
+  "0f9dc955": {
     "base_verb": "detener",
     "lemma": "detener",
     "corpus_count": 1,
     "translation": "to stop",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "a78",
           "examples": [
@@ -56,7 +56,7 @@
         "end_timestamp_ms": 62490
       }
     ],
-    "id": "f9dc9557",
+    "id": "0f9dc955",
     "base_id": "876ec465"
   },
   "6d2a5590": {
@@ -64,24 +64,7 @@
     "lemma": "válgame",
     "corpus_count": 1,
     "translation": "to be worth",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "1d2",
-          "examples": [
-            0
-          ]
-        }
-      ],
-      "spanishdict-flash-lite": [
-        {
-          "sense": "b8f",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3065897",
@@ -102,16 +85,7 @@
     "lemma": "haberle",
     "corpus_count": 1,
     "translation": "to have",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "d62",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "2814756",
@@ -137,16 +111,7 @@
     "lemma": "bájame",
     "corpus_count": 1,
     "translation": "to go down",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "c20",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "6367361",
@@ -167,15 +132,15 @@
     "id": "b8e5493a",
     "base_id": "7ce55610"
   },
-  "2f6628d4": {
+  "32f6628d": {
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
     "translation": "to throw",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "a18",
+          "sense": "cec",
           "examples": [
             0
           ]
@@ -199,7 +164,7 @@
         "end_timestamp_ms": 103170
       }
     ],
-    "id": "2f6628d4",
+    "id": "32f6628d",
     "base_id": "bcf5e3b4"
   },
   "f9b83fc6": {
@@ -207,16 +172,7 @@
     "lemma": "amarle",
     "corpus_count": 1,
     "translation": "to love",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "dd2",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "12579293",
@@ -230,13 +186,13 @@
     "id": "f9b83fc6",
     "base_id": "e20afd7c"
   },
-  "c40f4df4": {
+  "6c40f4df": {
     "base_verb": "besar",
     "lemma": "besar",
     "corpus_count": 1,
     "translation": "to kiss",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "7e1",
           "examples": [
@@ -259,16 +215,16 @@
         "is_variant": false
       }
     ],
-    "id": "c40f4df4",
+    "id": "6c40f4df",
     "base_id": "dd122f41"
   },
-  "63d611d6": {
+  "663d611d": {
     "base_verb": "mirar",
     "lemma": "mirar",
     "corpus_count": 3,
     "translation": "to look at",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "181",
           "examples": [
@@ -317,7 +273,7 @@
         "end_timestamp_ms": 118860
       }
     ],
-    "id": "63d611d6",
+    "id": "663d611d",
     "base_id": "7046e318"
   },
   "a9570be5": {
@@ -325,16 +281,7 @@
     "lemma": "colgarlo",
     "corpus_count": 1,
     "translation": "to hang",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "87d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "12581301",
@@ -355,16 +302,7 @@
     "lemma": "medirse",
     "corpus_count": 2,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "f26",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "6367361",
@@ -390,16 +328,7 @@
     "lemma": "vestirme",
     "corpus_count": 1,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "c2d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8916307",
@@ -418,23 +347,15 @@
         "end_timestamp_ms": 154820
       }
     ],
-    "id": "2c946132"
+    "id": "2c946132",
+    "base_id": "d6db8618"
   },
   "7f1f6607": {
     "base_verb": "cantar",
     "lemma": "cantándote",
     "corpus_count": 1,
     "translation": "to sing",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "09f",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7659063",
@@ -455,16 +376,7 @@
     "lemma": "divertirme",
     "corpus_count": 1,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "65e",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3065090",
@@ -485,16 +397,7 @@
     "lemma": "amándote",
     "corpus_count": 1,
     "translation": "to love",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "dd2",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "12581294",
@@ -510,13 +413,13 @@
     "id": "31aa5cce",
     "base_id": "e20afd7c"
   },
-  "dc8676ea": {
+  "adc8676e": {
     "base_verb": "dedicar",
     "lemma": "dedicar",
     "corpus_count": 1,
     "translation": "to dedicate",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "484",
           "examples": [
@@ -542,14 +445,14 @@
         "end_timestamp_ms": 24800
       }
     ],
-    "id": "dc8676ea",
+    "id": "adc8676e",
     "base_id": "cf58a5bc"
   },
   "4d070ef7": {
     "base_verb": "prenderse",
     "lemma": "prendaste",
     "corpus_count": 1,
-    "translation": "to light",
+    "translation": "",
     "assignments": {},
     "examples": [
       {
@@ -567,7 +470,8 @@
         "end_timestamp_ms": 94090
       }
     ],
-    "id": "4d070ef7"
+    "id": "4d070ef7",
+    "base_id": "75157545"
   },
   "1ead66f2": {
     "base_verb": "hacer",
@@ -575,24 +479,24 @@
     "corpus_count": 6,
     "translation": "to do it",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "43a",
-          "examples": [
-            0,
-            3
-          ]
-        },
-        {
-          "sense": "bf6b",
+          "sense": "4dc",
           "examples": [
             2
           ]
         },
         {
-          "sense": "d0d",
+          "sense": "43a",
           "examples": [
-            1
+            0
+          ]
+        },
+        {
+          "sense": "692",
+          "examples": [
+            1,
+            3
           ]
         }
       ]
@@ -656,15 +560,15 @@
     "id": "1ead66f2",
     "base_id": "22a2d1c1"
   },
-  "c390e496": {
+  "5c390e49": {
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
     "translation": "to throw",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "9ae",
+          "sense": "cec",
           "examples": [
             0
           ]
@@ -687,7 +591,7 @@
         "end_timestamp_ms": 69540
       }
     ],
-    "id": "c390e496",
+    "id": "5c390e49",
     "base_id": "bcf5e3b4"
   },
   "ff5ab363": {
@@ -695,16 +599,7 @@
     "lemma": "pedirte",
     "corpus_count": 1,
     "translation": "to ask for",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "c26",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7515161",
@@ -725,16 +620,7 @@
     "lemma": "despiértate",
     "corpus_count": 1,
     "translation": "to wake up",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "c4d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3066994",
@@ -747,17 +633,18 @@
         "end_timestamp_ms": 106250
       }
     ],
-    "id": "9a6180f3"
+    "id": "9a6180f3",
+    "base_id": "4470ebe2"
   },
   "0377e296": {
     "base_verb": "quedarse",
-    "lemma": "quedar",
+    "lemma": "quedarse",
     "corpus_count": 2,
-    "translation": "to keep",
+    "translation": "to stay",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "491",
+          "sense": "738",
           "examples": [
             0
           ]
@@ -781,15 +668,15 @@
     "id": "0377e296",
     "base_id": "0377e296"
   },
-  "379f3ab9": {
+  "f379f3ab": {
     "base_verb": "amarrarse",
-    "lemma": "amarrar",
+    "lemma": "amarrarse",
     "corpus_count": 2,
     "translation": "to tie",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "033",
+          "sense": "bbc",
           "examples": [
             0
           ]
@@ -808,24 +695,15 @@
         "end_timestamp_ms": 33080
       }
     ],
-    "id": "379f3ab9",
-    "base_id": "379f3ab9"
+    "id": "f379f3ab",
+    "base_id": "f379f3ab"
   },
   "6695d5b7": {
     "base_verb": "levantar",
     "lemma": "levantarte",
     "corpus_count": 1,
-    "translation": "to get up",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "6cb",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to raise",
+    "assignments": {},
     "examples": [
       {
         "song": "3814300",
@@ -841,13 +719,13 @@
     "id": "6695d5b7",
     "base_id": "0c83a6cf"
   },
-  "e6082513": {
+  "3e608251": {
     "base_verb": "decir",
     "lemma": "di",
     "corpus_count": 2,
     "translation": "say",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "12a",
           "examples": [
@@ -879,26 +757,26 @@
         "end_timestamp_ms": 131240
       }
     ],
-    "id": "e6082513",
+    "id": "3e608251",
     "base_id": "c0a77f7e"
   },
-  "3d6d2564": {
+  "d3d6d256": {
     "base_verb": "chingar",
     "lemma": "chingar",
     "corpus_count": 2,
-    "translation": "to fuck",
+    "translation": "to fuck with",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "176",
           "examples": [
-            0
+            1
           ]
         },
         {
-          "sense": "97a",
+          "sense": "5d2",
           "examples": [
-            1
+            0
           ]
         }
       ]
@@ -930,7 +808,7 @@
         "end_timestamp_ms": 74260
       }
     ],
-    "id": "3d6d2564",
+    "id": "d3d6d256",
     "base_id": "0a5a60d8"
   },
   "3eac902b": {
@@ -939,7 +817,7 @@
     "corpus_count": 1,
     "translation": "bring me",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "477",
           "examples": [
@@ -967,15 +845,15 @@
     "id": "3eac902b",
     "base_id": "a2b022e5"
   },
-  "bb098df1": {
+  "3bb098df": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 1,
     "translation": "to give",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "662",
+          "sense": "6627dd",
           "examples": [
             0
           ]
@@ -994,18 +872,18 @@
         "end_timestamp_ms": 176510
       }
     ],
-    "id": "bb098df1",
+    "id": "3bb098df",
     "base_id": "1e9e9b53"
   },
   "9b3219cf": {
     "base_verb": "dejar",
     "lemma": "déjalo",
     "corpus_count": 1,
-    "translation": "leave it",
+    "translation": "let him",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "934",
+          "sense": "648",
           "examples": [
             0
           ]
@@ -1054,13 +932,13 @@
     "id": "ad8bd686",
     "base_id": "ac812646"
   },
-  "6bb673f4": {
+  "c6bb673f": {
     "base_verb": "comerse",
     "lemma": "comer",
     "corpus_count": 1,
     "translation": "to eat",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "d41",
           "examples": [
@@ -1085,7 +963,7 @@
         "end_timestamp_ms": 74610
       }
     ],
-    "id": "6bb673f4",
+    "id": "c6bb673f",
     "base_id": "1e8ac2cd"
   },
   "71cb504d": {
@@ -1093,24 +971,7 @@
     "lemma": "piénsalo",
     "corpus_count": 1,
     "translation": "to think",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "94a",
-          "examples": [
-            0
-          ]
-        }
-      ],
-      "spanishdict-flash-lite": [
-        {
-          "sense": "94a",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -1130,26 +991,26 @@
     "id": "71cb504d",
     "base_id": "7fc19d79"
   },
-  "5b903ed3": {
+  "e5b903ed": {
     "base_verb": "hacer",
     "lemma": "hacer",
     "corpus_count": 5,
-    "translation": "make",
+    "translation": "to do",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "03d",
           "examples": [
-            3
+            1,
+            2,
+            3,
+            4
           ]
         },
         {
           "sense": "bf6",
           "examples": [
-            0,
-            1,
-            2,
-            4
+            0
           ]
         }
       ]
@@ -1219,7 +1080,7 @@
         "end_timestamp_ms": 92450
       }
     ],
-    "id": "5b903ed3",
+    "id": "e5b903ed",
     "base_id": "22a2d1c1"
   },
   "38a541ee": {
@@ -1227,16 +1088,7 @@
     "lemma": "verle",
     "corpus_count": 1,
     "translation": "to see",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "74d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "4801759",
@@ -1256,15 +1108,15 @@
     "id": "38a541ee",
     "base_id": "03a9bad5"
   },
-  "46631b1e": {
+  "146631b1": {
     "base_verb": "tatuar",
     "lemma": "tatuar",
     "corpus_count": 1,
-    "translation": "to get a tattoo",
+    "translation": "to tattoo",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "50d",
+          "sense": "ae1",
           "examples": [
             0
           ]
@@ -1283,24 +1135,15 @@
         "end_timestamp_ms": 44890
       }
     ],
-    "id": "46631b1e",
+    "id": "146631b1",
     "base_id": "c0de5a78"
   },
   "ead48a00": {
     "base_verb": "castigar",
     "lemma": "castigarme",
     "corpus_count": 1,
-    "translation": "to seduce",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "3ef",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "",
+    "assignments": {},
     "examples": [
       {
         "song": "3131429",
@@ -1316,13 +1159,13 @@
     "id": "ead48a00",
     "base_id": "62c66bbf"
   },
-  "1902f852": {
+  "b1902f85": {
     "base_verb": "relajarse",
     "lemma": "relajar",
     "corpus_count": 1,
     "translation": "to relax",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "9f4",
           "examples": [
@@ -1347,17 +1190,18 @@
         "end_timestamp_ms": 113980
       }
     ],
-    "id": "1902f852"
+    "id": "b1902f85",
+    "base_id": "4cc703ac"
   },
-  "6abcf5f8": {
+  "66abcf5f": {
     "base_verb": "acostar",
     "lemma": "acostar",
     "corpus_count": 1,
-    "translation": "to lie down",
+    "translation": "to put to bed",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "896",
+          "sense": "b82",
           "examples": [
             0
           ]
@@ -1382,7 +1226,7 @@
         "end_timestamp_ms": 78860
       }
     ],
-    "id": "6abcf5f8",
+    "id": "66abcf5f",
     "base_id": "4975e43d"
   },
   "198628a1": {
@@ -1390,16 +1234,7 @@
     "lemma": "dolerme",
     "corpus_count": 1,
     "translation": "to hurt",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "9f9",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "5384007",
@@ -1419,18 +1254,8 @@
     "base_verb": "querer",
     "lemma": "quererte",
     "corpus_count": 2,
-    "translation": "to love",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "bb1",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
+    "translation": "to want",
+    "assignments": {},
     "examples": [
       {
         "song": "3067584",
@@ -1465,16 +1290,7 @@
     "lemma": "aliviarnos",
     "corpus_count": 1,
     "translation": "to relieve",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "3b0",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8324985",
@@ -1500,16 +1316,7 @@
     "lemma": "juzgarme",
     "corpus_count": 1,
     "translation": "to judge",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "1ec",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3814307",
@@ -1530,16 +1337,7 @@
     "lemma": "secarte",
     "corpus_count": 1,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "cfa",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8916307",
@@ -1563,17 +1361,8 @@
     "base_verb": "echar",
     "lemma": "échale",
     "corpus_count": 1,
-    "translation": "to have",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "d69",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to throw",
+    "assignments": {},
     "examples": [
       {
         "song": "5197781",
@@ -1594,16 +1383,7 @@
     "lemma": "encontrarte",
     "corpus_count": 1,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "f09",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "4459381",
@@ -1621,7 +1401,7 @@
       }
     ],
     "id": "67c7388e",
-    "base_id": "51725e16"
+    "base_id": "751725e1"
   },
   "eece6926": {
     "base_verb": "esperar",
@@ -1629,7 +1409,7 @@
     "corpus_count": 2,
     "translation": "wait for me",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "7e6",
           "examples": [
@@ -1670,15 +1450,15 @@
     "id": "eece6926",
     "base_id": "68cd17e5"
   },
-  "010ede60": {
+  "a010ede6": {
     "base_verb": "mandar",
     "lemma": "mandar",
     "corpus_count": 2,
-    "translation": "to send",
+    "translation": "to order",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "4a0f",
+          "sense": "4a0",
           "examples": [
             0
           ]
@@ -1697,16 +1477,16 @@
         "end_timestamp_ms": 170380
       }
     ],
-    "id": "010ede60",
+    "id": "a010ede6",
     "base_id": "0bd8fed4"
   },
-  "12fa997b": {
+  "912fa997": {
     "base_verb": "crucificar",
     "lemma": "crucificar",
     "corpus_count": 1,
     "translation": "to crucify",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "676",
           "examples": [
@@ -1725,7 +1505,7 @@
         "is_variant": false
       }
     ],
-    "id": "12fa997b",
+    "id": "912fa997",
     "base_id": "94a9ea48"
   },
   "069e2e81": {
@@ -1734,7 +1514,7 @@
     "corpus_count": 4,
     "translation": "forgive me",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "73c",
           "examples": [
@@ -1761,16 +1541,7 @@
     "lemma": "avisarte",
     "corpus_count": 1,
     "translation": "to let know",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "c27",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -1794,17 +1565,8 @@
     "base_verb": "mirarse",
     "lemma": "mírate",
     "corpus_count": 1,
-    "translation": "to look at",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "fb7",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to look at oneself",
+    "assignments": {},
     "examples": [
       {
         "song": "7515170",
@@ -1818,23 +1580,14 @@
       }
     ],
     "id": "176de5f9",
-    "base_id": "06b51e67"
+    "base_id": "206b51e6"
   },
   "1e1f8338": {
     "base_verb": "cansar",
     "lemma": "cansarme",
     "corpus_count": 1,
-    "translation": "to get tired",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "33d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "",
+    "assignments": {},
     "examples": [
       {
         "song": "2966663",
@@ -1859,24 +1612,7 @@
     "lemma": "míralas",
     "corpus_count": 1,
     "translation": "to look at",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "2a5",
-          "examples": [
-            0
-          ]
-        }
-      ],
-      "spanishdict-flash-lite": [
-        {
-          "sense": "2a5",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7528145",
@@ -1892,15 +1628,15 @@
     "id": "53e59e19",
     "base_id": "7046e318"
   },
-  "e15bbb37": {
+  "ee15bbb3": {
     "base_verb": "aniquilarse",
-    "lemma": "aniquilar",
+    "lemma": "aniquilarse",
     "corpus_count": 2,
-    "translation": "to annihilate",
+    "translation": "to deteriorate",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "f97",
+          "sense": "efa",
           "examples": [
             0
           ]
@@ -1919,24 +1655,24 @@
         "end_timestamp_ms": 36230
       }
     ],
-    "id": "e15bbb37",
-    "base_id": "e15bbb37"
+    "id": "ee15bbb3",
+    "base_id": "ee15bbb3"
   },
-  "9f07502b": {
+  "79f07502": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 2,
     "translation": "to give",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "07f",
+          "sense": "662",
           "examples": [
             0
           ]
         },
         {
-          "sense": "662",
+          "sense": "6627dd",
           "examples": [
             1
           ]
@@ -1970,37 +1706,22 @@
         "end_timestamp_ms": 87350
       }
     ],
-    "id": "9f07502b",
+    "id": "79f07502",
     "base_id": "1e9e9b53"
   },
-  "735691a9": {
+  "e735691a": {
     "base_verb": "olvidarse",
     "lemma": "olvidar",
     "corpus_count": 4,
     "translation": "to forget",
     "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "3c5",
-          "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "3c51",
-          "examples": [
-            1
-          ]
-        },
-        {
-          "sense": "3c515",
-          "examples": [
-            2
-          ]
-        },
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "f40",
           "examples": [
+            0,
+            1,
+            2,
             3
           ]
         }
@@ -2061,23 +1782,15 @@
         "end_timestamp_ms": 19610
       }
     ],
-    "id": "735691a9"
+    "id": "e735691a",
+    "base_id": "5e8b15d8"
   },
   "511d2d0c": {
     "base_verb": "cruzar",
     "lemma": "cruzarlo",
     "corpus_count": 1,
     "translation": "to cross",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "e27",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3750274",
@@ -2098,16 +1811,7 @@
     "lemma": "esperarme",
     "corpus_count": 1,
     "translation": "to wait for",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "da0",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -2129,13 +1833,13 @@
     "id": "c7b7d7fb",
     "base_id": "68cd17e5"
   },
-  "eacfe749": {
+  "4eacfe74": {
     "base_verb": "conocer",
     "lemma": "conocer",
     "corpus_count": 1,
-    "translation": "to meet",
+    "translation": "to know",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "2cc",
           "examples": [
@@ -2160,7 +1864,7 @@
         "end_timestamp_ms": 70190
       }
     ],
-    "id": "eacfe749",
+    "id": "4eacfe74",
     "base_id": "730637a5"
   },
   "eb89e1ec": {
@@ -2168,16 +1872,7 @@
     "lemma": "poniéndome",
     "corpus_count": 1,
     "translation": "to put",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "4bc",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7142770",
@@ -2204,7 +1899,7 @@
     "corpus_count": 2,
     "translation": "to call me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "b03",
           "examples": [
@@ -2228,18 +1923,23 @@
     "id": "8d5b50cf",
     "base_id": "17a79bf3"
   },
-  "a40623f5": {
+  "6a40623f": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 2,
     "translation": "to give",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "662",
           "examples": [
-            0,
             1
+          ]
+        },
+        {
+          "sense": "738",
+          "examples": [
+            0
           ]
         }
       ]
@@ -2266,7 +1966,7 @@
         "end_timestamp_ms": 81300
       }
     ],
-    "id": "a40623f5",
+    "id": "6a40623f",
     "base_id": "1e9e9b53"
   },
   "fda22d1e": {
@@ -2274,17 +1974,7 @@
     "lemma": "equivocarme",
     "corpus_count": 2,
     "translation": "to get wrong",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "ec5",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "4201752",
@@ -2318,13 +2008,13 @@
     "id": "fda22d1e",
     "base_id": "00a044d7"
   },
-  "febe4ff7": {
+  "bfebe4ff": {
     "base_verb": "hacer",
     "lemma": "hacer",
     "corpus_count": 1,
     "translation": "to do",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "03d",
           "examples": [
@@ -2345,7 +2035,7 @@
         "end_timestamp_ms": 50440
       }
     ],
-    "id": "febe4ff7",
+    "id": "bfebe4ff",
     "base_id": "22a2d1c1"
   },
   "cc5aea48": {
@@ -2353,17 +2043,7 @@
     "lemma": "decirlo",
     "corpus_count": 2,
     "translation": "to say",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "c70",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3964070",
@@ -2394,16 +2074,7 @@
     "lemma": "regálame",
     "corpus_count": 1,
     "translation": "to give",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "f93",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8416396",
@@ -2423,18 +2094,23 @@
     "id": "6e562ffb",
     "base_id": "5bf9d4b4"
   },
-  "07e9f6ca": {
+  "907e9f6c": {
     "base_verb": "hablar",
     "lemma": "hablar",
     "corpus_count": 2,
-    "translation": "to talk to",
+    "translation": "to speak",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "dca",
+          "sense": "fec",
           "examples": [
-            0,
             1
+          ]
+        },
+        {
+          "sense": "fec7b",
+          "examples": [
+            0
           ]
         }
       ]
@@ -2465,7 +2141,7 @@
         "end_timestamp_ms": 17910
       }
     ],
-    "id": "07e9f6ca",
+    "id": "907e9f6c",
     "base_id": "061094be"
   },
   "d59e0330": {
@@ -2474,7 +2150,7 @@
     "corpus_count": 15,
     "translation": "tell me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "9ba",
           "examples": [
@@ -2605,17 +2281,8 @@
     "base_verb": "poder",
     "lemma": "poderle",
     "corpus_count": 1,
-    "translation": "can",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "390",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "power",
+    "assignments": {},
     "examples": [
       {
         "song": "12660487",
@@ -2636,16 +2303,7 @@
     "lemma": "arrancarlo",
     "corpus_count": 1,
     "translation": "to pull out",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "2a6",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "4425584",
@@ -2666,15 +2324,15 @@
     "id": "e9dfb108",
     "base_id": "0485cea1"
   },
-  "73ba87ba": {
+  "b73ba87b": {
     "base_verb": "decir",
     "lemma": "decir",
     "corpus_count": 1,
-    "translation": "to tell",
+    "translation": "to say",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "375",
+          "sense": "c70",
           "examples": [
             0
           ]
@@ -2697,7 +2355,7 @@
         "end_timestamp_ms": 55170
       }
     ],
-    "id": "73ba87ba",
+    "id": "b73ba87b",
     "base_id": "c0a77f7e"
   },
   "760de32d": {
@@ -2706,7 +2364,7 @@
     "corpus_count": 1,
     "translation": "follow me",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "21f",
           "examples": [
@@ -2735,13 +2393,13 @@
     "id": "760de32d",
     "base_id": "96082e12"
   },
-  "fa7a551d": {
+  "7fa7a551": {
     "base_verb": "pegarse",
     "lemma": "pegar",
     "corpus_count": 2,
     "translation": "to hit",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "018",
           "examples": [
@@ -2762,7 +2420,8 @@
         "end_timestamp_ms": 109570
       }
     ],
-    "id": "fa7a551d"
+    "id": "7fa7a551",
+    "base_id": "bac54cc1"
   },
   "50b37d0e": {
     "base_verb": "quedarse",
@@ -2770,7 +2429,7 @@
     "corpus_count": 1,
     "translation": "stay",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "479",
           "examples": [
@@ -2804,16 +2463,7 @@
     "lemma": "pregúntate",
     "corpus_count": 1,
     "translation": "to wonder",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "a37",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8365376",
@@ -2830,17 +2480,18 @@
         "end_timestamp_ms": 140630
       }
     ],
-    "id": "26395004"
+    "id": "26395004",
+    "base_id": "65cce28a"
   },
-  "1891cc9c": {
+  "a1891cc9": {
     "base_verb": "desquitarse",
     "lemma": "desquitar",
     "corpus_count": 1,
-    "translation": "to get even",
+    "translation": "to make up for",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "210",
+          "sense": "252",
           "examples": [
             0
           ]
@@ -2859,23 +2510,15 @@
         "end_timestamp_ms": 23830
       }
     ],
-    "id": "1891cc9c"
+    "id": "a1891cc9",
+    "base_id": "4ca71358"
   },
   "11b77ac5": {
     "base_verb": "invitar",
     "lemma": "invitarme",
     "corpus_count": 1,
     "translation": "to invite",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "e83",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "2966663",
@@ -2900,16 +2543,7 @@
     "lemma": "inténtalo",
     "corpus_count": 2,
     "translation": "to try",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "33f",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "12650523",
@@ -2927,17 +2561,8 @@
     "base_verb": "cortar",
     "lemma": "córtala",
     "corpus_count": 2,
-    "translation": "to stop",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "dac",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to cut",
+    "assignments": {},
     "examples": [
       {
         "song": "7515279",
@@ -2957,17 +2582,8 @@
     "base_verb": "tirar",
     "lemma": "tíralo",
     "corpus_count": 1,
-    "translation": "to throw",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "813",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to throw oneself",
+    "assignments": {},
     "examples": [
       {
         "song": "5002535",
@@ -3005,15 +2621,15 @@
     "id": "ddad11ff",
     "base_id": "34a384ba"
   },
-  "6bfdf8b3": {
+  "86bfdf8b": {
     "base_verb": "vadear",
     "lemma": "vadear",
     "corpus_count": 1,
-    "translation": "to wade through",
+    "translation": "to ford",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "1e1",
+          "sense": "76f",
           "examples": [
             0
           ]
@@ -3032,7 +2648,7 @@
         "end_timestamp_ms": 98320
       }
     ],
-    "id": "6bfdf8b3",
+    "id": "86bfdf8b",
     "base_id": "c82636ff"
   },
   "0bb382c5": {
@@ -3041,9 +2657,9 @@
     "corpus_count": 5,
     "translation": "I'll have",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "182",
+          "sense": "ee5",
           "examples": [
             0,
             1
@@ -3079,16 +2695,7 @@
     "lemma": "partirme",
     "corpus_count": 1,
     "translation": "to cut",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "e23",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "6367361",
@@ -3114,17 +2721,7 @@
     "lemma": "reírme",
     "corpus_count": 2,
     "translation": "to laugh",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "f5d",
-          "examples": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7515069",
@@ -3156,15 +2753,15 @@
     "id": "5da6f111",
     "base_id": "d94c267f"
   },
-  "6682b279": {
+  "a6682b27": {
     "base_verb": "ir",
     "lemma": "ir",
     "corpus_count": 1,
     "translation": "to go",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "8d5",
+          "sense": "3e7",
           "examples": [
             0
           ]
@@ -3189,18 +2786,18 @@
         "end_timestamp_ms": 126650
       }
     ],
-    "id": "6682b279",
+    "id": "a6682b27",
     "base_id": "741ca0c8"
   },
-  "64fb5a2a": {
+  "e64fb5a2": {
     "base_verb": "morirse",
     "lemma": "morir",
     "corpus_count": 5,
     "translation": "to die",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "d2d",
+          "sense": "444",
           "examples": [
             0,
             1
@@ -3236,8 +2833,8 @@
         "end_timestamp_ms": 119250
       }
     ],
-    "id": "64fb5a2a",
-    "base_id": "466528dd"
+    "id": "e64fb5a2",
+    "base_id": "e466528d"
   },
   "e6d7b935": {
     "base_verb": "querer",
@@ -3245,7 +2842,7 @@
     "corpus_count": 1,
     "translation": "to love me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "75c",
           "examples": [
@@ -3277,17 +2874,8 @@
     "base_verb": "mantener",
     "lemma": "mantenerme",
     "corpus_count": 1,
-    "translation": "to support",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "5f9",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to hold",
+    "assignments": {},
     "examples": [
       {
         "song": "7528115",
@@ -3308,16 +2896,7 @@
     "lemma": "verlas",
     "corpus_count": 1,
     "translation": "to see",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "74d",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7528145",
@@ -3338,16 +2917,7 @@
     "lemma": "siéntate",
     "corpus_count": 1,
     "translation": "to feel",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "946",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "5002535",
@@ -3367,17 +2937,8 @@
     "base_verb": "despertar",
     "lemma": "despertarnos",
     "corpus_count": 1,
-    "translation": "to wake up",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "9c8",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "awakening",
+    "assignments": {},
     "examples": [
       {
         "song": "10129261",
@@ -3391,13 +2952,13 @@
     "id": "c4e767f7",
     "base_id": "5e156a15"
   },
-  "e0f31575": {
+  "9e0f3157": {
     "base_verb": "transformar",
     "lemma": "transformar",
     "corpus_count": 1,
     "translation": "to transform",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "c02",
           "examples": [
@@ -3422,16 +2983,16 @@
         "end_timestamp_ms": 121580
       }
     ],
-    "id": "e0f31575",
+    "id": "9e0f3157",
     "base_id": "ff7137d1"
   },
-  "baff13fc": {
+  "cbaff13f": {
     "base_verb": "dar",
     "lemma": "dar",
     "corpus_count": 1,
     "translation": "to give",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "662",
           "examples": [
@@ -3450,16 +3011,16 @@
         "is_variant": false
       }
     ],
-    "id": "baff13fc",
+    "id": "cbaff13f",
     "base_id": "1e9e9b53"
   },
-  "ff6b75fe": {
+  "fff6b75f": {
     "base_verb": "pensar",
     "lemma": "pensar",
     "corpus_count": 1,
     "translation": "to think",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "357",
           "examples": [
@@ -3480,24 +3041,15 @@
         "end_timestamp_ms": 109460
       }
     ],
-    "id": "ff6b75fe",
+    "id": "fff6b75f",
     "base_id": "7fc19d79"
   },
   "c851da72": {
     "base_verb": "acordar",
     "lemma": "acordarme",
     "corpus_count": 1,
-    "translation": "to agree",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "e40",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to remember",
+    "assignments": {},
     "examples": [
       {
         "song": "3814307",
@@ -3518,16 +3070,7 @@
     "lemma": "recordarlo",
     "corpus_count": 1,
     "translation": "to remember",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "576",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3814307",
@@ -3549,7 +3092,7 @@
     "corpus_count": 8,
     "translation": "take me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "f1c",
           "examples": [
@@ -3598,16 +3141,7 @@
     "lemma": "entrégate",
     "corpus_count": 1,
     "translation": "to surrender",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "1e2",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "12581303",
@@ -3620,15 +3154,16 @@
         "end_timestamp_ms": 26510
       }
     ],
-    "id": "d69d13e4"
+    "id": "d69d13e4",
+    "base_id": "04ab732d"
   },
-  "1e27cf4c": {
+  "d1e27cf4": {
     "base_verb": "perrear",
     "lemma": "perrear",
     "corpus_count": 4,
     "translation": "to twerk",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "880",
           "examples": [
@@ -3655,24 +3190,15 @@
         "end_timestamp_ms": 57240
       }
     ],
-    "id": "1e27cf4c",
+    "id": "d1e27cf4",
     "base_id": "b0ecae32"
   },
   "cac0b119": {
     "base_verb": "poder",
     "lemma": "poderte",
     "corpus_count": 1,
-    "translation": "can",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "390",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "power",
+    "assignments": {},
     "examples": [
       {
         "song": "5197781",
@@ -3688,13 +3214,13 @@
     "id": "cac0b119",
     "base_id": "13d9d062"
   },
-  "1b7ba045": {
+  "d1b7ba04": {
     "base_verb": "dejar",
     "lemma": "dejar",
     "corpus_count": 2,
-    "translation": "to let",
+    "translation": "to leave",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "11e",
           "examples": [
@@ -3713,7 +3239,7 @@
         "is_variant": true
       }
     ],
-    "id": "1b7ba045",
+    "id": "d1b7ba04",
     "base_id": "9a098f76"
   },
   "c59fdaa4": {
@@ -3721,16 +3247,7 @@
     "lemma": "usarlo",
     "corpus_count": 2,
     "translation": "to use",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "e80",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "10129261",
@@ -3749,16 +3266,7 @@
     "lemma": "desnudarse",
     "corpus_count": 2,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "5ea",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "12581296",
@@ -3779,16 +3287,7 @@
     "lemma": "tratarme",
     "corpus_count": 1,
     "translation": "to treat",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "133",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "2966663",
@@ -3806,13 +3305,13 @@
     "id": "d93eb262",
     "base_id": "4ec98ce1"
   },
-  "b7bcef10": {
+  "7b7bcef1": {
     "base_verb": "tirar",
     "lemma": "tirar",
     "corpus_count": 1,
-    "translation": "to pull",
+    "translation": "to throw",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "cec",
           "examples": [
@@ -3833,7 +3332,7 @@
         "end_timestamp_ms": 47590
       }
     ],
-    "id": "b7bcef10",
+    "id": "7b7bcef1",
     "base_id": "bcf5e3b4"
   },
   "ffaa0230": {
@@ -3841,24 +3340,7 @@
     "lemma": "guárdame",
     "corpus_count": 2,
     "translation": "to put away",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "7c9",
-          "examples": [
-            0
-          ]
-        }
-      ],
-      "spanishdict-flash-lite": [
-        {
-          "sense": "7c9",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7659063",
@@ -3878,17 +3360,8 @@
     "base_verb": "mantener",
     "lemma": "mantenme",
     "corpus_count": 1,
-    "translation": "to support",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "928",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to hold",
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -3912,17 +3385,8 @@
     "base_verb": "perseguir",
     "lemma": "perseguirlo",
     "corpus_count": 1,
-    "translation": "to chase",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "d32",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to pursue",
+    "assignments": {},
     "examples": [
       {
         "song": "12660487",
@@ -3943,16 +3407,7 @@
     "lemma": "estrellarme",
     "corpus_count": 1,
     "translation": "to crash",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "667",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "5384007",
@@ -3968,13 +3423,13 @@
     "id": "5d3701cd",
     "base_id": "aedb1650"
   },
-  "76efceb6": {
+  "e76efceb": {
     "base_verb": "hacerse",
     "lemma": "hacer",
     "corpus_count": 1,
-    "translation": "to pretend",
+    "translation": "to do",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "03d",
           "examples": [
@@ -3995,22 +3450,32 @@
         "end_timestamp_ms": 57850
       }
     ],
-    "id": "76efceb6",
-    "base_id": "d841d0e6"
+    "id": "e76efceb",
+    "base_id": "cd841d0e"
   },
   "66d1ec3c": {
     "base_verb": "hacer",
-    "lemma": "hacerte",
+    "lemma": "hacer",
     "corpus_count": 5,
-    "translation": "to make for yourself",
+    "translation": "to do",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "bf6",
+          "sense": "03d",
           "examples": [
-            0,
+            2
+          ]
+        },
+        {
+          "sense": "bf6bd",
+          "examples": [
+            0
+          ]
+        },
+        {
+          "sense": "fe1",
+          "examples": [
             1,
-            2,
             3
           ]
         }
@@ -4072,21 +3537,13 @@
     "id": "66d1ec3c",
     "base_id": "22a2d1c1"
   },
-  "654f5cf8": {
+  "f654f5cf": {
     "base_verb": "escaparse",
-    "lemma": "escapar",
+    "lemma": "escaparse",
     "corpus_count": 2,
     "translation": "to escape",
     "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "e33",
-          "examples": [
-            0
-          ]
-        }
-      ],
-      "legacy-deterministic-single-v1": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "e33",
           "examples": [
@@ -4107,25 +3564,20 @@
         "end_timestamp_ms": 164450
       }
     ],
-    "id": "654f5cf8",
-    "base_id": "654f5cf8"
+    "id": "f654f5cf",
+    "base_id": "f654f5cf"
   },
-  "1fb92134": {
+  "b1fb9213": {
     "base_verb": "ponerse",
     "lemma": "poner",
     "corpus_count": 3,
     "translation": "to put",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "4bc",
           "examples": [
-            0
-          ]
-        },
-        {
-          "sense": "be9",
-          "examples": [
+            0,
             1
           ]
         }
@@ -4158,18 +3610,18 @@
         "end_timestamp_ms": 83060
       }
     ],
-    "id": "1fb92134",
+    "id": "b1fb9213",
     "base_id": "18b74383"
   },
-  "fbda4e38": {
+  "1fbda4e3": {
     "base_verb": "ir",
     "lemma": "ir",
     "corpus_count": 1,
     "translation": "to go",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "8d5",
+          "sense": "3e7",
           "examples": [
             0
           ]
@@ -4194,16 +3646,16 @@
         "end_timestamp_ms": 131320
       }
     ],
-    "id": "fbda4e38",
+    "id": "1fbda4e3",
     "base_id": "741ca0c8"
   },
-  "7241bc17": {
+  "f7241bc1": {
     "base_verb": "desvestirse",
     "lemma": "desvestir",
     "corpus_count": 1,
     "translation": "to undress",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "eef",
           "examples": [
@@ -4230,7 +3682,7 @@
         "end_timestamp_ms": 154820
       }
     ],
-    "id": "7241bc17",
+    "id": "f7241bc1",
     "base_id": "3a7c42fc"
   },
   "26ec5e14": {
@@ -4239,7 +3691,7 @@
     "corpus_count": 2,
     "translation": "let me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "994",
           "examples": [
@@ -4280,17 +3732,8 @@
     "base_verb": "abrazar",
     "lemma": "abrázame",
     "corpus_count": 1,
-    "translation": "to hug",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "adc",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "",
+    "assignments": {},
     "examples": [
       {
         "song": "9176102",
@@ -4306,13 +3749,13 @@
     "id": "33299711",
     "base_id": "d00f8da2"
   },
-  "fb88214e": {
+  "9fb88214": {
     "base_verb": "follar",
     "lemma": "follar",
     "corpus_count": 1,
     "translation": "to fuck",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "494",
           "examples": [
@@ -4338,7 +3781,7 @@
         "end_timestamp_ms": 43450
       }
     ],
-    "id": "fb88214e",
+    "id": "9fb88214",
     "base_id": "e2d8b6f4"
   },
   "becce2a4": {
@@ -4346,16 +3789,7 @@
     "lemma": "escucharlo",
     "corpus_count": 1,
     "translation": "to listen to",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "a9a",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "8189170",
@@ -4376,16 +3810,7 @@
     "lemma": "rezarle",
     "corpus_count": 1,
     "translation": "to pray",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "a33",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3964062",
@@ -4405,25 +3830,8 @@
     "base_verb": "callar",
     "lemma": "callarme",
     "corpus_count": 1,
-    "translation": "to shut up",
-    "assignments": {
-      "biencoder": [
-        {
-          "sense": "33f",
-          "examples": [
-            0
-          ]
-        }
-      ],
-      "spanishdict-flash-lite": [
-        {
-          "sense": "33f",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to keep quiet",
+    "assignments": {},
     "examples": [
       {
         "song": "12581305",
@@ -4444,16 +3852,7 @@
     "lemma": "oblígame",
     "corpus_count": 1,
     "translation": "to force",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "4b6",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "2966663",
@@ -4479,7 +3878,7 @@
     "corpus_count": 7,
     "translation": "take off",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "352",
           "examples": [
@@ -4514,13 +3913,13 @@
     "id": "d555b175",
     "base_id": "941273b4"
   },
-  "c8231958": {
+  "0c823195": {
     "base_verb": "buscar",
     "lemma": "buscar",
     "corpus_count": 1,
     "translation": "to look for",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "309",
           "examples": [
@@ -4541,7 +3940,7 @@
         "end_timestamp_ms": 73800
       }
     ],
-    "id": "c8231958",
+    "id": "0c823195",
     "base_id": "c3095405"
   },
   "60717c3d": {
@@ -4549,16 +3948,7 @@
     "lemma": "escucharme",
     "corpus_count": 1,
     "translation": "",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "6f7",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "2814756",
@@ -4584,16 +3974,7 @@
     "lemma": "dejándote",
     "corpus_count": 1,
     "translation": "to leave",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "4a5",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "4496591",
@@ -4609,21 +3990,12 @@
     "id": "b8e07530",
     "base_id": "9a098f76"
   },
-  "e4a83b10": {
+  "9e4a83b1": {
     "base_verb": "coger",
-    "lemma": "comer",
+    "lemma": "cógela",
     "corpus_count": 2,
     "translation": "to take",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "c01",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "7515279",
@@ -4636,16 +4008,16 @@
         "end_timestamp_ms": 120350
       }
     ],
-    "id": "e4a83b10",
+    "id": "9e4a83b1",
     "base_id": "2f002280"
   },
-  "eaef69c7": {
+  "feaef69c": {
     "base_verb": "caerse",
-    "lemma": "caer",
+    "lemma": "caerse",
     "corpus_count": 4,
     "translation": "to fall",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "0c1",
           "examples": [
@@ -4677,16 +4049,16 @@
         "end_timestamp_ms": 166520
       }
     ],
-    "id": "eaef69c7",
-    "base_id": "eaef69c7"
+    "id": "feaef69c",
+    "base_id": "feaef69c"
   },
-  "63eb8dc0": {
+  "263eb8dc": {
     "base_verb": "comerse",
     "lemma": "comer",
     "corpus_count": 1,
     "translation": "to eat",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "d41",
           "examples": [
@@ -4713,7 +4085,7 @@
         "end_timestamp_ms": 174590
       }
     ],
-    "id": "63eb8dc0",
+    "id": "263eb8dc",
     "base_id": "1e8ac2cd"
   },
   "4a453521": {
@@ -4721,16 +4093,7 @@
     "lemma": "mirarlos",
     "corpus_count": 1,
     "translation": "to look at",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "181",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3814300",
@@ -4746,13 +4109,13 @@
     "id": "4a453521",
     "base_id": "7046e318"
   },
-  "7b97e163": {
+  "d7b97e16": {
     "base_verb": "aborrecer",
     "lemma": "aborrecer",
     "corpus_count": 1,
     "translation": "to abhor",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "711",
           "examples": [
@@ -4771,16 +4134,16 @@
         "is_variant": false
       }
     ],
-    "id": "7b97e163",
+    "id": "d7b97e16",
     "base_id": "41277b84"
   },
-  "a9cb3fbf": {
+  "2a9cb3fb": {
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 2,
     "translation": "to have",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "9b6",
           "examples": [
@@ -4819,16 +4182,16 @@
         "end_timestamp_ms": 143140
       }
     ],
-    "id": "a9cb3fbf",
+    "id": "2a9cb3fb",
     "base_id": "5d1684c0"
   },
-  "3b00c4b9": {
+  "83b00c4b": {
     "base_verb": "tener",
     "lemma": "tener",
     "corpus_count": 1,
     "translation": "to have",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "9b6",
           "examples": [
@@ -4847,7 +4210,7 @@
         "is_variant": false
       }
     ],
-    "id": "3b00c4b9",
+    "id": "83b00c4b",
     "base_id": "5d1684c0"
   },
   "79936450": {
@@ -4856,7 +4219,7 @@
     "corpus_count": 3,
     "translation": "look at me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "fb5",
           "examples": [
@@ -4896,13 +4259,13 @@
     "id": "79936450",
     "base_id": "7046e318"
   },
-  "50be459f": {
+  "850be459": {
     "base_verb": "tratar",
     "lemma": "tratar",
     "corpus_count": 1,
     "translation": "to treat",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "133",
           "examples": [
@@ -4927,16 +4290,16 @@
         "is_variant": false
       }
     ],
-    "id": "50be459f",
+    "id": "850be459",
     "base_id": "4ec98ce1"
   },
-  "6f511834": {
+  "26f51183": {
     "base_verb": "ver",
     "lemma": "ver",
     "corpus_count": 2,
     "translation": "to see",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "74d",
           "examples": [
@@ -4973,7 +4336,7 @@
         "end_timestamp_ms": 137490
       }
     ],
-    "id": "6f511834",
+    "id": "26f51183",
     "base_id": "03a9bad5"
   },
   "4b126412": {
@@ -4981,16 +4344,7 @@
     "lemma": "amarme",
     "corpus_count": 1,
     "translation": "to love",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "07a",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -5010,15 +4364,15 @@
     "id": "4b126412",
     "base_id": "e20afd7c"
   },
-  "6a2bfdb7": {
+  "16a2bfdb": {
     "base_verb": "rozarse",
-    "lemma": "rozar",
+    "lemma": "rozarse",
     "corpus_count": 2,
-    "translation": "to brush against",
+    "translation": "to touch",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "e2f",
+          "sense": "c68",
           "examples": [
             0
           ]
@@ -5037,16 +4391,16 @@
         "end_timestamp_ms": 36570
       }
     ],
-    "id": "6a2bfdb7",
-    "base_id": "6a2bfdb7"
+    "id": "16a2bfdb",
+    "base_id": "16a2bfdb"
   },
-  "9411cfc4": {
+  "19411cfc": {
     "base_verb": "mirar",
     "lemma": "mira",
     "corpus_count": 1,
     "translation": "sight",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "2a5",
           "examples": [
@@ -5067,7 +4421,7 @@
         "end_timestamp_ms": 99660
       }
     ],
-    "id": "9411cfc4",
+    "id": "19411cfc",
     "base_id": "7046e318"
   },
   "caa1a8e9": {
@@ -5075,16 +4429,7 @@
     "lemma": "mátame",
     "corpus_count": 1,
     "translation": "to kill",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "cee",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "2814756",
@@ -5112,7 +4457,7 @@
     "corpus_count": 2,
     "translation": "giving him",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "278",
           "examples": [
@@ -5146,17 +4491,8 @@
     "base_verb": "cobrar",
     "lemma": "cobrarle",
     "corpus_count": 1,
-    "translation": "to charge",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "dd4",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to charge for",
+    "assignments": {},
     "examples": [
       {
         "song": "3964062",
@@ -5178,7 +4514,7 @@
     "corpus_count": 6,
     "translation": "give me",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "1fb",
           "examples": [
@@ -5263,16 +4599,7 @@
     "lemma": "montarme",
     "corpus_count": 1,
     "translation": "to get on",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "51e",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "3646825",
@@ -5296,17 +4623,8 @@
     "base_verb": "poder",
     "lemma": "poderla",
     "corpus_count": 1,
-    "translation": "can",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "390",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "power",
+    "assignments": {},
     "examples": [
       {
         "song": "3065897",
@@ -5326,17 +4644,8 @@
     "base_verb": "apuntar",
     "lemma": "apúnteme",
     "corpus_count": 5,
-    "translation": "to sign up",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "dce",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to aim",
+    "assignments": {},
     "examples": [
       {
         "song": "3065090",
@@ -5375,7 +4684,8 @@
         "end_timestamp_ms": 193440
       }
     ],
-    "id": "701f685f"
+    "id": "701f685f",
+    "base_id": "4ca71358"
   },
   "3dca00fa": {
     "base_verb": "permitir",
@@ -5421,7 +4731,8 @@
         "end_timestamp_ms": 189700
       }
     ],
-    "id": "ba9428b2"
+    "id": "ba9428b2",
+    "base_id": "86a293ba"
   },
   "688c0f78": {
     "base_verb": "mover",
@@ -5449,21 +4760,12 @@
     "id": "688c0f78",
     "base_id": "c4c311df"
   },
-  "0b2af271": {
+  "20b2af27": {
     "base_verb": "llevar",
-    "lemma": "llévame",
+    "lemma": "llévamelo",
     "corpus_count": 1,
-    "translation": "take me",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "f1c",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to take",
+    "assignments": {},
     "examples": [
       {
         "song": "4027739",
@@ -5474,7 +4776,7 @@
         "is_variant": false
       }
     ],
-    "id": "0b2af271",
+    "id": "20b2af27",
     "base_id": "c8fd5c9a"
   },
   "d0eb1e9e": {
@@ -5482,16 +4784,7 @@
     "lemma": "bájale",
     "corpus_count": 4,
     "translation": "to go down",
-    "assignments": {
-      "spanishdict-flash-lite": [
-        {
-          "sense": "9cd",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "assignments": {},
     "examples": [
       {
         "song": "4057969",
@@ -5507,13 +4800,13 @@
     "id": "d0eb1e9e",
     "base_id": "7ce55610"
   },
-  "e74e908a": {
+  "ae74e908": {
     "base_verb": "atreverse",
     "lemma": "atreverse",
     "corpus_count": 1,
     "translation": "to dare",
     "assignments": {
-      "spanishdict-flash-lite": [
+      "spanishdict-embed-v7-provider": [
         {
           "sense": "27c",
           "examples": [
@@ -5534,7 +4827,7 @@
         "end_timestamp_ms": 76570
       }
     ],
-    "id": "e74e908a",
+    "id": "ae74e908",
     "base_id": "91179f09"
   },
   "ec9b88fa": {
@@ -5543,9 +4836,9 @@
     "corpus_count": 1,
     "translation": "to make fun of",
     "assignments": {
-      "gap-fill": [
+      "spanishdict-embed-v7-provider": [
         {
-          "sense": "4fa",
+          "sense": "01d",
           "examples": [
             0
           ]
@@ -5579,7 +4872,7 @@
     "corpus_count": 1,
     "translation": "tell me",
     "assignments": {
-      "spanishdict-auto": [
+      "spanishdict-v7-auto": [
         {
           "sense": "fee",
           "examples": [
@@ -5628,21 +4921,12 @@
     "id": "f7629656",
     "base_id": "1e9e9b53"
   },
-  "056f3b61": {
+  "8056f3b6": {
     "base_verb": "quedar",
-    "lemma": "quédate",
+    "lemma": "quédatelo",
     "corpus_count": 1,
-    "translation": "stay",
-    "assignments": {
-      "spanishdict-auto": [
-        {
-          "sense": "479",
-          "examples": [
-            0
-          ]
-        }
-      ]
-    },
+    "translation": "to be left",
+    "assignments": {},
     "examples": [
       {
         "song": "12579326",
@@ -5655,7 +4939,7 @@
         "end_timestamp_ms": 66970
       }
     ],
-    "id": "056f3b61",
+    "id": "8056f3b6",
     "base_id": "41a90d49"
   }
 }

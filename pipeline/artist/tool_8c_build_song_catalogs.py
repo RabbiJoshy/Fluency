@@ -34,6 +34,7 @@ DECKS = (
         "slug": "rosalia",
         "name": "Rosalía",
         "directory": ROOT / "Artists" / "spanish" / "Rosalía",
+        "master": ROOT / "Artists" / "spanish" / "Rosalía" / "Rosaliavocabulary.master.json",
         "index": "Rosaliavocabulary.index.json",
         "examples": "Rosaliavocabulary.examples.json",
         "output": "Rosaliasongs.json",
@@ -186,10 +187,10 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="Verify outputs without writing")
     args = parser.parse_args()
-    master = load_json(SPANISH_MASTER, {})
     spotify = load_json(SPOTIFY_TRACKS, {})
     failed = False
     for deck in DECKS:
+        master = load_json(deck.get("master", SPANISH_MASTER), {})
         catalog = build_catalog(deck, master, spotify)
         output = deck["directory"] / deck["output"]
         serialized = json.dumps(catalog, ensure_ascii=False, separators=(",", ":"))

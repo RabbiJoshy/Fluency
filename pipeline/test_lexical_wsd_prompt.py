@@ -13,8 +13,9 @@ from step_6c_assign_senses_gemini import (
     resolve_custom_menu_analyses,
 )
 from util_6a_assignment_format import stamp_provenance
+from util_6a_method_priority import METHOD_PRIORITY
 from util_6a_prompt_registry import (
-    CURRENT_SD_POLICY_ID, accepted_prompt_ids, load_prompt_policy,
+    CURRENT_SD_POLICY_ID, accepted_prompt_ids, load_prompt_policy, load_registry,
 )
 from artist.step_8b_assemble_artist_vocabulary import resolve_sense_provenance
 
@@ -141,6 +142,15 @@ class LexicalWsdPromptTests(unittest.TestCase):
                          policy.get("evaluation_prompt_ids", []))
         self.assertIn("legacy-unknown",
                       policy.get("rejected_prompt_ids", {}))
+
+    def test_rosalia_v7_current_claims_are_explicitly_admitted(self):
+        self.assertGreaterEqual(
+            METHOD_PRIORITY["spanishdict-embed-v7-provider"], 50)
+        self.assertIn("speech-embed-wsd-v7", load_registry())
+        self.assertEqual(
+            accepted_prompt_ids("rosalia-v7-provider-current"),
+            frozenset({"speech-embed-wsd-v7"}),
+        )
 
     def test_provenance_distinguishes_off_menu_model_proposals(self):
         registry = {

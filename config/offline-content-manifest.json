@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "contentVersion": "2026-08-18-lemma-fix",
-  "generatedAt": "2026-08-17T23:36:19Z",
+  "generatedAt": "2026-08-24T22:46:10Z",
   "sources": [
     {
       "id": "language-spanish",
@@ -10,19 +10,19 @@
       "scopeLabel": "Speech · all levels",
       "language": "spanish",
       "contentVersion": "2026-08-22-beto-cal-v5",
-      "storageBytes": 39584122,
+      "storageBytes": 44417172,
       "transferBytes": 30168139,
       "dependencies": [],
       "files": [
         {
           "path": "Data/Spanish/vocabulary.index.json",
-          "bytes": 15795398,
-          "sha256": "a5c9fe2717bfd2b636bb0f2e07fc0925c6b646ecaa22b4df5527b5a32a5b6b6f"
+          "bytes": 16092203,
+          "sha256": "3fe8ea6ec50b05e48bc5b9a7b0edc6eaf20962c523a56900ad43f9a570f29fbd"
         },
         {
           "path": "Data/Spanish/vocabulary.examples.json",
-          "bytes": 9886910,
-          "sha256": "905ff0bd93d7d751e6f7c62ae1ea5d67973cb29e24da776b0552e440a6b1f626"
+          "bytes": 14423155,
+          "sha256": "3b8ee971d39015de902c6a6891af83895b356227cfa93e83bdeda6c5ac15681f"
         },
         {
           "path": "Data/Spanish/vocabulary.backup_examples.index.json",
@@ -97,7 +97,7 @@
       "language": "spanish",
       "artist": "bad-bunny",
       "contentVersion": "2026-08-17-beto-cal-v5",
-      "storageBytes": 34447662,
+      "storageBytes": 34545316,
       "transferBytes": 6097897,
       "dependencies": [
         "shared-spanish-artist"
@@ -105,8 +105,8 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6676082,
-          "sha256": "948432b800732960d8509552d7b0a649d980ebfd6b2dcdffcfcc388e2c7a6467"
+          "bytes": 6773736,
+          "sha256": "597703220af76972aceba0fe08c5f0fff485b08e352feeacca45c5b4c3058b62"
         },
         {
           "path": "Artists/spanish/Bad Bunny/BadBunnyvocabulary.index.json",
@@ -129,35 +129,33 @@
       "id": "artist-rosalia",
       "name": "Rosalía",
       "scope": "artist",
-      "scopeLabel": "Lyrics · shared Spanish meanings included",
+      "scopeLabel": "Lyrics · Rosalía v7 meanings included",
       "language": "spanish",
       "artist": "rosalia",
-      "contentVersion": "2026-08-17-beto-cal-v5",
-      "storageBytes": 15208475,
+      "contentVersion": "2026-08-24-wsd-v7",
+      "storageBytes": 11366939,
       "transferBytes": 2302945,
-      "dependencies": [
-        "shared-spanish-artist"
-      ],
+      "dependencies": [],
       "files": [
         {
-          "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6676082,
-          "sha256": "948432b800732960d8509552d7b0a649d980ebfd6b2dcdffcfcc388e2c7a6467"
+          "path": "Artists/spanish/Rosalía/Rosaliavocabulary.master.json",
+          "bytes": 1127972,
+          "sha256": "3c121db0bd40b9183c87bca9eb1bb3ef1fe7c34686dda742af95c9b38f24f805"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.index.json",
-          "bytes": 4495957,
-          "sha256": "9d142251468716888e2254119678e078f452edd959f86d98ff242de6e2cc4525"
+          "bytes": 4403689,
+          "sha256": "fbdd68ad9affc493397118f32da9d2b823d75d3970bf711e8c48bc4838772ac3"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliavocabulary.examples.json",
-          "bytes": 3932703,
-          "sha256": "53ee7cdad454cee54099642296fbee773f2944de2f4966d91149921bb464389e"
+          "bytes": 5731380,
+          "sha256": "fc24fb34023b71a993e5a1f6a58ee59e51286fc797489ac5cac44d4f427ca853"
         },
         {
           "path": "Artists/spanish/Rosalía/Rosaliasongs.json",
-          "bytes": 103733,
-          "sha256": "5e65cc03b8cc60bd8417a873e427caccc3f0a042327390684d92970ca34c681c"
+          "bytes": 103898,
+          "sha256": "f427e03e3914414249b8c52a159f0896d22dccae435d1f7fdf476d01ea16b953"
         }
       ]
     },
@@ -169,7 +167,7 @@
       "language": "spanish",
       "artist": "young-miko",
       "contentVersion": "2026-08-17-beto-cal-v5",
-      "storageBytes": 18626366,
+      "storageBytes": 18724020,
       "transferBytes": 2864279,
       "dependencies": [
         "shared-spanish-artist"
@@ -177,8 +175,8 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6676082,
-          "sha256": "948432b800732960d8509552d7b0a649d980ebfd6b2dcdffcfcc388e2c7a6467"
+          "bytes": 6773736,
+          "sha256": "597703220af76972aceba0fe08c5f0fff485b08e352feeacca45c5b4c3058b62"
         },
         {
           "path": "Artists/spanish/Young Miko/YoungMikovocabulary.index.json",
@@ -205,7 +203,7 @@
       "language": "spanish",
       "artist": "spanish-test-playlist",
       "contentVersion": "2026-08-17-beto-cal-v5",
-      "storageBytes": 11033047,
+      "storageBytes": 14061233,
       "transferBytes": 8210126,
       "dependencies": [
         "shared-spanish-artist"
@@ -213,23 +211,23 @@
       "files": [
         {
           "path": "Artists/spanish/vocabulary_master.json",
-          "bytes": 6676082,
-          "sha256": "948432b800732960d8509552d7b0a649d980ebfd6b2dcdffcfcc388e2c7a6467"
+          "bytes": 6773736,
+          "sha256": "597703220af76972aceba0fe08c5f0fff485b08e352feeacca45c5b4c3058b62"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.index.json",
-          "bytes": 1843974,
-          "sha256": "dcca68af7c9ed4d0c392764d8f1410b2815f2f0ee21613782981cf79baf4f077"
+          "bytes": 2947012,
+          "sha256": "eadf6b789ec885fbdcdf5f6ccb1296f95cd32a2448e44dd346f4c265bdb99608"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistvocabulary.examples.json",
-          "bytes": 2487887,
-          "sha256": "e0b064013f1a999541577a5fe572582a0b690a579914a3f931322aa7e4aac81b"
+          "bytes": 4293477,
+          "sha256": "20d84e785048e211cd0c3a7adf480705ed21603860f6376ce1c5c73a3656cae6"
         },
         {
           "path": "Artists/spanish/SpanishTestPlaylist/SpanishTestPlaylistsongs.json",
-          "bytes": 25104,
-          "sha256": "c99ba0f64c7e30c3cb5a7ad850e7f6e4c7c3cfd58c902ab33c06698efe237763"
+          "bytes": 47008,
+          "sha256": "88589d012a00192c8d5d57df79d5faa5cb4b5e112ae7dd9e45954135a90eef73"
         }
       ]
     }

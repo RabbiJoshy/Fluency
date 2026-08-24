@@ -1,7 +1,7 @@
 // Vocabulary loading, filtering, and ID generation.
 // Key functions: buildFilteredVocab() (central filter), loadVocabularyData(), getWordId(),
 // mergeArtistVocabularies() (multi-artist merge by hex ID).
-import './state.js?v=20260822f';
+import './state.js?v=20260824a';
 
 const LAST_STUDY_SESSION_KEY = 'fluency_last_study_session_v1';
 
@@ -2331,6 +2331,11 @@ async function mergeArtistVocabularies(artistConfigs, master) {
     const byId = new Map(); // id → merged entry
     const mergedExamples = {}; // id → { m: [...], w: [...] }
     const combinedLemmaCounts = new Map();
+    const masterPathById = new Map();
+    const masterByPath = new Map();
+    if (master && activeArtist?.masterPath) {
+        masterByPath.set(activeArtist.masterPath, master);
+    }
 
     for (const cfg of artistConfigs) {
         // Load lightweight index for word metadata
@@ -2345,10 +2350,32 @@ async function mergeArtistVocabularies(artistConfigs, master) {
             continue;
         }
 
-        // If master available and data is new format, join first
+        // If master available and data is new format, join first. A custom
+        // Lyrics deck may now combine independently built runs whose sense
+        // arrays have different orders, so load the master paired with each
+        // artist instead of applying the primary artist's master to all of
+        // them.
         const isNewFormat = indexData.length > 0 && indexData[0].sense_frequencies;
-        if (master && isNewFormat) {
-            indexData = joinWithMaster(indexData, master);
+        const sourceMasterPath = cfg.masterPath || '';
+        let sourceMaster = master;
+        if (isNewFormat && sourceMasterPath) {
+            if (masterByPath.has(sourceMasterPath)) {
+                sourceMaster = masterByPath.get(sourceMasterPath);
+            } else {
+                try {
+                    const response = await fetch(sourceMasterPath);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    trackDataFreshness(response);
+                    sourceMaster = await response.json();
+                    masterByPath.set(sourceMasterPath, sourceMaster);
+                } catch (error) {
+                    console.warn(`Failed to load master vocabulary for ${cfg.name}:`, error);
+                    sourceMaster = null;
+                }
+            }
+        }
+        if (sourceMaster && isNewFormat) {
+            indexData = joinWithMaster(indexData, sourceMaster);
         }
 
         // Every surface entry in an artist carries the same pooled count for
@@ -2425,7 +2452,11 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 const existing = byId.get(id);
                 existing.corpus_count = (existing.corpus_count || 0) + (entry.corpus_count || 0);
 
-                if (master && isNewFormat) {
+                const existingMasterPath = masterPathById.get(id);
+                const sameMasterInventory = sourceMaster && isNewFormat
+                    && existingMasterPath !== null
+                    && existingMasterPath === sourceMasterPath;
+                if (sameMasterInventory) {
                     // Merge on the preserved master-sense index rather than
                     // trusting whatever filtering a caller may later apply.
                     if (entry.meanings) {
@@ -2462,6 +2493,10 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                             (a._masterSenseIndex ?? 0) - (b._masterSenseIndex ?? 0));
                     }
                 } else {
+                    // Once two runs with different master inventories meet,
+                    // their numeric sense positions are incomparable. Merge
+                    // by semantic row and keep doing so for later sources.
+                    masterPathById.set(id, null);
                     // Legacy merge: union by POS+translation
                     const existingHasAnalysis = existing.meanings.some(m => m.pos !== 'X' && m.translation);
                     const newHasAnalysis = entry.meanings && entry.meanings.some(m => m.pos !== 'X' && m.translation);
@@ -2553,6 +2588,10 @@ async function mergeArtistVocabularies(artistConfigs, master) {
                 }
             } else {
                 // First time seeing this word — clone and tag.
+                masterPathById.set(
+                    id,
+                    sourceMaster && isNewFormat ? sourceMasterPath : null
+                );
                 // structuredClone is the native deep-clone primitive; ~2-3×
                 // faster than JSON round-trip on the entry shapes here and
                 // doesn't lose `undefined` values or non-JSON types.

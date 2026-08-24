@@ -1,7 +1,7 @@
 {
   "step_name": "assemble_artist_vocabulary",
   "step_version": 17,
-  "generated_at": 1786791307,
+  "generated_at": 1787611319,
   "ledger_run": "run_c9a215f57486286226ae22c9",
   "corpus_profile_hash": "sha256:cfcdaf2a88a8959084f46fad4ca56373fd72115589201163bfeeec03067f6ad1",
   "excluded_labels": [
@@ -13,7 +13,7 @@
     "word_inventory": "d7ac32b7f9b28c13011b2421521198d10e44abaf487d3e79c4e1db1bac4d5371",
     "examples_raw": "82132df177f0f6387215c1bc5c249b0ce5c965c9cffe37c9473c7edb75bf04c0",
     "example_pos": "bb045a1f04eae4b2f2788ff7851bf5025a2eae626fadc69bfa535a74ccb2e328",
-    "sense_assignments_lemma": "40efe10167fefed90b4d6009f75fd510201087b676e0863f7207a2874bbeeb70",
+    "sense_assignments_lemma": "2c298b5ac74206680678764c7118f9d24e2ff9ac5e1e2f93cc67073132be7164",
     "word_routing": "336c2795dd60b0dabedeccad8637f22a39c406a6d23bf5a903c8bbfe8b75eb9a",
     "ranking": "08f94b2b58f2be5e8cf4258fdab2483da8fecee427110147723fb810385684d6",
     "example_translations": "28ae276b2fb8566b41d6c13e1c2b98f0e6626d5b55b45856473e99a8c3f4cc03",

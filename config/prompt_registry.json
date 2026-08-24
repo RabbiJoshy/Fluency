@@ -71,6 +71,12 @@
       "date": "2026-08",
       "notes": "Gloss embeddings; confidence is the gap between the top two lemma+POS readings."
     },
+    "speech-embed-wsd-v7": {
+      "family": "embedding-wsd-classify",
+      "model": "gemini-embedding-001",
+      "date": "2026-08-24",
+      "notes": "Fluency-Next v7 provider-only projection: exact persisted lyric occurrence, clean pinned SpanishDict speech menu, active bridged POS/se constraints, additive provider-order prior, and a separately retained MWE-augmented counterfactual. Not a generative prompt."
+    },
     "sd-beto-cal-v1": {
       "family": "token-prototype-calibrated",
       "capability_tier": 40,
@@ -183,6 +189,19 @@
         "sd-cop-v2": "old mixed-task prompt with known over-translation failures",
         "sd-cop-v3": "same old mixed-task prompt"
       },
+      "require_stable_evidence_join": true,
+      "deterministic_evidence_is_separate": true
+    },
+    "rosalia-v7-provider-current": {
+      "description": "Active Rosalía v7 deck. Only the Fluency-Next v7 provider projection may author model-assigned examples.",
+      "accepted_prompt_ids": [
+        "speech-embed-wsd-v7"
+      ],
+      "preference_order": [
+        "speech-embed-wsd-v7"
+      ],
+      "evaluation_prompt_ids": [],
+      "rejected_prompt_ids": {},
       "require_stable_evidence_join": true,
       "deterministic_evidence_is_separate": true
     },

@@ -14,6 +14,12 @@ import hashlib
 # ---------------------------------------------------------------------------
 
 METHOD_PRIORITY = {
+    # Fluency-Next v7 provider projection: exact Gemini sentence/gloss
+    # embeddings after active Spanish POS/clitic constraints. Registered
+    # explicitly because an unknown method is priority 0 and Spanish builds
+    # otherwise discard every claim silently at minPriority 50.
+    "spanishdict-embed-v7-provider": 89,
+
     # Gemini embedding WSD: sense vector from the English gloss, nearest sense by
     # cosine, with the two levers that survived the 2026-08-11 audit — the gap is
     # taken between meanings rather than leaves, and a per-sense hubness offset

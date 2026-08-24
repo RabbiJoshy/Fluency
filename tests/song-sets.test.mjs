@@ -149,6 +149,9 @@ test('app stores the active song set, filters setup data, and resumes exact song
     assert.match(module, /fluency_song_set_v1:/);
     assert.match(vocab, /songIds: activeArtist \? selectedSongIds\.slice\(\) : \[\]/);
     assert.match(vocab, /filterActiveSongVocabulary/);
+    assert.match(vocab, /const masterByPath = new Map\(\)/);
+    assert.match(vocab, /indexData = joinWithMaster\(indexData, sourceMaster\)/);
+    assert.match(vocab, /existingMasterPath === sourceMasterPath/);
     assert.match(html, /id="songSetModal"/);
     assert.match(backend, /SONG_SETS_SHEET_NAME = 'SongSets'/);
     assert.match(backend, /SONG_SET_SCHEMA_VERSION = 2/);
