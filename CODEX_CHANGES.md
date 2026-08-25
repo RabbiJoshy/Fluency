@@ -65,6 +65,19 @@ Maintenance rule: after each completed Codex task, prepend a dated entry to **Co
 
 ## Codex task history
 
+### 2026-08-25 — Correct the WSD `no_menu` diagnosis
+
+- Implementation commit `6b46fba0`; no front-end cache change (documentation only).
+- Replaced the unsupported claim that 24% of the 2,000-surface panel exposed a
+  SpanishDict inventory gap. The audit instead found 138 inflected verbs whose
+  cached infinitives were not being consulted and 342 ordinary surfaces that had
+  never been fetched; the genuine inventory gap therefore remains unmeasured.
+- Recorded the cheap settling test: consult `conjugation_reverse.json`, extend the
+  pinned snapshot to the requested surfaces, and measure only the remaining misses
+  before treating them as absent senses.
+- Verification: inspected the focused Markdown diff and ran `git diff --check` on
+  the corrected reference document. No application or deck data changed.
+
 ### 2026-08-24 — Promote Rosalía WSD v7 into the ordinary Lyrics deck
 
 - Implementation commit `00b92526`; front-end cache `flashcards-v266` / assets
