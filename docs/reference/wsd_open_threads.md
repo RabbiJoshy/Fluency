@@ -207,10 +207,32 @@ heuristic that quietly favours the biggest entry therefore flatters itself there
 > This gates threads 2, 11 and 14 honestly. It is the cheapest thing that
 > unblocks the most, and it costs hand-labelling rather than money.
 
-**17. The sense-inventory gap.** `no_menu` is 1% over the top 500 surfaces and
-**24% over the top 2,000**. No amount of better picking touches it, and it will
-be the dominant failure in artist mode. Deliberately kept out of scope so far;
-it will not stay out of scope.
+**17. The `no_menu` gap — coverage and lookup, NOT inventory.** `no_menu` is 1%
+over the top 500 surfaces and **24% over the top 2,000**. That number was
+previously written up here as a sense-inventory gap. It is not, and the
+correction matters because it changes who has to fix it.
+
+Auditing all 480 `no_menu` cards from the 2,000-surface run against the pinned
+snapshot:
+
+    138  inflected verb forms whose infinitive IS ALREADY in headword_cache
+         (estabamos/estar, ocurrio/ocurrir, oi/oir, sucedio/suceder,
+          vere/ver, creia/creer, terminado/terminar). The data is on disk
+          and unread -- conjugation_reverse.json resolves them.
+    342  ordinary words never fetched into the snapshot. surface_cache holds
+         6,513 surfaces; the run asked for 2,000 mostly outside it. These
+         are words like espada, excelente, maravilloso, sorpresa, decision,
+         abuelo, detective -- SpanishDict plainly has entries for all of them.
+      ?  genuinely absent from SpanishDict: UNMEASURED. We have never asked.
+
+> So the real sense-inventory gap is **unknown**, and every published `no_menu`
+> figure is an upper bound contaminated by a lookup bug and a partial scrape.
+> Two cheap things settle it: wire `conjugation_reverse.json` into menu lookup
+> (no network), then extend the snapshot to cover the surfaces actually
+> requested. Measure the residue after that, and only then talk about inventory.
+>
+> Artist mode is where a true inventory gap would bite, and that argument still
+> stands -- but it cannot be sized until these two are done.
 
 ---
 
