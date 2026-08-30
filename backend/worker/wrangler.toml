@@ -1,0 +1,14 @@
+name = "fluency-api"
+main = "src/index.js"
+compatibility_date = "2026-08-30"
+
+# Created by:  wrangler d1 create fluency
+# Paste the database_id it prints into database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "fluency"
+database_id = "PASTE_DATABASE_ID_HERE"
+
+# SHEETS_URL is set as a secret, not here, so the Apps Script /exec URL stays
+# out of git:  wrangler secret put SHEETS_URL
+# It is only used to proxy FlaggedWords traffic to the audit tab.
