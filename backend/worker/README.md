@@ -155,15 +155,60 @@ cd backend/worker && wrangler tail
 At 10 users (~65k rows) this uses roughly 1.3% of D1's daily row-read
 allowance and ~2 MB of the 5 GB storage. Workers allow 100k requests/day.
 
-## Keeping the three key definitions in sync
+## Schema
 
-`row_key` is the port of `progressRowKey()` (`GoogleAppsScript.js:326`). It is
-written in three places that must agree, or upserts will insert where they
-should update:
+Progress is event-sourced. Three tables replace what the single spreadsheet-shaped
+`progress` table used to do:
 
-- `migrations/0001_init.sql` (documented)
-- `src/index.js` → `rowKey()`
-- `seed.py` → `row_key()`
+| Table | Role |
+|---|---|
+| `review_events` | Immutable facts. The system of record. Append-only. |
+| `item_state` | Derived read model. Rebuildable from events. Carries `due_at`. |
+| `user_meta` | Settings that were never progress (level-done, level estimates). |
+| `flags` | Card-quality reports. The audit sheet is an export now, not the store. |
+
+**Mode is a column.** It used to be the third character of every id — `es0…`
+speech, `es1…` lyrics — which is why the old client had `normalizeMode()`
+reading `id[2]` and `crossModeProgressId()` flipping that character to find the
+same word in the other mode. Storage now keeps `lang_code`, `mode` and a bare
+`item_id`; the composite id is reconstructed only at the wire boundary, so the
+client sees exactly what it always saw. Cross-mode lookup is a query, not a
+string transform.
+
+**`idempotency_key` is UNIQUE** and events insert with `OR IGNORE`. The sync
+queue already generates that key, so a replayed write is a no-op at the
+database level — the same failure class that silently dropped answers when a
+transient 403 parked the queue.
+
+**`due_at` is materialised.** The client still loads everything and decides
+locally, but `{"action":"loadDue","user":"JST"}` is the query that replaces
+walking every card in JavaScript once the scheduler is built.
+
+### What the backfill could and could not recover
+
+The old table held counters and only the *last* correct/wrong timestamps — the
+individual answers were never recorded. So the backfill writes at most two seed
+events per item (`origin='synthetic'`) rather than inventing ~11k timestamps
+that would be fabricated precision. Pre-cutover totals live in `item_state`;
+`review_events` is complete from the cutover forward.
+
+`progress` is deliberately left in place as a frozen snapshot. Nothing writes
+to it any more.
+
+### Verified at cutover
+
+Every read path returned byte-identical results to the previous backend on the
+same data — `load` (all modes, per mode, and the legacy `UserProgress` /
+`Lyrics` sheet names), `loadItems`, `loadSongSets`, meta and level estimates.
+Writes were checked for event derivation, replay idempotency (a repeated
+`idempotencyKey` produces no second event), and correct expansion when the
+offline queue coalesces several answers into one write.
+
+## Triaging flags
+
+```bash
+python3 backend/worker/flags.py --status open
+```
 
 ## Not migrated
 
