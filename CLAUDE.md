@@ -1,5 +1,22 @@
 # Fluency — AI Reference
 
+> ## ⛔ THIS APP IS RETIRED — DO NOT CHANGE IT
+>
+> **The live product is [Fluency-Next](https://github.com/RabbiJoshy/Fluency-Next)** (`~/PycharmProjects/Fluency-Next`,
+> served at https://rabbijoshy.github.io/Fluency-Next). All app work happens there.
+>
+> Do not edit, build, deploy, or "improve" anything in this repository — not
+> `js/`, not `css/`, not `index.html`, not `service-worker.js`, not `backend/`,
+> not the deployed GitHub Pages site. Do not swap its pointers or bump its
+> caches. If a task seems to require a change here, stop and ask Josh first;
+> the answer is almost certainly that the work belongs in Fluency-Next.
+>
+> This repo is read-only reference: pipeline history, data, and prior art. Read
+> it to understand how something used to work, then implement in Fluency-Next.
+>
+> If you are starting a session and about to work on "the app", you are in the
+> wrong directory.
+
 > **Multi-agent:** Two agents work this repo concurrently — see `COLLABORATION.md`. Claude owns the **pipeline/data engine** (`pipeline/`, `Data/`, `Artists/`, `docs/`); Codex owns the **app surface** (`js/`, `css/`, `index.html`, `service-worker.js`, `dev_changelog.json`) and cache-version bumps. GitHub Issues is the shared live backlog; `TODO.md` and `TODO_PIPELINE.md` are historical snapshots only. Stay on the engine side unless a cross-boundary task is explicitly agreed.
 > **Don't bulk-read layer JSON files** (`vocabulary_master.json`, `sense_assignments/*.json`, etc.) — Grep them for the keys you need.
 > **For deep reference** (file formats, builder flags, step internals, pipeline behaviors), read the linked `docs/reference/` files on demand.
