@@ -97,7 +97,22 @@ def flag_push_payload(row):
     return payload
 
 
-def load_script_url():
+# Cloudflare's bot check rejects urllib's default User-Agent with 403 error
+# 1010, so any request that might go to the Worker sends a browser-shaped one.
+# Apps Script ignores it.
+USER_AGENT = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
+              'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36')
+
+
+def load_script_url(override=None):
+    """Backend URL. `override` (from --url or FLUENCY_BACKEND_URL) wins over
+    secrets.json, so one backend can be read while another is written -- which
+    is what a rollback from the Worker to Apps Script needs."""
+    if override:
+        return override
+    env_url = os.environ.get('FLUENCY_BACKEND_URL')
+    if env_url:
+        return env_url
     try:
         with open(SECRETS_PATH) as f:
             secrets = json.load(f)
@@ -119,7 +134,8 @@ def post_json(script_url, payload, timeout=60):
     req = urllib.request.Request(
         script_url,
         data=data,
-        headers={'Content-Type': 'application/json'},
+        headers={'Content-Type': 'application/json',
+                 'User-Agent': USER_AGENT},
         method='POST'
     )
     try:
@@ -269,10 +285,11 @@ def main():
     parser.add_argument('--confirm', action='store_true', help='Actually push (default: dry-run)')
     parser.add_argument('--replace', action='store_true',
                         help='Replace entire sheet with local data (deletes remote-only rows)')
+    parser.add_argument('--url', help='backend URL, overriding secrets.json (also FLUENCY_BACKEND_URL)')
     args = parser.parse_args()
 
     sheets = [args.sheet] if args.sheet else SHEETS
-    script_url = load_script_url()
+    script_url = load_script_url(args.url)
 
     all_changesets = {}
 

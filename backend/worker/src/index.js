@@ -646,18 +646,50 @@ async function deleteSongSet(db, params) {
   return response(true, meta.changes ? 'Song set deleted' : 'Song set not found');
 }
 
-/** Whole-table dump, used by backend/sync_sheets.py. */
+/**
+ * Whole-table dump, used by backend/sync_sheets.py and backend/push_sheets.py.
+ *
+ * Must emit the Apps Script's shape exactly — a headers row plus positional
+ * value arrays, not objects — because those scripts rebuild objects by zipping
+ * headers against rows. Matching it is what makes a rollback mechanical:
+ * dump from here, push into the sheet, same column order either way.
+ */
+const PROGRESS_HEADERS = [
+  'User', 'ItemId', 'ItemType', 'Mode', 'Source', 'ParentWordId', 'Label',
+  'Language', 'Correct', 'Wrong', 'LastCorrect', 'LastWrong', 'LastSeen',
+  'SchemaVersion', 'SrsStage', 'Value'
+];
+const SONG_SET_HEADERS = [
+  'User', 'SetId', 'Source', 'Name', 'Language', 'SongIdsJson', 'UpdatedAt',
+  'SchemaVersion', 'ArtistSlugsJson'
+];
+
 async function dumpSheet(db, params, env) {
   const requested = params.sheet || 'Progress';
   if (requested === 'FlaggedWords') return proxyToSheets(params, env);
+
   if (requested === 'SongSets') {
     const { results } = await db.prepare('SELECT * FROM song_sets').all();
-    return response(true, 'Sheet dumped', { sheet: 'SongSets', rows: results });
+    return response(true, 'Sheet dumped successfully', {
+      headers: SONG_SET_HEADERS,
+      rows: results.map(r => [
+        r.user, r.set_id, r.source, r.name, r.language, r.song_ids_json,
+        r.updated_at, r.schema_version, r.artist_slugs_json
+      ])
+    });
   }
+
   const { results } = await db.prepare('SELECT * FROM progress').all();
-  return response(true, 'Sheet dumped', {
-    sheet: 'Progress',
-    rows: results.map(fromDb)
+  return response(true, 'Sheet dumped successfully', {
+    headers: PROGRESS_HEADERS,
+    rows: results.map(raw => {
+      const r = fromDb(raw);
+      return [
+        r.user, r.itemId, r.itemType, r.mode, r.source, r.parentWordId,
+        r.label, r.language, r.correct, r.wrong, r.lastCorrect, r.lastWrong,
+        r.lastSeen, r.schemaVersion, r.srsStage, r.value
+      ];
+    })
   });
 }
 
