@@ -159,9 +159,25 @@ function fromDb(r) {
     lastWrong: r.last_wrong,
     lastSeen: r.last_seen,
     schemaVersion: r.schema_version,
-    srsStage: r.srs_stage,
-    value: r.value
+    // The sheet stored '' for unset and a number 0-7 otherwise. The column is
+    // TEXT (SQLite has no union type), so convert back on the way out or the
+    // client sees "1" where the Apps Script sent 1. Every current reader
+    // coerces with Number(), but the contract should still match exactly.
+    srsStage: (r.srs_stage === '' || r.srs_stage === null) ? '' : Number(r.srs_stage),
+    value: reviveScalar(r.value)
   };
+}
+
+/**
+ * Sheets cells carry a type: a level-done row's value came back as the number
+ * 1, while a level-estimate's is a string like 'B1'. The D1 column is TEXT, so
+ * restore the number when — and only when — the text is exactly what that
+ * number stringifies to. '007' and 'B1' stay strings; '' stays ''.
+ */
+function reviveScalar(text) {
+  if (text === '' || text === null || text === undefined) return text === null ? '' : text;
+  const asNumber = Number(text);
+  return Number.isFinite(asNumber) && String(asNumber) === String(text) ? asNumber : text;
 }
 
 const UPSERT_SQL = `

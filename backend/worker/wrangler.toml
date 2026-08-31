@@ -7,7 +7,7 @@ compatibility_date = "2026-08-30"
 [[d1_databases]]
 binding = "DB"
 database_name = "fluency"
-database_id = "PASTE_DATABASE_ID_HERE"
+database_id = "5f0ebd77-a47b-43a7-9052-94db7a486195"
 
 # SHEETS_URL is set as a secret, not here, so the Apps Script /exec URL stays
 # out of git:  wrangler secret put SHEETS_URL
