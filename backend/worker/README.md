@@ -1,5 +1,7 @@
 # Fluency API — Cloudflare Worker + D1
 
+**Live:** https://fluency-api.rabbijoshy.workers.dev
+
 Replaces `backend/GoogleAppsScript.js` for progress and song sets. Same JSON
 protocol, so `js/auth.js` and `js/sync-queue.js` are untouched — the only app
 change is the URL in `backend/secrets.json`.
@@ -11,29 +13,27 @@ deployment**, so the FlaggedWords audit tab keeps working exactly as now.
 
 The Apps Script read the **entire sheet** on every request and filtered in
 JavaScript (`GoogleAppsScript.js:503`), so each user paid for every other
-user's rows — cost grew with total rows, not with your own. Writes were
-read-modify-write with no `LockService` outside the migration paths
-(`upsertProgressRow`, `GoogleAppsScript.js:355`), so concurrent saves could
-lose updates.
+user's rows. Writes were read-modify-write with no `LockService` outside the
+migration paths (`upsertProgressRow`, `GoogleAppsScript.js:355`), so
+concurrent saves could lose updates — five duplicate rows in the live sheet,
+three with conflicting content, are that bug's fingerprint.
 
-Measured on the seeded data, the D1 query cost is flat:
+Measured against the live Apps Script, same data, same actions:
 
-| Rows in table | `load` for one user | Upsert key lookup |
-|---|---|---|
-| 6,561 (1 user) | **3.07 ms** | 0.004 ms |
-| 65,610 (10 users) | **3.11 ms** | 0.004 ms |
+| Call | Apps Script | Worker (live) | Speedup |
+|---|---|---|---|
+| `load` JST (6,144 cards) | 4,857 ms | 892 ms | 5x |
+| same, gzip as a browser sends | — | **265 ms**, 129 KB | ~18x |
+| `load` JST normal | 4,917 ms | 247 ms | 20x |
+| `load` JSTA | 4,486 ms | 95 ms | 47x |
+| `loadItems` JST (3,338) | 4,210 ms | 173 ms | 24x |
+| `capabilities` (no data) | 1,667 ms | 68 ms | 25x |
 
-`idx_progress_user_type` turns the load into a range scan over one user's rows
-(`EXPLAIN QUERY PLAN` reports `SEARCH ... USING INDEX`, not `SCAN`), so a tenth
-user costs the first nine nothing.
-
-**On the Apps Script side, only one figure is verified:** a `GET` health check
-that touches no data at all takes **~1.5 s**. Actual `POST` latency could not
-be measured from the command line — Google returns an HTML interstitial to
-curl rather than running the script — so treat any figure for a real `load`
-as unmeasured. The argument for migrating rests on the full-scan and
-missing-lock behaviour in the source, both of which are plain to read, not on
-a latency benchmark.
+The uncompressed `load` figure is dominated by shipping 1.4 MB; browsers send
+`Accept-Encoding: gzip` and get 129 KB. On the database itself the query is
+~3 ms and stays ~3 ms at ten users' worth of rows (`EXPLAIN QUERY PLAN` shows
+`SEARCH ... USING INDEX`, not `SCAN`), so the cost no longer grows with the
+number of people using the app.
 
 ## Prerequisites
 
@@ -90,31 +90,26 @@ cd backend/worker && wrangler deploy
 
 ## Verify before switching
 
-`smoke_test.sh` runs the read-only actions the client uses. Nothing is written,
-and the app still points at Sheets while you run it:
+`smoke_test.sh` runs the read-only actions the client uses. Nothing is written:
 
 ```bash
-backend/worker/smoke_test.sh "https://fluency-api.<subdomain>.workers.dev" JST
+backend/worker/smoke_test.sh https://fluency-api.rabbijoshy.workers.dev JST
 ```
 
-Note that you **cannot** diff this against the Apps Script backend from the
-command line — Google serves curl an HTML interstitial instead of running the
-script on POST. So check the Worker's output against the counts seeded from the
-dump instead. For user `JST` it should report:
+Expected for `JST`: 6,144 progress, 17 meta, 3,338 items. For `JSTA`: 24
+progress, 77 items, 1 song set. Regenerate these from the dump with
+`python3 backend/worker/seed.py backend/local/Progress.json --report`.
 
-| Call | Expected |
-|---|---|
-| `load` (all modes) | 3,247 progress · 17 meta |
-| `load` mode=normal | 459 progress |
-| `load` mode=artist | 2,788 progress |
-| `loadItems` | 3,297 items |
+The Worker was diffed against the live Apps Script by comparing the keyed maps
+`js/auth.js` actually builds. Every action matches except one card, `chavos`,
+where the sheet holds two conflicting duplicates: Sheets returns the older
+row, this backend returns the newer one. That is deliberate — see the dedupe
+note in `seed.py`.
 
-Regenerate these any time from the seeded database rather than trusting the
-table above:
-
-```bash
-python3 backend/worker/seed.py backend/local/Progress.json --report
-```
+**Scripting against it:** Cloudflare's bot check returns `403 error code 1010`
+to requests with a non-browser `User-Agent` (Python's `urllib` default is
+blocked; curl's is not). Send a normal browser UA from any script. Browsers
+are unaffected.
 
 ## Swap the pointer
 

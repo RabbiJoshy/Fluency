@@ -12,3 +12,10 @@ database_id = "5f0ebd77-a47b-43a7-9052-94db7a486195"
 # SHEETS_URL is set as a secret, not here, so the Apps Script /exec URL stays
 # out of git:  wrangler secret put SHEETS_URL
 # It is only used to proxy FlaggedWords traffic to the audit tab.
+
+# Explicit rather than defaulted, as the first deploy warned. workers.dev is
+# the app's endpoint. Preview URLs are off: each one is another public address
+# for a backend that has no authentication, and the version history is not
+# worth that extra surface.
+workers_dev = true
+preview_urls = false
