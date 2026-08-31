@@ -116,10 +116,33 @@ are unaffected.
 Change `googleScriptUrl` in `backend/secrets.json` to the Worker URL, commit,
 and push. GitHub Pages redeploys and clients pick it up.
 
-**Rollback** is putting the old URL back — the Apps Script deployment stays
-live and untouched, so Sheets remains a working fallback. Progress written to
-D1 after the swap won't be in the sheet, so re-dump with
-`backend/worker/seed.py` in reverse if you ever need to go back for real.
+## Rollback
+
+The two stores share a schema and a wire format, so moving data back is
+mechanical. Dump D1 through the normal sync tool, then push it into the sheet:
+
+```bash
+.venv/bin/python3 backend/sync_sheets.py --sheet Progress --url https://fluency-api.rabbijoshy.workers.dev
+```
+
+```bash
+.venv/bin/python3 backend/push_sheets.py --sheet Progress
+```
+
+The second command is a **dry run** and prints the changeset; add `--confirm`
+to apply it. `--url` (or `FLUENCY_BACKEND_URL`) overrides `secrets.json`, which
+is what lets you read one backend and write the other after the swap.
+
+Then put the old URL back in `secrets.json`. The Apps Script deployment stays
+live and untouched throughout, so it remains a working fallback.
+
+Verified end to end: dumping D1 this way produces headers identical to a Sheets
+dump, and the only differing rows are the six this migration deliberately drops
+(five duplicate keys, one row with no user) plus the `chavos` dedupe.
+
+The one thing a rollback does overwrite is edits made **directly in the
+spreadsheet** after the swap — the push takes D1 as the source of truth for
+the Progress tab. Flags are unaffected; they live only in Sheets.
 
 ## Watch it run
 
