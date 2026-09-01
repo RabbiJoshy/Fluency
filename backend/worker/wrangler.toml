@@ -4,6 +4,14 @@ compatibility_date = "2026-08-30"
 
 # Created by:  wrangler d1 create fluency
 # Paste the database_id it prints into database_id below.
+
+# Top-level, NOT after [[d1_databases]] — TOML assigns any key following a
+# table header to that table, so putting these at the end of the file silently
+# made them d1_databases fields and they were never applied. wrangler warns
+# about the unexpected fields but deploys anyway, so preview URLs stayed on.
+workers_dev = true
+preview_urls = false
+
 [[d1_databases]]
 binding = "DB"
 database_name = "fluency"
@@ -12,10 +20,3 @@ database_id = "5f0ebd77-a47b-43a7-9052-94db7a486195"
 # SHEETS_URL is set as a secret, not here, so the Apps Script /exec URL stays
 # out of git:  wrangler secret put SHEETS_URL
 # It is only used to proxy FlaggedWords traffic to the audit tab.
-
-# Explicit rather than defaulted, as the first deploy warned. workers.dev is
-# the app's endpoint. Preview URLs are off: each one is another public address
-# for a backend that has no authentication, and the version history is not
-# worth that extra surface.
-workers_dev = true
-preview_urls = false
