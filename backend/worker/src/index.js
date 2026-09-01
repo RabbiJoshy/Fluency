@@ -180,18 +180,34 @@ async function bulkSave(db, params, env) {
 
 /* ------------------------------- reading -------------------------------- */
 
+/**
+ * The whole point of delta sync: what is the newest thing this user has?
+ * With idx_state_user_updated this is the last entry of a range scan — one row
+ * read instead of the ~9,500 a full load costs. A client whose cached version
+ * matches can skip fetching progress entirely.
+ */
+async function loadVersion(db, params) {
+  if (!params.user) return response(false, 'Missing required field: user');
+  const row = await db.prepare(
+    'SELECT MAX(updated_at) AS version FROM item_state WHERE user_id = ?'
+  ).bind(params.user).first();
+  return response(true, 'Version', { version: row?.version || '', user: params.user });
+}
+
 async function loadProgress(db, params) {
   if (!params.user) return response(false, 'Missing required field: user');
   const requested = params.mode || legacySheetMode(params.sheet) || 'all';
   const filter = requested === 'all' ? null : storedMode(requested);
 
-  const words = filter
-    ? await db.prepare(
-        `SELECT * FROM item_state WHERE user_id=?1 AND item_type='word' AND mode=?2`
-      ).bind(params.user, filter).all()
-    : await db.prepare(
-        `SELECT * FROM item_state WHERE user_id=?1 AND item_type='word'`
-      ).bind(params.user).all();
+  // `since` turns this into a delta: only rows touched after the client's last
+  // sync. Everything else it already has cached. Omitting `since` keeps the
+  // original full-load behaviour, so an un-updated client is unaffected.
+  const since = typeof params.since === 'string' && params.since ? params.since : null;
+  let sql = `SELECT * FROM item_state WHERE user_id=?1 AND item_type='word'`;
+  const binds = [params.user];
+  if (filter) { sql += ` AND mode=?${binds.length + 1}`; binds.push(filter); }
+  if (since) { sql += ` AND updated_at > ?${binds.length + 1}`; binds.push(since); }
+  const words = await db.prepare(sql).bind(...binds).all();
 
   const metaRows = await db.prepare(
     'SELECT * FROM user_meta WHERE user_id=?1'
@@ -209,10 +225,18 @@ async function loadProgress(db, params) {
     };
   });
 
+  const newest = words.results.reduce(
+    (latest, row) => (row.updated_at > latest ? row.updated_at : latest), since || '');
   return response(true, 'Progress loaded successfully', {
     schemaVersion: PROGRESS_SCHEMA_VERSION,
     progress: words.results.map(stateToWireWord),
-    levelEstimates, meta
+    levelEstimates, meta,
+    // version travels on every reply — a full load has to seed the client's
+    // watermark, or it could never ask for a delta next time. `delta` marks a
+    // partial reply so the client knows not to treat it as the whole picture;
+    // an older client ignores both fields and still gets a full load.
+    version: newest,
+    ...(since ? { delta: true, since } : {})
   });
 }
 
@@ -221,12 +245,19 @@ async function loadItemProgress(db, params) {
   const requested = params.mode || 'all';
   const filter = requested === 'all' ? null : storedMode(requested);
   const slots = ITEM_TYPES.map(() => '?').join(',');
-  const sql = `SELECT * FROM item_state WHERE user_id=? AND item_type IN (${slots})`
-    + (filter ? ' AND mode=?' : '');
-  const binds = filter ? [params.user, ...ITEM_TYPES, filter] : [params.user, ...ITEM_TYPES];
+  const since = typeof params.since === 'string' && params.since ? params.since : null;
+  let sql = `SELECT * FROM item_state WHERE user_id=? AND item_type IN (${slots})`;
+  const binds = [params.user, ...ITEM_TYPES];
+  if (filter) { sql += ' AND mode=?'; binds.push(filter); }
+  if (since) { sql += ' AND updated_at > ?'; binds.push(since); }
   const { results } = await db.prepare(sql).bind(...binds).all();
-  return response(true, 'Item progress loaded successfully',
-    { items: results.map(stateToWireItem) });
+  const newest = results.reduce(
+    (latest, row) => (row.updated_at > latest ? row.updated_at : latest), since || '');
+  return response(true, 'Item progress loaded successfully', {
+    items: results.map(stateToWireItem),
+    version: newest,
+    ...(since ? { delta: true, since } : {})
+  });
 }
 
 /**
@@ -501,6 +532,7 @@ export default {
       switch (params.action) {
         case 'save':          return await saveProgress(db, params, env);
         case 'load':          return await loadProgress(db, params);
+        case 'version':       return await loadVersion(db, params);
         case 'loadDue':       return await loadDue(db, params);
         case 'delete':        return await deleteProgress(db, params, env);
         case 'deleteRow':     return await deleteExactProgressRow(db, params);
@@ -519,7 +551,7 @@ export default {
             flagSchemaVersion: FLAG_SCHEMA_VERSION,
             songSetSchemaVersion: SONG_SET_SCHEMA_VERSION,
             sheets: ['Progress', 'FlaggedWords', 'SongSets'],
-            storage: 'event-sourced', supports: ['loadDue']
+            storage: 'event-sourced', supports: ['loadDue', 'version', 'delta']
           });
         // Schema changes are migration files now, not runtime actions.
         case 'migrateProgress':
